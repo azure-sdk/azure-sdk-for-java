@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A class represent the control family. */
+/**
+ * A class represent the control family.
+ */
 @Immutable
 public final class ControlFamily {
     /*
@@ -35,13 +37,15 @@ public final class ControlFamily {
     @JsonProperty(value = "controls", access = JsonProperty.Access.WRITE_ONLY)
     private List<Control> controls;
 
-    /** Creates an instance of ControlFamily class. */
+    /**
+     * Creates an instance of ControlFamily class.
+     */
     public ControlFamily() {
     }
 
     /**
      * Get the familyName property: The name of the control family. e.g. "Malware Protection - Anti-Virus".
-     *
+     * 
      * @return the familyName value.
      */
     public String familyName() {
@@ -50,7 +54,7 @@ public final class ControlFamily {
 
     /**
      * Get the familyType property: The control family type.
-     *
+     * 
      * @return the familyType value.
      */
     public ControlFamilyType familyType() {
@@ -59,7 +63,7 @@ public final class ControlFamily {
 
     /**
      * Get the familyStatus property: Control family status.
-     *
+     * 
      * @return the familyStatus value.
      */
     public ControlFamilyStatus familyStatus() {
@@ -68,7 +72,7 @@ public final class ControlFamily {
 
     /**
      * Get the controls property: List of controls.
-     *
+     * 
      * @return the controls value.
      */
     public List<Control> controls() {
@@ -77,7 +81,7 @@ public final class ControlFamily {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

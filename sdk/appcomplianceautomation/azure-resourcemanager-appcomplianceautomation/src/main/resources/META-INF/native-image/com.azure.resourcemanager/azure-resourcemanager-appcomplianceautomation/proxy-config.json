@@ -1,0 +1,1 @@
+[ [ "com.azure.resourcemanager.appcomplianceautomation.implementation.OperationsClientImpl$OperationsService" ], [ "com.azure.resourcemanager.appcomplianceautomation.implementation.ReportResourcesClientImpl$ReportResourcesService" ], [ "com.azure.resourcemanager.appcomplianceautomation.implementation.SnapshotResourcesClientImpl$SnapshotResourcesService" ] ]

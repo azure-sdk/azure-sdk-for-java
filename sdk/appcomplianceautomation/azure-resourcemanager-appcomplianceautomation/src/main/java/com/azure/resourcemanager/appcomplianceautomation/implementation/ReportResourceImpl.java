@@ -6,16 +6,21 @@ package com.azure.resourcemanager.appcomplianceautomation.implementation;
 
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.appcomplianceautomation.fluent.models.ReportResourceInner;
-import com.azure.resourcemanager.appcomplianceautomation.models.ReportProperties;
+import com.azure.resourcemanager.appcomplianceautomation.models.ProvisioningState;
+import com.azure.resourcemanager.appcomplianceautomation.models.ReportComplianceStatus;
 import com.azure.resourcemanager.appcomplianceautomation.models.ReportResource;
+import com.azure.resourcemanager.appcomplianceautomation.models.ReportStatus;
+import com.azure.resourcemanager.appcomplianceautomation.models.ResourceMetadata;
+import java.time.OffsetDateTime;
+import java.util.Collections;
+import java.util.List;
 
 public final class ReportResourceImpl implements ReportResource {
     private ReportResourceInner innerObject;
 
     private final com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager serviceManager;
 
-    ReportResourceImpl(
-        ReportResourceInner innerObject,
+    ReportResourceImpl(ReportResourceInner innerObject,
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -33,12 +38,70 @@ public final class ReportResourceImpl implements ReportResource {
         return this.innerModel().type();
     }
 
-    public ReportProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public String idPropertiesId() {
+        return this.innerModel().idPropertiesId();
+    }
+
+    public ReportStatus status() {
+        return this.innerModel().status();
+    }
+
+    public String tenantId() {
+        return this.innerModel().tenantId();
+    }
+
+    public String reportName() {
+        return this.innerModel().reportName();
+    }
+
+    public String offerGuid() {
+        return this.innerModel().offerGuid();
+    }
+
+    public String timeZone() {
+        return this.innerModel().timeZone();
+    }
+
+    public OffsetDateTime triggerTime() {
+        return this.innerModel().triggerTime();
+    }
+
+    public OffsetDateTime nextTriggerTime() {
+        return this.innerModel().nextTriggerTime();
+    }
+
+    public OffsetDateTime lastTriggerTime() {
+        return this.innerModel().lastTriggerTime();
+    }
+
+    public List<String> subscriptions() {
+        List<String> inner = this.innerModel().subscriptions();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<ResourceMetadata> resources() {
+        List<ResourceMetadata> inner = this.innerModel().resources();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public ReportComplianceStatus complianceStatus() {
+        return this.innerModel().complianceStatus();
+    }
+
+    public ProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
     }
 
     public ReportResourceInner innerModel() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A class represent the compliance category. */
+/**
+ * A class represent the compliance category.
+ */
 @Immutable
 public final class Category {
     /*
@@ -35,13 +37,15 @@ public final class Category {
     @JsonProperty(value = "controlFamilies", access = JsonProperty.Access.WRITE_ONLY)
     private List<ControlFamily> controlFamilies;
 
-    /** Creates an instance of Category class. */
+    /**
+     * Creates an instance of Category class.
+     */
     public Category() {
     }
 
     /**
      * Get the categoryName property: The name of the compliance category. e.g. "Operational Security".
-     *
+     * 
      * @return the categoryName value.
      */
     public String categoryName() {
@@ -50,7 +54,7 @@ public final class Category {
 
     /**
      * Get the categoryType property: The category type.
-     *
+     * 
      * @return the categoryType value.
      */
     public CategoryType categoryType() {
@@ -59,7 +63,7 @@ public final class Category {
 
     /**
      * Get the categoryStatus property: Category status.
-     *
+     * 
      * @return the categoryStatus value.
      */
     public CategoryStatus categoryStatus() {
@@ -68,7 +72,7 @@ public final class Category {
 
     /**
      * Get the controlFamilies property: List of control families.
-     *
+     * 
      * @return the controlFamilies value.
      */
     public List<ControlFamily> controlFamilies() {
@@ -77,7 +81,7 @@ public final class Category {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

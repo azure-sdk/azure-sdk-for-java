@@ -24,10 +24,8 @@ import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.appcomplianceautomation.fluent.AppComplianceAutomationToolForMicrosoft365;
 import com.azure.resourcemanager.appcomplianceautomation.fluent.OperationsClient;
-import com.azure.resourcemanager.appcomplianceautomation.fluent.ReportOperationsClient;
-import com.azure.resourcemanager.appcomplianceautomation.fluent.ReportsClient;
-import com.azure.resourcemanager.appcomplianceautomation.fluent.SnapshotOperationsClient;
-import com.azure.resourcemanager.appcomplianceautomation.fluent.SnapshotsClient;
+import com.azure.resourcemanager.appcomplianceautomation.fluent.ReportResourcesClient;
+import com.azure.resourcemanager.appcomplianceautomation.fluent.SnapshotResourcesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -37,160 +35,148 @@ import java.time.Duration;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** Initializes a new instance of the AppComplianceAutomationToolForMicrosoft365Impl type. */
+/**
+ * Initializes a new instance of the AppComplianceAutomationToolForMicrosoft365Impl type.
+ */
 @ServiceClient(builder = AppComplianceAutomationToolForMicrosoft365Builder.class)
 public final class AppComplianceAutomationToolForMicrosoft365Impl
     implements AppComplianceAutomationToolForMicrosoft365 {
-    /** server parameter. */
+    /**
+     * server parameter.
+     */
     private final String endpoint;
 
     /**
      * Gets server parameter.
-     *
+     * 
      * @return the endpoint value.
      */
     public String getEndpoint() {
         return this.endpoint;
     }
 
-    /** Api Version. */
+    /**
+     * Api Version.
+     */
     private final String apiVersion;
 
     /**
      * Gets Api Version.
-     *
+     * 
      * @return the apiVersion value.
      */
     public String getApiVersion() {
         return this.apiVersion;
     }
 
-    /** The HTTP pipeline to send requests through. */
+    /**
+     * The HTTP pipeline to send requests through.
+     */
     private final HttpPipeline httpPipeline;
 
     /**
      * Gets The HTTP pipeline to send requests through.
-     *
+     * 
      * @return the httpPipeline value.
      */
     public HttpPipeline getHttpPipeline() {
         return this.httpPipeline;
     }
 
-    /** The serializer to serialize an object into a string. */
+    /**
+     * The serializer to serialize an object into a string.
+     */
     private final SerializerAdapter serializerAdapter;
 
     /**
      * Gets The serializer to serialize an object into a string.
-     *
+     * 
      * @return the serializerAdapter value.
      */
     SerializerAdapter getSerializerAdapter() {
         return this.serializerAdapter;
     }
 
-    /** The default poll interval for long-running operation. */
+    /**
+     * The default poll interval for long-running operation.
+     */
     private final Duration defaultPollInterval;
 
     /**
      * Gets The default poll interval for long-running operation.
-     *
+     * 
      * @return the defaultPollInterval value.
      */
     public Duration getDefaultPollInterval() {
         return this.defaultPollInterval;
     }
 
-    /** The OperationsClient object to access its operations. */
+    /**
+     * The OperationsClient object to access its operations.
+     */
     private final OperationsClient operations;
 
     /**
      * Gets the OperationsClient object to access its operations.
-     *
+     * 
      * @return the OperationsClient object.
      */
     public OperationsClient getOperations() {
         return this.operations;
     }
 
-    /** The ReportsClient object to access its operations. */
-    private final ReportsClient reports;
+    /**
+     * The ReportResourcesClient object to access its operations.
+     */
+    private final ReportResourcesClient reportResources;
 
     /**
-     * Gets the ReportsClient object to access its operations.
-     *
-     * @return the ReportsClient object.
+     * Gets the ReportResourcesClient object to access its operations.
+     * 
+     * @return the ReportResourcesClient object.
      */
-    public ReportsClient getReports() {
-        return this.reports;
+    public ReportResourcesClient getReportResources() {
+        return this.reportResources;
     }
 
-    /** The ReportOperationsClient object to access its operations. */
-    private final ReportOperationsClient reportOperations;
+    /**
+     * The SnapshotResourcesClient object to access its operations.
+     */
+    private final SnapshotResourcesClient snapshotResources;
 
     /**
-     * Gets the ReportOperationsClient object to access its operations.
-     *
-     * @return the ReportOperationsClient object.
+     * Gets the SnapshotResourcesClient object to access its operations.
+     * 
+     * @return the SnapshotResourcesClient object.
      */
-    public ReportOperationsClient getReportOperations() {
-        return this.reportOperations;
-    }
-
-    /** The SnapshotsClient object to access its operations. */
-    private final SnapshotsClient snapshots;
-
-    /**
-     * Gets the SnapshotsClient object to access its operations.
-     *
-     * @return the SnapshotsClient object.
-     */
-    public SnapshotsClient getSnapshots() {
-        return this.snapshots;
-    }
-
-    /** The SnapshotOperationsClient object to access its operations. */
-    private final SnapshotOperationsClient snapshotOperations;
-
-    /**
-     * Gets the SnapshotOperationsClient object to access its operations.
-     *
-     * @return the SnapshotOperationsClient object.
-     */
-    public SnapshotOperationsClient getSnapshotOperations() {
-        return this.snapshotOperations;
+    public SnapshotResourcesClient getSnapshotResources() {
+        return this.snapshotResources;
     }
 
     /**
      * Initializes an instance of AppComplianceAutomationToolForMicrosoft365 client.
-     *
+     * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
      * @param endpoint server parameter.
      */
-    AppComplianceAutomationToolForMicrosoft365Impl(
-        HttpPipeline httpPipeline,
-        SerializerAdapter serializerAdapter,
-        Duration defaultPollInterval,
-        AzureEnvironment environment,
-        String endpoint) {
+    AppComplianceAutomationToolForMicrosoft365Impl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
+        Duration defaultPollInterval, AzureEnvironment environment, String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
         this.endpoint = endpoint;
         this.apiVersion = "2022-11-16-preview";
         this.operations = new OperationsClientImpl(this);
-        this.reports = new ReportsClientImpl(this);
-        this.reportOperations = new ReportOperationsClientImpl(this);
-        this.snapshots = new SnapshotsClientImpl(this);
-        this.snapshotOperations = new SnapshotOperationsClientImpl(this);
+        this.reportResources = new ReportResourcesClientImpl(this);
+        this.snapshotResources = new SnapshotResourcesClientImpl(this);
     }
 
     /**
      * Gets default client context.
-     *
+     * 
      * @return the default client context.
      */
     public Context getContext() {
@@ -199,7 +185,7 @@ public final class AppComplianceAutomationToolForMicrosoft365Impl
 
     /**
      * Merges default client context with provided context.
-     *
+     * 
      * @param context the context to be merged with default client context.
      * @return the merged context.
      */
@@ -209,7 +195,7 @@ public final class AppComplianceAutomationToolForMicrosoft365Impl
 
     /**
      * Gets long running operation result.
-     *
+     * 
      * @param activationResponse the response of activation operation.
      * @param httpPipeline the http pipeline.
      * @param pollResultType type of poll result.
@@ -219,26 +205,15 @@ public final class AppComplianceAutomationToolForMicrosoft365Impl
      * @param <U> type of final result.
      * @return poller flux for poll result and final result.
      */
-    public <T, U> PollerFlux<PollResult<T>, U> getLroResult(
-        Mono<Response<Flux<ByteBuffer>>> activationResponse,
-        HttpPipeline httpPipeline,
-        Type pollResultType,
-        Type finalResultType,
-        Context context) {
-        return PollerFactory
-            .create(
-                serializerAdapter,
-                httpPipeline,
-                pollResultType,
-                finalResultType,
-                defaultPollInterval,
-                activationResponse,
-                context);
+    public <T, U> PollerFlux<PollResult<T>, U> getLroResult(Mono<Response<Flux<ByteBuffer>>> activationResponse,
+        HttpPipeline httpPipeline, Type pollResultType, Type finalResultType, Context context) {
+        return PollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
+            defaultPollInterval, activationResponse, context);
     }
 
     /**
      * Gets the final result, or an error, based on last async poll response.
-     *
+     * 
      * @param response the last async poll response.
      * @param <T> type of poll result.
      * @param <U> type of final result.
@@ -251,19 +226,16 @@ public final class AppComplianceAutomationToolForMicrosoft365Impl
             HttpResponse errorResponse = null;
             PollResult.Error lroError = response.getValue().getError();
             if (lroError != null) {
-                errorResponse =
-                    new HttpResponseImpl(
-                        lroError.getResponseStatusCode(), lroError.getResponseHeaders(), lroError.getResponseBody());
+                errorResponse = new HttpResponseImpl(lroError.getResponseStatusCode(), lroError.getResponseHeaders(),
+                    lroError.getResponseBody());
 
                 errorMessage = response.getValue().getError().getMessage();
                 String errorBody = response.getValue().getError().getResponseBody();
                 if (errorBody != null) {
                     // try to deserialize error body to ManagementError
                     try {
-                        managementError =
-                            this
-                                .getSerializerAdapter()
-                                .deserialize(errorBody, ManagementError.class, SerializerEncoding.JSON);
+                        managementError = this.getSerializerAdapter().deserialize(errorBody, ManagementError.class,
+                            SerializerEncoding.JSON);
                         if (managementError.getCode() == null || managementError.getMessage() == null) {
                             managementError = null;
                         }

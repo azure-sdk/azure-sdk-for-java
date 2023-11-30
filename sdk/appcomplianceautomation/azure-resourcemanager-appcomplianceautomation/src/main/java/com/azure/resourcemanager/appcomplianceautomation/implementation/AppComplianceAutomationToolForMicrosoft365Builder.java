@@ -14,8 +14,10 @@ import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.serializer.SerializerAdapter;
 import java.time.Duration;
 
-/** A builder for creating a new instance of the AppComplianceAutomationToolForMicrosoft365Impl type. */
-@ServiceClientBuilder(serviceClients = {AppComplianceAutomationToolForMicrosoft365Impl.class})
+/**
+ * A builder for creating a new instance of the AppComplianceAutomationToolForMicrosoft365Impl type.
+ */
+@ServiceClientBuilder(serviceClients = { AppComplianceAutomationToolForMicrosoft365Impl.class })
 public final class AppComplianceAutomationToolForMicrosoft365Builder {
     /*
      * server parameter
@@ -24,7 +26,7 @@ public final class AppComplianceAutomationToolForMicrosoft365Builder {
 
     /**
      * Sets server parameter.
-     *
+     * 
      * @param endpoint the endpoint value.
      * @return the AppComplianceAutomationToolForMicrosoft365Builder.
      */
@@ -40,7 +42,7 @@ public final class AppComplianceAutomationToolForMicrosoft365Builder {
 
     /**
      * Sets The environment to connect to.
-     *
+     * 
      * @param environment the environment value.
      * @return the AppComplianceAutomationToolForMicrosoft365Builder.
      */
@@ -56,7 +58,7 @@ public final class AppComplianceAutomationToolForMicrosoft365Builder {
 
     /**
      * Sets The HTTP pipeline to send requests through.
-     *
+     * 
      * @param pipeline the pipeline value.
      * @return the AppComplianceAutomationToolForMicrosoft365Builder.
      */
@@ -72,7 +74,7 @@ public final class AppComplianceAutomationToolForMicrosoft365Builder {
 
     /**
      * Sets The default poll interval for long-running operation.
-     *
+     * 
      * @param defaultPollInterval the defaultPollInterval value.
      * @return the AppComplianceAutomationToolForMicrosoft365Builder.
      */
@@ -88,7 +90,7 @@ public final class AppComplianceAutomationToolForMicrosoft365Builder {
 
     /**
      * Sets The serializer to serialize an object into a string.
-     *
+     * 
      * @param serializerAdapter the serializerAdapter value.
      * @return the AppComplianceAutomationToolForMicrosoft365Builder.
      */
@@ -99,25 +101,20 @@ public final class AppComplianceAutomationToolForMicrosoft365Builder {
 
     /**
      * Builds an instance of AppComplianceAutomationToolForMicrosoft365Impl with the provided parameters.
-     *
+     * 
      * @return an instance of AppComplianceAutomationToolForMicrosoft365Impl.
      */
     public AppComplianceAutomationToolForMicrosoft365Impl buildClient() {
         String localEndpoint = (endpoint != null) ? endpoint : "https://management.azure.com";
         AzureEnvironment localEnvironment = (environment != null) ? environment : AzureEnvironment.AZURE;
-        HttpPipeline localPipeline =
-            (pipeline != null)
-                ? pipeline
-                : new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build();
-        Duration localDefaultPollInterval =
-            (defaultPollInterval != null) ? defaultPollInterval : Duration.ofSeconds(30);
-        SerializerAdapter localSerializerAdapter =
-            (serializerAdapter != null)
-                ? serializerAdapter
-                : SerializerFactory.createDefaultManagementSerializerAdapter();
-        AppComplianceAutomationToolForMicrosoft365Impl client =
-            new AppComplianceAutomationToolForMicrosoft365Impl(
-                localPipeline, localSerializerAdapter, localDefaultPollInterval, localEnvironment, localEndpoint);
+        HttpPipeline localPipeline = (pipeline != null) ? pipeline
+            : new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build();
+        Duration localDefaultPollInterval
+            = (defaultPollInterval != null) ? defaultPollInterval : Duration.ofSeconds(30);
+        SerializerAdapter localSerializerAdapter = (serializerAdapter != null) ? serializerAdapter
+            : SerializerFactory.createDefaultManagementSerializerAdapter();
+        AppComplianceAutomationToolForMicrosoft365Impl client = new AppComplianceAutomationToolForMicrosoft365Impl(
+            localPipeline, localSerializerAdapter, localDefaultPollInterval, localEnvironment, localEndpoint);
         return client;
     }
 }

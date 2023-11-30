@@ -5,48 +5,88 @@
 package com.azure.resourcemanager.appcomplianceautomation.models;
 
 import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.appcomplianceautomation.fluent.models.ReportProperties;
 import com.azure.resourcemanager.appcomplianceautomation.fluent.models.SnapshotResourceInner;
+import java.time.OffsetDateTime;
+import java.util.List;
 
-/** An immutable client-side representation of SnapshotResource. */
+/**
+ * An immutable client-side representation of SnapshotResource.
+ */
 public interface SnapshotResource {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
-     * Gets the properties property: Snapshot's property'.
-     *
-     * @return the properties value.
-     */
-    SnapshotProperties properties();
-
-    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     SystemData systemData();
 
     /**
+     * Gets the idPropertiesId property: Snapshot id in the database.
+     * 
+     * @return the idPropertiesId value.
+     */
+    String idPropertiesId();
+
+    /**
+     * Gets the snapshotName property: Snapshot name.
+     * 
+     * @return the snapshotName value.
+     */
+    String snapshotName();
+
+    /**
+     * Gets the createdAt property: The timestamp of resource creation (UTC).
+     * 
+     * @return the createdAt value.
+     */
+    OffsetDateTime createdAt();
+
+    /**
+     * Gets the provisioningState property: Azure lifecycle management.
+     * 
+     * @return the provisioningState value.
+     */
+    ProvisioningState provisioningState();
+
+    /**
+     * Gets the reportProperties property: The report essential info.
+     * 
+     * @return the reportProperties value.
+     */
+    ReportProperties reportProperties();
+
+    /**
+     * Gets the complianceResults property: List of compliance results.
+     * 
+     * @return the complianceResults value.
+     */
+    List<ComplianceResult> complianceResults();
+
+    /**
      * Gets the inner com.azure.resourcemanager.appcomplianceautomation.fluent.models.SnapshotResourceInner object.
-     *
+     * 
      * @return the inner object.
      */
     SnapshotResourceInner innerModel();

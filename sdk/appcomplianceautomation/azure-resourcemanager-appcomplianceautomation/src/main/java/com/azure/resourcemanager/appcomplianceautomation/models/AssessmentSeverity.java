@@ -8,20 +8,37 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Indicates the assessment severity. */
+/**
+ * Defines values for AssessmentSeverity.
+ */
 public final class AssessmentSeverity extends ExpandableStringEnum<AssessmentSeverity> {
-    /** Static value High for AssessmentSeverity. */
+    /**
+     * Static value High for AssessmentSeverity.
+     */
     public static final AssessmentSeverity HIGH = fromString("High");
 
-    /** Static value Medium for AssessmentSeverity. */
+    /**
+     * Static value Medium for AssessmentSeverity.
+     */
     public static final AssessmentSeverity MEDIUM = fromString("Medium");
 
-    /** Static value Low for AssessmentSeverity. */
+    /**
+     * Static value Low for AssessmentSeverity.
+     */
     public static final AssessmentSeverity LOW = fromString("Low");
 
     /**
+     * Creates a new instance of AssessmentSeverity value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AssessmentSeverity() {
+    }
+
+    /**
      * Creates or finds a AssessmentSeverity from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding AssessmentSeverity.
      */
@@ -32,7 +49,7 @@ public final class AssessmentSeverity extends ExpandableStringEnum<AssessmentSev
 
     /**
      * Gets known AssessmentSeverity values.
-     *
+     * 
      * @return known AssessmentSeverity values.
      */
     public static Collection<AssessmentSeverity> values() {

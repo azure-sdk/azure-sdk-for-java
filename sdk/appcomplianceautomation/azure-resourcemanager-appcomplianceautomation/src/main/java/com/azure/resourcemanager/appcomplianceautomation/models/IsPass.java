@@ -8,17 +8,32 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Indicates whether all the resource(s) are compliant. */
+/**
+ * Defines values for IsPass.
+ */
 public final class IsPass extends ExpandableStringEnum<IsPass> {
-    /** Static value True for IsPass. */
+    /**
+     * Static value True for IsPass.
+     */
     public static final IsPass TRUE = fromString("True");
 
-    /** Static value False for IsPass. */
+    /**
+     * Static value False for IsPass.
+     */
     public static final IsPass FALSE = fromString("False");
 
     /**
+     * Creates a new instance of IsPass value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public IsPass() {
+    }
+
+    /**
      * Creates or finds a IsPass from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding IsPass.
      */
@@ -29,7 +44,7 @@ public final class IsPass extends ExpandableStringEnum<IsPass> {
 
     /**
      * Gets known IsPass values.
-     *
+     * 
      * @return known IsPass values.
      */
     public static Collection<IsPass> values() {

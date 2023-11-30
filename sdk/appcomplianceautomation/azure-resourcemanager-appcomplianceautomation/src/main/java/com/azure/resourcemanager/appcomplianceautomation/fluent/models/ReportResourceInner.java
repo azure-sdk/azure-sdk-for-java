@@ -7,18 +7,24 @@ package com.azure.resourcemanager.appcomplianceautomation.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.appcomplianceautomation.models.ReportProperties;
+import com.azure.resourcemanager.appcomplianceautomation.models.ProvisioningState;
+import com.azure.resourcemanager.appcomplianceautomation.models.ReportComplianceStatus;
+import com.azure.resourcemanager.appcomplianceautomation.models.ReportStatus;
+import com.azure.resourcemanager.appcomplianceautomation.models.ResourceMetadata;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.OffsetDateTime;
+import java.util.List;
 
-/** A class represent an AppComplianceAutomation report resource. */
+/**
+ * A class represent an AppComplianceAutomation report resource.
+ */
 @Fluent
 public final class ReportResourceInner extends ProxyResource {
     /*
-     * Report property.
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private ReportProperties properties;
+    @JsonProperty(value = "properties")
+    private ReportProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -26,33 +32,24 @@ public final class ReportResourceInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ReportResourceInner class. */
+    /**
+     * Creates an instance of ReportResourceInner class.
+     */
     public ReportResourceInner() {
     }
 
     /**
-     * Get the properties property: Report property.
-     *
-     * @return the properties value.
+     * Get the innerProperties property: The resource-specific properties for this resource.
+     * 
+     * @return the innerProperties value.
      */
-    public ReportProperties properties() {
-        return this.properties;
-    }
-
-    /**
-     * Set the properties property: Report property.
-     *
-     * @param properties the properties value to set.
-     * @return the ReportResourceInner object itself.
-     */
-    public ReportResourceInner withProperties(ReportProperties properties) {
-        this.properties = properties;
-        return this;
+    private ReportProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -60,19 +57,190 @@ public final class ReportResourceInner extends ProxyResource {
     }
 
     /**
+     * Get the id property: Report id in database.
+     * 
+     * @return the id value.
+     */
+    public String idPropertiesId() {
+        return this.innerProperties() == null ? null : this.innerProperties().id();
+    }
+
+    /**
+     * Get the status property: Report status.
+     * 
+     * @return the status value.
+     */
+    public ReportStatus status() {
+        return this.innerProperties() == null ? null : this.innerProperties().status();
+    }
+
+    /**
+     * Get the tenantId property: Report's tenant id.
+     * 
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Get the reportName property: Report name.
+     * 
+     * @return the reportName value.
+     */
+    public String reportName() {
+        return this.innerProperties() == null ? null : this.innerProperties().reportName();
+    }
+
+    /**
+     * Get the offerGuid property: Report offer Guid.
+     * 
+     * @return the offerGuid value.
+     */
+    public String offerGuid() {
+        return this.innerProperties() == null ? null : this.innerProperties().offerGuid();
+    }
+
+    /**
+     * Set the offerGuid property: Report offer Guid.
+     * 
+     * @param offerGuid the offerGuid value to set.
+     * @return the ReportResourceInner object itself.
+     */
+    public ReportResourceInner withOfferGuid(String offerGuid) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ReportProperties();
+        }
+        this.innerProperties().withOfferGuid(offerGuid);
+        return this;
+    }
+
+    /**
+     * Get the timeZone property: Report collection trigger time's time zone, the available list can be obtained by
+     * executing "Get-TimeZone -ListAvailable" in PowerShell.
+     * An example of valid timezone id is "Pacific Standard Time".
+     * 
+     * @return the timeZone value.
+     */
+    public String timeZone() {
+        return this.innerProperties() == null ? null : this.innerProperties().timeZone();
+    }
+
+    /**
+     * Set the timeZone property: Report collection trigger time's time zone, the available list can be obtained by
+     * executing "Get-TimeZone -ListAvailable" in PowerShell.
+     * An example of valid timezone id is "Pacific Standard Time".
+     * 
+     * @param timeZone the timeZone value to set.
+     * @return the ReportResourceInner object itself.
+     */
+    public ReportResourceInner withTimeZone(String timeZone) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ReportProperties();
+        }
+        this.innerProperties().withTimeZone(timeZone);
+        return this;
+    }
+
+    /**
+     * Get the triggerTime property: Report collection trigger time.
+     * 
+     * @return the triggerTime value.
+     */
+    public OffsetDateTime triggerTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().triggerTime();
+    }
+
+    /**
+     * Set the triggerTime property: Report collection trigger time.
+     * 
+     * @param triggerTime the triggerTime value to set.
+     * @return the ReportResourceInner object itself.
+     */
+    public ReportResourceInner withTriggerTime(OffsetDateTime triggerTime) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ReportProperties();
+        }
+        this.innerProperties().withTriggerTime(triggerTime);
+        return this;
+    }
+
+    /**
+     * Get the nextTriggerTime property: Report next collection trigger time.
+     * 
+     * @return the nextTriggerTime value.
+     */
+    public OffsetDateTime nextTriggerTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().nextTriggerTime();
+    }
+
+    /**
+     * Get the lastTriggerTime property: Report last collection trigger time.
+     * 
+     * @return the lastTriggerTime value.
+     */
+    public OffsetDateTime lastTriggerTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastTriggerTime();
+    }
+
+    /**
+     * Get the subscriptions property: List of subscription Ids.
+     * 
+     * @return the subscriptions value.
+     */
+    public List<String> subscriptions() {
+        return this.innerProperties() == null ? null : this.innerProperties().subscriptions();
+    }
+
+    /**
+     * Get the resources property: List of resource data.
+     * 
+     * @return the resources value.
+     */
+    public List<ResourceMetadata> resources() {
+        return this.innerProperties() == null ? null : this.innerProperties().resources();
+    }
+
+    /**
+     * Set the resources property: List of resource data.
+     * 
+     * @param resources the resources value to set.
+     * @return the ReportResourceInner object itself.
+     */
+    public ReportResourceInner withResources(List<ResourceMetadata> resources) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ReportProperties();
+        }
+        this.innerProperties().withResources(resources);
+        return this;
+    }
+
+    /**
+     * Get the complianceStatus property: Report compliance status.
+     * 
+     * @return the complianceStatus value.
+     */
+    public ReportComplianceStatus complianceStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().complianceStatus();
+    }
+
+    /**
+     * Get the provisioningState property: Azure lifecycle management.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property properties in model ReportResourceInner"));
-        } else {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ReportResourceInner.class);
 }

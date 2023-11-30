@@ -5,17 +5,21 @@
 package com.azure.resourcemanager.appcomplianceautomation.implementation;
 
 import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.appcomplianceautomation.fluent.models.ReportProperties;
 import com.azure.resourcemanager.appcomplianceautomation.fluent.models.SnapshotResourceInner;
-import com.azure.resourcemanager.appcomplianceautomation.models.SnapshotProperties;
+import com.azure.resourcemanager.appcomplianceautomation.models.ComplianceResult;
+import com.azure.resourcemanager.appcomplianceautomation.models.ProvisioningState;
 import com.azure.resourcemanager.appcomplianceautomation.models.SnapshotResource;
+import java.time.OffsetDateTime;
+import java.util.Collections;
+import java.util.List;
 
 public final class SnapshotResourceImpl implements SnapshotResource {
     private SnapshotResourceInner innerObject;
 
     private final com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager serviceManager;
 
-    SnapshotResourceImpl(
-        SnapshotResourceInner innerObject,
+    SnapshotResourceImpl(SnapshotResourceInner innerObject,
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -33,12 +37,37 @@ public final class SnapshotResourceImpl implements SnapshotResource {
         return this.innerModel().type();
     }
 
-    public SnapshotProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public String idPropertiesId() {
+        return this.innerModel().idPropertiesId();
+    }
+
+    public String snapshotName() {
+        return this.innerModel().snapshotName();
+    }
+
+    public OffsetDateTime createdAt() {
+        return this.innerModel().createdAt();
+    }
+
+    public ProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public ReportProperties reportProperties() {
+        return this.innerModel().reportProperties();
+    }
+
+    public List<ComplianceResult> complianceResults() {
+        List<ComplianceResult> inner = this.innerModel().complianceResults();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public SnapshotResourceInner innerModel() {

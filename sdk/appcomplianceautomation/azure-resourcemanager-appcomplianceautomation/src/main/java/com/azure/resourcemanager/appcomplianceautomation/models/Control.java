@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A class represent the control. */
+/**
+ * A class represent the control.
+ */
 @Immutable
 public final class Control {
     /*
@@ -60,13 +62,15 @@ public final class Control {
     @JsonProperty(value = "assessments", access = JsonProperty.Access.WRITE_ONLY)
     private List<Assessment> assessments;
 
-    /** Creates an instance of Control class. */
+    /**
+     * Creates an instance of Control class.
+     */
     public Control() {
     }
 
     /**
      * Get the controlId property: The Id of the control. e.g. "Operational Security#10".
-     *
+     * 
      * @return the controlId value.
      */
     public String controlId() {
@@ -75,7 +79,7 @@ public final class Control {
 
     /**
      * Get the controlShortName property: The short name of the control. e.g. "Unsupported OS and Software.".
-     *
+     * 
      * @return the controlShortName value.
      */
     public String controlShortName() {
@@ -83,9 +87,9 @@ public final class Control {
     }
 
     /**
-     * Get the controlFullName property: The full name of the control. e.g. "Validate that unsupported operating systems
-     * and software components are not in use.".
-     *
+     * Get the controlFullName property: The full name of the control. e.g. "Validate that unsupported operating
+     * systems and software components are not in use.".
+     * 
      * @return the controlFullName value.
      */
     public String controlFullName() {
@@ -94,7 +98,7 @@ public final class Control {
 
     /**
      * Get the controlType property: The control type.
-     *
+     * 
      * @return the controlType value.
      */
     public ControlType controlType() {
@@ -103,7 +107,7 @@ public final class Control {
 
     /**
      * Get the controlDescription property: The control's description.
-     *
+     * 
      * @return the controlDescription value.
      */
     public String controlDescription() {
@@ -112,7 +116,7 @@ public final class Control {
 
     /**
      * Get the controlDescriptionHyperLink property: The hyper link to the control's description'.
-     *
+     * 
      * @return the controlDescriptionHyperLink value.
      */
     public String controlDescriptionHyperLink() {
@@ -121,7 +125,7 @@ public final class Control {
 
     /**
      * Get the controlStatus property: Control status.
-     *
+     * 
      * @return the controlStatus value.
      */
     public ControlStatus controlStatus() {
@@ -130,7 +134,7 @@ public final class Control {
 
     /**
      * Get the assessments property: List of assessments.
-     *
+     * 
      * @return the assessments value.
      */
     public List<Assessment> assessments() {
@@ -139,7 +143,7 @@ public final class Control {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

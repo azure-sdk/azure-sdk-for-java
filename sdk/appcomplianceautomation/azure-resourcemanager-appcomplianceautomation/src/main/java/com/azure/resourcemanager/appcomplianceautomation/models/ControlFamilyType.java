@@ -8,20 +8,37 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Indicates the control family type. */
+/**
+ * Defines values for ControlFamilyType.
+ */
 public final class ControlFamilyType extends ExpandableStringEnum<ControlFamilyType> {
-    /** Static value FullyAutomated for ControlFamilyType. */
+    /**
+     * Static value FullyAutomated for ControlFamilyType.
+     */
     public static final ControlFamilyType FULLY_AUTOMATED = fromString("FullyAutomated");
 
-    /** Static value PartiallyAutomated for ControlFamilyType. */
+    /**
+     * Static value PartiallyAutomated for ControlFamilyType.
+     */
     public static final ControlFamilyType PARTIALLY_AUTOMATED = fromString("PartiallyAutomated");
 
-    /** Static value Manual for ControlFamilyType. */
+    /**
+     * Static value Manual for ControlFamilyType.
+     */
     public static final ControlFamilyType MANUAL = fromString("Manual");
 
     /**
+     * Creates a new instance of ControlFamilyType value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ControlFamilyType() {
+    }
+
+    /**
      * Creates or finds a ControlFamilyType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ControlFamilyType.
      */
@@ -32,7 +49,7 @@ public final class ControlFamilyType extends ExpandableStringEnum<ControlFamilyT
 
     /**
      * Gets known ControlFamilyType values.
-     *
+     * 
      * @return known ControlFamilyType values.
      */
     public static Collection<ControlFamilyType> values() {

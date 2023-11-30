@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A class represent the compliance result. */
+/**
+ * A class represent the compliance result.
+ */
 @Immutable
 public final class ComplianceResult {
     /*
@@ -23,13 +25,15 @@ public final class ComplianceResult {
     @JsonProperty(value = "categories", access = JsonProperty.Access.WRITE_ONLY)
     private List<Category> categories;
 
-    /** Creates an instance of ComplianceResult class. */
+    /**
+     * Creates an instance of ComplianceResult class.
+     */
     public ComplianceResult() {
     }
 
     /**
      * Get the complianceName property: The name of the compliance. e.g. "M365".
-     *
+     * 
      * @return the complianceName value.
      */
     public String complianceName() {
@@ -38,7 +42,7 @@ public final class ComplianceResult {
 
     /**
      * Get the categories property: List of categories.
-     *
+     * 
      * @return the categories value.
      */
     public List<Category> categories() {
@@ -47,7 +51,7 @@ public final class ComplianceResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

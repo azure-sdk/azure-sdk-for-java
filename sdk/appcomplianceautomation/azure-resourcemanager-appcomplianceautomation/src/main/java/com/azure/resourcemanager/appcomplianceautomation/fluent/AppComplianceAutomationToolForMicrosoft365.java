@@ -7,68 +7,56 @@ package com.azure.resourcemanager.appcomplianceautomation.fluent;
 import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
 
-/** The interface for AppComplianceAutomationToolForMicrosoft365 class. */
+/**
+ * The interface for AppComplianceAutomationToolForMicrosoft365 class.
+ */
 public interface AppComplianceAutomationToolForMicrosoft365 {
     /**
      * Gets server parameter.
-     *
+     * 
      * @return the endpoint value.
      */
     String getEndpoint();
 
     /**
      * Gets Api Version.
-     *
+     * 
      * @return the apiVersion value.
      */
     String getApiVersion();
 
     /**
      * Gets The HTTP pipeline to send requests through.
-     *
+     * 
      * @return the httpPipeline value.
      */
     HttpPipeline getHttpPipeline();
 
     /**
      * Gets The default poll interval for long-running operation.
-     *
+     * 
      * @return the defaultPollInterval value.
      */
     Duration getDefaultPollInterval();
 
     /**
      * Gets the OperationsClient object to access its operations.
-     *
+     * 
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
 
     /**
-     * Gets the ReportsClient object to access its operations.
-     *
-     * @return the ReportsClient object.
+     * Gets the ReportResourcesClient object to access its operations.
+     * 
+     * @return the ReportResourcesClient object.
      */
-    ReportsClient getReports();
+    ReportResourcesClient getReportResources();
 
     /**
-     * Gets the ReportOperationsClient object to access its operations.
-     *
-     * @return the ReportOperationsClient object.
+     * Gets the SnapshotResourcesClient object to access its operations.
+     * 
+     * @return the SnapshotResourcesClient object.
      */
-    ReportOperationsClient getReportOperations();
-
-    /**
-     * Gets the SnapshotsClient object to access its operations.
-     *
-     * @return the SnapshotsClient object.
-     */
-    SnapshotsClient getSnapshots();
-
-    /**
-     * Gets the SnapshotOperationsClient object to access its operations.
-     *
-     * @return the SnapshotOperationsClient object.
-     */
-    SnapshotOperationsClient getSnapshotOperations();
+    SnapshotResourcesClient getSnapshotResources();
 }

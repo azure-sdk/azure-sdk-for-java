@@ -7,17 +7,22 @@ package com.azure.resourcemanager.appcomplianceautomation.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.appcomplianceautomation.models.SnapshotProperties;
+import com.azure.resourcemanager.appcomplianceautomation.models.ComplianceResult;
+import com.azure.resourcemanager.appcomplianceautomation.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.OffsetDateTime;
+import java.util.List;
 
-/** A class represent a AppComplianceAutomation snapshot resource. */
+/**
+ * A class represent a AppComplianceAutomation snapshot resource.
+ */
 @Immutable
 public final class SnapshotResourceInner extends ProxyResource {
     /*
-     * Snapshot's property'.
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
-    private SnapshotProperties properties;
+    @JsonProperty(value = "properties")
+    private SnapshotProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -25,22 +30,24 @@ public final class SnapshotResourceInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of SnapshotResourceInner class. */
+    /**
+     * Creates an instance of SnapshotResourceInner class.
+     */
     public SnapshotResourceInner() {
     }
 
     /**
-     * Get the properties property: Snapshot's property'.
-     *
-     * @return the properties value.
+     * Get the innerProperties property: The resource-specific properties for this resource.
+     * 
+     * @return the innerProperties value.
      */
-    public SnapshotProperties properties() {
-        return this.properties;
+    private SnapshotProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -48,13 +55,67 @@ public final class SnapshotResourceInner extends ProxyResource {
     }
 
     /**
+     * Get the id property: Snapshot id in the database.
+     * 
+     * @return the id value.
+     */
+    public String idPropertiesId() {
+        return this.innerProperties() == null ? null : this.innerProperties().id();
+    }
+
+    /**
+     * Get the snapshotName property: Snapshot name.
+     * 
+     * @return the snapshotName value.
+     */
+    public String snapshotName() {
+        return this.innerProperties() == null ? null : this.innerProperties().snapshotName();
+    }
+
+    /**
+     * Get the createdAt property: The timestamp of resource creation (UTC).
+     * 
+     * @return the createdAt value.
+     */
+    public OffsetDateTime createdAt() {
+        return this.innerProperties() == null ? null : this.innerProperties().createdAt();
+    }
+
+    /**
+     * Get the provisioningState property: Azure lifecycle management.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the reportProperties property: The report essential info.
+     * 
+     * @return the reportProperties value.
+     */
+    public ReportProperties reportProperties() {
+        return this.innerProperties() == null ? null : this.innerProperties().reportProperties();
+    }
+
+    /**
+     * Get the complianceResults property: List of compliance results.
+     * 
+     * @return the complianceResults value.
+     */
+    public List<ComplianceResult> complianceResults() {
+        return this.innerProperties() == null ? null : this.innerProperties().complianceResults();
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }
