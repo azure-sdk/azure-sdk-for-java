@@ -13,7 +13,7 @@ import com.azure.resourcemanager.hybridnetwork.models.PublisherScope;
 public final class PublishersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/PublisherCreate.
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-10-01/examples/PublisherCreate.
      * json
      */
     /**

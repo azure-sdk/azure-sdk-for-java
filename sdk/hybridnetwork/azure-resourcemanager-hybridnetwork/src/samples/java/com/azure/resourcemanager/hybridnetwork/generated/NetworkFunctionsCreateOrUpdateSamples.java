@@ -17,7 +17,7 @@ import java.util.Arrays;
 public final class NetworkFunctionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-10-01/examples/AzureCore/
      * VirtualNetworkFunctionCreate.json
      */
     /**
@@ -39,7 +39,7 @@ public final class NetworkFunctionsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-10-01/examples/
      * NetworkFunctionFirstPartyCreate.json
      */
     /**
@@ -66,7 +66,7 @@ public final class NetworkFunctionsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-10-01/examples/
      * NetworkFunctionCreate.json
      */
     /**
@@ -93,7 +93,7 @@ public final class NetworkFunctionsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-10-01/examples/
      * NetworkFunctionCreateSecret.json
      */
     /**
@@ -120,7 +120,7 @@ public final class NetworkFunctionsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-10-01/examples/
      * AzureOperatorNexus/VirtualNetworkFunctionCreate.json
      */
     /**

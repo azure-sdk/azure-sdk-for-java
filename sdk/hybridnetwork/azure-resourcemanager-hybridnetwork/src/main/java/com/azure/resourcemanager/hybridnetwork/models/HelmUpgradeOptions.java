@@ -22,7 +22,7 @@ public final class HelmUpgradeOptions {
      * The helm deployment wait options
      */
     @JsonProperty(value = "wait")
-    private String waitOption;
+    private String wait;
 
     /*
      * The helm deployment timeout options
@@ -57,22 +57,22 @@ public final class HelmUpgradeOptions {
     }
 
     /**
-     * Get the waitOption property: The helm deployment wait options.
+     * Get the wait property: The helm deployment wait options.
      * 
-     * @return the waitOption value.
+     * @return the wait value.
      */
-    public String waitOption() {
-        return this.waitOption;
+    public String wait() {
+        return this.wait;
     }
 
     /**
-     * Set the waitOption property: The helm deployment wait options.
+     * Set the wait property: The helm deployment wait options.
      * 
-     * @param waitOption the waitOption value to set.
+     * @param wait the wait value to set.
      * @return the HelmUpgradeOptions object itself.
      */
-    public HelmUpgradeOptions withWaitOption(String waitOption) {
-        this.waitOption = waitOption;
+    public HelmUpgradeOptions withWait(String wait) {
+        this.wait = wait;
         return this;
     }
 

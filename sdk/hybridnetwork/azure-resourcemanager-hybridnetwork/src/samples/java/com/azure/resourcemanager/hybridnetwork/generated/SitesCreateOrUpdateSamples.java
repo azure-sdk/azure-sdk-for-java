@@ -17,7 +17,7 @@ import java.util.Arrays;
 public final class SitesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/SiteCreate.json
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-10-01/examples/SiteCreate.json
      */
     /**
      * Sample code: Create network site.
