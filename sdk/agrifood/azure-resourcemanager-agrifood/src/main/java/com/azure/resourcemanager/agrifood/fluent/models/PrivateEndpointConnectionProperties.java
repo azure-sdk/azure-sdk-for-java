@@ -10,12 +10,21 @@ import com.azure.resourcemanager.agrifood.models.PrivateEndpoint;
 import com.azure.resourcemanager.agrifood.models.PrivateEndpointConnectionProvisioningState;
 import com.azure.resourcemanager.agrifood.models.PrivateLinkServiceConnectionState;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
-/** Properties of the PrivateEndpointConnectProperties. */
+/**
+ * Properties of the private endpoint connection.
+ */
 @Fluent
 public final class PrivateEndpointConnectionProperties {
     /*
-     * The resource of private end point.
+     * The group ids for the private endpoint resource.
+     */
+    @JsonProperty(value = "groupIds", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> groupIds;
+
+    /*
+     * The private endpoint resource.
      */
     @JsonProperty(value = "privateEndpoint")
     private PrivateEndpoint privateEndpoint;
@@ -33,8 +42,23 @@ public final class PrivateEndpointConnectionProperties {
     private PrivateEndpointConnectionProvisioningState provisioningState;
 
     /**
-     * Get the privateEndpoint property: The resource of private end point.
-     *
+     * Creates an instance of PrivateEndpointConnectionProperties class.
+     */
+    public PrivateEndpointConnectionProperties() {
+    }
+
+    /**
+     * Get the groupIds property: The group ids for the private endpoint resource.
+     * 
+     * @return the groupIds value.
+     */
+    public List<String> groupIds() {
+        return this.groupIds;
+    }
+
+    /**
+     * Get the privateEndpoint property: The private endpoint resource.
+     * 
      * @return the privateEndpoint value.
      */
     public PrivateEndpoint privateEndpoint() {
@@ -42,8 +66,8 @@ public final class PrivateEndpointConnectionProperties {
     }
 
     /**
-     * Set the privateEndpoint property: The resource of private end point.
-     *
+     * Set the privateEndpoint property: The private endpoint resource.
+     * 
      * @param privateEndpoint the privateEndpoint value to set.
      * @return the PrivateEndpointConnectionProperties object itself.
      */
@@ -53,9 +77,9 @@ public final class PrivateEndpointConnectionProperties {
     }
 
     /**
-     * Get the privateLinkServiceConnectionState property: A collection of information about the state of the connection
-     * between service consumer and provider.
-     *
+     * Get the privateLinkServiceConnectionState property: A collection of information about the state of the
+     * connection between service consumer and provider.
+     * 
      * @return the privateLinkServiceConnectionState value.
      */
     public PrivateLinkServiceConnectionState privateLinkServiceConnectionState() {
@@ -63,21 +87,21 @@ public final class PrivateEndpointConnectionProperties {
     }
 
     /**
-     * Set the privateLinkServiceConnectionState property: A collection of information about the state of the connection
-     * between service consumer and provider.
-     *
+     * Set the privateLinkServiceConnectionState property: A collection of information about the state of the
+     * connection between service consumer and provider.
+     * 
      * @param privateLinkServiceConnectionState the privateLinkServiceConnectionState value to set.
      * @return the PrivateEndpointConnectionProperties object itself.
      */
-    public PrivateEndpointConnectionProperties withPrivateLinkServiceConnectionState(
-        PrivateLinkServiceConnectionState privateLinkServiceConnectionState) {
+    public PrivateEndpointConnectionProperties
+        withPrivateLinkServiceConnectionState(PrivateLinkServiceConnectionState privateLinkServiceConnectionState) {
         this.privateLinkServiceConnectionState = privateLinkServiceConnectionState;
         return this;
     }
 
     /**
      * Get the provisioningState property: The provisioning state of the private endpoint connection resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public PrivateEndpointConnectionProvisioningState provisioningState() {
@@ -86,7 +110,7 @@ public final class PrivateEndpointConnectionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -94,11 +118,8 @@ public final class PrivateEndpointConnectionProperties {
             privateEndpoint().validate();
         }
         if (privateLinkServiceConnectionState() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property privateLinkServiceConnectionState in model"
-                            + " PrivateEndpointConnectionProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property privateLinkServiceConnectionState in model PrivateEndpointConnectionProperties"));
         } else {
             privateLinkServiceConnectionState().validate();
         }
