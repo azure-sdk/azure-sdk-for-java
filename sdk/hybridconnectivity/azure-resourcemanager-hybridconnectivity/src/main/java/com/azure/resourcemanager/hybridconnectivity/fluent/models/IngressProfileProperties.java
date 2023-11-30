@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Ingress gateway profile. */
+/**
+ * Ingress gateway profile.
+ */
 @Fluent
 public final class IngressProfileProperties {
     /*
@@ -23,13 +25,15 @@ public final class IngressProfileProperties {
     @JsonProperty(value = "aadProfile", required = true)
     private AadProfileProperties innerAadProfile = new AadProfileProperties();
 
-    /** Creates an instance of IngressProfileProperties class. */
+    /**
+     * Creates an instance of IngressProfileProperties class.
+     */
     public IngressProfileProperties() {
     }
 
     /**
      * Get the hostname property: The ingress hostname.
-     *
+     * 
      * @return the hostname value.
      */
     public String hostname() {
@@ -38,7 +42,7 @@ public final class IngressProfileProperties {
 
     /**
      * Set the hostname property: The ingress hostname.
-     *
+     * 
      * @param hostname the hostname value to set.
      * @return the IngressProfileProperties object itself.
      */
@@ -49,7 +53,7 @@ public final class IngressProfileProperties {
 
     /**
      * Get the innerAadProfile property: The AAD Profile.
-     *
+     * 
      * @return the innerAadProfile value.
      */
     private AadProfileProperties innerAadProfile() {
@@ -58,7 +62,7 @@ public final class IngressProfileProperties {
 
     /**
      * Get the serverId property: The arc ingress gateway server app id.
-     *
+     * 
      * @return the serverId value.
      */
     public String serverId() {
@@ -67,7 +71,7 @@ public final class IngressProfileProperties {
 
     /**
      * Set the serverId property: The arc ingress gateway server app id.
-     *
+     * 
      * @param serverId the serverId value to set.
      * @return the IngressProfileProperties object itself.
      */
@@ -81,7 +85,7 @@ public final class IngressProfileProperties {
 
     /**
      * Get the tenantId property: The target resource home tenant id.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -90,7 +94,7 @@ public final class IngressProfileProperties {
 
     /**
      * Set the tenantId property: The target resource home tenant id.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the IngressProfileProperties object itself.
      */
@@ -104,21 +108,17 @@ public final class IngressProfileProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (hostname() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property hostname in model IngressProfileProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property hostname in model IngressProfileProperties"));
         }
         if (innerAadProfile() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerAadProfile in model IngressProfileProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerAadProfile in model IngressProfileProperties"));
         } else {
             innerAadProfile().validate();
         }

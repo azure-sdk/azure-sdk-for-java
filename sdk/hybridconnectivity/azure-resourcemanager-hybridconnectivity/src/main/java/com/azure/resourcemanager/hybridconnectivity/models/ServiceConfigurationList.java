@@ -9,7 +9,9 @@ import com.azure.resourcemanager.hybridconnectivity.fluent.models.ServiceConfigu
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The paginated list of serviceConfigurations. */
+/**
+ * The paginated list of serviceConfigurations.
+ */
 @Fluent
 public final class ServiceConfigurationList {
     /*
@@ -24,13 +26,15 @@ public final class ServiceConfigurationList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ServiceConfigurationList class. */
+    /**
+     * Creates an instance of ServiceConfigurationList class.
+     */
     public ServiceConfigurationList() {
     }
 
     /**
      * Get the value property: The list of service configuration.
-     *
+     * 
      * @return the value value.
      */
     public List<ServiceConfigurationResourceInner> value() {
@@ -39,7 +43,7 @@ public final class ServiceConfigurationList {
 
     /**
      * Set the value property: The list of service configuration.
-     *
+     * 
      * @param value the value value to set.
      * @return the ServiceConfigurationList object itself.
      */
@@ -50,7 +54,7 @@ public final class ServiceConfigurationList {
 
     /**
      * Get the nextLink property: The link to fetch the next page of connected cluster.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class ServiceConfigurationList {
 
     /**
      * Set the nextLink property: The link to fetch the next page of connected cluster.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ServiceConfigurationList object itself.
      */
@@ -70,7 +74,7 @@ public final class ServiceConfigurationList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

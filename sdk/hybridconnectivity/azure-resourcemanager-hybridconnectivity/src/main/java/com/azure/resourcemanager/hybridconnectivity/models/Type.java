@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The type of endpoint. */
+/**
+ * The type of endpoint.
+ */
 public final class Type extends ExpandableStringEnum<Type> {
-    /** Static value default for Type. */
+    /**
+     * Static value default for Type.
+     */
     public static final Type DEFAULT = fromString("default");
 
-    /** Static value custom for Type. */
+    /**
+     * Static value custom for Type.
+     */
     public static final Type CUSTOM = fromString("custom");
 
     /**
      * Creates a new instance of Type value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class Type extends ExpandableStringEnum<Type> {
 
     /**
      * Creates or finds a Type from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Type.
      */
@@ -38,7 +44,7 @@ public final class Type extends ExpandableStringEnum<Type> {
 
     /**
      * Gets known Type values.
-     *
+     * 
      * @return known Type values.
      */
     public static Collection<Type> values() {

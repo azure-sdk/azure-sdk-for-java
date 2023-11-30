@@ -9,7 +9,9 @@ import com.azure.resourcemanager.hybridconnectivity.fluent.models.EndpointResour
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of endpoints. */
+/**
+ * The list of endpoints.
+ */
 @Fluent
 public final class EndpointsList {
     /*
@@ -24,13 +26,15 @@ public final class EndpointsList {
     @JsonProperty(value = "value")
     private List<EndpointResourceInner> value;
 
-    /** Creates an instance of EndpointsList class. */
+    /**
+     * Creates an instance of EndpointsList class.
+     */
     public EndpointsList() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of endpoints list.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class EndpointsList {
 
     /**
      * Set the nextLink property: The link used to get the next page of endpoints list.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the EndpointsList object itself.
      */
@@ -50,7 +54,7 @@ public final class EndpointsList {
 
     /**
      * Get the value property: The list of endpoint.
-     *
+     * 
      * @return the value value.
      */
     public List<EndpointResourceInner> value() {
@@ -59,7 +63,7 @@ public final class EndpointsList {
 
     /**
      * Set the value property: The list of endpoint.
-     *
+     * 
      * @param value the value value to set.
      * @return the EndpointsList object itself.
      */
@@ -70,7 +74,7 @@ public final class EndpointsList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,32 +7,45 @@ package com.azure.resourcemanager.hybridconnectivity.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.hybridconnectivity.models.ProvisioningState;
+import com.azure.resourcemanager.hybridconnectivity.models.Result;
 import com.azure.resourcemanager.hybridconnectivity.models.ServiceName;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The service configuration details associated with the target resource. */
+/**
+ * The service configuration details associated with the target resource.
+ */
 @Fluent
 public final class ServiceConfigurationResourceInner extends ProxyResource {
+    /*
+     * System data of endpoint resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData innerSystemData;
+
     /*
      * The service configuration properties.
      */
     @JsonProperty(value = "properties")
     private ServiceConfigurationProperties innerProperties;
 
-    /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+    /**
+     * Creates an instance of ServiceConfigurationResourceInner class.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /** Creates an instance of ServiceConfigurationResourceInner class. */
     public ServiceConfigurationResourceInner() {
     }
 
     /**
+     * Get the innerSystemData property: System data of endpoint resource.
+     * 
+     * @return the innerSystemData value.
+     */
+    private SystemData innerSystemData() {
+        return this.innerSystemData;
+    }
+
+    /**
      * Get the innerProperties property: The service configuration properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ServiceConfigurationProperties innerProperties() {
@@ -40,17 +53,8 @@ public final class ServiceConfigurationResourceInner extends ProxyResource {
     }
 
     /**
-     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
      * Get the serviceName property: Name of the service.
-     *
+     * 
      * @return the serviceName value.
      */
     public ServiceName serviceName() {
@@ -59,7 +63,7 @@ public final class ServiceConfigurationResourceInner extends ProxyResource {
 
     /**
      * Set the serviceName property: Name of the service.
-     *
+     * 
      * @param serviceName the serviceName value to set.
      * @return the ServiceConfigurationResourceInner object itself.
      */
@@ -73,7 +77,7 @@ public final class ServiceConfigurationResourceInner extends ProxyResource {
 
     /**
      * Get the resourceId property: The resource Id of the connectivity endpoint (optional).
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -82,7 +86,7 @@ public final class ServiceConfigurationResourceInner extends ProxyResource {
 
     /**
      * Set the resourceId property: The resource Id of the connectivity endpoint (optional).
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the ServiceConfigurationResourceInner object itself.
      */
@@ -96,20 +100,20 @@ public final class ServiceConfigurationResourceInner extends ProxyResource {
 
     /**
      * Get the port property: The port on which service is enabled.
-     *
+     * 
      * @return the port value.
      */
-    public Long port() {
+    public String port() {
         return this.innerProperties() == null ? null : this.innerProperties().port();
     }
 
     /**
      * Set the port property: The port on which service is enabled.
-     *
+     * 
      * @param port the port value to set.
      * @return the ServiceConfigurationResourceInner object itself.
      */
-    public ServiceConfigurationResourceInner withPort(Long port) {
+    public ServiceConfigurationResourceInner withPort(String port) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ServiceConfigurationProperties();
         }
@@ -119,16 +123,16 @@ public final class ServiceConfigurationResourceInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The resource provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
-    public ProvisioningState provisioningState() {
+    public Result provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

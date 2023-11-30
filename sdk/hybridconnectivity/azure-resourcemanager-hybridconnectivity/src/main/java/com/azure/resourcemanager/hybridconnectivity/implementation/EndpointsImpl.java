@@ -19,7 +19,6 @@ import com.azure.resourcemanager.hybridconnectivity.models.EndpointResource;
 import com.azure.resourcemanager.hybridconnectivity.models.Endpoints;
 import com.azure.resourcemanager.hybridconnectivity.models.IngressGatewayResource;
 import com.azure.resourcemanager.hybridconnectivity.models.ListCredentialsRequest;
-import com.azure.resourcemanager.hybridconnectivity.models.ListIngressGatewayCredentialsRequest;
 import com.azure.resourcemanager.hybridconnectivity.models.ManagedProxyRequest;
 import com.azure.resourcemanager.hybridconnectivity.models.ManagedProxyResource;
 
@@ -30,8 +29,7 @@ public final class EndpointsImpl implements Endpoints {
 
     private final com.azure.resourcemanager.hybridconnectivity.HybridConnectivityManager serviceManager;
 
-    public EndpointsImpl(
-        EndpointsClient innerClient,
+    public EndpointsImpl(EndpointsClient innerClient,
         com.azure.resourcemanager.hybridconnectivity.HybridConnectivityManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -48,13 +46,10 @@ public final class EndpointsImpl implements Endpoints {
     }
 
     public Response<EndpointResource> getWithResponse(String resourceUri, String endpointName, Context context) {
-        Response<EndpointResourceInner> inner =
-            this.serviceClient().getWithResponse(resourceUri, endpointName, context);
+        Response<EndpointResourceInner> inner
+            = this.serviceClient().getWithResponse(resourceUri, endpointName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new EndpointResourceImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -78,21 +73,12 @@ public final class EndpointsImpl implements Endpoints {
         this.serviceClient().delete(resourceUri, endpointName);
     }
 
-    public Response<EndpointAccessResource> listCredentialsWithResponse(
-        String resourceUri,
-        String endpointName,
-        Long expiresin,
-        ListCredentialsRequest listCredentialsRequest,
-        Context context) {
-        Response<EndpointAccessResourceInner> inner =
-            this
-                .serviceClient()
-                .listCredentialsWithResponse(resourceUri, endpointName, expiresin, listCredentialsRequest, context);
+    public Response<EndpointAccessResource> listCredentialsWithResponse(String resourceUri, String endpointName,
+        Long expiresin, ListCredentialsRequest listCredentialsRequest, Context context) {
+        Response<EndpointAccessResourceInner> inner = this.serviceClient().listCredentialsWithResponse(resourceUri,
+            endpointName, expiresin, listCredentialsRequest, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new EndpointAccessResourceImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -108,22 +94,12 @@ public final class EndpointsImpl implements Endpoints {
         }
     }
 
-    public Response<IngressGatewayResource> listIngressGatewayCredentialsWithResponse(
-        String resourceUri,
-        String endpointName,
-        Long expiresin,
-        ListIngressGatewayCredentialsRequest listIngressGatewayCredentialsRequest,
-        Context context) {
-        Response<IngressGatewayResourceInner> inner =
-            this
-                .serviceClient()
-                .listIngressGatewayCredentialsWithResponse(
-                    resourceUri, endpointName, expiresin, listIngressGatewayCredentialsRequest, context);
+    public Response<IngressGatewayResource> listIngressGatewayCredentialsWithResponse(String resourceUri,
+        String endpointName, Long expiresin, Context context) {
+        Response<IngressGatewayResourceInner> inner = this.serviceClient()
+            .listIngressGatewayCredentialsWithResponse(resourceUri, endpointName, expiresin, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new IngressGatewayResourceImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -131,8 +107,8 @@ public final class EndpointsImpl implements Endpoints {
     }
 
     public IngressGatewayResource listIngressGatewayCredentials(String resourceUri, String endpointName) {
-        IngressGatewayResourceInner inner =
-            this.serviceClient().listIngressGatewayCredentials(resourceUri, endpointName);
+        IngressGatewayResourceInner inner
+            = this.serviceClient().listIngressGatewayCredentials(resourceUri, endpointName);
         if (inner != null) {
             return new IngressGatewayResourceImpl(inner, this.manager());
         } else {
@@ -140,27 +116,22 @@ public final class EndpointsImpl implements Endpoints {
         }
     }
 
-    public Response<ManagedProxyResource> listManagedProxyDetailsWithResponse(
-        String resourceUri, String endpointName, ManagedProxyRequest managedProxyRequest, Context context) {
-        Response<ManagedProxyResourceInner> inner =
-            this
-                .serviceClient()
-                .listManagedProxyDetailsWithResponse(resourceUri, endpointName, managedProxyRequest, context);
+    public Response<ManagedProxyResource> listManagedProxyDetailsWithResponse(String resourceUri, String endpointName,
+        ManagedProxyRequest managedProxyRequest, Context context) {
+        Response<ManagedProxyResourceInner> inner = this.serviceClient()
+            .listManagedProxyDetailsWithResponse(resourceUri, endpointName, managedProxyRequest, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ManagedProxyResourceImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public ManagedProxyResource listManagedProxyDetails(
-        String resourceUri, String endpointName, ManagedProxyRequest managedProxyRequest) {
-        ManagedProxyResourceInner inner =
-            this.serviceClient().listManagedProxyDetails(resourceUri, endpointName, managedProxyRequest);
+    public ManagedProxyResource listManagedProxyDetails(String resourceUri, String endpointName,
+        ManagedProxyRequest managedProxyRequest) {
+        ManagedProxyResourceInner inner
+            = this.serviceClient().listManagedProxyDetails(resourceUri, endpointName, managedProxyRequest);
         if (inner != null) {
             return new ManagedProxyResourceImpl(inner, this.manager());
         } else {
@@ -169,113 +140,65 @@ public final class EndpointsImpl implements Endpoints {
     }
 
     public EndpointResource getById(String id) {
-        String resourceUri =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}",
-                    "resourceUri");
+        String resourceUri = Utils.getValueFromIdByParameterName(id,
+            "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}", "resourceUri");
         if (resourceUri == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'resourceUri'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceUri'.", id)));
         }
-        String endpointName =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}",
-                    "endpointName");
+        String endpointName = Utils.getValueFromIdByParameterName(id,
+            "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}", "endpointName");
         if (endpointName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'endpoints'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'endpoints'.", id)));
         }
         return this.getWithResponse(resourceUri, endpointName, Context.NONE).getValue();
     }
 
     public Response<EndpointResource> getByIdWithResponse(String id, Context context) {
-        String resourceUri =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}",
-                    "resourceUri");
+        String resourceUri = Utils.getValueFromIdByParameterName(id,
+            "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}", "resourceUri");
         if (resourceUri == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'resourceUri'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceUri'.", id)));
         }
-        String endpointName =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}",
-                    "endpointName");
+        String endpointName = Utils.getValueFromIdByParameterName(id,
+            "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}", "endpointName");
         if (endpointName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'endpoints'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'endpoints'.", id)));
         }
         return this.getWithResponse(resourceUri, endpointName, context);
     }
 
     public void deleteById(String id) {
-        String resourceUri =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}",
-                    "resourceUri");
+        String resourceUri = Utils.getValueFromIdByParameterName(id,
+            "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}", "resourceUri");
         if (resourceUri == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'resourceUri'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceUri'.", id)));
         }
-        String endpointName =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}",
-                    "endpointName");
+        String endpointName = Utils.getValueFromIdByParameterName(id,
+            "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}", "endpointName");
         if (endpointName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'endpoints'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'endpoints'.", id)));
         }
         this.deleteByResourceGroupWithResponse(resourceUri, endpointName, Context.NONE);
     }
 
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
-        String resourceUri =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}",
-                    "resourceUri");
+        String resourceUri = Utils.getValueFromIdByParameterName(id,
+            "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}", "resourceUri");
         if (resourceUri == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'resourceUri'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceUri'.", id)));
         }
-        String endpointName =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}",
-                    "endpointName");
+        String endpointName = Utils.getValueFromIdByParameterName(id,
+            "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}", "endpointName");
         if (endpointName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'endpoints'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'endpoints'.", id)));
         }
         return this.deleteByResourceGroupWithResponse(resourceUri, endpointName, context);
     }

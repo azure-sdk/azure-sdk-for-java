@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The AAD Profile. */
+/**
+ * The AAD Profile.
+ */
 @Fluent
 public final class AadProfileProperties {
     /*
@@ -23,13 +25,15 @@ public final class AadProfileProperties {
     @JsonProperty(value = "tenantId", required = true)
     private String tenantId;
 
-    /** Creates an instance of AadProfileProperties class. */
+    /**
+     * Creates an instance of AadProfileProperties class.
+     */
     public AadProfileProperties() {
     }
 
     /**
      * Get the serverId property: The arc ingress gateway server app id.
-     *
+     * 
      * @return the serverId value.
      */
     public String serverId() {
@@ -38,7 +42,7 @@ public final class AadProfileProperties {
 
     /**
      * Set the serverId property: The arc ingress gateway server app id.
-     *
+     * 
      * @param serverId the serverId value to set.
      * @return the AadProfileProperties object itself.
      */
@@ -49,7 +53,7 @@ public final class AadProfileProperties {
 
     /**
      * Get the tenantId property: The target resource home tenant id.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -58,7 +62,7 @@ public final class AadProfileProperties {
 
     /**
      * Set the tenantId property: The target resource home tenant id.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the AadProfileProperties object itself.
      */
@@ -69,19 +73,17 @@ public final class AadProfileProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (serverId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property serverId in model AadProfileProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property serverId in model AadProfileProperties"));
         }
         if (tenantId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property tenantId in model AadProfileProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property tenantId in model AadProfileProperties"));
         }
     }
 

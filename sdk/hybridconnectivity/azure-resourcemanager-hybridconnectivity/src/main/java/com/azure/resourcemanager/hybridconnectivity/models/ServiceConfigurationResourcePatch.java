@@ -5,25 +5,45 @@
 package com.azure.resourcemanager.hybridconnectivity.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.hybridconnectivity.fluent.models.ServiceConfigurationPropertiesPatch;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The service details under service configuration for the target endpoint resource. */
+/**
+ * The service details under serviceconfiguration for the target resource.
+ */
 @Fluent
 public final class ServiceConfigurationResourcePatch {
+    /*
+     * System data of endpoint resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData innerSystemData;
+
     /*
      * The service configuration properties.
      */
     @JsonProperty(value = "properties")
     private ServiceConfigurationPropertiesPatch innerProperties;
 
-    /** Creates an instance of ServiceConfigurationResourcePatch class. */
+    /**
+     * Creates an instance of ServiceConfigurationResourcePatch class.
+     */
     public ServiceConfigurationResourcePatch() {
     }
 
     /**
+     * Get the innerSystemData property: System data of endpoint resource.
+     * 
+     * @return the innerSystemData value.
+     */
+    private SystemData innerSystemData() {
+        return this.innerSystemData;
+    }
+
+    /**
      * Get the innerProperties property: The service configuration properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ServiceConfigurationPropertiesPatch innerProperties() {
@@ -32,20 +52,20 @@ public final class ServiceConfigurationResourcePatch {
 
     /**
      * Get the port property: The port on which service is enabled.
-     *
+     * 
      * @return the port value.
      */
-    public Long port() {
+    public String port() {
         return this.innerProperties() == null ? null : this.innerProperties().port();
     }
 
     /**
      * Set the port property: The port on which service is enabled.
-     *
+     * 
      * @param port the port value to set.
      * @return the ServiceConfigurationResourcePatch object itself.
      */
-    public ServiceConfigurationResourcePatch withPort(Long port) {
+    public ServiceConfigurationResourcePatch withPort(String port) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ServiceConfigurationPropertiesPatch();
         }
@@ -55,7 +75,7 @@ public final class ServiceConfigurationResourcePatch {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
