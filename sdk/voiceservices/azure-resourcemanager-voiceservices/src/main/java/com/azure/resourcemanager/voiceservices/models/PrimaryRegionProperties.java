@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The configuration used in this region as primary, and other regions as backup. */
+/**
+ * The configuration used in this region as primary, and other regions as backup.
+ */
 @Fluent
 public final class PrimaryRegionProperties {
     /*
@@ -25,24 +27,26 @@ public final class PrimaryRegionProperties {
     private List<String> esrpAddresses;
 
     /*
-     * The allowed source IP address or CIDR ranges for signaling
+     * The allowed source IP addresses or CIDR ranges for signaling
      */
     @JsonProperty(value = "allowedSignalingSourceAddressPrefixes")
     private List<String> allowedSignalingSourceAddressPrefixes;
 
     /*
-     * The allowed source IP address or CIDR ranges for media
+     * The allowed source IP addresses or CIDR ranges for media
      */
     @JsonProperty(value = "allowedMediaSourceAddressPrefixes")
     private List<String> allowedMediaSourceAddressPrefixes;
 
-    /** Creates an instance of PrimaryRegionProperties class. */
+    /**
+     * Creates an instance of PrimaryRegionProperties class.
+     */
     public PrimaryRegionProperties() {
     }
 
     /**
      * Get the operatorAddresses property: IP address to use to contact the operator network from this region.
-     *
+     * 
      * @return the operatorAddresses value.
      */
     public List<String> operatorAddresses() {
@@ -51,7 +55,7 @@ public final class PrimaryRegionProperties {
 
     /**
      * Set the operatorAddresses property: IP address to use to contact the operator network from this region.
-     *
+     * 
      * @param operatorAddresses the operatorAddresses value to set.
      * @return the PrimaryRegionProperties object itself.
      */
@@ -62,7 +66,7 @@ public final class PrimaryRegionProperties {
 
     /**
      * Get the esrpAddresses property: IP address to use to contact the ESRP from this region.
-     *
+     * 
      * @return the esrpAddresses value.
      */
     public List<String> esrpAddresses() {
@@ -71,7 +75,7 @@ public final class PrimaryRegionProperties {
 
     /**
      * Set the esrpAddresses property: IP address to use to contact the ESRP from this region.
-     *
+     * 
      * @param esrpAddresses the esrpAddresses value to set.
      * @return the PrimaryRegionProperties object itself.
      */
@@ -81,9 +85,9 @@ public final class PrimaryRegionProperties {
     }
 
     /**
-     * Get the allowedSignalingSourceAddressPrefixes property: The allowed source IP address or CIDR ranges for
+     * Get the allowedSignalingSourceAddressPrefixes property: The allowed source IP addresses or CIDR ranges for
      * signaling.
-     *
+     * 
      * @return the allowedSignalingSourceAddressPrefixes value.
      */
     public List<String> allowedSignalingSourceAddressPrefixes() {
@@ -91,21 +95,21 @@ public final class PrimaryRegionProperties {
     }
 
     /**
-     * Set the allowedSignalingSourceAddressPrefixes property: The allowed source IP address or CIDR ranges for
+     * Set the allowedSignalingSourceAddressPrefixes property: The allowed source IP addresses or CIDR ranges for
      * signaling.
-     *
+     * 
      * @param allowedSignalingSourceAddressPrefixes the allowedSignalingSourceAddressPrefixes value to set.
      * @return the PrimaryRegionProperties object itself.
      */
-    public PrimaryRegionProperties withAllowedSignalingSourceAddressPrefixes(
-        List<String> allowedSignalingSourceAddressPrefixes) {
+    public PrimaryRegionProperties
+        withAllowedSignalingSourceAddressPrefixes(List<String> allowedSignalingSourceAddressPrefixes) {
         this.allowedSignalingSourceAddressPrefixes = allowedSignalingSourceAddressPrefixes;
         return this;
     }
 
     /**
-     * Get the allowedMediaSourceAddressPrefixes property: The allowed source IP address or CIDR ranges for media.
-     *
+     * Get the allowedMediaSourceAddressPrefixes property: The allowed source IP addresses or CIDR ranges for media.
+     * 
      * @return the allowedMediaSourceAddressPrefixes value.
      */
     public List<String> allowedMediaSourceAddressPrefixes() {
@@ -113,28 +117,26 @@ public final class PrimaryRegionProperties {
     }
 
     /**
-     * Set the allowedMediaSourceAddressPrefixes property: The allowed source IP address or CIDR ranges for media.
-     *
+     * Set the allowedMediaSourceAddressPrefixes property: The allowed source IP addresses or CIDR ranges for media.
+     * 
      * @param allowedMediaSourceAddressPrefixes the allowedMediaSourceAddressPrefixes value to set.
      * @return the PrimaryRegionProperties object itself.
      */
-    public PrimaryRegionProperties withAllowedMediaSourceAddressPrefixes(
-        List<String> allowedMediaSourceAddressPrefixes) {
+    public PrimaryRegionProperties
+        withAllowedMediaSourceAddressPrefixes(List<String> allowedMediaSourceAddressPrefixes) {
         this.allowedMediaSourceAddressPrefixes = allowedMediaSourceAddressPrefixes;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (operatorAddresses() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property operatorAddresses in model PrimaryRegionProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property operatorAddresses in model PrimaryRegionProperties"));
         }
     }
 

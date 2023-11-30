@@ -40,7 +40,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to VoiceServicesManager. */
+/**
+ * Entry point to VoiceServicesManager.
+ */
 public final class VoiceServicesManager {
     private Operations operations;
 
@@ -55,18 +57,14 @@ public final class VoiceServicesManager {
     private VoiceServicesManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject =
-            new MicrosoftVoiceServicesBuilder()
-                .pipeline(httpPipeline)
-                .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .subscriptionId(profile.getSubscriptionId())
-                .defaultPollInterval(defaultPollInterval)
-                .buildClient();
+        this.clientObject = new MicrosoftVoiceServicesBuilder().pipeline(httpPipeline)
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval).buildClient();
     }
 
     /**
      * Creates an instance of Voice Services service API entry point.
-     *
+     * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
      * @return the Voice Services service API instance.
@@ -79,7 +77,7 @@ public final class VoiceServicesManager {
 
     /**
      * Creates an instance of Voice Services service API entry point.
-     *
+     * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
      * @return the Voice Services service API instance.
@@ -92,14 +90,16 @@ public final class VoiceServicesManager {
 
     /**
      * Gets a Configurable instance that can be used to create VoiceServicesManager with optional configuration.
-     *
+     * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
         return new VoiceServicesManager.Configurable();
     }
 
-    /** The Configurable allowing configurations to be set. */
+    /**
+     * The Configurable allowing configurations to be set.
+     */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
@@ -171,8 +171,8 @@ public final class VoiceServicesManager {
 
         /**
          * Sets the retry options for the HTTP pipeline retry policy.
-         *
-         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         * <p>
+         * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
          *
          * @param retryOptions the retry options for the HTTP pipeline retry policy.
          * @return the configurable object itself.
@@ -189,8 +189,8 @@ public final class VoiceServicesManager {
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval =
-                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
+            this.defaultPollInterval
+                = Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
                 throw LOGGER
                     .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
@@ -210,21 +210,12 @@ public final class VoiceServicesManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder
-                .append("azsdk-java")
-                .append("-")
-                .append("com.azure.resourcemanager.voiceservices")
-                .append("/")
-                .append("1.0.0");
+            userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.voiceservices")
+                .append("/").append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder
-                    .append(" (")
-                    .append(Configuration.getGlobalConfiguration().get("java.version"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.name"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.version"))
-                    .append("; auto-generated)");
+                userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
+                    .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.version")).append("; auto-generated)");
             } else {
                 userAgentBuilder.append(" (auto-generated)");
             }
@@ -243,38 +234,25 @@ public final class VoiceServicesManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY).collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
-            HttpPipeline httpPipeline =
-                new HttpPipelineBuilder()
-                    .httpClient(httpClient)
-                    .policies(policies.toArray(new HttpPipelinePolicy[0]))
-                    .build();
+            HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
+                .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
             return new VoiceServicesManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
     /**
      * Gets the resource collection API of Operations.
-     *
+     * 
      * @return Resource collection API of Operations.
      */
     public Operations operations() {
@@ -286,20 +264,20 @@ public final class VoiceServicesManager {
 
     /**
      * Gets the resource collection API of CommunicationsGateways. It manages CommunicationsGateway.
-     *
+     * 
      * @return Resource collection API of CommunicationsGateways.
      */
     public CommunicationsGateways communicationsGateways() {
         if (this.communicationsGateways == null) {
-            this.communicationsGateways =
-                new CommunicationsGatewaysImpl(clientObject.getCommunicationsGateways(), this);
+            this.communicationsGateways
+                = new CommunicationsGatewaysImpl(clientObject.getCommunicationsGateways(), this);
         }
         return communicationsGateways;
     }
 
     /**
      * Gets the resource collection API of NameAvailabilities.
-     *
+     * 
      * @return Resource collection API of NameAvailabilities.
      */
     public NameAvailabilities nameAvailabilities() {
@@ -311,7 +289,7 @@ public final class VoiceServicesManager {
 
     /**
      * Gets the resource collection API of TestLines. It manages TestLine.
-     *
+     * 
      * @return Resource collection API of TestLines.
      */
     public TestLines testLines() {
@@ -322,8 +300,10 @@ public final class VoiceServicesManager {
     }
 
     /**
-     * @return Wrapped service client MicrosoftVoiceServices providing direct access to the underlying auto-generated
-     *     API implementation, based on Azure REST API.
+     * Gets wrapped service client MicrosoftVoiceServices providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     * 
+     * @return Wrapped service client MicrosoftVoiceServices.
      */
     public MicrosoftVoiceServices serviceClient() {
         return this.clientObject;

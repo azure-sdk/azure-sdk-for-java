@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The purpose of the TestLine resource. */
+/**
+ * The purpose of the TestLine resource.
+ */
 public final class TestLinePurpose extends ExpandableStringEnum<TestLinePurpose> {
-    /** Static value Manual for TestLinePurpose. */
+    /**
+     * Static value Manual for TestLinePurpose.
+     */
     public static final TestLinePurpose MANUAL = fromString("Manual");
 
-    /** Static value Automated for TestLinePurpose. */
+    /**
+     * Static value Automated for TestLinePurpose.
+     */
     public static final TestLinePurpose AUTOMATED = fromString("Automated");
 
     /**
      * Creates a new instance of TestLinePurpose value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class TestLinePurpose extends ExpandableStringEnum<TestLinePurpose>
 
     /**
      * Creates or finds a TestLinePurpose from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding TestLinePurpose.
      */
@@ -38,7 +44,7 @@ public final class TestLinePurpose extends ExpandableStringEnum<TestLinePurpose>
 
     /**
      * Gets known TestLinePurpose values.
-     *
+     * 
      * @return known TestLinePurpose values.
      */
     public static Collection<TestLinePurpose> values() {

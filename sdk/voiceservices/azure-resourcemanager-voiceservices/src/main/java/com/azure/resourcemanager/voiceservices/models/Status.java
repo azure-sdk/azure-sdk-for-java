@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The status of the current CommunicationsGateway resource. */
+/**
+ * The status of the current CommunicationsGateway resource.
+ */
 public final class Status extends ExpandableStringEnum<Status> {
-    /** Static value ChangePending for Status. */
+    /**
+     * Static value ChangePending for Status.
+     */
     public static final Status CHANGE_PENDING = fromString("ChangePending");
 
-    /** Static value Complete for Status. */
+    /**
+     * Static value Complete for Status.
+     */
     public static final Status COMPLETE = fromString("Complete");
 
     /**
      * Creates a new instance of Status value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class Status extends ExpandableStringEnum<Status> {
 
     /**
      * Creates or finds a Status from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Status.
      */
@@ -38,7 +44,7 @@ public final class Status extends ExpandableStringEnum<Status> {
 
     /**
      * Gets known Status values.
-     *
+     * 
      * @return known Status values.
      */
     public static Collection<Status> values() {

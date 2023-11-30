@@ -10,7 +10,9 @@ import com.azure.resourcemanager.voiceservices.models.ProvisioningState;
 import com.azure.resourcemanager.voiceservices.models.TestLinePurpose;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Details of the TestLine resource. */
+/**
+ * Details of the TestLine resource.
+ */
 @Fluent
 public final class TestLineProperties {
     /*
@@ -31,13 +33,15 @@ public final class TestLineProperties {
     @JsonProperty(value = "purpose", required = true)
     private TestLinePurpose purpose;
 
-    /** Creates an instance of TestLineProperties class. */
+    /**
+     * Creates an instance of TestLineProperties class.
+     */
     public TestLineProperties() {
     }
 
     /**
      * Get the provisioningState property: Resource provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -46,7 +50,7 @@ public final class TestLineProperties {
 
     /**
      * Get the phoneNumber property: The phone number.
-     *
+     * 
      * @return the phoneNumber value.
      */
     public String phoneNumber() {
@@ -55,7 +59,7 @@ public final class TestLineProperties {
 
     /**
      * Set the phoneNumber property: The phone number.
-     *
+     * 
      * @param phoneNumber the phoneNumber value to set.
      * @return the TestLineProperties object itself.
      */
@@ -66,7 +70,7 @@ public final class TestLineProperties {
 
     /**
      * Get the purpose property: Purpose of this test line, e.g. automated or manual testing.
-     *
+     * 
      * @return the purpose value.
      */
     public TestLinePurpose purpose() {
@@ -75,7 +79,7 @@ public final class TestLineProperties {
 
     /**
      * Set the purpose property: Purpose of this test line, e.g. automated or manual testing.
-     *
+     * 
      * @param purpose the purpose value to set.
      * @return the TestLineProperties object itself.
      */
@@ -86,19 +90,17 @@ public final class TestLineProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (phoneNumber() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property phoneNumber in model TestLineProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property phoneNumber in model TestLineProperties"));
         }
         if (purpose() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property purpose in model TestLineProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property purpose in model TestLineProperties"));
         }
     }
 
