@@ -18,7 +18,7 @@ public final class ControlPlaneNodeConfiguration {
     /*
      * AdministratorConfiguration represents the administrative credentials that will be applied to the control plane
      * and agent pool nodes in Kubernetes clusters.
-     *
+     * 
      * The administrator credentials to be used for the nodes in the control plane.
      */
     @JsonProperty(value = "administratorConfiguration")
@@ -43,16 +43,18 @@ public final class ControlPlaneNodeConfiguration {
     @JsonProperty(value = "vmSkuName", required = true)
     private String vmSkuName;
 
-    /** Creates an instance of ControlPlaneNodeConfiguration class. */
+    /**
+     * Creates an instance of ControlPlaneNodeConfiguration class.
+     */
     public ControlPlaneNodeConfiguration() {
     }
 
     /**
-     * Get the administratorConfiguration property: AdministratorConfiguration represents the administrative credentials
-     * that will be applied to the control plane and agent pool nodes in Kubernetes clusters.
-     *
-     * <p>The administrator credentials to be used for the nodes in the control plane.
-     *
+     * Get the administratorConfiguration property: AdministratorConfiguration represents the administrative
+     * credentials that will be applied to the control plane and agent pool nodes in Kubernetes clusters.
+     * 
+     * The administrator credentials to be used for the nodes in the control plane.
+     * 
      * @return the administratorConfiguration value.
      */
     public AdministratorConfiguration administratorConfiguration() {
@@ -60,16 +62,16 @@ public final class ControlPlaneNodeConfiguration {
     }
 
     /**
-     * Set the administratorConfiguration property: AdministratorConfiguration represents the administrative credentials
-     * that will be applied to the control plane and agent pool nodes in Kubernetes clusters.
-     *
-     * <p>The administrator credentials to be used for the nodes in the control plane.
-     *
+     * Set the administratorConfiguration property: AdministratorConfiguration represents the administrative
+     * credentials that will be applied to the control plane and agent pool nodes in Kubernetes clusters.
+     * 
+     * The administrator credentials to be used for the nodes in the control plane.
+     * 
      * @param administratorConfiguration the administratorConfiguration value to set.
      * @return the ControlPlaneNodeConfiguration object itself.
      */
-    public ControlPlaneNodeConfiguration withAdministratorConfiguration(
-        AdministratorConfiguration administratorConfiguration) {
+    public ControlPlaneNodeConfiguration
+        withAdministratorConfiguration(AdministratorConfiguration administratorConfiguration) {
         this.administratorConfiguration = administratorConfiguration;
         return this;
     }
@@ -77,7 +79,7 @@ public final class ControlPlaneNodeConfiguration {
     /**
      * Get the availabilityZones property: The list of availability zones of the Network Cloud cluster to be used for
      * the provisioning of nodes in the control plane. If not specified, all availability zones will be used.
-     *
+     * 
      * @return the availabilityZones value.
      */
     public List<String> availabilityZones() {
@@ -87,7 +89,7 @@ public final class ControlPlaneNodeConfiguration {
     /**
      * Set the availabilityZones property: The list of availability zones of the Network Cloud cluster to be used for
      * the provisioning of nodes in the control plane. If not specified, all availability zones will be used.
-     *
+     * 
      * @param availabilityZones the availabilityZones value to set.
      * @return the ControlPlaneNodeConfiguration object itself.
      */
@@ -98,7 +100,7 @@ public final class ControlPlaneNodeConfiguration {
 
     /**
      * Get the count property: The number of virtual machines that use this configuration.
-     *
+     * 
      * @return the count value.
      */
     public long count() {
@@ -107,7 +109,7 @@ public final class ControlPlaneNodeConfiguration {
 
     /**
      * Set the count property: The number of virtual machines that use this configuration.
-     *
+     * 
      * @param count the count value to set.
      * @return the ControlPlaneNodeConfiguration object itself.
      */
@@ -118,7 +120,7 @@ public final class ControlPlaneNodeConfiguration {
 
     /**
      * Get the vmSkuName property: The name of the VM SKU supplied during creation.
-     *
+     * 
      * @return the vmSkuName value.
      */
     public String vmSkuName() {
@@ -127,7 +129,7 @@ public final class ControlPlaneNodeConfiguration {
 
     /**
      * Set the vmSkuName property: The name of the VM SKU supplied during creation.
-     *
+     * 
      * @param vmSkuName the vmSkuName value to set.
      * @return the ControlPlaneNodeConfiguration object itself.
      */
@@ -138,7 +140,7 @@ public final class ControlPlaneNodeConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -146,10 +148,8 @@ public final class ControlPlaneNodeConfiguration {
             administratorConfiguration().validate();
         }
         if (vmSkuName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property vmSkuName in model ControlPlaneNodeConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property vmSkuName in model ControlPlaneNodeConfiguration"));
         }
     }
 

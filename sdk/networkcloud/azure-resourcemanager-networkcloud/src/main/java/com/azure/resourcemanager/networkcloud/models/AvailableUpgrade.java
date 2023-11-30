@@ -7,7 +7,9 @@ package com.azure.resourcemanager.networkcloud.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** AvailableUpgrade represents an upgrade available for a Kubernetes cluster. */
+/**
+ * AvailableUpgrade represents an upgrade available for a Kubernetes cluster.
+ */
 @Immutable
 public final class AvailableUpgrade {
     /*
@@ -22,13 +24,15 @@ public final class AvailableUpgrade {
     @JsonProperty(value = "version", access = JsonProperty.Access.WRITE_ONLY)
     private String version;
 
-    /** Creates an instance of AvailableUpgrade class. */
+    /**
+     * Creates an instance of AvailableUpgrade class.
+     */
     public AvailableUpgrade() {
     }
 
     /**
      * Get the availabilityLifecycle property: The version lifecycle indicator.
-     *
+     * 
      * @return the availabilityLifecycle value.
      */
     public AvailabilityLifecycle availabilityLifecycle() {
@@ -37,7 +41,7 @@ public final class AvailableUpgrade {
 
     /**
      * Get the version property: The version available for upgrading.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -46,7 +50,7 @@ public final class AvailableUpgrade {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

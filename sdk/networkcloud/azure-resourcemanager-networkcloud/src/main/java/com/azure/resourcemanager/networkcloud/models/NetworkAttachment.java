@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** NetworkAttachment represents the single network attachment. */
+/**
+ * NetworkAttachment represents the single network attachment.
+ */
 @Fluent
 public final class NetworkAttachment {
     /*
@@ -36,9 +38,9 @@ public final class NetworkAttachment {
 
     /*
      * The IPv4 address of the virtual machine.
-     *
+     * 
      * This field is used only if the attached network has IPAllocationType of IPV4 or DualStack.
-     *
+     * 
      * If IPAllocationMethod is:
      * Static - this field must contain a user specified IPv4 address from within the subnet specified in the attached
      * network.
@@ -51,9 +53,9 @@ public final class NetworkAttachment {
 
     /*
      * The IPv6 address of the virtual machine.
-     *
+     * 
      * This field is used only if the attached network has IPAllocationType of IPV6 or DualStack.
-     *
+     * 
      * If IPAllocationMethod is:
      * Static - this field must contain an IPv6 address range from within the range specified in the attached network.
      * Dynamic - this field is read-only, but will be populated with an range from within the subnet specified in the
@@ -79,14 +81,16 @@ public final class NetworkAttachment {
     @JsonProperty(value = "networkAttachmentName")
     private String networkAttachmentName;
 
-    /** Creates an instance of NetworkAttachment class. */
+    /**
+     * Creates an instance of NetworkAttachment class.
+     */
     public NetworkAttachment() {
     }
 
     /**
-     * Get the attachedNetworkId property: The resource ID of the associated network attached to the virtual machine. It
-     * can be one of cloudServicesNetwork, l3Network, l2Network or trunkedNetwork resources.
-     *
+     * Get the attachedNetworkId property: The resource ID of the associated network attached to the virtual machine.
+     * It can be one of cloudServicesNetwork, l3Network, l2Network or trunkedNetwork resources.
+     * 
      * @return the attachedNetworkId value.
      */
     public String attachedNetworkId() {
@@ -94,9 +98,9 @@ public final class NetworkAttachment {
     }
 
     /**
-     * Set the attachedNetworkId property: The resource ID of the associated network attached to the virtual machine. It
-     * can be one of cloudServicesNetwork, l3Network, l2Network or trunkedNetwork resources.
-     *
+     * Set the attachedNetworkId property: The resource ID of the associated network attached to the virtual machine.
+     * It can be one of cloudServicesNetwork, l3Network, l2Network or trunkedNetwork resources.
+     * 
      * @param attachedNetworkId the attachedNetworkId value to set.
      * @return the NetworkAttachment object itself.
      */
@@ -106,9 +110,10 @@ public final class NetworkAttachment {
     }
 
     /**
-     * Get the defaultGateway property: The indicator of whether this is the default gateway. Only one of the attached
-     * networks (including the CloudServicesNetwork attachment) for a single machine may be specified as True.
-     *
+     * Get the defaultGateway property: The indicator of whether this is the default gateway.
+     * Only one of the attached networks (including the CloudServicesNetwork attachment) for a single machine may be
+     * specified as True.
+     * 
      * @return the defaultGateway value.
      */
     public DefaultGateway defaultGateway() {
@@ -116,9 +121,10 @@ public final class NetworkAttachment {
     }
 
     /**
-     * Set the defaultGateway property: The indicator of whether this is the default gateway. Only one of the attached
-     * networks (including the CloudServicesNetwork attachment) for a single machine may be specified as True.
-     *
+     * Set the defaultGateway property: The indicator of whether this is the default gateway.
+     * Only one of the attached networks (including the CloudServicesNetwork attachment) for a single machine may be
+     * specified as True.
+     * 
      * @param defaultGateway the defaultGateway value to set.
      * @return the NetworkAttachment object itself.
      */
@@ -128,9 +134,10 @@ public final class NetworkAttachment {
     }
 
     /**
-     * Get the ipAllocationMethod property: The IP allocation mechanism for the virtual machine. Dynamic and Static are
-     * only valid for l3Network which may also specify Disabled. Otherwise, Disabled is the only permitted value.
-     *
+     * Get the ipAllocationMethod property: The IP allocation mechanism for the virtual machine.
+     * Dynamic and Static are only valid for l3Network which may also specify Disabled.
+     * Otherwise, Disabled is the only permitted value.
+     * 
      * @return the ipAllocationMethod value.
      */
     public VirtualMachineIpAllocationMethod ipAllocationMethod() {
@@ -138,9 +145,10 @@ public final class NetworkAttachment {
     }
 
     /**
-     * Set the ipAllocationMethod property: The IP allocation mechanism for the virtual machine. Dynamic and Static are
-     * only valid for l3Network which may also specify Disabled. Otherwise, Disabled is the only permitted value.
-     *
+     * Set the ipAllocationMethod property: The IP allocation mechanism for the virtual machine.
+     * Dynamic and Static are only valid for l3Network which may also specify Disabled.
+     * Otherwise, Disabled is the only permitted value.
+     * 
      * @param ipAllocationMethod the ipAllocationMethod value to set.
      * @return the NetworkAttachment object itself.
      */
@@ -151,13 +159,16 @@ public final class NetworkAttachment {
 
     /**
      * Get the ipv4Address property: The IPv4 address of the virtual machine.
-     *
-     * <p>This field is used only if the attached network has IPAllocationType of IPV4 or DualStack.
-     *
-     * <p>If IPAllocationMethod is: Static - this field must contain a user specified IPv4 address from within the
-     * subnet specified in the attached network. Dynamic - this field is read-only, but will be populated with an
-     * address from within the subnet specified in the attached network. Disabled - this field will be empty.
-     *
+     * 
+     * This field is used only if the attached network has IPAllocationType of IPV4 or DualStack.
+     * 
+     * If IPAllocationMethod is:
+     * Static - this field must contain a user specified IPv4 address from within the subnet specified in the attached
+     * network.
+     * Dynamic - this field is read-only, but will be populated with an address from within the subnet specified in the
+     * attached network.
+     * Disabled - this field will be empty.
+     * 
      * @return the ipv4Address value.
      */
     public String ipv4Address() {
@@ -166,13 +177,16 @@ public final class NetworkAttachment {
 
     /**
      * Set the ipv4Address property: The IPv4 address of the virtual machine.
-     *
-     * <p>This field is used only if the attached network has IPAllocationType of IPV4 or DualStack.
-     *
-     * <p>If IPAllocationMethod is: Static - this field must contain a user specified IPv4 address from within the
-     * subnet specified in the attached network. Dynamic - this field is read-only, but will be populated with an
-     * address from within the subnet specified in the attached network. Disabled - this field will be empty.
-     *
+     * 
+     * This field is used only if the attached network has IPAllocationType of IPV4 or DualStack.
+     * 
+     * If IPAllocationMethod is:
+     * Static - this field must contain a user specified IPv4 address from within the subnet specified in the attached
+     * network.
+     * Dynamic - this field is read-only, but will be populated with an address from within the subnet specified in the
+     * attached network.
+     * Disabled - this field will be empty.
+     * 
      * @param ipv4Address the ipv4Address value to set.
      * @return the NetworkAttachment object itself.
      */
@@ -183,13 +197,15 @@ public final class NetworkAttachment {
 
     /**
      * Get the ipv6Address property: The IPv6 address of the virtual machine.
-     *
-     * <p>This field is used only if the attached network has IPAllocationType of IPV6 or DualStack.
-     *
-     * <p>If IPAllocationMethod is: Static - this field must contain an IPv6 address range from within the range
-     * specified in the attached network. Dynamic - this field is read-only, but will be populated with an range from
-     * within the subnet specified in the attached network. Disabled - this field will be empty.
-     *
+     * 
+     * This field is used only if the attached network has IPAllocationType of IPV6 or DualStack.
+     * 
+     * If IPAllocationMethod is:
+     * Static - this field must contain an IPv6 address range from within the range specified in the attached network.
+     * Dynamic - this field is read-only, but will be populated with an range from within the subnet specified in the
+     * attached network.
+     * Disabled - this field will be empty.
+     * 
      * @return the ipv6Address value.
      */
     public String ipv6Address() {
@@ -198,13 +214,15 @@ public final class NetworkAttachment {
 
     /**
      * Set the ipv6Address property: The IPv6 address of the virtual machine.
-     *
-     * <p>This field is used only if the attached network has IPAllocationType of IPV6 or DualStack.
-     *
-     * <p>If IPAllocationMethod is: Static - this field must contain an IPv6 address range from within the range
-     * specified in the attached network. Dynamic - this field is read-only, but will be populated with an range from
-     * within the subnet specified in the attached network. Disabled - this field will be empty.
-     *
+     * 
+     * This field is used only if the attached network has IPAllocationType of IPV6 or DualStack.
+     * 
+     * If IPAllocationMethod is:
+     * Static - this field must contain an IPv6 address range from within the range specified in the attached network.
+     * Dynamic - this field is read-only, but will be populated with an range from within the subnet specified in the
+     * attached network.
+     * Disabled - this field will be empty.
+     * 
      * @param ipv6Address the ipv6Address value to set.
      * @return the NetworkAttachment object itself.
      */
@@ -216,7 +234,7 @@ public final class NetworkAttachment {
     /**
      * Get the macAddress property: The MAC address of the interface for the virtual machine that corresponds to this
      * network attachment.
-     *
+     * 
      * @return the macAddress value.
      */
     public String macAddress() {
@@ -224,11 +242,12 @@ public final class NetworkAttachment {
     }
 
     /**
-     * Get the networkAttachmentName property: The associated network's interface name. If specified, the network
-     * attachment name has a maximum length of 15 characters and must be unique to this virtual machine. If the user
-     * doesn’t specify this value, the default interface name of the network resource will be used. For a
-     * CloudServicesNetwork resource, this name will be ignored.
-     *
+     * Get the networkAttachmentName property: The associated network's interface name.
+     * If specified, the network attachment name has a maximum length of 15 characters and must be unique to this
+     * virtual machine.
+     * If the user doesn’t specify this value, the default interface name of the network resource will be used.
+     * For a CloudServicesNetwork resource, this name will be ignored.
+     * 
      * @return the networkAttachmentName value.
      */
     public String networkAttachmentName() {
@@ -236,11 +255,12 @@ public final class NetworkAttachment {
     }
 
     /**
-     * Set the networkAttachmentName property: The associated network's interface name. If specified, the network
-     * attachment name has a maximum length of 15 characters and must be unique to this virtual machine. If the user
-     * doesn’t specify this value, the default interface name of the network resource will be used. For a
-     * CloudServicesNetwork resource, this name will be ignored.
-     *
+     * Set the networkAttachmentName property: The associated network's interface name.
+     * If specified, the network attachment name has a maximum length of 15 characters and must be unique to this
+     * virtual machine.
+     * If the user doesn’t specify this value, the default interface name of the network resource will be used.
+     * For a CloudServicesNetwork resource, this name will be ignored.
+     * 
      * @param networkAttachmentName the networkAttachmentName value to set.
      * @return the NetworkAttachment object itself.
      */
@@ -251,21 +271,17 @@ public final class NetworkAttachment {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (attachedNetworkId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property attachedNetworkId in model NetworkAttachment"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property attachedNetworkId in model NetworkAttachment"));
         }
         if (ipAllocationMethod() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property ipAllocationMethod in model NetworkAttachment"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property ipAllocationMethod in model NetworkAttachment"));
         }
     }
 

@@ -7,13 +7,15 @@ package com.azure.resourcemanager.networkcloud.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Type Deprecated. Will be removed in an upcoming version. Nic represents the network interface card details. */
+/**
+ * Type Deprecated. Will be removed in an upcoming version. Nic represents the network interface card details.
+ */
 @Immutable
 public final class Nic {
     /*
      * Type Deprecated. Will be removed in an upcoming version. LldpNeighbor represents the details about the device
      * connected to the NIC.
-     *
+     * 
      * The information about the device connected to this NIC.
      */
     @JsonProperty(value = "lldpNeighbor", access = JsonProperty.Access.WRITE_ONLY)
@@ -31,16 +33,18 @@ public final class Nic {
     @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
     private String name;
 
-    /** Creates an instance of Nic class. */
+    /**
+     * Creates an instance of Nic class.
+     */
     public Nic() {
     }
 
     /**
      * Get the lldpNeighbor property: Type Deprecated. Will be removed in an upcoming version. LldpNeighbor represents
      * the details about the device connected to the NIC.
-     *
-     * <p>The information about the device connected to this NIC.
-     *
+     * 
+     * The information about the device connected to this NIC.
+     * 
      * @return the lldpNeighbor value.
      */
     public LldpNeighbor lldpNeighbor() {
@@ -49,7 +53,7 @@ public final class Nic {
 
     /**
      * Get the macAddress property: The MAC address associated with this NIC.
-     *
+     * 
      * @return the macAddress value.
      */
     public String macAddress() {
@@ -58,7 +62,7 @@ public final class Nic {
 
     /**
      * Get the name property: The name of the NIC/interface.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -67,7 +71,7 @@ public final class Nic {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

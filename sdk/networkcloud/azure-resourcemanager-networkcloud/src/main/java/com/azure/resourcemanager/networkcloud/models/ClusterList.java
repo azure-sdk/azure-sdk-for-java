@@ -9,7 +9,9 @@ import com.azure.resourcemanager.networkcloud.fluent.models.ClusterInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** ClusterList represents a list of clusters. */
+/**
+ * ClusterList represents a list of clusters.
+ */
 @Fluent
 public final class ClusterList {
     /*
@@ -24,13 +26,15 @@ public final class ClusterList {
     @JsonProperty(value = "value")
     private List<ClusterInner> value;
 
-    /** Creates an instance of ClusterList class. */
+    /**
+     * Creates an instance of ClusterList class.
+     */
     public ClusterList() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class ClusterList {
 
     /**
      * Set the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ClusterList object itself.
      */
@@ -50,7 +54,7 @@ public final class ClusterList {
 
     /**
      * Get the value property: The list of clusters.
-     *
+     * 
      * @return the value value.
      */
     public List<ClusterInner> value() {
@@ -59,7 +63,7 @@ public final class ClusterList {
 
     /**
      * Set the value property: The list of clusters.
-     *
+     * 
      * @param value the value value to set.
      * @return the ClusterList object itself.
      */
@@ -70,7 +74,7 @@ public final class ClusterList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

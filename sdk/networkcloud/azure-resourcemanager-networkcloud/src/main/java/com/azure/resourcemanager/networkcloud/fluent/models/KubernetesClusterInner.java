@@ -24,12 +24,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** KubernetesCluster represents the Kubernetes cluster hosted on Network Cloud. */
+/**
+ * KubernetesCluster represents the Kubernetes cluster hosted on Network Cloud.
+ */
 @Fluent
 public final class KubernetesClusterInner extends Resource {
     /*
      * ExtendedLocation represents the Azure custom location where the resource will be created.
-     *
+     * 
      * The extended location of the cluster associated with the resource.
      */
     @JsonProperty(value = "extendedLocation", required = true)
@@ -37,7 +39,7 @@ public final class KubernetesClusterInner extends Resource {
 
     /*
      * KubernetesClusterProperties represents the properties of Kubernetes cluster resource.
-     *
+     * 
      * The list of the resource properties.
      */
     @JsonProperty(value = "properties", required = true)
@@ -49,16 +51,18 @@ public final class KubernetesClusterInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of KubernetesClusterInner class. */
+    /**
+     * Creates an instance of KubernetesClusterInner class.
+     */
     public KubernetesClusterInner() {
     }
 
     /**
      * Get the extendedLocation property: ExtendedLocation represents the Azure custom location where the resource will
      * be created.
-     *
-     * <p>The extended location of the cluster associated with the resource.
-     *
+     * 
+     * The extended location of the cluster associated with the resource.
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -68,9 +72,9 @@ public final class KubernetesClusterInner extends Resource {
     /**
      * Set the extendedLocation property: ExtendedLocation represents the Azure custom location where the resource will
      * be created.
-     *
-     * <p>The extended location of the cluster associated with the resource.
-     *
+     * 
+     * The extended location of the cluster associated with the resource.
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the KubernetesClusterInner object itself.
      */
@@ -82,9 +86,9 @@ public final class KubernetesClusterInner extends Resource {
     /**
      * Get the innerProperties property: KubernetesClusterProperties represents the properties of Kubernetes cluster
      * resource.
-     *
-     * <p>The list of the resource properties.
-     *
+     * 
+     * The list of the resource properties.
+     * 
      * @return the innerProperties value.
      */
     private KubernetesClusterProperties innerProperties() {
@@ -93,21 +97,25 @@ public final class KubernetesClusterInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesClusterInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesClusterInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -115,10 +123,11 @@ public final class KubernetesClusterInner extends Resource {
     }
 
     /**
-     * Get the aadConfiguration property: AadConfiguration represents the Azure Active Directory Integration properties.
-     *
-     * <p>The Azure Active Directory Integration properties.
-     *
+     * Get the aadConfiguration property: AadConfiguration represents the Azure Active Directory Integration
+     * properties.
+     * 
+     * The Azure Active Directory Integration properties.
+     * 
      * @return the aadConfiguration value.
      */
     public AadConfiguration aadConfiguration() {
@@ -126,10 +135,11 @@ public final class KubernetesClusterInner extends Resource {
     }
 
     /**
-     * Set the aadConfiguration property: AadConfiguration represents the Azure Active Directory Integration properties.
-     *
-     * <p>The Azure Active Directory Integration properties.
-     *
+     * Set the aadConfiguration property: AadConfiguration represents the Azure Active Directory Integration
+     * properties.
+     * 
+     * The Azure Active Directory Integration properties.
+     * 
      * @param aadConfiguration the aadConfiguration value to set.
      * @return the KubernetesClusterInner object itself.
      */
@@ -142,12 +152,12 @@ public final class KubernetesClusterInner extends Resource {
     }
 
     /**
-     * Get the administratorConfiguration property: AdministratorConfiguration represents the administrative credentials
-     * that will be applied to the control plane and agent pool nodes in Kubernetes clusters.
-     *
-     * <p>The administrative credentials that will be applied to the control plane and agent pool nodes that do not
+     * Get the administratorConfiguration property: AdministratorConfiguration represents the administrative
+     * credentials that will be applied to the control plane and agent pool nodes in Kubernetes clusters.
+     * 
+     * The administrative credentials that will be applied to the control plane and agent pool nodes that do not
      * specify their own values.
-     *
+     * 
      * @return the administratorConfiguration value.
      */
     public AdministratorConfiguration administratorConfiguration() {
@@ -155,17 +165,17 @@ public final class KubernetesClusterInner extends Resource {
     }
 
     /**
-     * Set the administratorConfiguration property: AdministratorConfiguration represents the administrative credentials
-     * that will be applied to the control plane and agent pool nodes in Kubernetes clusters.
-     *
-     * <p>The administrative credentials that will be applied to the control plane and agent pool nodes that do not
+     * Set the administratorConfiguration property: AdministratorConfiguration represents the administrative
+     * credentials that will be applied to the control plane and agent pool nodes in Kubernetes clusters.
+     * 
+     * The administrative credentials that will be applied to the control plane and agent pool nodes that do not
      * specify their own values.
-     *
+     * 
      * @param administratorConfiguration the administratorConfiguration value to set.
      * @return the KubernetesClusterInner object itself.
      */
-    public KubernetesClusterInner withAdministratorConfiguration(
-        AdministratorConfiguration administratorConfiguration) {
+    public KubernetesClusterInner
+        withAdministratorConfiguration(AdministratorConfiguration administratorConfiguration) {
         if (this.innerProperties() == null) {
             this.innerProperties = new KubernetesClusterProperties();
         }
@@ -176,7 +186,7 @@ public final class KubernetesClusterInner extends Resource {
     /**
      * Get the attachedNetworkIds property: The full list of network resource IDs that are attached to this cluster,
      * including those attached only to specific agent pools.
-     *
+     * 
      * @return the attachedNetworkIds value.
      */
     public List<String> attachedNetworkIds() {
@@ -185,7 +195,7 @@ public final class KubernetesClusterInner extends Resource {
 
     /**
      * Get the availableUpgrades property: The list of versions that this Kubernetes cluster can be upgraded to.
-     *
+     * 
      * @return the availableUpgrades value.
      */
     public List<AvailableUpgrade> availableUpgrades() {
@@ -194,7 +204,7 @@ public final class KubernetesClusterInner extends Resource {
 
     /**
      * Get the clusterId property: The resource ID of the Network Cloud cluster.
-     *
+     * 
      * @return the clusterId value.
      */
     public String clusterId() {
@@ -202,9 +212,9 @@ public final class KubernetesClusterInner extends Resource {
     }
 
     /**
-     * Get the connectedClusterId property: The resource ID of the connected cluster set up when this Kubernetes cluster
-     * is created.
-     *
+     * Get the connectedClusterId property: The resource ID of the connected cluster set up when this Kubernetes
+     * cluster is created.
+     * 
      * @return the connectedClusterId value.
      */
     public String connectedClusterId() {
@@ -213,7 +223,7 @@ public final class KubernetesClusterInner extends Resource {
 
     /**
      * Get the controlPlaneKubernetesVersion property: The current running version of Kubernetes on the control plane.
-     *
+     * 
      * @return the controlPlaneKubernetesVersion value.
      */
     public String controlPlaneKubernetesVersion() {
@@ -221,11 +231,11 @@ public final class KubernetesClusterInner extends Resource {
     }
 
     /**
-     * Get the controlPlaneNodeConfiguration property: ControlPlaneNodeConfiguration represents the selection of virtual
-     * machines and size of the control plane for a Kubernetes cluster.
-     *
-     * <p>The defining characteristics of the control plane for this Kubernetes Cluster.
-     *
+     * Get the controlPlaneNodeConfiguration property: ControlPlaneNodeConfiguration represents the selection of
+     * virtual machines and size of the control plane for a Kubernetes cluster.
+     * 
+     * The defining characteristics of the control plane for this Kubernetes Cluster.
+     * 
      * @return the controlPlaneNodeConfiguration value.
      */
     public ControlPlaneNodeConfiguration controlPlaneNodeConfiguration() {
@@ -233,16 +243,16 @@ public final class KubernetesClusterInner extends Resource {
     }
 
     /**
-     * Set the controlPlaneNodeConfiguration property: ControlPlaneNodeConfiguration represents the selection of virtual
-     * machines and size of the control plane for a Kubernetes cluster.
-     *
-     * <p>The defining characteristics of the control plane for this Kubernetes Cluster.
-     *
+     * Set the controlPlaneNodeConfiguration property: ControlPlaneNodeConfiguration represents the selection of
+     * virtual machines and size of the control plane for a Kubernetes cluster.
+     * 
+     * The defining characteristics of the control plane for this Kubernetes Cluster.
+     * 
      * @param controlPlaneNodeConfiguration the controlPlaneNodeConfiguration value to set.
      * @return the KubernetesClusterInner object itself.
      */
-    public KubernetesClusterInner withControlPlaneNodeConfiguration(
-        ControlPlaneNodeConfiguration controlPlaneNodeConfiguration) {
+    public KubernetesClusterInner
+        withControlPlaneNodeConfiguration(ControlPlaneNodeConfiguration controlPlaneNodeConfiguration) {
         if (this.innerProperties() == null) {
             this.innerProperties = new KubernetesClusterProperties();
         }
@@ -252,7 +262,7 @@ public final class KubernetesClusterInner extends Resource {
 
     /**
      * Get the detailedStatus property: The current status of the Kubernetes cluster.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public KubernetesClusterDetailedStatus detailedStatus() {
@@ -261,7 +271,7 @@ public final class KubernetesClusterInner extends Resource {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -270,7 +280,7 @@ public final class KubernetesClusterInner extends Resource {
 
     /**
      * Get the featureStatuses property: The current feature settings.
-     *
+     * 
      * @return the featureStatuses value.
      */
     public List<FeatureStatus> featureStatuses() {
@@ -279,10 +289,10 @@ public final class KubernetesClusterInner extends Resource {
 
     /**
      * Get the initialAgentPoolConfigurations property: The agent pools that are created with this Kubernetes cluster
-     * for running critical system services and workloads. This data in this field is only used during creation, and the
-     * field will be empty following the creation of the Kubernetes Cluster. After creation, the management of agent
-     * pools is done using the agentPools sub-resource.
-     *
+     * for running critical system services and workloads. This data in this field is only used during creation, and
+     * the field will be empty following the creation of the Kubernetes Cluster. After creation, the management of
+     * agent pools is done using the agentPools sub-resource.
+     * 
      * @return the initialAgentPoolConfigurations value.
      */
     public List<InitialAgentPoolConfiguration> initialAgentPoolConfigurations() {
@@ -291,15 +301,15 @@ public final class KubernetesClusterInner extends Resource {
 
     /**
      * Set the initialAgentPoolConfigurations property: The agent pools that are created with this Kubernetes cluster
-     * for running critical system services and workloads. This data in this field is only used during creation, and the
-     * field will be empty following the creation of the Kubernetes Cluster. After creation, the management of agent
-     * pools is done using the agentPools sub-resource.
-     *
+     * for running critical system services and workloads. This data in this field is only used during creation, and
+     * the field will be empty following the creation of the Kubernetes Cluster. After creation, the management of
+     * agent pools is done using the agentPools sub-resource.
+     * 
      * @param initialAgentPoolConfigurations the initialAgentPoolConfigurations value to set.
      * @return the KubernetesClusterInner object itself.
      */
-    public KubernetesClusterInner withInitialAgentPoolConfigurations(
-        List<InitialAgentPoolConfiguration> initialAgentPoolConfigurations) {
+    public KubernetesClusterInner
+        withInitialAgentPoolConfigurations(List<InitialAgentPoolConfiguration> initialAgentPoolConfigurations) {
         if (this.innerProperties() == null) {
             this.innerProperties = new KubernetesClusterProperties();
         }
@@ -310,7 +320,7 @@ public final class KubernetesClusterInner extends Resource {
     /**
      * Get the kubernetesVersion property: The Kubernetes version for this cluster. Accepts n.n, n.n.n, and n.n.n-n
      * format. The interpreted version used will be resolved into this field after creation or update.
-     *
+     * 
      * @return the kubernetesVersion value.
      */
     public String kubernetesVersion() {
@@ -320,7 +330,7 @@ public final class KubernetesClusterInner extends Resource {
     /**
      * Set the kubernetesVersion property: The Kubernetes version for this cluster. Accepts n.n, n.n.n, and n.n.n-n
      * format. The interpreted version used will be resolved into this field after creation or update.
-     *
+     * 
      * @param kubernetesVersion the kubernetesVersion value to set.
      * @return the KubernetesClusterInner object itself.
      */
@@ -335,9 +345,9 @@ public final class KubernetesClusterInner extends Resource {
     /**
      * Get the managedResourceGroupConfiguration property: ManagedResourceGroupConfiguration represents the
      * configuration of the resource group managed by Azure.
-     *
-     * <p>The configuration of the managed resource group associated with the resource.
-     *
+     * 
+     * The configuration of the managed resource group associated with the resource.
+     * 
      * @return the managedResourceGroupConfiguration value.
      */
     public ManagedResourceGroupConfiguration managedResourceGroupConfiguration() {
@@ -347,14 +357,14 @@ public final class KubernetesClusterInner extends Resource {
     /**
      * Set the managedResourceGroupConfiguration property: ManagedResourceGroupConfiguration represents the
      * configuration of the resource group managed by Azure.
-     *
-     * <p>The configuration of the managed resource group associated with the resource.
-     *
+     * 
+     * The configuration of the managed resource group associated with the resource.
+     * 
      * @param managedResourceGroupConfiguration the managedResourceGroupConfiguration value to set.
      * @return the KubernetesClusterInner object itself.
      */
-    public KubernetesClusterInner withManagedResourceGroupConfiguration(
-        ManagedResourceGroupConfiguration managedResourceGroupConfiguration) {
+    public KubernetesClusterInner
+        withManagedResourceGroupConfiguration(ManagedResourceGroupConfiguration managedResourceGroupConfiguration) {
         if (this.innerProperties() == null) {
             this.innerProperties = new KubernetesClusterProperties();
         }
@@ -365,10 +375,10 @@ public final class KubernetesClusterInner extends Resource {
     /**
      * Get the networkConfiguration property: NetworkConfiguration specifies the Kubernetes cluster network related
      * configuration.
-     *
-     * <p>The configuration of the Kubernetes cluster networking, including the attachment of networks that span the
+     * 
+     * The configuration of the Kubernetes cluster networking, including the attachment of networks that span the
      * cluster.
-     *
+     * 
      * @return the networkConfiguration value.
      */
     public NetworkConfiguration networkConfiguration() {
@@ -378,10 +388,10 @@ public final class KubernetesClusterInner extends Resource {
     /**
      * Set the networkConfiguration property: NetworkConfiguration specifies the Kubernetes cluster network related
      * configuration.
-     *
-     * <p>The configuration of the Kubernetes cluster networking, including the attachment of networks that span the
+     * 
+     * The configuration of the Kubernetes cluster networking, including the attachment of networks that span the
      * cluster.
-     *
+     * 
      * @param networkConfiguration the networkConfiguration value to set.
      * @return the KubernetesClusterInner object itself.
      */
@@ -395,7 +405,7 @@ public final class KubernetesClusterInner extends Resource {
 
     /**
      * Get the nodes property: The details of the nodes in this cluster.
-     *
+     * 
      * @return the nodes value.
      */
     public List<KubernetesClusterNode> nodes() {
@@ -404,7 +414,7 @@ public final class KubernetesClusterInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioning state of the Kubernetes cluster resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public KubernetesClusterProvisioningState provisioningState() {
@@ -413,23 +423,19 @@ public final class KubernetesClusterInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (extendedLocation() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property extendedLocation in model KubernetesClusterInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property extendedLocation in model KubernetesClusterInner"));
         } else {
             extendedLocation().validate();
         }
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model KubernetesClusterInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model KubernetesClusterInner"));
         } else {
             innerProperties().validate();
         }

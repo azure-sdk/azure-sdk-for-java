@@ -14,15 +14,19 @@ import java.util.Collection;
  * AKS Cluster.
  */
 public final class HybridAksIpamEnabled extends ExpandableStringEnum<HybridAksIpamEnabled> {
-    /** Static value True for HybridAksIpamEnabled. */
+    /**
+     * Static value True for HybridAksIpamEnabled.
+     */
     public static final HybridAksIpamEnabled TRUE = fromString("True");
 
-    /** Static value False for HybridAksIpamEnabled. */
+    /**
+     * Static value False for HybridAksIpamEnabled.
+     */
     public static final HybridAksIpamEnabled FALSE = fromString("False");
 
     /**
      * Creates a new instance of HybridAksIpamEnabled value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -31,7 +35,7 @@ public final class HybridAksIpamEnabled extends ExpandableStringEnum<HybridAksIp
 
     /**
      * Creates or finds a HybridAksIpamEnabled from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding HybridAksIpamEnabled.
      */
@@ -42,7 +46,7 @@ public final class HybridAksIpamEnabled extends ExpandableStringEnum<HybridAksIp
 
     /**
      * Gets known HybridAksIpamEnabled values.
-     *
+     * 
      * @return known HybridAksIpamEnabled values.
      */
     public static Collection<HybridAksIpamEnabled> values() {

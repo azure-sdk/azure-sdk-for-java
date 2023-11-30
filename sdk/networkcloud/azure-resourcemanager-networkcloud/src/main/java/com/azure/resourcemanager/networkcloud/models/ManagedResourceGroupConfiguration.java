@@ -7,7 +7,9 @@ package com.azure.resourcemanager.networkcloud.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** ManagedResourceGroupConfiguration represents the configuration of the resource group managed by Azure. */
+/**
+ * ManagedResourceGroupConfiguration represents the configuration of the resource group managed by Azure.
+ */
 @Fluent
 public final class ManagedResourceGroupConfiguration {
     /*
@@ -22,14 +24,16 @@ public final class ManagedResourceGroupConfiguration {
     @JsonProperty(value = "name")
     private String name;
 
-    /** Creates an instance of ManagedResourceGroupConfiguration class. */
+    /**
+     * Creates an instance of ManagedResourceGroupConfiguration class.
+     */
     public ManagedResourceGroupConfiguration() {
     }
 
     /**
      * Get the location property: The location of the managed resource group. If not specified, the location of the
      * parent resource is chosen.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -39,7 +43,7 @@ public final class ManagedResourceGroupConfiguration {
     /**
      * Set the location property: The location of the managed resource group. If not specified, the location of the
      * parent resource is chosen.
-     *
+     * 
      * @param location the location value to set.
      * @return the ManagedResourceGroupConfiguration object itself.
      */
@@ -51,7 +55,7 @@ public final class ManagedResourceGroupConfiguration {
     /**
      * Get the name property: The name for the managed resource group. If not specified, the unique name is
      * automatically generated.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -61,7 +65,7 @@ public final class ManagedResourceGroupConfiguration {
     /**
      * Set the name property: The name for the managed resource group. If not specified, the unique name is
      * automatically generated.
-     *
+     * 
      * @param name the name value to set.
      * @return the ManagedResourceGroupConfiguration object itself.
      */
@@ -72,7 +76,7 @@ public final class ManagedResourceGroupConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The more detailed status of the cloud services network. */
+/**
+ * The more detailed status of the cloud services network.
+ */
 public final class CloudServicesNetworkDetailedStatus extends ExpandableStringEnum<CloudServicesNetworkDetailedStatus> {
-    /** Static value Error for CloudServicesNetworkDetailedStatus. */
+    /**
+     * Static value Error for CloudServicesNetworkDetailedStatus.
+     */
     public static final CloudServicesNetworkDetailedStatus ERROR = fromString("Error");
 
-    /** Static value Available for CloudServicesNetworkDetailedStatus. */
+    /**
+     * Static value Available for CloudServicesNetworkDetailedStatus.
+     */
     public static final CloudServicesNetworkDetailedStatus AVAILABLE = fromString("Available");
 
-    /** Static value Provisioning for CloudServicesNetworkDetailedStatus. */
+    /**
+     * Static value Provisioning for CloudServicesNetworkDetailedStatus.
+     */
     public static final CloudServicesNetworkDetailedStatus PROVISIONING = fromString("Provisioning");
 
     /**
      * Creates a new instance of CloudServicesNetworkDetailedStatus value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class CloudServicesNetworkDetailedStatus extends ExpandableStringEn
 
     /**
      * Creates or finds a CloudServicesNetworkDetailedStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding CloudServicesNetworkDetailedStatus.
      */
@@ -41,7 +49,7 @@ public final class CloudServicesNetworkDetailedStatus extends ExpandableStringEn
 
     /**
      * Gets known CloudServicesNetworkDetailedStatus values.
-     *
+     * 
      * @return known CloudServicesNetworkDetailedStatus values.
      */
     public static Collection<CloudServicesNetworkDetailedStatus> values() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** ClusterUpdateVersionParameters represents the body of the request to update cluster version. */
+/**
+ * ClusterUpdateVersionParameters represents the body of the request to update cluster version.
+ */
 @Fluent
 public final class ClusterUpdateVersionParameters {
     /*
@@ -17,13 +19,15 @@ public final class ClusterUpdateVersionParameters {
     @JsonProperty(value = "targetClusterVersion", required = true)
     private String targetClusterVersion;
 
-    /** Creates an instance of ClusterUpdateVersionParameters class. */
+    /**
+     * Creates an instance of ClusterUpdateVersionParameters class.
+     */
     public ClusterUpdateVersionParameters() {
     }
 
     /**
      * Get the targetClusterVersion property: The version to be applied to the cluster during update.
-     *
+     * 
      * @return the targetClusterVersion value.
      */
     public String targetClusterVersion() {
@@ -32,7 +36,7 @@ public final class ClusterUpdateVersionParameters {
 
     /**
      * Set the targetClusterVersion property: The version to be applied to the cluster during update.
-     *
+     * 
      * @param targetClusterVersion the targetClusterVersion value to set.
      * @return the ClusterUpdateVersionParameters object itself.
      */
@@ -43,15 +47,13 @@ public final class ClusterUpdateVersionParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (targetClusterVersion() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property targetClusterVersion in model ClusterUpdateVersionParameters"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property targetClusterVersion in model ClusterUpdateVersionParameters"));
         }
     }
 

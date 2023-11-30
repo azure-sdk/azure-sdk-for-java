@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** IpAddressPool represents a pool of IP addresses that can be allocated to a service. */
+/**
+ * IpAddressPool represents a pool of IP addresses that can be allocated to a service.
+ */
 @Fluent
 public final class IpAddressPool {
     /*
@@ -38,14 +40,16 @@ public final class IpAddressPool {
     @JsonProperty(value = "onlyUseHostIps")
     private BfdEnabled onlyUseHostIps;
 
-    /** Creates an instance of IpAddressPool class. */
+    /**
+     * Creates an instance of IpAddressPool class.
+     */
     public IpAddressPool() {
     }
 
     /**
      * Get the addresses property: The list of IP address ranges. Each range can be a either a subnet in CIDR format or
      * an explicit start-end range of IP addresses.
-     *
+     * 
      * @return the addresses value.
      */
     public List<String> addresses() {
@@ -55,7 +59,7 @@ public final class IpAddressPool {
     /**
      * Set the addresses property: The list of IP address ranges. Each range can be a either a subnet in CIDR format or
      * an explicit start-end range of IP addresses.
-     *
+     * 
      * @param addresses the addresses value to set.
      * @return the IpAddressPool object itself.
      */
@@ -66,7 +70,7 @@ public final class IpAddressPool {
 
     /**
      * Get the autoAssign property: The indicator to determine if automatic allocation from the pool should occur.
-     *
+     * 
      * @return the autoAssign value.
      */
     public BfdEnabled autoAssign() {
@@ -75,7 +79,7 @@ public final class IpAddressPool {
 
     /**
      * Set the autoAssign property: The indicator to determine if automatic allocation from the pool should occur.
-     *
+     * 
      * @param autoAssign the autoAssign value to set.
      * @return the IpAddressPool object itself.
      */
@@ -86,7 +90,7 @@ public final class IpAddressPool {
 
     /**
      * Get the name property: The name used to identify this IP address pool for association with a BGP advertisement.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -95,7 +99,7 @@ public final class IpAddressPool {
 
     /**
      * Set the name property: The name used to identify this IP address pool for association with a BGP advertisement.
-     *
+     * 
      * @param name the name value to set.
      * @return the IpAddressPool object itself.
      */
@@ -107,7 +111,7 @@ public final class IpAddressPool {
     /**
      * Get the onlyUseHostIps property: The indicator to prevent the use of IP addresses ending with .0 and .255 for
      * this pool. Enabling this option will only use IP addresses between .1 and .254 inclusive.
-     *
+     * 
      * @return the onlyUseHostIps value.
      */
     public BfdEnabled onlyUseHostIps() {
@@ -117,7 +121,7 @@ public final class IpAddressPool {
     /**
      * Set the onlyUseHostIps property: The indicator to prevent the use of IP addresses ending with .0 and .255 for
      * this pool. Enabling this option will only use IP addresses between .1 and .254 inclusive.
-     *
+     * 
      * @param onlyUseHostIps the onlyUseHostIps value to set.
      * @return the IpAddressPool object itself.
      */
@@ -128,19 +132,17 @@ public final class IpAddressPool {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (addresses() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property addresses in model IpAddressPool"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property addresses in model IpAddressPool"));
         }
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model IpAddressPool"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model IpAddressPool"));
         }
     }
 

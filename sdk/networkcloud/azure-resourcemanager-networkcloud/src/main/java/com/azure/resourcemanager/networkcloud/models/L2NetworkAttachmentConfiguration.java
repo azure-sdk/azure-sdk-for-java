@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** L2NetworkAttachmentConfiguration represents the configuration of the attachment of a Layer 2 network. */
+/**
+ * L2NetworkAttachmentConfiguration represents the configuration of the attachment of a Layer 2 network.
+ */
 @Fluent
 public final class L2NetworkAttachmentConfiguration {
     /*
@@ -23,13 +25,15 @@ public final class L2NetworkAttachmentConfiguration {
     @JsonProperty(value = "pluginType")
     private KubernetesPluginType pluginType;
 
-    /** Creates an instance of L2NetworkAttachmentConfiguration class. */
+    /**
+     * Creates an instance of L2NetworkAttachmentConfiguration class.
+     */
     public L2NetworkAttachmentConfiguration() {
     }
 
     /**
      * Get the networkId property: The resource ID of the network that is being configured for attachment.
-     *
+     * 
      * @return the networkId value.
      */
     public String networkId() {
@@ -38,7 +42,7 @@ public final class L2NetworkAttachmentConfiguration {
 
     /**
      * Set the networkId property: The resource ID of the network that is being configured for attachment.
-     *
+     * 
      * @param networkId the networkId value to set.
      * @return the L2NetworkAttachmentConfiguration object itself.
      */
@@ -49,7 +53,7 @@ public final class L2NetworkAttachmentConfiguration {
 
     /**
      * Get the pluginType property: The indicator of how this network will be utilized by the Kubernetes cluster.
-     *
+     * 
      * @return the pluginType value.
      */
     public KubernetesPluginType pluginType() {
@@ -58,7 +62,7 @@ public final class L2NetworkAttachmentConfiguration {
 
     /**
      * Set the pluginType property: The indicator of how this network will be utilized by the Kubernetes cluster.
-     *
+     * 
      * @param pluginType the pluginType value to set.
      * @return the L2NetworkAttachmentConfiguration object itself.
      */
@@ -69,15 +73,13 @@ public final class L2NetworkAttachmentConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (networkId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property networkId in model L2NetworkAttachmentConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property networkId in model L2NetworkAttachmentConfiguration"));
         }
     }
 

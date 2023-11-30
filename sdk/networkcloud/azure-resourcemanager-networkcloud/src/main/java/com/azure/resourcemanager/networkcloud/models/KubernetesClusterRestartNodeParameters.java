@@ -20,13 +20,15 @@ public final class KubernetesClusterRestartNodeParameters {
     @JsonProperty(value = "nodeName", required = true)
     private String nodeName;
 
-    /** Creates an instance of KubernetesClusterRestartNodeParameters class. */
+    /**
+     * Creates an instance of KubernetesClusterRestartNodeParameters class.
+     */
     public KubernetesClusterRestartNodeParameters() {
     }
 
     /**
      * Get the nodeName property: The name of the node to restart.
-     *
+     * 
      * @return the nodeName value.
      */
     public String nodeName() {
@@ -35,7 +37,7 @@ public final class KubernetesClusterRestartNodeParameters {
 
     /**
      * Set the nodeName property: The name of the node to restart.
-     *
+     * 
      * @param nodeName the nodeName value to set.
      * @return the KubernetesClusterRestartNodeParameters object itself.
      */
@@ -46,15 +48,13 @@ public final class KubernetesClusterRestartNodeParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (nodeName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property nodeName in model KubernetesClusterRestartNodeParameters"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property nodeName in model KubernetesClusterRestartNodeParameters"));
         }
     }
 

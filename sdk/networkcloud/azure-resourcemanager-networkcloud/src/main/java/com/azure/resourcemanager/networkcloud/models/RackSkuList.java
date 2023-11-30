@@ -9,7 +9,9 @@ import com.azure.resourcemanager.networkcloud.fluent.models.RackSkuInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** RackSkuList represents a list of rack SKUs. */
+/**
+ * RackSkuList represents a list of rack SKUs.
+ */
 @Fluent
 public final class RackSkuList {
     /*
@@ -24,13 +26,15 @@ public final class RackSkuList {
     @JsonProperty(value = "value")
     private List<RackSkuInner> value;
 
-    /** Creates an instance of RackSkuList class. */
+    /**
+     * Creates an instance of RackSkuList class.
+     */
     public RackSkuList() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class RackSkuList {
 
     /**
      * Set the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the RackSkuList object itself.
      */
@@ -50,7 +54,7 @@ public final class RackSkuList {
 
     /**
      * Get the value property: The list of Rack SKUs.
-     *
+     * 
      * @return the value value.
      */
     public List<RackSkuInner> value() {
@@ -59,7 +63,7 @@ public final class RackSkuList {
 
     /**
      * Set the value property: The list of Rack SKUs.
-     *
+     * 
      * @param value the value value to set.
      * @return the RackSkuList object itself.
      */
@@ -70,7 +74,7 @@ public final class RackSkuList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

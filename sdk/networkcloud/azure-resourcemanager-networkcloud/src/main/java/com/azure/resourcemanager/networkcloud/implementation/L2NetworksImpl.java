@@ -11,8 +11,10 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.networkcloud.fluent.L2NetworksClient;
 import com.azure.resourcemanager.networkcloud.fluent.models.L2NetworkInner;
+import com.azure.resourcemanager.networkcloud.fluent.models.OperationStatusResultInner;
 import com.azure.resourcemanager.networkcloud.models.L2Network;
 import com.azure.resourcemanager.networkcloud.models.L2Networks;
+import com.azure.resourcemanager.networkcloud.models.OperationStatusResult;
 
 public final class L2NetworksImpl implements L2Networks {
     private static final ClientLogger LOGGER = new ClientLogger(L2NetworksImpl.class);
@@ -21,8 +23,8 @@ public final class L2NetworksImpl implements L2Networks {
 
     private final com.azure.resourcemanager.networkcloud.NetworkCloudManager serviceManager;
 
-    public L2NetworksImpl(
-        L2NetworksClient innerClient, com.azure.resourcemanager.networkcloud.NetworkCloudManager serviceManager) {
+    public L2NetworksImpl(L2NetworksClient innerClient,
+        com.azure.resourcemanager.networkcloud.NetworkCloudManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -47,15 +49,12 @@ public final class L2NetworksImpl implements L2Networks {
         return Utils.mapPage(inner, inner1 -> new L2NetworkImpl(inner1, this.manager()));
     }
 
-    public Response<L2Network> getByResourceGroupWithResponse(
-        String resourceGroupName, String l2NetworkName, Context context) {
-        Response<L2NetworkInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, l2NetworkName, context);
+    public Response<L2Network> getByResourceGroupWithResponse(String resourceGroupName, String l2NetworkName,
+        Context context) {
+        Response<L2NetworkInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, l2NetworkName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new L2NetworkImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -71,29 +70,34 @@ public final class L2NetworksImpl implements L2Networks {
         }
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String l2NetworkName) {
-        this.serviceClient().delete(resourceGroupName, l2NetworkName);
+    public OperationStatusResult deleteByResourceGroup(String resourceGroupName, String l2NetworkName) {
+        OperationStatusResultInner inner = this.serviceClient().delete(resourceGroupName, l2NetworkName);
+        if (inner != null) {
+            return new OperationStatusResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public void delete(String resourceGroupName, String l2NetworkName, Context context) {
-        this.serviceClient().delete(resourceGroupName, l2NetworkName, context);
+    public OperationStatusResult delete(String resourceGroupName, String l2NetworkName, Context context) {
+        OperationStatusResultInner inner = this.serviceClient().delete(resourceGroupName, l2NetworkName, context);
+        if (inner != null) {
+            return new OperationStatusResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public L2Network getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String l2NetworkName = Utils.getValueFromIdByName(id, "l2Networks");
         if (l2NetworkName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'l2Networks'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'l2Networks'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, l2NetworkName, Context.NONE).getValue();
     }
@@ -101,58 +105,43 @@ public final class L2NetworksImpl implements L2Networks {
     public Response<L2Network> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String l2NetworkName = Utils.getValueFromIdByName(id, "l2Networks");
         if (l2NetworkName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'l2Networks'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'l2Networks'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, l2NetworkName, context);
     }
 
-    public void deleteById(String id) {
+    public OperationStatusResult deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String l2NetworkName = Utils.getValueFromIdByName(id, "l2Networks");
         if (l2NetworkName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'l2Networks'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'l2Networks'.", id)));
         }
-        this.delete(resourceGroupName, l2NetworkName, Context.NONE);
+        return this.delete(resourceGroupName, l2NetworkName, Context.NONE);
     }
 
-    public void deleteByIdWithResponse(String id, Context context) {
+    public OperationStatusResult deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String l2NetworkName = Utils.getValueFromIdByName(id, "l2Networks");
         if (l2NetworkName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'l2Networks'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'l2Networks'.", id)));
         }
-        this.delete(resourceGroupName, l2NetworkName, context);
+        return this.delete(resourceGroupName, l2NetworkName, context);
     }
 
     private L2NetworksClient serviceClient() {

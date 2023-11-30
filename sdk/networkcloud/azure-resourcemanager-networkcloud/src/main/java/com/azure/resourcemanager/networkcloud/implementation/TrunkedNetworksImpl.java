@@ -10,7 +10,9 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.networkcloud.fluent.TrunkedNetworksClient;
+import com.azure.resourcemanager.networkcloud.fluent.models.OperationStatusResultInner;
 import com.azure.resourcemanager.networkcloud.fluent.models.TrunkedNetworkInner;
+import com.azure.resourcemanager.networkcloud.models.OperationStatusResult;
 import com.azure.resourcemanager.networkcloud.models.TrunkedNetwork;
 import com.azure.resourcemanager.networkcloud.models.TrunkedNetworks;
 
@@ -21,8 +23,8 @@ public final class TrunkedNetworksImpl implements TrunkedNetworks {
 
     private final com.azure.resourcemanager.networkcloud.NetworkCloudManager serviceManager;
 
-    public TrunkedNetworksImpl(
-        TrunkedNetworksClient innerClient, com.azure.resourcemanager.networkcloud.NetworkCloudManager serviceManager) {
+    public TrunkedNetworksImpl(TrunkedNetworksClient innerClient,
+        com.azure.resourcemanager.networkcloud.NetworkCloudManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -47,15 +49,12 @@ public final class TrunkedNetworksImpl implements TrunkedNetworks {
         return Utils.mapPage(inner, inner1 -> new TrunkedNetworkImpl(inner1, this.manager()));
     }
 
-    public Response<TrunkedNetwork> getByResourceGroupWithResponse(
-        String resourceGroupName, String trunkedNetworkName, Context context) {
-        Response<TrunkedNetworkInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, trunkedNetworkName, context);
+    public Response<TrunkedNetwork> getByResourceGroupWithResponse(String resourceGroupName, String trunkedNetworkName,
+        Context context) {
+        Response<TrunkedNetworkInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, trunkedNetworkName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new TrunkedNetworkImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -71,30 +70,34 @@ public final class TrunkedNetworksImpl implements TrunkedNetworks {
         }
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String trunkedNetworkName) {
-        this.serviceClient().delete(resourceGroupName, trunkedNetworkName);
+    public OperationStatusResult deleteByResourceGroup(String resourceGroupName, String trunkedNetworkName) {
+        OperationStatusResultInner inner = this.serviceClient().delete(resourceGroupName, trunkedNetworkName);
+        if (inner != null) {
+            return new OperationStatusResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public void delete(String resourceGroupName, String trunkedNetworkName, Context context) {
-        this.serviceClient().delete(resourceGroupName, trunkedNetworkName, context);
+    public OperationStatusResult delete(String resourceGroupName, String trunkedNetworkName, Context context) {
+        OperationStatusResultInner inner = this.serviceClient().delete(resourceGroupName, trunkedNetworkName, context);
+        if (inner != null) {
+            return new OperationStatusResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public TrunkedNetwork getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String trunkedNetworkName = Utils.getValueFromIdByName(id, "trunkedNetworks");
         if (trunkedNetworkName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'trunkedNetworks'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'trunkedNetworks'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, trunkedNetworkName, Context.NONE).getValue();
     }
@@ -102,61 +105,43 @@ public final class TrunkedNetworksImpl implements TrunkedNetworks {
     public Response<TrunkedNetwork> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String trunkedNetworkName = Utils.getValueFromIdByName(id, "trunkedNetworks");
         if (trunkedNetworkName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'trunkedNetworks'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'trunkedNetworks'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, trunkedNetworkName, context);
     }
 
-    public void deleteById(String id) {
+    public OperationStatusResult deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String trunkedNetworkName = Utils.getValueFromIdByName(id, "trunkedNetworks");
         if (trunkedNetworkName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'trunkedNetworks'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'trunkedNetworks'.", id)));
         }
-        this.delete(resourceGroupName, trunkedNetworkName, Context.NONE);
+        return this.delete(resourceGroupName, trunkedNetworkName, Context.NONE);
     }
 
-    public void deleteByIdWithResponse(String id, Context context) {
+    public OperationStatusResult deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String trunkedNetworkName = Utils.getValueFromIdByName(id, "trunkedNetworks");
         if (trunkedNetworkName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'trunkedNetworks'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'trunkedNetworks'.", id)));
         }
-        this.delete(resourceGroupName, trunkedNetworkName, context);
+        return this.delete(resourceGroupName, trunkedNetworkName, context);
     }
 
     private TrunkedNetworksClient serviceClient() {

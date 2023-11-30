@@ -10,7 +10,9 @@ import com.azure.resourcemanager.networkcloud.models.ClusterMetricsConfiguration
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** ClusterMetricsConfigurationProperties represents the properties of metrics configuration for the cluster. */
+/**
+ * ClusterMetricsConfigurationProperties represents the properties of metrics configuration for the cluster.
+ */
 @Fluent
 public final class ClusterMetricsConfigurationProperties {
     /*
@@ -49,13 +51,15 @@ public final class ClusterMetricsConfigurationProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ClusterMetricsConfigurationProvisioningState provisioningState;
 
-    /** Creates an instance of ClusterMetricsConfigurationProperties class. */
+    /**
+     * Creates an instance of ClusterMetricsConfigurationProperties class.
+     */
     public ClusterMetricsConfigurationProperties() {
     }
 
     /**
      * Get the collectionInterval property: The interval in minutes by which metrics will be collected.
-     *
+     * 
      * @return the collectionInterval value.
      */
     public long collectionInterval() {
@@ -64,7 +68,7 @@ public final class ClusterMetricsConfigurationProperties {
 
     /**
      * Set the collectionInterval property: The interval in minutes by which metrics will be collected.
-     *
+     * 
      * @param collectionInterval the collectionInterval value to set.
      * @return the ClusterMetricsConfigurationProperties object itself.
      */
@@ -75,7 +79,7 @@ public final class ClusterMetricsConfigurationProperties {
 
     /**
      * Get the detailedStatus property: The more detailed status of the metrics configuration.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public ClusterMetricsConfigurationDetailedStatus detailedStatus() {
@@ -84,7 +88,7 @@ public final class ClusterMetricsConfigurationProperties {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -94,7 +98,7 @@ public final class ClusterMetricsConfigurationProperties {
     /**
      * Get the disabledMetrics property: The list of metrics that are available for the cluster but disabled at the
      * moment.
-     *
+     * 
      * @return the disabledMetrics value.
      */
     public List<String> disabledMetrics() {
@@ -104,7 +108,7 @@ public final class ClusterMetricsConfigurationProperties {
     /**
      * Get the enabledMetrics property: The list of metric names that have been chosen to be enabled in addition to the
      * core set of enabled metrics.
-     *
+     * 
      * @return the enabledMetrics value.
      */
     public List<String> enabledMetrics() {
@@ -114,7 +118,7 @@ public final class ClusterMetricsConfigurationProperties {
     /**
      * Set the enabledMetrics property: The list of metric names that have been chosen to be enabled in addition to the
      * core set of enabled metrics.
-     *
+     * 
      * @param enabledMetrics the enabledMetrics value to set.
      * @return the ClusterMetricsConfigurationProperties object itself.
      */
@@ -125,7 +129,7 @@ public final class ClusterMetricsConfigurationProperties {
 
     /**
      * Get the provisioningState property: The provisioning state of the metrics configuration.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ClusterMetricsConfigurationProvisioningState provisioningState() {
@@ -134,7 +138,7 @@ public final class ClusterMetricsConfigurationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

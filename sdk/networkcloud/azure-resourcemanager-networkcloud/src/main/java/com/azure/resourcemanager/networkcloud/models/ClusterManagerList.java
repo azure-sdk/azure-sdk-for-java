@@ -9,7 +9,9 @@ import com.azure.resourcemanager.networkcloud.fluent.models.ClusterManagerInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** ClusterManagerList represents a list of cluster manager objects. */
+/**
+ * ClusterManagerList represents a list of cluster manager objects.
+ */
 @Fluent
 public final class ClusterManagerList {
     /*
@@ -24,13 +26,15 @@ public final class ClusterManagerList {
     @JsonProperty(value = "value")
     private List<ClusterManagerInner> value;
 
-    /** Creates an instance of ClusterManagerList class. */
+    /**
+     * Creates an instance of ClusterManagerList class.
+     */
     public ClusterManagerList() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class ClusterManagerList {
 
     /**
      * Set the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ClusterManagerList object itself.
      */
@@ -50,7 +54,7 @@ public final class ClusterManagerList {
 
     /**
      * Get the value property: The list of cluster managers.
-     *
+     * 
      * @return the value value.
      */
     public List<ClusterManagerInner> value() {
@@ -59,7 +63,7 @@ public final class ClusterManagerList {
 
     /**
      * Set the value property: The list of cluster managers.
-     *
+     * 
      * @param value the value value to set.
      * @return the ClusterManagerList object itself.
      */
@@ -70,7 +74,7 @@ public final class ClusterManagerList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

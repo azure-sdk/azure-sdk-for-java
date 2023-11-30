@@ -9,7 +9,9 @@ import com.azure.resourcemanager.networkcloud.fluent.models.VirtualMachineInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** VirtualMachineList represents a list of virtual machines. */
+/**
+ * VirtualMachineList represents a list of virtual machines.
+ */
 @Fluent
 public final class VirtualMachineList {
     /*
@@ -24,13 +26,15 @@ public final class VirtualMachineList {
     @JsonProperty(value = "value")
     private List<VirtualMachineInner> value;
 
-    /** Creates an instance of VirtualMachineList class. */
+    /**
+     * Creates an instance of VirtualMachineList class.
+     */
     public VirtualMachineList() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class VirtualMachineList {
 
     /**
      * Set the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the VirtualMachineList object itself.
      */
@@ -50,7 +54,7 @@ public final class VirtualMachineList {
 
     /**
      * Get the value property: The list of virtual machines.
-     *
+     * 
      * @return the value value.
      */
     public List<VirtualMachineInner> value() {
@@ -59,7 +63,7 @@ public final class VirtualMachineList {
 
     /**
      * Set the value property: The list of virtual machines.
-     *
+     * 
      * @param value the value value to set.
      * @return the VirtualMachineList object itself.
      */
@@ -70,7 +74,7 @@ public final class VirtualMachineList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

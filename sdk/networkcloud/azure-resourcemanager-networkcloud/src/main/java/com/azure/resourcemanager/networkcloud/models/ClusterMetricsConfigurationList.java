@@ -9,7 +9,9 @@ import com.azure.resourcemanager.networkcloud.fluent.models.ClusterMetricsConfig
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** ClusterMetricsConfigurationList represents a list of metrics configuration of the cluster. */
+/**
+ * ClusterMetricsConfigurationList represents a list of metrics configuration of the cluster.
+ */
 @Fluent
 public final class ClusterMetricsConfigurationList {
     /*
@@ -24,13 +26,15 @@ public final class ClusterMetricsConfigurationList {
     @JsonProperty(value = "value")
     private List<ClusterMetricsConfigurationInner> value;
 
-    /** Creates an instance of ClusterMetricsConfigurationList class. */
+    /**
+     * Creates an instance of ClusterMetricsConfigurationList class.
+     */
     public ClusterMetricsConfigurationList() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class ClusterMetricsConfigurationList {
 
     /**
      * Set the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ClusterMetricsConfigurationList object itself.
      */
@@ -50,7 +54,7 @@ public final class ClusterMetricsConfigurationList {
 
     /**
      * Get the value property: The list of metrics configurations.
-     *
+     * 
      * @return the value value.
      */
     public List<ClusterMetricsConfigurationInner> value() {
@@ -59,7 +63,7 @@ public final class ClusterMetricsConfigurationList {
 
     /**
      * Set the value property: The list of metrics configurations.
-     *
+     * 
      * @param value the value value to set.
      * @return the ClusterMetricsConfigurationList object itself.
      */
@@ -70,7 +74,7 @@ public final class ClusterMetricsConfigurationList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,11 +10,13 @@ import com.azure.resourcemanager.networkcloud.models.SshPublicKey;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** ConsolePatchProperties represents the properties of the virtual machine console that can be patched. */
+/**
+ * ConsolePatchProperties represents the properties of the virtual machine console that can be patched.
+ */
 @Fluent
 public final class ConsolePatchProperties {
     /*
-     * The credentials used to login to the image repository that has access to the specified image.
+     * The indicator of whether the console access is enabled.
      */
     @JsonProperty(value = "enabled")
     private ConsoleEnabled enabled;
@@ -27,21 +29,22 @@ public final class ConsolePatchProperties {
 
     /*
      * SshPublicKey represents the public key used to authenticate with a resource through SSH.
-     *
+     * 
      * The SSH public key that will be provisioned for user access. The user is expected to have the corresponding SSH
      * private key for logging in.
      */
     @JsonProperty(value = "sshPublicKey")
     private SshPublicKey sshPublicKey;
 
-    /** Creates an instance of ConsolePatchProperties class. */
+    /**
+     * Creates an instance of ConsolePatchProperties class.
+     */
     public ConsolePatchProperties() {
     }
 
     /**
-     * Get the enabled property: The credentials used to login to the image repository that has access to the specified
-     * image.
-     *
+     * Get the enabled property: The indicator of whether the console access is enabled.
+     * 
      * @return the enabled value.
      */
     public ConsoleEnabled enabled() {
@@ -49,9 +52,8 @@ public final class ConsolePatchProperties {
     }
 
     /**
-     * Set the enabled property: The credentials used to login to the image repository that has access to the specified
-     * image.
-     *
+     * Set the enabled property: The indicator of whether the console access is enabled.
+     * 
      * @param enabled the enabled value to set.
      * @return the ConsolePatchProperties object itself.
      */
@@ -62,7 +64,7 @@ public final class ConsolePatchProperties {
 
     /**
      * Get the expiration property: The date and time after which the key will be disallowed access.
-     *
+     * 
      * @return the expiration value.
      */
     public OffsetDateTime expiration() {
@@ -71,7 +73,7 @@ public final class ConsolePatchProperties {
 
     /**
      * Set the expiration property: The date and time after which the key will be disallowed access.
-     *
+     * 
      * @param expiration the expiration value to set.
      * @return the ConsolePatchProperties object itself.
      */
@@ -83,10 +85,10 @@ public final class ConsolePatchProperties {
     /**
      * Get the sshPublicKey property: SshPublicKey represents the public key used to authenticate with a resource
      * through SSH.
-     *
-     * <p>The SSH public key that will be provisioned for user access. The user is expected to have the corresponding
-     * SSH private key for logging in.
-     *
+     * 
+     * The SSH public key that will be provisioned for user access. The user is expected to have the corresponding SSH
+     * private key for logging in.
+     * 
      * @return the sshPublicKey value.
      */
     public SshPublicKey sshPublicKey() {
@@ -96,10 +98,10 @@ public final class ConsolePatchProperties {
     /**
      * Set the sshPublicKey property: SshPublicKey represents the public key used to authenticate with a resource
      * through SSH.
-     *
-     * <p>The SSH public key that will be provisioned for user access. The user is expected to have the corresponding
-     * SSH private key for logging in.
-     *
+     * 
+     * The SSH public key that will be provisioned for user access. The user is expected to have the corresponding SSH
+     * private key for logging in.
+     * 
      * @param sshPublicKey the sshPublicKey value to set.
      * @return the ConsolePatchProperties object itself.
      */
@@ -110,7 +112,7 @@ public final class ConsolePatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
