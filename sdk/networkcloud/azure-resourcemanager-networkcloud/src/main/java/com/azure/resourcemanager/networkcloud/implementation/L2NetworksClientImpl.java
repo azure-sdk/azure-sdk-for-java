@@ -40,22 +40,28 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in L2NetworksClient. */
+/**
+ * An instance of this class provides access to all the operations defined in L2NetworksClient.
+ */
 public final class L2NetworksClientImpl implements L2NetworksClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final L2NetworksService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final NetworkCloudImpl client;
 
     /**
      * Initializes an instance of L2NetworksClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     L2NetworksClientImpl(NetworkCloudImpl client) {
-        this.service =
-            RestProxy.create(L2NetworksService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(L2NetworksService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -66,245 +72,181 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
     @Host("{$host}")
     @ServiceInterface(name = "NetworkCloudL2Networ")
     public interface L2NetworksService {
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/l2Networks")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<L2NetworkList>> list(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @HeaderParam("Accept") String accept,
+        Mono<Response<L2NetworkList>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<L2NetworkList>> listByResourceGroup(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<L2NetworkList>> listByResourceGroup(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @HeaderParam("Accept") String accept,
+        Mono<Response<L2NetworkInner>> getByResourceGroup(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("l2NetworkName") String l2NetworkName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("l2NetworkName") String l2NetworkName,
+            @BodyParam("application/json") L2NetworkInner l2NetworkParameters, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}")
+        @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<L2NetworkInner>> getByResourceGroup(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("l2NetworkName") String l2NetworkName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("l2NetworkName") String l2NetworkName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("l2NetworkName") String l2NetworkName,
-            @BodyParam("application/json") L2NetworkInner l2NetworkParameters,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}")
-        @ExpectedResponses({200, 202, 204})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("l2NetworkName") String l2NetworkName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<L2NetworkInner>> update(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("l2NetworkName") String l2NetworkName,
+        Mono<Response<L2NetworkInner>> update(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("l2NetworkName") String l2NetworkName,
             @BodyParam("application/json") L2NetworkPatchParameters l2NetworkUpdateParameters,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<L2NetworkList>> listBySubscriptionNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<L2NetworkList>> listByResourceGroupNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * List layer 2 (L2) networks in the subscription.
-     *
-     * <p>Get a list of layer 2 (L2) networks in the provided subscription.
-     *
+     * 
+     * Get a list of layer 2 (L2) networks in the provided subscription.
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of layer 2 (L2) networks in the provided subscription along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<L2NetworkInner>> listSinglePageAsync() {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            accept,
-                            context))
-            .<PagedResponse<L2NetworkInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
+            .<PagedResponse<L2NetworkInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List layer 2 (L2) networks in the subscription.
-     *
-     * <p>Get a list of layer 2 (L2) networks in the provided subscription.
-     *
+     * 
+     * Get a list of layer 2 (L2) networks in the provided subscription.
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of layer 2 (L2) networks in the provided subscription along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<L2NetworkInner>> listSinglePageAsync(Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                accept,
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
                 context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List layer 2 (L2) networks in the subscription.
-     *
-     * <p>Get a list of layer 2 (L2) networks in the provided subscription.
-     *
+     * 
+     * Get a list of layer 2 (L2) networks in the provided subscription.
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of layer 2 (L2) networks in the provided subscription as paginated response with {@link
-     *     PagedFlux}.
+     * @return a list of layer 2 (L2) networks in the provided subscription as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<L2NetworkInner> listAsync() {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listSinglePageAsync(),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
     }
 
     /**
      * List layer 2 (L2) networks in the subscription.
-     *
-     * <p>Get a list of layer 2 (L2) networks in the provided subscription.
-     *
+     * 
+     * Get a list of layer 2 (L2) networks in the provided subscription.
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of layer 2 (L2) networks in the provided subscription as paginated response with {@link
-     *     PagedFlux}.
+     * @return a list of layer 2 (L2) networks in the provided subscription as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<L2NetworkInner> listAsync(Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(context), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
+        return new PagedFlux<>(() -> listSinglePageAsync(context),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List layer 2 (L2) networks in the subscription.
-     *
-     * <p>Get a list of layer 2 (L2) networks in the provided subscription.
-     *
+     * 
+     * Get a list of layer 2 (L2) networks in the provided subscription.
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of layer 2 (L2) networks in the provided subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of layer 2 (L2) networks in the provided subscription as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<L2NetworkInner> list() {
@@ -313,15 +255,15 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
 
     /**
      * List layer 2 (L2) networks in the subscription.
-     *
-     * <p>Get a list of layer 2 (L2) networks in the provided subscription.
-     *
+     * 
+     * Get a list of layer 2 (L2) networks in the provided subscription.
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of layer 2 (L2) networks in the provided subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of layer 2 (L2) networks in the provided subscription as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<L2NetworkInner> list(Context context) {
@@ -330,29 +272,25 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
 
     /**
      * List layer 2 (L2) networks in the resource group.
-     *
-     * <p>Get a list of layer 2 (L2) networks in the provided resource group.
-     *
+     * 
+     * Get a list of layer 2 (L2) networks in the provided resource group.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of layer 2 (L2) networks in the provided resource group along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<L2NetworkInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -360,55 +298,36 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            accept,
-                            context))
-            .<PagedResponse<L2NetworkInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, accept, context))
+            .<PagedResponse<L2NetworkInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List layer 2 (L2) networks in the resource group.
-     *
-     * <p>Get a list of layer 2 (L2) networks in the provided resource group.
-     *
+     * 
+     * Get a list of layer 2 (L2) networks in the provided resource group.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of layer 2 (L2) networks in the provided resource group along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<L2NetworkInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, Context context) {
+    private Mono<PagedResponse<L2NetworkInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -417,74 +336,60 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List layer 2 (L2) networks in the resource group.
-     *
-     * <p>Get a list of layer 2 (L2) networks in the provided resource group.
-     *
+     * 
+     * Get a list of layer 2 (L2) networks in the provided resource group.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of layer 2 (L2) networks in the provided resource group as paginated response with {@link
-     *     PagedFlux}.
+     * @return a list of layer 2 (L2) networks in the provided resource group as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<L2NetworkInner> listByResourceGroupAsync(String resourceGroupName) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName),
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
     }
 
     /**
      * List layer 2 (L2) networks in the resource group.
-     *
-     * <p>Get a list of layer 2 (L2) networks in the provided resource group.
-     *
+     * 
+     * Get a list of layer 2 (L2) networks in the provided resource group.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of layer 2 (L2) networks in the provided resource group as paginated response with {@link
-     *     PagedFlux}.
+     * @return a list of layer 2 (L2) networks in the provided resource group as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<L2NetworkInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List layer 2 (L2) networks in the resource group.
-     *
-     * <p>Get a list of layer 2 (L2) networks in the provided resource group.
-     *
+     * 
+     * Get a list of layer 2 (L2) networks in the provided resource group.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of layer 2 (L2) networks in the provided resource group as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of layer 2 (L2) networks in the provided resource group as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<L2NetworkInner> listByResourceGroup(String resourceGroupName) {
@@ -493,16 +398,16 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
 
     /**
      * List layer 2 (L2) networks in the resource group.
-     *
-     * <p>Get a list of layer 2 (L2) networks in the provided resource group.
-     *
+     * 
+     * Get a list of layer 2 (L2) networks in the provided resource group.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of layer 2 (L2) networks in the provided resource group as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of layer 2 (L2) networks in the provided resource group as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<L2NetworkInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -511,31 +416,27 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
 
     /**
      * Retrieve the layer 2 (L2) network.
-     *
-     * <p>Get properties of the provided layer 2 (L2) network.
-     *
+     * 
+     * Get properties of the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return properties of the provided layer 2 (L2) network along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<L2NetworkInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String l2NetworkName) {
+    private Mono<Response<L2NetworkInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String l2NetworkName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -546,25 +447,16 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            l2NetworkName,
-                            accept,
-                            context))
+            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, l2NetworkName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Retrieve the layer 2 (L2) network.
-     *
-     * <p>Get properties of the provided layer 2 (L2) network.
-     *
+     * 
+     * Get properties of the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param context The context to associate with this operation.
@@ -572,22 +464,18 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return properties of the provided layer 2 (L2) network along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<L2NetworkInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String l2NetworkName, Context context) {
+    private Mono<Response<L2NetworkInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String l2NetworkName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -598,22 +486,15 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                l2NetworkName,
-                accept,
-                context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, l2NetworkName, accept, context);
     }
 
     /**
      * Retrieve the layer 2 (L2) network.
-     *
-     * <p>Get properties of the provided layer 2 (L2) network.
-     *
+     * 
+     * Get properties of the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -629,9 +510,9 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
 
     /**
      * Retrieve the layer 2 (L2) network.
-     *
-     * <p>Get properties of the provided layer 2 (L2) network.
-     *
+     * 
+     * Get properties of the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param context The context to associate with this operation.
@@ -641,16 +522,16 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @return properties of the provided layer 2 (L2) network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<L2NetworkInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String l2NetworkName, Context context) {
+    public Response<L2NetworkInner> getByResourceGroupWithResponse(String resourceGroupName, String l2NetworkName,
+        Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, l2NetworkName, context).block();
     }
 
     /**
      * Retrieve the layer 2 (L2) network.
-     *
-     * <p>Get properties of the provided layer 2 (L2) network.
-     *
+     * 
+     * Get properties of the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -665,9 +546,9 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
 
     /**
      * Create or update the layer 2 (L2) network.
-     *
-     * <p>Create a new layer 2 (L2) network or update the properties of the existing network.
-     *
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkParameters The request body.
@@ -675,22 +556,18 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return l2Network represents a network that utilizes a single isolation domain set up for layer-2 resources along
-     *     with {@link Response} on successful completion of {@link Mono}.
+     * with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String l2NetworkName, L2NetworkInner l2NetworkParameters) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String l2NetworkName, L2NetworkInner l2NetworkParameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -699,34 +576,22 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
         if (l2NetworkName == null) {
             return Mono.error(new IllegalArgumentException("Parameter l2NetworkName is required and cannot be null."));
         }
-        if (l2NetworkParameters == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter l2NetworkParameters is required and cannot be null."));
-        } else {
+        if (l2NetworkParameters != null) {
             l2NetworkParameters.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            l2NetworkName,
-                            l2NetworkParameters,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, l2NetworkName, l2NetworkParameters, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update the layer 2 (L2) network.
-     *
-     * <p>Create a new layer 2 (L2) network or update the properties of the existing network.
-     *
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkParameters The request body.
@@ -735,22 +600,18 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return l2Network represents a network that utilizes a single isolation domain set up for layer-2 resources along
-     *     with {@link Response} on successful completion of {@link Mono}.
+     * with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String l2NetworkName, L2NetworkInner l2NetworkParameters, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String l2NetworkName, L2NetworkInner l2NetworkParameters, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -759,31 +620,20 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
         if (l2NetworkName == null) {
             return Mono.error(new IllegalArgumentException("Parameter l2NetworkName is required and cannot be null."));
         }
-        if (l2NetworkParameters == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter l2NetworkParameters is required and cannot be null."));
-        } else {
+        if (l2NetworkParameters != null) {
             l2NetworkParameters.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                l2NetworkName,
-                l2NetworkParameters,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, l2NetworkName, l2NetworkParameters, accept, context);
     }
 
     /**
      * Create or update the layer 2 (L2) network.
-     *
-     * <p>Create a new layer 2 (L2) network or update the properties of the existing network.
-     *
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkParameters The request body.
@@ -791,28 +641,45 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of l2Network represents a network that utilizes a single isolation
-     *     domain set up for layer-2 resources.
+     * domain set up for layer-2 resources.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String l2NetworkName, L2NetworkInner l2NetworkParameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, l2NetworkName, l2NetworkParameters);
-        return this
-            .client
-            .<L2NetworkInner, L2NetworkInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                L2NetworkInner.class,
-                L2NetworkInner.class,
-                this.client.getContext());
+    private PollerFlux<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String l2NetworkName, L2NetworkInner l2NetworkParameters) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, l2NetworkName, l2NetworkParameters);
+        return this.client.<L2NetworkInner, L2NetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
+            L2NetworkInner.class, L2NetworkInner.class, this.client.getContext());
     }
 
     /**
      * Create or update the layer 2 (L2) network.
-     *
-     * <p>Create a new layer 2 (L2) network or update the properties of the existing network.
-     *
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param l2NetworkName The name of the L2 network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of l2Network represents a network that utilizes a single isolation
+     * domain set up for layer-2 resources.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String l2NetworkName) {
+        final L2NetworkInner l2NetworkParameters = null;
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, l2NetworkName, l2NetworkParameters);
+        return this.client.<L2NetworkInner, L2NetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
+            L2NetworkInner.class, L2NetworkInner.class, this.client.getContext());
+    }
+
+    /**
+     * Create or update the layer 2 (L2) network.
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkParameters The request body.
@@ -821,45 +688,43 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of l2Network represents a network that utilizes a single isolation
-     *     domain set up for layer-2 resources.
+     * domain set up for layer-2 resources.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String l2NetworkName, L2NetworkInner l2NetworkParameters, Context context) {
+    private PollerFlux<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String l2NetworkName, L2NetworkInner l2NetworkParameters, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, l2NetworkName, l2NetworkParameters, context);
-        return this
-            .client
-            .<L2NetworkInner, L2NetworkInner>getLroResult(
-                mono, this.client.getHttpPipeline(), L2NetworkInner.class, L2NetworkInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, l2NetworkName, l2NetworkParameters, context);
+        return this.client.<L2NetworkInner, L2NetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
+            L2NetworkInner.class, L2NetworkInner.class, context);
     }
 
     /**
      * Create or update the layer 2 (L2) network.
-     *
-     * <p>Create a new layer 2 (L2) network or update the properties of the existing network.
-     *
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
-     * @param l2NetworkParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of l2Network represents a network that utilizes a single isolation
-     *     domain set up for layer-2 resources.
+     * domain set up for layer-2 resources.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdate(
-        String resourceGroupName, String l2NetworkName, L2NetworkInner l2NetworkParameters) {
+    public SyncPoller<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdate(String resourceGroupName,
+        String l2NetworkName) {
+        final L2NetworkInner l2NetworkParameters = null;
         return this.beginCreateOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters).getSyncPoller();
     }
 
     /**
      * Create or update the layer 2 (L2) network.
-     *
-     * <p>Create a new layer 2 (L2) network or update the properties of the existing network.
-     *
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkParameters The request body.
@@ -868,21 +733,20 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of l2Network represents a network that utilizes a single isolation
-     *     domain set up for layer-2 resources.
+     * domain set up for layer-2 resources.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdate(
-        String resourceGroupName, String l2NetworkName, L2NetworkInner l2NetworkParameters, Context context) {
-        return this
-            .beginCreateOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters, context)
+    public SyncPoller<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdate(String resourceGroupName,
+        String l2NetworkName, L2NetworkInner l2NetworkParameters, Context context) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters, context)
             .getSyncPoller();
     }
 
     /**
      * Create or update the layer 2 (L2) network.
-     *
-     * <p>Create a new layer 2 (L2) network or update the properties of the existing network.
-     *
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkParameters The request body.
@@ -890,21 +754,40 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return l2Network represents a network that utilizes a single isolation domain set up for layer-2 resources on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<L2NetworkInner> createOrUpdateAsync(
-        String resourceGroupName, String l2NetworkName, L2NetworkInner l2NetworkParameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters)
-            .last()
+    private Mono<L2NetworkInner> createOrUpdateAsync(String resourceGroupName, String l2NetworkName,
+        L2NetworkInner l2NetworkParameters) {
+        return beginCreateOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update the layer 2 (L2) network.
-     *
-     * <p>Create a new layer 2 (L2) network or update the properties of the existing network.
-     *
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param l2NetworkName The name of the L2 network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return l2Network represents a network that utilizes a single isolation domain set up for layer-2 resources on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<L2NetworkInner> createOrUpdateAsync(String resourceGroupName, String l2NetworkName) {
+        final L2NetworkInner l2NetworkParameters = null;
+        return beginCreateOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Create or update the layer 2 (L2) network.
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkParameters The request body.
@@ -913,40 +796,38 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return l2Network represents a network that utilizes a single isolation domain set up for layer-2 resources on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<L2NetworkInner> createOrUpdateAsync(
-        String resourceGroupName, String l2NetworkName, L2NetworkInner l2NetworkParameters, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters, context)
-            .last()
+    private Mono<L2NetworkInner> createOrUpdateAsync(String resourceGroupName, String l2NetworkName,
+        L2NetworkInner l2NetworkParameters, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update the layer 2 (L2) network.
-     *
-     * <p>Create a new layer 2 (L2) network or update the properties of the existing network.
-     *
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
-     * @param l2NetworkParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return l2Network represents a network that utilizes a single isolation domain set up for layer-2 resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public L2NetworkInner createOrUpdate(
-        String resourceGroupName, String l2NetworkName, L2NetworkInner l2NetworkParameters) {
+    public L2NetworkInner createOrUpdate(String resourceGroupName, String l2NetworkName) {
+        final L2NetworkInner l2NetworkParameters = null;
         return createOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters).block();
     }
 
     /**
      * Create or update the layer 2 (L2) network.
-     *
-     * <p>Create a new layer 2 (L2) network or update the properties of the existing network.
-     *
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkParameters The request body.
@@ -957,16 +838,16 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @return l2Network represents a network that utilizes a single isolation domain set up for layer-2 resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public L2NetworkInner createOrUpdate(
-        String resourceGroupName, String l2NetworkName, L2NetworkInner l2NetworkParameters, Context context) {
+    public L2NetworkInner createOrUpdate(String resourceGroupName, String l2NetworkName,
+        L2NetworkInner l2NetworkParameters, Context context) {
         return createOrUpdateAsync(resourceGroupName, l2NetworkName, l2NetworkParameters, context).block();
     }
 
     /**
      * Delete the layer 2 (L2) network.
-     *
-     * <p>Delete the provided layer 2 (L2) network.
-     *
+     * 
+     * Delete the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -977,16 +858,12 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String l2NetworkName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -997,25 +874,16 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            l2NetworkName,
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, l2NetworkName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete the layer 2 (L2) network.
-     *
-     * <p>Delete the provided layer 2 (L2) network.
-     *
+     * 
+     * Delete the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param context The context to associate with this operation.
@@ -1025,19 +893,15 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String l2NetworkName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String l2NetworkName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1048,22 +912,15 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                l2NetworkName,
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, l2NetworkName, accept, context);
     }
 
     /**
      * Delete the layer 2 (L2) network.
-     *
-     * <p>Delete the provided layer 2 (L2) network.
-     *
+     * 
+     * Delete the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1074,17 +931,15 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String l2NetworkName) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, l2NetworkName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Delete the layer 2 (L2) network.
-     *
-     * <p>Delete the provided layer 2 (L2) network.
-     *
+     * 
+     * Delete the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param context The context to associate with this operation.
@@ -1094,20 +949,19 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String l2NetworkName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String l2NetworkName,
+        Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, l2NetworkName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Delete the layer 2 (L2) network.
-     *
-     * <p>Delete the provided layer 2 (L2) network.
-     *
+     * 
+     * Delete the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1122,9 +976,9 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
 
     /**
      * Delete the layer 2 (L2) network.
-     *
-     * <p>Delete the provided layer 2 (L2) network.
-     *
+     * 
+     * Delete the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param context The context to associate with this operation.
@@ -1134,16 +988,16 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String l2NetworkName, Context context) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String l2NetworkName,
+        Context context) {
         return this.beginDeleteAsync(resourceGroupName, l2NetworkName, context).getSyncPoller();
     }
 
     /**
      * Delete the layer 2 (L2) network.
-     *
-     * <p>Delete the provided layer 2 (L2) network.
-     *
+     * 
+     * Delete the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1158,9 +1012,9 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
 
     /**
      * Delete the layer 2 (L2) network.
-     *
-     * <p>Delete the provided layer 2 (L2) network.
-     *
+     * 
+     * Delete the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param context The context to associate with this operation.
@@ -1171,16 +1025,15 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String l2NetworkName, Context context) {
-        return beginDeleteAsync(resourceGroupName, l2NetworkName, context)
-            .last()
+        return beginDeleteAsync(resourceGroupName, l2NetworkName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete the layer 2 (L2) network.
-     *
-     * <p>Delete the provided layer 2 (L2) network.
-     *
+     * 
+     * Delete the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1194,9 +1047,9 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
 
     /**
      * Delete the layer 2 (L2) network.
-     *
-     * <p>Delete the provided layer 2 (L2) network.
-     *
+     * 
+     * Delete the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param context The context to associate with this operation.
@@ -1211,9 +1064,9 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
 
     /**
      * Patch the layer 2 (L2) network.
-     *
-     * <p>Update tags associated with the provided layer 2 (L2) network.
-     *
+     * 
+     * Update tags associated with the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkUpdateParameters The request body.
@@ -1221,22 +1074,18 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return l2Network represents a network that utilizes a single isolation domain set up for layer-2 resources along
-     *     with {@link Response} on successful completion of {@link Mono}.
+     * with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<L2NetworkInner>> updateWithResponseAsync(
-        String resourceGroupName, String l2NetworkName, L2NetworkPatchParameters l2NetworkUpdateParameters) {
+    private Mono<Response<L2NetworkInner>> updateWithResponseAsync(String resourceGroupName, String l2NetworkName,
+        L2NetworkPatchParameters l2NetworkUpdateParameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1250,26 +1099,17 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            l2NetworkName,
-                            l2NetworkUpdateParameters,
-                            accept,
-                            context))
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, l2NetworkName, l2NetworkUpdateParameters, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Patch the layer 2 (L2) network.
-     *
-     * <p>Update tags associated with the provided layer 2 (L2) network.
-     *
+     * 
+     * Update tags associated with the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkUpdateParameters The request body.
@@ -1278,25 +1118,18 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return l2Network represents a network that utilizes a single isolation domain set up for layer-2 resources along
-     *     with {@link Response} on successful completion of {@link Mono}.
+     * with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<L2NetworkInner>> updateWithResponseAsync(
-        String resourceGroupName,
-        String l2NetworkName,
-        L2NetworkPatchParameters l2NetworkUpdateParameters,
-        Context context) {
+    private Mono<Response<L2NetworkInner>> updateWithResponseAsync(String resourceGroupName, String l2NetworkName,
+        L2NetworkPatchParameters l2NetworkUpdateParameters, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1310,30 +1143,22 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                l2NetworkName,
-                l2NetworkUpdateParameters,
-                accept,
-                context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, l2NetworkName, l2NetworkUpdateParameters, accept, context);
     }
 
     /**
      * Patch the layer 2 (L2) network.
-     *
-     * <p>Update tags associated with the provided layer 2 (L2) network.
-     *
+     * 
+     * Update tags associated with the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return l2Network represents a network that utilizes a single isolation domain set up for layer-2 resources on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<L2NetworkInner> updateAsync(String resourceGroupName, String l2NetworkName) {
@@ -1344,9 +1169,9 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
 
     /**
      * Patch the layer 2 (L2) network.
-     *
-     * <p>Update tags associated with the provided layer 2 (L2) network.
-     *
+     * 
+     * Update tags associated with the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkUpdateParameters The request body.
@@ -1355,22 +1180,19 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return l2Network represents a network that utilizes a single isolation domain set up for layer-2 resources along
-     *     with {@link Response}.
+     * with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<L2NetworkInner> updateWithResponse(
-        String resourceGroupName,
-        String l2NetworkName,
-        L2NetworkPatchParameters l2NetworkUpdateParameters,
-        Context context) {
+    public Response<L2NetworkInner> updateWithResponse(String resourceGroupName, String l2NetworkName,
+        L2NetworkPatchParameters l2NetworkUpdateParameters, Context context) {
         return updateWithResponseAsync(resourceGroupName, l2NetworkName, l2NetworkUpdateParameters, context).block();
     }
 
     /**
      * Patch the layer 2 (L2) network.
-     *
-     * <p>Update tags associated with the provided layer 2 (L2) network.
-     *
+     * 
+     * Update tags associated with the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1386,14 +1208,15 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return l2NetworkList represents a list of L2 networks along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<L2NetworkInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
@@ -1401,76 +1224,59 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<L2NetworkInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<L2NetworkInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return l2NetworkList represents a list of L2 networks along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<L2NetworkInner>> listBySubscriptionNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<L2NetworkInner>> listBySubscriptionNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return l2NetworkList represents a list of L2 networks along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<L2NetworkInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -1478,63 +1284,45 @@ public final class L2NetworksClientImpl implements L2NetworksClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<L2NetworkInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<L2NetworkInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return l2NetworkList represents a list of L2 networks along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<L2NetworkInner>> listByResourceGroupNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<L2NetworkInner>> listByResourceGroupNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

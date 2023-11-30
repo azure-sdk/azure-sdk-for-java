@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * BareMetalMachineRunReadCommandsParameters represents the body of request containing list of read-only commands to run
- * on the bare metal machine.
+ * BareMetalMachineRunReadCommandsParameters represents the body of request containing list of read-only commands to
+ * run on the bare metal machine.
  */
 @Fluent
 public final class BareMetalMachineRunReadCommandsParameters {
@@ -29,13 +29,15 @@ public final class BareMetalMachineRunReadCommandsParameters {
     @JsonProperty(value = "limitTimeSeconds", required = true)
     private long limitTimeSeconds;
 
-    /** Creates an instance of BareMetalMachineRunReadCommandsParameters class. */
+    /**
+     * Creates an instance of BareMetalMachineRunReadCommandsParameters class.
+     */
     public BareMetalMachineRunReadCommandsParameters() {
     }
 
     /**
      * Get the commands property: The list of read-only commands to be executed directly against the target machine.
-     *
+     * 
      * @return the commands value.
      */
     public List<BareMetalMachineCommandSpecification> commands() {
@@ -44,7 +46,7 @@ public final class BareMetalMachineRunReadCommandsParameters {
 
     /**
      * Set the commands property: The list of read-only commands to be executed directly against the target machine.
-     *
+     * 
      * @param commands the commands value to set.
      * @return the BareMetalMachineRunReadCommandsParameters object itself.
      */
@@ -54,10 +56,10 @@ public final class BareMetalMachineRunReadCommandsParameters {
     }
 
     /**
-     * Get the limitTimeSeconds property: The maximum time the commands are allowed to run. If the execution time
-     * exceeds the maximum, the script will be stopped, any output produced until then will be captured, and the exit
-     * code matching a timeout will be returned (252).
-     *
+     * Get the limitTimeSeconds property: The maximum time the commands are allowed to run.
+     * If the execution time exceeds the maximum, the script will be stopped, any output produced until then will be
+     * captured, and the exit code matching a timeout will be returned (252).
+     * 
      * @return the limitTimeSeconds value.
      */
     public long limitTimeSeconds() {
@@ -65,10 +67,10 @@ public final class BareMetalMachineRunReadCommandsParameters {
     }
 
     /**
-     * Set the limitTimeSeconds property: The maximum time the commands are allowed to run. If the execution time
-     * exceeds the maximum, the script will be stopped, any output produced until then will be captured, and the exit
-     * code matching a timeout will be returned (252).
-     *
+     * Set the limitTimeSeconds property: The maximum time the commands are allowed to run.
+     * If the execution time exceeds the maximum, the script will be stopped, any output produced until then will be
+     * captured, and the exit code matching a timeout will be returned (252).
+     * 
      * @param limitTimeSeconds the limitTimeSeconds value to set.
      * @return the BareMetalMachineRunReadCommandsParameters object itself.
      */
@@ -79,15 +81,13 @@ public final class BareMetalMachineRunReadCommandsParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (commands() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property commands in model BareMetalMachineRunReadCommandsParameters"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property commands in model BareMetalMachineRunReadCommandsParameters"));
         } else {
             commands().forEach(e -> e.validate());
         }

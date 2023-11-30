@@ -8,13 +8,15 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of Clusters. */
+/**
+ * Resource collection API of Clusters.
+ */
 public interface Clusters {
     /**
      * List clusters in the subscription.
-     *
-     * <p>Get a list of clusters in the provided subscription.
-     *
+     * 
+     * Get a list of clusters in the provided subscription.
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of clusters in the provided subscription as paginated response with {@link PagedIterable}.
@@ -23,9 +25,9 @@ public interface Clusters {
 
     /**
      * List clusters in the subscription.
-     *
-     * <p>Get a list of clusters in the provided subscription.
-     *
+     * 
+     * Get a list of clusters in the provided subscription.
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -36,9 +38,9 @@ public interface Clusters {
 
     /**
      * List clusters in the resource group.
-     *
-     * <p>Get a list of clusters in the provided resource group.
-     *
+     * 
+     * Get a list of clusters in the provided resource group.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -49,9 +51,9 @@ public interface Clusters {
 
     /**
      * List clusters in the resource group.
-     *
-     * <p>Get a list of clusters in the provided resource group.
-     *
+     * 
+     * Get a list of clusters in the provided resource group.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -63,9 +65,9 @@ public interface Clusters {
 
     /**
      * Retrieve the cluster.
-     *
-     * <p>Get properties of the provided cluster.
-     *
+     * 
+     * Get properties of the provided cluster.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param context The context to associate with this operation.
@@ -78,9 +80,9 @@ public interface Clusters {
 
     /**
      * Retrieve the cluster.
-     *
-     * <p>Get properties of the provided cluster.
-     *
+     * 
+     * Get properties of the provided cluster.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -92,9 +94,9 @@ public interface Clusters {
 
     /**
      * Delete the cluster.
-     *
-     * <p>Delete the provided cluster.
-     *
+     * 
+     * Delete the provided cluster.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -105,9 +107,9 @@ public interface Clusters {
 
     /**
      * Delete the cluster.
-     *
-     * <p>Delete the provided cluster.
-     *
+     * 
+     * Delete the provided cluster.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param context The context to associate with this operation.
@@ -119,23 +121,22 @@ public interface Clusters {
 
     /**
      * Deploy the cluster to the rack.
-     *
-     * <p>Deploy the cluster to the provided rack.
-     *
+     * 
+     * Deploy the cluster to the provided rack.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
      */
-    OperationStatusResult deploy(String resourceGroupName, String clusterName);
+    void deploy(String resourceGroupName, String clusterName);
 
     /**
      * Deploy the cluster to the rack.
-     *
-     * <p>Deploy the cluster to the provided rack.
-     *
+     * 
+     * Deploy the cluster to the provided rack.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param clusterDeployParameters The request body.
@@ -143,32 +144,28 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
      */
-    OperationStatusResult deploy(
-        String resourceGroupName, String clusterName, ClusterDeployParameters clusterDeployParameters, Context context);
+    void deploy(String resourceGroupName, String clusterName, ClusterDeployParameters clusterDeployParameters,
+        Context context);
 
     /**
      * Update the cluster version.
-     *
-     * <p>Update the version of the provided cluster to one of the available supported versions.
-     *
+     * 
+     * Update the version of the provided cluster to one of the available supported versions.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
-     * @param clusterUpdateVersionParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
      */
-    OperationStatusResult updateVersion(
-        String resourceGroupName, String clusterName, ClusterUpdateVersionParameters clusterUpdateVersionParameters);
+    void updateVersion(String resourceGroupName, String clusterName);
 
     /**
      * Update the cluster version.
-     *
-     * <p>Update the version of the provided cluster to one of the available supported versions.
-     *
+     * 
+     * Update the version of the provided cluster to one of the available supported versions.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param clusterUpdateVersionParameters The request body.
@@ -176,19 +173,15 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
      */
-    OperationStatusResult updateVersion(
-        String resourceGroupName,
-        String clusterName,
-        ClusterUpdateVersionParameters clusterUpdateVersionParameters,
-        Context context);
+    void updateVersion(String resourceGroupName, String clusterName,
+        ClusterUpdateVersionParameters clusterUpdateVersionParameters, Context context);
 
     /**
      * Retrieve the cluster.
-     *
-     * <p>Get properties of the provided cluster.
-     *
+     * 
+     * Get properties of the provided cluster.
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -199,9 +192,9 @@ public interface Clusters {
 
     /**
      * Retrieve the cluster.
-     *
-     * <p>Get properties of the provided cluster.
-     *
+     * 
+     * Get properties of the provided cluster.
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -213,9 +206,9 @@ public interface Clusters {
 
     /**
      * Delete the cluster.
-     *
-     * <p>Delete the provided cluster.
-     *
+     * 
+     * Delete the provided cluster.
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -225,9 +218,9 @@ public interface Clusters {
 
     /**
      * Delete the cluster.
-     *
-     * <p>Delete the provided cluster.
-     *
+     * 
+     * Delete the provided cluster.
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -238,7 +231,7 @@ public interface Clusters {
 
     /**
      * Begins definition for a new Cluster resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new Cluster definition.
      */

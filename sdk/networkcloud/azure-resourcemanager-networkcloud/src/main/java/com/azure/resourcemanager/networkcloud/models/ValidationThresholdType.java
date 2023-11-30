@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Selection of how the threshold should be evaluated. */
+/**
+ * Selection of how the threshold should be evaluated.
+ */
 public final class ValidationThresholdType extends ExpandableStringEnum<ValidationThresholdType> {
-    /** Static value CountSuccess for ValidationThresholdType. */
+    /**
+     * Static value CountSuccess for ValidationThresholdType.
+     */
     public static final ValidationThresholdType COUNT_SUCCESS = fromString("CountSuccess");
 
-    /** Static value PercentSuccess for ValidationThresholdType. */
+    /**
+     * Static value PercentSuccess for ValidationThresholdType.
+     */
     public static final ValidationThresholdType PERCENT_SUCCESS = fromString("PercentSuccess");
 
     /**
      * Creates a new instance of ValidationThresholdType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class ValidationThresholdType extends ExpandableStringEnum<Validati
 
     /**
      * Creates or finds a ValidationThresholdType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ValidationThresholdType.
      */
@@ -38,7 +44,7 @@ public final class ValidationThresholdType extends ExpandableStringEnum<Validati
 
     /**
      * Gets known ValidationThresholdType values.
-     *
+     * 
      * @return known ValidationThresholdType values.
      */
     public static Collection<ValidationThresholdType> values() {

@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The indicator of whether the hint is a hard or soft requirement during scheduling. */
+/**
+ * The indicator of whether the hint is a hard or soft requirement during scheduling.
+ */
 public final class VirtualMachineSchedulingExecution extends ExpandableStringEnum<VirtualMachineSchedulingExecution> {
-    /** Static value Hard for VirtualMachineSchedulingExecution. */
+    /**
+     * Static value Hard for VirtualMachineSchedulingExecution.
+     */
     public static final VirtualMachineSchedulingExecution HARD = fromString("Hard");
 
-    /** Static value Soft for VirtualMachineSchedulingExecution. */
+    /**
+     * Static value Soft for VirtualMachineSchedulingExecution.
+     */
     public static final VirtualMachineSchedulingExecution SOFT = fromString("Soft");
 
     /**
      * Creates a new instance of VirtualMachineSchedulingExecution value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class VirtualMachineSchedulingExecution extends ExpandableStringEnu
 
     /**
      * Creates or finds a VirtualMachineSchedulingExecution from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding VirtualMachineSchedulingExecution.
      */
@@ -38,7 +44,7 @@ public final class VirtualMachineSchedulingExecution extends ExpandableStringEnu
 
     /**
      * Gets known VirtualMachineSchedulingExecution values.
-     *
+     * 
      * @return known VirtualMachineSchedulingExecution values.
      */
     public static Collection<VirtualMachineSchedulingExecution> values() {

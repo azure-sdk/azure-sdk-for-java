@@ -8,22 +8,26 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** SshPublicKey represents the public key used to authenticate with a resource through SSH. */
+/**
+ * SshPublicKey represents the public key used to authenticate with the virtual machine through SSH.
+ */
 @Fluent
 public final class SshPublicKey {
     /*
-     * The SSH public key data.
+     * The public ssh key of the user.
      */
     @JsonProperty(value = "keyData", required = true)
     private String keyData;
 
-    /** Creates an instance of SshPublicKey class. */
+    /**
+     * Creates an instance of SshPublicKey class.
+     */
     public SshPublicKey() {
     }
 
     /**
-     * Get the keyData property: The SSH public key data.
-     *
+     * Get the keyData property: The public ssh key of the user.
+     * 
      * @return the keyData value.
      */
     public String keyData() {
@@ -31,8 +35,8 @@ public final class SshPublicKey {
     }
 
     /**
-     * Set the keyData property: The SSH public key data.
-     *
+     * Set the keyData property: The public ssh key of the user.
+     * 
      * @param keyData the keyData value to set.
      * @return the SshPublicKey object itself.
      */
@@ -43,14 +47,13 @@ public final class SshPublicKey {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (keyData() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property keyData in model SshPublicKey"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property keyData in model SshPublicKey"));
         }
     }
 

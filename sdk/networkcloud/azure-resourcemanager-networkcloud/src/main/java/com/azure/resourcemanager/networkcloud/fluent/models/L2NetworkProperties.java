@@ -12,15 +12,11 @@ import com.azure.resourcemanager.networkcloud.models.L2NetworkProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** L2NetworkProperties represents properties of the L2 network. */
+/**
+ * L2NetworkProperties represents properties of the L2 network.
+ */
 @Fluent
 public final class L2NetworkProperties {
-    /*
-     * The list of resource IDs for the other Microsoft.NetworkCloud resources that have attached this network.
-     */
-    @JsonProperty(value = "associatedResourceIds", access = JsonProperty.Access.WRITE_ONLY)
-    private List<String> associatedResourceIds;
-
     /*
      * The resource ID of the Network Cloud cluster this L2 network is associated with.
      */
@@ -40,14 +36,12 @@ public final class L2NetworkProperties {
     private String detailedStatusMessage;
 
     /*
-     * Field Deprecated. These fields will be empty/omitted. The list of Hybrid AKS cluster resource ID(s) that are
-     * associated with this L2 network.
+     * The list of Hybrid AKS cluster resource ID(s) that are associated with this L2 network.
      */
     @JsonProperty(value = "hybridAksClustersAssociatedIds", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> hybridAksClustersAssociatedIds;
 
     /*
-     * Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored.
      * The network plugin type for Hybrid AKS.
      */
     @JsonProperty(value = "hybridAksPluginType")
@@ -73,29 +67,21 @@ public final class L2NetworkProperties {
     private L2NetworkProvisioningState provisioningState;
 
     /*
-     * Field Deprecated. These fields will be empty/omitted. The list of virtual machine resource ID(s), excluding any
-     * Hybrid AKS virtual machines, that are currently using this L2 network.
+     * The list of virtual machine resource ID(s), excluding any Hybrid AKS virtual machines, that are currently using
+     * this L2 network.
      */
     @JsonProperty(value = "virtualMachinesAssociatedIds", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> virtualMachinesAssociatedIds;
 
-    /** Creates an instance of L2NetworkProperties class. */
+    /**
+     * Creates an instance of L2NetworkProperties class.
+     */
     public L2NetworkProperties() {
     }
 
     /**
-     * Get the associatedResourceIds property: The list of resource IDs for the other Microsoft.NetworkCloud resources
-     * that have attached this network.
-     *
-     * @return the associatedResourceIds value.
-     */
-    public List<String> associatedResourceIds() {
-        return this.associatedResourceIds;
-    }
-
-    /**
      * Get the clusterId property: The resource ID of the Network Cloud cluster this L2 network is associated with.
-     *
+     * 
      * @return the clusterId value.
      */
     public String clusterId() {
@@ -104,7 +90,7 @@ public final class L2NetworkProperties {
 
     /**
      * Get the detailedStatus property: The more detailed status of the L2 network.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public L2NetworkDetailedStatus detailedStatus() {
@@ -113,7 +99,7 @@ public final class L2NetworkProperties {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -121,9 +107,9 @@ public final class L2NetworkProperties {
     }
 
     /**
-     * Get the hybridAksClustersAssociatedIds property: Field Deprecated. These fields will be empty/omitted. The list
-     * of Hybrid AKS cluster resource ID(s) that are associated with this L2 network.
-     *
+     * Get the hybridAksClustersAssociatedIds property: The list of Hybrid AKS cluster resource ID(s) that are
+     * associated with this L2 network.
+     * 
      * @return the hybridAksClustersAssociatedIds value.
      */
     public List<String> hybridAksClustersAssociatedIds() {
@@ -131,9 +117,8 @@ public final class L2NetworkProperties {
     }
 
     /**
-     * Get the hybridAksPluginType property: Field Deprecated. The field was previously optional, now it will have no
-     * defined behavior and will be ignored. The network plugin type for Hybrid AKS.
-     *
+     * Get the hybridAksPluginType property: The network plugin type for Hybrid AKS.
+     * 
      * @return the hybridAksPluginType value.
      */
     public HybridAksPluginType hybridAksPluginType() {
@@ -141,9 +126,8 @@ public final class L2NetworkProperties {
     }
 
     /**
-     * Set the hybridAksPluginType property: Field Deprecated. The field was previously optional, now it will have no
-     * defined behavior and will be ignored. The network plugin type for Hybrid AKS.
-     *
+     * Set the hybridAksPluginType property: The network plugin type for Hybrid AKS.
+     * 
      * @param hybridAksPluginType the hybridAksPluginType value to set.
      * @return the L2NetworkProperties object itself.
      */
@@ -155,7 +139,7 @@ public final class L2NetworkProperties {
     /**
      * Get the interfaceName property: The default interface name for this L2 network in the virtual machine. This name
      * can be overridden by the name supplied in the network attachment configuration of that virtual machine.
-     *
+     * 
      * @return the interfaceName value.
      */
     public String interfaceName() {
@@ -165,7 +149,7 @@ public final class L2NetworkProperties {
     /**
      * Set the interfaceName property: The default interface name for this L2 network in the virtual machine. This name
      * can be overridden by the name supplied in the network attachment configuration of that virtual machine.
-     *
+     * 
      * @param interfaceName the interfaceName value to set.
      * @return the L2NetworkProperties object itself.
      */
@@ -176,7 +160,7 @@ public final class L2NetworkProperties {
 
     /**
      * Get the l2IsolationDomainId property: The resource ID of the Network Fabric l2IsolationDomain.
-     *
+     * 
      * @return the l2IsolationDomainId value.
      */
     public String l2IsolationDomainId() {
@@ -185,7 +169,7 @@ public final class L2NetworkProperties {
 
     /**
      * Set the l2IsolationDomainId property: The resource ID of the Network Fabric l2IsolationDomain.
-     *
+     * 
      * @param l2IsolationDomainId the l2IsolationDomainId value to set.
      * @return the L2NetworkProperties object itself.
      */
@@ -196,7 +180,7 @@ public final class L2NetworkProperties {
 
     /**
      * Get the provisioningState property: The provisioning state of the L2 network.
-     *
+     * 
      * @return the provisioningState value.
      */
     public L2NetworkProvisioningState provisioningState() {
@@ -204,10 +188,9 @@ public final class L2NetworkProperties {
     }
 
     /**
-     * Get the virtualMachinesAssociatedIds property: Field Deprecated. These fields will be empty/omitted. The list of
-     * virtual machine resource ID(s), excluding any Hybrid AKS virtual machines, that are currently using this L2
-     * network.
-     *
+     * Get the virtualMachinesAssociatedIds property: The list of virtual machine resource ID(s), excluding any Hybrid
+     * AKS virtual machines, that are currently using this L2 network.
+     * 
      * @return the virtualMachinesAssociatedIds value.
      */
     public List<String> virtualMachinesAssociatedIds() {
@@ -216,15 +199,13 @@ public final class L2NetworkProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (l2IsolationDomainId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property l2IsolationDomainId in model L2NetworkProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property l2IsolationDomainId in model L2NetworkProperties"));
         }
     }
 

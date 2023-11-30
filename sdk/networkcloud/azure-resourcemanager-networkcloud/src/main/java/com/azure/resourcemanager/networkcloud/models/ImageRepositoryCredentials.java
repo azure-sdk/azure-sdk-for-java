@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** ImageRepositoryCredentials represents the credentials used to login to the image repository. */
+/**
+ * ImageRepositoryCredentials represents the credentials used to login to the image repository.
+ */
 @Fluent
 public final class ImageRepositoryCredentials {
     /*
@@ -29,13 +31,15 @@ public final class ImageRepositoryCredentials {
     @JsonProperty(value = "username", required = true)
     private String username;
 
-    /** Creates an instance of ImageRepositoryCredentials class. */
+    /**
+     * Creates an instance of ImageRepositoryCredentials class.
+     */
     public ImageRepositoryCredentials() {
     }
 
     /**
      * Get the password property: The password or token used to access an image in the target repository.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -44,7 +48,7 @@ public final class ImageRepositoryCredentials {
 
     /**
      * Set the password property: The password or token used to access an image in the target repository.
-     *
+     * 
      * @param password the password value to set.
      * @return the ImageRepositoryCredentials object itself.
      */
@@ -55,7 +59,7 @@ public final class ImageRepositoryCredentials {
 
     /**
      * Get the registryUrl property: The URL of the authentication server used to validate the repository credentials.
-     *
+     * 
      * @return the registryUrl value.
      */
     public String registryUrl() {
@@ -64,7 +68,7 @@ public final class ImageRepositoryCredentials {
 
     /**
      * Set the registryUrl property: The URL of the authentication server used to validate the repository credentials.
-     *
+     * 
      * @param registryUrl the registryUrl value to set.
      * @return the ImageRepositoryCredentials object itself.
      */
@@ -75,7 +79,7 @@ public final class ImageRepositoryCredentials {
 
     /**
      * Get the username property: The username used to access an image in the target repository.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -84,7 +88,7 @@ public final class ImageRepositoryCredentials {
 
     /**
      * Set the username property: The username used to access an image in the target repository.
-     *
+     * 
      * @param username the username value to set.
      * @return the ImageRepositoryCredentials object itself.
      */
@@ -95,27 +99,21 @@ public final class ImageRepositoryCredentials {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (password() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property password in model ImageRepositoryCredentials"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property password in model ImageRepositoryCredentials"));
         }
         if (registryUrl() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property registryUrl in model ImageRepositoryCredentials"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property registryUrl in model ImageRepositoryCredentials"));
         }
         if (username() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property username in model ImageRepositoryCredentials"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property username in model ImageRepositoryCredentials"));
         }
     }
 

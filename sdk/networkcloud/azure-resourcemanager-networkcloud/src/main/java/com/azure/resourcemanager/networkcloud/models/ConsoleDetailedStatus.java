@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The more detailed status of the console. */
+/**
+ * The more detailed status of the console.
+ */
 public final class ConsoleDetailedStatus extends ExpandableStringEnum<ConsoleDetailedStatus> {
-    /** Static value Ready for ConsoleDetailedStatus. */
+    /**
+     * Static value Ready for ConsoleDetailedStatus.
+     */
     public static final ConsoleDetailedStatus READY = fromString("Ready");
 
-    /** Static value Error for ConsoleDetailedStatus. */
+    /**
+     * Static value Error for ConsoleDetailedStatus.
+     */
     public static final ConsoleDetailedStatus ERROR = fromString("Error");
 
     /**
      * Creates a new instance of ConsoleDetailedStatus value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class ConsoleDetailedStatus extends ExpandableStringEnum<ConsoleDet
 
     /**
      * Creates or finds a ConsoleDetailedStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ConsoleDetailedStatus.
      */
@@ -38,7 +44,7 @@ public final class ConsoleDetailedStatus extends ExpandableStringEnum<ConsoleDet
 
     /**
      * Gets known ConsoleDetailedStatus values.
-     *
+     * 
      * @return known ConsoleDetailedStatus values.
      */
     public static Collection<ConsoleDetailedStatus> values() {

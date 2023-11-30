@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** ValidationThreshold indicates allowed machine and node hardware and deployment failures. */
+/**
+ * ValidationThreshold indicates allowed machine and node hardware and deployment failures.
+ */
 @Fluent
 public final class ValidationThreshold {
     /*
@@ -29,13 +31,15 @@ public final class ValidationThreshold {
     @JsonProperty(value = "value", required = true)
     private long value;
 
-    /** Creates an instance of ValidationThreshold class. */
+    /**
+     * Creates an instance of ValidationThreshold class.
+     */
     public ValidationThreshold() {
     }
 
     /**
      * Get the grouping property: Selection of how the type evaluation is applied to the cluster calculation.
-     *
+     * 
      * @return the grouping value.
      */
     public ValidationThresholdGrouping grouping() {
@@ -44,7 +48,7 @@ public final class ValidationThreshold {
 
     /**
      * Set the grouping property: Selection of how the type evaluation is applied to the cluster calculation.
-     *
+     * 
      * @param grouping the grouping value to set.
      * @return the ValidationThreshold object itself.
      */
@@ -55,7 +59,7 @@ public final class ValidationThreshold {
 
     /**
      * Get the type property: Selection of how the threshold should be evaluated.
-     *
+     * 
      * @return the type value.
      */
     public ValidationThresholdType type() {
@@ -64,7 +68,7 @@ public final class ValidationThreshold {
 
     /**
      * Set the type property: Selection of how the threshold should be evaluated.
-     *
+     * 
      * @param type the type value to set.
      * @return the ValidationThreshold object itself.
      */
@@ -75,7 +79,7 @@ public final class ValidationThreshold {
 
     /**
      * Get the value property: The numeric threshold value.
-     *
+     * 
      * @return the value value.
      */
     public long value() {
@@ -84,7 +88,7 @@ public final class ValidationThreshold {
 
     /**
      * Set the value property: The numeric threshold value.
-     *
+     * 
      * @param value the value value to set.
      * @return the ValidationThreshold object itself.
      */
@@ -95,19 +99,17 @@ public final class ValidationThreshold {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (grouping() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property grouping in model ValidationThreshold"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property grouping in model ValidationThreshold"));
         }
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property type in model ValidationThreshold"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model ValidationThreshold"));
         }
     }
 

@@ -9,12 +9,14 @@ import com.azure.resourcemanager.networkcloud.fluent.models.MachineSkuProperties
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** MachineSkuSlot represents a single SKU and rack slot associated with the machine. */
+/**
+ * MachineSkuSlot represents a single SKU and rack slot associated with the machine.
+ */
 @Immutable
 public final class MachineSkuSlot {
     /*
      * MachineSkuProperties represents the properties of the machine SKU.
-     *
+     * 
      * The list of the resource properties.
      */
     @JsonProperty(value = "properties")
@@ -26,15 +28,17 @@ public final class MachineSkuSlot {
     @JsonProperty(value = "rackSlot", access = JsonProperty.Access.WRITE_ONLY)
     private Long rackSlot;
 
-    /** Creates an instance of MachineSkuSlot class. */
+    /**
+     * Creates an instance of MachineSkuSlot class.
+     */
     public MachineSkuSlot() {
     }
 
     /**
      * Get the innerProperties property: MachineSkuProperties represents the properties of the machine SKU.
-     *
-     * <p>The list of the resource properties.
-     *
+     * 
+     * The list of the resource properties.
+     * 
      * @return the innerProperties value.
      */
     private MachineSkuProperties innerProperties() {
@@ -43,7 +47,7 @@ public final class MachineSkuSlot {
 
     /**
      * Get the rackSlot property: The position in the rack for the machine.
-     *
+     * 
      * @return the rackSlot value.
      */
     public Long rackSlot() {
@@ -52,7 +56,7 @@ public final class MachineSkuSlot {
 
     /**
      * Get the bootstrapProtocol property: The type of bootstrap protocol used.
-     *
+     * 
      * @return the bootstrapProtocol value.
      */
     public BootstrapProtocol bootstrapProtocol() {
@@ -61,7 +65,7 @@ public final class MachineSkuSlot {
 
     /**
      * Get the cpuCores property: The count of CPU cores for this machine.
-     *
+     * 
      * @return the cpuCores value.
      */
     public Long cpuCores() {
@@ -70,7 +74,7 @@ public final class MachineSkuSlot {
 
     /**
      * Get the cpuSockets property: The count of CPU sockets for this machine.
-     *
+     * 
      * @return the cpuSockets value.
      */
     public Long cpuSockets() {
@@ -79,7 +83,7 @@ public final class MachineSkuSlot {
 
     /**
      * Get the disks property: The list of disks.
-     *
+     * 
      * @return the disks value.
      */
     public List<MachineDisk> disks() {
@@ -88,7 +92,7 @@ public final class MachineSkuSlot {
 
     /**
      * Get the generation property: The generation of the architecture.
-     *
+     * 
      * @return the generation value.
      */
     public String generation() {
@@ -97,7 +101,7 @@ public final class MachineSkuSlot {
 
     /**
      * Get the hardwareVersion property: The hardware version of the machine.
-     *
+     * 
      * @return the hardwareVersion value.
      */
     public String hardwareVersion() {
@@ -106,7 +110,7 @@ public final class MachineSkuSlot {
 
     /**
      * Get the memoryCapacityGB property: The maximum amount of memory in GB.
-     *
+     * 
      * @return the memoryCapacityGB value.
      */
     public Long memoryCapacityGB() {
@@ -115,7 +119,7 @@ public final class MachineSkuSlot {
 
     /**
      * Get the model property: The model of the machine.
-     *
+     * 
      * @return the model value.
      */
     public String model() {
@@ -124,7 +128,7 @@ public final class MachineSkuSlot {
 
     /**
      * Get the networkInterfaces property: The list of network interfaces.
-     *
+     * 
      * @return the networkInterfaces value.
      */
     public List<NetworkInterface> networkInterfaces() {
@@ -133,7 +137,7 @@ public final class MachineSkuSlot {
 
     /**
      * Get the totalThreads property: The count of SMT and physical core threads for this machine.
-     *
+     * 
      * @return the totalThreads value.
      */
     public Long totalThreads() {
@@ -142,7 +146,7 @@ public final class MachineSkuSlot {
 
     /**
      * Get the vendor property: The make of the machine.
-     *
+     * 
      * @return the vendor value.
      */
     public String vendor() {
@@ -151,7 +155,7 @@ public final class MachineSkuSlot {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

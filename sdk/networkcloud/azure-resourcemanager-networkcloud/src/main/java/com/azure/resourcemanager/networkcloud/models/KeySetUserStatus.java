@@ -7,11 +7,13 @@ package com.azure.resourcemanager.networkcloud.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** KeySetUserStatus represents the status of the key set user. */
+/**
+ * KeySetUserStatus represents the status of the key set user.
+ */
 @Immutable
 public final class KeySetUserStatus {
     /*
-     * The user name that will be used for access.
+     * The Azure Active Directory user name (email name).
      */
     @JsonProperty(value = "azureUserName", access = JsonProperty.Access.WRITE_ONLY)
     private String azureUsername;
@@ -28,13 +30,15 @@ public final class KeySetUserStatus {
     @JsonProperty(value = "statusMessage", access = JsonProperty.Access.WRITE_ONLY)
     private String statusMessage;
 
-    /** Creates an instance of KeySetUserStatus class. */
+    /**
+     * Creates an instance of KeySetUserStatus class.
+     */
     public KeySetUserStatus() {
     }
 
     /**
-     * Get the azureUsername property: The user name that will be used for access.
-     *
+     * Get the azureUsername property: The Azure Active Directory user name (email name).
+     * 
      * @return the azureUsername value.
      */
     public String azureUsername() {
@@ -43,7 +47,7 @@ public final class KeySetUserStatus {
 
     /**
      * Get the status property: The indicator of whether the user is currently deployed for access.
-     *
+     * 
      * @return the status value.
      */
     public BareMetalMachineKeySetUserSetupStatus status() {
@@ -53,7 +57,7 @@ public final class KeySetUserStatus {
     /**
      * Get the statusMessage property: The additional information describing the current status of this user, if any
      * available.
-     *
+     * 
      * @return the statusMessage value.
      */
     public String statusMessage() {
@@ -62,7 +66,7 @@ public final class KeySetUserStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

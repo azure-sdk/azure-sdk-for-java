@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The latest connectivity status between cluster manager and the cluster. */
+/**
+ * The latest connectivity status between cluster manager and the cluster.
+ */
 public final class ClusterManagerConnectionStatus extends ExpandableStringEnum<ClusterManagerConnectionStatus> {
-    /** Static value Connected for ClusterManagerConnectionStatus. */
+    /**
+     * Static value Connected for ClusterManagerConnectionStatus.
+     */
     public static final ClusterManagerConnectionStatus CONNECTED = fromString("Connected");
 
-    /** Static value Unreachable for ClusterManagerConnectionStatus. */
+    /**
+     * Static value Unreachable for ClusterManagerConnectionStatus.
+     */
     public static final ClusterManagerConnectionStatus UNREACHABLE = fromString("Unreachable");
 
     /**
      * Creates a new instance of ClusterManagerConnectionStatus value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class ClusterManagerConnectionStatus extends ExpandableStringEnum<C
 
     /**
      * Creates or finds a ClusterManagerConnectionStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ClusterManagerConnectionStatus.
      */
@@ -38,7 +44,7 @@ public final class ClusterManagerConnectionStatus extends ExpandableStringEnum<C
 
     /**
      * Gets known ClusterManagerConnectionStatus values.
-     *
+     * 
      * @return known ClusterManagerConnectionStatus values.
      */
     public static Collection<ClusterManagerConnectionStatus> values() {

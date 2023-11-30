@@ -124,20 +124,14 @@ public final class ConsoleImpl implements Console, Console.Definition, Console.U
     }
 
     public Console create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getConsoles()
-                .createOrUpdate(resourceGroupName, virtualMachineName, consoleName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getConsoles().createOrUpdate(resourceGroupName,
+            virtualMachineName, consoleName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Console create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getConsoles()
-                .createOrUpdate(resourceGroupName, virtualMachineName, consoleName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getConsoles().createOrUpdate(resourceGroupName,
+            virtualMachineName, consoleName, this.innerModel(), context);
         return this;
     }
 
@@ -153,21 +147,14 @@ public final class ConsoleImpl implements Console, Console.Definition, Console.U
     }
 
     public Console apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getConsoles()
-                .update(
-                    resourceGroupName, virtualMachineName, consoleName, updateConsoleUpdateParameters, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getConsoles().update(resourceGroupName, virtualMachineName,
+            consoleName, updateConsoleUpdateParameters, Context.NONE);
         return this;
     }
 
     public Console apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getConsoles()
-                .update(resourceGroupName, virtualMachineName, consoleName, updateConsoleUpdateParameters, context);
+        this.innerObject = serviceManager.serviceClient().getConsoles().update(resourceGroupName, virtualMachineName,
+            consoleName, updateConsoleUpdateParameters, context);
         return this;
     }
 
@@ -180,22 +167,14 @@ public final class ConsoleImpl implements Console, Console.Definition, Console.U
     }
 
     public Console refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getConsoles()
-                .getWithResponse(resourceGroupName, virtualMachineName, consoleName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getConsoles()
+            .getWithResponse(resourceGroupName, virtualMachineName, consoleName, Context.NONE).getValue();
         return this;
     }
 
     public Console refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getConsoles()
-                .getWithResponse(resourceGroupName, virtualMachineName, consoleName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getConsoles()
+            .getWithResponse(resourceGroupName, virtualMachineName, consoleName, context).getValue();
         return this;
     }
 
@@ -245,13 +224,13 @@ public final class ConsoleImpl implements Console, Console.Definition, Console.U
     }
 
     public ConsoleImpl withExpiration(OffsetDateTime expiration) {
-        if (isInCreateMode()) {
-            this.innerModel().withExpiration(expiration);
-            return this;
-        } else {
-            this.updateConsoleUpdateParameters.withExpiration(expiration);
-            return this;
-        }
+        this.innerModel().withExpiration(expiration);
+        return this;
+    }
+
+    public ConsoleImpl withDuration(String duration) {
+        this.updateConsoleUpdateParameters.withDuration(duration);
+        return this;
     }
 
     private boolean isInCreateMode() {

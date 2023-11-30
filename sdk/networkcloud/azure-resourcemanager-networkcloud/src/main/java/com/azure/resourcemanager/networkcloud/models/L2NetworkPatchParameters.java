@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** L2NetworkPatchParameters represents the body of the request to patch the L2 network. */
+/**
+ * L2NetworkPatchParameters represents the body of the request to patch the L2 network.
+ */
 @Fluent
 public final class L2NetworkPatchParameters {
     /*
@@ -19,13 +21,15 @@ public final class L2NetworkPatchParameters {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of L2NetworkPatchParameters class. */
+    /**
+     * Creates an instance of L2NetworkPatchParameters class.
+     */
     public L2NetworkPatchParameters() {
     }
 
     /**
      * Get the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -34,7 +38,7 @@ public final class L2NetworkPatchParameters {
 
     /**
      * Set the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the L2NetworkPatchParameters object itself.
      */
@@ -45,7 +49,7 @@ public final class L2NetworkPatchParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

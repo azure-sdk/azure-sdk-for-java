@@ -37,13 +37,15 @@ public final class LldpNeighbor {
     @JsonProperty(value = "systemName", access = JsonProperty.Access.WRITE_ONLY)
     private String systemName;
 
-    /** Creates an instance of LldpNeighbor class. */
+    /**
+     * Creates an instance of LldpNeighbor class.
+     */
     public LldpNeighbor() {
     }
 
     /**
      * Get the portDescription property: The descriptive information about the port on the connected device.
-     *
+     * 
      * @return the portDescription value.
      */
     public String portDescription() {
@@ -52,7 +54,7 @@ public final class LldpNeighbor {
 
     /**
      * Get the portName property: The system-assigned name of the port on the connected device.
-     *
+     * 
      * @return the portName value.
      */
     public String portName() {
@@ -61,7 +63,7 @@ public final class LldpNeighbor {
 
     /**
      * Get the systemDescription property: The descriptive information about the connected device.
-     *
+     * 
      * @return the systemDescription value.
      */
     public String systemDescription() {
@@ -70,7 +72,7 @@ public final class LldpNeighbor {
 
     /**
      * Get the systemName property: The system-assigned name of the connected device.
-     *
+     * 
      * @return the systemName value.
      */
     public String systemName() {
@@ -79,7 +81,7 @@ public final class LldpNeighbor {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

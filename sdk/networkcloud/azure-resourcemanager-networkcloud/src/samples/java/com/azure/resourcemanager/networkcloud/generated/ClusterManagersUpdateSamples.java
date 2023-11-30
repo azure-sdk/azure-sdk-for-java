@@ -8,23 +8,24 @@ import com.azure.resourcemanager.networkcloud.models.ClusterManager;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for ClusterManagers Update. */
+/**
+ * Samples for ClusterManagers Update.
+ */
 public final class ClusterManagersUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/ClusterManagers_Patch.json
+     * x-ms-original-file:
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2022-12-12-preview/examples/
+     * ClusterManagers_Patch.json
      */
     /**
      * Sample code: Patch cluster manager.
-     *
+     * 
      * @param manager Entry point to NetworkCloudManager.
      */
     public static void patchClusterManager(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
-        ClusterManager resource =
-            manager
-                .clusterManagers()
-                .getByResourceGroupWithResponse(
-                    "resourceGroupName", "clusterManagerName", com.azure.core.util.Context.NONE)
-                .getValue();
+        ClusterManager resource = manager.clusterManagers()
+            .getByResourceGroupWithResponse("resourceGroupName", "clusterManagerName", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder")).apply();
     }
 

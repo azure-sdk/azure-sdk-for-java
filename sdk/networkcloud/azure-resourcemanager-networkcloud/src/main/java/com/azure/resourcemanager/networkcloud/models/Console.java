@@ -11,39 +11,41 @@ import com.azure.resourcemanager.networkcloud.fluent.models.ConsoleInner;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
-/** An immutable client-side representation of Console. */
+/**
+ * An immutable client-side representation of Console.
+ */
 public interface Console {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
      * Gets the location property: The geo-location where the resource lives.
-     *
+     * 
      * @return the location value.
      */
     String location();
 
     /**
      * Gets the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     Map<String, String> tags();
@@ -51,44 +53,44 @@ public interface Console {
     /**
      * Gets the extendedLocation property: ExtendedLocation represents the Azure custom location where the resource will
      * be created.
-     *
-     * <p>The extended location of the cluster manager associated with the cluster this virtual machine is created on.
-     *
+     * 
+     * The extended location of the cluster manager associated with the cluster this virtual machine is created on.
+     * 
      * @return the extendedLocation value.
      */
     ExtendedLocation extendedLocation();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     SystemData systemData();
 
     /**
      * Gets the detailedStatus property: The more detailed status of the console.
-     *
+     * 
      * @return the detailedStatus value.
      */
     ConsoleDetailedStatus detailedStatus();
 
     /**
      * Gets the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     String detailedStatusMessage();
 
     /**
      * Gets the enabled property: The indicator of whether the console access is enabled.
-     *
+     * 
      * @return the enabled value.
      */
     ConsoleEnabled enabled();
 
     /**
      * Gets the expiration property: The date and time after which the key will be disallowed access.
-     *
+     * 
      * @return the expiration value.
      */
     OffsetDateTime expiration();
@@ -96,25 +98,22 @@ public interface Console {
     /**
      * Gets the privateLinkServiceId property: The resource ID of the private link service that is used to provide
      * virtual machine console access.
-     *
+     * 
      * @return the privateLinkServiceId value.
      */
     String privateLinkServiceId();
 
     /**
      * Gets the provisioningState property: The provisioning state of the virtual machine console.
-     *
+     * 
      * @return the provisioningState value.
      */
     ConsoleProvisioningState provisioningState();
 
     /**
-     * Gets the sshPublicKey property: SshPublicKey represents the public key used to authenticate with a resource
-     * through SSH.
-     *
-     * <p>The SSH public key that will be provisioned for user access. The user is expected to have the corresponding
-     * SSH private key for logging in.
-     *
+     * Gets the sshPublicKey property: SshPublicKey represents the public key used to authenticate with the virtual
+     * machine through SSH.
+     * 
      * @return the sshPublicKey value.
      */
     SshPublicKey sshPublicKey();
@@ -122,61 +121,64 @@ public interface Console {
     /**
      * Gets the virtualMachineAccessId property: The unique identifier for the virtual machine that is used to access
      * the console.
-     *
+     * 
      * @return the virtualMachineAccessId value.
      */
     String virtualMachineAccessId();
 
     /**
      * Gets the region of the resource.
-     *
+     * 
      * @return the region of the resource.
      */
     Region region();
 
     /**
      * Gets the name of the resource region.
-     *
+     * 
      * @return the name of the resource region.
      */
     String regionName();
 
     /**
      * Gets the name of the resource group.
-     *
+     * 
      * @return the name of the resource group.
      */
     String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.networkcloud.fluent.models.ConsoleInner object.
-     *
+     * 
      * @return the inner object.
      */
     ConsoleInner innerModel();
 
-    /** The entirety of the Console definition. */
-    interface Definition
-        extends DefinitionStages.Blank,
-            DefinitionStages.WithLocation,
-            DefinitionStages.WithParentResource,
-            DefinitionStages.WithExtendedLocation,
-            DefinitionStages.WithEnabled,
-            DefinitionStages.WithSshPublicKey,
-            DefinitionStages.WithCreate {
+    /**
+     * The entirety of the Console definition.
+     */
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
+        DefinitionStages.WithParentResource, DefinitionStages.WithExtendedLocation, DefinitionStages.WithEnabled,
+        DefinitionStages.WithSshPublicKey, DefinitionStages.WithCreate {
     }
 
-    /** The Console definition stages. */
+    /**
+     * The Console definition stages.
+     */
     interface DefinitionStages {
-        /** The first stage of the Console definition. */
+        /**
+         * The first stage of the Console definition.
+         */
         interface Blank extends WithLocation {
         }
 
-        /** The stage of the Console definition allowing to specify location. */
+        /**
+         * The stage of the Console definition allowing to specify location.
+         */
         interface WithLocation {
             /**
              * Specifies the region for the resource.
-             *
+             * 
              * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
@@ -184,18 +186,20 @@ public interface Console {
 
             /**
              * Specifies the region for the resource.
-             *
+             * 
              * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
             WithParentResource withRegion(String location);
         }
 
-        /** The stage of the Console definition allowing to specify parent resource. */
+        /**
+         * The stage of the Console definition allowing to specify parent resource.
+         */
         interface WithParentResource {
             /**
              * Specifies resourceGroupName, virtualMachineName.
-             *
+             * 
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param virtualMachineName The name of the virtual machine.
              * @return the next definition stage.
@@ -203,48 +207,50 @@ public interface Console {
             WithExtendedLocation withExistingVirtualMachine(String resourceGroupName, String virtualMachineName);
         }
 
-        /** The stage of the Console definition allowing to specify extendedLocation. */
+        /**
+         * The stage of the Console definition allowing to specify extendedLocation.
+         */
         interface WithExtendedLocation {
             /**
              * Specifies the extendedLocation property: ExtendedLocation represents the Azure custom location where the
              * resource will be created.
-             *
-             * <p>The extended location of the cluster manager associated with the cluster this virtual machine is
-             * created on..
-             *
+             * 
+             * The extended location of the cluster manager associated with the cluster this virtual machine is created
+             * on..
+             * 
              * @param extendedLocation ExtendedLocation represents the Azure custom location where the resource will be
-             *     created.
-             *     <p>The extended location of the cluster manager associated with the cluster this virtual machine is
-             *     created on.
+             * created.
+             * 
+             * The extended location of the cluster manager associated with the cluster this virtual machine is created
+             * on.
              * @return the next definition stage.
              */
             WithEnabled withExtendedLocation(ExtendedLocation extendedLocation);
         }
 
-        /** The stage of the Console definition allowing to specify enabled. */
+        /**
+         * The stage of the Console definition allowing to specify enabled.
+         */
         interface WithEnabled {
             /**
              * Specifies the enabled property: The indicator of whether the console access is enabled..
-             *
+             * 
              * @param enabled The indicator of whether the console access is enabled.
              * @return the next definition stage.
              */
             WithSshPublicKey withEnabled(ConsoleEnabled enabled);
         }
 
-        /** The stage of the Console definition allowing to specify sshPublicKey. */
+        /**
+         * The stage of the Console definition allowing to specify sshPublicKey.
+         */
         interface WithSshPublicKey {
             /**
-             * Specifies the sshPublicKey property: SshPublicKey represents the public key used to authenticate with a
-             * resource through SSH.
-             *
-             * <p>The SSH public key that will be provisioned for user access. The user is expected to have the
-             * corresponding SSH private key for logging in..
-             *
-             * @param sshPublicKey SshPublicKey represents the public key used to authenticate with a resource through
-             *     SSH.
-             *     <p>The SSH public key that will be provisioned for user access. The user is expected to have the
-             *     corresponding SSH private key for logging in.
+             * Specifies the sshPublicKey property: SshPublicKey represents the public key used to authenticate with the
+             * virtual machine through SSH..
+             * 
+             * @param sshPublicKey SshPublicKey represents the public key used to authenticate with the virtual machine
+             * through SSH.
              * @return the next definition stage.
              */
             WithCreate withSshPublicKey(SshPublicKey sshPublicKey);
@@ -257,36 +263,40 @@ public interface Console {
         interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithExpiration {
             /**
              * Executes the create request.
-             *
+             * 
              * @return the created resource.
              */
             Console create();
 
             /**
              * Executes the create request.
-             *
+             * 
              * @param context The context to associate with this operation.
              * @return the created resource.
              */
             Console create(Context context);
         }
 
-        /** The stage of the Console definition allowing to specify tags. */
+        /**
+         * The stage of the Console definition allowing to specify tags.
+         */
         interface WithTags {
             /**
              * Specifies the tags property: Resource tags..
-             *
+             * 
              * @param tags Resource tags.
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
         }
 
-        /** The stage of the Console definition allowing to specify expiration. */
+        /**
+         * The stage of the Console definition allowing to specify expiration.
+         */
         interface WithExpiration {
             /**
              * Specifies the expiration property: The date and time after which the key will be disallowed access..
-             *
+             * 
              * @param expiration The date and time after which the key will be disallowed access.
              * @return the next definition stage.
              */
@@ -296,83 +306,89 @@ public interface Console {
 
     /**
      * Begins update for the Console resource.
-     *
+     * 
      * @return the stage of resource update.
      */
     Console.Update update();
 
-    /** The template for Console update. */
-    interface Update
-        extends UpdateStages.WithTags,
-            UpdateStages.WithEnabled,
-            UpdateStages.WithExpiration,
-            UpdateStages.WithSshPublicKey {
+    /**
+     * The template for Console update.
+     */
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithDuration, UpdateStages.WithEnabled,
+        UpdateStages.WithSshPublicKey {
         /**
          * Executes the update request.
-         *
+         * 
          * @return the updated resource.
          */
         Console apply();
 
         /**
          * Executes the update request.
-         *
+         * 
          * @param context The context to associate with this operation.
          * @return the updated resource.
          */
         Console apply(Context context);
     }
 
-    /** The Console update stages. */
+    /**
+     * The Console update stages.
+     */
     interface UpdateStages {
-        /** The stage of the Console update allowing to specify tags. */
+        /**
+         * The stage of the Console update allowing to specify tags.
+         */
         interface WithTags {
             /**
              * Specifies the tags property: The Azure resource tags that will replace the existing ones..
-             *
+             * 
              * @param tags The Azure resource tags that will replace the existing ones.
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
         }
 
-        /** The stage of the Console update allowing to specify enabled. */
+        /**
+         * The stage of the Console update allowing to specify duration.
+         */
+        interface WithDuration {
+            /**
+             * Specifies the duration property: The duration this console access will be allowed for the user. The
+             * values are specified in ISO8601 duration format..
+             * 
+             * @param duration The duration this console access will be allowed for the user. The values are specified
+             * in ISO8601 duration format.
+             * @return the next definition stage.
+             */
+            Update withDuration(String duration);
+        }
+
+        /**
+         * The stage of the Console update allowing to specify enabled.
+         */
         interface WithEnabled {
             /**
              * Specifies the enabled property: The credentials used to login to the image repository that has access to
              * the specified image..
-             *
+             * 
              * @param enabled The credentials used to login to the image repository that has access to the specified
-             *     image.
+             * image.
              * @return the next definition stage.
              */
             Update withEnabled(ConsoleEnabled enabled);
         }
 
-        /** The stage of the Console update allowing to specify expiration. */
-        interface WithExpiration {
-            /**
-             * Specifies the expiration property: The date and time after which the key will be disallowed access..
-             *
-             * @param expiration The date and time after which the key will be disallowed access.
-             * @return the next definition stage.
-             */
-            Update withExpiration(OffsetDateTime expiration);
-        }
-
-        /** The stage of the Console update allowing to specify sshPublicKey. */
+        /**
+         * The stage of the Console update allowing to specify sshPublicKey.
+         */
         interface WithSshPublicKey {
             /**
-             * Specifies the sshPublicKey property: SshPublicKey represents the public key used to authenticate with a
-             * resource through SSH.
-             *
-             * <p>The SSH public key that will be provisioned for user access. The user is expected to have the
-             * corresponding SSH private key for logging in..
-             *
-             * @param sshPublicKey SshPublicKey represents the public key used to authenticate with a resource through
-             *     SSH.
-             *     <p>The SSH public key that will be provisioned for user access. The user is expected to have the
-             *     corresponding SSH private key for logging in.
+             * Specifies the sshPublicKey property: SshPublicKey represents the public key used to authenticate with the
+             * virtual machine through SSH..
+             * 
+             * @param sshPublicKey SshPublicKey represents the public key used to authenticate with the virtual machine
+             * through SSH.
              * @return the next definition stage.
              */
             Update withSshPublicKey(SshPublicKey sshPublicKey);
@@ -381,14 +397,14 @@ public interface Console {
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @return the refreshed resource.
      */
     Console refresh();
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @return the refreshed resource.
      */

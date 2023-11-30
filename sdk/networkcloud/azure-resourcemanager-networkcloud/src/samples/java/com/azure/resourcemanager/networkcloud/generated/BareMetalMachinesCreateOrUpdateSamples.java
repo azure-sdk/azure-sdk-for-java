@@ -9,42 +9,37 @@ import com.azure.resourcemanager.networkcloud.models.ExtendedLocation;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for BareMetalMachines CreateOrUpdate. */
+/**
+ * Samples for BareMetalMachines CreateOrUpdate.
+ */
 public final class BareMetalMachinesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/BareMetalMachines_Create.json
+     * x-ms-original-file:
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2022-12-12-preview/examples/
+     * BareMetalMachines_Create.json
      */
     /**
      * Sample code: Create or update bare metal machine.
-     *
+     * 
      * @param manager Entry point to NetworkCloudManager.
      */
-    public static void createOrUpdateBareMetalMachine(
-        com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
-        manager
-            .bareMetalMachines()
-            .define("bareMetalMachineName")
-            .withRegion("location")
+    public static void
+        createOrUpdateBareMetalMachine(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
+        manager.bareMetalMachines().define("bareMetalMachineName").withRegion("location")
             .withExistingResourceGroup("resourceGroupName")
-            .withExtendedLocation(
-                new ExtendedLocation()
-                    .withName(
-                        "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ExtendedLocation/customLocations/clusterExtendedLocationName")
-                    .withType("CustomLocation"))
+            .withExtendedLocation(new ExtendedLocation().withName(
+                "/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/Microsoft.ExtendedLocation/customLocations/clusterExtendedLocationName")
+                .withType("CustomLocation"))
             .withBmcConnectionString("bmcconnectionstring")
             .withBmcCredentials(
                 new AdministrativeCredentials().withPassword("fakeTokenPlaceholder").withUsername("bmcuser"))
-            .withBmcMacAddress("00:00:4f:00:57:00")
-            .withBootMacAddress("00:00:4e:00:58:af")
-            .withMachineDetails("User-provided machine details.")
-            .withMachineName("r01c001")
+            .withBmcMacAddress("00:00:4f:00:57:00").withBootMacAddress("00:00:4e:00:58:af")
+            .withMachineDetails("User-provided machine details.").withMachineName("r01c001")
             .withMachineSkuId("684E-3B16-399E")
             .withRackId(
-                "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.NetworkCloud/racks/rackName")
-            .withRackSlot(1L)
-            .withSerialNumber("BM1219XXX")
-            .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
-            .create();
+                "/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/Microsoft.NetworkCloud/racks/rackName")
+            .withRackSlot(1L).withSerialNumber("BM1219XXX")
+            .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder")).create();
     }
 
     // Use "Map.of" if available

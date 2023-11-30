@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** HardwareValidationStatus represents the latest hardware validation details performed for this bare metal machine. */
+/**
+ * HardwareValidationStatus represents the latest hardware validation details performed for this bare metal machine.
+ */
 @Immutable
 public final class HardwareValidationStatus {
     /*
@@ -23,13 +25,15 @@ public final class HardwareValidationStatus {
     @JsonProperty(value = "result", access = JsonProperty.Access.WRITE_ONLY)
     private BareMetalMachineHardwareValidationResult result;
 
-    /** Creates an instance of HardwareValidationStatus class. */
+    /**
+     * Creates an instance of HardwareValidationStatus class.
+     */
     public HardwareValidationStatus() {
     }
 
     /**
      * Get the lastValidationTime property: The timestamp of the hardware validation execution.
-     *
+     * 
      * @return the lastValidationTime value.
      */
     public OffsetDateTime lastValidationTime() {
@@ -38,7 +42,7 @@ public final class HardwareValidationStatus {
 
     /**
      * Get the result property: The outcome of the hardware validation.
-     *
+     * 
      * @return the result value.
      */
     public BareMetalMachineHardwareValidationResult result() {
@@ -47,7 +51,7 @@ public final class HardwareValidationStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

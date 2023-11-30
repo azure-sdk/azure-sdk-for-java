@@ -9,22 +9,27 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The
- * network plugin type for Hybrid AKS.
+ * The network plugin type for Hybrid AKS.
  */
 public final class HybridAksPluginType extends ExpandableStringEnum<HybridAksPluginType> {
-    /** Static value DPDK for HybridAksPluginType. */
+    /**
+     * Static value DPDK for HybridAksPluginType.
+     */
     public static final HybridAksPluginType DPDK = fromString("DPDK");
 
-    /** Static value SRIOV for HybridAksPluginType. */
+    /**
+     * Static value SRIOV for HybridAksPluginType.
+     */
     public static final HybridAksPluginType SRIOV = fromString("SRIOV");
 
-    /** Static value OSDevice for HybridAksPluginType. */
+    /**
+     * Static value OSDevice for HybridAksPluginType.
+     */
     public static final HybridAksPluginType OSDEVICE = fromString("OSDevice");
 
     /**
      * Creates a new instance of HybridAksPluginType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -33,7 +38,7 @@ public final class HybridAksPluginType extends ExpandableStringEnum<HybridAksPlu
 
     /**
      * Creates or finds a HybridAksPluginType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding HybridAksPluginType.
      */
@@ -44,7 +49,7 @@ public final class HybridAksPluginType extends ExpandableStringEnum<HybridAksPlu
 
     /**
      * Gets known HybridAksPluginType values.
-     *
+     * 
      * @return known HybridAksPluginType values.
      */
     public static Collection<HybridAksPluginType> values() {

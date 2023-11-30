@@ -8,11 +8,19 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.networkcloud.models.ConsoleEnabled;
 import com.azure.resourcemanager.networkcloud.models.SshPublicKey;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.time.OffsetDateTime;
 
-/** ConsolePatchProperties represents the properties of the virtual machine console that can be patched. */
+/**
+ * ConsolePatchProperties represents the properties of the virtual machine console that can be patched.
+ */
 @Fluent
 public final class ConsolePatchProperties {
+    /*
+     * The duration this console access will be allowed for the user. The values are specified in ISO8601 duration
+     * format.
+     */
+    @JsonProperty(value = "duration")
+    private String duration;
+
     /*
      * The credentials used to login to the image repository that has access to the specified image.
      */
@@ -20,28 +28,43 @@ public final class ConsolePatchProperties {
     private ConsoleEnabled enabled;
 
     /*
-     * The date and time after which the key will be disallowed access.
-     */
-    @JsonProperty(value = "expiration")
-    private OffsetDateTime expiration;
-
-    /*
-     * SshPublicKey represents the public key used to authenticate with a resource through SSH.
-     *
-     * The SSH public key that will be provisioned for user access. The user is expected to have the corresponding SSH
-     * private key for logging in.
+     * SshPublicKey represents the public key used to authenticate with the virtual machine through SSH.
      */
     @JsonProperty(value = "sshPublicKey")
     private SshPublicKey sshPublicKey;
 
-    /** Creates an instance of ConsolePatchProperties class. */
+    /**
+     * Creates an instance of ConsolePatchProperties class.
+     */
     public ConsolePatchProperties() {
+    }
+
+    /**
+     * Get the duration property: The duration this console access will be allowed for the user. The values are
+     * specified in ISO8601 duration format.
+     * 
+     * @return the duration value.
+     */
+    public String duration() {
+        return this.duration;
+    }
+
+    /**
+     * Set the duration property: The duration this console access will be allowed for the user. The values are
+     * specified in ISO8601 duration format.
+     * 
+     * @param duration the duration value to set.
+     * @return the ConsolePatchProperties object itself.
+     */
+    public ConsolePatchProperties withDuration(String duration) {
+        this.duration = duration;
+        return this;
     }
 
     /**
      * Get the enabled property: The credentials used to login to the image repository that has access to the specified
      * image.
-     *
+     * 
      * @return the enabled value.
      */
     public ConsoleEnabled enabled() {
@@ -51,7 +74,7 @@ public final class ConsolePatchProperties {
     /**
      * Set the enabled property: The credentials used to login to the image repository that has access to the specified
      * image.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the ConsolePatchProperties object itself.
      */
@@ -61,32 +84,9 @@ public final class ConsolePatchProperties {
     }
 
     /**
-     * Get the expiration property: The date and time after which the key will be disallowed access.
-     *
-     * @return the expiration value.
-     */
-    public OffsetDateTime expiration() {
-        return this.expiration;
-    }
-
-    /**
-     * Set the expiration property: The date and time after which the key will be disallowed access.
-     *
-     * @param expiration the expiration value to set.
-     * @return the ConsolePatchProperties object itself.
-     */
-    public ConsolePatchProperties withExpiration(OffsetDateTime expiration) {
-        this.expiration = expiration;
-        return this;
-    }
-
-    /**
-     * Get the sshPublicKey property: SshPublicKey represents the public key used to authenticate with a resource
-     * through SSH.
-     *
-     * <p>The SSH public key that will be provisioned for user access. The user is expected to have the corresponding
-     * SSH private key for logging in.
-     *
+     * Get the sshPublicKey property: SshPublicKey represents the public key used to authenticate with the virtual
+     * machine through SSH.
+     * 
      * @return the sshPublicKey value.
      */
     public SshPublicKey sshPublicKey() {
@@ -94,12 +94,9 @@ public final class ConsolePatchProperties {
     }
 
     /**
-     * Set the sshPublicKey property: SshPublicKey represents the public key used to authenticate with a resource
-     * through SSH.
-     *
-     * <p>The SSH public key that will be provisioned for user access. The user is expected to have the corresponding
-     * SSH private key for logging in.
-     *
+     * Set the sshPublicKey property: SshPublicKey represents the public key used to authenticate with the virtual
+     * machine through SSH.
+     * 
      * @param sshPublicKey the sshPublicKey value to set.
      * @return the ConsolePatchProperties object itself.
      */
@@ -110,7 +107,7 @@ public final class ConsolePatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

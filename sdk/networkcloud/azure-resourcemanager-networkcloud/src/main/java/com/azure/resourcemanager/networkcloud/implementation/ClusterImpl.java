@@ -21,7 +21,6 @@ import com.azure.resourcemanager.networkcloud.models.ClusterType;
 import com.azure.resourcemanager.networkcloud.models.ClusterUpdateVersionParameters;
 import com.azure.resourcemanager.networkcloud.models.ExtendedLocation;
 import com.azure.resourcemanager.networkcloud.models.ManagedResourceGroupConfiguration;
-import com.azure.resourcemanager.networkcloud.models.OperationStatusResult;
 import com.azure.resourcemanager.networkcloud.models.RackDefinition;
 import com.azure.resourcemanager.networkcloud.models.ServicePrincipalInformation;
 import com.azure.resourcemanager.networkcloud.models.ValidationThreshold;
@@ -206,20 +205,14 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
     }
 
     public Cluster create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getClusters()
-                .createOrUpdate(resourceGroupName, clusterName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getClusters().createOrUpdate(resourceGroupName, clusterName,
+            this.innerModel(), Context.NONE);
         return this;
     }
 
     public Cluster create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getClusters()
-                .createOrUpdate(resourceGroupName, clusterName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getClusters().createOrUpdate(resourceGroupName, clusterName,
+            this.innerModel(), context);
         return this;
     }
 
@@ -235,20 +228,14 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
     }
 
     public Cluster apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getClusters()
-                .update(resourceGroupName, clusterName, updateClusterUpdateParameters, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getClusters().update(resourceGroupName, clusterName,
+            updateClusterUpdateParameters, Context.NONE);
         return this;
     }
 
     public Cluster apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getClusters()
-                .update(resourceGroupName, clusterName, updateClusterUpdateParameters, context);
+        this.innerObject = serviceManager.serviceClient().getClusters().update(resourceGroupName, clusterName,
+            updateClusterUpdateParameters, context);
         return this;
     }
 
@@ -260,42 +247,32 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
     }
 
     public Cluster refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getClusters()
-                .getByResourceGroupWithResponse(resourceGroupName, clusterName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getClusters()
+            .getByResourceGroupWithResponse(resourceGroupName, clusterName, Context.NONE).getValue();
         return this;
     }
 
     public Cluster refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getClusters()
-                .getByResourceGroupWithResponse(resourceGroupName, clusterName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getClusters()
+            .getByResourceGroupWithResponse(resourceGroupName, clusterName, context).getValue();
         return this;
     }
 
-    public OperationStatusResult deploy() {
-        return serviceManager.clusters().deploy(resourceGroupName, clusterName);
+    public void deploy() {
+        serviceManager.clusters().deploy(resourceGroupName, clusterName);
     }
 
-    public OperationStatusResult deploy(ClusterDeployParameters clusterDeployParameters, Context context) {
-        return serviceManager.clusters().deploy(resourceGroupName, clusterName, clusterDeployParameters, context);
+    public void deploy(ClusterDeployParameters clusterDeployParameters, Context context) {
+        serviceManager.clusters().deploy(resourceGroupName, clusterName, clusterDeployParameters, context);
     }
 
-    public OperationStatusResult updateVersion(ClusterUpdateVersionParameters clusterUpdateVersionParameters) {
-        return serviceManager.clusters().updateVersion(resourceGroupName, clusterName, clusterUpdateVersionParameters);
+    public void updateVersion() {
+        serviceManager.clusters().updateVersion(resourceGroupName, clusterName);
     }
 
-    public OperationStatusResult updateVersion(
-        ClusterUpdateVersionParameters clusterUpdateVersionParameters, Context context) {
-        return serviceManager
-            .clusters()
-            .updateVersion(resourceGroupName, clusterName, clusterUpdateVersionParameters, context);
+    public void updateVersion(ClusterUpdateVersionParameters clusterUpdateVersionParameters, Context context) {
+        serviceManager.clusters().updateVersion(resourceGroupName, clusterName, clusterUpdateVersionParameters,
+            context);
     }
 
     public ClusterImpl withRegion(Region location) {
@@ -323,6 +300,11 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         }
     }
 
+    public ClusterImpl withAnalyticsWorkspaceId(String analyticsWorkspaceId) {
+        this.innerModel().withAnalyticsWorkspaceId(analyticsWorkspaceId);
+        return this;
+    }
+
     public ClusterImpl withClusterType(ClusterType clusterType) {
         this.innerModel().withClusterType(clusterType);
         return this;
@@ -348,8 +330,8 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         }
     }
 
-    public ClusterImpl withAnalyticsWorkspaceId(String analyticsWorkspaceId) {
-        this.innerModel().withAnalyticsWorkspaceId(analyticsWorkspaceId);
+    public ClusterImpl withClusterCapacity(ClusterCapacity clusterCapacity) {
+        this.innerModel().withClusterCapacity(clusterCapacity);
         return this;
     }
 
@@ -393,8 +375,8 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         }
     }
 
-    public ClusterImpl withManagedResourceGroupConfiguration(
-        ManagedResourceGroupConfiguration managedResourceGroupConfiguration) {
+    public ClusterImpl
+        withManagedResourceGroupConfiguration(ManagedResourceGroupConfiguration managedResourceGroupConfiguration) {
         this.innerModel().withManagedResourceGroupConfiguration(managedResourceGroupConfiguration);
         return this;
     }

@@ -8,15 +8,16 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.networkcloud.fluent.models.ConsolePatchProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.time.OffsetDateTime;
 import java.util.Map;
 
-/** ConsolePatchParameters represents the body of the request to patch the virtual machine console. */
+/**
+ * ConsolePatchParameters represents the body of the request to patch the virtual machine console.
+ */
 @Fluent
 public final class ConsolePatchParameters {
     /*
      * ConsolePatchProperties represents the properties of the virtual machine console that can be patched.
-     *
+     * 
      * The list of the resource properties.
      */
     @JsonProperty(value = "properties")
@@ -29,16 +30,18 @@ public final class ConsolePatchParameters {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of ConsolePatchParameters class. */
+    /**
+     * Creates an instance of ConsolePatchParameters class.
+     */
     public ConsolePatchParameters() {
     }
 
     /**
-     * Get the innerProperties property: ConsolePatchProperties represents the properties of the virtual machine console
-     * that can be patched.
-     *
-     * <p>The list of the resource properties.
-     *
+     * Get the innerProperties property: ConsolePatchProperties represents the properties of the virtual machine
+     * console that can be patched.
+     * 
+     * The list of the resource properties.
+     * 
      * @return the innerProperties value.
      */
     private ConsolePatchProperties innerProperties() {
@@ -47,7 +50,7 @@ public final class ConsolePatchParameters {
 
     /**
      * Get the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -56,7 +59,7 @@ public final class ConsolePatchParameters {
 
     /**
      * Set the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the ConsolePatchParameters object itself.
      */
@@ -66,9 +69,34 @@ public final class ConsolePatchParameters {
     }
 
     /**
+     * Get the duration property: The duration this console access will be allowed for the user. The values are
+     * specified in ISO8601 duration format.
+     * 
+     * @return the duration value.
+     */
+    public String duration() {
+        return this.innerProperties() == null ? null : this.innerProperties().duration();
+    }
+
+    /**
+     * Set the duration property: The duration this console access will be allowed for the user. The values are
+     * specified in ISO8601 duration format.
+     * 
+     * @param duration the duration value to set.
+     * @return the ConsolePatchParameters object itself.
+     */
+    public ConsolePatchParameters withDuration(String duration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConsolePatchProperties();
+        }
+        this.innerProperties().withDuration(duration);
+        return this;
+    }
+
+    /**
      * Get the enabled property: The credentials used to login to the image repository that has access to the specified
      * image.
-     *
+     * 
      * @return the enabled value.
      */
     public ConsoleEnabled enabled() {
@@ -78,7 +106,7 @@ public final class ConsolePatchParameters {
     /**
      * Set the enabled property: The credentials used to login to the image repository that has access to the specified
      * image.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the ConsolePatchParameters object itself.
      */
@@ -91,35 +119,9 @@ public final class ConsolePatchParameters {
     }
 
     /**
-     * Get the expiration property: The date and time after which the key will be disallowed access.
-     *
-     * @return the expiration value.
-     */
-    public OffsetDateTime expiration() {
-        return this.innerProperties() == null ? null : this.innerProperties().expiration();
-    }
-
-    /**
-     * Set the expiration property: The date and time after which the key will be disallowed access.
-     *
-     * @param expiration the expiration value to set.
-     * @return the ConsolePatchParameters object itself.
-     */
-    public ConsolePatchParameters withExpiration(OffsetDateTime expiration) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ConsolePatchProperties();
-        }
-        this.innerProperties().withExpiration(expiration);
-        return this;
-    }
-
-    /**
-     * Get the sshPublicKey property: SshPublicKey represents the public key used to authenticate with a resource
-     * through SSH.
-     *
-     * <p>The SSH public key that will be provisioned for user access. The user is expected to have the corresponding
-     * SSH private key for logging in.
-     *
+     * Get the sshPublicKey property: SshPublicKey represents the public key used to authenticate with the virtual
+     * machine through SSH.
+     * 
      * @return the sshPublicKey value.
      */
     public SshPublicKey sshPublicKey() {
@@ -127,12 +129,9 @@ public final class ConsolePatchParameters {
     }
 
     /**
-     * Set the sshPublicKey property: SshPublicKey represents the public key used to authenticate with a resource
-     * through SSH.
-     *
-     * <p>The SSH public key that will be provisioned for user access. The user is expected to have the corresponding
-     * SSH private key for logging in.
-     *
+     * Set the sshPublicKey property: SshPublicKey represents the public key used to authenticate with the virtual
+     * machine through SSH.
+     * 
      * @param sshPublicKey the sshPublicKey value to set.
      * @return the ConsolePatchParameters object itself.
      */
@@ -146,7 +145,7 @@ public final class ConsolePatchParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

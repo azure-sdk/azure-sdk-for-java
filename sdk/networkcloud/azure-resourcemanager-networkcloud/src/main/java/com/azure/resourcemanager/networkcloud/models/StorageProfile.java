@@ -9,13 +9,13 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** StorageProfile represents information about a disk. */
+/**
+ * StorageProfile represents information about a disk.
+ */
 @Fluent
 public final class StorageProfile {
     /*
      * OsDisk represents configuration of the boot disk.
-     *
-     * The disk to use with this virtual machine.
      */
     @JsonProperty(value = "osDisk", required = true)
     private OsDisk osDisk;
@@ -26,15 +26,15 @@ public final class StorageProfile {
     @JsonProperty(value = "volumeAttachments")
     private List<String> volumeAttachments;
 
-    /** Creates an instance of StorageProfile class. */
+    /**
+     * Creates an instance of StorageProfile class.
+     */
     public StorageProfile() {
     }
 
     /**
      * Get the osDisk property: OsDisk represents configuration of the boot disk.
-     *
-     * <p>The disk to use with this virtual machine.
-     *
+     * 
      * @return the osDisk value.
      */
     public OsDisk osDisk() {
@@ -43,9 +43,7 @@ public final class StorageProfile {
 
     /**
      * Set the osDisk property: OsDisk represents configuration of the boot disk.
-     *
-     * <p>The disk to use with this virtual machine.
-     *
+     * 
      * @param osDisk the osDisk value to set.
      * @return the StorageProfile object itself.
      */
@@ -57,7 +55,7 @@ public final class StorageProfile {
     /**
      * Get the volumeAttachments property: The resource IDs of volumes that are requested to be attached to the virtual
      * machine.
-     *
+     * 
      * @return the volumeAttachments value.
      */
     public List<String> volumeAttachments() {
@@ -67,7 +65,7 @@ public final class StorageProfile {
     /**
      * Set the volumeAttachments property: The resource IDs of volumes that are requested to be attached to the virtual
      * machine.
-     *
+     * 
      * @param volumeAttachments the volumeAttachments value to set.
      * @return the StorageProfile object itself.
      */
@@ -78,14 +76,13 @@ public final class StorageProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (osDisk() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property osDisk in model StorageProfile"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property osDisk in model StorageProfile"));
         } else {
             osDisk().validate();
         }

@@ -10,11 +10,10 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.networkcloud.fluent.VirtualMachinesClient;
-import com.azure.resourcemanager.networkcloud.fluent.models.OperationStatusResultInner;
 import com.azure.resourcemanager.networkcloud.fluent.models.VirtualMachineInner;
-import com.azure.resourcemanager.networkcloud.models.OperationStatusResult;
 import com.azure.resourcemanager.networkcloud.models.VirtualMachine;
 import com.azure.resourcemanager.networkcloud.models.VirtualMachinePowerOffParameters;
+import com.azure.resourcemanager.networkcloud.models.VirtualMachineVolumeParameters;
 import com.azure.resourcemanager.networkcloud.models.VirtualMachines;
 
 public final class VirtualMachinesImpl implements VirtualMachines {
@@ -24,8 +23,8 @@ public final class VirtualMachinesImpl implements VirtualMachines {
 
     private final com.azure.resourcemanager.networkcloud.NetworkCloudManager serviceManager;
 
-    public VirtualMachinesImpl(
-        VirtualMachinesClient innerClient, com.azure.resourcemanager.networkcloud.NetworkCloudManager serviceManager) {
+    public VirtualMachinesImpl(VirtualMachinesClient innerClient,
+        com.azure.resourcemanager.networkcloud.NetworkCloudManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -50,15 +49,12 @@ public final class VirtualMachinesImpl implements VirtualMachines {
         return Utils.mapPage(inner, inner1 -> new VirtualMachineImpl(inner1, this.manager()));
     }
 
-    public Response<VirtualMachine> getByResourceGroupWithResponse(
-        String resourceGroupName, String virtualMachineName, Context context) {
-        Response<VirtualMachineInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, virtualMachineName, context);
+    public Response<VirtualMachine> getByResourceGroupWithResponse(String resourceGroupName, String virtualMachineName,
+        Context context) {
+        Response<VirtualMachineInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, virtualMachineName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new VirtualMachineImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -82,101 +78,69 @@ public final class VirtualMachinesImpl implements VirtualMachines {
         this.serviceClient().delete(resourceGroupName, virtualMachineName, context);
     }
 
-    public OperationStatusResult powerOff(String resourceGroupName, String virtualMachineName) {
-        OperationStatusResultInner inner = this.serviceClient().powerOff(resourceGroupName, virtualMachineName);
-        if (inner != null) {
-            return new OperationStatusResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void attachVolume(String resourceGroupName, String virtualMachineName) {
+        this.serviceClient().attachVolume(resourceGroupName, virtualMachineName);
     }
 
-    public OperationStatusResult powerOff(
-        String resourceGroupName,
-        String virtualMachineName,
-        VirtualMachinePowerOffParameters virtualMachinePowerOffParameters,
-        Context context) {
-        OperationStatusResultInner inner =
-            this
-                .serviceClient()
-                .powerOff(resourceGroupName, virtualMachineName, virtualMachinePowerOffParameters, context);
-        if (inner != null) {
-            return new OperationStatusResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void attachVolume(String resourceGroupName, String virtualMachineName,
+        VirtualMachineVolumeParameters virtualMachineAttachVolumeParameters, Context context) {
+        this.serviceClient().attachVolume(resourceGroupName, virtualMachineName, virtualMachineAttachVolumeParameters,
+            context);
     }
 
-    public OperationStatusResult reimage(String resourceGroupName, String virtualMachineName) {
-        OperationStatusResultInner inner = this.serviceClient().reimage(resourceGroupName, virtualMachineName);
-        if (inner != null) {
-            return new OperationStatusResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void detachVolume(String resourceGroupName, String virtualMachineName) {
+        this.serviceClient().detachVolume(resourceGroupName, virtualMachineName);
     }
 
-    public OperationStatusResult reimage(String resourceGroupName, String virtualMachineName, Context context) {
-        OperationStatusResultInner inner = this.serviceClient().reimage(resourceGroupName, virtualMachineName, context);
-        if (inner != null) {
-            return new OperationStatusResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void detachVolume(String resourceGroupName, String virtualMachineName,
+        VirtualMachineVolumeParameters virtualMachineDetachVolumeParameters, Context context) {
+        this.serviceClient().detachVolume(resourceGroupName, virtualMachineName, virtualMachineDetachVolumeParameters,
+            context);
     }
 
-    public OperationStatusResult restart(String resourceGroupName, String virtualMachineName) {
-        OperationStatusResultInner inner = this.serviceClient().restart(resourceGroupName, virtualMachineName);
-        if (inner != null) {
-            return new OperationStatusResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void powerOff(String resourceGroupName, String virtualMachineName) {
+        this.serviceClient().powerOff(resourceGroupName, virtualMachineName);
     }
 
-    public OperationStatusResult restart(String resourceGroupName, String virtualMachineName, Context context) {
-        OperationStatusResultInner inner = this.serviceClient().restart(resourceGroupName, virtualMachineName, context);
-        if (inner != null) {
-            return new OperationStatusResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void powerOff(String resourceGroupName, String virtualMachineName,
+        VirtualMachinePowerOffParameters virtualMachinePowerOffParameters, Context context) {
+        this.serviceClient().powerOff(resourceGroupName, virtualMachineName, virtualMachinePowerOffParameters, context);
     }
 
-    public OperationStatusResult start(String resourceGroupName, String virtualMachineName) {
-        OperationStatusResultInner inner = this.serviceClient().start(resourceGroupName, virtualMachineName);
-        if (inner != null) {
-            return new OperationStatusResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void reimage(String resourceGroupName, String virtualMachineName) {
+        this.serviceClient().reimage(resourceGroupName, virtualMachineName);
     }
 
-    public OperationStatusResult start(String resourceGroupName, String virtualMachineName, Context context) {
-        OperationStatusResultInner inner = this.serviceClient().start(resourceGroupName, virtualMachineName, context);
-        if (inner != null) {
-            return new OperationStatusResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void reimage(String resourceGroupName, String virtualMachineName, Context context) {
+        this.serviceClient().reimage(resourceGroupName, virtualMachineName, context);
+    }
+
+    public void restart(String resourceGroupName, String virtualMachineName) {
+        this.serviceClient().restart(resourceGroupName, virtualMachineName);
+    }
+
+    public void restart(String resourceGroupName, String virtualMachineName, Context context) {
+        this.serviceClient().restart(resourceGroupName, virtualMachineName, context);
+    }
+
+    public void start(String resourceGroupName, String virtualMachineName) {
+        this.serviceClient().start(resourceGroupName, virtualMachineName);
+    }
+
+    public void start(String resourceGroupName, String virtualMachineName, Context context) {
+        this.serviceClient().start(resourceGroupName, virtualMachineName, context);
     }
 
     public VirtualMachine getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String virtualMachineName = Utils.getValueFromIdByName(id, "virtualMachines");
         if (virtualMachineName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'virtualMachines'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'virtualMachines'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, virtualMachineName, Context.NONE).getValue();
     }
@@ -184,19 +148,13 @@ public final class VirtualMachinesImpl implements VirtualMachines {
     public Response<VirtualMachine> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String virtualMachineName = Utils.getValueFromIdByName(id, "virtualMachines");
         if (virtualMachineName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'virtualMachines'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'virtualMachines'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, virtualMachineName, context);
     }
@@ -204,19 +162,13 @@ public final class VirtualMachinesImpl implements VirtualMachines {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String virtualMachineName = Utils.getValueFromIdByName(id, "virtualMachines");
         if (virtualMachineName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'virtualMachines'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'virtualMachines'.", id)));
         }
         this.delete(resourceGroupName, virtualMachineName, Context.NONE);
     }
@@ -224,19 +176,13 @@ public final class VirtualMachinesImpl implements VirtualMachines {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String virtualMachineName = Utils.getValueFromIdByName(id, "virtualMachines");
         if (virtualMachineName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'virtualMachines'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'virtualMachines'.", id)));
         }
         this.delete(resourceGroupName, virtualMachineName, context);
     }

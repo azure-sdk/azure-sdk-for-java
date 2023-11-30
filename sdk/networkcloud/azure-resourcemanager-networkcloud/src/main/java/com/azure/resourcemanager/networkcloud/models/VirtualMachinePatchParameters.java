@@ -10,12 +10,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** VirtualMachinePatchParameters represents the body of the request to patch the virtual machine. */
+/**
+ * VirtualMachinePatchParameters represents the body of the request to patch the virtual machine.
+ */
 @Fluent
 public final class VirtualMachinePatchParameters {
     /*
      * VirtualMachinePatchProperties represents the properties of the virtual machine that can be patched.
-     *
+     * 
      * The list of the resource properties.
      */
     @JsonProperty(value = "properties")
@@ -28,16 +30,18 @@ public final class VirtualMachinePatchParameters {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of VirtualMachinePatchParameters class. */
+    /**
+     * Creates an instance of VirtualMachinePatchParameters class.
+     */
     public VirtualMachinePatchParameters() {
     }
 
     /**
      * Get the innerProperties property: VirtualMachinePatchProperties represents the properties of the virtual machine
      * that can be patched.
-     *
-     * <p>The list of the resource properties.
-     *
+     * 
+     * The list of the resource properties.
+     * 
      * @return the innerProperties value.
      */
     private VirtualMachinePatchProperties innerProperties() {
@@ -46,7 +50,7 @@ public final class VirtualMachinePatchParameters {
 
     /**
      * Get the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -55,7 +59,7 @@ public final class VirtualMachinePatchParameters {
 
     /**
      * Set the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the VirtualMachinePatchParameters object itself.
      */
@@ -67,9 +71,7 @@ public final class VirtualMachinePatchParameters {
     /**
      * Get the vmImageRepositoryCredentials property: ImageRepositoryCredentials represents the credentials used to
      * login to the image repository.
-     *
-     * <p>The credentials used to login to the image repository that has access to the specified image.
-     *
+     * 
      * @return the vmImageRepositoryCredentials value.
      */
     public ImageRepositoryCredentials vmImageRepositoryCredentials() {
@@ -79,14 +81,12 @@ public final class VirtualMachinePatchParameters {
     /**
      * Set the vmImageRepositoryCredentials property: ImageRepositoryCredentials represents the credentials used to
      * login to the image repository.
-     *
-     * <p>The credentials used to login to the image repository that has access to the specified image.
-     *
+     * 
      * @param vmImageRepositoryCredentials the vmImageRepositoryCredentials value to set.
      * @return the VirtualMachinePatchParameters object itself.
      */
-    public VirtualMachinePatchParameters withVmImageRepositoryCredentials(
-        ImageRepositoryCredentials vmImageRepositoryCredentials) {
+    public VirtualMachinePatchParameters
+        withVmImageRepositoryCredentials(ImageRepositoryCredentials vmImageRepositoryCredentials) {
         if (this.innerProperties() == null) {
             this.innerProperties = new VirtualMachinePatchProperties();
         }
@@ -96,7 +96,7 @@ public final class VirtualMachinePatchParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

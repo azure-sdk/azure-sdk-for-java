@@ -40,17 +40,23 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in ConsolesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in ConsolesClient.
+ */
 public final class ConsolesClientImpl implements ConsolesClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final ConsolesService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final NetworkCloudImpl client;
 
     /**
      * Initializes an instance of ConsolesClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     ConsolesClientImpl(NetworkCloudImpl client) {
@@ -65,120 +71,251 @@ public final class ConsolesClientImpl implements ConsolesClient {
     @Host("{$host}")
     @ServiceInterface(name = "NetworkCloudConsoles")
     public interface ConsolesService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ConsoleList>> listByVirtualMachine(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("virtualMachineName") String virtualMachineName,
-            @HeaderParam("Accept") String accept,
+        Mono<Response<ConsoleList>> listBySubscription(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("virtualMachineName") String virtualMachineName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ConsoleInner>> get(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<ConsoleList>> listByResourceGroup(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("virtualMachineName") String virtualMachineName,
-            @PathParam("consoleName") String consoleName,
-            @HeaderParam("Accept") String accept,
+            @PathParam("virtualMachineName") String virtualMachineName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<ConsoleInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("virtualMachineName") String virtualMachineName,
-            @PathParam("consoleName") String consoleName,
-            @BodyParam("application/json") ConsoleInner consoleParameters,
-            @HeaderParam("Accept") String accept,
+            @PathParam("virtualMachineName") String virtualMachineName, @PathParam("consoleName") String consoleName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("virtualMachineName") String virtualMachineName, @PathParam("consoleName") String consoleName,
+            @BodyParam("application/json") ConsoleInner consoleParameters, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}")
-        @ExpectedResponses({200, 202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}")
+        @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("virtualMachineName") String virtualMachineName,
-            @PathParam("consoleName") String consoleName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("virtualMachineName") String virtualMachineName, @PathParam("consoleName") String consoleName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}")
-        @ExpectedResponses({200, 202})
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}")
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("virtualMachineName") String virtualMachineName,
-            @PathParam("consoleName") String consoleName,
+            @PathParam("virtualMachineName") String virtualMachineName, @PathParam("consoleName") String consoleName,
             @BodyParam("application/json") ConsolePatchParameters consoleUpdateParameters,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ConsoleList>> listByVirtualMachineNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<ConsoleList>> listBySubscriptionNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ConsoleList>> listByResourceGroupNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * List consoles of the virtual machine.
-     *
-     * <p>Get a list of consoles for the provided virtual machine.
-     *
+     * List virtual machine consoles in the subscription.
+     * 
+     * Get a list of virtual machine consoles in the provided subscription.
+     * 
+     * @param virtualMachineName The name of the virtual machine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of virtual machine consoles in the provided subscription along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ConsoleInner>> listBySubscriptionSinglePageAsync(String virtualMachineName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (virtualMachineName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualMachineName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listBySubscription(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), virtualMachineName, accept, context))
+            .<PagedResponse<ConsoleInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * List virtual machine consoles in the subscription.
+     * 
+     * Get a list of virtual machine consoles in the provided subscription.
+     * 
+     * @param virtualMachineName The name of the virtual machine.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of virtual machine consoles in the provided subscription along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ConsoleInner>> listBySubscriptionSinglePageAsync(String virtualMachineName,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (virtualMachineName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualMachineName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listBySubscription(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                virtualMachineName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * List virtual machine consoles in the subscription.
+     * 
+     * Get a list of virtual machine consoles in the provided subscription.
+     * 
+     * @param virtualMachineName The name of the virtual machine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of virtual machine consoles in the provided subscription as paginated response with
+     * {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ConsoleInner> listBySubscriptionAsync(String virtualMachineName) {
+        return new PagedFlux<>(() -> listBySubscriptionSinglePageAsync(virtualMachineName),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List virtual machine consoles in the subscription.
+     * 
+     * Get a list of virtual machine consoles in the provided subscription.
+     * 
+     * @param virtualMachineName The name of the virtual machine.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of virtual machine consoles in the provided subscription as paginated response with
+     * {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ConsoleInner> listBySubscriptionAsync(String virtualMachineName, Context context) {
+        return new PagedFlux<>(() -> listBySubscriptionSinglePageAsync(virtualMachineName, context),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * List virtual machine consoles in the subscription.
+     * 
+     * Get a list of virtual machine consoles in the provided subscription.
+     * 
+     * @param virtualMachineName The name of the virtual machine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of virtual machine consoles in the provided subscription as paginated response with
+     * {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<ConsoleInner> listBySubscription(String virtualMachineName) {
+        return new PagedIterable<>(listBySubscriptionAsync(virtualMachineName));
+    }
+
+    /**
+     * List virtual machine consoles in the subscription.
+     * 
+     * Get a list of virtual machine consoles in the provided subscription.
+     * 
+     * @param virtualMachineName The name of the virtual machine.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of virtual machine consoles in the provided subscription as paginated response with
+     * {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<ConsoleInner> listBySubscription(String virtualMachineName, Context context) {
+        return new PagedIterable<>(listBySubscriptionAsync(virtualMachineName, context));
+    }
+
+    /**
+     * List virtual machine consoles in the resource group.
+     * 
+     * Get a list of virtual machine consoles in the provided resource group.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of consoles for the provided virtual machine along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return a list of virtual machine consoles in the provided resource group along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ConsoleInner>> listByVirtualMachineSinglePageAsync(
-        String resourceGroupName, String virtualMachineName) {
+    private Mono<PagedResponse<ConsoleInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        String virtualMachineName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -190,57 +327,37 @@ public final class ConsolesClientImpl implements ConsolesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByVirtualMachine(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            virtualMachineName,
-                            accept,
-                            context))
-            .<PagedResponse<ConsoleInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, virtualMachineName, accept, context))
+            .<PagedResponse<ConsoleInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * List consoles of the virtual machine.
-     *
-     * <p>Get a list of consoles for the provided virtual machine.
-     *
+     * List virtual machine consoles in the resource group.
+     * 
+     * Get a list of virtual machine consoles in the provided resource group.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of consoles for the provided virtual machine along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return a list of virtual machine consoles in the provided resource group along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ConsoleInner>> listByVirtualMachineSinglePageAsync(
-        String resourceGroupName, String virtualMachineName, Context context) {
+    private Mono<PagedResponse<ConsoleInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        String virtualMachineName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -253,106 +370,95 @@ public final class ConsolesClientImpl implements ConsolesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByVirtualMachine(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                virtualMachineName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, virtualMachineName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
-     * List consoles of the virtual machine.
-     *
-     * <p>Get a list of consoles for the provided virtual machine.
-     *
+     * List virtual machine consoles in the resource group.
+     * 
+     * Get a list of virtual machine consoles in the provided resource group.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of consoles for the provided virtual machine as paginated response with {@link PagedFlux}.
+     * @return a list of virtual machine consoles in the provided resource group as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ConsoleInner> listByVirtualMachineAsync(String resourceGroupName, String virtualMachineName) {
-        return new PagedFlux<>(
-            () -> listByVirtualMachineSinglePageAsync(resourceGroupName, virtualMachineName),
-            nextLink -> listByVirtualMachineNextSinglePageAsync(nextLink));
+    private PagedFlux<ConsoleInner> listByResourceGroupAsync(String resourceGroupName, String virtualMachineName) {
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, virtualMachineName),
+            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
     }
 
     /**
-     * List consoles of the virtual machine.
-     *
-     * <p>Get a list of consoles for the provided virtual machine.
-     *
+     * List virtual machine consoles in the resource group.
+     * 
+     * Get a list of virtual machine consoles in the provided resource group.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of consoles for the provided virtual machine as paginated response with {@link PagedFlux}.
+     * @return a list of virtual machine consoles in the provided resource group as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ConsoleInner> listByVirtualMachineAsync(
-        String resourceGroupName, String virtualMachineName, Context context) {
-        return new PagedFlux<>(
-            () -> listByVirtualMachineSinglePageAsync(resourceGroupName, virtualMachineName, context),
-            nextLink -> listByVirtualMachineNextSinglePageAsync(nextLink, context));
+    private PagedFlux<ConsoleInner> listByResourceGroupAsync(String resourceGroupName, String virtualMachineName,
+        Context context) {
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, virtualMachineName, context),
+            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * List consoles of the virtual machine.
-     *
-     * <p>Get a list of consoles for the provided virtual machine.
-     *
+     * List virtual machine consoles in the resource group.
+     * 
+     * Get a list of virtual machine consoles in the provided resource group.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of consoles for the provided virtual machine as paginated response with {@link PagedIterable}.
+     * @return a list of virtual machine consoles in the provided resource group as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ConsoleInner> listByVirtualMachine(String resourceGroupName, String virtualMachineName) {
-        return new PagedIterable<>(listByVirtualMachineAsync(resourceGroupName, virtualMachineName));
+    public PagedIterable<ConsoleInner> listByResourceGroup(String resourceGroupName, String virtualMachineName) {
+        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, virtualMachineName));
     }
 
     /**
-     * List consoles of the virtual machine.
-     *
-     * <p>Get a list of consoles for the provided virtual machine.
-     *
+     * List virtual machine consoles in the resource group.
+     * 
+     * Get a list of virtual machine consoles in the provided resource group.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of consoles for the provided virtual machine as paginated response with {@link PagedIterable}.
+     * @return a list of virtual machine consoles in the provided resource group as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ConsoleInner> listByVirtualMachine(
-        String resourceGroupName, String virtualMachineName, Context context) {
-        return new PagedIterable<>(listByVirtualMachineAsync(resourceGroupName, virtualMachineName, context));
+    public PagedIterable<ConsoleInner> listByResourceGroup(String resourceGroupName, String virtualMachineName,
+        Context context) {
+        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, virtualMachineName, context));
     }
 
     /**
      * Retrieve the virtual machine console.
-     *
-     * <p>Get properties of the provided virtual machine console.
-     *
+     * 
+     * Get properties of the provided virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -360,22 +466,18 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return properties of the provided virtual machine console along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ConsoleInner>> getWithResponseAsync(
-        String resourceGroupName, String virtualMachineName, String consoleName) {
+    private Mono<Response<ConsoleInner>> getWithResponseAsync(String resourceGroupName, String virtualMachineName,
+        String consoleName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -390,26 +492,16 @@ public final class ConsolesClientImpl implements ConsolesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            virtualMachineName,
-                            consoleName,
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, virtualMachineName, consoleName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Retrieve the virtual machine console.
-     *
-     * <p>Get properties of the provided virtual machine console.
-     *
+     * 
+     * Get properties of the provided virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -418,22 +510,18 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return properties of the provided virtual machine console along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ConsoleInner>> getWithResponseAsync(
-        String resourceGroupName, String virtualMachineName, String consoleName, Context context) {
+    private Mono<Response<ConsoleInner>> getWithResponseAsync(String resourceGroupName, String virtualMachineName,
+        String consoleName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -448,23 +536,15 @@ public final class ConsolesClientImpl implements ConsolesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                virtualMachineName,
-                consoleName,
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, virtualMachineName, consoleName, accept, context);
     }
 
     /**
      * Retrieve the virtual machine console.
-     *
-     * <p>Get properties of the provided virtual machine console.
-     *
+     * 
+     * Get properties of the provided virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -481,9 +561,9 @@ public final class ConsolesClientImpl implements ConsolesClient {
 
     /**
      * Retrieve the virtual machine console.
-     *
-     * <p>Get properties of the provided virtual machine console.
-     *
+     * 
+     * Get properties of the provided virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -494,16 +574,16 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @return properties of the provided virtual machine console along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ConsoleInner> getWithResponse(
-        String resourceGroupName, String virtualMachineName, String consoleName, Context context) {
+    public Response<ConsoleInner> getWithResponse(String resourceGroupName, String virtualMachineName,
+        String consoleName, Context context) {
         return getWithResponseAsync(resourceGroupName, virtualMachineName, consoleName, context).block();
     }
 
     /**
      * Retrieve the virtual machine console.
-     *
-     * <p>Get properties of the provided virtual machine console.
-     *
+     * 
+     * Get properties of the provided virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -519,9 +599,9 @@ public final class ConsolesClientImpl implements ConsolesClient {
 
     /**
      * Create or update the virtual machine console.
-     *
-     * <p>Create a new virtual machine console or update the properties of the existing virtual machine console.
-     *
+     * 
+     * Create a new virtual machine console or update the properties of the existing virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -529,23 +609,19 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return console represents the console of an on-premises Network Cloud virtual machine along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return console represents the console of an on-premises Network Cloud virtual machine along with
+     * {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String virtualMachineName, String consoleName, ConsoleInner consoleParameters) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String virtualMachineName, String consoleName, ConsoleInner consoleParameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -558,35 +634,22 @@ public final class ConsolesClientImpl implements ConsolesClient {
         if (consoleName == null) {
             return Mono.error(new IllegalArgumentException("Parameter consoleName is required and cannot be null."));
         }
-        if (consoleParameters == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter consoleParameters is required and cannot be null."));
-        } else {
+        if (consoleParameters != null) {
             consoleParameters.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            virtualMachineName,
-                            consoleName,
-                            consoleParameters,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, virtualMachineName, consoleName, consoleParameters,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update the virtual machine console.
-     *
-     * <p>Create a new virtual machine console or update the properties of the existing virtual machine console.
-     *
+     * 
+     * Create a new virtual machine console or update the properties of the existing virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -595,27 +658,19 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return console represents the console of an on-premises Network Cloud virtual machine along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return console represents the console of an on-premises Network Cloud virtual machine along with
+     * {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName,
-        String virtualMachineName,
-        String consoleName,
-        ConsoleInner consoleParameters,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String virtualMachineName, String consoleName, ConsoleInner consoleParameters, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -628,32 +683,21 @@ public final class ConsolesClientImpl implements ConsolesClient {
         if (consoleName == null) {
             return Mono.error(new IllegalArgumentException("Parameter consoleName is required and cannot be null."));
         }
-        if (consoleParameters == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter consoleParameters is required and cannot be null."));
-        } else {
+        if (consoleParameters != null) {
             consoleParameters.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                virtualMachineName,
-                consoleName,
-                consoleParameters,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, virtualMachineName, consoleName, consoleParameters,
+            accept, context);
     }
 
     /**
      * Create or update the virtual machine console.
-     *
-     * <p>Create a new virtual machine console or update the properties of the existing virtual machine console.
-     *
+     * 
+     * Create a new virtual machine console or update the properties of the existing virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -662,24 +706,46 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of console represents the console of an on-premises Network Cloud
-     *     virtual machine.
+     * virtual machine.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ConsoleInner>, ConsoleInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String virtualMachineName, String consoleName, ConsoleInner consoleParameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, virtualMachineName, consoleName, consoleParameters);
-        return this
-            .client
-            .<ConsoleInner, ConsoleInner>getLroResult(
-                mono, this.client.getHttpPipeline(), ConsoleInner.class, ConsoleInner.class, this.client.getContext());
+    private PollerFlux<PollResult<ConsoleInner>, ConsoleInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String virtualMachineName, String consoleName, ConsoleInner consoleParameters) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, virtualMachineName, consoleName, consoleParameters);
+        return this.client.<ConsoleInner, ConsoleInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ConsoleInner.class, ConsoleInner.class, this.client.getContext());
     }
 
     /**
      * Create or update the virtual machine console.
-     *
-     * <p>Create a new virtual machine console or update the properties of the existing virtual machine console.
-     *
+     * 
+     * Create a new virtual machine console or update the properties of the existing virtual machine console.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualMachineName The name of the virtual machine.
+     * @param consoleName The name of the virtual machine console.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of console represents the console of an on-premises Network Cloud
+     * virtual machine.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ConsoleInner>, ConsoleInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String virtualMachineName, String consoleName) {
+        final ConsoleInner consoleParameters = null;
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, virtualMachineName, consoleName, consoleParameters);
+        return this.client.<ConsoleInner, ConsoleInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ConsoleInner.class, ConsoleInner.class, this.client.getContext());
+    }
+
+    /**
+     * Create or update the virtual machine console.
+     * 
+     * Create a new virtual machine console or update the properties of the existing virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -689,53 +755,45 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of console represents the console of an on-premises Network Cloud
-     *     virtual machine.
+     * virtual machine.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ConsoleInner>, ConsoleInner> beginCreateOrUpdateAsync(
-        String resourceGroupName,
-        String virtualMachineName,
-        String consoleName,
-        ConsoleInner consoleParameters,
-        Context context) {
+    private PollerFlux<PollResult<ConsoleInner>, ConsoleInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String virtualMachineName, String consoleName, ConsoleInner consoleParameters, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(
-                resourceGroupName, virtualMachineName, consoleName, consoleParameters, context);
-        return this
-            .client
-            .<ConsoleInner, ConsoleInner>getLroResult(
-                mono, this.client.getHttpPipeline(), ConsoleInner.class, ConsoleInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, virtualMachineName,
+            consoleName, consoleParameters, context);
+        return this.client.<ConsoleInner, ConsoleInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ConsoleInner.class, ConsoleInner.class, context);
     }
 
     /**
      * Create or update the virtual machine console.
-     *
-     * <p>Create a new virtual machine console or update the properties of the existing virtual machine console.
-     *
+     * 
+     * Create a new virtual machine console or update the properties of the existing virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
-     * @param consoleParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of console represents the console of an on-premises Network Cloud
-     *     virtual machine.
+     * virtual machine.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ConsoleInner>, ConsoleInner> beginCreateOrUpdate(
-        String resourceGroupName, String virtualMachineName, String consoleName, ConsoleInner consoleParameters) {
-        return this
-            .beginCreateOrUpdateAsync(resourceGroupName, virtualMachineName, consoleName, consoleParameters)
+    public SyncPoller<PollResult<ConsoleInner>, ConsoleInner> beginCreateOrUpdate(String resourceGroupName,
+        String virtualMachineName, String consoleName) {
+        final ConsoleInner consoleParameters = null;
+        return this.beginCreateOrUpdateAsync(resourceGroupName, virtualMachineName, consoleName, consoleParameters)
             .getSyncPoller();
     }
 
     /**
      * Create or update the virtual machine console.
-     *
-     * <p>Create a new virtual machine console or update the properties of the existing virtual machine console.
-     *
+     * 
+     * Create a new virtual machine console or update the properties of the existing virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -745,15 +803,11 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of console represents the console of an on-premises Network Cloud
-     *     virtual machine.
+     * virtual machine.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ConsoleInner>, ConsoleInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String virtualMachineName,
-        String consoleName,
-        ConsoleInner consoleParameters,
-        Context context) {
+    public SyncPoller<PollResult<ConsoleInner>, ConsoleInner> beginCreateOrUpdate(String resourceGroupName,
+        String virtualMachineName, String consoleName, ConsoleInner consoleParameters, Context context) {
         return this
             .beginCreateOrUpdateAsync(resourceGroupName, virtualMachineName, consoleName, consoleParameters, context)
             .getSyncPoller();
@@ -761,9 +815,9 @@ public final class ConsolesClientImpl implements ConsolesClient {
 
     /**
      * Create or update the virtual machine console.
-     *
-     * <p>Create a new virtual machine console or update the properties of the existing virtual machine console.
-     *
+     * 
+     * Create a new virtual machine console or update the properties of the existing virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -772,21 +826,42 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return console represents the console of an on-premises Network Cloud virtual machine on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ConsoleInner> createOrUpdateAsync(
-        String resourceGroupName, String virtualMachineName, String consoleName, ConsoleInner consoleParameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, virtualMachineName, consoleName, consoleParameters)
-            .last()
+    private Mono<ConsoleInner> createOrUpdateAsync(String resourceGroupName, String virtualMachineName,
+        String consoleName, ConsoleInner consoleParameters) {
+        return beginCreateOrUpdateAsync(resourceGroupName, virtualMachineName, consoleName, consoleParameters).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update the virtual machine console.
-     *
-     * <p>Create a new virtual machine console or update the properties of the existing virtual machine console.
-     *
+     * 
+     * Create a new virtual machine console or update the properties of the existing virtual machine console.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualMachineName The name of the virtual machine.
+     * @param consoleName The name of the virtual machine console.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return console represents the console of an on-premises Network Cloud virtual machine on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ConsoleInner> createOrUpdateAsync(String resourceGroupName, String virtualMachineName,
+        String consoleName) {
+        final ConsoleInner consoleParameters = null;
+        return beginCreateOrUpdateAsync(resourceGroupName, virtualMachineName, consoleName, consoleParameters).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Create or update the virtual machine console.
+     * 
+     * Create a new virtual machine console or update the properties of the existing virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -796,45 +871,39 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return console represents the console of an on-premises Network Cloud virtual machine on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ConsoleInner> createOrUpdateAsync(
-        String resourceGroupName,
-        String virtualMachineName,
-        String consoleName,
-        ConsoleInner consoleParameters,
-        Context context) {
+    private Mono<ConsoleInner> createOrUpdateAsync(String resourceGroupName, String virtualMachineName,
+        String consoleName, ConsoleInner consoleParameters, Context context) {
         return beginCreateOrUpdateAsync(resourceGroupName, virtualMachineName, consoleName, consoleParameters, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+            .last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update the virtual machine console.
-     *
-     * <p>Create a new virtual machine console or update the properties of the existing virtual machine console.
-     *
+     * 
+     * Create a new virtual machine console or update the properties of the existing virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
-     * @param consoleParameters The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return console represents the console of an on-premises Network Cloud virtual machine.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ConsoleInner createOrUpdate(
-        String resourceGroupName, String virtualMachineName, String consoleName, ConsoleInner consoleParameters) {
+    public ConsoleInner createOrUpdate(String resourceGroupName, String virtualMachineName, String consoleName) {
+        final ConsoleInner consoleParameters = null;
         return createOrUpdateAsync(resourceGroupName, virtualMachineName, consoleName, consoleParameters).block();
     }
 
     /**
      * Create or update the virtual machine console.
-     *
-     * <p>Create a new virtual machine console or update the properties of the existing virtual machine console.
-     *
+     * 
+     * Create a new virtual machine console or update the properties of the existing virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -846,21 +915,17 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @return console represents the console of an on-premises Network Cloud virtual machine.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ConsoleInner createOrUpdate(
-        String resourceGroupName,
-        String virtualMachineName,
-        String consoleName,
-        ConsoleInner consoleParameters,
-        Context context) {
+    public ConsoleInner createOrUpdate(String resourceGroupName, String virtualMachineName, String consoleName,
+        ConsoleInner consoleParameters, Context context) {
         return createOrUpdateAsync(resourceGroupName, virtualMachineName, consoleName, consoleParameters, context)
             .block();
     }
 
     /**
      * Delete the virtual machine console.
-     *
-     * <p>Delete the provided virtual machine console.
-     *
+     * 
+     * Delete the provided virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -870,19 +935,15 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String virtualMachineName, String consoleName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
+        String virtualMachineName, String consoleName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -897,26 +958,16 @@ public final class ConsolesClientImpl implements ConsolesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            virtualMachineName,
-                            consoleName,
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, virtualMachineName, consoleName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete the virtual machine console.
-     *
-     * <p>Delete the provided virtual machine console.
-     *
+     * 
+     * Delete the provided virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -927,19 +978,15 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String virtualMachineName, String consoleName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
+        String virtualMachineName, String consoleName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -954,23 +1001,15 @@ public final class ConsolesClientImpl implements ConsolesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                virtualMachineName,
-                consoleName,
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, virtualMachineName, consoleName, accept, context);
     }
 
     /**
      * Delete the virtual machine console.
-     *
-     * <p>Delete the provided virtual machine console.
-     *
+     * 
+     * Delete the provided virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -980,21 +1019,19 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String virtualMachineName, String consoleName) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, virtualMachineName, consoleName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String virtualMachineName,
+        String consoleName) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, virtualMachineName, consoleName);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Delete the virtual machine console.
-     *
-     * <p>Delete the provided virtual machine console.
-     *
+     * 
+     * Delete the provided virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1005,21 +1042,20 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String virtualMachineName, String consoleName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String virtualMachineName,
+        String consoleName, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, virtualMachineName, consoleName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, virtualMachineName, consoleName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Delete the virtual machine console.
-     *
-     * <p>Delete the provided virtual machine console.
-     *
+     * 
+     * Delete the provided virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1029,16 +1065,16 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String virtualMachineName, String consoleName) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualMachineName,
+        String consoleName) {
         return this.beginDeleteAsync(resourceGroupName, virtualMachineName, consoleName).getSyncPoller();
     }
 
     /**
      * Delete the virtual machine console.
-     *
-     * <p>Delete the provided virtual machine console.
-     *
+     * 
+     * Delete the provided virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1049,16 +1085,16 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String virtualMachineName, String consoleName, Context context) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualMachineName,
+        String consoleName, Context context) {
         return this.beginDeleteAsync(resourceGroupName, virtualMachineName, consoleName, context).getSyncPoller();
     }
 
     /**
      * Delete the virtual machine console.
-     *
-     * <p>Delete the provided virtual machine console.
-     *
+     * 
+     * Delete the provided virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1069,16 +1105,15 @@ public final class ConsolesClientImpl implements ConsolesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String virtualMachineName, String consoleName) {
-        return beginDeleteAsync(resourceGroupName, virtualMachineName, consoleName)
-            .last()
+        return beginDeleteAsync(resourceGroupName, virtualMachineName, consoleName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete the virtual machine console.
-     *
-     * <p>Delete the provided virtual machine console.
-     *
+     * 
+     * Delete the provided virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1089,18 +1124,17 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(
-        String resourceGroupName, String virtualMachineName, String consoleName, Context context) {
-        return beginDeleteAsync(resourceGroupName, virtualMachineName, consoleName, context)
-            .last()
+    private Mono<Void> deleteAsync(String resourceGroupName, String virtualMachineName, String consoleName,
+        Context context) {
+        return beginDeleteAsync(resourceGroupName, virtualMachineName, consoleName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete the virtual machine console.
-     *
-     * <p>Delete the provided virtual machine console.
-     *
+     * 
+     * Delete the provided virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1115,9 +1149,9 @@ public final class ConsolesClientImpl implements ConsolesClient {
 
     /**
      * Delete the virtual machine console.
-     *
-     * <p>Delete the provided virtual machine console.
-     *
+     * 
+     * Delete the provided virtual machine console.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1133,10 +1167,10 @@ public final class ConsolesClientImpl implements ConsolesClient {
 
     /**
      * Patch the virtual machine console.
-     *
-     * <p>Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
+     * 
+     * Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
      * machine console. Properties and tag updates can be done independently.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1144,26 +1178,19 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return console represents the console of an on-premises Network Cloud virtual machine along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return console represents the console of an on-premises Network Cloud virtual machine along with
+     * {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName,
-        String virtualMachineName,
-        String consoleName,
-        ConsolePatchParameters consoleUpdateParameters) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
+        String virtualMachineName, String consoleName, ConsolePatchParameters consoleUpdateParameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1181,28 +1208,18 @@ public final class ConsolesClientImpl implements ConsolesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            virtualMachineName,
-                            consoleName,
-                            consoleUpdateParameters,
-                            accept,
-                            context))
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, virtualMachineName, consoleName,
+                consoleUpdateParameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Patch the virtual machine console.
-     *
-     * <p>Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
+     * 
+     * Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
      * machine console. Properties and tag updates can be done independently.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1211,27 +1228,20 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return console represents the console of an on-premises Network Cloud virtual machine along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return console represents the console of an on-premises Network Cloud virtual machine along with
+     * {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName,
-        String virtualMachineName,
-        String consoleName,
-        ConsolePatchParameters consoleUpdateParameters,
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
+        String virtualMachineName, String consoleName, ConsolePatchParameters consoleUpdateParameters,
         Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1249,25 +1259,16 @@ public final class ConsolesClientImpl implements ConsolesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                virtualMachineName,
-                consoleName,
-                consoleUpdateParameters,
-                accept,
-                context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, virtualMachineName, consoleName, consoleUpdateParameters, accept, context);
     }
 
     /**
      * Patch the virtual machine console.
-     *
-     * <p>Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
+     * 
+     * Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
      * machine console. Properties and tag updates can be done independently.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1276,28 +1277,23 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of console represents the console of an on-premises Network Cloud
-     *     virtual machine.
+     * virtual machine.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ConsoleInner>, ConsoleInner> beginUpdateAsync(
-        String resourceGroupName,
-        String virtualMachineName,
-        String consoleName,
-        ConsolePatchParameters consoleUpdateParameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, virtualMachineName, consoleName, consoleUpdateParameters);
-        return this
-            .client
-            .<ConsoleInner, ConsoleInner>getLroResult(
-                mono, this.client.getHttpPipeline(), ConsoleInner.class, ConsoleInner.class, this.client.getContext());
+    private PollerFlux<PollResult<ConsoleInner>, ConsoleInner> beginUpdateAsync(String resourceGroupName,
+        String virtualMachineName, String consoleName, ConsolePatchParameters consoleUpdateParameters) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, virtualMachineName, consoleName, consoleUpdateParameters);
+        return this.client.<ConsoleInner, ConsoleInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ConsoleInner.class, ConsoleInner.class, this.client.getContext());
     }
 
     /**
      * Patch the virtual machine console.
-     *
-     * <p>Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
+     * 
+     * Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
      * machine console. Properties and tag updates can be done independently.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1305,26 +1301,24 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of console represents the console of an on-premises Network Cloud
-     *     virtual machine.
+     * virtual machine.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ConsoleInner>, ConsoleInner> beginUpdateAsync(
-        String resourceGroupName, String virtualMachineName, String consoleName) {
+    private PollerFlux<PollResult<ConsoleInner>, ConsoleInner> beginUpdateAsync(String resourceGroupName,
+        String virtualMachineName, String consoleName) {
         final ConsolePatchParameters consoleUpdateParameters = null;
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, virtualMachineName, consoleName, consoleUpdateParameters);
-        return this
-            .client
-            .<ConsoleInner, ConsoleInner>getLroResult(
-                mono, this.client.getHttpPipeline(), ConsoleInner.class, ConsoleInner.class, this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, virtualMachineName, consoleName, consoleUpdateParameters);
+        return this.client.<ConsoleInner, ConsoleInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ConsoleInner.class, ConsoleInner.class, this.client.getContext());
     }
 
     /**
      * Patch the virtual machine console.
-     *
-     * <p>Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
+     * 
+     * Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
      * machine console. Properties and tag updates can be done independently.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1334,31 +1328,25 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of console represents the console of an on-premises Network Cloud
-     *     virtual machine.
+     * virtual machine.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ConsoleInner>, ConsoleInner> beginUpdateAsync(
-        String resourceGroupName,
-        String virtualMachineName,
-        String consoleName,
-        ConsolePatchParameters consoleUpdateParameters,
+    private PollerFlux<PollResult<ConsoleInner>, ConsoleInner> beginUpdateAsync(String resourceGroupName,
+        String virtualMachineName, String consoleName, ConsolePatchParameters consoleUpdateParameters,
         Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(
-                resourceGroupName, virtualMachineName, consoleName, consoleUpdateParameters, context);
-        return this
-            .client
-            .<ConsoleInner, ConsoleInner>getLroResult(
-                mono, this.client.getHttpPipeline(), ConsoleInner.class, ConsoleInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, virtualMachineName,
+            consoleName, consoleUpdateParameters, context);
+        return this.client.<ConsoleInner, ConsoleInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ConsoleInner.class, ConsoleInner.class, context);
     }
 
     /**
      * Patch the virtual machine console.
-     *
-     * <p>Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
+     * 
+     * Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
      * machine console. Properties and tag updates can be done independently.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1366,23 +1354,22 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of console represents the console of an on-premises Network Cloud
-     *     virtual machine.
+     * virtual machine.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ConsoleInner>, ConsoleInner> beginUpdate(
-        String resourceGroupName, String virtualMachineName, String consoleName) {
+    public SyncPoller<PollResult<ConsoleInner>, ConsoleInner> beginUpdate(String resourceGroupName,
+        String virtualMachineName, String consoleName) {
         final ConsolePatchParameters consoleUpdateParameters = null;
-        return this
-            .beginUpdateAsync(resourceGroupName, virtualMachineName, consoleName, consoleUpdateParameters)
+        return this.beginUpdateAsync(resourceGroupName, virtualMachineName, consoleName, consoleUpdateParameters)
             .getSyncPoller();
     }
 
     /**
      * Patch the virtual machine console.
-     *
-     * <p>Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
+     * 
+     * Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
      * machine console. Properties and tag updates can be done independently.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1392,14 +1379,11 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of console represents the console of an on-premises Network Cloud
-     *     virtual machine.
+     * virtual machine.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ConsoleInner>, ConsoleInner> beginUpdate(
-        String resourceGroupName,
-        String virtualMachineName,
-        String consoleName,
-        ConsolePatchParameters consoleUpdateParameters,
+    public SyncPoller<PollResult<ConsoleInner>, ConsoleInner> beginUpdate(String resourceGroupName,
+        String virtualMachineName, String consoleName, ConsolePatchParameters consoleUpdateParameters,
         Context context) {
         return this
             .beginUpdateAsync(resourceGroupName, virtualMachineName, consoleName, consoleUpdateParameters, context)
@@ -1408,10 +1392,10 @@ public final class ConsolesClientImpl implements ConsolesClient {
 
     /**
      * Patch the virtual machine console.
-     *
-     * <p>Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
+     * 
+     * Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
      * machine console. Properties and tag updates can be done independently.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1420,25 +1404,21 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return console represents the console of an on-premises Network Cloud virtual machine on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ConsoleInner> updateAsync(
-        String resourceGroupName,
-        String virtualMachineName,
-        String consoleName,
+    private Mono<ConsoleInner> updateAsync(String resourceGroupName, String virtualMachineName, String consoleName,
         ConsolePatchParameters consoleUpdateParameters) {
-        return beginUpdateAsync(resourceGroupName, virtualMachineName, consoleName, consoleUpdateParameters)
-            .last()
+        return beginUpdateAsync(resourceGroupName, virtualMachineName, consoleName, consoleUpdateParameters).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Patch the virtual machine console.
-     *
-     * <p>Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
+     * 
+     * Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
      * machine console. Properties and tag updates can be done independently.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1446,22 +1426,21 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return console represents the console of an on-premises Network Cloud virtual machine on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ConsoleInner> updateAsync(String resourceGroupName, String virtualMachineName, String consoleName) {
         final ConsolePatchParameters consoleUpdateParameters = null;
-        return beginUpdateAsync(resourceGroupName, virtualMachineName, consoleName, consoleUpdateParameters)
-            .last()
+        return beginUpdateAsync(resourceGroupName, virtualMachineName, consoleName, consoleUpdateParameters).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Patch the virtual machine console.
-     *
-     * <p>Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
+     * 
+     * Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
      * machine console. Properties and tag updates can be done independently.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1471,26 +1450,21 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return console represents the console of an on-premises Network Cloud virtual machine on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ConsoleInner> updateAsync(
-        String resourceGroupName,
-        String virtualMachineName,
-        String consoleName,
-        ConsolePatchParameters consoleUpdateParameters,
-        Context context) {
+    private Mono<ConsoleInner> updateAsync(String resourceGroupName, String virtualMachineName, String consoleName,
+        ConsolePatchParameters consoleUpdateParameters, Context context) {
         return beginUpdateAsync(resourceGroupName, virtualMachineName, consoleName, consoleUpdateParameters, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+            .last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Patch the virtual machine console.
-     *
-     * <p>Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
+     * 
+     * Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
      * machine console. Properties and tag updates can be done independently.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1507,10 +1481,10 @@ public final class ConsolesClientImpl implements ConsolesClient {
 
     /**
      * Patch the virtual machine console.
-     *
-     * <p>Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
+     * 
+     * Patch the properties of the provided virtual machine console, or update the tags associated with the virtual
      * machine console. Properties and tag updates can be done independently.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineName The name of the virtual machine.
      * @param consoleName The name of the virtual machine console.
@@ -1522,90 +1496,127 @@ public final class ConsolesClientImpl implements ConsolesClient {
      * @return console represents the console of an on-premises Network Cloud virtual machine.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ConsoleInner update(
-        String resourceGroupName,
-        String virtualMachineName,
-        String consoleName,
-        ConsolePatchParameters consoleUpdateParameters,
-        Context context) {
+    public ConsoleInner update(String resourceGroupName, String virtualMachineName, String consoleName,
+        ConsolePatchParameters consoleUpdateParameters, Context context) {
         return updateAsync(resourceGroupName, virtualMachineName, consoleName, consoleUpdateParameters, context)
             .block();
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return consoleList represents a list of virtual machine consoles along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ConsoleInner>> listByVirtualMachineNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<ConsoleInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context -> service.listByVirtualMachineNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<ConsoleInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+                context -> service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<ConsoleInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return consoleList represents a list of virtual machine consoles along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ConsoleInner>> listByVirtualMachineNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<ConsoleInner>> listBySubscriptionNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByVirtualMachineNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return consoleList represents a list of virtual machine consoles along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ConsoleInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<ConsoleInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return consoleList represents a list of virtual machine consoles along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ConsoleInner>> listByResourceGroupNextSinglePageAsync(String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

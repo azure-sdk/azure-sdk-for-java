@@ -17,8 +17,8 @@ public final class ClusterMetricsConfigurationPatchProperties {
     /*
      * The interval in minutes by which metrics will be collected.
      */
-    @JsonProperty(value = "collectionInterval")
-    private Long collectionInterval;
+    @JsonProperty(value = "collectionInterval", required = true)
+    private long collectionInterval;
 
     /*
      * The list of metric names that have been chosen to be enabled in addition to the core set of enabled metrics.
@@ -26,26 +26,28 @@ public final class ClusterMetricsConfigurationPatchProperties {
     @JsonProperty(value = "enabledMetrics")
     private List<String> enabledMetrics;
 
-    /** Creates an instance of ClusterMetricsConfigurationPatchProperties class. */
+    /**
+     * Creates an instance of ClusterMetricsConfigurationPatchProperties class.
+     */
     public ClusterMetricsConfigurationPatchProperties() {
     }
 
     /**
      * Get the collectionInterval property: The interval in minutes by which metrics will be collected.
-     *
+     * 
      * @return the collectionInterval value.
      */
-    public Long collectionInterval() {
+    public long collectionInterval() {
         return this.collectionInterval;
     }
 
     /**
      * Set the collectionInterval property: The interval in minutes by which metrics will be collected.
-     *
+     * 
      * @param collectionInterval the collectionInterval value to set.
      * @return the ClusterMetricsConfigurationPatchProperties object itself.
      */
-    public ClusterMetricsConfigurationPatchProperties withCollectionInterval(Long collectionInterval) {
+    public ClusterMetricsConfigurationPatchProperties withCollectionInterval(long collectionInterval) {
         this.collectionInterval = collectionInterval;
         return this;
     }
@@ -53,7 +55,7 @@ public final class ClusterMetricsConfigurationPatchProperties {
     /**
      * Get the enabledMetrics property: The list of metric names that have been chosen to be enabled in addition to the
      * core set of enabled metrics.
-     *
+     * 
      * @return the enabledMetrics value.
      */
     public List<String> enabledMetrics() {
@@ -63,7 +65,7 @@ public final class ClusterMetricsConfigurationPatchProperties {
     /**
      * Set the enabledMetrics property: The list of metric names that have been chosen to be enabled in addition to the
      * core set of enabled metrics.
-     *
+     * 
      * @param enabledMetrics the enabledMetrics value to set.
      * @return the ClusterMetricsConfigurationPatchProperties object itself.
      */
@@ -74,7 +76,7 @@ public final class ClusterMetricsConfigurationPatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

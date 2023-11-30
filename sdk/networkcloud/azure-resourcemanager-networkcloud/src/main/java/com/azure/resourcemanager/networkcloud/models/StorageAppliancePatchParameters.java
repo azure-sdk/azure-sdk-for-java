@@ -10,12 +10,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** StorageAppliancePatchParameters represents the body of the request to patch storage appliance properties. */
+/**
+ * StorageAppliancePatchParameters represents the body of the request to patch storage appliance properties.
+ */
 @Fluent
 public final class StorageAppliancePatchParameters {
     /*
      * StorageAppliancePatchProperties represents the properties of the storage appliance that can be patched.
-     *
+     * 
      * The list of the resource properties.
      */
     @JsonProperty(value = "properties")
@@ -28,16 +30,18 @@ public final class StorageAppliancePatchParameters {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of StorageAppliancePatchParameters class. */
+    /**
+     * Creates an instance of StorageAppliancePatchParameters class.
+     */
     public StorageAppliancePatchParameters() {
     }
 
     /**
      * Get the innerProperties property: StorageAppliancePatchProperties represents the properties of the storage
      * appliance that can be patched.
-     *
-     * <p>The list of the resource properties.
-     *
+     * 
+     * The list of the resource properties.
+     * 
      * @return the innerProperties value.
      */
     private StorageAppliancePatchProperties innerProperties() {
@@ -46,7 +50,7 @@ public final class StorageAppliancePatchParameters {
 
     /**
      * Get the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -55,7 +59,7 @@ public final class StorageAppliancePatchParameters {
 
     /**
      * Set the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the StorageAppliancePatchParameters object itself.
      */
@@ -66,7 +70,7 @@ public final class StorageAppliancePatchParameters {
 
     /**
      * Get the serialNumber property: The serial number for the storage appliance.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -75,7 +79,7 @@ public final class StorageAppliancePatchParameters {
 
     /**
      * Set the serialNumber property: The serial number for the storage appliance.
-     *
+     * 
      * @param serialNumber the serialNumber value to set.
      * @return the StorageAppliancePatchParameters object itself.
      */
@@ -89,7 +93,7 @@ public final class StorageAppliancePatchParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

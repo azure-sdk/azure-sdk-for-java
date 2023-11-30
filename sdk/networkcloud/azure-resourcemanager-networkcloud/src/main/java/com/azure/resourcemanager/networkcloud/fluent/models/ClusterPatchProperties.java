@@ -11,14 +11,13 @@ import com.azure.resourcemanager.networkcloud.models.ValidationThreshold;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** ClusterPatchProperties represents the properties of the cluster for patching. */
+/**
+ * ClusterPatchProperties represents the properties of the cluster for patching.
+ */
 @Fluent
 public final class ClusterPatchProperties {
     /*
      * RackDefinition represents details regarding the rack.
-     *
-     * The rack definition that is intended to reflect only a single rack in a single rack cluster, or an aggregator
-     * rack in a multi-rack cluster.
      */
     @JsonProperty(value = "aggregatorOrSingleRackDefinition")
     private RackDefinition aggregatorOrSingleRackDefinition;
@@ -32,17 +31,12 @@ public final class ClusterPatchProperties {
     /*
      * ServicePrincipalInformation represents the details of the service principal to be used by the cluster during Arc
      * Appliance installation.
-     *
-     * The service principal to be used by the cluster during Arc Appliance installation.
      */
     @JsonProperty(value = "clusterServicePrincipal")
     private ServicePrincipalInformation clusterServicePrincipal;
 
     /*
      * ValidationThreshold indicates allowed machine and node hardware and deployment failures.
-     *
-     * The validation threshold indicating the allowable failures of compute machines during environment validation and
-     * deployment.
      */
     @JsonProperty(value = "computeDeploymentThreshold")
     private ValidationThreshold computeDeploymentThreshold;
@@ -54,16 +48,15 @@ public final class ClusterPatchProperties {
     @JsonProperty(value = "computeRackDefinitions")
     private List<RackDefinition> computeRackDefinitions;
 
-    /** Creates an instance of ClusterPatchProperties class. */
+    /**
+     * Creates an instance of ClusterPatchProperties class.
+     */
     public ClusterPatchProperties() {
     }
 
     /**
      * Get the aggregatorOrSingleRackDefinition property: RackDefinition represents details regarding the rack.
-     *
-     * <p>The rack definition that is intended to reflect only a single rack in a single rack cluster, or an aggregator
-     * rack in a multi-rack cluster.
-     *
+     * 
      * @return the aggregatorOrSingleRackDefinition value.
      */
     public RackDefinition aggregatorOrSingleRackDefinition() {
@@ -72,15 +65,12 @@ public final class ClusterPatchProperties {
 
     /**
      * Set the aggregatorOrSingleRackDefinition property: RackDefinition represents details regarding the rack.
-     *
-     * <p>The rack definition that is intended to reflect only a single rack in a single rack cluster, or an aggregator
-     * rack in a multi-rack cluster.
-     *
+     * 
      * @param aggregatorOrSingleRackDefinition the aggregatorOrSingleRackDefinition value to set.
      * @return the ClusterPatchProperties object itself.
      */
-    public ClusterPatchProperties withAggregatorOrSingleRackDefinition(
-        RackDefinition aggregatorOrSingleRackDefinition) {
+    public ClusterPatchProperties
+        withAggregatorOrSingleRackDefinition(RackDefinition aggregatorOrSingleRackDefinition) {
         this.aggregatorOrSingleRackDefinition = aggregatorOrSingleRackDefinition;
         return this;
     }
@@ -88,7 +78,7 @@ public final class ClusterPatchProperties {
     /**
      * Get the clusterLocation property: The customer-provided location information to identify where the cluster
      * resides.
-     *
+     * 
      * @return the clusterLocation value.
      */
     public String clusterLocation() {
@@ -98,7 +88,7 @@ public final class ClusterPatchProperties {
     /**
      * Set the clusterLocation property: The customer-provided location information to identify where the cluster
      * resides.
-     *
+     * 
      * @param clusterLocation the clusterLocation value to set.
      * @return the ClusterPatchProperties object itself.
      */
@@ -110,9 +100,7 @@ public final class ClusterPatchProperties {
     /**
      * Get the clusterServicePrincipal property: ServicePrincipalInformation represents the details of the service
      * principal to be used by the cluster during Arc Appliance installation.
-     *
-     * <p>The service principal to be used by the cluster during Arc Appliance installation.
-     *
+     * 
      * @return the clusterServicePrincipal value.
      */
     public ServicePrincipalInformation clusterServicePrincipal() {
@@ -122,9 +110,7 @@ public final class ClusterPatchProperties {
     /**
      * Set the clusterServicePrincipal property: ServicePrincipalInformation represents the details of the service
      * principal to be used by the cluster during Arc Appliance installation.
-     *
-     * <p>The service principal to be used by the cluster during Arc Appliance installation.
-     *
+     * 
      * @param clusterServicePrincipal the clusterServicePrincipal value to set.
      * @return the ClusterPatchProperties object itself.
      */
@@ -136,10 +122,7 @@ public final class ClusterPatchProperties {
     /**
      * Get the computeDeploymentThreshold property: ValidationThreshold indicates allowed machine and node hardware and
      * deployment failures.
-     *
-     * <p>The validation threshold indicating the allowable failures of compute machines during environment validation
-     * and deployment.
-     *
+     * 
      * @return the computeDeploymentThreshold value.
      */
     public ValidationThreshold computeDeploymentThreshold() {
@@ -149,10 +132,7 @@ public final class ClusterPatchProperties {
     /**
      * Set the computeDeploymentThreshold property: ValidationThreshold indicates allowed machine and node hardware and
      * deployment failures.
-     *
-     * <p>The validation threshold indicating the allowable failures of compute machines during environment validation
-     * and deployment.
-     *
+     * 
      * @param computeDeploymentThreshold the computeDeploymentThreshold value to set.
      * @return the ClusterPatchProperties object itself.
      */
@@ -164,7 +144,7 @@ public final class ClusterPatchProperties {
     /**
      * Get the computeRackDefinitions property: The list of rack definitions for the compute racks in a multi-rack
      * cluster, or an empty list in a single-rack cluster.
-     *
+     * 
      * @return the computeRackDefinitions value.
      */
     public List<RackDefinition> computeRackDefinitions() {
@@ -174,7 +154,7 @@ public final class ClusterPatchProperties {
     /**
      * Set the computeRackDefinitions property: The list of rack definitions for the compute racks in a multi-rack
      * cluster, or an empty list in a single-rack cluster.
-     *
+     * 
      * @param computeRackDefinitions the computeRackDefinitions value to set.
      * @return the ClusterPatchProperties object itself.
      */
@@ -185,7 +165,7 @@ public final class ClusterPatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
