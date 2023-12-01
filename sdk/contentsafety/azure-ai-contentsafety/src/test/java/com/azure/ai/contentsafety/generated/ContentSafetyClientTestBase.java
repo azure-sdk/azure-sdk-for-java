@@ -8,8 +8,6 @@ package com.azure.ai.contentsafety.generated;
 // If you wish to modify these files, please copy them out of the 'generated' package, and modify there.
 // See https://aka.ms/azsdk/dpg/java/tests for guide on adding a test.
 
-import com.azure.ai.contentsafety.BlocklistClient;
-import com.azure.ai.contentsafety.BlocklistClientBuilder;
 import com.azure.ai.contentsafety.ContentSafetyClient;
 import com.azure.ai.contentsafety.ContentSafetyClientBuilder;
 import com.azure.core.credential.AccessToken;
@@ -25,8 +23,6 @@ import reactor.core.publisher.Mono;
 
 class ContentSafetyClientTestBase extends TestProxyTestBase {
     protected ContentSafetyClient contentSafetyClient;
-
-    protected BlocklistClient blocklistClient;
 
     @Override
     protected void beforeTest() {
@@ -44,21 +40,6 @@ class ContentSafetyClientTestBase extends TestProxyTestBase {
             contentSafetyClientbuilder.credential(new DefaultAzureCredentialBuilder().build());
         }
         contentSafetyClient = contentSafetyClientbuilder.buildClient();
-
-        BlocklistClientBuilder blocklistClientbuilder
-            = new BlocklistClientBuilder().endpoint(Configuration.getGlobalConfiguration().get("ENDPOINT", "endpoint"))
-                .httpClient(HttpClient.createDefault())
-                .httpLogOptions(new HttpLogOptions().setLogLevel(HttpLogDetailLevel.BASIC));
-        if (getTestMode() == TestMode.PLAYBACK) {
-            blocklistClientbuilder.httpClient(interceptorManager.getPlaybackClient())
-                .credential(request -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)));
-        } else if (getTestMode() == TestMode.RECORD) {
-            blocklistClientbuilder.addPolicy(interceptorManager.getRecordPolicy())
-                .credential(new DefaultAzureCredentialBuilder().build());
-        } else if (getTestMode() == TestMode.LIVE) {
-            blocklistClientbuilder.credential(new DefaultAzureCredentialBuilder().build());
-        }
-        blocklistClient = blocklistClientbuilder.buildClient();
 
     }
 }

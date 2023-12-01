@@ -6,10 +6,14 @@ package com.azure.ai.contentsafety.implementation;
 
 import com.azure.ai.contentsafety.ContentSafetyServiceVersion;
 import com.azure.core.annotation.BodyParam;
+import com.azure.core.annotation.Delete;
 import com.azure.core.annotation.ExpectedResponses;
+import com.azure.core.annotation.Get;
 import com.azure.core.annotation.HeaderParam;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
+import com.azure.core.annotation.Patch;
+import com.azure.core.annotation.PathParam;
 import com.azure.core.annotation.Post;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -24,14 +28,22 @@ import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
+import com.azure.core.http.rest.PagedFlux;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.PagedResponse;
+import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.RequestOptions;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.UrlBuilder;
 import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.core.util.serializer.SerializerAdapter;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import reactor.core.publisher.Mono;
 
 /**
@@ -160,7 +172,7 @@ public final class ContentSafetyClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> analyzeText(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
-            @BodyParam("application/json") BinaryData options, RequestOptions requestOptions, Context context);
+            @BodyParam("application/json") BinaryData body, RequestOptions requestOptions, Context context);
 
         @Post("/text:analyze")
         @ExpectedResponses({ 200 })
@@ -170,7 +182,7 @@ public final class ContentSafetyClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> analyzeTextSync(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
-            @BodyParam("application/json") BinaryData options, RequestOptions requestOptions, Context context);
+            @BodyParam("application/json") BinaryData body, RequestOptions requestOptions, Context context);
 
         @Post("/image:analyze")
         @ExpectedResponses({ 200 })
@@ -180,7 +192,7 @@ public final class ContentSafetyClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> analyzeImage(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
-            @BodyParam("application/json") BinaryData options, RequestOptions requestOptions, Context context);
+            @BodyParam("application/json") BinaryData body, RequestOptions requestOptions, Context context);
 
         @Post("/image:analyze")
         @ExpectedResponses({ 200 })
@@ -190,7 +202,221 @@ public final class ContentSafetyClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> analyzeImageSync(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
-            @BodyParam("application/json") BinaryData options, RequestOptions requestOptions, Context context);
+            @BodyParam("application/json") BinaryData body, RequestOptions requestOptions, Context context);
+
+        @Get("/text/blocklists/{blocklistName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getTextBlocklist(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("blocklistName") String blocklistName,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Get("/text/blocklists/{blocklistName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getTextBlocklistSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("blocklistName") String blocklistName,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Patch("/text/blocklists/{blocklistName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> createOrUpdateTextBlocklist(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("blocklistName") String blocklistName,
+            @HeaderParam("Content-Type") String contentType, @HeaderParam("accept") String accept,
+            @BodyParam("application/merge-patch+json") BinaryData resource, RequestOptions requestOptions,
+            Context context);
+
+        @Patch("/text/blocklists/{blocklistName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> createOrUpdateTextBlocklistSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("blocklistName") String blocklistName,
+            @HeaderParam("Content-Type") String contentType, @HeaderParam("accept") String accept,
+            @BodyParam("application/merge-patch+json") BinaryData resource, RequestOptions requestOptions,
+            Context context);
+
+        @Delete("/text/blocklists/{blocklistName}")
+        @ExpectedResponses({ 204 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<Void>> deleteTextBlocklist(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("blocklistName") String blocklistName,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Delete("/text/blocklists/{blocklistName}")
+        @ExpectedResponses({ 204 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<Void> deleteTextBlocklistSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("blocklistName") String blocklistName,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Get("/text/blocklists")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> listTextBlocklists(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            RequestOptions requestOptions, Context context);
+
+        @Get("/text/blocklists")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> listTextBlocklistsSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            RequestOptions requestOptions, Context context);
+
+        @Post("/text/blocklists/{blocklistName}:addOrUpdateBlocklistItems")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> addOrUpdateBlocklistItems(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("blocklistName") String blocklistName,
+            @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData addOrUpdateTextBlocklistItemsOptions,
+            RequestOptions requestOptions, Context context);
+
+        @Post("/text/blocklists/{blocklistName}:addOrUpdateBlocklistItems")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> addOrUpdateBlocklistItemsSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("blocklistName") String blocklistName,
+            @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData addOrUpdateTextBlocklistItemsOptions,
+            RequestOptions requestOptions, Context context);
+
+        @Post("/text/blocklists/{blocklistName}:removeBlocklistItems")
+        @ExpectedResponses({ 204 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<Void>> removeBlocklistItems(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("blocklistName") String blocklistName,
+            @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData removeTextBlocklistItemsOptions, RequestOptions requestOptions,
+            Context context);
+
+        @Post("/text/blocklists/{blocklistName}:removeBlocklistItems")
+        @ExpectedResponses({ 204 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<Void> removeBlocklistItemsSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("blocklistName") String blocklistName,
+            @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData removeTextBlocklistItemsOptions, RequestOptions requestOptions,
+            Context context);
+
+        @Get("/text/blocklists/{blocklistName}/blocklistItems/{blocklistItemId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getTextBlocklistItem(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("blocklistName") String blocklistName,
+            @PathParam("blocklistItemId") String blocklistItemId, @HeaderParam("accept") String accept,
+            RequestOptions requestOptions, Context context);
+
+        @Get("/text/blocklists/{blocklistName}/blocklistItems/{blocklistItemId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getTextBlocklistItemSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("blocklistName") String blocklistName,
+            @PathParam("blocklistItemId") String blocklistItemId, @HeaderParam("accept") String accept,
+            RequestOptions requestOptions, Context context);
+
+        @Get("/text/blocklists/{blocklistName}/blocklistItems")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> listTextBlocklistItems(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("blocklistName") String blocklistName,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Get("/text/blocklists/{blocklistName}/blocklistItems")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> listTextBlocklistItemsSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("blocklistName") String blocklistName,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> listTextBlocklistsNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("endpoint") String endpoint,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> listTextBlocklistsNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("endpoint") String endpoint, @HeaderParam("accept") String accept, RequestOptions requestOptions,
+            Context context);
+
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> listTextBlocklistItemsNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("endpoint") String endpoint,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> listTextBlocklistItemsNextSync(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("endpoint") String endpoint,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
     }
 
     /**
@@ -235,7 +461,7 @@ public final class ContentSafetyClientImpl {
      * }
      * }</pre>
      * 
-     * @param options The text analysis request.
+     * @param body The text analysis request.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -244,10 +470,10 @@ public final class ContentSafetyClientImpl {
      * @return the text analysis response along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> analyzeTextWithResponseAsync(BinaryData options, RequestOptions requestOptions) {
+    public Mono<Response<BinaryData>> analyzeTextWithResponseAsync(BinaryData body, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(context -> service.analyzeText(this.getEndpoint(),
-            this.getServiceVersion().getVersion(), accept, options, requestOptions, context));
+            this.getServiceVersion().getVersion(), accept, body, requestOptions, context));
     }
 
     /**
@@ -292,7 +518,7 @@ public final class ContentSafetyClientImpl {
      * }
      * }</pre>
      * 
-     * @param options The text analysis request.
+     * @param body The text analysis request.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -301,9 +527,9 @@ public final class ContentSafetyClientImpl {
      * @return the text analysis response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> analyzeTextWithResponse(BinaryData options, RequestOptions requestOptions) {
+    public Response<BinaryData> analyzeTextWithResponse(BinaryData body, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.analyzeTextSync(this.getEndpoint(), this.getServiceVersion().getVersion(), accept, options,
+        return service.analyzeTextSync(this.getEndpoint(), this.getServiceVersion().getVersion(), accept, body,
             requestOptions, Context.NONE);
     }
 
@@ -341,7 +567,7 @@ public final class ContentSafetyClientImpl {
      * }
      * }</pre>
      * 
-     * @param options The image analysis request.
+     * @param body The image analysis request.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -350,10 +576,10 @@ public final class ContentSafetyClientImpl {
      * @return the image analysis response along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> analyzeImageWithResponseAsync(BinaryData options, RequestOptions requestOptions) {
+    public Mono<Response<BinaryData>> analyzeImageWithResponseAsync(BinaryData body, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(context -> service.analyzeImage(this.getEndpoint(),
-            this.getServiceVersion().getVersion(), accept, options, requestOptions, context));
+            this.getServiceVersion().getVersion(), accept, body, requestOptions, context));
     }
 
     /**
@@ -390,7 +616,7 @@ public final class ContentSafetyClientImpl {
      * }
      * }</pre>
      * 
-     * @param options The image analysis request.
+     * @param body The image analysis request.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -399,9 +625,1002 @@ public final class ContentSafetyClientImpl {
      * @return the image analysis response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> analyzeImageWithResponse(BinaryData options, RequestOptions requestOptions) {
+    public Response<BinaryData> analyzeImageWithResponse(BinaryData body, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.analyzeImageSync(this.getEndpoint(), this.getServiceVersion().getVersion(), accept, options,
+        return service.analyzeImageSync(this.getEndpoint(), this.getServiceVersion().getVersion(), accept, body,
             requestOptions, Context.NONE);
+    }
+
+    /**
+     * Get Text Blocklist By blocklistName
+     * 
+     * Returns text blocklist details.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistName: String (Required)
+     *     description: String (Optional)
+     * }
+     * }</pre>
+     * 
+     * @param blocklistName Text blocklist name.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return text Blocklist along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getTextBlocklistWithResponseAsync(String blocklistName,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.getTextBlocklist(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), blocklistName, accept, requestOptions, context));
+    }
+
+    /**
+     * Get Text Blocklist By blocklistName
+     * 
+     * Returns text blocklist details.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistName: String (Required)
+     *     description: String (Optional)
+     * }
+     * }</pre>
+     * 
+     * @param blocklistName Text blocklist name.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return text Blocklist along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getTextBlocklistWithResponse(String blocklistName, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.getTextBlocklistSync(this.getEndpoint(), this.getServiceVersion().getVersion(), blocklistName,
+            accept, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Create Or Update Text Blocklist
+     * 
+     * Updates a text blocklist. If the blocklistName does not exist, a new blocklist will be created.
+     * <p>
+     * <strong>Request Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistName: String (Required)
+     *     description: String (Optional)
+     * }
+     * }</pre>
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistName: String (Required)
+     *     description: String (Optional)
+     * }
+     * }</pre>
+     * 
+     * @param blocklistName Text blocklist name.
+     * @param resource The resource instance.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return text Blocklist along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> createOrUpdateTextBlocklistWithResponseAsync(String blocklistName,
+        BinaryData resource, RequestOptions requestOptions) {
+        final String contentType = "application/merge-patch+json";
+        final String accept = "application/json";
+        return FluxUtil.withContext(
+            context -> service.createOrUpdateTextBlocklist(this.getEndpoint(), this.getServiceVersion().getVersion(),
+                blocklistName, contentType, accept, resource, requestOptions, context));
+    }
+
+    /**
+     * Create Or Update Text Blocklist
+     * 
+     * Updates a text blocklist. If the blocklistName does not exist, a new blocklist will be created.
+     * <p>
+     * <strong>Request Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistName: String (Required)
+     *     description: String (Optional)
+     * }
+     * }</pre>
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistName: String (Required)
+     *     description: String (Optional)
+     * }
+     * }</pre>
+     * 
+     * @param blocklistName Text blocklist name.
+     * @param resource The resource instance.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return text Blocklist along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> createOrUpdateTextBlocklistWithResponse(String blocklistName, BinaryData resource,
+        RequestOptions requestOptions) {
+        final String contentType = "application/merge-patch+json";
+        final String accept = "application/json";
+        return service.createOrUpdateTextBlocklistSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
+            blocklistName, contentType, accept, resource, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Delete Text Blocklist By blocklistName
+     * 
+     * Deletes a text blocklist.
+     * 
+     * @param blocklistName Text blocklist name.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> deleteTextBlocklistWithResponseAsync(String blocklistName,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.deleteTextBlocklist(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), blocklistName, accept, requestOptions, context));
+    }
+
+    /**
+     * Delete Text Blocklist By blocklistName
+     * 
+     * Deletes a text blocklist.
+     * 
+     * @param blocklistName Text blocklist name.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> deleteTextBlocklistWithResponse(String blocklistName, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.deleteTextBlocklistSync(this.getEndpoint(), this.getServiceVersion().getVersion(), blocklistName,
+            accept, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Get All Text Blocklists
+     * 
+     * Get all text blocklists details.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistName: String (Required)
+     *     description: String (Optional)
+     * }
+     * }</pre>
+     * 
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return all text blocklists details along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BinaryData>> listTextBlocklistsSinglePageAsync(RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listTextBlocklists(this.getEndpoint(),
+                this.getServiceVersion().getVersion(), accept, requestOptions, context))
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
+    }
+
+    /**
+     * Get All Text Blocklists
+     * 
+     * Get all text blocklists details.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistName: String (Required)
+     *     description: String (Optional)
+     * }
+     * }</pre>
+     * 
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return all text blocklists details as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedFlux<BinaryData> listTextBlocklistsAsync(RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
+        return new PagedFlux<>(() -> listTextBlocklistsSinglePageAsync(requestOptions),
+            nextLink -> listTextBlocklistsNextSinglePageAsync(nextLink, requestOptionsForNextPage));
+    }
+
+    /**
+     * Get All Text Blocklists
+     * 
+     * Get all text blocklists details.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistName: String (Required)
+     *     description: String (Optional)
+     * }
+     * }</pre>
+     * 
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return all text blocklists details along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BinaryData> listTextBlocklistsSinglePage(RequestOptions requestOptions) {
+        final String accept = "application/json";
+        Response<BinaryData> res = service.listTextBlocklistsSync(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), accept, requestOptions, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+            getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
+    }
+
+    /**
+     * Get All Text Blocklists
+     * 
+     * Get all text blocklists details.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistName: String (Required)
+     *     description: String (Optional)
+     * }
+     * }</pre>
+     * 
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return all text blocklists details as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BinaryData> listTextBlocklists(RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
+        return new PagedIterable<>(() -> listTextBlocklistsSinglePage(requestOptions),
+            nextLink -> listTextBlocklistsNextSinglePage(nextLink, requestOptionsForNextPage));
+    }
+
+    /**
+     * Add or update BlocklistItems To Text Blocklist
+     * 
+     * Add or update blocklistItems to a text blocklist. You can add or update at most 100 blocklistItems in one
+     * request.
+     * <p>
+     * <strong>Request Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistItems (Required): [
+     *          (Required){
+     *             blocklistItemId: String (Required)
+     *             description: String (Optional)
+     *             text: String (Required)
+     *         }
+     *     ]
+     * }
+     * }</pre>
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistItems (Required): [
+     *          (Required){
+     *             blocklistItemId: String (Required)
+     *             description: String (Optional)
+     *             text: String (Required)
+     *         }
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * @param blocklistName Text blocklist name.
+     * @param addOrUpdateTextBlocklistItemsOptions The request to add blocklistItems to a text blocklist.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response of adding blocklistItems to the text blocklist along with {@link Response} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> addOrUpdateBlocklistItemsWithResponseAsync(String blocklistName,
+        BinaryData addOrUpdateTextBlocklistItemsOptions, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(
+            context -> service.addOrUpdateBlocklistItems(this.getEndpoint(), this.getServiceVersion().getVersion(),
+                blocklistName, accept, addOrUpdateTextBlocklistItemsOptions, requestOptions, context));
+    }
+
+    /**
+     * Add or update BlocklistItems To Text Blocklist
+     * 
+     * Add or update blocklistItems to a text blocklist. You can add or update at most 100 blocklistItems in one
+     * request.
+     * <p>
+     * <strong>Request Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistItems (Required): [
+     *          (Required){
+     *             blocklistItemId: String (Required)
+     *             description: String (Optional)
+     *             text: String (Required)
+     *         }
+     *     ]
+     * }
+     * }</pre>
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistItems (Required): [
+     *          (Required){
+     *             blocklistItemId: String (Required)
+     *             description: String (Optional)
+     *             text: String (Required)
+     *         }
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * @param blocklistName Text blocklist name.
+     * @param addOrUpdateTextBlocklistItemsOptions The request to add blocklistItems to a text blocklist.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response of adding blocklistItems to the text blocklist along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> addOrUpdateBlocklistItemsWithResponse(String blocklistName,
+        BinaryData addOrUpdateTextBlocklistItemsOptions, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.addOrUpdateBlocklistItemsSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
+            blocklistName, accept, addOrUpdateTextBlocklistItemsOptions, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Remove BlocklistItems From Text Blocklist
+     * 
+     * Remove blocklistItems from a text blocklist. You can remove at most 100 BlocklistItems in one request.
+     * <p>
+     * <strong>Request Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistItemIds (Required): [
+     *         String (Required)
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * @param blocklistName Text blocklist name.
+     * @param removeTextBlocklistItemsOptions The request to remove blocklistItems from a text blocklist.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> removeBlocklistItemsWithResponseAsync(String blocklistName,
+        BinaryData removeTextBlocklistItemsOptions, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(
+            context -> service.removeBlocklistItems(this.getEndpoint(), this.getServiceVersion().getVersion(),
+                blocklistName, accept, removeTextBlocklistItemsOptions, requestOptions, context));
+    }
+
+    /**
+     * Remove BlocklistItems From Text Blocklist
+     * 
+     * Remove blocklistItems from a text blocklist. You can remove at most 100 BlocklistItems in one request.
+     * <p>
+     * <strong>Request Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistItemIds (Required): [
+     *         String (Required)
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * @param blocklistName Text blocklist name.
+     * @param removeTextBlocklistItemsOptions The request to remove blocklistItems from a text blocklist.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> removeBlocklistItemsWithResponse(String blocklistName,
+        BinaryData removeTextBlocklistItemsOptions, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.removeBlocklistItemsSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
+            blocklistName, accept, removeTextBlocklistItemsOptions, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Get BlocklistItem By blocklistName And blocklistItemId
+     * 
+     * Get blocklistItem by blocklistName and blocklistItemId from a text blocklist.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistItemId: String (Required)
+     *     description: String (Optional)
+     *     text: String (Required)
+     * }
+     * }</pre>
+     * 
+     * @param blocklistName Text blocklist name.
+     * @param blocklistItemId The service will generate a BlocklistItemId, which will be a UUID.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return blocklistItem by blocklistName and blocklistItemId from a text blocklist along with {@link Response} on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getTextBlocklistItemWithResponseAsync(String blocklistName,
+        String blocklistItemId, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.getTextBlocklistItem(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), blocklistName, blocklistItemId, accept, requestOptions, context));
+    }
+
+    /**
+     * Get BlocklistItem By blocklistName And blocklistItemId
+     * 
+     * Get blocklistItem by blocklistName and blocklistItemId from a text blocklist.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistItemId: String (Required)
+     *     description: String (Optional)
+     *     text: String (Required)
+     * }
+     * }</pre>
+     * 
+     * @param blocklistName Text blocklist name.
+     * @param blocklistItemId The service will generate a BlocklistItemId, which will be a UUID.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return blocklistItem by blocklistName and blocklistItemId from a text blocklist along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getTextBlocklistItemWithResponse(String blocklistName, String blocklistItemId,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.getTextBlocklistItemSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
+            blocklistName, blocklistItemId, accept, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Get All BlocklistItems By blocklistName
+     * 
+     * Get all blocklistItems in a text blocklist.
+     * <p>
+     * <strong>Query Parameters</strong>
+     * </p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr>
+     * <th>Name</th>
+     * <th>Type</th>
+     * <th>Required</th>
+     * <th>Description</th>
+     * </tr>
+     * <tr>
+     * <td>top</td>
+     * <td>Integer</td>
+     * <td>No</td>
+     * <td>The number of result items to return.</td>
+     * </tr>
+     * <tr>
+     * <td>skip</td>
+     * <td>Integer</td>
+     * <td>No</td>
+     * <td>The number of result items to skip.</td>
+     * </tr>
+     * <tr>
+     * <td>maxpagesize</td>
+     * <td>Integer</td>
+     * <td>No</td>
+     * <td>The maximum number of result items per page.</td>
+     * </tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistItemId: String (Required)
+     *     description: String (Optional)
+     *     text: String (Required)
+     * }
+     * }</pre>
+     * 
+     * @param blocklistName Text blocklist name.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return all blocklistItems in a text blocklist along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BinaryData>> listTextBlocklistItemsSinglePageAsync(String blocklistName,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listTextBlocklistItems(this.getEndpoint(),
+                this.getServiceVersion().getVersion(), blocklistName, accept, requestOptions, context))
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
+    }
+
+    /**
+     * Get All BlocklistItems By blocklistName
+     * 
+     * Get all blocklistItems in a text blocklist.
+     * <p>
+     * <strong>Query Parameters</strong>
+     * </p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr>
+     * <th>Name</th>
+     * <th>Type</th>
+     * <th>Required</th>
+     * <th>Description</th>
+     * </tr>
+     * <tr>
+     * <td>top</td>
+     * <td>Integer</td>
+     * <td>No</td>
+     * <td>The number of result items to return.</td>
+     * </tr>
+     * <tr>
+     * <td>skip</td>
+     * <td>Integer</td>
+     * <td>No</td>
+     * <td>The number of result items to skip.</td>
+     * </tr>
+     * <tr>
+     * <td>maxpagesize</td>
+     * <td>Integer</td>
+     * <td>No</td>
+     * <td>The maximum number of result items per page.</td>
+     * </tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistItemId: String (Required)
+     *     description: String (Optional)
+     *     text: String (Required)
+     * }
+     * }</pre>
+     * 
+     * @param blocklistName Text blocklist name.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return all blocklistItems in a text blocklist as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedFlux<BinaryData> listTextBlocklistItemsAsync(String blocklistName, RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
+        return new PagedFlux<>((pageSize) -> {
+            RequestOptions requestOptionsLocal = requestOptions == null ? new RequestOptions() : requestOptions;
+            if (pageSize != null) {
+                requestOptionsLocal.addRequestCallback(requestLocal -> {
+                    UrlBuilder urlBuilder = UrlBuilder.parse(requestLocal.getUrl());
+                    urlBuilder.setQueryParameter("maxpagesize", String.valueOf(pageSize));
+                    requestLocal.setUrl(urlBuilder.toString());
+                });
+            }
+            return listTextBlocklistItemsSinglePageAsync(blocklistName, requestOptionsLocal);
+        }, (nextLink, pageSize) -> {
+            RequestOptions requestOptionsLocal = new RequestOptions();
+            requestOptionsLocal.setContext(requestOptionsForNextPage.getContext());
+            if (pageSize != null) {
+                requestOptionsLocal.addRequestCallback(requestLocal -> {
+                    UrlBuilder urlBuilder = UrlBuilder.parse(requestLocal.getUrl());
+                    urlBuilder.setQueryParameter("maxpagesize", String.valueOf(pageSize));
+                    requestLocal.setUrl(urlBuilder.toString());
+                });
+            }
+            return listTextBlocklistItemsNextSinglePageAsync(nextLink, requestOptionsLocal);
+        });
+    }
+
+    /**
+     * Get All BlocklistItems By blocklistName
+     * 
+     * Get all blocklistItems in a text blocklist.
+     * <p>
+     * <strong>Query Parameters</strong>
+     * </p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr>
+     * <th>Name</th>
+     * <th>Type</th>
+     * <th>Required</th>
+     * <th>Description</th>
+     * </tr>
+     * <tr>
+     * <td>top</td>
+     * <td>Integer</td>
+     * <td>No</td>
+     * <td>The number of result items to return.</td>
+     * </tr>
+     * <tr>
+     * <td>skip</td>
+     * <td>Integer</td>
+     * <td>No</td>
+     * <td>The number of result items to skip.</td>
+     * </tr>
+     * <tr>
+     * <td>maxpagesize</td>
+     * <td>Integer</td>
+     * <td>No</td>
+     * <td>The maximum number of result items per page.</td>
+     * </tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistItemId: String (Required)
+     *     description: String (Optional)
+     *     text: String (Required)
+     * }
+     * }</pre>
+     * 
+     * @param blocklistName Text blocklist name.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return all blocklistItems in a text blocklist along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BinaryData> listTextBlocklistItemsSinglePage(String blocklistName,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        Response<BinaryData> res = service.listTextBlocklistItemsSync(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), blocklistName, accept, requestOptions, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+            getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
+    }
+
+    /**
+     * Get All BlocklistItems By blocklistName
+     * 
+     * Get all blocklistItems in a text blocklist.
+     * <p>
+     * <strong>Query Parameters</strong>
+     * </p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr>
+     * <th>Name</th>
+     * <th>Type</th>
+     * <th>Required</th>
+     * <th>Description</th>
+     * </tr>
+     * <tr>
+     * <td>top</td>
+     * <td>Integer</td>
+     * <td>No</td>
+     * <td>The number of result items to return.</td>
+     * </tr>
+     * <tr>
+     * <td>skip</td>
+     * <td>Integer</td>
+     * <td>No</td>
+     * <td>The number of result items to skip.</td>
+     * </tr>
+     * <tr>
+     * <td>maxpagesize</td>
+     * <td>Integer</td>
+     * <td>No</td>
+     * <td>The maximum number of result items per page.</td>
+     * </tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistItemId: String (Required)
+     *     description: String (Optional)
+     *     text: String (Required)
+     * }
+     * }</pre>
+     * 
+     * @param blocklistName Text blocklist name.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return all blocklistItems in a text blocklist as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BinaryData> listTextBlocklistItems(String blocklistName, RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+            requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext() : Context.NONE);
+        return new PagedIterable<>((pageSize) -> {
+            RequestOptions requestOptionsLocal = requestOptions == null ? new RequestOptions() : requestOptions;
+            if (pageSize != null) {
+                requestOptionsLocal.addRequestCallback(requestLocal -> {
+                    UrlBuilder urlBuilder = UrlBuilder.parse(requestLocal.getUrl());
+                    urlBuilder.setQueryParameter("maxpagesize", String.valueOf(pageSize));
+                    requestLocal.setUrl(urlBuilder.toString());
+                });
+            }
+            return listTextBlocklistItemsSinglePage(blocklistName, requestOptionsLocal);
+        }, (nextLink, pageSize) -> {
+            RequestOptions requestOptionsLocal = new RequestOptions();
+            requestOptionsLocal.setContext(requestOptionsForNextPage.getContext());
+            if (pageSize != null) {
+                requestOptionsLocal.addRequestCallback(requestLocal -> {
+                    UrlBuilder urlBuilder = UrlBuilder.parse(requestLocal.getUrl());
+                    urlBuilder.setQueryParameter("maxpagesize", String.valueOf(pageSize));
+                    requestLocal.setUrl(urlBuilder.toString());
+                });
+            }
+            return listTextBlocklistItemsNextSinglePage(nextLink, requestOptionsLocal);
+        });
+    }
+
+    /**
+     * Get All Text Blocklists
+     * 
+     * Get the next page of items.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistName: String (Required)
+     *     description: String (Optional)
+     * }
+     * }</pre>
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return paged collection of TextBlocklist items along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BinaryData>> listTextBlocklistsNextSinglePageAsync(String nextLink,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(
+            context -> service.listTextBlocklistsNext(nextLink, this.getEndpoint(), accept, requestOptions, context))
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
+    }
+
+    /**
+     * Get All Text Blocklists
+     * 
+     * Get the next page of items.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistName: String (Required)
+     *     description: String (Optional)
+     * }
+     * }</pre>
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return paged collection of TextBlocklist items along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BinaryData> listTextBlocklistsNextSinglePage(String nextLink, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        Response<BinaryData> res
+            = service.listTextBlocklistsNextSync(nextLink, this.getEndpoint(), accept, requestOptions, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+            getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
+    }
+
+    /**
+     * Get All BlocklistItems By blocklistName
+     * 
+     * Get the next page of items.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistItemId: String (Required)
+     *     description: String (Optional)
+     *     text: String (Required)
+     * }
+     * }</pre>
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return paged collection of TextBlocklistItem items along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BinaryData>> listTextBlocklistItemsNextSinglePageAsync(String nextLink,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listTextBlocklistItemsNext(nextLink, this.getEndpoint(), accept,
+                requestOptions, context))
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null));
+    }
+
+    /**
+     * Get All BlocklistItems By blocklistName
+     * 
+     * Get the next page of items.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     blocklistItemId: String (Required)
+     *     description: String (Optional)
+     *     text: String (Required)
+     * }
+     * }</pre>
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return paged collection of TextBlocklistItem items along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BinaryData> listTextBlocklistItemsNextSinglePage(String nextLink,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        Response<BinaryData> res = service.listTextBlocklistItemsNextSync(nextLink, this.getEndpoint(), accept,
+            requestOptions, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+            getValues(res.getValue(), "value"), getNextLink(res.getValue(), "nextLink"), null);
+    }
+
+    private List<BinaryData> getValues(BinaryData binaryData, String path) {
+        try {
+            Map<?, ?> obj = binaryData.toObject(Map.class);
+            List<?> values = (List<?>) obj.get(path);
+            return values.stream().map(BinaryData::fromObject).collect(Collectors.toList());
+        } catch (RuntimeException e) {
+            return null;
+        }
+    }
+
+    private String getNextLink(BinaryData binaryData, String path) {
+        try {
+            Map<?, ?> obj = binaryData.toObject(Map.class);
+            return (String) obj.get(path);
+        } catch (RuntimeException e) {
+            return null;
+        }
     }
 }
