@@ -13,7 +13,9 @@ import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Pricing properties for the relevant scope. */
+/**
+ * Pricing properties for the relevant scope.
+ */
 @Fluent
 public final class PricingProperties {
     /*
@@ -61,7 +63,9 @@ public final class PricingProperties {
     @JsonProperty(value = "extensions")
     private List<Extension> extensions;
 
-    /** Creates an instance of PricingProperties class. */
+    /**
+     * Creates an instance of PricingProperties class.
+     */
     public PricingProperties() {
     }
 
@@ -69,7 +73,7 @@ public final class PricingProperties {
      * Get the pricingTier property: The pricing tier value. Microsoft Defender for Cloud is provided in two pricing
      * tiers: free and standard. The standard tier offers advanced security capabilities, while the free tier offers
      * basic security features.
-     *
+     * 
      * @return the pricingTier value.
      */
     public PricingTier pricingTier() {
@@ -80,7 +84,7 @@ public final class PricingProperties {
      * Set the pricingTier property: The pricing tier value. Microsoft Defender for Cloud is provided in two pricing
      * tiers: free and standard. The standard tier offers advanced security capabilities, while the free tier offers
      * basic security features.
-     *
+     * 
      * @param pricingTier the pricingTier value to set.
      * @return the PricingProperties object itself.
      */
@@ -90,9 +94,10 @@ public final class PricingProperties {
     }
 
     /**
-     * Get the subPlan property: The sub-plan selected for a Standard pricing configuration, when more than one sub-plan
-     * is available. Each sub-plan enables a set of security features. When not specified, full plan is applied.
-     *
+     * Get the subPlan property: The sub-plan selected for a Standard pricing configuration, when more than one
+     * sub-plan is available. Each sub-plan enables a set of security features. When not specified, full plan is
+     * applied.
+     * 
      * @return the subPlan value.
      */
     public String subPlan() {
@@ -100,9 +105,10 @@ public final class PricingProperties {
     }
 
     /**
-     * Set the subPlan property: The sub-plan selected for a Standard pricing configuration, when more than one sub-plan
-     * is available. Each sub-plan enables a set of security features. When not specified, full plan is applied.
-     *
+     * Set the subPlan property: The sub-plan selected for a Standard pricing configuration, when more than one
+     * sub-plan is available. Each sub-plan enables a set of security features. When not specified, full plan is
+     * applied.
+     * 
      * @param subPlan the subPlan value to set.
      * @return the PricingProperties object itself.
      */
@@ -114,7 +120,7 @@ public final class PricingProperties {
     /**
      * Get the freeTrialRemainingTime property: The duration left for the subscriptions free trial period - in ISO 8601
      * format (e.g. P3Y6M4DT12H30M5S).
-     *
+     * 
      * @return the freeTrialRemainingTime value.
      */
     public Duration freeTrialRemainingTime() {
@@ -124,7 +130,7 @@ public final class PricingProperties {
     /**
      * Get the enablementTime property: Optional. If `pricingTier` is `Standard` then this property holds the date of
      * the last time the `pricingTier` was set to `Standard`, when available (e.g 2023-03-01T12:42:42.1921106Z).
-     *
+     * 
      * @return the enablementTime value.
      */
     public OffsetDateTime enablementTime() {
@@ -134,7 +140,7 @@ public final class PricingProperties {
     /**
      * Get the deprecated property: Optional. True if the plan is deprecated. If there are replacing plans they will
      * appear in `replacedBy` property.
-     *
+     * 
      * @return the deprecated value.
      */
     public Boolean deprecated() {
@@ -144,7 +150,7 @@ public final class PricingProperties {
     /**
      * Get the replacedBy property: Optional. List of plans that replace this plan. This property exists only if this
      * plan is deprecated.
-     *
+     * 
      * @return the replacedBy value.
      */
     public List<String> replacedBy() {
@@ -153,7 +159,7 @@ public final class PricingProperties {
 
     /**
      * Get the extensions property: Optional. List of extensions offered under a plan.
-     *
+     * 
      * @return the extensions value.
      */
     public List<Extension> extensions() {
@@ -162,7 +168,7 @@ public final class PricingProperties {
 
     /**
      * Set the extensions property: Optional. List of extensions offered under a plan.
-     *
+     * 
      * @param extensions the extensions value to set.
      * @return the PricingProperties object itself.
      */
@@ -173,14 +179,13 @@ public final class PricingProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (pricingTier() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property pricingTier in model PricingProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property pricingTier in model PricingProperties"));
         }
         if (extensions() != null) {
             extensions().forEach(e -> e.validate());

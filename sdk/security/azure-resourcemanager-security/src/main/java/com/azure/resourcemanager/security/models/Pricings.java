@@ -8,11 +8,13 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.fluent.models.PricingInner;
 
-/** Resource collection API of Pricings. */
+/**
+ * Resource collection API of Pricings.
+ */
 public interface Pricings {
     /**
      * Lists Microsoft Defender for Cloud pricing configurations in the subscription.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -23,7 +25,7 @@ public interface Pricings {
 
     /**
      * Lists Microsoft Defender for Cloud pricing configurations in the subscription.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of pricing configurations response.
@@ -32,20 +34,20 @@ public interface Pricings {
 
     /**
      * Gets a provided Microsoft Defender for Cloud pricing configuration in the subscription.
-     *
+     * 
      * @param pricingName name of the pricing configuration.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a provided Microsoft Defender for Cloud pricing configuration in the subscription along with {@link
-     *     Response}.
+     * @return a provided Microsoft Defender for Cloud pricing configuration in the subscription along with
+     * {@link Response}.
      */
     Response<Pricing> getWithResponse(String pricingName, Context context);
 
     /**
      * Gets a provided Microsoft Defender for Cloud pricing configuration in the subscription.
-     *
+     * 
      * @param pricingName name of the pricing configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -56,21 +58,21 @@ public interface Pricings {
 
     /**
      * Updates a provided Microsoft Defender for Cloud pricing configuration in the subscription.
-     *
+     * 
      * @param pricingName name of the pricing configuration.
      * @param pricing Pricing object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return microsoft Defender for Cloud is provided in two pricing tiers: free and standard along with {@link
-     *     Response}.
+     * @return microsoft Defender for Cloud is provided in two pricing tiers: free and standard along with
+     * {@link Response}.
      */
     Response<Pricing> updateWithResponse(String pricingName, PricingInner pricing, Context context);
 
     /**
      * Updates a provided Microsoft Defender for Cloud pricing configuration in the subscription.
-     *
+     * 
      * @param pricingName name of the pricing configuration.
      * @param pricing Pricing object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

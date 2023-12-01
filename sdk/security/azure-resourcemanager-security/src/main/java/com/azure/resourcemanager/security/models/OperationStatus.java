@@ -7,7 +7,9 @@ package com.azure.resourcemanager.security.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A status describing the success/failure of the extension's enablement/disablement operation. */
+/**
+ * A status describing the success/failure of the extension's enablement/disablement operation.
+ */
 @Fluent
 public final class OperationStatus {
     /*
@@ -22,13 +24,15 @@ public final class OperationStatus {
     @JsonProperty(value = "message")
     private String message;
 
-    /** Creates an instance of OperationStatus class. */
+    /**
+     * Creates an instance of OperationStatus class.
+     */
     public OperationStatus() {
     }
 
     /**
      * Get the code property: The operation status code.
-     *
+     * 
      * @return the code value.
      */
     public Code code() {
@@ -37,7 +41,7 @@ public final class OperationStatus {
 
     /**
      * Set the code property: The operation status code.
-     *
+     * 
      * @param code the code value to set.
      * @return the OperationStatus object itself.
      */
@@ -48,7 +52,7 @@ public final class OperationStatus {
 
     /**
      * Get the message property: Additional information regarding the success/failure of the operation.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -57,7 +61,7 @@ public final class OperationStatus {
 
     /**
      * Set the message property: Additional information regarding the success/failure of the operation.
-     *
+     * 
      * @param message the message value to set.
      * @return the OperationStatus object itself.
      */
@@ -68,7 +72,7 @@ public final class OperationStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

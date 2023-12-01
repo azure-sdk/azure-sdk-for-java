@@ -8,23 +8,33 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** A possible role to configure sending security notification alerts to. */
+/**
+ * A possible role to configure sending security notification alerts to.
+ */
 public final class Roles extends ExpandableStringEnum<Roles> {
-    /** Static value AccountAdmin for Roles. */
+    /**
+     * Static value AccountAdmin for Roles.
+     */
     public static final Roles ACCOUNT_ADMIN = fromString("AccountAdmin");
 
-    /** Static value ServiceAdmin for Roles. */
+    /**
+     * Static value ServiceAdmin for Roles.
+     */
     public static final Roles SERVICE_ADMIN = fromString("ServiceAdmin");
 
-    /** Static value Owner for Roles. */
+    /**
+     * Static value Owner for Roles.
+     */
     public static final Roles OWNER = fromString("Owner");
 
-    /** Static value Contributor for Roles. */
+    /**
+     * Static value Contributor for Roles.
+     */
     public static final Roles CONTRIBUTOR = fromString("Contributor");
 
     /**
      * Creates a new instance of Roles value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -33,7 +43,7 @@ public final class Roles extends ExpandableStringEnum<Roles> {
 
     /**
      * Creates or finds a Roles from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Roles.
      */
@@ -44,7 +54,7 @@ public final class Roles extends ExpandableStringEnum<Roles> {
 
     /**
      * Gets known Roles values.
-     *
+     * 
      * @return known Roles values.
      */
     public static Collection<Roles> values() {

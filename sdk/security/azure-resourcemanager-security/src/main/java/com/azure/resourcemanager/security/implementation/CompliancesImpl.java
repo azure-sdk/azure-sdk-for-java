@@ -21,8 +21,8 @@ public final class CompliancesImpl implements Compliances {
 
     private final com.azure.resourcemanager.security.SecurityManager serviceManager;
 
-    public CompliancesImpl(
-        CompliancesClient innerClient, com.azure.resourcemanager.security.SecurityManager serviceManager) {
+    public CompliancesImpl(CompliancesClient innerClient,
+        com.azure.resourcemanager.security.SecurityManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -40,10 +40,7 @@ public final class CompliancesImpl implements Compliances {
     public Response<Compliance> getWithResponse(String scope, String complianceName, Context context) {
         Response<ComplianceInner> inner = this.serviceClient().getWithResponse(scope, complianceName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ComplianceImpl(inner.getValue(), this.manager()));
         } else {
             return null;

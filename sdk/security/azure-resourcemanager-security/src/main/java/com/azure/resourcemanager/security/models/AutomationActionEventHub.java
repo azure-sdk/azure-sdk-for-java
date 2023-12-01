@@ -35,13 +35,15 @@ public final class AutomationActionEventHub extends AutomationAction {
     @JsonProperty(value = "connectionString")
     private String connectionString;
 
-    /** Creates an instance of AutomationActionEventHub class. */
+    /**
+     * Creates an instance of AutomationActionEventHub class.
+     */
     public AutomationActionEventHub() {
     }
 
     /**
      * Get the eventHubResourceId property: The target Event Hub Azure Resource ID.
-     *
+     * 
      * @return the eventHubResourceId value.
      */
     public String eventHubResourceId() {
@@ -50,7 +52,7 @@ public final class AutomationActionEventHub extends AutomationAction {
 
     /**
      * Set the eventHubResourceId property: The target Event Hub Azure Resource ID.
-     *
+     * 
      * @param eventHubResourceId the eventHubResourceId value to set.
      * @return the AutomationActionEventHub object itself.
      */
@@ -61,7 +63,7 @@ public final class AutomationActionEventHub extends AutomationAction {
 
     /**
      * Get the sasPolicyName property: The target Event Hub SAS policy name.
-     *
+     * 
      * @return the sasPolicyName value.
      */
     public String sasPolicyName() {
@@ -71,7 +73,7 @@ public final class AutomationActionEventHub extends AutomationAction {
     /**
      * Get the connectionString property: The target Event Hub connection string (it will not be included in any
      * response).
-     *
+     * 
      * @return the connectionString value.
      */
     public String connectionString() {
@@ -81,7 +83,7 @@ public final class AutomationActionEventHub extends AutomationAction {
     /**
      * Set the connectionString property: The target Event Hub connection string (it will not be included in any
      * response).
-     *
+     * 
      * @param connectionString the connectionString value to set.
      * @return the AutomationActionEventHub object itself.
      */
@@ -92,7 +94,7 @@ public final class AutomationActionEventHub extends AutomationAction {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
