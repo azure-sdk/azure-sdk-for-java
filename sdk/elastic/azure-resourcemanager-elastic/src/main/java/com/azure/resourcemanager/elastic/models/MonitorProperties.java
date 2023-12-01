@@ -7,12 +7,14 @@ package com.azure.resourcemanager.elastic.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties specific to the monitor resource. */
+/**
+ * Properties specific to the monitor resource.
+ */
 @Fluent
 public final class MonitorProperties {
     /*
      * ProvisioningState
-     *
+     * 
      * Provisioning state of the monitor resource.
      */
     @JsonProperty(value = "provisioningState")
@@ -60,15 +62,17 @@ public final class MonitorProperties {
     @JsonProperty(value = "generateApiKey")
     private Boolean generateApiKey;
 
-    /** Creates an instance of MonitorProperties class. */
+    /**
+     * Creates an instance of MonitorProperties class.
+     */
     public MonitorProperties() {
     }
 
     /**
      * Get the provisioningState property: ProvisioningState
-     *
-     * <p>Provisioning state of the monitor resource.
-     *
+     * 
+     * Provisioning state of the monitor resource.
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -77,9 +81,9 @@ public final class MonitorProperties {
 
     /**
      * Set the provisioningState property: ProvisioningState
-     *
-     * <p>Provisioning state of the monitor resource.
-     *
+     * 
+     * Provisioning state of the monitor resource.
+     * 
      * @param provisioningState the provisioningState value to set.
      * @return the MonitorProperties object itself.
      */
@@ -90,7 +94,7 @@ public final class MonitorProperties {
 
     /**
      * Get the monitoringStatus property: Flag specifying if the resource monitoring is enabled or disabled.
-     *
+     * 
      * @return the monitoringStatus value.
      */
     public MonitoringStatus monitoringStatus() {
@@ -99,7 +103,7 @@ public final class MonitorProperties {
 
     /**
      * Set the monitoringStatus property: Flag specifying if the resource monitoring is enabled or disabled.
-     *
+     * 
      * @param monitoringStatus the monitoringStatus value to set.
      * @return the MonitorProperties object itself.
      */
@@ -110,7 +114,7 @@ public final class MonitorProperties {
 
     /**
      * Get the elasticProperties property: Elastic cloud properties.
-     *
+     * 
      * @return the elasticProperties value.
      */
     public ElasticProperties elasticProperties() {
@@ -119,7 +123,7 @@ public final class MonitorProperties {
 
     /**
      * Set the elasticProperties property: Elastic cloud properties.
-     *
+     * 
      * @param elasticProperties the elasticProperties value to set.
      * @return the MonitorProperties object itself.
      */
@@ -130,7 +134,7 @@ public final class MonitorProperties {
 
     /**
      * Get the userInfo property: User information.
-     *
+     * 
      * @return the userInfo value.
      */
     public UserInfo userInfo() {
@@ -139,7 +143,7 @@ public final class MonitorProperties {
 
     /**
      * Set the userInfo property: User information.
-     *
+     * 
      * @param userInfo the userInfo value to set.
      * @return the MonitorProperties object itself.
      */
@@ -150,7 +154,7 @@ public final class MonitorProperties {
 
     /**
      * Get the version property: Version of elastic of the monitor resource.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -159,7 +163,7 @@ public final class MonitorProperties {
 
     /**
      * Set the version property: Version of elastic of the monitor resource.
-     *
+     * 
      * @param version the version value to set.
      * @return the MonitorProperties object itself.
      */
@@ -170,7 +174,7 @@ public final class MonitorProperties {
 
     /**
      * Get the liftrResourceCategory property: The liftrResourceCategory property.
-     *
+     * 
      * @return the liftrResourceCategory value.
      */
     public LiftrResourceCategories liftrResourceCategory() {
@@ -179,7 +183,7 @@ public final class MonitorProperties {
 
     /**
      * Get the liftrResourcePreference property: The priority of the resource.
-     *
+     * 
      * @return the liftrResourcePreference value.
      */
     public Integer liftrResourcePreference() {
@@ -188,7 +192,7 @@ public final class MonitorProperties {
 
     /**
      * Get the generateApiKey property: Flag to determine if User API Key has to be generated and shared.
-     *
+     * 
      * @return the generateApiKey value.
      */
     public Boolean generateApiKey() {
@@ -197,7 +201,7 @@ public final class MonitorProperties {
 
     /**
      * Set the generateApiKey property: Flag to determine if User API Key has to be generated and shared.
-     *
+     * 
      * @param generateApiKey the generateApiKey value to set.
      * @return the MonitorProperties object itself.
      */
@@ -208,7 +212,7 @@ public final class MonitorProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
