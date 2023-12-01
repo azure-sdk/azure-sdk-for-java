@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * BackupVault
- *
- * <p>Backup Vault.
+ * 
+ * Backup Vault.
  */
 @Fluent
 public final class BackupVault {
@@ -70,13 +70,15 @@ public final class BackupVault {
     @JsonProperty(value = "secureScore", access = JsonProperty.Access.WRITE_ONLY)
     private SecureScoreLevel secureScore;
 
-    /** Creates an instance of BackupVault class. */
+    /**
+     * Creates an instance of BackupVault class.
+     */
     public BackupVault() {
     }
 
     /**
      * Get the monitoringSettings property: Monitoring Settings.
-     *
+     * 
      * @return the monitoringSettings value.
      */
     public MonitoringSettings monitoringSettings() {
@@ -85,7 +87,7 @@ public final class BackupVault {
 
     /**
      * Set the monitoringSettings property: Monitoring Settings.
-     *
+     * 
      * @param monitoringSettings the monitoringSettings value to set.
      * @return the BackupVault object itself.
      */
@@ -96,7 +98,7 @@ public final class BackupVault {
 
     /**
      * Get the provisioningState property: Provisioning state of the BackupVault resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -105,7 +107,7 @@ public final class BackupVault {
 
     /**
      * Get the resourceMoveState property: Resource move state for backup vault.
-     *
+     * 
      * @return the resourceMoveState value.
      */
     public ResourceMoveState resourceMoveState() {
@@ -114,7 +116,7 @@ public final class BackupVault {
 
     /**
      * Get the resourceMoveDetails property: Resource move details for backup vault.
-     *
+     * 
      * @return the resourceMoveDetails value.
      */
     public ResourceMoveDetails resourceMoveDetails() {
@@ -123,7 +125,7 @@ public final class BackupVault {
 
     /**
      * Get the securitySettings property: Security Settings.
-     *
+     * 
      * @return the securitySettings value.
      */
     public SecuritySettings securitySettings() {
@@ -132,7 +134,7 @@ public final class BackupVault {
 
     /**
      * Set the securitySettings property: Security Settings.
-     *
+     * 
      * @param securitySettings the securitySettings value to set.
      * @return the BackupVault object itself.
      */
@@ -143,7 +145,7 @@ public final class BackupVault {
 
     /**
      * Get the storageSettings property: Storage Settings.
-     *
+     * 
      * @return the storageSettings value.
      */
     public List<StorageSetting> storageSettings() {
@@ -152,7 +154,7 @@ public final class BackupVault {
 
     /**
      * Set the storageSettings property: Storage Settings.
-     *
+     * 
      * @param storageSettings the storageSettings value to set.
      * @return the BackupVault object itself.
      */
@@ -163,7 +165,7 @@ public final class BackupVault {
 
     /**
      * Get the isVaultProtectedByResourceGuard property: Is vault protected by resource guard.
-     *
+     * 
      * @return the isVaultProtectedByResourceGuard value.
      */
     public Boolean isVaultProtectedByResourceGuard() {
@@ -172,7 +174,7 @@ public final class BackupVault {
 
     /**
      * Get the featureSettings property: Feature Settings.
-     *
+     * 
      * @return the featureSettings value.
      */
     public FeatureSettings featureSettings() {
@@ -181,7 +183,7 @@ public final class BackupVault {
 
     /**
      * Set the featureSettings property: Feature Settings.
-     *
+     * 
      * @param featureSettings the featureSettings value to set.
      * @return the BackupVault object itself.
      */
@@ -192,7 +194,7 @@ public final class BackupVault {
 
     /**
      * Get the secureScore property: Secure Score of Backup Vault.
-     *
+     * 
      * @return the secureScore value.
      */
     public SecureScoreLevel secureScore() {
@@ -201,7 +203,7 @@ public final class BackupVault {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -215,9 +217,8 @@ public final class BackupVault {
             securitySettings().validate();
         }
         if (storageSettings() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property storageSettings in model BackupVault"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property storageSettings in model BackupVault"));
         } else {
             storageSettings().forEach(e -> e.validate());
         }

@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Extended Information about the job. */
+/**
+ * Extended Information about the job.
+ */
 @Fluent
 public final class JobExtendedInfo {
     /*
@@ -56,13 +58,15 @@ public final class JobExtendedInfo {
     @JsonProperty(value = "targetRecoverPoint", access = JsonProperty.Access.WRITE_ONLY)
     private RestoreJobRecoveryPointDetails targetRecoverPoint;
 
-    /** Creates an instance of JobExtendedInfo class. */
+    /**
+     * Creates an instance of JobExtendedInfo class.
+     */
     public JobExtendedInfo() {
     }
 
     /**
      * Get the additionalDetails property: Job's Additional Details.
-     *
+     * 
      * @return the additionalDetails value.
      */
     public Map<String, String> additionalDetails() {
@@ -71,7 +75,7 @@ public final class JobExtendedInfo {
 
     /**
      * Set the additionalDetails property: Job's Additional Details.
-     *
+     * 
      * @param additionalDetails the additionalDetails value to set.
      * @return the JobExtendedInfo object itself.
      */
@@ -82,7 +86,7 @@ public final class JobExtendedInfo {
 
     /**
      * Get the backupInstanceState property: State of the Backup Instance.
-     *
+     * 
      * @return the backupInstanceState value.
      */
     public String backupInstanceState() {
@@ -91,7 +95,7 @@ public final class JobExtendedInfo {
 
     /**
      * Get the dataTransferredInBytes property: Number of bytes transferred.
-     *
+     * 
      * @return the dataTransferredInBytes value.
      */
     public Double dataTransferredInBytes() {
@@ -100,7 +104,7 @@ public final class JobExtendedInfo {
 
     /**
      * Get the recoveryDestination property: Destination where restore is done.
-     *
+     * 
      * @return the recoveryDestination value.
      */
     public String recoveryDestination() {
@@ -109,7 +113,7 @@ public final class JobExtendedInfo {
 
     /**
      * Get the sourceRecoverPoint property: Details of the Source Recovery Point.
-     *
+     * 
      * @return the sourceRecoverPoint value.
      */
     public RestoreJobRecoveryPointDetails sourceRecoverPoint() {
@@ -118,7 +122,7 @@ public final class JobExtendedInfo {
 
     /**
      * Get the subTasks property: List of Sub Tasks of the job.
-     *
+     * 
      * @return the subTasks value.
      */
     public List<JobSubTask> subTasks() {
@@ -127,7 +131,7 @@ public final class JobExtendedInfo {
 
     /**
      * Get the targetRecoverPoint property: Details of the Target Recovery Point.
-     *
+     * 
      * @return the targetRecoverPoint value.
      */
     public RestoreJobRecoveryPointDetails targetRecoverPoint() {
@@ -136,7 +140,7 @@ public final class JobExtendedInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
