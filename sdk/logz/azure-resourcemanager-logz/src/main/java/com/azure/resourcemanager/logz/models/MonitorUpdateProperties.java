@@ -7,7 +7,9 @@ package com.azure.resourcemanager.logz.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The set of properties that can be update in a PATCH request to a monitor resource. */
+/**
+ * The set of properties that can be update in a PATCH request to a monitor resource.
+ */
 @Fluent
 public final class MonitorUpdateProperties {
     /*
@@ -16,13 +18,15 @@ public final class MonitorUpdateProperties {
     @JsonProperty(value = "monitoringStatus")
     private MonitoringStatus monitoringStatus;
 
-    /** Creates an instance of MonitorUpdateProperties class. */
+    /**
+     * Creates an instance of MonitorUpdateProperties class.
+     */
     public MonitorUpdateProperties() {
     }
 
     /**
      * Get the monitoringStatus property: Flag specifying if the resource monitoring is enabled or disabled.
-     *
+     * 
      * @return the monitoringStatus value.
      */
     public MonitoringStatus monitoringStatus() {
@@ -31,7 +35,7 @@ public final class MonitorUpdateProperties {
 
     /**
      * Set the monitoringStatus property: Flag specifying if the resource monitoring is enabled or disabled.
-     *
+     * 
      * @param monitoringStatus the monitoringStatus value to set.
      * @return the MonitorUpdateProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class MonitorUpdateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

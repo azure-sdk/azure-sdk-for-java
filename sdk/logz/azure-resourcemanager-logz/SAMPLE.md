@@ -56,14 +56,16 @@
 ### MonitorOperation_ListVMHosts
 
 ```java
-/** Samples for MonitorOperation ListVMHosts. */
+/**
+ * Samples for MonitorOperation ListVMHosts.
+ */
 public final class MonitorOperationListVMHostsSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/MainAccount_VMHosts_List.json
      */
     /**
      * Sample code: MainAccount_VMHosts_List.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void mainAccountVMHostsList(com.azure.resourcemanager.logz.LogzManager manager) {
@@ -75,20 +77,22 @@ public final class MonitorOperationListVMHostsSamples {
 ### MonitorOperation_ListVmHostUpdate
 
 ```java
-/** Samples for MonitorOperation ListVmHostUpdate. */
+import com.azure.resourcemanager.logz.models.VMHostUpdateRequest;
+
+/**
+ * Samples for MonitorOperation ListVmHostUpdate.
+ */
 public final class MonitorOperationListVmHostUpdateSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/MainAccount_VMHosts_Update.json
      */
     /**
      * Sample code: MainAccount_VMHosts_Update.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void mainAccountVMHostsUpdate(com.azure.resourcemanager.logz.LogzManager manager) {
-        manager
-            .monitorOperations()
-            .listVmHostUpdate("myResourceGroup", "myMonitor", null, com.azure.core.util.Context.NONE);
+        manager.monitorOperations().listVmHostUpdate("myResourceGroup", "myMonitor", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -96,20 +100,20 @@ public final class MonitorOperationListVmHostUpdateSamples {
 ### MonitorOperation_VMHostPayload
 
 ```java
-/** Samples for MonitorOperation VMHostPayload. */
+/**
+ * Samples for MonitorOperation VMHostPayload.
+ */
 public final class MonitorOperationVMHostPayloadSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/MainAccount_VMHosts_Payload.json
      */
     /**
      * Sample code: MainAccount_VMHosts_Payload.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void mainAccountVMHostsPayload(com.azure.resourcemanager.logz.LogzManager manager) {
-        manager
-            .monitorOperations()
-            .vMHostPayloadWithResponse("myResourceGroup", "myMonitor", com.azure.core.util.Context.NONE);
+        manager.monitorOperations().vMHostPayloadWithResponse("myResourceGroup", "myMonitor", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -117,23 +121,20 @@ public final class MonitorOperationVMHostPayloadSamples {
 ### Monitors_Create
 
 ```java
-/** Samples for Monitors Create. */
+/**
+ * Samples for Monitors Create.
+ */
 public final class MonitorsCreateSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/Monitors_Create.json
      */
     /**
      * Sample code: Monitors_Create.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void monitorsCreate(com.azure.resourcemanager.logz.LogzManager manager) {
-        manager
-            .monitors()
-            .define("myMonitor")
-            .withRegion((String) null)
-            .withExistingResourceGroup("myResourceGroup")
-            .create();
+        manager.monitors().define("myMonitor").withRegion((String) null).withExistingResourceGroup("myResourceGroup").create();
     }
 }
 ```
@@ -141,14 +142,16 @@ public final class MonitorsCreateSamples {
 ### Monitors_Delete
 
 ```java
-/** Samples for Monitors Delete. */
+/**
+ * Samples for Monitors Delete.
+ */
 public final class MonitorsDeleteSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/Monitors_Delete.json
      */
     /**
      * Sample code: Monitors_Delete.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void monitorsDelete(com.azure.resourcemanager.logz.LogzManager manager) {
@@ -160,20 +163,20 @@ public final class MonitorsDeleteSamples {
 ### Monitors_GetByResourceGroup
 
 ```java
-/** Samples for Monitors GetByResourceGroup. */
+/**
+ * Samples for Monitors GetByResourceGroup.
+ */
 public final class MonitorsGetByResourceGroupSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/Monitors_Get.json
      */
     /**
      * Sample code: Monitors_Get.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void monitorsGet(com.azure.resourcemanager.logz.LogzManager manager) {
-        manager
-            .monitors()
-            .getByResourceGroupWithResponse("myResourceGroup", "myMonitor", com.azure.core.util.Context.NONE);
+        manager.monitors().getByResourceGroupWithResponse("myResourceGroup", "myMonitor", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -181,14 +184,16 @@ public final class MonitorsGetByResourceGroupSamples {
 ### Monitors_List
 
 ```java
-/** Samples for Monitors List. */
+/**
+ * Samples for Monitors List.
+ */
 public final class MonitorsListSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/Monitors_List.json
      */
     /**
      * Sample code: Monitors_List.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void monitorsList(com.azure.resourcemanager.logz.LogzManager manager) {
@@ -200,14 +205,16 @@ public final class MonitorsListSamples {
 ### Monitors_ListByResourceGroup
 
 ```java
-/** Samples for Monitors ListByResourceGroup. */
+/**
+ * Samples for Monitors ListByResourceGroup.
+ */
 public final class MonitorsListByResourceGroupSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/Monitors_ListByResourceGroup.json
      */
     /**
      * Sample code: Monitors_ListByResourceGroup.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void monitorsListByResourceGroup(com.azure.resourcemanager.logz.LogzManager manager) {
@@ -219,14 +226,16 @@ public final class MonitorsListByResourceGroupSamples {
 ### Monitors_ListMonitoredResources
 
 ```java
-/** Samples for Monitors ListMonitoredResources. */
+/**
+ * Samples for Monitors ListMonitoredResources.
+ */
 public final class MonitorsListMonitoredResourcesSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/MonitoredResources_List.json
      */
     /**
      * Sample code: MonitoredResources_List.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void monitoredResourcesList(com.azure.resourcemanager.logz.LogzManager manager) {
@@ -238,14 +247,18 @@ public final class MonitorsListMonitoredResourcesSamples {
 ### Monitors_ListUserRoles
 
 ```java
-/** Samples for Monitors ListUserRoles. */
+import com.azure.resourcemanager.logz.models.UserRoleRequest;
+
+/**
+ * Samples for Monitors ListUserRoles.
+ */
 public final class MonitorsListUserRolesSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/MainAccount_listUserRoles.json
      */
     /**
      * Sample code: MainAccount_VMHosts_Update.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void mainAccountVMHostsUpdate(com.azure.resourcemanager.logz.LogzManager manager) {
@@ -259,22 +272,20 @@ public final class MonitorsListUserRolesSamples {
 ```java
 import com.azure.resourcemanager.logz.models.LogzMonitorResource;
 
-/** Samples for Monitors Update. */
+/**
+ * Samples for Monitors Update.
+ */
 public final class MonitorsUpdateSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/Monitors_Update.json
      */
     /**
      * Sample code: Monitors_Update.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void monitorsUpdate(com.azure.resourcemanager.logz.LogzManager manager) {
-        LogzMonitorResource resource =
-            manager
-                .monitors()
-                .getByResourceGroupWithResponse("myResourceGroup", "myMonitor", com.azure.core.util.Context.NONE)
-                .getValue();
+        LogzMonitorResource resource = manager.monitors().getByResourceGroupWithResponse("myResourceGroup", "myMonitor", com.azure.core.util.Context.NONE).getValue();
         resource.update().apply();
     }
 }
@@ -283,14 +294,16 @@ public final class MonitorsUpdateSamples {
 ### Operations_List
 
 ```java
-/** Samples for Operations List. */
+/**
+ * Samples for Operations List.
+ */
 public final class OperationsListSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/Operations_List.json
      */
     /**
      * Sample code: Operations_List.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void operationsList(com.azure.resourcemanager.logz.LogzManager manager) {
@@ -302,14 +315,16 @@ public final class OperationsListSamples {
 ### SingleSignOn_CreateOrUpdate
 
 ```java
-/** Samples for SingleSignOn CreateOrUpdate. */
+/**
+ * Samples for SingleSignOn CreateOrUpdate.
+ */
 public final class SingleSignOnCreateOrUpdateSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/SingleSignOnConfigurations_CreateOrUpdate.json
      */
     /**
      * Sample code: SingleSignOnConfigurations_CreateOrUpdate.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void singleSignOnConfigurationsCreateOrUpdate(com.azure.resourcemanager.logz.LogzManager manager) {
@@ -321,20 +336,20 @@ public final class SingleSignOnCreateOrUpdateSamples {
 ### SingleSignOn_Get
 
 ```java
-/** Samples for SingleSignOn Get. */
+/**
+ * Samples for SingleSignOn Get.
+ */
 public final class SingleSignOnGetSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/SingleSignOnConfigurations_Get.json
      */
     /**
      * Sample code: SingleSignOnConfigurations_Get.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void singleSignOnConfigurationsGet(com.azure.resourcemanager.logz.LogzManager manager) {
-        manager
-            .singleSignOns()
-            .getWithResponse("myResourceGroup", "myMonitor", "default", com.azure.core.util.Context.NONE);
+        manager.singleSignOns().getWithResponse("myResourceGroup", "myMonitor", "default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -342,14 +357,16 @@ public final class SingleSignOnGetSamples {
 ### SingleSignOn_List
 
 ```java
-/** Samples for SingleSignOn List. */
+/**
+ * Samples for SingleSignOn List.
+ */
 public final class SingleSignOnListSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/SingleSignOnConfigurations_List.json
      */
     /**
      * Sample code: SingleSignOnConfigurations_List.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void singleSignOnConfigurationsList(com.azure.resourcemanager.logz.LogzManager manager) {
@@ -361,20 +378,22 @@ public final class SingleSignOnListSamples {
 ### SubAccount_Create
 
 ```java
-/** Samples for SubAccount Create. */
+import com.azure.resourcemanager.logz.fluent.models.LogzMonitorResourceInner;
+
+/**
+ * Samples for SubAccount Create.
+ */
 public final class SubAccountCreateSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/SubAccount_Create.json
      */
     /**
      * Sample code: subAccount_Create.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void subAccountCreate(com.azure.resourcemanager.logz.LogzManager manager) {
-        manager
-            .subAccounts()
-            .create("myResourceGroup", "myMonitor", "SubAccount1", null, com.azure.core.util.Context.NONE);
+        manager.subAccounts().create("myResourceGroup", "myMonitor", "SubAccount1", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -382,14 +401,16 @@ public final class SubAccountCreateSamples {
 ### SubAccount_Delete
 
 ```java
-/** Samples for SubAccount Delete. */
+/**
+ * Samples for SubAccount Delete.
+ */
 public final class SubAccountDeleteSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/SubAccount_Delete.json
      */
     /**
      * Sample code: SubAccount_Delete.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void subAccountDelete(com.azure.resourcemanager.logz.LogzManager manager) {
@@ -401,20 +422,20 @@ public final class SubAccountDeleteSamples {
 ### SubAccount_Get
 
 ```java
-/** Samples for SubAccount Get. */
+/**
+ * Samples for SubAccount Get.
+ */
 public final class SubAccountGetSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/SubAccount_Get.json
      */
     /**
      * Sample code: SubAccount_Get.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void subAccountGet(com.azure.resourcemanager.logz.LogzManager manager) {
-        manager
-            .subAccounts()
-            .getWithResponse("myResourceGroup", "myMonitor", "SubAccount1", com.azure.core.util.Context.NONE);
+        manager.subAccounts().getWithResponse("myResourceGroup", "myMonitor", "SubAccount1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -422,14 +443,16 @@ public final class SubAccountGetSamples {
 ### SubAccount_List
 
 ```java
-/** Samples for SubAccount List. */
+/**
+ * Samples for SubAccount List.
+ */
 public final class SubAccountListSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/SubAccount_ListByResourceGroup.json
      */
     /**
      * Sample code: SubAccount_List.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void subAccountList(com.azure.resourcemanager.logz.LogzManager manager) {
@@ -441,20 +464,20 @@ public final class SubAccountListSamples {
 ### SubAccount_ListMonitoredResources
 
 ```java
-/** Samples for SubAccount ListMonitoredResources. */
+/**
+ * Samples for SubAccount ListMonitoredResources.
+ */
 public final class SubAccountListMonitoredResourcesSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/SubAccount_MonitoredResources_List.json
      */
     /**
      * Sample code: SubAccount_MonitoredResources_List.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void subAccountMonitoredResourcesList(com.azure.resourcemanager.logz.LogzManager manager) {
-        manager
-            .subAccounts()
-            .listMonitoredResources("myResourceGroup", "myMonitor", "SubAccount1", com.azure.core.util.Context.NONE);
+        manager.subAccounts().listMonitoredResources("myResourceGroup", "myMonitor", "SubAccount1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -462,20 +485,20 @@ public final class SubAccountListMonitoredResourcesSamples {
 ### SubAccount_ListVMHosts
 
 ```java
-/** Samples for SubAccount ListVMHosts. */
+/**
+ * Samples for SubAccount ListVMHosts.
+ */
 public final class SubAccountListVMHostsSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/SubAccount_VMHosts_List.json
      */
     /**
      * Sample code: SubAccount_VMHosts_List.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void subAccountVMHostsList(com.azure.resourcemanager.logz.LogzManager manager) {
-        manager
-            .subAccounts()
-            .listVMHosts("myResourceGroup", "myMonitor", "SubAccount1", com.azure.core.util.Context.NONE);
+        manager.subAccounts().listVMHosts("myResourceGroup", "myMonitor", "SubAccount1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -483,20 +506,22 @@ public final class SubAccountListVMHostsSamples {
 ### SubAccount_ListVmHostUpdate
 
 ```java
-/** Samples for SubAccount ListVmHostUpdate. */
+import com.azure.resourcemanager.logz.models.VMHostUpdateRequest;
+
+/**
+ * Samples for SubAccount ListVmHostUpdate.
+ */
 public final class SubAccountListVmHostUpdateSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/SubAccount_VMHosts_Update.json
      */
     /**
      * Sample code: SubAccount_VMHosts_Update.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void subAccountVMHostsUpdate(com.azure.resourcemanager.logz.LogzManager manager) {
-        manager
-            .subAccounts()
-            .listVmHostUpdate("myResourceGroup", "myMonitor", "SubAccount1", null, com.azure.core.util.Context.NONE);
+        manager.subAccounts().listVmHostUpdate("myResourceGroup", "myMonitor", "SubAccount1", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -504,20 +529,22 @@ public final class SubAccountListVmHostUpdateSamples {
 ### SubAccount_Update
 
 ```java
-/** Samples for SubAccount Update. */
+import com.azure.resourcemanager.logz.models.LogzMonitorResourceUpdateParameters;
+
+/**
+ * Samples for SubAccount Update.
+ */
 public final class SubAccountUpdateSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/SubAccount_Update.json
      */
     /**
      * Sample code: SubAccount_Update.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void subAccountUpdate(com.azure.resourcemanager.logz.LogzManager manager) {
-        manager
-            .subAccounts()
-            .updateWithResponse("myResourceGroup", "myMonitor", "SubAccount1", null, com.azure.core.util.Context.NONE);
+        manager.subAccounts().updateWithResponse("myResourceGroup", "myMonitor", "SubAccount1", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -525,20 +552,20 @@ public final class SubAccountUpdateSamples {
 ### SubAccount_VMHostPayload
 
 ```java
-/** Samples for SubAccount VMHostPayload. */
+/**
+ * Samples for SubAccount VMHostPayload.
+ */
 public final class SubAccountVMHostPayloadSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/SubAccount_VMHosts_Payload.json
      */
     /**
      * Sample code: SubAccount_VMHosts_Payload.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void subAccountVMHostsPayload(com.azure.resourcemanager.logz.LogzManager manager) {
-        manager
-            .subAccounts()
-            .vMHostPayloadWithResponse("myResourceGroup", "myMonitor", "SubAccount1", com.azure.core.util.Context.NONE);
+        manager.subAccounts().vMHostPayloadWithResponse("myResourceGroup", "myMonitor", "SubAccount1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -546,21 +573,22 @@ public final class SubAccountVMHostPayloadSamples {
 ### SubAccountTagRules_CreateOrUpdate
 
 ```java
-/** Samples for SubAccountTagRules CreateOrUpdate. */
+import com.azure.resourcemanager.logz.fluent.models.MonitoringTagRulesInner;
+
+/**
+ * Samples for SubAccountTagRules CreateOrUpdate.
+ */
 public final class SubAccountTagRulesCreateOrUpdateSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/SubAccountTagRules_CreateOrUpdate.json
      */
     /**
      * Sample code: SubAccountTagRules_CreateOrUpdate.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void subAccountTagRulesCreateOrUpdate(com.azure.resourcemanager.logz.LogzManager manager) {
-        manager
-            .subAccountTagRules()
-            .createOrUpdateWithResponse(
-                "myResourceGroup", "myMonitor", "SubAccount1", "default", null, com.azure.core.util.Context.NONE);
+        manager.subAccountTagRules().createOrUpdateWithResponse("myResourceGroup", "myMonitor", "SubAccount1", "default", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -568,21 +596,20 @@ public final class SubAccountTagRulesCreateOrUpdateSamples {
 ### SubAccountTagRules_Delete
 
 ```java
-/** Samples for SubAccountTagRules Delete. */
+/**
+ * Samples for SubAccountTagRules Delete.
+ */
 public final class SubAccountTagRulesDeleteSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/SubAccountTagRules_Delete.json
      */
     /**
      * Sample code: TagRules_Delete.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void tagRulesDelete(com.azure.resourcemanager.logz.LogzManager manager) {
-        manager
-            .subAccountTagRules()
-            .deleteWithResponse(
-                "myResourceGroup", "myMonitor", "SubAccount1", "default", com.azure.core.util.Context.NONE);
+        manager.subAccountTagRules().deleteWithResponse("myResourceGroup", "myMonitor", "SubAccount1", "default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -590,21 +617,20 @@ public final class SubAccountTagRulesDeleteSamples {
 ### SubAccountTagRules_Get
 
 ```java
-/** Samples for SubAccountTagRules Get. */
+/**
+ * Samples for SubAccountTagRules Get.
+ */
 public final class SubAccountTagRulesGetSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/SubAccountTagRules_Get.json
      */
     /**
      * Sample code: SubAccountTagRules_Get.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void subAccountTagRulesGet(com.azure.resourcemanager.logz.LogzManager manager) {
-        manager
-            .subAccountTagRules()
-            .getWithResponse(
-                "myResourceGroup", "myMonitor", "SubAccount1", "default", com.azure.core.util.Context.NONE);
+        manager.subAccountTagRules().getWithResponse("myResourceGroup", "myMonitor", "SubAccount1", "default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -612,20 +638,20 @@ public final class SubAccountTagRulesGetSamples {
 ### SubAccountTagRules_List
 
 ```java
-/** Samples for SubAccountTagRules List. */
+/**
+ * Samples for SubAccountTagRules List.
+ */
 public final class SubAccountTagRulesListSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/SubAccountTagRules_List.json
      */
     /**
      * Sample code: SubAccountTagRules_List.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void subAccountTagRulesList(com.azure.resourcemanager.logz.LogzManager manager) {
-        manager
-            .subAccountTagRules()
-            .list("myResourceGroup", "myMonitor", "SubAccount1", com.azure.core.util.Context.NONE);
+        manager.subAccountTagRules().list("myResourceGroup", "myMonitor", "SubAccount1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -633,14 +659,16 @@ public final class SubAccountTagRulesListSamples {
 ### TagRules_CreateOrUpdate
 
 ```java
-/** Samples for TagRules CreateOrUpdate. */
+/**
+ * Samples for TagRules CreateOrUpdate.
+ */
 public final class TagRulesCreateOrUpdateSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/TagRules_CreateOrUpdate.json
      */
     /**
      * Sample code: TagRules_CreateOrUpdate.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void tagRulesCreateOrUpdate(com.azure.resourcemanager.logz.LogzManager manager) {
@@ -652,20 +680,20 @@ public final class TagRulesCreateOrUpdateSamples {
 ### TagRules_Delete
 
 ```java
-/** Samples for TagRules Delete. */
+/**
+ * Samples for TagRules Delete.
+ */
 public final class TagRulesDeleteSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/TagRules_Delete.json
      */
     /**
      * Sample code: TagRules_Delete.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void tagRulesDelete(com.azure.resourcemanager.logz.LogzManager manager) {
-        manager
-            .tagRules()
-            .deleteWithResponse("myResourceGroup", "myMonitor", "default", com.azure.core.util.Context.NONE);
+        manager.tagRules().deleteWithResponse("myResourceGroup", "myMonitor", "default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -673,14 +701,16 @@ public final class TagRulesDeleteSamples {
 ### TagRules_Get
 
 ```java
-/** Samples for TagRules Get. */
+/**
+ * Samples for TagRules Get.
+ */
 public final class TagRulesGetSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/TagRules_Get.json
      */
     /**
      * Sample code: TagRules_Get.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void tagRulesGet(com.azure.resourcemanager.logz.LogzManager manager) {
@@ -692,14 +722,16 @@ public final class TagRulesGetSamples {
 ### TagRules_List
 
 ```java
-/** Samples for TagRules List. */
+/**
+ * Samples for TagRules List.
+ */
 public final class TagRulesListSamples {
     /*
      * x-ms-original-file: specification/logz/resource-manager/Microsoft.Logz/stable/2020-10-01/examples/TagRules_List.json
      */
     /**
      * Sample code: TagRules_List.
-     *
+     * 
      * @param manager Entry point to LogzManager.
      */
     public static void tagRulesList(com.azure.resourcemanager.logz.LogzManager manager) {

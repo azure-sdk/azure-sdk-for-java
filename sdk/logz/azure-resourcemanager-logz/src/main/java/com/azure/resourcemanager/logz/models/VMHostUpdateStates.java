@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Various states of the updating vm extension on resource. */
+/**
+ * Various states of the updating vm extension on resource.
+ */
 public final class VMHostUpdateStates extends ExpandableStringEnum<VMHostUpdateStates> {
-    /** Static value Install for VMHostUpdateStates. */
+    /**
+     * Static value Install for VMHostUpdateStates.
+     */
     public static final VMHostUpdateStates INSTALL = fromString("Install");
 
-    /** Static value Delete for VMHostUpdateStates. */
+    /**
+     * Static value Delete for VMHostUpdateStates.
+     */
     public static final VMHostUpdateStates DELETE = fromString("Delete");
 
     /**
      * Creates a new instance of VMHostUpdateStates value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class VMHostUpdateStates extends ExpandableStringEnum<VMHostUpdateS
 
     /**
      * Creates or finds a VMHostUpdateStates from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding VMHostUpdateStates.
      */
@@ -38,7 +44,7 @@ public final class VMHostUpdateStates extends ExpandableStringEnum<VMHostUpdateS
 
     /**
      * Gets known VMHostUpdateStates values.
-     *
+     * 
      * @return known VMHostUpdateStates values.
      */
     public static Collection<VMHostUpdateStates> values() {
