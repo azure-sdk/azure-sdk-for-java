@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * ExpandMsixImageList
- *
- * <p>List of MSIX package properties retrieved from MSIX Image expansion.
+ * 
+ * List of MSIX package properties retrieved from MSIX Image expansion.
  */
 @Fluent
 public final class ExpandMsixImageList {
@@ -28,13 +28,15 @@ public final class ExpandMsixImageList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ExpandMsixImageList class. */
+    /**
+     * Creates an instance of ExpandMsixImageList class.
+     */
     public ExpandMsixImageList() {
     }
 
     /**
      * Get the value property: List of MSIX package properties from give MSIX Image.
-     *
+     * 
      * @return the value value.
      */
     public List<ExpandMsixImageInner> value() {
@@ -43,7 +45,7 @@ public final class ExpandMsixImageList {
 
     /**
      * Set the value property: List of MSIX package properties from give MSIX Image.
-     *
+     * 
      * @param value the value value to set.
      * @return the ExpandMsixImageList object itself.
      */
@@ -54,7 +56,7 @@ public final class ExpandMsixImageList {
 
     /**
      * Get the nextLink property: Link to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -63,7 +65,7 @@ public final class ExpandMsixImageList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

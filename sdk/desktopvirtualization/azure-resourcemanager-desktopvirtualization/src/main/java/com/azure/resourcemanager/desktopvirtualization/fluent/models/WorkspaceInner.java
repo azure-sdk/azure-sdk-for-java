@@ -16,7 +16,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Represents a Workspace definition. */
+/**
+ * Represents a Workspace definition.
+ */
 @Fluent
 public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
     /*
@@ -31,13 +33,15 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
     @JsonProperty(value = "properties")
     private WorkspaceProperties innerProperties;
 
-    /** Creates an instance of WorkspaceInner class. */
+    /**
+     * Creates an instance of WorkspaceInner class.
+     */
     public WorkspaceInner() {
     }
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -46,56 +50,70 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
 
     /**
      * Get the innerProperties property: Detailed properties for Workspace.
-     *
+     * 
      * @return the innerProperties value.
      */
     private WorkspaceProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkspaceInner withManagedBy(String managedBy) {
         super.withManagedBy(managedBy);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkspaceInner withKind(String kind) {
         super.withKind(kind);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkspaceInner withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
         super.withIdentity(identity);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkspaceInner withSku(ResourceModelWithAllowedPropertySetSku sku) {
         super.withSku(sku);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkspaceInner withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
         super.withPlan(plan);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkspaceInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkspaceInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -104,7 +122,7 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
 
     /**
      * Get the objectId property: ObjectId of Workspace. (internal use).
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -113,7 +131,7 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
 
     /**
      * Get the description property: Description of Workspace.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -122,7 +140,7 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
 
     /**
      * Set the description property: Description of Workspace.
-     *
+     * 
      * @param description the description value to set.
      * @return the WorkspaceInner object itself.
      */
@@ -136,7 +154,7 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
 
     /**
      * Get the friendlyName property: Friendly name of Workspace.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -145,7 +163,7 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
 
     /**
      * Set the friendlyName property: Friendly name of Workspace.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the WorkspaceInner object itself.
      */
@@ -159,7 +177,7 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
 
     /**
      * Get the applicationGroupReferences property: List of applicationGroup resource Ids.
-     *
+     * 
      * @return the applicationGroupReferences value.
      */
     public List<String> applicationGroupReferences() {
@@ -168,7 +186,7 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
 
     /**
      * Set the applicationGroupReferences property: List of applicationGroup resource Ids.
-     *
+     * 
      * @param applicationGroupReferences the applicationGroupReferences value to set.
      * @return the WorkspaceInner object itself.
      */
@@ -182,7 +200,7 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
 
     /**
      * Get the cloudPcResource property: Is cloud pc resource.
-     *
+     * 
      * @return the cloudPcResource value.
      */
     public Boolean cloudPcResource() {
@@ -192,7 +210,7 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
     /**
      * Get the publicNetworkAccess property: Enabled allows this resource to be accessed from both public and private
      * networks, Disabled allows this resource to only be accessed via private endpoints.
-     *
+     * 
      * @return the publicNetworkAccess value.
      */
     public PublicNetworkAccess publicNetworkAccess() {
@@ -202,7 +220,7 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
     /**
      * Set the publicNetworkAccess property: Enabled allows this resource to be accessed from both public and private
      * networks, Disabled allows this resource to only be accessed via private endpoints.
-     *
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the WorkspaceInner object itself.
      */
@@ -217,7 +235,7 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
     /**
      * Get the privateEndpointConnections property: List of private endpoint connection associated with the specified
      * resource.
-     *
+     * 
      * @return the privateEndpointConnections value.
      */
     public List<PrivateEndpointConnection> privateEndpointConnections() {
@@ -226,7 +244,7 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

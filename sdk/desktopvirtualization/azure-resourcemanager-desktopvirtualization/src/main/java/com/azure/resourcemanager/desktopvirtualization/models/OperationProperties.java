@@ -7,7 +7,9 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of the operation. */
+/**
+ * Properties of the operation.
+ */
 @Fluent
 public final class OperationProperties {
     /*
@@ -16,13 +18,15 @@ public final class OperationProperties {
     @JsonProperty(value = "serviceSpecification")
     private ServiceSpecification serviceSpecification;
 
-    /** Creates an instance of OperationProperties class. */
+    /**
+     * Creates an instance of OperationProperties class.
+     */
     public OperationProperties() {
     }
 
     /**
      * Get the serviceSpecification property: Service specification payload.
-     *
+     * 
      * @return the serviceSpecification value.
      */
     public ServiceSpecification serviceSpecification() {
@@ -31,7 +35,7 @@ public final class OperationProperties {
 
     /**
      * Set the serviceSpecification property: Service specification payload.
-     *
+     * 
      * @param serviceSpecification the serviceSpecification value to set.
      * @return the OperationProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class OperationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

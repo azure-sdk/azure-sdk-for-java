@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * UserSessionList
- *
- * <p>List of UserSession definitions.
+ * 
+ * List of UserSession definitions.
  */
 @Fluent
 public final class UserSessionList {
@@ -28,13 +28,15 @@ public final class UserSessionList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of UserSessionList class. */
+    /**
+     * Creates an instance of UserSessionList class.
+     */
     public UserSessionList() {
     }
 
     /**
      * Get the value property: List of UserSession definitions.
-     *
+     * 
      * @return the value value.
      */
     public List<UserSessionInner> value() {
@@ -43,7 +45,7 @@ public final class UserSessionList {
 
     /**
      * Set the value property: List of UserSession definitions.
-     *
+     * 
      * @param value the value value to set.
      * @return the UserSessionList object itself.
      */
@@ -54,7 +56,7 @@ public final class UserSessionList {
 
     /**
      * Get the nextLink property: Link to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -63,7 +65,7 @@ public final class UserSessionList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
