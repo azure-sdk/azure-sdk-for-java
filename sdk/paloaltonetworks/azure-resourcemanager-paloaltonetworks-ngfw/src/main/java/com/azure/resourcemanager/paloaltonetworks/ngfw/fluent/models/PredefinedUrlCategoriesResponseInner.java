@@ -6,7 +6,6 @@ package com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PredefinedUrlCategory;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public final class PredefinedUrlCategoriesResponseInner {
      * predefined url categories
      */
     @JsonProperty(value = "value", required = true)
-    private List<PredefinedUrlCategory> value;
+    private List<PredefinedUrlCategoryInner> value;
 
     /*
      * next link
@@ -38,7 +37,7 @@ public final class PredefinedUrlCategoriesResponseInner {
      * 
      * @return the value value.
      */
-    public List<PredefinedUrlCategory> value() {
+    public List<PredefinedUrlCategoryInner> value() {
         return this.value;
     }
 
@@ -48,7 +47,7 @@ public final class PredefinedUrlCategoriesResponseInner {
      * @param value the value value to set.
      * @return the PredefinedUrlCategoriesResponseInner object itself.
      */
-    public PredefinedUrlCategoriesResponseInner withValue(List<PredefinedUrlCategory> value) {
+    public PredefinedUrlCategoriesResponseInner withValue(List<PredefinedUrlCategoryInner> value) {
         this.value = value;
         return this;
     }
