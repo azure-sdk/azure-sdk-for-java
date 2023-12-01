@@ -4,13 +4,13 @@
 
 package com.azure.resourcemanager.hybridcontainerservice.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Whether a particular kubernetes version's variant (CBLMariner, Windows, Windows2022) is ready or not.
  */
-@Fluent
+@Immutable
 public final class KubernetesVersionReadiness {
     /*
      * The particular KubernetesVersion's Image's OS Type (Linux, Windows)
@@ -19,11 +19,10 @@ public final class KubernetesVersionReadiness {
     private OsType osType;
 
     /*
-     * Specifies the OS SKU used by the agent pool. The default is CBLMariner if OSType is Linux. The default is
-     * Windows2019 when OSType is Windows.
+     * The particular KubernetesVersion's Image's OS SKU (CBLMariner, Windows, Windows2022)
      */
-    @JsonProperty(value = "osSku")
-    private Ossku osSku;
+    @JsonProperty(value = "osSku", access = JsonProperty.Access.WRITE_ONLY)
+    private OsSku osSku;
 
     /*
      * Whether or not the given image is ready
@@ -53,25 +52,12 @@ public final class KubernetesVersionReadiness {
     }
 
     /**
-     * Get the osSku property: Specifies the OS SKU used by the agent pool. The default is CBLMariner if OSType is
-     * Linux. The default is Windows2019 when OSType is Windows.
+     * Get the osSku property: The particular KubernetesVersion's Image's OS SKU (CBLMariner, Windows, Windows2022).
      * 
      * @return the osSku value.
      */
-    public Ossku osSku() {
+    public OsSku osSku() {
         return this.osSku;
-    }
-
-    /**
-     * Set the osSku property: Specifies the OS SKU used by the agent pool. The default is CBLMariner if OSType is
-     * Linux. The default is Windows2019 when OSType is Windows.
-     * 
-     * @param osSku the osSku value to set.
-     * @return the KubernetesVersionReadiness object itself.
-     */
-    public KubernetesVersionReadiness withOsSku(Ossku osSku) {
-        this.osSku = osSku;
-        return this;
     }
 
     /**
