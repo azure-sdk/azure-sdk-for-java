@@ -20,10 +20,10 @@ public final class DataTypesDeleteDataSamples {
     /**
      * Sample code: DataTypes_DeleteData_MinimumSet_Gen.
      * 
-     * @param manager Entry point to NetworkAnalyticsManager.
+     * @param manager Entry point to NetworkanalyticsManager.
      */
     public static void dataTypesDeleteDataMinimumSetGen(
-        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) throws IOException {
+        com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager manager) throws IOException {
         manager.dataTypes()
             .deleteData("aoiresourceGroupName", "dataproduct01", "datatypename", SerializerFactory
                 .createDefaultManagementSerializerAdapter().deserialize("{}", Object.class, SerializerEncoding.JSON),
@@ -38,10 +38,10 @@ public final class DataTypesDeleteDataSamples {
     /**
      * Sample code: DataTypes_DeleteData_MaximumSet_Gen.
      * 
-     * @param manager Entry point to NetworkAnalyticsManager.
+     * @param manager Entry point to NetworkanalyticsManager.
      */
     public static void dataTypesDeleteDataMaximumSetGen(
-        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) throws IOException {
+        com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager manager) throws IOException {
         manager.dataTypes()
             .deleteData("aoiresourceGroupName", "dataproduct01", "datatypename", SerializerFactory
                 .createDefaultManagementSerializerAdapter().deserialize("{}", Object.class, SerializerEncoding.JSON),

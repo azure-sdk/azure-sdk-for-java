@@ -6,6 +6,7 @@ package com.azure.resourcemanager.networkanalytics.models;
 
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.networkanalytics.fluent.models.DataProductsCatalogInner;
+import java.util.List;
 
 /**
  * An immutable client-side representation of DataProductsCatalog.
@@ -33,18 +34,25 @@ public interface DataProductsCatalog {
     String type();
 
     /**
-     * Gets the properties property: The resource-specific properties for this resource.
-     * 
-     * @return the properties value.
-     */
-    DataProductsCatalogProperties properties();
-
-    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the provisioningState property: The data catalog provisioning state.
+     * 
+     * @return the provisioningState value.
+     */
+    ProvisioningState provisioningState();
+
+    /**
+     * Gets the publishers property: The data product publisher information.
+     * 
+     * @return the publishers value.
+     */
+    List<PublisherInformation> publishers();
 
     /**
      * Gets the inner com.azure.resourcemanager.networkanalytics.fluent.models.DataProductsCatalogInner object.

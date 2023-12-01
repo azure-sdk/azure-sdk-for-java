@@ -7,15 +7,18 @@ package com.azure.resourcemanager.networkanalytics.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.networkanalytics.fluent.models.DataProductsCatalogInner;
 import com.azure.resourcemanager.networkanalytics.models.DataProductsCatalog;
-import com.azure.resourcemanager.networkanalytics.models.DataProductsCatalogProperties;
+import com.azure.resourcemanager.networkanalytics.models.ProvisioningState;
+import com.azure.resourcemanager.networkanalytics.models.PublisherInformation;
+import java.util.Collections;
+import java.util.List;
 
 public final class DataProductsCatalogImpl implements DataProductsCatalog {
     private DataProductsCatalogInner innerObject;
 
-    private final com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager serviceManager;
+    private final com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager serviceManager;
 
     DataProductsCatalogImpl(DataProductsCatalogInner innerObject,
-        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager serviceManager) {
+        com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -32,19 +35,28 @@ public final class DataProductsCatalogImpl implements DataProductsCatalog {
         return this.innerModel().type();
     }
 
-    public DataProductsCatalogProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public ProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public List<PublisherInformation> publishers() {
+        List<PublisherInformation> inner = this.innerModel().publishers();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public DataProductsCatalogInner innerModel() {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager() {
+    private com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager manager() {
         return this.serviceManager;
     }
 }

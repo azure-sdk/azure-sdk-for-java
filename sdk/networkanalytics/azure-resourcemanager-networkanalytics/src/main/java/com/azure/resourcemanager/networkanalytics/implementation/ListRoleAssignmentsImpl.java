@@ -15,10 +15,10 @@ import java.util.stream.Collectors;
 public final class ListRoleAssignmentsImpl implements ListRoleAssignments {
     private ListRoleAssignmentsInner innerObject;
 
-    private final com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager serviceManager;
+    private final com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager serviceManager;
 
     ListRoleAssignmentsImpl(ListRoleAssignmentsInner innerObject,
-        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager serviceManager) {
+        com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -41,7 +41,7 @@ public final class ListRoleAssignmentsImpl implements ListRoleAssignments {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager() {
+    private com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager manager() {
         return this.serviceManager;
     }
 }

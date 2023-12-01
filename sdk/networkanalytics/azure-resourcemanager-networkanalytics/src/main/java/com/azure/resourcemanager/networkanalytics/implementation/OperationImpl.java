@@ -13,10 +13,10 @@ import com.azure.resourcemanager.networkanalytics.models.Origin;
 public final class OperationImpl implements Operation {
     private OperationInner innerObject;
 
-    private final com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager serviceManager;
+    private final com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager serviceManager;
 
     OperationImpl(OperationInner innerObject,
-        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager serviceManager) {
+        com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -45,7 +45,7 @@ public final class OperationImpl implements Operation {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager() {
+    private com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager manager() {
         return this.serviceManager;
     }
 }

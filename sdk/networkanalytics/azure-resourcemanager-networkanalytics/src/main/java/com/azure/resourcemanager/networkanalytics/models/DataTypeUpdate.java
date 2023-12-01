@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.networkanalytics.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.networkanalytics.fluent.models.DataTypeUpdateProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -16,7 +17,7 @@ public final class DataTypeUpdate {
      * The updatable properties of the DataType.
      */
     @JsonProperty(value = "properties")
-    private DataTypeUpdateProperties properties;
+    private DataTypeUpdateProperties innerProperties;
 
     /**
      * Creates an instance of DataTypeUpdate class.
@@ -25,22 +26,103 @@ public final class DataTypeUpdate {
     }
 
     /**
-     * Get the properties property: The updatable properties of the DataType.
+     * Get the innerProperties property: The updatable properties of the DataType.
      * 
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public DataTypeUpdateProperties properties() {
-        return this.properties;
+    private DataTypeUpdateProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the properties property: The updatable properties of the DataType.
+     * Get the state property: State of data type.
      * 
-     * @param properties the properties value to set.
+     * @return the state value.
+     */
+    public DataTypeState state() {
+        return this.innerProperties() == null ? null : this.innerProperties().state();
+    }
+
+    /**
+     * Set the state property: State of data type.
+     * 
+     * @param state the state value to set.
      * @return the DataTypeUpdate object itself.
      */
-    public DataTypeUpdate withProperties(DataTypeUpdateProperties properties) {
-        this.properties = properties;
+    public DataTypeUpdate withState(DataTypeState state) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DataTypeUpdateProperties();
+        }
+        this.innerProperties().withState(state);
+        return this;
+    }
+
+    /**
+     * Get the storageOutputRetention property: Field for storage output retention in days.
+     * 
+     * @return the storageOutputRetention value.
+     */
+    public Integer storageOutputRetention() {
+        return this.innerProperties() == null ? null : this.innerProperties().storageOutputRetention();
+    }
+
+    /**
+     * Set the storageOutputRetention property: Field for storage output retention in days.
+     * 
+     * @param storageOutputRetention the storageOutputRetention value to set.
+     * @return the DataTypeUpdate object itself.
+     */
+    public DataTypeUpdate withStorageOutputRetention(Integer storageOutputRetention) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DataTypeUpdateProperties();
+        }
+        this.innerProperties().withStorageOutputRetention(storageOutputRetention);
+        return this;
+    }
+
+    /**
+     * Get the databaseCacheRetention property: Field for database cache retention in days.
+     * 
+     * @return the databaseCacheRetention value.
+     */
+    public Integer databaseCacheRetention() {
+        return this.innerProperties() == null ? null : this.innerProperties().databaseCacheRetention();
+    }
+
+    /**
+     * Set the databaseCacheRetention property: Field for database cache retention in days.
+     * 
+     * @param databaseCacheRetention the databaseCacheRetention value to set.
+     * @return the DataTypeUpdate object itself.
+     */
+    public DataTypeUpdate withDatabaseCacheRetention(Integer databaseCacheRetention) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DataTypeUpdateProperties();
+        }
+        this.innerProperties().withDatabaseCacheRetention(databaseCacheRetention);
+        return this;
+    }
+
+    /**
+     * Get the databaseRetention property: Field for database data retention in days.
+     * 
+     * @return the databaseRetention value.
+     */
+    public Integer databaseRetention() {
+        return this.innerProperties() == null ? null : this.innerProperties().databaseRetention();
+    }
+
+    /**
+     * Set the databaseRetention property: Field for database data retention in days.
+     * 
+     * @param databaseRetention the databaseRetention value to set.
+     * @return the DataTypeUpdate object itself.
+     */
+    public DataTypeUpdate withDatabaseRetention(Integer databaseRetention) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DataTypeUpdateProperties();
+        }
+        this.innerProperties().withDatabaseRetention(databaseRetention);
         return this;
     }
 
@@ -50,8 +132,8 @@ public final class DataTypeUpdate {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }

@@ -12,22 +12,27 @@ import com.azure.resourcemanager.networkanalytics.fluent.models.DataProductInner
 import com.azure.resourcemanager.networkanalytics.fluent.models.RoleAssignmentDetailInner;
 import com.azure.resourcemanager.networkanalytics.models.AccountSas;
 import com.azure.resourcemanager.networkanalytics.models.AccountSasToken;
+import com.azure.resourcemanager.networkanalytics.models.ConsumptionEndpointsProperties;
+import com.azure.resourcemanager.networkanalytics.models.ControlState;
 import com.azure.resourcemanager.networkanalytics.models.DataProduct;
-import com.azure.resourcemanager.networkanalytics.models.DataProductProperties;
+import com.azure.resourcemanager.networkanalytics.models.DataProductNetworkAcls;
 import com.azure.resourcemanager.networkanalytics.models.DataProductUpdate;
-import com.azure.resourcemanager.networkanalytics.models.DataProductUpdateProperties;
+import com.azure.resourcemanager.networkanalytics.models.EncryptionKeyDetails;
 import com.azure.resourcemanager.networkanalytics.models.KeyVaultInfo;
 import com.azure.resourcemanager.networkanalytics.models.ListRoleAssignments;
+import com.azure.resourcemanager.networkanalytics.models.ManagedResourceGroupConfiguration;
 import com.azure.resourcemanager.networkanalytics.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.networkanalytics.models.ProvisioningState;
 import com.azure.resourcemanager.networkanalytics.models.RoleAssignmentCommonProperties;
 import com.azure.resourcemanager.networkanalytics.models.RoleAssignmentDetail;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public final class DataProductImpl implements DataProduct, DataProduct.Definition, DataProduct.Update {
     private DataProductInner innerObject;
 
-    private final com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager serviceManager;
+    private final com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager serviceManager;
 
     public String id() {
         return this.innerModel().id();
@@ -54,16 +59,102 @@ public final class DataProductImpl implements DataProduct, DataProduct.Definitio
         }
     }
 
-    public DataProductProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public ManagedServiceIdentity identity() {
         return this.innerModel().identity();
     }
 
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public String resourceGuid() {
+        return this.innerModel().resourceGuid();
+    }
+
+    public ProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public String publisher() {
+        return this.innerModel().publisher();
+    }
+
+    public String product() {
+        return this.innerModel().product();
+    }
+
+    public String majorVersion() {
+        return this.innerModel().majorVersion();
+    }
+
+    public List<String> owners() {
+        List<String> inner = this.innerModel().owners();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public ControlState redundancy() {
+        return this.innerModel().redundancy();
+    }
+
+    public String purviewAccount() {
+        return this.innerModel().purviewAccount();
+    }
+
+    public String purviewCollection() {
+        return this.innerModel().purviewCollection();
+    }
+
+    public ControlState privateLinksEnabled() {
+        return this.innerModel().privateLinksEnabled();
+    }
+
+    public ControlState publicNetworkAccess() {
+        return this.innerModel().publicNetworkAccess();
+    }
+
+    public ControlState customerManagedKeyEncryptionEnabled() {
+        return this.innerModel().customerManagedKeyEncryptionEnabled();
+    }
+
+    public EncryptionKeyDetails customerEncryptionKey() {
+        return this.innerModel().customerEncryptionKey();
+    }
+
+    public DataProductNetworkAcls networkacls() {
+        return this.innerModel().networkacls();
+    }
+
+    public ManagedResourceGroupConfiguration managedResourceGroupConfiguration() {
+        return this.innerModel().managedResourceGroupConfiguration();
+    }
+
+    public List<String> availableMinorVersions() {
+        List<String> inner = this.innerModel().availableMinorVersions();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String currentMinorVersion() {
+        return this.innerModel().currentMinorVersion();
+    }
+
+    public String documentation() {
+        return this.innerModel().documentation();
+    }
+
+    public ConsumptionEndpointsProperties consumptionEndpoints() {
+        return this.innerModel().consumptionEndpoints();
+    }
+
+    public String keyVaultUrl() {
+        return this.innerModel().keyVaultUrl();
     }
 
     public Region region() {
@@ -82,7 +173,7 @@ public final class DataProductImpl implements DataProduct, DataProduct.Definitio
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager() {
+    private com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager manager() {
         return this.serviceManager;
     }
 
@@ -109,7 +200,7 @@ public final class DataProductImpl implements DataProduct, DataProduct.Definitio
         return this;
     }
 
-    DataProductImpl(String name, com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager serviceManager) {
+    DataProductImpl(String name, com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager serviceManager) {
         this.innerObject = new DataProductInner();
         this.serviceManager = serviceManager;
         this.dataProductName = name;
@@ -133,7 +224,7 @@ public final class DataProductImpl implements DataProduct, DataProduct.Definitio
     }
 
     DataProductImpl(DataProductInner innerObject,
-        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager serviceManager) {
+        com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
@@ -216,11 +307,6 @@ public final class DataProductImpl implements DataProduct, DataProduct.Definitio
         }
     }
 
-    public DataProductImpl withProperties(DataProductProperties properties) {
-        this.innerModel().withProperties(properties);
-        return this;
-    }
-
     public DataProductImpl withIdentity(ManagedServiceIdentity identity) {
         if (isInCreateMode()) {
             this.innerModel().withIdentity(identity);
@@ -231,8 +317,94 @@ public final class DataProductImpl implements DataProduct, DataProduct.Definitio
         }
     }
 
-    public DataProductImpl withProperties(DataProductUpdateProperties properties) {
-        this.updateProperties.withProperties(properties);
+    public DataProductImpl withPublisher(String publisher) {
+        this.innerModel().withPublisher(publisher);
+        return this;
+    }
+
+    public DataProductImpl withProduct(String product) {
+        this.innerModel().withProduct(product);
+        return this;
+    }
+
+    public DataProductImpl withMajorVersion(String majorVersion) {
+        this.innerModel().withMajorVersion(majorVersion);
+        return this;
+    }
+
+    public DataProductImpl withOwners(List<String> owners) {
+        if (isInCreateMode()) {
+            this.innerModel().withOwners(owners);
+            return this;
+        } else {
+            this.updateProperties.withOwners(owners);
+            return this;
+        }
+    }
+
+    public DataProductImpl withRedundancy(ControlState redundancy) {
+        this.innerModel().withRedundancy(redundancy);
+        return this;
+    }
+
+    public DataProductImpl withPurviewAccount(String purviewAccount) {
+        if (isInCreateMode()) {
+            this.innerModel().withPurviewAccount(purviewAccount);
+            return this;
+        } else {
+            this.updateProperties.withPurviewAccount(purviewAccount);
+            return this;
+        }
+    }
+
+    public DataProductImpl withPurviewCollection(String purviewCollection) {
+        if (isInCreateMode()) {
+            this.innerModel().withPurviewCollection(purviewCollection);
+            return this;
+        } else {
+            this.updateProperties.withPurviewCollection(purviewCollection);
+            return this;
+        }
+    }
+
+    public DataProductImpl withPrivateLinksEnabled(ControlState privateLinksEnabled) {
+        if (isInCreateMode()) {
+            this.innerModel().withPrivateLinksEnabled(privateLinksEnabled);
+            return this;
+        } else {
+            this.updateProperties.withPrivateLinksEnabled(privateLinksEnabled);
+            return this;
+        }
+    }
+
+    public DataProductImpl withPublicNetworkAccess(ControlState publicNetworkAccess) {
+        this.innerModel().withPublicNetworkAccess(publicNetworkAccess);
+        return this;
+    }
+
+    public DataProductImpl withCustomerManagedKeyEncryptionEnabled(ControlState customerManagedKeyEncryptionEnabled) {
+        this.innerModel().withCustomerManagedKeyEncryptionEnabled(customerManagedKeyEncryptionEnabled);
+        return this;
+    }
+
+    public DataProductImpl withCustomerEncryptionKey(EncryptionKeyDetails customerEncryptionKey) {
+        this.innerModel().withCustomerEncryptionKey(customerEncryptionKey);
+        return this;
+    }
+
+    public DataProductImpl withNetworkacls(DataProductNetworkAcls networkacls) {
+        this.innerModel().withNetworkacls(networkacls);
+        return this;
+    }
+
+    public DataProductImpl
+        withManagedResourceGroupConfiguration(ManagedResourceGroupConfiguration managedResourceGroupConfiguration) {
+        this.innerModel().withManagedResourceGroupConfiguration(managedResourceGroupConfiguration);
+        return this;
+    }
+
+    public DataProductImpl withCurrentMinorVersion(String currentMinorVersion) {
+        this.updateProperties.withCurrentMinorVersion(currentMinorVersion);
         return this;
     }
 

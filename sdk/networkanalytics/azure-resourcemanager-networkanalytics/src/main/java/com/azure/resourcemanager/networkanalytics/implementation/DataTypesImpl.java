@@ -22,10 +22,10 @@ public final class DataTypesImpl implements DataTypes {
 
     private final DataTypesClient innerClient;
 
-    private final com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager serviceManager;
+    private final com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager serviceManager;
 
     public DataTypesImpl(DataTypesClient innerClient,
-        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager serviceManager) {
+        com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -183,7 +183,7 @@ public final class DataTypesImpl implements DataTypes {
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager() {
+    private com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager manager() {
         return this.serviceManager;
     }
 

@@ -8,9 +8,9 @@ import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
 
 /**
- * The interface for NetworkAnalyticsMgmtClient class.
+ * The interface for MicrosoftNetworkAnalytics class.
  */
-public interface NetworkAnalyticsMgmtClient {
+public interface MicrosoftNetworkAnalytics {
     /**
      * Gets The ID of the target subscription.
      * 

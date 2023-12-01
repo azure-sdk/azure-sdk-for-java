@@ -16,10 +16,10 @@ public final class DataProductsCatalogsListByResourceGroupSamples {
     /**
      * Sample code: DataProductsCatalogs_ListByResourceGroup_MaximumSet_Gen.
      * 
-     * @param manager Entry point to NetworkAnalyticsManager.
+     * @param manager Entry point to NetworkanalyticsManager.
      */
     public static void dataProductsCatalogsListByResourceGroupMaximumSetGen(
-        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager manager) {
         manager.dataProductsCatalogs().listByResourceGroup("aoiresourceGroupName", com.azure.core.util.Context.NONE);
     }
 
@@ -31,10 +31,10 @@ public final class DataProductsCatalogsListByResourceGroupSamples {
     /**
      * Sample code: DataProductsCatalogs_ListByResourceGroup_MinimumSet_Gen.
      * 
-     * @param manager Entry point to NetworkAnalyticsManager.
+     * @param manager Entry point to NetworkanalyticsManager.
      */
     public static void dataProductsCatalogsListByResourceGroupMinimumSetGen(
-        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager manager) {
         manager.dataProductsCatalogs().listByResourceGroup("aoiresourceGroupName", com.azure.core.util.Context.NONE);
     }
 }

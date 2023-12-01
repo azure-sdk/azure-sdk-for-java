@@ -42,25 +42,25 @@ public final class DataProductsCatalogsClientImpl implements DataProductsCatalog
     /**
      * The service client containing this operation class.
      */
-    private final NetworkAnalyticsMgmtClientImpl client;
+    private final MicrosoftNetworkAnalyticsImpl client;
 
     /**
      * Initializes an instance of DataProductsCatalogsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    DataProductsCatalogsClientImpl(NetworkAnalyticsMgmtClientImpl client) {
+    DataProductsCatalogsClientImpl(MicrosoftNetworkAnalyticsImpl client) {
         this.service = RestProxy.create(DataProductsCatalogsService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for NetworkAnalyticsMgmtClientDataProductsCatalogs to be used by the
+     * The interface defining all the services for MicrosoftNetworkAnalyticsDataProductsCatalogs to be used by the
      * proxy service to perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "NetworkAnalyticsMgmt")
+    @ServiceInterface(name = "MicrosoftNetworkAnal")
     public interface DataProductsCatalogsService {
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs")

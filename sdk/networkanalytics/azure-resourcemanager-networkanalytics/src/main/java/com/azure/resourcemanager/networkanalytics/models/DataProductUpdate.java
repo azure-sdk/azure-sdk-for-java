@@ -5,8 +5,10 @@
 package com.azure.resourcemanager.networkanalytics.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.networkanalytics.fluent.models.DataProductUpdateProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,7 +33,7 @@ public final class DataProductUpdate {
      * The updatable properties of the DataProduct.
      */
     @JsonProperty(value = "properties")
-    private DataProductUpdateProperties properties;
+    private DataProductUpdateProperties innerProperties;
 
     /**
      * Creates an instance of DataProductUpdate class.
@@ -80,22 +82,126 @@ public final class DataProductUpdate {
     }
 
     /**
-     * Get the properties property: The updatable properties of the DataProduct.
+     * Get the innerProperties property: The updatable properties of the DataProduct.
      * 
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public DataProductUpdateProperties properties() {
-        return this.properties;
+    private DataProductUpdateProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the properties property: The updatable properties of the DataProduct.
+     * Get the owners property: List of name or email associated with data product resource deployment.
      * 
-     * @param properties the properties value to set.
+     * @return the owners value.
+     */
+    public List<String> owners() {
+        return this.innerProperties() == null ? null : this.innerProperties().owners();
+    }
+
+    /**
+     * Set the owners property: List of name or email associated with data product resource deployment.
+     * 
+     * @param owners the owners value to set.
      * @return the DataProductUpdate object itself.
      */
-    public DataProductUpdate withProperties(DataProductUpdateProperties properties) {
-        this.properties = properties;
+    public DataProductUpdate withOwners(List<String> owners) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DataProductUpdateProperties();
+        }
+        this.innerProperties().withOwners(owners);
+        return this;
+    }
+
+    /**
+     * Get the purviewAccount property: Purview account url for data product to connect to.
+     * 
+     * @return the purviewAccount value.
+     */
+    public String purviewAccount() {
+        return this.innerProperties() == null ? null : this.innerProperties().purviewAccount();
+    }
+
+    /**
+     * Set the purviewAccount property: Purview account url for data product to connect to.
+     * 
+     * @param purviewAccount the purviewAccount value to set.
+     * @return the DataProductUpdate object itself.
+     */
+    public DataProductUpdate withPurviewAccount(String purviewAccount) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DataProductUpdateProperties();
+        }
+        this.innerProperties().withPurviewAccount(purviewAccount);
+        return this;
+    }
+
+    /**
+     * Get the purviewCollection property: Purview collection url for data product to connect to.
+     * 
+     * @return the purviewCollection value.
+     */
+    public String purviewCollection() {
+        return this.innerProperties() == null ? null : this.innerProperties().purviewCollection();
+    }
+
+    /**
+     * Set the purviewCollection property: Purview collection url for data product to connect to.
+     * 
+     * @param purviewCollection the purviewCollection value to set.
+     * @return the DataProductUpdate object itself.
+     */
+    public DataProductUpdate withPurviewCollection(String purviewCollection) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DataProductUpdateProperties();
+        }
+        this.innerProperties().withPurviewCollection(purviewCollection);
+        return this;
+    }
+
+    /**
+     * Get the privateLinksEnabled property: Flag to enable or disable private link for data product resource.
+     * 
+     * @return the privateLinksEnabled value.
+     */
+    public ControlState privateLinksEnabled() {
+        return this.innerProperties() == null ? null : this.innerProperties().privateLinksEnabled();
+    }
+
+    /**
+     * Set the privateLinksEnabled property: Flag to enable or disable private link for data product resource.
+     * 
+     * @param privateLinksEnabled the privateLinksEnabled value to set.
+     * @return the DataProductUpdate object itself.
+     */
+    public DataProductUpdate withPrivateLinksEnabled(ControlState privateLinksEnabled) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DataProductUpdateProperties();
+        }
+        this.innerProperties().withPrivateLinksEnabled(privateLinksEnabled);
+        return this;
+    }
+
+    /**
+     * Get the currentMinorVersion property: Current configured minor version of the data product resource.
+     * 
+     * @return the currentMinorVersion value.
+     */
+    public String currentMinorVersion() {
+        return this.innerProperties() == null ? null : this.innerProperties().currentMinorVersion();
+    }
+
+    /**
+     * Set the currentMinorVersion property: Current configured minor version of the data product resource.
+     * 
+     * @param currentMinorVersion the currentMinorVersion value to set.
+     * @return the DataProductUpdate object itself.
+     */
+    public DataProductUpdate withCurrentMinorVersion(String currentMinorVersion) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DataProductUpdateProperties();
+        }
+        this.innerProperties().withCurrentMinorVersion(currentMinorVersion);
         return this;
     }
 
@@ -108,8 +214,8 @@ public final class DataProductUpdate {
         if (identity() != null) {
             identity().validate();
         }
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }

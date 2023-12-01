@@ -11,14 +11,14 @@ import com.azure.resourcemanager.networkanalytics.fluent.models.DataTypeInner;
 import com.azure.resourcemanager.networkanalytics.models.ContainerSaS;
 import com.azure.resourcemanager.networkanalytics.models.ContainerSasToken;
 import com.azure.resourcemanager.networkanalytics.models.DataType;
-import com.azure.resourcemanager.networkanalytics.models.DataTypeProperties;
+import com.azure.resourcemanager.networkanalytics.models.DataTypeState;
 import com.azure.resourcemanager.networkanalytics.models.DataTypeUpdate;
-import com.azure.resourcemanager.networkanalytics.models.DataTypeUpdateProperties;
+import com.azure.resourcemanager.networkanalytics.models.ProvisioningState;
 
 public final class DataTypeImpl implements DataType, DataType.Definition, DataType.Update {
     private DataTypeInner innerObject;
 
-    private final com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager serviceManager;
+    private final com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager serviceManager;
 
     public String id() {
         return this.innerModel().id();
@@ -32,12 +32,36 @@ public final class DataTypeImpl implements DataType, DataType.Definition, DataTy
         return this.innerModel().type();
     }
 
-    public DataTypeProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public ProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public DataTypeState state() {
+        return this.innerModel().state();
+    }
+
+    public String stateReason() {
+        return this.innerModel().stateReason();
+    }
+
+    public Integer storageOutputRetention() {
+        return this.innerModel().storageOutputRetention();
+    }
+
+    public Integer databaseCacheRetention() {
+        return this.innerModel().databaseCacheRetention();
+    }
+
+    public Integer databaseRetention() {
+        return this.innerModel().databaseRetention();
+    }
+
+    public String visualizationUrl() {
+        return this.innerModel().visualizationUrl();
     }
 
     public String resourceGroupName() {
@@ -48,7 +72,7 @@ public final class DataTypeImpl implements DataType, DataType.Definition, DataTy
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager() {
+    private com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager manager() {
         return this.serviceManager;
     }
 
@@ -78,7 +102,7 @@ public final class DataTypeImpl implements DataType, DataType.Definition, DataTy
         return this;
     }
 
-    DataTypeImpl(String name, com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager serviceManager) {
+    DataTypeImpl(String name, com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager serviceManager) {
         this.innerObject = new DataTypeInner();
         this.serviceManager = serviceManager;
         this.dataTypeName = name;
@@ -102,7 +126,7 @@ public final class DataTypeImpl implements DataType, DataType.Definition, DataTy
     }
 
     DataTypeImpl(DataTypeInner innerObject,
-        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager serviceManager) {
+        com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
@@ -141,13 +165,47 @@ public final class DataTypeImpl implements DataType, DataType.Definition, DataTy
             dataTypeName, body);
     }
 
-    public DataTypeImpl withProperties(DataTypeProperties properties) {
-        this.innerModel().withProperties(properties);
-        return this;
+    public DataTypeImpl withState(DataTypeState state) {
+        if (isInCreateMode()) {
+            this.innerModel().withState(state);
+            return this;
+        } else {
+            this.updateProperties.withState(state);
+            return this;
+        }
     }
 
-    public DataTypeImpl withProperties(DataTypeUpdateProperties properties) {
-        this.updateProperties.withProperties(properties);
-        return this;
+    public DataTypeImpl withStorageOutputRetention(Integer storageOutputRetention) {
+        if (isInCreateMode()) {
+            this.innerModel().withStorageOutputRetention(storageOutputRetention);
+            return this;
+        } else {
+            this.updateProperties.withStorageOutputRetention(storageOutputRetention);
+            return this;
+        }
+    }
+
+    public DataTypeImpl withDatabaseCacheRetention(Integer databaseCacheRetention) {
+        if (isInCreateMode()) {
+            this.innerModel().withDatabaseCacheRetention(databaseCacheRetention);
+            return this;
+        } else {
+            this.updateProperties.withDatabaseCacheRetention(databaseCacheRetention);
+            return this;
+        }
+    }
+
+    public DataTypeImpl withDatabaseRetention(Integer databaseRetention) {
+        if (isInCreateMode()) {
+            this.innerModel().withDatabaseRetention(databaseRetention);
+            return this;
+        } else {
+            this.updateProperties.withDatabaseRetention(databaseRetention);
+            return this;
+        }
+    }
+
+    private boolean isInCreateMode() {
+        return this.innerModel().id() == null;
     }
 }

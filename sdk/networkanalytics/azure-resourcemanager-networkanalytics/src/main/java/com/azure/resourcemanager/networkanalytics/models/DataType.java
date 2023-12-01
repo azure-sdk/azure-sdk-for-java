@@ -35,18 +35,60 @@ public interface DataType {
     String type();
 
     /**
-     * Gets the properties property: The resource-specific properties for this resource.
-     * 
-     * @return the properties value.
-     */
-    DataTypeProperties properties();
-
-    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the provisioningState property: Latest provisioning state of data product.
+     * 
+     * @return the provisioningState value.
+     */
+    ProvisioningState provisioningState();
+
+    /**
+     * Gets the state property: State of data type.
+     * 
+     * @return the state value.
+     */
+    DataTypeState state();
+
+    /**
+     * Gets the stateReason property: Reason for the state of data type.
+     * 
+     * @return the stateReason value.
+     */
+    String stateReason();
+
+    /**
+     * Gets the storageOutputRetention property: Field for storage output retention in days.
+     * 
+     * @return the storageOutputRetention value.
+     */
+    Integer storageOutputRetention();
+
+    /**
+     * Gets the databaseCacheRetention property: Field for database cache retention in days.
+     * 
+     * @return the databaseCacheRetention value.
+     */
+    Integer databaseCacheRetention();
+
+    /**
+     * Gets the databaseRetention property: Field for database data retention in days.
+     * 
+     * @return the databaseRetention value.
+     */
+    Integer databaseRetention();
+
+    /**
+     * Gets the visualizationUrl property: Url for data visualization.
+     * 
+     * @return the visualizationUrl value.
+     */
+    String visualizationUrl();
 
     /**
      * Gets the name of the resource group.
@@ -97,7 +139,8 @@ public interface DataType {
          * The stage of the DataType definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithState, DefinitionStages.WithStorageOutputRetention,
+            DefinitionStages.WithDatabaseCacheRetention, DefinitionStages.WithDatabaseRetention {
             /**
              * Executes the create request.
              * 
@@ -115,16 +158,55 @@ public interface DataType {
         }
 
         /**
-         * The stage of the DataType definition allowing to specify properties.
+         * The stage of the DataType definition allowing to specify state.
          */
-        interface WithProperties {
+        interface WithState {
             /**
-             * Specifies the properties property: The resource-specific properties for this resource..
+             * Specifies the state property: State of data type..
              * 
-             * @param properties The resource-specific properties for this resource.
+             * @param state State of data type.
              * @return the next definition stage.
              */
-            WithCreate withProperties(DataTypeProperties properties);
+            WithCreate withState(DataTypeState state);
+        }
+
+        /**
+         * The stage of the DataType definition allowing to specify storageOutputRetention.
+         */
+        interface WithStorageOutputRetention {
+            /**
+             * Specifies the storageOutputRetention property: Field for storage output retention in days..
+             * 
+             * @param storageOutputRetention Field for storage output retention in days.
+             * @return the next definition stage.
+             */
+            WithCreate withStorageOutputRetention(Integer storageOutputRetention);
+        }
+
+        /**
+         * The stage of the DataType definition allowing to specify databaseCacheRetention.
+         */
+        interface WithDatabaseCacheRetention {
+            /**
+             * Specifies the databaseCacheRetention property: Field for database cache retention in days..
+             * 
+             * @param databaseCacheRetention Field for database cache retention in days.
+             * @return the next definition stage.
+             */
+            WithCreate withDatabaseCacheRetention(Integer databaseCacheRetention);
+        }
+
+        /**
+         * The stage of the DataType definition allowing to specify databaseRetention.
+         */
+        interface WithDatabaseRetention {
+            /**
+             * Specifies the databaseRetention property: Field for database data retention in days..
+             * 
+             * @param databaseRetention Field for database data retention in days.
+             * @return the next definition stage.
+             */
+            WithCreate withDatabaseRetention(Integer databaseRetention);
         }
     }
 
@@ -138,7 +220,8 @@ public interface DataType {
     /**
      * The template for DataType update.
      */
-    interface Update extends UpdateStages.WithProperties {
+    interface Update extends UpdateStages.WithState, UpdateStages.WithStorageOutputRetention,
+        UpdateStages.WithDatabaseCacheRetention, UpdateStages.WithDatabaseRetention {
         /**
          * Executes the update request.
          * 
@@ -160,16 +243,55 @@ public interface DataType {
      */
     interface UpdateStages {
         /**
-         * The stage of the DataType update allowing to specify properties.
+         * The stage of the DataType update allowing to specify state.
          */
-        interface WithProperties {
+        interface WithState {
             /**
-             * Specifies the properties property: The updatable properties of the DataType..
+             * Specifies the state property: State of data type..
              * 
-             * @param properties The updatable properties of the DataType.
+             * @param state State of data type.
              * @return the next definition stage.
              */
-            Update withProperties(DataTypeUpdateProperties properties);
+            Update withState(DataTypeState state);
+        }
+
+        /**
+         * The stage of the DataType update allowing to specify storageOutputRetention.
+         */
+        interface WithStorageOutputRetention {
+            /**
+             * Specifies the storageOutputRetention property: Field for storage output retention in days..
+             * 
+             * @param storageOutputRetention Field for storage output retention in days.
+             * @return the next definition stage.
+             */
+            Update withStorageOutputRetention(Integer storageOutputRetention);
+        }
+
+        /**
+         * The stage of the DataType update allowing to specify databaseCacheRetention.
+         */
+        interface WithDatabaseCacheRetention {
+            /**
+             * Specifies the databaseCacheRetention property: Field for database cache retention in days..
+             * 
+             * @param databaseCacheRetention Field for database cache retention in days.
+             * @return the next definition stage.
+             */
+            Update withDatabaseCacheRetention(Integer databaseCacheRetention);
+        }
+
+        /**
+         * The stage of the DataType update allowing to specify databaseRetention.
+         */
+        interface WithDatabaseRetention {
+            /**
+             * Specifies the databaseRetention property: Field for database data retention in days..
+             * 
+             * @param databaseRetention Field for database data retention in days.
+             * @return the next definition stage.
+             */
+            Update withDatabaseRetention(Integer databaseRetention);
         }
     }
 

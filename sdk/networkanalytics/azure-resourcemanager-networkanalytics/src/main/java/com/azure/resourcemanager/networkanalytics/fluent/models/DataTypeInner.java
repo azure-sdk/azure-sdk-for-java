@@ -7,7 +7,8 @@ package com.azure.resourcemanager.networkanalytics.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.networkanalytics.models.DataTypeProperties;
+import com.azure.resourcemanager.networkanalytics.models.DataTypeState;
+import com.azure.resourcemanager.networkanalytics.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -19,7 +20,7 @@ public final class DataTypeInner extends ProxyResource {
      * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
-    private DataTypeProperties properties;
+    private DataTypeProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -34,23 +35,12 @@ public final class DataTypeInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: The resource-specific properties for this resource.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public DataTypeProperties properties() {
-        return this.properties;
-    }
-
-    /**
-     * Set the properties property: The resource-specific properties for this resource.
-     * 
-     * @param properties the properties value to set.
-     * @return the DataTypeInner object itself.
-     */
-    public DataTypeInner withProperties(DataTypeProperties properties) {
-        this.properties = properties;
-        return this;
+    private DataTypeProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
@@ -63,13 +53,132 @@ public final class DataTypeInner extends ProxyResource {
     }
 
     /**
+     * Get the provisioningState property: Latest provisioning state of data product.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the state property: State of data type.
+     * 
+     * @return the state value.
+     */
+    public DataTypeState state() {
+        return this.innerProperties() == null ? null : this.innerProperties().state();
+    }
+
+    /**
+     * Set the state property: State of data type.
+     * 
+     * @param state the state value to set.
+     * @return the DataTypeInner object itself.
+     */
+    public DataTypeInner withState(DataTypeState state) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DataTypeProperties();
+        }
+        this.innerProperties().withState(state);
+        return this;
+    }
+
+    /**
+     * Get the stateReason property: Reason for the state of data type.
+     * 
+     * @return the stateReason value.
+     */
+    public String stateReason() {
+        return this.innerProperties() == null ? null : this.innerProperties().stateReason();
+    }
+
+    /**
+     * Get the storageOutputRetention property: Field for storage output retention in days.
+     * 
+     * @return the storageOutputRetention value.
+     */
+    public Integer storageOutputRetention() {
+        return this.innerProperties() == null ? null : this.innerProperties().storageOutputRetention();
+    }
+
+    /**
+     * Set the storageOutputRetention property: Field for storage output retention in days.
+     * 
+     * @param storageOutputRetention the storageOutputRetention value to set.
+     * @return the DataTypeInner object itself.
+     */
+    public DataTypeInner withStorageOutputRetention(Integer storageOutputRetention) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DataTypeProperties();
+        }
+        this.innerProperties().withStorageOutputRetention(storageOutputRetention);
+        return this;
+    }
+
+    /**
+     * Get the databaseCacheRetention property: Field for database cache retention in days.
+     * 
+     * @return the databaseCacheRetention value.
+     */
+    public Integer databaseCacheRetention() {
+        return this.innerProperties() == null ? null : this.innerProperties().databaseCacheRetention();
+    }
+
+    /**
+     * Set the databaseCacheRetention property: Field for database cache retention in days.
+     * 
+     * @param databaseCacheRetention the databaseCacheRetention value to set.
+     * @return the DataTypeInner object itself.
+     */
+    public DataTypeInner withDatabaseCacheRetention(Integer databaseCacheRetention) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DataTypeProperties();
+        }
+        this.innerProperties().withDatabaseCacheRetention(databaseCacheRetention);
+        return this;
+    }
+
+    /**
+     * Get the databaseRetention property: Field for database data retention in days.
+     * 
+     * @return the databaseRetention value.
+     */
+    public Integer databaseRetention() {
+        return this.innerProperties() == null ? null : this.innerProperties().databaseRetention();
+    }
+
+    /**
+     * Set the databaseRetention property: Field for database data retention in days.
+     * 
+     * @param databaseRetention the databaseRetention value to set.
+     * @return the DataTypeInner object itself.
+     */
+    public DataTypeInner withDatabaseRetention(Integer databaseRetention) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DataTypeProperties();
+        }
+        this.innerProperties().withDatabaseRetention(databaseRetention);
+        return this;
+    }
+
+    /**
+     * Get the visualizationUrl property: Url for data visualization.
+     * 
+     * @return the visualizationUrl value.
+     */
+    public String visualizationUrl() {
+        return this.innerProperties() == null ? null : this.innerProperties().visualizationUrl();
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }

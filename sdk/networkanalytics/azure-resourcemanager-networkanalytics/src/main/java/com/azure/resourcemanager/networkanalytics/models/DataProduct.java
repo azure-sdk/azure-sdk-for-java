@@ -10,6 +10,7 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.networkanalytics.fluent.models.DataProductInner;
 import com.azure.resourcemanager.networkanalytics.fluent.models.RoleAssignmentDetailInner;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,13 +53,6 @@ public interface DataProduct {
     Map<String, String> tags();
 
     /**
-     * Gets the properties property: The resource-specific properties for this resource.
-     * 
-     * @return the properties value.
-     */
-    DataProductProperties properties();
-
-    /**
      * Gets the identity property: The managed service identities assigned to this resource.
      * 
      * @return the identity value.
@@ -71,6 +65,147 @@ public interface DataProduct {
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the resourceGuid property: The resource GUID property of the data product resource.
+     * 
+     * @return the resourceGuid value.
+     */
+    String resourceGuid();
+
+    /**
+     * Gets the provisioningState property: Latest provisioning state of data product.
+     * 
+     * @return the provisioningState value.
+     */
+    ProvisioningState provisioningState();
+
+    /**
+     * Gets the publisher property: Data product publisher name.
+     * 
+     * @return the publisher value.
+     */
+    String publisher();
+
+    /**
+     * Gets the product property: Product name of data product.
+     * 
+     * @return the product value.
+     */
+    String product();
+
+    /**
+     * Gets the majorVersion property: Major version of data product.
+     * 
+     * @return the majorVersion value.
+     */
+    String majorVersion();
+
+    /**
+     * Gets the owners property: List of name or email associated with data product resource deployment.
+     * 
+     * @return the owners value.
+     */
+    List<String> owners();
+
+    /**
+     * Gets the redundancy property: Flag to enable or disable redundancy for data product.
+     * 
+     * @return the redundancy value.
+     */
+    ControlState redundancy();
+
+    /**
+     * Gets the purviewAccount property: Purview account url for data product to connect to.
+     * 
+     * @return the purviewAccount value.
+     */
+    String purviewAccount();
+
+    /**
+     * Gets the purviewCollection property: Purview collection url for data product to connect to.
+     * 
+     * @return the purviewCollection value.
+     */
+    String purviewCollection();
+
+    /**
+     * Gets the privateLinksEnabled property: Flag to enable or disable private link for data product resource.
+     * 
+     * @return the privateLinksEnabled value.
+     */
+    ControlState privateLinksEnabled();
+
+    /**
+     * Gets the publicNetworkAccess property: Flag to enable or disable public access of data product resource.
+     * 
+     * @return the publicNetworkAccess value.
+     */
+    ControlState publicNetworkAccess();
+
+    /**
+     * Gets the customerManagedKeyEncryptionEnabled property: Flag to enable customer managed key encryption for data
+     * product.
+     * 
+     * @return the customerManagedKeyEncryptionEnabled value.
+     */
+    ControlState customerManagedKeyEncryptionEnabled();
+
+    /**
+     * Gets the customerEncryptionKey property: Customer managed encryption key details for data product.
+     * 
+     * @return the customerEncryptionKey value.
+     */
+    EncryptionKeyDetails customerEncryptionKey();
+
+    /**
+     * Gets the networkacls property: Network rule set for data product.
+     * 
+     * @return the networkacls value.
+     */
+    DataProductNetworkAcls networkacls();
+
+    /**
+     * Gets the managedResourceGroupConfiguration property: Managed resource group configuration.
+     * 
+     * @return the managedResourceGroupConfiguration value.
+     */
+    ManagedResourceGroupConfiguration managedResourceGroupConfiguration();
+
+    /**
+     * Gets the availableMinorVersions property: List of available minor versions of the data product resource.
+     * 
+     * @return the availableMinorVersions value.
+     */
+    List<String> availableMinorVersions();
+
+    /**
+     * Gets the currentMinorVersion property: Current configured minor version of the data product resource.
+     * 
+     * @return the currentMinorVersion value.
+     */
+    String currentMinorVersion();
+
+    /**
+     * Gets the documentation property: Documentation link for the data product based on definition file.
+     * 
+     * @return the documentation value.
+     */
+    String documentation();
+
+    /**
+     * Gets the consumptionEndpoints property: Resource links which exposed to the customer to query the data.
+     * 
+     * @return the consumptionEndpoints value.
+     */
+    ConsumptionEndpointsProperties consumptionEndpoints();
+
+    /**
+     * Gets the keyVaultUrl property: Key vault url.
+     * 
+     * @return the keyVaultUrl value.
+     */
+    String keyVaultUrl();
 
     /**
      * Gets the region of the resource.
@@ -155,8 +290,13 @@ public interface DataProduct {
          * The stage of the DataProduct definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithTags, DefinitionStages.WithProperties, DefinitionStages.WithIdentity {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity,
+            DefinitionStages.WithPublisher, DefinitionStages.WithProduct, DefinitionStages.WithMajorVersion,
+            DefinitionStages.WithOwners, DefinitionStages.WithRedundancy, DefinitionStages.WithPurviewAccount,
+            DefinitionStages.WithPurviewCollection, DefinitionStages.WithPrivateLinksEnabled,
+            DefinitionStages.WithPublicNetworkAccess, DefinitionStages.WithCustomerManagedKeyEncryptionEnabled,
+            DefinitionStages.WithCustomerEncryptionKey, DefinitionStages.WithNetworkacls,
+            DefinitionStages.WithManagedResourceGroupConfiguration {
             /**
              * Executes the create request.
              * 
@@ -187,19 +327,6 @@ public interface DataProduct {
         }
 
         /**
-         * The stage of the DataProduct definition allowing to specify properties.
-         */
-        interface WithProperties {
-            /**
-             * Specifies the properties property: The resource-specific properties for this resource..
-             * 
-             * @param properties The resource-specific properties for this resource.
-             * @return the next definition stage.
-             */
-            WithCreate withProperties(DataProductProperties properties);
-        }
-
-        /**
          * The stage of the DataProduct definition allowing to specify identity.
          */
         interface WithIdentity {
@@ -210,6 +337,180 @@ public interface DataProduct {
              * @return the next definition stage.
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
+        }
+
+        /**
+         * The stage of the DataProduct definition allowing to specify publisher.
+         */
+        interface WithPublisher {
+            /**
+             * Specifies the publisher property: Data product publisher name..
+             * 
+             * @param publisher Data product publisher name.
+             * @return the next definition stage.
+             */
+            WithCreate withPublisher(String publisher);
+        }
+
+        /**
+         * The stage of the DataProduct definition allowing to specify product.
+         */
+        interface WithProduct {
+            /**
+             * Specifies the product property: Product name of data product..
+             * 
+             * @param product Product name of data product.
+             * @return the next definition stage.
+             */
+            WithCreate withProduct(String product);
+        }
+
+        /**
+         * The stage of the DataProduct definition allowing to specify majorVersion.
+         */
+        interface WithMajorVersion {
+            /**
+             * Specifies the majorVersion property: Major version of data product..
+             * 
+             * @param majorVersion Major version of data product.
+             * @return the next definition stage.
+             */
+            WithCreate withMajorVersion(String majorVersion);
+        }
+
+        /**
+         * The stage of the DataProduct definition allowing to specify owners.
+         */
+        interface WithOwners {
+            /**
+             * Specifies the owners property: List of name or email associated with data product resource deployment..
+             * 
+             * @param owners List of name or email associated with data product resource deployment.
+             * @return the next definition stage.
+             */
+            WithCreate withOwners(List<String> owners);
+        }
+
+        /**
+         * The stage of the DataProduct definition allowing to specify redundancy.
+         */
+        interface WithRedundancy {
+            /**
+             * Specifies the redundancy property: Flag to enable or disable redundancy for data product..
+             * 
+             * @param redundancy Flag to enable or disable redundancy for data product.
+             * @return the next definition stage.
+             */
+            WithCreate withRedundancy(ControlState redundancy);
+        }
+
+        /**
+         * The stage of the DataProduct definition allowing to specify purviewAccount.
+         */
+        interface WithPurviewAccount {
+            /**
+             * Specifies the purviewAccount property: Purview account url for data product to connect to..
+             * 
+             * @param purviewAccount Purview account url for data product to connect to.
+             * @return the next definition stage.
+             */
+            WithCreate withPurviewAccount(String purviewAccount);
+        }
+
+        /**
+         * The stage of the DataProduct definition allowing to specify purviewCollection.
+         */
+        interface WithPurviewCollection {
+            /**
+             * Specifies the purviewCollection property: Purview collection url for data product to connect to..
+             * 
+             * @param purviewCollection Purview collection url for data product to connect to.
+             * @return the next definition stage.
+             */
+            WithCreate withPurviewCollection(String purviewCollection);
+        }
+
+        /**
+         * The stage of the DataProduct definition allowing to specify privateLinksEnabled.
+         */
+        interface WithPrivateLinksEnabled {
+            /**
+             * Specifies the privateLinksEnabled property: Flag to enable or disable private link for data product
+             * resource..
+             * 
+             * @param privateLinksEnabled Flag to enable or disable private link for data product resource.
+             * @return the next definition stage.
+             */
+            WithCreate withPrivateLinksEnabled(ControlState privateLinksEnabled);
+        }
+
+        /**
+         * The stage of the DataProduct definition allowing to specify publicNetworkAccess.
+         */
+        interface WithPublicNetworkAccess {
+            /**
+             * Specifies the publicNetworkAccess property: Flag to enable or disable public access of data product
+             * resource..
+             * 
+             * @param publicNetworkAccess Flag to enable or disable public access of data product resource.
+             * @return the next definition stage.
+             */
+            WithCreate withPublicNetworkAccess(ControlState publicNetworkAccess);
+        }
+
+        /**
+         * The stage of the DataProduct definition allowing to specify customerManagedKeyEncryptionEnabled.
+         */
+        interface WithCustomerManagedKeyEncryptionEnabled {
+            /**
+             * Specifies the customerManagedKeyEncryptionEnabled property: Flag to enable customer managed key
+             * encryption for data product..
+             * 
+             * @param customerManagedKeyEncryptionEnabled Flag to enable customer managed key encryption for data
+             * product.
+             * @return the next definition stage.
+             */
+            WithCreate withCustomerManagedKeyEncryptionEnabled(ControlState customerManagedKeyEncryptionEnabled);
+        }
+
+        /**
+         * The stage of the DataProduct definition allowing to specify customerEncryptionKey.
+         */
+        interface WithCustomerEncryptionKey {
+            /**
+             * Specifies the customerEncryptionKey property: Customer managed encryption key details for data product..
+             * 
+             * @param customerEncryptionKey Customer managed encryption key details for data product.
+             * @return the next definition stage.
+             */
+            WithCreate withCustomerEncryptionKey(EncryptionKeyDetails customerEncryptionKey);
+        }
+
+        /**
+         * The stage of the DataProduct definition allowing to specify networkacls.
+         */
+        interface WithNetworkacls {
+            /**
+             * Specifies the networkacls property: Network rule set for data product..
+             * 
+             * @param networkacls Network rule set for data product.
+             * @return the next definition stage.
+             */
+            WithCreate withNetworkacls(DataProductNetworkAcls networkacls);
+        }
+
+        /**
+         * The stage of the DataProduct definition allowing to specify managedResourceGroupConfiguration.
+         */
+        interface WithManagedResourceGroupConfiguration {
+            /**
+             * Specifies the managedResourceGroupConfiguration property: Managed resource group configuration..
+             * 
+             * @param managedResourceGroupConfiguration Managed resource group configuration.
+             * @return the next definition stage.
+             */
+            WithCreate withManagedResourceGroupConfiguration(
+                ManagedResourceGroupConfiguration managedResourceGroupConfiguration);
         }
     }
 
@@ -223,7 +524,9 @@ public interface DataProduct {
     /**
      * The template for DataProduct update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithProperties {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithOwners,
+        UpdateStages.WithPurviewAccount, UpdateStages.WithPurviewCollection, UpdateStages.WithPrivateLinksEnabled,
+        UpdateStages.WithCurrentMinorVersion {
         /**
          * Executes the update request.
          * 
@@ -271,16 +574,70 @@ public interface DataProduct {
         }
 
         /**
-         * The stage of the DataProduct update allowing to specify properties.
+         * The stage of the DataProduct update allowing to specify owners.
          */
-        interface WithProperties {
+        interface WithOwners {
             /**
-             * Specifies the properties property: The updatable properties of the DataProduct..
+             * Specifies the owners property: List of name or email associated with data product resource deployment..
              * 
-             * @param properties The updatable properties of the DataProduct.
+             * @param owners List of name or email associated with data product resource deployment.
              * @return the next definition stage.
              */
-            Update withProperties(DataProductUpdateProperties properties);
+            Update withOwners(List<String> owners);
+        }
+
+        /**
+         * The stage of the DataProduct update allowing to specify purviewAccount.
+         */
+        interface WithPurviewAccount {
+            /**
+             * Specifies the purviewAccount property: Purview account url for data product to connect to..
+             * 
+             * @param purviewAccount Purview account url for data product to connect to.
+             * @return the next definition stage.
+             */
+            Update withPurviewAccount(String purviewAccount);
+        }
+
+        /**
+         * The stage of the DataProduct update allowing to specify purviewCollection.
+         */
+        interface WithPurviewCollection {
+            /**
+             * Specifies the purviewCollection property: Purview collection url for data product to connect to..
+             * 
+             * @param purviewCollection Purview collection url for data product to connect to.
+             * @return the next definition stage.
+             */
+            Update withPurviewCollection(String purviewCollection);
+        }
+
+        /**
+         * The stage of the DataProduct update allowing to specify privateLinksEnabled.
+         */
+        interface WithPrivateLinksEnabled {
+            /**
+             * Specifies the privateLinksEnabled property: Flag to enable or disable private link for data product
+             * resource..
+             * 
+             * @param privateLinksEnabled Flag to enable or disable private link for data product resource.
+             * @return the next definition stage.
+             */
+            Update withPrivateLinksEnabled(ControlState privateLinksEnabled);
+        }
+
+        /**
+         * The stage of the DataProduct update allowing to specify currentMinorVersion.
+         */
+        interface WithCurrentMinorVersion {
+            /**
+             * Specifies the currentMinorVersion property: Current configured minor version of the data product
+             * resource..
+             * 
+             * @param currentMinorVersion Current configured minor version of the data product resource.
+             * @return the next definition stage.
+             */
+            Update withCurrentMinorVersion(String currentMinorVersion);
         }
     }
 

@@ -55,25 +55,25 @@ public final class DataTypesClientImpl implements DataTypesClient {
     /**
      * The service client containing this operation class.
      */
-    private final NetworkAnalyticsMgmtClientImpl client;
+    private final MicrosoftNetworkAnalyticsImpl client;
 
     /**
      * Initializes an instance of DataTypesClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    DataTypesClientImpl(NetworkAnalyticsMgmtClientImpl client) {
+    DataTypesClientImpl(MicrosoftNetworkAnalyticsImpl client) {
         this.service
             = RestProxy.create(DataTypesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for NetworkAnalyticsMgmtClientDataTypes to be used by the proxy service
+     * The interface defining all the services for MicrosoftNetworkAnalyticsDataTypes to be used by the proxy service
      * to perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "NetworkAnalyticsMgmt")
+    @ServiceInterface(name = "MicrosoftNetworkAnal")
     public interface DataTypesService {
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes")

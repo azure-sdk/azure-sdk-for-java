@@ -16,10 +16,10 @@ public final class DataProductsCatalogsListSamples {
     /**
      * Sample code: DataProductsCatalogs_ListBySubscription_MaximumSet_Gen.
      * 
-     * @param manager Entry point to NetworkAnalyticsManager.
+     * @param manager Entry point to NetworkanalyticsManager.
      */
     public static void dataProductsCatalogsListBySubscriptionMaximumSetGen(
-        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager manager) {
         manager.dataProductsCatalogs().list(com.azure.core.util.Context.NONE);
     }
 
@@ -31,10 +31,10 @@ public final class DataProductsCatalogsListSamples {
     /**
      * Sample code: DataProductsCatalogs_ListBySubscription_MinimumSet_Gen.
      * 
-     * @param manager Entry point to NetworkAnalyticsManager.
+     * @param manager Entry point to NetworkanalyticsManager.
      */
     public static void dataProductsCatalogsListBySubscriptionMinimumSetGen(
-        com.azure.resourcemanager.networkanalytics.NetworkAnalyticsManager manager) {
+        com.azure.resourcemanager.networkanalytics.NetworkanalyticsManager manager) {
         manager.dataProductsCatalogs().list(com.azure.core.util.Context.NONE);
     }
 }

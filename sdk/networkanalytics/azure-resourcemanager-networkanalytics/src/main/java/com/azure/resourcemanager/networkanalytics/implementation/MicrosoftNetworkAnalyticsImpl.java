@@ -25,7 +25,7 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.networkanalytics.fluent.DataProductsCatalogsClient;
 import com.azure.resourcemanager.networkanalytics.fluent.DataProductsClient;
 import com.azure.resourcemanager.networkanalytics.fluent.DataTypesClient;
-import com.azure.resourcemanager.networkanalytics.fluent.NetworkAnalyticsMgmtClient;
+import com.azure.resourcemanager.networkanalytics.fluent.MicrosoftNetworkAnalytics;
 import com.azure.resourcemanager.networkanalytics.fluent.OperationsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -37,10 +37,10 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * Initializes a new instance of the NetworkAnalyticsMgmtClientImpl type.
+ * Initializes a new instance of the MicrosoftNetworkAnalyticsImpl type.
  */
-@ServiceClient(builder = NetworkAnalyticsMgmtClientBuilder.class)
-public final class NetworkAnalyticsMgmtClientImpl implements NetworkAnalyticsMgmtClient {
+@ServiceClient(builder = MicrosoftNetworkAnalyticsBuilder.class)
+public final class MicrosoftNetworkAnalyticsImpl implements MicrosoftNetworkAnalytics {
     /**
      * The ID of the target subscription.
      */
@@ -182,7 +182,7 @@ public final class NetworkAnalyticsMgmtClientImpl implements NetworkAnalyticsMgm
     }
 
     /**
-     * Initializes an instance of NetworkAnalyticsMgmtClient client.
+     * Initializes an instance of MicrosoftNetworkAnalytics client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
@@ -191,7 +191,7 @@ public final class NetworkAnalyticsMgmtClientImpl implements NetworkAnalyticsMgm
      * @param subscriptionId The ID of the target subscription.
      * @param endpoint server parameter.
      */
-    NetworkAnalyticsMgmtClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
+    MicrosoftNetworkAnalyticsImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
         Duration defaultPollInterval, AzureEnvironment environment, String subscriptionId, String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
@@ -331,5 +331,5 @@ public final class NetworkAnalyticsMgmtClientImpl implements NetworkAnalyticsMgm
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(NetworkAnalyticsMgmtClientImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(MicrosoftNetworkAnalyticsImpl.class);
 }

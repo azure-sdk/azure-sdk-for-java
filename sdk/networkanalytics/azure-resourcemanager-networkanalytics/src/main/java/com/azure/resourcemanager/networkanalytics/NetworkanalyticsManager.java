@@ -23,11 +23,11 @@ import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.networkanalytics.fluent.NetworkAnalyticsMgmtClient;
+import com.azure.resourcemanager.networkanalytics.fluent.MicrosoftNetworkAnalytics;
 import com.azure.resourcemanager.networkanalytics.implementation.DataProductsCatalogsImpl;
 import com.azure.resourcemanager.networkanalytics.implementation.DataProductsImpl;
 import com.azure.resourcemanager.networkanalytics.implementation.DataTypesImpl;
-import com.azure.resourcemanager.networkanalytics.implementation.NetworkAnalyticsMgmtClientBuilder;
+import com.azure.resourcemanager.networkanalytics.implementation.MicrosoftNetworkAnalyticsBuilder;
 import com.azure.resourcemanager.networkanalytics.implementation.OperationsImpl;
 import com.azure.resourcemanager.networkanalytics.models.DataProducts;
 import com.azure.resourcemanager.networkanalytics.models.DataProductsCatalogs;
@@ -41,9 +41,9 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * Entry point to NetworkAnalyticsManager.
+ * Entry point to NetworkanalyticsManager.
  */
-public final class NetworkAnalyticsManager {
+public final class NetworkanalyticsManager {
     private Operations operations;
 
     private DataProducts dataProducts;
@@ -52,49 +52,49 @@ public final class NetworkAnalyticsManager {
 
     private DataTypes dataTypes;
 
-    private final NetworkAnalyticsMgmtClient clientObject;
+    private final MicrosoftNetworkAnalytics clientObject;
 
-    private NetworkAnalyticsManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
+    private NetworkanalyticsManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject = new NetworkAnalyticsMgmtClientBuilder().pipeline(httpPipeline)
+        this.clientObject = new MicrosoftNetworkAnalyticsBuilder().pipeline(httpPipeline)
             .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
             .defaultPollInterval(defaultPollInterval).buildClient();
     }
 
     /**
-     * Creates an instance of Network Analytics service API entry point.
+     * Creates an instance of networkanalytics service API entry point.
      * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
-     * @return the Network Analytics service API instance.
+     * @return the networkanalytics service API instance.
      */
-    public static NetworkAnalyticsManager authenticate(TokenCredential credential, AzureProfile profile) {
+    public static NetworkanalyticsManager authenticate(TokenCredential credential, AzureProfile profile) {
         Objects.requireNonNull(credential, "'credential' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         return configure().authenticate(credential, profile);
     }
 
     /**
-     * Creates an instance of Network Analytics service API entry point.
+     * Creates an instance of networkanalytics service API entry point.
      * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
-     * @return the Network Analytics service API instance.
+     * @return the networkanalytics service API instance.
      */
-    public static NetworkAnalyticsManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
+    public static NetworkanalyticsManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        return new NetworkAnalyticsManager(httpPipeline, profile, null);
+        return new NetworkanalyticsManager(httpPipeline, profile, null);
     }
 
     /**
-     * Gets a Configurable instance that can be used to create NetworkAnalyticsManager with optional configuration.
+     * Gets a Configurable instance that can be used to create NetworkanalyticsManager with optional configuration.
      * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
-        return new NetworkAnalyticsManager.Configurable();
+        return new NetworkanalyticsManager.Configurable();
     }
 
     /**
@@ -199,13 +199,13 @@ public final class NetworkAnalyticsManager {
         }
 
         /**
-         * Creates an instance of Network Analytics service API entry point.
+         * Creates an instance of networkanalytics service API entry point.
          *
          * @param credential the credential to use.
          * @param profile the Azure profile for client.
-         * @return the Network Analytics service API instance.
+         * @return the networkanalytics service API instance.
          */
-        public NetworkAnalyticsManager authenticate(TokenCredential credential, AzureProfile profile) {
+        public NetworkanalyticsManager authenticate(TokenCredential credential, AzureProfile profile) {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
@@ -246,7 +246,7 @@ public final class NetworkAnalyticsManager {
             policies.add(new HttpLoggingPolicy(httpLogOptions));
             HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
                 .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
-            return new NetworkAnalyticsManager(httpPipeline, profile, defaultPollInterval);
+            return new NetworkanalyticsManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
@@ -299,12 +299,12 @@ public final class NetworkAnalyticsManager {
     }
 
     /**
-     * Gets wrapped service client NetworkAnalyticsMgmtClient providing direct access to the underlying auto-generated
+     * Gets wrapped service client MicrosoftNetworkAnalytics providing direct access to the underlying auto-generated
      * API implementation, based on Azure REST API.
      * 
-     * @return Wrapped service client NetworkAnalyticsMgmtClient.
+     * @return Wrapped service client MicrosoftNetworkAnalytics.
      */
-    public NetworkAnalyticsMgmtClient serviceClient() {
+    public MicrosoftNetworkAnalytics serviceClient() {
         return this.clientObject;
     }
 }

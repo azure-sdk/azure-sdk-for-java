@@ -15,10 +15,10 @@ import com.azure.core.util.serializer.SerializerAdapter;
 import java.time.Duration;
 
 /**
- * A builder for creating a new instance of the NetworkAnalyticsMgmtClientImpl type.
+ * A builder for creating a new instance of the MicrosoftNetworkAnalyticsImpl type.
  */
-@ServiceClientBuilder(serviceClients = { NetworkAnalyticsMgmtClientImpl.class })
-public final class NetworkAnalyticsMgmtClientBuilder {
+@ServiceClientBuilder(serviceClients = { MicrosoftNetworkAnalyticsImpl.class })
+public final class MicrosoftNetworkAnalyticsBuilder {
     /*
      * The ID of the target subscription.
      */
@@ -28,9 +28,9 @@ public final class NetworkAnalyticsMgmtClientBuilder {
      * Sets The ID of the target subscription.
      * 
      * @param subscriptionId the subscriptionId value.
-     * @return the NetworkAnalyticsMgmtClientBuilder.
+     * @return the MicrosoftNetworkAnalyticsBuilder.
      */
-    public NetworkAnalyticsMgmtClientBuilder subscriptionId(String subscriptionId) {
+    public MicrosoftNetworkAnalyticsBuilder subscriptionId(String subscriptionId) {
         this.subscriptionId = subscriptionId;
         return this;
     }
@@ -44,9 +44,9 @@ public final class NetworkAnalyticsMgmtClientBuilder {
      * Sets server parameter.
      * 
      * @param endpoint the endpoint value.
-     * @return the NetworkAnalyticsMgmtClientBuilder.
+     * @return the MicrosoftNetworkAnalyticsBuilder.
      */
-    public NetworkAnalyticsMgmtClientBuilder endpoint(String endpoint) {
+    public MicrosoftNetworkAnalyticsBuilder endpoint(String endpoint) {
         this.endpoint = endpoint;
         return this;
     }
@@ -60,9 +60,9 @@ public final class NetworkAnalyticsMgmtClientBuilder {
      * Sets The environment to connect to.
      * 
      * @param environment the environment value.
-     * @return the NetworkAnalyticsMgmtClientBuilder.
+     * @return the MicrosoftNetworkAnalyticsBuilder.
      */
-    public NetworkAnalyticsMgmtClientBuilder environment(AzureEnvironment environment) {
+    public MicrosoftNetworkAnalyticsBuilder environment(AzureEnvironment environment) {
         this.environment = environment;
         return this;
     }
@@ -76,9 +76,9 @@ public final class NetworkAnalyticsMgmtClientBuilder {
      * Sets The HTTP pipeline to send requests through.
      * 
      * @param pipeline the pipeline value.
-     * @return the NetworkAnalyticsMgmtClientBuilder.
+     * @return the MicrosoftNetworkAnalyticsBuilder.
      */
-    public NetworkAnalyticsMgmtClientBuilder pipeline(HttpPipeline pipeline) {
+    public MicrosoftNetworkAnalyticsBuilder pipeline(HttpPipeline pipeline) {
         this.pipeline = pipeline;
         return this;
     }
@@ -92,9 +92,9 @@ public final class NetworkAnalyticsMgmtClientBuilder {
      * Sets The default poll interval for long-running operation.
      * 
      * @param defaultPollInterval the defaultPollInterval value.
-     * @return the NetworkAnalyticsMgmtClientBuilder.
+     * @return the MicrosoftNetworkAnalyticsBuilder.
      */
-    public NetworkAnalyticsMgmtClientBuilder defaultPollInterval(Duration defaultPollInterval) {
+    public MicrosoftNetworkAnalyticsBuilder defaultPollInterval(Duration defaultPollInterval) {
         this.defaultPollInterval = defaultPollInterval;
         return this;
     }
@@ -108,19 +108,19 @@ public final class NetworkAnalyticsMgmtClientBuilder {
      * Sets The serializer to serialize an object into a string.
      * 
      * @param serializerAdapter the serializerAdapter value.
-     * @return the NetworkAnalyticsMgmtClientBuilder.
+     * @return the MicrosoftNetworkAnalyticsBuilder.
      */
-    public NetworkAnalyticsMgmtClientBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
+    public MicrosoftNetworkAnalyticsBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
         this.serializerAdapter = serializerAdapter;
         return this;
     }
 
     /**
-     * Builds an instance of NetworkAnalyticsMgmtClientImpl with the provided parameters.
+     * Builds an instance of MicrosoftNetworkAnalyticsImpl with the provided parameters.
      * 
-     * @return an instance of NetworkAnalyticsMgmtClientImpl.
+     * @return an instance of MicrosoftNetworkAnalyticsImpl.
      */
-    public NetworkAnalyticsMgmtClientImpl buildClient() {
+    public MicrosoftNetworkAnalyticsImpl buildClient() {
         String localEndpoint = (endpoint != null) ? endpoint : "https://management.azure.com";
         AzureEnvironment localEnvironment = (environment != null) ? environment : AzureEnvironment.AZURE;
         HttpPipeline localPipeline = (pipeline != null) ? pipeline
@@ -129,8 +129,8 @@ public final class NetworkAnalyticsMgmtClientBuilder {
             = (defaultPollInterval != null) ? defaultPollInterval : Duration.ofSeconds(30);
         SerializerAdapter localSerializerAdapter = (serializerAdapter != null) ? serializerAdapter
             : SerializerFactory.createDefaultManagementSerializerAdapter();
-        NetworkAnalyticsMgmtClientImpl client = new NetworkAnalyticsMgmtClientImpl(localPipeline,
-            localSerializerAdapter, localDefaultPollInterval, localEnvironment, this.subscriptionId, localEndpoint);
+        MicrosoftNetworkAnalyticsImpl client = new MicrosoftNetworkAnalyticsImpl(localPipeline, localSerializerAdapter,
+            localDefaultPollInterval, localEnvironment, this.subscriptionId, localEndpoint);
         return client;
     }
 }
