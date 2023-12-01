@@ -11,13 +11,15 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.netapp.fluent.models.SubscriptionQuotaItemInner;
 
-/** An instance of this class provides access to all the operations defined in NetAppResourceQuotaLimitsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in NetAppResourceQuotaLimitsClient.
+ */
 public interface NetAppResourceQuotaLimitsClient {
     /**
      * Get quota limits
-     *
-     * <p>Get the default and current limits for quotas.
-     *
+     * 
+     * Get the default and current limits for quotas.
+     * 
      * @param location The name of Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -29,9 +31,9 @@ public interface NetAppResourceQuotaLimitsClient {
 
     /**
      * Get quota limits
-     *
-     * <p>Get the default and current limits for quotas.
-     *
+     * 
+     * Get the default and current limits for quotas.
+     * 
      * @param location The name of Azure region.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -44,9 +46,9 @@ public interface NetAppResourceQuotaLimitsClient {
 
     /**
      * Get quota limits
-     *
-     * <p>Get the default and current subscription quota limit.
-     *
+     * 
+     * Get the default and current subscription quota limit.
+     * 
      * @param location The name of Azure region.
      * @param quotaLimitName The name of the Quota Limit.
      * @param context The context to associate with this operation.
@@ -60,9 +62,9 @@ public interface NetAppResourceQuotaLimitsClient {
 
     /**
      * Get quota limits
-     *
-     * <p>Get the default and current subscription quota limit.
-     *
+     * 
+     * Get the default and current subscription quota limit.
+     * 
      * @param location The name of Azure region.
      * @param quotaLimitName The name of the Quota Limit.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

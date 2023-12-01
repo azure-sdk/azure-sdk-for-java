@@ -10,13 +10,15 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.netapp.fluent.models.RestoreStatusInner;
 
-/** An instance of this class provides access to all the operations defined in BackupsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in BackupsClient.
+ */
 public interface BackupsClient {
     /**
      * Get volume's restore status
-     *
-     * <p>Get the status of the restore for a volume.
-     *
+     * 
+     * Get the status of the restore for a volume.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of the NetApp account.
      * @param poolName The name of the capacity pool.
@@ -28,14 +30,14 @@ public interface BackupsClient {
      * @return the status of the restore for a volume along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<RestoreStatusInner> getVolumeRestoreStatusWithResponse(
-        String resourceGroupName, String accountName, String poolName, String volumeName, Context context);
+    Response<RestoreStatusInner> getVolumeRestoreStatusWithResponse(String resourceGroupName, String accountName,
+        String poolName, String volumeName, Context context);
 
     /**
      * Get volume's restore status
-     *
-     * <p>Get the status of the restore for a volume.
-     *
+     * 
+     * Get the status of the restore for a volume.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of the NetApp account.
      * @param poolName The name of the capacity pool.
@@ -46,6 +48,6 @@ public interface BackupsClient {
      * @return the status of the restore for a volume.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    RestoreStatusInner getVolumeRestoreStatus(
-        String resourceGroupName, String accountName, String poolName, String volumeName);
+    RestoreStatusInner getVolumeRestoreStatus(String resourceGroupName, String accountName, String poolName,
+        String volumeName);
 }

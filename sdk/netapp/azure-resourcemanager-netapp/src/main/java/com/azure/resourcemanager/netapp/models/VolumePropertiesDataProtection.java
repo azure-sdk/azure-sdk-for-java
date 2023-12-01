@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * DataProtection
- *
- * <p>DataProtection type volumes include an object containing details of the replication.
+ * 
+ * DataProtection type volumes include an object containing details of the replication.
  */
 @Fluent
 public final class VolumePropertiesDataProtection {
@@ -32,13 +32,15 @@ public final class VolumePropertiesDataProtection {
     @JsonProperty(value = "volumeRelocation")
     private VolumeRelocationProperties volumeRelocation;
 
-    /** Creates an instance of VolumePropertiesDataProtection class. */
+    /**
+     * Creates an instance of VolumePropertiesDataProtection class.
+     */
     public VolumePropertiesDataProtection() {
     }
 
     /**
      * Get the replication property: Replication properties.
-     *
+     * 
      * @return the replication value.
      */
     public ReplicationObject replication() {
@@ -47,7 +49,7 @@ public final class VolumePropertiesDataProtection {
 
     /**
      * Set the replication property: Replication properties.
-     *
+     * 
      * @param replication the replication value to set.
      * @return the VolumePropertiesDataProtection object itself.
      */
@@ -58,7 +60,7 @@ public final class VolumePropertiesDataProtection {
 
     /**
      * Get the snapshot property: Snapshot properties.
-     *
+     * 
      * @return the snapshot value.
      */
     public VolumeSnapshotProperties snapshot() {
@@ -67,7 +69,7 @@ public final class VolumePropertiesDataProtection {
 
     /**
      * Set the snapshot property: Snapshot properties.
-     *
+     * 
      * @param snapshot the snapshot value to set.
      * @return the VolumePropertiesDataProtection object itself.
      */
@@ -78,7 +80,7 @@ public final class VolumePropertiesDataProtection {
 
     /**
      * Get the volumeRelocation property: VolumeRelocation properties.
-     *
+     * 
      * @return the volumeRelocation value.
      */
     public VolumeRelocationProperties volumeRelocation() {
@@ -87,7 +89,7 @@ public final class VolumePropertiesDataProtection {
 
     /**
      * Set the volumeRelocation property: VolumeRelocation properties.
-     *
+     * 
      * @param volumeRelocation the volumeRelocation value to set.
      * @return the VolumePropertiesDataProtection object itself.
      */
@@ -98,7 +100,7 @@ public final class VolumePropertiesDataProtection {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

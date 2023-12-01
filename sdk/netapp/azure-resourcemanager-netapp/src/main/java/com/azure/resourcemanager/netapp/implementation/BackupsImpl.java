@@ -25,27 +25,22 @@ public final class BackupsImpl implements Backups {
         this.serviceManager = serviceManager;
     }
 
-    public Response<RestoreStatus> getVolumeRestoreStatusWithResponse(
-        String resourceGroupName, String accountName, String poolName, String volumeName, Context context) {
-        Response<RestoreStatusInner> inner =
-            this
-                .serviceClient()
-                .getVolumeRestoreStatusWithResponse(resourceGroupName, accountName, poolName, volumeName, context);
+    public Response<RestoreStatus> getVolumeRestoreStatusWithResponse(String resourceGroupName, String accountName,
+        String poolName, String volumeName, Context context) {
+        Response<RestoreStatusInner> inner = this.serviceClient().getVolumeRestoreStatusWithResponse(resourceGroupName,
+            accountName, poolName, volumeName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new RestoreStatusImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public RestoreStatus getVolumeRestoreStatus(
-        String resourceGroupName, String accountName, String poolName, String volumeName) {
-        RestoreStatusInner inner =
-            this.serviceClient().getVolumeRestoreStatus(resourceGroupName, accountName, poolName, volumeName);
+    public RestoreStatus getVolumeRestoreStatus(String resourceGroupName, String accountName, String poolName,
+        String volumeName) {
+        RestoreStatusInner inner
+            = this.serviceClient().getVolumeRestoreStatus(resourceGroupName, accountName, poolName, volumeName);
         if (inner != null) {
             return new RestoreStatusImpl(inner, this.manager());
         } else {
