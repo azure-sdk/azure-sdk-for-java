@@ -12,7 +12,7 @@ import com.azure.resourcemanager.hybridnetwork.models.ConfigurationGroupSchemaPr
 public final class ConfigurationGroupSchemasCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-10-01/examples/
      * ConfigurationGroupSchemaCreate.json
      */
     /**
