@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.sphere.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Catalog properties. */
+/**
+ * Catalog properties.
+ */
 @Immutable
 public final class CatalogProperties {
     /*
@@ -17,13 +19,15 @@ public final class CatalogProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of CatalogProperties class. */
+    /**
+     * Creates an instance of CatalogProperties class.
+     */
     public CatalogProperties() {
     }
 
     /**
      * Get the provisioningState property: The status of the last operation.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -32,7 +36,7 @@ public final class CatalogProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

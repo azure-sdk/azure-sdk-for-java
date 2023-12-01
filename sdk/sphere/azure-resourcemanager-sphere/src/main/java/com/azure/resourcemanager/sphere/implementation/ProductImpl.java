@@ -6,6 +6,7 @@ package com.azure.resourcemanager.sphere.implementation;
 
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.sphere.fluent.models.ProductInner;
 import com.azure.resourcemanager.sphere.models.CountDeviceResponse;
@@ -29,6 +30,10 @@ public final class ProductImpl implements Product, Product.Definition, Product.U
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String description() {
@@ -66,20 +71,14 @@ public final class ProductImpl implements Product, Product.Definition, Product.U
     }
 
     public Product create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getProducts()
-                .createOrUpdate(resourceGroupName, catalogName, productName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getProducts().createOrUpdate(resourceGroupName, catalogName,
+            productName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Product create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getProducts()
-                .createOrUpdate(resourceGroupName, catalogName, productName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getProducts().createOrUpdate(resourceGroupName, catalogName,
+            productName, this.innerModel(), context);
         return this;
     }
 
@@ -95,20 +94,14 @@ public final class ProductImpl implements Product, Product.Definition, Product.U
     }
 
     public Product apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getProducts()
-                .update(resourceGroupName, catalogName, productName, updateProperties, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getProducts().update(resourceGroupName, catalogName,
+            productName, updateProperties, Context.NONE);
         return this;
     }
 
     public Product apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getProducts()
-                .update(resourceGroupName, catalogName, productName, updateProperties, context);
+        this.innerObject = serviceManager.serviceClient().getProducts().update(resourceGroupName, catalogName,
+            productName, updateProperties, context);
         return this;
     }
 
@@ -121,22 +114,14 @@ public final class ProductImpl implements Product, Product.Definition, Product.U
     }
 
     public Product refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getProducts()
-                .getWithResponse(resourceGroupName, catalogName, productName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getProducts()
+            .getWithResponse(resourceGroupName, catalogName, productName, Context.NONE).getValue();
         return this;
     }
 
     public Product refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getProducts()
-                .getWithResponse(resourceGroupName, catalogName, productName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getProducts()
+            .getWithResponse(resourceGroupName, catalogName, productName, context).getValue();
         return this;
     }
 
@@ -153,9 +138,8 @@ public final class ProductImpl implements Product, Product.Definition, Product.U
     }
 
     public PagedIterable<DeviceGroup> generateDefaultDeviceGroups(Context context) {
-        return serviceManager
-            .products()
-            .generateDefaultDeviceGroups(resourceGroupName, catalogName, productName, context);
+        return serviceManager.products().generateDefaultDeviceGroups(resourceGroupName, catalogName, productName,
+            context);
     }
 
     public ProductImpl withDescription(String description) {

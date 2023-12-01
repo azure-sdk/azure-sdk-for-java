@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.sphere.fluent.models.DeviceGroupUpdateProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The type used for update operations of the DeviceGroup. */
+/**
+ * The type used for update operations of the DeviceGroup.
+ */
 @Fluent
 public final class DeviceGroupUpdate {
     /*
@@ -17,13 +19,15 @@ public final class DeviceGroupUpdate {
     @JsonProperty(value = "properties")
     private DeviceGroupUpdateProperties innerProperties;
 
-    /** Creates an instance of DeviceGroupUpdate class. */
+    /**
+     * Creates an instance of DeviceGroupUpdate class.
+     */
     public DeviceGroupUpdate() {
     }
 
     /**
      * Get the innerProperties property: The updatable properties of the DeviceGroup.
-     *
+     * 
      * @return the innerProperties value.
      */
     private DeviceGroupUpdateProperties innerProperties() {
@@ -32,7 +36,7 @@ public final class DeviceGroupUpdate {
 
     /**
      * Get the description property: Description of the device group.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -41,7 +45,7 @@ public final class DeviceGroupUpdate {
 
     /**
      * Set the description property: Description of the device group.
-     *
+     * 
      * @param description the description value to set.
      * @return the DeviceGroupUpdate object itself.
      */
@@ -55,7 +59,7 @@ public final class DeviceGroupUpdate {
 
     /**
      * Get the osFeedType property: Operating system feed type of the device group.
-     *
+     * 
      * @return the osFeedType value.
      */
     public OSFeedType osFeedType() {
@@ -64,7 +68,7 @@ public final class DeviceGroupUpdate {
 
     /**
      * Set the osFeedType property: Operating system feed type of the device group.
-     *
+     * 
      * @param osFeedType the osFeedType value to set.
      * @return the DeviceGroupUpdate object itself.
      */
@@ -78,7 +82,7 @@ public final class DeviceGroupUpdate {
 
     /**
      * Get the updatePolicy property: Update policy of the device group.
-     *
+     * 
      * @return the updatePolicy value.
      */
     public UpdatePolicy updatePolicy() {
@@ -87,7 +91,7 @@ public final class DeviceGroupUpdate {
 
     /**
      * Set the updatePolicy property: Update policy of the device group.
-     *
+     * 
      * @param updatePolicy the updatePolicy value to set.
      * @return the DeviceGroupUpdate object itself.
      */
@@ -101,7 +105,7 @@ public final class DeviceGroupUpdate {
 
     /**
      * Get the allowCrashDumpsCollection property: Flag to define if the user allows for crash dump collection.
-     *
+     * 
      * @return the allowCrashDumpsCollection value.
      */
     public AllowCrashDumpCollection allowCrashDumpsCollection() {
@@ -110,7 +114,7 @@ public final class DeviceGroupUpdate {
 
     /**
      * Set the allowCrashDumpsCollection property: Flag to define if the user allows for crash dump collection.
-     *
+     * 
      * @param allowCrashDumpsCollection the allowCrashDumpsCollection value to set.
      * @return the DeviceGroupUpdate object itself.
      */
@@ -124,7 +128,7 @@ public final class DeviceGroupUpdate {
 
     /**
      * Get the regionalDataBoundary property: Regional data boundary for the device group.
-     *
+     * 
      * @return the regionalDataBoundary value.
      */
     public RegionalDataBoundary regionalDataBoundary() {
@@ -133,7 +137,7 @@ public final class DeviceGroupUpdate {
 
     /**
      * Set the regionalDataBoundary property: Regional data boundary for the device group.
-     *
+     * 
      * @param regionalDataBoundary the regionalDataBoundary value to set.
      * @return the DeviceGroupUpdate object itself.
      */
@@ -147,7 +151,7 @@ public final class DeviceGroupUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

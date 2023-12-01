@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.sphere.fluent.models.DeviceUpdateProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The type used for update operations of the Device. */
+/**
+ * The type used for update operations of the Device.
+ */
 @Fluent
 public final class DeviceUpdate {
     /*
@@ -17,13 +19,15 @@ public final class DeviceUpdate {
     @JsonProperty(value = "properties")
     private DeviceUpdateProperties innerProperties;
 
-    /** Creates an instance of DeviceUpdate class. */
+    /**
+     * Creates an instance of DeviceUpdate class.
+     */
     public DeviceUpdate() {
     }
 
     /**
      * Get the innerProperties property: The updatable properties of the Device.
-     *
+     * 
      * @return the innerProperties value.
      */
     private DeviceUpdateProperties innerProperties() {
@@ -32,7 +36,7 @@ public final class DeviceUpdate {
 
     /**
      * Get the deviceGroupId property: Device group id.
-     *
+     * 
      * @return the deviceGroupId value.
      */
     public String deviceGroupId() {
@@ -41,7 +45,7 @@ public final class DeviceUpdate {
 
     /**
      * Set the deviceGroupId property: Device group id.
-     *
+     * 
      * @param deviceGroupId the deviceGroupId value to set.
      * @return the DeviceUpdate object itself.
      */
@@ -55,7 +59,7 @@ public final class DeviceUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

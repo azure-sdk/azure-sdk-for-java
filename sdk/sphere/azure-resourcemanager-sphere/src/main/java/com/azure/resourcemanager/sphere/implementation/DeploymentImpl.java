@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.sphere.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.sphere.fluent.models.DeploymentInner;
 import com.azure.resourcemanager.sphere.fluent.models.ImageInner;
@@ -32,6 +33,10 @@ public final class DeploymentImpl implements Deployment, Deployment.Definition, 
         return this.innerModel().type();
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public String deploymentId() {
         return this.innerModel().deploymentId();
     }
@@ -39,9 +44,8 @@ public final class DeploymentImpl implements Deployment, Deployment.Definition, 
     public List<Image> deployedImages() {
         List<ImageInner> inner = this.innerModel().deployedImages();
         if (inner != null) {
-            return Collections
-                .unmodifiableList(
-                    inner.stream().map(inner1 -> new ImageImpl(inner1, this.manager())).collect(Collectors.toList()));
+            return Collections.unmodifiableList(
+                inner.stream().map(inner1 -> new ImageImpl(inner1, this.manager())).collect(Collectors.toList()));
         } else {
             return Collections.emptyList();
         }
@@ -77,8 +81,8 @@ public final class DeploymentImpl implements Deployment, Deployment.Definition, 
 
     private String deploymentName;
 
-    public DeploymentImpl withExistingDeviceGroup(
-        String resourceGroupName, String catalogName, String productName, String deviceGroupName) {
+    public DeploymentImpl withExistingDeviceGroup(String resourceGroupName, String catalogName, String productName,
+        String deviceGroupName) {
         this.resourceGroupName = resourceGroupName;
         this.catalogName = catalogName;
         this.productName = productName;
@@ -87,34 +91,14 @@ public final class DeploymentImpl implements Deployment, Deployment.Definition, 
     }
 
     public Deployment create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDeployments()
-                .createOrUpdate(
-                    resourceGroupName,
-                    catalogName,
-                    productName,
-                    deviceGroupName,
-                    deploymentName,
-                    this.innerModel(),
-                    Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getDeployments().createOrUpdate(resourceGroupName,
+            catalogName, productName, deviceGroupName, deploymentName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Deployment create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDeployments()
-                .createOrUpdate(
-                    resourceGroupName,
-                    catalogName,
-                    productName,
-                    deviceGroupName,
-                    deploymentName,
-                    this.innerModel(),
-                    context);
+        this.innerObject = serviceManager.serviceClient().getDeployments().createOrUpdate(resourceGroupName,
+            catalogName, productName, deviceGroupName, deploymentName, this.innerModel(), context);
         return this;
     }
 
@@ -129,34 +113,14 @@ public final class DeploymentImpl implements Deployment, Deployment.Definition, 
     }
 
     public Deployment apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDeployments()
-                .createOrUpdate(
-                    resourceGroupName,
-                    catalogName,
-                    productName,
-                    deviceGroupName,
-                    deploymentName,
-                    this.innerModel(),
-                    Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getDeployments().createOrUpdate(resourceGroupName,
+            catalogName, productName, deviceGroupName, deploymentName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Deployment apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDeployments()
-                .createOrUpdate(
-                    resourceGroupName,
-                    catalogName,
-                    productName,
-                    deviceGroupName,
-                    deploymentName,
-                    this.innerModel(),
-                    context);
+        this.innerObject = serviceManager.serviceClient().getDeployments().createOrUpdate(resourceGroupName,
+            catalogName, productName, deviceGroupName, deploymentName, this.innerModel(), context);
         return this;
     }
 
@@ -171,23 +135,16 @@ public final class DeploymentImpl implements Deployment, Deployment.Definition, 
     }
 
     public Deployment refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDeployments()
-                .getWithResponse(
-                    resourceGroupName, catalogName, productName, deviceGroupName, deploymentName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getDeployments()
+            .getWithResponse(resourceGroupName, catalogName, productName, deviceGroupName, deploymentName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Deployment refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDeployments()
-                .getWithResponse(resourceGroupName, catalogName, productName, deviceGroupName, deploymentName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getDeployments()
+            .getWithResponse(resourceGroupName, catalogName, productName, deviceGroupName, deploymentName, context)
+            .getValue();
         return this;
     }
 

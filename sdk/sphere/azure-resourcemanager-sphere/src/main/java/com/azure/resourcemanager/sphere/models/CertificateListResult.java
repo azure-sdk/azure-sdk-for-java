@@ -10,7 +10,9 @@ import com.azure.resourcemanager.sphere.fluent.models.CertificateInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response of a Certificate list operation. */
+/**
+ * The response of a Certificate list operation.
+ */
 @Fluent
 public final class CertificateListResult {
     /*
@@ -25,13 +27,15 @@ public final class CertificateListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of CertificateListResult class. */
+    /**
+     * Creates an instance of CertificateListResult class.
+     */
     public CertificateListResult() {
     }
 
     /**
      * Get the value property: The Certificate items on this page.
-     *
+     * 
      * @return the value value.
      */
     public List<CertificateInner> value() {
@@ -40,7 +44,7 @@ public final class CertificateListResult {
 
     /**
      * Set the value property: The Certificate items on this page.
-     *
+     * 
      * @param value the value value to set.
      * @return the CertificateListResult object itself.
      */
@@ -51,7 +55,7 @@ public final class CertificateListResult {
 
     /**
      * Get the nextLink property: The link to the next page of items.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -60,7 +64,7 @@ public final class CertificateListResult {
 
     /**
      * Set the nextLink property: The link to the next page of items.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the CertificateListResult object itself.
      */
@@ -71,14 +75,13 @@ public final class CertificateListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model CertificateListResult"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model CertificateListResult"));
         } else {
             value().forEach(e -> e.validate());
         }

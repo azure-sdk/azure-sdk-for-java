@@ -6,16 +6,20 @@ package com.azure.resourcemanager.sphere.fluent.models;
 
 import com.azure.core.annotation.Immutable;
 
-/** Result of the action to generate a proof of possession nonce. */
+/**
+ * Result of the action to generate a proof of possession nonce.
+ */
 @Immutable
 public final class ProofOfPossessionNonceResponseInner extends CertificateProperties {
-    /** Creates an instance of ProofOfPossessionNonceResponseInner class. */
+    /**
+     * Creates an instance of ProofOfPossessionNonceResponseInner class.
+     */
     public ProofOfPossessionNonceResponseInner() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

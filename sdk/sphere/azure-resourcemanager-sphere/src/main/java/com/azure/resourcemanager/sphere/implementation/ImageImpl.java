@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.sphere.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.sphere.fluent.models.ImageInner;
 import com.azure.resourcemanager.sphere.models.Image;
@@ -26,6 +27,10 @@ public final class ImageImpl implements Image, Image.Definition, Image.Update {
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String image() {
@@ -89,20 +94,14 @@ public final class ImageImpl implements Image, Image.Definition, Image.Update {
     }
 
     public Image create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getImages()
-                .createOrUpdate(resourceGroupName, catalogName, imageName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getImages().createOrUpdate(resourceGroupName, catalogName,
+            imageName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Image create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getImages()
-                .createOrUpdate(resourceGroupName, catalogName, imageName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getImages().createOrUpdate(resourceGroupName, catalogName,
+            imageName, this.innerModel(), context);
         return this;
     }
 
@@ -117,20 +116,14 @@ public final class ImageImpl implements Image, Image.Definition, Image.Update {
     }
 
     public Image apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getImages()
-                .createOrUpdate(resourceGroupName, catalogName, imageName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getImages().createOrUpdate(resourceGroupName, catalogName,
+            imageName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Image apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getImages()
-                .createOrUpdate(resourceGroupName, catalogName, imageName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getImages().createOrUpdate(resourceGroupName, catalogName,
+            imageName, this.innerModel(), context);
         return this;
     }
 
@@ -143,22 +136,14 @@ public final class ImageImpl implements Image, Image.Definition, Image.Update {
     }
 
     public Image refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getImages()
-                .getWithResponse(resourceGroupName, catalogName, imageName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getImages()
+            .getWithResponse(resourceGroupName, catalogName, imageName, Context.NONE).getValue();
         return this;
     }
 
     public Image refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getImages()
-                .getWithResponse(resourceGroupName, catalogName, imageName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getImages()
+            .getWithResponse(resourceGroupName, catalogName, imageName, context).getValue();
         return this;
     }
 

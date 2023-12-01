@@ -9,7 +9,9 @@ import com.azure.resourcemanager.sphere.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The properties of device. */
+/**
+ * The properties of device.
+ */
 @Fluent
 public final class DeviceProperties {
     /*
@@ -54,13 +56,15 @@ public final class DeviceProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of DeviceProperties class. */
+    /**
+     * Creates an instance of DeviceProperties class.
+     */
     public DeviceProperties() {
     }
 
     /**
      * Get the deviceId property: Device ID.
-     *
+     * 
      * @return the deviceId value.
      */
     public String deviceId() {
@@ -69,7 +73,7 @@ public final class DeviceProperties {
 
     /**
      * Set the deviceId property: Device ID.
-     *
+     * 
      * @param deviceId the deviceId value to set.
      * @return the DeviceProperties object itself.
      */
@@ -80,7 +84,7 @@ public final class DeviceProperties {
 
     /**
      * Get the chipSku property: SKU of the chip.
-     *
+     * 
      * @return the chipSku value.
      */
     public String chipSku() {
@@ -89,7 +93,7 @@ public final class DeviceProperties {
 
     /**
      * Get the lastAvailableOsVersion property: OS version available for installation when update requested.
-     *
+     * 
      * @return the lastAvailableOsVersion value.
      */
     public String lastAvailableOsVersion() {
@@ -98,7 +102,7 @@ public final class DeviceProperties {
 
     /**
      * Get the lastInstalledOsVersion property: OS version running on device when update requested.
-     *
+     * 
      * @return the lastInstalledOsVersion value.
      */
     public String lastInstalledOsVersion() {
@@ -107,7 +111,7 @@ public final class DeviceProperties {
 
     /**
      * Get the lastOsUpdateUtc property: Time when update requested and new OS version available.
-     *
+     * 
      * @return the lastOsUpdateUtc value.
      */
     public OffsetDateTime lastOsUpdateUtc() {
@@ -116,7 +120,7 @@ public final class DeviceProperties {
 
     /**
      * Get the lastUpdateRequestUtc property: Time when update was last requested.
-     *
+     * 
      * @return the lastUpdateRequestUtc value.
      */
     public OffsetDateTime lastUpdateRequestUtc() {
@@ -125,7 +129,7 @@ public final class DeviceProperties {
 
     /**
      * Get the provisioningState property: The status of the last operation.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -134,7 +138,7 @@ public final class DeviceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

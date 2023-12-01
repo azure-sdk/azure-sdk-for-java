@@ -11,7 +11,9 @@ import com.azure.resourcemanager.sphere.models.RegionalDataBoundary;
 import com.azure.resourcemanager.sphere.models.UpdatePolicy;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The updatable properties of the DeviceGroup. */
+/**
+ * The updatable properties of the DeviceGroup.
+ */
 @Fluent
 public final class DeviceGroupUpdateProperties {
     /*
@@ -44,13 +46,15 @@ public final class DeviceGroupUpdateProperties {
     @JsonProperty(value = "regionalDataBoundary")
     private RegionalDataBoundary regionalDataBoundary;
 
-    /** Creates an instance of DeviceGroupUpdateProperties class. */
+    /**
+     * Creates an instance of DeviceGroupUpdateProperties class.
+     */
     public DeviceGroupUpdateProperties() {
     }
 
     /**
      * Get the description property: Description of the device group.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -59,7 +63,7 @@ public final class DeviceGroupUpdateProperties {
 
     /**
      * Set the description property: Description of the device group.
-     *
+     * 
      * @param description the description value to set.
      * @return the DeviceGroupUpdateProperties object itself.
      */
@@ -70,7 +74,7 @@ public final class DeviceGroupUpdateProperties {
 
     /**
      * Get the osFeedType property: Operating system feed type of the device group.
-     *
+     * 
      * @return the osFeedType value.
      */
     public OSFeedType osFeedType() {
@@ -79,7 +83,7 @@ public final class DeviceGroupUpdateProperties {
 
     /**
      * Set the osFeedType property: Operating system feed type of the device group.
-     *
+     * 
      * @param osFeedType the osFeedType value to set.
      * @return the DeviceGroupUpdateProperties object itself.
      */
@@ -90,7 +94,7 @@ public final class DeviceGroupUpdateProperties {
 
     /**
      * Get the updatePolicy property: Update policy of the device group.
-     *
+     * 
      * @return the updatePolicy value.
      */
     public UpdatePolicy updatePolicy() {
@@ -99,7 +103,7 @@ public final class DeviceGroupUpdateProperties {
 
     /**
      * Set the updatePolicy property: Update policy of the device group.
-     *
+     * 
      * @param updatePolicy the updatePolicy value to set.
      * @return the DeviceGroupUpdateProperties object itself.
      */
@@ -110,7 +114,7 @@ public final class DeviceGroupUpdateProperties {
 
     /**
      * Get the allowCrashDumpsCollection property: Flag to define if the user allows for crash dump collection.
-     *
+     * 
      * @return the allowCrashDumpsCollection value.
      */
     public AllowCrashDumpCollection allowCrashDumpsCollection() {
@@ -119,19 +123,19 @@ public final class DeviceGroupUpdateProperties {
 
     /**
      * Set the allowCrashDumpsCollection property: Flag to define if the user allows for crash dump collection.
-     *
+     * 
      * @param allowCrashDumpsCollection the allowCrashDumpsCollection value to set.
      * @return the DeviceGroupUpdateProperties object itself.
      */
-    public DeviceGroupUpdateProperties withAllowCrashDumpsCollection(
-        AllowCrashDumpCollection allowCrashDumpsCollection) {
+    public DeviceGroupUpdateProperties
+        withAllowCrashDumpsCollection(AllowCrashDumpCollection allowCrashDumpsCollection) {
         this.allowCrashDumpsCollection = allowCrashDumpsCollection;
         return this;
     }
 
     /**
      * Get the regionalDataBoundary property: Regional data boundary for the device group.
-     *
+     * 
      * @return the regionalDataBoundary value.
      */
     public RegionalDataBoundary regionalDataBoundary() {
@@ -140,7 +144,7 @@ public final class DeviceGroupUpdateProperties {
 
     /**
      * Set the regionalDataBoundary property: Regional data boundary for the device group.
-     *
+     * 
      * @param regionalDataBoundary the regionalDataBoundary value to set.
      * @return the DeviceGroupUpdateProperties object itself.
      */
@@ -151,7 +155,7 @@ public final class DeviceGroupUpdateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

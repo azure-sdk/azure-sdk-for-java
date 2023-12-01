@@ -12,7 +12,9 @@ import com.azure.resourcemanager.sphere.models.RegionalDataBoundary;
 import com.azure.resourcemanager.sphere.models.UpdatePolicy;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of deviceGroup. */
+/**
+ * The properties of deviceGroup.
+ */
 @Fluent
 public final class DeviceGroupProperties {
     /*
@@ -57,13 +59,15 @@ public final class DeviceGroupProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of DeviceGroupProperties class. */
+    /**
+     * Creates an instance of DeviceGroupProperties class.
+     */
     public DeviceGroupProperties() {
     }
 
     /**
      * Get the description property: Description of the device group.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -72,7 +76,7 @@ public final class DeviceGroupProperties {
 
     /**
      * Set the description property: Description of the device group.
-     *
+     * 
      * @param description the description value to set.
      * @return the DeviceGroupProperties object itself.
      */
@@ -83,7 +87,7 @@ public final class DeviceGroupProperties {
 
     /**
      * Get the osFeedType property: Operating system feed type of the device group.
-     *
+     * 
      * @return the osFeedType value.
      */
     public OSFeedType osFeedType() {
@@ -92,7 +96,7 @@ public final class DeviceGroupProperties {
 
     /**
      * Set the osFeedType property: Operating system feed type of the device group.
-     *
+     * 
      * @param osFeedType the osFeedType value to set.
      * @return the DeviceGroupProperties object itself.
      */
@@ -103,7 +107,7 @@ public final class DeviceGroupProperties {
 
     /**
      * Get the updatePolicy property: Update policy of the device group.
-     *
+     * 
      * @return the updatePolicy value.
      */
     public UpdatePolicy updatePolicy() {
@@ -112,7 +116,7 @@ public final class DeviceGroupProperties {
 
     /**
      * Set the updatePolicy property: Update policy of the device group.
-     *
+     * 
      * @param updatePolicy the updatePolicy value to set.
      * @return the DeviceGroupProperties object itself.
      */
@@ -123,7 +127,7 @@ public final class DeviceGroupProperties {
 
     /**
      * Get the allowCrashDumpsCollection property: Flag to define if the user allows for crash dump collection.
-     *
+     * 
      * @return the allowCrashDumpsCollection value.
      */
     public AllowCrashDumpCollection allowCrashDumpsCollection() {
@@ -132,7 +136,7 @@ public final class DeviceGroupProperties {
 
     /**
      * Set the allowCrashDumpsCollection property: Flag to define if the user allows for crash dump collection.
-     *
+     * 
      * @param allowCrashDumpsCollection the allowCrashDumpsCollection value to set.
      * @return the DeviceGroupProperties object itself.
      */
@@ -143,7 +147,7 @@ public final class DeviceGroupProperties {
 
     /**
      * Get the regionalDataBoundary property: Regional data boundary for the device group.
-     *
+     * 
      * @return the regionalDataBoundary value.
      */
     public RegionalDataBoundary regionalDataBoundary() {
@@ -152,7 +156,7 @@ public final class DeviceGroupProperties {
 
     /**
      * Set the regionalDataBoundary property: Regional data boundary for the device group.
-     *
+     * 
      * @param regionalDataBoundary the regionalDataBoundary value to set.
      * @return the DeviceGroupProperties object itself.
      */
@@ -163,7 +167,7 @@ public final class DeviceGroupProperties {
 
     /**
      * Get the hasDeployment property: Deployment status for the device group.
-     *
+     * 
      * @return the hasDeployment value.
      */
     public Boolean hasDeployment() {
@@ -172,7 +176,7 @@ public final class DeviceGroupProperties {
 
     /**
      * Get the provisioningState property: The status of the last operation.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -181,7 +185,7 @@ public final class DeviceGroupProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

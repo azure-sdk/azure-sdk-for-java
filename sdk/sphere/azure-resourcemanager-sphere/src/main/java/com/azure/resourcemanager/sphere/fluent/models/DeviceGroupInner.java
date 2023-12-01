@@ -6,6 +6,7 @@ package com.azure.resourcemanager.sphere.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.sphere.models.AllowCrashDumpCollection;
 import com.azure.resourcemanager.sphere.models.OSFeedType;
 import com.azure.resourcemanager.sphere.models.ProvisioningState;
@@ -13,7 +14,9 @@ import com.azure.resourcemanager.sphere.models.RegionalDataBoundary;
 import com.azure.resourcemanager.sphere.models.UpdatePolicy;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An device group resource belonging to a product resource. */
+/**
+ * An device group resource belonging to a product resource.
+ */
 @Fluent
 public final class DeviceGroupInner extends ProxyResource {
     /*
@@ -22,13 +25,21 @@ public final class DeviceGroupInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private DeviceGroupProperties innerProperties;
 
-    /** Creates an instance of DeviceGroupInner class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of DeviceGroupInner class.
+     */
     public DeviceGroupInner() {
     }
 
     /**
      * Get the innerProperties property: The resource-specific properties for this resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private DeviceGroupProperties innerProperties() {
@@ -36,8 +47,17 @@ public final class DeviceGroupInner extends ProxyResource {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the description property: Description of the device group.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -46,7 +66,7 @@ public final class DeviceGroupInner extends ProxyResource {
 
     /**
      * Set the description property: Description of the device group.
-     *
+     * 
      * @param description the description value to set.
      * @return the DeviceGroupInner object itself.
      */
@@ -60,7 +80,7 @@ public final class DeviceGroupInner extends ProxyResource {
 
     /**
      * Get the osFeedType property: Operating system feed type of the device group.
-     *
+     * 
      * @return the osFeedType value.
      */
     public OSFeedType osFeedType() {
@@ -69,7 +89,7 @@ public final class DeviceGroupInner extends ProxyResource {
 
     /**
      * Set the osFeedType property: Operating system feed type of the device group.
-     *
+     * 
      * @param osFeedType the osFeedType value to set.
      * @return the DeviceGroupInner object itself.
      */
@@ -83,7 +103,7 @@ public final class DeviceGroupInner extends ProxyResource {
 
     /**
      * Get the updatePolicy property: Update policy of the device group.
-     *
+     * 
      * @return the updatePolicy value.
      */
     public UpdatePolicy updatePolicy() {
@@ -92,7 +112,7 @@ public final class DeviceGroupInner extends ProxyResource {
 
     /**
      * Set the updatePolicy property: Update policy of the device group.
-     *
+     * 
      * @param updatePolicy the updatePolicy value to set.
      * @return the DeviceGroupInner object itself.
      */
@@ -106,7 +126,7 @@ public final class DeviceGroupInner extends ProxyResource {
 
     /**
      * Get the allowCrashDumpsCollection property: Flag to define if the user allows for crash dump collection.
-     *
+     * 
      * @return the allowCrashDumpsCollection value.
      */
     public AllowCrashDumpCollection allowCrashDumpsCollection() {
@@ -115,7 +135,7 @@ public final class DeviceGroupInner extends ProxyResource {
 
     /**
      * Set the allowCrashDumpsCollection property: Flag to define if the user allows for crash dump collection.
-     *
+     * 
      * @param allowCrashDumpsCollection the allowCrashDumpsCollection value to set.
      * @return the DeviceGroupInner object itself.
      */
@@ -129,7 +149,7 @@ public final class DeviceGroupInner extends ProxyResource {
 
     /**
      * Get the regionalDataBoundary property: Regional data boundary for the device group.
-     *
+     * 
      * @return the regionalDataBoundary value.
      */
     public RegionalDataBoundary regionalDataBoundary() {
@@ -138,7 +158,7 @@ public final class DeviceGroupInner extends ProxyResource {
 
     /**
      * Set the regionalDataBoundary property: Regional data boundary for the device group.
-     *
+     * 
      * @param regionalDataBoundary the regionalDataBoundary value to set.
      * @return the DeviceGroupInner object itself.
      */
@@ -152,7 +172,7 @@ public final class DeviceGroupInner extends ProxyResource {
 
     /**
      * Get the hasDeployment property: Deployment status for the device group.
-     *
+     * 
      * @return the hasDeployment value.
      */
     public Boolean hasDeployment() {
@@ -161,7 +181,7 @@ public final class DeviceGroupInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The status of the last operation.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -170,7 +190,7 @@ public final class DeviceGroupInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

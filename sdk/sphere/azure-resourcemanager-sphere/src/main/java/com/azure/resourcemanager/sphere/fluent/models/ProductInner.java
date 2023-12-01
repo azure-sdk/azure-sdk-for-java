@@ -6,10 +6,13 @@ package com.azure.resourcemanager.sphere.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.sphere.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An product resource belonging to a catalog resource. */
+/**
+ * An product resource belonging to a catalog resource.
+ */
 @Fluent
 public final class ProductInner extends ProxyResource {
     /*
@@ -18,13 +21,21 @@ public final class ProductInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private ProductProperties innerProperties;
 
-    /** Creates an instance of ProductInner class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of ProductInner class.
+     */
     public ProductInner() {
     }
 
     /**
      * Get the innerProperties property: The resource-specific properties for this resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ProductProperties innerProperties() {
@@ -32,8 +43,17 @@ public final class ProductInner extends ProxyResource {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the description property: Description of the product.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -42,7 +62,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Set the description property: Description of the product.
-     *
+     * 
      * @param description the description value to set.
      * @return the ProductInner object itself.
      */
@@ -56,7 +76,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The status of the last operation.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -65,7 +85,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

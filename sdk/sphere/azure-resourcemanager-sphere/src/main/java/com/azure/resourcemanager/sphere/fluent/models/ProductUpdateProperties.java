@@ -7,7 +7,9 @@ package com.azure.resourcemanager.sphere.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The updatable properties of the Product. */
+/**
+ * The updatable properties of the Product.
+ */
 @Fluent
 public final class ProductUpdateProperties {
     /*
@@ -16,13 +18,15 @@ public final class ProductUpdateProperties {
     @JsonProperty(value = "description")
     private String description;
 
-    /** Creates an instance of ProductUpdateProperties class. */
+    /**
+     * Creates an instance of ProductUpdateProperties class.
+     */
     public ProductUpdateProperties() {
     }
 
     /**
      * Get the description property: Description of the product.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -31,7 +35,7 @@ public final class ProductUpdateProperties {
 
     /**
      * Set the description property: Description of the product.
-     *
+     * 
      * @param description the description value to set.
      * @return the ProductUpdateProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class ProductUpdateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -12,7 +12,9 @@ import com.azure.resourcemanager.sphere.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** An certificate resource belonging to a catalog resource. */
+/**
+ * An certificate resource belonging to a catalog resource.
+ */
 @Immutable
 public final class CertificateInner extends ProxyResource {
     /*
@@ -27,13 +29,15 @@ public final class CertificateInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of CertificateInner class. */
+    /**
+     * Creates an instance of CertificateInner class.
+     */
     public CertificateInner() {
     }
 
     /**
      * Get the innerProperties property: The resource-specific properties for this resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private CertificateProperties innerProperties() {
@@ -42,7 +46,7 @@ public final class CertificateInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -51,7 +55,7 @@ public final class CertificateInner extends ProxyResource {
 
     /**
      * Get the certificate property: The certificate as a UTF-8 encoded base 64 string.
-     *
+     * 
      * @return the certificate value.
      */
     public String certificate() {
@@ -60,7 +64,7 @@ public final class CertificateInner extends ProxyResource {
 
     /**
      * Get the status property: The certificate status.
-     *
+     * 
      * @return the status value.
      */
     public CertificateStatus status() {
@@ -69,7 +73,7 @@ public final class CertificateInner extends ProxyResource {
 
     /**
      * Get the subject property: The certificate subject.
-     *
+     * 
      * @return the subject value.
      */
     public String subject() {
@@ -78,7 +82,7 @@ public final class CertificateInner extends ProxyResource {
 
     /**
      * Get the thumbprint property: The certificate thumbprint.
-     *
+     * 
      * @return the thumbprint value.
      */
     public String thumbprint() {
@@ -87,7 +91,7 @@ public final class CertificateInner extends ProxyResource {
 
     /**
      * Get the expiryUtc property: The certificate expiry date.
-     *
+     * 
      * @return the expiryUtc value.
      */
     public OffsetDateTime expiryUtc() {
@@ -96,7 +100,7 @@ public final class CertificateInner extends ProxyResource {
 
     /**
      * Get the notBeforeUtc property: The certificate not before date.
-     *
+     * 
      * @return the notBeforeUtc value.
      */
     public OffsetDateTime notBeforeUtc() {
@@ -105,7 +109,7 @@ public final class CertificateInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The status of the last operation.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -114,7 +118,7 @@ public final class CertificateInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

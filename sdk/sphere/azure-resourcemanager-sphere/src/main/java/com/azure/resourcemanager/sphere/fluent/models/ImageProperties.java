@@ -10,7 +10,9 @@ import com.azure.resourcemanager.sphere.models.ProvisioningState;
 import com.azure.resourcemanager.sphere.models.RegionalDataBoundary;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of image. */
+/**
+ * The properties of image.
+ */
 @Fluent
 public final class ImageProperties {
     /*
@@ -67,14 +69,16 @@ public final class ImageProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of ImageProperties class. */
+    /**
+     * Creates an instance of ImageProperties class.
+     */
     public ImageProperties() {
     }
 
     /**
      * Get the image property: Image as a UTF-8 encoded base 64 string on image create. This field contains the image
      * URI on image reads.
-     *
+     * 
      * @return the image value.
      */
     public String image() {
@@ -84,7 +88,7 @@ public final class ImageProperties {
     /**
      * Set the image property: Image as a UTF-8 encoded base 64 string on image create. This field contains the image
      * URI on image reads.
-     *
+     * 
      * @param image the image value to set.
      * @return the ImageProperties object itself.
      */
@@ -95,7 +99,7 @@ public final class ImageProperties {
 
     /**
      * Get the imageId property: Image ID.
-     *
+     * 
      * @return the imageId value.
      */
     public String imageId() {
@@ -104,7 +108,7 @@ public final class ImageProperties {
 
     /**
      * Set the imageId property: Image ID.
-     *
+     * 
      * @param imageId the imageId value to set.
      * @return the ImageProperties object itself.
      */
@@ -115,7 +119,7 @@ public final class ImageProperties {
 
     /**
      * Get the imageName property: Image name.
-     *
+     * 
      * @return the imageName value.
      */
     public String imageName() {
@@ -124,7 +128,7 @@ public final class ImageProperties {
 
     /**
      * Get the regionalDataBoundary property: Regional data boundary for an image.
-     *
+     * 
      * @return the regionalDataBoundary value.
      */
     public RegionalDataBoundary regionalDataBoundary() {
@@ -133,7 +137,7 @@ public final class ImageProperties {
 
     /**
      * Set the regionalDataBoundary property: Regional data boundary for an image.
-     *
+     * 
      * @param regionalDataBoundary the regionalDataBoundary value to set.
      * @return the ImageProperties object itself.
      */
@@ -144,7 +148,7 @@ public final class ImageProperties {
 
     /**
      * Get the uri property: Location the image.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -153,7 +157,7 @@ public final class ImageProperties {
 
     /**
      * Get the description property: The image description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -162,7 +166,7 @@ public final class ImageProperties {
 
     /**
      * Get the componentId property: The image component id.
-     *
+     * 
      * @return the componentId value.
      */
     public String componentId() {
@@ -171,7 +175,7 @@ public final class ImageProperties {
 
     /**
      * Get the imageType property: The image type.
-     *
+     * 
      * @return the imageType value.
      */
     public ImageType imageType() {
@@ -180,7 +184,7 @@ public final class ImageProperties {
 
     /**
      * Get the provisioningState property: The status of the last operation.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -189,7 +193,7 @@ public final class ImageProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

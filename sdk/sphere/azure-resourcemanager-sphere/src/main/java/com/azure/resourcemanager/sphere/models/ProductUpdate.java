@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.sphere.fluent.models.ProductUpdateProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The type used for update operations of the Product. */
+/**
+ * The type used for update operations of the Product.
+ */
 @Fluent
 public final class ProductUpdate {
     /*
@@ -17,13 +19,15 @@ public final class ProductUpdate {
     @JsonProperty(value = "properties")
     private ProductUpdateProperties innerProperties;
 
-    /** Creates an instance of ProductUpdate class. */
+    /**
+     * Creates an instance of ProductUpdate class.
+     */
     public ProductUpdate() {
     }
 
     /**
      * Get the innerProperties property: The updatable properties of the Product.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ProductUpdateProperties innerProperties() {
@@ -32,7 +36,7 @@ public final class ProductUpdate {
 
     /**
      * Get the description property: Description of the product.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -41,7 +45,7 @@ public final class ProductUpdate {
 
     /**
      * Set the description property: Description of the product.
-     *
+     * 
      * @param description the description value to set.
      * @return the ProductUpdate object itself.
      */
@@ -55,7 +59,7 @@ public final class ProductUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

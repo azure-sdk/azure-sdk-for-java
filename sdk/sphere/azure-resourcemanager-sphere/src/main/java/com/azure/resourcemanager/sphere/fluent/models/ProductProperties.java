@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.sphere.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of product. */
+/**
+ * The properties of product.
+ */
 @Fluent
 public final class ProductProperties {
     /*
@@ -24,13 +26,15 @@ public final class ProductProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of ProductProperties class. */
+    /**
+     * Creates an instance of ProductProperties class.
+     */
     public ProductProperties() {
     }
 
     /**
      * Get the description property: Description of the product.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -39,7 +43,7 @@ public final class ProductProperties {
 
     /**
      * Set the description property: Description of the product.
-     *
+     * 
      * @param description the description value to set.
      * @return the ProductProperties object itself.
      */
@@ -50,7 +54,7 @@ public final class ProductProperties {
 
     /**
      * Get the provisioningState property: The status of the last operation.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -59,14 +63,13 @@ public final class ProductProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (description() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property description in model ProductProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property description in model ProductProperties"));
         }
     }
 

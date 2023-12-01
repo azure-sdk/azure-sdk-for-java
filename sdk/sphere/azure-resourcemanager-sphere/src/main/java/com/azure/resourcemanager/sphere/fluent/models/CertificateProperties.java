@@ -10,7 +10,9 @@ import com.azure.resourcemanager.sphere.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The properties of certificate. */
+/**
+ * The properties of certificate.
+ */
 @Immutable
 public class CertificateProperties {
     /*
@@ -55,13 +57,15 @@ public class CertificateProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of CertificateProperties class. */
+    /**
+     * Creates an instance of CertificateProperties class.
+     */
     public CertificateProperties() {
     }
 
     /**
      * Get the certificate property: The certificate as a UTF-8 encoded base 64 string.
-     *
+     * 
      * @return the certificate value.
      */
     public String certificate() {
@@ -70,7 +74,7 @@ public class CertificateProperties {
 
     /**
      * Get the status property: The certificate status.
-     *
+     * 
      * @return the status value.
      */
     public CertificateStatus status() {
@@ -79,7 +83,7 @@ public class CertificateProperties {
 
     /**
      * Get the subject property: The certificate subject.
-     *
+     * 
      * @return the subject value.
      */
     public String subject() {
@@ -88,7 +92,7 @@ public class CertificateProperties {
 
     /**
      * Get the thumbprint property: The certificate thumbprint.
-     *
+     * 
      * @return the thumbprint value.
      */
     public String thumbprint() {
@@ -97,7 +101,7 @@ public class CertificateProperties {
 
     /**
      * Get the expiryUtc property: The certificate expiry date.
-     *
+     * 
      * @return the expiryUtc value.
      */
     public OffsetDateTime expiryUtc() {
@@ -106,7 +110,7 @@ public class CertificateProperties {
 
     /**
      * Get the notBeforeUtc property: The certificate not before date.
-     *
+     * 
      * @return the notBeforeUtc value.
      */
     public OffsetDateTime notBeforeUtc() {
@@ -115,7 +119,7 @@ public class CertificateProperties {
 
     /**
      * Get the provisioningState property: The status of the last operation.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -124,7 +128,7 @@ public class CertificateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
