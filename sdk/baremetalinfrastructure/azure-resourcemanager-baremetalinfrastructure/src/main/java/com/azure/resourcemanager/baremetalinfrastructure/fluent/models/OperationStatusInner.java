@@ -9,7 +9,9 @@ import com.azure.resourcemanager.baremetalinfrastructure.models.AsyncOperationSt
 import com.azure.resourcemanager.baremetalinfrastructure.models.OperationStatusError;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The OperationStatus object returns the state of an asynchronous operation. */
+/**
+ * The OperationStatus object returns the state of an asynchronous operation.
+ */
 @Fluent
 public final class OperationStatusInner {
     /*
@@ -36,13 +38,15 @@ public final class OperationStatusInner {
     @JsonProperty(value = "error")
     private OperationStatusError error;
 
-    /** Creates an instance of OperationStatusInner class. */
+    /**
+     * Creates an instance of OperationStatusInner class.
+     */
     public OperationStatusInner() {
     }
 
     /**
      * Get the name property: Unique Operation Status Identifier.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -51,7 +55,7 @@ public final class OperationStatusInner {
 
     /**
      * Set the name property: Unique Operation Status Identifier.
-     *
+     * 
      * @param name the name value to set.
      * @return the OperationStatusInner object itself.
      */
@@ -62,7 +66,7 @@ public final class OperationStatusInner {
 
     /**
      * Get the status property: Status of the operation.
-     *
+     * 
      * @return the status value.
      */
     public AsyncOperationStatus status() {
@@ -71,7 +75,7 @@ public final class OperationStatusInner {
 
     /**
      * Set the status property: Status of the operation.
-     *
+     * 
      * @param status the status value to set.
      * @return the OperationStatusInner object itself.
      */
@@ -82,7 +86,7 @@ public final class OperationStatusInner {
 
     /**
      * Get the startTime property: Start Time when the operation was initially executed.
-     *
+     * 
      * @return the startTime value.
      */
     public String startTime() {
@@ -91,7 +95,7 @@ public final class OperationStatusInner {
 
     /**
      * Set the startTime property: Start Time when the operation was initially executed.
-     *
+     * 
      * @param startTime the startTime value to set.
      * @return the OperationStatusInner object itself.
      */
@@ -102,7 +106,7 @@ public final class OperationStatusInner {
 
     /**
      * Get the error property: An error from the Azure Bare Metal Infrastructure service.
-     *
+     * 
      * @return the error value.
      */
     public OperationStatusError error() {
@@ -111,7 +115,7 @@ public final class OperationStatusInner {
 
     /**
      * Set the error property: An error from the Azure Bare Metal Infrastructure service.
-     *
+     * 
      * @param error the error value to set.
      * @return the OperationStatusInner object itself.
      */
@@ -122,7 +126,7 @@ public final class OperationStatusInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

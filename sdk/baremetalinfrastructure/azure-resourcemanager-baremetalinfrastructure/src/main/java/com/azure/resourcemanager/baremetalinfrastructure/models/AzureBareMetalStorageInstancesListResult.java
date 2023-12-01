@@ -9,7 +9,9 @@ import com.azure.resourcemanager.baremetalinfrastructure.fluent.models.AzureBare
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response from the Get AzureBareMetalStorageInstances operation. */
+/**
+ * The response from the Get AzureBareMetalStorageInstances operation.
+ */
 @Fluent
 public final class AzureBareMetalStorageInstancesListResult {
     /*
@@ -24,13 +26,15 @@ public final class AzureBareMetalStorageInstancesListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of AzureBareMetalStorageInstancesListResult class. */
+    /**
+     * Creates an instance of AzureBareMetalStorageInstancesListResult class.
+     */
     public AzureBareMetalStorageInstancesListResult() {
     }
 
     /**
      * Get the value property: The list of AzureBareMetalStorage instances.
-     *
+     * 
      * @return the value value.
      */
     public List<AzureBareMetalStorageInstanceInner> value() {
@@ -39,7 +43,7 @@ public final class AzureBareMetalStorageInstancesListResult {
 
     /**
      * Set the value property: The list of AzureBareMetalStorage instances.
-     *
+     * 
      * @param value the value value to set.
      * @return the AzureBareMetalStorageInstancesListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class AzureBareMetalStorageInstancesListResult {
 
     /**
      * Get the nextLink property: The URL to get the next set of AzureBareMetalStorage instances.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class AzureBareMetalStorageInstancesListResult {
 
     /**
      * Set the nextLink property: The URL to get the next set of AzureBareMetalStorage instances.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the AzureBareMetalStorageInstancesListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class AzureBareMetalStorageInstancesListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

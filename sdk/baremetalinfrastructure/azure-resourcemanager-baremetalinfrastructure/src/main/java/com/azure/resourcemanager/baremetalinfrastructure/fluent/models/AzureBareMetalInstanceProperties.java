@@ -13,7 +13,9 @@ import com.azure.resourcemanager.baremetalinfrastructure.models.OSProfile;
 import com.azure.resourcemanager.baremetalinfrastructure.models.StorageProfile;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes the properties of an Azure Bare Metal Instance. */
+/**
+ * Describes the properties of an Azure Bare Metal Instance.
+ */
 @Fluent
 public final class AzureBareMetalInstanceProperties {
     /*
@@ -76,13 +78,15 @@ public final class AzureBareMetalInstanceProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private AzureBareMetalProvisioningStatesEnum provisioningState;
 
-    /** Creates an instance of AzureBareMetalInstanceProperties class. */
+    /**
+     * Creates an instance of AzureBareMetalInstanceProperties class.
+     */
     public AzureBareMetalInstanceProperties() {
     }
 
     /**
      * Get the hardwareProfile property: Specifies the hardware settings for the Azure Bare Metal Instance.
-     *
+     * 
      * @return the hardwareProfile value.
      */
     public HardwareProfile hardwareProfile() {
@@ -91,7 +95,7 @@ public final class AzureBareMetalInstanceProperties {
 
     /**
      * Set the hardwareProfile property: Specifies the hardware settings for the Azure Bare Metal Instance.
-     *
+     * 
      * @param hardwareProfile the hardwareProfile value to set.
      * @return the AzureBareMetalInstanceProperties object itself.
      */
@@ -102,7 +106,7 @@ public final class AzureBareMetalInstanceProperties {
 
     /**
      * Get the storageProfile property: Specifies the storage settings for the Azure Bare Metal Instance disks.
-     *
+     * 
      * @return the storageProfile value.
      */
     public StorageProfile storageProfile() {
@@ -111,7 +115,7 @@ public final class AzureBareMetalInstanceProperties {
 
     /**
      * Set the storageProfile property: Specifies the storage settings for the Azure Bare Metal Instance disks.
-     *
+     * 
      * @param storageProfile the storageProfile value to set.
      * @return the AzureBareMetalInstanceProperties object itself.
      */
@@ -122,7 +126,7 @@ public final class AzureBareMetalInstanceProperties {
 
     /**
      * Get the osProfile property: Specifies the operating system settings for the Azure Bare Metal Instance.
-     *
+     * 
      * @return the osProfile value.
      */
     public OSProfile osProfile() {
@@ -131,7 +135,7 @@ public final class AzureBareMetalInstanceProperties {
 
     /**
      * Set the osProfile property: Specifies the operating system settings for the Azure Bare Metal Instance.
-     *
+     * 
      * @param osProfile the osProfile value to set.
      * @return the AzureBareMetalInstanceProperties object itself.
      */
@@ -142,7 +146,7 @@ public final class AzureBareMetalInstanceProperties {
 
     /**
      * Get the networkProfile property: Specifies the network settings for the Azure Bare Metal Instance.
-     *
+     * 
      * @return the networkProfile value.
      */
     public NetworkProfile networkProfile() {
@@ -151,7 +155,7 @@ public final class AzureBareMetalInstanceProperties {
 
     /**
      * Set the networkProfile property: Specifies the network settings for the Azure Bare Metal Instance.
-     *
+     * 
      * @param networkProfile the networkProfile value to set.
      * @return the AzureBareMetalInstanceProperties object itself.
      */
@@ -162,7 +166,7 @@ public final class AzureBareMetalInstanceProperties {
 
     /**
      * Get the azureBareMetalInstanceId property: Specifies the Azure Bare Metal Instance unique ID.
-     *
+     * 
      * @return the azureBareMetalInstanceId value.
      */
     public String azureBareMetalInstanceId() {
@@ -171,7 +175,7 @@ public final class AzureBareMetalInstanceProperties {
 
     /**
      * Get the powerState property: Resource power state.
-     *
+     * 
      * @return the powerState value.
      */
     public AzureBareMetalInstancePowerStateEnum powerState() {
@@ -180,7 +184,7 @@ public final class AzureBareMetalInstanceProperties {
 
     /**
      * Get the proximityPlacementGroup property: Resource proximity placement group.
-     *
+     * 
      * @return the proximityPlacementGroup value.
      */
     public String proximityPlacementGroup() {
@@ -189,7 +193,7 @@ public final class AzureBareMetalInstanceProperties {
 
     /**
      * Get the hwRevision property: Hardware revision of an Azure Bare Metal Instance.
-     *
+     * 
      * @return the hwRevision value.
      */
     public String hwRevision() {
@@ -199,7 +203,7 @@ public final class AzureBareMetalInstanceProperties {
     /**
      * Get the partnerNodeId property: ARM ID of another AzureBareMetalInstance that will share a network with this
      * AzureBareMetalInstance.
-     *
+     * 
      * @return the partnerNodeId value.
      */
     public String partnerNodeId() {
@@ -209,7 +213,7 @@ public final class AzureBareMetalInstanceProperties {
     /**
      * Set the partnerNodeId property: ARM ID of another AzureBareMetalInstance that will share a network with this
      * AzureBareMetalInstance.
-     *
+     * 
      * @param partnerNodeId the partnerNodeId value to set.
      * @return the AzureBareMetalInstanceProperties object itself.
      */
@@ -220,7 +224,7 @@ public final class AzureBareMetalInstanceProperties {
 
     /**
      * Get the provisioningState property: State of provisioning of the AzureBareMetalInstance.
-     *
+     * 
      * @return the provisioningState value.
      */
     public AzureBareMetalProvisioningStatesEnum provisioningState() {
@@ -229,7 +233,7 @@ public final class AzureBareMetalInstanceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

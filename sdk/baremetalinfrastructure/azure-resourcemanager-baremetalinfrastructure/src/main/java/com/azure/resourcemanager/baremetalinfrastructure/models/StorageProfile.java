@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Specifies the storage settings for the Azure Bare Metal instance disks. */
+/**
+ * Specifies the storage settings for the Azure Bare Metal instance disks.
+ */
 @Fluent
 public final class StorageProfile {
     /*
@@ -23,13 +25,15 @@ public final class StorageProfile {
     @JsonProperty(value = "osDisks")
     private List<Disk> osDisks;
 
-    /** Creates an instance of StorageProfile class. */
+    /**
+     * Creates an instance of StorageProfile class.
+     */
     public StorageProfile() {
     }
 
     /**
      * Get the nfsIpAddress property: IP Address to connect to storage.
-     *
+     * 
      * @return the nfsIpAddress value.
      */
     public String nfsIpAddress() {
@@ -38,7 +42,7 @@ public final class StorageProfile {
 
     /**
      * Get the osDisks property: Specifies information about the operating system disk used by bare metal instance.
-     *
+     * 
      * @return the osDisks value.
      */
     public List<Disk> osDisks() {
@@ -47,7 +51,7 @@ public final class StorageProfile {
 
     /**
      * Set the osDisks property: Specifies information about the operating system disk used by bare metal instance.
-     *
+     * 
      * @param osDisks the osDisks value to set.
      * @return the StorageProfile object itself.
      */
@@ -58,7 +62,7 @@ public final class StorageProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
