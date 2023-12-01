@@ -8,11 +8,8 @@ import com.azure.communication.jobrouter.implementation.JobRouterClientImpl;
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.ServiceClientBuilder;
 import com.azure.core.client.traits.ConfigurationTrait;
-import com.azure.core.client.traits.ConnectionStringTrait;
 import com.azure.core.client.traits.EndpointTrait;
 import com.azure.core.client.traits.HttpTrait;
-import com.azure.core.client.traits.KeyCredentialTrait;
-import com.azure.core.client.traits.TokenCredentialTrait;
 import com.azure.core.credential.KeyCredential;
 import com.azure.core.credential.TokenCredential;
 import com.azure.core.http.HttpClient;
@@ -47,10 +44,8 @@ import java.util.Objects;
  * A builder for creating a new instance of the JobRouterClient type.
  */
 @ServiceClientBuilder(serviceClients = { JobRouterClient.class, JobRouterAsyncClient.class })
-public final class JobRouterClientBuilder
-    implements HttpTrait<JobRouterClientBuilder>, ConfigurationTrait<JobRouterClientBuilder>,
-    EndpointTrait<JobRouterClientBuilder>, ConnectionStringTrait<JobRouterClientBuilder>,
-    KeyCredentialTrait<JobRouterClientBuilder>, TokenCredentialTrait<JobRouterClientBuilder> {
+public final class JobRouterClientBuilder implements HttpTrait<JobRouterClientBuilder>,
+    ConfigurationTrait<JobRouterClientBuilder>, EndpointTrait<JobRouterClientBuilder> {
 
     @Generated
     private static final String SDK_NAME = "name";
