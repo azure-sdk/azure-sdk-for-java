@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.avs.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.avs.fluent.models.CloudLinkInner;
 import com.azure.resourcemanager.avs.models.CloudLink;
@@ -24,6 +25,10 @@ public final class CloudLinkImpl implements CloudLink, CloudLink.Definition, Clo
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public CloudLinkStatus status() {
@@ -59,20 +64,14 @@ public final class CloudLinkImpl implements CloudLink, CloudLink.Definition, Clo
     }
 
     public CloudLink create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getCloudLinks()
-                .createOrUpdate(resourceGroupName, privateCloudName, cloudLinkName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getCloudLinks().createOrUpdate(resourceGroupName,
+            privateCloudName, cloudLinkName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public CloudLink create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getCloudLinks()
-                .createOrUpdate(resourceGroupName, privateCloudName, cloudLinkName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getCloudLinks().createOrUpdate(resourceGroupName,
+            privateCloudName, cloudLinkName, this.innerModel(), context);
         return this;
     }
 
@@ -87,20 +86,14 @@ public final class CloudLinkImpl implements CloudLink, CloudLink.Definition, Clo
     }
 
     public CloudLink apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getCloudLinks()
-                .createOrUpdate(resourceGroupName, privateCloudName, cloudLinkName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getCloudLinks().createOrUpdate(resourceGroupName,
+            privateCloudName, cloudLinkName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public CloudLink apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getCloudLinks()
-                .createOrUpdate(resourceGroupName, privateCloudName, cloudLinkName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getCloudLinks().createOrUpdate(resourceGroupName,
+            privateCloudName, cloudLinkName, this.innerModel(), context);
         return this;
     }
 
@@ -113,22 +106,14 @@ public final class CloudLinkImpl implements CloudLink, CloudLink.Definition, Clo
     }
 
     public CloudLink refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getCloudLinks()
-                .getWithResponse(resourceGroupName, privateCloudName, cloudLinkName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getCloudLinks()
+            .getWithResponse(resourceGroupName, privateCloudName, cloudLinkName, Context.NONE).getValue();
         return this;
     }
 
     public CloudLink refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getCloudLinks()
-                .getWithResponse(resourceGroupName, privateCloudName, cloudLinkName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getCloudLinks()
+            .getWithResponse(resourceGroupName, privateCloudName, cloudLinkName, context).getValue();
         return this;
     }
 

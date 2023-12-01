@@ -5,200 +5,137 @@
 package com.azure.resourcemanager.avs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.avs.models.AvailabilityProperties;
-import com.azure.resourcemanager.avs.models.Encryption;
-import com.azure.resourcemanager.avs.models.IdentitySource;
-import com.azure.resourcemanager.avs.models.InternetEnum;
-import com.azure.resourcemanager.avs.models.ManagementCluster;
+import com.azure.resourcemanager.avs.models.Circuit;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
-/** The properties of a private cloud resource that may be updated. */
+/**
+ * The updatable properties of the PrivateCloud.
+ */
 @Fluent
-public class PrivateCloudUpdateProperties {
+public final class PrivateCloudUpdateProperties {
     /*
-     * The default cluster used for management
+     * An ExpressRoute Circuit
      */
-    @JsonProperty(value = "managementCluster")
-    private ManagementCluster managementCluster;
+    @JsonProperty(value = "circuit")
+    private Circuit circuit;
 
     /*
-     * Connectivity to internet is enabled or disabled
+     * Optionally, set the vCenter admin password when the private cloud is created
      */
-    @JsonProperty(value = "internet")
-    private InternetEnum internet;
+    @JsonProperty(value = "vcenterPassword")
+    private String vcenterPassword;
 
     /*
-     * vCenter Single Sign On Identity Sources
+     * Optionally, set the NSX-T Manager password when the private cloud is created
      */
-    @JsonProperty(value = "identitySources")
-    private List<IdentitySource> identitySources;
+    @JsonProperty(value = "nsxtPassword")
+    private String nsxtPassword;
 
     /*
-     * Properties describing how the cloud is distributed across availability zones
+     * A secondary expressRoute circuit from a separate AZ. Only present in a stretched private cloud
      */
-    @JsonProperty(value = "availability")
-    private AvailabilityProperties availability;
+    @JsonProperty(value = "secondaryCircuit")
+    private Circuit secondaryCircuit;
 
-    /*
-     * Customer managed key encryption, can be enabled or disabled
+    /**
+     * Creates an instance of PrivateCloudUpdateProperties class.
      */
-    @JsonProperty(value = "encryption")
-    private Encryption encryption;
-
-    /*
-     * Array of additional networks noncontiguous with networkBlock. Networks must be unique and non-overlapping across
-     * VNet in your subscription, on-premise, and this privateCloud networkBlock attribute. Make sure the CIDR format
-     * conforms to (A.B.C.D/X).
-     */
-    @JsonProperty(value = "extendedNetworkBlocks")
-    private List<String> extendedNetworkBlocks;
-
-    /** Creates an instance of PrivateCloudUpdateProperties class. */
     public PrivateCloudUpdateProperties() {
     }
 
     /**
-     * Get the managementCluster property: The default cluster used for management.
-     *
-     * @return the managementCluster value.
+     * Get the circuit property: An ExpressRoute Circuit.
+     * 
+     * @return the circuit value.
      */
-    public ManagementCluster managementCluster() {
-        return this.managementCluster;
+    public Circuit circuit() {
+        return this.circuit;
     }
 
     /**
-     * Set the managementCluster property: The default cluster used for management.
-     *
-     * @param managementCluster the managementCluster value to set.
+     * Set the circuit property: An ExpressRoute Circuit.
+     * 
+     * @param circuit the circuit value to set.
      * @return the PrivateCloudUpdateProperties object itself.
      */
-    public PrivateCloudUpdateProperties withManagementCluster(ManagementCluster managementCluster) {
-        this.managementCluster = managementCluster;
+    public PrivateCloudUpdateProperties withCircuit(Circuit circuit) {
+        this.circuit = circuit;
         return this;
     }
 
     /**
-     * Get the internet property: Connectivity to internet is enabled or disabled.
-     *
-     * @return the internet value.
+     * Get the vcenterPassword property: Optionally, set the vCenter admin password when the private cloud is created.
+     * 
+     * @return the vcenterPassword value.
      */
-    public InternetEnum internet() {
-        return this.internet;
+    public String vcenterPassword() {
+        return this.vcenterPassword;
     }
 
     /**
-     * Set the internet property: Connectivity to internet is enabled or disabled.
-     *
-     * @param internet the internet value to set.
+     * Set the vcenterPassword property: Optionally, set the vCenter admin password when the private cloud is created.
+     * 
+     * @param vcenterPassword the vcenterPassword value to set.
      * @return the PrivateCloudUpdateProperties object itself.
      */
-    public PrivateCloudUpdateProperties withInternet(InternetEnum internet) {
-        this.internet = internet;
+    public PrivateCloudUpdateProperties withVcenterPassword(String vcenterPassword) {
+        this.vcenterPassword = vcenterPassword;
         return this;
     }
 
     /**
-     * Get the identitySources property: vCenter Single Sign On Identity Sources.
-     *
-     * @return the identitySources value.
+     * Get the nsxtPassword property: Optionally, set the NSX-T Manager password when the private cloud is created.
+     * 
+     * @return the nsxtPassword value.
      */
-    public List<IdentitySource> identitySources() {
-        return this.identitySources;
+    public String nsxtPassword() {
+        return this.nsxtPassword;
     }
 
     /**
-     * Set the identitySources property: vCenter Single Sign On Identity Sources.
-     *
-     * @param identitySources the identitySources value to set.
+     * Set the nsxtPassword property: Optionally, set the NSX-T Manager password when the private cloud is created.
+     * 
+     * @param nsxtPassword the nsxtPassword value to set.
      * @return the PrivateCloudUpdateProperties object itself.
      */
-    public PrivateCloudUpdateProperties withIdentitySources(List<IdentitySource> identitySources) {
-        this.identitySources = identitySources;
+    public PrivateCloudUpdateProperties withNsxtPassword(String nsxtPassword) {
+        this.nsxtPassword = nsxtPassword;
         return this;
     }
 
     /**
-     * Get the availability property: Properties describing how the cloud is distributed across availability zones.
-     *
-     * @return the availability value.
+     * Get the secondaryCircuit property: A secondary expressRoute circuit from a separate AZ. Only present in a
+     * stretched private cloud.
+     * 
+     * @return the secondaryCircuit value.
      */
-    public AvailabilityProperties availability() {
-        return this.availability;
+    public Circuit secondaryCircuit() {
+        return this.secondaryCircuit;
     }
 
     /**
-     * Set the availability property: Properties describing how the cloud is distributed across availability zones.
-     *
-     * @param availability the availability value to set.
+     * Set the secondaryCircuit property: A secondary expressRoute circuit from a separate AZ. Only present in a
+     * stretched private cloud.
+     * 
+     * @param secondaryCircuit the secondaryCircuit value to set.
      * @return the PrivateCloudUpdateProperties object itself.
      */
-    public PrivateCloudUpdateProperties withAvailability(AvailabilityProperties availability) {
-        this.availability = availability;
-        return this;
-    }
-
-    /**
-     * Get the encryption property: Customer managed key encryption, can be enabled or disabled.
-     *
-     * @return the encryption value.
-     */
-    public Encryption encryption() {
-        return this.encryption;
-    }
-
-    /**
-     * Set the encryption property: Customer managed key encryption, can be enabled or disabled.
-     *
-     * @param encryption the encryption value to set.
-     * @return the PrivateCloudUpdateProperties object itself.
-     */
-    public PrivateCloudUpdateProperties withEncryption(Encryption encryption) {
-        this.encryption = encryption;
-        return this;
-    }
-
-    /**
-     * Get the extendedNetworkBlocks property: Array of additional networks noncontiguous with networkBlock. Networks
-     * must be unique and non-overlapping across VNet in your subscription, on-premise, and this privateCloud
-     * networkBlock attribute. Make sure the CIDR format conforms to (A.B.C.D/X).
-     *
-     * @return the extendedNetworkBlocks value.
-     */
-    public List<String> extendedNetworkBlocks() {
-        return this.extendedNetworkBlocks;
-    }
-
-    /**
-     * Set the extendedNetworkBlocks property: Array of additional networks noncontiguous with networkBlock. Networks
-     * must be unique and non-overlapping across VNet in your subscription, on-premise, and this privateCloud
-     * networkBlock attribute. Make sure the CIDR format conforms to (A.B.C.D/X).
-     *
-     * @param extendedNetworkBlocks the extendedNetworkBlocks value to set.
-     * @return the PrivateCloudUpdateProperties object itself.
-     */
-    public PrivateCloudUpdateProperties withExtendedNetworkBlocks(List<String> extendedNetworkBlocks) {
-        this.extendedNetworkBlocks = extendedNetworkBlocks;
+    public PrivateCloudUpdateProperties withSecondaryCircuit(Circuit secondaryCircuit) {
+        this.secondaryCircuit = secondaryCircuit;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (managementCluster() != null) {
-            managementCluster().validate();
+        if (circuit() != null) {
+            circuit().validate();
         }
-        if (identitySources() != null) {
-            identitySources().forEach(e -> e.validate());
-        }
-        if (availability() != null) {
-            availability().validate();
-        }
-        if (encryption() != null) {
-            encryption().validate();
+        if (secondaryCircuit() != null) {
+            secondaryCircuit().validate();
         }
     }
 }

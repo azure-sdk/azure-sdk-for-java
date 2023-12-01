@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.avs.models.CloudLinkStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of a cloud link. */
+/**
+ * The properties of a cloud link.
+ */
 @Fluent
 public final class CloudLinkProperties {
     /*
@@ -23,13 +25,15 @@ public final class CloudLinkProperties {
     @JsonProperty(value = "linkedCloud")
     private String linkedCloud;
 
-    /** Creates an instance of CloudLinkProperties class. */
+    /**
+     * Creates an instance of CloudLinkProperties class.
+     */
     public CloudLinkProperties() {
     }
 
     /**
      * Get the status property: The state of the cloud link.
-     *
+     * 
      * @return the status value.
      */
     public CloudLinkStatus status() {
@@ -38,7 +42,7 @@ public final class CloudLinkProperties {
 
     /**
      * Get the linkedCloud property: Identifier of the other private cloud participating in the link.
-     *
+     * 
      * @return the linkedCloud value.
      */
     public String linkedCloud() {
@@ -47,7 +51,7 @@ public final class CloudLinkProperties {
 
     /**
      * Set the linkedCloud property: Identifier of the other private cloud participating in the link.
-     *
+     * 
      * @param linkedCloud the linkedCloud value to set.
      * @return the CloudLinkProperties object itself.
      */
@@ -58,7 +62,7 @@ public final class CloudLinkProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.avs.implementation;
 
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.avs.fluent.models.ScriptExecutionInner;
 import com.azure.resourcemanager.avs.models.ScriptExecution;
@@ -31,6 +32,10 @@ public final class ScriptExecutionImpl implements ScriptExecution, ScriptExecuti
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String scriptCmdletId() {
@@ -92,8 +97,8 @@ public final class ScriptExecutionImpl implements ScriptExecution, ScriptExecuti
         }
     }
 
-    public Map<String, Object> namedOutputs() {
-        Map<String, Object> inner = this.innerModel().namedOutputs();
+    public Map<String, Map<String, Object>> namedOutputs() {
+        Map<String, Map<String, Object>> inner = this.innerModel().namedOutputs();
         if (inner != null) {
             return Collections.unmodifiableMap(inner);
         } else {
@@ -153,21 +158,14 @@ public final class ScriptExecutionImpl implements ScriptExecution, ScriptExecuti
     }
 
     public ScriptExecution create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getScriptExecutions()
-                .createOrUpdate(
-                    resourceGroupName, privateCloudName, scriptExecutionName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getScriptExecutions().createOrUpdate(resourceGroupName,
+            privateCloudName, scriptExecutionName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public ScriptExecution create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getScriptExecutions()
-                .createOrUpdate(resourceGroupName, privateCloudName, scriptExecutionName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getScriptExecutions().createOrUpdate(resourceGroupName,
+            privateCloudName, scriptExecutionName, this.innerModel(), context);
         return this;
     }
 
@@ -182,21 +180,14 @@ public final class ScriptExecutionImpl implements ScriptExecution, ScriptExecuti
     }
 
     public ScriptExecution apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getScriptExecutions()
-                .createOrUpdate(
-                    resourceGroupName, privateCloudName, scriptExecutionName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getScriptExecutions().createOrUpdate(resourceGroupName,
+            privateCloudName, scriptExecutionName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public ScriptExecution apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getScriptExecutions()
-                .createOrUpdate(resourceGroupName, privateCloudName, scriptExecutionName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getScriptExecutions().createOrUpdate(resourceGroupName,
+            privateCloudName, scriptExecutionName, this.innerModel(), context);
         return this;
     }
 
@@ -209,37 +200,25 @@ public final class ScriptExecutionImpl implements ScriptExecution, ScriptExecuti
     }
 
     public ScriptExecution refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getScriptExecutions()
-                .getWithResponse(resourceGroupName, privateCloudName, scriptExecutionName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getScriptExecutions()
+            .getWithResponse(resourceGroupName, privateCloudName, scriptExecutionName, Context.NONE).getValue();
         return this;
     }
 
     public ScriptExecution refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getScriptExecutions()
-                .getWithResponse(resourceGroupName, privateCloudName, scriptExecutionName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getScriptExecutions()
+            .getWithResponse(resourceGroupName, privateCloudName, scriptExecutionName, context).getValue();
         return this;
     }
 
-    public Response<ScriptExecution> getExecutionLogsWithResponse(
-        List<ScriptOutputStreamType> scriptOutputStreamType, Context context) {
-        return serviceManager
-            .scriptExecutions()
-            .getExecutionLogsWithResponse(
-                resourceGroupName, privateCloudName, scriptExecutionName, scriptOutputStreamType, context);
+    public Response<ScriptExecution> getExecutionLogsWithResponse(List<ScriptOutputStreamType> body, Context context) {
+        return serviceManager.scriptExecutions().getExecutionLogsWithResponse(resourceGroupName, privateCloudName,
+            scriptExecutionName, body, context);
     }
 
-    public ScriptExecution getExecutionLogs() {
-        return serviceManager
-            .scriptExecutions()
-            .getExecutionLogs(resourceGroupName, privateCloudName, scriptExecutionName);
+    public ScriptExecution getExecutionLogs(List<ScriptOutputStreamType> body) {
+        return serviceManager.scriptExecutions().getExecutionLogs(resourceGroupName, privateCloudName,
+            scriptExecutionName, body);
     }
 
     public ScriptExecutionImpl withScriptCmdletId(String scriptCmdletId) {
@@ -277,7 +256,7 @@ public final class ScriptExecutionImpl implements ScriptExecution, ScriptExecuti
         return this;
     }
 
-    public ScriptExecutionImpl withNamedOutputs(Map<String, Object> namedOutputs) {
+    public ScriptExecutionImpl withNamedOutputs(Map<String, Map<String, Object>> namedOutputs) {
         this.innerModel().withNamedOutputs(namedOutputs);
         return this;
     }

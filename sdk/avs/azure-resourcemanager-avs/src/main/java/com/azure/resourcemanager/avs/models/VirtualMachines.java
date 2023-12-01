@@ -8,24 +8,26 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of VirtualMachines. */
+/**
+ * Resource collection API of VirtualMachines.
+ */
 public interface VirtualMachines {
     /**
      * List of virtual machines in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Virtual Machines as paginated response with {@link PagedIterable}.
+     * @return the response of a VirtualMachine list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<VirtualMachine> list(String resourceGroupName, String privateCloudName, String clusterName);
+    PagedIterable<VirtualMachine> listByCluster(String resourceGroupName, String privateCloudName, String clusterName);
 
     /**
      * List of virtual machines in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -33,14 +35,14 @@ public interface VirtualMachines {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Virtual Machines as paginated response with {@link PagedIterable}.
+     * @return the response of a VirtualMachine list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<VirtualMachine> list(
-        String resourceGroupName, String privateCloudName, String clusterName, Context context);
+    PagedIterable<VirtualMachine> listByCluster(String resourceGroupName, String privateCloudName, String clusterName,
+        Context context);
 
     /**
      * Get a virtual machine by id in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -51,16 +53,12 @@ public interface VirtualMachines {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a virtual machine by id in a private cloud cluster along with {@link Response}.
      */
-    Response<VirtualMachine> getWithResponse(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String virtualMachineId,
-        Context context);
+    Response<VirtualMachine> getWithResponse(String resourceGroupName, String privateCloudName, String clusterName,
+        String virtualMachineId, Context context);
 
     /**
      * Get a virtual machine by id in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -74,41 +72,32 @@ public interface VirtualMachines {
 
     /**
      * Enable or disable DRS-driven VM movement restriction.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param virtualMachineId Virtual Machine identifier.
-     * @param restrictMovement Whether VM DRS-driven movement is restricted (Enabled) or not (Disabled).
+     * @param body The content of the action request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void restrictMovement(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String virtualMachineId,
-        VirtualMachineRestrictMovement restrictMovement);
+    void restrictMovement(String resourceGroupName, String privateCloudName, String clusterName,
+        String virtualMachineId, VirtualMachineRestrictMovement body);
 
     /**
      * Enable or disable DRS-driven VM movement restriction.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param virtualMachineId Virtual Machine identifier.
-     * @param restrictMovement Whether VM DRS-driven movement is restricted (Enabled) or not (Disabled).
+     * @param body The content of the action request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void restrictMovement(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String virtualMachineId,
-        VirtualMachineRestrictMovement restrictMovement,
-        Context context);
+    void restrictMovement(String resourceGroupName, String privateCloudName, String clusterName,
+        String virtualMachineId, VirtualMachineRestrictMovement body, Context context);
 }

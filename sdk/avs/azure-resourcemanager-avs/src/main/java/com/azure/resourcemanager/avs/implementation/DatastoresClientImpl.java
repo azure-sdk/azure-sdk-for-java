@@ -33,27 +33,33 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.avs.fluent.DatastoresClient;
 import com.azure.resourcemanager.avs.fluent.models.DatastoreInner;
-import com.azure.resourcemanager.avs.models.DatastoreList;
+import com.azure.resourcemanager.avs.models.DatastoreListResult;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in DatastoresClient. */
+/**
+ * An instance of this class provides access to all the operations defined in DatastoresClient.
+ */
 public final class DatastoresClientImpl implements DatastoresClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final DatastoresService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final AvsClientImpl client;
 
     /**
      * Initializes an instance of DatastoresClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     DatastoresClientImpl(AvsClientImpl client) {
-        this.service =
-            RestProxy.create(DatastoresService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(DatastoresService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -64,106 +70,78 @@ public final class DatastoresClientImpl implements DatastoresClient {
     @Host("{$host}")
     @ServiceInterface(name = "AvsClientDatastores")
     public interface DatastoresService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DatastoreList>> list(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<DatastoreListResult>> listByCluster(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("clusterName") String clusterName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("clusterName") String clusterName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores/{datastoreName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores/{datastoreName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DatastoreInner>> get(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<DatastoreInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("clusterName") String clusterName,
-            @PathParam("datastoreName") String datastoreName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("clusterName") String clusterName,
+            @PathParam("datastoreName") String datastoreName, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores/{datastoreName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores/{datastoreName}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("clusterName") String clusterName,
-            @PathParam("datastoreName") String datastoreName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") DatastoreInner datastore,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("clusterName") String clusterName,
+            @PathParam("datastoreName") String datastoreName, @BodyParam("application/json") DatastoreInner resource,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores/{datastoreName}")
-        @ExpectedResponses({200, 202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores/{datastoreName}")
+        @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("clusterName") String clusterName,
-            @PathParam("datastoreName") String datastoreName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("clusterName") String clusterName,
+            @PathParam("datastoreName") String datastoreName, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DatastoreList>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<DatastoreListResult>> listByClusterNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * List datastores in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of datastores along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a Datastore list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DatastoreInner>> listSinglePageAsync(
-        String resourceGroupName, String privateCloudName, String clusterName) {
+    private Mono<PagedResponse<DatastoreInner>> listByClusterSinglePageAsync(String resourceGroupName,
+        String privateCloudName, String clusterName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -178,33 +156,16 @@ public final class DatastoresClientImpl implements DatastoresClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            clusterName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<DatastoreInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByCluster(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, privateCloudName, clusterName, accept, context))
+            .<PagedResponse<DatastoreInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List datastores in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -212,22 +173,19 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of datastores along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a Datastore list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DatastoreInner>> listSinglePageAsync(
-        String resourceGroupName, String privateCloudName, String clusterName, Context context) {
+    private Mono<PagedResponse<DatastoreInner>> listByClusterSinglePageAsync(String resourceGroupName,
+        String privateCloudName, String clusterName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -243,47 +201,33 @@ public final class DatastoresClientImpl implements DatastoresClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                clusterName,
-                this.client.getApiVersion(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByCluster(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, privateCloudName, clusterName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List datastores in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of datastores as paginated response with {@link PagedFlux}.
+     * @return the response of a Datastore list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DatastoreInner> listAsync(String resourceGroupName, String privateCloudName, String clusterName) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, privateCloudName, clusterName),
-            nextLink -> listNextSinglePageAsync(nextLink));
+    private PagedFlux<DatastoreInner> listByClusterAsync(String resourceGroupName, String privateCloudName,
+        String clusterName) {
+        return new PagedFlux<>(() -> listByClusterSinglePageAsync(resourceGroupName, privateCloudName, clusterName),
+            nextLink -> listByClusterNextSinglePageAsync(nextLink));
     }
 
     /**
      * List datastores in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -291,35 +235,36 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of datastores as paginated response with {@link PagedFlux}.
+     * @return the response of a Datastore list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DatastoreInner> listAsync(
-        String resourceGroupName, String privateCloudName, String clusterName, Context context) {
+    private PagedFlux<DatastoreInner> listByClusterAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, Context context) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, privateCloudName, clusterName, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+            () -> listByClusterSinglePageAsync(resourceGroupName, privateCloudName, clusterName, context),
+            nextLink -> listByClusterNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List datastores in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of datastores as paginated response with {@link PagedIterable}.
+     * @return the response of a Datastore list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DatastoreInner> list(String resourceGroupName, String privateCloudName, String clusterName) {
-        return new PagedIterable<>(listAsync(resourceGroupName, privateCloudName, clusterName));
+    public PagedIterable<DatastoreInner> listByCluster(String resourceGroupName, String privateCloudName,
+        String clusterName) {
+        return new PagedIterable<>(listByClusterAsync(resourceGroupName, privateCloudName, clusterName));
     }
 
     /**
      * List datastores in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -327,17 +272,17 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of datastores as paginated response with {@link PagedIterable}.
+     * @return the response of a Datastore list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DatastoreInner> list(
-        String resourceGroupName, String privateCloudName, String clusterName, Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, privateCloudName, clusterName, context));
+    public PagedIterable<DatastoreInner> listByCluster(String resourceGroupName, String privateCloudName,
+        String clusterName, Context context) {
+        return new PagedIterable<>(listByClusterAsync(resourceGroupName, privateCloudName, clusterName, context));
     }
 
     /**
      * Get a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -345,23 +290,19 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a datastore in a private cloud cluster along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return a datastore in a private cloud cluster along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DatastoreInner>> getWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String clusterName, String datastoreName) {
+    private Mono<Response<DatastoreInner>> getWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String datastoreName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -379,25 +320,15 @@ public final class DatastoresClientImpl implements DatastoresClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            clusterName,
-                            datastoreName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, privateCloudName, clusterName, datastoreName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -406,23 +337,19 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a datastore in a private cloud cluster along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return a datastore in a private cloud cluster along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DatastoreInner>> getWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String clusterName, String datastoreName, Context context) {
+    private Mono<Response<DatastoreInner>> getWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String datastoreName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -440,22 +367,13 @@ public final class DatastoresClientImpl implements DatastoresClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                clusterName,
-                datastoreName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, privateCloudName, clusterName, datastoreName, accept, context);
     }
 
     /**
      * Get a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -466,15 +384,15 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @return a datastore in a private cloud cluster on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DatastoreInner> getAsync(
-        String resourceGroupName, String privateCloudName, String clusterName, String datastoreName) {
+    private Mono<DatastoreInner> getAsync(String resourceGroupName, String privateCloudName, String clusterName,
+        String datastoreName) {
         return getWithResponseAsync(resourceGroupName, privateCloudName, clusterName, datastoreName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -486,14 +404,14 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @return a datastore in a private cloud cluster along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<DatastoreInner> getWithResponse(
-        String resourceGroupName, String privateCloudName, String clusterName, String datastoreName, Context context) {
+    public Response<DatastoreInner> getWithResponse(String resourceGroupName, String privateCloudName,
+        String clusterName, String datastoreName, Context context) {
         return getWithResponseAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, context).block();
     }
 
     /**
      * Get a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -504,43 +422,35 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @return a datastore in a private cloud cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public DatastoreInner get(
-        String resourceGroupName, String privateCloudName, String clusterName, String datastoreName) {
+    public DatastoreInner get(String resourceGroupName, String privateCloudName, String clusterName,
+        String datastoreName) {
         return getWithResponse(resourceGroupName, privateCloudName, clusterName, datastoreName, Context.NONE)
             .getValue();
     }
 
     /**
      * Create or update a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param datastoreName Name of the datastore in the private cloud cluster.
-     * @param datastore A datastore in a private cloud cluster.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a datastore resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String datastoreName,
-        DatastoreInner datastore) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String clusterName, String datastoreName, DatastoreInner resource) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -556,38 +466,27 @@ public final class DatastoresClientImpl implements DatastoresClient {
         if (datastoreName == null) {
             return Mono.error(new IllegalArgumentException("Parameter datastoreName is required and cannot be null."));
         }
-        if (datastore == null) {
-            return Mono.error(new IllegalArgumentException("Parameter datastore is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            datastore.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            clusterName,
-                            datastoreName,
-                            this.client.getApiVersion(),
-                            datastore,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, privateCloudName, clusterName, datastoreName,
+                resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param datastoreName Name of the datastore in the private cloud cluster.
-     * @param datastore A datastore in a private cloud cluster.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -595,24 +494,15 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @return a datastore resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String datastoreName,
-        DatastoreInner datastore,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String clusterName, String datastoreName, DatastoreInner resource, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -628,67 +518,48 @@ public final class DatastoresClientImpl implements DatastoresClient {
         if (datastoreName == null) {
             return Mono.error(new IllegalArgumentException("Parameter datastoreName is required and cannot be null."));
         }
-        if (datastore == null) {
-            return Mono.error(new IllegalArgumentException("Parameter datastore is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            datastore.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                clusterName,
-                datastoreName,
-                this.client.getApiVersion(),
-                datastore,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, privateCloudName, clusterName, datastoreName, resource,
+            accept, context);
     }
 
     /**
      * Create or update a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param datastoreName Name of the datastore in the private cloud cluster.
-     * @param datastore A datastore in a private cloud cluster.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of a datastore resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<DatastoreInner>, DatastoreInner> beginCreateOrUpdateAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String datastoreName,
-        DatastoreInner datastore) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, datastore);
-        return this
-            .client
-            .<DatastoreInner, DatastoreInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                DatastoreInner.class,
-                DatastoreInner.class,
-                this.client.getContext());
+    private PollerFlux<PollResult<DatastoreInner>, DatastoreInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String privateCloudName, String clusterName, String datastoreName, DatastoreInner resource) {
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, privateCloudName,
+            clusterName, datastoreName, resource);
+        return this.client.<DatastoreInner, DatastoreInner>getLroResult(mono, this.client.getHttpPipeline(),
+            DatastoreInner.class, DatastoreInner.class, this.client.getContext());
     }
 
     /**
      * Create or update a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param datastoreName Name of the datastore in the private cloud cluster.
-     * @param datastore A datastore in a private cloud cluster.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -696,56 +567,43 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @return the {@link PollerFlux} for polling of a datastore resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<DatastoreInner>, DatastoreInner> beginCreateOrUpdateAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String datastoreName,
-        DatastoreInner datastore,
-        Context context) {
+    private PollerFlux<PollResult<DatastoreInner>, DatastoreInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String privateCloudName, String clusterName, String datastoreName, DatastoreInner resource, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(
-                resourceGroupName, privateCloudName, clusterName, datastoreName, datastore, context);
-        return this
-            .client
-            .<DatastoreInner, DatastoreInner>getLroResult(
-                mono, this.client.getHttpPipeline(), DatastoreInner.class, DatastoreInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, privateCloudName,
+            clusterName, datastoreName, resource, context);
+        return this.client.<DatastoreInner, DatastoreInner>getLroResult(mono, this.client.getHttpPipeline(),
+            DatastoreInner.class, DatastoreInner.class, context);
     }
 
     /**
      * Create or update a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param datastoreName Name of the datastore in the private cloud cluster.
-     * @param datastore A datastore in a private cloud cluster.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of a datastore resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<DatastoreInner>, DatastoreInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String datastoreName,
-        DatastoreInner datastore) {
-        return this
-            .beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, datastore)
+    public SyncPoller<PollResult<DatastoreInner>, DatastoreInner> beginCreateOrUpdate(String resourceGroupName,
+        String privateCloudName, String clusterName, String datastoreName, DatastoreInner resource) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, resource)
             .getSyncPoller();
     }
 
     /**
      * Create or update a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param datastoreName Name of the datastore in the private cloud cluster.
-     * @param datastore A datastore in a private cloud cluster.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -753,52 +611,40 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @return the {@link SyncPoller} for polling of a datastore resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<DatastoreInner>, DatastoreInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String datastoreName,
-        DatastoreInner datastore,
-        Context context) {
-        return this
-            .beginCreateOrUpdateAsync(
-                resourceGroupName, privateCloudName, clusterName, datastoreName, datastore, context)
-            .getSyncPoller();
+    public SyncPoller<PollResult<DatastoreInner>, DatastoreInner> beginCreateOrUpdate(String resourceGroupName,
+        String privateCloudName, String clusterName, String datastoreName, DatastoreInner resource, Context context) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, resource,
+            context).getSyncPoller();
     }
 
     /**
      * Create or update a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param datastoreName Name of the datastore in the private cloud cluster.
-     * @param datastore A datastore in a private cloud cluster.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a datastore resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DatastoreInner> createOrUpdateAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String datastoreName,
-        DatastoreInner datastore) {
-        return beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, datastore)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+    private Mono<DatastoreInner> createOrUpdateAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String datastoreName, DatastoreInner resource) {
+        return beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, resource)
+            .last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param datastoreName Name of the datastore in the private cloud cluster.
-     * @param datastore A datastore in a private cloud cluster.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -806,50 +652,39 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @return a datastore resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DatastoreInner> createOrUpdateAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String datastoreName,
-        DatastoreInner datastore,
-        Context context) {
-        return beginCreateOrUpdateAsync(
-                resourceGroupName, privateCloudName, clusterName, datastoreName, datastore, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+    private Mono<DatastoreInner> createOrUpdateAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String datastoreName, DatastoreInner resource, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, resource,
+            context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param datastoreName Name of the datastore in the private cloud cluster.
-     * @param datastore A datastore in a private cloud cluster.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a datastore resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public DatastoreInner createOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String datastoreName,
-        DatastoreInner datastore) {
-        return createOrUpdateAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, datastore).block();
+    public DatastoreInner createOrUpdate(String resourceGroupName, String privateCloudName, String clusterName,
+        String datastoreName, DatastoreInner resource) {
+        return createOrUpdateAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, resource).block();
     }
 
     /**
      * Create or update a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param datastoreName Name of the datastore in the private cloud cluster.
-     * @param datastore A datastore in a private cloud cluster.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -857,20 +692,15 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @return a datastore resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public DatastoreInner createOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String datastoreName,
-        DatastoreInner datastore,
-        Context context) {
-        return createOrUpdateAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, datastore, context)
+    public DatastoreInner createOrUpdate(String resourceGroupName, String privateCloudName, String clusterName,
+        String datastoreName, DatastoreInner resource, Context context) {
+        return createOrUpdateAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, resource, context)
             .block();
     }
 
     /**
      * Delete a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -881,19 +711,15 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String clusterName, String datastoreName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String datastoreName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -911,25 +737,15 @@ public final class DatastoresClientImpl implements DatastoresClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            clusterName,
-                            datastoreName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, privateCloudName, clusterName, datastoreName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -941,19 +757,15 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String clusterName, String datastoreName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String datastoreName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -971,22 +783,13 @@ public final class DatastoresClientImpl implements DatastoresClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                clusterName,
-                datastoreName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, privateCloudName, clusterName, datastoreName, accept, context);
     }
 
     /**
      * Delete a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -997,19 +800,17 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String privateCloudName, String clusterName, String datastoreName) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, privateCloudName, clusterName, datastoreName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String datastoreName) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, privateCloudName, clusterName, datastoreName);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Delete a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -1021,19 +822,18 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String privateCloudName, String clusterName, String datastoreName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String datastoreName, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Delete a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -1044,14 +844,14 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String privateCloudName, String clusterName, String datastoreName) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String privateCloudName,
+        String clusterName, String datastoreName) {
         return this.beginDeleteAsync(resourceGroupName, privateCloudName, clusterName, datastoreName).getSyncPoller();
     }
 
     /**
      * Delete a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -1063,16 +863,15 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String privateCloudName, String clusterName, String datastoreName, Context context) {
-        return this
-            .beginDeleteAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, context)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String privateCloudName,
+        String clusterName, String datastoreName, Context context) {
+        return this.beginDeleteAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, context)
             .getSyncPoller();
     }
 
     /**
      * Delete a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -1083,16 +882,15 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(
-        String resourceGroupName, String privateCloudName, String clusterName, String datastoreName) {
-        return beginDeleteAsync(resourceGroupName, privateCloudName, clusterName, datastoreName)
-            .last()
+    private Mono<Void> deleteAsync(String resourceGroupName, String privateCloudName, String clusterName,
+        String datastoreName) {
+        return beginDeleteAsync(resourceGroupName, privateCloudName, clusterName, datastoreName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -1104,16 +902,15 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(
-        String resourceGroupName, String privateCloudName, String clusterName, String datastoreName, Context context) {
-        return beginDeleteAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, context)
-            .last()
+    private Mono<Void> deleteAsync(String resourceGroupName, String privateCloudName, String clusterName,
+        String datastoreName, Context context) {
+        return beginDeleteAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -1129,7 +926,7 @@ public final class DatastoresClientImpl implements DatastoresClient {
 
     /**
      * Delete a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -1140,81 +937,66 @@ public final class DatastoresClientImpl implements DatastoresClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(
-        String resourceGroupName, String privateCloudName, String clusterName, String datastoreName, Context context) {
+    public void delete(String resourceGroupName, String privateCloudName, String clusterName, String datastoreName,
+        Context context) {
         deleteAsync(resourceGroupName, privateCloudName, clusterName, datastoreName, context).block();
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of datastores along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a Datastore list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DatastoreInner>> listNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<DatastoreInner>> listByClusterNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<DatastoreInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByClusterNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<DatastoreInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of datastores along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a Datastore list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DatastoreInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<DatastoreInner>> listByClusterNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByClusterNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

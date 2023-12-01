@@ -7,7 +7,9 @@ package com.azure.resourcemanager.avs.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of a Script Package subresource. */
+/**
+ * Properties of a Script Package subresource.
+ */
 @Immutable
 public final class ScriptPackageProperties {
     /*
@@ -34,13 +36,15 @@ public final class ScriptPackageProperties {
     @JsonProperty(value = "uri", access = JsonProperty.Access.WRITE_ONLY)
     private String uri;
 
-    /** Creates an instance of ScriptPackageProperties class. */
+    /**
+     * Creates an instance of ScriptPackageProperties class.
+     */
     public ScriptPackageProperties() {
     }
 
     /**
      * Get the description property: User friendly description of the package.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -49,7 +53,7 @@ public final class ScriptPackageProperties {
 
     /**
      * Get the version property: Module version.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -58,7 +62,7 @@ public final class ScriptPackageProperties {
 
     /**
      * Get the company property: Company that created and supports the package.
-     *
+     * 
      * @return the company value.
      */
     public String company() {
@@ -67,7 +71,7 @@ public final class ScriptPackageProperties {
 
     /**
      * Get the uri property: Link to support by the package vendor.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -76,7 +80,7 @@ public final class ScriptPackageProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

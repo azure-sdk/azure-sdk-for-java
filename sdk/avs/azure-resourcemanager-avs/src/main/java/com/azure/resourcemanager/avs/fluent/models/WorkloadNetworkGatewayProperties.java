@@ -7,7 +7,9 @@ package com.azure.resourcemanager.avs.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of a NSX Gateway. */
+/**
+ * Properties of a NSX Gateway.
+ */
 @Fluent
 public final class WorkloadNetworkGatewayProperties {
     /*
@@ -22,13 +24,15 @@ public final class WorkloadNetworkGatewayProperties {
     @JsonProperty(value = "path", access = JsonProperty.Access.WRITE_ONLY)
     private String path;
 
-    /** Creates an instance of WorkloadNetworkGatewayProperties class. */
+    /**
+     * Creates an instance of WorkloadNetworkGatewayProperties class.
+     */
     public WorkloadNetworkGatewayProperties() {
     }
 
     /**
      * Get the displayName property: Display name of the DHCP entity.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -37,7 +41,7 @@ public final class WorkloadNetworkGatewayProperties {
 
     /**
      * Set the displayName property: Display name of the DHCP entity.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the WorkloadNetworkGatewayProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class WorkloadNetworkGatewayProperties {
 
     /**
      * Get the path property: NSX Gateway Path.
-     *
+     * 
      * @return the path value.
      */
     public String path() {
@@ -57,7 +61,7 @@ public final class WorkloadNetworkGatewayProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

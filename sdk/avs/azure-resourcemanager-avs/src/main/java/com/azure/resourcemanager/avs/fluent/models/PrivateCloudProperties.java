@@ -6,21 +6,18 @@ package com.azure.resourcemanager.avs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.avs.models.AvailabilityProperties;
 import com.azure.resourcemanager.avs.models.Circuit;
-import com.azure.resourcemanager.avs.models.Encryption;
 import com.azure.resourcemanager.avs.models.Endpoints;
-import com.azure.resourcemanager.avs.models.IdentitySource;
-import com.azure.resourcemanager.avs.models.InternetEnum;
-import com.azure.resourcemanager.avs.models.ManagementCluster;
 import com.azure.resourcemanager.avs.models.NsxPublicIpQuotaRaisedEnum;
 import com.azure.resourcemanager.avs.models.PrivateCloudProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The properties of a private cloud resource. */
+/**
+ * The properties of a private cloud resource.
+ */
 @Fluent
-public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
+public final class PrivateCloudProperties {
     /*
      * The provisioning state
      */
@@ -107,13 +104,15 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
     @JsonProperty(value = "nsxPublicIpQuotaRaised", access = JsonProperty.Access.WRITE_ONLY)
     private NsxPublicIpQuotaRaisedEnum nsxPublicIpQuotaRaised;
 
-    /** Creates an instance of PrivateCloudProperties class. */
+    /**
+     * Creates an instance of PrivateCloudProperties class.
+     */
     public PrivateCloudProperties() {
     }
 
     /**
      * Get the provisioningState property: The provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public PrivateCloudProvisioningState provisioningState() {
@@ -122,7 +121,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the circuit property: An ExpressRoute Circuit.
-     *
+     * 
      * @return the circuit value.
      */
     public Circuit circuit() {
@@ -131,7 +130,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Set the circuit property: An ExpressRoute Circuit.
-     *
+     * 
      * @param circuit the circuit value to set.
      * @return the PrivateCloudProperties object itself.
      */
@@ -142,7 +141,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the endpoints property: The endpoints.
-     *
+     * 
      * @return the endpoints value.
      */
     public Endpoints endpoints() {
@@ -153,7 +152,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
      * Get the networkBlock property: The block of addresses should be unique across VNet in your subscription as well
      * as on-premise. Make sure the CIDR format is conformed to (A.B.C.D/X) where A,B,C,D are between 0 and 255, and X
      * is between 0 and 22.
-     *
+     * 
      * @return the networkBlock value.
      */
     public String networkBlock() {
@@ -164,7 +163,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
      * Set the networkBlock property: The block of addresses should be unique across VNet in your subscription as well
      * as on-premise. Make sure the CIDR format is conformed to (A.B.C.D/X) where A,B,C,D are between 0 and 255, and X
      * is between 0 and 22.
-     *
+     * 
      * @param networkBlock the networkBlock value to set.
      * @return the PrivateCloudProperties object itself.
      */
@@ -175,7 +174,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the managementNetwork property: Network used to access vCenter Server and NSX-T Manager.
-     *
+     * 
      * @return the managementNetwork value.
      */
     public String managementNetwork() {
@@ -184,7 +183,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the provisioningNetwork property: Used for virtual machine cold migration, cloning, and snapshot migration.
-     *
+     * 
      * @return the provisioningNetwork value.
      */
     public String provisioningNetwork() {
@@ -193,7 +192,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the vmotionNetwork property: Used for live migration of virtual machines.
-     *
+     * 
      * @return the vmotionNetwork value.
      */
     public String vmotionNetwork() {
@@ -202,7 +201,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the vcenterPassword property: Optionally, set the vCenter admin password when the private cloud is created.
-     *
+     * 
      * @return the vcenterPassword value.
      */
     public String vcenterPassword() {
@@ -211,7 +210,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Set the vcenterPassword property: Optionally, set the vCenter admin password when the private cloud is created.
-     *
+     * 
      * @param vcenterPassword the vcenterPassword value to set.
      * @return the PrivateCloudProperties object itself.
      */
@@ -222,7 +221,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the nsxtPassword property: Optionally, set the NSX-T Manager password when the private cloud is created.
-     *
+     * 
      * @return the nsxtPassword value.
      */
     public String nsxtPassword() {
@@ -231,7 +230,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Set the nsxtPassword property: Optionally, set the NSX-T Manager password when the private cloud is created.
-     *
+     * 
      * @param nsxtPassword the nsxtPassword value to set.
      * @return the PrivateCloudProperties object itself.
      */
@@ -242,7 +241,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the vcenterCertificateThumbprint property: Thumbprint of the vCenter Server SSL certificate.
-     *
+     * 
      * @return the vcenterCertificateThumbprint value.
      */
     public String vcenterCertificateThumbprint() {
@@ -251,7 +250,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the nsxtCertificateThumbprint property: Thumbprint of the NSX-T Manager SSL certificate.
-     *
+     * 
      * @return the nsxtCertificateThumbprint value.
      */
     public String nsxtCertificateThumbprint() {
@@ -260,7 +259,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the externalCloudLinks property: Array of cloud link IDs from other clouds that connect to this one.
-     *
+     * 
      * @return the externalCloudLinks value.
      */
     public List<String> externalCloudLinks() {
@@ -270,7 +269,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
     /**
      * Get the secondaryCircuit property: A secondary expressRoute circuit from a separate AZ. Only present in a
      * stretched private cloud.
-     *
+     * 
      * @return the secondaryCircuit value.
      */
     public Circuit secondaryCircuit() {
@@ -280,7 +279,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
     /**
      * Set the secondaryCircuit property: A secondary expressRoute circuit from a separate AZ. Only present in a
      * stretched private cloud.
-     *
+     * 
      * @param secondaryCircuit the secondaryCircuit value to set.
      * @return the PrivateCloudProperties object itself.
      */
@@ -290,65 +289,21 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
     }
 
     /**
-     * Get the nsxPublicIpQuotaRaised property: Flag to indicate whether the private cloud has the quota for provisioned
-     * NSX Public IP count raised from 64 to 1024.
-     *
+     * Get the nsxPublicIpQuotaRaised property: Flag to indicate whether the private cloud has the quota for
+     * provisioned NSX Public IP count raised from 64 to 1024.
+     * 
      * @return the nsxPublicIpQuotaRaised value.
      */
     public NsxPublicIpQuotaRaisedEnum nsxPublicIpQuotaRaised() {
         return this.nsxPublicIpQuotaRaised;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public PrivateCloudProperties withManagementCluster(ManagementCluster managementCluster) {
-        super.withManagementCluster(managementCluster);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PrivateCloudProperties withInternet(InternetEnum internet) {
-        super.withInternet(internet);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PrivateCloudProperties withIdentitySources(List<IdentitySource> identitySources) {
-        super.withIdentitySources(identitySources);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PrivateCloudProperties withAvailability(AvailabilityProperties availability) {
-        super.withAvailability(availability);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PrivateCloudProperties withEncryption(Encryption encryption) {
-        super.withEncryption(encryption);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PrivateCloudProperties withExtendedNetworkBlocks(List<String> extendedNetworkBlocks) {
-        super.withExtendedNetworkBlocks(extendedNetworkBlocks);
-        return this;
-    }
-
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    @Override
     public void validate() {
-        super.validate();
         if (circuit() != null) {
             circuit().validate();
         }
@@ -356,10 +311,8 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
             endpoints().validate();
         }
         if (networkBlock() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property networkBlock in model PrivateCloudProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property networkBlock in model PrivateCloudProperties"));
         }
         if (secondaryCircuit() != null) {
             secondaryCircuit().validate();

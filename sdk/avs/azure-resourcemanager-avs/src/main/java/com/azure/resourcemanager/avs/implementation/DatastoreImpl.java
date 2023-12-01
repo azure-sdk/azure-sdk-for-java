@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.avs.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.avs.fluent.models.DatastoreInner;
 import com.azure.resourcemanager.avs.models.Datastore;
@@ -27,6 +28,10 @@ public final class DatastoreImpl implements Datastore, Datastore.Definition, Dat
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public DatastoreProvisioningState provisioningState() {
@@ -73,22 +78,14 @@ public final class DatastoreImpl implements Datastore, Datastore.Definition, Dat
     }
 
     public Datastore create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDatastores()
-                .createOrUpdate(
-                    resourceGroupName, privateCloudName, clusterName, datastoreName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getDatastores().createOrUpdate(resourceGroupName,
+            privateCloudName, clusterName, datastoreName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Datastore create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDatastores()
-                .createOrUpdate(
-                    resourceGroupName, privateCloudName, clusterName, datastoreName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getDatastores().createOrUpdate(resourceGroupName,
+            privateCloudName, clusterName, datastoreName, this.innerModel(), context);
         return this;
     }
 
@@ -103,22 +100,14 @@ public final class DatastoreImpl implements Datastore, Datastore.Definition, Dat
     }
 
     public Datastore apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDatastores()
-                .createOrUpdate(
-                    resourceGroupName, privateCloudName, clusterName, datastoreName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getDatastores().createOrUpdate(resourceGroupName,
+            privateCloudName, clusterName, datastoreName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Datastore apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDatastores()
-                .createOrUpdate(
-                    resourceGroupName, privateCloudName, clusterName, datastoreName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getDatastores().createOrUpdate(resourceGroupName,
+            privateCloudName, clusterName, datastoreName, this.innerModel(), context);
         return this;
     }
 
@@ -132,22 +121,14 @@ public final class DatastoreImpl implements Datastore, Datastore.Definition, Dat
     }
 
     public Datastore refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDatastores()
-                .getWithResponse(resourceGroupName, privateCloudName, clusterName, datastoreName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getDatastores()
+            .getWithResponse(resourceGroupName, privateCloudName, clusterName, datastoreName, Context.NONE).getValue();
         return this;
     }
 
     public Datastore refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDatastores()
-                .getWithResponse(resourceGroupName, privateCloudName, clusterName, datastoreName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getDatastores()
+            .getWithResponse(resourceGroupName, privateCloudName, clusterName, datastoreName, context).getValue();
         return this;
     }
 

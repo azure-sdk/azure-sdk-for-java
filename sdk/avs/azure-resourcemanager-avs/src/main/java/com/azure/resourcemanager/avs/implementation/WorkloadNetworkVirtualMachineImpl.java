@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.avs.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.avs.fluent.models.WorkloadNetworkVirtualMachineInner;
 import com.azure.resourcemanager.avs.models.VMTypeEnum;
 import com.azure.resourcemanager.avs.models.WorkloadNetworkVirtualMachine;
@@ -13,8 +14,8 @@ public final class WorkloadNetworkVirtualMachineImpl implements WorkloadNetworkV
 
     private final com.azure.resourcemanager.avs.AvsManager serviceManager;
 
-    WorkloadNetworkVirtualMachineImpl(
-        WorkloadNetworkVirtualMachineInner innerObject, com.azure.resourcemanager.avs.AvsManager serviceManager) {
+    WorkloadNetworkVirtualMachineImpl(WorkloadNetworkVirtualMachineInner innerObject,
+        com.azure.resourcemanager.avs.AvsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -29,6 +30,10 @@ public final class WorkloadNetworkVirtualMachineImpl implements WorkloadNetworkV
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String displayName() {

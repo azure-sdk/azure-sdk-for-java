@@ -23,14 +23,14 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.avs.fluent.AddonsClient;
-import com.azure.resourcemanager.avs.fluent.AuthorizationsClient;
 import com.azure.resourcemanager.avs.fluent.AvsClient;
 import com.azure.resourcemanager.avs.fluent.CloudLinksClient;
 import com.azure.resourcemanager.avs.fluent.ClustersClient;
 import com.azure.resourcemanager.avs.fluent.DatastoresClient;
+import com.azure.resourcemanager.avs.fluent.ExpressRouteAuthorizationsClient;
 import com.azure.resourcemanager.avs.fluent.GlobalReachConnectionsClient;
 import com.azure.resourcemanager.avs.fluent.HcxEnterpriseSitesClient;
-import com.azure.resourcemanager.avs.fluent.LocationsClient;
+import com.azure.resourcemanager.avs.fluent.LocationsOperationsClient;
 import com.azure.resourcemanager.avs.fluent.OperationsClient;
 import com.azure.resourcemanager.avs.fluent.PlacementPoliciesClient;
 import com.azure.resourcemanager.avs.fluent.PrivateCloudsClient;
@@ -38,6 +38,15 @@ import com.azure.resourcemanager.avs.fluent.ScriptCmdletsClient;
 import com.azure.resourcemanager.avs.fluent.ScriptExecutionsClient;
 import com.azure.resourcemanager.avs.fluent.ScriptPackagesClient;
 import com.azure.resourcemanager.avs.fluent.VirtualMachinesClient;
+import com.azure.resourcemanager.avs.fluent.WorkloadNetworkDhcpsClient;
+import com.azure.resourcemanager.avs.fluent.WorkloadNetworkDnsServicesClient;
+import com.azure.resourcemanager.avs.fluent.WorkloadNetworkDnsZonesClient;
+import com.azure.resourcemanager.avs.fluent.WorkloadNetworkGatewaysClient;
+import com.azure.resourcemanager.avs.fluent.WorkloadNetworkPortMirroringsClient;
+import com.azure.resourcemanager.avs.fluent.WorkloadNetworkPublicIpsClient;
+import com.azure.resourcemanager.avs.fluent.WorkloadNetworkSegmentsClient;
+import com.azure.resourcemanager.avs.fluent.WorkloadNetworkVirtualMachinesClient;
+import com.azure.resourcemanager.avs.fluent.WorkloadNetworkVmGroupsClient;
 import com.azure.resourcemanager.avs.fluent.WorkloadNetworksClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -48,267 +57,355 @@ import java.time.Duration;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** Initializes a new instance of the AvsClientImpl type. */
+/**
+ * Initializes a new instance of the AvsClientImpl type.
+ */
 @ServiceClient(builder = AvsClientBuilder.class)
 public final class AvsClientImpl implements AvsClient {
-    /** The ID of the target subscription. */
+    /**
+     * The ID of the target subscription.
+     */
     private final String subscriptionId;
 
     /**
      * Gets The ID of the target subscription.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String getSubscriptionId() {
         return this.subscriptionId;
     }
 
-    /** server parameter. */
+    /**
+     * server parameter.
+     */
     private final String endpoint;
 
     /**
      * Gets server parameter.
-     *
+     * 
      * @return the endpoint value.
      */
     public String getEndpoint() {
         return this.endpoint;
     }
 
-    /** Api Version. */
+    /**
+     * Api Version.
+     */
     private final String apiVersion;
 
     /**
      * Gets Api Version.
-     *
+     * 
      * @return the apiVersion value.
      */
     public String getApiVersion() {
         return this.apiVersion;
     }
 
-    /** The HTTP pipeline to send requests through. */
+    /**
+     * The HTTP pipeline to send requests through.
+     */
     private final HttpPipeline httpPipeline;
 
     /**
      * Gets The HTTP pipeline to send requests through.
-     *
+     * 
      * @return the httpPipeline value.
      */
     public HttpPipeline getHttpPipeline() {
         return this.httpPipeline;
     }
 
-    /** The serializer to serialize an object into a string. */
+    /**
+     * The serializer to serialize an object into a string.
+     */
     private final SerializerAdapter serializerAdapter;
 
     /**
      * Gets The serializer to serialize an object into a string.
-     *
+     * 
      * @return the serializerAdapter value.
      */
     SerializerAdapter getSerializerAdapter() {
         return this.serializerAdapter;
     }
 
-    /** The default poll interval for long-running operation. */
+    /**
+     * The default poll interval for long-running operation.
+     */
     private final Duration defaultPollInterval;
 
     /**
      * Gets The default poll interval for long-running operation.
-     *
+     * 
      * @return the defaultPollInterval value.
      */
     public Duration getDefaultPollInterval() {
         return this.defaultPollInterval;
     }
 
-    /** The OperationsClient object to access its operations. */
+    /**
+     * The OperationsClient object to access its operations.
+     */
     private final OperationsClient operations;
 
     /**
      * Gets the OperationsClient object to access its operations.
-     *
+     * 
      * @return the OperationsClient object.
      */
     public OperationsClient getOperations() {
         return this.operations;
     }
 
-    /** The LocationsClient object to access its operations. */
-    private final LocationsClient locations;
+    /**
+     * The LocationsOperationsClient object to access its operations.
+     */
+    private final LocationsOperationsClient locationsOperations;
 
     /**
-     * Gets the LocationsClient object to access its operations.
-     *
-     * @return the LocationsClient object.
+     * Gets the LocationsOperationsClient object to access its operations.
+     * 
+     * @return the LocationsOperationsClient object.
      */
-    public LocationsClient getLocations() {
-        return this.locations;
+    public LocationsOperationsClient getLocationsOperations() {
+        return this.locationsOperations;
     }
 
-    /** The PrivateCloudsClient object to access its operations. */
+    /**
+     * The PrivateCloudsClient object to access its operations.
+     */
     private final PrivateCloudsClient privateClouds;
 
     /**
      * Gets the PrivateCloudsClient object to access its operations.
-     *
+     * 
      * @return the PrivateCloudsClient object.
      */
     public PrivateCloudsClient getPrivateClouds() {
         return this.privateClouds;
     }
 
-    /** The ClustersClient object to access its operations. */
-    private final ClustersClient clusters;
-
     /**
-     * Gets the ClustersClient object to access its operations.
-     *
-     * @return the ClustersClient object.
+     * The AddonsClient object to access its operations.
      */
-    public ClustersClient getClusters() {
-        return this.clusters;
-    }
-
-    /** The DatastoresClient object to access its operations. */
-    private final DatastoresClient datastores;
-
-    /**
-     * Gets the DatastoresClient object to access its operations.
-     *
-     * @return the DatastoresClient object.
-     */
-    public DatastoresClient getDatastores() {
-        return this.datastores;
-    }
-
-    /** The HcxEnterpriseSitesClient object to access its operations. */
-    private final HcxEnterpriseSitesClient hcxEnterpriseSites;
-
-    /**
-     * Gets the HcxEnterpriseSitesClient object to access its operations.
-     *
-     * @return the HcxEnterpriseSitesClient object.
-     */
-    public HcxEnterpriseSitesClient getHcxEnterpriseSites() {
-        return this.hcxEnterpriseSites;
-    }
-
-    /** The AuthorizationsClient object to access its operations. */
-    private final AuthorizationsClient authorizations;
-
-    /**
-     * Gets the AuthorizationsClient object to access its operations.
-     *
-     * @return the AuthorizationsClient object.
-     */
-    public AuthorizationsClient getAuthorizations() {
-        return this.authorizations;
-    }
-
-    /** The GlobalReachConnectionsClient object to access its operations. */
-    private final GlobalReachConnectionsClient globalReachConnections;
-
-    /**
-     * Gets the GlobalReachConnectionsClient object to access its operations.
-     *
-     * @return the GlobalReachConnectionsClient object.
-     */
-    public GlobalReachConnectionsClient getGlobalReachConnections() {
-        return this.globalReachConnections;
-    }
-
-    /** The WorkloadNetworksClient object to access its operations. */
-    private final WorkloadNetworksClient workloadNetworks;
-
-    /**
-     * Gets the WorkloadNetworksClient object to access its operations.
-     *
-     * @return the WorkloadNetworksClient object.
-     */
-    public WorkloadNetworksClient getWorkloadNetworks() {
-        return this.workloadNetworks;
-    }
-
-    /** The CloudLinksClient object to access its operations. */
-    private final CloudLinksClient cloudLinks;
-
-    /**
-     * Gets the CloudLinksClient object to access its operations.
-     *
-     * @return the CloudLinksClient object.
-     */
-    public CloudLinksClient getCloudLinks() {
-        return this.cloudLinks;
-    }
-
-    /** The AddonsClient object to access its operations. */
     private final AddonsClient addons;
 
     /**
      * Gets the AddonsClient object to access its operations.
-     *
+     * 
      * @return the AddonsClient object.
      */
     public AddonsClient getAddons() {
         return this.addons;
     }
 
-    /** The VirtualMachinesClient object to access its operations. */
-    private final VirtualMachinesClient virtualMachines;
+    /**
+     * The ExpressRouteAuthorizationsClient object to access its operations.
+     */
+    private final ExpressRouteAuthorizationsClient expressRouteAuthorizations;
 
     /**
-     * Gets the VirtualMachinesClient object to access its operations.
-     *
-     * @return the VirtualMachinesClient object.
+     * Gets the ExpressRouteAuthorizationsClient object to access its operations.
+     * 
+     * @return the ExpressRouteAuthorizationsClient object.
      */
-    public VirtualMachinesClient getVirtualMachines() {
-        return this.virtualMachines;
+    public ExpressRouteAuthorizationsClient getExpressRouteAuthorizations() {
+        return this.expressRouteAuthorizations;
     }
 
-    /** The PlacementPoliciesClient object to access its operations. */
+    /**
+     * The CloudLinksClient object to access its operations.
+     */
+    private final CloudLinksClient cloudLinks;
+
+    /**
+     * Gets the CloudLinksClient object to access its operations.
+     * 
+     * @return the CloudLinksClient object.
+     */
+    public CloudLinksClient getCloudLinks() {
+        return this.cloudLinks;
+    }
+
+    /**
+     * The ClustersClient object to access its operations.
+     */
+    private final ClustersClient clusters;
+
+    /**
+     * Gets the ClustersClient object to access its operations.
+     * 
+     * @return the ClustersClient object.
+     */
+    public ClustersClient getClusters() {
+        return this.clusters;
+    }
+
+    /**
+     * The DatastoresClient object to access its operations.
+     */
+    private final DatastoresClient datastores;
+
+    /**
+     * Gets the DatastoresClient object to access its operations.
+     * 
+     * @return the DatastoresClient object.
+     */
+    public DatastoresClient getDatastores() {
+        return this.datastores;
+    }
+
+    /**
+     * The PlacementPoliciesClient object to access its operations.
+     */
     private final PlacementPoliciesClient placementPolicies;
 
     /**
      * Gets the PlacementPoliciesClient object to access its operations.
-     *
+     * 
      * @return the PlacementPoliciesClient object.
      */
     public PlacementPoliciesClient getPlacementPolicies() {
         return this.placementPolicies;
     }
 
-    /** The ScriptPackagesClient object to access its operations. */
-    private final ScriptPackagesClient scriptPackages;
+    /**
+     * The VirtualMachinesClient object to access its operations.
+     */
+    private final VirtualMachinesClient virtualMachines;
 
     /**
-     * Gets the ScriptPackagesClient object to access its operations.
-     *
-     * @return the ScriptPackagesClient object.
+     * Gets the VirtualMachinesClient object to access its operations.
+     * 
+     * @return the VirtualMachinesClient object.
      */
-    public ScriptPackagesClient getScriptPackages() {
-        return this.scriptPackages;
+    public VirtualMachinesClient getVirtualMachines() {
+        return this.virtualMachines;
     }
-
-    /** The ScriptCmdletsClient object to access its operations. */
-    private final ScriptCmdletsClient scriptCmdlets;
 
     /**
-     * Gets the ScriptCmdletsClient object to access its operations.
-     *
-     * @return the ScriptCmdletsClient object.
+     * The WorkloadNetworkDhcpsClient object to access its operations.
      */
-    public ScriptCmdletsClient getScriptCmdlets() {
-        return this.scriptCmdlets;
+    private final WorkloadNetworkDhcpsClient workloadNetworkDhcps;
+
+    /**
+     * Gets the WorkloadNetworkDhcpsClient object to access its operations.
+     * 
+     * @return the WorkloadNetworkDhcpsClient object.
+     */
+    public WorkloadNetworkDhcpsClient getWorkloadNetworkDhcps() {
+        return this.workloadNetworkDhcps;
     }
 
-    /** The ScriptExecutionsClient object to access its operations. */
+    /**
+     * The WorkloadNetworkDnsServicesClient object to access its operations.
+     */
+    private final WorkloadNetworkDnsServicesClient workloadNetworkDnsServices;
+
+    /**
+     * Gets the WorkloadNetworkDnsServicesClient object to access its operations.
+     * 
+     * @return the WorkloadNetworkDnsServicesClient object.
+     */
+    public WorkloadNetworkDnsServicesClient getWorkloadNetworkDnsServices() {
+        return this.workloadNetworkDnsServices;
+    }
+
+    /**
+     * The WorkloadNetworkDnsZonesClient object to access its operations.
+     */
+    private final WorkloadNetworkDnsZonesClient workloadNetworkDnsZones;
+
+    /**
+     * Gets the WorkloadNetworkDnsZonesClient object to access its operations.
+     * 
+     * @return the WorkloadNetworkDnsZonesClient object.
+     */
+    public WorkloadNetworkDnsZonesClient getWorkloadNetworkDnsZones() {
+        return this.workloadNetworkDnsZones;
+    }
+
+    /**
+     * The WorkloadNetworkGatewaysClient object to access its operations.
+     */
+    private final WorkloadNetworkGatewaysClient workloadNetworkGateways;
+
+    /**
+     * Gets the WorkloadNetworkGatewaysClient object to access its operations.
+     * 
+     * @return the WorkloadNetworkGatewaysClient object.
+     */
+    public WorkloadNetworkGatewaysClient getWorkloadNetworkGateways() {
+        return this.workloadNetworkGateways;
+    }
+
+    /**
+     * The GlobalReachConnectionsClient object to access its operations.
+     */
+    private final GlobalReachConnectionsClient globalReachConnections;
+
+    /**
+     * Gets the GlobalReachConnectionsClient object to access its operations.
+     * 
+     * @return the GlobalReachConnectionsClient object.
+     */
+    public GlobalReachConnectionsClient getGlobalReachConnections() {
+        return this.globalReachConnections;
+    }
+
+    /**
+     * The HcxEnterpriseSitesClient object to access its operations.
+     */
+    private final HcxEnterpriseSitesClient hcxEnterpriseSites;
+
+    /**
+     * Gets the HcxEnterpriseSitesClient object to access its operations.
+     * 
+     * @return the HcxEnterpriseSitesClient object.
+     */
+    public HcxEnterpriseSitesClient getHcxEnterpriseSites() {
+        return this.hcxEnterpriseSites;
+    }
+
+    /**
+     * The WorkloadNetworkPortMirroringsClient object to access its operations.
+     */
+    private final WorkloadNetworkPortMirroringsClient workloadNetworkPortMirrorings;
+
+    /**
+     * Gets the WorkloadNetworkPortMirroringsClient object to access its operations.
+     * 
+     * @return the WorkloadNetworkPortMirroringsClient object.
+     */
+    public WorkloadNetworkPortMirroringsClient getWorkloadNetworkPortMirrorings() {
+        return this.workloadNetworkPortMirrorings;
+    }
+
+    /**
+     * The WorkloadNetworkPublicIpsClient object to access its operations.
+     */
+    private final WorkloadNetworkPublicIpsClient workloadNetworkPublicIps;
+
+    /**
+     * Gets the WorkloadNetworkPublicIpsClient object to access its operations.
+     * 
+     * @return the WorkloadNetworkPublicIpsClient object.
+     */
+    public WorkloadNetworkPublicIpsClient getWorkloadNetworkPublicIps() {
+        return this.workloadNetworkPublicIps;
+    }
+
+    /**
+     * The ScriptExecutionsClient object to access its operations.
+     */
     private final ScriptExecutionsClient scriptExecutions;
 
     /**
      * Gets the ScriptExecutionsClient object to access its operations.
-     *
+     * 
      * @return the ScriptExecutionsClient object.
      */
     public ScriptExecutionsClient getScriptExecutions() {
@@ -316,8 +413,92 @@ public final class AvsClientImpl implements AvsClient {
     }
 
     /**
+     * The ScriptPackagesClient object to access its operations.
+     */
+    private final ScriptPackagesClient scriptPackages;
+
+    /**
+     * Gets the ScriptPackagesClient object to access its operations.
+     * 
+     * @return the ScriptPackagesClient object.
+     */
+    public ScriptPackagesClient getScriptPackages() {
+        return this.scriptPackages;
+    }
+
+    /**
+     * The ScriptCmdletsClient object to access its operations.
+     */
+    private final ScriptCmdletsClient scriptCmdlets;
+
+    /**
+     * Gets the ScriptCmdletsClient object to access its operations.
+     * 
+     * @return the ScriptCmdletsClient object.
+     */
+    public ScriptCmdletsClient getScriptCmdlets() {
+        return this.scriptCmdlets;
+    }
+
+    /**
+     * The WorkloadNetworkSegmentsClient object to access its operations.
+     */
+    private final WorkloadNetworkSegmentsClient workloadNetworkSegments;
+
+    /**
+     * Gets the WorkloadNetworkSegmentsClient object to access its operations.
+     * 
+     * @return the WorkloadNetworkSegmentsClient object.
+     */
+    public WorkloadNetworkSegmentsClient getWorkloadNetworkSegments() {
+        return this.workloadNetworkSegments;
+    }
+
+    /**
+     * The WorkloadNetworkVirtualMachinesClient object to access its operations.
+     */
+    private final WorkloadNetworkVirtualMachinesClient workloadNetworkVirtualMachines;
+
+    /**
+     * Gets the WorkloadNetworkVirtualMachinesClient object to access its operations.
+     * 
+     * @return the WorkloadNetworkVirtualMachinesClient object.
+     */
+    public WorkloadNetworkVirtualMachinesClient getWorkloadNetworkVirtualMachines() {
+        return this.workloadNetworkVirtualMachines;
+    }
+
+    /**
+     * The WorkloadNetworkVmGroupsClient object to access its operations.
+     */
+    private final WorkloadNetworkVmGroupsClient workloadNetworkVmGroups;
+
+    /**
+     * Gets the WorkloadNetworkVmGroupsClient object to access its operations.
+     * 
+     * @return the WorkloadNetworkVmGroupsClient object.
+     */
+    public WorkloadNetworkVmGroupsClient getWorkloadNetworkVmGroups() {
+        return this.workloadNetworkVmGroups;
+    }
+
+    /**
+     * The WorkloadNetworksClient object to access its operations.
+     */
+    private final WorkloadNetworksClient workloadNetworks;
+
+    /**
+     * Gets the WorkloadNetworksClient object to access its operations.
+     * 
+     * @return the WorkloadNetworksClient object.
+     */
+    public WorkloadNetworksClient getWorkloadNetworks() {
+        return this.workloadNetworks;
+    }
+
+    /**
      * Initializes an instance of AvsClient client.
-     *
+     * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
@@ -325,13 +506,8 @@ public final class AvsClientImpl implements AvsClient {
      * @param subscriptionId The ID of the target subscription.
      * @param endpoint server parameter.
      */
-    AvsClientImpl(
-        HttpPipeline httpPipeline,
-        SerializerAdapter serializerAdapter,
-        Duration defaultPollInterval,
-        AzureEnvironment environment,
-        String subscriptionId,
-        String endpoint) {
+    AvsClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, Duration defaultPollInterval,
+        AzureEnvironment environment, String subscriptionId, String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
@@ -339,26 +515,35 @@ public final class AvsClientImpl implements AvsClient {
         this.endpoint = endpoint;
         this.apiVersion = "2023-03-01";
         this.operations = new OperationsClientImpl(this);
-        this.locations = new LocationsClientImpl(this);
+        this.locationsOperations = new LocationsOperationsClientImpl(this);
         this.privateClouds = new PrivateCloudsClientImpl(this);
+        this.addons = new AddonsClientImpl(this);
+        this.expressRouteAuthorizations = new ExpressRouteAuthorizationsClientImpl(this);
+        this.cloudLinks = new CloudLinksClientImpl(this);
         this.clusters = new ClustersClientImpl(this);
         this.datastores = new DatastoresClientImpl(this);
-        this.hcxEnterpriseSites = new HcxEnterpriseSitesClientImpl(this);
-        this.authorizations = new AuthorizationsClientImpl(this);
-        this.globalReachConnections = new GlobalReachConnectionsClientImpl(this);
-        this.workloadNetworks = new WorkloadNetworksClientImpl(this);
-        this.cloudLinks = new CloudLinksClientImpl(this);
-        this.addons = new AddonsClientImpl(this);
-        this.virtualMachines = new VirtualMachinesClientImpl(this);
         this.placementPolicies = new PlacementPoliciesClientImpl(this);
+        this.virtualMachines = new VirtualMachinesClientImpl(this);
+        this.workloadNetworkDhcps = new WorkloadNetworkDhcpsClientImpl(this);
+        this.workloadNetworkDnsServices = new WorkloadNetworkDnsServicesClientImpl(this);
+        this.workloadNetworkDnsZones = new WorkloadNetworkDnsZonesClientImpl(this);
+        this.workloadNetworkGateways = new WorkloadNetworkGatewaysClientImpl(this);
+        this.globalReachConnections = new GlobalReachConnectionsClientImpl(this);
+        this.hcxEnterpriseSites = new HcxEnterpriseSitesClientImpl(this);
+        this.workloadNetworkPortMirrorings = new WorkloadNetworkPortMirroringsClientImpl(this);
+        this.workloadNetworkPublicIps = new WorkloadNetworkPublicIpsClientImpl(this);
+        this.scriptExecutions = new ScriptExecutionsClientImpl(this);
         this.scriptPackages = new ScriptPackagesClientImpl(this);
         this.scriptCmdlets = new ScriptCmdletsClientImpl(this);
-        this.scriptExecutions = new ScriptExecutionsClientImpl(this);
+        this.workloadNetworkSegments = new WorkloadNetworkSegmentsClientImpl(this);
+        this.workloadNetworkVirtualMachines = new WorkloadNetworkVirtualMachinesClientImpl(this);
+        this.workloadNetworkVmGroups = new WorkloadNetworkVmGroupsClientImpl(this);
+        this.workloadNetworks = new WorkloadNetworksClientImpl(this);
     }
 
     /**
      * Gets default client context.
-     *
+     * 
      * @return the default client context.
      */
     public Context getContext() {
@@ -367,7 +552,7 @@ public final class AvsClientImpl implements AvsClient {
 
     /**
      * Merges default client context with provided context.
-     *
+     * 
      * @param context the context to be merged with default client context.
      * @return the merged context.
      */
@@ -377,7 +562,7 @@ public final class AvsClientImpl implements AvsClient {
 
     /**
      * Gets long running operation result.
-     *
+     * 
      * @param activationResponse the response of activation operation.
      * @param httpPipeline the http pipeline.
      * @param pollResultType type of poll result.
@@ -387,26 +572,15 @@ public final class AvsClientImpl implements AvsClient {
      * @param <U> type of final result.
      * @return poller flux for poll result and final result.
      */
-    public <T, U> PollerFlux<PollResult<T>, U> getLroResult(
-        Mono<Response<Flux<ByteBuffer>>> activationResponse,
-        HttpPipeline httpPipeline,
-        Type pollResultType,
-        Type finalResultType,
-        Context context) {
-        return PollerFactory
-            .create(
-                serializerAdapter,
-                httpPipeline,
-                pollResultType,
-                finalResultType,
-                defaultPollInterval,
-                activationResponse,
-                context);
+    public <T, U> PollerFlux<PollResult<T>, U> getLroResult(Mono<Response<Flux<ByteBuffer>>> activationResponse,
+        HttpPipeline httpPipeline, Type pollResultType, Type finalResultType, Context context) {
+        return PollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
+            defaultPollInterval, activationResponse, context);
     }
 
     /**
      * Gets the final result, or an error, based on last async poll response.
-     *
+     * 
      * @param response the last async poll response.
      * @param <T> type of poll result.
      * @param <U> type of final result.
@@ -419,19 +593,16 @@ public final class AvsClientImpl implements AvsClient {
             HttpResponse errorResponse = null;
             PollResult.Error lroError = response.getValue().getError();
             if (lroError != null) {
-                errorResponse =
-                    new HttpResponseImpl(
-                        lroError.getResponseStatusCode(), lroError.getResponseHeaders(), lroError.getResponseBody());
+                errorResponse = new HttpResponseImpl(lroError.getResponseStatusCode(), lroError.getResponseHeaders(),
+                    lroError.getResponseBody());
 
                 errorMessage = response.getValue().getError().getMessage();
                 String errorBody = response.getValue().getError().getResponseBody();
                 if (errorBody != null) {
                     // try to deserialize error body to ManagementError
                     try {
-                        managementError =
-                            this
-                                .getSerializerAdapter()
-                                .deserialize(errorBody, ManagementError.class, SerializerEncoding.JSON);
+                        managementError = this.getSerializerAdapter().deserialize(errorBody, ManagementError.class,
+                            SerializerEncoding.JSON);
                         if (managementError.getCode() == null || managementError.getMessage() == null) {
                             managementError = null;
                         }

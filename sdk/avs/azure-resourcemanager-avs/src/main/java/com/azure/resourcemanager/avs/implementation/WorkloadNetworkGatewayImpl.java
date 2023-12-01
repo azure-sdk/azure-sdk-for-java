@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.avs.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.avs.fluent.models.WorkloadNetworkGatewayInner;
 import com.azure.resourcemanager.avs.models.WorkloadNetworkGateway;
 
@@ -12,8 +13,8 @@ public final class WorkloadNetworkGatewayImpl implements WorkloadNetworkGateway 
 
     private final com.azure.resourcemanager.avs.AvsManager serviceManager;
 
-    WorkloadNetworkGatewayImpl(
-        WorkloadNetworkGatewayInner innerObject, com.azure.resourcemanager.avs.AvsManager serviceManager) {
+    WorkloadNetworkGatewayImpl(WorkloadNetworkGatewayInner innerObject,
+        com.azure.resourcemanager.avs.AvsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -28,6 +29,10 @@ public final class WorkloadNetworkGatewayImpl implements WorkloadNetworkGateway 
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String displayName() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An iSCSI volume from Microsoft.StoragePool provider. */
+/**
+ * An iSCSI volume from Microsoft.StoragePool provider.
+ */
 @Fluent
 public final class DiskPoolVolume {
     /*
@@ -35,13 +37,15 @@ public final class DiskPoolVolume {
     @JsonProperty(value = "path", access = JsonProperty.Access.WRITE_ONLY)
     private String path;
 
-    /** Creates an instance of DiskPoolVolume class. */
+    /**
+     * Creates an instance of DiskPoolVolume class.
+     */
     public DiskPoolVolume() {
     }
 
     /**
      * Get the targetId property: Azure resource ID of the iSCSI target.
-     *
+     * 
      * @return the targetId value.
      */
     public String targetId() {
@@ -50,7 +54,7 @@ public final class DiskPoolVolume {
 
     /**
      * Set the targetId property: Azure resource ID of the iSCSI target.
-     *
+     * 
      * @param targetId the targetId value to set.
      * @return the DiskPoolVolume object itself.
      */
@@ -61,7 +65,7 @@ public final class DiskPoolVolume {
 
     /**
      * Get the lunName property: Name of the LUN to be used for datastore.
-     *
+     * 
      * @return the lunName value.
      */
     public String lunName() {
@@ -70,7 +74,7 @@ public final class DiskPoolVolume {
 
     /**
      * Set the lunName property: Name of the LUN to be used for datastore.
-     *
+     * 
      * @param lunName the lunName value to set.
      * @return the DiskPoolVolume object itself.
      */
@@ -80,9 +84,9 @@ public final class DiskPoolVolume {
     }
 
     /**
-     * Get the mountOption property: Mode that describes whether the LUN has to be mounted as a datastore or attached as
-     * a LUN.
-     *
+     * Get the mountOption property: Mode that describes whether the LUN has to be mounted as a datastore or attached
+     * as a LUN.
+     * 
      * @return the mountOption value.
      */
     public MountOptionEnum mountOption() {
@@ -90,9 +94,9 @@ public final class DiskPoolVolume {
     }
 
     /**
-     * Set the mountOption property: Mode that describes whether the LUN has to be mounted as a datastore or attached as
-     * a LUN.
-     *
+     * Set the mountOption property: Mode that describes whether the LUN has to be mounted as a datastore or attached
+     * as a LUN.
+     * 
      * @param mountOption the mountOption value to set.
      * @return the DiskPoolVolume object itself.
      */
@@ -103,7 +107,7 @@ public final class DiskPoolVolume {
 
     /**
      * Get the path property: Device path.
-     *
+     * 
      * @return the path value.
      */
     public String path() {
@@ -112,19 +116,17 @@ public final class DiskPoolVolume {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (targetId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property targetId in model DiskPoolVolume"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property targetId in model DiskPoolVolume"));
         }
         if (lunName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property lunName in model DiskPoolVolume"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property lunName in model DiskPoolVolume"));
         }
     }
 

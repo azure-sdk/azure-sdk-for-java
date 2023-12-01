@@ -7,24 +7,27 @@ package com.azure.resourcemanager.avs.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.avs.fluent.models.PlacementPolicyUpdateProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
-/** An update of a DRS placement policy resource. */
+/**
+ * The type used for update operations of the PlacementPolicy.
+ */
 @Fluent
 public final class PlacementPolicyUpdate {
     /*
-     * The properties of a placement policy resource that may be updated
+     * The updatable properties of the PlacementPolicy.
      */
     @JsonProperty(value = "properties")
     private PlacementPolicyUpdateProperties innerProperties;
 
-    /** Creates an instance of PlacementPolicyUpdate class. */
+    /**
+     * Creates an instance of PlacementPolicyUpdate class.
+     */
     public PlacementPolicyUpdate() {
     }
 
     /**
-     * Get the innerProperties property: The properties of a placement policy resource that may be updated.
-     *
+     * Get the innerProperties property: The updatable properties of the PlacementPolicy.
+     * 
      * @return the innerProperties value.
      */
     private PlacementPolicyUpdateProperties innerProperties() {
@@ -33,7 +36,7 @@ public final class PlacementPolicyUpdate {
 
     /**
      * Get the state property: Whether the placement policy is enabled or disabled.
-     *
+     * 
      * @return the state value.
      */
     public PlacementPolicyState state() {
@@ -42,7 +45,7 @@ public final class PlacementPolicyUpdate {
 
     /**
      * Set the state property: Whether the placement policy is enabled or disabled.
-     *
+     * 
      * @param state the state value to set.
      * @return the PlacementPolicyUpdate object itself.
      */
@@ -55,100 +58,31 @@ public final class PlacementPolicyUpdate {
     }
 
     /**
-     * Get the vmMembers property: Virtual machine members list.
-     *
-     * @return the vmMembers value.
+     * Get the displayName property: Display name of the placement policy.
+     * 
+     * @return the displayName value.
      */
-    public List<String> vmMembers() {
-        return this.innerProperties() == null ? null : this.innerProperties().vmMembers();
+    public String displayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().displayName();
     }
 
     /**
-     * Set the vmMembers property: Virtual machine members list.
-     *
-     * @param vmMembers the vmMembers value to set.
+     * Set the displayName property: Display name of the placement policy.
+     * 
+     * @param displayName the displayName value to set.
      * @return the PlacementPolicyUpdate object itself.
      */
-    public PlacementPolicyUpdate withVmMembers(List<String> vmMembers) {
+    public PlacementPolicyUpdate withDisplayName(String displayName) {
         if (this.innerProperties() == null) {
             this.innerProperties = new PlacementPolicyUpdateProperties();
         }
-        this.innerProperties().withVmMembers(vmMembers);
-        return this;
-    }
-
-    /**
-     * Get the hostMembers property: Host members list.
-     *
-     * @return the hostMembers value.
-     */
-    public List<String> hostMembers() {
-        return this.innerProperties() == null ? null : this.innerProperties().hostMembers();
-    }
-
-    /**
-     * Set the hostMembers property: Host members list.
-     *
-     * @param hostMembers the hostMembers value to set.
-     * @return the PlacementPolicyUpdate object itself.
-     */
-    public PlacementPolicyUpdate withHostMembers(List<String> hostMembers) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new PlacementPolicyUpdateProperties();
-        }
-        this.innerProperties().withHostMembers(hostMembers);
-        return this;
-    }
-
-    /**
-     * Get the affinityStrength property: vm-host placement policy affinity strength (should/must).
-     *
-     * @return the affinityStrength value.
-     */
-    public AffinityStrength affinityStrength() {
-        return this.innerProperties() == null ? null : this.innerProperties().affinityStrength();
-    }
-
-    /**
-     * Set the affinityStrength property: vm-host placement policy affinity strength (should/must).
-     *
-     * @param affinityStrength the affinityStrength value to set.
-     * @return the PlacementPolicyUpdate object itself.
-     */
-    public PlacementPolicyUpdate withAffinityStrength(AffinityStrength affinityStrength) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new PlacementPolicyUpdateProperties();
-        }
-        this.innerProperties().withAffinityStrength(affinityStrength);
-        return this;
-    }
-
-    /**
-     * Get the azureHybridBenefitType property: placement policy azure hybrid benefit opt-in type.
-     *
-     * @return the azureHybridBenefitType value.
-     */
-    public AzureHybridBenefitType azureHybridBenefitType() {
-        return this.innerProperties() == null ? null : this.innerProperties().azureHybridBenefitType();
-    }
-
-    /**
-     * Set the azureHybridBenefitType property: placement policy azure hybrid benefit opt-in type.
-     *
-     * @param azureHybridBenefitType the azureHybridBenefitType value to set.
-     * @return the PlacementPolicyUpdate object itself.
-     */
-    public PlacementPolicyUpdate withAzureHybridBenefitType(AzureHybridBenefitType azureHybridBenefitType) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new PlacementPolicyUpdateProperties();
-        }
-        this.innerProperties().withAzureHybridBenefitType(azureHybridBenefitType);
+        this.innerProperties().withDisplayName(displayName);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

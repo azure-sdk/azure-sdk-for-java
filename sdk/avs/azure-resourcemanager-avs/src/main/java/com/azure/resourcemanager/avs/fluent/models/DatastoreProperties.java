@@ -11,7 +11,9 @@ import com.azure.resourcemanager.avs.models.DiskPoolVolume;
 import com.azure.resourcemanager.avs.models.NetAppVolume;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of a datastore. */
+/**
+ * The properties of a datastore.
+ */
 @Fluent
 public final class DatastoreProperties {
     /*
@@ -38,13 +40,15 @@ public final class DatastoreProperties {
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private DatastoreStatus status;
 
-    /** Creates an instance of DatastoreProperties class. */
+    /**
+     * Creates an instance of DatastoreProperties class.
+     */
     public DatastoreProperties() {
     }
 
     /**
      * Get the provisioningState property: The state of the datastore provisioning.
-     *
+     * 
      * @return the provisioningState value.
      */
     public DatastoreProvisioningState provisioningState() {
@@ -53,7 +57,7 @@ public final class DatastoreProperties {
 
     /**
      * Get the netAppVolume property: An Azure NetApp Files volume.
-     *
+     * 
      * @return the netAppVolume value.
      */
     public NetAppVolume netAppVolume() {
@@ -62,7 +66,7 @@ public final class DatastoreProperties {
 
     /**
      * Set the netAppVolume property: An Azure NetApp Files volume.
-     *
+     * 
      * @param netAppVolume the netAppVolume value to set.
      * @return the DatastoreProperties object itself.
      */
@@ -73,7 +77,7 @@ public final class DatastoreProperties {
 
     /**
      * Get the diskPoolVolume property: An iSCSI volume.
-     *
+     * 
      * @return the diskPoolVolume value.
      */
     public DiskPoolVolume diskPoolVolume() {
@@ -82,7 +86,7 @@ public final class DatastoreProperties {
 
     /**
      * Set the diskPoolVolume property: An iSCSI volume.
-     *
+     * 
      * @param diskPoolVolume the diskPoolVolume value to set.
      * @return the DatastoreProperties object itself.
      */
@@ -93,7 +97,7 @@ public final class DatastoreProperties {
 
     /**
      * Get the status property: The operational status of the datastore.
-     *
+     * 
      * @return the status value.
      */
     public DatastoreStatus status() {
@@ -102,7 +106,7 @@ public final class DatastoreProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

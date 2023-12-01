@@ -4,10 +4,12 @@
 
 package com.azure.resourcemanager.avs.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.avs.fluent.models.WorkloadNetworkDhcpInner;
 import com.azure.resourcemanager.avs.models.WorkloadNetworkDhcp;
 import com.azure.resourcemanager.avs.models.WorkloadNetworkDhcpEntity;
+import com.azure.resourcemanager.avs.models.WorkloadNetworkDhcpUpdate;
 
 public final class WorkloadNetworkDhcpImpl
     implements WorkloadNetworkDhcp, WorkloadNetworkDhcp.Definition, WorkloadNetworkDhcp.Update {
@@ -31,6 +33,10 @@ public final class WorkloadNetworkDhcpImpl
         return this.innerModel().properties();
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public String resourceGroupName() {
         return resourceGroupName;
     }
@@ -49,6 +55,8 @@ public final class WorkloadNetworkDhcpImpl
 
     private String dhcpId;
 
+    private WorkloadNetworkDhcpUpdate updateProperties;
+
     public WorkloadNetworkDhcpImpl withExistingPrivateCloud(String resourceGroupName, String privateCloudName) {
         this.resourceGroupName = resourceGroupName;
         this.privateCloudName = privateCloudName;
@@ -56,20 +64,14 @@ public final class WorkloadNetworkDhcpImpl
     }
 
     public WorkloadNetworkDhcp create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .createDhcp(resourceGroupName, privateCloudName, dhcpId, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworkDhcps().createDhcp(resourceGroupName,
+            privateCloudName, dhcpId, this.innerModel(), Context.NONE);
         return this;
     }
 
     public WorkloadNetworkDhcp create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .createDhcp(resourceGroupName, privateCloudName, dhcpId, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworkDhcps().createDhcp(resourceGroupName,
+            privateCloudName, dhcpId, this.innerModel(), context);
         return this;
     }
 
@@ -80,29 +82,24 @@ public final class WorkloadNetworkDhcpImpl
     }
 
     public WorkloadNetworkDhcpImpl update() {
+        this.updateProperties = new WorkloadNetworkDhcpUpdate();
         return this;
     }
 
     public WorkloadNetworkDhcp apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .updateDhcp(resourceGroupName, privateCloudName, dhcpId, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworkDhcps().updateDhcp(resourceGroupName,
+            privateCloudName, dhcpId, updateProperties, Context.NONE);
         return this;
     }
 
     public WorkloadNetworkDhcp apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .updateDhcp(resourceGroupName, privateCloudName, dhcpId, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworkDhcps().updateDhcp(resourceGroupName,
+            privateCloudName, dhcpId, updateProperties, context);
         return this;
     }
 
-    WorkloadNetworkDhcpImpl(
-        WorkloadNetworkDhcpInner innerObject, com.azure.resourcemanager.avs.AvsManager serviceManager) {
+    WorkloadNetworkDhcpImpl(WorkloadNetworkDhcpInner innerObject,
+        com.azure.resourcemanager.avs.AvsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
@@ -111,27 +108,29 @@ public final class WorkloadNetworkDhcpImpl
     }
 
     public WorkloadNetworkDhcp refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .getDhcpWithResponse(resourceGroupName, dhcpId, privateCloudName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworkDhcps()
+            .getDhcpWithResponse(resourceGroupName, privateCloudName, dhcpId, Context.NONE).getValue();
         return this;
     }
 
     public WorkloadNetworkDhcp refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .getDhcpWithResponse(resourceGroupName, dhcpId, privateCloudName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworkDhcps()
+            .getDhcpWithResponse(resourceGroupName, privateCloudName, dhcpId, context).getValue();
         return this;
     }
 
     public WorkloadNetworkDhcpImpl withProperties(WorkloadNetworkDhcpEntity properties) {
         this.innerModel().withProperties(properties);
+        return this;
+    }
+
+    public WorkloadNetworkDhcpImpl withDisplayName(String displayName) {
+        this.updateProperties.withDisplayName(displayName);
+        return this;
+    }
+
+    public WorkloadNetworkDhcpImpl withRevision(Integer revision) {
+        this.updateProperties.withRevision(revision);
         return this;
     }
 }

@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.avs.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.avs.fluent.models.WorkloadNetworkPublicIpInner;
 import com.azure.resourcemanager.avs.models.WorkloadNetworkPublicIp;
@@ -14,8 +15,8 @@ public final class WorkloadNetworkPublicIpImpl implements WorkloadNetworkPublicI
 
     private final com.azure.resourcemanager.avs.AvsManager serviceManager;
 
-    WorkloadNetworkPublicIpImpl(
-        WorkloadNetworkPublicIpInner innerObject, com.azure.resourcemanager.avs.AvsManager serviceManager) {
+    WorkloadNetworkPublicIpImpl(WorkloadNetworkPublicIpInner innerObject,
+        com.azure.resourcemanager.avs.AvsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -32,11 +33,15 @@ public final class WorkloadNetworkPublicIpImpl implements WorkloadNetworkPublicI
         return this.innerModel().type();
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public String displayName() {
         return this.innerModel().displayName();
     }
 
-    public Long numberOfPublicIPs() {
+    public Integer numberOfPublicIPs() {
         return this.innerModel().numberOfPublicIPs();
     }
 
@@ -69,20 +74,14 @@ public final class WorkloadNetworkPublicIpImpl implements WorkloadNetworkPublicI
     }
 
     public WorkloadNetworkPublicIp create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .createPublicIp(resourceGroupName, privateCloudName, publicIpId, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworkPublicIps()
+            .createPublicIp(resourceGroupName, privateCloudName, publicIpId, this.innerModel(), Context.NONE);
         return this;
     }
 
     public WorkloadNetworkPublicIp create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .createPublicIp(resourceGroupName, privateCloudName, publicIpId, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworkPublicIps()
+            .createPublicIp(resourceGroupName, privateCloudName, publicIpId, this.innerModel(), context);
         return this;
     }
 
@@ -93,22 +92,14 @@ public final class WorkloadNetworkPublicIpImpl implements WorkloadNetworkPublicI
     }
 
     public WorkloadNetworkPublicIp refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .getPublicIpWithResponse(resourceGroupName, privateCloudName, publicIpId, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworkPublicIps()
+            .getPublicIpWithResponse(resourceGroupName, privateCloudName, publicIpId, Context.NONE).getValue();
         return this;
     }
 
     public WorkloadNetworkPublicIp refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .getPublicIpWithResponse(resourceGroupName, privateCloudName, publicIpId, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworkPublicIps()
+            .getPublicIpWithResponse(resourceGroupName, privateCloudName, publicIpId, context).getValue();
         return this;
     }
 
@@ -117,7 +108,7 @@ public final class WorkloadNetworkPublicIpImpl implements WorkloadNetworkPublicI
         return this;
     }
 
-    public WorkloadNetworkPublicIpImpl withNumberOfPublicIPs(Long numberOfPublicIPs) {
+    public WorkloadNetworkPublicIpImpl withNumberOfPublicIPs(Integer numberOfPublicIPs) {
         this.innerModel().withNumberOfPublicIPs(numberOfPublicIPs);
         return this;
     }

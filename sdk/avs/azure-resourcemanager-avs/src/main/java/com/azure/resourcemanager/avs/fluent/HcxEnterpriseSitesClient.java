@@ -11,38 +11,41 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.avs.fluent.models.HcxEnterpriseSiteInner;
 
-/** An instance of this class provides access to all the operations defined in HcxEnterpriseSitesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in HcxEnterpriseSitesClient.
+ */
 public interface HcxEnterpriseSitesClient {
     /**
      * List HCX on-premises key in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of HCX Enterprise Sites as paginated response with {@link PagedIterable}.
+     * @return the response of a HcxEnterpriseSite list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<HcxEnterpriseSiteInner> list(String resourceGroupName, String privateCloudName);
+    PagedIterable<HcxEnterpriseSiteInner> listByPrivateCloud(String resourceGroupName, String privateCloudName);
 
     /**
      * List HCX on-premises key in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of HCX Enterprise Sites as paginated response with {@link PagedIterable}.
+     * @return the response of a HcxEnterpriseSite list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<HcxEnterpriseSiteInner> list(String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<HcxEnterpriseSiteInner> listByPrivateCloud(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Get an HCX on-premises key by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param hcxEnterpriseSiteName Name of the HCX Enterprise Site in the private cloud.
@@ -53,12 +56,12 @@ public interface HcxEnterpriseSitesClient {
      * @return an HCX on-premises key by name in a private cloud along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<HcxEnterpriseSiteInner> getWithResponse(
-        String resourceGroupName, String privateCloudName, String hcxEnterpriseSiteName, Context context);
+    Response<HcxEnterpriseSiteInner> getWithResponse(String resourceGroupName, String privateCloudName,
+        String hcxEnterpriseSiteName, Context context);
 
     /**
      * Get an HCX on-premises key by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param hcxEnterpriseSiteName Name of the HCX Enterprise Site in the private cloud.
@@ -72,11 +75,11 @@ public interface HcxEnterpriseSitesClient {
 
     /**
      * Create or update an activation key for on-premises HCX site.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param privateCloudName The name of the private cloud.
+     * @param privateCloudName Name of the private cloud.
      * @param hcxEnterpriseSiteName Name of the HCX Enterprise Site in the private cloud.
-     * @param hcxEnterpriseSite The HCX Enterprise Site.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -84,35 +87,28 @@ public interface HcxEnterpriseSitesClient {
      * @return an HCX Enterprise Site resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<HcxEnterpriseSiteInner> createOrUpdateWithResponse(
-        String resourceGroupName,
-        String privateCloudName,
-        String hcxEnterpriseSiteName,
-        HcxEnterpriseSiteInner hcxEnterpriseSite,
-        Context context);
+    Response<HcxEnterpriseSiteInner> createOrUpdateWithResponse(String resourceGroupName, String privateCloudName,
+        String hcxEnterpriseSiteName, HcxEnterpriseSiteInner resource, Context context);
 
     /**
      * Create or update an activation key for on-premises HCX site.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param privateCloudName The name of the private cloud.
+     * @param privateCloudName Name of the private cloud.
      * @param hcxEnterpriseSiteName Name of the HCX Enterprise Site in the private cloud.
-     * @param hcxEnterpriseSite The HCX Enterprise Site.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an HCX Enterprise Site resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    HcxEnterpriseSiteInner createOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String hcxEnterpriseSiteName,
-        HcxEnterpriseSiteInner hcxEnterpriseSite);
+    HcxEnterpriseSiteInner createOrUpdate(String resourceGroupName, String privateCloudName,
+        String hcxEnterpriseSiteName, HcxEnterpriseSiteInner resource);
 
     /**
      * Delete HCX on-premises key in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param hcxEnterpriseSiteName Name of the HCX Enterprise Site in the private cloud.
@@ -123,12 +119,12 @@ public interface HcxEnterpriseSitesClient {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> deleteWithResponse(
-        String resourceGroupName, String privateCloudName, String hcxEnterpriseSiteName, Context context);
+    Response<Void> deleteWithResponse(String resourceGroupName, String privateCloudName, String hcxEnterpriseSiteName,
+        Context context);
 
     /**
      * Delete HCX on-premises key in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param hcxEnterpriseSiteName Name of the HCX Enterprise Site in the private cloud.

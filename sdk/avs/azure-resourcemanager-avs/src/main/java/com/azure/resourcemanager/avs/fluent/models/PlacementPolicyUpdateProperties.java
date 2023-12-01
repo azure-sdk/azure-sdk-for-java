@@ -5,13 +5,12 @@
 package com.azure.resourcemanager.avs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.avs.models.AffinityStrength;
-import com.azure.resourcemanager.avs.models.AzureHybridBenefitType;
 import com.azure.resourcemanager.avs.models.PlacementPolicyState;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
-/** The properties of a placement policy resource that may be updated. */
+/**
+ * The updatable properties of the PlacementPolicy.
+ */
 @Fluent
 public final class PlacementPolicyUpdateProperties {
     /*
@@ -21,36 +20,20 @@ public final class PlacementPolicyUpdateProperties {
     private PlacementPolicyState state;
 
     /*
-     * Virtual machine members list
+     * Display name of the placement policy
      */
-    @JsonProperty(value = "vmMembers")
-    private List<String> vmMembers;
+    @JsonProperty(value = "displayName")
+    private String displayName;
 
-    /*
-     * Host members list
+    /**
+     * Creates an instance of PlacementPolicyUpdateProperties class.
      */
-    @JsonProperty(value = "hostMembers")
-    private List<String> hostMembers;
-
-    /*
-     * vm-host placement policy affinity strength (should/must)
-     */
-    @JsonProperty(value = "affinityStrength")
-    private AffinityStrength affinityStrength;
-
-    /*
-     * placement policy azure hybrid benefit opt-in type
-     */
-    @JsonProperty(value = "azureHybridBenefitType")
-    private AzureHybridBenefitType azureHybridBenefitType;
-
-    /** Creates an instance of PlacementPolicyUpdateProperties class. */
     public PlacementPolicyUpdateProperties() {
     }
 
     /**
      * Get the state property: Whether the placement policy is enabled or disabled.
-     *
+     * 
      * @return the state value.
      */
     public PlacementPolicyState state() {
@@ -59,7 +42,7 @@ public final class PlacementPolicyUpdateProperties {
 
     /**
      * Set the state property: Whether the placement policy is enabled or disabled.
-     *
+     * 
      * @param state the state value to set.
      * @return the PlacementPolicyUpdateProperties object itself.
      */
@@ -69,88 +52,28 @@ public final class PlacementPolicyUpdateProperties {
     }
 
     /**
-     * Get the vmMembers property: Virtual machine members list.
-     *
-     * @return the vmMembers value.
+     * Get the displayName property: Display name of the placement policy.
+     * 
+     * @return the displayName value.
      */
-    public List<String> vmMembers() {
-        return this.vmMembers;
+    public String displayName() {
+        return this.displayName;
     }
 
     /**
-     * Set the vmMembers property: Virtual machine members list.
-     *
-     * @param vmMembers the vmMembers value to set.
+     * Set the displayName property: Display name of the placement policy.
+     * 
+     * @param displayName the displayName value to set.
      * @return the PlacementPolicyUpdateProperties object itself.
      */
-    public PlacementPolicyUpdateProperties withVmMembers(List<String> vmMembers) {
-        this.vmMembers = vmMembers;
-        return this;
-    }
-
-    /**
-     * Get the hostMembers property: Host members list.
-     *
-     * @return the hostMembers value.
-     */
-    public List<String> hostMembers() {
-        return this.hostMembers;
-    }
-
-    /**
-     * Set the hostMembers property: Host members list.
-     *
-     * @param hostMembers the hostMembers value to set.
-     * @return the PlacementPolicyUpdateProperties object itself.
-     */
-    public PlacementPolicyUpdateProperties withHostMembers(List<String> hostMembers) {
-        this.hostMembers = hostMembers;
-        return this;
-    }
-
-    /**
-     * Get the affinityStrength property: vm-host placement policy affinity strength (should/must).
-     *
-     * @return the affinityStrength value.
-     */
-    public AffinityStrength affinityStrength() {
-        return this.affinityStrength;
-    }
-
-    /**
-     * Set the affinityStrength property: vm-host placement policy affinity strength (should/must).
-     *
-     * @param affinityStrength the affinityStrength value to set.
-     * @return the PlacementPolicyUpdateProperties object itself.
-     */
-    public PlacementPolicyUpdateProperties withAffinityStrength(AffinityStrength affinityStrength) {
-        this.affinityStrength = affinityStrength;
-        return this;
-    }
-
-    /**
-     * Get the azureHybridBenefitType property: placement policy azure hybrid benefit opt-in type.
-     *
-     * @return the azureHybridBenefitType value.
-     */
-    public AzureHybridBenefitType azureHybridBenefitType() {
-        return this.azureHybridBenefitType;
-    }
-
-    /**
-     * Set the azureHybridBenefitType property: placement policy azure hybrid benefit opt-in type.
-     *
-     * @param azureHybridBenefitType the azureHybridBenefitType value to set.
-     * @return the PlacementPolicyUpdateProperties object itself.
-     */
-    public PlacementPolicyUpdateProperties withAzureHybridBenefitType(AzureHybridBenefitType azureHybridBenefitType) {
-        this.azureHybridBenefitType = azureHybridBenefitType;
+    public PlacementPolicyUpdateProperties withDisplayName(String displayName) {
+        this.displayName = displayName;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

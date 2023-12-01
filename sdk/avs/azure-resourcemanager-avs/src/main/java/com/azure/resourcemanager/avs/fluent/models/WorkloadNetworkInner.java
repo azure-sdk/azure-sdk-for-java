@@ -4,19 +4,66 @@
 
 package com.azure.resourcemanager.avs.fluent.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Workload Network. */
-@Immutable
+/**
+ * Workload Network.
+ */
+@Fluent
 public final class WorkloadNetworkInner extends ProxyResource {
-    /** Creates an instance of WorkloadNetworkInner class. */
+    /*
+     * The resource-specific properties for this resource.
+     */
+    @JsonProperty(value = "properties")
+    private Object properties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of WorkloadNetworkInner class.
+     */
     public WorkloadNetworkInner() {
     }
 
     /**
+     * Get the properties property: The resource-specific properties for this resource.
+     * 
+     * @return the properties value.
+     */
+    public Object properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: The resource-specific properties for this resource.
+     * 
+     * @param properties the properties value to set.
+     * @return the WorkloadNetworkInner object itself.
+     */
+    public WorkloadNetworkInner withProperties(Object properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

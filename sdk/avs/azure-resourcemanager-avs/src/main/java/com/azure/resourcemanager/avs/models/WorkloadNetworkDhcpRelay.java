@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** NSX DHCP Relay. */
+/**
+ * NSX DHCP Relay.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "dhcpType")
 @JsonTypeName("RELAY")
 @Fluent
@@ -21,13 +23,15 @@ public final class WorkloadNetworkDhcpRelay extends WorkloadNetworkDhcpEntity {
     @JsonProperty(value = "serverAddresses")
     private List<String> serverAddresses;
 
-    /** Creates an instance of WorkloadNetworkDhcpRelay class. */
+    /**
+     * Creates an instance of WorkloadNetworkDhcpRelay class.
+     */
     public WorkloadNetworkDhcpRelay() {
     }
 
     /**
      * Get the serverAddresses property: DHCP Relay Addresses. Max 3.
-     *
+     * 
      * @return the serverAddresses value.
      */
     public List<String> serverAddresses() {
@@ -36,7 +40,7 @@ public final class WorkloadNetworkDhcpRelay extends WorkloadNetworkDhcpEntity {
 
     /**
      * Set the serverAddresses property: DHCP Relay Addresses. Max 3.
-     *
+     * 
      * @param serverAddresses the serverAddresses value to set.
      * @return the WorkloadNetworkDhcpRelay object itself.
      */
@@ -45,23 +49,27 @@ public final class WorkloadNetworkDhcpRelay extends WorkloadNetworkDhcpEntity {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkloadNetworkDhcpRelay withDisplayName(String displayName) {
         super.withDisplayName(displayName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public WorkloadNetworkDhcpRelay withRevision(Long revision) {
+    public WorkloadNetworkDhcpRelay withRevision(Integer revision) {
         super.withRevision(revision);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

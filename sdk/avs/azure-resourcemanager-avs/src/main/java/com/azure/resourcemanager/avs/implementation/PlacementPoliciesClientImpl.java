@@ -34,156 +34,131 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.avs.fluent.PlacementPoliciesClient;
 import com.azure.resourcemanager.avs.fluent.models.PlacementPolicyInner;
-import com.azure.resourcemanager.avs.models.PlacementPoliciesList;
+import com.azure.resourcemanager.avs.models.PlacementPolicyListResult;
 import com.azure.resourcemanager.avs.models.PlacementPolicyUpdate;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in PlacementPoliciesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in PlacementPoliciesClient.
+ */
 public final class PlacementPoliciesClientImpl implements PlacementPoliciesClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final PlacementPoliciesService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final AvsClientImpl client;
 
     /**
      * Initializes an instance of PlacementPoliciesClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     PlacementPoliciesClientImpl(AvsClientImpl client) {
-        this.service =
-            RestProxy.create(PlacementPoliciesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(PlacementPoliciesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AvsClientPlacementPolicies to be used by the proxy service to perform
-     * REST calls.
+     * The interface defining all the services for AvsClientPlacementPolicies to be used by the proxy service to
+     * perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AvsClientPlacementPo")
     public interface PlacementPoliciesService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<PlacementPoliciesList>> list(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<PlacementPolicyListResult>> listByCluster(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("clusterName") String clusterName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("clusterName") String clusterName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<PlacementPolicyInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("clusterName") String clusterName,
+            @PathParam("placementPolicyName") String placementPolicyName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<PlacementPolicyInner>> get(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("clusterName") String clusterName,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("clusterName") String clusterName,
             @PathParam("placementPolicyName") String placementPolicyName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") PlacementPolicyInner resource, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}")
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("clusterName") String clusterName,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("clusterName") String clusterName,
             @PathParam("placementPolicyName") String placementPolicyName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") PlacementPolicyInner placementPolicy,
-            @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") PlacementPolicyUpdate properties, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}")
-        @ExpectedResponses({200, 202})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}")
+        @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("clusterName") String clusterName,
-            @PathParam("placementPolicyName") String placementPolicyName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") PlacementPolicyUpdate placementPolicyUpdate,
-            @HeaderParam("Accept") String accept,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("clusterName") String clusterName,
+            @PathParam("placementPolicyName") String placementPolicyName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}")
-        @ExpectedResponses({200, 202, 204})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("clusterName") String clusterName,
-            @PathParam("placementPolicyName") String placementPolicyName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<PlacementPoliciesList>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<PlacementPolicyListResult>> listByClusterNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * List placement policies in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents list of placement policies along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return the response of a PlacementPolicy list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PlacementPolicyInner>> listSinglePageAsync(
-        String resourceGroupName, String privateCloudName, String clusterName) {
+    private Mono<PagedResponse<PlacementPolicyInner>> listByClusterSinglePageAsync(String resourceGroupName,
+        String privateCloudName, String clusterName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -198,33 +173,16 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            clusterName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<PlacementPolicyInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByCluster(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, privateCloudName, clusterName, accept, context))
+            .<PagedResponse<PlacementPolicyInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List placement policies in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -232,23 +190,19 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents list of placement policies along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return the response of a PlacementPolicy list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PlacementPolicyInner>> listSinglePageAsync(
-        String resourceGroupName, String privateCloudName, String clusterName, Context context) {
+    private Mono<PagedResponse<PlacementPolicyInner>> listByClusterSinglePageAsync(String resourceGroupName,
+        String privateCloudName, String clusterName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -264,48 +218,33 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                clusterName,
-                this.client.getApiVersion(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByCluster(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, privateCloudName, clusterName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List placement policies in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents list of placement policies as paginated response with {@link PagedFlux}.
+     * @return the response of a PlacementPolicy list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PlacementPolicyInner> listAsync(
-        String resourceGroupName, String privateCloudName, String clusterName) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, privateCloudName, clusterName),
-            nextLink -> listNextSinglePageAsync(nextLink));
+    private PagedFlux<PlacementPolicyInner> listByClusterAsync(String resourceGroupName, String privateCloudName,
+        String clusterName) {
+        return new PagedFlux<>(() -> listByClusterSinglePageAsync(resourceGroupName, privateCloudName, clusterName),
+            nextLink -> listByClusterNextSinglePageAsync(nextLink));
     }
 
     /**
      * List placement policies in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -313,36 +252,36 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents list of placement policies as paginated response with {@link PagedFlux}.
+     * @return the response of a PlacementPolicy list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PlacementPolicyInner> listAsync(
-        String resourceGroupName, String privateCloudName, String clusterName, Context context) {
+    private PagedFlux<PlacementPolicyInner> listByClusterAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, Context context) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, privateCloudName, clusterName, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+            () -> listByClusterSinglePageAsync(resourceGroupName, privateCloudName, clusterName, context),
+            nextLink -> listByClusterNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List placement policies in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents list of placement policies as paginated response with {@link PagedIterable}.
+     * @return the response of a PlacementPolicy list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<PlacementPolicyInner> list(
-        String resourceGroupName, String privateCloudName, String clusterName) {
-        return new PagedIterable<>(listAsync(resourceGroupName, privateCloudName, clusterName));
+    public PagedIterable<PlacementPolicyInner> listByCluster(String resourceGroupName, String privateCloudName,
+        String clusterName) {
+        return new PagedIterable<>(listByClusterAsync(resourceGroupName, privateCloudName, clusterName));
     }
 
     /**
      * List placement policies in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -350,17 +289,17 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents list of placement policies as paginated response with {@link PagedIterable}.
+     * @return the response of a PlacementPolicy list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<PlacementPolicyInner> list(
-        String resourceGroupName, String privateCloudName, String clusterName, Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, privateCloudName, clusterName, context));
+    public PagedIterable<PlacementPolicyInner> listByCluster(String resourceGroupName, String privateCloudName,
+        String clusterName, Context context) {
+        return new PagedIterable<>(listByClusterAsync(resourceGroupName, privateCloudName, clusterName, context));
     }
 
     /**
      * Get a placement policy by name in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -369,22 +308,18 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a placement policy by name in a private cloud cluster along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PlacementPolicyInner>> getWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String clusterName, String placementPolicyName) {
+    private Mono<Response<PlacementPolicyInner>> getWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String placementPolicyName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -403,25 +338,15 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            clusterName,
-                            placementPolicyName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, privateCloudName, clusterName, placementPolicyName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a placement policy by name in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -431,26 +356,18 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a placement policy by name in a private cloud cluster along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PlacementPolicyInner>> getWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        Context context) {
+    private Mono<Response<PlacementPolicyInner>> getWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String placementPolicyName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -469,22 +386,13 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                clusterName,
-                placementPolicyName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, privateCloudName, clusterName, placementPolicyName, accept, context);
     }
 
     /**
      * Get a placement policy by name in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -495,15 +403,15 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @return a placement policy by name in a private cloud cluster on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PlacementPolicyInner> getAsync(
-        String resourceGroupName, String privateCloudName, String clusterName, String placementPolicyName) {
+    private Mono<PlacementPolicyInner> getAsync(String resourceGroupName, String privateCloudName, String clusterName,
+        String placementPolicyName) {
         return getWithResponseAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get a placement policy by name in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -515,19 +423,15 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @return a placement policy by name in a private cloud cluster along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<PlacementPolicyInner> getWithResponse(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        Context context) {
+    public Response<PlacementPolicyInner> getWithResponse(String resourceGroupName, String privateCloudName,
+        String clusterName, String placementPolicyName, Context context) {
         return getWithResponseAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, context)
             .block();
     }
 
     /**
      * Get a placement policy by name in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -538,44 +442,36 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @return a placement policy by name in a private cloud cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PlacementPolicyInner get(
-        String resourceGroupName, String privateCloudName, String clusterName, String placementPolicyName) {
+    public PlacementPolicyInner get(String resourceGroupName, String privateCloudName, String clusterName,
+        String placementPolicyName) {
         return getWithResponse(resourceGroupName, privateCloudName, clusterName, placementPolicyName, Context.NONE)
             .getValue();
     }
 
     /**
      * Create or update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicy A placement policy in the private cloud cluster.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a vSphere Distributed Resource Scheduler (DRS) placement policy along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyInner placementPolicy) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String clusterName, String placementPolicyName, PlacementPolicyInner resource) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -592,65 +488,45 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
             return Mono
                 .error(new IllegalArgumentException("Parameter placementPolicyName is required and cannot be null."));
         }
-        if (placementPolicy == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter placementPolicy is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            placementPolicy.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            clusterName,
-                            placementPolicyName,
-                            this.client.getApiVersion(),
-                            placementPolicy,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, privateCloudName, clusterName, placementPolicyName,
+                resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicy A placement policy in the private cloud cluster.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a vSphere Distributed Resource Scheduler (DRS) placement policy along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyInner placementPolicy,
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String clusterName, String placementPolicyName, PlacementPolicyInner resource,
         Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -667,36 +543,26 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
             return Mono
                 .error(new IllegalArgumentException("Parameter placementPolicyName is required and cannot be null."));
         }
-        if (placementPolicy == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter placementPolicy is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            placementPolicy.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                clusterName,
-                placementPolicyName,
-                this.client.getApiVersion(),
-                placementPolicy,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, privateCloudName, clusterName, placementPolicyName,
+            resource, accept, context);
     }
 
     /**
      * Create or update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicy A placement policy in the private cloud cluster.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -704,32 +570,22 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<PlacementPolicyInner>, PlacementPolicyInner> beginCreateOrUpdateAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyInner placementPolicy) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(
-                resourceGroupName, privateCloudName, clusterName, placementPolicyName, placementPolicy);
-        return this
-            .client
-            .<PlacementPolicyInner, PlacementPolicyInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                PlacementPolicyInner.class,
-                PlacementPolicyInner.class,
-                this.client.getContext());
+        String resourceGroupName, String privateCloudName, String clusterName, String placementPolicyName,
+        PlacementPolicyInner resource) {
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, privateCloudName,
+            clusterName, placementPolicyName, resource);
+        return this.client.<PlacementPolicyInner, PlacementPolicyInner>getLroResult(mono, this.client.getHttpPipeline(),
+            PlacementPolicyInner.class, PlacementPolicyInner.class, this.client.getContext());
     }
 
     /**
      * Create or update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicy A placement policy in the private cloud cluster.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -738,30 +594,23 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<PlacementPolicyInner>, PlacementPolicyInner> beginCreateOrUpdateAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyInner placementPolicy,
-        Context context) {
+        String resourceGroupName, String privateCloudName, String clusterName, String placementPolicyName,
+        PlacementPolicyInner resource, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(
-                resourceGroupName, privateCloudName, clusterName, placementPolicyName, placementPolicy, context);
-        return this
-            .client
-            .<PlacementPolicyInner, PlacementPolicyInner>getLroResult(
-                mono, this.client.getHttpPipeline(), PlacementPolicyInner.class, PlacementPolicyInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, privateCloudName,
+            clusterName, placementPolicyName, resource, context);
+        return this.client.<PlacementPolicyInner, PlacementPolicyInner>getLroResult(mono, this.client.getHttpPipeline(),
+            PlacementPolicyInner.class, PlacementPolicyInner.class, context);
     }
 
     /**
      * Create or update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicy A placement policy in the private cloud cluster.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -769,25 +618,21 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<PlacementPolicyInner>, PlacementPolicyInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyInner placementPolicy) {
+        String resourceGroupName, String privateCloudName, String clusterName, String placementPolicyName,
+        PlacementPolicyInner resource) {
         return this
-            .beginCreateOrUpdateAsync(
-                resourceGroupName, privateCloudName, clusterName, placementPolicyName, placementPolicy)
+            .beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, resource)
             .getSyncPoller();
     }
 
     /**
      * Create or update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicy A placement policy in the private cloud cluster.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -796,52 +641,40 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<PlacementPolicyInner>, PlacementPolicyInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyInner placementPolicy,
-        Context context) {
-        return this
-            .beginCreateOrUpdateAsync(
-                resourceGroupName, privateCloudName, clusterName, placementPolicyName, placementPolicy, context)
-            .getSyncPoller();
+        String resourceGroupName, String privateCloudName, String clusterName, String placementPolicyName,
+        PlacementPolicyInner resource, Context context) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName,
+            resource, context).getSyncPoller();
     }
 
     /**
      * Create or update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicy A placement policy in the private cloud cluster.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a vSphere Distributed Resource Scheduler (DRS) placement policy on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PlacementPolicyInner> createOrUpdateAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyInner placementPolicy) {
-        return beginCreateOrUpdateAsync(
-                resourceGroupName, privateCloudName, clusterName, placementPolicyName, placementPolicy)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+    private Mono<PlacementPolicyInner> createOrUpdateAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String placementPolicyName, PlacementPolicyInner resource) {
+        return beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, resource)
+            .last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicy A placement policy in the private cloud cluster.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -849,52 +682,40 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @return a vSphere Distributed Resource Scheduler (DRS) placement policy on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PlacementPolicyInner> createOrUpdateAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyInner placementPolicy,
-        Context context) {
-        return beginCreateOrUpdateAsync(
-                resourceGroupName, privateCloudName, clusterName, placementPolicyName, placementPolicy, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+    private Mono<PlacementPolicyInner> createOrUpdateAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String placementPolicyName, PlacementPolicyInner resource, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, resource,
+            context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicy A placement policy in the private cloud cluster.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a vSphere Distributed Resource Scheduler (DRS) placement policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PlacementPolicyInner createOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyInner placementPolicy) {
-        return createOrUpdateAsync(
-                resourceGroupName, privateCloudName, clusterName, placementPolicyName, placementPolicy)
+    public PlacementPolicyInner createOrUpdate(String resourceGroupName, String privateCloudName, String clusterName,
+        String placementPolicyName, PlacementPolicyInner resource) {
+        return createOrUpdateAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, resource)
             .block();
     }
 
     /**
      * Create or update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicy A placement policy in the private cloud cluster.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -902,50 +723,36 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @return a vSphere Distributed Resource Scheduler (DRS) placement policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PlacementPolicyInner createOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyInner placementPolicy,
-        Context context) {
-        return createOrUpdateAsync(
-                resourceGroupName, privateCloudName, clusterName, placementPolicyName, placementPolicy, context)
-            .block();
+    public PlacementPolicyInner createOrUpdate(String resourceGroupName, String privateCloudName, String clusterName,
+        String placementPolicyName, PlacementPolicyInner resource, Context context) {
+        return createOrUpdateAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, resource,
+            context).block();
     }
 
     /**
      * Update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicyUpdate The placement policy properties that may be updated.
+     * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a vSphere Distributed Resource Scheduler (DRS) placement policy along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyUpdate placementPolicyUpdate) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String placementPolicyName, PlacementPolicyUpdate properties) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -962,65 +769,44 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
             return Mono
                 .error(new IllegalArgumentException("Parameter placementPolicyName is required and cannot be null."));
         }
-        if (placementPolicyUpdate == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter placementPolicyUpdate is required and cannot be null."));
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
         } else {
-            placementPolicyUpdate.validate();
+            properties.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            clusterName,
-                            placementPolicyName,
-                            this.client.getApiVersion(),
-                            placementPolicyUpdate,
-                            accept,
-                            context))
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, privateCloudName, clusterName, placementPolicyName,
+                properties, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicyUpdate The placement policy properties that may be updated.
+     * @param properties The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a vSphere Distributed Resource Scheduler (DRS) placement policy along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyUpdate placementPolicyUpdate,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String placementPolicyName, PlacementPolicyUpdate properties, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1037,36 +823,25 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
             return Mono
                 .error(new IllegalArgumentException("Parameter placementPolicyName is required and cannot be null."));
         }
-        if (placementPolicyUpdate == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter placementPolicyUpdate is required and cannot be null."));
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
         } else {
-            placementPolicyUpdate.validate();
+            properties.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                clusterName,
-                placementPolicyName,
-                this.client.getApiVersion(),
-                placementPolicyUpdate,
-                accept,
-                context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, privateCloudName, clusterName, placementPolicyName, properties, accept, context);
     }
 
     /**
      * Update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicyUpdate The placement policy properties that may be updated.
+     * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1074,32 +849,22 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<PlacementPolicyInner>, PlacementPolicyInner> beginUpdateAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyUpdate placementPolicyUpdate) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(
-                resourceGroupName, privateCloudName, clusterName, placementPolicyName, placementPolicyUpdate);
-        return this
-            .client
-            .<PlacementPolicyInner, PlacementPolicyInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                PlacementPolicyInner.class,
-                PlacementPolicyInner.class,
-                this.client.getContext());
+        String resourceGroupName, String privateCloudName, String clusterName, String placementPolicyName,
+        PlacementPolicyUpdate properties) {
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, privateCloudName,
+            clusterName, placementPolicyName, properties);
+        return this.client.<PlacementPolicyInner, PlacementPolicyInner>getLroResult(mono, this.client.getHttpPipeline(),
+            PlacementPolicyInner.class, PlacementPolicyInner.class, this.client.getContext());
     }
 
     /**
      * Update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicyUpdate The placement policy properties that may be updated.
+     * @param properties The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1108,56 +873,43 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<PlacementPolicyInner>, PlacementPolicyInner> beginUpdateAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyUpdate placementPolicyUpdate,
-        Context context) {
+        String resourceGroupName, String privateCloudName, String clusterName, String placementPolicyName,
+        PlacementPolicyUpdate properties, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(
-                resourceGroupName, privateCloudName, clusterName, placementPolicyName, placementPolicyUpdate, context);
-        return this
-            .client
-            .<PlacementPolicyInner, PlacementPolicyInner>getLroResult(
-                mono, this.client.getHttpPipeline(), PlacementPolicyInner.class, PlacementPolicyInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, privateCloudName,
+            clusterName, placementPolicyName, properties, context);
+        return this.client.<PlacementPolicyInner, PlacementPolicyInner>getLroResult(mono, this.client.getHttpPipeline(),
+            PlacementPolicyInner.class, PlacementPolicyInner.class, context);
     }
 
     /**
      * Update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicyUpdate The placement policy properties that may be updated.
+     * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of a vSphere Distributed Resource Scheduler (DRS) placement policy.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<PlacementPolicyInner>, PlacementPolicyInner> beginUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyUpdate placementPolicyUpdate) {
-        return this
-            .beginUpdateAsync(
-                resourceGroupName, privateCloudName, clusterName, placementPolicyName, placementPolicyUpdate)
+    public SyncPoller<PollResult<PlacementPolicyInner>, PlacementPolicyInner> beginUpdate(String resourceGroupName,
+        String privateCloudName, String clusterName, String placementPolicyName, PlacementPolicyUpdate properties) {
+        return this.beginUpdateAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, properties)
             .getSyncPoller();
     }
 
     /**
      * Update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicyUpdate The placement policy properties that may be updated.
+     * @param properties The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1165,53 +917,41 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @return the {@link SyncPoller} for polling of a vSphere Distributed Resource Scheduler (DRS) placement policy.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<PlacementPolicyInner>, PlacementPolicyInner> beginUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyUpdate placementPolicyUpdate,
+    public SyncPoller<PollResult<PlacementPolicyInner>, PlacementPolicyInner> beginUpdate(String resourceGroupName,
+        String privateCloudName, String clusterName, String placementPolicyName, PlacementPolicyUpdate properties,
         Context context) {
-        return this
-            .beginUpdateAsync(
-                resourceGroupName, privateCloudName, clusterName, placementPolicyName, placementPolicyUpdate, context)
-            .getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, properties,
+            context).getSyncPoller();
     }
 
     /**
      * Update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicyUpdate The placement policy properties that may be updated.
+     * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a vSphere Distributed Resource Scheduler (DRS) placement policy on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PlacementPolicyInner> updateAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyUpdate placementPolicyUpdate) {
-        return beginUpdateAsync(
-                resourceGroupName, privateCloudName, clusterName, placementPolicyName, placementPolicyUpdate)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+    private Mono<PlacementPolicyInner> updateAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String placementPolicyName, PlacementPolicyUpdate properties) {
+        return beginUpdateAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, properties)
+            .last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicyUpdate The placement policy properties that may be updated.
+     * @param properties The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1219,51 +959,39 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @return a vSphere Distributed Resource Scheduler (DRS) placement policy on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PlacementPolicyInner> updateAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyUpdate placementPolicyUpdate,
-        Context context) {
-        return beginUpdateAsync(
-                resourceGroupName, privateCloudName, clusterName, placementPolicyName, placementPolicyUpdate, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+    private Mono<PlacementPolicyInner> updateAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String placementPolicyName, PlacementPolicyUpdate properties, Context context) {
+        return beginUpdateAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, properties,
+            context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicyUpdate The placement policy properties that may be updated.
+     * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a vSphere Distributed Resource Scheduler (DRS) placement policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PlacementPolicyInner update(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyUpdate placementPolicyUpdate) {
-        return updateAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, placementPolicyUpdate)
-            .block();
+    public PlacementPolicyInner update(String resourceGroupName, String privateCloudName, String clusterName,
+        String placementPolicyName, PlacementPolicyUpdate properties) {
+        return updateAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, properties).block();
     }
 
     /**
      * Update a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
      * @param placementPolicyName Name of the VMware vSphere Distributed Resource Scheduler (DRS) placement policy.
-     * @param placementPolicyUpdate The placement policy properties that may be updated.
+     * @param properties The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1271,21 +999,15 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @return a vSphere Distributed Resource Scheduler (DRS) placement policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PlacementPolicyInner update(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        PlacementPolicyUpdate placementPolicyUpdate,
-        Context context) {
-        return updateAsync(
-                resourceGroupName, privateCloudName, clusterName, placementPolicyName, placementPolicyUpdate, context)
+    public PlacementPolicyInner update(String resourceGroupName, String privateCloudName, String clusterName,
+        String placementPolicyName, PlacementPolicyUpdate properties, Context context) {
+        return updateAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, properties, context)
             .block();
     }
 
     /**
      * Delete a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -1296,19 +1018,15 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String clusterName, String placementPolicyName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String placementPolicyName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1327,25 +1045,15 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            clusterName,
-                            placementPolicyName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, privateCloudName, clusterName, placementPolicyName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -1357,23 +1065,15 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String placementPolicyName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1392,22 +1092,13 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                clusterName,
-                placementPolicyName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, privateCloudName, clusterName, placementPolicyName, accept, context);
     }
 
     /**
      * Delete a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -1418,19 +1109,17 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String privateCloudName, String clusterName, String placementPolicyName) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String placementPolicyName) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Delete a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -1442,23 +1131,18 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String privateCloudName,
+        String clusterName, String placementPolicyName, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Delete a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -1469,16 +1153,15 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String privateCloudName, String clusterName, String placementPolicyName) {
-        return this
-            .beginDeleteAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String privateCloudName,
+        String clusterName, String placementPolicyName) {
+        return this.beginDeleteAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName)
             .getSyncPoller();
     }
 
     /**
      * Delete a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -1490,20 +1173,15 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        Context context) {
-        return this
-            .beginDeleteAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, context)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String privateCloudName,
+        String clusterName, String placementPolicyName, Context context) {
+        return this.beginDeleteAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, context)
             .getSyncPoller();
     }
 
     /**
      * Delete a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -1514,16 +1192,15 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(
-        String resourceGroupName, String privateCloudName, String clusterName, String placementPolicyName) {
-        return beginDeleteAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName)
-            .last()
+    private Mono<Void> deleteAsync(String resourceGroupName, String privateCloudName, String clusterName,
+        String placementPolicyName) {
+        return beginDeleteAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -1535,20 +1212,15 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        Context context) {
-        return beginDeleteAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, context)
-            .last()
+    private Mono<Void> deleteAsync(String resourceGroupName, String privateCloudName, String clusterName,
+        String placementPolicyName, Context context) {
+        return beginDeleteAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -1558,14 +1230,14 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(
-        String resourceGroupName, String privateCloudName, String clusterName, String placementPolicyName) {
+    public void delete(String resourceGroupName, String privateCloudName, String clusterName,
+        String placementPolicyName) {
         deleteAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName).block();
     }
 
     /**
      * Delete a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -1576,87 +1248,67 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        Context context) {
+    public void delete(String resourceGroupName, String privateCloudName, String clusterName,
+        String placementPolicyName, Context context) {
         deleteAsync(resourceGroupName, privateCloudName, clusterName, placementPolicyName, context).block();
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents list of placement policies along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return the response of a PlacementPolicy list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PlacementPolicyInner>> listNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<PlacementPolicyInner>> listByClusterNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<PlacementPolicyInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByClusterNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<PlacementPolicyInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents list of placement policies along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return the response of a PlacementPolicy list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PlacementPolicyInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<PlacementPolicyInner>> listByClusterNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByClusterNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

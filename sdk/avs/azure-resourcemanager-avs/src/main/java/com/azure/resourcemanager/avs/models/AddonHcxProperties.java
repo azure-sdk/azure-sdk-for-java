@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The properties of an HCX addon. */
+/**
+ * The properties of an HCX addon.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "addonType")
 @JsonTypeName("HCX")
 @Fluent
@@ -21,13 +23,15 @@ public final class AddonHcxProperties extends AddonProperties {
     @JsonProperty(value = "offer", required = true)
     private String offer;
 
-    /** Creates an instance of AddonHcxProperties class. */
+    /**
+     * Creates an instance of AddonHcxProperties class.
+     */
     public AddonHcxProperties() {
     }
 
     /**
      * Get the offer property: The HCX offer, example VMware MaaS Cloud Provider (Enterprise).
-     *
+     * 
      * @return the offer value.
      */
     public String offer() {
@@ -36,7 +40,7 @@ public final class AddonHcxProperties extends AddonProperties {
 
     /**
      * Set the offer property: The HCX offer, example VMware MaaS Cloud Provider (Enterprise).
-     *
+     * 
      * @param offer the offer value to set.
      * @return the AddonHcxProperties object itself.
      */
@@ -47,16 +51,15 @@ public final class AddonHcxProperties extends AddonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (offer() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property offer in model AddonHcxProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property offer in model AddonHcxProperties"));
         }
     }
 

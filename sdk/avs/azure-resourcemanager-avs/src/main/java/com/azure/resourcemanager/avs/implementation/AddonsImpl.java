@@ -26,25 +26,23 @@ public final class AddonsImpl implements Addons {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<Addon> list(String resourceGroupName, String privateCloudName) {
-        PagedIterable<AddonInner> inner = this.serviceClient().list(resourceGroupName, privateCloudName);
+    public PagedIterable<Addon> listByPrivateCloud(String resourceGroupName, String privateCloudName) {
+        PagedIterable<AddonInner> inner = this.serviceClient().listByPrivateCloud(resourceGroupName, privateCloudName);
         return Utils.mapPage(inner, inner1 -> new AddonImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Addon> list(String resourceGroupName, String privateCloudName, Context context) {
-        PagedIterable<AddonInner> inner = this.serviceClient().list(resourceGroupName, privateCloudName, context);
+    public PagedIterable<Addon> listByPrivateCloud(String resourceGroupName, String privateCloudName, Context context) {
+        PagedIterable<AddonInner> inner
+            = this.serviceClient().listByPrivateCloud(resourceGroupName, privateCloudName, context);
         return Utils.mapPage(inner, inner1 -> new AddonImpl(inner1, this.manager()));
     }
 
-    public Response<Addon> getWithResponse(
-        String resourceGroupName, String privateCloudName, String addonName, Context context) {
-        Response<AddonInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, privateCloudName, addonName, context);
+    public Response<Addon> getWithResponse(String resourceGroupName, String privateCloudName, String addonName,
+        Context context) {
+        Response<AddonInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, privateCloudName, addonName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new AddonImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -71,25 +69,18 @@ public final class AddonsImpl implements Addons {
     public Addon getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String addonName = Utils.getValueFromIdByName(id, "addons");
         if (addonName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'addons'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'addons'.", id)));
         }
         return this.getWithResponse(resourceGroupName, privateCloudName, addonName, Context.NONE).getValue();
     }
@@ -97,25 +88,18 @@ public final class AddonsImpl implements Addons {
     public Response<Addon> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String addonName = Utils.getValueFromIdByName(id, "addons");
         if (addonName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'addons'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'addons'.", id)));
         }
         return this.getWithResponse(resourceGroupName, privateCloudName, addonName, context);
     }
@@ -123,25 +107,18 @@ public final class AddonsImpl implements Addons {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String addonName = Utils.getValueFromIdByName(id, "addons");
         if (addonName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'addons'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'addons'.", id)));
         }
         this.delete(resourceGroupName, privateCloudName, addonName, Context.NONE);
     }
@@ -149,25 +126,18 @@ public final class AddonsImpl implements Addons {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String addonName = Utils.getValueFromIdByName(id, "addons");
         if (addonName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'addons'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'addons'.", id)));
         }
         this.delete(resourceGroupName, privateCloudName, addonName, context);
     }
