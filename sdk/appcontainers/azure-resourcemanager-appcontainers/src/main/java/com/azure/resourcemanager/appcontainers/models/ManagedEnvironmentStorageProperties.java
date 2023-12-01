@@ -7,7 +7,9 @@ package com.azure.resourcemanager.appcontainers.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Storage properties. */
+/**
+ * Storage properties.
+ */
 @Fluent
 public final class ManagedEnvironmentStorageProperties {
     /*
@@ -16,13 +18,15 @@ public final class ManagedEnvironmentStorageProperties {
     @JsonProperty(value = "azureFile")
     private AzureFileProperties azureFile;
 
-    /** Creates an instance of ManagedEnvironmentStorageProperties class. */
+    /**
+     * Creates an instance of ManagedEnvironmentStorageProperties class.
+     */
     public ManagedEnvironmentStorageProperties() {
     }
 
     /**
      * Get the azureFile property: Azure file properties.
-     *
+     * 
      * @return the azureFile value.
      */
     public AzureFileProperties azureFile() {
@@ -31,7 +35,7 @@ public final class ManagedEnvironmentStorageProperties {
 
     /**
      * Set the azureFile property: Azure file properties.
-     *
+     * 
      * @param azureFile the azureFile value to set.
      * @return the ManagedEnvironmentStorageProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class ManagedEnvironmentStorageProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
