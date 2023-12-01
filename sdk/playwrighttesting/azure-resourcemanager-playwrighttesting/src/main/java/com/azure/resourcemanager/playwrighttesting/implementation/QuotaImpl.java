@@ -15,8 +15,8 @@ public final class QuotaImpl implements Quota {
 
     private final com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager serviceManager;
 
-    QuotaImpl(
-        QuotaInner innerObject, com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager serviceManager) {
+    QuotaImpl(QuotaInner innerObject,
+        com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.playwrighttesting.models.FreeTrialProperties;
 import com.azure.resourcemanager.playwrighttesting.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Quota properties. */
+/**
+ * Quota properties.
+ */
 @Fluent
 public final class QuotaProperties {
     /*
@@ -24,13 +26,15 @@ public final class QuotaProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of QuotaProperties class. */
+    /**
+     * Creates an instance of QuotaProperties class.
+     */
     public QuotaProperties() {
     }
 
     /**
      * Get the freeTrial property: The free-trial quota.
-     *
+     * 
      * @return the freeTrial value.
      */
     public FreeTrialProperties freeTrial() {
@@ -39,7 +43,7 @@ public final class QuotaProperties {
 
     /**
      * Set the freeTrial property: The free-trial quota.
-     *
+     * 
      * @param freeTrial the freeTrial value to set.
      * @return the QuotaProperties object itself.
      */
@@ -50,7 +54,7 @@ public final class QuotaProperties {
 
     /**
      * Get the provisioningState property: The status of the last operation.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -59,7 +63,7 @@ public final class QuotaProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

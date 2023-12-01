@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The type used for update operations of the Account. */
+/**
+ * The type used for update operations of the Account.
+ */
 @Fluent
 public final class AccountUpdate {
     /*
@@ -26,13 +28,15 @@ public final class AccountUpdate {
     @JsonProperty(value = "properties")
     private AccountUpdateProperties innerProperties;
 
-    /** Creates an instance of AccountUpdate class. */
+    /**
+     * Creates an instance of AccountUpdate class.
+     */
     public AccountUpdate() {
     }
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -41,7 +45,7 @@ public final class AccountUpdate {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the AccountUpdate object itself.
      */
@@ -52,7 +56,7 @@ public final class AccountUpdate {
 
     /**
      * Get the innerProperties property: The updatable properties of the Account.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AccountUpdateProperties innerProperties() {
@@ -64,7 +68,7 @@ public final class AccountUpdate {
      * cloud-hosted browsers. If enabled, workers connect to browsers in the closest Azure region, ensuring lower
      * latency. If disabled, workers connect to browsers in the Azure region in which the workspace was initially
      * created.
-     *
+     * 
      * @return the regionalAffinity value.
      */
     public EnablementStatus regionalAffinity() {
@@ -76,7 +80,7 @@ public final class AccountUpdate {
      * cloud-hosted browsers. If enabled, workers connect to browsers in the closest Azure region, ensuring lower
      * latency. If disabled, workers connect to browsers in the Azure region in which the workspace was initially
      * created.
-     *
+     * 
      * @param regionalAffinity the regionalAffinity value to set.
      * @return the AccountUpdate object itself.
      */
@@ -89,10 +93,10 @@ public final class AccountUpdate {
     }
 
     /**
-     * Get the scalableExecution property: When enabled, Playwright client workers can connect to cloud-hosted browsers.
-     * This can increase the number of parallel workers for a test run, significantly minimizing test completion
-     * durations.
-     *
+     * Get the scalableExecution property: When enabled, Playwright client workers can connect to cloud-hosted
+     * browsers. This can increase the number of parallel workers for a test run, significantly minimizing test
+     * completion durations.
+     * 
      * @return the scalableExecution value.
      */
     public EnablementStatus scalableExecution() {
@@ -100,10 +104,10 @@ public final class AccountUpdate {
     }
 
     /**
-     * Set the scalableExecution property: When enabled, Playwright client workers can connect to cloud-hosted browsers.
-     * This can increase the number of parallel workers for a test run, significantly minimizing test completion
-     * durations.
-     *
+     * Set the scalableExecution property: When enabled, Playwright client workers can connect to cloud-hosted
+     * browsers. This can increase the number of parallel workers for a test run, significantly minimizing test
+     * completion durations.
+     * 
      * @param scalableExecution the scalableExecution value to set.
      * @return the AccountUpdate object itself.
      */
@@ -117,9 +121,9 @@ public final class AccountUpdate {
 
     /**
      * Get the reporting property: When enabled, this feature allows the workspace to upload and display test results,
-     * including artifacts like traces and screenshots, in the Playwright portal. This enables faster and more efficient
-     * troubleshooting.
-     *
+     * including artifacts like traces and screenshots, in the Playwright portal. This enables faster and more
+     * efficient troubleshooting.
+     * 
      * @return the reporting value.
      */
     public EnablementStatus reporting() {
@@ -128,9 +132,9 @@ public final class AccountUpdate {
 
     /**
      * Set the reporting property: When enabled, this feature allows the workspace to upload and display test results,
-     * including artifacts like traces and screenshots, in the Playwright portal. This enables faster and more efficient
-     * troubleshooting.
-     *
+     * including artifacts like traces and screenshots, in the Playwright portal. This enables faster and more
+     * efficient troubleshooting.
+     * 
      * @param reporting the reporting value to set.
      * @return the AccountUpdate object itself.
      */
@@ -144,7 +148,7 @@ public final class AccountUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

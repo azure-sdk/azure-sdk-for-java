@@ -12,7 +12,9 @@ import com.azure.resourcemanager.playwrighttesting.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** An account resource. */
+/**
+ * An account resource.
+ */
 @Fluent
 public final class AccountInner extends Resource {
     /*
@@ -27,13 +29,15 @@ public final class AccountInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of AccountInner class. */
+    /**
+     * Creates an instance of AccountInner class.
+     */
     public AccountInner() {
     }
 
     /**
      * Get the innerProperties property: The resource-specific properties for this resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AccountProperties innerProperties() {
@@ -42,21 +46,25 @@ public final class AccountInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AccountInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AccountInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -65,7 +73,7 @@ public final class AccountInner extends Resource {
 
     /**
      * Get the dashboardUri property: The Playwright testing dashboard URI for the account resource.
-     *
+     * 
      * @return the dashboardUri value.
      */
     public String dashboardUri() {
@@ -77,7 +85,7 @@ public final class AccountInner extends Resource {
      * cloud-hosted browsers. If enabled, workers connect to browsers in the closest Azure region, ensuring lower
      * latency. If disabled, workers connect to browsers in the Azure region in which the workspace was initially
      * created.
-     *
+     * 
      * @return the regionalAffinity value.
      */
     public EnablementStatus regionalAffinity() {
@@ -89,7 +97,7 @@ public final class AccountInner extends Resource {
      * cloud-hosted browsers. If enabled, workers connect to browsers in the closest Azure region, ensuring lower
      * latency. If disabled, workers connect to browsers in the Azure region in which the workspace was initially
      * created.
-     *
+     * 
      * @param regionalAffinity the regionalAffinity value to set.
      * @return the AccountInner object itself.
      */
@@ -102,10 +110,10 @@ public final class AccountInner extends Resource {
     }
 
     /**
-     * Get the scalableExecution property: When enabled, Playwright client workers can connect to cloud-hosted browsers.
-     * This can increase the number of parallel workers for a test run, significantly minimizing test completion
-     * durations.
-     *
+     * Get the scalableExecution property: When enabled, Playwright client workers can connect to cloud-hosted
+     * browsers. This can increase the number of parallel workers for a test run, significantly minimizing test
+     * completion durations.
+     * 
      * @return the scalableExecution value.
      */
     public EnablementStatus scalableExecution() {
@@ -113,10 +121,10 @@ public final class AccountInner extends Resource {
     }
 
     /**
-     * Set the scalableExecution property: When enabled, Playwright client workers can connect to cloud-hosted browsers.
-     * This can increase the number of parallel workers for a test run, significantly minimizing test completion
-     * durations.
-     *
+     * Set the scalableExecution property: When enabled, Playwright client workers can connect to cloud-hosted
+     * browsers. This can increase the number of parallel workers for a test run, significantly minimizing test
+     * completion durations.
+     * 
      * @param scalableExecution the scalableExecution value to set.
      * @return the AccountInner object itself.
      */
@@ -130,9 +138,9 @@ public final class AccountInner extends Resource {
 
     /**
      * Get the reporting property: When enabled, this feature allows the workspace to upload and display test results,
-     * including artifacts like traces and screenshots, in the Playwright portal. This enables faster and more efficient
-     * troubleshooting.
-     *
+     * including artifacts like traces and screenshots, in the Playwright portal. This enables faster and more
+     * efficient troubleshooting.
+     * 
      * @return the reporting value.
      */
     public EnablementStatus reporting() {
@@ -141,9 +149,9 @@ public final class AccountInner extends Resource {
 
     /**
      * Set the reporting property: When enabled, this feature allows the workspace to upload and display test results,
-     * including artifacts like traces and screenshots, in the Playwright portal. This enables faster and more efficient
-     * troubleshooting.
-     *
+     * including artifacts like traces and screenshots, in the Playwright portal. This enables faster and more
+     * efficient troubleshooting.
+     * 
      * @param reporting the reporting value to set.
      * @return the AccountInner object itself.
      */
@@ -157,7 +165,7 @@ public final class AccountInner extends Resource {
 
     /**
      * Get the provisioningState property: The status of the last operation.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -166,7 +174,7 @@ public final class AccountInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

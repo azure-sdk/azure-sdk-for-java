@@ -9,7 +9,9 @@ import com.azure.resourcemanager.playwrighttesting.models.EnablementStatus;
 import com.azure.resourcemanager.playwrighttesting.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Account properties. */
+/**
+ * Account properties.
+ */
 @Fluent
 public final class AccountProperties {
     /*
@@ -46,13 +48,15 @@ public final class AccountProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of AccountProperties class. */
+    /**
+     * Creates an instance of AccountProperties class.
+     */
     public AccountProperties() {
     }
 
     /**
      * Get the dashboardUri property: The Playwright testing dashboard URI for the account resource.
-     *
+     * 
      * @return the dashboardUri value.
      */
     public String dashboardUri() {
@@ -64,7 +68,7 @@ public final class AccountProperties {
      * cloud-hosted browsers. If enabled, workers connect to browsers in the closest Azure region, ensuring lower
      * latency. If disabled, workers connect to browsers in the Azure region in which the workspace was initially
      * created.
-     *
+     * 
      * @return the regionalAffinity value.
      */
     public EnablementStatus regionalAffinity() {
@@ -76,7 +80,7 @@ public final class AccountProperties {
      * cloud-hosted browsers. If enabled, workers connect to browsers in the closest Azure region, ensuring lower
      * latency. If disabled, workers connect to browsers in the Azure region in which the workspace was initially
      * created.
-     *
+     * 
      * @param regionalAffinity the regionalAffinity value to set.
      * @return the AccountProperties object itself.
      */
@@ -86,10 +90,10 @@ public final class AccountProperties {
     }
 
     /**
-     * Get the scalableExecution property: When enabled, Playwright client workers can connect to cloud-hosted browsers.
-     * This can increase the number of parallel workers for a test run, significantly minimizing test completion
-     * durations.
-     *
+     * Get the scalableExecution property: When enabled, Playwright client workers can connect to cloud-hosted
+     * browsers. This can increase the number of parallel workers for a test run, significantly minimizing test
+     * completion durations.
+     * 
      * @return the scalableExecution value.
      */
     public EnablementStatus scalableExecution() {
@@ -97,10 +101,10 @@ public final class AccountProperties {
     }
 
     /**
-     * Set the scalableExecution property: When enabled, Playwright client workers can connect to cloud-hosted browsers.
-     * This can increase the number of parallel workers for a test run, significantly minimizing test completion
-     * durations.
-     *
+     * Set the scalableExecution property: When enabled, Playwright client workers can connect to cloud-hosted
+     * browsers. This can increase the number of parallel workers for a test run, significantly minimizing test
+     * completion durations.
+     * 
      * @param scalableExecution the scalableExecution value to set.
      * @return the AccountProperties object itself.
      */
@@ -111,9 +115,9 @@ public final class AccountProperties {
 
     /**
      * Get the reporting property: When enabled, this feature allows the workspace to upload and display test results,
-     * including artifacts like traces and screenshots, in the Playwright portal. This enables faster and more efficient
-     * troubleshooting.
-     *
+     * including artifacts like traces and screenshots, in the Playwright portal. This enables faster and more
+     * efficient troubleshooting.
+     * 
      * @return the reporting value.
      */
     public EnablementStatus reporting() {
@@ -122,9 +126,9 @@ public final class AccountProperties {
 
     /**
      * Set the reporting property: When enabled, this feature allows the workspace to upload and display test results,
-     * including artifacts like traces and screenshots, in the Playwright portal. This enables faster and more efficient
-     * troubleshooting.
-     *
+     * including artifacts like traces and screenshots, in the Playwright portal. This enables faster and more
+     * efficient troubleshooting.
+     * 
      * @param reporting the reporting value to set.
      * @return the AccountProperties object itself.
      */
@@ -135,7 +139,7 @@ public final class AccountProperties {
 
     /**
      * Get the provisioningState property: The status of the last operation.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -144,7 +148,7 @@ public final class AccountProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
