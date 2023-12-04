@@ -15,7 +15,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** BareMetalMachineKeySetProperties represents the properties of bare metal machine key set. */
+/**
+ * BareMetalMachineKeySetProperties represents the properties of bare metal machine key set.
+ */
 @Fluent
 public final class BareMetalMachineKeySetProperties {
     /*
@@ -86,14 +88,16 @@ public final class BareMetalMachineKeySetProperties {
     @JsonProperty(value = "userListStatus", access = JsonProperty.Access.WRITE_ONLY)
     private List<KeySetUserStatus> userListStatus;
 
-    /** Creates an instance of BareMetalMachineKeySetProperties class. */
+    /**
+     * Creates an instance of BareMetalMachineKeySetProperties class.
+     */
     public BareMetalMachineKeySetProperties() {
     }
 
     /**
      * Get the azureGroupId property: The object ID of Azure Active Directory group that all users in the list must be
      * in for access to be granted. Users that are not in the group will not have access.
-     *
+     * 
      * @return the azureGroupId value.
      */
     public String azureGroupId() {
@@ -103,7 +107,7 @@ public final class BareMetalMachineKeySetProperties {
     /**
      * Set the azureGroupId property: The object ID of Azure Active Directory group that all users in the list must be
      * in for access to be granted. Users that are not in the group will not have access.
-     *
+     * 
      * @param azureGroupId the azureGroupId value to set.
      * @return the BareMetalMachineKeySetProperties object itself.
      */
@@ -114,7 +118,7 @@ public final class BareMetalMachineKeySetProperties {
 
     /**
      * Get the detailedStatus property: The more detailed status of the key set.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public BareMetalMachineKeySetDetailedStatus detailedStatus() {
@@ -123,7 +127,7 @@ public final class BareMetalMachineKeySetProperties {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -133,7 +137,7 @@ public final class BareMetalMachineKeySetProperties {
     /**
      * Get the expiration property: The date and time after which the users in this key set will be removed from the
      * bare metal machines.
-     *
+     * 
      * @return the expiration value.
      */
     public OffsetDateTime expiration() {
@@ -143,7 +147,7 @@ public final class BareMetalMachineKeySetProperties {
     /**
      * Set the expiration property: The date and time after which the users in this key set will be removed from the
      * bare metal machines.
-     *
+     * 
      * @param expiration the expiration value to set.
      * @return the BareMetalMachineKeySetProperties object itself.
      */
@@ -155,7 +159,7 @@ public final class BareMetalMachineKeySetProperties {
     /**
      * Get the jumpHostsAllowed property: The list of IP addresses of jump hosts with management network access from
      * which a login will be allowed for the users.
-     *
+     * 
      * @return the jumpHostsAllowed value.
      */
     public List<String> jumpHostsAllowed() {
@@ -165,7 +169,7 @@ public final class BareMetalMachineKeySetProperties {
     /**
      * Set the jumpHostsAllowed property: The list of IP addresses of jump hosts with management network access from
      * which a login will be allowed for the users.
-     *
+     * 
      * @param jumpHostsAllowed the jumpHostsAllowed value to set.
      * @return the BareMetalMachineKeySetProperties object itself.
      */
@@ -176,7 +180,7 @@ public final class BareMetalMachineKeySetProperties {
 
     /**
      * Get the lastValidation property: The last time this key set was validated.
-     *
+     * 
      * @return the lastValidation value.
      */
     public OffsetDateTime lastValidation() {
@@ -184,9 +188,9 @@ public final class BareMetalMachineKeySetProperties {
     }
 
     /**
-     * Get the osGroupName property: The name of the group that users will be assigned to on the operating system of the
-     * machines.
-     *
+     * Get the osGroupName property: The name of the group that users will be assigned to on the operating system of
+     * the machines.
+     * 
      * @return the osGroupName value.
      */
     public String osGroupName() {
@@ -194,9 +198,9 @@ public final class BareMetalMachineKeySetProperties {
     }
 
     /**
-     * Set the osGroupName property: The name of the group that users will be assigned to on the operating system of the
-     * machines.
-     *
+     * Set the osGroupName property: The name of the group that users will be assigned to on the operating system of
+     * the machines.
+     * 
      * @param osGroupName the osGroupName value to set.
      * @return the BareMetalMachineKeySetProperties object itself.
      */
@@ -207,7 +211,7 @@ public final class BareMetalMachineKeySetProperties {
 
     /**
      * Get the privilegeLevel property: The access level allowed for the users in this key set.
-     *
+     * 
      * @return the privilegeLevel value.
      */
     public BareMetalMachineKeySetPrivilegeLevel privilegeLevel() {
@@ -216,7 +220,7 @@ public final class BareMetalMachineKeySetProperties {
 
     /**
      * Set the privilegeLevel property: The access level allowed for the users in this key set.
-     *
+     * 
      * @param privilegeLevel the privilegeLevel value to set.
      * @return the BareMetalMachineKeySetProperties object itself.
      */
@@ -227,7 +231,7 @@ public final class BareMetalMachineKeySetProperties {
 
     /**
      * Get the provisioningState property: The provisioning state of the bare metal machine key set.
-     *
+     * 
      * @return the provisioningState value.
      */
     public BareMetalMachineKeySetProvisioningState provisioningState() {
@@ -236,7 +240,7 @@ public final class BareMetalMachineKeySetProperties {
 
     /**
      * Get the userList property: The unique list of permitted users.
-     *
+     * 
      * @return the userList value.
      */
     public List<KeySetUser> userList() {
@@ -245,7 +249,7 @@ public final class BareMetalMachineKeySetProperties {
 
     /**
      * Set the userList property: The unique list of permitted users.
-     *
+     * 
      * @param userList the userList value to set.
      * @return the BareMetalMachineKeySetProperties object itself.
      */
@@ -256,7 +260,7 @@ public final class BareMetalMachineKeySetProperties {
 
     /**
      * Get the userListStatus property: The status evaluation of each user.
-     *
+     * 
      * @return the userListStatus value.
      */
     public List<KeySetUserStatus> userListStatus() {
@@ -265,39 +269,29 @@ public final class BareMetalMachineKeySetProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (azureGroupId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property azureGroupId in model BareMetalMachineKeySetProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property azureGroupId in model BareMetalMachineKeySetProperties"));
         }
         if (expiration() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property expiration in model BareMetalMachineKeySetProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property expiration in model BareMetalMachineKeySetProperties"));
         }
         if (jumpHostsAllowed() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property jumpHostsAllowed in model BareMetalMachineKeySetProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property jumpHostsAllowed in model BareMetalMachineKeySetProperties"));
         }
         if (privilegeLevel() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property privilegeLevel in model BareMetalMachineKeySetProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property privilegeLevel in model BareMetalMachineKeySetProperties"));
         }
         if (userList() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property userList in model BareMetalMachineKeySetProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property userList in model BareMetalMachineKeySetProperties"));
         } else {
             userList().forEach(e -> e.validate());
         }

@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * BareMetalMachineCommandSpecification represents the command and optional arguments to exercise against the bare metal
- * machine.
+ * BareMetalMachineCommandSpecification represents the command and optional arguments to exercise against the bare
+ * metal machine.
  */
 @Fluent
 public final class BareMetalMachineCommandSpecification {
@@ -27,14 +27,16 @@ public final class BareMetalMachineCommandSpecification {
     @JsonProperty(value = "command", required = true)
     private String command;
 
-    /** Creates an instance of BareMetalMachineCommandSpecification class. */
+    /**
+     * Creates an instance of BareMetalMachineCommandSpecification class.
+     */
     public BareMetalMachineCommandSpecification() {
     }
 
     /**
      * Get the arguments property: The list of string arguments that will be passed to the script in order as separate
      * arguments.
-     *
+     * 
      * @return the arguments value.
      */
     public List<String> arguments() {
@@ -44,7 +46,7 @@ public final class BareMetalMachineCommandSpecification {
     /**
      * Set the arguments property: The list of string arguments that will be passed to the script in order as separate
      * arguments.
-     *
+     * 
      * @param arguments the arguments value to set.
      * @return the BareMetalMachineCommandSpecification object itself.
      */
@@ -55,7 +57,7 @@ public final class BareMetalMachineCommandSpecification {
 
     /**
      * Get the command property: The command to execute against the bare metal machine.
-     *
+     * 
      * @return the command value.
      */
     public String command() {
@@ -64,7 +66,7 @@ public final class BareMetalMachineCommandSpecification {
 
     /**
      * Set the command property: The command to execute against the bare metal machine.
-     *
+     * 
      * @param command the command value to set.
      * @return the BareMetalMachineCommandSpecification object itself.
      */
@@ -75,15 +77,13 @@ public final class BareMetalMachineCommandSpecification {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (command() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property command in model BareMetalMachineCommandSpecification"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property command in model BareMetalMachineCommandSpecification"));
         }
     }
 

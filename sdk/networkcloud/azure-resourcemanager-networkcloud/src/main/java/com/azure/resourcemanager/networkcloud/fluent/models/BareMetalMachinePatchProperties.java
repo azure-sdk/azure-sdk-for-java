@@ -7,7 +7,9 @@ package com.azure.resourcemanager.networkcloud.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** BareMetalMachinePatchProperties represents the properties of the bare metal machine that can be patched. */
+/**
+ * BareMetalMachinePatchProperties represents the properties of the bare metal machine that can be patched.
+ */
 @Fluent
 public final class BareMetalMachinePatchProperties {
     /*
@@ -17,14 +19,16 @@ public final class BareMetalMachinePatchProperties {
     @JsonProperty(value = "machineDetails")
     private String machineDetails;
 
-    /** Creates an instance of BareMetalMachinePatchProperties class. */
+    /**
+     * Creates an instance of BareMetalMachinePatchProperties class.
+     */
     public BareMetalMachinePatchProperties() {
     }
 
     /**
-     * Get the machineDetails property: The details provided by the customer during the creation of rack manifests that
-     * allows for custom data to be associated with this machine.
-     *
+     * Get the machineDetails property: The details provided by the customer during the creation of rack manifests
+     * that allows for custom data to be associated with this machine.
+     * 
      * @return the machineDetails value.
      */
     public String machineDetails() {
@@ -32,9 +36,9 @@ public final class BareMetalMachinePatchProperties {
     }
 
     /**
-     * Set the machineDetails property: The details provided by the customer during the creation of rack manifests that
-     * allows for custom data to be associated with this machine.
-     *
+     * Set the machineDetails property: The details provided by the customer during the creation of rack manifests
+     * that allows for custom data to be associated with this machine.
+     * 
      * @param machineDetails the machineDetails value to set.
      * @return the BareMetalMachinePatchProperties object itself.
      */
@@ -45,7 +49,7 @@ public final class BareMetalMachinePatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

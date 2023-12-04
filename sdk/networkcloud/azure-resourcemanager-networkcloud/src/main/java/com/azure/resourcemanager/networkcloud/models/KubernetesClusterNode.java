@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** KubernetesClusterNode represents the details of a node in a Kubernetes cluster. */
+/**
+ * KubernetesClusterNode represents the details of a node in a Kubernetes cluster.
+ */
 @Immutable
 public final class KubernetesClusterNode {
     /*
@@ -120,14 +122,16 @@ public final class KubernetesClusterNode {
     @JsonProperty(value = "vmSkuName", access = JsonProperty.Access.WRITE_ONLY)
     private String vmSkuName;
 
-    /** Creates an instance of KubernetesClusterNode class. */
+    /**
+     * Creates an instance of KubernetesClusterNode class.
+     */
     public KubernetesClusterNode() {
     }
 
     /**
      * Get the agentPoolId property: The resource ID of the agent pool that this node belongs to. This value is not
      * represented on control plane nodes.
-     *
+     * 
      * @return the agentPoolId value.
      */
     public String agentPoolId() {
@@ -136,7 +140,7 @@ public final class KubernetesClusterNode {
 
     /**
      * Get the availabilityZone property: The availability zone this node is running within.
-     *
+     * 
      * @return the availabilityZone value.
      */
     public String availabilityZone() {
@@ -145,7 +149,7 @@ public final class KubernetesClusterNode {
 
     /**
      * Get the bareMetalMachineId property: The resource ID of the bare metal machine that hosts this node.
-     *
+     * 
      * @return the bareMetalMachineId value.
      */
     public String bareMetalMachineId() {
@@ -154,7 +158,7 @@ public final class KubernetesClusterNode {
 
     /**
      * Get the cpuCores property: The number of CPU cores configured for this node, derived from the VM SKU specified.
-     *
+     * 
      * @return the cpuCores value.
      */
     public Long cpuCores() {
@@ -163,7 +167,7 @@ public final class KubernetesClusterNode {
 
     /**
      * Get the detailedStatus property: The detailed state of this node.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public KubernetesClusterNodeDetailedStatus detailedStatus() {
@@ -172,7 +176,7 @@ public final class KubernetesClusterNode {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -181,7 +185,7 @@ public final class KubernetesClusterNode {
 
     /**
      * Get the diskSizeGB property: The size of the disk configured for this node.
-     *
+     * 
      * @return the diskSizeGB value.
      */
     public Long diskSizeGB() {
@@ -190,7 +194,7 @@ public final class KubernetesClusterNode {
 
     /**
      * Get the image property: The machine image used to deploy this node.
-     *
+     * 
      * @return the image value.
      */
     public String image() {
@@ -200,7 +204,7 @@ public final class KubernetesClusterNode {
     /**
      * Get the kubernetesVersion property: The currently running version of Kubernetes and bundled features running on
      * this node.
-     *
+     * 
      * @return the kubernetesVersion value.
      */
     public String kubernetesVersion() {
@@ -210,7 +214,7 @@ public final class KubernetesClusterNode {
     /**
      * Get the labels property: The list of labels on this node that have been assigned to the agent pool containing
      * this node.
-     *
+     * 
      * @return the labels value.
      */
     public List<KubernetesLabel> labels() {
@@ -219,7 +223,7 @@ public final class KubernetesClusterNode {
 
     /**
      * Get the memorySizeGB property: The amount of memory configured for this node, derived from the vm SKU specified.
-     *
+     * 
      * @return the memorySizeGB value.
      */
     public Long memorySizeGB() {
@@ -228,7 +232,7 @@ public final class KubernetesClusterNode {
 
     /**
      * Get the mode property: The mode of the agent pool containing this node. Not applicable for control plane nodes.
-     *
+     * 
      * @return the mode value.
      */
     public AgentPoolMode mode() {
@@ -237,7 +241,7 @@ public final class KubernetesClusterNode {
 
     /**
      * Get the name property: The name of this node, as realized in the Kubernetes cluster.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -246,7 +250,7 @@ public final class KubernetesClusterNode {
 
     /**
      * Get the networkAttachments property: The NetworkAttachments made to this node.
-     *
+     * 
      * @return the networkAttachments value.
      */
     public List<NetworkAttachment> networkAttachments() {
@@ -255,7 +259,7 @@ public final class KubernetesClusterNode {
 
     /**
      * Get the powerState property: The power state of this node.
-     *
+     * 
      * @return the powerState value.
      */
     public KubernetesNodePowerState powerState() {
@@ -264,7 +268,7 @@ public final class KubernetesClusterNode {
 
     /**
      * Get the role property: The role of this node in the cluster.
-     *
+     * 
      * @return the role value.
      */
     public KubernetesNodeRole role() {
@@ -273,7 +277,7 @@ public final class KubernetesClusterNode {
 
     /**
      * Get the taints property: The list of taints that have been assigned to the agent pool containing this node.
-     *
+     * 
      * @return the taints value.
      */
     public List<KubernetesLabel> taints() {
@@ -282,7 +286,7 @@ public final class KubernetesClusterNode {
 
     /**
      * Get the vmSkuName property: The VM SKU name that was used to create this cluster node.
-     *
+     * 
      * @return the vmSkuName value.
      */
     public String vmSkuName() {
@@ -291,7 +295,7 @@ public final class KubernetesClusterNode {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

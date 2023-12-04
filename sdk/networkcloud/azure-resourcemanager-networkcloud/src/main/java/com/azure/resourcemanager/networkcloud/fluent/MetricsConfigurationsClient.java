@@ -14,47 +14,49 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.networkcloud.fluent.models.ClusterMetricsConfigurationInner;
 import com.azure.resourcemanager.networkcloud.models.ClusterMetricsConfigurationPatchParameters;
 
-/** An instance of this class provides access to all the operations defined in MetricsConfigurationsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in MetricsConfigurationsClient.
+ */
 public interface MetricsConfigurationsClient {
     /**
      * List metrics configurations of the cluster.
-     *
-     * <p>Get a list of metrics configurations for the provided cluster.
-     *
+     * 
+     * Get a list of metrics configurations for the provided cluster.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of metrics configurations for the provided cluster as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of metrics configurations for the provided cluster as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ClusterMetricsConfigurationInner> listByCluster(String resourceGroupName, String clusterName);
 
     /**
      * List metrics configurations of the cluster.
-     *
-     * <p>Get a list of metrics configurations for the provided cluster.
-     *
+     * 
+     * Get a list of metrics configurations for the provided cluster.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of metrics configurations for the provided cluster as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of metrics configurations for the provided cluster as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ClusterMetricsConfigurationInner> listByCluster(
-        String resourceGroupName, String clusterName, Context context);
+    PagedIterable<ClusterMetricsConfigurationInner> listByCluster(String resourceGroupName, String clusterName,
+        Context context);
 
     /**
      * Retrieve the metrics configuration of the cluster.
-     *
-     * <p>Get metrics configuration of the provided cluster.
-     *
+     * 
+     * Get metrics configuration of the provided cluster.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
@@ -65,14 +67,14 @@ public interface MetricsConfigurationsClient {
      * @return metrics configuration of the provided cluster along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ClusterMetricsConfigurationInner> getWithResponse(
-        String resourceGroupName, String clusterName, String metricsConfigurationName, Context context);
+    Response<ClusterMetricsConfigurationInner> getWithResponse(String resourceGroupName, String clusterName,
+        String metricsConfigurationName, Context context);
 
     /**
      * Retrieve the metrics configuration of the cluster.
-     *
-     * <p>Get metrics configuration of the provided cluster.
-     *
+     * 
+     * Get metrics configuration of the provided cluster.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
@@ -86,9 +88,9 @@ public interface MetricsConfigurationsClient {
 
     /**
      * Create or update metrics configuration of the cluster.
-     *
-     * <p>Create new or update the existing metrics configuration of the provided cluster.
-     *
+     * 
+     * Create new or update the existing metrics configuration of the provided cluster.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
@@ -97,20 +99,18 @@ public interface MetricsConfigurationsClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of clusterMetricsConfiguration represents the metrics configuration of
-     *     an on-premises Network Cloud cluster.
+     * an on-premises Network Cloud cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ClusterMetricsConfigurationInner>, ClusterMetricsConfigurationInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String clusterName,
-        String metricsConfigurationName,
+        String resourceGroupName, String clusterName, String metricsConfigurationName,
         ClusterMetricsConfigurationInner metricsConfigurationParameters);
 
     /**
      * Create or update metrics configuration of the cluster.
-     *
-     * <p>Create new or update the existing metrics configuration of the provided cluster.
-     *
+     * 
+     * Create new or update the existing metrics configuration of the provided cluster.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
@@ -120,21 +120,18 @@ public interface MetricsConfigurationsClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of clusterMetricsConfiguration represents the metrics configuration of
-     *     an on-premises Network Cloud cluster.
+     * an on-premises Network Cloud cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ClusterMetricsConfigurationInner>, ClusterMetricsConfigurationInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String clusterName,
-        String metricsConfigurationName,
-        ClusterMetricsConfigurationInner metricsConfigurationParameters,
-        Context context);
+        String resourceGroupName, String clusterName, String metricsConfigurationName,
+        ClusterMetricsConfigurationInner metricsConfigurationParameters, Context context);
 
     /**
      * Create or update metrics configuration of the cluster.
-     *
-     * <p>Create new or update the existing metrics configuration of the provided cluster.
-     *
+     * 
+     * Create new or update the existing metrics configuration of the provided cluster.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
@@ -145,17 +142,14 @@ public interface MetricsConfigurationsClient {
      * @return clusterMetricsConfiguration represents the metrics configuration of an on-premises Network Cloud cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ClusterMetricsConfigurationInner createOrUpdate(
-        String resourceGroupName,
-        String clusterName,
-        String metricsConfigurationName,
-        ClusterMetricsConfigurationInner metricsConfigurationParameters);
+    ClusterMetricsConfigurationInner createOrUpdate(String resourceGroupName, String clusterName,
+        String metricsConfigurationName, ClusterMetricsConfigurationInner metricsConfigurationParameters);
 
     /**
      * Create or update metrics configuration of the cluster.
-     *
-     * <p>Create new or update the existing metrics configuration of the provided cluster.
-     *
+     * 
+     * Create new or update the existing metrics configuration of the provided cluster.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
@@ -167,18 +161,15 @@ public interface MetricsConfigurationsClient {
      * @return clusterMetricsConfiguration represents the metrics configuration of an on-premises Network Cloud cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ClusterMetricsConfigurationInner createOrUpdate(
-        String resourceGroupName,
-        String clusterName,
-        String metricsConfigurationName,
-        ClusterMetricsConfigurationInner metricsConfigurationParameters,
+    ClusterMetricsConfigurationInner createOrUpdate(String resourceGroupName, String clusterName,
+        String metricsConfigurationName, ClusterMetricsConfigurationInner metricsConfigurationParameters,
         Context context);
 
     /**
      * Delete the metrics configuration of the cluster.
-     *
-     * <p>Delete the metrics configuration of the provided cluster.
-     *
+     * 
+     * Delete the metrics configuration of the provided cluster.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
@@ -188,14 +179,14 @@ public interface MetricsConfigurationsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String clusterName, String metricsConfigurationName);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String clusterName,
+        String metricsConfigurationName);
 
     /**
      * Delete the metrics configuration of the cluster.
-     *
-     * <p>Delete the metrics configuration of the provided cluster.
-     *
+     * 
+     * Delete the metrics configuration of the provided cluster.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
@@ -206,14 +197,14 @@ public interface MetricsConfigurationsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String clusterName, String metricsConfigurationName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String clusterName,
+        String metricsConfigurationName, Context context);
 
     /**
      * Delete the metrics configuration of the cluster.
-     *
-     * <p>Delete the metrics configuration of the provided cluster.
-     *
+     * 
+     * Delete the metrics configuration of the provided cluster.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
@@ -226,9 +217,9 @@ public interface MetricsConfigurationsClient {
 
     /**
      * Delete the metrics configuration of the cluster.
-     *
-     * <p>Delete the metrics configuration of the provided cluster.
-     *
+     * 
+     * Delete the metrics configuration of the provided cluster.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
@@ -242,10 +233,10 @@ public interface MetricsConfigurationsClient {
 
     /**
      * Patch metrics configuration of the cluster.
-     *
-     * <p>Patch properties of metrics configuration for the provided cluster, or update the tags associated with it.
+     * 
+     * Patch properties of metrics configuration for the provided cluster, or update the tags associated with it.
      * Properties and tag updates can be done independently.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
@@ -253,18 +244,18 @@ public interface MetricsConfigurationsClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of clusterMetricsConfiguration represents the metrics configuration of
-     *     an on-premises Network Cloud cluster.
+     * an on-premises Network Cloud cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ClusterMetricsConfigurationInner>, ClusterMetricsConfigurationInner> beginUpdate(
-        String resourceGroupName, String clusterName, String metricsConfigurationName);
+    SyncPoller<PollResult<ClusterMetricsConfigurationInner>, ClusterMetricsConfigurationInner>
+        beginUpdate(String resourceGroupName, String clusterName, String metricsConfigurationName);
 
     /**
      * Patch metrics configuration of the cluster.
-     *
-     * <p>Patch properties of metrics configuration for the provided cluster, or update the tags associated with it.
+     * 
+     * Patch properties of metrics configuration for the provided cluster, or update the tags associated with it.
      * Properties and tag updates can be done independently.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
@@ -274,22 +265,19 @@ public interface MetricsConfigurationsClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of clusterMetricsConfiguration represents the metrics configuration of
-     *     an on-premises Network Cloud cluster.
+     * an on-premises Network Cloud cluster.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ClusterMetricsConfigurationInner>, ClusterMetricsConfigurationInner> beginUpdate(
-        String resourceGroupName,
-        String clusterName,
-        String metricsConfigurationName,
-        ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters,
-        Context context);
+        String resourceGroupName, String clusterName, String metricsConfigurationName,
+        ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters, Context context);
 
     /**
      * Patch metrics configuration of the cluster.
-     *
-     * <p>Patch properties of metrics configuration for the provided cluster, or update the tags associated with it.
+     * 
+     * Patch properties of metrics configuration for the provided cluster, or update the tags associated with it.
      * Properties and tag updates can be done independently.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
@@ -299,15 +287,15 @@ public interface MetricsConfigurationsClient {
      * @return clusterMetricsConfiguration represents the metrics configuration of an on-premises Network Cloud cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ClusterMetricsConfigurationInner update(
-        String resourceGroupName, String clusterName, String metricsConfigurationName);
+    ClusterMetricsConfigurationInner update(String resourceGroupName, String clusterName,
+        String metricsConfigurationName);
 
     /**
      * Patch metrics configuration of the cluster.
-     *
-     * <p>Patch properties of metrics configuration for the provided cluster, or update the tags associated with it.
+     * 
+     * Patch properties of metrics configuration for the provided cluster, or update the tags associated with it.
      * Properties and tag updates can be done independently.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
      * @param metricsConfigurationName The name of the metrics configuration for the cluster.
@@ -319,10 +307,7 @@ public interface MetricsConfigurationsClient {
      * @return clusterMetricsConfiguration represents the metrics configuration of an on-premises Network Cloud cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ClusterMetricsConfigurationInner update(
-        String resourceGroupName,
-        String clusterName,
+    ClusterMetricsConfigurationInner update(String resourceGroupName, String clusterName,
         String metricsConfigurationName,
-        ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters,
-        Context context);
+        ClusterMetricsConfigurationPatchParameters metricsConfigurationUpdateParameters, Context context);
 }

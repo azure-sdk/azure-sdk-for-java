@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** VirtualMachinePlacementHint represents a single scheduling hint of the virtual machine. */
+/**
+ * VirtualMachinePlacementHint represents a single scheduling hint of the virtual machine.
+ */
 @Fluent
 public final class VirtualMachinePlacementHint {
     /*
@@ -37,14 +39,16 @@ public final class VirtualMachinePlacementHint {
     @JsonProperty(value = "scope", required = true)
     private VirtualMachinePlacementHintPodAffinityScope scope;
 
-    /** Creates an instance of VirtualMachinePlacementHint class. */
+    /**
+     * Creates an instance of VirtualMachinePlacementHint class.
+     */
     public VirtualMachinePlacementHint() {
     }
 
     /**
      * Get the hintType property: The specification of whether this hint supports affinity or anti-affinity with the
      * referenced resources.
-     *
+     * 
      * @return the hintType value.
      */
     public VirtualMachinePlacementHintType hintType() {
@@ -54,7 +58,7 @@ public final class VirtualMachinePlacementHint {
     /**
      * Set the hintType property: The specification of whether this hint supports affinity or anti-affinity with the
      * referenced resources.
-     *
+     * 
      * @param hintType the hintType value to set.
      * @return the VirtualMachinePlacementHint object itself.
      */
@@ -66,7 +70,7 @@ public final class VirtualMachinePlacementHint {
     /**
      * Get the resourceId property: The resource ID of the target object that the placement hints will be checked
      * against, e.g., the bare metal node to host the virtual machine.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -76,7 +80,7 @@ public final class VirtualMachinePlacementHint {
     /**
      * Set the resourceId property: The resource ID of the target object that the placement hints will be checked
      * against, e.g., the bare metal node to host the virtual machine.
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the VirtualMachinePlacementHint object itself.
      */
@@ -88,7 +92,7 @@ public final class VirtualMachinePlacementHint {
     /**
      * Get the schedulingExecution property: The indicator of whether the hint is a hard or soft requirement during
      * scheduling.
-     *
+     * 
      * @return the schedulingExecution value.
      */
     public VirtualMachineSchedulingExecution schedulingExecution() {
@@ -98,7 +102,7 @@ public final class VirtualMachinePlacementHint {
     /**
      * Set the schedulingExecution property: The indicator of whether the hint is a hard or soft requirement during
      * scheduling.
-     *
+     * 
      * @param schedulingExecution the schedulingExecution value to set.
      * @return the VirtualMachinePlacementHint object itself.
      */
@@ -110,7 +114,7 @@ public final class VirtualMachinePlacementHint {
     /**
      * Get the scope property: The scope for the virtual machine affinity or anti-affinity placement hint. It should
      * always be "Machine" in the case of node affinity.
-     *
+     * 
      * @return the scope value.
      */
     public VirtualMachinePlacementHintPodAffinityScope scope() {
@@ -120,7 +124,7 @@ public final class VirtualMachinePlacementHint {
     /**
      * Set the scope property: The scope for the virtual machine affinity or anti-affinity placement hint. It should
      * always be "Machine" in the case of node affinity.
-     *
+     * 
      * @param scope the scope value to set.
      * @return the VirtualMachinePlacementHint object itself.
      */
@@ -131,33 +135,25 @@ public final class VirtualMachinePlacementHint {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (hintType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property hintType in model VirtualMachinePlacementHint"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property hintType in model VirtualMachinePlacementHint"));
         }
         if (resourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property resourceId in model VirtualMachinePlacementHint"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property resourceId in model VirtualMachinePlacementHint"));
         }
         if (schedulingExecution() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property schedulingExecution in model VirtualMachinePlacementHint"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property schedulingExecution in model VirtualMachinePlacementHint"));
         }
         if (scope() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property scope in model VirtualMachinePlacementHint"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property scope in model VirtualMachinePlacementHint"));
         }
     }
 

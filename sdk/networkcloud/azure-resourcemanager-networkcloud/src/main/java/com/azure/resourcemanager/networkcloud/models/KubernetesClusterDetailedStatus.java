@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The current status of the Kubernetes cluster. */
+/**
+ * The current status of the Kubernetes cluster.
+ */
 public final class KubernetesClusterDetailedStatus extends ExpandableStringEnum<KubernetesClusterDetailedStatus> {
-    /** Static value Available for KubernetesClusterDetailedStatus. */
+    /**
+     * Static value Available for KubernetesClusterDetailedStatus.
+     */
     public static final KubernetesClusterDetailedStatus AVAILABLE = fromString("Available");
 
-    /** Static value Error for KubernetesClusterDetailedStatus. */
+    /**
+     * Static value Error for KubernetesClusterDetailedStatus.
+     */
     public static final KubernetesClusterDetailedStatus ERROR = fromString("Error");
 
-    /** Static value Provisioning for KubernetesClusterDetailedStatus. */
+    /**
+     * Static value Provisioning for KubernetesClusterDetailedStatus.
+     */
     public static final KubernetesClusterDetailedStatus PROVISIONING = fromString("Provisioning");
 
     /**
      * Creates a new instance of KubernetesClusterDetailedStatus value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class KubernetesClusterDetailedStatus extends ExpandableStringEnum<
 
     /**
      * Creates or finds a KubernetesClusterDetailedStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding KubernetesClusterDetailedStatus.
      */
@@ -41,7 +49,7 @@ public final class KubernetesClusterDetailedStatus extends ExpandableStringEnum<
 
     /**
      * Gets known KubernetesClusterDetailedStatus values.
-     *
+     * 
      * @return known KubernetesClusterDetailedStatus values.
      */
     public static Collection<KubernetesClusterDetailedStatus> values() {

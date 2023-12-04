@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The status representing the state of this feature. */
+/**
+ * The status representing the state of this feature.
+ */
 public final class FeatureDetailedStatus extends ExpandableStringEnum<FeatureDetailedStatus> {
-    /** Static value Running for FeatureDetailedStatus. */
+    /**
+     * Static value Running for FeatureDetailedStatus.
+     */
     public static final FeatureDetailedStatus RUNNING = fromString("Running");
 
-    /** Static value Failed for FeatureDetailedStatus. */
+    /**
+     * Static value Failed for FeatureDetailedStatus.
+     */
     public static final FeatureDetailedStatus FAILED = fromString("Failed");
 
-    /** Static value Unknown for FeatureDetailedStatus. */
+    /**
+     * Static value Unknown for FeatureDetailedStatus.
+     */
     public static final FeatureDetailedStatus UNKNOWN = fromString("Unknown");
 
     /**
      * Creates a new instance of FeatureDetailedStatus value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class FeatureDetailedStatus extends ExpandableStringEnum<FeatureDet
 
     /**
      * Creates or finds a FeatureDetailedStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding FeatureDetailedStatus.
      */
@@ -41,7 +49,7 @@ public final class FeatureDetailedStatus extends ExpandableStringEnum<FeatureDet
 
     /**
      * Gets known FeatureDetailedStatus values.
-     *
+     * 
      * @return known FeatureDetailedStatus values.
      */
     public static Collection<FeatureDetailedStatus> values() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** TrunkedNetworkAttachmentConfiguration represents the configuration of the attachment of a trunked network. */
+/**
+ * TrunkedNetworkAttachmentConfiguration represents the configuration of the attachment of a trunked network.
+ */
 @Fluent
 public final class TrunkedNetworkAttachmentConfiguration {
     /*
@@ -23,13 +25,15 @@ public final class TrunkedNetworkAttachmentConfiguration {
     @JsonProperty(value = "pluginType")
     private KubernetesPluginType pluginType;
 
-    /** Creates an instance of TrunkedNetworkAttachmentConfiguration class. */
+    /**
+     * Creates an instance of TrunkedNetworkAttachmentConfiguration class.
+     */
     public TrunkedNetworkAttachmentConfiguration() {
     }
 
     /**
      * Get the networkId property: The resource ID of the network that is being configured for attachment.
-     *
+     * 
      * @return the networkId value.
      */
     public String networkId() {
@@ -38,7 +42,7 @@ public final class TrunkedNetworkAttachmentConfiguration {
 
     /**
      * Set the networkId property: The resource ID of the network that is being configured for attachment.
-     *
+     * 
      * @param networkId the networkId value to set.
      * @return the TrunkedNetworkAttachmentConfiguration object itself.
      */
@@ -49,7 +53,7 @@ public final class TrunkedNetworkAttachmentConfiguration {
 
     /**
      * Get the pluginType property: The indicator of how this network will be utilized by the Kubernetes cluster.
-     *
+     * 
      * @return the pluginType value.
      */
     public KubernetesPluginType pluginType() {
@@ -58,7 +62,7 @@ public final class TrunkedNetworkAttachmentConfiguration {
 
     /**
      * Set the pluginType property: The indicator of how this network will be utilized by the Kubernetes cluster.
-     *
+     * 
      * @param pluginType the pluginType value to set.
      * @return the TrunkedNetworkAttachmentConfiguration object itself.
      */
@@ -69,15 +73,13 @@ public final class TrunkedNetworkAttachmentConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (networkId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property networkId in model TrunkedNetworkAttachmentConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property networkId in model TrunkedNetworkAttachmentConfiguration"));
         }
     }
 

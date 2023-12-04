@@ -17,13 +17,15 @@ import com.azure.resourcemanager.networkcloud.models.KubernetesLabel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** AgentPoolProperties represents the properties of the Kubernetes cluster agent pool. */
+/**
+ * AgentPoolProperties represents the properties of the Kubernetes cluster agent pool.
+ */
 @Fluent
 public final class AgentPoolProperties {
     /*
      * AdministratorConfiguration represents the administrative credentials that will be applied to the control plane
      * and agent pool nodes in Kubernetes clusters.
-     *
+     * 
      * The administrator credentials to be used for the nodes in this agent pool.
      */
     @JsonProperty(value = "administratorConfiguration")
@@ -31,7 +33,7 @@ public final class AgentPoolProperties {
 
     /*
      * AgentOptions are configurations that will be applied to each agent in an agent pool.
-     *
+     * 
      * The configurations that will be applied to each agent in this agent pool.
      */
     @JsonProperty(value = "agentOptions")
@@ -39,7 +41,7 @@ public final class AgentPoolProperties {
 
     /*
      * AttachedNetworkConfiguration represents the set of workload networks to attach to a resource.
-     *
+     * 
      * The configuration of networks being attached to the agent pool for use by the workloads that run on this
      * Kubernetes cluster.
      */
@@ -105,7 +107,7 @@ public final class AgentPoolProperties {
 
     /*
      * AgentPoolUpgradeSettings specifies the upgrade settings for an agent pool.
-     *
+     * 
      * The configuration of the agent pool.
      */
     @JsonProperty(value = "upgradeSettings")
@@ -117,16 +119,18 @@ public final class AgentPoolProperties {
     @JsonProperty(value = "vmSkuName", required = true)
     private String vmSkuName;
 
-    /** Creates an instance of AgentPoolProperties class. */
+    /**
+     * Creates an instance of AgentPoolProperties class.
+     */
     public AgentPoolProperties() {
     }
 
     /**
-     * Get the administratorConfiguration property: AdministratorConfiguration represents the administrative credentials
-     * that will be applied to the control plane and agent pool nodes in Kubernetes clusters.
-     *
-     * <p>The administrator credentials to be used for the nodes in this agent pool.
-     *
+     * Get the administratorConfiguration property: AdministratorConfiguration represents the administrative
+     * credentials that will be applied to the control plane and agent pool nodes in Kubernetes clusters.
+     * 
+     * The administrator credentials to be used for the nodes in this agent pool.
+     * 
      * @return the administratorConfiguration value.
      */
     public AdministratorConfiguration administratorConfiguration() {
@@ -134,11 +138,11 @@ public final class AgentPoolProperties {
     }
 
     /**
-     * Set the administratorConfiguration property: AdministratorConfiguration represents the administrative credentials
-     * that will be applied to the control plane and agent pool nodes in Kubernetes clusters.
-     *
-     * <p>The administrator credentials to be used for the nodes in this agent pool.
-     *
+     * Set the administratorConfiguration property: AdministratorConfiguration represents the administrative
+     * credentials that will be applied to the control plane and agent pool nodes in Kubernetes clusters.
+     * 
+     * The administrator credentials to be used for the nodes in this agent pool.
+     * 
      * @param administratorConfiguration the administratorConfiguration value to set.
      * @return the AgentPoolProperties object itself.
      */
@@ -150,9 +154,9 @@ public final class AgentPoolProperties {
     /**
      * Get the agentOptions property: AgentOptions are configurations that will be applied to each agent in an agent
      * pool.
-     *
-     * <p>The configurations that will be applied to each agent in this agent pool.
-     *
+     * 
+     * The configurations that will be applied to each agent in this agent pool.
+     * 
      * @return the agentOptions value.
      */
     public AgentOptions agentOptions() {
@@ -162,9 +166,9 @@ public final class AgentPoolProperties {
     /**
      * Set the agentOptions property: AgentOptions are configurations that will be applied to each agent in an agent
      * pool.
-     *
-     * <p>The configurations that will be applied to each agent in this agent pool.
-     *
+     * 
+     * The configurations that will be applied to each agent in this agent pool.
+     * 
      * @param agentOptions the agentOptions value to set.
      * @return the AgentPoolProperties object itself.
      */
@@ -176,10 +180,10 @@ public final class AgentPoolProperties {
     /**
      * Get the attachedNetworkConfiguration property: AttachedNetworkConfiguration represents the set of workload
      * networks to attach to a resource.
-     *
-     * <p>The configuration of networks being attached to the agent pool for use by the workloads that run on this
+     * 
+     * The configuration of networks being attached to the agent pool for use by the workloads that run on this
      * Kubernetes cluster.
-     *
+     * 
      * @return the attachedNetworkConfiguration value.
      */
     public AttachedNetworkConfiguration attachedNetworkConfiguration() {
@@ -189,15 +193,15 @@ public final class AgentPoolProperties {
     /**
      * Set the attachedNetworkConfiguration property: AttachedNetworkConfiguration represents the set of workload
      * networks to attach to a resource.
-     *
-     * <p>The configuration of networks being attached to the agent pool for use by the workloads that run on this
+     * 
+     * The configuration of networks being attached to the agent pool for use by the workloads that run on this
      * Kubernetes cluster.
-     *
+     * 
      * @param attachedNetworkConfiguration the attachedNetworkConfiguration value to set.
      * @return the AgentPoolProperties object itself.
      */
-    public AgentPoolProperties withAttachedNetworkConfiguration(
-        AttachedNetworkConfiguration attachedNetworkConfiguration) {
+    public AgentPoolProperties
+        withAttachedNetworkConfiguration(AttachedNetworkConfiguration attachedNetworkConfiguration) {
         this.attachedNetworkConfiguration = attachedNetworkConfiguration;
         return this;
     }
@@ -205,7 +209,7 @@ public final class AgentPoolProperties {
     /**
      * Get the availabilityZones property: The list of availability zones of the Network Cloud cluster used for the
      * provisioning of nodes in this agent pool. If not specified, all availability zones will be used.
-     *
+     * 
      * @return the availabilityZones value.
      */
     public List<String> availabilityZones() {
@@ -215,7 +219,7 @@ public final class AgentPoolProperties {
     /**
      * Set the availabilityZones property: The list of availability zones of the Network Cloud cluster used for the
      * provisioning of nodes in this agent pool. If not specified, all availability zones will be used.
-     *
+     * 
      * @param availabilityZones the availabilityZones value to set.
      * @return the AgentPoolProperties object itself.
      */
@@ -226,7 +230,7 @@ public final class AgentPoolProperties {
 
     /**
      * Get the count property: The number of virtual machines that use this configuration.
-     *
+     * 
      * @return the count value.
      */
     public long count() {
@@ -235,7 +239,7 @@ public final class AgentPoolProperties {
 
     /**
      * Set the count property: The number of virtual machines that use this configuration.
-     *
+     * 
      * @param count the count value to set.
      * @return the AgentPoolProperties object itself.
      */
@@ -246,7 +250,7 @@ public final class AgentPoolProperties {
 
     /**
      * Get the detailedStatus property: The current status of the agent pool.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public AgentPoolDetailedStatus detailedStatus() {
@@ -255,7 +259,7 @@ public final class AgentPoolProperties {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -264,7 +268,7 @@ public final class AgentPoolProperties {
 
     /**
      * Get the kubernetesVersion property: The Kubernetes version running in this agent pool.
-     *
+     * 
      * @return the kubernetesVersion value.
      */
     public String kubernetesVersion() {
@@ -273,7 +277,7 @@ public final class AgentPoolProperties {
 
     /**
      * Get the labels property: The labels applied to the nodes in this agent pool.
-     *
+     * 
      * @return the labels value.
      */
     public List<KubernetesLabel> labels() {
@@ -282,7 +286,7 @@ public final class AgentPoolProperties {
 
     /**
      * Set the labels property: The labels applied to the nodes in this agent pool.
-     *
+     * 
      * @param labels the labels value to set.
      * @return the AgentPoolProperties object itself.
      */
@@ -293,9 +297,9 @@ public final class AgentPoolProperties {
 
     /**
      * Get the mode property: The selection of how this agent pool is utilized, either as a system pool or a user pool.
-     * System pools run the features and critical services for the Kubernetes Cluster, while user pools are dedicated to
-     * user workloads. Every Kubernetes cluster must contain at least one system node pool with at least one node.
-     *
+     * System pools run the features and critical services for the Kubernetes Cluster, while user pools are dedicated
+     * to user workloads. Every Kubernetes cluster must contain at least one system node pool with at least one node.
+     * 
      * @return the mode value.
      */
     public AgentPoolMode mode() {
@@ -304,9 +308,9 @@ public final class AgentPoolProperties {
 
     /**
      * Set the mode property: The selection of how this agent pool is utilized, either as a system pool or a user pool.
-     * System pools run the features and critical services for the Kubernetes Cluster, while user pools are dedicated to
-     * user workloads. Every Kubernetes cluster must contain at least one system node pool with at least one node.
-     *
+     * System pools run the features and critical services for the Kubernetes Cluster, while user pools are dedicated
+     * to user workloads. Every Kubernetes cluster must contain at least one system node pool with at least one node.
+     * 
      * @param mode the mode value to set.
      * @return the AgentPoolProperties object itself.
      */
@@ -317,7 +321,7 @@ public final class AgentPoolProperties {
 
     /**
      * Get the provisioningState property: The provisioning state of the agent pool.
-     *
+     * 
      * @return the provisioningState value.
      */
     public AgentPoolProvisioningState provisioningState() {
@@ -326,7 +330,7 @@ public final class AgentPoolProperties {
 
     /**
      * Get the taints property: The taints applied to the nodes in this agent pool.
-     *
+     * 
      * @return the taints value.
      */
     public List<KubernetesLabel> taints() {
@@ -335,7 +339,7 @@ public final class AgentPoolProperties {
 
     /**
      * Set the taints property: The taints applied to the nodes in this agent pool.
-     *
+     * 
      * @param taints the taints value to set.
      * @return the AgentPoolProperties object itself.
      */
@@ -346,9 +350,9 @@ public final class AgentPoolProperties {
 
     /**
      * Get the upgradeSettings property: AgentPoolUpgradeSettings specifies the upgrade settings for an agent pool.
-     *
-     * <p>The configuration of the agent pool.
-     *
+     * 
+     * The configuration of the agent pool.
+     * 
      * @return the upgradeSettings value.
      */
     public AgentPoolUpgradeSettings upgradeSettings() {
@@ -357,9 +361,9 @@ public final class AgentPoolProperties {
 
     /**
      * Set the upgradeSettings property: AgentPoolUpgradeSettings specifies the upgrade settings for an agent pool.
-     *
-     * <p>The configuration of the agent pool.
-     *
+     * 
+     * The configuration of the agent pool.
+     * 
      * @param upgradeSettings the upgradeSettings value to set.
      * @return the AgentPoolProperties object itself.
      */
@@ -370,7 +374,7 @@ public final class AgentPoolProperties {
 
     /**
      * Get the vmSkuName property: The name of the VM SKU that determines the size of resources allocated for node VMs.
-     *
+     * 
      * @return the vmSkuName value.
      */
     public String vmSkuName() {
@@ -379,7 +383,7 @@ public final class AgentPoolProperties {
 
     /**
      * Set the vmSkuName property: The name of the VM SKU that determines the size of resources allocated for node VMs.
-     *
+     * 
      * @param vmSkuName the vmSkuName value to set.
      * @return the AgentPoolProperties object itself.
      */
@@ -390,7 +394,7 @@ public final class AgentPoolProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -407,9 +411,8 @@ public final class AgentPoolProperties {
             labels().forEach(e -> e.validate());
         }
         if (mode() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property mode in model AgentPoolProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property mode in model AgentPoolProperties"));
         }
         if (taints() != null) {
             taints().forEach(e -> e.validate());
@@ -418,9 +421,8 @@ public final class AgentPoolProperties {
             upgradeSettings().validate();
         }
         if (vmSkuName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property vmSkuName in model AgentPoolProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property vmSkuName in model AgentPoolProperties"));
         }
     }
 

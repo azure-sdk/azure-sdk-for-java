@@ -25,13 +25,15 @@ public final class AdministrativeCredentials {
     @JsonProperty(value = "username", required = true)
     private String username;
 
-    /** Creates an instance of AdministrativeCredentials class. */
+    /**
+     * Creates an instance of AdministrativeCredentials class.
+     */
     public AdministrativeCredentials() {
     }
 
     /**
      * Get the password property: The password of the administrator of the device used during initialization.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -40,7 +42,7 @@ public final class AdministrativeCredentials {
 
     /**
      * Set the password property: The password of the administrator of the device used during initialization.
-     *
+     * 
      * @param password the password value to set.
      * @return the AdministrativeCredentials object itself.
      */
@@ -51,7 +53,7 @@ public final class AdministrativeCredentials {
 
     /**
      * Get the username property: The username of the administrator of the device used during initialization.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -60,7 +62,7 @@ public final class AdministrativeCredentials {
 
     /**
      * Set the username property: The username of the administrator of the device used during initialization.
-     *
+     * 
      * @param username the username value to set.
      * @return the AdministrativeCredentials object itself.
      */
@@ -71,21 +73,17 @@ public final class AdministrativeCredentials {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (password() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property password in model AdministrativeCredentials"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property password in model AdministrativeCredentials"));
         }
         if (username() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property username in model AdministrativeCredentials"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property username in model AdministrativeCredentials"));
         }
     }
 

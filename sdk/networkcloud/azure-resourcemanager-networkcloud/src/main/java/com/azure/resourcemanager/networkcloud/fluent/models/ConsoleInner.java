@@ -17,12 +17,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
-/** Console represents the console of an on-premises Network Cloud virtual machine. */
+/**
+ * Console represents the console of an on-premises Network Cloud virtual machine.
+ */
 @Fluent
 public final class ConsoleInner extends Resource {
     /*
      * ExtendedLocation represents the Azure custom location where the resource will be created.
-     *
+     * 
      * The extended location of the cluster manager associated with the cluster this virtual machine is created on.
      */
     @JsonProperty(value = "extendedLocation", required = true)
@@ -30,7 +32,7 @@ public final class ConsoleInner extends Resource {
 
     /*
      * ConsoleProperties represents the properties of the virtual machine console.
-     *
+     * 
      * The list of the resource properties.
      */
     @JsonProperty(value = "properties", required = true)
@@ -42,16 +44,18 @@ public final class ConsoleInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ConsoleInner class. */
+    /**
+     * Creates an instance of ConsoleInner class.
+     */
     public ConsoleInner() {
     }
 
     /**
      * Get the extendedLocation property: ExtendedLocation represents the Azure custom location where the resource will
      * be created.
-     *
-     * <p>The extended location of the cluster manager associated with the cluster this virtual machine is created on.
-     *
+     * 
+     * The extended location of the cluster manager associated with the cluster this virtual machine is created on.
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -61,9 +65,9 @@ public final class ConsoleInner extends Resource {
     /**
      * Set the extendedLocation property: ExtendedLocation represents the Azure custom location where the resource will
      * be created.
-     *
-     * <p>The extended location of the cluster manager associated with the cluster this virtual machine is created on.
-     *
+     * 
+     * The extended location of the cluster manager associated with the cluster this virtual machine is created on.
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the ConsoleInner object itself.
      */
@@ -74,9 +78,9 @@ public final class ConsoleInner extends Resource {
 
     /**
      * Get the innerProperties property: ConsoleProperties represents the properties of the virtual machine console.
-     *
-     * <p>The list of the resource properties.
-     *
+     * 
+     * The list of the resource properties.
+     * 
      * @return the innerProperties value.
      */
     private ConsoleProperties innerProperties() {
@@ -85,21 +89,25 @@ public final class ConsoleInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ConsoleInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ConsoleInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -108,7 +116,7 @@ public final class ConsoleInner extends Resource {
 
     /**
      * Get the detailedStatus property: The more detailed status of the console.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public ConsoleDetailedStatus detailedStatus() {
@@ -117,7 +125,7 @@ public final class ConsoleInner extends Resource {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -126,7 +134,7 @@ public final class ConsoleInner extends Resource {
 
     /**
      * Get the enabled property: The indicator of whether the console access is enabled.
-     *
+     * 
      * @return the enabled value.
      */
     public ConsoleEnabled enabled() {
@@ -135,7 +143,7 @@ public final class ConsoleInner extends Resource {
 
     /**
      * Set the enabled property: The indicator of whether the console access is enabled.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the ConsoleInner object itself.
      */
@@ -149,7 +157,7 @@ public final class ConsoleInner extends Resource {
 
     /**
      * Get the expiration property: The date and time after which the key will be disallowed access.
-     *
+     * 
      * @return the expiration value.
      */
     public OffsetDateTime expiration() {
@@ -158,7 +166,7 @@ public final class ConsoleInner extends Resource {
 
     /**
      * Set the expiration property: The date and time after which the key will be disallowed access.
-     *
+     * 
      * @param expiration the expiration value to set.
      * @return the ConsoleInner object itself.
      */
@@ -173,7 +181,7 @@ public final class ConsoleInner extends Resource {
     /**
      * Get the privateLinkServiceId property: The resource ID of the private link service that is used to provide
      * virtual machine console access.
-     *
+     * 
      * @return the privateLinkServiceId value.
      */
     public String privateLinkServiceId() {
@@ -182,7 +190,7 @@ public final class ConsoleInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioning state of the virtual machine console.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ConsoleProvisioningState provisioningState() {
@@ -192,10 +200,10 @@ public final class ConsoleInner extends Resource {
     /**
      * Get the sshPublicKey property: SshPublicKey represents the public key used to authenticate with a resource
      * through SSH.
-     *
-     * <p>The SSH public key that will be provisioned for user access. The user is expected to have the corresponding
-     * SSH private key for logging in.
-     *
+     * 
+     * The SSH public key that will be provisioned for user access. The user is expected to have the corresponding SSH
+     * private key for logging in.
+     * 
      * @return the sshPublicKey value.
      */
     public SshPublicKey sshPublicKey() {
@@ -205,10 +213,10 @@ public final class ConsoleInner extends Resource {
     /**
      * Set the sshPublicKey property: SshPublicKey represents the public key used to authenticate with a resource
      * through SSH.
-     *
-     * <p>The SSH public key that will be provisioned for user access. The user is expected to have the corresponding
-     * SSH private key for logging in.
-     *
+     * 
+     * The SSH public key that will be provisioned for user access. The user is expected to have the corresponding SSH
+     * private key for logging in.
+     * 
      * @param sshPublicKey the sshPublicKey value to set.
      * @return the ConsoleInner object itself.
      */
@@ -221,9 +229,9 @@ public final class ConsoleInner extends Resource {
     }
 
     /**
-     * Get the virtualMachineAccessId property: The unique identifier for the virtual machine that is used to access the
-     * console.
-     *
+     * Get the virtualMachineAccessId property: The unique identifier for the virtual machine that is used to access
+     * the console.
+     * 
      * @return the virtualMachineAccessId value.
      */
     public String virtualMachineAccessId() {
@@ -232,21 +240,19 @@ public final class ConsoleInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (extendedLocation() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property extendedLocation in model ConsoleInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property extendedLocation in model ConsoleInner"));
         } else {
             extendedLocation().validate();
         }
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model ConsoleInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model ConsoleInner"));
         } else {
             innerProperties().validate();
         }

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.networkcloud.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** ClusterCapacity represents various details regarding compute capacity. */
+/**
+ * ClusterCapacity represents various details regarding compute capacity.
+ */
 @Fluent
 public final class ClusterCapacity {
     /*
@@ -58,14 +60,16 @@ public final class ClusterCapacity {
     @JsonProperty(value = "totalMemoryGB")
     private Long totalMemoryGB;
 
-    /** Creates an instance of ClusterCapacity class. */
+    /**
+     * Creates an instance of ClusterCapacity class.
+     */
     public ClusterCapacity() {
     }
 
     /**
      * Get the availableApplianceStorageGB property: The remaining appliance-based storage in GB available for workload
      * use.
-     *
+     * 
      * @return the availableApplianceStorageGB value.
      */
     public Long availableApplianceStorageGB() {
@@ -75,7 +79,7 @@ public final class ClusterCapacity {
     /**
      * Set the availableApplianceStorageGB property: The remaining appliance-based storage in GB available for workload
      * use.
-     *
+     * 
      * @param availableApplianceStorageGB the availableApplianceStorageGB value to set.
      * @return the ClusterCapacity object itself.
      */
@@ -87,7 +91,7 @@ public final class ClusterCapacity {
     /**
      * Get the availableCoreCount property: The remaining number of cores that are available in this cluster for
      * workload use.
-     *
+     * 
      * @return the availableCoreCount value.
      */
     public Long availableCoreCount() {
@@ -97,7 +101,7 @@ public final class ClusterCapacity {
     /**
      * Set the availableCoreCount property: The remaining number of cores that are available in this cluster for
      * workload use.
-     *
+     * 
      * @param availableCoreCount the availableCoreCount value to set.
      * @return the ClusterCapacity object itself.
      */
@@ -107,9 +111,9 @@ public final class ClusterCapacity {
     }
 
     /**
-     * Get the availableHostStorageGB property: The remaining machine or host-based storage in GB available for workload
-     * use.
-     *
+     * Get the availableHostStorageGB property: The remaining machine or host-based storage in GB available for
+     * workload use.
+     * 
      * @return the availableHostStorageGB value.
      */
     public Long availableHostStorageGB() {
@@ -117,9 +121,9 @@ public final class ClusterCapacity {
     }
 
     /**
-     * Set the availableHostStorageGB property: The remaining machine or host-based storage in GB available for workload
-     * use.
-     *
+     * Set the availableHostStorageGB property: The remaining machine or host-based storage in GB available for
+     * workload use.
+     * 
      * @param availableHostStorageGB the availableHostStorageGB value to set.
      * @return the ClusterCapacity object itself.
      */
@@ -131,7 +135,7 @@ public final class ClusterCapacity {
     /**
      * Get the availableMemoryGB property: The remaining memory in GB that are available in this cluster for workload
      * use.
-     *
+     * 
      * @return the availableMemoryGB value.
      */
     public Long availableMemoryGB() {
@@ -141,7 +145,7 @@ public final class ClusterCapacity {
     /**
      * Set the availableMemoryGB property: The remaining memory in GB that are available in this cluster for workload
      * use.
-     *
+     * 
      * @param availableMemoryGB the availableMemoryGB value to set.
      * @return the ClusterCapacity object itself.
      */
@@ -153,7 +157,7 @@ public final class ClusterCapacity {
     /**
      * Get the totalApplianceStorageGB property: The total appliance-based storage in GB supported by this cluster for
      * workload use.
-     *
+     * 
      * @return the totalApplianceStorageGB value.
      */
     public Long totalApplianceStorageGB() {
@@ -163,7 +167,7 @@ public final class ClusterCapacity {
     /**
      * Set the totalApplianceStorageGB property: The total appliance-based storage in GB supported by this cluster for
      * workload use.
-     *
+     * 
      * @param totalApplianceStorageGB the totalApplianceStorageGB value to set.
      * @return the ClusterCapacity object itself.
      */
@@ -174,7 +178,7 @@ public final class ClusterCapacity {
 
     /**
      * Get the totalCoreCount property: The total number of cores that are supported by this cluster for workload use.
-     *
+     * 
      * @return the totalCoreCount value.
      */
     public Long totalCoreCount() {
@@ -183,7 +187,7 @@ public final class ClusterCapacity {
 
     /**
      * Set the totalCoreCount property: The total number of cores that are supported by this cluster for workload use.
-     *
+     * 
      * @param totalCoreCount the totalCoreCount value to set.
      * @return the ClusterCapacity object itself.
      */
@@ -195,7 +199,7 @@ public final class ClusterCapacity {
     /**
      * Get the totalHostStorageGB property: The total machine or host-based storage in GB supported by this cluster for
      * workload use.
-     *
+     * 
      * @return the totalHostStorageGB value.
      */
     public Long totalHostStorageGB() {
@@ -205,7 +209,7 @@ public final class ClusterCapacity {
     /**
      * Set the totalHostStorageGB property: The total machine or host-based storage in GB supported by this cluster for
      * workload use.
-     *
+     * 
      * @param totalHostStorageGB the totalHostStorageGB value to set.
      * @return the ClusterCapacity object itself.
      */
@@ -216,7 +220,7 @@ public final class ClusterCapacity {
 
     /**
      * Get the totalMemoryGB property: The total memory supported by this cluster for workload use.
-     *
+     * 
      * @return the totalMemoryGB value.
      */
     public Long totalMemoryGB() {
@@ -225,7 +229,7 @@ public final class ClusterCapacity {
 
     /**
      * Set the totalMemoryGB property: The total memory supported by this cluster for workload use.
-     *
+     * 
      * @param totalMemoryGB the totalMemoryGB value to set.
      * @return the ClusterCapacity object itself.
      */
@@ -236,7 +240,7 @@ public final class ClusterCapacity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -21,12 +21,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** AgentPool represents the agent pool of Kubernetes cluster. */
+/**
+ * AgentPool represents the agent pool of Kubernetes cluster.
+ */
 @Fluent
 public final class AgentPoolInner extends Resource {
     /*
      * ExtendedLocation represents the Azure custom location where the resource will be created.
-     *
+     * 
      * The extended location of the cluster associated with the resource.
      */
     @JsonProperty(value = "extendedLocation")
@@ -34,7 +36,7 @@ public final class AgentPoolInner extends Resource {
 
     /*
      * AgentPoolProperties represents the properties of the Kubernetes cluster agent pool.
-     *
+     * 
      * The list of the resource properties.
      */
     @JsonProperty(value = "properties", required = true)
@@ -46,16 +48,18 @@ public final class AgentPoolInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of AgentPoolInner class. */
+    /**
+     * Creates an instance of AgentPoolInner class.
+     */
     public AgentPoolInner() {
     }
 
     /**
      * Get the extendedLocation property: ExtendedLocation represents the Azure custom location where the resource will
      * be created.
-     *
-     * <p>The extended location of the cluster associated with the resource.
-     *
+     * 
+     * The extended location of the cluster associated with the resource.
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -65,9 +69,9 @@ public final class AgentPoolInner extends Resource {
     /**
      * Set the extendedLocation property: ExtendedLocation represents the Azure custom location where the resource will
      * be created.
-     *
-     * <p>The extended location of the cluster associated with the resource.
-     *
+     * 
+     * The extended location of the cluster associated with the resource.
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the AgentPoolInner object itself.
      */
@@ -79,9 +83,9 @@ public final class AgentPoolInner extends Resource {
     /**
      * Get the innerProperties property: AgentPoolProperties represents the properties of the Kubernetes cluster agent
      * pool.
-     *
-     * <p>The list of the resource properties.
-     *
+     * 
+     * The list of the resource properties.
+     * 
      * @return the innerProperties value.
      */
     private AgentPoolProperties innerProperties() {
@@ -90,21 +94,25 @@ public final class AgentPoolInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AgentPoolInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AgentPoolInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -112,11 +120,11 @@ public final class AgentPoolInner extends Resource {
     }
 
     /**
-     * Get the administratorConfiguration property: AdministratorConfiguration represents the administrative credentials
-     * that will be applied to the control plane and agent pool nodes in Kubernetes clusters.
-     *
-     * <p>The administrator credentials to be used for the nodes in this agent pool.
-     *
+     * Get the administratorConfiguration property: AdministratorConfiguration represents the administrative
+     * credentials that will be applied to the control plane and agent pool nodes in Kubernetes clusters.
+     * 
+     * The administrator credentials to be used for the nodes in this agent pool.
+     * 
      * @return the administratorConfiguration value.
      */
     public AdministratorConfiguration administratorConfiguration() {
@@ -124,11 +132,11 @@ public final class AgentPoolInner extends Resource {
     }
 
     /**
-     * Set the administratorConfiguration property: AdministratorConfiguration represents the administrative credentials
-     * that will be applied to the control plane and agent pool nodes in Kubernetes clusters.
-     *
-     * <p>The administrator credentials to be used for the nodes in this agent pool.
-     *
+     * Set the administratorConfiguration property: AdministratorConfiguration represents the administrative
+     * credentials that will be applied to the control plane and agent pool nodes in Kubernetes clusters.
+     * 
+     * The administrator credentials to be used for the nodes in this agent pool.
+     * 
      * @param administratorConfiguration the administratorConfiguration value to set.
      * @return the AgentPoolInner object itself.
      */
@@ -143,9 +151,9 @@ public final class AgentPoolInner extends Resource {
     /**
      * Get the agentOptions property: AgentOptions are configurations that will be applied to each agent in an agent
      * pool.
-     *
-     * <p>The configurations that will be applied to each agent in this agent pool.
-     *
+     * 
+     * The configurations that will be applied to each agent in this agent pool.
+     * 
      * @return the agentOptions value.
      */
     public AgentOptions agentOptions() {
@@ -155,9 +163,9 @@ public final class AgentPoolInner extends Resource {
     /**
      * Set the agentOptions property: AgentOptions are configurations that will be applied to each agent in an agent
      * pool.
-     *
-     * <p>The configurations that will be applied to each agent in this agent pool.
-     *
+     * 
+     * The configurations that will be applied to each agent in this agent pool.
+     * 
      * @param agentOptions the agentOptions value to set.
      * @return the AgentPoolInner object itself.
      */
@@ -172,10 +180,10 @@ public final class AgentPoolInner extends Resource {
     /**
      * Get the attachedNetworkConfiguration property: AttachedNetworkConfiguration represents the set of workload
      * networks to attach to a resource.
-     *
-     * <p>The configuration of networks being attached to the agent pool for use by the workloads that run on this
+     * 
+     * The configuration of networks being attached to the agent pool for use by the workloads that run on this
      * Kubernetes cluster.
-     *
+     * 
      * @return the attachedNetworkConfiguration value.
      */
     public AttachedNetworkConfiguration attachedNetworkConfiguration() {
@@ -185,10 +193,10 @@ public final class AgentPoolInner extends Resource {
     /**
      * Set the attachedNetworkConfiguration property: AttachedNetworkConfiguration represents the set of workload
      * networks to attach to a resource.
-     *
-     * <p>The configuration of networks being attached to the agent pool for use by the workloads that run on this
+     * 
+     * The configuration of networks being attached to the agent pool for use by the workloads that run on this
      * Kubernetes cluster.
-     *
+     * 
      * @param attachedNetworkConfiguration the attachedNetworkConfiguration value to set.
      * @return the AgentPoolInner object itself.
      */
@@ -203,7 +211,7 @@ public final class AgentPoolInner extends Resource {
     /**
      * Get the availabilityZones property: The list of availability zones of the Network Cloud cluster used for the
      * provisioning of nodes in this agent pool. If not specified, all availability zones will be used.
-     *
+     * 
      * @return the availabilityZones value.
      */
     public List<String> availabilityZones() {
@@ -213,7 +221,7 @@ public final class AgentPoolInner extends Resource {
     /**
      * Set the availabilityZones property: The list of availability zones of the Network Cloud cluster used for the
      * provisioning of nodes in this agent pool. If not specified, all availability zones will be used.
-     *
+     * 
      * @param availabilityZones the availabilityZones value to set.
      * @return the AgentPoolInner object itself.
      */
@@ -227,7 +235,7 @@ public final class AgentPoolInner extends Resource {
 
     /**
      * Get the count property: The number of virtual machines that use this configuration.
-     *
+     * 
      * @return the count value.
      */
     public long count() {
@@ -236,7 +244,7 @@ public final class AgentPoolInner extends Resource {
 
     /**
      * Set the count property: The number of virtual machines that use this configuration.
-     *
+     * 
      * @param count the count value to set.
      * @return the AgentPoolInner object itself.
      */
@@ -250,7 +258,7 @@ public final class AgentPoolInner extends Resource {
 
     /**
      * Get the detailedStatus property: The current status of the agent pool.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public AgentPoolDetailedStatus detailedStatus() {
@@ -259,7 +267,7 @@ public final class AgentPoolInner extends Resource {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -268,7 +276,7 @@ public final class AgentPoolInner extends Resource {
 
     /**
      * Get the kubernetesVersion property: The Kubernetes version running in this agent pool.
-     *
+     * 
      * @return the kubernetesVersion value.
      */
     public String kubernetesVersion() {
@@ -277,7 +285,7 @@ public final class AgentPoolInner extends Resource {
 
     /**
      * Get the labels property: The labels applied to the nodes in this agent pool.
-     *
+     * 
      * @return the labels value.
      */
     public List<KubernetesLabel> labels() {
@@ -286,7 +294,7 @@ public final class AgentPoolInner extends Resource {
 
     /**
      * Set the labels property: The labels applied to the nodes in this agent pool.
-     *
+     * 
      * @param labels the labels value to set.
      * @return the AgentPoolInner object itself.
      */
@@ -300,9 +308,9 @@ public final class AgentPoolInner extends Resource {
 
     /**
      * Get the mode property: The selection of how this agent pool is utilized, either as a system pool or a user pool.
-     * System pools run the features and critical services for the Kubernetes Cluster, while user pools are dedicated to
-     * user workloads. Every Kubernetes cluster must contain at least one system node pool with at least one node.
-     *
+     * System pools run the features and critical services for the Kubernetes Cluster, while user pools are dedicated
+     * to user workloads. Every Kubernetes cluster must contain at least one system node pool with at least one node.
+     * 
      * @return the mode value.
      */
     public AgentPoolMode mode() {
@@ -311,9 +319,9 @@ public final class AgentPoolInner extends Resource {
 
     /**
      * Set the mode property: The selection of how this agent pool is utilized, either as a system pool or a user pool.
-     * System pools run the features and critical services for the Kubernetes Cluster, while user pools are dedicated to
-     * user workloads. Every Kubernetes cluster must contain at least one system node pool with at least one node.
-     *
+     * System pools run the features and critical services for the Kubernetes Cluster, while user pools are dedicated
+     * to user workloads. Every Kubernetes cluster must contain at least one system node pool with at least one node.
+     * 
      * @param mode the mode value to set.
      * @return the AgentPoolInner object itself.
      */
@@ -327,7 +335,7 @@ public final class AgentPoolInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioning state of the agent pool.
-     *
+     * 
      * @return the provisioningState value.
      */
     public AgentPoolProvisioningState provisioningState() {
@@ -336,7 +344,7 @@ public final class AgentPoolInner extends Resource {
 
     /**
      * Get the taints property: The taints applied to the nodes in this agent pool.
-     *
+     * 
      * @return the taints value.
      */
     public List<KubernetesLabel> taints() {
@@ -345,7 +353,7 @@ public final class AgentPoolInner extends Resource {
 
     /**
      * Set the taints property: The taints applied to the nodes in this agent pool.
-     *
+     * 
      * @param taints the taints value to set.
      * @return the AgentPoolInner object itself.
      */
@@ -359,9 +367,9 @@ public final class AgentPoolInner extends Resource {
 
     /**
      * Get the upgradeSettings property: AgentPoolUpgradeSettings specifies the upgrade settings for an agent pool.
-     *
-     * <p>The configuration of the agent pool.
-     *
+     * 
+     * The configuration of the agent pool.
+     * 
      * @return the upgradeSettings value.
      */
     public AgentPoolUpgradeSettings upgradeSettings() {
@@ -370,9 +378,9 @@ public final class AgentPoolInner extends Resource {
 
     /**
      * Set the upgradeSettings property: AgentPoolUpgradeSettings specifies the upgrade settings for an agent pool.
-     *
-     * <p>The configuration of the agent pool.
-     *
+     * 
+     * The configuration of the agent pool.
+     * 
      * @param upgradeSettings the upgradeSettings value to set.
      * @return the AgentPoolInner object itself.
      */
@@ -386,7 +394,7 @@ public final class AgentPoolInner extends Resource {
 
     /**
      * Get the vmSkuName property: The name of the VM SKU that determines the size of resources allocated for node VMs.
-     *
+     * 
      * @return the vmSkuName value.
      */
     public String vmSkuName() {
@@ -395,7 +403,7 @@ public final class AgentPoolInner extends Resource {
 
     /**
      * Set the vmSkuName property: The name of the VM SKU that determines the size of resources allocated for node VMs.
-     *
+     * 
      * @param vmSkuName the vmSkuName value to set.
      * @return the AgentPoolInner object itself.
      */
@@ -409,7 +417,7 @@ public final class AgentPoolInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -417,9 +425,8 @@ public final class AgentPoolInner extends Resource {
             extendedLocation().validate();
         }
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model AgentPoolInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model AgentPoolInner"));
         } else {
             innerProperties().validate();
         }

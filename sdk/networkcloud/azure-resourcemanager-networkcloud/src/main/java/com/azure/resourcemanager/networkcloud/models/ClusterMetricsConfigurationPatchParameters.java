@@ -20,7 +20,7 @@ public final class ClusterMetricsConfigurationPatchParameters {
     /*
      * ClusterMetricsConfigurationPatchProperties represents the properties of metrics configuration for the cluster
      * for patching.
-     *
+     * 
      * The list of the resource properties.
      */
     @JsonProperty(value = "properties")
@@ -33,16 +33,18 @@ public final class ClusterMetricsConfigurationPatchParameters {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of ClusterMetricsConfigurationPatchParameters class. */
+    /**
+     * Creates an instance of ClusterMetricsConfigurationPatchParameters class.
+     */
     public ClusterMetricsConfigurationPatchParameters() {
     }
 
     /**
-     * Get the innerProperties property: ClusterMetricsConfigurationPatchProperties represents the properties of metrics
-     * configuration for the cluster for patching.
-     *
-     * <p>The list of the resource properties.
-     *
+     * Get the innerProperties property: ClusterMetricsConfigurationPatchProperties represents the properties of
+     * metrics configuration for the cluster for patching.
+     * 
+     * The list of the resource properties.
+     * 
      * @return the innerProperties value.
      */
     private ClusterMetricsConfigurationPatchProperties innerProperties() {
@@ -51,7 +53,7 @@ public final class ClusterMetricsConfigurationPatchParameters {
 
     /**
      * Get the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -60,7 +62,7 @@ public final class ClusterMetricsConfigurationPatchParameters {
 
     /**
      * Set the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the ClusterMetricsConfigurationPatchParameters object itself.
      */
@@ -71,7 +73,7 @@ public final class ClusterMetricsConfigurationPatchParameters {
 
     /**
      * Get the collectionInterval property: The interval in minutes by which metrics will be collected.
-     *
+     * 
      * @return the collectionInterval value.
      */
     public Long collectionInterval() {
@@ -80,7 +82,7 @@ public final class ClusterMetricsConfigurationPatchParameters {
 
     /**
      * Set the collectionInterval property: The interval in minutes by which metrics will be collected.
-     *
+     * 
      * @param collectionInterval the collectionInterval value to set.
      * @return the ClusterMetricsConfigurationPatchParameters object itself.
      */
@@ -95,7 +97,7 @@ public final class ClusterMetricsConfigurationPatchParameters {
     /**
      * Get the enabledMetrics property: The list of metric names that have been chosen to be enabled in addition to the
      * core set of enabled metrics.
-     *
+     * 
      * @return the enabledMetrics value.
      */
     public List<String> enabledMetrics() {
@@ -105,7 +107,7 @@ public final class ClusterMetricsConfigurationPatchParameters {
     /**
      * Set the enabledMetrics property: The list of metric names that have been chosen to be enabled in addition to the
      * core set of enabled metrics.
-     *
+     * 
      * @param enabledMetrics the enabledMetrics value to set.
      * @return the ClusterMetricsConfigurationPatchParameters object itself.
      */
@@ -119,7 +121,7 @@ public final class ClusterMetricsConfigurationPatchParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

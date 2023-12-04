@@ -19,12 +19,14 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** BareMetalMachineKeySet represents the bare metal machine key set. */
+/**
+ * BareMetalMachineKeySet represents the bare metal machine key set.
+ */
 @Fluent
 public final class BareMetalMachineKeySetInner extends Resource {
     /*
      * ExtendedLocation represents the Azure custom location where the resource will be created.
-     *
+     * 
      * The extended location of the cluster associated with the resource.
      */
     @JsonProperty(value = "extendedLocation", required = true)
@@ -32,7 +34,7 @@ public final class BareMetalMachineKeySetInner extends Resource {
 
     /*
      * BareMetalMachineKeySetProperties represents the properties of bare metal machine key set.
-     *
+     * 
      * The list of the resource properties.
      */
     @JsonProperty(value = "properties", required = true)
@@ -44,16 +46,18 @@ public final class BareMetalMachineKeySetInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of BareMetalMachineKeySetInner class. */
+    /**
+     * Creates an instance of BareMetalMachineKeySetInner class.
+     */
     public BareMetalMachineKeySetInner() {
     }
 
     /**
      * Get the extendedLocation property: ExtendedLocation represents the Azure custom location where the resource will
      * be created.
-     *
-     * <p>The extended location of the cluster associated with the resource.
-     *
+     * 
+     * The extended location of the cluster associated with the resource.
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -63,9 +67,9 @@ public final class BareMetalMachineKeySetInner extends Resource {
     /**
      * Set the extendedLocation property: ExtendedLocation represents the Azure custom location where the resource will
      * be created.
-     *
-     * <p>The extended location of the cluster associated with the resource.
-     *
+     * 
+     * The extended location of the cluster associated with the resource.
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the BareMetalMachineKeySetInner object itself.
      */
@@ -77,9 +81,9 @@ public final class BareMetalMachineKeySetInner extends Resource {
     /**
      * Get the innerProperties property: BareMetalMachineKeySetProperties represents the properties of bare metal
      * machine key set.
-     *
-     * <p>The list of the resource properties.
-     *
+     * 
+     * The list of the resource properties.
+     * 
      * @return the innerProperties value.
      */
     private BareMetalMachineKeySetProperties innerProperties() {
@@ -88,21 +92,25 @@ public final class BareMetalMachineKeySetInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BareMetalMachineKeySetInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BareMetalMachineKeySetInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -112,7 +120,7 @@ public final class BareMetalMachineKeySetInner extends Resource {
     /**
      * Get the azureGroupId property: The object ID of Azure Active Directory group that all users in the list must be
      * in for access to be granted. Users that are not in the group will not have access.
-     *
+     * 
      * @return the azureGroupId value.
      */
     public String azureGroupId() {
@@ -122,7 +130,7 @@ public final class BareMetalMachineKeySetInner extends Resource {
     /**
      * Set the azureGroupId property: The object ID of Azure Active Directory group that all users in the list must be
      * in for access to be granted. Users that are not in the group will not have access.
-     *
+     * 
      * @param azureGroupId the azureGroupId value to set.
      * @return the BareMetalMachineKeySetInner object itself.
      */
@@ -136,7 +144,7 @@ public final class BareMetalMachineKeySetInner extends Resource {
 
     /**
      * Get the detailedStatus property: The more detailed status of the key set.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public BareMetalMachineKeySetDetailedStatus detailedStatus() {
@@ -145,7 +153,7 @@ public final class BareMetalMachineKeySetInner extends Resource {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -155,7 +163,7 @@ public final class BareMetalMachineKeySetInner extends Resource {
     /**
      * Get the expiration property: The date and time after which the users in this key set will be removed from the
      * bare metal machines.
-     *
+     * 
      * @return the expiration value.
      */
     public OffsetDateTime expiration() {
@@ -165,7 +173,7 @@ public final class BareMetalMachineKeySetInner extends Resource {
     /**
      * Set the expiration property: The date and time after which the users in this key set will be removed from the
      * bare metal machines.
-     *
+     * 
      * @param expiration the expiration value to set.
      * @return the BareMetalMachineKeySetInner object itself.
      */
@@ -180,7 +188,7 @@ public final class BareMetalMachineKeySetInner extends Resource {
     /**
      * Get the jumpHostsAllowed property: The list of IP addresses of jump hosts with management network access from
      * which a login will be allowed for the users.
-     *
+     * 
      * @return the jumpHostsAllowed value.
      */
     public List<String> jumpHostsAllowed() {
@@ -190,7 +198,7 @@ public final class BareMetalMachineKeySetInner extends Resource {
     /**
      * Set the jumpHostsAllowed property: The list of IP addresses of jump hosts with management network access from
      * which a login will be allowed for the users.
-     *
+     * 
      * @param jumpHostsAllowed the jumpHostsAllowed value to set.
      * @return the BareMetalMachineKeySetInner object itself.
      */
@@ -204,7 +212,7 @@ public final class BareMetalMachineKeySetInner extends Resource {
 
     /**
      * Get the lastValidation property: The last time this key set was validated.
-     *
+     * 
      * @return the lastValidation value.
      */
     public OffsetDateTime lastValidation() {
@@ -212,9 +220,9 @@ public final class BareMetalMachineKeySetInner extends Resource {
     }
 
     /**
-     * Get the osGroupName property: The name of the group that users will be assigned to on the operating system of the
-     * machines.
-     *
+     * Get the osGroupName property: The name of the group that users will be assigned to on the operating system of
+     * the machines.
+     * 
      * @return the osGroupName value.
      */
     public String osGroupName() {
@@ -222,9 +230,9 @@ public final class BareMetalMachineKeySetInner extends Resource {
     }
 
     /**
-     * Set the osGroupName property: The name of the group that users will be assigned to on the operating system of the
-     * machines.
-     *
+     * Set the osGroupName property: The name of the group that users will be assigned to on the operating system of
+     * the machines.
+     * 
      * @param osGroupName the osGroupName value to set.
      * @return the BareMetalMachineKeySetInner object itself.
      */
@@ -238,7 +246,7 @@ public final class BareMetalMachineKeySetInner extends Resource {
 
     /**
      * Get the privilegeLevel property: The access level allowed for the users in this key set.
-     *
+     * 
      * @return the privilegeLevel value.
      */
     public BareMetalMachineKeySetPrivilegeLevel privilegeLevel() {
@@ -247,7 +255,7 @@ public final class BareMetalMachineKeySetInner extends Resource {
 
     /**
      * Set the privilegeLevel property: The access level allowed for the users in this key set.
-     *
+     * 
      * @param privilegeLevel the privilegeLevel value to set.
      * @return the BareMetalMachineKeySetInner object itself.
      */
@@ -261,7 +269,7 @@ public final class BareMetalMachineKeySetInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioning state of the bare metal machine key set.
-     *
+     * 
      * @return the provisioningState value.
      */
     public BareMetalMachineKeySetProvisioningState provisioningState() {
@@ -270,7 +278,7 @@ public final class BareMetalMachineKeySetInner extends Resource {
 
     /**
      * Get the userList property: The unique list of permitted users.
-     *
+     * 
      * @return the userList value.
      */
     public List<KeySetUser> userList() {
@@ -279,7 +287,7 @@ public final class BareMetalMachineKeySetInner extends Resource {
 
     /**
      * Set the userList property: The unique list of permitted users.
-     *
+     * 
      * @param userList the userList value to set.
      * @return the BareMetalMachineKeySetInner object itself.
      */
@@ -293,7 +301,7 @@ public final class BareMetalMachineKeySetInner extends Resource {
 
     /**
      * Get the userListStatus property: The status evaluation of each user.
-     *
+     * 
      * @return the userListStatus value.
      */
     public List<KeySetUserStatus> userListStatus() {
@@ -302,23 +310,19 @@ public final class BareMetalMachineKeySetInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (extendedLocation() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property extendedLocation in model BareMetalMachineKeySetInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property extendedLocation in model BareMetalMachineKeySetInner"));
         } else {
             extendedLocation().validate();
         }
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model BareMetalMachineKeySetInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model BareMetalMachineKeySetInner"));
         } else {
             innerProperties().validate();
         }

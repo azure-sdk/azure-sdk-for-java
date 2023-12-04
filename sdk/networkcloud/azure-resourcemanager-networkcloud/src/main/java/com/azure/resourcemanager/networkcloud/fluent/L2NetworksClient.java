@@ -14,72 +14,74 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.networkcloud.fluent.models.L2NetworkInner;
 import com.azure.resourcemanager.networkcloud.models.L2NetworkPatchParameters;
 
-/** An instance of this class provides access to all the operations defined in L2NetworksClient. */
+/**
+ * An instance of this class provides access to all the operations defined in L2NetworksClient.
+ */
 public interface L2NetworksClient {
     /**
      * List layer 2 (L2) networks in the subscription.
-     *
-     * <p>Get a list of layer 2 (L2) networks in the provided subscription.
-     *
+     * 
+     * Get a list of layer 2 (L2) networks in the provided subscription.
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of layer 2 (L2) networks in the provided subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of layer 2 (L2) networks in the provided subscription as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<L2NetworkInner> list();
 
     /**
      * List layer 2 (L2) networks in the subscription.
-     *
-     * <p>Get a list of layer 2 (L2) networks in the provided subscription.
-     *
+     * 
+     * Get a list of layer 2 (L2) networks in the provided subscription.
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of layer 2 (L2) networks in the provided subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of layer 2 (L2) networks in the provided subscription as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<L2NetworkInner> list(Context context);
 
     /**
      * List layer 2 (L2) networks in the resource group.
-     *
-     * <p>Get a list of layer 2 (L2) networks in the provided resource group.
-     *
+     * 
+     * Get a list of layer 2 (L2) networks in the provided resource group.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of layer 2 (L2) networks in the provided resource group as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of layer 2 (L2) networks in the provided resource group as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<L2NetworkInner> listByResourceGroup(String resourceGroupName);
 
     /**
      * List layer 2 (L2) networks in the resource group.
-     *
-     * <p>Get a list of layer 2 (L2) networks in the provided resource group.
-     *
+     * 
+     * Get a list of layer 2 (L2) networks in the provided resource group.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of layer 2 (L2) networks in the provided resource group as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of layer 2 (L2) networks in the provided resource group as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<L2NetworkInner> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
      * Retrieve the layer 2 (L2) network.
-     *
-     * <p>Get properties of the provided layer 2 (L2) network.
-     *
+     * 
+     * Get properties of the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param context The context to associate with this operation.
@@ -89,14 +91,14 @@ public interface L2NetworksClient {
      * @return properties of the provided layer 2 (L2) network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<L2NetworkInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String l2NetworkName, Context context);
+    Response<L2NetworkInner> getByResourceGroupWithResponse(String resourceGroupName, String l2NetworkName,
+        Context context);
 
     /**
      * Retrieve the layer 2 (L2) network.
-     *
-     * <p>Get properties of the provided layer 2 (L2) network.
-     *
+     * 
+     * Get properties of the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -109,9 +111,9 @@ public interface L2NetworksClient {
 
     /**
      * Create or update the layer 2 (L2) network.
-     *
-     * <p>Create a new layer 2 (L2) network or update the properties of the existing network.
-     *
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkParameters The request body.
@@ -119,17 +121,17 @@ public interface L2NetworksClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of l2Network represents a network that utilizes a single isolation
-     *     domain set up for layer-2 resources.
+     * domain set up for layer-2 resources.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdate(
-        String resourceGroupName, String l2NetworkName, L2NetworkInner l2NetworkParameters);
+    SyncPoller<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdate(String resourceGroupName,
+        String l2NetworkName, L2NetworkInner l2NetworkParameters);
 
     /**
      * Create or update the layer 2 (L2) network.
-     *
-     * <p>Create a new layer 2 (L2) network or update the properties of the existing network.
-     *
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkParameters The request body.
@@ -138,17 +140,17 @@ public interface L2NetworksClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of l2Network represents a network that utilizes a single isolation
-     *     domain set up for layer-2 resources.
+     * domain set up for layer-2 resources.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdate(
-        String resourceGroupName, String l2NetworkName, L2NetworkInner l2NetworkParameters, Context context);
+    SyncPoller<PollResult<L2NetworkInner>, L2NetworkInner> beginCreateOrUpdate(String resourceGroupName,
+        String l2NetworkName, L2NetworkInner l2NetworkParameters, Context context);
 
     /**
      * Create or update the layer 2 (L2) network.
-     *
-     * <p>Create a new layer 2 (L2) network or update the properties of the existing network.
-     *
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkParameters The request body.
@@ -162,9 +164,9 @@ public interface L2NetworksClient {
 
     /**
      * Create or update the layer 2 (L2) network.
-     *
-     * <p>Create a new layer 2 (L2) network or update the properties of the existing network.
-     *
+     * 
+     * Create a new layer 2 (L2) network or update the properties of the existing network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkParameters The request body.
@@ -175,14 +177,14 @@ public interface L2NetworksClient {
      * @return l2Network represents a network that utilizes a single isolation domain set up for layer-2 resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    L2NetworkInner createOrUpdate(
-        String resourceGroupName, String l2NetworkName, L2NetworkInner l2NetworkParameters, Context context);
+    L2NetworkInner createOrUpdate(String resourceGroupName, String l2NetworkName, L2NetworkInner l2NetworkParameters,
+        Context context);
 
     /**
      * Delete the layer 2 (L2) network.
-     *
-     * <p>Delete the provided layer 2 (L2) network.
-     *
+     * 
+     * Delete the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -195,9 +197,9 @@ public interface L2NetworksClient {
 
     /**
      * Delete the layer 2 (L2) network.
-     *
-     * <p>Delete the provided layer 2 (L2) network.
-     *
+     * 
+     * Delete the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param context The context to associate with this operation.
@@ -211,9 +213,9 @@ public interface L2NetworksClient {
 
     /**
      * Delete the layer 2 (L2) network.
-     *
-     * <p>Delete the provided layer 2 (L2) network.
-     *
+     * 
+     * Delete the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -225,9 +227,9 @@ public interface L2NetworksClient {
 
     /**
      * Delete the layer 2 (L2) network.
-     *
-     * <p>Delete the provided layer 2 (L2) network.
-     *
+     * 
+     * Delete the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param context The context to associate with this operation.
@@ -240,9 +242,9 @@ public interface L2NetworksClient {
 
     /**
      * Patch the layer 2 (L2) network.
-     *
-     * <p>Update tags associated with the provided layer 2 (L2) network.
-     *
+     * 
+     * Update tags associated with the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @param l2NetworkUpdateParameters The request body.
@@ -251,20 +253,17 @@ public interface L2NetworksClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return l2Network represents a network that utilizes a single isolation domain set up for layer-2 resources along
-     *     with {@link Response}.
+     * with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<L2NetworkInner> updateWithResponse(
-        String resourceGroupName,
-        String l2NetworkName,
-        L2NetworkPatchParameters l2NetworkUpdateParameters,
-        Context context);
+    Response<L2NetworkInner> updateWithResponse(String resourceGroupName, String l2NetworkName,
+        L2NetworkPatchParameters l2NetworkUpdateParameters, Context context);
 
     /**
      * Patch the layer 2 (L2) network.
-     *
-     * <p>Update tags associated with the provided layer 2 (L2) network.
-     *
+     * 
+     * Update tags associated with the provided layer 2 (L2) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l2NetworkName The name of the L2 network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

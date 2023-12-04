@@ -15,7 +15,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** BmcKeySetProperties represents the properties of baseboard management controller key set. */
+/**
+ * BmcKeySetProperties represents the properties of baseboard management controller key set.
+ */
 @Fluent
 public final class BmcKeySetProperties {
     /*
@@ -74,14 +76,16 @@ public final class BmcKeySetProperties {
     @JsonProperty(value = "userListStatus", access = JsonProperty.Access.WRITE_ONLY)
     private List<KeySetUserStatus> userListStatus;
 
-    /** Creates an instance of BmcKeySetProperties class. */
+    /**
+     * Creates an instance of BmcKeySetProperties class.
+     */
     public BmcKeySetProperties() {
     }
 
     /**
      * Get the azureGroupId property: The object ID of Azure Active Directory group that all users in the list must be
      * in for access to be granted. Users that are not in the group will not have access.
-     *
+     * 
      * @return the azureGroupId value.
      */
     public String azureGroupId() {
@@ -91,7 +95,7 @@ public final class BmcKeySetProperties {
     /**
      * Set the azureGroupId property: The object ID of Azure Active Directory group that all users in the list must be
      * in for access to be granted. Users that are not in the group will not have access.
-     *
+     * 
      * @param azureGroupId the azureGroupId value to set.
      * @return the BmcKeySetProperties object itself.
      */
@@ -102,7 +106,7 @@ public final class BmcKeySetProperties {
 
     /**
      * Get the detailedStatus property: The more detailed status of the key set.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public BmcKeySetDetailedStatus detailedStatus() {
@@ -111,7 +115,7 @@ public final class BmcKeySetProperties {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -121,7 +125,7 @@ public final class BmcKeySetProperties {
     /**
      * Get the expiration property: The date and time after which the users in this key set will be removed from the
      * baseboard management controllers.
-     *
+     * 
      * @return the expiration value.
      */
     public OffsetDateTime expiration() {
@@ -131,7 +135,7 @@ public final class BmcKeySetProperties {
     /**
      * Set the expiration property: The date and time after which the users in this key set will be removed from the
      * baseboard management controllers.
-     *
+     * 
      * @param expiration the expiration value to set.
      * @return the BmcKeySetProperties object itself.
      */
@@ -142,7 +146,7 @@ public final class BmcKeySetProperties {
 
     /**
      * Get the lastValidation property: The last time this key set was validated.
-     *
+     * 
      * @return the lastValidation value.
      */
     public OffsetDateTime lastValidation() {
@@ -151,7 +155,7 @@ public final class BmcKeySetProperties {
 
     /**
      * Get the privilegeLevel property: The access level allowed for the users in this key set.
-     *
+     * 
      * @return the privilegeLevel value.
      */
     public BmcKeySetPrivilegeLevel privilegeLevel() {
@@ -160,7 +164,7 @@ public final class BmcKeySetProperties {
 
     /**
      * Set the privilegeLevel property: The access level allowed for the users in this key set.
-     *
+     * 
      * @param privilegeLevel the privilegeLevel value to set.
      * @return the BmcKeySetProperties object itself.
      */
@@ -171,7 +175,7 @@ public final class BmcKeySetProperties {
 
     /**
      * Get the provisioningState property: The provisioning state of the baseboard management controller key set.
-     *
+     * 
      * @return the provisioningState value.
      */
     public BmcKeySetProvisioningState provisioningState() {
@@ -180,7 +184,7 @@ public final class BmcKeySetProperties {
 
     /**
      * Get the userList property: The unique list of permitted users.
-     *
+     * 
      * @return the userList value.
      */
     public List<KeySetUser> userList() {
@@ -189,7 +193,7 @@ public final class BmcKeySetProperties {
 
     /**
      * Set the userList property: The unique list of permitted users.
-     *
+     * 
      * @param userList the userList value to set.
      * @return the BmcKeySetProperties object itself.
      */
@@ -200,7 +204,7 @@ public final class BmcKeySetProperties {
 
     /**
      * Get the userListStatus property: The status evaluation of each user.
-     *
+     * 
      * @return the userListStatus value.
      */
     public List<KeySetUserStatus> userListStatus() {
@@ -209,31 +213,25 @@ public final class BmcKeySetProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (azureGroupId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property azureGroupId in model BmcKeySetProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property azureGroupId in model BmcKeySetProperties"));
         }
         if (expiration() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property expiration in model BmcKeySetProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property expiration in model BmcKeySetProperties"));
         }
         if (privilegeLevel() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property privilegeLevel in model BmcKeySetProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property privilegeLevel in model BmcKeySetProperties"));
         }
         if (userList() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property userList in model BmcKeySetProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property userList in model BmcKeySetProperties"));
         } else {
             userList().forEach(e -> e.validate());
         }

@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The strategy for deleting the OS disk. */
+/**
+ * The strategy for deleting the OS disk.
+ */
 public final class OsDiskDeleteOption extends ExpandableStringEnum<OsDiskDeleteOption> {
-    /** Static value Delete for OsDiskDeleteOption. */
+    /**
+     * Static value Delete for OsDiskDeleteOption.
+     */
     public static final OsDiskDeleteOption DELETE = fromString("Delete");
 
     /**
      * Creates a new instance of OsDiskDeleteOption value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class OsDiskDeleteOption extends ExpandableStringEnum<OsDiskDeleteO
 
     /**
      * Creates or finds a OsDiskDeleteOption from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding OsDiskDeleteOption.
      */
@@ -35,7 +39,7 @@ public final class OsDiskDeleteOption extends ExpandableStringEnum<OsDiskDeleteO
 
     /**
      * Gets known OsDiskDeleteOption values.
-     *
+     * 
      * @return known OsDiskDeleteOption values.
      */
     public static Collection<OsDiskDeleteOption> values() {

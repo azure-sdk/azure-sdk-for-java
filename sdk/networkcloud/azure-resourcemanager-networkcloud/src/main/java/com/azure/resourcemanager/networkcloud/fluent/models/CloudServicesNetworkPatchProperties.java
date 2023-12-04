@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * CloudServicesNetworkPatchProperties represents the properties of the cloud services network that can be updated using
- * a patch request.
+ * CloudServicesNetworkPatchProperties represents the properties of the cloud services network that can be updated
+ * using a patch request.
  */
 @Fluent
 public final class CloudServicesNetworkPatchProperties {
@@ -28,14 +28,16 @@ public final class CloudServicesNetworkPatchProperties {
     @JsonProperty(value = "enableDefaultEgressEndpoints")
     private CloudServicesNetworkEnableDefaultEgressEndpoints enableDefaultEgressEndpoints;
 
-    /** Creates an instance of CloudServicesNetworkPatchProperties class. */
+    /**
+     * Creates an instance of CloudServicesNetworkPatchProperties class.
+     */
     public CloudServicesNetworkPatchProperties() {
     }
 
     /**
      * Get the additionalEgressEndpoints property: The list of egress endpoints. This allows for connection from a
      * Hybrid AKS cluster to the specified endpoint.
-     *
+     * 
      * @return the additionalEgressEndpoints value.
      */
     public List<EgressEndpoint> additionalEgressEndpoints() {
@@ -45,12 +47,12 @@ public final class CloudServicesNetworkPatchProperties {
     /**
      * Set the additionalEgressEndpoints property: The list of egress endpoints. This allows for connection from a
      * Hybrid AKS cluster to the specified endpoint.
-     *
+     * 
      * @param additionalEgressEndpoints the additionalEgressEndpoints value to set.
      * @return the CloudServicesNetworkPatchProperties object itself.
      */
-    public CloudServicesNetworkPatchProperties withAdditionalEgressEndpoints(
-        List<EgressEndpoint> additionalEgressEndpoints) {
+    public CloudServicesNetworkPatchProperties
+        withAdditionalEgressEndpoints(List<EgressEndpoint> additionalEgressEndpoints) {
         this.additionalEgressEndpoints = additionalEgressEndpoints;
         return this;
     }
@@ -58,7 +60,7 @@ public final class CloudServicesNetworkPatchProperties {
     /**
      * Get the enableDefaultEgressEndpoints property: The indicator of whether the platform default endpoints are
      * allowed for the egress traffic.
-     *
+     * 
      * @return the enableDefaultEgressEndpoints value.
      */
     public CloudServicesNetworkEnableDefaultEgressEndpoints enableDefaultEgressEndpoints() {
@@ -68,7 +70,7 @@ public final class CloudServicesNetworkPatchProperties {
     /**
      * Set the enableDefaultEgressEndpoints property: The indicator of whether the platform default endpoints are
      * allowed for the egress traffic.
-     *
+     * 
      * @param enableDefaultEgressEndpoints the enableDefaultEgressEndpoints value to set.
      * @return the CloudServicesNetworkPatchProperties object itself.
      */
@@ -80,7 +82,7 @@ public final class CloudServicesNetworkPatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The indicator to specify if the load balancer peers with the network fabric. */
+/**
+ * The indicator to specify if the load balancer peers with the network fabric.
+ */
 public final class FabricPeeringEnabled extends ExpandableStringEnum<FabricPeeringEnabled> {
-    /** Static value True for FabricPeeringEnabled. */
+    /**
+     * Static value True for FabricPeeringEnabled.
+     */
     public static final FabricPeeringEnabled TRUE = fromString("True");
 
-    /** Static value False for FabricPeeringEnabled. */
+    /**
+     * Static value False for FabricPeeringEnabled.
+     */
     public static final FabricPeeringEnabled FALSE = fromString("False");
 
     /**
      * Creates a new instance of FabricPeeringEnabled value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class FabricPeeringEnabled extends ExpandableStringEnum<FabricPeeri
 
     /**
      * Creates or finds a FabricPeeringEnabled from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding FabricPeeringEnabled.
      */
@@ -38,7 +44,7 @@ public final class FabricPeeringEnabled extends ExpandableStringEnum<FabricPeeri
 
     /**
      * Gets known FabricPeeringEnabled values.
-     *
+     * 
      * @return known FabricPeeringEnabled values.
      */
     public static Collection<FabricPeeringEnabled> values() {

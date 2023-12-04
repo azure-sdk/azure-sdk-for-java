@@ -13,46 +13,40 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for BareMetalMachineKeySets CreateOrUpdate. */
+/**
+ * Samples for BareMetalMachineKeySets CreateOrUpdate.
+ */
 public final class BareMetalMachineKeySetsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/BareMetalMachineKeySets_Create.json
+     * x-ms-original-file:
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/
+     * BareMetalMachineKeySets_Create.json
      */
     /**
      * Sample code: Create or update bare metal machine key set of cluster.
-     *
+     * 
      * @param manager Entry point to NetworkCloudManager.
      */
     public static void createOrUpdateBareMetalMachineKeySetOfCluster(
         com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
-        manager
-            .bareMetalMachineKeySets()
-            .define("bareMetalMachineKeySetName")
-            .withRegion("location")
+        manager.bareMetalMachineKeySets().define("bareMetalMachineKeySetName").withRegion("location")
             .withExistingCluster("resourceGroupName", "clusterName")
-            .withExtendedLocation(
-                new ExtendedLocation()
-                    .withName(
-                        "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ExtendedLocation/customLocations/clusterExtendedLocationName")
-                    .withType("CustomLocation"))
+            .withExtendedLocation(new ExtendedLocation().withName(
+                "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ExtendedLocation/customLocations/clusterExtendedLocationName")
+                .withType("CustomLocation"))
             .withAzureGroupId("f110271b-XXXX-4163-9b99-214d91660f0e")
             .withExpiration(OffsetDateTime.parse("2022-12-31T23:59:59.008Z"))
             .withJumpHostsAllowed(Arrays.asList("192.0.2.1", "192.0.2.5"))
             .withPrivilegeLevel(BareMetalMachineKeySetPrivilegeLevel.STANDARD)
-            .withUserList(
-                Arrays
-                    .asList(
-                        new KeySetUser()
-                            .withAzureUsername("userABC")
-                            .withDescription("Needs access for troubleshooting as a part of the support team")
-                            .withSshPublicKey(new SshPublicKey().withKeyData("fakeTokenPlaceholder")),
-                        new KeySetUser()
-                            .withAzureUsername("userXYZ")
-                            .withDescription("Needs access for troubleshooting as a part of the support team")
-                            .withSshPublicKey(new SshPublicKey().withKeyData("fakeTokenPlaceholder"))))
+            .withUserList(Arrays.asList(
+                new KeySetUser().withAzureUsername("userABC")
+                    .withDescription("Needs access for troubleshooting as a part of the support team")
+                    .withSshPublicKey(new SshPublicKey().withKeyData("fakeTokenPlaceholder")),
+                new KeySetUser().withAzureUsername("userXYZ")
+                    .withDescription("Needs access for troubleshooting as a part of the support team")
+                    .withSshPublicKey(new SshPublicKey().withKeyData("fakeTokenPlaceholder"))))
             .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
-            .withOsGroupName("standardAccessGroup")
-            .create();
+            .withOsGroupName("standardAccessGroup").create();
     }
 
     // Use "Map.of" if available

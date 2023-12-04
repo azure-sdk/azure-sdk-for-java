@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.networkcloud.models.AgentPoolUpgradeSettings;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** AgentPoolPatchProperties represents the properties of an agent pool that can be modified. */
+/**
+ * AgentPoolPatchProperties represents the properties of an agent pool that can be modified.
+ */
 @Fluent
 public final class AgentPoolPatchProperties {
     /*
@@ -19,19 +21,21 @@ public final class AgentPoolPatchProperties {
 
     /*
      * AgentPoolUpgradeSettings specifies the upgrade settings for an agent pool.
-     *
+     * 
      * The configuration of the agent pool.
      */
     @JsonProperty(value = "upgradeSettings")
     private AgentPoolUpgradeSettings upgradeSettings;
 
-    /** Creates an instance of AgentPoolPatchProperties class. */
+    /**
+     * Creates an instance of AgentPoolPatchProperties class.
+     */
     public AgentPoolPatchProperties() {
     }
 
     /**
      * Get the count property: The number of virtual machines that use this configuration.
-     *
+     * 
      * @return the count value.
      */
     public Long count() {
@@ -40,7 +44,7 @@ public final class AgentPoolPatchProperties {
 
     /**
      * Set the count property: The number of virtual machines that use this configuration.
-     *
+     * 
      * @param count the count value to set.
      * @return the AgentPoolPatchProperties object itself.
      */
@@ -51,9 +55,9 @@ public final class AgentPoolPatchProperties {
 
     /**
      * Get the upgradeSettings property: AgentPoolUpgradeSettings specifies the upgrade settings for an agent pool.
-     *
-     * <p>The configuration of the agent pool.
-     *
+     * 
+     * The configuration of the agent pool.
+     * 
      * @return the upgradeSettings value.
      */
     public AgentPoolUpgradeSettings upgradeSettings() {
@@ -62,9 +66,9 @@ public final class AgentPoolPatchProperties {
 
     /**
      * Set the upgradeSettings property: AgentPoolUpgradeSettings specifies the upgrade settings for an agent pool.
-     *
-     * <p>The configuration of the agent pool.
-     *
+     * 
+     * The configuration of the agent pool.
+     * 
      * @param upgradeSettings the upgradeSettings value to set.
      * @return the AgentPoolPatchProperties object itself.
      */
@@ -75,7 +79,7 @@ public final class AgentPoolPatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

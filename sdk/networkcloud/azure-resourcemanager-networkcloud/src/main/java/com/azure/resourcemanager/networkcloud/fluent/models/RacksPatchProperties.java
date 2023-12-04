@@ -7,7 +7,9 @@ package com.azure.resourcemanager.networkcloud.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** RacksPatchProperties represents the properties of the rack during patching. */
+/**
+ * RacksPatchProperties represents the properties of the rack during patching.
+ */
 @Fluent
 public final class RacksPatchProperties {
     /*
@@ -22,14 +24,16 @@ public final class RacksPatchProperties {
     @JsonProperty(value = "rackSerialNumber")
     private String rackSerialNumber;
 
-    /** Creates an instance of RacksPatchProperties class. */
+    /**
+     * Creates an instance of RacksPatchProperties class.
+     */
     public RacksPatchProperties() {
     }
 
     /**
      * Get the rackLocation property: The free-form description of the rack location. (e.g. “DTN Datacenter, Floor 3,
      * Isle 9, Rack 2B”).
-     *
+     * 
      * @return the rackLocation value.
      */
     public String rackLocation() {
@@ -39,7 +43,7 @@ public final class RacksPatchProperties {
     /**
      * Set the rackLocation property: The free-form description of the rack location. (e.g. “DTN Datacenter, Floor 3,
      * Isle 9, Rack 2B”).
-     *
+     * 
      * @param rackLocation the rackLocation value to set.
      * @return the RacksPatchProperties object itself.
      */
@@ -50,7 +54,7 @@ public final class RacksPatchProperties {
 
     /**
      * Get the rackSerialNumber property: The globally unique identifier for the rack.
-     *
+     * 
      * @return the rackSerialNumber value.
      */
     public String rackSerialNumber() {
@@ -59,7 +63,7 @@ public final class RacksPatchProperties {
 
     /**
      * Set the rackSerialNumber property: The globally unique identifier for the rack.
-     *
+     * 
      * @param rackSerialNumber the rackSerialNumber value to set.
      * @return the RacksPatchProperties object itself.
      */
@@ -70,7 +74,7 @@ public final class RacksPatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

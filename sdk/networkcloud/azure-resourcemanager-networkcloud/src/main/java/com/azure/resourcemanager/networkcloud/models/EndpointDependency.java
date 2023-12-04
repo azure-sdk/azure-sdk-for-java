@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** EndpointDependency represents the definition of an endpoint, including the domain and details. */
+/**
+ * EndpointDependency represents the definition of an endpoint, including the domain and details.
+ */
 @Fluent
 public final class EndpointDependency {
     /*
@@ -23,13 +25,15 @@ public final class EndpointDependency {
     @JsonProperty(value = "port")
     private Long port;
 
-    /** Creates an instance of EndpointDependency class. */
+    /**
+     * Creates an instance of EndpointDependency class.
+     */
     public EndpointDependency() {
     }
 
     /**
      * Get the domainName property: The domain name of the dependency.
-     *
+     * 
      * @return the domainName value.
      */
     public String domainName() {
@@ -38,7 +42,7 @@ public final class EndpointDependency {
 
     /**
      * Set the domainName property: The domain name of the dependency.
-     *
+     * 
      * @param domainName the domainName value to set.
      * @return the EndpointDependency object itself.
      */
@@ -49,7 +53,7 @@ public final class EndpointDependency {
 
     /**
      * Get the port property: The port of this endpoint.
-     *
+     * 
      * @return the port value.
      */
     public Long port() {
@@ -58,7 +62,7 @@ public final class EndpointDependency {
 
     /**
      * Set the port property: The port of this endpoint.
-     *
+     * 
      * @param port the port value to set.
      * @return the EndpointDependency object itself.
      */
@@ -69,14 +73,13 @@ public final class EndpointDependency {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (domainName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property domainName in model EndpointDependency"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property domainName in model EndpointDependency"));
         }
     }
 

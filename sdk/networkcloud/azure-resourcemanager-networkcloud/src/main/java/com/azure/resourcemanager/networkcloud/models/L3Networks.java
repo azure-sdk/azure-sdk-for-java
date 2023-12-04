@@ -8,68 +8,70 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of L3Networks. */
+/**
+ * Resource collection API of L3Networks.
+ */
 public interface L3Networks {
     /**
      * List layer 3 (L3) networks in the subscription.
-     *
-     * <p>Get a list of layer 3 (L3) networks in the provided subscription.
-     *
+     * 
+     * Get a list of layer 3 (L3) networks in the provided subscription.
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of layer 3 (L3) networks in the provided subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of layer 3 (L3) networks in the provided subscription as paginated response with
+     * {@link PagedIterable}.
      */
     PagedIterable<L3Network> list();
 
     /**
      * List layer 3 (L3) networks in the subscription.
-     *
-     * <p>Get a list of layer 3 (L3) networks in the provided subscription.
-     *
+     * 
+     * Get a list of layer 3 (L3) networks in the provided subscription.
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of layer 3 (L3) networks in the provided subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of layer 3 (L3) networks in the provided subscription as paginated response with
+     * {@link PagedIterable}.
      */
     PagedIterable<L3Network> list(Context context);
 
     /**
      * List layer 3 (L3) networks in the resource group.
-     *
-     * <p>Get a list of layer 3 (L3) networks in the provided resource group.
-     *
+     * 
+     * Get a list of layer 3 (L3) networks in the provided resource group.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of layer 3 (L3) networks in the provided resource group as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of layer 3 (L3) networks in the provided resource group as paginated response with
+     * {@link PagedIterable}.
      */
     PagedIterable<L3Network> listByResourceGroup(String resourceGroupName);
 
     /**
      * List layer 3 (L3) networks in the resource group.
-     *
-     * <p>Get a list of layer 3 (L3) networks in the provided resource group.
-     *
+     * 
+     * Get a list of layer 3 (L3) networks in the provided resource group.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of layer 3 (L3) networks in the provided resource group as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of layer 3 (L3) networks in the provided resource group as paginated response with
+     * {@link PagedIterable}.
      */
     PagedIterable<L3Network> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
      * Retrieve the layer 3 (L3) network.
-     *
-     * <p>Get properties of the provided layer 3 (L3) network.
-     *
+     * 
+     * Get properties of the provided layer 3 (L3) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
      * @param context The context to associate with this operation.
@@ -82,9 +84,9 @@ public interface L3Networks {
 
     /**
      * Retrieve the layer 3 (L3) network.
-     *
-     * <p>Get properties of the provided layer 3 (L3) network.
-     *
+     * 
+     * Get properties of the provided layer 3 (L3) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -96,9 +98,9 @@ public interface L3Networks {
 
     /**
      * Delete the layer 3 (L3) network.
-     *
-     * <p>Delete the provided layer 3 (L3) network.
-     *
+     * 
+     * Delete the provided layer 3 (L3) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -109,9 +111,9 @@ public interface L3Networks {
 
     /**
      * Delete the layer 3 (L3) network.
-     *
-     * <p>Delete the provided layer 3 (L3) network.
-     *
+     * 
+     * Delete the provided layer 3 (L3) network.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param l3NetworkName The name of the L3 network.
      * @param context The context to associate with this operation.
@@ -123,9 +125,9 @@ public interface L3Networks {
 
     /**
      * Retrieve the layer 3 (L3) network.
-     *
-     * <p>Get properties of the provided layer 3 (L3) network.
-     *
+     * 
+     * Get properties of the provided layer 3 (L3) network.
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -136,9 +138,9 @@ public interface L3Networks {
 
     /**
      * Retrieve the layer 3 (L3) network.
-     *
-     * <p>Get properties of the provided layer 3 (L3) network.
-     *
+     * 
+     * Get properties of the provided layer 3 (L3) network.
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -150,9 +152,9 @@ public interface L3Networks {
 
     /**
      * Delete the layer 3 (L3) network.
-     *
-     * <p>Delete the provided layer 3 (L3) network.
-     *
+     * 
+     * Delete the provided layer 3 (L3) network.
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -162,9 +164,9 @@ public interface L3Networks {
 
     /**
      * Delete the layer 3 (L3) network.
-     *
-     * <p>Delete the provided layer 3 (L3) network.
-     *
+     * 
+     * Delete the provided layer 3 (L3) network.
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -175,7 +177,7 @@ public interface L3Networks {
 
     /**
      * Begins definition for a new L3Network resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new L3Network definition.
      */

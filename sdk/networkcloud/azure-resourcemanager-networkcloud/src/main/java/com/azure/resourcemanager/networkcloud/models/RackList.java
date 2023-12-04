@@ -9,7 +9,9 @@ import com.azure.resourcemanager.networkcloud.fluent.models.RackInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** RackList represents a list of racks. */
+/**
+ * RackList represents a list of racks.
+ */
 @Fluent
 public final class RackList {
     /*
@@ -24,13 +26,15 @@ public final class RackList {
     @JsonProperty(value = "value")
     private List<RackInner> value;
 
-    /** Creates an instance of RackList class. */
+    /**
+     * Creates an instance of RackList class.
+     */
     public RackList() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class RackList {
 
     /**
      * Set the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the RackList object itself.
      */
@@ -50,7 +54,7 @@ public final class RackList {
 
     /**
      * Get the value property: The list of racks.
-     *
+     * 
      * @return the value value.
      */
     public List<RackInner> value() {
@@ -59,7 +63,7 @@ public final class RackList {
 
     /**
      * Set the value property: The list of racks.
-     *
+     * 
      * @param value the value value to set.
      * @return the RackList object itself.
      */
@@ -70,7 +74,7 @@ public final class RackList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

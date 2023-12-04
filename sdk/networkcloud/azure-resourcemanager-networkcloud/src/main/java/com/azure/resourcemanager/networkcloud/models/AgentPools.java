@@ -8,45 +8,47 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of AgentPools. */
+/**
+ * Resource collection API of AgentPools.
+ */
 public interface AgentPools {
     /**
      * List agent pools of the Kubernetes cluster.
-     *
-     * <p>Get a list of agent pools for the provided Kubernetes cluster.
-     *
+     * 
+     * Get a list of agent pools for the provided Kubernetes cluster.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of agent pools for the provided Kubernetes cluster as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of agent pools for the provided Kubernetes cluster as paginated response with
+     * {@link PagedIterable}.
      */
     PagedIterable<AgentPool> listByKubernetesCluster(String resourceGroupName, String kubernetesClusterName);
 
     /**
      * List agent pools of the Kubernetes cluster.
-     *
-     * <p>Get a list of agent pools for the provided Kubernetes cluster.
-     *
+     * 
+     * Get a list of agent pools for the provided Kubernetes cluster.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of agent pools for the provided Kubernetes cluster as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of agent pools for the provided Kubernetes cluster as paginated response with
+     * {@link PagedIterable}.
      */
-    PagedIterable<AgentPool> listByKubernetesCluster(
-        String resourceGroupName, String kubernetesClusterName, Context context);
+    PagedIterable<AgentPool> listByKubernetesCluster(String resourceGroupName, String kubernetesClusterName,
+        Context context);
 
     /**
      * Retrieve the Kubernetes cluster agent pool.
-     *
-     * <p>Get properties of the provided Kubernetes cluster agent pool.
-     *
+     * 
+     * Get properties of the provided Kubernetes cluster agent pool.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
@@ -56,14 +58,14 @@ public interface AgentPools {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return properties of the provided Kubernetes cluster agent pool along with {@link Response}.
      */
-    Response<AgentPool> getWithResponse(
-        String resourceGroupName, String kubernetesClusterName, String agentPoolName, Context context);
+    Response<AgentPool> getWithResponse(String resourceGroupName, String kubernetesClusterName, String agentPoolName,
+        Context context);
 
     /**
      * Retrieve the Kubernetes cluster agent pool.
-     *
-     * <p>Get properties of the provided Kubernetes cluster agent pool.
-     *
+     * 
+     * Get properties of the provided Kubernetes cluster agent pool.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
@@ -76,9 +78,9 @@ public interface AgentPools {
 
     /**
      * Delete the Kubernetes cluster agent pool.
-     *
-     * <p>Delete the provided Kubernetes cluster agent pool.
-     *
+     * 
+     * Delete the provided Kubernetes cluster agent pool.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
@@ -90,9 +92,9 @@ public interface AgentPools {
 
     /**
      * Delete the Kubernetes cluster agent pool.
-     *
-     * <p>Delete the provided Kubernetes cluster agent pool.
-     *
+     * 
+     * Delete the provided Kubernetes cluster agent pool.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param kubernetesClusterName The name of the Kubernetes cluster.
      * @param agentPoolName The name of the Kubernetes cluster agent pool.
@@ -105,9 +107,9 @@ public interface AgentPools {
 
     /**
      * Retrieve the Kubernetes cluster agent pool.
-     *
-     * <p>Get properties of the provided Kubernetes cluster agent pool.
-     *
+     * 
+     * Get properties of the provided Kubernetes cluster agent pool.
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -118,9 +120,9 @@ public interface AgentPools {
 
     /**
      * Retrieve the Kubernetes cluster agent pool.
-     *
-     * <p>Get properties of the provided Kubernetes cluster agent pool.
-     *
+     * 
+     * Get properties of the provided Kubernetes cluster agent pool.
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -132,9 +134,9 @@ public interface AgentPools {
 
     /**
      * Delete the Kubernetes cluster agent pool.
-     *
-     * <p>Delete the provided Kubernetes cluster agent pool.
-     *
+     * 
+     * Delete the provided Kubernetes cluster agent pool.
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -144,9 +146,9 @@ public interface AgentPools {
 
     /**
      * Delete the Kubernetes cluster agent pool.
-     *
-     * <p>Delete the provided Kubernetes cluster agent pool.
-     *
+     * 
+     * Delete the provided Kubernetes cluster agent pool.
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -157,7 +159,7 @@ public interface AgentPools {
 
     /**
      * Begins definition for a new AgentPool resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new AgentPool definition.
      */

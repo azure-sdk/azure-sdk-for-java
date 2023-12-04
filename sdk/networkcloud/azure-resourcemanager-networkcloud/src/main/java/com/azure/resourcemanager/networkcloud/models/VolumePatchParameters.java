@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** VolumePatchParameters represents the body of the request to patch the volume resource. */
+/**
+ * VolumePatchParameters represents the body of the request to patch the volume resource.
+ */
 @Fluent
 public final class VolumePatchParameters {
     /*
@@ -19,13 +21,15 @@ public final class VolumePatchParameters {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of VolumePatchParameters class. */
+    /**
+     * Creates an instance of VolumePatchParameters class.
+     */
     public VolumePatchParameters() {
     }
 
     /**
      * Get the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -34,7 +38,7 @@ public final class VolumePatchParameters {
 
     /**
      * Set the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the VolumePatchParameters object itself.
      */
@@ -45,7 +49,7 @@ public final class VolumePatchParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

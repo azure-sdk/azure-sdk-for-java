@@ -4,14 +4,17 @@
 
 package com.azure.resourcemanager.networkcloud.generated;
 
-/** Samples for Volumes Delete. */
+/**
+ * Samples for Volumes Delete.
+ */
 public final class VolumesDeleteSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/Volumes_Delete.json
+     * x-ms-original-file:
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/Volumes_Delete.json
      */
     /**
      * Sample code: Delete volume.
-     *
+     * 
      * @param manager Entry point to NetworkCloudManager.
      */
     public static void deleteVolume(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
