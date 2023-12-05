@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Policy violation. */
+/**
+ * Policy violation.
+ */
 @Fluent
 public final class PolicyViolation {
     /*
@@ -22,13 +24,15 @@ public final class PolicyViolation {
     @JsonProperty(value = "message")
     private String message;
 
-    /** Creates an instance of PolicyViolation class. */
+    /**
+     * Creates an instance of PolicyViolation class.
+     */
     public PolicyViolation() {
     }
 
     /**
      * Get the code property: The code of the policy violation.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -37,7 +41,7 @@ public final class PolicyViolation {
 
     /**
      * Set the code property: The code of the policy violation.
-     *
+     * 
      * @param code the code value to set.
      * @return the PolicyViolation object itself.
      */
@@ -48,7 +52,7 @@ public final class PolicyViolation {
 
     /**
      * Get the message property: The message of the policy violation.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -57,7 +61,7 @@ public final class PolicyViolation {
 
     /**
      * Set the message property: The message of the policy violation.
-     *
+     * 
      * @param message the message value to set.
      * @return the PolicyViolation object itself.
      */
@@ -68,7 +72,7 @@ public final class PolicyViolation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

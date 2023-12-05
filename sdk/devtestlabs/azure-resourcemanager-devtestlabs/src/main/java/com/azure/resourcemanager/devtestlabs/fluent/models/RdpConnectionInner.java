@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents a .rdp file. */
+/**
+ * Represents a .rdp file.
+ */
 @Fluent
 public final class RdpConnectionInner {
     /*
@@ -16,13 +18,15 @@ public final class RdpConnectionInner {
     @JsonProperty(value = "contents")
     private String contents;
 
-    /** Creates an instance of RdpConnectionInner class. */
+    /**
+     * Creates an instance of RdpConnectionInner class.
+     */
     public RdpConnectionInner() {
     }
 
     /**
      * Get the contents property: The contents of the .rdp file.
-     *
+     * 
      * @return the contents value.
      */
     public String contents() {
@@ -31,7 +35,7 @@ public final class RdpConnectionInner {
 
     /**
      * Set the contents property: The contents of the .rdp file.
-     *
+     * 
      * @param contents the contents value to set.
      * @return the RdpConnectionInner object itself.
      */
@@ -42,7 +46,7 @@ public final class RdpConnectionInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

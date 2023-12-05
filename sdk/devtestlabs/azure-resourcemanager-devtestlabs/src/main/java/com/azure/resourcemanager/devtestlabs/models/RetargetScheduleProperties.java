@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties for retargeting a virtual machine schedule. */
+/**
+ * Properties for retargeting a virtual machine schedule.
+ */
 @Fluent
 public final class RetargetScheduleProperties {
     /*
@@ -22,13 +24,15 @@ public final class RetargetScheduleProperties {
     @JsonProperty(value = "targetResourceId")
     private String targetResourceId;
 
-    /** Creates an instance of RetargetScheduleProperties class. */
+    /**
+     * Creates an instance of RetargetScheduleProperties class.
+     */
     public RetargetScheduleProperties() {
     }
 
     /**
      * Get the currentResourceId property: The resource Id of the virtual machine on which the schedule operates.
-     *
+     * 
      * @return the currentResourceId value.
      */
     public String currentResourceId() {
@@ -37,7 +41,7 @@ public final class RetargetScheduleProperties {
 
     /**
      * Set the currentResourceId property: The resource Id of the virtual machine on which the schedule operates.
-     *
+     * 
      * @param currentResourceId the currentResourceId value to set.
      * @return the RetargetScheduleProperties object itself.
      */
@@ -49,7 +53,7 @@ public final class RetargetScheduleProperties {
     /**
      * Get the targetResourceId property: The resource Id of the virtual machine that the schedule should be retargeted
      * to.
-     *
+     * 
      * @return the targetResourceId value.
      */
     public String targetResourceId() {
@@ -59,7 +63,7 @@ public final class RetargetScheduleProperties {
     /**
      * Set the targetResourceId property: The resource Id of the virtual machine that the schedule should be retargeted
      * to.
-     *
+     * 
      * @param targetResourceId the targetResourceId value to set.
      * @return the RetargetScheduleProperties object itself.
      */
@@ -70,7 +74,7 @@ public final class RetargetScheduleProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

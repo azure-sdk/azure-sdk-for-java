@@ -4,106 +4,144 @@
 
 package com.azure.resourcemanager.devtestlabs.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devtestlabs.fluent.models.GalleryImageInner;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
-/** An immutable client-side representation of GalleryImage. */
+/**
+ * An immutable client-side representation of GalleryImage.
+ */
 public interface GalleryImage {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
      * Gets the location property: The geo-location where the resource lives.
-     *
+     * 
      * @return the location value.
      */
     String location();
 
     /**
      * Gets the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     Map<String, String> tags();
 
     /**
+     * Gets the systemData property: The system metadata relating to this resource.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the author property: The author of the gallery image.
-     *
+     * 
      * @return the author value.
      */
     String author();
 
     /**
      * Gets the createdDate property: The creation date of the gallery image.
-     *
+     * 
      * @return the createdDate value.
      */
     OffsetDateTime createdDate();
 
     /**
      * Gets the description property: The description of the gallery image.
-     *
+     * 
      * @return the description value.
      */
     String description();
 
     /**
-     * Gets the imageReference property: The image reference of the gallery image.
-     *
-     * @return the imageReference value.
-     */
-    GalleryImageReference imageReference();
-
-    /**
      * Gets the icon property: The icon of the gallery image.
-     *
+     * 
      * @return the icon value.
      */
     String icon();
 
     /**
      * Gets the enabled property: Indicates whether this gallery image is enabled.
-     *
+     * 
      * @return the enabled value.
      */
     Boolean enabled();
 
     /**
      * Gets the planId property: The third party plan that applies to this image.
-     *
+     * 
      * @return the planId value.
      */
     String planId();
 
     /**
      * Gets the isPlanAuthorized property: Indicates if the plan has been authorized for programmatic deployment.
-     *
+     * 
      * @return the isPlanAuthorized value.
      */
     Boolean isPlanAuthorized();
 
     /**
+     * Gets the offer property: The offer of the gallery image.
+     * 
+     * @return the offer value.
+     */
+    String offer();
+
+    /**
+     * Gets the publisher property: The publisher of the gallery image.
+     * 
+     * @return the publisher value.
+     */
+    String publisher();
+
+    /**
+     * Gets the sku property: The SKU of the gallery image.
+     * 
+     * @return the sku value.
+     */
+    String sku();
+
+    /**
+     * Gets the osType property: The OS type of the gallery image.
+     * 
+     * @return the osType value.
+     */
+    String osType();
+
+    /**
+     * Gets the version property: The version of the gallery image.
+     * 
+     * @return the version value.
+     */
+    String version();
+
+    /**
      * Gets the inner com.azure.resourcemanager.devtestlabs.fluent.models.GalleryImageInner object.
-     *
+     * 
      * @return the inner object.
      */
     GalleryImageInner innerModel();

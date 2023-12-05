@@ -5,98 +5,55 @@
 package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.Resource;
-import com.azure.resourcemanager.devtestlabs.models.UserIdentity;
-import com.azure.resourcemanager.devtestlabs.models.UserSecretStore;
+import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
-import java.util.Map;
 
-/** Profile of a lab user. */
+/**
+ * Profile of a lab user.
+ */
 @Fluent
-public final class UserInner extends Resource {
+public final class UserInner extends ProxyResource {
     /*
      * The properties of the resource.
      */
     @JsonProperty(value = "properties")
     private UserProperties innerProperties;
 
-    /** Creates an instance of UserInner class. */
+    /*
+     * The system metadata relating to this resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of UserInner class.
+     */
     public UserInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of the resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private UserProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public UserInner withLocation(String location) {
-        super.withLocation(location);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public UserInner withTags(Map<String, String> tags) {
-        super.withTags(tags);
-        return this;
-    }
-
     /**
-     * Get the identity property: The identity of the user.
-     *
-     * @return the identity value.
+     * Get the systemData property: The system metadata relating to this resource.
+     * 
+     * @return the systemData value.
      */
-    public UserIdentity identity() {
-        return this.innerProperties() == null ? null : this.innerProperties().identity();
-    }
-
-    /**
-     * Set the identity property: The identity of the user.
-     *
-     * @param identity the identity value to set.
-     * @return the UserInner object itself.
-     */
-    public UserInner withIdentity(UserIdentity identity) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new UserProperties();
-        }
-        this.innerProperties().withIdentity(identity);
-        return this;
-    }
-
-    /**
-     * Get the secretStore property: The secret store of the user.
-     *
-     * @return the secretStore value.
-     */
-    public UserSecretStore secretStore() {
-        return this.innerProperties() == null ? null : this.innerProperties().secretStore();
-    }
-
-    /**
-     * Set the secretStore property: The secret store of the user.
-     *
-     * @param secretStore the secretStore value to set.
-     * @return the UserInner object itself.
-     */
-    public UserInner withSecretStore(UserSecretStore secretStore) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new UserProperties();
-        }
-        this.innerProperties().withSecretStore(secretStore);
-        return this;
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
      * Get the createdDate property: The creation date of the user profile.
-     *
+     * 
      * @return the createdDate value.
      */
     public OffsetDateTime createdDate() {
@@ -105,7 +62,7 @@ public final class UserInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioning status of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -114,7 +71,7 @@ public final class UserInner extends Resource {
 
     /**
      * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
+     * 
      * @return the uniqueIdentifier value.
      */
     public String uniqueIdentifier() {
@@ -122,8 +79,173 @@ public final class UserInner extends Resource {
     }
 
     /**
+     * Get the principalName property: Set to the principal name / UPN of the client JWT making the request.
+     * 
+     * @return the principalName value.
+     */
+    public String principalName() {
+        return this.innerProperties() == null ? null : this.innerProperties().principalName();
+    }
+
+    /**
+     * Set the principalName property: Set to the principal name / UPN of the client JWT making the request.
+     * 
+     * @param principalName the principalName value to set.
+     * @return the UserInner object itself.
+     */
+    public UserInner withPrincipalName(String principalName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new UserProperties();
+        }
+        this.innerProperties().withPrincipalName(principalName);
+        return this;
+    }
+
+    /**
+     * Get the principalId property: Set to the principal Id of the client JWT making the request. Service principal
+     * will not have the principal Id.
+     * 
+     * @return the principalId value.
+     */
+    public String principalId() {
+        return this.innerProperties() == null ? null : this.innerProperties().principalId();
+    }
+
+    /**
+     * Set the principalId property: Set to the principal Id of the client JWT making the request. Service principal
+     * will not have the principal Id.
+     * 
+     * @param principalId the principalId value to set.
+     * @return the UserInner object itself.
+     */
+    public UserInner withPrincipalId(String principalId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new UserProperties();
+        }
+        this.innerProperties().withPrincipalId(principalId);
+        return this;
+    }
+
+    /**
+     * Get the tenantId property: Set to the tenant ID of the client JWT making the request.
+     * 
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: Set to the tenant ID of the client JWT making the request.
+     * 
+     * @param tenantId the tenantId value to set.
+     * @return the UserInner object itself.
+     */
+    public UserInner withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new UserProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
+        return this;
+    }
+
+    /**
+     * Get the objectId property: Set to the object Id of the client JWT making the request. Not all users have object
+     * Id. For CSP (reseller) scenarios for example, object Id is not available.
+     * 
+     * @return the objectId value.
+     */
+    public String objectId() {
+        return this.innerProperties() == null ? null : this.innerProperties().objectId();
+    }
+
+    /**
+     * Set the objectId property: Set to the object Id of the client JWT making the request. Not all users have object
+     * Id. For CSP (reseller) scenarios for example, object Id is not available.
+     * 
+     * @param objectId the objectId value to set.
+     * @return the UserInner object itself.
+     */
+    public UserInner withObjectId(String objectId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new UserProperties();
+        }
+        this.innerProperties().withObjectId(objectId);
+        return this;
+    }
+
+    /**
+     * Get the appId property: Set to the app Id of the client JWT making the request.
+     * 
+     * @return the appId value.
+     */
+    public String appId() {
+        return this.innerProperties() == null ? null : this.innerProperties().appId();
+    }
+
+    /**
+     * Set the appId property: Set to the app Id of the client JWT making the request.
+     * 
+     * @param appId the appId value to set.
+     * @return the UserInner object itself.
+     */
+    public UserInner withAppId(String appId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new UserProperties();
+        }
+        this.innerProperties().withAppId(appId);
+        return this;
+    }
+
+    /**
+     * Get the keyVaultUri property: The URI of the user's Key vault.
+     * 
+     * @return the keyVaultUri value.
+     */
+    public String keyVaultUri() {
+        return this.innerProperties() == null ? null : this.innerProperties().keyVaultUri();
+    }
+
+    /**
+     * Set the keyVaultUri property: The URI of the user's Key vault.
+     * 
+     * @param keyVaultUri the keyVaultUri value to set.
+     * @return the UserInner object itself.
+     */
+    public UserInner withKeyVaultUri(String keyVaultUri) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new UserProperties();
+        }
+        this.innerProperties().withKeyVaultUri(keyVaultUri);
+        return this;
+    }
+
+    /**
+     * Get the keyVaultId property: The ID of the user's Key vault.
+     * 
+     * @return the keyVaultId value.
+     */
+    public String keyVaultId() {
+        return this.innerProperties() == null ? null : this.innerProperties().keyVaultId();
+    }
+
+    /**
+     * Set the keyVaultId property: The ID of the user's Key vault.
+     * 
+     * @param keyVaultId the keyVaultId value to set.
+     * @return the UserInner object itself.
+     */
+    public UserInner withKeyVaultId(String keyVaultId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new UserProperties();
+        }
+        this.innerProperties().withKeyVaultId(keyVaultId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

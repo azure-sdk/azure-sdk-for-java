@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Request body for resizing a virtual machine. */
+/**
+ * Request body for resizing a virtual machine.
+ */
 @Fluent
 public final class ResizeLabVirtualMachineProperties {
     /*
@@ -16,13 +18,15 @@ public final class ResizeLabVirtualMachineProperties {
     @JsonProperty(value = "size")
     private String size;
 
-    /** Creates an instance of ResizeLabVirtualMachineProperties class. */
+    /**
+     * Creates an instance of ResizeLabVirtualMachineProperties class.
+     */
     public ResizeLabVirtualMachineProperties() {
     }
 
     /**
      * Get the size property: Specifies the size of the virtual machine.
-     *
+     * 
      * @return the size value.
      */
     public String size() {
@@ -31,7 +35,7 @@ public final class ResizeLabVirtualMachineProperties {
 
     /**
      * Set the size property: Specifies the size of the virtual machine.
-     *
+     * 
      * @param size the size value to set.
      * @return the ResizeLabVirtualMachineProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class ResizeLabVirtualMachineProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

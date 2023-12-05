@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Properties of an Azure Resource Manager template. */
+/**
+ * Properties of an Azure Resource Manager template.
+ */
 @Immutable
 public final class ArmTemplateProperties {
     /*
@@ -61,13 +63,15 @@ public final class ArmTemplateProperties {
     @JsonProperty(value = "enabled", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean enabled;
 
-    /** Creates an instance of ArmTemplateProperties class. */
+    /**
+     * Creates an instance of ArmTemplateProperties class.
+     */
     public ArmTemplateProperties() {
     }
 
     /**
      * Get the displayName property: The display name of the ARM template.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -76,7 +80,7 @@ public final class ArmTemplateProperties {
 
     /**
      * Get the description property: The description of the ARM template.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -85,7 +89,7 @@ public final class ArmTemplateProperties {
 
     /**
      * Get the publisher property: The publisher of the ARM template.
-     *
+     * 
      * @return the publisher value.
      */
     public String publisher() {
@@ -94,7 +98,7 @@ public final class ArmTemplateProperties {
 
     /**
      * Get the icon property: The URI to the icon of the ARM template.
-     *
+     * 
      * @return the icon value.
      */
     public String icon() {
@@ -103,7 +107,7 @@ public final class ArmTemplateProperties {
 
     /**
      * Get the contents property: The contents of the ARM template.
-     *
+     * 
      * @return the contents value.
      */
     public Object contents() {
@@ -112,7 +116,7 @@ public final class ArmTemplateProperties {
 
     /**
      * Get the createdDate property: The creation date of the armTemplate.
-     *
+     * 
      * @return the createdDate value.
      */
     public OffsetDateTime createdDate() {
@@ -122,7 +126,7 @@ public final class ArmTemplateProperties {
     /**
      * Get the parametersValueFilesInfo property: File name and parameter values information from all
      * azuredeploy.*.parameters.json for the ARM template.
-     *
+     * 
      * @return the parametersValueFilesInfo value.
      */
     public List<ParametersValueFileInfo> parametersValueFilesInfo() {
@@ -131,7 +135,7 @@ public final class ArmTemplateProperties {
 
     /**
      * Get the enabled property: Whether or not ARM template is enabled for use by lab user.
-     *
+     * 
      * @return the enabled value.
      */
     public Boolean enabled() {
@@ -140,7 +144,7 @@ public final class ArmTemplateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

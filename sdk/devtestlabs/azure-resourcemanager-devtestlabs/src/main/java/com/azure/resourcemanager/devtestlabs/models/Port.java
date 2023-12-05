@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of a network port. */
+/**
+ * Properties of a network port.
+ */
 @Fluent
 public final class Port {
     /*
@@ -22,13 +24,15 @@ public final class Port {
     @JsonProperty(value = "backendPort")
     private Integer backendPort;
 
-    /** Creates an instance of Port class. */
+    /**
+     * Creates an instance of Port class.
+     */
     public Port() {
     }
 
     /**
      * Get the transportProtocol property: Protocol type of the port.
-     *
+     * 
      * @return the transportProtocol value.
      */
     public TransportProtocol transportProtocol() {
@@ -37,7 +41,7 @@ public final class Port {
 
     /**
      * Set the transportProtocol property: Protocol type of the port.
-     *
+     * 
      * @param transportProtocol the transportProtocol value to set.
      * @return the Port object itself.
      */
@@ -48,7 +52,7 @@ public final class Port {
 
     /**
      * Get the backendPort property: Backend port of the target virtual machine.
-     *
+     * 
      * @return the backendPort value.
      */
     public Integer backendPort() {
@@ -57,7 +61,7 @@ public final class Port {
 
     /**
      * Set the backendPort property: Backend port of the target virtual machine.
-     *
+     * 
      * @param backendPort the backendPort value to set.
      * @return the Port object itself.
      */
@@ -68,7 +72,7 @@ public final class Port {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

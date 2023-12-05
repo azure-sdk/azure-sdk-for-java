@@ -27,6 +27,7 @@ import com.azure.resourcemanager.devtestlabs.fluent.DevTestLabsClient;
 import com.azure.resourcemanager.devtestlabs.implementation.ArmTemplatesImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.ArtifactSourcesImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.ArtifactsImpl;
+import com.azure.resourcemanager.devtestlabs.implementation.BastionHostsImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.CostsImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.CustomImagesImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.DevTestLabsClientBuilder;
@@ -35,6 +36,7 @@ import com.azure.resourcemanager.devtestlabs.implementation.EnvironmentsImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.FormulasImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.GalleryImagesImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.GlobalSchedulesImpl;
+import com.azure.resourcemanager.devtestlabs.implementation.LabSecretsImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.LabsImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.NotificationChannelsImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.OperationsImpl;
@@ -46,6 +48,8 @@ import com.azure.resourcemanager.devtestlabs.implementation.SecretsImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.ServiceFabricSchedulesImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.ServiceFabricsImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.ServiceRunnersImpl;
+import com.azure.resourcemanager.devtestlabs.implementation.SharedGalleriesImpl;
+import com.azure.resourcemanager.devtestlabs.implementation.SharedImagesImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.UsersImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.VirtualMachineSchedulesImpl;
 import com.azure.resourcemanager.devtestlabs.implementation.VirtualMachinesImpl;
@@ -53,6 +57,7 @@ import com.azure.resourcemanager.devtestlabs.implementation.VirtualNetworksImpl;
 import com.azure.resourcemanager.devtestlabs.models.ArmTemplates;
 import com.azure.resourcemanager.devtestlabs.models.ArtifactSources;
 import com.azure.resourcemanager.devtestlabs.models.Artifacts;
+import com.azure.resourcemanager.devtestlabs.models.BastionHosts;
 import com.azure.resourcemanager.devtestlabs.models.Costs;
 import com.azure.resourcemanager.devtestlabs.models.CustomImages;
 import com.azure.resourcemanager.devtestlabs.models.Disks;
@@ -60,6 +65,7 @@ import com.azure.resourcemanager.devtestlabs.models.Environments;
 import com.azure.resourcemanager.devtestlabs.models.Formulas;
 import com.azure.resourcemanager.devtestlabs.models.GalleryImages;
 import com.azure.resourcemanager.devtestlabs.models.GlobalSchedules;
+import com.azure.resourcemanager.devtestlabs.models.LabSecrets;
 import com.azure.resourcemanager.devtestlabs.models.Labs;
 import com.azure.resourcemanager.devtestlabs.models.NotificationChannels;
 import com.azure.resourcemanager.devtestlabs.models.Operations;
@@ -71,6 +77,8 @@ import com.azure.resourcemanager.devtestlabs.models.Secrets;
 import com.azure.resourcemanager.devtestlabs.models.ServiceFabricSchedules;
 import com.azure.resourcemanager.devtestlabs.models.ServiceFabrics;
 import com.azure.resourcemanager.devtestlabs.models.ServiceRunners;
+import com.azure.resourcemanager.devtestlabs.models.SharedGalleries;
+import com.azure.resourcemanager.devtestlabs.models.SharedImages;
 import com.azure.resourcemanager.devtestlabs.models.Users;
 import com.azure.resourcemanager.devtestlabs.models.VirtualMachineSchedules;
 import com.azure.resourcemanager.devtestlabs.models.VirtualMachines;
@@ -82,7 +90,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to DevTestLabsManager. The DevTest Labs Client. */
+/**
+ * Entry point to DevTestLabsManager.
+ * The DevTest Labs Client.
+ */
 public final class DevTestLabsManager {
     private ProviderOperations providerOperations;
 
@@ -114,7 +125,13 @@ public final class DevTestLabsManager {
 
     private Schedules schedules;
 
+    private LabSecrets labSecrets;
+
     private ServiceRunners serviceRunners;
+
+    private SharedGalleries sharedGalleries;
+
+    private SharedImages sharedImages;
 
     private Users users;
 
@@ -134,23 +151,21 @@ public final class DevTestLabsManager {
 
     private VirtualNetworks virtualNetworks;
 
+    private BastionHosts bastionHosts;
+
     private final DevTestLabsClient clientObject;
 
     private DevTestLabsManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject =
-            new DevTestLabsClientBuilder()
-                .pipeline(httpPipeline)
-                .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .subscriptionId(profile.getSubscriptionId())
-                .defaultPollInterval(defaultPollInterval)
-                .buildClient();
+        this.clientObject = new DevTestLabsClientBuilder().pipeline(httpPipeline)
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval).buildClient();
     }
 
     /**
      * Creates an instance of DevTestLabs service API entry point.
-     *
+     * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
      * @return the DevTestLabs service API instance.
@@ -163,7 +178,7 @@ public final class DevTestLabsManager {
 
     /**
      * Creates an instance of DevTestLabs service API entry point.
-     *
+     * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
      * @return the DevTestLabs service API instance.
@@ -176,14 +191,16 @@ public final class DevTestLabsManager {
 
     /**
      * Gets a Configurable instance that can be used to create DevTestLabsManager with optional configuration.
-     *
+     * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
         return new DevTestLabsManager.Configurable();
     }
 
-    /** The Configurable allowing configurations to be set. */
+    /**
+     * The Configurable allowing configurations to be set.
+     */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
@@ -255,8 +272,8 @@ public final class DevTestLabsManager {
 
         /**
          * Sets the retry options for the HTTP pipeline retry policy.
-         *
-         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         * <p>
+         * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
          *
          * @param retryOptions the retry options for the HTTP pipeline retry policy.
          * @return the configurable object itself.
@@ -273,8 +290,8 @@ public final class DevTestLabsManager {
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval =
-                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
+            this.defaultPollInterval
+                = Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
                 throw LOGGER
                     .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
@@ -294,21 +311,12 @@ public final class DevTestLabsManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder
-                .append("azsdk-java")
-                .append("-")
-                .append("com.azure.resourcemanager.devtestlabs")
-                .append("/")
-                .append("1.0.0");
+            userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.devtestlabs")
+                .append("/").append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder
-                    .append(" (")
-                    .append(Configuration.getGlobalConfiguration().get("java.version"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.name"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.version"))
-                    .append("; auto-generated)");
+                userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
+                    .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.version")).append("; auto-generated)");
             } else {
                 userAgentBuilder.append(" (auto-generated)");
             }
@@ -327,38 +335,25 @@ public final class DevTestLabsManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY).collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
-            HttpPipeline httpPipeline =
-                new HttpPipelineBuilder()
-                    .httpClient(httpClient)
-                    .policies(policies.toArray(new HttpPipelinePolicy[0]))
-                    .build();
+            HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
+                .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
             return new DevTestLabsManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
     /**
      * Gets the resource collection API of ProviderOperations.
-     *
+     * 
      * @return Resource collection API of ProviderOperations.
      */
     public ProviderOperations providerOperations() {
@@ -370,7 +365,7 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of Labs. It manages Lab.
-     *
+     * 
      * @return Resource collection API of Labs.
      */
     public Labs labs() {
@@ -382,7 +377,7 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of Operations.
-     *
+     * 
      * @return Resource collection API of Operations.
      */
     public Operations operations() {
@@ -394,7 +389,7 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of GlobalSchedules. It manages Schedule.
-     *
+     * 
      * @return Resource collection API of GlobalSchedules.
      */
     public GlobalSchedules globalSchedules() {
@@ -406,7 +401,7 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of ArtifactSources. It manages ArtifactSource.
-     *
+     * 
      * @return Resource collection API of ArtifactSources.
      */
     public ArtifactSources artifactSources() {
@@ -418,7 +413,7 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of ArmTemplates.
-     *
+     * 
      * @return Resource collection API of ArmTemplates.
      */
     public ArmTemplates armTemplates() {
@@ -430,7 +425,7 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of Artifacts.
-     *
+     * 
      * @return Resource collection API of Artifacts.
      */
     public Artifacts artifacts() {
@@ -442,7 +437,7 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of Costs. It manages LabCost.
-     *
+     * 
      * @return Resource collection API of Costs.
      */
     public Costs costs() {
@@ -454,7 +449,7 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of CustomImages. It manages CustomImage.
-     *
+     * 
      * @return Resource collection API of CustomImages.
      */
     public CustomImages customImages() {
@@ -466,7 +461,7 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of Formulas. It manages Formula.
-     *
+     * 
      * @return Resource collection API of Formulas.
      */
     public Formulas formulas() {
@@ -478,7 +473,7 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of GalleryImages.
-     *
+     * 
      * @return Resource collection API of GalleryImages.
      */
     public GalleryImages galleryImages() {
@@ -490,7 +485,7 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of NotificationChannels. It manages NotificationChannel.
-     *
+     * 
      * @return Resource collection API of NotificationChannels.
      */
     public NotificationChannels notificationChannels() {
@@ -502,7 +497,7 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of PolicySets.
-     *
+     * 
      * @return Resource collection API of PolicySets.
      */
     public PolicySets policySets() {
@@ -514,7 +509,7 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of Policies. It manages Policy.
-     *
+     * 
      * @return Resource collection API of Policies.
      */
     public Policies policies() {
@@ -526,7 +521,7 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of Schedules.
-     *
+     * 
      * @return Resource collection API of Schedules.
      */
     public Schedules schedules() {
@@ -537,8 +532,20 @@ public final class DevTestLabsManager {
     }
 
     /**
+     * Gets the resource collection API of LabSecrets. It manages LabSecret.
+     * 
+     * @return Resource collection API of LabSecrets.
+     */
+    public LabSecrets labSecrets() {
+        if (this.labSecrets == null) {
+            this.labSecrets = new LabSecretsImpl(clientObject.getLabSecrets(), this);
+        }
+        return labSecrets;
+    }
+
+    /**
      * Gets the resource collection API of ServiceRunners. It manages ServiceRunner.
-     *
+     * 
      * @return Resource collection API of ServiceRunners.
      */
     public ServiceRunners serviceRunners() {
@@ -549,8 +556,32 @@ public final class DevTestLabsManager {
     }
 
     /**
+     * Gets the resource collection API of SharedGalleries. It manages SharedGallery.
+     * 
+     * @return Resource collection API of SharedGalleries.
+     */
+    public SharedGalleries sharedGalleries() {
+        if (this.sharedGalleries == null) {
+            this.sharedGalleries = new SharedGalleriesImpl(clientObject.getSharedGalleries(), this);
+        }
+        return sharedGalleries;
+    }
+
+    /**
+     * Gets the resource collection API of SharedImages. It manages SharedImage.
+     * 
+     * @return Resource collection API of SharedImages.
+     */
+    public SharedImages sharedImages() {
+        if (this.sharedImages == null) {
+            this.sharedImages = new SharedImagesImpl(clientObject.getSharedImages(), this);
+        }
+        return sharedImages;
+    }
+
+    /**
      * Gets the resource collection API of Users. It manages User.
-     *
+     * 
      * @return Resource collection API of Users.
      */
     public Users users() {
@@ -562,7 +593,7 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of Disks. It manages Disk.
-     *
+     * 
      * @return Resource collection API of Disks.
      */
     public Disks disks() {
@@ -574,7 +605,7 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of Environments. It manages DtlEnvironment.
-     *
+     * 
      * @return Resource collection API of Environments.
      */
     public Environments environments() {
@@ -586,7 +617,7 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of Secrets. It manages Secret.
-     *
+     * 
      * @return Resource collection API of Secrets.
      */
     public Secrets secrets() {
@@ -598,7 +629,7 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of ServiceFabrics. It manages ServiceFabric.
-     *
+     * 
      * @return Resource collection API of ServiceFabrics.
      */
     public ServiceFabrics serviceFabrics() {
@@ -610,20 +641,20 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of ServiceFabricSchedules.
-     *
+     * 
      * @return Resource collection API of ServiceFabricSchedules.
      */
     public ServiceFabricSchedules serviceFabricSchedules() {
         if (this.serviceFabricSchedules == null) {
-            this.serviceFabricSchedules =
-                new ServiceFabricSchedulesImpl(clientObject.getServiceFabricSchedules(), this);
+            this.serviceFabricSchedules
+                = new ServiceFabricSchedulesImpl(clientObject.getServiceFabricSchedules(), this);
         }
         return serviceFabricSchedules;
     }
 
     /**
      * Gets the resource collection API of VirtualMachines. It manages LabVirtualMachine.
-     *
+     * 
      * @return Resource collection API of VirtualMachines.
      */
     public VirtualMachines virtualMachines() {
@@ -635,20 +666,20 @@ public final class DevTestLabsManager {
 
     /**
      * Gets the resource collection API of VirtualMachineSchedules.
-     *
+     * 
      * @return Resource collection API of VirtualMachineSchedules.
      */
     public VirtualMachineSchedules virtualMachineSchedules() {
         if (this.virtualMachineSchedules == null) {
-            this.virtualMachineSchedules =
-                new VirtualMachineSchedulesImpl(clientObject.getVirtualMachineSchedules(), this);
+            this.virtualMachineSchedules
+                = new VirtualMachineSchedulesImpl(clientObject.getVirtualMachineSchedules(), this);
         }
         return virtualMachineSchedules;
     }
 
     /**
      * Gets the resource collection API of VirtualNetworks. It manages VirtualNetwork.
-     *
+     * 
      * @return Resource collection API of VirtualNetworks.
      */
     public VirtualNetworks virtualNetworks() {
@@ -659,9 +690,21 @@ public final class DevTestLabsManager {
     }
 
     /**
+     * Gets the resource collection API of BastionHosts. It manages BastionHost.
+     * 
+     * @return Resource collection API of BastionHosts.
+     */
+    public BastionHosts bastionHosts() {
+        if (this.bastionHosts == null) {
+            this.bastionHosts = new BastionHostsImpl(clientObject.getBastionHosts(), this);
+        }
+        return bastionHosts;
+    }
+
+    /**
      * Gets wrapped service client DevTestLabsClient providing direct access to the underlying auto-generated API
      * implementation, based on Azure REST API.
-     *
+     * 
      * @return Wrapped service client DevTestLabsClient.
      */
     public DevTestLabsClient serviceClient() {

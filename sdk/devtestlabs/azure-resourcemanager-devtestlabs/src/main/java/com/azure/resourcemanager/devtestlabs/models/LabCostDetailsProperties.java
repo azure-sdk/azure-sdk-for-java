@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The properties of a lab cost item. */
+/**
+ * The properties of a lab cost item.
+ */
 @Fluent
 public final class LabCostDetailsProperties {
     /*
@@ -29,13 +31,15 @@ public final class LabCostDetailsProperties {
     @JsonProperty(value = "costType")
     private CostType costType;
 
-    /** Creates an instance of LabCostDetailsProperties class. */
+    /**
+     * Creates an instance of LabCostDetailsProperties class.
+     */
     public LabCostDetailsProperties() {
     }
 
     /**
      * Get the date property: The date of the cost item.
-     *
+     * 
      * @return the date value.
      */
     public OffsetDateTime date() {
@@ -44,7 +48,7 @@ public final class LabCostDetailsProperties {
 
     /**
      * Set the date property: The date of the cost item.
-     *
+     * 
      * @param date the date value to set.
      * @return the LabCostDetailsProperties object itself.
      */
@@ -55,7 +59,7 @@ public final class LabCostDetailsProperties {
 
     /**
      * Get the cost property: The cost component of the cost item.
-     *
+     * 
      * @return the cost value.
      */
     public Double cost() {
@@ -64,7 +68,7 @@ public final class LabCostDetailsProperties {
 
     /**
      * Set the cost property: The cost component of the cost item.
-     *
+     * 
      * @param cost the cost value to set.
      * @return the LabCostDetailsProperties object itself.
      */
@@ -75,7 +79,7 @@ public final class LabCostDetailsProperties {
 
     /**
      * Get the costType property: The type of the cost.
-     *
+     * 
      * @return the costType value.
      */
     public CostType costType() {
@@ -84,7 +88,7 @@ public final class LabCostDetailsProperties {
 
     /**
      * Set the costType property: The type of the cost.
-     *
+     * 
      * @param costType the costType value to set.
      * @return the LabCostDetailsProperties object itself.
      */
@@ -95,7 +99,7 @@ public final class LabCostDetailsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,14 +7,20 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import java.util.Map;
 
-/** A virtual network. */
+/**
+ * Patch.
+ */
 @Fluent
 public final class VirtualNetworkFragment extends UpdateResource {
-    /** Creates an instance of VirtualNetworkFragment class. */
+    /**
+     * Creates an instance of VirtualNetworkFragment class.
+     */
     public VirtualNetworkFragment() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualNetworkFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -23,7 +29,7 @@ public final class VirtualNetworkFragment extends UpdateResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

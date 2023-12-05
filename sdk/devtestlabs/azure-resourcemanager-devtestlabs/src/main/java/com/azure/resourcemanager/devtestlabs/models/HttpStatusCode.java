@@ -8,152 +8,343 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The status code for the operation. */
+/**
+ * The status code for the operation.
+ */
 public final class HttpStatusCode extends ExpandableStringEnum<HttpStatusCode> {
-    /** Static value Continue for HttpStatusCode. */
+    /**
+     * Static value Continue for HttpStatusCode.
+     */
     public static final HttpStatusCode CONTINUE = fromString("Continue");
 
-    /** Static value SwitchingProtocols for HttpStatusCode. */
+    /**
+     * Static value SwitchingProtocols for HttpStatusCode.
+     */
     public static final HttpStatusCode SWITCHING_PROTOCOLS = fromString("SwitchingProtocols");
 
-    /** Static value OK for HttpStatusCode. */
+    /**
+     * Static value Processing for HttpStatusCode.
+     */
+    public static final HttpStatusCode PROCESSING = fromString("Processing");
+
+    /**
+     * Static value EarlyHints for HttpStatusCode.
+     */
+    public static final HttpStatusCode EARLY_HINTS = fromString("EarlyHints");
+
+    /**
+     * Static value OK for HttpStatusCode.
+     */
     public static final HttpStatusCode OK = fromString("OK");
 
-    /** Static value Created for HttpStatusCode. */
+    /**
+     * Static value Created for HttpStatusCode.
+     */
     public static final HttpStatusCode CREATED = fromString("Created");
 
-    /** Static value Accepted for HttpStatusCode. */
+    /**
+     * Static value Accepted for HttpStatusCode.
+     */
     public static final HttpStatusCode ACCEPTED = fromString("Accepted");
 
-    /** Static value NonAuthoritativeInformation for HttpStatusCode. */
+    /**
+     * Static value NonAuthoritativeInformation for HttpStatusCode.
+     */
     public static final HttpStatusCode NON_AUTHORITATIVE_INFORMATION = fromString("NonAuthoritativeInformation");
 
-    /** Static value NoContent for HttpStatusCode. */
+    /**
+     * Static value NoContent for HttpStatusCode.
+     */
     public static final HttpStatusCode NO_CONTENT = fromString("NoContent");
 
-    /** Static value ResetContent for HttpStatusCode. */
+    /**
+     * Static value ResetContent for HttpStatusCode.
+     */
     public static final HttpStatusCode RESET_CONTENT = fromString("ResetContent");
 
-    /** Static value PartialContent for HttpStatusCode. */
+    /**
+     * Static value PartialContent for HttpStatusCode.
+     */
     public static final HttpStatusCode PARTIAL_CONTENT = fromString("PartialContent");
 
-    /** Static value MultipleChoices for HttpStatusCode. */
+    /**
+     * Static value MultiStatus for HttpStatusCode.
+     */
+    public static final HttpStatusCode MULTI_STATUS = fromString("MultiStatus");
+
+    /**
+     * Static value AlreadyReported for HttpStatusCode.
+     */
+    public static final HttpStatusCode ALREADY_REPORTED = fromString("AlreadyReported");
+
+    /**
+     * Static value IMUsed for HttpStatusCode.
+     */
+    public static final HttpStatusCode IMUSED = fromString("IMUsed");
+
+    /**
+     * Static value MultipleChoices for HttpStatusCode.
+     */
     public static final HttpStatusCode MULTIPLE_CHOICES = fromString("MultipleChoices");
 
-    /** Static value Ambiguous for HttpStatusCode. */
+    /**
+     * Static value Ambiguous for HttpStatusCode.
+     */
     public static final HttpStatusCode AMBIGUOUS = fromString("Ambiguous");
 
-    /** Static value MovedPermanently for HttpStatusCode. */
+    /**
+     * Static value MovedPermanently for HttpStatusCode.
+     */
     public static final HttpStatusCode MOVED_PERMANENTLY = fromString("MovedPermanently");
 
-    /** Static value Moved for HttpStatusCode. */
+    /**
+     * Static value Moved for HttpStatusCode.
+     */
     public static final HttpStatusCode MOVED = fromString("Moved");
 
-    /** Static value Found for HttpStatusCode. */
+    /**
+     * Static value Found for HttpStatusCode.
+     */
     public static final HttpStatusCode FOUND = fromString("Found");
 
-    /** Static value Redirect for HttpStatusCode. */
+    /**
+     * Static value Redirect for HttpStatusCode.
+     */
     public static final HttpStatusCode REDIRECT = fromString("Redirect");
 
-    /** Static value SeeOther for HttpStatusCode. */
+    /**
+     * Static value SeeOther for HttpStatusCode.
+     */
     public static final HttpStatusCode SEE_OTHER = fromString("SeeOther");
 
-    /** Static value RedirectMethod for HttpStatusCode. */
+    /**
+     * Static value RedirectMethod for HttpStatusCode.
+     */
     public static final HttpStatusCode REDIRECT_METHOD = fromString("RedirectMethod");
 
-    /** Static value NotModified for HttpStatusCode. */
+    /**
+     * Static value NotModified for HttpStatusCode.
+     */
     public static final HttpStatusCode NOT_MODIFIED = fromString("NotModified");
 
-    /** Static value UseProxy for HttpStatusCode. */
+    /**
+     * Static value UseProxy for HttpStatusCode.
+     */
     public static final HttpStatusCode USE_PROXY = fromString("UseProxy");
 
-    /** Static value Unused for HttpStatusCode. */
+    /**
+     * Static value Unused for HttpStatusCode.
+     */
     public static final HttpStatusCode UNUSED = fromString("Unused");
 
-    /** Static value TemporaryRedirect for HttpStatusCode. */
+    /**
+     * Static value TemporaryRedirect for HttpStatusCode.
+     */
     public static final HttpStatusCode TEMPORARY_REDIRECT = fromString("TemporaryRedirect");
 
-    /** Static value RedirectKeepVerb for HttpStatusCode. */
+    /**
+     * Static value RedirectKeepVerb for HttpStatusCode.
+     */
     public static final HttpStatusCode REDIRECT_KEEP_VERB = fromString("RedirectKeepVerb");
 
-    /** Static value BadRequest for HttpStatusCode. */
+    /**
+     * Static value PermanentRedirect for HttpStatusCode.
+     */
+    public static final HttpStatusCode PERMANENT_REDIRECT = fromString("PermanentRedirect");
+
+    /**
+     * Static value BadRequest for HttpStatusCode.
+     */
     public static final HttpStatusCode BAD_REQUEST = fromString("BadRequest");
 
-    /** Static value Unauthorized for HttpStatusCode. */
+    /**
+     * Static value Unauthorized for HttpStatusCode.
+     */
     public static final HttpStatusCode UNAUTHORIZED = fromString("Unauthorized");
 
-    /** Static value PaymentRequired for HttpStatusCode. */
+    /**
+     * Static value PaymentRequired for HttpStatusCode.
+     */
     public static final HttpStatusCode PAYMENT_REQUIRED = fromString("PaymentRequired");
 
-    /** Static value Forbidden for HttpStatusCode. */
+    /**
+     * Static value Forbidden for HttpStatusCode.
+     */
     public static final HttpStatusCode FORBIDDEN = fromString("Forbidden");
 
-    /** Static value NotFound for HttpStatusCode. */
+    /**
+     * Static value NotFound for HttpStatusCode.
+     */
     public static final HttpStatusCode NOT_FOUND = fromString("NotFound");
 
-    /** Static value MethodNotAllowed for HttpStatusCode. */
+    /**
+     * Static value MethodNotAllowed for HttpStatusCode.
+     */
     public static final HttpStatusCode METHOD_NOT_ALLOWED = fromString("MethodNotAllowed");
 
-    /** Static value NotAcceptable for HttpStatusCode. */
+    /**
+     * Static value NotAcceptable for HttpStatusCode.
+     */
     public static final HttpStatusCode NOT_ACCEPTABLE = fromString("NotAcceptable");
 
-    /** Static value ProxyAuthenticationRequired for HttpStatusCode. */
+    /**
+     * Static value ProxyAuthenticationRequired for HttpStatusCode.
+     */
     public static final HttpStatusCode PROXY_AUTHENTICATION_REQUIRED = fromString("ProxyAuthenticationRequired");
 
-    /** Static value RequestTimeout for HttpStatusCode. */
+    /**
+     * Static value RequestTimeout for HttpStatusCode.
+     */
     public static final HttpStatusCode REQUEST_TIMEOUT = fromString("RequestTimeout");
 
-    /** Static value Conflict for HttpStatusCode. */
+    /**
+     * Static value Conflict for HttpStatusCode.
+     */
     public static final HttpStatusCode CONFLICT = fromString("Conflict");
 
-    /** Static value Gone for HttpStatusCode. */
+    /**
+     * Static value Gone for HttpStatusCode.
+     */
     public static final HttpStatusCode GONE = fromString("Gone");
 
-    /** Static value LengthRequired for HttpStatusCode. */
+    /**
+     * Static value LengthRequired for HttpStatusCode.
+     */
     public static final HttpStatusCode LENGTH_REQUIRED = fromString("LengthRequired");
 
-    /** Static value PreconditionFailed for HttpStatusCode. */
+    /**
+     * Static value PreconditionFailed for HttpStatusCode.
+     */
     public static final HttpStatusCode PRECONDITION_FAILED = fromString("PreconditionFailed");
 
-    /** Static value RequestEntityTooLarge for HttpStatusCode. */
+    /**
+     * Static value RequestEntityTooLarge for HttpStatusCode.
+     */
     public static final HttpStatusCode REQUEST_ENTITY_TOO_LARGE = fromString("RequestEntityTooLarge");
 
-    /** Static value RequestUriTooLong for HttpStatusCode. */
+    /**
+     * Static value RequestUriTooLong for HttpStatusCode.
+     */
     public static final HttpStatusCode REQUEST_URI_TOO_LONG = fromString("RequestUriTooLong");
 
-    /** Static value UnsupportedMediaType for HttpStatusCode. */
+    /**
+     * Static value UnsupportedMediaType for HttpStatusCode.
+     */
     public static final HttpStatusCode UNSUPPORTED_MEDIA_TYPE = fromString("UnsupportedMediaType");
 
-    /** Static value RequestedRangeNotSatisfiable for HttpStatusCode. */
+    /**
+     * Static value RequestedRangeNotSatisfiable for HttpStatusCode.
+     */
     public static final HttpStatusCode REQUESTED_RANGE_NOT_SATISFIABLE = fromString("RequestedRangeNotSatisfiable");
 
-    /** Static value ExpectationFailed for HttpStatusCode. */
+    /**
+     * Static value ExpectationFailed for HttpStatusCode.
+     */
     public static final HttpStatusCode EXPECTATION_FAILED = fromString("ExpectationFailed");
 
-    /** Static value UpgradeRequired for HttpStatusCode. */
+    /**
+     * Static value MisdirectedRequest for HttpStatusCode.
+     */
+    public static final HttpStatusCode MISDIRECTED_REQUEST = fromString("MisdirectedRequest");
+
+    /**
+     * Static value UnprocessableEntity for HttpStatusCode.
+     */
+    public static final HttpStatusCode UNPROCESSABLE_ENTITY = fromString("UnprocessableEntity");
+
+    /**
+     * Static value Locked for HttpStatusCode.
+     */
+    public static final HttpStatusCode LOCKED = fromString("Locked");
+
+    /**
+     * Static value FailedDependency for HttpStatusCode.
+     */
+    public static final HttpStatusCode FAILED_DEPENDENCY = fromString("FailedDependency");
+
+    /**
+     * Static value UpgradeRequired for HttpStatusCode.
+     */
     public static final HttpStatusCode UPGRADE_REQUIRED = fromString("UpgradeRequired");
 
-    /** Static value InternalServerError for HttpStatusCode. */
+    /**
+     * Static value PreconditionRequired for HttpStatusCode.
+     */
+    public static final HttpStatusCode PRECONDITION_REQUIRED = fromString("PreconditionRequired");
+
+    /**
+     * Static value TooManyRequests for HttpStatusCode.
+     */
+    public static final HttpStatusCode TOO_MANY_REQUESTS = fromString("TooManyRequests");
+
+    /**
+     * Static value RequestHeaderFieldsTooLarge for HttpStatusCode.
+     */
+    public static final HttpStatusCode REQUEST_HEADER_FIELDS_TOO_LARGE = fromString("RequestHeaderFieldsTooLarge");
+
+    /**
+     * Static value UnavailableForLegalReasons for HttpStatusCode.
+     */
+    public static final HttpStatusCode UNAVAILABLE_FOR_LEGAL_REASONS = fromString("UnavailableForLegalReasons");
+
+    /**
+     * Static value InternalServerError for HttpStatusCode.
+     */
     public static final HttpStatusCode INTERNAL_SERVER_ERROR = fromString("InternalServerError");
 
-    /** Static value NotImplemented for HttpStatusCode. */
+    /**
+     * Static value NotImplemented for HttpStatusCode.
+     */
     public static final HttpStatusCode NOT_IMPLEMENTED = fromString("NotImplemented");
 
-    /** Static value BadGateway for HttpStatusCode. */
+    /**
+     * Static value BadGateway for HttpStatusCode.
+     */
     public static final HttpStatusCode BAD_GATEWAY = fromString("BadGateway");
 
-    /** Static value ServiceUnavailable for HttpStatusCode. */
+    /**
+     * Static value ServiceUnavailable for HttpStatusCode.
+     */
     public static final HttpStatusCode SERVICE_UNAVAILABLE = fromString("ServiceUnavailable");
 
-    /** Static value GatewayTimeout for HttpStatusCode. */
+    /**
+     * Static value GatewayTimeout for HttpStatusCode.
+     */
     public static final HttpStatusCode GATEWAY_TIMEOUT = fromString("GatewayTimeout");
 
-    /** Static value HttpVersionNotSupported for HttpStatusCode. */
+    /**
+     * Static value HttpVersionNotSupported for HttpStatusCode.
+     */
     public static final HttpStatusCode HTTP_VERSION_NOT_SUPPORTED = fromString("HttpVersionNotSupported");
 
     /**
+     * Static value VariantAlsoNegotiates for HttpStatusCode.
+     */
+    public static final HttpStatusCode VARIANT_ALSO_NEGOTIATES = fromString("VariantAlsoNegotiates");
+
+    /**
+     * Static value InsufficientStorage for HttpStatusCode.
+     */
+    public static final HttpStatusCode INSUFFICIENT_STORAGE = fromString("InsufficientStorage");
+
+    /**
+     * Static value LoopDetected for HttpStatusCode.
+     */
+    public static final HttpStatusCode LOOP_DETECTED = fromString("LoopDetected");
+
+    /**
+     * Static value NotExtended for HttpStatusCode.
+     */
+    public static final HttpStatusCode NOT_EXTENDED = fromString("NotExtended");
+
+    /**
+     * Static value NetworkAuthenticationRequired for HttpStatusCode.
+     */
+    public static final HttpStatusCode NETWORK_AUTHENTICATION_REQUIRED = fromString("NetworkAuthenticationRequired");
+
+    /**
      * Creates a new instance of HttpStatusCode value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -162,7 +353,7 @@ public final class HttpStatusCode extends ExpandableStringEnum<HttpStatusCode> {
 
     /**
      * Creates or finds a HttpStatusCode from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding HttpStatusCode.
      */
@@ -173,7 +364,7 @@ public final class HttpStatusCode extends ExpandableStringEnum<HttpStatusCode> {
 
     /**
      * Gets known HttpStatusCode values.
-     *
+     * 
      * @return known HttpStatusCode values.
      */
     public static Collection<HttpStatusCode> values() {

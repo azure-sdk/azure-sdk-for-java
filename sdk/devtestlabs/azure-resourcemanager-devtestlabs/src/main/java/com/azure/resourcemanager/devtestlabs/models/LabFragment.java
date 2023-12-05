@@ -7,14 +7,20 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import java.util.Map;
 
-/** A lab. */
+/**
+ * Patch.
+ */
 @Fluent
 public final class LabFragment extends UpdateResource {
-    /** Creates an instance of LabFragment class. */
+    /**
+     * Creates an instance of LabFragment class.
+     */
     public LabFragment() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LabFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -23,7 +29,7 @@ public final class LabFragment extends UpdateResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

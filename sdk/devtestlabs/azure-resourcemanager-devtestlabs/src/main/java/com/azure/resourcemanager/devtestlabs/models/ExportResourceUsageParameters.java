@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The parameters of the export operation. */
+/**
+ * The parameters of the export operation.
+ */
 @Fluent
 public final class ExportResourceUsageParameters {
     /*
@@ -24,14 +26,16 @@ public final class ExportResourceUsageParameters {
     @JsonProperty(value = "usageStartDate")
     private OffsetDateTime usageStartDate;
 
-    /** Creates an instance of ExportResourceUsageParameters class. */
+    /**
+     * Creates an instance of ExportResourceUsageParameters class.
+     */
     public ExportResourceUsageParameters() {
     }
 
     /**
      * Get the blobStorageAbsoluteSasUri property: The blob storage absolute sas uri with write permission to the
      * container which the usage data needs to be uploaded to.
-     *
+     * 
      * @return the blobStorageAbsoluteSasUri value.
      */
     public String blobStorageAbsoluteSasUri() {
@@ -41,7 +45,7 @@ public final class ExportResourceUsageParameters {
     /**
      * Set the blobStorageAbsoluteSasUri property: The blob storage absolute sas uri with write permission to the
      * container which the usage data needs to be uploaded to.
-     *
+     * 
      * @param blobStorageAbsoluteSasUri the blobStorageAbsoluteSasUri value to set.
      * @return the ExportResourceUsageParameters object itself.
      */
@@ -53,7 +57,7 @@ public final class ExportResourceUsageParameters {
     /**
      * Get the usageStartDate property: The start time of the usage. If not provided, usage will be reported since the
      * beginning of data collection.
-     *
+     * 
      * @return the usageStartDate value.
      */
     public OffsetDateTime usageStartDate() {
@@ -63,7 +67,7 @@ public final class ExportResourceUsageParameters {
     /**
      * Set the usageStartDate property: The start time of the usage. If not provided, usage will be reported since the
      * beginning of data collection.
-     *
+     * 
      * @param usageStartDate the usageStartDate value to set.
      * @return the ExportResourceUsageParameters object itself.
      */
@@ -74,7 +78,7 @@ public final class ExportResourceUsageParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

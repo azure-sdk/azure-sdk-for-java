@@ -4,24 +4,22 @@
 
 package com.azure.resourcemanager.devtestlabs.generated;
 
-/** Samples for ServiceFabrics Stop. */
+/**
+ * Samples for ServiceFabrics Stop.
+ */
 public final class ServiceFabricsStopSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ServiceFabrics_Stop.json
+     * x-ms-original-file:
+     * specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/ServiceFabrics_Stop.
+     * json
      */
     /**
      * Sample code: ServiceFabrics_Stop.
-     *
+     * 
      * @param manager Entry point to DevTestLabsManager.
      */
     public static void serviceFabricsStop(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager
-            .serviceFabrics()
-            .stop(
-                "resourceGroupName",
-                "{labName}",
-                "{userName}",
-                "{serviceFabricName}",
-                com.azure.core.util.Context.NONE);
+        manager.serviceFabrics().stop("resourceGroupName", "exampleLab", "UserName001", "serviceFabricName",
+            com.azure.core.util.Context.NONE);
     }
 }

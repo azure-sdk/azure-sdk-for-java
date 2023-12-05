@@ -4,25 +4,22 @@
 
 package com.azure.resourcemanager.devtestlabs.generated;
 
-/** Samples for ServiceFabrics ListApplicableSchedules. */
+/**
+ * Samples for ServiceFabrics ListApplicableSchedules.
+ */
 public final class ServiceFabricsListApplicableSchedulesSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ServiceFabrics_ListApplicableSchedules.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/
+     * ServiceFabrics_ListApplicableSchedules.json
      */
     /**
      * Sample code: ServiceFabrics_ListApplicableSchedules.
-     *
+     * 
      * @param manager Entry point to DevTestLabsManager.
      */
-    public static void serviceFabricsListApplicableSchedules(
-        com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager
-            .serviceFabrics()
-            .listApplicableSchedulesWithResponse(
-                "resourceGroupName",
-                "{labName}",
-                "{userName}",
-                "{serviceFabricName}",
-                com.azure.core.util.Context.NONE);
+    public static void
+        serviceFabricsListApplicableSchedules(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
+        manager.serviceFabrics().listApplicableSchedulesWithResponse("resourceGroupName", "exampleLab", "UserName001",
+            "serviceFabricName", com.azure.core.util.Context.NONE);
     }
 }

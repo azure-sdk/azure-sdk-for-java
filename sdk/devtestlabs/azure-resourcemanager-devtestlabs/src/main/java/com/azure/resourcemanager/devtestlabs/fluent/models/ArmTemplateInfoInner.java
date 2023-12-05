@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Information about a generated ARM template. */
+/**
+ * Information about a generated ARM template.
+ */
 @Fluent
 public final class ArmTemplateInfoInner {
     /*
@@ -22,13 +24,15 @@ public final class ArmTemplateInfoInner {
     @JsonProperty(value = "parameters")
     private Object parameters;
 
-    /** Creates an instance of ArmTemplateInfoInner class. */
+    /**
+     * Creates an instance of ArmTemplateInfoInner class.
+     */
     public ArmTemplateInfoInner() {
     }
 
     /**
      * Get the template property: The template's contents.
-     *
+     * 
      * @return the template value.
      */
     public Object template() {
@@ -37,7 +41,7 @@ public final class ArmTemplateInfoInner {
 
     /**
      * Set the template property: The template's contents.
-     *
+     * 
      * @param template the template value to set.
      * @return the ArmTemplateInfoInner object itself.
      */
@@ -48,7 +52,7 @@ public final class ArmTemplateInfoInner {
 
     /**
      * Get the parameters property: The parameters of the ARM template.
-     *
+     * 
      * @return the parameters value.
      */
     public Object parameters() {
@@ -57,7 +61,7 @@ public final class ArmTemplateInfoInner {
 
     /**
      * Set the parameters property: The parameters of the ARM template.
-     *
+     * 
      * @param parameters the parameters value to set.
      * @return the ArmTemplateInfoInner object itself.
      */
@@ -68,7 +72,7 @@ public final class ArmTemplateInfoInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

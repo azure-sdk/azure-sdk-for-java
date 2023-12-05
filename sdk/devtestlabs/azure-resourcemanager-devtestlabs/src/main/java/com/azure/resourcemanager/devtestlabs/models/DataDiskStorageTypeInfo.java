@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Storage information about the data disks present in the custom image. */
+/**
+ * Storage information about the data disks present in the custom image.
+ */
 @Fluent
 public final class DataDiskStorageTypeInfo {
     /*
@@ -22,13 +24,15 @@ public final class DataDiskStorageTypeInfo {
     @JsonProperty(value = "storageType")
     private StorageType storageType;
 
-    /** Creates an instance of DataDiskStorageTypeInfo class. */
+    /**
+     * Creates an instance of DataDiskStorageTypeInfo class.
+     */
     public DataDiskStorageTypeInfo() {
     }
 
     /**
      * Get the lun property: Disk Lun.
-     *
+     * 
      * @return the lun value.
      */
     public String lun() {
@@ -37,7 +41,7 @@ public final class DataDiskStorageTypeInfo {
 
     /**
      * Set the lun property: Disk Lun.
-     *
+     * 
      * @param lun the lun value to set.
      * @return the DataDiskStorageTypeInfo object itself.
      */
@@ -48,7 +52,7 @@ public final class DataDiskStorageTypeInfo {
 
     /**
      * Get the storageType property: Disk Storage Type.
-     *
+     * 
      * @return the storageType value.
      */
     public StorageType storageType() {
@@ -57,7 +61,7 @@ public final class DataDiskStorageTypeInfo {
 
     /**
      * Set the storageType property: Disk Storage Type.
-     *
+     * 
      * @param storageType the storageType value to set.
      * @return the DataDiskStorageTypeInfo object itself.
      */
@@ -68,7 +72,7 @@ public final class DataDiskStorageTypeInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

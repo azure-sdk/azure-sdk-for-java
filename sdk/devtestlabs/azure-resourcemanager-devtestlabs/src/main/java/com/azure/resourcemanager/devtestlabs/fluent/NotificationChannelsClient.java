@@ -13,49 +13,47 @@ import com.azure.resourcemanager.devtestlabs.fluent.models.NotificationChannelIn
 import com.azure.resourcemanager.devtestlabs.models.NotificationChannelFragment;
 import com.azure.resourcemanager.devtestlabs.models.NotifyParameters;
 
-/** An instance of this class provides access to all the operations defined in NotificationChannelsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in NotificationChannelsClient.
+ */
 public interface NotificationChannelsClient {
     /**
      * List notification channels in a given lab.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of notificationChannels and their properties as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<NotificationChannelInner> list(String resourceGroupName, String labName);
 
     /**
      * List notification channels in a given lab.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($select=webHookUrl)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of notificationChannels and their properties as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<NotificationChannelInner> list(
-        String resourceGroupName,
-        String labName,
-        String expand,
-        String filter,
-        Integer top,
-        String orderby,
-        Context context);
+    PagedIterable<NotificationChannelInner> list(String resourceGroupName, String labName, String expand, String filter,
+        Integer top, String orderby, Context context);
 
     /**
      * Get notification channel.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the notification channel.
@@ -67,12 +65,12 @@ public interface NotificationChannelsClient {
      * @return notification channel along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<NotificationChannelInner> getWithResponse(
-        String resourceGroupName, String labName, String name, String expand, Context context);
+    Response<NotificationChannelInner> getWithResponse(String resourceGroupName, String labName, String name,
+        String expand, Context context);
 
     /**
      * Get notification channel.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the notification channel.
@@ -85,8 +83,8 @@ public interface NotificationChannelsClient {
     NotificationChannelInner get(String resourceGroupName, String labName, String name);
 
     /**
-     * Create or replace an existing notification channel.
-     *
+     * Create or replace an existing Notification Channel.
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the notification channel.
@@ -98,16 +96,12 @@ public interface NotificationChannelsClient {
      * @return a notification along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<NotificationChannelInner> createOrUpdateWithResponse(
-        String resourceGroupName,
-        String labName,
-        String name,
-        NotificationChannelInner notificationChannel,
-        Context context);
+    Response<NotificationChannelInner> createOrUpdateWithResponse(String resourceGroupName, String labName, String name,
+        NotificationChannelInner notificationChannel, Context context);
 
     /**
-     * Create or replace an existing notification channel.
-     *
+     * Create or replace an existing Notification Channel.
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the notification channel.
@@ -118,12 +112,12 @@ public interface NotificationChannelsClient {
      * @return a notification.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    NotificationChannelInner createOrUpdate(
-        String resourceGroupName, String labName, String name, NotificationChannelInner notificationChannel);
+    NotificationChannelInner createOrUpdate(String resourceGroupName, String labName, String name,
+        NotificationChannelInner notificationChannel);
 
     /**
      * Delete notification channel.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the notification channel.
@@ -138,7 +132,7 @@ public interface NotificationChannelsClient {
 
     /**
      * Delete notification channel.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the notification channel.
@@ -151,11 +145,11 @@ public interface NotificationChannelsClient {
 
     /**
      * Allows modifying tags of notification channels. All other properties will be ignored.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the notification channel.
-     * @param notificationChannel A notification.
+     * @param notificationChannel Allows modifying tags of notification channels. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -163,32 +157,28 @@ public interface NotificationChannelsClient {
      * @return a notification along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<NotificationChannelInner> updateWithResponse(
-        String resourceGroupName,
-        String labName,
-        String name,
-        NotificationChannelFragment notificationChannel,
-        Context context);
+    Response<NotificationChannelInner> updateWithResponse(String resourceGroupName, String labName, String name,
+        NotificationChannelFragment notificationChannel, Context context);
 
     /**
      * Allows modifying tags of notification channels. All other properties will be ignored.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the notification channel.
-     * @param notificationChannel A notification.
+     * @param notificationChannel Allows modifying tags of notification channels. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a notification.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    NotificationChannelInner update(
-        String resourceGroupName, String labName, String name, NotificationChannelFragment notificationChannel);
+    NotificationChannelInner update(String resourceGroupName, String labName, String name,
+        NotificationChannelFragment notificationChannel);
 
     /**
      * Send notification to provided channel.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the notification channel.
@@ -200,12 +190,12 @@ public interface NotificationChannelsClient {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> notifyWithResponse(
-        String resourceGroupName, String labName, String name, NotifyParameters notifyParameters, Context context);
+    Response<Void> notifyWithResponse(String resourceGroupName, String labName, String name,
+        NotifyParameters notifyParameters, Context context);
 
     /**
      * Send notification to provided channel.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the notification channel.

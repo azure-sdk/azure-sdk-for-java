@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A data disks attached to a virtual machine. */
+/**
+ * A data disks attached to a virtual machine.
+ */
 @Fluent
 public final class ComputeDataDisk {
     /*
@@ -34,13 +36,15 @@ public final class ComputeDataDisk {
     @JsonProperty(value = "diskSizeGiB")
     private Integer diskSizeGiB;
 
-    /** Creates an instance of ComputeDataDisk class. */
+    /**
+     * Creates an instance of ComputeDataDisk class.
+     */
     public ComputeDataDisk() {
     }
 
     /**
      * Get the name property: Gets data disk name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -49,7 +53,7 @@ public final class ComputeDataDisk {
 
     /**
      * Set the name property: Gets data disk name.
-     *
+     * 
      * @param name the name value to set.
      * @return the ComputeDataDisk object itself.
      */
@@ -60,7 +64,7 @@ public final class ComputeDataDisk {
 
     /**
      * Get the diskUri property: When backed by a blob, the URI of underlying blob.
-     *
+     * 
      * @return the diskUri value.
      */
     public String diskUri() {
@@ -69,7 +73,7 @@ public final class ComputeDataDisk {
 
     /**
      * Set the diskUri property: When backed by a blob, the URI of underlying blob.
-     *
+     * 
      * @param diskUri the diskUri value to set.
      * @return the ComputeDataDisk object itself.
      */
@@ -80,7 +84,7 @@ public final class ComputeDataDisk {
 
     /**
      * Get the managedDiskId property: When backed by managed disk, this is the ID of the compute disk resource.
-     *
+     * 
      * @return the managedDiskId value.
      */
     public String managedDiskId() {
@@ -89,7 +93,7 @@ public final class ComputeDataDisk {
 
     /**
      * Set the managedDiskId property: When backed by managed disk, this is the ID of the compute disk resource.
-     *
+     * 
      * @param managedDiskId the managedDiskId value to set.
      * @return the ComputeDataDisk object itself.
      */
@@ -100,7 +104,7 @@ public final class ComputeDataDisk {
 
     /**
      * Get the diskSizeGiB property: Gets data disk size in GiB.
-     *
+     * 
      * @return the diskSizeGiB value.
      */
     public Integer diskSizeGiB() {
@@ -109,7 +113,7 @@ public final class ComputeDataDisk {
 
     /**
      * Set the diskSizeGiB property: Gets data disk size in GiB.
-     *
+     * 
      * @param diskSizeGiB the diskSizeGiB value to set.
      * @return the ComputeDataDisk object itself.
      */
@@ -120,7 +124,7 @@ public final class ComputeDataDisk {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

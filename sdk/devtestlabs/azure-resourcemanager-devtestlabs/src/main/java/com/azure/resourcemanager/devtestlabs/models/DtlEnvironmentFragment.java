@@ -7,14 +7,20 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import java.util.Map;
 
-/** An environment, which is essentially an ARM template deployment. */
+/**
+ * Patch.
+ */
 @Fluent
 public final class DtlEnvironmentFragment extends UpdateResource {
-    /** Creates an instance of DtlEnvironmentFragment class. */
+    /**
+     * Creates an instance of DtlEnvironmentFragment class.
+     */
     public DtlEnvironmentFragment() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DtlEnvironmentFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -23,7 +29,7 @@ public final class DtlEnvironmentFragment extends UpdateResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

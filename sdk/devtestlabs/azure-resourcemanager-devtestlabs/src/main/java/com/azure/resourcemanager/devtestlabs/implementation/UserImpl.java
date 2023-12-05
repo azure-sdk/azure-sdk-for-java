@@ -4,15 +4,12 @@
 
 package com.azure.resourcemanager.devtestlabs.implementation;
 
-import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.UserInner;
 import com.azure.resourcemanager.devtestlabs.models.User;
 import com.azure.resourcemanager.devtestlabs.models.UserFragment;
-import com.azure.resourcemanager.devtestlabs.models.UserIdentity;
-import com.azure.resourcemanager.devtestlabs.models.UserSecretStore;
 import java.time.OffsetDateTime;
-import java.util.Collections;
 import java.util.Map;
 
 public final class UserImpl implements User, User.Definition, User.Update {
@@ -32,25 +29,8 @@ public final class UserImpl implements User, User.Definition, User.Update {
         return this.innerModel().type();
     }
 
-    public String location() {
-        return this.innerModel().location();
-    }
-
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
-    }
-
-    public UserIdentity identity() {
-        return this.innerModel().identity();
-    }
-
-    public UserSecretStore secretStore() {
-        return this.innerModel().secretStore();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public OffsetDateTime createdDate() {
@@ -65,12 +45,32 @@ public final class UserImpl implements User, User.Definition, User.Update {
         return this.innerModel().uniqueIdentifier();
     }
 
-    public Region region() {
-        return Region.fromName(this.regionName());
+    public String principalName() {
+        return this.innerModel().principalName();
     }
 
-    public String regionName() {
-        return this.location();
+    public String principalId() {
+        return this.innerModel().principalId();
+    }
+
+    public String tenantId() {
+        return this.innerModel().tenantId();
+    }
+
+    public String objectId() {
+        return this.innerModel().objectId();
+    }
+
+    public String appId() {
+        return this.innerModel().appId();
+    }
+
+    public String keyVaultUri() {
+        return this.innerModel().keyVaultUri();
+    }
+
+    public String keyVaultId() {
+        return this.innerModel().keyVaultId();
     }
 
     public String resourceGroupName() {
@@ -100,20 +100,14 @@ public final class UserImpl implements User, User.Definition, User.Update {
     }
 
     public User create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getUsers()
-                .createOrUpdate(resourceGroupName, labName, name, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getUsers().createOrUpdate(resourceGroupName, labName, name,
+            this.innerModel(), Context.NONE);
         return this;
     }
 
     public User create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getUsers()
-                .createOrUpdate(resourceGroupName, labName, name, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getUsers().createOrUpdate(resourceGroupName, labName, name,
+            this.innerModel(), context);
         return this;
     }
 
@@ -129,22 +123,14 @@ public final class UserImpl implements User, User.Definition, User.Update {
     }
 
     public User apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getUsers()
-                .updateWithResponse(resourceGroupName, labName, name, updateUser, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getUsers()
+            .updateWithResponse(resourceGroupName, labName, name, updateUser, Context.NONE).getValue();
         return this;
     }
 
     public User apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getUsers()
-                .updateWithResponse(resourceGroupName, labName, name, updateUser, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getUsers()
+            .updateWithResponse(resourceGroupName, labName, name, updateUser, context).getValue();
         return this;
     }
 
@@ -158,57 +144,55 @@ public final class UserImpl implements User, User.Definition, User.Update {
 
     public User refresh() {
         String localExpand = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getUsers()
-                .getWithResponse(resourceGroupName, labName, name, localExpand, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getUsers()
+            .getWithResponse(resourceGroupName, labName, name, localExpand, Context.NONE).getValue();
         return this;
     }
 
     public User refresh(Context context) {
         String localExpand = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getUsers()
-                .getWithResponse(resourceGroupName, labName, name, localExpand, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getUsers()
+            .getWithResponse(resourceGroupName, labName, name, localExpand, context).getValue();
         return this;
     }
 
-    public UserImpl withRegion(Region location) {
-        this.innerModel().withLocation(location.toString());
+    public UserImpl withPrincipalName(String principalName) {
+        this.innerModel().withPrincipalName(principalName);
         return this;
     }
 
-    public UserImpl withRegion(String location) {
-        this.innerModel().withLocation(location);
+    public UserImpl withPrincipalId(String principalId) {
+        this.innerModel().withPrincipalId(principalId);
+        return this;
+    }
+
+    public UserImpl withTenantId(String tenantId) {
+        this.innerModel().withTenantId(tenantId);
+        return this;
+    }
+
+    public UserImpl withObjectId(String objectId) {
+        this.innerModel().withObjectId(objectId);
+        return this;
+    }
+
+    public UserImpl withAppId(String appId) {
+        this.innerModel().withAppId(appId);
+        return this;
+    }
+
+    public UserImpl withKeyVaultUri(String keyVaultUri) {
+        this.innerModel().withKeyVaultUri(keyVaultUri);
+        return this;
+    }
+
+    public UserImpl withKeyVaultId(String keyVaultId) {
+        this.innerModel().withKeyVaultId(keyVaultId);
         return this;
     }
 
     public UserImpl withTags(Map<String, String> tags) {
-        if (isInCreateMode()) {
-            this.innerModel().withTags(tags);
-            return this;
-        } else {
-            this.updateUser.withTags(tags);
-            return this;
-        }
-    }
-
-    public UserImpl withIdentity(UserIdentity identity) {
-        this.innerModel().withIdentity(identity);
+        this.updateUser.withTags(tags);
         return this;
-    }
-
-    public UserImpl withSecretStore(UserSecretStore secretStore) {
-        this.innerModel().withSecretStore(secretStore);
-        return this;
-    }
-
-    private boolean isInCreateMode() {
-        return this.innerModel().id() == null;
     }
 }

@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Properties of a virtual network. */
+/**
+ * Properties of a virtual network.
+ */
 @Fluent
 public final class VirtualNetworkProperties {
     /*
@@ -63,13 +65,15 @@ public final class VirtualNetworkProperties {
     @JsonProperty(value = "uniqueIdentifier", access = JsonProperty.Access.WRITE_ONLY)
     private String uniqueIdentifier;
 
-    /** Creates an instance of VirtualNetworkProperties class. */
+    /**
+     * Creates an instance of VirtualNetworkProperties class.
+     */
     public VirtualNetworkProperties() {
     }
 
     /**
      * Get the allowedSubnets property: The allowed subnets of the virtual network.
-     *
+     * 
      * @return the allowedSubnets value.
      */
     public List<Subnet> allowedSubnets() {
@@ -78,7 +82,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Set the allowedSubnets property: The allowed subnets of the virtual network.
-     *
+     * 
      * @param allowedSubnets the allowedSubnets value to set.
      * @return the VirtualNetworkProperties object itself.
      */
@@ -89,7 +93,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Get the description property: The description of the virtual network.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -98,7 +102,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Set the description property: The description of the virtual network.
-     *
+     * 
      * @param description the description value to set.
      * @return the VirtualNetworkProperties object itself.
      */
@@ -109,7 +113,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Get the externalProviderResourceId property: The Microsoft.Network resource identifier of the virtual network.
-     *
+     * 
      * @return the externalProviderResourceId value.
      */
     public String externalProviderResourceId() {
@@ -118,7 +122,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Set the externalProviderResourceId property: The Microsoft.Network resource identifier of the virtual network.
-     *
+     * 
      * @param externalProviderResourceId the externalProviderResourceId value to set.
      * @return the VirtualNetworkProperties object itself.
      */
@@ -129,7 +133,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Get the externalSubnets property: The external subnet properties.
-     *
+     * 
      * @return the externalSubnets value.
      */
     public List<ExternalSubnet> externalSubnets() {
@@ -138,7 +142,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Get the subnetOverrides property: The subnet overrides of the virtual network.
-     *
+     * 
      * @return the subnetOverrides value.
      */
     public List<SubnetOverride> subnetOverrides() {
@@ -147,7 +151,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Set the subnetOverrides property: The subnet overrides of the virtual network.
-     *
+     * 
      * @param subnetOverrides the subnetOverrides value to set.
      * @return the VirtualNetworkProperties object itself.
      */
@@ -158,7 +162,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Get the createdDate property: The creation date of the virtual network.
-     *
+     * 
      * @return the createdDate value.
      */
     public OffsetDateTime createdDate() {
@@ -167,7 +171,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Get the provisioningState property: The provisioning status of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -176,7 +180,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
+     * 
      * @return the uniqueIdentifier value.
      */
     public String uniqueIdentifier() {
@@ -185,7 +189,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

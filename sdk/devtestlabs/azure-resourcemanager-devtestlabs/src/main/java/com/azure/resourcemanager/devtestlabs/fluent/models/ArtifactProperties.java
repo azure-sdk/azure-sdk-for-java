@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Properties of an artifact. */
+/**
+ * Properties of an artifact.
+ */
 @Immutable
 public final class ArtifactProperties {
     /*
@@ -59,13 +61,15 @@ public final class ArtifactProperties {
     @JsonProperty(value = "createdDate", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime createdDate;
 
-    /** Creates an instance of ArtifactProperties class. */
+    /**
+     * Creates an instance of ArtifactProperties class.
+     */
     public ArtifactProperties() {
     }
 
     /**
      * Get the title property: The artifact's title.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -74,7 +78,7 @@ public final class ArtifactProperties {
 
     /**
      * Get the description property: The artifact's description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -83,7 +87,7 @@ public final class ArtifactProperties {
 
     /**
      * Get the publisher property: The artifact's publisher.
-     *
+     * 
      * @return the publisher value.
      */
     public String publisher() {
@@ -92,7 +96,7 @@ public final class ArtifactProperties {
 
     /**
      * Get the filePath property: The file path to the artifact.
-     *
+     * 
      * @return the filePath value.
      */
     public String filePath() {
@@ -101,7 +105,7 @@ public final class ArtifactProperties {
 
     /**
      * Get the icon property: The URI to the artifact icon.
-     *
+     * 
      * @return the icon value.
      */
     public String icon() {
@@ -110,7 +114,7 @@ public final class ArtifactProperties {
 
     /**
      * Get the targetOsType property: The artifact's target OS.
-     *
+     * 
      * @return the targetOsType value.
      */
     public String targetOsType() {
@@ -119,7 +123,7 @@ public final class ArtifactProperties {
 
     /**
      * Get the parameters property: The artifact's parameters.
-     *
+     * 
      * @return the parameters value.
      */
     public Object parameters() {
@@ -128,7 +132,7 @@ public final class ArtifactProperties {
 
     /**
      * Get the createdDate property: The artifact's creation date.
-     *
+     * 
      * @return the createdDate value.
      */
     public OffsetDateTime createdDate() {
@@ -137,7 +141,7 @@ public final class ArtifactProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

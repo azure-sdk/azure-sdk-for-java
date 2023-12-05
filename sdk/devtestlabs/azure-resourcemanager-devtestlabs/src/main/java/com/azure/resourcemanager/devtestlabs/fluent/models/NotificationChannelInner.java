@@ -6,43 +6,66 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
-import com.azure.core.util.logging.ClientLogger;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devtestlabs.models.Event;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** A notification. */
+/**
+ * A notification.
+ */
 @Fluent
 public final class NotificationChannelInner extends Resource {
     /*
      * The properties of the resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private NotificationChannelProperties innerProperties = new NotificationChannelProperties();
+    @JsonProperty(value = "properties")
+    private NotificationChannelProperties innerProperties;
 
-    /** Creates an instance of NotificationChannelInner class. */
+    /*
+     * The system metadata relating to this resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of NotificationChannelInner class.
+     */
     public NotificationChannelInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of the resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private NotificationChannelProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NotificationChannelInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NotificationChannelInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -51,7 +74,7 @@ public final class NotificationChannelInner extends Resource {
 
     /**
      * Get the webhookUrl property: The webhook URL to send notifications to.
-     *
+     * 
      * @return the webhookUrl value.
      */
     public String webhookUrl() {
@@ -60,7 +83,7 @@ public final class NotificationChannelInner extends Resource {
 
     /**
      * Set the webhookUrl property: The webhook URL to send notifications to.
-     *
+     * 
      * @param webhookUrl the webhookUrl value to set.
      * @return the NotificationChannelInner object itself.
      */
@@ -75,7 +98,7 @@ public final class NotificationChannelInner extends Resource {
     /**
      * Get the emailRecipient property: The email recipient to send notifications to (can be a list of semi-colon
      * separated email addresses).
-     *
+     * 
      * @return the emailRecipient value.
      */
     public String emailRecipient() {
@@ -85,7 +108,7 @@ public final class NotificationChannelInner extends Resource {
     /**
      * Set the emailRecipient property: The email recipient to send notifications to (can be a list of semi-colon
      * separated email addresses).
-     *
+     * 
      * @param emailRecipient the emailRecipient value to set.
      * @return the NotificationChannelInner object itself.
      */
@@ -100,7 +123,7 @@ public final class NotificationChannelInner extends Resource {
     /**
      * Get the notificationLocale property: The locale to use when sending a notification (fallback for unsupported
      * languages is EN).
-     *
+     * 
      * @return the notificationLocale value.
      */
     public String notificationLocale() {
@@ -110,7 +133,7 @@ public final class NotificationChannelInner extends Resource {
     /**
      * Set the notificationLocale property: The locale to use when sending a notification (fallback for unsupported
      * languages is EN).
-     *
+     * 
      * @param notificationLocale the notificationLocale value to set.
      * @return the NotificationChannelInner object itself.
      */
@@ -124,7 +147,7 @@ public final class NotificationChannelInner extends Resource {
 
     /**
      * Get the description property: Description of notification.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -133,7 +156,7 @@ public final class NotificationChannelInner extends Resource {
 
     /**
      * Set the description property: Description of notification.
-     *
+     * 
      * @param description the description value to set.
      * @return the NotificationChannelInner object itself.
      */
@@ -147,7 +170,7 @@ public final class NotificationChannelInner extends Resource {
 
     /**
      * Get the events property: The list of event for which this notification is enabled.
-     *
+     * 
      * @return the events value.
      */
     public List<Event> events() {
@@ -156,7 +179,7 @@ public final class NotificationChannelInner extends Resource {
 
     /**
      * Set the events property: The list of event for which this notification is enabled.
-     *
+     * 
      * @param events the events value to set.
      * @return the NotificationChannelInner object itself.
      */
@@ -170,7 +193,7 @@ public final class NotificationChannelInner extends Resource {
 
     /**
      * Get the createdDate property: The creation date of the notification channel.
-     *
+     * 
      * @return the createdDate value.
      */
     public OffsetDateTime createdDate() {
@@ -179,7 +202,7 @@ public final class NotificationChannelInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioning status of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -188,7 +211,7 @@ public final class NotificationChannelInner extends Resource {
 
     /**
      * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
+     * 
      * @return the uniqueIdentifier value.
      */
     public String uniqueIdentifier() {
@@ -197,19 +220,12 @@ public final class NotificationChannelInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model NotificationChannelInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(NotificationChannelInner.class);
 }

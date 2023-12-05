@@ -6,17 +6,20 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.devtestlabs.models.CustomImagePropertiesCustom;
-import com.azure.resourcemanager.devtestlabs.models.CustomImagePropertiesFromPlan;
-import com.azure.resourcemanager.devtestlabs.models.CustomImagePropertiesFromVm;
+import com.azure.resourcemanager.devtestlabs.models.CustomImageOsType;
 import com.azure.resourcemanager.devtestlabs.models.DataDiskStorageTypeInfo;
+import com.azure.resourcemanager.devtestlabs.models.LinuxOsState;
+import com.azure.resourcemanager.devtestlabs.models.WindowsOsState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** A custom image. */
+/**
+ * A custom image.
+ */
 @Fluent
 public final class CustomImageInner extends Resource {
     /*
@@ -25,27 +28,48 @@ public final class CustomImageInner extends Resource {
     @JsonProperty(value = "properties", required = true)
     private CustomImageProperties innerProperties = new CustomImageProperties();
 
-    /** Creates an instance of CustomImageInner class. */
+    /*
+     * The system metadata relating to this resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of CustomImageInner class.
+     */
     public CustomImageInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of the resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private CustomImageProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CustomImageInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CustomImageInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -53,54 +77,8 @@ public final class CustomImageInner extends Resource {
     }
 
     /**
-     * Get the vm property: The virtual machine from which the image is to be created.
-     *
-     * @return the vm value.
-     */
-    public CustomImagePropertiesFromVm vm() {
-        return this.innerProperties() == null ? null : this.innerProperties().vm();
-    }
-
-    /**
-     * Set the vm property: The virtual machine from which the image is to be created.
-     *
-     * @param vm the vm value to set.
-     * @return the CustomImageInner object itself.
-     */
-    public CustomImageInner withVm(CustomImagePropertiesFromVm vm) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new CustomImageProperties();
-        }
-        this.innerProperties().withVm(vm);
-        return this;
-    }
-
-    /**
-     * Get the vhd property: The VHD from which the image is to be created.
-     *
-     * @return the vhd value.
-     */
-    public CustomImagePropertiesCustom vhd() {
-        return this.innerProperties() == null ? null : this.innerProperties().vhd();
-    }
-
-    /**
-     * Set the vhd property: The VHD from which the image is to be created.
-     *
-     * @param vhd the vhd value to set.
-     * @return the CustomImageInner object itself.
-     */
-    public CustomImageInner withVhd(CustomImagePropertiesCustom vhd) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new CustomImageProperties();
-        }
-        this.innerProperties().withVhd(vhd);
-        return this;
-    }
-
-    /**
      * Get the description property: The description of the custom image.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -109,7 +87,7 @@ public final class CustomImageInner extends Resource {
 
     /**
      * Set the description property: The description of the custom image.
-     *
+     * 
      * @param description the description value to set.
      * @return the CustomImageInner object itself.
      */
@@ -123,7 +101,7 @@ public final class CustomImageInner extends Resource {
 
     /**
      * Get the author property: The author of the custom image.
-     *
+     * 
      * @return the author value.
      */
     public String author() {
@@ -132,7 +110,7 @@ public final class CustomImageInner extends Resource {
 
     /**
      * Set the author property: The author of the custom image.
-     *
+     * 
      * @param author the author value to set.
      * @return the CustomImageInner object itself.
      */
@@ -146,7 +124,7 @@ public final class CustomImageInner extends Resource {
 
     /**
      * Get the creationDate property: The creation date of the custom image.
-     *
+     * 
      * @return the creationDate value.
      */
     public OffsetDateTime creationDate() {
@@ -155,7 +133,7 @@ public final class CustomImageInner extends Resource {
 
     /**
      * Get the managedImageId property: The Managed Image Id backing the custom image.
-     *
+     * 
      * @return the managedImageId value.
      */
     public String managedImageId() {
@@ -164,7 +142,7 @@ public final class CustomImageInner extends Resource {
 
     /**
      * Set the managedImageId property: The Managed Image Id backing the custom image.
-     *
+     * 
      * @param managedImageId the managedImageId value to set.
      * @return the CustomImageInner object itself.
      */
@@ -178,7 +156,7 @@ public final class CustomImageInner extends Resource {
 
     /**
      * Get the managedSnapshotId property: The Managed Snapshot Id backing the custom image.
-     *
+     * 
      * @return the managedSnapshotId value.
      */
     public String managedSnapshotId() {
@@ -187,7 +165,7 @@ public final class CustomImageInner extends Resource {
 
     /**
      * Set the managedSnapshotId property: The Managed Snapshot Id backing the custom image.
-     *
+     * 
      * @param managedSnapshotId the managedSnapshotId value to set.
      * @return the CustomImageInner object itself.
      */
@@ -201,7 +179,7 @@ public final class CustomImageInner extends Resource {
 
     /**
      * Get the dataDiskStorageInfo property: Storage information about the data disks present in the custom image.
-     *
+     * 
      * @return the dataDiskStorageInfo value.
      */
     public List<DataDiskStorageTypeInfo> dataDiskStorageInfo() {
@@ -210,7 +188,7 @@ public final class CustomImageInner extends Resource {
 
     /**
      * Set the dataDiskStorageInfo property: Storage information about the data disks present in the custom image.
-     *
+     * 
      * @param dataDiskStorageInfo the dataDiskStorageInfo value to set.
      * @return the CustomImageInner object itself.
      */
@@ -223,32 +201,9 @@ public final class CustomImageInner extends Resource {
     }
 
     /**
-     * Get the customImagePlan property: Storage information about the plan related to this custom image.
-     *
-     * @return the customImagePlan value.
-     */
-    public CustomImagePropertiesFromPlan customImagePlan() {
-        return this.innerProperties() == null ? null : this.innerProperties().customImagePlan();
-    }
-
-    /**
-     * Set the customImagePlan property: Storage information about the plan related to this custom image.
-     *
-     * @param customImagePlan the customImagePlan value to set.
-     * @return the CustomImageInner object itself.
-     */
-    public CustomImageInner withCustomImagePlan(CustomImagePropertiesFromPlan customImagePlan) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new CustomImageProperties();
-        }
-        this.innerProperties().withCustomImagePlan(customImagePlan);
-        return this;
-    }
-
-    /**
      * Get the isPlanAuthorized property: Whether or not the custom images underlying offer/plan has been enabled for
      * programmatic deployment.
-     *
+     * 
      * @return the isPlanAuthorized value.
      */
     public Boolean isPlanAuthorized() {
@@ -258,7 +213,7 @@ public final class CustomImageInner extends Resource {
     /**
      * Set the isPlanAuthorized property: Whether or not the custom images underlying offer/plan has been enabled for
      * programmatic deployment.
-     *
+     * 
      * @param isPlanAuthorized the isPlanAuthorized value to set.
      * @return the CustomImageInner object itself.
      */
@@ -272,7 +227,7 @@ public final class CustomImageInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioning status of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -281,7 +236,7 @@ public final class CustomImageInner extends Resource {
 
     /**
      * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
+     * 
      * @return the uniqueIdentifier value.
      */
     public String uniqueIdentifier() {
@@ -289,16 +244,227 @@ public final class CustomImageInner extends Resource {
     }
 
     /**
+     * Get the sourceVmId property: The source vm identifier.
+     * 
+     * @return the sourceVmId value.
+     */
+    public String sourceVmId() {
+        return this.innerProperties() == null ? null : this.innerProperties().sourceVmId();
+    }
+
+    /**
+     * Set the sourceVmId property: The source vm identifier.
+     * 
+     * @param sourceVmId the sourceVmId value to set.
+     * @return the CustomImageInner object itself.
+     */
+    public CustomImageInner withSourceVmId(String sourceVmId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CustomImageProperties();
+        }
+        this.innerProperties().withSourceVmId(sourceVmId);
+        return this;
+    }
+
+    /**
+     * Get the windowsOsState property: The state of the Windows OS (i.e. NonSysprepped, SysprepRequested,
+     * SysprepApplied).
+     * 
+     * @return the windowsOsState value.
+     */
+    public WindowsOsState windowsOsState() {
+        return this.innerProperties() == null ? null : this.innerProperties().windowsOsState();
+    }
+
+    /**
+     * Set the windowsOsState property: The state of the Windows OS (i.e. NonSysprepped, SysprepRequested,
+     * SysprepApplied).
+     * 
+     * @param windowsOsState the windowsOsState value to set.
+     * @return the CustomImageInner object itself.
+     */
+    public CustomImageInner withWindowsOsState(WindowsOsState windowsOsState) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CustomImageProperties();
+        }
+        this.innerProperties().withWindowsOsState(windowsOsState);
+        return this;
+    }
+
+    /**
+     * Get the linuxOsState property: The state of the Linux OS (i.e. NonDeprovisioned, DeprovisionRequested,
+     * DeprovisionApplied).
+     * 
+     * @return the linuxOsState value.
+     */
+    public LinuxOsState linuxOsState() {
+        return this.innerProperties() == null ? null : this.innerProperties().linuxOsState();
+    }
+
+    /**
+     * Set the linuxOsState property: The state of the Linux OS (i.e. NonDeprovisioned, DeprovisionRequested,
+     * DeprovisionApplied).
+     * 
+     * @param linuxOsState the linuxOsState value to set.
+     * @return the CustomImageInner object itself.
+     */
+    public CustomImageInner withLinuxOsState(LinuxOsState linuxOsState) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CustomImageProperties();
+        }
+        this.innerProperties().withLinuxOsState(linuxOsState);
+        return this;
+    }
+
+    /**
+     * Get the imageName property: The image name.
+     * 
+     * @return the imageName value.
+     */
+    public String imageName() {
+        return this.innerProperties() == null ? null : this.innerProperties().imageName();
+    }
+
+    /**
+     * Set the imageName property: The image name.
+     * 
+     * @param imageName the imageName value to set.
+     * @return the CustomImageInner object itself.
+     */
+    public CustomImageInner withImageName(String imageName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CustomImageProperties();
+        }
+        this.innerProperties().withImageName(imageName);
+        return this;
+    }
+
+    /**
+     * Get the sysPrep property: Indicates whether sysprep has been run on the VHD.
+     * 
+     * @return the sysPrep value.
+     */
+    public Boolean sysPrep() {
+        return this.innerProperties() == null ? null : this.innerProperties().sysPrep();
+    }
+
+    /**
+     * Set the sysPrep property: Indicates whether sysprep has been run on the VHD.
+     * 
+     * @param sysPrep the sysPrep value to set.
+     * @return the CustomImageInner object itself.
+     */
+    public CustomImageInner withSysPrep(Boolean sysPrep) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CustomImageProperties();
+        }
+        this.innerProperties().withSysPrep(sysPrep);
+        return this;
+    }
+
+    /**
+     * Get the osType property: The OS type of the custom image (i.e. Windows, Linux).
+     * 
+     * @return the osType value.
+     */
+    public CustomImageOsType osType() {
+        return this.innerProperties() == null ? null : this.innerProperties().osType();
+    }
+
+    /**
+     * Set the osType property: The OS type of the custom image (i.e. Windows, Linux).
+     * 
+     * @param osType the osType value to set.
+     * @return the CustomImageInner object itself.
+     */
+    public CustomImageInner withOsType(CustomImageOsType osType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CustomImageProperties();
+        }
+        this.innerProperties().withOsType(osType);
+        return this;
+    }
+
+    /**
+     * Get the id property: The id of the plan, equivalent to name of the plan.
+     * 
+     * @return the id value.
+     */
+    public String idPropertiesId() {
+        return this.innerProperties() == null ? null : this.innerProperties().id();
+    }
+
+    /**
+     * Set the id property: The id of the plan, equivalent to name of the plan.
+     * 
+     * @param id the id value to set.
+     * @return the CustomImageInner object itself.
+     */
+    public CustomImageInner withIdPropertiesId(String id) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CustomImageProperties();
+        }
+        this.innerProperties().withId(id);
+        return this;
+    }
+
+    /**
+     * Get the publisher property: The publisher for the plan from the marketplace image the custom image is derived
+     * from.
+     * 
+     * @return the publisher value.
+     */
+    public String publisher() {
+        return this.innerProperties() == null ? null : this.innerProperties().publisher();
+    }
+
+    /**
+     * Set the publisher property: The publisher for the plan from the marketplace image the custom image is derived
+     * from.
+     * 
+     * @param publisher the publisher value to set.
+     * @return the CustomImageInner object itself.
+     */
+    public CustomImageInner withPublisher(String publisher) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CustomImageProperties();
+        }
+        this.innerProperties().withPublisher(publisher);
+        return this;
+    }
+
+    /**
+     * Get the offer property: The offer for the plan from the marketplace image the custom image is derived from.
+     * 
+     * @return the offer value.
+     */
+    public String offer() {
+        return this.innerProperties() == null ? null : this.innerProperties().offer();
+    }
+
+    /**
+     * Set the offer property: The offer for the plan from the marketplace image the custom image is derived from.
+     * 
+     * @param offer the offer value to set.
+     * @return the CustomImageInner object itself.
+     */
+    public CustomImageInner withOffer(String offer) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CustomImageProperties();
+        }
+        this.innerProperties().withOffer(offer);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model CustomImageInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model CustomImageInner"));
         } else {
             innerProperties().validate();
         }

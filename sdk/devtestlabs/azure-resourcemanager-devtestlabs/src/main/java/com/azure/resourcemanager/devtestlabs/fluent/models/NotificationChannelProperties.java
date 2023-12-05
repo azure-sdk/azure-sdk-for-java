@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Properties of a schedule. */
+/**
+ * Properties of a schedule.
+ */
 @Fluent
 public final class NotificationChannelProperties {
     /*
@@ -61,13 +63,15 @@ public final class NotificationChannelProperties {
     @JsonProperty(value = "uniqueIdentifier", access = JsonProperty.Access.WRITE_ONLY)
     private String uniqueIdentifier;
 
-    /** Creates an instance of NotificationChannelProperties class. */
+    /**
+     * Creates an instance of NotificationChannelProperties class.
+     */
     public NotificationChannelProperties() {
     }
 
     /**
      * Get the webhookUrl property: The webhook URL to send notifications to.
-     *
+     * 
      * @return the webhookUrl value.
      */
     public String webhookUrl() {
@@ -76,7 +80,7 @@ public final class NotificationChannelProperties {
 
     /**
      * Set the webhookUrl property: The webhook URL to send notifications to.
-     *
+     * 
      * @param webhookUrl the webhookUrl value to set.
      * @return the NotificationChannelProperties object itself.
      */
@@ -88,7 +92,7 @@ public final class NotificationChannelProperties {
     /**
      * Get the emailRecipient property: The email recipient to send notifications to (can be a list of semi-colon
      * separated email addresses).
-     *
+     * 
      * @return the emailRecipient value.
      */
     public String emailRecipient() {
@@ -98,7 +102,7 @@ public final class NotificationChannelProperties {
     /**
      * Set the emailRecipient property: The email recipient to send notifications to (can be a list of semi-colon
      * separated email addresses).
-     *
+     * 
      * @param emailRecipient the emailRecipient value to set.
      * @return the NotificationChannelProperties object itself.
      */
@@ -110,7 +114,7 @@ public final class NotificationChannelProperties {
     /**
      * Get the notificationLocale property: The locale to use when sending a notification (fallback for unsupported
      * languages is EN).
-     *
+     * 
      * @return the notificationLocale value.
      */
     public String notificationLocale() {
@@ -120,7 +124,7 @@ public final class NotificationChannelProperties {
     /**
      * Set the notificationLocale property: The locale to use when sending a notification (fallback for unsupported
      * languages is EN).
-     *
+     * 
      * @param notificationLocale the notificationLocale value to set.
      * @return the NotificationChannelProperties object itself.
      */
@@ -131,7 +135,7 @@ public final class NotificationChannelProperties {
 
     /**
      * Get the description property: Description of notification.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -140,7 +144,7 @@ public final class NotificationChannelProperties {
 
     /**
      * Set the description property: Description of notification.
-     *
+     * 
      * @param description the description value to set.
      * @return the NotificationChannelProperties object itself.
      */
@@ -151,7 +155,7 @@ public final class NotificationChannelProperties {
 
     /**
      * Get the events property: The list of event for which this notification is enabled.
-     *
+     * 
      * @return the events value.
      */
     public List<Event> events() {
@@ -160,7 +164,7 @@ public final class NotificationChannelProperties {
 
     /**
      * Set the events property: The list of event for which this notification is enabled.
-     *
+     * 
      * @param events the events value to set.
      * @return the NotificationChannelProperties object itself.
      */
@@ -171,7 +175,7 @@ public final class NotificationChannelProperties {
 
     /**
      * Get the createdDate property: The creation date of the notification channel.
-     *
+     * 
      * @return the createdDate value.
      */
     public OffsetDateTime createdDate() {
@@ -180,7 +184,7 @@ public final class NotificationChannelProperties {
 
     /**
      * Get the provisioningState property: The provisioning status of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -189,7 +193,7 @@ public final class NotificationChannelProperties {
 
     /**
      * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
+     * 
      * @return the uniqueIdentifier value.
      */
     public String uniqueIdentifier() {
@@ -198,7 +202,7 @@ public final class NotificationChannelProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

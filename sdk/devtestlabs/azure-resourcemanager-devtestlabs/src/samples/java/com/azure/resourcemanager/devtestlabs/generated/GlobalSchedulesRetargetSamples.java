@@ -6,27 +6,25 @@ package com.azure.resourcemanager.devtestlabs.generated;
 
 import com.azure.resourcemanager.devtestlabs.models.RetargetScheduleProperties;
 
-/** Samples for GlobalSchedules Retarget. */
+/**
+ * Samples for GlobalSchedules Retarget.
+ */
 public final class GlobalSchedulesRetargetSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/GlobalSchedules_Retarget.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/
+     * GlobalSchedules_Retarget.json
      */
     /**
      * Sample code: GlobalSchedules_Retarget.
-     *
+     * 
      * @param manager Entry point to DevTestLabsManager.
      */
     public static void globalSchedulesRetarget(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager
-            .globalSchedules()
-            .retarget(
-                "resourceGroupName",
-                "{scheduleName}",
-                new RetargetScheduleProperties()
-                    .withCurrentResourceId(
-                        "/subscriptions/{subscriptionId}/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/{targetLab}")
-                    .withTargetResourceId(
-                        "/subscriptions/{subscriptionId}/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/{currentLab}"),
-                com.azure.core.util.Context.NONE);
+        manager.globalSchedules().retarget("resourceGroupName", "{scheduleName}", new RetargetScheduleProperties()
+            .withCurrentResourceId(
+                "/subscriptions/e605a3bc-ee4e-4c7a-9709-1868a28b1d4d/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/{targetLab}")
+            .withTargetResourceId(
+                "/subscriptions/e605a3bc-ee4e-4c7a-9709-1868a28b1d4d/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/{currentLab}"),
+            com.azure.core.util.Context.NONE);
     }
 }

@@ -7,14 +7,20 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import java.util.Map;
 
-/** A secret. */
+/**
+ * Patch.
+ */
 @Fluent
 public final class SecretFragment extends UpdateResource {
-    /** Creates an instance of SecretFragment class. */
+    /**
+     * Creates an instance of SecretFragment class.
+     */
     public SecretFragment() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SecretFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -23,7 +29,7 @@ public final class SecretFragment extends UpdateResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

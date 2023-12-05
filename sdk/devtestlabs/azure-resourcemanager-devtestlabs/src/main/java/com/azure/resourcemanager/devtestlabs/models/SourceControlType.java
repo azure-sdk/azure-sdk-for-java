@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The artifact source's type. */
+/**
+ * The artifact source's type.
+ */
 public final class SourceControlType extends ExpandableStringEnum<SourceControlType> {
-    /** Static value VsoGit for SourceControlType. */
+    /**
+     * Static value VsoGit for SourceControlType.
+     */
     public static final SourceControlType VSO_GIT = fromString("VsoGit");
 
-    /** Static value GitHub for SourceControlType. */
+    /**
+     * Static value GitHub for SourceControlType.
+     */
     public static final SourceControlType GIT_HUB = fromString("GitHub");
 
-    /** Static value StorageAccount for SourceControlType. */
+    /**
+     * Static value StorageAccount for SourceControlType.
+     */
     public static final SourceControlType STORAGE_ACCOUNT = fromString("StorageAccount");
 
     /**
      * Creates a new instance of SourceControlType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class SourceControlType extends ExpandableStringEnum<SourceControlT
 
     /**
      * Creates or finds a SourceControlType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding SourceControlType.
      */
@@ -41,7 +49,7 @@ public final class SourceControlType extends ExpandableStringEnum<SourceControlT
 
     /**
      * Gets known SourceControlType values.
-     *
+     * 
      * @return known SourceControlType values.
      */
     public static Collection<SourceControlType> values() {

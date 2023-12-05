@@ -10,7 +10,9 @@ import com.azure.resourcemanager.devtestlabs.models.SourceControlType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Properties of an artifact source. */
+/**
+ * Properties of an artifact source.
+ */
 @Fluent
 public final class ArtifactSourceProperties {
     /*
@@ -79,13 +81,15 @@ public final class ArtifactSourceProperties {
     @JsonProperty(value = "uniqueIdentifier", access = JsonProperty.Access.WRITE_ONLY)
     private String uniqueIdentifier;
 
-    /** Creates an instance of ArtifactSourceProperties class. */
+    /**
+     * Creates an instance of ArtifactSourceProperties class.
+     */
     public ArtifactSourceProperties() {
     }
 
     /**
      * Get the displayName property: The artifact source's display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -94,7 +98,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Set the displayName property: The artifact source's display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ArtifactSourceProperties object itself.
      */
@@ -105,7 +109,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Get the uri property: The artifact source's URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -114,7 +118,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Set the uri property: The artifact source's URI.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the ArtifactSourceProperties object itself.
      */
@@ -125,7 +129,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Get the sourceType property: The artifact source's type.
-     *
+     * 
      * @return the sourceType value.
      */
     public SourceControlType sourceType() {
@@ -134,7 +138,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Set the sourceType property: The artifact source's type.
-     *
+     * 
      * @param sourceType the sourceType value to set.
      * @return the ArtifactSourceProperties object itself.
      */
@@ -145,7 +149,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Get the folderPath property: The folder containing artifacts.
-     *
+     * 
      * @return the folderPath value.
      */
     public String folderPath() {
@@ -154,7 +158,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Set the folderPath property: The folder containing artifacts.
-     *
+     * 
      * @param folderPath the folderPath value to set.
      * @return the ArtifactSourceProperties object itself.
      */
@@ -165,7 +169,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Get the armTemplateFolderPath property: The folder containing Azure Resource Manager templates.
-     *
+     * 
      * @return the armTemplateFolderPath value.
      */
     public String armTemplateFolderPath() {
@@ -174,7 +178,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Set the armTemplateFolderPath property: The folder containing Azure Resource Manager templates.
-     *
+     * 
      * @param armTemplateFolderPath the armTemplateFolderPath value to set.
      * @return the ArtifactSourceProperties object itself.
      */
@@ -185,7 +189,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Get the branchRef property: The artifact source's branch reference.
-     *
+     * 
      * @return the branchRef value.
      */
     public String branchRef() {
@@ -194,7 +198,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Set the branchRef property: The artifact source's branch reference.
-     *
+     * 
      * @param branchRef the branchRef value to set.
      * @return the ArtifactSourceProperties object itself.
      */
@@ -205,7 +209,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Get the securityToken property: The security token to authenticate to the artifact source.
-     *
+     * 
      * @return the securityToken value.
      */
     public String securityToken() {
@@ -214,7 +218,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Set the securityToken property: The security token to authenticate to the artifact source.
-     *
+     * 
      * @param securityToken the securityToken value to set.
      * @return the ArtifactSourceProperties object itself.
      */
@@ -225,7 +229,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Get the status property: Indicates if the artifact source is enabled (values: Enabled, Disabled).
-     *
+     * 
      * @return the status value.
      */
     public EnableStatus status() {
@@ -234,7 +238,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Set the status property: Indicates if the artifact source is enabled (values: Enabled, Disabled).
-     *
+     * 
      * @param status the status value to set.
      * @return the ArtifactSourceProperties object itself.
      */
@@ -245,7 +249,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Get the createdDate property: The artifact source's creation date.
-     *
+     * 
      * @return the createdDate value.
      */
     public OffsetDateTime createdDate() {
@@ -254,7 +258,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Get the provisioningState property: The provisioning status of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -263,7 +267,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
+     * 
      * @return the uniqueIdentifier value.
      */
     public String uniqueIdentifier() {
@@ -272,7 +276,7 @@ public final class ArtifactSourceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

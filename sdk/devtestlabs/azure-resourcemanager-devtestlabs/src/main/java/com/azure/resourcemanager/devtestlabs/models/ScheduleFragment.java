@@ -7,14 +7,20 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import java.util.Map;
 
-/** A schedule. */
+/**
+ * Patch.
+ */
 @Fluent
 public final class ScheduleFragment extends UpdateResource {
-    /** Creates an instance of ScheduleFragment class. */
+    /**
+     * Creates an instance of ScheduleFragment class.
+     */
     public ScheduleFragment() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduleFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -23,7 +29,7 @@ public final class ScheduleFragment extends UpdateResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

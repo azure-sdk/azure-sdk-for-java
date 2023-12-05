@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Result of a policy set evaluation. */
+/**
+ * Result of a policy set evaluation.
+ */
 @Fluent
 public final class PolicySetResult {
     /*
@@ -23,13 +25,15 @@ public final class PolicySetResult {
     @JsonProperty(value = "policyViolations")
     private List<PolicyViolation> policyViolations;
 
-    /** Creates an instance of PolicySetResult class. */
+    /**
+     * Creates an instance of PolicySetResult class.
+     */
     public PolicySetResult() {
     }
 
     /**
      * Get the hasError property: A value indicating whether this policy set evaluation has discovered violations.
-     *
+     * 
      * @return the hasError value.
      */
     public Boolean hasError() {
@@ -38,7 +42,7 @@ public final class PolicySetResult {
 
     /**
      * Set the hasError property: A value indicating whether this policy set evaluation has discovered violations.
-     *
+     * 
      * @param hasError the hasError value to set.
      * @return the PolicySetResult object itself.
      */
@@ -49,7 +53,7 @@ public final class PolicySetResult {
 
     /**
      * Get the policyViolations property: The list of policy violations.
-     *
+     * 
      * @return the policyViolations value.
      */
     public List<PolicyViolation> policyViolations() {
@@ -58,7 +62,7 @@ public final class PolicySetResult {
 
     /**
      * Set the policyViolations property: The list of policy violations.
-     *
+     * 
      * @param policyViolations the policyViolations value to set.
      * @return the PolicySetResult object itself.
      */
@@ -69,7 +73,7 @@ public final class PolicySetResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -5,9 +5,9 @@
 package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devtestlabs.models.EnableStatus;
+import com.azure.resourcemanager.devtestlabs.models.EncryptionType;
 import com.azure.resourcemanager.devtestlabs.models.EnvironmentPermission;
-import com.azure.resourcemanager.devtestlabs.models.LabAnnouncementProperties;
-import com.azure.resourcemanager.devtestlabs.models.LabSupportProperties;
 import com.azure.resourcemanager.devtestlabs.models.PremiumDataDisk;
 import com.azure.resourcemanager.devtestlabs.models.StorageType;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -16,7 +16,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** Properties of a lab. */
+/**
+ * Properties of a lab.
+ */
 @Fluent
 public final class LabProperties {
     /*
@@ -93,17 +95,18 @@ public final class LabProperties {
      * The properties of any lab announcement associated with this lab
      */
     @JsonProperty(value = "announcement")
-    private LabAnnouncementProperties announcement;
+    private LabAnnouncementProperties innerAnnouncement;
 
     /*
      * The properties of any lab support message associated with this lab
      */
     @JsonProperty(value = "support")
-    private LabSupportProperties support;
+    private LabSupportProperties innerSupport;
 
     /*
-     * The resource group in which all new lab virtual machines will be created. To let DevTest Labs manage resource
-     * group creation, set this value to null.
+     * The resource group ID in which all new lab virtual machines will be created. Ex:
+     * /subscriptions/subId/resourceGroups/rgName To let DevTest Labs manage resource group creation, set this value to
+     * null.
      */
     @JsonProperty(value = "vmCreationResourceGroup", access = JsonProperty.Access.WRITE_ONLY)
     private String vmCreationResourceGroup;
@@ -134,6 +137,43 @@ public final class LabProperties {
     private Map<String, String> extendedProperties;
 
     /*
+     * Is browser connect enabled for the lab
+     */
+    @JsonProperty(value = "browserConnect")
+    private EnableStatus browserConnect;
+
+    /*
+     * Is auto upgrade of CSE disabled for the lab?
+     */
+    @JsonProperty(value = "disableAutoUpgradeCseMinorVersion")
+    private Boolean disableAutoUpgradeCseMinorVersion;
+
+    /*
+     * List of identities which can be used for management of resources.
+     */
+    @JsonProperty(value = "managementIdentities")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, Object> managementIdentities;
+
+    /*
+     * Indicates whether to create Lab resources (e.g. Storage accounts and Key Vaults) in network isolation.
+     */
+    @JsonProperty(value = "isolateLabResources")
+    private EnableStatus isolateLabResources;
+
+    /*
+     * Mechanism used for encryption of resources in a lab (such as virtual machines).
+     */
+    @JsonProperty(value = "encryption")
+    private Encryption innerEncryption;
+
+    /*
+     * Default secret for creating virtual machines.
+     */
+    @JsonProperty(value = "defaultSecretName")
+    private String defaultSecretName;
+
+    /*
      * The provisioning status of the resource.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
@@ -145,13 +185,15 @@ public final class LabProperties {
     @JsonProperty(value = "uniqueIdentifier", access = JsonProperty.Access.WRITE_ONLY)
     private String uniqueIdentifier;
 
-    /** Creates an instance of LabProperties class. */
+    /**
+     * Creates an instance of LabProperties class.
+     */
     public LabProperties() {
     }
 
     /**
      * Get the defaultStorageAccount property: The lab's default storage account.
-     *
+     * 
      * @return the defaultStorageAccount value.
      */
     public String defaultStorageAccount() {
@@ -160,7 +202,7 @@ public final class LabProperties {
 
     /**
      * Get the defaultPremiumStorageAccount property: The lab's default premium storage account.
-     *
+     * 
      * @return the defaultPremiumStorageAccount value.
      */
     public String defaultPremiumStorageAccount() {
@@ -169,7 +211,7 @@ public final class LabProperties {
 
     /**
      * Get the artifactsStorageAccount property: The lab's artifact storage account.
-     *
+     * 
      * @return the artifactsStorageAccount value.
      */
     public String artifactsStorageAccount() {
@@ -178,7 +220,7 @@ public final class LabProperties {
 
     /**
      * Get the premiumDataDiskStorageAccount property: The lab's premium data disk storage account.
-     *
+     * 
      * @return the premiumDataDiskStorageAccount value.
      */
     public String premiumDataDiskStorageAccount() {
@@ -187,7 +229,7 @@ public final class LabProperties {
 
     /**
      * Get the vaultName property: The lab's Key vault.
-     *
+     * 
      * @return the vaultName value.
      */
     public String vaultName() {
@@ -197,7 +239,7 @@ public final class LabProperties {
     /**
      * Get the labStorageType property: Type of storage used by the lab. It can be either Premium or Standard. Default
      * is Premium.
-     *
+     * 
      * @return the labStorageType value.
      */
     public StorageType labStorageType() {
@@ -207,7 +249,7 @@ public final class LabProperties {
     /**
      * Set the labStorageType property: Type of storage used by the lab. It can be either Premium or Standard. Default
      * is Premium.
-     *
+     * 
      * @param labStorageType the labStorageType value to set.
      * @return the LabProperties object itself.
      */
@@ -219,7 +261,7 @@ public final class LabProperties {
     /**
      * Get the mandatoryArtifactsResourceIdsLinux property: The ordered list of artifact resource IDs that should be
      * applied on all Linux VM creations by default, prior to the artifacts specified by the user.
-     *
+     * 
      * @return the mandatoryArtifactsResourceIdsLinux value.
      */
     public List<String> mandatoryArtifactsResourceIdsLinux() {
@@ -229,7 +271,7 @@ public final class LabProperties {
     /**
      * Set the mandatoryArtifactsResourceIdsLinux property: The ordered list of artifact resource IDs that should be
      * applied on all Linux VM creations by default, prior to the artifacts specified by the user.
-     *
+     * 
      * @param mandatoryArtifactsResourceIdsLinux the mandatoryArtifactsResourceIdsLinux value to set.
      * @return the LabProperties object itself.
      */
@@ -241,7 +283,7 @@ public final class LabProperties {
     /**
      * Get the mandatoryArtifactsResourceIdsWindows property: The ordered list of artifact resource IDs that should be
      * applied on all Windows VM creations by default, prior to the artifacts specified by the user.
-     *
+     * 
      * @return the mandatoryArtifactsResourceIdsWindows value.
      */
     public List<String> mandatoryArtifactsResourceIdsWindows() {
@@ -251,7 +293,7 @@ public final class LabProperties {
     /**
      * Set the mandatoryArtifactsResourceIdsWindows property: The ordered list of artifact resource IDs that should be
      * applied on all Windows VM creations by default, prior to the artifacts specified by the user.
-     *
+     * 
      * @param mandatoryArtifactsResourceIdsWindows the mandatoryArtifactsResourceIdsWindows value to set.
      * @return the LabProperties object itself.
      */
@@ -262,7 +304,7 @@ public final class LabProperties {
 
     /**
      * Get the createdDate property: The creation date of the lab.
-     *
+     * 
      * @return the createdDate value.
      */
     public OffsetDateTime createdDate() {
@@ -270,10 +312,10 @@ public final class LabProperties {
     }
 
     /**
-     * Get the premiumDataDisks property: The setting to enable usage of premium data disks. When its value is
-     * 'Enabled', creation of standard or premium data disks is allowed. When its value is 'Disabled', only creation of
-     * standard data disks is allowed.
-     *
+     * Get the premiumDataDisks property: The setting to enable usage of premium data disks.
+     * When its value is 'Enabled', creation of standard or premium data disks is allowed.
+     * When its value is 'Disabled', only creation of standard data disks is allowed.
+     * 
      * @return the premiumDataDisks value.
      */
     public PremiumDataDisk premiumDataDisks() {
@@ -281,10 +323,10 @@ public final class LabProperties {
     }
 
     /**
-     * Set the premiumDataDisks property: The setting to enable usage of premium data disks. When its value is
-     * 'Enabled', creation of standard or premium data disks is allowed. When its value is 'Disabled', only creation of
-     * standard data disks is allowed.
-     *
+     * Set the premiumDataDisks property: The setting to enable usage of premium data disks.
+     * When its value is 'Enabled', creation of standard or premium data disks is allowed.
+     * When its value is 'Disabled', only creation of standard data disks is allowed.
+     * 
      * @param premiumDataDisks the premiumDataDisks value to set.
      * @return the LabProperties object itself.
      */
@@ -296,7 +338,7 @@ public final class LabProperties {
     /**
      * Get the environmentPermission property: The access rights to be granted to the user when provisioning an
      * environment.
-     *
+     * 
      * @return the environmentPermission value.
      */
     public EnvironmentPermission environmentPermission() {
@@ -306,7 +348,7 @@ public final class LabProperties {
     /**
      * Set the environmentPermission property: The access rights to be granted to the user when provisioning an
      * environment.
-     *
+     * 
      * @param environmentPermission the environmentPermission value to set.
      * @return the LabProperties object itself.
      */
@@ -316,49 +358,28 @@ public final class LabProperties {
     }
 
     /**
-     * Get the announcement property: The properties of any lab announcement associated with this lab.
-     *
-     * @return the announcement value.
+     * Get the innerAnnouncement property: The properties of any lab announcement associated with this lab.
+     * 
+     * @return the innerAnnouncement value.
      */
-    public LabAnnouncementProperties announcement() {
-        return this.announcement;
+    private LabAnnouncementProperties innerAnnouncement() {
+        return this.innerAnnouncement;
     }
 
     /**
-     * Set the announcement property: The properties of any lab announcement associated with this lab.
-     *
-     * @param announcement the announcement value to set.
-     * @return the LabProperties object itself.
+     * Get the innerSupport property: The properties of any lab support message associated with this lab.
+     * 
+     * @return the innerSupport value.
      */
-    public LabProperties withAnnouncement(LabAnnouncementProperties announcement) {
-        this.announcement = announcement;
-        return this;
+    private LabSupportProperties innerSupport() {
+        return this.innerSupport;
     }
 
     /**
-     * Get the support property: The properties of any lab support message associated with this lab.
-     *
-     * @return the support value.
-     */
-    public LabSupportProperties support() {
-        return this.support;
-    }
-
-    /**
-     * Set the support property: The properties of any lab support message associated with this lab.
-     *
-     * @param support the support value to set.
-     * @return the LabProperties object itself.
-     */
-    public LabProperties withSupport(LabSupportProperties support) {
-        this.support = support;
-        return this;
-    }
-
-    /**
-     * Get the vmCreationResourceGroup property: The resource group in which all new lab virtual machines will be
-     * created. To let DevTest Labs manage resource group creation, set this value to null.
-     *
+     * Get the vmCreationResourceGroup property: The resource group ID in which all new lab virtual machines will be
+     * created. Ex: /subscriptions/subId/resourceGroups/rgName To let DevTest Labs manage resource group creation, set
+     * this value to null.
+     * 
      * @return the vmCreationResourceGroup value.
      */
     public String vmCreationResourceGroup() {
@@ -367,7 +388,7 @@ public final class LabProperties {
 
     /**
      * Get the publicIpId property: The public IP address for the lab's load balancer.
-     *
+     * 
      * @return the publicIpId value.
      */
     public String publicIpId() {
@@ -376,7 +397,7 @@ public final class LabProperties {
 
     /**
      * Get the loadBalancerId property: The load balancer used to for lab VMs that use shared IP address.
-     *
+     * 
      * @return the loadBalancerId value.
      */
     public String loadBalancerId() {
@@ -384,9 +405,9 @@ public final class LabProperties {
     }
 
     /**
-     * Get the networkSecurityGroupId property: The Network Security Group attached to the lab VMs Network interfaces to
-     * restrict open ports.
-     *
+     * Get the networkSecurityGroupId property: The Network Security Group attached to the lab VMs Network interfaces
+     * to restrict open ports.
+     * 
      * @return the networkSecurityGroupId value.
      */
     public String networkSecurityGroupId() {
@@ -395,7 +416,7 @@ public final class LabProperties {
 
     /**
      * Get the extendedProperties property: Extended properties of the lab used for experimental features.
-     *
+     * 
      * @return the extendedProperties value.
      */
     public Map<String, String> extendedProperties() {
@@ -404,7 +425,7 @@ public final class LabProperties {
 
     /**
      * Set the extendedProperties property: Extended properties of the lab used for experimental features.
-     *
+     * 
      * @param extendedProperties the extendedProperties value to set.
      * @return the LabProperties object itself.
      */
@@ -414,8 +435,120 @@ public final class LabProperties {
     }
 
     /**
+     * Get the browserConnect property: Is browser connect enabled for the lab.
+     * 
+     * @return the browserConnect value.
+     */
+    public EnableStatus browserConnect() {
+        return this.browserConnect;
+    }
+
+    /**
+     * Set the browserConnect property: Is browser connect enabled for the lab.
+     * 
+     * @param browserConnect the browserConnect value to set.
+     * @return the LabProperties object itself.
+     */
+    public LabProperties withBrowserConnect(EnableStatus browserConnect) {
+        this.browserConnect = browserConnect;
+        return this;
+    }
+
+    /**
+     * Get the disableAutoUpgradeCseMinorVersion property: Is auto upgrade of CSE disabled for the lab?.
+     * 
+     * @return the disableAutoUpgradeCseMinorVersion value.
+     */
+    public Boolean disableAutoUpgradeCseMinorVersion() {
+        return this.disableAutoUpgradeCseMinorVersion;
+    }
+
+    /**
+     * Set the disableAutoUpgradeCseMinorVersion property: Is auto upgrade of CSE disabled for the lab?.
+     * 
+     * @param disableAutoUpgradeCseMinorVersion the disableAutoUpgradeCseMinorVersion value to set.
+     * @return the LabProperties object itself.
+     */
+    public LabProperties withDisableAutoUpgradeCseMinorVersion(Boolean disableAutoUpgradeCseMinorVersion) {
+        this.disableAutoUpgradeCseMinorVersion = disableAutoUpgradeCseMinorVersion;
+        return this;
+    }
+
+    /**
+     * Get the managementIdentities property: List of identities which can be used for management of resources.
+     * 
+     * @return the managementIdentities value.
+     */
+    public Map<String, Object> managementIdentities() {
+        return this.managementIdentities;
+    }
+
+    /**
+     * Set the managementIdentities property: List of identities which can be used for management of resources.
+     * 
+     * @param managementIdentities the managementIdentities value to set.
+     * @return the LabProperties object itself.
+     */
+    public LabProperties withManagementIdentities(Map<String, Object> managementIdentities) {
+        this.managementIdentities = managementIdentities;
+        return this;
+    }
+
+    /**
+     * Get the isolateLabResources property: Indicates whether to create Lab resources (e.g. Storage accounts and Key
+     * Vaults) in network isolation.
+     * 
+     * @return the isolateLabResources value.
+     */
+    public EnableStatus isolateLabResources() {
+        return this.isolateLabResources;
+    }
+
+    /**
+     * Set the isolateLabResources property: Indicates whether to create Lab resources (e.g. Storage accounts and Key
+     * Vaults) in network isolation.
+     * 
+     * @param isolateLabResources the isolateLabResources value to set.
+     * @return the LabProperties object itself.
+     */
+    public LabProperties withIsolateLabResources(EnableStatus isolateLabResources) {
+        this.isolateLabResources = isolateLabResources;
+        return this;
+    }
+
+    /**
+     * Get the innerEncryption property: Mechanism used for encryption of resources in a lab (such as virtual
+     * machines).
+     * 
+     * @return the innerEncryption value.
+     */
+    private Encryption innerEncryption() {
+        return this.innerEncryption;
+    }
+
+    /**
+     * Get the defaultSecretName property: Default secret for creating virtual machines.
+     * 
+     * @return the defaultSecretName value.
+     */
+    public String defaultSecretName() {
+        return this.defaultSecretName;
+    }
+
+    /**
+     * Set the defaultSecretName property: Default secret for creating virtual machines.
+     * 
+     * @param defaultSecretName the defaultSecretName value to set.
+     * @return the LabProperties object itself.
+     */
+    public LabProperties withDefaultSecretName(String defaultSecretName) {
+        this.defaultSecretName = defaultSecretName;
+        return this;
+    }
+
+    /**
      * Get the provisioningState property: The provisioning status of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -424,7 +557,7 @@ public final class LabProperties {
 
     /**
      * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
+     * 
      * @return the uniqueIdentifier value.
      */
     public String uniqueIdentifier() {
@@ -432,16 +565,252 @@ public final class LabProperties {
     }
 
     /**
+     * Get the title property: The plain text title for the lab announcement.
+     * 
+     * @return the title value.
+     */
+    public String title() {
+        return this.innerAnnouncement() == null ? null : this.innerAnnouncement().title();
+    }
+
+    /**
+     * Set the title property: The plain text title for the lab announcement.
+     * 
+     * @param title the title value to set.
+     * @return the LabProperties object itself.
+     */
+    public LabProperties withTitle(String title) {
+        if (this.innerAnnouncement() == null) {
+            this.innerAnnouncement = new LabAnnouncementProperties();
+        }
+        this.innerAnnouncement().withTitle(title);
+        return this;
+    }
+
+    /**
+     * Get the markdown property: The markdown text (if any) that this lab displays in the UI. If left empty/null,
+     * nothing will be shown.
+     * 
+     * @return the markdown value.
+     */
+    public String markdown() {
+        return this.innerAnnouncement() == null ? null : this.innerAnnouncement().markdown();
+    }
+
+    /**
+     * Set the markdown property: The markdown text (if any) that this lab displays in the UI. If left empty/null,
+     * nothing will be shown.
+     * 
+     * @param markdown the markdown value to set.
+     * @return the LabProperties object itself.
+     */
+    public LabProperties withMarkdown(String markdown) {
+        if (this.innerAnnouncement() == null) {
+            this.innerAnnouncement = new LabAnnouncementProperties();
+        }
+        this.innerAnnouncement().withMarkdown(markdown);
+        return this;
+    }
+
+    /**
+     * Get the enabled property: Is the lab announcement active/enabled at this time?.
+     * 
+     * @return the enabled value.
+     */
+    public EnableStatus enabled() {
+        return this.innerAnnouncement() == null ? null : this.innerAnnouncement().enabled();
+    }
+
+    /**
+     * Set the enabled property: Is the lab announcement active/enabled at this time?.
+     * 
+     * @param enabled the enabled value to set.
+     * @return the LabProperties object itself.
+     */
+    public LabProperties withEnabled(EnableStatus enabled) {
+        if (this.innerAnnouncement() == null) {
+            this.innerAnnouncement = new LabAnnouncementProperties();
+        }
+        this.innerAnnouncement().withEnabled(enabled);
+        return this;
+    }
+
+    /**
+     * Get the expirationDate property: The time at which the announcement expires (null for never).
+     * 
+     * @return the expirationDate value.
+     */
+    public OffsetDateTime expirationDate() {
+        return this.innerAnnouncement() == null ? null : this.innerAnnouncement().expirationDate();
+    }
+
+    /**
+     * Set the expirationDate property: The time at which the announcement expires (null for never).
+     * 
+     * @param expirationDate the expirationDate value to set.
+     * @return the LabProperties object itself.
+     */
+    public LabProperties withExpirationDate(OffsetDateTime expirationDate) {
+        if (this.innerAnnouncement() == null) {
+            this.innerAnnouncement = new LabAnnouncementProperties();
+        }
+        this.innerAnnouncement().withExpirationDate(expirationDate);
+        return this;
+    }
+
+    /**
+     * Get the expired property: Has this announcement expired?.
+     * 
+     * @return the expired value.
+     */
+    public Boolean expired() {
+        return this.innerAnnouncement() == null ? null : this.innerAnnouncement().expired();
+    }
+
+    /**
+     * Set the expired property: Has this announcement expired?.
+     * 
+     * @param expired the expired value to set.
+     * @return the LabProperties object itself.
+     */
+    public LabProperties withExpired(Boolean expired) {
+        if (this.innerAnnouncement() == null) {
+            this.innerAnnouncement = new LabAnnouncementProperties();
+        }
+        this.innerAnnouncement().withExpired(expired);
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: The provisioning status of the resource.
+     * 
+     * @return the provisioningState value.
+     */
+    public String provisioningStateAnnouncementProvisioningState() {
+        return this.innerAnnouncement() == null ? null : this.innerAnnouncement().provisioningState();
+    }
+
+    /**
+     * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
+     * 
+     * @return the uniqueIdentifier value.
+     */
+    public String uniqueIdentifierAnnouncementUniqueIdentifier() {
+        return this.innerAnnouncement() == null ? null : this.innerAnnouncement().uniqueIdentifier();
+    }
+
+    /**
+     * Get the enabled property: Is the lab support banner active/enabled at this time?.
+     * 
+     * @return the enabled value.
+     */
+    public EnableStatus enabledSupportEnabled() {
+        return this.innerSupport() == null ? null : this.innerSupport().enabled();
+    }
+
+    /**
+     * Set the enabled property: Is the lab support banner active/enabled at this time?.
+     * 
+     * @param enabled the enabled value to set.
+     * @return the LabProperties object itself.
+     */
+    public LabProperties withEnabledSupportEnabled(EnableStatus enabled) {
+        if (this.innerSupport() == null) {
+            this.innerSupport = new LabSupportProperties();
+        }
+        this.innerSupport().withEnabled(enabled);
+        return this;
+    }
+
+    /**
+     * Get the markdown property: The markdown text (if any) that this lab displays in the UI. If left empty/null,
+     * nothing will be shown.
+     * 
+     * @return the markdown value.
+     */
+    public String markdownSupportMarkdown() {
+        return this.innerSupport() == null ? null : this.innerSupport().markdown();
+    }
+
+    /**
+     * Set the markdown property: The markdown text (if any) that this lab displays in the UI. If left empty/null,
+     * nothing will be shown.
+     * 
+     * @param markdown the markdown value to set.
+     * @return the LabProperties object itself.
+     */
+    public LabProperties withMarkdownSupportMarkdown(String markdown) {
+        if (this.innerSupport() == null) {
+            this.innerSupport = new LabSupportProperties();
+        }
+        this.innerSupport().withMarkdown(markdown);
+        return this;
+    }
+
+    /**
+     * Get the diskEncryptionSetId property: Gets or sets resourceId of the disk encryption set to use for enabling
+     * encryption at rest.
+     * 
+     * @return the diskEncryptionSetId value.
+     */
+    public String diskEncryptionSetId() {
+        return this.innerEncryption() == null ? null : this.innerEncryption().diskEncryptionSetId();
+    }
+
+    /**
+     * Set the diskEncryptionSetId property: Gets or sets resourceId of the disk encryption set to use for enabling
+     * encryption at rest.
+     * 
+     * @param diskEncryptionSetId the diskEncryptionSetId value to set.
+     * @return the LabProperties object itself.
+     */
+    public LabProperties withDiskEncryptionSetId(String diskEncryptionSetId) {
+        if (this.innerEncryption() == null) {
+            this.innerEncryption = new Encryption();
+        }
+        this.innerEncryption().withDiskEncryptionSetId(diskEncryptionSetId);
+        return this;
+    }
+
+    /**
+     * Get the type property: Gets or sets the type of key used to encrypt the data of the disk. Possible values
+     * include: 'EncryptionAtRestWithPlatformKey', 'EncryptionAtRestWithCustomerKey'.
+     * 
+     * @return the type value.
+     */
+    public EncryptionType type() {
+        return this.innerEncryption() == null ? null : this.innerEncryption().type();
+    }
+
+    /**
+     * Set the type property: Gets or sets the type of key used to encrypt the data of the disk. Possible values
+     * include: 'EncryptionAtRestWithPlatformKey', 'EncryptionAtRestWithCustomerKey'.
+     * 
+     * @param type the type value to set.
+     * @return the LabProperties object itself.
+     */
+    public LabProperties withType(EncryptionType type) {
+        if (this.innerEncryption() == null) {
+            this.innerEncryption = new Encryption();
+        }
+        this.innerEncryption().withType(type);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (announcement() != null) {
-            announcement().validate();
+        if (innerAnnouncement() != null) {
+            innerAnnouncement().validate();
         }
-        if (support() != null) {
-            support().validate();
+        if (innerSupport() != null) {
+            innerSupport().validate();
+        }
+        if (innerEncryption() != null) {
+            innerEncryption().validate();
         }
     }
 }

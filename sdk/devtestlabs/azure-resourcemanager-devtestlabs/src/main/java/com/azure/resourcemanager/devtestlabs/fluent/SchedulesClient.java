@@ -14,49 +14,45 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ScheduleInner;
 import com.azure.resourcemanager.devtestlabs.models.ScheduleFragment;
 
-/** An instance of this class provides access to all the operations defined in SchedulesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in SchedulesClient.
+ */
 public interface SchedulesClient {
     /**
      * List schedules in a given lab.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of schedules and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ScheduleInner> list(String resourceGroupName, String labName);
 
     /**
      * List schedules in a given lab.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($select=status)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of schedules and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ScheduleInner> list(
-        String resourceGroupName,
-        String labName,
-        String expand,
-        String filter,
-        Integer top,
-        String orderby,
-        Context context);
+    PagedIterable<ScheduleInner> list(String resourceGroupName, String labName, String expand, String filter,
+        Integer top, String orderby, Context context);
 
     /**
      * Get schedule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
@@ -68,12 +64,12 @@ public interface SchedulesClient {
      * @return schedule along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ScheduleInner> getWithResponse(
-        String resourceGroupName, String labName, String name, String expand, Context context);
+    Response<ScheduleInner> getWithResponse(String resourceGroupName, String labName, String name, String expand,
+        Context context);
 
     /**
      * Get schedule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
@@ -87,7 +83,7 @@ public interface SchedulesClient {
 
     /**
      * Create or replace an existing schedule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
@@ -99,12 +95,12 @@ public interface SchedulesClient {
      * @return a schedule along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ScheduleInner> createOrUpdateWithResponse(
-        String resourceGroupName, String labName, String name, ScheduleInner schedule, Context context);
+    Response<ScheduleInner> createOrUpdateWithResponse(String resourceGroupName, String labName, String name,
+        ScheduleInner schedule, Context context);
 
     /**
      * Create or replace an existing schedule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
@@ -119,7 +115,7 @@ public interface SchedulesClient {
 
     /**
      * Delete schedule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
@@ -134,7 +130,7 @@ public interface SchedulesClient {
 
     /**
      * Delete schedule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
@@ -147,11 +143,11 @@ public interface SchedulesClient {
 
     /**
      * Allows modifying tags of schedules. All other properties will be ignored.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
-     * @param schedule A schedule.
+     * @param schedule Allows modifying tags of schedules. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -159,16 +155,16 @@ public interface SchedulesClient {
      * @return a schedule along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ScheduleInner> updateWithResponse(
-        String resourceGroupName, String labName, String name, ScheduleFragment schedule, Context context);
+    Response<ScheduleInner> updateWithResponse(String resourceGroupName, String labName, String name,
+        ScheduleFragment schedule, Context context);
 
     /**
      * Allows modifying tags of schedules. All other properties will be ignored.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
-     * @param schedule A schedule.
+     * @param schedule Allows modifying tags of schedules. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -179,7 +175,7 @@ public interface SchedulesClient {
 
     /**
      * Execute a schedule. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
@@ -193,7 +189,7 @@ public interface SchedulesClient {
 
     /**
      * Execute a schedule. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
@@ -204,12 +200,12 @@ public interface SchedulesClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginExecute(
-        String resourceGroupName, String labName, String name, Context context);
+    SyncPoller<PollResult<Void>, Void> beginExecute(String resourceGroupName, String labName, String name,
+        Context context);
 
     /**
      * Execute a schedule. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
@@ -222,7 +218,7 @@ public interface SchedulesClient {
 
     /**
      * Execute a schedule. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
@@ -236,21 +232,21 @@ public interface SchedulesClient {
 
     /**
      * Lists all applicable schedules.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of schedules and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ScheduleInner> listApplicable(String resourceGroupName, String labName, String name);
 
     /**
      * Lists all applicable schedules.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
@@ -258,7 +254,7 @@ public interface SchedulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of schedules and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ScheduleInner> listApplicable(String resourceGroupName, String labName, String name, Context context);

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Properties of an artifact. */
+/**
+ * Properties of an artifact.
+ */
 @Fluent
 public final class ArtifactInstallProperties {
     /*
@@ -54,13 +56,15 @@ public final class ArtifactInstallProperties {
     @JsonProperty(value = "installTime")
     private OffsetDateTime installTime;
 
-    /** Creates an instance of ArtifactInstallProperties class. */
+    /**
+     * Creates an instance of ArtifactInstallProperties class.
+     */
     public ArtifactInstallProperties() {
     }
 
     /**
      * Get the artifactId property: The artifact's identifier.
-     *
+     * 
      * @return the artifactId value.
      */
     public String artifactId() {
@@ -69,7 +73,7 @@ public final class ArtifactInstallProperties {
 
     /**
      * Set the artifactId property: The artifact's identifier.
-     *
+     * 
      * @param artifactId the artifactId value to set.
      * @return the ArtifactInstallProperties object itself.
      */
@@ -80,7 +84,7 @@ public final class ArtifactInstallProperties {
 
     /**
      * Get the artifactTitle property: The artifact's title.
-     *
+     * 
      * @return the artifactTitle value.
      */
     public String artifactTitle() {
@@ -89,7 +93,7 @@ public final class ArtifactInstallProperties {
 
     /**
      * Set the artifactTitle property: The artifact's title.
-     *
+     * 
      * @param artifactTitle the artifactTitle value to set.
      * @return the ArtifactInstallProperties object itself.
      */
@@ -100,7 +104,7 @@ public final class ArtifactInstallProperties {
 
     /**
      * Get the parameters property: The parameters of the artifact.
-     *
+     * 
      * @return the parameters value.
      */
     public List<ArtifactParameterProperties> parameters() {
@@ -109,7 +113,7 @@ public final class ArtifactInstallProperties {
 
     /**
      * Set the parameters property: The parameters of the artifact.
-     *
+     * 
      * @param parameters the parameters value to set.
      * @return the ArtifactInstallProperties object itself.
      */
@@ -120,7 +124,7 @@ public final class ArtifactInstallProperties {
 
     /**
      * Get the status property: The status of the artifact.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -129,7 +133,7 @@ public final class ArtifactInstallProperties {
 
     /**
      * Set the status property: The status of the artifact.
-     *
+     * 
      * @param status the status value to set.
      * @return the ArtifactInstallProperties object itself.
      */
@@ -140,7 +144,7 @@ public final class ArtifactInstallProperties {
 
     /**
      * Get the deploymentStatusMessage property: The status message from the deployment.
-     *
+     * 
      * @return the deploymentStatusMessage value.
      */
     public String deploymentStatusMessage() {
@@ -149,7 +153,7 @@ public final class ArtifactInstallProperties {
 
     /**
      * Set the deploymentStatusMessage property: The status message from the deployment.
-     *
+     * 
      * @param deploymentStatusMessage the deploymentStatusMessage value to set.
      * @return the ArtifactInstallProperties object itself.
      */
@@ -160,7 +164,7 @@ public final class ArtifactInstallProperties {
 
     /**
      * Get the vmExtensionStatusMessage property: The status message from the virtual machine extension.
-     *
+     * 
      * @return the vmExtensionStatusMessage value.
      */
     public String vmExtensionStatusMessage() {
@@ -169,7 +173,7 @@ public final class ArtifactInstallProperties {
 
     /**
      * Set the vmExtensionStatusMessage property: The status message from the virtual machine extension.
-     *
+     * 
      * @param vmExtensionStatusMessage the vmExtensionStatusMessage value to set.
      * @return the ArtifactInstallProperties object itself.
      */
@@ -180,7 +184,7 @@ public final class ArtifactInstallProperties {
 
     /**
      * Get the installTime property: The time that the artifact starts to install on the virtual machine.
-     *
+     * 
      * @return the installTime value.
      */
     public OffsetDateTime installTime() {
@@ -189,7 +193,7 @@ public final class ArtifactInstallProperties {
 
     /**
      * Set the installTime property: The time that the artifact starts to install on the virtual machine.
-     *
+     * 
      * @param installTime the installTime value to set.
      * @return the ArtifactInstallProperties object itself.
      */
@@ -200,7 +204,7 @@ public final class ArtifactInstallProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

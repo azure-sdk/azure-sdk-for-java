@@ -4,26 +4,21 @@
 
 package com.azure.resourcemanager.devtestlabs.generated;
 
-/** Samples for ServiceFabricSchedules Get. */
+/**
+ * Samples for ServiceFabricSchedules Get.
+ */
 public final class ServiceFabricSchedulesGetSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ServiceFabricSchedules_Get.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/
+     * ServiceFabricSchedules_Get.json
      */
     /**
      * Sample code: ServiceFabricSchedules_Get.
-     *
+     * 
      * @param manager Entry point to DevTestLabsManager.
      */
     public static void serviceFabricSchedulesGet(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager
-            .serviceFabricSchedules()
-            .getWithResponse(
-                "resourceGroupName",
-                "{labName}",
-                "@me",
-                "{serviceFrabicName}",
-                "{scheduleName}",
-                null,
-                com.azure.core.util.Context.NONE);
+        manager.serviceFabricSchedules().getWithResponse("resourceGroupName", "exampleLab", "@me",
+            "{serviceFrabicName}", "{scheduleName}", null, com.azure.core.util.Context.NONE);
     }
 }

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Response body for generating an upload URI. */
+/**
+ * Response body for generating an upload URI.
+ */
 @Fluent
 public final class GenerateUploadUriResponseInner {
     /*
@@ -16,13 +18,15 @@ public final class GenerateUploadUriResponseInner {
     @JsonProperty(value = "uploadUri")
     private String uploadUri;
 
-    /** Creates an instance of GenerateUploadUriResponseInner class. */
+    /**
+     * Creates an instance of GenerateUploadUriResponseInner class.
+     */
     public GenerateUploadUriResponseInner() {
     }
 
     /**
      * Get the uploadUri property: The upload URI for the VHD.
-     *
+     * 
      * @return the uploadUri value.
      */
     public String uploadUri() {
@@ -31,7 +35,7 @@ public final class GenerateUploadUriResponseInner {
 
     /**
      * Set the uploadUri property: The upload URI for the VHD.
-     *
+     * 
      * @param uploadUri the uploadUri value to set.
      * @return the GenerateUploadUriResponseInner object itself.
      */
@@ -42,7 +46,7 @@ public final class GenerateUploadUriResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

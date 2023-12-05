@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of a VHD in the lab. */
+/**
+ * Properties of a VHD in the lab.
+ */
 @Fluent
 public final class LabVhdInner {
     /*
@@ -16,13 +18,15 @@ public final class LabVhdInner {
     @JsonProperty(value = "id")
     private String id;
 
-    /** Creates an instance of LabVhdInner class. */
+    /**
+     * Creates an instance of LabVhdInner class.
+     */
     public LabVhdInner() {
     }
 
     /**
      * Get the id property: The URI to the VHD.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -31,7 +35,7 @@ public final class LabVhdInner {
 
     /**
      * Set the id property: The URI to the VHD.
-     *
+     * 
      * @param id the id value to set.
      * @return the LabVhdInner object itself.
      */
@@ -42,7 +46,7 @@ public final class LabVhdInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

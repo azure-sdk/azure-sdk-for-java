@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of an artifact parameter. */
+/**
+ * Properties of an artifact parameter.
+ */
 @Fluent
 public final class ArtifactParameterProperties {
     /*
@@ -22,13 +24,15 @@ public final class ArtifactParameterProperties {
     @JsonProperty(value = "value")
     private String value;
 
-    /** Creates an instance of ArtifactParameterProperties class. */
+    /**
+     * Creates an instance of ArtifactParameterProperties class.
+     */
     public ArtifactParameterProperties() {
     }
 
     /**
      * Get the name property: The name of the artifact parameter.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class ArtifactParameterProperties {
 
     /**
      * Set the name property: The name of the artifact parameter.
-     *
+     * 
      * @param name the name value to set.
      * @return the ArtifactParameterProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class ArtifactParameterProperties {
 
     /**
      * Get the value property: The value of the artifact parameter.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -57,7 +61,7 @@ public final class ArtifactParameterProperties {
 
     /**
      * Set the value property: The value of the artifact parameter.
-     *
+     * 
      * @param value the value value to set.
      * @return the ArtifactParameterProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class ArtifactParameterProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

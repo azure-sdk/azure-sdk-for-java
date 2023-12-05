@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of a resource cost item. */
+/**
+ * The properties of a resource cost item.
+ */
 @Fluent
 public final class LabResourceCostProperties {
     /*
@@ -64,13 +66,15 @@ public final class LabResourceCostProperties {
     @JsonProperty(value = "externalResourceId")
     private String externalResourceId;
 
-    /** Creates an instance of LabResourceCostProperties class. */
+    /**
+     * Creates an instance of LabResourceCostProperties class.
+     */
     public LabResourceCostProperties() {
     }
 
     /**
      * Get the resourcename property: The name of the resource.
-     *
+     * 
      * @return the resourcename value.
      */
     public String resourcename() {
@@ -79,7 +83,7 @@ public final class LabResourceCostProperties {
 
     /**
      * Set the resourcename property: The name of the resource.
-     *
+     * 
      * @param resourcename the resourcename value to set.
      * @return the LabResourceCostProperties object itself.
      */
@@ -90,7 +94,7 @@ public final class LabResourceCostProperties {
 
     /**
      * Get the resourceUId property: The unique identifier of the resource.
-     *
+     * 
      * @return the resourceUId value.
      */
     public String resourceUId() {
@@ -99,7 +103,7 @@ public final class LabResourceCostProperties {
 
     /**
      * Set the resourceUId property: The unique identifier of the resource.
-     *
+     * 
      * @param resourceUId the resourceUId value to set.
      * @return the LabResourceCostProperties object itself.
      */
@@ -110,7 +114,7 @@ public final class LabResourceCostProperties {
 
     /**
      * Get the resourceCost property: The cost component of the resource cost item.
-     *
+     * 
      * @return the resourceCost value.
      */
     public Double resourceCost() {
@@ -119,7 +123,7 @@ public final class LabResourceCostProperties {
 
     /**
      * Set the resourceCost property: The cost component of the resource cost item.
-     *
+     * 
      * @param resourceCost the resourceCost value to set.
      * @return the LabResourceCostProperties object itself.
      */
@@ -130,7 +134,7 @@ public final class LabResourceCostProperties {
 
     /**
      * Get the resourceType property: The logical resource type (ex. virtualmachine, storageaccount).
-     *
+     * 
      * @return the resourceType value.
      */
     public String resourceType() {
@@ -139,7 +143,7 @@ public final class LabResourceCostProperties {
 
     /**
      * Set the resourceType property: The logical resource type (ex. virtualmachine, storageaccount).
-     *
+     * 
      * @param resourceType the resourceType value to set.
      * @return the LabResourceCostProperties object itself.
      */
@@ -150,7 +154,7 @@ public final class LabResourceCostProperties {
 
     /**
      * Get the resourceOwner property: The owner of the resource (ex. janedoe@microsoft.com).
-     *
+     * 
      * @return the resourceOwner value.
      */
     public String resourceOwner() {
@@ -159,7 +163,7 @@ public final class LabResourceCostProperties {
 
     /**
      * Set the resourceOwner property: The owner of the resource (ex. janedoe@microsoft.com).
-     *
+     * 
      * @param resourceOwner the resourceOwner value to set.
      * @return the LabResourceCostProperties object itself.
      */
@@ -170,7 +174,7 @@ public final class LabResourceCostProperties {
 
     /**
      * Get the resourcePricingTier property: The category of the resource (ex. Premium_LRS, Standard_DS1).
-     *
+     * 
      * @return the resourcePricingTier value.
      */
     public String resourcePricingTier() {
@@ -179,7 +183,7 @@ public final class LabResourceCostProperties {
 
     /**
      * Set the resourcePricingTier property: The category of the resource (ex. Premium_LRS, Standard_DS1).
-     *
+     * 
      * @param resourcePricingTier the resourcePricingTier value to set.
      * @return the LabResourceCostProperties object itself.
      */
@@ -190,7 +194,7 @@ public final class LabResourceCostProperties {
 
     /**
      * Get the resourceStatus property: The status of the resource (ex. Active).
-     *
+     * 
      * @return the resourceStatus value.
      */
     public String resourceStatus() {
@@ -199,7 +203,7 @@ public final class LabResourceCostProperties {
 
     /**
      * Set the resourceStatus property: The status of the resource (ex. Active).
-     *
+     * 
      * @param resourceStatus the resourceStatus value to set.
      * @return the LabResourceCostProperties object itself.
      */
@@ -210,7 +214,7 @@ public final class LabResourceCostProperties {
 
     /**
      * Get the resourceId property: The ID of the resource.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -219,7 +223,7 @@ public final class LabResourceCostProperties {
 
     /**
      * Set the resourceId property: The ID of the resource.
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the LabResourceCostProperties object itself.
      */
@@ -230,7 +234,7 @@ public final class LabResourceCostProperties {
 
     /**
      * Get the externalResourceId property: The ID of the external resource.
-     *
+     * 
      * @return the externalResourceId value.
      */
     public String externalResourceId() {
@@ -239,7 +243,7 @@ public final class LabResourceCostProperties {
 
     /**
      * Set the externalResourceId property: The ID of the external resource.
-     *
+     * 
      * @param externalResourceId the externalResourceId value to set.
      * @return the LabResourceCostProperties object itself.
      */
@@ -250,7 +254,7 @@ public final class LabResourceCostProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

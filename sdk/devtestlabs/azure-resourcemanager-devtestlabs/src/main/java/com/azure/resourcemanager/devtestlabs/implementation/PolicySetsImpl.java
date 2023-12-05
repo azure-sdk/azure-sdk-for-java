@@ -4,14 +4,17 @@
 
 package com.azure.resourcemanager.devtestlabs.implementation;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.devtestlabs.fluent.PolicySetsClient;
 import com.azure.resourcemanager.devtestlabs.fluent.models.EvaluatePoliciesResponseInner;
+import com.azure.resourcemanager.devtestlabs.fluent.models.PolicySetInner;
 import com.azure.resourcemanager.devtestlabs.models.EvaluatePoliciesRequest;
 import com.azure.resourcemanager.devtestlabs.models.EvaluatePoliciesResponse;
+import com.azure.resourcemanager.devtestlabs.models.PolicySet;
 import com.azure.resourcemanager.devtestlabs.models.PolicySets;
 
 public final class PolicySetsImpl implements PolicySets {
@@ -21,37 +24,40 @@ public final class PolicySetsImpl implements PolicySets {
 
     private final com.azure.resourcemanager.devtestlabs.DevTestLabsManager serviceManager;
 
-    public PolicySetsImpl(
-        PolicySetsClient innerClient, com.azure.resourcemanager.devtestlabs.DevTestLabsManager serviceManager) {
+    public PolicySetsImpl(PolicySetsClient innerClient,
+        com.azure.resourcemanager.devtestlabs.DevTestLabsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<EvaluatePoliciesResponse> evaluatePoliciesWithResponse(
-        String resourceGroupName,
-        String labName,
-        String name,
-        EvaluatePoliciesRequest evaluatePoliciesRequest,
-        Context context) {
-        Response<EvaluatePoliciesResponseInner> inner =
-            this
-                .serviceClient()
-                .evaluatePoliciesWithResponse(resourceGroupName, labName, name, evaluatePoliciesRequest, context);
+    public PagedIterable<PolicySet> list(String resourceGroupName, String labName) {
+        PagedIterable<PolicySetInner> inner = this.serviceClient().list(resourceGroupName, labName);
+        return Utils.mapPage(inner, inner1 -> new PolicySetImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<PolicySet> list(String resourceGroupName, String labName, String filter, Integer top,
+        String orderby, Context context) {
+        PagedIterable<PolicySetInner> inner
+            = this.serviceClient().list(resourceGroupName, labName, filter, top, orderby, context);
+        return Utils.mapPage(inner, inner1 -> new PolicySetImpl(inner1, this.manager()));
+    }
+
+    public Response<EvaluatePoliciesResponse> evaluatePoliciesWithResponse(String resourceGroupName, String labName,
+        String name, EvaluatePoliciesRequest evaluatePoliciesRequest, Context context) {
+        Response<EvaluatePoliciesResponseInner> inner = this.serviceClient()
+            .evaluatePoliciesWithResponse(resourceGroupName, labName, name, evaluatePoliciesRequest, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new EvaluatePoliciesResponseImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public EvaluatePoliciesResponse evaluatePolicies(
-        String resourceGroupName, String labName, String name, EvaluatePoliciesRequest evaluatePoliciesRequest) {
-        EvaluatePoliciesResponseInner inner =
-            this.serviceClient().evaluatePolicies(resourceGroupName, labName, name, evaluatePoliciesRequest);
+    public EvaluatePoliciesResponse evaluatePolicies(String resourceGroupName, String labName, String name,
+        EvaluatePoliciesRequest evaluatePoliciesRequest) {
+        EvaluatePoliciesResponseInner inner
+            = this.serviceClient().evaluatePolicies(resourceGroupName, labName, name, evaluatePoliciesRequest);
         if (inner != null) {
             return new EvaluatePoliciesResponseImpl(inner, this.manager());
         } else {

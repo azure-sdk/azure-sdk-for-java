@@ -6,26 +6,23 @@ package com.azure.resourcemanager.devtestlabs.generated;
 
 import com.azure.resourcemanager.devtestlabs.models.DetachDataDiskProperties;
 
-/** Samples for VirtualMachines DetachDataDisk. */
+/**
+ * Samples for VirtualMachines DetachDataDisk.
+ */
 public final class VirtualMachinesDetachDataDiskSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachines_DetachDataDisk.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/
+     * VirtualMachines_DetachDataDisk.json
      */
     /**
      * Sample code: VirtualMachines_DetachDataDisk.
-     *
+     * 
      * @param manager Entry point to DevTestLabsManager.
      */
     public static void virtualMachinesDetachDataDisk(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager
-            .virtualMachines()
-            .detachDataDisk(
-                "resourceGroupName",
-                "{labName}",
-                "{virtualMachineName}",
-                new DetachDataDiskProperties()
-                    .withExistingLabDiskId(
-                        "/subscriptions/{subscriptionId}/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/{labName}/virtualmachines/{virtualMachineName}"),
-                com.azure.core.util.Context.NONE);
+        manager.virtualMachines().detachDataDisk("resourceGroupName", "exampleLab", "{virtualMachineName}",
+            new DetachDataDiskProperties().withExistingLabDiskId(
+                "/subscriptions/e605a3bc-ee4e-4c7a-9709-1868a28b1d4d/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/exampleLab/virtualmachines/{virtualMachineName}"),
+            com.azure.core.util.Context.NONE);
     }
 }

@@ -5,12 +5,14 @@
 package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.DtlEnvironmentInner;
+import com.azure.resourcemanager.devtestlabs.models.ArmTemplateParameterProperties;
 import com.azure.resourcemanager.devtestlabs.models.DtlEnvironment;
 import com.azure.resourcemanager.devtestlabs.models.DtlEnvironmentFragment;
-import com.azure.resourcemanager.devtestlabs.models.EnvironmentDeploymentProperties;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public final class DtlEnvironmentImpl implements DtlEnvironment, DtlEnvironment.Definition, DtlEnvironment.Update {
@@ -43,8 +45,8 @@ public final class DtlEnvironmentImpl implements DtlEnvironment, DtlEnvironment.
         }
     }
 
-    public EnvironmentDeploymentProperties deploymentProperties() {
-        return this.innerModel().deploymentProperties();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String armTemplateDisplayName() {
@@ -65,6 +67,19 @@ public final class DtlEnvironmentImpl implements DtlEnvironment, DtlEnvironment.
 
     public String uniqueIdentifier() {
         return this.innerModel().uniqueIdentifier();
+    }
+
+    public String armTemplateId() {
+        return this.innerModel().armTemplateId();
+    }
+
+    public List<ArmTemplateParameterProperties> parameters() {
+        List<ArmTemplateParameterProperties> inner = this.innerModel().parameters();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public Region region() {
@@ -105,20 +120,14 @@ public final class DtlEnvironmentImpl implements DtlEnvironment, DtlEnvironment.
     }
 
     public DtlEnvironment create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getEnvironments()
-                .createOrUpdate(resourceGroupName, labName, username, name, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getEnvironments().createOrUpdate(resourceGroupName, labName,
+            username, name, this.innerModel(), Context.NONE);
         return this;
     }
 
     public DtlEnvironment create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getEnvironments()
-                .createOrUpdate(resourceGroupName, labName, username, name, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getEnvironments().createOrUpdate(resourceGroupName, labName,
+            username, name, this.innerModel(), context);
         return this;
     }
 
@@ -134,27 +143,20 @@ public final class DtlEnvironmentImpl implements DtlEnvironment, DtlEnvironment.
     }
 
     public DtlEnvironment apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getEnvironments()
-                .updateWithResponse(resourceGroupName, labName, username, name, updateDtlEnvironment, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getEnvironments()
+            .updateWithResponse(resourceGroupName, labName, username, name, updateDtlEnvironment, Context.NONE)
+            .getValue();
         return this;
     }
 
     public DtlEnvironment apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getEnvironments()
-                .updateWithResponse(resourceGroupName, labName, username, name, updateDtlEnvironment, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getEnvironments()
+            .updateWithResponse(resourceGroupName, labName, username, name, updateDtlEnvironment, context).getValue();
         return this;
     }
 
-    DtlEnvironmentImpl(
-        DtlEnvironmentInner innerObject, com.azure.resourcemanager.devtestlabs.DevTestLabsManager serviceManager) {
+    DtlEnvironmentImpl(DtlEnvironmentInner innerObject,
+        com.azure.resourcemanager.devtestlabs.DevTestLabsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
@@ -165,23 +167,15 @@ public final class DtlEnvironmentImpl implements DtlEnvironment, DtlEnvironment.
 
     public DtlEnvironment refresh() {
         String localExpand = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getEnvironments()
-                .getWithResponse(resourceGroupName, labName, username, name, localExpand, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getEnvironments()
+            .getWithResponse(resourceGroupName, labName, username, name, localExpand, Context.NONE).getValue();
         return this;
     }
 
     public DtlEnvironment refresh(Context context) {
         String localExpand = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getEnvironments()
-                .getWithResponse(resourceGroupName, labName, username, name, localExpand, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getEnvironments()
+            .getWithResponse(resourceGroupName, labName, username, name, localExpand, context).getValue();
         return this;
     }
 
@@ -205,13 +199,18 @@ public final class DtlEnvironmentImpl implements DtlEnvironment, DtlEnvironment.
         }
     }
 
-    public DtlEnvironmentImpl withDeploymentProperties(EnvironmentDeploymentProperties deploymentProperties) {
-        this.innerModel().withDeploymentProperties(deploymentProperties);
+    public DtlEnvironmentImpl withArmTemplateDisplayName(String armTemplateDisplayName) {
+        this.innerModel().withArmTemplateDisplayName(armTemplateDisplayName);
         return this;
     }
 
-    public DtlEnvironmentImpl withArmTemplateDisplayName(String armTemplateDisplayName) {
-        this.innerModel().withArmTemplateDisplayName(armTemplateDisplayName);
+    public DtlEnvironmentImpl withArmTemplateId(String armTemplateId) {
+        this.innerModel().withArmTemplateId(armTemplateId);
+        return this;
+    }
+
+    public DtlEnvironmentImpl withParameters(List<ArmTemplateParameterProperties> parameters) {
+        this.innerModel().withParameters(parameters);
         return this;
     }
 

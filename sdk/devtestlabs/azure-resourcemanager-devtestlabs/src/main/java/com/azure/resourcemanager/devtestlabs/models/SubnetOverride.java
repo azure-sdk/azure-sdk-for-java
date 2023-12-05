@@ -5,9 +5,13 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devtestlabs.fluent.models.SubnetSharedPublicIpAddressConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
-/** Property overrides on a subnet of a virtual network. */
+/**
+ * Property overrides on a subnet of a virtual network.
+ */
 @Fluent
 public final class SubnetOverride {
     /*
@@ -38,7 +42,7 @@ public final class SubnetOverride {
      * Properties that virtual machines on this subnet will share.
      */
     @JsonProperty(value = "sharedPublicIpAddressConfiguration")
-    private SubnetSharedPublicIpAddressConfiguration sharedPublicIpAddressConfiguration;
+    private SubnetSharedPublicIpAddressConfiguration innerSharedPublicIpAddressConfiguration;
 
     /*
      * The virtual network pool associated with this subnet.
@@ -46,13 +50,15 @@ public final class SubnetOverride {
     @JsonProperty(value = "virtualNetworkPoolName")
     private String virtualNetworkPoolName;
 
-    /** Creates an instance of SubnetOverride class. */
+    /**
+     * Creates an instance of SubnetOverride class.
+     */
     public SubnetOverride() {
     }
 
     /**
      * Get the resourceId property: The resource ID of the subnet.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -61,7 +67,7 @@ public final class SubnetOverride {
 
     /**
      * Set the resourceId property: The resource ID of the subnet.
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the SubnetOverride object itself.
      */
@@ -72,7 +78,7 @@ public final class SubnetOverride {
 
     /**
      * Get the labSubnetName property: The name given to the subnet within the lab.
-     *
+     * 
      * @return the labSubnetName value.
      */
     public String labSubnetName() {
@@ -81,7 +87,7 @@ public final class SubnetOverride {
 
     /**
      * Set the labSubnetName property: The name given to the subnet within the lab.
-     *
+     * 
      * @param labSubnetName the labSubnetName value to set.
      * @return the SubnetOverride object itself.
      */
@@ -93,7 +99,7 @@ public final class SubnetOverride {
     /**
      * Get the useInVmCreationPermission property: Indicates whether this subnet can be used during virtual machine
      * creation (i.e. Allow, Deny).
-     *
+     * 
      * @return the useInVmCreationPermission value.
      */
     public UsagePermissionType useInVmCreationPermission() {
@@ -103,7 +109,7 @@ public final class SubnetOverride {
     /**
      * Set the useInVmCreationPermission property: Indicates whether this subnet can be used during virtual machine
      * creation (i.e. Allow, Deny).
-     *
+     * 
      * @param useInVmCreationPermission the useInVmCreationPermission value to set.
      * @return the SubnetOverride object itself.
      */
@@ -115,7 +121,7 @@ public final class SubnetOverride {
     /**
      * Get the usePublicIpAddressPermission property: Indicates whether public IP addresses can be assigned to virtual
      * machines on this subnet (i.e. Allow, Deny).
-     *
+     * 
      * @return the usePublicIpAddressPermission value.
      */
     public UsagePermissionType usePublicIpAddressPermission() {
@@ -125,7 +131,7 @@ public final class SubnetOverride {
     /**
      * Set the usePublicIpAddressPermission property: Indicates whether public IP addresses can be assigned to virtual
      * machines on this subnet (i.e. Allow, Deny).
-     *
+     * 
      * @param usePublicIpAddressPermission the usePublicIpAddressPermission value to set.
      * @return the SubnetOverride object itself.
      */
@@ -135,29 +141,18 @@ public final class SubnetOverride {
     }
 
     /**
-     * Get the sharedPublicIpAddressConfiguration property: Properties that virtual machines on this subnet will share.
-     *
-     * @return the sharedPublicIpAddressConfiguration value.
+     * Get the innerSharedPublicIpAddressConfiguration property: Properties that virtual machines on this subnet will
+     * share.
+     * 
+     * @return the innerSharedPublicIpAddressConfiguration value.
      */
-    public SubnetSharedPublicIpAddressConfiguration sharedPublicIpAddressConfiguration() {
-        return this.sharedPublicIpAddressConfiguration;
-    }
-
-    /**
-     * Set the sharedPublicIpAddressConfiguration property: Properties that virtual machines on this subnet will share.
-     *
-     * @param sharedPublicIpAddressConfiguration the sharedPublicIpAddressConfiguration value to set.
-     * @return the SubnetOverride object itself.
-     */
-    public SubnetOverride withSharedPublicIpAddressConfiguration(
-        SubnetSharedPublicIpAddressConfiguration sharedPublicIpAddressConfiguration) {
-        this.sharedPublicIpAddressConfiguration = sharedPublicIpAddressConfiguration;
-        return this;
+    private SubnetSharedPublicIpAddressConfiguration innerSharedPublicIpAddressConfiguration() {
+        return this.innerSharedPublicIpAddressConfiguration;
     }
 
     /**
      * Get the virtualNetworkPoolName property: The virtual network pool associated with this subnet.
-     *
+     * 
      * @return the virtualNetworkPoolName value.
      */
     public String virtualNetworkPoolName() {
@@ -166,7 +161,7 @@ public final class SubnetOverride {
 
     /**
      * Set the virtualNetworkPoolName property: The virtual network pool associated with this subnet.
-     *
+     * 
      * @param virtualNetworkPoolName the virtualNetworkPoolName value to set.
      * @return the SubnetOverride object itself.
      */
@@ -176,13 +171,37 @@ public final class SubnetOverride {
     }
 
     /**
+     * Get the allowedPorts property: Backend ports that virtual machines on this subnet are allowed to expose.
+     * 
+     * @return the allowedPorts value.
+     */
+    public List<Port> allowedPorts() {
+        return this.innerSharedPublicIpAddressConfiguration() == null ? null
+            : this.innerSharedPublicIpAddressConfiguration().allowedPorts();
+    }
+
+    /**
+     * Set the allowedPorts property: Backend ports that virtual machines on this subnet are allowed to expose.
+     * 
+     * @param allowedPorts the allowedPorts value to set.
+     * @return the SubnetOverride object itself.
+     */
+    public SubnetOverride withAllowedPorts(List<Port> allowedPorts) {
+        if (this.innerSharedPublicIpAddressConfiguration() == null) {
+            this.innerSharedPublicIpAddressConfiguration = new SubnetSharedPublicIpAddressConfiguration();
+        }
+        this.innerSharedPublicIpAddressConfiguration().withAllowedPorts(allowedPorts);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (sharedPublicIpAddressConfiguration() != null) {
-            sharedPublicIpAddressConfiguration().validate();
+        if (innerSharedPublicIpAddressConfiguration() != null) {
+            innerSharedPublicIpAddressConfiguration().validate();
         }
     }
 }

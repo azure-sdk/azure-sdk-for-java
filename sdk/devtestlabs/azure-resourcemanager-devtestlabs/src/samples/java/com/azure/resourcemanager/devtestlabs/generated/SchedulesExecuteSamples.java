@@ -4,19 +4,21 @@
 
 package com.azure.resourcemanager.devtestlabs.generated;
 
-/** Samples for Schedules Execute. */
+/**
+ * Samples for Schedules Execute.
+ */
 public final class SchedulesExecuteSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Schedules_Execute.json
+     * x-ms-original-file:
+     * specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Schedules_Execute.json
      */
     /**
      * Sample code: Schedules_Execute.
-     *
+     * 
      * @param manager Entry point to DevTestLabsManager.
      */
     public static void schedulesExecute(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager
-            .schedules()
-            .execute("resourceGroupName", "{labName}", "{scheduleName}", com.azure.core.util.Context.NONE);
+        manager.schedules().execute("resourceGroupName", "exampleLab", "{scheduleName}",
+            com.azure.core.util.Context.NONE);
     }
 }

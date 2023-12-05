@@ -6,6 +6,7 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devtestlabs.models.ExternalSubnet;
 import com.azure.resourcemanager.devtestlabs.models.Subnet;
 import com.azure.resourcemanager.devtestlabs.models.SubnetOverride;
@@ -14,7 +15,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** A virtual network. */
+/**
+ * A virtual network.
+ */
 @Fluent
 public final class VirtualNetworkInner extends Resource {
     /*
@@ -23,27 +26,48 @@ public final class VirtualNetworkInner extends Resource {
     @JsonProperty(value = "properties")
     private VirtualNetworkProperties innerProperties;
 
-    /** Creates an instance of VirtualNetworkInner class. */
+    /*
+     * The system metadata relating to this resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of VirtualNetworkInner class.
+     */
     public VirtualNetworkInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of the resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private VirtualNetworkProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualNetworkInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualNetworkInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -52,7 +76,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the allowedSubnets property: The allowed subnets of the virtual network.
-     *
+     * 
      * @return the allowedSubnets value.
      */
     public List<Subnet> allowedSubnets() {
@@ -61,7 +85,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Set the allowedSubnets property: The allowed subnets of the virtual network.
-     *
+     * 
      * @param allowedSubnets the allowedSubnets value to set.
      * @return the VirtualNetworkInner object itself.
      */
@@ -75,7 +99,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the description property: The description of the virtual network.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -84,7 +108,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Set the description property: The description of the virtual network.
-     *
+     * 
      * @param description the description value to set.
      * @return the VirtualNetworkInner object itself.
      */
@@ -98,7 +122,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the externalProviderResourceId property: The Microsoft.Network resource identifier of the virtual network.
-     *
+     * 
      * @return the externalProviderResourceId value.
      */
     public String externalProviderResourceId() {
@@ -107,7 +131,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Set the externalProviderResourceId property: The Microsoft.Network resource identifier of the virtual network.
-     *
+     * 
      * @param externalProviderResourceId the externalProviderResourceId value to set.
      * @return the VirtualNetworkInner object itself.
      */
@@ -121,7 +145,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the externalSubnets property: The external subnet properties.
-     *
+     * 
      * @return the externalSubnets value.
      */
     public List<ExternalSubnet> externalSubnets() {
@@ -130,7 +154,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the subnetOverrides property: The subnet overrides of the virtual network.
-     *
+     * 
      * @return the subnetOverrides value.
      */
     public List<SubnetOverride> subnetOverrides() {
@@ -139,7 +163,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Set the subnetOverrides property: The subnet overrides of the virtual network.
-     *
+     * 
      * @param subnetOverrides the subnetOverrides value to set.
      * @return the VirtualNetworkInner object itself.
      */
@@ -153,7 +177,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the createdDate property: The creation date of the virtual network.
-     *
+     * 
      * @return the createdDate value.
      */
     public OffsetDateTime createdDate() {
@@ -162,7 +186,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioning status of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -171,7 +195,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
+     * 
      * @return the uniqueIdentifier value.
      */
     public String uniqueIdentifier() {
@@ -180,7 +204,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

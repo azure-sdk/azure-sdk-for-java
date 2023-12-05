@@ -4,29 +4,29 @@
 
 package com.azure.resourcemanager.devtestlabs.implementation;
 
-import com.azure.resourcemanager.devtestlabs.fluent.models.ApplicableScheduleInner;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devtestlabs.fluent.models.LabVirtualMachinePropertiesInner;
-import com.azure.resourcemanager.devtestlabs.models.ApplicableSchedule;
-import com.azure.resourcemanager.devtestlabs.models.ArtifactDeploymentStatusProperties;
 import com.azure.resourcemanager.devtestlabs.models.ArtifactInstallProperties;
-import com.azure.resourcemanager.devtestlabs.models.ComputeVmProperties;
+import com.azure.resourcemanager.devtestlabs.models.ComputeDataDisk;
+import com.azure.resourcemanager.devtestlabs.models.ComputeVmInstanceViewStatus;
 import com.azure.resourcemanager.devtestlabs.models.DataDiskProperties;
-import com.azure.resourcemanager.devtestlabs.models.GalleryImageReference;
+import com.azure.resourcemanager.devtestlabs.models.EnableStatus;
+import com.azure.resourcemanager.devtestlabs.models.InboundNatRule;
 import com.azure.resourcemanager.devtestlabs.models.LabVirtualMachineProperties;
-import com.azure.resourcemanager.devtestlabs.models.NetworkInterfaceProperties;
 import com.azure.resourcemanager.devtestlabs.models.ScheduleCreationParameter;
+import com.azure.resourcemanager.devtestlabs.models.StorageTypes;
 import com.azure.resourcemanager.devtestlabs.models.VirtualMachineCreationSource;
 import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public final class LabVirtualMachinePropertiesImpl implements LabVirtualMachineProperties {
     private LabVirtualMachinePropertiesInner innerObject;
 
     private final com.azure.resourcemanager.devtestlabs.DevTestLabsManager serviceManager;
 
-    LabVirtualMachinePropertiesImpl(
-        LabVirtualMachinePropertiesInner innerObject,
+    LabVirtualMachinePropertiesImpl(LabVirtualMachinePropertiesInner innerObject,
         com.azure.resourcemanager.devtestlabs.DevTestLabsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -62,6 +62,18 @@ public final class LabVirtualMachinePropertiesImpl implements LabVirtualMachineP
 
     public String customImageId() {
         return this.innerModel().customImageId();
+    }
+
+    public String galleryImageVersionId() {
+        return this.innerModel().galleryImageVersionId();
+    }
+
+    public String sharedImageId() {
+        return this.innerModel().sharedImageId();
+    }
+
+    public String sharedImageVersion() {
+        return this.innerModel().sharedImageVersion();
     }
 
     public String osType() {
@@ -113,33 +125,12 @@ public final class LabVirtualMachinePropertiesImpl implements LabVirtualMachineP
         }
     }
 
-    public ArtifactDeploymentStatusProperties artifactDeploymentStatus() {
-        return this.innerModel().artifactDeploymentStatus();
-    }
-
-    public GalleryImageReference galleryImageReference() {
-        return this.innerModel().galleryImageReference();
-    }
-
     public String planId() {
         return this.innerModel().planId();
     }
 
-    public ComputeVmProperties computeVm() {
-        return this.innerModel().computeVm();
-    }
-
-    public NetworkInterfaceProperties networkInterface() {
-        return this.innerModel().networkInterface();
-    }
-
-    public ApplicableSchedule applicableSchedule() {
-        ApplicableScheduleInner inner = this.innerModel().applicableSchedule();
-        if (inner != null) {
-            return new ApplicableScheduleImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public Integer osDiskSizeGb() {
+        return this.innerModel().osDiskSizeGb();
     }
 
     public OffsetDateTime expirationDate() {
@@ -150,7 +141,7 @@ public final class LabVirtualMachinePropertiesImpl implements LabVirtualMachineP
         return this.innerModel().allowClaim();
     }
 
-    public String storageType() {
+    public StorageTypes storageType() {
         return this.innerModel().storageType();
     }
 
@@ -184,12 +175,357 @@ public final class LabVirtualMachinePropertiesImpl implements LabVirtualMachineP
         return this.innerModel().lastKnownPowerState();
     }
 
+    public Boolean canApplyArtifacts() {
+        return this.innerModel().canApplyArtifacts();
+    }
+
     public String provisioningState() {
         return this.innerModel().provisioningState();
     }
 
     public String uniqueIdentifier() {
         return this.innerModel().uniqueIdentifier();
+    }
+
+    public String deploymentStatus() {
+        return this.innerModel().deploymentStatus();
+    }
+
+    public Integer artifactsApplied() {
+        return this.innerModel().artifactsApplied();
+    }
+
+    public Integer totalArtifacts() {
+        return this.innerModel().totalArtifacts();
+    }
+
+    public String offer() {
+        return this.innerModel().offer();
+    }
+
+    public String publisher() {
+        return this.innerModel().publisher();
+    }
+
+    public String sku() {
+        return this.innerModel().sku();
+    }
+
+    public String osTypeGalleryImageReferenceOsType() {
+        return this.innerModel().osTypeGalleryImageReferenceOsType();
+    }
+
+    public String version() {
+        return this.innerModel().version();
+    }
+
+    public List<ComputeVmInstanceViewStatus> statuses() {
+        List<ComputeVmInstanceViewStatus> inner = this.innerModel().statuses();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String osTypeComputeVmOsType() {
+        return this.innerModel().osTypeComputeVmOsType();
+    }
+
+    public String vmSize() {
+        return this.innerModel().vmSize();
+    }
+
+    public String networkInterfaceId() {
+        return this.innerModel().networkInterfaceId();
+    }
+
+    public String osDiskId() {
+        return this.innerModel().osDiskId();
+    }
+
+    public List<String> dataDiskIds() {
+        List<String> inner = this.innerModel().dataDiskIds();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<ComputeDataDisk> dataDisks() {
+        List<ComputeDataDisk> inner = this.innerModel().dataDisks();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String virtualNetworkId() {
+        return this.innerModel().virtualNetworkId();
+    }
+
+    public String subnetId() {
+        return this.innerModel().subnetId();
+    }
+
+    public String publicIpAddressId() {
+        return this.innerModel().publicIpAddressId();
+    }
+
+    public String publicIpAddress() {
+        return this.innerModel().publicIpAddress();
+    }
+
+    public String privateIpAddress() {
+        return this.innerModel().privateIpAddress();
+    }
+
+    public String dnsName() {
+        return this.innerModel().dnsName();
+    }
+
+    public String rdpAuthority() {
+        return this.innerModel().rdpAuthority();
+    }
+
+    public String sshAuthority() {
+        return this.innerModel().sshAuthority();
+    }
+
+    public List<InboundNatRule> inboundNatRules() {
+        List<InboundNatRule> inner = this.innerModel().inboundNatRules();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public SystemData systemDataPropertiesSystemData() {
+        return this.innerModel().systemDataPropertiesSystemData();
+    }
+
+    public EnableStatus status() {
+        return this.innerModel().status();
+    }
+
+    public String taskType() {
+        return this.innerModel().taskType();
+    }
+
+    public String timeZoneId() {
+        return this.innerModel().timeZoneId();
+    }
+
+    public OffsetDateTime createdDateApplicableScheduleCreatedDate() {
+        return this.innerModel().createdDateApplicableScheduleCreatedDate();
+    }
+
+    public String targetResourceId() {
+        return this.innerModel().targetResourceId();
+    }
+
+    public String provisioningStateApplicableScheduleProvisioningState() {
+        return this.innerModel().provisioningStateApplicableScheduleProvisioningState();
+    }
+
+    public String uniqueIdentifierApplicableScheduleUniqueIdentifier() {
+        return this.innerModel().uniqueIdentifierApplicableScheduleUniqueIdentifier();
+    }
+
+    public List<String> weekdays() {
+        List<String> inner = this.innerModel().weekdays();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String time() {
+        return this.innerModel().time();
+    }
+
+    public String timeDailyRecurrenceTime() {
+        return this.innerModel().timeDailyRecurrenceTime();
+    }
+
+    public Integer minute() {
+        return this.innerModel().minute();
+    }
+
+    public EnableStatus statusNotificationSettingsStatus() {
+        return this.innerModel().statusNotificationSettingsStatus();
+    }
+
+    public Integer timeInMinutes() {
+        return this.innerModel().timeInMinutes();
+    }
+
+    public String webhookUrl() {
+        return this.innerModel().webhookUrl();
+    }
+
+    public String emailRecipient() {
+        return this.innerModel().emailRecipient();
+    }
+
+    public String notificationLocale() {
+        return this.innerModel().notificationLocale();
+    }
+
+    public Map<String, String> tagsPropertiesTags() {
+        Map<String, String> inner = this.innerModel().tagsPropertiesTags();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
+    }
+
+    public String locationPropertiesLocation() {
+        return this.innerModel().locationPropertiesLocation();
+    }
+
+    public String idPropertiesId() {
+        return this.innerModel().idPropertiesId();
+    }
+
+    public String namePropertiesName() {
+        return this.innerModel().namePropertiesName();
+    }
+
+    public String typePropertiesType() {
+        return this.innerModel().typePropertiesType();
+    }
+
+    public SystemData systemDataLabVmsStartupSystemData() {
+        return this.innerModel().systemDataLabVmsStartupSystemData();
+    }
+
+    public EnableStatus statusLabVmsStartupStatus() {
+        return this.innerModel().statusLabVmsStartupStatus();
+    }
+
+    public String taskTypeLabVmsStartupTaskType() {
+        return this.innerModel().taskTypeLabVmsStartupTaskType();
+    }
+
+    public String timeZoneIdLabVmsStartupTimeZoneId() {
+        return this.innerModel().timeZoneIdLabVmsStartupTimeZoneId();
+    }
+
+    public OffsetDateTime createdDateLabVmsStartupCreatedDate() {
+        return this.innerModel().createdDateLabVmsStartupCreatedDate();
+    }
+
+    public String targetResourceIdLabVmsStartupTargetResourceId() {
+        return this.innerModel().targetResourceIdLabVmsStartupTargetResourceId();
+    }
+
+    public String provisioningStateLabVmsStartupProvisioningState() {
+        return this.innerModel().provisioningStateLabVmsStartupProvisioningState();
+    }
+
+    public String uniqueIdentifierLabVmsStartupUniqueIdentifier() {
+        return this.innerModel().uniqueIdentifierLabVmsStartupUniqueIdentifier();
+    }
+
+    public List<String> weekdaysLabVmsStartupWeekdays() {
+        List<String> inner = this.innerModel().weekdaysLabVmsStartupWeekdays();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String timeLabVmsStartupTime() {
+        return this.innerModel().timeLabVmsStartupTime();
+    }
+
+    public String timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime() {
+        return this.innerModel().timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime();
+    }
+
+    public Integer minuteLabVmsStartupMinute() {
+        return this.innerModel().minuteLabVmsStartupMinute();
+    }
+
+    public EnableStatus statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus() {
+        return this.innerModel().statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus();
+    }
+
+    public Integer timeInMinutesLabVmsStartupTimeInMinutes() {
+        return this.innerModel().timeInMinutesLabVmsStartupTimeInMinutes();
+    }
+
+    public String webhookUrlLabVmsStartupWebhookUrl() {
+        return this.innerModel().webhookUrlLabVmsStartupWebhookUrl();
+    }
+
+    public String emailRecipientLabVmsStartupEmailRecipient() {
+        return this.innerModel().emailRecipientLabVmsStartupEmailRecipient();
+    }
+
+    public String notificationLocaleLabVmsStartupNotificationLocale() {
+        return this.innerModel().notificationLocaleLabVmsStartupNotificationLocale();
+    }
+
+    public Map<String, String> tagsLabVmsStartupTags() {
+        Map<String, String> inner = this.innerModel().tagsLabVmsStartupTags();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
+    }
+
+    public String locationLabVmsStartupLocation() {
+        return this.innerModel().locationLabVmsStartupLocation();
+    }
+
+    public String idLabVmsStartupId() {
+        return this.innerModel().idLabVmsStartupId();
+    }
+
+    public String nameLabVmsStartupName() {
+        return this.innerModel().nameLabVmsStartupName();
+    }
+
+    public String typeLabVmsStartupType() {
+        return this.innerModel().typeLabVmsStartupType();
+    }
+
+    public Map<String, String> tags() {
+        Map<String, String> inner = this.innerModel().tags();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
+    }
+
+    public String location() {
+        return this.innerModel().location();
+    }
+
+    public String id() {
+        return this.innerModel().id();
+    }
+
+    public String name() {
+        return this.innerModel().name();
+    }
+
+    public String type() {
+        return this.innerModel().type();
     }
 
     public LabVirtualMachinePropertiesInner innerModel() {

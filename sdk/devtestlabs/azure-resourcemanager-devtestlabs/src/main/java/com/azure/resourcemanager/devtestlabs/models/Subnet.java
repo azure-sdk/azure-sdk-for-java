@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Subnet information. */
+/**
+ * Subnet information.
+ */
 @Fluent
 public final class Subnet {
     /*
@@ -28,13 +30,15 @@ public final class Subnet {
     @JsonProperty(value = "allowPublicIp")
     private UsagePermissionType allowPublicIp;
 
-    /** Creates an instance of Subnet class. */
+    /**
+     * Creates an instance of Subnet class.
+     */
     public Subnet() {
     }
 
     /**
      * Get the resourceId property: The resource ID of the subnet.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -43,7 +47,7 @@ public final class Subnet {
 
     /**
      * Set the resourceId property: The resource ID of the subnet.
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the Subnet object itself.
      */
@@ -54,7 +58,7 @@ public final class Subnet {
 
     /**
      * Get the labSubnetName property: The name of the subnet as seen in the lab.
-     *
+     * 
      * @return the labSubnetName value.
      */
     public String labSubnetName() {
@@ -63,7 +67,7 @@ public final class Subnet {
 
     /**
      * Set the labSubnetName property: The name of the subnet as seen in the lab.
-     *
+     * 
      * @param labSubnetName the labSubnetName value to set.
      * @return the Subnet object itself.
      */
@@ -73,9 +77,9 @@ public final class Subnet {
     }
 
     /**
-     * Get the allowPublicIp property: The permission policy of the subnet for allowing public IP addresses (i.e. Allow,
-     * Deny)).
-     *
+     * Get the allowPublicIp property: The permission policy of the subnet for allowing public IP addresses (i.e.
+     * Allow, Deny)).
+     * 
      * @return the allowPublicIp value.
      */
     public UsagePermissionType allowPublicIp() {
@@ -83,9 +87,9 @@ public final class Subnet {
     }
 
     /**
-     * Set the allowPublicIp property: The permission policy of the subnet for allowing public IP addresses (i.e. Allow,
-     * Deny)).
-     *
+     * Set the allowPublicIp property: The permission policy of the subnet for allowing public IP addresses (i.e.
+     * Allow, Deny)).
+     * 
      * @param allowPublicIp the allowPublicIp value to set.
      * @return the Subnet object itself.
      */
@@ -96,7 +100,7 @@ public final class Subnet {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

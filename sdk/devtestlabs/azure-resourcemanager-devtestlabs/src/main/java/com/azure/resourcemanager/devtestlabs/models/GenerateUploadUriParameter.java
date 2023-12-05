@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties for generating an upload URI. */
+/**
+ * Properties for generating an upload URI.
+ */
 @Fluent
 public final class GenerateUploadUriParameter {
     /*
@@ -16,13 +18,15 @@ public final class GenerateUploadUriParameter {
     @JsonProperty(value = "blobName")
     private String blobName;
 
-    /** Creates an instance of GenerateUploadUriParameter class. */
+    /**
+     * Creates an instance of GenerateUploadUriParameter class.
+     */
     public GenerateUploadUriParameter() {
     }
 
     /**
      * Get the blobName property: The blob name of the upload URI.
-     *
+     * 
      * @return the blobName value.
      */
     public String blobName() {
@@ -31,7 +35,7 @@ public final class GenerateUploadUriParameter {
 
     /**
      * Set the blobName property: The blob name of the upload URI.
-     *
+     * 
      * @param blobName the blobName value to set.
      * @return the GenerateUploadUriParameter object itself.
      */
@@ -42,7 +46,7 @@ public final class GenerateUploadUriParameter {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

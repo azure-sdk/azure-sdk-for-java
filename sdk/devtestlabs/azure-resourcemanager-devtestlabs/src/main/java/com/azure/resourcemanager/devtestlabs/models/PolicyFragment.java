@@ -7,14 +7,20 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import java.util.Map;
 
-/** A Policy. */
+/**
+ * Patch.
+ */
 @Fluent
 public final class PolicyFragment extends UpdateResource {
-    /** Creates an instance of PolicyFragment class. */
+    /**
+     * Creates an instance of PolicyFragment class.
+     */
     public PolicyFragment() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PolicyFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -23,7 +29,7 @@ public final class PolicyFragment extends UpdateResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

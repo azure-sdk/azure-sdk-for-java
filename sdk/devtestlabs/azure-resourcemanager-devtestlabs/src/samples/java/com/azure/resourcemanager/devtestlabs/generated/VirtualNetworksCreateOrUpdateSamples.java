@@ -4,38 +4,21 @@
 
 package com.azure.resourcemanager.devtestlabs.generated;
 
-import java.util.HashMap;
-import java.util.Map;
-
-/** Samples for VirtualNetworks CreateOrUpdate. */
+/**
+ * Samples for VirtualNetworks CreateOrUpdate.
+ */
 public final class VirtualNetworksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualNetworks_CreateOrUpdate.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/
+     * VirtualNetworks_CreateOrUpdate.json
      */
     /**
      * Sample code: VirtualNetworks_CreateOrUpdate.
-     *
+     * 
      * @param manager Entry point to DevTestLabsManager.
      */
     public static void virtualNetworksCreateOrUpdate(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager
-            .virtualNetworks()
-            .define("{virtualNetworkName}")
-            .withRegion("{location}")
-            .withExistingLab("resourceGroupName", "{labName}")
-            .withTags(mapOf("tagName1", "tagValue1"))
-            .create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
+        manager.virtualNetworks().define("dtlexampleLab").withRegion((String) null)
+            .withExistingLab("resourceGroupName", "exampleLab").create();
     }
 }

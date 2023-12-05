@@ -14,52 +14,47 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.devtestlabs.fluent.models.DtlEnvironmentInner;
 import com.azure.resourcemanager.devtestlabs.models.DtlEnvironmentFragment;
 
-/** An instance of this class provides access to all the operations defined in EnvironmentsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in EnvironmentsClient.
+ */
 public interface EnvironmentsClient {
     /**
      * List environments in a given user profile.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of environments and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<DtlEnvironmentInner> list(String resourceGroupName, String labName, String username);
 
     /**
      * List environments in a given user profile.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param expand Specify the $expand query. Example: 'properties($select=deploymentProperties)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of environments and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DtlEnvironmentInner> list(
-        String resourceGroupName,
-        String labName,
-        String username,
-        String expand,
-        String filter,
-        Integer top,
-        String orderby,
-        Context context);
+    PagedIterable<DtlEnvironmentInner> list(String resourceGroupName, String labName, String username, String expand,
+        String filter, Integer top, String orderby, Context context);
 
     /**
      * Get environment.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -72,12 +67,12 @@ public interface EnvironmentsClient {
      * @return environment along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<DtlEnvironmentInner> getWithResponse(
-        String resourceGroupName, String labName, String username, String name, String expand, Context context);
+    Response<DtlEnvironmentInner> getWithResponse(String resourceGroupName, String labName, String username,
+        String name, String expand, Context context);
 
     /**
      * Get environment.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -92,7 +87,7 @@ public interface EnvironmentsClient {
 
     /**
      * Create or replace an existing environment. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -104,12 +99,12 @@ public interface EnvironmentsClient {
      * @return the {@link SyncPoller} for polling of an environment, which is essentially an ARM template deployment.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<DtlEnvironmentInner>, DtlEnvironmentInner> beginCreateOrUpdate(
-        String resourceGroupName, String labName, String username, String name, DtlEnvironmentInner dtlEnvironment);
+    SyncPoller<PollResult<DtlEnvironmentInner>, DtlEnvironmentInner> beginCreateOrUpdate(String resourceGroupName,
+        String labName, String username, String name, DtlEnvironmentInner dtlEnvironment);
 
     /**
      * Create or replace an existing environment. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -122,17 +117,12 @@ public interface EnvironmentsClient {
      * @return the {@link SyncPoller} for polling of an environment, which is essentially an ARM template deployment.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<DtlEnvironmentInner>, DtlEnvironmentInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String labName,
-        String username,
-        String name,
-        DtlEnvironmentInner dtlEnvironment,
-        Context context);
+    SyncPoller<PollResult<DtlEnvironmentInner>, DtlEnvironmentInner> beginCreateOrUpdate(String resourceGroupName,
+        String labName, String username, String name, DtlEnvironmentInner dtlEnvironment, Context context);
 
     /**
      * Create or replace an existing environment. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -144,12 +134,12 @@ public interface EnvironmentsClient {
      * @return an environment, which is essentially an ARM template deployment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    DtlEnvironmentInner createOrUpdate(
-        String resourceGroupName, String labName, String username, String name, DtlEnvironmentInner dtlEnvironment);
+    DtlEnvironmentInner createOrUpdate(String resourceGroupName, String labName, String username, String name,
+        DtlEnvironmentInner dtlEnvironment);
 
     /**
      * Create or replace an existing environment. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -162,17 +152,12 @@ public interface EnvironmentsClient {
      * @return an environment, which is essentially an ARM template deployment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    DtlEnvironmentInner createOrUpdate(
-        String resourceGroupName,
-        String labName,
-        String username,
-        String name,
-        DtlEnvironmentInner dtlEnvironment,
-        Context context);
+    DtlEnvironmentInner createOrUpdate(String resourceGroupName, String labName, String username, String name,
+        DtlEnvironmentInner dtlEnvironment, Context context);
 
     /**
      * Delete environment. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -183,12 +168,12 @@ public interface EnvironmentsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String labName, String username, String name);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String labName, String username,
+        String name);
 
     /**
      * Delete environment. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -200,12 +185,12 @@ public interface EnvironmentsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String labName, String username, String name, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String labName, String username,
+        String name, Context context);
 
     /**
      * Delete environment. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -219,7 +204,7 @@ public interface EnvironmentsClient {
 
     /**
      * Delete environment. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -234,12 +219,12 @@ public interface EnvironmentsClient {
 
     /**
      * Allows modifying tags of environments. All other properties will be ignored.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the environment.
-     * @param dtlEnvironment An environment, which is essentially an ARM template deployment.
+     * @param dtlEnvironment Allows modifying tags of environments. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -247,28 +232,23 @@ public interface EnvironmentsClient {
      * @return an environment, which is essentially an ARM template deployment along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<DtlEnvironmentInner> updateWithResponse(
-        String resourceGroupName,
-        String labName,
-        String username,
-        String name,
-        DtlEnvironmentFragment dtlEnvironment,
-        Context context);
+    Response<DtlEnvironmentInner> updateWithResponse(String resourceGroupName, String labName, String username,
+        String name, DtlEnvironmentFragment dtlEnvironment, Context context);
 
     /**
      * Allows modifying tags of environments. All other properties will be ignored.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the environment.
-     * @param dtlEnvironment An environment, which is essentially an ARM template deployment.
+     * @param dtlEnvironment Allows modifying tags of environments. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an environment, which is essentially an ARM template deployment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    DtlEnvironmentInner update(
-        String resourceGroupName, String labName, String username, String name, DtlEnvironmentFragment dtlEnvironment);
+    DtlEnvironmentInner update(String resourceGroupName, String labName, String username, String name,
+        DtlEnvironmentFragment dtlEnvironment);
 }

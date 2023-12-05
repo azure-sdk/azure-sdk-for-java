@@ -8,47 +8,45 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of NotificationChannels. */
+/**
+ * Resource collection API of NotificationChannels.
+ */
 public interface NotificationChannels {
     /**
      * List notification channels in a given lab.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of notificationChannels and their properties as paginated response with
+     * {@link PagedIterable}.
      */
     PagedIterable<NotificationChannel> list(String resourceGroupName, String labName);
 
     /**
      * List notification channels in a given lab.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($select=webHookUrl)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of notificationChannels and their properties as paginated response with
+     * {@link PagedIterable}.
      */
-    PagedIterable<NotificationChannel> list(
-        String resourceGroupName,
-        String labName,
-        String expand,
-        String filter,
-        Integer top,
-        String orderby,
-        Context context);
+    PagedIterable<NotificationChannel> list(String resourceGroupName, String labName, String expand, String filter,
+        Integer top, String orderby, Context context);
 
     /**
      * Get notification channel.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the notification channel.
@@ -59,12 +57,12 @@ public interface NotificationChannels {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return notification channel along with {@link Response}.
      */
-    Response<NotificationChannel> getWithResponse(
-        String resourceGroupName, String labName, String name, String expand, Context context);
+    Response<NotificationChannel> getWithResponse(String resourceGroupName, String labName, String name, String expand,
+        Context context);
 
     /**
      * Get notification channel.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the notification channel.
@@ -77,7 +75,7 @@ public interface NotificationChannels {
 
     /**
      * Delete notification channel.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the notification channel.
@@ -91,7 +89,7 @@ public interface NotificationChannels {
 
     /**
      * Delete notification channel.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the notification channel.
@@ -103,7 +101,7 @@ public interface NotificationChannels {
 
     /**
      * Send notification to provided channel.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the notification channel.
@@ -114,12 +112,12 @@ public interface NotificationChannels {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response}.
      */
-    Response<Void> notifyWithResponse(
-        String resourceGroupName, String labName, String name, NotifyParameters notifyParameters, Context context);
+    Response<Void> notifyWithResponse(String resourceGroupName, String labName, String name,
+        NotifyParameters notifyParameters, Context context);
 
     /**
      * Send notification to provided channel.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the notification channel.
@@ -132,7 +130,7 @@ public interface NotificationChannels {
 
     /**
      * Get notification channel.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -143,7 +141,7 @@ public interface NotificationChannels {
 
     /**
      * Get notification channel.
-     *
+     * 
      * @param id the resource ID.
      * @param expand Specify the $expand query. Example: 'properties($select=webHookUrl)'.
      * @param context The context to associate with this operation.
@@ -156,7 +154,7 @@ public interface NotificationChannels {
 
     /**
      * Delete notification channel.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -166,7 +164,7 @@ public interface NotificationChannels {
 
     /**
      * Delete notification channel.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -178,7 +176,7 @@ public interface NotificationChannels {
 
     /**
      * Begins definition for a new NotificationChannel resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new NotificationChannel definition.
      */

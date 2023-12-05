@@ -4,24 +4,22 @@
 
 package com.azure.resourcemanager.devtestlabs.generated;
 
-/** Samples for ServiceFabrics Start. */
+/**
+ * Samples for ServiceFabrics Start.
+ */
 public final class ServiceFabricsStartSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ServiceFabrics_Start.json
+     * x-ms-original-file:
+     * specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/ServiceFabrics_Start.
+     * json
      */
     /**
      * Sample code: ServiceFabrics_Start.
-     *
+     * 
      * @param manager Entry point to DevTestLabsManager.
      */
     public static void serviceFabricsStart(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager
-            .serviceFabrics()
-            .start(
-                "resourceGroupName",
-                "{labName}",
-                "{userName}",
-                "{serviceFabricName}",
-                com.azure.core.util.Context.NONE);
+        manager.serviceFabrics().start("resourceGroupName", "exampleLab", "UserName001", "serviceFabricName",
+            com.azure.core.util.Context.NONE);
     }
 }

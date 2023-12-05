@@ -9,7 +9,9 @@ import com.azure.resourcemanager.devtestlabs.models.PolicySetResult;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Response body for evaluating a policy set. */
+/**
+ * Response body for evaluating a policy set.
+ */
 @Fluent
 public final class EvaluatePoliciesResponseInner {
     /*
@@ -18,13 +20,15 @@ public final class EvaluatePoliciesResponseInner {
     @JsonProperty(value = "results")
     private List<PolicySetResult> results;
 
-    /** Creates an instance of EvaluatePoliciesResponseInner class. */
+    /**
+     * Creates an instance of EvaluatePoliciesResponseInner class.
+     */
     public EvaluatePoliciesResponseInner() {
     }
 
     /**
      * Get the results property: Results of evaluating a policy set.
-     *
+     * 
      * @return the results value.
      */
     public List<PolicySetResult> results() {
@@ -33,7 +37,7 @@ public final class EvaluatePoliciesResponseInner {
 
     /**
      * Set the results property: Results of evaluating a policy set.
-     *
+     * 
      * @param results the results value to set.
      * @return the EvaluatePoliciesResponseInner object itself.
      */
@@ -44,7 +48,7 @@ public final class EvaluatePoliciesResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -15,52 +15,47 @@ import com.azure.resourcemanager.devtestlabs.fluent.models.ApplicableScheduleInn
 import com.azure.resourcemanager.devtestlabs.fluent.models.ServiceFabricInner;
 import com.azure.resourcemanager.devtestlabs.models.ServiceFabricFragment;
 
-/** An instance of this class provides access to all the operations defined in ServiceFabricsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in ServiceFabricsClient.
+ */
 public interface ServiceFabricsClient {
     /**
      * List service fabrics in a given user profile.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of serviceFabrics and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ServiceFabricInner> list(String resourceGroupName, String labName, String username);
 
     /**
      * List service fabrics in a given user profile.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param expand Specify the $expand query. Example: 'properties($expand=applicableSchedule)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of serviceFabrics and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ServiceFabricInner> list(
-        String resourceGroupName,
-        String labName,
-        String username,
-        String expand,
-        String filter,
-        Integer top,
-        String orderby,
-        Context context);
+    PagedIterable<ServiceFabricInner> list(String resourceGroupName, String labName, String username, String expand,
+        String filter, Integer top, String orderby, Context context);
 
     /**
      * Get service fabric.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -73,12 +68,12 @@ public interface ServiceFabricsClient {
      * @return service fabric along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ServiceFabricInner> getWithResponse(
-        String resourceGroupName, String labName, String username, String name, String expand, Context context);
+    Response<ServiceFabricInner> getWithResponse(String resourceGroupName, String labName, String username, String name,
+        String expand, Context context);
 
     /**
      * Get service fabric.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -92,8 +87,8 @@ public interface ServiceFabricsClient {
     ServiceFabricInner get(String resourceGroupName, String labName, String username, String name);
 
     /**
-     * Create or replace an existing service fabric. This operation can take a while to complete.
-     *
+     * Create or replace an existing Service Fabric. This operation can take a while to complete.
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -105,12 +100,12 @@ public interface ServiceFabricsClient {
      * @return the {@link SyncPoller} for polling of a Service Fabric.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ServiceFabricInner>, ServiceFabricInner> beginCreateOrUpdate(
-        String resourceGroupName, String labName, String username, String name, ServiceFabricInner serviceFabric);
+    SyncPoller<PollResult<ServiceFabricInner>, ServiceFabricInner> beginCreateOrUpdate(String resourceGroupName,
+        String labName, String username, String name, ServiceFabricInner serviceFabric);
 
     /**
-     * Create or replace an existing service fabric. This operation can take a while to complete.
-     *
+     * Create or replace an existing Service Fabric. This operation can take a while to complete.
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -123,17 +118,12 @@ public interface ServiceFabricsClient {
      * @return the {@link SyncPoller} for polling of a Service Fabric.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ServiceFabricInner>, ServiceFabricInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String labName,
-        String username,
-        String name,
-        ServiceFabricInner serviceFabric,
-        Context context);
+    SyncPoller<PollResult<ServiceFabricInner>, ServiceFabricInner> beginCreateOrUpdate(String resourceGroupName,
+        String labName, String username, String name, ServiceFabricInner serviceFabric, Context context);
 
     /**
-     * Create or replace an existing service fabric. This operation can take a while to complete.
-     *
+     * Create or replace an existing Service Fabric. This operation can take a while to complete.
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -145,12 +135,12 @@ public interface ServiceFabricsClient {
      * @return a Service Fabric.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ServiceFabricInner createOrUpdate(
-        String resourceGroupName, String labName, String username, String name, ServiceFabricInner serviceFabric);
+    ServiceFabricInner createOrUpdate(String resourceGroupName, String labName, String username, String name,
+        ServiceFabricInner serviceFabric);
 
     /**
-     * Create or replace an existing service fabric. This operation can take a while to complete.
-     *
+     * Create or replace an existing Service Fabric. This operation can take a while to complete.
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -163,17 +153,12 @@ public interface ServiceFabricsClient {
      * @return a Service Fabric.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ServiceFabricInner createOrUpdate(
-        String resourceGroupName,
-        String labName,
-        String username,
-        String name,
-        ServiceFabricInner serviceFabric,
-        Context context);
+    ServiceFabricInner createOrUpdate(String resourceGroupName, String labName, String username, String name,
+        ServiceFabricInner serviceFabric, Context context);
 
     /**
      * Delete service fabric. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -184,12 +169,12 @@ public interface ServiceFabricsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String labName, String username, String name);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String labName, String username,
+        String name);
 
     /**
      * Delete service fabric. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -201,12 +186,12 @@ public interface ServiceFabricsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String labName, String username, String name, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String labName, String username,
+        String name, Context context);
 
     /**
      * Delete service fabric. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -220,7 +205,7 @@ public interface ServiceFabricsClient {
 
     /**
      * Delete service fabric. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -235,12 +220,12 @@ public interface ServiceFabricsClient {
 
     /**
      * Allows modifying tags of service fabrics. All other properties will be ignored.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the service fabric.
-     * @param serviceFabric A Service Fabric.
+     * @param serviceFabric Allows modifying tags of service fabrics. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -248,34 +233,29 @@ public interface ServiceFabricsClient {
      * @return a Service Fabric along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ServiceFabricInner> updateWithResponse(
-        String resourceGroupName,
-        String labName,
-        String username,
-        String name,
-        ServiceFabricFragment serviceFabric,
-        Context context);
+    Response<ServiceFabricInner> updateWithResponse(String resourceGroupName, String labName, String username,
+        String name, ServiceFabricFragment serviceFabric, Context context);
 
     /**
      * Allows modifying tags of service fabrics. All other properties will be ignored.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the service fabric.
-     * @param serviceFabric A Service Fabric.
+     * @param serviceFabric Allows modifying tags of service fabrics. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Service Fabric.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ServiceFabricInner update(
-        String resourceGroupName, String labName, String username, String name, ServiceFabricFragment serviceFabric);
+    ServiceFabricInner update(String resourceGroupName, String labName, String username, String name,
+        ServiceFabricFragment serviceFabric);
 
     /**
      * Lists the applicable start/stop schedules, if any.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -287,12 +267,12 @@ public interface ServiceFabricsClient {
      * @return schedules applicable to a virtual machine along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ApplicableScheduleInner> listApplicableSchedulesWithResponse(
-        String resourceGroupName, String labName, String username, String name, Context context);
+    Response<ApplicableScheduleInner> listApplicableSchedulesWithResponse(String resourceGroupName, String labName,
+        String username, String name, Context context);
 
     /**
      * Lists the applicable start/stop schedules, if any.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -303,12 +283,12 @@ public interface ServiceFabricsClient {
      * @return schedules applicable to a virtual machine.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ApplicableScheduleInner listApplicableSchedules(
-        String resourceGroupName, String labName, String username, String name);
+    ApplicableScheduleInner listApplicableSchedules(String resourceGroupName, String labName, String username,
+        String name);
 
     /**
      * Start a service fabric. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -319,12 +299,12 @@ public interface ServiceFabricsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginStart(
-        String resourceGroupName, String labName, String username, String name);
+    SyncPoller<PollResult<Void>, Void> beginStart(String resourceGroupName, String labName, String username,
+        String name);
 
     /**
      * Start a service fabric. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -336,12 +316,12 @@ public interface ServiceFabricsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginStart(
-        String resourceGroupName, String labName, String username, String name, Context context);
+    SyncPoller<PollResult<Void>, Void> beginStart(String resourceGroupName, String labName, String username,
+        String name, Context context);
 
     /**
      * Start a service fabric. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -355,7 +335,7 @@ public interface ServiceFabricsClient {
 
     /**
      * Start a service fabric. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -370,7 +350,7 @@ public interface ServiceFabricsClient {
 
     /**
      * Stop a service fabric This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -381,12 +361,12 @@ public interface ServiceFabricsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginStop(
-        String resourceGroupName, String labName, String username, String name);
+    SyncPoller<PollResult<Void>, Void> beginStop(String resourceGroupName, String labName, String username,
+        String name);
 
     /**
      * Stop a service fabric This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -398,12 +378,12 @@ public interface ServiceFabricsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginStop(
-        String resourceGroupName, String labName, String username, String name, Context context);
+    SyncPoller<PollResult<Void>, Void> beginStop(String resourceGroupName, String labName, String username, String name,
+        Context context);
 
     /**
      * Stop a service fabric This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
@@ -417,7 +397,7 @@ public interface ServiceFabricsClient {
 
     /**
      * Stop a service fabric This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param username The name of the user profile.

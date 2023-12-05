@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An event to be notified for. */
+/**
+ * An event to be notified for.
+ */
 @Fluent
 public final class Event {
     /*
@@ -16,13 +18,15 @@ public final class Event {
     @JsonProperty(value = "eventName")
     private NotificationChannelEventType eventName;
 
-    /** Creates an instance of Event class. */
+    /**
+     * Creates an instance of Event class.
+     */
     public Event() {
     }
 
     /**
      * Get the eventName property: The event type for which this notification is enabled (i.e. AutoShutdown, Cost).
-     *
+     * 
      * @return the eventName value.
      */
     public NotificationChannelEventType eventName() {
@@ -31,7 +35,7 @@ public final class Event {
 
     /**
      * Set the eventName property: The event type for which this notification is enabled (i.e. AutoShutdown, Cost).
-     *
+     * 
      * @param eventName the eventName value to set.
      * @return the Event object itself.
      */
@@ -42,7 +46,7 @@ public final class Event {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

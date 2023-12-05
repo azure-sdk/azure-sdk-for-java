@@ -4,39 +4,220 @@
 
 package com.azure.resourcemanager.devtestlabs.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ApplicableSchedulePropertiesInner;
-import com.azure.resourcemanager.devtestlabs.fluent.models.ScheduleInner;
 import com.azure.resourcemanager.devtestlabs.models.ApplicableScheduleProperties;
-import com.azure.resourcemanager.devtestlabs.models.Schedule;
+import com.azure.resourcemanager.devtestlabs.models.EnableStatus;
+import java.time.OffsetDateTime;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public final class ApplicableSchedulePropertiesImpl implements ApplicableScheduleProperties {
     private ApplicableSchedulePropertiesInner innerObject;
 
     private final com.azure.resourcemanager.devtestlabs.DevTestLabsManager serviceManager;
 
-    ApplicableSchedulePropertiesImpl(
-        ApplicableSchedulePropertiesInner innerObject,
+    ApplicableSchedulePropertiesImpl(ApplicableSchedulePropertiesInner innerObject,
         com.azure.resourcemanager.devtestlabs.DevTestLabsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
 
-    public Schedule labVmsShutdown() {
-        ScheduleInner inner = this.innerModel().labVmsShutdown();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public EnableStatus status() {
+        return this.innerModel().status();
+    }
+
+    public String taskType() {
+        return this.innerModel().taskType();
+    }
+
+    public String timeZoneId() {
+        return this.innerModel().timeZoneId();
+    }
+
+    public OffsetDateTime createdDate() {
+        return this.innerModel().createdDate();
+    }
+
+    public String targetResourceId() {
+        return this.innerModel().targetResourceId();
+    }
+
+    public String provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public String uniqueIdentifier() {
+        return this.innerModel().uniqueIdentifier();
+    }
+
+    public List<String> weekdays() {
+        List<String> inner = this.innerModel().weekdays();
         if (inner != null) {
-            return new ScheduleImpl(inner, this.manager());
+            return Collections.unmodifiableList(inner);
         } else {
-            return null;
+            return Collections.emptyList();
         }
     }
 
-    public Schedule labVmsStartup() {
-        ScheduleInner inner = this.innerModel().labVmsStartup();
+    public String time() {
+        return this.innerModel().time();
+    }
+
+    public String timeDailyRecurrenceTime() {
+        return this.innerModel().timeDailyRecurrenceTime();
+    }
+
+    public Integer minute() {
+        return this.innerModel().minute();
+    }
+
+    public EnableStatus statusNotificationSettingsStatus() {
+        return this.innerModel().statusNotificationSettingsStatus();
+    }
+
+    public Integer timeInMinutes() {
+        return this.innerModel().timeInMinutes();
+    }
+
+    public String webhookUrl() {
+        return this.innerModel().webhookUrl();
+    }
+
+    public String emailRecipient() {
+        return this.innerModel().emailRecipient();
+    }
+
+    public String notificationLocale() {
+        return this.innerModel().notificationLocale();
+    }
+
+    public Map<String, String> tags() {
+        Map<String, String> inner = this.innerModel().tags();
         if (inner != null) {
-            return new ScheduleImpl(inner, this.manager());
+            return Collections.unmodifiableMap(inner);
         } else {
-            return null;
+            return Collections.emptyMap();
         }
+    }
+
+    public String location() {
+        return this.innerModel().location();
+    }
+
+    public String id() {
+        return this.innerModel().id();
+    }
+
+    public String name() {
+        return this.innerModel().name();
+    }
+
+    public String type() {
+        return this.innerModel().type();
+    }
+
+    public SystemData systemDataLabVmsStartupSystemData() {
+        return this.innerModel().systemDataLabVmsStartupSystemData();
+    }
+
+    public EnableStatus statusLabVmsStartupStatus() {
+        return this.innerModel().statusLabVmsStartupStatus();
+    }
+
+    public String taskTypeLabVmsStartupTaskType() {
+        return this.innerModel().taskTypeLabVmsStartupTaskType();
+    }
+
+    public String timeZoneIdLabVmsStartupTimeZoneId() {
+        return this.innerModel().timeZoneIdLabVmsStartupTimeZoneId();
+    }
+
+    public OffsetDateTime createdDateLabVmsStartupCreatedDate() {
+        return this.innerModel().createdDateLabVmsStartupCreatedDate();
+    }
+
+    public String targetResourceIdLabVmsStartupTargetResourceId() {
+        return this.innerModel().targetResourceIdLabVmsStartupTargetResourceId();
+    }
+
+    public String provisioningStateLabVmsStartupProvisioningState() {
+        return this.innerModel().provisioningStateLabVmsStartupProvisioningState();
+    }
+
+    public String uniqueIdentifierLabVmsStartupUniqueIdentifier() {
+        return this.innerModel().uniqueIdentifierLabVmsStartupUniqueIdentifier();
+    }
+
+    public List<String> weekdaysLabVmsStartupWeekdays() {
+        List<String> inner = this.innerModel().weekdaysLabVmsStartupWeekdays();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String timeLabVmsStartupTime() {
+        return this.innerModel().timeLabVmsStartupTime();
+    }
+
+    public String timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime() {
+        return this.innerModel().timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime();
+    }
+
+    public Integer minuteLabVmsStartupMinute() {
+        return this.innerModel().minuteLabVmsStartupMinute();
+    }
+
+    public EnableStatus statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus() {
+        return this.innerModel().statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus();
+    }
+
+    public Integer timeInMinutesLabVmsStartupTimeInMinutes() {
+        return this.innerModel().timeInMinutesLabVmsStartupTimeInMinutes();
+    }
+
+    public String webhookUrlLabVmsStartupWebhookUrl() {
+        return this.innerModel().webhookUrlLabVmsStartupWebhookUrl();
+    }
+
+    public String emailRecipientLabVmsStartupEmailRecipient() {
+        return this.innerModel().emailRecipientLabVmsStartupEmailRecipient();
+    }
+
+    public String notificationLocaleLabVmsStartupNotificationLocale() {
+        return this.innerModel().notificationLocaleLabVmsStartupNotificationLocale();
+    }
+
+    public Map<String, String> tagsLabVmsStartupTags() {
+        Map<String, String> inner = this.innerModel().tagsLabVmsStartupTags();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
+    }
+
+    public String locationLabVmsStartupLocation() {
+        return this.innerModel().locationLabVmsStartupLocation();
+    }
+
+    public String idLabVmsStartupId() {
+        return this.innerModel().idLabVmsStartupId();
+    }
+
+    public String nameLabVmsStartupName() {
+        return this.innerModel().nameLabVmsStartupName();
+    }
+
+    public String typeLabVmsStartupType() {
+        return this.innerModel().typeLabVmsStartupType();
     }
 
     public ApplicableSchedulePropertiesInner innerModel() {

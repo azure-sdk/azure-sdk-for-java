@@ -9,28 +9,32 @@ import com.azure.resourcemanager.devtestlabs.fluent.models.SecretInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response of a list operation. */
+/**
+ * Contains a list of secrets and their properties.
+ */
 @Fluent
 public final class SecretList {
     /*
-     * Results of the list operation.
+     * List of secrets and their properties
      */
     @JsonProperty(value = "value")
     private List<SecretInner> value;
 
     /*
-     * Link for next set of results.
+     * URL to get the next set of operation list results if there are any
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of SecretList class. */
+    /**
+     * Creates an instance of SecretList class.
+     */
     public SecretList() {
     }
 
     /**
-     * Get the value property: Results of the list operation.
-     *
+     * Get the value property: List of secrets and their properties.
+     * 
      * @return the value value.
      */
     public List<SecretInner> value() {
@@ -38,8 +42,8 @@ public final class SecretList {
     }
 
     /**
-     * Set the value property: Results of the list operation.
-     *
+     * Set the value property: List of secrets and their properties.
+     * 
      * @param value the value value to set.
      * @return the SecretList object itself.
      */
@@ -49,8 +53,8 @@ public final class SecretList {
     }
 
     /**
-     * Get the nextLink property: Link for next set of results.
-     *
+     * Get the nextLink property: URL to get the next set of operation list results if there are any.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -58,8 +62,8 @@ public final class SecretList {
     }
 
     /**
-     * Set the nextLink property: Link for next set of results.
-     *
+     * Set the nextLink property: URL to get the next set of operation list results if there are any.
+     * 
      * @param nextLink the nextLink value to set.
      * @return the SecretList object itself.
      */
@@ -70,7 +74,7 @@ public final class SecretList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

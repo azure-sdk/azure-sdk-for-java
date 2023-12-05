@@ -29,12 +29,22 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.LabAnnouncementProperties",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.LabAnnouncementProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.LabSupportProperties",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.LabSupportProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.Encryption",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -44,7 +54,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.OperationError",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.OperationError",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -64,22 +74,22 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.WeekDetails",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.WeekDetails",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.DayDetails",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.DayDetails",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.HourDetails",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.HourDetails",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.NotificationSettings",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.NotificationSettings",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -169,7 +179,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.TargetCostProperties",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.TargetCostProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -179,12 +189,12 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.PercentageCostThresholdProperties",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.PercentageCostThresholdProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.LabCostSummaryProperties",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.LabCostSummaryProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -214,22 +224,22 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.CustomImagePropertiesFromVm",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.CustomImagePropertiesFromVm",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.WindowsOsInfo",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.WindowsOsInfo",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.LinuxOsInfo",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.LinuxOsInfo",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.CustomImagePropertiesCustom",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.CustomImagePropertiesCustom",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -239,7 +249,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.CustomImagePropertiesFromPlan",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.CustomImagePropertiesFromPlan",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -259,22 +269,22 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.FormulaProperties",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.FormulaPropertiesInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.LabVirtualMachineCreationParameter",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.LabVirtualMachineCreationParameterInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.LabVirtualMachineCreationParameterProperties",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.LabVirtualMachineCreationParameterPropertiesInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.BulkCreationParameters",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.BulkCreationParameters",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -289,17 +299,37 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.GalleryImageReference",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.ArtifactDeploymentStatusProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.NetworkInterfaceProperties",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.GalleryImageReference",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.SharedPublicIpAddressConfiguration",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.ComputeVmProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.models.ComputeVmInstanceViewStatus",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.models.ComputeDataDisk",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.NetworkInterfaceProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.SharedPublicIpAddressConfiguration",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -309,12 +339,22 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.ApplicableScheduleInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.ApplicableSchedulePropertiesInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.devtestlabs.models.DataDiskProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.AttachNewDataDiskOptions",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.AttachNewDataDiskOptions",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -329,7 +369,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.FormulaPropertiesFromVm",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.FormulaPropertiesFromVm",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -384,6 +424,21 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.devtestlabs.models.PolicySetList",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.PolicySetInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.PolicySetProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.devtestlabs.models.EvaluatePoliciesRequest",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -434,12 +489,82 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.devtestlabs.models.LabSecretList",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.LabSecretInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.LabSecretProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.models.SecretFragment",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.models.ServiceRunnerList",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.ServiceRunnerInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.IdentityProperties",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.ServiceRunnerProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.models.SharedGalleryList",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.SharedGalleryInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.SharedGalleryProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.models.SharedGalleryFragment",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.models.SharedImageList",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.SharedImageInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.SharedImageProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.models.ImageVersionProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.models.SharedImageFragment",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -459,12 +584,12 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.UserIdentity",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.UserIdentity",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.UserSecretStore",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.UserSecretStore",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -519,7 +644,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.EnvironmentDeploymentProperties",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.EnvironmentDeploymentProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -549,11 +674,6 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.SecretFragment",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
   "name" : "com.azure.resourcemanager.devtestlabs.models.ServiceFabricList",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -565,16 +685,6 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.ServiceFabricPropertiesInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.ApplicableScheduleInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.ApplicableSchedulePropertiesInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -595,26 +705,6 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.LabVirtualMachinePropertiesInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.ArtifactDeploymentStatusProperties",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.ComputeVmProperties",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.ComputeVmInstanceViewStatus",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.ComputeDataDisk",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -674,7 +764,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.SubnetSharedPublicIpAddressConfiguration",
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.SubnetSharedPublicIpAddressConfiguration",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -685,6 +775,26 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.devtestlabs.models.VirtualNetworkFragment",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.models.BastionHostList",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.BastionHostInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.fluent.models.BastionHostProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.models.BastionHostFragment",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -729,7 +839,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.ApplicableScheduleFragment",
+  "name" : "com.azure.resourcemanager.devtestlabs.models.LabSecretFragment",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -750,6 +860,16 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.devtestlabs.models.EnableStatus",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.models.EncryptionType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.models.ManagedIdentityType",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -809,6 +929,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.devtestlabs.models.VirtualMachineCreationSource",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.devtestlabs.models.HostCachingOptions",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -834,12 +959,22 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.ManagedIdentityType",
+  "name" : "com.azure.resourcemanager.devtestlabs.models.EnableState",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.devtestlabs.models.VirtualMachineCreationSource",
+  "name" : "com.azure.resourcemanager.devtestlabs.models.OsType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.models.ImageType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.devtestlabs.models.StorageTypes",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

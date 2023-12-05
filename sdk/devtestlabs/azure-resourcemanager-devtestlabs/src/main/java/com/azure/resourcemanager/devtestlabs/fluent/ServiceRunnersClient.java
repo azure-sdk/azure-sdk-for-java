@@ -6,15 +6,51 @@ package com.azure.resourcemanager.devtestlabs.fluent;
 
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ServiceRunnerInner;
 
-/** An instance of this class provides access to all the operations defined in ServiceRunnersClient. */
+/**
+ * An instance of this class provides access to all the operations defined in ServiceRunnersClient.
+ */
 public interface ServiceRunnersClient {
     /**
+     * List service runners in a given lab.
+     * 
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains a list of serviceRunners and their properties as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ServiceRunnerInner> list(String resourceGroupName, String labName);
+
+    /**
+     * List service runners in a given lab.
+     * 
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
+     * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
+     * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains a list of serviceRunners and their properties as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ServiceRunnerInner> list(String resourceGroupName, String labName, String filter, Integer top,
+        String orderby, Context context);
+
+    /**
      * Get service runner.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the service runner.
@@ -25,12 +61,12 @@ public interface ServiceRunnersClient {
      * @return service runner along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ServiceRunnerInner> getWithResponse(
-        String resourceGroupName, String labName, String name, Context context);
+    Response<ServiceRunnerInner> getWithResponse(String resourceGroupName, String labName, String name,
+        Context context);
 
     /**
      * Get service runner.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the service runner.
@@ -43,8 +79,24 @@ public interface ServiceRunnersClient {
     ServiceRunnerInner get(String resourceGroupName, String labName, String name);
 
     /**
-     * Create or replace an existing service runner.
-     *
+     * Create or replace an existing Service runner. This operation can take a while to complete.
+     * 
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @param name The name of the service runner.
+     * @param serviceRunner A container for a managed identity to execute DevTest lab services.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a container for a managed identity to execute DevTest lab services.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ServiceRunnerInner>, ServiceRunnerInner> beginCreateOrUpdate(String resourceGroupName,
+        String labName, String name, ServiceRunnerInner serviceRunner);
+
+    /**
+     * Create or replace an existing Service runner. This operation can take a while to complete.
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the service runner.
@@ -53,15 +105,15 @@ public interface ServiceRunnersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a managed identity to execute DevTest lab services along with {@link Response}.
+     * @return the {@link SyncPoller} for polling of a container for a managed identity to execute DevTest lab services.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ServiceRunnerInner> createOrUpdateWithResponse(
-        String resourceGroupName, String labName, String name, ServiceRunnerInner serviceRunner, Context context);
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ServiceRunnerInner>, ServiceRunnerInner> beginCreateOrUpdate(String resourceGroupName,
+        String labName, String name, ServiceRunnerInner serviceRunner, Context context);
 
     /**
-     * Create or replace an existing service runner.
-     *
+     * Create or replace an existing Service runner. This operation can take a while to complete.
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the service runner.
@@ -72,12 +124,43 @@ public interface ServiceRunnersClient {
      * @return a container for a managed identity to execute DevTest lab services.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ServiceRunnerInner createOrUpdate(
-        String resourceGroupName, String labName, String name, ServiceRunnerInner serviceRunner);
+    ServiceRunnerInner createOrUpdate(String resourceGroupName, String labName, String name,
+        ServiceRunnerInner serviceRunner);
 
     /**
-     * Delete service runner.
-     *
+     * Create or replace an existing Service runner. This operation can take a while to complete.
+     * 
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @param name The name of the service runner.
+     * @param serviceRunner A container for a managed identity to execute DevTest lab services.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a managed identity to execute DevTest lab services.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ServiceRunnerInner createOrUpdate(String resourceGroupName, String labName, String name,
+        ServiceRunnerInner serviceRunner, Context context);
+
+    /**
+     * Delete service runner. This operation can take a while to complete.
+     * 
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @param name The name of the service runner.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String labName, String name);
+
+    /**
+     * Delete service runner. This operation can take a while to complete.
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the service runner.
@@ -85,14 +168,15 @@ public interface ServiceRunnersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> deleteWithResponse(String resourceGroupName, String labName, String name, Context context);
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String labName, String name,
+        Context context);
 
     /**
-     * Delete service runner.
-     *
+     * Delete service runner. This operation can take a while to complete.
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the service runner.
@@ -102,4 +186,18 @@ public interface ServiceRunnersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(String resourceGroupName, String labName, String name);
+
+    /**
+     * Delete service runner. This operation can take a while to complete.
+     * 
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @param name The name of the service runner.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String labName, String name, Context context);
 }

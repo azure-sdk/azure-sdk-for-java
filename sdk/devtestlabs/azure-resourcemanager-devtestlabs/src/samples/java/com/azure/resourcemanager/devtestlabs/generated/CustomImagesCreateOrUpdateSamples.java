@@ -4,36 +4,30 @@
 
 package com.azure.resourcemanager.devtestlabs.generated;
 
-import com.azure.resourcemanager.devtestlabs.models.CustomImagePropertiesFromVm;
-import com.azure.resourcemanager.devtestlabs.models.LinuxOsInfo;
 import com.azure.resourcemanager.devtestlabs.models.LinuxOsState;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for CustomImages CreateOrUpdate. */
+/**
+ * Samples for CustomImages CreateOrUpdate.
+ */
 public final class CustomImagesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/CustomImages_CreateOrUpdate.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/
+     * CustomImages_CreateOrUpdate.json
      */
     /**
      * Sample code: CustomImages_CreateOrUpdate.
-     *
+     * 
      * @param manager Entry point to DevTestLabsManager.
      */
     public static void customImagesCreateOrUpdate(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager
-            .customImages()
-            .define("{customImageName}")
-            .withRegion((String) null)
-            .withExistingLab("resourceGroupName", "{labName}")
-            .withTags(mapOf("tagName1", "tagValue1"))
-            .withVm(
-                new CustomImagePropertiesFromVm()
-                    .withSourceVmId(
-                        "/subscriptions/{subscriptionId}/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/{labName}/virtualmachines/{vmName}")
-                    .withLinuxOsInfo(new LinuxOsInfo().withLinuxOsState(LinuxOsState.NON_DEPROVISIONED)))
+        manager.customImages().define("customImageName").withRegion("westcentralus")
+            .withExistingLab("resourceGroupName", "exampleLab").withTags(mapOf("tagName1", "tagValue1"))
             .withDescription("My Custom Image")
-            .create();
+            .withSourceVmId(
+                "/subscriptions/e605a3bc-ee4e-4c7a-9709-1868a28b1d4d/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/exampleLab/virtualmachines/vmName001")
+            .withLinuxOsState(LinuxOsState.NON_DEPROVISIONED).create();
     }
 
     // Use "Map.of" if available

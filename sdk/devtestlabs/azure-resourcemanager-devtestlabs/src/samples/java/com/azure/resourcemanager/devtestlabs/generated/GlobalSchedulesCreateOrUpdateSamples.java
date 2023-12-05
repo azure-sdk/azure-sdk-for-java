@@ -5,32 +5,26 @@
 package com.azure.resourcemanager.devtestlabs.generated;
 
 import com.azure.resourcemanager.devtestlabs.models.EnableStatus;
-import com.azure.resourcemanager.devtestlabs.models.WeekDetails;
 import java.util.Arrays;
 
-/** Samples for GlobalSchedules CreateOrUpdate. */
+/**
+ * Samples for GlobalSchedules CreateOrUpdate.
+ */
 public final class GlobalSchedulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/GlobalSchedules_CreateOrUpdate.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/
+     * GlobalSchedules_CreateOrUpdate.json
      */
     /**
      * Sample code: GlobalSchedules_CreateOrUpdate.
-     *
+     * 
      * @param manager Entry point to DevTestLabsManager.
      */
     public static void globalSchedulesCreateOrUpdate(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager
-            .globalSchedules()
-            .define("labvmautostart")
-            .withRegion((String) null)
-            .withExistingResourceGroup("resourceGroupName")
-            .withStatus(EnableStatus.ENABLED)
-            .withTaskType("LabVmsStartupTask")
-            .withWeeklyRecurrence(
-                new WeekDetails()
-                    .withWeekdays(Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))
-                    .withTime("0700"))
-            .withTimeZoneId("Hawaiian Standard Time")
-            .create();
+        manager.globalSchedules().define("labvmautostart").withRegion("southeastasia")
+            .withExistingResourceGroup("resourceGroupName").withStatus(EnableStatus.ENABLED)
+            .withTaskType("LabVmsStartupTask").withTimeZoneId("Hawaiian Standard Time")
+            .withWeekdays(Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))
+            .withTime("0700").create();
     }
 }

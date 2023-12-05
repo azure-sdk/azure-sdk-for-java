@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The state of the Linux OS (i.e. NonDeprovisioned, DeprovisionRequested, DeprovisionApplied). */
+/**
+ * The state of the Linux OS (i.e. NonDeprovisioned, DeprovisionRequested, DeprovisionApplied).
+ */
 public final class LinuxOsState extends ExpandableStringEnum<LinuxOsState> {
-    /** Static value NonDeprovisioned for LinuxOsState. */
+    /**
+     * Static value NonDeprovisioned for LinuxOsState.
+     */
     public static final LinuxOsState NON_DEPROVISIONED = fromString("NonDeprovisioned");
 
-    /** Static value DeprovisionRequested for LinuxOsState. */
+    /**
+     * Static value DeprovisionRequested for LinuxOsState.
+     */
     public static final LinuxOsState DEPROVISION_REQUESTED = fromString("DeprovisionRequested");
 
-    /** Static value DeprovisionApplied for LinuxOsState. */
+    /**
+     * Static value DeprovisionApplied for LinuxOsState.
+     */
     public static final LinuxOsState DEPROVISION_APPLIED = fromString("DeprovisionApplied");
 
     /**
      * Creates a new instance of LinuxOsState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class LinuxOsState extends ExpandableStringEnum<LinuxOsState> {
 
     /**
      * Creates or finds a LinuxOsState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding LinuxOsState.
      */
@@ -41,7 +49,7 @@ public final class LinuxOsState extends ExpandableStringEnum<LinuxOsState> {
 
     /**
      * Gets known LinuxOsState values.
-     *
+     * 
      * @return known LinuxOsState values.
      */
     public static Collection<LinuxOsState> values() {

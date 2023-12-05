@@ -5,13 +5,15 @@
 package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.LabCostInner;
+import com.azure.resourcemanager.devtestlabs.models.CostThresholdProperties;
 import com.azure.resourcemanager.devtestlabs.models.LabCost;
 import com.azure.resourcemanager.devtestlabs.models.LabCostDetailsProperties;
-import com.azure.resourcemanager.devtestlabs.models.LabCostSummaryProperties;
 import com.azure.resourcemanager.devtestlabs.models.LabResourceCostProperties;
-import com.azure.resourcemanager.devtestlabs.models.TargetCostProperties;
+import com.azure.resourcemanager.devtestlabs.models.ReportingCycleType;
+import com.azure.resourcemanager.devtestlabs.models.TargetCostStatus;
 import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -47,12 +49,8 @@ public final class LabCostImpl implements LabCost, LabCost.Definition, LabCost.U
         }
     }
 
-    public TargetCostProperties targetCost() {
-        return this.innerModel().targetCost();
-    }
-
-    public LabCostSummaryProperties labCostSummary() {
-        return this.innerModel().labCostSummary();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public List<LabCostDetailsProperties> labCostDetails() {
@@ -97,6 +95,39 @@ public final class LabCostImpl implements LabCost, LabCost.Definition, LabCost.U
         return this.innerModel().uniqueIdentifier();
     }
 
+    public TargetCostStatus status() {
+        return this.innerModel().status();
+    }
+
+    public Integer target() {
+        return this.innerModel().target();
+    }
+
+    public List<CostThresholdProperties> costThresholds() {
+        List<CostThresholdProperties> inner = this.innerModel().costThresholds();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public OffsetDateTime cycleStartDateTime() {
+        return this.innerModel().cycleStartDateTime();
+    }
+
+    public OffsetDateTime cycleEndDateTime() {
+        return this.innerModel().cycleEndDateTime();
+    }
+
+    public ReportingCycleType cycleType() {
+        return this.innerModel().cycleType();
+    }
+
+    public Double estimatedLabCost() {
+        return this.innerModel().estimatedLabCost();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
@@ -130,22 +161,14 @@ public final class LabCostImpl implements LabCost, LabCost.Definition, LabCost.U
     }
 
     public LabCost create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getCosts()
-                .createOrUpdateWithResponse(resourceGroupName, labName, name, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getCosts()
+            .createOrUpdateWithResponse(resourceGroupName, labName, name, this.innerModel(), Context.NONE).getValue();
         return this;
     }
 
     public LabCost create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getCosts()
-                .createOrUpdateWithResponse(resourceGroupName, labName, name, this.innerModel(), context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getCosts()
+            .createOrUpdateWithResponse(resourceGroupName, labName, name, this.innerModel(), context).getValue();
         return this;
     }
 
@@ -160,22 +183,14 @@ public final class LabCostImpl implements LabCost, LabCost.Definition, LabCost.U
     }
 
     public LabCost apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getCosts()
-                .createOrUpdateWithResponse(resourceGroupName, labName, name, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getCosts()
+            .createOrUpdateWithResponse(resourceGroupName, labName, name, this.innerModel(), Context.NONE).getValue();
         return this;
     }
 
     public LabCost apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getCosts()
-                .createOrUpdateWithResponse(resourceGroupName, labName, name, this.innerModel(), context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getCosts()
+            .createOrUpdateWithResponse(resourceGroupName, labName, name, this.innerModel(), context).getValue();
         return this;
     }
 
@@ -189,23 +204,15 @@ public final class LabCostImpl implements LabCost, LabCost.Definition, LabCost.U
 
     public LabCost refresh() {
         String localExpand = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getCosts()
-                .getWithResponse(resourceGroupName, labName, name, localExpand, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getCosts()
+            .getWithResponse(resourceGroupName, labName, name, localExpand, Context.NONE).getValue();
         return this;
     }
 
     public LabCost refresh(Context context) {
         String localExpand = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getCosts()
-                .getWithResponse(resourceGroupName, labName, name, localExpand, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getCosts()
+            .getWithResponse(resourceGroupName, labName, name, localExpand, context).getValue();
         return this;
     }
 
@@ -221,11 +228,6 @@ public final class LabCostImpl implements LabCost, LabCost.Definition, LabCost.U
 
     public LabCostImpl withTags(Map<String, String> tags) {
         this.innerModel().withTags(tags);
-        return this;
-    }
-
-    public LabCostImpl withTargetCost(TargetCostProperties targetCost) {
-        this.innerModel().withTargetCost(targetCost);
         return this;
     }
 
@@ -246,6 +248,36 @@ public final class LabCostImpl implements LabCost, LabCost.Definition, LabCost.U
 
     public LabCostImpl withCreatedDate(OffsetDateTime createdDate) {
         this.innerModel().withCreatedDate(createdDate);
+        return this;
+    }
+
+    public LabCostImpl withStatus(TargetCostStatus status) {
+        this.innerModel().withStatus(status);
+        return this;
+    }
+
+    public LabCostImpl withTarget(Integer target) {
+        this.innerModel().withTarget(target);
+        return this;
+    }
+
+    public LabCostImpl withCostThresholds(List<CostThresholdProperties> costThresholds) {
+        this.innerModel().withCostThresholds(costThresholds);
+        return this;
+    }
+
+    public LabCostImpl withCycleStartDateTime(OffsetDateTime cycleStartDateTime) {
+        this.innerModel().withCycleStartDateTime(cycleStartDateTime);
+        return this;
+    }
+
+    public LabCostImpl withCycleEndDateTime(OffsetDateTime cycleEndDateTime) {
+        this.innerModel().withCycleEndDateTime(cycleEndDateTime);
+        return this;
+    }
+
+    public LabCostImpl withCycleType(ReportingCycleType cycleType) {
+        this.innerModel().withCycleType(cycleType);
         return this;
     }
 }

@@ -6,6 +6,7 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.devtestlabs.models.EnableStatus;
 import com.azure.resourcemanager.devtestlabs.models.SourceControlType;
@@ -13,7 +14,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
-/** Properties of an artifact source. */
+/**
+ * Properties of an artifact source.
+ */
 @Fluent
 public final class ArtifactSourceInner extends Resource {
     /*
@@ -22,27 +25,48 @@ public final class ArtifactSourceInner extends Resource {
     @JsonProperty(value = "properties", required = true)
     private ArtifactSourceProperties innerProperties = new ArtifactSourceProperties();
 
-    /** Creates an instance of ArtifactSourceInner class. */
+    /*
+     * The system metadata relating to this resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of ArtifactSourceInner class.
+     */
     public ArtifactSourceInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of the resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ArtifactSourceProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ArtifactSourceInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ArtifactSourceInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -51,7 +75,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Get the displayName property: The artifact source's display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -60,7 +84,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Set the displayName property: The artifact source's display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ArtifactSourceInner object itself.
      */
@@ -74,7 +98,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Get the uri property: The artifact source's URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -83,7 +107,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Set the uri property: The artifact source's URI.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the ArtifactSourceInner object itself.
      */
@@ -97,7 +121,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Get the sourceType property: The artifact source's type.
-     *
+     * 
      * @return the sourceType value.
      */
     public SourceControlType sourceType() {
@@ -106,7 +130,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Set the sourceType property: The artifact source's type.
-     *
+     * 
      * @param sourceType the sourceType value to set.
      * @return the ArtifactSourceInner object itself.
      */
@@ -120,7 +144,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Get the folderPath property: The folder containing artifacts.
-     *
+     * 
      * @return the folderPath value.
      */
     public String folderPath() {
@@ -129,7 +153,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Set the folderPath property: The folder containing artifacts.
-     *
+     * 
      * @param folderPath the folderPath value to set.
      * @return the ArtifactSourceInner object itself.
      */
@@ -143,7 +167,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Get the armTemplateFolderPath property: The folder containing Azure Resource Manager templates.
-     *
+     * 
      * @return the armTemplateFolderPath value.
      */
     public String armTemplateFolderPath() {
@@ -152,7 +176,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Set the armTemplateFolderPath property: The folder containing Azure Resource Manager templates.
-     *
+     * 
      * @param armTemplateFolderPath the armTemplateFolderPath value to set.
      * @return the ArtifactSourceInner object itself.
      */
@@ -166,7 +190,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Get the branchRef property: The artifact source's branch reference.
-     *
+     * 
      * @return the branchRef value.
      */
     public String branchRef() {
@@ -175,7 +199,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Set the branchRef property: The artifact source's branch reference.
-     *
+     * 
      * @param branchRef the branchRef value to set.
      * @return the ArtifactSourceInner object itself.
      */
@@ -189,7 +213,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Get the securityToken property: The security token to authenticate to the artifact source.
-     *
+     * 
      * @return the securityToken value.
      */
     public String securityToken() {
@@ -198,7 +222,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Set the securityToken property: The security token to authenticate to the artifact source.
-     *
+     * 
      * @param securityToken the securityToken value to set.
      * @return the ArtifactSourceInner object itself.
      */
@@ -212,7 +236,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Get the status property: Indicates if the artifact source is enabled (values: Enabled, Disabled).
-     *
+     * 
      * @return the status value.
      */
     public EnableStatus status() {
@@ -221,7 +245,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Set the status property: Indicates if the artifact source is enabled (values: Enabled, Disabled).
-     *
+     * 
      * @param status the status value to set.
      * @return the ArtifactSourceInner object itself.
      */
@@ -235,7 +259,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Get the createdDate property: The artifact source's creation date.
-     *
+     * 
      * @return the createdDate value.
      */
     public OffsetDateTime createdDate() {
@@ -244,7 +268,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioning status of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -253,7 +277,7 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
+     * 
      * @return the uniqueIdentifier value.
      */
     public String uniqueIdentifier() {
@@ -262,15 +286,13 @@ public final class ArtifactSourceInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model ArtifactSourceInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model ArtifactSourceInner"));
         } else {
             innerProperties().validate();
         }

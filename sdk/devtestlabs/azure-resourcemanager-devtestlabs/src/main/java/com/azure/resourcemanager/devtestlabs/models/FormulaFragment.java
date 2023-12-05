@@ -7,14 +7,20 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import java.util.Map;
 
-/** A formula for creating a VM, specifying an image base and other parameters. */
+/**
+ * Patch.
+ */
 @Fluent
 public final class FormulaFragment extends UpdateResource {
-    /** Creates an instance of FormulaFragment class. */
+    /**
+     * Creates an instance of FormulaFragment class.
+     */
     public FormulaFragment() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public FormulaFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -23,7 +29,7 @@ public final class FormulaFragment extends UpdateResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Parameters for generating an ARM template for deploying artifacts. */
+/**
+ * Parameters for generating an ARM template for deploying artifacts.
+ */
 @Fluent
 public final class GenerateArmTemplateRequest {
     /*
@@ -35,13 +37,15 @@ public final class GenerateArmTemplateRequest {
     @JsonProperty(value = "fileUploadOptions")
     private FileUploadOptions fileUploadOptions;
 
-    /** Creates an instance of GenerateArmTemplateRequest class. */
+    /**
+     * Creates an instance of GenerateArmTemplateRequest class.
+     */
     public GenerateArmTemplateRequest() {
     }
 
     /**
      * Get the virtualMachineName property: The resource name of the virtual machine.
-     *
+     * 
      * @return the virtualMachineName value.
      */
     public String virtualMachineName() {
@@ -50,7 +54,7 @@ public final class GenerateArmTemplateRequest {
 
     /**
      * Set the virtualMachineName property: The resource name of the virtual machine.
-     *
+     * 
      * @param virtualMachineName the virtualMachineName value to set.
      * @return the GenerateArmTemplateRequest object itself.
      */
@@ -61,7 +65,7 @@ public final class GenerateArmTemplateRequest {
 
     /**
      * Get the parameters property: The parameters of the ARM template.
-     *
+     * 
      * @return the parameters value.
      */
     public List<ParameterInfo> parameters() {
@@ -70,7 +74,7 @@ public final class GenerateArmTemplateRequest {
 
     /**
      * Set the parameters property: The parameters of the ARM template.
-     *
+     * 
      * @param parameters the parameters value to set.
      * @return the GenerateArmTemplateRequest object itself.
      */
@@ -81,7 +85,7 @@ public final class GenerateArmTemplateRequest {
 
     /**
      * Get the location property: The location of the virtual machine.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -90,7 +94,7 @@ public final class GenerateArmTemplateRequest {
 
     /**
      * Set the location property: The location of the virtual machine.
-     *
+     * 
      * @param location the location value to set.
      * @return the GenerateArmTemplateRequest object itself.
      */
@@ -102,7 +106,7 @@ public final class GenerateArmTemplateRequest {
     /**
      * Get the fileUploadOptions property: Options for uploading the files for the artifact.
      * UploadFilesAndGenerateSasTokens is the default value.
-     *
+     * 
      * @return the fileUploadOptions value.
      */
     public FileUploadOptions fileUploadOptions() {
@@ -112,7 +116,7 @@ public final class GenerateArmTemplateRequest {
     /**
      * Set the fileUploadOptions property: Options for uploading the files for the artifact.
      * UploadFilesAndGenerateSasTokens is the default value.
-     *
+     * 
      * @param fileUploadOptions the fileUploadOptions value to set.
      * @return the GenerateArmTemplateRequest object itself.
      */
@@ -123,7 +127,7 @@ public final class GenerateArmTemplateRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

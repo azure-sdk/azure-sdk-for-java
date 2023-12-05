@@ -7,64 +7,67 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.devtestlabs.fluent.models.LabVirtualMachineCreationParameterInner;
 
-/** Resource collection API of Labs. */
+/**
+ * Resource collection API of Labs.
+ */
 public interface Labs {
     /**
      * List labs in a subscription.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of labs and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Lab> list();
 
     /**
      * List labs in a subscription.
-     *
+     * 
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of labs and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Lab> list(String expand, String filter, Integer top, String orderby, Context context);
 
     /**
      * List labs in a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of labs and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Lab> listByResourceGroup(String resourceGroupName);
 
     /**
      * List labs in a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of labs and their properties as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Lab> listByResourceGroup(
-        String resourceGroupName, String expand, String filter, Integer top, String orderby, Context context);
+    PagedIterable<Lab> listByResourceGroup(String resourceGroupName, String expand, String filter, Integer top,
+        String orderby, Context context);
 
     /**
      * Get lab.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param name The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
@@ -78,7 +81,7 @@ public interface Labs {
 
     /**
      * Get lab.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -90,7 +93,7 @@ public interface Labs {
 
     /**
      * Delete lab. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -101,7 +104,7 @@ public interface Labs {
 
     /**
      * Delete lab. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
@@ -113,7 +116,7 @@ public interface Labs {
 
     /**
      * Claim a random claimable virtual machine in the lab. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -124,7 +127,7 @@ public interface Labs {
 
     /**
      * Claim a random claimable virtual machine in the lab. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
@@ -136,7 +139,7 @@ public interface Labs {
 
     /**
      * Create virtual machines in a lab. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param name The name of the lab.
      * @param labVirtualMachineCreationParameter Properties for creating a virtual machine.
@@ -144,12 +147,12 @@ public interface Labs {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void createEnvironment(
-        String resourceGroupName, String name, LabVirtualMachineCreationParameter labVirtualMachineCreationParameter);
+    void createEnvironment(String resourceGroupName, String name,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter);
 
     /**
      * Create virtual machines in a lab. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param name The name of the lab.
      * @param labVirtualMachineCreationParameter Properties for creating a virtual machine.
@@ -158,15 +161,36 @@ public interface Labs {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void createEnvironment(
-        String resourceGroupName,
-        String name,
-        LabVirtualMachineCreationParameter labVirtualMachineCreationParameter,
-        Context context);
+    void createEnvironment(String resourceGroupName, String name,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter, Context context);
+
+    /**
+     * Ensure the current user has a valid profile in the lab.
+     * 
+     * @param resourceGroupName The name of the resource group.
+     * @param name The name of the lab.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> ensureCurrentUserProfileWithResponse(String resourceGroupName, String name, Context context);
+
+    /**
+     * Ensure the current user has a valid profile in the lab.
+     * 
+     * @param resourceGroupName The name of the resource group.
+     * @param name The name of the lab.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void ensureCurrentUserProfile(String resourceGroupName, String name);
 
     /**
      * Exports the lab resource usage into a storage account This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param name The name of the lab.
      * @param exportResourceUsageParameters The parameters of the export operation.
@@ -174,12 +198,12 @@ public interface Labs {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void exportResourceUsage(
-        String resourceGroupName, String name, ExportResourceUsageParameters exportResourceUsageParameters);
+    void exportResourceUsage(String resourceGroupName, String name,
+        ExportResourceUsageParameters exportResourceUsageParameters);
 
     /**
      * Exports the lab resource usage into a storage account This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param name The name of the lab.
      * @param exportResourceUsageParameters The parameters of the export operation.
@@ -188,15 +212,12 @@ public interface Labs {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void exportResourceUsage(
-        String resourceGroupName,
-        String name,
-        ExportResourceUsageParameters exportResourceUsageParameters,
-        Context context);
+    void exportResourceUsage(String resourceGroupName, String name,
+        ExportResourceUsageParameters exportResourceUsageParameters, Context context);
 
     /**
      * Generate a URI for uploading custom disk images to a Lab.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param name The name of the lab.
      * @param generateUploadUriParameter Properties for generating an upload URI.
@@ -206,12 +227,12 @@ public interface Labs {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return response body for generating an upload URI along with {@link Response}.
      */
-    Response<GenerateUploadUriResponse> generateUploadUriWithResponse(
-        String resourceGroupName, String name, GenerateUploadUriParameter generateUploadUriParameter, Context context);
+    Response<GenerateUploadUriResponse> generateUploadUriWithResponse(String resourceGroupName, String name,
+        GenerateUploadUriParameter generateUploadUriParameter, Context context);
 
     /**
      * Generate a URI for uploading custom disk images to a Lab.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param name The name of the lab.
      * @param generateUploadUriParameter Properties for generating an upload URI.
@@ -220,69 +241,66 @@ public interface Labs {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return response body for generating an upload URI.
      */
-    GenerateUploadUriResponse generateUploadUri(
-        String resourceGroupName, String name, GenerateUploadUriParameter generateUploadUriParameter);
+    GenerateUploadUriResponse generateUploadUri(String resourceGroupName, String name,
+        GenerateUploadUriParameter generateUploadUriParameter);
 
     /**
      * Import a virtual machine into a different lab. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param name The name of the lab.
      * @param importLabVirtualMachineRequest This represents the payload required to import a virtual machine from a
-     *     different lab into the current one.
+     * different lab into the current one.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void importVirtualMachine(
-        String resourceGroupName, String name, ImportLabVirtualMachineRequest importLabVirtualMachineRequest);
+    void importVirtualMachine(String resourceGroupName, String name,
+        ImportLabVirtualMachineRequest importLabVirtualMachineRequest);
 
     /**
      * Import a virtual machine into a different lab. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param name The name of the lab.
      * @param importLabVirtualMachineRequest This represents the payload required to import a virtual machine from a
-     *     different lab into the current one.
+     * different lab into the current one.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void importVirtualMachine(
-        String resourceGroupName,
-        String name,
-        ImportLabVirtualMachineRequest importLabVirtualMachineRequest,
-        Context context);
+    void importVirtualMachine(String resourceGroupName, String name,
+        ImportLabVirtualMachineRequest importLabVirtualMachineRequest, Context context);
 
     /**
      * List disk images available for custom image creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of Lab Vhd and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<LabVhd> listVhds(String resourceGroupName, String name);
 
     /**
      * List disk images available for custom image creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of Lab Vhd and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<LabVhd> listVhds(String resourceGroupName, String name, Context context);
 
     /**
      * Get lab.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -293,7 +311,7 @@ public interface Labs {
 
     /**
      * Get lab.
-     *
+     * 
      * @param id the resource ID.
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
      * @param context The context to associate with this operation.
@@ -306,7 +324,7 @@ public interface Labs {
 
     /**
      * Delete lab. This operation can take a while to complete.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -316,7 +334,7 @@ public interface Labs {
 
     /**
      * Delete lab. This operation can take a while to complete.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -327,7 +345,7 @@ public interface Labs {
 
     /**
      * Begins definition for a new Lab resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new Lab definition.
      */

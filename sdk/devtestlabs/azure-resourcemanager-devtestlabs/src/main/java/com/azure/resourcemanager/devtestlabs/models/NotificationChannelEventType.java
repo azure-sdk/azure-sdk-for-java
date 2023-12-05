@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The event type for which this notification is enabled (i.e. AutoShutdown, Cost). */
+/**
+ * The event type for which this notification is enabled (i.e. AutoShutdown, Cost).
+ */
 public final class NotificationChannelEventType extends ExpandableStringEnum<NotificationChannelEventType> {
-    /** Static value AutoShutdown for NotificationChannelEventType. */
+    /**
+     * Static value AutoShutdown for NotificationChannelEventType.
+     */
     public static final NotificationChannelEventType AUTO_SHUTDOWN = fromString("AutoShutdown");
 
-    /** Static value Cost for NotificationChannelEventType. */
+    /**
+     * Static value Cost for NotificationChannelEventType.
+     */
     public static final NotificationChannelEventType COST = fromString("Cost");
 
     /**
      * Creates a new instance of NotificationChannelEventType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class NotificationChannelEventType extends ExpandableStringEnum<Not
 
     /**
      * Creates or finds a NotificationChannelEventType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding NotificationChannelEventType.
      */
@@ -38,7 +44,7 @@ public final class NotificationChannelEventType extends ExpandableStringEnum<Not
 
     /**
      * Gets known NotificationChannelEventType values.
-     *
+     * 
      * @return known NotificationChannelEventType values.
      */
     public static Collection<NotificationChannelEventType> values() {

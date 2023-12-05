@@ -6,12 +6,15 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
-/** An artifact. */
+/**
+ * An artifact.
+ */
 @Fluent
 public final class ArtifactInner extends Resource {
     /*
@@ -20,27 +23,48 @@ public final class ArtifactInner extends Resource {
     @JsonProperty(value = "properties", required = true)
     private ArtifactProperties innerProperties = new ArtifactProperties();
 
-    /** Creates an instance of ArtifactInner class. */
+    /*
+     * The system metadata relating to this resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of ArtifactInner class.
+     */
     public ArtifactInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of the resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ArtifactProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ArtifactInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ArtifactInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -49,7 +73,7 @@ public final class ArtifactInner extends Resource {
 
     /**
      * Get the title property: The artifact's title.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -58,7 +82,7 @@ public final class ArtifactInner extends Resource {
 
     /**
      * Get the description property: The artifact's description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -67,7 +91,7 @@ public final class ArtifactInner extends Resource {
 
     /**
      * Get the publisher property: The artifact's publisher.
-     *
+     * 
      * @return the publisher value.
      */
     public String publisher() {
@@ -76,7 +100,7 @@ public final class ArtifactInner extends Resource {
 
     /**
      * Get the filePath property: The file path to the artifact.
-     *
+     * 
      * @return the filePath value.
      */
     public String filePath() {
@@ -85,7 +109,7 @@ public final class ArtifactInner extends Resource {
 
     /**
      * Get the icon property: The URI to the artifact icon.
-     *
+     * 
      * @return the icon value.
      */
     public String icon() {
@@ -94,7 +118,7 @@ public final class ArtifactInner extends Resource {
 
     /**
      * Get the targetOsType property: The artifact's target OS.
-     *
+     * 
      * @return the targetOsType value.
      */
     public String targetOsType() {
@@ -103,7 +127,7 @@ public final class ArtifactInner extends Resource {
 
     /**
      * Get the parameters property: The artifact's parameters.
-     *
+     * 
      * @return the parameters value.
      */
     public Object parameters() {
@@ -112,7 +136,7 @@ public final class ArtifactInner extends Resource {
 
     /**
      * Get the createdDate property: The artifact's creation date.
-     *
+     * 
      * @return the createdDate value.
      */
     public OffsetDateTime createdDate() {
@@ -121,14 +145,13 @@ public final class ArtifactInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model ArtifactInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model ArtifactInner"));
         } else {
             innerProperties().validate();
         }

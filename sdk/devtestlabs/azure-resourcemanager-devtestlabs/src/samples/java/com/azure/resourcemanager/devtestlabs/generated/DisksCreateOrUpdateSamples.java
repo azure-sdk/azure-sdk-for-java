@@ -6,26 +6,26 @@ package com.azure.resourcemanager.devtestlabs.generated;
 
 import com.azure.resourcemanager.devtestlabs.models.StorageType;
 
-/** Samples for Disks CreateOrUpdate. */
+/**
+ * Samples for Disks CreateOrUpdate.
+ */
 public final class DisksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Disks_CreateOrUpdate.json
+     * x-ms-original-file:
+     * specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Disks_CreateOrUpdate.
+     * json
      */
     /**
      * Sample code: Disks_CreateOrUpdate.
-     *
+     * 
      * @param manager Entry point to DevTestLabsManager.
      */
     public static void disksCreateOrUpdate(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager
-            .disks()
-            .define("{diskName}")
-            .withRegion((String) null)
-            .withExistingUser("resourceGroupName", "{labName}", "{userId}")
-            .withDiskType(StorageType.STANDARD)
+        manager.disks().define("diskName").withRegion("westcentralus")
+            .withExistingUser("resourceGroupName", "exampleLab", "{userId}").withDiskType(StorageType.STANDARD)
             .withDiskSizeGiB(1023)
             .withLeasedByLabVmId(
-                "/subscriptions/{subscriptionId}/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/{labName}/virtualmachines/vmName")
+                "/subscriptions/e605a3bc-ee4e-4c7a-9709-1868a28b1d4d/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/exampleLab/virtualmachines/vmName")
             .create();
     }
 }

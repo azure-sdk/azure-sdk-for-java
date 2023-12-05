@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.devtestlabs.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ArmTemplateInner;
 import com.azure.resourcemanager.devtestlabs.models.ArmTemplate;
 import com.azure.resourcemanager.devtestlabs.models.ParametersValueFileInfo;
@@ -17,8 +18,8 @@ public final class ArmTemplateImpl implements ArmTemplate {
 
     private final com.azure.resourcemanager.devtestlabs.DevTestLabsManager serviceManager;
 
-    ArmTemplateImpl(
-        ArmTemplateInner innerObject, com.azure.resourcemanager.devtestlabs.DevTestLabsManager serviceManager) {
+    ArmTemplateImpl(ArmTemplateInner innerObject,
+        com.azure.resourcemanager.devtestlabs.DevTestLabsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -46,6 +47,10 @@ public final class ArmTemplateImpl implements ArmTemplate {
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String displayName() {

@@ -5,11 +5,12 @@
 package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.devtestlabs.models.GalleryImageReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Properties of a gallery image. */
+/**
+ * Properties of a gallery image.
+ */
 @Fluent
 public final class GalleryImageProperties {
     /*
@@ -34,7 +35,7 @@ public final class GalleryImageProperties {
      * The image reference of the gallery image.
      */
     @JsonProperty(value = "imageReference")
-    private GalleryImageReference imageReference;
+    private GalleryImageReference innerImageReference;
 
     /*
      * The icon of the gallery image.
@@ -60,13 +61,15 @@ public final class GalleryImageProperties {
     @JsonProperty(value = "isPlanAuthorized")
     private Boolean isPlanAuthorized;
 
-    /** Creates an instance of GalleryImageProperties class. */
+    /**
+     * Creates an instance of GalleryImageProperties class.
+     */
     public GalleryImageProperties() {
     }
 
     /**
      * Get the author property: The author of the gallery image.
-     *
+     * 
      * @return the author value.
      */
     public String author() {
@@ -75,7 +78,7 @@ public final class GalleryImageProperties {
 
     /**
      * Set the author property: The author of the gallery image.
-     *
+     * 
      * @param author the author value to set.
      * @return the GalleryImageProperties object itself.
      */
@@ -86,7 +89,7 @@ public final class GalleryImageProperties {
 
     /**
      * Get the createdDate property: The creation date of the gallery image.
-     *
+     * 
      * @return the createdDate value.
      */
     public OffsetDateTime createdDate() {
@@ -95,7 +98,7 @@ public final class GalleryImageProperties {
 
     /**
      * Get the description property: The description of the gallery image.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -104,7 +107,7 @@ public final class GalleryImageProperties {
 
     /**
      * Set the description property: The description of the gallery image.
-     *
+     * 
      * @param description the description value to set.
      * @return the GalleryImageProperties object itself.
      */
@@ -114,28 +117,17 @@ public final class GalleryImageProperties {
     }
 
     /**
-     * Get the imageReference property: The image reference of the gallery image.
-     *
-     * @return the imageReference value.
+     * Get the innerImageReference property: The image reference of the gallery image.
+     * 
+     * @return the innerImageReference value.
      */
-    public GalleryImageReference imageReference() {
-        return this.imageReference;
-    }
-
-    /**
-     * Set the imageReference property: The image reference of the gallery image.
-     *
-     * @param imageReference the imageReference value to set.
-     * @return the GalleryImageProperties object itself.
-     */
-    public GalleryImageProperties withImageReference(GalleryImageReference imageReference) {
-        this.imageReference = imageReference;
-        return this;
+    private GalleryImageReference innerImageReference() {
+        return this.innerImageReference;
     }
 
     /**
      * Get the icon property: The icon of the gallery image.
-     *
+     * 
      * @return the icon value.
      */
     public String icon() {
@@ -144,7 +136,7 @@ public final class GalleryImageProperties {
 
     /**
      * Set the icon property: The icon of the gallery image.
-     *
+     * 
      * @param icon the icon value to set.
      * @return the GalleryImageProperties object itself.
      */
@@ -155,7 +147,7 @@ public final class GalleryImageProperties {
 
     /**
      * Get the enabled property: Indicates whether this gallery image is enabled.
-     *
+     * 
      * @return the enabled value.
      */
     public Boolean enabled() {
@@ -164,7 +156,7 @@ public final class GalleryImageProperties {
 
     /**
      * Set the enabled property: Indicates whether this gallery image is enabled.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the GalleryImageProperties object itself.
      */
@@ -175,7 +167,7 @@ public final class GalleryImageProperties {
 
     /**
      * Get the planId property: The third party plan that applies to this image.
-     *
+     * 
      * @return the planId value.
      */
     public String planId() {
@@ -184,7 +176,7 @@ public final class GalleryImageProperties {
 
     /**
      * Set the planId property: The third party plan that applies to this image.
-     *
+     * 
      * @param planId the planId value to set.
      * @return the GalleryImageProperties object itself.
      */
@@ -195,7 +187,7 @@ public final class GalleryImageProperties {
 
     /**
      * Get the isPlanAuthorized property: Indicates if the plan has been authorized for programmatic deployment.
-     *
+     * 
      * @return the isPlanAuthorized value.
      */
     public Boolean isPlanAuthorized() {
@@ -204,7 +196,7 @@ public final class GalleryImageProperties {
 
     /**
      * Set the isPlanAuthorized property: Indicates if the plan has been authorized for programmatic deployment.
-     *
+     * 
      * @param isPlanAuthorized the isPlanAuthorized value to set.
      * @return the GalleryImageProperties object itself.
      */
@@ -214,13 +206,128 @@ public final class GalleryImageProperties {
     }
 
     /**
+     * Get the offer property: The offer of the gallery image.
+     * 
+     * @return the offer value.
+     */
+    public String offer() {
+        return this.innerImageReference() == null ? null : this.innerImageReference().offer();
+    }
+
+    /**
+     * Set the offer property: The offer of the gallery image.
+     * 
+     * @param offer the offer value to set.
+     * @return the GalleryImageProperties object itself.
+     */
+    public GalleryImageProperties withOffer(String offer) {
+        if (this.innerImageReference() == null) {
+            this.innerImageReference = new GalleryImageReference();
+        }
+        this.innerImageReference().withOffer(offer);
+        return this;
+    }
+
+    /**
+     * Get the publisher property: The publisher of the gallery image.
+     * 
+     * @return the publisher value.
+     */
+    public String publisher() {
+        return this.innerImageReference() == null ? null : this.innerImageReference().publisher();
+    }
+
+    /**
+     * Set the publisher property: The publisher of the gallery image.
+     * 
+     * @param publisher the publisher value to set.
+     * @return the GalleryImageProperties object itself.
+     */
+    public GalleryImageProperties withPublisher(String publisher) {
+        if (this.innerImageReference() == null) {
+            this.innerImageReference = new GalleryImageReference();
+        }
+        this.innerImageReference().withPublisher(publisher);
+        return this;
+    }
+
+    /**
+     * Get the sku property: The SKU of the gallery image.
+     * 
+     * @return the sku value.
+     */
+    public String sku() {
+        return this.innerImageReference() == null ? null : this.innerImageReference().sku();
+    }
+
+    /**
+     * Set the sku property: The SKU of the gallery image.
+     * 
+     * @param sku the sku value to set.
+     * @return the GalleryImageProperties object itself.
+     */
+    public GalleryImageProperties withSku(String sku) {
+        if (this.innerImageReference() == null) {
+            this.innerImageReference = new GalleryImageReference();
+        }
+        this.innerImageReference().withSku(sku);
+        return this;
+    }
+
+    /**
+     * Get the osType property: The OS type of the gallery image.
+     * 
+     * @return the osType value.
+     */
+    public String osType() {
+        return this.innerImageReference() == null ? null : this.innerImageReference().osType();
+    }
+
+    /**
+     * Set the osType property: The OS type of the gallery image.
+     * 
+     * @param osType the osType value to set.
+     * @return the GalleryImageProperties object itself.
+     */
+    public GalleryImageProperties withOsType(String osType) {
+        if (this.innerImageReference() == null) {
+            this.innerImageReference = new GalleryImageReference();
+        }
+        this.innerImageReference().withOsType(osType);
+        return this;
+    }
+
+    /**
+     * Get the version property: The version of the gallery image.
+     * 
+     * @return the version value.
+     */
+    public String version() {
+        return this.innerImageReference() == null ? null : this.innerImageReference().version();
+    }
+
+    /**
+     * Set the version property: The version of the gallery image.
+     * 
+     * @param version the version value to set.
+     * @return the GalleryImageProperties object itself.
+     */
+    public GalleryImageProperties withVersion(String version) {
+        if (this.innerImageReference() == null) {
+            this.innerImageReference = new GalleryImageReference();
+        }
+        this.innerImageReference().withVersion(version);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (imageReference() != null) {
-            imageReference().validate();
+        if (innerImageReference() != null) {
+            innerImageReference().validate();
         }
     }
 }

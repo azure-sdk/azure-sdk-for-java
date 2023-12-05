@@ -4,20 +4,22 @@
 
 package com.azure.resourcemanager.devtestlabs.generated;
 
-/** Samples for ServiceRunners Get. */
+/**
+ * Samples for ServiceRunners Get.
+ */
 public final class ServiceRunnersGetSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ServiceRunners_Get.json
+     * x-ms-original-file:
+     * specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/ServiceRunners_Get.
+     * json
      */
     /**
      * Sample code: ServiceRunners_Get.
-     *
+     * 
      * @param manager Entry point to DevTestLabsManager.
      */
     public static void serviceRunnersGet(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager
-            .serviceRunners()
-            .getWithResponse(
-                "resourceGroupName", "{devtestlabName}", "{servicerunnerName}", com.azure.core.util.Context.NONE);
+        manager.serviceRunners().getWithResponse("resourceGroupName", "exampleLab", "{servicerunnerName}",
+            com.azure.core.util.Context.NONE);
     }
 }

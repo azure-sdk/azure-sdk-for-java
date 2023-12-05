@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties for evaluating a policy set. */
+/**
+ * Properties for evaluating a policy set.
+ */
 @Fluent
 public final class EvaluatePoliciesProperties {
     /*
@@ -34,13 +36,15 @@ public final class EvaluatePoliciesProperties {
     @JsonProperty(value = "userObjectId")
     private String userObjectId;
 
-    /** Creates an instance of EvaluatePoliciesProperties class. */
+    /**
+     * Creates an instance of EvaluatePoliciesProperties class.
+     */
     public EvaluatePoliciesProperties() {
     }
 
     /**
      * Get the factName property: The fact name.
-     *
+     * 
      * @return the factName value.
      */
     public String factName() {
@@ -49,7 +53,7 @@ public final class EvaluatePoliciesProperties {
 
     /**
      * Set the factName property: The fact name.
-     *
+     * 
      * @param factName the factName value to set.
      * @return the EvaluatePoliciesProperties object itself.
      */
@@ -60,7 +64,7 @@ public final class EvaluatePoliciesProperties {
 
     /**
      * Get the factData property: The fact data.
-     *
+     * 
      * @return the factData value.
      */
     public String factData() {
@@ -69,7 +73,7 @@ public final class EvaluatePoliciesProperties {
 
     /**
      * Set the factData property: The fact data.
-     *
+     * 
      * @param factData the factData value to set.
      * @return the EvaluatePoliciesProperties object itself.
      */
@@ -80,7 +84,7 @@ public final class EvaluatePoliciesProperties {
 
     /**
      * Get the valueOffset property: The value offset.
-     *
+     * 
      * @return the valueOffset value.
      */
     public String valueOffset() {
@@ -89,7 +93,7 @@ public final class EvaluatePoliciesProperties {
 
     /**
      * Set the valueOffset property: The value offset.
-     *
+     * 
      * @param valueOffset the valueOffset value to set.
      * @return the EvaluatePoliciesProperties object itself.
      */
@@ -100,7 +104,7 @@ public final class EvaluatePoliciesProperties {
 
     /**
      * Get the userObjectId property: The user for which policies will be evaluated.
-     *
+     * 
      * @return the userObjectId value.
      */
     public String userObjectId() {
@@ -109,7 +113,7 @@ public final class EvaluatePoliciesProperties {
 
     /**
      * Set the userObjectId property: The user for which policies will be evaluated.
-     *
+     * 
      * @param userObjectId the userObjectId value to set.
      * @return the EvaluatePoliciesProperties object itself.
      */
@@ -120,7 +124,7 @@ public final class EvaluatePoliciesProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

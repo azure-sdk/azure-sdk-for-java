@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Subnet information as returned by the Microsoft.Network API. */
+/**
+ * Subnet information as returned by the Microsoft.Network API.
+ */
 @Fluent
 public final class ExternalSubnet {
     /*
@@ -22,13 +24,15 @@ public final class ExternalSubnet {
     @JsonProperty(value = "name")
     private String name;
 
-    /** Creates an instance of ExternalSubnet class. */
+    /**
+     * Creates an instance of ExternalSubnet class.
+     */
     public ExternalSubnet() {
     }
 
     /**
      * Get the id property: Gets or sets the identifier.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -37,7 +41,7 @@ public final class ExternalSubnet {
 
     /**
      * Set the id property: Gets or sets the identifier.
-     *
+     * 
      * @param id the id value to set.
      * @return the ExternalSubnet object itself.
      */
@@ -48,7 +52,7 @@ public final class ExternalSubnet {
 
     /**
      * Get the name property: Gets or sets the name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -57,7 +61,7 @@ public final class ExternalSubnet {
 
     /**
      * Set the name property: Gets or sets the name.
-     *
+     * 
      * @param name the name value to set.
      * @return the ExternalSubnet object itself.
      */
@@ -68,7 +72,7 @@ public final class ExternalSubnet {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

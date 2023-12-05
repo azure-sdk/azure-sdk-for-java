@@ -34,132 +34,107 @@ import com.azure.resourcemanager.devtestlabs.models.ArtifactList;
 import com.azure.resourcemanager.devtestlabs.models.GenerateArmTemplateRequest;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in ArtifactsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in ArtifactsClient.
+ */
 public final class ArtifactsClientImpl implements ArtifactsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final ArtifactsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final DevTestLabsClientImpl client;
 
     /**
      * Initializes an instance of ArtifactsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     ArtifactsClientImpl(DevTestLabsClientImpl client) {
-        this.service =
-            RestProxy.create(ArtifactsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(ArtifactsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for DevTestLabsClientArtifacts to be used by the proxy service to perform
-     * REST calls.
+     * The interface defining all the services for DevTestLabsClientArtifacts to be used by the proxy service to
+     * perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "DevTestLabsClientArt")
     public interface ArtifactsService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/artifactsources/{artifactSourceName}/artifacts")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/artifactsources/{artifactSourceName}/artifacts")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ArtifactList>> list(
-            @HostParam("$host") String endpoint,
+        Mono<Response<ArtifactList>> list(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("labName") String labName,
-            @PathParam("artifactSourceName") String artifactSourceName,
-            @QueryParam("$expand") String expand,
-            @QueryParam("$filter") String filter,
-            @QueryParam("$top") Integer top,
-            @QueryParam("$orderby") String orderby,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("labName") String labName,
+            @PathParam("artifactSourceName") String artifactSourceName, @QueryParam("$expand") String expand,
+            @QueryParam("$filter") String filter, @QueryParam("$top") Integer top,
+            @QueryParam("$orderby") String orderby, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/artifactsources/{artifactSourceName}/artifacts/{name}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/artifactsources/{artifactSourceName}/artifacts/{name}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ArtifactInner>> get(
-            @HostParam("$host") String endpoint,
+        Mono<Response<ArtifactInner>> get(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("labName") String labName,
-            @PathParam("artifactSourceName") String artifactSourceName,
-            @PathParam("name") String name,
-            @QueryParam("$expand") String expand,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("labName") String labName,
+            @PathParam("artifactSourceName") String artifactSourceName, @PathParam("name") String name,
+            @QueryParam("$expand") String expand, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/artifactsources/{artifactSourceName}/artifacts/{name}/generateArmTemplate")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/artifactsources/{artifactSourceName}/artifacts/{name}/generateArmTemplate")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ArmTemplateInfoInner>> generateArmTemplate(
-            @HostParam("$host") String endpoint,
+        Mono<Response<ArmTemplateInfoInner>> generateArmTemplate(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("labName") String labName,
-            @PathParam("artifactSourceName") String artifactSourceName,
-            @PathParam("name") String name,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("labName") String labName,
+            @PathParam("artifactSourceName") String artifactSourceName, @PathParam("name") String name,
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") GenerateArmTemplateRequest generateArmTemplateRequest,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ArtifactList>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<ArtifactList>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * List artifacts in a given artifact source.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
      * @param expand Specify the $expand query. Example: 'properties($select=title)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of artifacts and their properties along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ArtifactInner>> listSinglePageAsync(
-        String resourceGroupName,
-        String labName,
-        String artifactSourceName,
-        String expand,
-        String filter,
-        Integer top,
-        String orderby) {
+    private Mono<PagedResponse<ArtifactInner>> listSinglePageAsync(String resourceGroupName, String labName,
+        String artifactSourceName, String expand, String filter, Integer top, String orderby) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -174,72 +149,41 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            labName,
-                            artifactSourceName,
-                            expand,
-                            filter,
-                            top,
-                            orderby,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<ArtifactInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, labName, artifactSourceName, expand, filter, top, orderby,
+                this.client.getApiVersion(), accept, context))
+            .<PagedResponse<ArtifactInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List artifacts in a given artifact source.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
      * @param expand Specify the $expand query. Example: 'properties($select=title)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of artifacts and their properties along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ArtifactInner>> listSinglePageAsync(
-        String resourceGroupName,
-        String labName,
-        String artifactSourceName,
-        String expand,
-        String filter,
-        Integer top,
-        String orderby,
-        Context context) {
+    private Mono<PagedResponse<ArtifactInner>> listSinglePageAsync(String resourceGroupName, String labName,
+        String artifactSourceName, String expand, String filter, Integer top, String orderby, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -255,54 +199,30 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                labName,
-                artifactSourceName,
-                expand,
-                filter,
-                top,
-                orderby,
-                this.client.getApiVersion(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, labName,
+                artifactSourceName, expand, filter, top, orderby, this.client.getApiVersion(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List artifacts in a given artifact source.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
      * @param expand Specify the $expand query. Example: 'properties($select=title)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of artifacts and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ArtifactInner> listAsync(
-        String resourceGroupName,
-        String labName,
-        String artifactSourceName,
-        String expand,
-        String filter,
-        Integer top,
-        String orderby) {
+    private PagedFlux<ArtifactInner> listAsync(String resourceGroupName, String labName, String artifactSourceName,
+        String expand, String filter, Integer top, String orderby) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(resourceGroupName, labName, artifactSourceName, expand, filter, top, orderby),
             nextLink -> listNextSinglePageAsync(nextLink));
@@ -310,14 +230,14 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
 
     /**
      * List artifacts in a given artifact source.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of artifacts and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ArtifactInner> listAsync(String resourceGroupName, String labName, String artifactSourceName) {
@@ -332,47 +252,37 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
 
     /**
      * List artifacts in a given artifact source.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
      * @param expand Specify the $expand query. Example: 'properties($select=title)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of artifacts and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ArtifactInner> listAsync(
-        String resourceGroupName,
-        String labName,
-        String artifactSourceName,
-        String expand,
-        String filter,
-        Integer top,
-        String orderby,
-        Context context) {
-        return new PagedFlux<>(
-            () ->
-                listSinglePageAsync(
-                    resourceGroupName, labName, artifactSourceName, expand, filter, top, orderby, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    private PagedFlux<ArtifactInner> listAsync(String resourceGroupName, String labName, String artifactSourceName,
+        String expand, String filter, Integer top, String orderby, Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, labName, artifactSourceName, expand, filter,
+            top, orderby, context), nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List artifacts in a given artifact source.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of artifacts and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ArtifactInner> list(String resourceGroupName, String labName, String artifactSourceName) {
@@ -386,37 +296,30 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
 
     /**
      * List artifacts in a given artifact source.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
      * @param expand Specify the $expand query. Example: 'properties($select=title)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of artifacts and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ArtifactInner> list(
-        String resourceGroupName,
-        String labName,
-        String artifactSourceName,
-        String expand,
-        String filter,
-        Integer top,
-        String orderby,
-        Context context) {
+    public PagedIterable<ArtifactInner> list(String resourceGroupName, String labName, String artifactSourceName,
+        String expand, String filter, Integer top, String orderby, Context context) {
         return new PagedIterable<>(
             listAsync(resourceGroupName, labName, artifactSourceName, expand, filter, top, orderby, context));
     }
 
     /**
      * Get artifact.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
@@ -428,19 +331,15 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @return artifact along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ArtifactInner>> getWithResponseAsync(
-        String resourceGroupName, String labName, String artifactSourceName, String name, String expand) {
+    private Mono<Response<ArtifactInner>> getWithResponseAsync(String resourceGroupName, String labName,
+        String artifactSourceName, String name, String expand) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -459,25 +358,14 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            labName,
-                            artifactSourceName,
-                            name,
-                            expand,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+                context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    labName, artifactSourceName, name, expand, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get artifact.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
@@ -490,24 +378,15 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @return artifact along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ArtifactInner>> getWithResponseAsync(
-        String resourceGroupName,
-        String labName,
-        String artifactSourceName,
-        String name,
-        String expand,
-        Context context) {
+    private Mono<Response<ArtifactInner>> getWithResponseAsync(String resourceGroupName, String labName,
+        String artifactSourceName, String name, String expand, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -525,23 +404,13 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                labName,
-                artifactSourceName,
-                name,
-                expand,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, labName,
+            artifactSourceName, name, expand, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Get artifact.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
@@ -552,8 +421,8 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @return artifact on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ArtifactInner> getAsync(
-        String resourceGroupName, String labName, String artifactSourceName, String name) {
+    private Mono<ArtifactInner> getAsync(String resourceGroupName, String labName, String artifactSourceName,
+        String name) {
         final String expand = null;
         return getWithResponseAsync(resourceGroupName, labName, artifactSourceName, name, expand)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -561,7 +430,7 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
 
     /**
      * Get artifact.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
@@ -574,19 +443,14 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @return artifact along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ArtifactInner> getWithResponse(
-        String resourceGroupName,
-        String labName,
-        String artifactSourceName,
-        String name,
-        String expand,
-        Context context) {
+    public Response<ArtifactInner> getWithResponse(String resourceGroupName, String labName, String artifactSourceName,
+        String name, String expand, Context context) {
         return getWithResponseAsync(resourceGroupName, labName, artifactSourceName, name, expand, context).block();
     }
 
     /**
      * Get artifact.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
@@ -605,7 +469,7 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
     /**
      * Generates an ARM template for the given artifact, uploads the required files to a storage account, and validates
      * the generated artifact.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
@@ -614,27 +478,19 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a generated ARM template along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return information about a generated ARM template along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ArmTemplateInfoInner>> generateArmTemplateWithResponseAsync(
-        String resourceGroupName,
-        String labName,
-        String artifactSourceName,
-        String name,
-        GenerateArmTemplateRequest generateArmTemplateRequest) {
+    private Mono<Response<ArmTemplateInfoInner>> generateArmTemplateWithResponseAsync(String resourceGroupName,
+        String labName, String artifactSourceName, String name, GenerateArmTemplateRequest generateArmTemplateRequest) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -651,36 +507,23 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
             return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         if (generateArmTemplateRequest == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter generateArmTemplateRequest is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter generateArmTemplateRequest is required and cannot be null."));
         } else {
             generateArmTemplateRequest.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .generateArmTemplate(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            labName,
-                            artifactSourceName,
-                            name,
-                            this.client.getApiVersion(),
-                            generateArmTemplateRequest,
-                            accept,
-                            context))
+            .withContext(context -> service.generateArmTemplate(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), resourceGroupName, labName, artifactSourceName, name,
+                this.client.getApiVersion(), generateArmTemplateRequest, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Generates an ARM template for the given artifact, uploads the required files to a storage account, and validates
      * the generated artifact.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
@@ -690,28 +533,20 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a generated ARM template along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return information about a generated ARM template along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ArmTemplateInfoInner>> generateArmTemplateWithResponseAsync(
-        String resourceGroupName,
-        String labName,
-        String artifactSourceName,
-        String name,
-        GenerateArmTemplateRequest generateArmTemplateRequest,
+    private Mono<Response<ArmTemplateInfoInner>> generateArmTemplateWithResponseAsync(String resourceGroupName,
+        String labName, String artifactSourceName, String name, GenerateArmTemplateRequest generateArmTemplateRequest,
         Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -728,33 +563,22 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
             return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         if (generateArmTemplateRequest == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter generateArmTemplateRequest is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter generateArmTemplateRequest is required and cannot be null."));
         } else {
             generateArmTemplateRequest.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .generateArmTemplate(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                labName,
-                artifactSourceName,
-                name,
-                this.client.getApiVersion(),
-                generateArmTemplateRequest,
-                accept,
-                context);
+        return service.generateArmTemplate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            resourceGroupName, labName, artifactSourceName, name, this.client.getApiVersion(),
+            generateArmTemplateRequest, accept, context);
     }
 
     /**
      * Generates an ARM template for the given artifact, uploads the required files to a storage account, and validates
      * the generated artifact.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
@@ -766,21 +590,16 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @return information about a generated ARM template on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ArmTemplateInfoInner> generateArmTemplateAsync(
-        String resourceGroupName,
-        String labName,
-        String artifactSourceName,
-        String name,
-        GenerateArmTemplateRequest generateArmTemplateRequest) {
-        return generateArmTemplateWithResponseAsync(
-                resourceGroupName, labName, artifactSourceName, name, generateArmTemplateRequest)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<ArmTemplateInfoInner> generateArmTemplateAsync(String resourceGroupName, String labName,
+        String artifactSourceName, String name, GenerateArmTemplateRequest generateArmTemplateRequest) {
+        return generateArmTemplateWithResponseAsync(resourceGroupName, labName, artifactSourceName, name,
+            generateArmTemplateRequest).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Generates an ARM template for the given artifact, uploads the required files to a storage account, and validates
      * the generated artifact.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
@@ -793,22 +612,17 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @return information about a generated ARM template along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ArmTemplateInfoInner> generateArmTemplateWithResponse(
-        String resourceGroupName,
-        String labName,
-        String artifactSourceName,
-        String name,
-        GenerateArmTemplateRequest generateArmTemplateRequest,
+    public Response<ArmTemplateInfoInner> generateArmTemplateWithResponse(String resourceGroupName, String labName,
+        String artifactSourceName, String name, GenerateArmTemplateRequest generateArmTemplateRequest,
         Context context) {
-        return generateArmTemplateWithResponseAsync(
-                resourceGroupName, labName, artifactSourceName, name, generateArmTemplateRequest, context)
-            .block();
+        return generateArmTemplateWithResponseAsync(resourceGroupName, labName, artifactSourceName, name,
+            generateArmTemplateRequest, context).block();
     }
 
     /**
      * Generates an ARM template for the given artifact, uploads the required files to a storage account, and validates
      * the generated artifact.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
@@ -820,27 +634,23 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @return information about a generated ARM template.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ArmTemplateInfoInner generateArmTemplate(
-        String resourceGroupName,
-        String labName,
-        String artifactSourceName,
-        String name,
-        GenerateArmTemplateRequest generateArmTemplateRequest) {
-        return generateArmTemplateWithResponse(
-                resourceGroupName, labName, artifactSourceName, name, generateArmTemplateRequest, Context.NONE)
-            .getValue();
+    public ArmTemplateInfoInner generateArmTemplate(String resourceGroupName, String labName, String artifactSourceName,
+        String name, GenerateArmTemplateRequest generateArmTemplateRequest) {
+        return generateArmTemplateWithResponse(resourceGroupName, labName, artifactSourceName, name,
+            generateArmTemplateRequest, Context.NONE).getValue();
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of artifacts and their properties along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ArtifactInner>> listNextSinglePageAsync(String nextLink) {
@@ -848,37 +658,28 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<ArtifactInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<ArtifactInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of artifacts and their properties along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ArtifactInner>> listNextSinglePageAsync(String nextLink, Context context) {
@@ -886,23 +687,13 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

@@ -7,26 +7,23 @@ package com.azure.resourcemanager.devtestlabs.generated;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for ServiceFabrics CreateOrUpdate. */
+/**
+ * Samples for ServiceFabrics CreateOrUpdate.
+ */
 public final class ServiceFabricsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ServiceFabrics_CreateOrUpdate.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/
+     * ServiceFabrics_CreateOrUpdate.json
      */
     /**
      * Sample code: ServiceFabrics_CreateOrUpdate.
-     *
+     * 
      * @param manager Entry point to DevTestLabsManager.
      */
     public static void serviceFabricsCreateOrUpdate(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager
-            .serviceFabrics()
-            .define("{serviceFabricName}")
-            .withRegion("{location}")
-            .withExistingUser("resourceGroupName", "{labName}", "{userName}")
-            .withTags(mapOf("tagName1", "tagValue1"))
-            .withExternalServiceFabricId("{serviceFabricId}")
-            .withEnvironmentId("{environmentId}")
-            .create();
+        manager.serviceFabrics().define("serviceFabricName").withRegion("westcentralus")
+            .withExistingUser("resourceGroupName", "exampleLab", "UserName001").withTags(mapOf("tagName1", "tagValue1"))
+            .withExternalServiceFabricId("{serviceFabricId}").withEnvironmentId("{environmentId}").create();
     }
 
     // Use "Map.of" if available

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.devtestlabs.models.StorageType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Properties of a disk. */
+/**
+ * Properties of a disk.
+ */
 @Fluent
 public final class DiskProperties {
     /*
@@ -78,13 +80,15 @@ public final class DiskProperties {
     @JsonProperty(value = "uniqueIdentifier", access = JsonProperty.Access.WRITE_ONLY)
     private String uniqueIdentifier;
 
-    /** Creates an instance of DiskProperties class. */
+    /**
+     * Creates an instance of DiskProperties class.
+     */
     public DiskProperties() {
     }
 
     /**
      * Get the diskType property: The storage type for the disk (i.e. Standard, Premium).
-     *
+     * 
      * @return the diskType value.
      */
     public StorageType diskType() {
@@ -93,7 +97,7 @@ public final class DiskProperties {
 
     /**
      * Set the diskType property: The storage type for the disk (i.e. Standard, Premium).
-     *
+     * 
      * @param diskType the diskType value to set.
      * @return the DiskProperties object itself.
      */
@@ -104,7 +108,7 @@ public final class DiskProperties {
 
     /**
      * Get the diskSizeGiB property: The size of the disk in Gibibytes.
-     *
+     * 
      * @return the diskSizeGiB value.
      */
     public Integer diskSizeGiB() {
@@ -113,7 +117,7 @@ public final class DiskProperties {
 
     /**
      * Set the diskSizeGiB property: The size of the disk in Gibibytes.
-     *
+     * 
      * @param diskSizeGiB the diskSizeGiB value to set.
      * @return the DiskProperties object itself.
      */
@@ -124,7 +128,7 @@ public final class DiskProperties {
 
     /**
      * Get the leasedByLabVmId property: The resource ID of the VM to which this disk is leased.
-     *
+     * 
      * @return the leasedByLabVmId value.
      */
     public String leasedByLabVmId() {
@@ -133,7 +137,7 @@ public final class DiskProperties {
 
     /**
      * Set the leasedByLabVmId property: The resource ID of the VM to which this disk is leased.
-     *
+     * 
      * @param leasedByLabVmId the leasedByLabVmId value to set.
      * @return the DiskProperties object itself.
      */
@@ -144,7 +148,7 @@ public final class DiskProperties {
 
     /**
      * Get the diskBlobName property: When backed by a blob, the name of the VHD blob without extension.
-     *
+     * 
      * @return the diskBlobName value.
      */
     public String diskBlobName() {
@@ -153,7 +157,7 @@ public final class DiskProperties {
 
     /**
      * Set the diskBlobName property: When backed by a blob, the name of the VHD blob without extension.
-     *
+     * 
      * @param diskBlobName the diskBlobName value to set.
      * @return the DiskProperties object itself.
      */
@@ -164,7 +168,7 @@ public final class DiskProperties {
 
     /**
      * Get the diskUri property: When backed by a blob, the URI of underlying blob.
-     *
+     * 
      * @return the diskUri value.
      */
     public String diskUri() {
@@ -173,7 +177,7 @@ public final class DiskProperties {
 
     /**
      * Set the diskUri property: When backed by a blob, the URI of underlying blob.
-     *
+     * 
      * @param diskUri the diskUri value to set.
      * @return the DiskProperties object itself.
      */
@@ -184,7 +188,7 @@ public final class DiskProperties {
 
     /**
      * Get the storageAccountId property: When backed by a blob, the storage account where the blob is.
-     *
+     * 
      * @return the storageAccountId value.
      */
     public String storageAccountId() {
@@ -193,7 +197,7 @@ public final class DiskProperties {
 
     /**
      * Set the storageAccountId property: When backed by a blob, the storage account where the blob is.
-     *
+     * 
      * @param storageAccountId the storageAccountId value to set.
      * @return the DiskProperties object itself.
      */
@@ -204,7 +208,7 @@ public final class DiskProperties {
 
     /**
      * Get the createdDate property: The creation date of the disk.
-     *
+     * 
      * @return the createdDate value.
      */
     public OffsetDateTime createdDate() {
@@ -213,7 +217,7 @@ public final class DiskProperties {
 
     /**
      * Get the hostCaching property: The host caching policy of the disk (i.e. None, ReadOnly, ReadWrite).
-     *
+     * 
      * @return the hostCaching value.
      */
     public String hostCaching() {
@@ -222,7 +226,7 @@ public final class DiskProperties {
 
     /**
      * Set the hostCaching property: The host caching policy of the disk (i.e. None, ReadOnly, ReadWrite).
-     *
+     * 
      * @param hostCaching the hostCaching value to set.
      * @return the DiskProperties object itself.
      */
@@ -233,7 +237,7 @@ public final class DiskProperties {
 
     /**
      * Get the managedDiskId property: When backed by managed disk, this is the ID of the compute disk resource.
-     *
+     * 
      * @return the managedDiskId value.
      */
     public String managedDiskId() {
@@ -242,7 +246,7 @@ public final class DiskProperties {
 
     /**
      * Set the managedDiskId property: When backed by managed disk, this is the ID of the compute disk resource.
-     *
+     * 
      * @param managedDiskId the managedDiskId value to set.
      * @return the DiskProperties object itself.
      */
@@ -253,7 +257,7 @@ public final class DiskProperties {
 
     /**
      * Get the provisioningState property: The provisioning status of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -262,7 +266,7 @@ public final class DiskProperties {
 
     /**
      * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
+     * 
      * @return the uniqueIdentifier value.
      */
     public String uniqueIdentifier() {
@@ -271,7 +275,7 @@ public final class DiskProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

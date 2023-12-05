@@ -4,150 +4,154 @@
 
 package com.azure.resourcemanager.devtestlabs.models;
 
-import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.UserInner;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
-/** An immutable client-side representation of User. */
+/**
+ * An immutable client-side representation of User.
+ */
 public interface User {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
-     * Gets the location property: The geo-location where the resource lives.
-     *
-     * @return the location value.
+     * Gets the systemData property: The system metadata relating to this resource.
+     * 
+     * @return the systemData value.
      */
-    String location();
-
-    /**
-     * Gets the tags property: Resource tags.
-     *
-     * @return the tags value.
-     */
-    Map<String, String> tags();
-
-    /**
-     * Gets the identity property: The identity of the user.
-     *
-     * @return the identity value.
-     */
-    UserIdentity identity();
-
-    /**
-     * Gets the secretStore property: The secret store of the user.
-     *
-     * @return the secretStore value.
-     */
-    UserSecretStore secretStore();
+    SystemData systemData();
 
     /**
      * Gets the createdDate property: The creation date of the user profile.
-     *
+     * 
      * @return the createdDate value.
      */
     OffsetDateTime createdDate();
 
     /**
      * Gets the provisioningState property: The provisioning status of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     String provisioningState();
 
     /**
      * Gets the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
+     * 
      * @return the uniqueIdentifier value.
      */
     String uniqueIdentifier();
 
     /**
-     * Gets the region of the resource.
-     *
-     * @return the region of the resource.
+     * Gets the principalName property: Set to the principal name / UPN of the client JWT making the request.
+     * 
+     * @return the principalName value.
      */
-    Region region();
+    String principalName();
 
     /**
-     * Gets the name of the resource region.
-     *
-     * @return the name of the resource region.
+     * Gets the principalId property: Set to the principal Id of the client JWT making the request. Service principal
+     * will not have the principal Id.
+     * 
+     * @return the principalId value.
      */
-    String regionName();
+    String principalId();
+
+    /**
+     * Gets the tenantId property: Set to the tenant ID of the client JWT making the request.
+     * 
+     * @return the tenantId value.
+     */
+    String tenantId();
+
+    /**
+     * Gets the objectId property: Set to the object Id of the client JWT making the request. Not all users have object
+     * Id. For CSP (reseller) scenarios for example, object Id is not available.
+     * 
+     * @return the objectId value.
+     */
+    String objectId();
+
+    /**
+     * Gets the appId property: Set to the app Id of the client JWT making the request.
+     * 
+     * @return the appId value.
+     */
+    String appId();
+
+    /**
+     * Gets the keyVaultUri property: The URI of the user's Key vault.
+     * 
+     * @return the keyVaultUri value.
+     */
+    String keyVaultUri();
+
+    /**
+     * Gets the keyVaultId property: The ID of the user's Key vault.
+     * 
+     * @return the keyVaultId value.
+     */
+    String keyVaultId();
 
     /**
      * Gets the name of the resource group.
-     *
+     * 
      * @return the name of the resource group.
      */
     String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.devtestlabs.fluent.models.UserInner object.
-     *
+     * 
      * @return the inner object.
      */
     UserInner innerModel();
 
-    /** The entirety of the User definition. */
+    /**
+     * The entirety of the User definition.
+     */
     interface Definition
-        extends DefinitionStages.Blank,
-            DefinitionStages.WithLocation,
-            DefinitionStages.WithParentResource,
-            DefinitionStages.WithCreate {
+        extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
 
-    /** The User definition stages. */
+    /**
+     * The User definition stages.
+     */
     interface DefinitionStages {
-        /** The first stage of the User definition. */
-        interface Blank extends WithLocation {
+        /**
+         * The first stage of the User definition.
+         */
+        interface Blank extends WithParentResource {
         }
 
-        /** The stage of the User definition allowing to specify location. */
-        interface WithLocation {
-            /**
-             * Specifies the region for the resource.
-             *
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithParentResource withRegion(Region location);
-
-            /**
-             * Specifies the region for the resource.
-             *
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithParentResource withRegion(String location);
-        }
-
-        /** The stage of the User definition allowing to specify parent resource. */
+        /**
+         * The stage of the User definition allowing to specify parent resource.
+         */
         interface WithParentResource {
             /**
              * Specifies resourceGroupName, labName.
-             *
+             * 
              * @param resourceGroupName The name of the resource group.
              * @param labName The name of the lab.
              * @return the next definition stage.
@@ -159,90 +163,160 @@ public interface User {
          * The stage of the User definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithSecretStore {
+        interface WithCreate extends DefinitionStages.WithPrincipalName, DefinitionStages.WithPrincipalId,
+            DefinitionStages.WithTenantId, DefinitionStages.WithObjectId, DefinitionStages.WithAppId,
+            DefinitionStages.WithKeyVaultUri, DefinitionStages.WithKeyVaultId {
             /**
              * Executes the create request.
-             *
+             * 
              * @return the created resource.
              */
             User create();
 
             /**
              * Executes the create request.
-             *
+             * 
              * @param context The context to associate with this operation.
              * @return the created resource.
              */
             User create(Context context);
         }
 
-        /** The stage of the User definition allowing to specify tags. */
-        interface WithTags {
+        /**
+         * The stage of the User definition allowing to specify principalName.
+         */
+        interface WithPrincipalName {
             /**
-             * Specifies the tags property: Resource tags..
-             *
-             * @param tags Resource tags.
+             * Specifies the principalName property: Set to the principal name / UPN of the client JWT making the
+             * request..
+             * 
+             * @param principalName Set to the principal name / UPN of the client JWT making the request.
              * @return the next definition stage.
              */
-            WithCreate withTags(Map<String, String> tags);
+            WithCreate withPrincipalName(String principalName);
         }
 
-        /** The stage of the User definition allowing to specify identity. */
-        interface WithIdentity {
+        /**
+         * The stage of the User definition allowing to specify principalId.
+         */
+        interface WithPrincipalId {
             /**
-             * Specifies the identity property: The identity of the user..
-             *
-             * @param identity The identity of the user.
+             * Specifies the principalId property: Set to the principal Id of the client JWT making the request. Service
+             * principal will not have the principal Id..
+             * 
+             * @param principalId Set to the principal Id of the client JWT making the request. Service principal will
+             * not have the principal Id.
              * @return the next definition stage.
              */
-            WithCreate withIdentity(UserIdentity identity);
+            WithCreate withPrincipalId(String principalId);
         }
 
-        /** The stage of the User definition allowing to specify secretStore. */
-        interface WithSecretStore {
+        /**
+         * The stage of the User definition allowing to specify tenantId.
+         */
+        interface WithTenantId {
             /**
-             * Specifies the secretStore property: The secret store of the user..
-             *
-             * @param secretStore The secret store of the user.
+             * Specifies the tenantId property: Set to the tenant ID of the client JWT making the request..
+             * 
+             * @param tenantId Set to the tenant ID of the client JWT making the request.
              * @return the next definition stage.
              */
-            WithCreate withSecretStore(UserSecretStore secretStore);
+            WithCreate withTenantId(String tenantId);
+        }
+
+        /**
+         * The stage of the User definition allowing to specify objectId.
+         */
+        interface WithObjectId {
+            /**
+             * Specifies the objectId property: Set to the object Id of the client JWT making the request. Not all users
+             * have object Id. For CSP (reseller) scenarios for example, object Id is not available..
+             * 
+             * @param objectId Set to the object Id of the client JWT making the request. Not all users have object Id.
+             * For CSP (reseller) scenarios for example, object Id is not available.
+             * @return the next definition stage.
+             */
+            WithCreate withObjectId(String objectId);
+        }
+
+        /**
+         * The stage of the User definition allowing to specify appId.
+         */
+        interface WithAppId {
+            /**
+             * Specifies the appId property: Set to the app Id of the client JWT making the request..
+             * 
+             * @param appId Set to the app Id of the client JWT making the request.
+             * @return the next definition stage.
+             */
+            WithCreate withAppId(String appId);
+        }
+
+        /**
+         * The stage of the User definition allowing to specify keyVaultUri.
+         */
+        interface WithKeyVaultUri {
+            /**
+             * Specifies the keyVaultUri property: The URI of the user's Key vault..
+             * 
+             * @param keyVaultUri The URI of the user's Key vault.
+             * @return the next definition stage.
+             */
+            WithCreate withKeyVaultUri(String keyVaultUri);
+        }
+
+        /**
+         * The stage of the User definition allowing to specify keyVaultId.
+         */
+        interface WithKeyVaultId {
+            /**
+             * Specifies the keyVaultId property: The ID of the user's Key vault..
+             * 
+             * @param keyVaultId The ID of the user's Key vault.
+             * @return the next definition stage.
+             */
+            WithCreate withKeyVaultId(String keyVaultId);
         }
     }
 
     /**
      * Begins update for the User resource.
-     *
+     * 
      * @return the stage of resource update.
      */
     User.Update update();
 
-    /** The template for User update. */
+    /**
+     * The template for User update.
+     */
     interface Update extends UpdateStages.WithTags {
         /**
          * Executes the update request.
-         *
+         * 
          * @return the updated resource.
          */
         User apply();
 
         /**
          * Executes the update request.
-         *
+         * 
          * @param context The context to associate with this operation.
          * @return the updated resource.
          */
         User apply(Context context);
     }
 
-    /** The User update stages. */
+    /**
+     * The User update stages.
+     */
     interface UpdateStages {
-        /** The stage of the User update allowing to specify tags. */
+        /**
+         * The stage of the User update allowing to specify tags.
+         */
         interface WithTags {
             /**
              * Specifies the tags property: The tags of the resource..
-             *
+             * 
              * @param tags The tags of the resource.
              * @return the next definition stage.
              */
@@ -252,14 +326,14 @@ public interface User {
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @return the refreshed resource.
      */
     User refresh();
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @return the refreshed resource.
      */

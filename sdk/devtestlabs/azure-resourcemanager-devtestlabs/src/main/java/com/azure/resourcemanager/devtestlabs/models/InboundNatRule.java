@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A rule for NAT - exposing a VM's port (backendPort) on the public IP address using a load balancer. */
+/**
+ * A rule for NAT - exposing a VM's port (backendPort) on the public IP address using a load balancer.
+ */
 @Fluent
 public final class InboundNatRule {
     /*
@@ -29,13 +31,15 @@ public final class InboundNatRule {
     @JsonProperty(value = "backendPort")
     private Integer backendPort;
 
-    /** Creates an instance of InboundNatRule class. */
+    /**
+     * Creates an instance of InboundNatRule class.
+     */
     public InboundNatRule() {
     }
 
     /**
      * Get the transportProtocol property: The transport protocol for the endpoint.
-     *
+     * 
      * @return the transportProtocol value.
      */
     public TransportProtocol transportProtocol() {
@@ -44,7 +48,7 @@ public final class InboundNatRule {
 
     /**
      * Set the transportProtocol property: The transport protocol for the endpoint.
-     *
+     * 
      * @param transportProtocol the transportProtocol value to set.
      * @return the InboundNatRule object itself.
      */
@@ -56,7 +60,7 @@ public final class InboundNatRule {
     /**
      * Get the frontendPort property: The external endpoint port of the inbound connection. Possible values range
      * between 1 and 65535, inclusive. If unspecified, a value will be allocated automatically.
-     *
+     * 
      * @return the frontendPort value.
      */
     public Integer frontendPort() {
@@ -66,7 +70,7 @@ public final class InboundNatRule {
     /**
      * Set the frontendPort property: The external endpoint port of the inbound connection. Possible values range
      * between 1 and 65535, inclusive. If unspecified, a value will be allocated automatically.
-     *
+     * 
      * @param frontendPort the frontendPort value to set.
      * @return the InboundNatRule object itself.
      */
@@ -77,7 +81,7 @@ public final class InboundNatRule {
 
     /**
      * Get the backendPort property: The port to which the external traffic will be redirected.
-     *
+     * 
      * @return the backendPort value.
      */
     public Integer backendPort() {
@@ -86,7 +90,7 @@ public final class InboundNatRule {
 
     /**
      * Set the backendPort property: The port to which the external traffic will be redirected.
-     *
+     * 
      * @param backendPort the backendPort value to set.
      * @return the InboundNatRule object itself.
      */
@@ -97,7 +101,7 @@ public final class InboundNatRule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Request body for evaluating a policy set. */
+/**
+ * Request body for evaluating a policy set.
+ */
 @Fluent
 public final class EvaluatePoliciesRequest {
     /*
@@ -17,13 +19,15 @@ public final class EvaluatePoliciesRequest {
     @JsonProperty(value = "policies")
     private List<EvaluatePoliciesProperties> policies;
 
-    /** Creates an instance of EvaluatePoliciesRequest class. */
+    /**
+     * Creates an instance of EvaluatePoliciesRequest class.
+     */
     public EvaluatePoliciesRequest() {
     }
 
     /**
      * Get the policies property: Policies to evaluate.
-     *
+     * 
      * @return the policies value.
      */
     public List<EvaluatePoliciesProperties> policies() {
@@ -32,7 +36,7 @@ public final class EvaluatePoliciesRequest {
 
     /**
      * Set the policies property: Policies to evaluate.
-     *
+     * 
      * @param policies the policies value to set.
      * @return the EvaluatePoliciesRequest object itself.
      */
@@ -43,7 +47,7 @@ public final class EvaluatePoliciesRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

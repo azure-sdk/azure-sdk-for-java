@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of the disk to detach. */
+/**
+ * Properties of the disk to detach.
+ */
 @Fluent
 public final class DetachDiskProperties {
     /*
@@ -16,13 +18,15 @@ public final class DetachDiskProperties {
     @JsonProperty(value = "leasedByLabVmId")
     private String leasedByLabVmId;
 
-    /** Creates an instance of DetachDiskProperties class. */
+    /**
+     * Creates an instance of DetachDiskProperties class.
+     */
     public DetachDiskProperties() {
     }
 
     /**
      * Get the leasedByLabVmId property: The resource ID of the Lab VM to which the disk is attached.
-     *
+     * 
      * @return the leasedByLabVmId value.
      */
     public String leasedByLabVmId() {
@@ -31,7 +35,7 @@ public final class DetachDiskProperties {
 
     /**
      * Set the leasedByLabVmId property: The resource ID of the Lab VM to which the disk is attached.
-     *
+     * 
      * @param leasedByLabVmId the leasedByLabVmId value to set.
      * @return the DetachDiskProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class DetachDiskProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

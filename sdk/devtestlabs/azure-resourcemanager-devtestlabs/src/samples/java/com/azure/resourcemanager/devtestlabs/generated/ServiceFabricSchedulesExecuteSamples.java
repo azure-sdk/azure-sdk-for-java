@@ -4,25 +4,21 @@
 
 package com.azure.resourcemanager.devtestlabs.generated;
 
-/** Samples for ServiceFabricSchedules Execute. */
+/**
+ * Samples for ServiceFabricSchedules Execute.
+ */
 public final class ServiceFabricSchedulesExecuteSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ServiceFabricSchedules_Execute.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/
+     * ServiceFabricSchedules_Execute.json
      */
     /**
      * Sample code: ServiceFabricSchedules_Execute.
-     *
+     * 
      * @param manager Entry point to DevTestLabsManager.
      */
     public static void serviceFabricSchedulesExecute(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager
-            .serviceFabricSchedules()
-            .execute(
-                "resourceGroupName",
-                "{labName}",
-                "@me",
-                "{serviceFrabicName}",
-                "{scheduleName}",
-                com.azure.core.util.Context.NONE);
+        manager.serviceFabricSchedules().execute("resourceGroupName", "exampleLab", "@me", "{serviceFrabicName}",
+            "{scheduleName}", com.azure.core.util.Context.NONE);
     }
 }

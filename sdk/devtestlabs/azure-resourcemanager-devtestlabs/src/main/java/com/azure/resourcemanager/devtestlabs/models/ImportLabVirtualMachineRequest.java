@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** This represents the payload required to import a virtual machine from a different lab into the current one. */
+/**
+ * This represents the payload required to import a virtual machine from a different lab into the current one.
+ */
 @Fluent
 public final class ImportLabVirtualMachineRequest {
     /*
@@ -22,13 +24,15 @@ public final class ImportLabVirtualMachineRequest {
     @JsonProperty(value = "destinationVirtualMachineName")
     private String destinationVirtualMachineName;
 
-    /** Creates an instance of ImportLabVirtualMachineRequest class. */
+    /**
+     * Creates an instance of ImportLabVirtualMachineRequest class.
+     */
     public ImportLabVirtualMachineRequest() {
     }
 
     /**
      * Get the sourceVirtualMachineResourceId property: The full resource ID of the virtual machine to be imported.
-     *
+     * 
      * @return the sourceVirtualMachineResourceId value.
      */
     public String sourceVirtualMachineResourceId() {
@@ -37,7 +41,7 @@ public final class ImportLabVirtualMachineRequest {
 
     /**
      * Set the sourceVirtualMachineResourceId property: The full resource ID of the virtual machine to be imported.
-     *
+     * 
      * @param sourceVirtualMachineResourceId the sourceVirtualMachineResourceId value to set.
      * @return the ImportLabVirtualMachineRequest object itself.
      */
@@ -48,7 +52,7 @@ public final class ImportLabVirtualMachineRequest {
 
     /**
      * Get the destinationVirtualMachineName property: The name of the virtual machine in the destination lab.
-     *
+     * 
      * @return the destinationVirtualMachineName value.
      */
     public String destinationVirtualMachineName() {
@@ -57,7 +61,7 @@ public final class ImportLabVirtualMachineRequest {
 
     /**
      * Set the destinationVirtualMachineName property: The name of the virtual machine in the destination lab.
-     *
+     * 
      * @param destinationVirtualMachineName the destinationVirtualMachineName value to set.
      * @return the ImportLabVirtualMachineRequest object itself.
      */
@@ -68,7 +72,7 @@ public final class ImportLabVirtualMachineRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

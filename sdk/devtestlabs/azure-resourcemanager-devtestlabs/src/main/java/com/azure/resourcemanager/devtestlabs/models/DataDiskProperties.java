@@ -5,16 +5,19 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devtestlabs.fluent.models.AttachNewDataDiskOptions;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Request body for adding a new or existing data disk to a virtual machine. */
+/**
+ * Request body for adding a new or existing data disk to a virtual machine.
+ */
 @Fluent
 public final class DataDiskProperties {
     /*
      * Specifies options to attach a new disk to the virtual machine.
      */
     @JsonProperty(value = "attachNewDataDiskOptions")
-    private AttachNewDataDiskOptions attachNewDataDiskOptions;
+    private AttachNewDataDiskOptions innerAttachNewDataDiskOptions;
 
     /*
      * Specifies the existing lab disk id to attach to virtual machine.
@@ -28,33 +31,24 @@ public final class DataDiskProperties {
     @JsonProperty(value = "hostCaching")
     private HostCachingOptions hostCaching;
 
-    /** Creates an instance of DataDiskProperties class. */
+    /**
+     * Creates an instance of DataDiskProperties class.
+     */
     public DataDiskProperties() {
     }
 
     /**
-     * Get the attachNewDataDiskOptions property: Specifies options to attach a new disk to the virtual machine.
-     *
-     * @return the attachNewDataDiskOptions value.
+     * Get the innerAttachNewDataDiskOptions property: Specifies options to attach a new disk to the virtual machine.
+     * 
+     * @return the innerAttachNewDataDiskOptions value.
      */
-    public AttachNewDataDiskOptions attachNewDataDiskOptions() {
-        return this.attachNewDataDiskOptions;
-    }
-
-    /**
-     * Set the attachNewDataDiskOptions property: Specifies options to attach a new disk to the virtual machine.
-     *
-     * @param attachNewDataDiskOptions the attachNewDataDiskOptions value to set.
-     * @return the DataDiskProperties object itself.
-     */
-    public DataDiskProperties withAttachNewDataDiskOptions(AttachNewDataDiskOptions attachNewDataDiskOptions) {
-        this.attachNewDataDiskOptions = attachNewDataDiskOptions;
-        return this;
+    private AttachNewDataDiskOptions innerAttachNewDataDiskOptions() {
+        return this.innerAttachNewDataDiskOptions;
     }
 
     /**
      * Get the existingLabDiskId property: Specifies the existing lab disk id to attach to virtual machine.
-     *
+     * 
      * @return the existingLabDiskId value.
      */
     public String existingLabDiskId() {
@@ -63,7 +57,7 @@ public final class DataDiskProperties {
 
     /**
      * Set the existingLabDiskId property: Specifies the existing lab disk id to attach to virtual machine.
-     *
+     * 
      * @param existingLabDiskId the existingLabDiskId value to set.
      * @return the DataDiskProperties object itself.
      */
@@ -74,7 +68,7 @@ public final class DataDiskProperties {
 
     /**
      * Get the hostCaching property: Caching option for a data disk (i.e. None, ReadOnly, ReadWrite).
-     *
+     * 
      * @return the hostCaching value.
      */
     public HostCachingOptions hostCaching() {
@@ -83,7 +77,7 @@ public final class DataDiskProperties {
 
     /**
      * Set the hostCaching property: Caching option for a data disk (i.e. None, ReadOnly, ReadWrite).
-     *
+     * 
      * @param hostCaching the hostCaching value to set.
      * @return the DataDiskProperties object itself.
      */
@@ -93,13 +87,82 @@ public final class DataDiskProperties {
     }
 
     /**
+     * Get the diskSizeGiB property: Size of the disk to be attached in Gibibytes.
+     * 
+     * @return the diskSizeGiB value.
+     */
+    public Integer diskSizeGiB() {
+        return this.innerAttachNewDataDiskOptions() == null ? null : this.innerAttachNewDataDiskOptions().diskSizeGiB();
+    }
+
+    /**
+     * Set the diskSizeGiB property: Size of the disk to be attached in Gibibytes.
+     * 
+     * @param diskSizeGiB the diskSizeGiB value to set.
+     * @return the DataDiskProperties object itself.
+     */
+    public DataDiskProperties withDiskSizeGiB(Integer diskSizeGiB) {
+        if (this.innerAttachNewDataDiskOptions() == null) {
+            this.innerAttachNewDataDiskOptions = new AttachNewDataDiskOptions();
+        }
+        this.innerAttachNewDataDiskOptions().withDiskSizeGiB(diskSizeGiB);
+        return this;
+    }
+
+    /**
+     * Get the diskName property: The name of the disk to be attached.
+     * 
+     * @return the diskName value.
+     */
+    public String diskName() {
+        return this.innerAttachNewDataDiskOptions() == null ? null : this.innerAttachNewDataDiskOptions().diskName();
+    }
+
+    /**
+     * Set the diskName property: The name of the disk to be attached.
+     * 
+     * @param diskName the diskName value to set.
+     * @return the DataDiskProperties object itself.
+     */
+    public DataDiskProperties withDiskName(String diskName) {
+        if (this.innerAttachNewDataDiskOptions() == null) {
+            this.innerAttachNewDataDiskOptions = new AttachNewDataDiskOptions();
+        }
+        this.innerAttachNewDataDiskOptions().withDiskName(diskName);
+        return this;
+    }
+
+    /**
+     * Get the diskType property: The storage type for the disk (i.e. Standard, Premium).
+     * 
+     * @return the diskType value.
+     */
+    public StorageType diskType() {
+        return this.innerAttachNewDataDiskOptions() == null ? null : this.innerAttachNewDataDiskOptions().diskType();
+    }
+
+    /**
+     * Set the diskType property: The storage type for the disk (i.e. Standard, Premium).
+     * 
+     * @param diskType the diskType value to set.
+     * @return the DataDiskProperties object itself.
+     */
+    public DataDiskProperties withDiskType(StorageType diskType) {
+        if (this.innerAttachNewDataDiskOptions() == null) {
+            this.innerAttachNewDataDiskOptions = new AttachNewDataDiskOptions();
+        }
+        this.innerAttachNewDataDiskOptions().withDiskType(diskType);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (attachNewDataDiskOptions() != null) {
-            attachNewDataDiskOptions().validate();
+        if (innerAttachNewDataDiskOptions() != null) {
+            innerAttachNewDataDiskOptions().validate();
         }
     }
 }

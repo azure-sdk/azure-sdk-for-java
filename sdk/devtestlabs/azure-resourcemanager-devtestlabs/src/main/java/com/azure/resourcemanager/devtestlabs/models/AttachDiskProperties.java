@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of the disk to attach. */
+/**
+ * Properties of the disk to attach.
+ */
 @Fluent
 public final class AttachDiskProperties {
     /*
@@ -16,13 +18,15 @@ public final class AttachDiskProperties {
     @JsonProperty(value = "leasedByLabVmId")
     private String leasedByLabVmId;
 
-    /** Creates an instance of AttachDiskProperties class. */
+    /**
+     * Creates an instance of AttachDiskProperties class.
+     */
     public AttachDiskProperties() {
     }
 
     /**
      * Get the leasedByLabVmId property: The resource ID of the Lab virtual machine to which the disk is attached.
-     *
+     * 
      * @return the leasedByLabVmId value.
      */
     public String leasedByLabVmId() {
@@ -31,7 +35,7 @@ public final class AttachDiskProperties {
 
     /**
      * Set the leasedByLabVmId property: The resource ID of the Lab virtual machine to which the disk is attached.
-     *
+     * 
      * @param leasedByLabVmId the leasedByLabVmId value to set.
      * @return the AttachDiskProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class AttachDiskProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

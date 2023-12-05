@@ -5,101 +5,166 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ServiceRunnerInner;
 import java.util.Map;
 
-/** An immutable client-side representation of ServiceRunner. */
+/**
+ * An immutable client-side representation of ServiceRunner.
+ */
 public interface ServiceRunner {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
      * Gets the location property: The geo-location where the resource lives.
-     *
+     * 
      * @return the location value.
      */
     String location();
 
     /**
      * Gets the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     Map<String, String> tags();
 
     /**
-     * Gets the identity property: The identity of the resource.
-     *
-     * @return the identity value.
+     * Gets the systemData property: The system metadata relating to this resource.
+     * 
+     * @return the systemData value.
      */
-    IdentityProperties identity();
+    SystemData systemData();
+
+    /**
+     * Gets the identityUsageType property: The purpose of bringing the identity to the lab. Ex: To use during
+     * Environment creation or to deploy on the VMs.
+     * 
+     * @return the identityUsageType value.
+     */
+    String identityUsageType();
+
+    /**
+     * Gets the provisioningState property: The provisioning status of the resource.
+     * 
+     * @return the provisioningState value.
+     */
+    String provisioningState();
+
+    /**
+     * Gets the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
+     * 
+     * @return the uniqueIdentifier value.
+     */
+    String uniqueIdentifier();
+
+    /**
+     * Gets the typeIdentityType property: Type of identity (SystemAssigned, UserAssigned, None).
+     * 
+     * @return the typeIdentityType value.
+     */
+    ManagedIdentityType typeIdentityType();
+
+    /**
+     * Gets the principalId property: The principal id of resource identity.
+     * 
+     * @return the principalId value.
+     */
+    String principalId();
+
+    /**
+     * Gets the tenantId property: The tenant identifier of resource.
+     * 
+     * @return the tenantId value.
+     */
+    String tenantId();
+
+    /**
+     * Gets the clientSecretUrl property: The client secret URL of the identity.
+     * 
+     * @return the clientSecretUrl value.
+     */
+    String clientSecretUrl();
+
+    /**
+     * Gets the userAssignedIdentities property: If Type is 'UserAssigned': List of user assigned identities.
+     * 
+     * @return the userAssignedIdentities value.
+     */
+    Map<String, Object> userAssignedIdentities();
 
     /**
      * Gets the region of the resource.
-     *
+     * 
      * @return the region of the resource.
      */
     Region region();
 
     /**
      * Gets the name of the resource region.
-     *
+     * 
      * @return the name of the resource region.
      */
     String regionName();
 
     /**
      * Gets the name of the resource group.
-     *
+     * 
      * @return the name of the resource group.
      */
     String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.devtestlabs.fluent.models.ServiceRunnerInner object.
-     *
+     * 
      * @return the inner object.
      */
     ServiceRunnerInner innerModel();
 
-    /** The entirety of the ServiceRunner definition. */
-    interface Definition
-        extends DefinitionStages.Blank,
-            DefinitionStages.WithLocation,
-            DefinitionStages.WithParentResource,
-            DefinitionStages.WithCreate {
+    /**
+     * The entirety of the ServiceRunner definition.
+     */
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
+        DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
 
-    /** The ServiceRunner definition stages. */
+    /**
+     * The ServiceRunner definition stages.
+     */
     interface DefinitionStages {
-        /** The first stage of the ServiceRunner definition. */
+        /**
+         * The first stage of the ServiceRunner definition.
+         */
         interface Blank extends WithLocation {
         }
 
-        /** The stage of the ServiceRunner definition allowing to specify location. */
+        /**
+         * The stage of the ServiceRunner definition allowing to specify location.
+         */
         interface WithLocation {
             /**
              * Specifies the region for the resource.
-             *
+             * 
              * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
@@ -107,18 +172,20 @@ public interface ServiceRunner {
 
             /**
              * Specifies the region for the resource.
-             *
+             * 
              * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
             WithParentResource withRegion(String location);
         }
 
-        /** The stage of the ServiceRunner definition allowing to specify parent resource. */
+        /**
+         * The stage of the ServiceRunner definition allowing to specify parent resource.
+         */
         interface WithParentResource {
             /**
              * Specifies resourceGroupName, labName.
-             *
+             * 
              * @param resourceGroupName The name of the resource group.
              * @param labName The name of the lab.
              * @return the next definition stage.
@@ -130,106 +197,258 @@ public interface ServiceRunner {
          * The stage of the ServiceRunner definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentityUsageType,
+            DefinitionStages.WithTypeIdentityType, DefinitionStages.WithPrincipalId, DefinitionStages.WithTenantId,
+            DefinitionStages.WithClientSecretUrl, DefinitionStages.WithUserAssignedIdentities {
             /**
              * Executes the create request.
-             *
+             * 
              * @return the created resource.
              */
             ServiceRunner create();
 
             /**
              * Executes the create request.
-             *
+             * 
              * @param context The context to associate with this operation.
              * @return the created resource.
              */
             ServiceRunner create(Context context);
         }
 
-        /** The stage of the ServiceRunner definition allowing to specify tags. */
+        /**
+         * The stage of the ServiceRunner definition allowing to specify tags.
+         */
         interface WithTags {
             /**
              * Specifies the tags property: Resource tags..
-             *
+             * 
              * @param tags Resource tags.
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
         }
 
-        /** The stage of the ServiceRunner definition allowing to specify identity. */
-        interface WithIdentity {
+        /**
+         * The stage of the ServiceRunner definition allowing to specify identityUsageType.
+         */
+        interface WithIdentityUsageType {
             /**
-             * Specifies the identity property: The identity of the resource..
-             *
-             * @param identity The identity of the resource.
+             * Specifies the identityUsageType property: The purpose of bringing the identity to the lab. Ex: To use
+             * during Environment creation or to deploy on the VMs..
+             * 
+             * @param identityUsageType The purpose of bringing the identity to the lab. Ex: To use during Environment
+             * creation or to deploy on the VMs.
              * @return the next definition stage.
              */
-            WithCreate withIdentity(IdentityProperties identity);
+            WithCreate withIdentityUsageType(String identityUsageType);
+        }
+
+        /**
+         * The stage of the ServiceRunner definition allowing to specify typeIdentityType.
+         */
+        interface WithTypeIdentityType {
+            /**
+             * Specifies the typeIdentityType property: Type of identity (SystemAssigned, UserAssigned, None).
+             * 
+             * @param typeIdentityType Type of identity (SystemAssigned, UserAssigned, None).
+             * @return the next definition stage.
+             */
+            WithCreate withTypeIdentityType(ManagedIdentityType typeIdentityType);
+        }
+
+        /**
+         * The stage of the ServiceRunner definition allowing to specify principalId.
+         */
+        interface WithPrincipalId {
+            /**
+             * Specifies the principalId property: The principal id of resource identity..
+             * 
+             * @param principalId The principal id of resource identity.
+             * @return the next definition stage.
+             */
+            WithCreate withPrincipalId(String principalId);
+        }
+
+        /**
+         * The stage of the ServiceRunner definition allowing to specify tenantId.
+         */
+        interface WithTenantId {
+            /**
+             * Specifies the tenantId property: The tenant identifier of resource..
+             * 
+             * @param tenantId The tenant identifier of resource.
+             * @return the next definition stage.
+             */
+            WithCreate withTenantId(String tenantId);
+        }
+
+        /**
+         * The stage of the ServiceRunner definition allowing to specify clientSecretUrl.
+         */
+        interface WithClientSecretUrl {
+            /**
+             * Specifies the clientSecretUrl property: The client secret URL of the identity..
+             * 
+             * @param clientSecretUrl The client secret URL of the identity.
+             * @return the next definition stage.
+             */
+            WithCreate withClientSecretUrl(String clientSecretUrl);
+        }
+
+        /**
+         * The stage of the ServiceRunner definition allowing to specify userAssignedIdentities.
+         */
+        interface WithUserAssignedIdentities {
+            /**
+             * Specifies the userAssignedIdentities property: If Type is 'UserAssigned': List of user assigned
+             * identities..
+             * 
+             * @param userAssignedIdentities If Type is 'UserAssigned': List of user assigned identities.
+             * @return the next definition stage.
+             */
+            WithCreate withUserAssignedIdentities(Map<String, Object> userAssignedIdentities);
         }
     }
 
     /**
      * Begins update for the ServiceRunner resource.
-     *
+     * 
      * @return the stage of resource update.
      */
     ServiceRunner.Update update();
 
-    /** The template for ServiceRunner update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
+    /**
+     * The template for ServiceRunner update.
+     */
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentityUsageType,
+        UpdateStages.WithTypeIdentityType, UpdateStages.WithPrincipalId, UpdateStages.WithTenantId,
+        UpdateStages.WithClientSecretUrl, UpdateStages.WithUserAssignedIdentities {
         /**
          * Executes the update request.
-         *
+         * 
          * @return the updated resource.
          */
         ServiceRunner apply();
 
         /**
          * Executes the update request.
-         *
+         * 
          * @param context The context to associate with this operation.
          * @return the updated resource.
          */
         ServiceRunner apply(Context context);
     }
 
-    /** The ServiceRunner update stages. */
+    /**
+     * The ServiceRunner update stages.
+     */
     interface UpdateStages {
-        /** The stage of the ServiceRunner update allowing to specify tags. */
+        /**
+         * The stage of the ServiceRunner update allowing to specify tags.
+         */
         interface WithTags {
             /**
              * Specifies the tags property: Resource tags..
-             *
+             * 
              * @param tags Resource tags.
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
         }
 
-        /** The stage of the ServiceRunner update allowing to specify identity. */
-        interface WithIdentity {
+        /**
+         * The stage of the ServiceRunner update allowing to specify identityUsageType.
+         */
+        interface WithIdentityUsageType {
             /**
-             * Specifies the identity property: The identity of the resource..
-             *
-             * @param identity The identity of the resource.
+             * Specifies the identityUsageType property: The purpose of bringing the identity to the lab. Ex: To use
+             * during Environment creation or to deploy on the VMs..
+             * 
+             * @param identityUsageType The purpose of bringing the identity to the lab. Ex: To use during Environment
+             * creation or to deploy on the VMs.
              * @return the next definition stage.
              */
-            Update withIdentity(IdentityProperties identity);
+            Update withIdentityUsageType(String identityUsageType);
+        }
+
+        /**
+         * The stage of the ServiceRunner update allowing to specify typeIdentityType.
+         */
+        interface WithTypeIdentityType {
+            /**
+             * Specifies the typeIdentityType property: Type of identity (SystemAssigned, UserAssigned, None).
+             * 
+             * @param typeIdentityType Type of identity (SystemAssigned, UserAssigned, None).
+             * @return the next definition stage.
+             */
+            Update withTypeIdentityType(ManagedIdentityType typeIdentityType);
+        }
+
+        /**
+         * The stage of the ServiceRunner update allowing to specify principalId.
+         */
+        interface WithPrincipalId {
+            /**
+             * Specifies the principalId property: The principal id of resource identity..
+             * 
+             * @param principalId The principal id of resource identity.
+             * @return the next definition stage.
+             */
+            Update withPrincipalId(String principalId);
+        }
+
+        /**
+         * The stage of the ServiceRunner update allowing to specify tenantId.
+         */
+        interface WithTenantId {
+            /**
+             * Specifies the tenantId property: The tenant identifier of resource..
+             * 
+             * @param tenantId The tenant identifier of resource.
+             * @return the next definition stage.
+             */
+            Update withTenantId(String tenantId);
+        }
+
+        /**
+         * The stage of the ServiceRunner update allowing to specify clientSecretUrl.
+         */
+        interface WithClientSecretUrl {
+            /**
+             * Specifies the clientSecretUrl property: The client secret URL of the identity..
+             * 
+             * @param clientSecretUrl The client secret URL of the identity.
+             * @return the next definition stage.
+             */
+            Update withClientSecretUrl(String clientSecretUrl);
+        }
+
+        /**
+         * The stage of the ServiceRunner update allowing to specify userAssignedIdentities.
+         */
+        interface WithUserAssignedIdentities {
+            /**
+             * Specifies the userAssignedIdentities property: If Type is 'UserAssigned': List of user assigned
+             * identities..
+             * 
+             * @param userAssignedIdentities If Type is 'UserAssigned': List of user assigned identities.
+             * @return the next definition stage.
+             */
+            Update withUserAssignedIdentities(Map<String, Object> userAssignedIdentities);
         }
     }
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @return the refreshed resource.
      */
     ServiceRunner refresh();
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @return the refreshed resource.
      */

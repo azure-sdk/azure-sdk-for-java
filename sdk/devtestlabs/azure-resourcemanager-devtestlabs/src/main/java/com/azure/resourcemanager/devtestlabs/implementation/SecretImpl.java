@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.SecretInner;
 import com.azure.resourcemanager.devtestlabs.models.Secret;
@@ -40,6 +41,10 @@ public final class SecretImpl implements Secret, Secret.Definition, Secret.Updat
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String value() {
@@ -92,20 +97,14 @@ public final class SecretImpl implements Secret, Secret.Definition, Secret.Updat
     }
 
     public Secret create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSecrets()
-                .createOrUpdate(resourceGroupName, labName, username, name, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getSecrets().createOrUpdate(resourceGroupName, labName,
+            username, name, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Secret create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSecrets()
-                .createOrUpdate(resourceGroupName, labName, username, name, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getSecrets().createOrUpdate(resourceGroupName, labName,
+            username, name, this.innerModel(), context);
         return this;
     }
 
@@ -121,22 +120,14 @@ public final class SecretImpl implements Secret, Secret.Definition, Secret.Updat
     }
 
     public Secret apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSecrets()
-                .updateWithResponse(resourceGroupName, labName, username, name, updateSecret, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getSecrets()
+            .updateWithResponse(resourceGroupName, labName, username, name, updateSecret, Context.NONE).getValue();
         return this;
     }
 
     public Secret apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSecrets()
-                .updateWithResponse(resourceGroupName, labName, username, name, updateSecret, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getSecrets()
+            .updateWithResponse(resourceGroupName, labName, username, name, updateSecret, context).getValue();
         return this;
     }
 
@@ -151,23 +142,15 @@ public final class SecretImpl implements Secret, Secret.Definition, Secret.Updat
 
     public Secret refresh() {
         String localExpand = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSecrets()
-                .getWithResponse(resourceGroupName, labName, username, name, localExpand, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getSecrets()
+            .getWithResponse(resourceGroupName, labName, username, name, localExpand, Context.NONE).getValue();
         return this;
     }
 
     public Secret refresh(Context context) {
         String localExpand = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSecrets()
-                .getWithResponse(resourceGroupName, labName, username, name, localExpand, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getSecrets()
+            .getWithResponse(resourceGroupName, labName, username, name, localExpand, context).getValue();
         return this;
     }
 

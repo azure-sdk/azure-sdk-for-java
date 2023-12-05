@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of a secret. */
+/**
+ * Properties of a secret.
+ */
 @Fluent
 public final class SecretProperties {
     /*
@@ -28,13 +30,15 @@ public final class SecretProperties {
     @JsonProperty(value = "uniqueIdentifier", access = JsonProperty.Access.WRITE_ONLY)
     private String uniqueIdentifier;
 
-    /** Creates an instance of SecretProperties class. */
+    /**
+     * Creates an instance of SecretProperties class.
+     */
     public SecretProperties() {
     }
 
     /**
      * Get the value property: The value of the secret for secret creation.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -43,7 +47,7 @@ public final class SecretProperties {
 
     /**
      * Set the value property: The value of the secret for secret creation.
-     *
+     * 
      * @param value the value value to set.
      * @return the SecretProperties object itself.
      */
@@ -54,7 +58,7 @@ public final class SecretProperties {
 
     /**
      * Get the provisioningState property: The provisioning status of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -63,7 +67,7 @@ public final class SecretProperties {
 
     /**
      * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
+     * 
      * @return the uniqueIdentifier value.
      */
     public String uniqueIdentifier() {
@@ -72,7 +76,7 @@ public final class SecretProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

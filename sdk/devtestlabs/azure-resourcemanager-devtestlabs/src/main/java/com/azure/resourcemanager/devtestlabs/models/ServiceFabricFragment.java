@@ -7,14 +7,20 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import java.util.Map;
 
-/** A Service Fabric. */
+/**
+ * Patch.
+ */
 @Fluent
 public final class ServiceFabricFragment extends UpdateResource {
-    /** Creates an instance of ServiceFabricFragment class. */
+    /**
+     * Creates an instance of ServiceFabricFragment class.
+     */
     public ServiceFabricFragment() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ServiceFabricFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -23,7 +29,7 @@ public final class ServiceFabricFragment extends UpdateResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

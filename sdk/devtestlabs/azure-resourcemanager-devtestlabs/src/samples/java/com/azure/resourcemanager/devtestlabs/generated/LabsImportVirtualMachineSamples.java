@@ -6,26 +6,24 @@ package com.azure.resourcemanager.devtestlabs.generated;
 
 import com.azure.resourcemanager.devtestlabs.models.ImportLabVirtualMachineRequest;
 
-/** Samples for Labs ImportVirtualMachine. */
+/**
+ * Samples for Labs ImportVirtualMachine.
+ */
 public final class LabsImportVirtualMachineSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Labs_ImportVirtualMachine.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/
+     * Labs_ImportVirtualMachine.json
      */
     /**
      * Sample code: Labs_ImportVirtualMachine.
-     *
+     * 
      * @param manager Entry point to DevTestLabsManager.
      */
     public static void labsImportVirtualMachine(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager
-            .labs()
-            .importVirtualMachine(
-                "resourceGroupName",
-                "{labName}",
-                new ImportLabVirtualMachineRequest()
-                    .withSourceVirtualMachineResourceId(
-                        "/subscriptions/{subscriptionId}/resourceGroups/{otherResourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}")
-                    .withDestinationVirtualMachineName("{vmName}"),
-                com.azure.core.util.Context.NONE);
+        manager.labs().importVirtualMachine("resourceGroupName", "exampleLab",
+            new ImportLabVirtualMachineRequest().withSourceVirtualMachineResourceId(
+                "/subscriptions/e605a3bc-ee4e-4c7a-9709-1868a28b1d4d/resourceGroups/{otherResourceGroupName}/providers/Microsoft.Compute/virtualMachines/vmName001")
+                .withDestinationVirtualMachineName("vmName001"),
+            com.azure.core.util.Context.NONE);
     }
 }

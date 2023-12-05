@@ -4,14 +4,46 @@
 
 package com.azure.resourcemanager.devtestlabs.models;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of ServiceRunners. */
+/**
+ * Resource collection API of ServiceRunners.
+ */
 public interface ServiceRunners {
     /**
+     * List service runners in a given lab.
+     * 
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains a list of serviceRunners and their properties as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<ServiceRunner> list(String resourceGroupName, String labName);
+
+    /**
+     * List service runners in a given lab.
+     * 
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
+     * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
+     * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains a list of serviceRunners and their properties as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<ServiceRunner> list(String resourceGroupName, String labName, String filter, Integer top,
+        String orderby, Context context);
+
+    /**
      * Get service runner.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the service runner.
@@ -25,7 +57,7 @@ public interface ServiceRunners {
 
     /**
      * Get service runner.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the service runner.
@@ -37,22 +69,8 @@ public interface ServiceRunners {
     ServiceRunner get(String resourceGroupName, String labName, String name);
 
     /**
-     * Delete service runner.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param labName The name of the lab.
-     * @param name The name of the service runner.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    Response<Void> deleteWithResponse(String resourceGroupName, String labName, String name, Context context);
-
-    /**
-     * Delete service runner.
-     *
+     * Delete service runner. This operation can take a while to complete.
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the service runner.
@@ -63,8 +81,21 @@ public interface ServiceRunners {
     void delete(String resourceGroupName, String labName, String name);
 
     /**
+     * Delete service runner. This operation can take a while to complete.
+     * 
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @param name The name of the service runner.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String labName, String name, Context context);
+
+    /**
      * Get service runner.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -75,7 +106,7 @@ public interface ServiceRunners {
 
     /**
      * Get service runner.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -86,8 +117,8 @@ public interface ServiceRunners {
     Response<ServiceRunner> getByIdWithResponse(String id, Context context);
 
     /**
-     * Delete service runner.
-     *
+     * Delete service runner. This operation can take a while to complete.
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -96,20 +127,19 @@ public interface ServiceRunners {
     void deleteById(String id);
 
     /**
-     * Delete service runner.
-     *
+     * Delete service runner. This operation can take a while to complete.
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
      */
-    Response<Void> deleteByIdWithResponse(String id, Context context);
+    void deleteByIdWithResponse(String id, Context context);
 
     /**
      * Begins definition for a new ServiceRunner resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new ServiceRunner definition.
      */

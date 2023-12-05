@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Status information about a virtual machine. */
+/**
+ * Status information about a virtual machine.
+ */
 @Fluent
 public final class ComputeVmInstanceViewStatus {
     /*
@@ -28,13 +30,15 @@ public final class ComputeVmInstanceViewStatus {
     @JsonProperty(value = "message")
     private String message;
 
-    /** Creates an instance of ComputeVmInstanceViewStatus class. */
+    /**
+     * Creates an instance of ComputeVmInstanceViewStatus class.
+     */
     public ComputeVmInstanceViewStatus() {
     }
 
     /**
      * Get the code property: Gets the status Code.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -43,7 +47,7 @@ public final class ComputeVmInstanceViewStatus {
 
     /**
      * Set the code property: Gets the status Code.
-     *
+     * 
      * @param code the code value to set.
      * @return the ComputeVmInstanceViewStatus object itself.
      */
@@ -54,7 +58,7 @@ public final class ComputeVmInstanceViewStatus {
 
     /**
      * Get the displayStatus property: Gets the short localizable label for the status.
-     *
+     * 
      * @return the displayStatus value.
      */
     public String displayStatus() {
@@ -63,7 +67,7 @@ public final class ComputeVmInstanceViewStatus {
 
     /**
      * Set the displayStatus property: Gets the short localizable label for the status.
-     *
+     * 
      * @param displayStatus the displayStatus value to set.
      * @return the ComputeVmInstanceViewStatus object itself.
      */
@@ -74,7 +78,7 @@ public final class ComputeVmInstanceViewStatus {
 
     /**
      * Get the message property: Gets the message associated with the status.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -83,7 +87,7 @@ public final class ComputeVmInstanceViewStatus {
 
     /**
      * Set the message property: Gets the message associated with the status.
-     *
+     * 
      * @param message the message value to set.
      * @return the ComputeVmInstanceViewStatus object itself.
      */
@@ -94,7 +98,7 @@ public final class ComputeVmInstanceViewStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

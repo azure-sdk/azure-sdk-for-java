@@ -5,61 +5,42 @@
 package com.azure.resourcemanager.devtestlabs.generated;
 
 import com.azure.resourcemanager.devtestlabs.fluent.models.ScheduleInner;
-import com.azure.resourcemanager.devtestlabs.models.DayDetails;
 import com.azure.resourcemanager.devtestlabs.models.EnableStatus;
-import com.azure.resourcemanager.devtestlabs.models.HourDetails;
-import com.azure.resourcemanager.devtestlabs.models.NotificationSettings;
-import com.azure.resourcemanager.devtestlabs.models.WeekDetails;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for ServiceFabricSchedules CreateOrUpdate. */
+/**
+ * Samples for ServiceFabricSchedules CreateOrUpdate.
+ */
 public final class ServiceFabricSchedulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ServiceFabricSchedules_CreateOrUpdate.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/
+     * ServiceFabricSchedules_CreateOrUpdate.json
      */
     /**
      * Sample code: ServiceFabricSchedules_CreateOrUpdate.
-     *
+     * 
      * @param manager Entry point to DevTestLabsManager.
      */
-    public static void serviceFabricSchedulesCreateOrUpdate(
-        com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager
-            .serviceFabricSchedules()
-            .createOrUpdateWithResponse(
-                "resourceGroupName",
-                "{labName}",
-                "@me",
-                "{serviceFrabicName}",
-                "{scheduleName}",
-                new ScheduleInner()
-                    .withLocation("{location}")
-                    .withTags(mapOf("tagName1", "tagValue1"))
-                    .withStatus(EnableStatus.fromString("{Enabled|Disabled}"))
-                    .withTaskType(
-                        "{Unknown|LabVmsShutdownTask|LabVmsStartupTask|LabVmReclamationTask|ComputeVmShutdownTask}")
-                    .withWeeklyRecurrence(
-                        new WeekDetails()
-                            .withWeekdays(
-                                Arrays
-                                    .asList(
-                                        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
-                            .withTime("19:00"))
-                    .withDailyRecurrence(new DayDetails().withTime("19:00"))
-                    .withHourlyRecurrence(new HourDetails().withMinute(0))
-                    .withTimeZoneId("Pacific Standard Time")
-                    .withNotificationSettings(
-                        new NotificationSettings()
-                            .withStatus(EnableStatus.fromString("{Enabled|Disabled}"))
-                            .withTimeInMinutes(15)
-                            .withWebhookUrl("{webhoolUrl}")
-                            .withEmailRecipient("{email}")
-                            .withNotificationLocale("EN"))
-                    .withTargetResourceId(
-                        "/subscriptions/{subscriptionId}/resourceGroups/resourceGroupName/providers/Microsoft.DevTestLab/labs/{labName}/users/{uniqueIdentifier}/servicefabrics/{serviceFrabicName}"),
-                com.azure.core.util.Context.NONE);
+    public static void
+        serviceFabricSchedulesCreateOrUpdate(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
+        manager.serviceFabricSchedules().createOrUpdateWithResponse("resourceGroupName", "exampleLab", "@me",
+            "{serviceFrabicName}", "{scheduleName}",
+            new ScheduleInner().withLocation("westcentralus").withTags(mapOf("tagName1", "tagValue1"))
+                .withStatus(EnableStatus.fromString("{Enabled|Disabled}"))
+                .withTaskType(
+                    "{Unknown|LabVmsShutdownTask|LabVmsStartupTask|LabVmReclamationTask|ComputeVmShutdownTask}")
+                .withTimeZoneId("Pacific Standard Time")
+                .withTargetResourceId(
+                    "/subscriptions/e605a3bc-ee4e-4c7a-9709-1868a28b1d4d/resourceGroups/resourceGroupName/providers/Microsoft.DevTestLab/labs/exampleLab/users/{uniqueIdentifier}/servicefabrics/{serviceFrabicName}")
+                .withWeekdays(
+                    Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
+                .withTime("19:00").withTimeDailyRecurrenceTime("19:00").withMinute(0)
+                .withStatusNotificationSettingsStatus(EnableStatus.fromString("{Enabled|Disabled}"))
+                .withTimeInMinutes(15).withWebhookUrl("{webhoolUrl}").withEmailRecipient("{email}")
+                .withNotificationLocale("EN"),
+            com.azure.core.util.Context.NONE);
     }
 
     // Use "Map.of" if available

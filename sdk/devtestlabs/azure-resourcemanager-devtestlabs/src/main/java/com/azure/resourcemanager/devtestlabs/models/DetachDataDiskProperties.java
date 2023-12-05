@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Request body for detaching data disk from a virtual machine. */
+/**
+ * Request body for detaching data disk from a virtual machine.
+ */
 @Fluent
 public final class DetachDataDiskProperties {
     /*
@@ -16,13 +18,15 @@ public final class DetachDataDiskProperties {
     @JsonProperty(value = "existingLabDiskId")
     private String existingLabDiskId;
 
-    /** Creates an instance of DetachDataDiskProperties class. */
+    /**
+     * Creates an instance of DetachDataDiskProperties class.
+     */
     public DetachDataDiskProperties() {
     }
 
     /**
      * Get the existingLabDiskId property: Specifies the disk resource ID to detach from virtual machine.
-     *
+     * 
      * @return the existingLabDiskId value.
      */
     public String existingLabDiskId() {
@@ -31,7 +35,7 @@ public final class DetachDataDiskProperties {
 
     /**
      * Set the existingLabDiskId property: Specifies the disk resource ID to detach from virtual machine.
-     *
+     * 
      * @param existingLabDiskId the existingLabDiskId value to set.
      * @return the DetachDataDiskProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class DetachDataDiskProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

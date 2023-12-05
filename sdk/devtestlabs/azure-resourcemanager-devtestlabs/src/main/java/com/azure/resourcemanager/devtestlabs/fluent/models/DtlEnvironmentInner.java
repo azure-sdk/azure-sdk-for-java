@@ -6,12 +6,16 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.devtestlabs.models.EnvironmentDeploymentProperties;
+import com.azure.resourcemanager.devtestlabs.models.ArmTemplateParameterProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import java.util.Map;
 
-/** An environment, which is essentially an ARM template deployment. */
+/**
+ * An environment, which is essentially an ARM template deployment.
+ */
 @Fluent
 public final class DtlEnvironmentInner extends Resource {
     /*
@@ -20,27 +24,48 @@ public final class DtlEnvironmentInner extends Resource {
     @JsonProperty(value = "properties", required = true)
     private EnvironmentProperties innerProperties = new EnvironmentProperties();
 
-    /** Creates an instance of DtlEnvironmentInner class. */
+    /*
+     * The system metadata relating to this resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of DtlEnvironmentInner class.
+     */
     public DtlEnvironmentInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of the resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private EnvironmentProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DtlEnvironmentInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DtlEnvironmentInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -48,32 +73,9 @@ public final class DtlEnvironmentInner extends Resource {
     }
 
     /**
-     * Get the deploymentProperties property: The deployment properties of the environment.
-     *
-     * @return the deploymentProperties value.
-     */
-    public EnvironmentDeploymentProperties deploymentProperties() {
-        return this.innerProperties() == null ? null : this.innerProperties().deploymentProperties();
-    }
-
-    /**
-     * Set the deploymentProperties property: The deployment properties of the environment.
-     *
-     * @param deploymentProperties the deploymentProperties value to set.
-     * @return the DtlEnvironmentInner object itself.
-     */
-    public DtlEnvironmentInner withDeploymentProperties(EnvironmentDeploymentProperties deploymentProperties) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EnvironmentProperties();
-        }
-        this.innerProperties().withDeploymentProperties(deploymentProperties);
-        return this;
-    }
-
-    /**
      * Get the armTemplateDisplayName property: The display name of the Azure Resource Manager template that produced
      * the environment.
-     *
+     * 
      * @return the armTemplateDisplayName value.
      */
     public String armTemplateDisplayName() {
@@ -83,7 +85,7 @@ public final class DtlEnvironmentInner extends Resource {
     /**
      * Set the armTemplateDisplayName property: The display name of the Azure Resource Manager template that produced
      * the environment.
-     *
+     * 
      * @param armTemplateDisplayName the armTemplateDisplayName value to set.
      * @return the DtlEnvironmentInner object itself.
      */
@@ -97,7 +99,7 @@ public final class DtlEnvironmentInner extends Resource {
 
     /**
      * Get the resourceGroupId property: The identifier of the resource group containing the environment's resources.
-     *
+     * 
      * @return the resourceGroupId value.
      */
     public String resourceGroupId() {
@@ -106,7 +108,7 @@ public final class DtlEnvironmentInner extends Resource {
 
     /**
      * Get the createdByUser property: The creator of the environment.
-     *
+     * 
      * @return the createdByUser value.
      */
     public String createdByUser() {
@@ -115,7 +117,7 @@ public final class DtlEnvironmentInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioning status of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -124,7 +126,7 @@ public final class DtlEnvironmentInner extends Resource {
 
     /**
      * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
+     * 
      * @return the uniqueIdentifier value.
      */
     public String uniqueIdentifier() {
@@ -132,16 +134,60 @@ public final class DtlEnvironmentInner extends Resource {
     }
 
     /**
+     * Get the armTemplateId property: The Azure Resource Manager template's identifier.
+     * 
+     * @return the armTemplateId value.
+     */
+    public String armTemplateId() {
+        return this.innerProperties() == null ? null : this.innerProperties().armTemplateId();
+    }
+
+    /**
+     * Set the armTemplateId property: The Azure Resource Manager template's identifier.
+     * 
+     * @param armTemplateId the armTemplateId value to set.
+     * @return the DtlEnvironmentInner object itself.
+     */
+    public DtlEnvironmentInner withArmTemplateId(String armTemplateId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EnvironmentProperties();
+        }
+        this.innerProperties().withArmTemplateId(armTemplateId);
+        return this;
+    }
+
+    /**
+     * Get the parameters property: The parameters of the Azure Resource Manager template.
+     * 
+     * @return the parameters value.
+     */
+    public List<ArmTemplateParameterProperties> parameters() {
+        return this.innerProperties() == null ? null : this.innerProperties().parameters();
+    }
+
+    /**
+     * Set the parameters property: The parameters of the Azure Resource Manager template.
+     * 
+     * @param parameters the parameters value to set.
+     * @return the DtlEnvironmentInner object itself.
+     */
+    public DtlEnvironmentInner withParameters(List<ArmTemplateParameterProperties> parameters) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EnvironmentProperties();
+        }
+        this.innerProperties().withParameters(parameters);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model DtlEnvironmentInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model DtlEnvironmentInner"));
         } else {
             innerProperties().validate();
         }

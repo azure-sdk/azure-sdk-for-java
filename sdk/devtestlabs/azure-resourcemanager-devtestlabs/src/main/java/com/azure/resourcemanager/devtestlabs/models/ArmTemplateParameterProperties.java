@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of an Azure Resource Manager template parameter. */
+/**
+ * Properties of an Azure Resource Manager template parameter.
+ */
 @Fluent
 public final class ArmTemplateParameterProperties {
     /*
@@ -22,13 +24,15 @@ public final class ArmTemplateParameterProperties {
     @JsonProperty(value = "value")
     private String value;
 
-    /** Creates an instance of ArmTemplateParameterProperties class. */
+    /**
+     * Creates an instance of ArmTemplateParameterProperties class.
+     */
     public ArmTemplateParameterProperties() {
     }
 
     /**
      * Get the name property: The name of the template parameter.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class ArmTemplateParameterProperties {
 
     /**
      * Set the name property: The name of the template parameter.
-     *
+     * 
      * @param name the name value to set.
      * @return the ArmTemplateParameterProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class ArmTemplateParameterProperties {
 
     /**
      * Get the value property: The value of the template parameter.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -57,7 +61,7 @@ public final class ArmTemplateParameterProperties {
 
     /**
      * Set the value property: The value of the template parameter.
-     *
+     * 
      * @param value the value value to set.
      * @return the ArmTemplateParameterProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class ArmTemplateParameterProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

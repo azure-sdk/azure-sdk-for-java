@@ -6,7 +6,7 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
-import com.azure.core.util.logging.ClientLogger;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devtestlabs.models.PolicyEvaluatorType;
 import com.azure.resourcemanager.devtestlabs.models.PolicyFactName;
 import com.azure.resourcemanager.devtestlabs.models.PolicyStatus;
@@ -14,36 +14,59 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
-/** A Policy. */
+/**
+ * A Policy.
+ */
 @Fluent
 public final class PolicyInner extends Resource {
     /*
      * The properties of the resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private PolicyProperties innerProperties = new PolicyProperties();
+    @JsonProperty(value = "properties")
+    private PolicyProperties innerProperties;
 
-    /** Creates an instance of PolicyInner class. */
+    /*
+     * The system metadata relating to this resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of PolicyInner class.
+     */
     public PolicyInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of the resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private PolicyProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PolicyInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PolicyInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -52,7 +75,7 @@ public final class PolicyInner extends Resource {
 
     /**
      * Get the description property: The description of the policy.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -61,7 +84,7 @@ public final class PolicyInner extends Resource {
 
     /**
      * Set the description property: The description of the policy.
-     *
+     * 
      * @param description the description value to set.
      * @return the PolicyInner object itself.
      */
@@ -75,7 +98,7 @@ public final class PolicyInner extends Resource {
 
     /**
      * Get the status property: The status of the policy.
-     *
+     * 
      * @return the status value.
      */
     public PolicyStatus status() {
@@ -84,7 +107,7 @@ public final class PolicyInner extends Resource {
 
     /**
      * Set the status property: The status of the policy.
-     *
+     * 
      * @param status the status value to set.
      * @return the PolicyInner object itself.
      */
@@ -98,7 +121,7 @@ public final class PolicyInner extends Resource {
 
     /**
      * Get the factName property: The fact name of the policy (e.g. LabVmCount, LabVmSize, MaxVmsAllowedPerLab, etc.
-     *
+     * 
      * @return the factName value.
      */
     public PolicyFactName factName() {
@@ -107,7 +130,7 @@ public final class PolicyInner extends Resource {
 
     /**
      * Set the factName property: The fact name of the policy (e.g. LabVmCount, LabVmSize, MaxVmsAllowedPerLab, etc.
-     *
+     * 
      * @param factName the factName value to set.
      * @return the PolicyInner object itself.
      */
@@ -121,7 +144,7 @@ public final class PolicyInner extends Resource {
 
     /**
      * Get the factData property: The fact data of the policy.
-     *
+     * 
      * @return the factData value.
      */
     public String factData() {
@@ -130,7 +153,7 @@ public final class PolicyInner extends Resource {
 
     /**
      * Set the factData property: The fact data of the policy.
-     *
+     * 
      * @param factData the factData value to set.
      * @return the PolicyInner object itself.
      */
@@ -145,7 +168,7 @@ public final class PolicyInner extends Resource {
     /**
      * Get the threshold property: The threshold of the policy (i.e. a number for MaxValuePolicy, and a JSON array of
      * values for AllowedValuesPolicy).
-     *
+     * 
      * @return the threshold value.
      */
     public String threshold() {
@@ -155,7 +178,7 @@ public final class PolicyInner extends Resource {
     /**
      * Set the threshold property: The threshold of the policy (i.e. a number for MaxValuePolicy, and a JSON array of
      * values for AllowedValuesPolicy).
-     *
+     * 
      * @param threshold the threshold value to set.
      * @return the PolicyInner object itself.
      */
@@ -169,7 +192,7 @@ public final class PolicyInner extends Resource {
 
     /**
      * Get the evaluatorType property: The evaluator type of the policy (i.e. AllowedValuesPolicy, MaxValuePolicy).
-     *
+     * 
      * @return the evaluatorType value.
      */
     public PolicyEvaluatorType evaluatorType() {
@@ -178,7 +201,7 @@ public final class PolicyInner extends Resource {
 
     /**
      * Set the evaluatorType property: The evaluator type of the policy (i.e. AllowedValuesPolicy, MaxValuePolicy).
-     *
+     * 
      * @param evaluatorType the evaluatorType value to set.
      * @return the PolicyInner object itself.
      */
@@ -192,7 +215,7 @@ public final class PolicyInner extends Resource {
 
     /**
      * Get the createdDate property: The creation date of the policy.
-     *
+     * 
      * @return the createdDate value.
      */
     public OffsetDateTime createdDate() {
@@ -201,7 +224,7 @@ public final class PolicyInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioning status of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -210,7 +233,7 @@ public final class PolicyInner extends Resource {
 
     /**
      * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
+     * 
      * @return the uniqueIdentifier value.
      */
     public String uniqueIdentifier() {
@@ -219,18 +242,12 @@ public final class PolicyInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model PolicyInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(PolicyInner.class);
 }

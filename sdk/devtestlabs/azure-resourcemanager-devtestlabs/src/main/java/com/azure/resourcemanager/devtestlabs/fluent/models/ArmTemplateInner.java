@@ -6,6 +6,7 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.devtestlabs.models.ParametersValueFileInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,7 +14,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** An Azure Resource Manager template. */
+/**
+ * An Azure Resource Manager template.
+ */
 @Fluent
 public final class ArmTemplateInner extends Resource {
     /*
@@ -22,27 +25,48 @@ public final class ArmTemplateInner extends Resource {
     @JsonProperty(value = "properties", required = true)
     private ArmTemplateProperties innerProperties = new ArmTemplateProperties();
 
-    /** Creates an instance of ArmTemplateInner class. */
+    /*
+     * The system metadata relating to this resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of ArmTemplateInner class.
+     */
     public ArmTemplateInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of the resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ArmTemplateProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ArmTemplateInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ArmTemplateInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -51,7 +75,7 @@ public final class ArmTemplateInner extends Resource {
 
     /**
      * Get the displayName property: The display name of the ARM template.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -60,7 +84,7 @@ public final class ArmTemplateInner extends Resource {
 
     /**
      * Get the description property: The description of the ARM template.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -69,7 +93,7 @@ public final class ArmTemplateInner extends Resource {
 
     /**
      * Get the publisher property: The publisher of the ARM template.
-     *
+     * 
      * @return the publisher value.
      */
     public String publisher() {
@@ -78,7 +102,7 @@ public final class ArmTemplateInner extends Resource {
 
     /**
      * Get the icon property: The URI to the icon of the ARM template.
-     *
+     * 
      * @return the icon value.
      */
     public String icon() {
@@ -87,7 +111,7 @@ public final class ArmTemplateInner extends Resource {
 
     /**
      * Get the contents property: The contents of the ARM template.
-     *
+     * 
      * @return the contents value.
      */
     public Object contents() {
@@ -96,7 +120,7 @@ public final class ArmTemplateInner extends Resource {
 
     /**
      * Get the createdDate property: The creation date of the armTemplate.
-     *
+     * 
      * @return the createdDate value.
      */
     public OffsetDateTime createdDate() {
@@ -106,7 +130,7 @@ public final class ArmTemplateInner extends Resource {
     /**
      * Get the parametersValueFilesInfo property: File name and parameter values information from all
      * azuredeploy.*.parameters.json for the ARM template.
-     *
+     * 
      * @return the parametersValueFilesInfo value.
      */
     public List<ParametersValueFileInfo> parametersValueFilesInfo() {
@@ -115,7 +139,7 @@ public final class ArmTemplateInner extends Resource {
 
     /**
      * Get the enabled property: Whether or not ARM template is enabled for use by lab user.
-     *
+     * 
      * @return the enabled value.
      */
     public Boolean enabled() {
@@ -124,15 +148,13 @@ public final class ArmTemplateInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model ArmTemplateInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model ArmTemplateInner"));
         } else {
             innerProperties().validate();
         }

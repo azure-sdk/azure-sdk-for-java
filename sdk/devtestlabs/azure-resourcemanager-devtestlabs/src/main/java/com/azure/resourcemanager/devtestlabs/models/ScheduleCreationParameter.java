@@ -8,9 +8,13 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ScheduleCreationParameterProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Map;
 
-/** Properties for creating a schedule. */
+/**
+ * Properties for creating a schedule.
+ */
 @Fluent
 public final class ScheduleCreationParameter {
     /*
@@ -38,13 +42,15 @@ public final class ScheduleCreationParameter {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of ScheduleCreationParameter class. */
+    /**
+     * Creates an instance of ScheduleCreationParameter class.
+     */
     public ScheduleCreationParameter() {
     }
 
     /**
      * Get the innerProperties property: The properties of the schedule.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ScheduleCreationParameterProperties innerProperties() {
@@ -53,7 +59,7 @@ public final class ScheduleCreationParameter {
 
     /**
      * Get the name property: The name of the virtual machine or environment.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -62,7 +68,7 @@ public final class ScheduleCreationParameter {
 
     /**
      * Set the name property: The name of the virtual machine or environment.
-     *
+     * 
      * @param name the name value to set.
      * @return the ScheduleCreationParameter object itself.
      */
@@ -73,7 +79,7 @@ public final class ScheduleCreationParameter {
 
     /**
      * Get the location property: The location of the new virtual machine or environment.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -82,7 +88,7 @@ public final class ScheduleCreationParameter {
 
     /**
      * Get the tags property: The tags of the resource.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -91,7 +97,7 @@ public final class ScheduleCreationParameter {
 
     /**
      * Set the tags property: The tags of the resource.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the ScheduleCreationParameter object itself.
      */
@@ -102,7 +108,7 @@ public final class ScheduleCreationParameter {
 
     /**
      * Get the status property: The status of the schedule (i.e. Enabled, Disabled).
-     *
+     * 
      * @return the status value.
      */
     public EnableStatus status() {
@@ -111,7 +117,7 @@ public final class ScheduleCreationParameter {
 
     /**
      * Set the status property: The status of the schedule (i.e. Enabled, Disabled).
-     *
+     * 
      * @param status the status value to set.
      * @return the ScheduleCreationParameter object itself.
      */
@@ -125,7 +131,7 @@ public final class ScheduleCreationParameter {
 
     /**
      * Get the taskType property: The task type of the schedule (e.g. LabVmsShutdownTask, LabVmAutoStart).
-     *
+     * 
      * @return the taskType value.
      */
     public String taskType() {
@@ -134,7 +140,7 @@ public final class ScheduleCreationParameter {
 
     /**
      * Set the taskType property: The task type of the schedule (e.g. LabVmsShutdownTask, LabVmAutoStart).
-     *
+     * 
      * @param taskType the taskType value to set.
      * @return the ScheduleCreationParameter object itself.
      */
@@ -147,86 +153,8 @@ public final class ScheduleCreationParameter {
     }
 
     /**
-     * Get the weeklyRecurrence property: If the schedule will occur only some days of the week, specify the weekly
-     * recurrence.
-     *
-     * @return the weeklyRecurrence value.
-     */
-    public WeekDetails weeklyRecurrence() {
-        return this.innerProperties() == null ? null : this.innerProperties().weeklyRecurrence();
-    }
-
-    /**
-     * Set the weeklyRecurrence property: If the schedule will occur only some days of the week, specify the weekly
-     * recurrence.
-     *
-     * @param weeklyRecurrence the weeklyRecurrence value to set.
-     * @return the ScheduleCreationParameter object itself.
-     */
-    public ScheduleCreationParameter withWeeklyRecurrence(WeekDetails weeklyRecurrence) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScheduleCreationParameterProperties();
-        }
-        this.innerProperties().withWeeklyRecurrence(weeklyRecurrence);
-        return this;
-    }
-
-    /**
-     * Get the dailyRecurrence property: If the schedule will occur once each day of the week, specify the daily
-     * recurrence.
-     *
-     * @return the dailyRecurrence value.
-     */
-    public DayDetails dailyRecurrence() {
-        return this.innerProperties() == null ? null : this.innerProperties().dailyRecurrence();
-    }
-
-    /**
-     * Set the dailyRecurrence property: If the schedule will occur once each day of the week, specify the daily
-     * recurrence.
-     *
-     * @param dailyRecurrence the dailyRecurrence value to set.
-     * @return the ScheduleCreationParameter object itself.
-     */
-    public ScheduleCreationParameter withDailyRecurrence(DayDetails dailyRecurrence) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScheduleCreationParameterProperties();
-        }
-        this.innerProperties().withDailyRecurrence(dailyRecurrence);
-        return this;
-    }
-
-    /**
-     * Get the hourlyRecurrence property: If the schedule will occur multiple times a day, specify the hourly
-     * recurrence.
-     *
-     * @return the hourlyRecurrence value.
-     */
-    public HourDetails hourlyRecurrence() {
-        return this.innerProperties() == null ? null : this.innerProperties().hourlyRecurrence();
-    }
-
-    /**
-     * Set the hourlyRecurrence property: If the schedule will occur multiple times a day, specify the hourly
-     * recurrence.
-     *
-     * @param hourlyRecurrence the hourlyRecurrence value to set.
-     * @return the ScheduleCreationParameter object itself.
-     */
-    public ScheduleCreationParameter withHourlyRecurrence(HourDetails hourlyRecurrence) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScheduleCreationParameterProperties();
-        }
-        this.innerProperties().withHourlyRecurrence(hourlyRecurrence);
-        return this;
-    }
-
-    /**
-     * Get the timeZoneId property: The time zone ID (e.g. China Standard Time, Greenland Standard Time, Pacific
-     * Standard time, etc.). The possible values for this property can be found in `IReadOnlyCollection&lt;string&gt;
-     * TimeZoneConverter.TZConvert.KnownWindowsTimeZoneIds`
-     * (https://github.com/mattjohnsonpint/TimeZoneConverter/blob/main/README.md).
-     *
+     * Get the timeZoneId property: The time zone ID (e.g. Pacific Standard time).
+     * 
      * @return the timeZoneId value.
      */
     public String timeZoneId() {
@@ -234,11 +162,8 @@ public final class ScheduleCreationParameter {
     }
 
     /**
-     * Set the timeZoneId property: The time zone ID (e.g. China Standard Time, Greenland Standard Time, Pacific
-     * Standard time, etc.). The possible values for this property can be found in `IReadOnlyCollection&lt;string&gt;
-     * TimeZoneConverter.TZConvert.KnownWindowsTimeZoneIds`
-     * (https://github.com/mattjohnsonpint/TimeZoneConverter/blob/main/README.md).
-     *
+     * Set the timeZoneId property: The time zone ID (e.g. Pacific Standard time).
+     * 
      * @param timeZoneId the timeZoneId value to set.
      * @return the ScheduleCreationParameter object itself.
      */
@@ -251,31 +176,17 @@ public final class ScheduleCreationParameter {
     }
 
     /**
-     * Get the notificationSettings property: Notification settings.
-     *
-     * @return the notificationSettings value.
+     * Get the createdDate property: The creation date of the schedule.
+     * 
+     * @return the createdDate value.
      */
-    public NotificationSettings notificationSettings() {
-        return this.innerProperties() == null ? null : this.innerProperties().notificationSettings();
-    }
-
-    /**
-     * Set the notificationSettings property: Notification settings.
-     *
-     * @param notificationSettings the notificationSettings value to set.
-     * @return the ScheduleCreationParameter object itself.
-     */
-    public ScheduleCreationParameter withNotificationSettings(NotificationSettings notificationSettings) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScheduleCreationParameterProperties();
-        }
-        this.innerProperties().withNotificationSettings(notificationSettings);
-        return this;
+    public OffsetDateTime createdDate() {
+        return this.innerProperties() == null ? null : this.innerProperties().createdDate();
     }
 
     /**
      * Get the targetResourceId property: The resource ID to which the schedule belongs.
-     *
+     * 
      * @return the targetResourceId value.
      */
     public String targetResourceId() {
@@ -284,7 +195,7 @@ public final class ScheduleCreationParameter {
 
     /**
      * Set the targetResourceId property: The resource ID to which the schedule belongs.
-     *
+     * 
      * @param targetResourceId the targetResourceId value to set.
      * @return the ScheduleCreationParameter object itself.
      */
@@ -297,8 +208,242 @@ public final class ScheduleCreationParameter {
     }
 
     /**
+     * Get the provisioningState property: The provisioning status of the resource.
+     * 
+     * @return the provisioningState value.
+     */
+    public String provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
+     * 
+     * @return the uniqueIdentifier value.
+     */
+    public String uniqueIdentifier() {
+        return this.innerProperties() == null ? null : this.innerProperties().uniqueIdentifier();
+    }
+
+    /**
+     * Get the weekdays property: The days of the week for which the schedule is set (e.g. Sunday, Monday, Tuesday,
+     * etc.).
+     * 
+     * @return the weekdays value.
+     */
+    public List<String> weekdays() {
+        return this.innerProperties() == null ? null : this.innerProperties().weekdays();
+    }
+
+    /**
+     * Set the weekdays property: The days of the week for which the schedule is set (e.g. Sunday, Monday, Tuesday,
+     * etc.).
+     * 
+     * @param weekdays the weekdays value to set.
+     * @return the ScheduleCreationParameter object itself.
+     */
+    public ScheduleCreationParameter withWeekdays(List<String> weekdays) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleCreationParameterProperties();
+        }
+        this.innerProperties().withWeekdays(weekdays);
+        return this;
+    }
+
+    /**
+     * Get the time property: The time of the day the schedule will occur.
+     * 
+     * @return the time value.
+     */
+    public String time() {
+        return this.innerProperties() == null ? null : this.innerProperties().time();
+    }
+
+    /**
+     * Set the time property: The time of the day the schedule will occur.
+     * 
+     * @param time the time value to set.
+     * @return the ScheduleCreationParameter object itself.
+     */
+    public ScheduleCreationParameter withTime(String time) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleCreationParameterProperties();
+        }
+        this.innerProperties().withTime(time);
+        return this;
+    }
+
+    /**
+     * Get the timeDailyRecurrenceTime property: The time of day the schedule will occur.
+     * 
+     * @return the timeDailyRecurrenceTime value.
+     */
+    public String timeDailyRecurrenceTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().timeDailyRecurrenceTime();
+    }
+
+    /**
+     * Set the timeDailyRecurrenceTime property: The time of day the schedule will occur.
+     * 
+     * @param timeDailyRecurrenceTime the timeDailyRecurrenceTime value to set.
+     * @return the ScheduleCreationParameter object itself.
+     */
+    public ScheduleCreationParameter withTimeDailyRecurrenceTime(String timeDailyRecurrenceTime) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleCreationParameterProperties();
+        }
+        this.innerProperties().withTimeDailyRecurrenceTime(timeDailyRecurrenceTime);
+        return this;
+    }
+
+    /**
+     * Get the minute property: Minutes of the hour the schedule will run.
+     * 
+     * @return the minute value.
+     */
+    public Integer minute() {
+        return this.innerProperties() == null ? null : this.innerProperties().minute();
+    }
+
+    /**
+     * Set the minute property: Minutes of the hour the schedule will run.
+     * 
+     * @param minute the minute value to set.
+     * @return the ScheduleCreationParameter object itself.
+     */
+    public ScheduleCreationParameter withMinute(Integer minute) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleCreationParameterProperties();
+        }
+        this.innerProperties().withMinute(minute);
+        return this;
+    }
+
+    /**
+     * Get the statusNotificationSettingsStatus property: If notifications are enabled for this schedule (i.e. Enabled,
+     * Disabled).
+     * 
+     * @return the statusNotificationSettingsStatus value.
+     */
+    public EnableStatus statusNotificationSettingsStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().statusNotificationSettingsStatus();
+    }
+
+    /**
+     * Set the statusNotificationSettingsStatus property: If notifications are enabled for this schedule (i.e. Enabled,
+     * Disabled).
+     * 
+     * @param statusNotificationSettingsStatus the statusNotificationSettingsStatus value to set.
+     * @return the ScheduleCreationParameter object itself.
+     */
+    public ScheduleCreationParameter
+        withStatusNotificationSettingsStatus(EnableStatus statusNotificationSettingsStatus) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleCreationParameterProperties();
+        }
+        this.innerProperties().withStatusNotificationSettingsStatus(statusNotificationSettingsStatus);
+        return this;
+    }
+
+    /**
+     * Get the timeInMinutes property: Time in minutes before event at which notification will be sent.
+     * 
+     * @return the timeInMinutes value.
+     */
+    public Integer timeInMinutes() {
+        return this.innerProperties() == null ? null : this.innerProperties().timeInMinutes();
+    }
+
+    /**
+     * Set the timeInMinutes property: Time in minutes before event at which notification will be sent.
+     * 
+     * @param timeInMinutes the timeInMinutes value to set.
+     * @return the ScheduleCreationParameter object itself.
+     */
+    public ScheduleCreationParameter withTimeInMinutes(Integer timeInMinutes) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleCreationParameterProperties();
+        }
+        this.innerProperties().withTimeInMinutes(timeInMinutes);
+        return this;
+    }
+
+    /**
+     * Get the webhookUrl property: The webhook URL to which the notification will be sent.
+     * 
+     * @return the webhookUrl value.
+     */
+    public String webhookUrl() {
+        return this.innerProperties() == null ? null : this.innerProperties().webhookUrl();
+    }
+
+    /**
+     * Set the webhookUrl property: The webhook URL to which the notification will be sent.
+     * 
+     * @param webhookUrl the webhookUrl value to set.
+     * @return the ScheduleCreationParameter object itself.
+     */
+    public ScheduleCreationParameter withWebhookUrl(String webhookUrl) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleCreationParameterProperties();
+        }
+        this.innerProperties().withWebhookUrl(webhookUrl);
+        return this;
+    }
+
+    /**
+     * Get the emailRecipient property: The email recipient to send notifications to (can be a list of semi-colon
+     * separated email addresses).
+     * 
+     * @return the emailRecipient value.
+     */
+    public String emailRecipient() {
+        return this.innerProperties() == null ? null : this.innerProperties().emailRecipient();
+    }
+
+    /**
+     * Set the emailRecipient property: The email recipient to send notifications to (can be a list of semi-colon
+     * separated email addresses).
+     * 
+     * @param emailRecipient the emailRecipient value to set.
+     * @return the ScheduleCreationParameter object itself.
+     */
+    public ScheduleCreationParameter withEmailRecipient(String emailRecipient) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleCreationParameterProperties();
+        }
+        this.innerProperties().withEmailRecipient(emailRecipient);
+        return this;
+    }
+
+    /**
+     * Get the notificationLocale property: The locale to use when sending a notification (fallback for unsupported
+     * languages is EN).
+     * 
+     * @return the notificationLocale value.
+     */
+    public String notificationLocale() {
+        return this.innerProperties() == null ? null : this.innerProperties().notificationLocale();
+    }
+
+    /**
+     * Set the notificationLocale property: The locale to use when sending a notification (fallback for unsupported
+     * languages is EN).
+     * 
+     * @param notificationLocale the notificationLocale value to set.
+     * @return the ScheduleCreationParameter object itself.
+     */
+    public ScheduleCreationParameter withNotificationLocale(String notificationLocale) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleCreationParameterProperties();
+        }
+        this.innerProperties().withNotificationLocale(notificationLocale);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

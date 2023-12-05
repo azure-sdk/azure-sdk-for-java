@@ -9,28 +9,32 @@ import com.azure.resourcemanager.devtestlabs.fluent.models.NotificationChannelIn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response of a list operation. */
+/**
+ * Contains a list of notificationChannels and their properties.
+ */
 @Fluent
 public final class NotificationChannelList {
     /*
-     * Results of the list operation.
+     * List of notificationChannels and their properties
      */
     @JsonProperty(value = "value")
     private List<NotificationChannelInner> value;
 
     /*
-     * Link for next set of results.
+     * URL to get the next set of operation list results if there are any
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of NotificationChannelList class. */
+    /**
+     * Creates an instance of NotificationChannelList class.
+     */
     public NotificationChannelList() {
     }
 
     /**
-     * Get the value property: Results of the list operation.
-     *
+     * Get the value property: List of notificationChannels and their properties.
+     * 
      * @return the value value.
      */
     public List<NotificationChannelInner> value() {
@@ -38,8 +42,8 @@ public final class NotificationChannelList {
     }
 
     /**
-     * Set the value property: Results of the list operation.
-     *
+     * Set the value property: List of notificationChannels and their properties.
+     * 
      * @param value the value value to set.
      * @return the NotificationChannelList object itself.
      */
@@ -49,8 +53,8 @@ public final class NotificationChannelList {
     }
 
     /**
-     * Get the nextLink property: Link for next set of results.
-     *
+     * Get the nextLink property: URL to get the next set of operation list results if there are any.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -58,8 +62,8 @@ public final class NotificationChannelList {
     }
 
     /**
-     * Set the nextLink property: Link for next set of results.
-     *
+     * Set the nextLink property: URL to get the next set of operation list results if there are any.
+     * 
      * @param nextLink the nextLink value to set.
      * @return the NotificationChannelList object itself.
      */
@@ -70,7 +74,7 @@ public final class NotificationChannelList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

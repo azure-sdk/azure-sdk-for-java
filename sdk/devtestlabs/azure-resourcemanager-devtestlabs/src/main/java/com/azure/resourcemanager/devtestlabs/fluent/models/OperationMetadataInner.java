@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.devtestlabs.models.OperationMetadataDisplay;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The REST API operation supported by DevTestLab ResourceProvider. */
+/**
+ * The REST API operation supported by DevTestLab ResourceProvider.
+ */
 @Fluent
 public final class OperationMetadataInner {
     /*
@@ -23,13 +25,15 @@ public final class OperationMetadataInner {
     @JsonProperty(value = "display")
     private OperationMetadataDisplay display;
 
-    /** Creates an instance of OperationMetadataInner class. */
+    /**
+     * Creates an instance of OperationMetadataInner class.
+     */
     public OperationMetadataInner() {
     }
 
     /**
      * Get the name property: Operation name: {provider}/{resource}/{operation}.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -38,7 +42,7 @@ public final class OperationMetadataInner {
 
     /**
      * Set the name property: Operation name: {provider}/{resource}/{operation}.
-     *
+     * 
      * @param name the name value to set.
      * @return the OperationMetadataInner object itself.
      */
@@ -49,7 +53,7 @@ public final class OperationMetadataInner {
 
     /**
      * Get the display property: The object that describes the operations.
-     *
+     * 
      * @return the display value.
      */
     public OperationMetadataDisplay display() {
@@ -58,7 +62,7 @@ public final class OperationMetadataInner {
 
     /**
      * Set the display property: The object that describes the operations.
-     *
+     * 
      * @param display the display value to set.
      * @return the OperationMetadataInner object itself.
      */
@@ -69,7 +73,7 @@ public final class OperationMetadataInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

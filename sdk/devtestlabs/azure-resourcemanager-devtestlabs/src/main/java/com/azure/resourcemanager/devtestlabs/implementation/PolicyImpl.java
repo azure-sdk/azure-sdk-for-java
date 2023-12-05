@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.PolicyInner;
 import com.azure.resourcemanager.devtestlabs.models.Policy;
@@ -44,6 +45,10 @@ public final class PolicyImpl implements Policy, Policy.Definition, Policy.Updat
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String description() {
@@ -120,23 +125,15 @@ public final class PolicyImpl implements Policy, Policy.Definition, Policy.Updat
     }
 
     public Policy create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPolicies()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, labName, policySetName, name, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getPolicies().createOrUpdateWithResponse(resourceGroupName,
+            labName, policySetName, name, this.innerModel(), Context.NONE).getValue();
         return this;
     }
 
     public Policy create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPolicies()
-                .createOrUpdateWithResponse(resourceGroupName, labName, policySetName, name, this.innerModel(), context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getPolicies()
+            .createOrUpdateWithResponse(resourceGroupName, labName, policySetName, name, this.innerModel(), context)
+            .getValue();
         return this;
     }
 
@@ -152,22 +149,14 @@ public final class PolicyImpl implements Policy, Policy.Definition, Policy.Updat
     }
 
     public Policy apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPolicies()
-                .updateWithResponse(resourceGroupName, labName, policySetName, name, updatePolicy, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getPolicies()
+            .updateWithResponse(resourceGroupName, labName, policySetName, name, updatePolicy, Context.NONE).getValue();
         return this;
     }
 
     public Policy apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPolicies()
-                .updateWithResponse(resourceGroupName, labName, policySetName, name, updatePolicy, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getPolicies()
+            .updateWithResponse(resourceGroupName, labName, policySetName, name, updatePolicy, context).getValue();
         return this;
     }
 
@@ -182,23 +171,15 @@ public final class PolicyImpl implements Policy, Policy.Definition, Policy.Updat
 
     public Policy refresh() {
         String localExpand = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPolicies()
-                .getWithResponse(resourceGroupName, labName, policySetName, name, localExpand, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getPolicies()
+            .getWithResponse(resourceGroupName, labName, policySetName, name, localExpand, Context.NONE).getValue();
         return this;
     }
 
     public Policy refresh(Context context) {
         String localExpand = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPolicies()
-                .getWithResponse(resourceGroupName, labName, policySetName, name, localExpand, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getPolicies()
+            .getWithResponse(resourceGroupName, labName, policySetName, name, localExpand, context).getValue();
         return this;
     }
 

@@ -4,44 +4,33 @@
 
 package com.azure.resourcemanager.devtestlabs.generated;
 
-import com.azure.resourcemanager.devtestlabs.models.GalleryImageReference;
+import com.azure.resourcemanager.devtestlabs.models.StorageTypes;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for VirtualMachines CreateOrUpdate. */
+/**
+ * Samples for VirtualMachines CreateOrUpdate.
+ */
 public final class VirtualMachinesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachines_CreateOrUpdate.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/
+     * VirtualMachines_CreateOrUpdate.json
      */
     /**
      * Sample code: VirtualMachines_CreateOrUpdate.
-     *
+     * 
      * @param manager Entry point to DevTestLabsManager.
      */
     public static void virtualMachinesCreateOrUpdate(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager
-            .virtualMachines()
-            .define("{vmName}")
-            .withRegion("{location}")
-            .withExistingLab("resourceGroupName", "{labName}")
-            .withTags(mapOf("tagName1", "tagValue1"))
-            .withSize("Standard_A2_v2")
-            .withUsername("{userName}")
-            .withPassword("{userPassword}")
-            .withLabSubnetName("{virtualNetworkName}Subnet")
+        manager.virtualMachines().define("vmName001").withRegion("westcentralus")
+            .withExistingLab("resourceGroupName", "exampleLab").withTags(mapOf("tagName1", "tagValue1"))
+            .withSize("Standard_A2_v2").withUsername("UserName001").withPassword("{userPassword}")
+            .withLabSubnetName("dtlexampleLabSubnet")
             .withLabVirtualNetworkId(
-                "/subscriptions/{subscriptionId}/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/{labName}/virtualnetworks/{virtualNetworkName}")
-            .withDisallowPublicIpAddress(true)
-            .withGalleryImageReference(
-                new GalleryImageReference()
-                    .withOffer("UbuntuServer")
-                    .withPublisher("Canonical")
-                    .withSku("16.04-LTS")
-                    .withOsType("Linux")
-                    .withVersion("Latest"))
-            .withAllowClaim(true)
-            .withStorageType("Standard")
-            .create();
+                "/subscriptions/e605a3bc-ee4e-4c7a-9709-1868a28b1d4d/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/exampleLab/virtualnetworks/dtlexampleLab")
+            .withDisallowPublicIpAddress(true).withAllowClaim(true).withStorageType(StorageTypes.STANDARD)
+            .withOffer("UbuntuServer").withPublisher("Canonical").withSku("18.04-LTS")
+            .withOsTypeGalleryImageReferenceOsType("Linux").withVersion("Latest").create();
     }
 
     // Use "Map.of" if available

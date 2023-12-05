@@ -14,49 +14,45 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.devtestlabs.fluent.models.VirtualNetworkInner;
 import com.azure.resourcemanager.devtestlabs.models.VirtualNetworkFragment;
 
-/** An instance of this class provides access to all the operations defined in VirtualNetworksClient. */
+/**
+ * An instance of this class provides access to all the operations defined in VirtualNetworksClient.
+ */
 public interface VirtualNetworksClient {
     /**
      * List virtual networks in a given lab.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of virtualNetworks and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<VirtualNetworkInner> list(String resourceGroupName, String labName);
 
     /**
      * List virtual networks in a given lab.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($expand=externalSubnets)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of virtualNetworks and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<VirtualNetworkInner> list(
-        String resourceGroupName,
-        String labName,
-        String expand,
-        String filter,
-        Integer top,
-        String orderby,
-        Context context);
+    PagedIterable<VirtualNetworkInner> list(String resourceGroupName, String labName, String expand, String filter,
+        Integer top, String orderby, Context context);
 
     /**
      * Get virtual network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the virtual network.
@@ -68,12 +64,12 @@ public interface VirtualNetworksClient {
      * @return virtual network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<VirtualNetworkInner> getWithResponse(
-        String resourceGroupName, String labName, String name, String expand, Context context);
+    Response<VirtualNetworkInner> getWithResponse(String resourceGroupName, String labName, String name, String expand,
+        Context context);
 
     /**
      * Get virtual network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the virtual network.
@@ -87,7 +83,7 @@ public interface VirtualNetworksClient {
 
     /**
      * Create or replace an existing virtual network. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the virtual network.
@@ -98,12 +94,12 @@ public interface VirtualNetworksClient {
      * @return the {@link SyncPoller} for polling of a virtual network.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginCreateOrUpdate(
-        String resourceGroupName, String labName, String name, VirtualNetworkInner virtualNetwork);
+    SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginCreateOrUpdate(String resourceGroupName,
+        String labName, String name, VirtualNetworkInner virtualNetwork);
 
     /**
      * Create or replace an existing virtual network. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the virtual network.
@@ -115,12 +111,12 @@ public interface VirtualNetworksClient {
      * @return the {@link SyncPoller} for polling of a virtual network.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginCreateOrUpdate(
-        String resourceGroupName, String labName, String name, VirtualNetworkInner virtualNetwork, Context context);
+    SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginCreateOrUpdate(String resourceGroupName,
+        String labName, String name, VirtualNetworkInner virtualNetwork, Context context);
 
     /**
      * Create or replace an existing virtual network. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the virtual network.
@@ -131,12 +127,12 @@ public interface VirtualNetworksClient {
      * @return a virtual network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    VirtualNetworkInner createOrUpdate(
-        String resourceGroupName, String labName, String name, VirtualNetworkInner virtualNetwork);
+    VirtualNetworkInner createOrUpdate(String resourceGroupName, String labName, String name,
+        VirtualNetworkInner virtualNetwork);
 
     /**
      * Create or replace an existing virtual network. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the virtual network.
@@ -148,12 +144,12 @@ public interface VirtualNetworksClient {
      * @return a virtual network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    VirtualNetworkInner createOrUpdate(
-        String resourceGroupName, String labName, String name, VirtualNetworkInner virtualNetwork, Context context);
+    VirtualNetworkInner createOrUpdate(String resourceGroupName, String labName, String name,
+        VirtualNetworkInner virtualNetwork, Context context);
 
     /**
      * Delete virtual network. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the virtual network.
@@ -167,7 +163,7 @@ public interface VirtualNetworksClient {
 
     /**
      * Delete virtual network. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the virtual network.
@@ -178,12 +174,12 @@ public interface VirtualNetworksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String labName, String name, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String labName, String name,
+        Context context);
 
     /**
      * Delete virtual network. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the virtual network.
@@ -196,7 +192,7 @@ public interface VirtualNetworksClient {
 
     /**
      * Delete virtual network. This operation can take a while to complete.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the virtual network.
@@ -210,11 +206,11 @@ public interface VirtualNetworksClient {
 
     /**
      * Allows modifying tags of virtual networks. All other properties will be ignored.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the virtual network.
-     * @param virtualNetwork A virtual network.
+     * @param virtualNetwork Allows modifying tags of virtual networks. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -222,22 +218,22 @@ public interface VirtualNetworksClient {
      * @return a virtual network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<VirtualNetworkInner> updateWithResponse(
-        String resourceGroupName, String labName, String name, VirtualNetworkFragment virtualNetwork, Context context);
+    Response<VirtualNetworkInner> updateWithResponse(String resourceGroupName, String labName, String name,
+        VirtualNetworkFragment virtualNetwork, Context context);
 
     /**
      * Allows modifying tags of virtual networks. All other properties will be ignored.
-     *
+     * 
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the virtual network.
-     * @param virtualNetwork A virtual network.
+     * @param virtualNetwork Allows modifying tags of virtual networks. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a virtual network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    VirtualNetworkInner update(
-        String resourceGroupName, String labName, String name, VirtualNetworkFragment virtualNetwork);
+    VirtualNetworkInner update(String resourceGroupName, String labName, String name,
+        VirtualNetworkFragment virtualNetwork);
 }

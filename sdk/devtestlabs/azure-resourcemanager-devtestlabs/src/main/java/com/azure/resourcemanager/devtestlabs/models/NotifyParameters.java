@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties for generating a Notification. */
+/**
+ * Properties for generating a Notification.
+ */
 @Fluent
 public final class NotifyParameters {
     /*
@@ -22,13 +24,15 @@ public final class NotifyParameters {
     @JsonProperty(value = "jsonPayload")
     private String jsonPayload;
 
-    /** Creates an instance of NotifyParameters class. */
+    /**
+     * Creates an instance of NotifyParameters class.
+     */
     public NotifyParameters() {
     }
 
     /**
      * Get the eventName property: The type of event (i.e. AutoShutdown, Cost).
-     *
+     * 
      * @return the eventName value.
      */
     public NotificationChannelEventType eventName() {
@@ -37,7 +41,7 @@ public final class NotifyParameters {
 
     /**
      * Set the eventName property: The type of event (i.e. AutoShutdown, Cost).
-     *
+     * 
      * @param eventName the eventName value to set.
      * @return the NotifyParameters object itself.
      */
@@ -48,7 +52,7 @@ public final class NotifyParameters {
 
     /**
      * Get the jsonPayload property: Properties for the notification in json format.
-     *
+     * 
      * @return the jsonPayload value.
      */
     public String jsonPayload() {
@@ -57,7 +61,7 @@ public final class NotifyParameters {
 
     /**
      * Set the jsonPayload property: Properties for the notification in json format.
-     *
+     * 
      * @param jsonPayload the jsonPayload value to set.
      * @return the NotifyParameters object itself.
      */
@@ -68,7 +72,7 @@ public final class NotifyParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

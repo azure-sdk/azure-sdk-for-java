@@ -7,14 +7,20 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import java.util.Map;
 
-/** A virtual machine. */
+/**
+ * Patch.
+ */
 @Fluent
 public final class LabVirtualMachineFragment extends UpdateResource {
-    /** Creates an instance of LabVirtualMachineFragment class. */
+    /**
+     * Creates an instance of LabVirtualMachineFragment class.
+     */
     public LabVirtualMachineFragment() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LabVirtualMachineFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -23,7 +29,7 @@ public final class LabVirtualMachineFragment extends UpdateResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

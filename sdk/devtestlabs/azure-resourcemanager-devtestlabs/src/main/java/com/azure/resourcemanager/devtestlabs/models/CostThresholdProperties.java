@@ -5,9 +5,12 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devtestlabs.fluent.models.PercentageCostThresholdProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of a cost threshold item. */
+/**
+ * Properties of a cost threshold item.
+ */
 @Fluent
 public final class CostThresholdProperties {
     /*
@@ -20,7 +23,7 @@ public final class CostThresholdProperties {
      * The value of the percentage cost threshold.
      */
     @JsonProperty(value = "percentageThreshold")
-    private PercentageCostThresholdProperties percentageThreshold;
+    private PercentageCostThresholdProperties innerPercentageThreshold;
 
     /*
      * Indicates whether this threshold will be displayed on cost charts.
@@ -40,13 +43,15 @@ public final class CostThresholdProperties {
     @JsonProperty(value = "notificationSent")
     private String notificationSent;
 
-    /** Creates an instance of CostThresholdProperties class. */
+    /**
+     * Creates an instance of CostThresholdProperties class.
+     */
     public CostThresholdProperties() {
     }
 
     /**
      * Get the thresholdId property: The ID of the cost threshold item.
-     *
+     * 
      * @return the thresholdId value.
      */
     public String thresholdId() {
@@ -55,7 +60,7 @@ public final class CostThresholdProperties {
 
     /**
      * Set the thresholdId property: The ID of the cost threshold item.
-     *
+     * 
      * @param thresholdId the thresholdId value to set.
      * @return the CostThresholdProperties object itself.
      */
@@ -65,28 +70,17 @@ public final class CostThresholdProperties {
     }
 
     /**
-     * Get the percentageThreshold property: The value of the percentage cost threshold.
-     *
-     * @return the percentageThreshold value.
+     * Get the innerPercentageThreshold property: The value of the percentage cost threshold.
+     * 
+     * @return the innerPercentageThreshold value.
      */
-    public PercentageCostThresholdProperties percentageThreshold() {
-        return this.percentageThreshold;
-    }
-
-    /**
-     * Set the percentageThreshold property: The value of the percentage cost threshold.
-     *
-     * @param percentageThreshold the percentageThreshold value to set.
-     * @return the CostThresholdProperties object itself.
-     */
-    public CostThresholdProperties withPercentageThreshold(PercentageCostThresholdProperties percentageThreshold) {
-        this.percentageThreshold = percentageThreshold;
-        return this;
+    private PercentageCostThresholdProperties innerPercentageThreshold() {
+        return this.innerPercentageThreshold;
     }
 
     /**
      * Get the displayOnChart property: Indicates whether this threshold will be displayed on cost charts.
-     *
+     * 
      * @return the displayOnChart value.
      */
     public CostThresholdStatus displayOnChart() {
@@ -95,7 +89,7 @@ public final class CostThresholdProperties {
 
     /**
      * Set the displayOnChart property: Indicates whether this threshold will be displayed on cost charts.
-     *
+     * 
      * @param displayOnChart the displayOnChart value to set.
      * @return the CostThresholdProperties object itself.
      */
@@ -107,7 +101,7 @@ public final class CostThresholdProperties {
     /**
      * Get the sendNotificationWhenExceeded property: Indicates whether notifications will be sent when this threshold
      * is exceeded.
-     *
+     * 
      * @return the sendNotificationWhenExceeded value.
      */
     public CostThresholdStatus sendNotificationWhenExceeded() {
@@ -117,7 +111,7 @@ public final class CostThresholdProperties {
     /**
      * Set the sendNotificationWhenExceeded property: Indicates whether notifications will be sent when this threshold
      * is exceeded.
-     *
+     * 
      * @param sendNotificationWhenExceeded the sendNotificationWhenExceeded value to set.
      * @return the CostThresholdProperties object itself.
      */
@@ -128,7 +122,7 @@ public final class CostThresholdProperties {
 
     /**
      * Get the notificationSent property: Indicates the datetime when notifications were last sent for this threshold.
-     *
+     * 
      * @return the notificationSent value.
      */
     public String notificationSent() {
@@ -137,7 +131,7 @@ public final class CostThresholdProperties {
 
     /**
      * Set the notificationSent property: Indicates the datetime when notifications were last sent for this threshold.
-     *
+     * 
      * @param notificationSent the notificationSent value to set.
      * @return the CostThresholdProperties object itself.
      */
@@ -147,13 +141,36 @@ public final class CostThresholdProperties {
     }
 
     /**
+     * Get the thresholdValue property: The cost threshold value.
+     * 
+     * @return the thresholdValue value.
+     */
+    public Double thresholdValue() {
+        return this.innerPercentageThreshold() == null ? null : this.innerPercentageThreshold().thresholdValue();
+    }
+
+    /**
+     * Set the thresholdValue property: The cost threshold value.
+     * 
+     * @param thresholdValue the thresholdValue value to set.
+     * @return the CostThresholdProperties object itself.
+     */
+    public CostThresholdProperties withThresholdValue(Double thresholdValue) {
+        if (this.innerPercentageThreshold() == null) {
+            this.innerPercentageThreshold = new PercentageCostThresholdProperties();
+        }
+        this.innerPercentageThreshold().withThresholdValue(thresholdValue);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (percentageThreshold() != null) {
-            percentageThreshold().validate();
+        if (innerPercentageThreshold() != null) {
+            innerPercentageThreshold().validate();
         }
     }
 }

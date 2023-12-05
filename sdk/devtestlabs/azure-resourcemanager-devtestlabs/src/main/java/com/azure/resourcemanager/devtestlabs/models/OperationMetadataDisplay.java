@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The object that describes the operations. */
+/**
+ * The object that describes the operations.
+ */
 @Fluent
 public final class OperationMetadataDisplay {
     /*
@@ -34,13 +36,15 @@ public final class OperationMetadataDisplay {
     @JsonProperty(value = "description")
     private String description;
 
-    /** Creates an instance of OperationMetadataDisplay class. */
+    /**
+     * Creates an instance of OperationMetadataDisplay class.
+     */
     public OperationMetadataDisplay() {
     }
 
     /**
      * Get the provider property: Friendly name of the resource provider.
-     *
+     * 
      * @return the provider value.
      */
     public String provider() {
@@ -49,7 +53,7 @@ public final class OperationMetadataDisplay {
 
     /**
      * Set the provider property: Friendly name of the resource provider.
-     *
+     * 
      * @param provider the provider value to set.
      * @return the OperationMetadataDisplay object itself.
      */
@@ -60,7 +64,7 @@ public final class OperationMetadataDisplay {
 
     /**
      * Get the resource property: Resource type on which the operation is performed.
-     *
+     * 
      * @return the resource value.
      */
     public String resource() {
@@ -69,7 +73,7 @@ public final class OperationMetadataDisplay {
 
     /**
      * Set the resource property: Resource type on which the operation is performed.
-     *
+     * 
      * @param resource the resource value to set.
      * @return the OperationMetadataDisplay object itself.
      */
@@ -80,7 +84,7 @@ public final class OperationMetadataDisplay {
 
     /**
      * Get the operation property: Operation type: read, write, delete, listKeys/action, etc.
-     *
+     * 
      * @return the operation value.
      */
     public String operation() {
@@ -89,7 +93,7 @@ public final class OperationMetadataDisplay {
 
     /**
      * Set the operation property: Operation type: read, write, delete, listKeys/action, etc.
-     *
+     * 
      * @param operation the operation value to set.
      * @return the OperationMetadataDisplay object itself.
      */
@@ -100,7 +104,7 @@ public final class OperationMetadataDisplay {
 
     /**
      * Get the description property: Friendly name of the operation.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -109,7 +113,7 @@ public final class OperationMetadataDisplay {
 
     /**
      * Set the description property: Friendly name of the operation.
-     *
+     * 
      * @param description the description value to set.
      * @return the OperationMetadataDisplay object itself.
      */
@@ -120,7 +124,7 @@ public final class OperationMetadataDisplay {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

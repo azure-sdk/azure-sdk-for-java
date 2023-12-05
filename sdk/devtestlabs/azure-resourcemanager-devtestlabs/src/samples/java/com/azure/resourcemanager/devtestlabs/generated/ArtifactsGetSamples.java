@@ -4,25 +4,21 @@
 
 package com.azure.resourcemanager.devtestlabs.generated;
 
-/** Samples for Artifacts Get. */
+/**
+ * Samples for Artifacts Get.
+ */
 public final class ArtifactsGetSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Artifacts_Get.json
+     * x-ms-original-file:
+     * specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Artifacts_Get.json
      */
     /**
      * Sample code: Artifacts_Get.
-     *
+     * 
      * @param manager Entry point to DevTestLabsManager.
      */
     public static void artifactsGet(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager
-            .artifacts()
-            .getWithResponse(
-                "resourceGroupName",
-                "{labName}",
-                "{artifactSourceName}",
-                "{artifactName}",
-                null,
-                com.azure.core.util.Context.NONE);
+        manager.artifacts().getWithResponse("resourceGroupName", "exampleLab", "artifactSourceName", "exampleArtifact",
+            null, com.azure.core.util.Context.NONE);
     }
 }

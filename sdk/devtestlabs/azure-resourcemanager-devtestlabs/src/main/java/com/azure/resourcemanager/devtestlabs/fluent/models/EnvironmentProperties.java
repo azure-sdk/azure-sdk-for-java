@@ -5,17 +5,20 @@
 package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.devtestlabs.models.EnvironmentDeploymentProperties;
+import com.azure.resourcemanager.devtestlabs.models.ArmTemplateParameterProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
-/** Properties of an environment. */
+/**
+ * Properties of an environment.
+ */
 @Fluent
 public final class EnvironmentProperties {
     /*
      * The deployment properties of the environment.
      */
     @JsonProperty(value = "deploymentProperties")
-    private EnvironmentDeploymentProperties deploymentProperties;
+    private EnvironmentDeploymentProperties innerDeploymentProperties;
 
     /*
      * The display name of the Azure Resource Manager template that produced the environment.
@@ -47,34 +50,25 @@ public final class EnvironmentProperties {
     @JsonProperty(value = "uniqueIdentifier", access = JsonProperty.Access.WRITE_ONLY)
     private String uniqueIdentifier;
 
-    /** Creates an instance of EnvironmentProperties class. */
+    /**
+     * Creates an instance of EnvironmentProperties class.
+     */
     public EnvironmentProperties() {
     }
 
     /**
-     * Get the deploymentProperties property: The deployment properties of the environment.
-     *
-     * @return the deploymentProperties value.
+     * Get the innerDeploymentProperties property: The deployment properties of the environment.
+     * 
+     * @return the innerDeploymentProperties value.
      */
-    public EnvironmentDeploymentProperties deploymentProperties() {
-        return this.deploymentProperties;
-    }
-
-    /**
-     * Set the deploymentProperties property: The deployment properties of the environment.
-     *
-     * @param deploymentProperties the deploymentProperties value to set.
-     * @return the EnvironmentProperties object itself.
-     */
-    public EnvironmentProperties withDeploymentProperties(EnvironmentDeploymentProperties deploymentProperties) {
-        this.deploymentProperties = deploymentProperties;
-        return this;
+    private EnvironmentDeploymentProperties innerDeploymentProperties() {
+        return this.innerDeploymentProperties;
     }
 
     /**
      * Get the armTemplateDisplayName property: The display name of the Azure Resource Manager template that produced
      * the environment.
-     *
+     * 
      * @return the armTemplateDisplayName value.
      */
     public String armTemplateDisplayName() {
@@ -84,7 +78,7 @@ public final class EnvironmentProperties {
     /**
      * Set the armTemplateDisplayName property: The display name of the Azure Resource Manager template that produced
      * the environment.
-     *
+     * 
      * @param armTemplateDisplayName the armTemplateDisplayName value to set.
      * @return the EnvironmentProperties object itself.
      */
@@ -95,7 +89,7 @@ public final class EnvironmentProperties {
 
     /**
      * Get the resourceGroupId property: The identifier of the resource group containing the environment's resources.
-     *
+     * 
      * @return the resourceGroupId value.
      */
     public String resourceGroupId() {
@@ -104,7 +98,7 @@ public final class EnvironmentProperties {
 
     /**
      * Get the createdByUser property: The creator of the environment.
-     *
+     * 
      * @return the createdByUser value.
      */
     public String createdByUser() {
@@ -113,7 +107,7 @@ public final class EnvironmentProperties {
 
     /**
      * Get the provisioningState property: The provisioning status of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -122,7 +116,7 @@ public final class EnvironmentProperties {
 
     /**
      * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
+     * 
      * @return the uniqueIdentifier value.
      */
     public String uniqueIdentifier() {
@@ -130,13 +124,59 @@ public final class EnvironmentProperties {
     }
 
     /**
+     * Get the armTemplateId property: The Azure Resource Manager template's identifier.
+     * 
+     * @return the armTemplateId value.
+     */
+    public String armTemplateId() {
+        return this.innerDeploymentProperties() == null ? null : this.innerDeploymentProperties().armTemplateId();
+    }
+
+    /**
+     * Set the armTemplateId property: The Azure Resource Manager template's identifier.
+     * 
+     * @param armTemplateId the armTemplateId value to set.
+     * @return the EnvironmentProperties object itself.
+     */
+    public EnvironmentProperties withArmTemplateId(String armTemplateId) {
+        if (this.innerDeploymentProperties() == null) {
+            this.innerDeploymentProperties = new EnvironmentDeploymentProperties();
+        }
+        this.innerDeploymentProperties().withArmTemplateId(armTemplateId);
+        return this;
+    }
+
+    /**
+     * Get the parameters property: The parameters of the Azure Resource Manager template.
+     * 
+     * @return the parameters value.
+     */
+    public List<ArmTemplateParameterProperties> parameters() {
+        return this.innerDeploymentProperties() == null ? null : this.innerDeploymentProperties().parameters();
+    }
+
+    /**
+     * Set the parameters property: The parameters of the Azure Resource Manager template.
+     * 
+     * @param parameters the parameters value to set.
+     * @return the EnvironmentProperties object itself.
+     */
+    public EnvironmentProperties withParameters(List<ArmTemplateParameterProperties> parameters) {
+        if (this.innerDeploymentProperties() == null) {
+            this.innerDeploymentProperties = new EnvironmentDeploymentProperties();
+        }
+        this.innerDeploymentProperties().withParameters(parameters);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (deploymentProperties() != null) {
-            deploymentProperties().validate();
+        if (innerDeploymentProperties() != null) {
+            innerDeploymentProperties().validate();
         }
     }
 }
