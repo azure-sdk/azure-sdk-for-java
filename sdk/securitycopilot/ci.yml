@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/securitycopilot/ci.yml
+      - sdk/securitycopilot/Microsoft.Security.Copilot.SkillsetAuthoring/
+    exclude:
+      - sdk/securitycopilot/pom.xml
+      - sdk/securitycopilot/Microsoft.Security.Copilot.SkillsetAuthoring/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/securitycopilot/ci.yml
+      - sdk/securitycopilot/Microsoft.Security.Copilot.SkillsetAuthoring/
+    exclude:
+      - sdk/securitycopilot/pom.xml
+      - sdk/securitycopilot/Microsoft.Security.Copilot.SkillsetAuthoring/pom.xml
+
+parameters:
+  - name: release_Microsoft.Security.Copilot.SkillsetAuthoring
+    displayName: Microsoft.Security.Copilot.SkillsetAuthoring
+    type: boolean
+    default: true
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: securitycopilot
+    EnableBatchRelease: true
+    Artifacts:
+      - name: Microsoft.Security.Copilot.SkillsetAuthoring
+        groupId: com.azure
+        safeName: Microsoft.Security.Copilot.SkillsetAuthoring
+        releaseInBatch: ${{ parameters.release_Microsoft.Security.Copilot.SkillsetAuthoring }}

@@ -173,6 +173,7 @@
     <module>sdk/scvmm</module>
     <module>sdk/search</module>
     <module>sdk/security</module>
+    <module>sdk/securitycopilot</module>
     <module>sdk/securitydevops</module>
     <module>sdk/securityinsights</module>
     <module>sdk/selfhelp</module>
