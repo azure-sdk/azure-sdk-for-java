@@ -4,17 +4,20 @@
 
 package com.azure.resourcemanager.appcontainers.generated;
 
-/** Samples for Jobs GetByResourceGroup. */
+/**
+ * Samples for Jobs GetByResourceGroup.
+ */
 public final class JobsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2023-05-01/examples/Job_Get.json
+     * x-ms-original-file:
+     * specification/app/resource-manager/Microsoft.App/preview/2023-08-01-preview/examples/Job_Get.json
      */
     /**
      * Sample code: Get Container Apps Job.
-     *
+     * 
      * @param manager Entry point to ContainerAppsApiManager.
      */
     public static void getContainerAppsJob(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager.jobs().getByResourceGroupWithResponse("rg", "testcontainerAppsJob0", com.azure.core.util.Context.NONE);
+        manager.jobs().getByResourceGroupWithResponse("rg", "testcontainerappsjob0", com.azure.core.util.Context.NONE);
     }
 }
