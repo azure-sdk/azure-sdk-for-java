@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
-/** Git integration settings. */
+/**
+ * Git integration settings.
+ */
 @Fluent
 public final class WorkspaceRepositoryConfiguration {
     /*
@@ -18,7 +20,7 @@ public final class WorkspaceRepositoryConfiguration {
     private String type;
 
     /*
-     * GitHub Enterprise host name. For example: https://github.mydomain.com
+     * GitHub Enterprise host name. For example: `https://github.mydomain.com`
      */
     @JsonProperty(value = "hostName")
     private String hostname;
@@ -65,14 +67,16 @@ public final class WorkspaceRepositoryConfiguration {
     @JsonProperty(value = "tenantId")
     private UUID tenantId;
 
-    /** Creates an instance of WorkspaceRepositoryConfiguration class. */
+    /**
+     * Creates an instance of WorkspaceRepositoryConfiguration class.
+     */
     public WorkspaceRepositoryConfiguration() {
     }
 
     /**
      * Get the type property: Type of workspace repositoryID configuration. Example WorkspaceVSTSConfiguration,
      * WorkspaceGitHubConfiguration.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -82,7 +86,7 @@ public final class WorkspaceRepositoryConfiguration {
     /**
      * Set the type property: Type of workspace repositoryID configuration. Example WorkspaceVSTSConfiguration,
      * WorkspaceGitHubConfiguration.
-     *
+     * 
      * @param type the type value to set.
      * @return the WorkspaceRepositoryConfiguration object itself.
      */
@@ -92,8 +96,8 @@ public final class WorkspaceRepositoryConfiguration {
     }
 
     /**
-     * Get the hostname property: GitHub Enterprise host name. For example: https://github.mydomain.com.
-     *
+     * Get the hostname property: GitHub Enterprise host name. For example: `https://github.mydomain.com`.
+     * 
      * @return the hostname value.
      */
     public String hostname() {
@@ -101,8 +105,8 @@ public final class WorkspaceRepositoryConfiguration {
     }
 
     /**
-     * Set the hostname property: GitHub Enterprise host name. For example: https://github.mydomain.com.
-     *
+     * Set the hostname property: GitHub Enterprise host name. For example: `https://github.mydomain.com`.
+     * 
      * @param hostname the hostname value to set.
      * @return the WorkspaceRepositoryConfiguration object itself.
      */
@@ -113,7 +117,7 @@ public final class WorkspaceRepositoryConfiguration {
 
     /**
      * Get the accountName property: Account name.
-     *
+     * 
      * @return the accountName value.
      */
     public String accountName() {
@@ -122,7 +126,7 @@ public final class WorkspaceRepositoryConfiguration {
 
     /**
      * Set the accountName property: Account name.
-     *
+     * 
      * @param accountName the accountName value to set.
      * @return the WorkspaceRepositoryConfiguration object itself.
      */
@@ -133,7 +137,7 @@ public final class WorkspaceRepositoryConfiguration {
 
     /**
      * Get the projectName property: VSTS project name.
-     *
+     * 
      * @return the projectName value.
      */
     public String projectName() {
@@ -142,7 +146,7 @@ public final class WorkspaceRepositoryConfiguration {
 
     /**
      * Set the projectName property: VSTS project name.
-     *
+     * 
      * @param projectName the projectName value to set.
      * @return the WorkspaceRepositoryConfiguration object itself.
      */
@@ -153,7 +157,7 @@ public final class WorkspaceRepositoryConfiguration {
 
     /**
      * Get the repositoryName property: Repository name.
-     *
+     * 
      * @return the repositoryName value.
      */
     public String repositoryName() {
@@ -162,7 +166,7 @@ public final class WorkspaceRepositoryConfiguration {
 
     /**
      * Set the repositoryName property: Repository name.
-     *
+     * 
      * @param repositoryName the repositoryName value to set.
      * @return the WorkspaceRepositoryConfiguration object itself.
      */
@@ -173,7 +177,7 @@ public final class WorkspaceRepositoryConfiguration {
 
     /**
      * Get the collaborationBranch property: Collaboration branch.
-     *
+     * 
      * @return the collaborationBranch value.
      */
     public String collaborationBranch() {
@@ -182,7 +186,7 @@ public final class WorkspaceRepositoryConfiguration {
 
     /**
      * Set the collaborationBranch property: Collaboration branch.
-     *
+     * 
      * @param collaborationBranch the collaborationBranch value to set.
      * @return the WorkspaceRepositoryConfiguration object itself.
      */
@@ -193,7 +197,7 @@ public final class WorkspaceRepositoryConfiguration {
 
     /**
      * Get the rootFolder property: Root folder to use in the repository.
-     *
+     * 
      * @return the rootFolder value.
      */
     public String rootFolder() {
@@ -202,7 +206,7 @@ public final class WorkspaceRepositoryConfiguration {
 
     /**
      * Set the rootFolder property: Root folder to use in the repository.
-     *
+     * 
      * @param rootFolder the rootFolder value to set.
      * @return the WorkspaceRepositoryConfiguration object itself.
      */
@@ -213,7 +217,7 @@ public final class WorkspaceRepositoryConfiguration {
 
     /**
      * Get the lastCommitId property: The last commit ID.
-     *
+     * 
      * @return the lastCommitId value.
      */
     public String lastCommitId() {
@@ -222,7 +226,7 @@ public final class WorkspaceRepositoryConfiguration {
 
     /**
      * Set the lastCommitId property: The last commit ID.
-     *
+     * 
      * @param lastCommitId the lastCommitId value to set.
      * @return the WorkspaceRepositoryConfiguration object itself.
      */
@@ -233,7 +237,7 @@ public final class WorkspaceRepositoryConfiguration {
 
     /**
      * Get the tenantId property: The VSTS tenant ID.
-     *
+     * 
      * @return the tenantId value.
      */
     public UUID tenantId() {
@@ -242,7 +246,7 @@ public final class WorkspaceRepositoryConfiguration {
 
     /**
      * Set the tenantId property: The VSTS tenant ID.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the WorkspaceRepositoryConfiguration object itself.
      */
@@ -253,7 +257,7 @@ public final class WorkspaceRepositoryConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

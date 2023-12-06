@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * Collection of Big Data pools
- *
- * <p>Collection of Big Data pool information.
+ * 
+ * Collection of Big Data pool information.
  */
 @Fluent
 public final class BigDataPoolResourceInfoListResult {
@@ -28,13 +28,15 @@ public final class BigDataPoolResourceInfoListResult {
     @JsonProperty(value = "value")
     private List<BigDataPoolResourceInfoInner> value;
 
-    /** Creates an instance of BigDataPoolResourceInfoListResult class. */
+    /**
+     * Creates an instance of BigDataPoolResourceInfoListResult class.
+     */
     public BigDataPoolResourceInfoListResult() {
     }
 
     /**
      * Get the nextLink property: Link to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -43,7 +45,7 @@ public final class BigDataPoolResourceInfoListResult {
 
     /**
      * Set the nextLink property: Link to the next page of results.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the BigDataPoolResourceInfoListResult object itself.
      */
@@ -54,7 +56,7 @@ public final class BigDataPoolResourceInfoListResult {
 
     /**
      * Get the value property: List of Big Data pools.
-     *
+     * 
      * @return the value value.
      */
     public List<BigDataPoolResourceInfoInner> value() {
@@ -63,7 +65,7 @@ public final class BigDataPoolResourceInfoListResult {
 
     /**
      * Set the value property: List of Big Data pools.
-     *
+     * 
      * @param value the value value to set.
      * @return the BigDataPoolResourceInfoListResult object itself.
      */
@@ -74,7 +76,7 @@ public final class BigDataPoolResourceInfoListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

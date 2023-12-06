@@ -11,7 +11,9 @@ import com.azure.resourcemanager.synapse.models.ReplicationState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Represents a Sql pool replication link. */
+/**
+ * Represents a Sql pool replication link.
+ */
 @Immutable
 public final class ReplicationLinkInner extends ProxyResource {
     /*
@@ -26,13 +28,15 @@ public final class ReplicationLinkInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private ReplicationLinkProperties innerProperties;
 
-    /** Creates an instance of ReplicationLinkInner class. */
+    /**
+     * Creates an instance of ReplicationLinkInner class.
+     */
     public ReplicationLinkInner() {
     }
 
     /**
      * Get the location property: Location of the workspace that contains this firewall rule.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -41,7 +45,7 @@ public final class ReplicationLinkInner extends ProxyResource {
 
     /**
      * Get the innerProperties property: The properties representing the resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ReplicationLinkProperties innerProperties() {
@@ -51,7 +55,7 @@ public final class ReplicationLinkInner extends ProxyResource {
     /**
      * Get the isTerminationAllowed property: Legacy value indicating whether termination is allowed. Currently always
      * returns true.
-     *
+     * 
      * @return the isTerminationAllowed value.
      */
     public Boolean isTerminationAllowed() {
@@ -60,7 +64,7 @@ public final class ReplicationLinkInner extends ProxyResource {
 
     /**
      * Get the replicationMode property: Replication mode of this replication link.
-     *
+     * 
      * @return the replicationMode value.
      */
     public String replicationMode() {
@@ -69,7 +73,7 @@ public final class ReplicationLinkInner extends ProxyResource {
 
     /**
      * Get the partnerServer property: The name of the workspace hosting the partner Sql pool.
-     *
+     * 
      * @return the partnerServer value.
      */
     public String partnerServer() {
@@ -78,7 +82,7 @@ public final class ReplicationLinkInner extends ProxyResource {
 
     /**
      * Get the partnerDatabase property: The name of the partner Sql pool.
-     *
+     * 
      * @return the partnerDatabase value.
      */
     public String partnerDatabase() {
@@ -87,7 +91,7 @@ public final class ReplicationLinkInner extends ProxyResource {
 
     /**
      * Get the partnerLocation property: The Azure Region of the partner Sql pool.
-     *
+     * 
      * @return the partnerLocation value.
      */
     public String partnerLocation() {
@@ -96,7 +100,7 @@ public final class ReplicationLinkInner extends ProxyResource {
 
     /**
      * Get the role property: The role of the Sql pool in the replication link.
-     *
+     * 
      * @return the role value.
      */
     public ReplicationRole role() {
@@ -105,7 +109,7 @@ public final class ReplicationLinkInner extends ProxyResource {
 
     /**
      * Get the partnerRole property: The role of the partner Sql pool in the replication link.
-     *
+     * 
      * @return the partnerRole value.
      */
     public ReplicationRole partnerRole() {
@@ -114,7 +118,7 @@ public final class ReplicationLinkInner extends ProxyResource {
 
     /**
      * Get the startTime property: The start time for the replication link.
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -123,7 +127,7 @@ public final class ReplicationLinkInner extends ProxyResource {
 
     /**
      * Get the percentComplete property: The percentage of seeding complete for the replication link.
-     *
+     * 
      * @return the percentComplete value.
      */
     public Integer percentComplete() {
@@ -132,7 +136,7 @@ public final class ReplicationLinkInner extends ProxyResource {
 
     /**
      * Get the replicationState property: The replication state for the replication link.
-     *
+     * 
      * @return the replicationState value.
      */
     public ReplicationState replicationState() {
@@ -141,7 +145,7 @@ public final class ReplicationLinkInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -6,16 +6,20 @@ package com.azure.resourcemanager.synapse.models;
 
 import com.azure.core.annotation.Immutable;
 
-/** Azure Synapse nested resource, which belongs to a workspace. */
+/**
+ * Azure Synapse nested resource, which belongs to a workspace.
+ */
 @Immutable
 public class EntityResource extends AzureEntityResource {
-    /** Creates an instance of EntityResource class. */
+    /**
+     * Creates an instance of EntityResource class.
+     */
     public EntityResource() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

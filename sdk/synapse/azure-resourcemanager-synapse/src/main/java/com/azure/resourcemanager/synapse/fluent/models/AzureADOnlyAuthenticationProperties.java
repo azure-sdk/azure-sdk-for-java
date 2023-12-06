@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.models.StateValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Properties of a active directory only authentication. */
+/**
+ * Properties of a active directory only authentication.
+ */
 @Fluent
 public final class AzureADOnlyAuthenticationProperties {
     /*
@@ -30,13 +32,15 @@ public final class AzureADOnlyAuthenticationProperties {
     @JsonProperty(value = "creationDate", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime creationDate;
 
-    /** Creates an instance of AzureADOnlyAuthenticationProperties class. */
+    /**
+     * Creates an instance of AzureADOnlyAuthenticationProperties class.
+     */
     public AzureADOnlyAuthenticationProperties() {
     }
 
     /**
      * Get the azureADOnlyAuthentication property: Azure Active Directory only Authentication enabled.
-     *
+     * 
      * @return the azureADOnlyAuthentication value.
      */
     public boolean azureADOnlyAuthentication() {
@@ -45,7 +49,7 @@ public final class AzureADOnlyAuthenticationProperties {
 
     /**
      * Set the azureADOnlyAuthentication property: Azure Active Directory only Authentication enabled.
-     *
+     * 
      * @param azureADOnlyAuthentication the azureADOnlyAuthentication value to set.
      * @return the AzureADOnlyAuthenticationProperties object itself.
      */
@@ -56,7 +60,7 @@ public final class AzureADOnlyAuthenticationProperties {
 
     /**
      * Get the state property: property configuration state.
-     *
+     * 
      * @return the state value.
      */
     public StateValue state() {
@@ -65,7 +69,7 @@ public final class AzureADOnlyAuthenticationProperties {
 
     /**
      * Get the creationDate property: property configuration date.
-     *
+     * 
      * @return the creationDate value.
      */
     public OffsetDateTime creationDate() {
@@ -74,7 +78,7 @@ public final class AzureADOnlyAuthenticationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

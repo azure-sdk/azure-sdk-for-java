@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.fluent.models.PrivateEndpointConnection
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The PrivateEndpointConnectionForPrivateLinkHubResourceCollectionResponse model. */
+/**
+ * The PrivateEndpointConnectionForPrivateLinkHubResourceCollectionResponse model.
+ */
 @Fluent
 public final class PrivateEndpointConnectionForPrivateLinkHubResourceCollectionResponse {
     /*
@@ -24,13 +26,15 @@ public final class PrivateEndpointConnectionForPrivateLinkHubResourceCollectionR
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of PrivateEndpointConnectionForPrivateLinkHubResourceCollectionResponse class. */
+    /**
+     * Creates an instance of PrivateEndpointConnectionForPrivateLinkHubResourceCollectionResponse class.
+     */
     public PrivateEndpointConnectionForPrivateLinkHubResourceCollectionResponse() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<PrivateEndpointConnectionForPrivateLinkHubInner> value() {
@@ -39,19 +43,19 @@ public final class PrivateEndpointConnectionForPrivateLinkHubResourceCollectionR
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the PrivateEndpointConnectionForPrivateLinkHubResourceCollectionResponse object itself.
      */
-    public PrivateEndpointConnectionForPrivateLinkHubResourceCollectionResponse withValue(
-        List<PrivateEndpointConnectionForPrivateLinkHubInner> value) {
+    public PrivateEndpointConnectionForPrivateLinkHubResourceCollectionResponse
+        withValue(List<PrivateEndpointConnectionForPrivateLinkHubInner> value) {
         this.value = value;
         return this;
     }
 
     /**
      * Get the nextLink property: The nextLink property.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -60,7 +64,7 @@ public final class PrivateEndpointConnectionForPrivateLinkHubResourceCollectionR
 
     /**
      * Set the nextLink property: The nextLink property.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the PrivateEndpointConnectionForPrivateLinkHubResourceCollectionResponse object itself.
      */
@@ -71,7 +75,7 @@ public final class PrivateEndpointConnectionForPrivateLinkHubResourceCollectionR
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

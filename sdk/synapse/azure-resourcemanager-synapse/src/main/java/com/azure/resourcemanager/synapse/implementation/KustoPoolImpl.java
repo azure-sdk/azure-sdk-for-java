@@ -145,34 +145,14 @@ public final class KustoPoolImpl implements KustoPool, KustoPool.Definition, Kus
     }
 
     public KustoPool create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getKustoPools()
-                .createOrUpdate(
-                    workspaceName,
-                    resourceGroupName,
-                    kustoPoolName,
-                    this.innerModel(),
-                    createIfMatch,
-                    createIfNoneMatch,
-                    Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getKustoPools().createOrUpdate(workspaceName,
+            resourceGroupName, kustoPoolName, this.innerModel(), createIfMatch, createIfNoneMatch, Context.NONE);
         return this;
     }
 
     public KustoPool create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getKustoPools()
-                .createOrUpdate(
-                    workspaceName,
-                    resourceGroupName,
-                    kustoPoolName,
-                    this.innerModel(),
-                    createIfMatch,
-                    createIfNoneMatch,
-                    context);
+        this.innerObject = serviceManager.serviceClient().getKustoPools().createOrUpdate(workspaceName,
+            resourceGroupName, kustoPoolName, this.innerModel(), createIfMatch, createIfNoneMatch, context);
         return this;
     }
 
@@ -191,20 +171,14 @@ public final class KustoPoolImpl implements KustoPool, KustoPool.Definition, Kus
     }
 
     public KustoPool apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getKustoPools()
-                .update(workspaceName, resourceGroupName, kustoPoolName, updateParameters, updateIfMatch, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getKustoPools().update(workspaceName, resourceGroupName,
+            kustoPoolName, updateParameters, updateIfMatch, Context.NONE);
         return this;
     }
 
     public KustoPool apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getKustoPools()
-                .update(workspaceName, resourceGroupName, kustoPoolName, updateParameters, updateIfMatch, context);
+        this.innerObject = serviceManager.serviceClient().getKustoPools().update(workspaceName, resourceGroupName,
+            kustoPoolName, updateParameters, updateIfMatch, context);
         return this;
     }
 
@@ -217,22 +191,14 @@ public final class KustoPoolImpl implements KustoPool, KustoPool.Definition, Kus
     }
 
     public KustoPool refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getKustoPools()
-                .getWithResponse(workspaceName, kustoPoolName, resourceGroupName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getKustoPools()
+            .getWithResponse(workspaceName, kustoPoolName, resourceGroupName, Context.NONE).getValue();
         return this;
     }
 
     public KustoPool refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getKustoPools()
-                .getWithResponse(workspaceName, kustoPoolName, resourceGroupName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getKustoPools()
+            .getWithResponse(workspaceName, kustoPoolName, resourceGroupName, context).getValue();
         return this;
     }
 
@@ -257,34 +223,28 @@ public final class KustoPoolImpl implements KustoPool, KustoPool.Definition, Kus
     }
 
     public PagedIterable<LanguageExtension> listLanguageExtensions(Context context) {
-        return serviceManager
-            .kustoPools()
-            .listLanguageExtensions(workspaceName, kustoPoolName, resourceGroupName, context);
+        return serviceManager.kustoPools().listLanguageExtensions(workspaceName, kustoPoolName, resourceGroupName,
+            context);
     }
 
     public void addLanguageExtensions(LanguageExtensionsList languageExtensionsToAdd) {
-        serviceManager
-            .kustoPools()
-            .addLanguageExtensions(workspaceName, kustoPoolName, resourceGroupName, languageExtensionsToAdd);
+        serviceManager.kustoPools().addLanguageExtensions(workspaceName, kustoPoolName, resourceGroupName,
+            languageExtensionsToAdd);
     }
 
     public void addLanguageExtensions(LanguageExtensionsList languageExtensionsToAdd, Context context) {
-        serviceManager
-            .kustoPools()
-            .addLanguageExtensions(workspaceName, kustoPoolName, resourceGroupName, languageExtensionsToAdd, context);
+        serviceManager.kustoPools().addLanguageExtensions(workspaceName, kustoPoolName, resourceGroupName,
+            languageExtensionsToAdd, context);
     }
 
     public void removeLanguageExtensions(LanguageExtensionsList languageExtensionsToRemove) {
-        serviceManager
-            .kustoPools()
-            .removeLanguageExtensions(workspaceName, kustoPoolName, resourceGroupName, languageExtensionsToRemove);
+        serviceManager.kustoPools().removeLanguageExtensions(workspaceName, kustoPoolName, resourceGroupName,
+            languageExtensionsToRemove);
     }
 
     public void removeLanguageExtensions(LanguageExtensionsList languageExtensionsToRemove, Context context) {
-        serviceManager
-            .kustoPools()
-            .removeLanguageExtensions(
-                workspaceName, kustoPoolName, resourceGroupName, languageExtensionsToRemove, context);
+        serviceManager.kustoPools().removeLanguageExtensions(workspaceName, kustoPoolName, resourceGroupName,
+            languageExtensionsToRemove, context);
     }
 
     public PagedIterable<FollowerDatabaseDefinition> listFollowerDatabases() {
@@ -292,22 +252,18 @@ public final class KustoPoolImpl implements KustoPool, KustoPool.Definition, Kus
     }
 
     public PagedIterable<FollowerDatabaseDefinition> listFollowerDatabases(Context context) {
-        return serviceManager
-            .kustoPools()
-            .listFollowerDatabases(workspaceName, kustoPoolName, resourceGroupName, context);
+        return serviceManager.kustoPools().listFollowerDatabases(workspaceName, kustoPoolName, resourceGroupName,
+            context);
     }
 
     public void detachFollowerDatabases(FollowerDatabaseDefinitionInner followerDatabaseToRemove) {
-        serviceManager
-            .kustoPools()
-            .detachFollowerDatabases(workspaceName, kustoPoolName, resourceGroupName, followerDatabaseToRemove);
+        serviceManager.kustoPools().detachFollowerDatabases(workspaceName, kustoPoolName, resourceGroupName,
+            followerDatabaseToRemove);
     }
 
     public void detachFollowerDatabases(FollowerDatabaseDefinitionInner followerDatabaseToRemove, Context context) {
-        serviceManager
-            .kustoPools()
-            .detachFollowerDatabases(
-                workspaceName, kustoPoolName, resourceGroupName, followerDatabaseToRemove, context);
+        serviceManager.kustoPools().detachFollowerDatabases(workspaceName, kustoPoolName, resourceGroupName,
+            followerDatabaseToRemove, context);
     }
 
     public KustoPoolImpl withRegion(Region location) {

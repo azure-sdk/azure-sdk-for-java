@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Metadata sync configuration
- *
- * <p>Configuration for metadata sync.
+ * 
+ * Configuration for metadata sync.
  */
 @Fluent
 public final class MetadataSyncConfigInner extends ProxyResource {
@@ -21,13 +21,15 @@ public final class MetadataSyncConfigInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private MetadataSyncConfigProperties innerProperties;
 
-    /** Creates an instance of MetadataSyncConfigInner class. */
+    /**
+     * Creates an instance of MetadataSyncConfigInner class.
+     */
     public MetadataSyncConfigInner() {
     }
 
     /**
      * Get the innerProperties property: Metadata Sync Config properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private MetadataSyncConfigProperties innerProperties() {
@@ -36,7 +38,7 @@ public final class MetadataSyncConfigInner extends ProxyResource {
 
     /**
      * Get the enabled property: Indicates whether the metadata sync is enabled or disabled.
-     *
+     * 
      * @return the enabled value.
      */
     public Boolean enabled() {
@@ -45,7 +47,7 @@ public final class MetadataSyncConfigInner extends ProxyResource {
 
     /**
      * Set the enabled property: Indicates whether the metadata sync is enabled or disabled.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the MetadataSyncConfigInner object itself.
      */
@@ -59,7 +61,7 @@ public final class MetadataSyncConfigInner extends ProxyResource {
 
     /**
      * Get the syncIntervalInMinutes property: The Sync Interval in minutes.
-     *
+     * 
      * @return the syncIntervalInMinutes value.
      */
     public Integer syncIntervalInMinutes() {
@@ -68,7 +70,7 @@ public final class MetadataSyncConfigInner extends ProxyResource {
 
     /**
      * Set the syncIntervalInMinutes property: The Sync Interval in minutes.
-     *
+     * 
      * @param syncIntervalInMinutes the syncIntervalInMinutes value to set.
      * @return the MetadataSyncConfigInner object itself.
      */
@@ -82,7 +84,7 @@ public final class MetadataSyncConfigInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

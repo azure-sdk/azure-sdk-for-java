@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.Duration;
 
-/** Class representing a read only following database. */
+/**
+ * Class representing a read only following database.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("ReadOnlyFollowing")
 @Fluent
@@ -23,20 +25,24 @@ public final class ReadOnlyFollowingDatabase extends DatabaseInner {
     @JsonProperty(value = "properties")
     private ReadOnlyFollowingDatabaseProperties innerProperties;
 
-    /** Creates an instance of ReadOnlyFollowingDatabase class. */
+    /**
+     * Creates an instance of ReadOnlyFollowingDatabase class.
+     */
     public ReadOnlyFollowingDatabase() {
     }
 
     /**
      * Get the innerProperties property: The database properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ReadOnlyFollowingDatabaseProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ReadOnlyFollowingDatabase withLocation(String location) {
         super.withLocation(location);
@@ -45,7 +51,7 @@ public final class ReadOnlyFollowingDatabase extends DatabaseInner {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ResourceProvisioningState provisioningState() {
@@ -55,7 +61,7 @@ public final class ReadOnlyFollowingDatabase extends DatabaseInner {
     /**
      * Get the softDeletePeriod property: The time the data should be kept before it stops being accessible to queries
      * in TimeSpan.
-     *
+     * 
      * @return the softDeletePeriod value.
      */
     public Duration softDeletePeriod() {
@@ -64,7 +70,7 @@ public final class ReadOnlyFollowingDatabase extends DatabaseInner {
 
     /**
      * Get the hotCachePeriod property: The time the data should be kept in cache for fast queries in TimeSpan.
-     *
+     * 
      * @return the hotCachePeriod value.
      */
     public Duration hotCachePeriod() {
@@ -73,7 +79,7 @@ public final class ReadOnlyFollowingDatabase extends DatabaseInner {
 
     /**
      * Set the hotCachePeriod property: The time the data should be kept in cache for fast queries in TimeSpan.
-     *
+     * 
      * @param hotCachePeriod the hotCachePeriod value to set.
      * @return the ReadOnlyFollowingDatabase object itself.
      */
@@ -87,7 +93,7 @@ public final class ReadOnlyFollowingDatabase extends DatabaseInner {
 
     /**
      * Get the statistics property: The statistics of the database.
-     *
+     * 
      * @return the statistics value.
      */
     public DatabaseStatistics statistics() {
@@ -96,7 +102,7 @@ public final class ReadOnlyFollowingDatabase extends DatabaseInner {
 
     /**
      * Get the leaderClusterResourceId property: The name of the leader cluster.
-     *
+     * 
      * @return the leaderClusterResourceId value.
      */
     public String leaderClusterResourceId() {
@@ -105,7 +111,7 @@ public final class ReadOnlyFollowingDatabase extends DatabaseInner {
 
     /**
      * Get the attachedDatabaseConfigurationName property: The name of the attached database configuration cluster.
-     *
+     * 
      * @return the attachedDatabaseConfigurationName value.
      */
     public String attachedDatabaseConfigurationName() {
@@ -114,7 +120,7 @@ public final class ReadOnlyFollowingDatabase extends DatabaseInner {
 
     /**
      * Get the principalsModificationKind property: The principals modification kind of the database.
-     *
+     * 
      * @return the principalsModificationKind value.
      */
     public PrincipalsModificationKind principalsModificationKind() {
@@ -123,7 +129,7 @@ public final class ReadOnlyFollowingDatabase extends DatabaseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

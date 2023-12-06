@@ -11,7 +11,9 @@ import com.azure.resourcemanager.synapse.models.PrincipalType;
 import com.azure.resourcemanager.synapse.models.ResourceProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A class representing database principal property. */
+/**
+ * A class representing database principal property.
+ */
 @Fluent
 public final class DatabasePrincipalProperties {
     /*
@@ -63,14 +65,16 @@ public final class DatabasePrincipalProperties {
     @JsonProperty(value = "aadObjectId", access = JsonProperty.Access.WRITE_ONLY)
     private String aadObjectId;
 
-    /** Creates an instance of DatabasePrincipalProperties class. */
+    /**
+     * Creates an instance of DatabasePrincipalProperties class.
+     */
     public DatabasePrincipalProperties() {
     }
 
     /**
      * Get the principalId property: The principal ID assigned to the database principal. It can be a user email,
      * application ID, or security group name.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -80,7 +84,7 @@ public final class DatabasePrincipalProperties {
     /**
      * Set the principalId property: The principal ID assigned to the database principal. It can be a user email,
      * application ID, or security group name.
-     *
+     * 
      * @param principalId the principalId value to set.
      * @return the DatabasePrincipalProperties object itself.
      */
@@ -91,7 +95,7 @@ public final class DatabasePrincipalProperties {
 
     /**
      * Get the role property: Database principal role.
-     *
+     * 
      * @return the role value.
      */
     public DatabasePrincipalRole role() {
@@ -100,7 +104,7 @@ public final class DatabasePrincipalProperties {
 
     /**
      * Set the role property: Database principal role.
-     *
+     * 
      * @param role the role value to set.
      * @return the DatabasePrincipalProperties object itself.
      */
@@ -111,7 +115,7 @@ public final class DatabasePrincipalProperties {
 
     /**
      * Get the tenantId property: The tenant id of the principal.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -120,7 +124,7 @@ public final class DatabasePrincipalProperties {
 
     /**
      * Set the tenantId property: The tenant id of the principal.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the DatabasePrincipalProperties object itself.
      */
@@ -131,7 +135,7 @@ public final class DatabasePrincipalProperties {
 
     /**
      * Get the principalType property: Principal type.
-     *
+     * 
      * @return the principalType value.
      */
     public PrincipalType principalType() {
@@ -140,7 +144,7 @@ public final class DatabasePrincipalProperties {
 
     /**
      * Set the principalType property: Principal type.
-     *
+     * 
      * @param principalType the principalType value to set.
      * @return the DatabasePrincipalProperties object itself.
      */
@@ -151,7 +155,7 @@ public final class DatabasePrincipalProperties {
 
     /**
      * Get the tenantName property: The tenant name of the principal.
-     *
+     * 
      * @return the tenantName value.
      */
     public String tenantName() {
@@ -160,7 +164,7 @@ public final class DatabasePrincipalProperties {
 
     /**
      * Get the principalName property: The principal name.
-     *
+     * 
      * @return the principalName value.
      */
     public String principalName() {
@@ -169,7 +173,7 @@ public final class DatabasePrincipalProperties {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ResourceProvisioningState provisioningState() {
@@ -178,7 +182,7 @@ public final class DatabasePrincipalProperties {
 
     /**
      * Get the aadObjectId property: The service principal object id in AAD (Azure active directory).
-     *
+     * 
      * @return the aadObjectId value.
      */
     public String aadObjectId() {
@@ -187,27 +191,21 @@ public final class DatabasePrincipalProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (principalId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property principalId in model DatabasePrincipalProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property principalId in model DatabasePrincipalProperties"));
         }
         if (role() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property role in model DatabasePrincipalProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property role in model DatabasePrincipalProperties"));
         }
         if (principalType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property principalType in model DatabasePrincipalProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property principalType in model DatabasePrincipalProperties"));
         }
     }
 

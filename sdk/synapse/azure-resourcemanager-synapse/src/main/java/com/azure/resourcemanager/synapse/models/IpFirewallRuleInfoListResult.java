@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.fluent.models.IpFirewallRuleInfoInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of IP firewall rules. */
+/**
+ * List of IP firewall rules.
+ */
 @Fluent
 public final class IpFirewallRuleInfoListResult {
     /*
@@ -24,13 +26,15 @@ public final class IpFirewallRuleInfoListResult {
     @JsonProperty(value = "value")
     private List<IpFirewallRuleInfoInner> value;
 
-    /** Creates an instance of IpFirewallRuleInfoListResult class. */
+    /**
+     * Creates an instance of IpFirewallRuleInfoListResult class.
+     */
     public IpFirewallRuleInfoListResult() {
     }
 
     /**
      * Get the nextLink property: Link to next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class IpFirewallRuleInfoListResult {
 
     /**
      * Set the nextLink property: Link to next page of results.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the IpFirewallRuleInfoListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class IpFirewallRuleInfoListResult {
 
     /**
      * Get the value property: List of IP firewall rules.
-     *
+     * 
      * @return the value value.
      */
     public List<IpFirewallRuleInfoInner> value() {
@@ -59,7 +63,7 @@ public final class IpFirewallRuleInfoListResult {
 
     /**
      * Set the value property: List of IP firewall rules.
-     *
+     * 
      * @param value the value value to set.
      * @return the IpFirewallRuleInfoListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class IpFirewallRuleInfoListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

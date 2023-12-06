@@ -7,7 +7,9 @@ package com.azure.resourcemanager.synapse.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Initial workspace AAD admin properties for a CSP subscription. */
+/**
+ * Initial workspace AAD admin properties for a CSP subscription.
+ */
 @Fluent
 public final class CspWorkspaceAdminProperties {
     /*
@@ -16,13 +18,15 @@ public final class CspWorkspaceAdminProperties {
     @JsonProperty(value = "initialWorkspaceAdminObjectId")
     private String initialWorkspaceAdminObjectId;
 
-    /** Creates an instance of CspWorkspaceAdminProperties class. */
+    /**
+     * Creates an instance of CspWorkspaceAdminProperties class.
+     */
     public CspWorkspaceAdminProperties() {
     }
 
     /**
      * Get the initialWorkspaceAdminObjectId property: AAD object ID of initial workspace admin.
-     *
+     * 
      * @return the initialWorkspaceAdminObjectId value.
      */
     public String initialWorkspaceAdminObjectId() {
@@ -31,7 +35,7 @@ public final class CspWorkspaceAdminProperties {
 
     /**
      * Set the initialWorkspaceAdminObjectId property: AAD object ID of initial workspace admin.
-     *
+     * 
      * @param initialWorkspaceAdminObjectId the initialWorkspaceAdminObjectId value to set.
      * @return the CspWorkspaceAdminProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class CspWorkspaceAdminProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

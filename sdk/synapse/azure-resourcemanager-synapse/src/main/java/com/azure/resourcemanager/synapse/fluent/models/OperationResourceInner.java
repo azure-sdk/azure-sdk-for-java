@@ -10,7 +10,9 @@ import com.azure.resourcemanager.synapse.models.OperationStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** An operation. */
+/**
+ * An operation.
+ */
 @Fluent
 public final class OperationResourceInner {
     /*
@@ -61,13 +63,15 @@ public final class OperationResourceInner {
     @JsonProperty(value = "percentComplete")
     private Float percentComplete;
 
-    /** Creates an instance of OperationResourceInner class. */
+    /**
+     * Creates an instance of OperationResourceInner class.
+     */
     public OperationResourceInner() {
     }
 
     /**
      * Get the id property: Operation ID.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -76,7 +80,7 @@ public final class OperationResourceInner {
 
     /**
      * Set the id property: Operation ID.
-     *
+     * 
      * @param id the id value to set.
      * @return the OperationResourceInner object itself.
      */
@@ -87,7 +91,7 @@ public final class OperationResourceInner {
 
     /**
      * Get the name property: Operation name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -96,7 +100,7 @@ public final class OperationResourceInner {
 
     /**
      * Set the name property: Operation name.
-     *
+     * 
      * @param name the name value to set.
      * @return the OperationResourceInner object itself.
      */
@@ -107,7 +111,7 @@ public final class OperationResourceInner {
 
     /**
      * Get the status property: Operation status.
-     *
+     * 
      * @return the status value.
      */
     public OperationStatus status() {
@@ -116,7 +120,7 @@ public final class OperationResourceInner {
 
     /**
      * Set the status property: Operation status.
-     *
+     * 
      * @param status the status value to set.
      * @return the OperationResourceInner object itself.
      */
@@ -127,7 +131,7 @@ public final class OperationResourceInner {
 
     /**
      * Get the properties property: Operation properties.
-     *
+     * 
      * @return the properties value.
      */
     public Object properties() {
@@ -136,7 +140,7 @@ public final class OperationResourceInner {
 
     /**
      * Set the properties property: Operation properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the OperationResourceInner object itself.
      */
@@ -147,7 +151,7 @@ public final class OperationResourceInner {
 
     /**
      * Get the error property: Errors from the operation.
-     *
+     * 
      * @return the error value.
      */
     public ManagementError error() {
@@ -156,7 +160,7 @@ public final class OperationResourceInner {
 
     /**
      * Set the error property: Errors from the operation.
-     *
+     * 
      * @param error the error value to set.
      * @return the OperationResourceInner object itself.
      */
@@ -167,7 +171,7 @@ public final class OperationResourceInner {
 
     /**
      * Get the startTime property: Operation start time.
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -176,7 +180,7 @@ public final class OperationResourceInner {
 
     /**
      * Set the startTime property: Operation start time.
-     *
+     * 
      * @param startTime the startTime value to set.
      * @return the OperationResourceInner object itself.
      */
@@ -187,7 +191,7 @@ public final class OperationResourceInner {
 
     /**
      * Get the endTime property: Operation start time.
-     *
+     * 
      * @return the endTime value.
      */
     public OffsetDateTime endTime() {
@@ -196,7 +200,7 @@ public final class OperationResourceInner {
 
     /**
      * Set the endTime property: Operation start time.
-     *
+     * 
      * @param endTime the endTime value to set.
      * @return the OperationResourceInner object itself.
      */
@@ -207,7 +211,7 @@ public final class OperationResourceInner {
 
     /**
      * Get the percentComplete property: Completion percentage of the operation.
-     *
+     * 
      * @return the percentComplete value.
      */
     public Float percentComplete() {
@@ -216,7 +220,7 @@ public final class OperationResourceInner {
 
     /**
      * Set the percentComplete property: Completion percentage of the operation.
-     *
+     * 
      * @param percentComplete the percentComplete value to set.
      * @return the OperationResourceInner object itself.
      */
@@ -227,7 +231,7 @@ public final class OperationResourceInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

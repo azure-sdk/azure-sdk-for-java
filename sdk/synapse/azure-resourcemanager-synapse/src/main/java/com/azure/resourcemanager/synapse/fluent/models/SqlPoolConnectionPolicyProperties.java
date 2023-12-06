@@ -7,7 +7,9 @@ package com.azure.resourcemanager.synapse.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of a Sql pool connection policy. */
+/**
+ * Properties of a Sql pool connection policy.
+ */
 @Fluent
 public final class SqlPoolConnectionPolicyProperties {
     /*
@@ -52,13 +54,15 @@ public final class SqlPoolConnectionPolicyProperties {
     @JsonProperty(value = "state")
     private String state;
 
-    /** Creates an instance of SqlPoolConnectionPolicyProperties class. */
+    /**
+     * Creates an instance of SqlPoolConnectionPolicyProperties class.
+     */
     public SqlPoolConnectionPolicyProperties() {
     }
 
     /**
      * Get the securityEnabledAccess property: The state of security access.
-     *
+     * 
      * @return the securityEnabledAccess value.
      */
     public String securityEnabledAccess() {
@@ -67,7 +71,7 @@ public final class SqlPoolConnectionPolicyProperties {
 
     /**
      * Set the securityEnabledAccess property: The state of security access.
-     *
+     * 
      * @param securityEnabledAccess the securityEnabledAccess value to set.
      * @return the SqlPoolConnectionPolicyProperties object itself.
      */
@@ -78,7 +82,7 @@ public final class SqlPoolConnectionPolicyProperties {
 
     /**
      * Get the proxyDnsName property: The fully qualified host name of the auditing proxy.
-     *
+     * 
      * @return the proxyDnsName value.
      */
     public String proxyDnsName() {
@@ -87,7 +91,7 @@ public final class SqlPoolConnectionPolicyProperties {
 
     /**
      * Set the proxyDnsName property: The fully qualified host name of the auditing proxy.
-     *
+     * 
      * @param proxyDnsName the proxyDnsName value to set.
      * @return the SqlPoolConnectionPolicyProperties object itself.
      */
@@ -98,7 +102,7 @@ public final class SqlPoolConnectionPolicyProperties {
 
     /**
      * Get the proxyPort property: The port number of the auditing proxy.
-     *
+     * 
      * @return the proxyPort value.
      */
     public String proxyPort() {
@@ -107,7 +111,7 @@ public final class SqlPoolConnectionPolicyProperties {
 
     /**
      * Set the proxyPort property: The port number of the auditing proxy.
-     *
+     * 
      * @param proxyPort the proxyPort value to set.
      * @return the SqlPoolConnectionPolicyProperties object itself.
      */
@@ -118,7 +122,7 @@ public final class SqlPoolConnectionPolicyProperties {
 
     /**
      * Get the visibility property: The visibility of the auditing proxy.
-     *
+     * 
      * @return the visibility value.
      */
     public String visibility() {
@@ -127,7 +131,7 @@ public final class SqlPoolConnectionPolicyProperties {
 
     /**
      * Set the visibility property: The visibility of the auditing proxy.
-     *
+     * 
      * @param visibility the visibility value to set.
      * @return the SqlPoolConnectionPolicyProperties object itself.
      */
@@ -138,7 +142,7 @@ public final class SqlPoolConnectionPolicyProperties {
 
     /**
      * Get the useServerDefault property: Whether server default is enabled or disabled.
-     *
+     * 
      * @return the useServerDefault value.
      */
     public String useServerDefault() {
@@ -147,7 +151,7 @@ public final class SqlPoolConnectionPolicyProperties {
 
     /**
      * Set the useServerDefault property: Whether server default is enabled or disabled.
-     *
+     * 
      * @param useServerDefault the useServerDefault value to set.
      * @return the SqlPoolConnectionPolicyProperties object itself.
      */
@@ -158,7 +162,7 @@ public final class SqlPoolConnectionPolicyProperties {
 
     /**
      * Get the redirectionState property: The state of proxy redirection.
-     *
+     * 
      * @return the redirectionState value.
      */
     public String redirectionState() {
@@ -167,7 +171,7 @@ public final class SqlPoolConnectionPolicyProperties {
 
     /**
      * Set the redirectionState property: The state of proxy redirection.
-     *
+     * 
      * @param redirectionState the redirectionState value to set.
      * @return the SqlPoolConnectionPolicyProperties object itself.
      */
@@ -178,7 +182,7 @@ public final class SqlPoolConnectionPolicyProperties {
 
     /**
      * Get the state property: The connection policy state.
-     *
+     * 
      * @return the state value.
      */
     public String state() {
@@ -187,7 +191,7 @@ public final class SqlPoolConnectionPolicyProperties {
 
     /**
      * Set the state property: The connection policy state.
-     *
+     * 
      * @param state the state value to set.
      * @return the SqlPoolConnectionPolicyProperties object itself.
      */
@@ -198,7 +202,7 @@ public final class SqlPoolConnectionPolicyProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

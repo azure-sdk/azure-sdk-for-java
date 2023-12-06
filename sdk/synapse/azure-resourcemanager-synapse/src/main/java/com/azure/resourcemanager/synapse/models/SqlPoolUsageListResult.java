@@ -10,7 +10,9 @@ import com.azure.resourcemanager.synapse.fluent.models.SqlPoolUsageInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response to a list Sql pool usages request. */
+/**
+ * The response to a list Sql pool usages request.
+ */
 @Fluent
 public final class SqlPoolUsageListResult {
     /*
@@ -25,13 +27,15 @@ public final class SqlPoolUsageListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of SqlPoolUsageListResult class. */
+    /**
+     * Creates an instance of SqlPoolUsageListResult class.
+     */
     public SqlPoolUsageListResult() {
     }
 
     /**
      * Get the value property: The list of usages for the Sql pool.
-     *
+     * 
      * @return the value value.
      */
     public List<SqlPoolUsageInner> value() {
@@ -40,7 +44,7 @@ public final class SqlPoolUsageListResult {
 
     /**
      * Set the value property: The list of usages for the Sql pool.
-     *
+     * 
      * @param value the value value to set.
      * @return the SqlPoolUsageListResult object itself.
      */
@@ -51,7 +55,7 @@ public final class SqlPoolUsageListResult {
 
     /**
      * Get the nextLink property: Link to retrieve next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -60,14 +64,13 @@ public final class SqlPoolUsageListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model SqlPoolUsageListResult"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model SqlPoolUsageListResult"));
         } else {
             value().forEach(e -> e.validate());
         }

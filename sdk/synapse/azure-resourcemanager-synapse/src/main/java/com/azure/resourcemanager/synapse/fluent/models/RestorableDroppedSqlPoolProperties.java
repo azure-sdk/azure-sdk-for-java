@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The properties of a restorable dropped Sql pool. */
+/**
+ * The properties of a restorable dropped Sql pool.
+ */
 @Immutable
 public final class RestorableDroppedSqlPoolProperties {
     /*
@@ -59,13 +61,15 @@ public final class RestorableDroppedSqlPoolProperties {
     @JsonProperty(value = "earliestRestoreDate", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime earliestRestoreDate;
 
-    /** Creates an instance of RestorableDroppedSqlPoolProperties class. */
+    /**
+     * Creates an instance of RestorableDroppedSqlPoolProperties class.
+     */
     public RestorableDroppedSqlPoolProperties() {
     }
 
     /**
      * Get the databaseName property: The name of the database.
-     *
+     * 
      * @return the databaseName value.
      */
     public String databaseName() {
@@ -74,7 +78,7 @@ public final class RestorableDroppedSqlPoolProperties {
 
     /**
      * Get the edition property: The edition of the database.
-     *
+     * 
      * @return the edition value.
      */
     public String edition() {
@@ -83,7 +87,7 @@ public final class RestorableDroppedSqlPoolProperties {
 
     /**
      * Get the maxSizeBytes property: The max size in bytes of the database.
-     *
+     * 
      * @return the maxSizeBytes value.
      */
     public String maxSizeBytes() {
@@ -92,7 +96,7 @@ public final class RestorableDroppedSqlPoolProperties {
 
     /**
      * Get the serviceLevelObjective property: The service level objective name of the database.
-     *
+     * 
      * @return the serviceLevelObjective value.
      */
     public String serviceLevelObjective() {
@@ -101,7 +105,7 @@ public final class RestorableDroppedSqlPoolProperties {
 
     /**
      * Get the elasticPoolName property: The elastic pool name of the database.
-     *
+     * 
      * @return the elasticPoolName value.
      */
     public String elasticPoolName() {
@@ -110,7 +114,7 @@ public final class RestorableDroppedSqlPoolProperties {
 
     /**
      * Get the creationDate property: The creation date of the database (ISO8601 format).
-     *
+     * 
      * @return the creationDate value.
      */
     public OffsetDateTime creationDate() {
@@ -119,7 +123,7 @@ public final class RestorableDroppedSqlPoolProperties {
 
     /**
      * Get the deletionDate property: The deletion date of the database (ISO8601 format).
-     *
+     * 
      * @return the deletionDate value.
      */
     public OffsetDateTime deletionDate() {
@@ -128,7 +132,7 @@ public final class RestorableDroppedSqlPoolProperties {
 
     /**
      * Get the earliestRestoreDate property: The earliest restore date of the database (ISO8601 format).
-     *
+     * 
      * @return the earliestRestoreDate value.
      */
     public OffsetDateTime earliestRestoreDate() {
@@ -137,7 +141,7 @@ public final class RestorableDroppedSqlPoolProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

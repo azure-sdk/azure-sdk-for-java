@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Managed Virtual Network Settings. */
+/**
+ * Managed Virtual Network Settings.
+ */
 @Fluent
 public final class ManagedVirtualNetworkSettings {
     /*
@@ -29,13 +31,15 @@ public final class ManagedVirtualNetworkSettings {
     @JsonProperty(value = "allowedAadTenantIdsForLinking")
     private List<String> allowedAadTenantIdsForLinking;
 
-    /** Creates an instance of ManagedVirtualNetworkSettings class. */
+    /**
+     * Creates an instance of ManagedVirtualNetworkSettings class.
+     */
     public ManagedVirtualNetworkSettings() {
     }
 
     /**
      * Get the preventDataExfiltration property: Prevent Data Exfiltration.
-     *
+     * 
      * @return the preventDataExfiltration value.
      */
     public Boolean preventDataExfiltration() {
@@ -44,7 +48,7 @@ public final class ManagedVirtualNetworkSettings {
 
     /**
      * Set the preventDataExfiltration property: Prevent Data Exfiltration.
-     *
+     * 
      * @param preventDataExfiltration the preventDataExfiltration value to set.
      * @return the ManagedVirtualNetworkSettings object itself.
      */
@@ -55,7 +59,7 @@ public final class ManagedVirtualNetworkSettings {
 
     /**
      * Get the linkedAccessCheckOnTargetResource property: Linked Access Check On Target Resource.
-     *
+     * 
      * @return the linkedAccessCheckOnTargetResource value.
      */
     public Boolean linkedAccessCheckOnTargetResource() {
@@ -64,19 +68,19 @@ public final class ManagedVirtualNetworkSettings {
 
     /**
      * Set the linkedAccessCheckOnTargetResource property: Linked Access Check On Target Resource.
-     *
+     * 
      * @param linkedAccessCheckOnTargetResource the linkedAccessCheckOnTargetResource value to set.
      * @return the ManagedVirtualNetworkSettings object itself.
      */
-    public ManagedVirtualNetworkSettings withLinkedAccessCheckOnTargetResource(
-        Boolean linkedAccessCheckOnTargetResource) {
+    public ManagedVirtualNetworkSettings
+        withLinkedAccessCheckOnTargetResource(Boolean linkedAccessCheckOnTargetResource) {
         this.linkedAccessCheckOnTargetResource = linkedAccessCheckOnTargetResource;
         return this;
     }
 
     /**
      * Get the allowedAadTenantIdsForLinking property: Allowed Aad Tenant Ids For Linking.
-     *
+     * 
      * @return the allowedAadTenantIdsForLinking value.
      */
     public List<String> allowedAadTenantIdsForLinking() {
@@ -85,7 +89,7 @@ public final class ManagedVirtualNetworkSettings {
 
     /**
      * Set the allowedAadTenantIdsForLinking property: Allowed Aad Tenant Ids For Linking.
-     *
+     * 
      * @param allowedAadTenantIdsForLinking the allowedAadTenantIdsForLinking value to set.
      * @return the ManagedVirtualNetworkSettings object itself.
      */
@@ -96,7 +100,7 @@ public final class ManagedVirtualNetworkSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

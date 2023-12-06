@@ -7,7 +7,9 @@ package com.azure.resourcemanager.synapse.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Dynamic Executor Allocation Properties. */
+/**
+ * Dynamic Executor Allocation Properties.
+ */
 @Fluent
 public final class DynamicExecutorAllocation {
     /*
@@ -28,13 +30,15 @@ public final class DynamicExecutorAllocation {
     @JsonProperty(value = "maxExecutors")
     private Integer maxExecutors;
 
-    /** Creates an instance of DynamicExecutorAllocation class. */
+    /**
+     * Creates an instance of DynamicExecutorAllocation class.
+     */
     public DynamicExecutorAllocation() {
     }
 
     /**
      * Get the enabled property: Indicates whether Dynamic Executor Allocation is enabled or not.
-     *
+     * 
      * @return the enabled value.
      */
     public Boolean enabled() {
@@ -43,7 +47,7 @@ public final class DynamicExecutorAllocation {
 
     /**
      * Set the enabled property: Indicates whether Dynamic Executor Allocation is enabled or not.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the DynamicExecutorAllocation object itself.
      */
@@ -54,7 +58,7 @@ public final class DynamicExecutorAllocation {
 
     /**
      * Get the minExecutors property: The minimum number of executors alloted.
-     *
+     * 
      * @return the minExecutors value.
      */
     public Integer minExecutors() {
@@ -63,7 +67,7 @@ public final class DynamicExecutorAllocation {
 
     /**
      * Set the minExecutors property: The minimum number of executors alloted.
-     *
+     * 
      * @param minExecutors the minExecutors value to set.
      * @return the DynamicExecutorAllocation object itself.
      */
@@ -74,7 +78,7 @@ public final class DynamicExecutorAllocation {
 
     /**
      * Get the maxExecutors property: The maximum number of executors alloted.
-     *
+     * 
      * @return the maxExecutors value.
      */
     public Integer maxExecutors() {
@@ -83,7 +87,7 @@ public final class DynamicExecutorAllocation {
 
     /**
      * Set the maxExecutors property: The maximum number of executors alloted.
-     *
+     * 
      * @param maxExecutors the maxExecutors value to set.
      * @return the DynamicExecutorAllocation object itself.
      */
@@ -94,7 +98,7 @@ public final class DynamicExecutorAllocation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

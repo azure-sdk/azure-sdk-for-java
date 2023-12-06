@@ -11,7 +11,9 @@ import com.azure.resourcemanager.synapse.models.ResourceProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Class representing a Private Link Resources. */
+/**
+ * Class representing a Private Link Resources.
+ */
 @Immutable
 public final class KustoPoolPrivateLinkResourcesInner extends ProxyResource {
     /*
@@ -26,13 +28,15 @@ public final class KustoPoolPrivateLinkResourcesInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of KustoPoolPrivateLinkResourcesInner class. */
+    /**
+     * Creates an instance of KustoPoolPrivateLinkResourcesInner class.
+     */
     public KustoPoolPrivateLinkResourcesInner() {
     }
 
     /**
      * Get the innerProperties property: The Private Link Resources.
-     *
+     * 
      * @return the innerProperties value.
      */
     private PrivateLinkResourcesProperties innerProperties() {
@@ -41,7 +45,7 @@ public final class KustoPoolPrivateLinkResourcesInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -50,7 +54,7 @@ public final class KustoPoolPrivateLinkResourcesInner extends ProxyResource {
 
     /**
      * Get the groupId property: The Private link resources GroupId.
-     *
+     * 
      * @return the groupId value.
      */
     public String groupId() {
@@ -59,7 +63,7 @@ public final class KustoPoolPrivateLinkResourcesInner extends ProxyResource {
 
     /**
      * Get the requiredMembers property: The private link resource required member names.
-     *
+     * 
      * @return the requiredMembers value.
      */
     public List<String> requiredMembers() {
@@ -68,7 +72,7 @@ public final class KustoPoolPrivateLinkResourcesInner extends ProxyResource {
 
     /**
      * Get the requiredZoneNames property: The private link resource required zone names.
-     *
+     * 
      * @return the requiredZoneNames value.
      */
     public List<String> requiredZoneNames() {
@@ -77,7 +81,7 @@ public final class KustoPoolPrivateLinkResourcesInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ResourceProvisioningState provisioningState() {
@@ -86,7 +90,7 @@ public final class KustoPoolPrivateLinkResourcesInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

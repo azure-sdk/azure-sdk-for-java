@@ -11,28 +11,30 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Managed Identity Sql Control Settings
- *
- * <p>Sql Control Settings for workspace managed identity.
+ * 
+ * Sql Control Settings for workspace managed identity.
  */
 @Fluent
 public final class ManagedIdentitySqlControlSettingsModelInner extends ProxyResource {
     /*
      * Managed Identity Sql Control Settings
-     *
+     * 
      * Sql Control Settings for workspace managed identity
      */
     @JsonProperty(value = "properties")
     private ManagedIdentitySqlControlSettingsModelProperties innerProperties;
 
-    /** Creates an instance of ManagedIdentitySqlControlSettingsModelInner class. */
+    /**
+     * Creates an instance of ManagedIdentitySqlControlSettingsModelInner class.
+     */
     public ManagedIdentitySqlControlSettingsModelInner() {
     }
 
     /**
      * Get the innerProperties property: Managed Identity Sql Control Settings
-     *
-     * <p>Sql Control Settings for workspace managed identity.
-     *
+     * 
+     * Sql Control Settings for workspace managed identity.
+     * 
      * @return the innerProperties value.
      */
     private ManagedIdentitySqlControlSettingsModelProperties innerProperties() {
@@ -41,7 +43,7 @@ public final class ManagedIdentitySqlControlSettingsModelInner extends ProxyReso
 
     /**
      * Get the grantSqlControlToManagedIdentity property: Grant sql control to managed identity.
-     *
+     * 
      * @return the grantSqlControlToManagedIdentity value.
      */
     public ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity
@@ -51,13 +53,12 @@ public final class ManagedIdentitySqlControlSettingsModelInner extends ProxyReso
 
     /**
      * Set the grantSqlControlToManagedIdentity property: Grant sql control to managed identity.
-     *
+     * 
      * @param grantSqlControlToManagedIdentity the grantSqlControlToManagedIdentity value to set.
      * @return the ManagedIdentitySqlControlSettingsModelInner object itself.
      */
     public ManagedIdentitySqlControlSettingsModelInner withGrantSqlControlToManagedIdentity(
-        ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity
-            grantSqlControlToManagedIdentity) {
+        ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity grantSqlControlToManagedIdentity) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ManagedIdentitySqlControlSettingsModelProperties();
         }
@@ -67,7 +68,7 @@ public final class ManagedIdentitySqlControlSettingsModelInner extends ProxyReso
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

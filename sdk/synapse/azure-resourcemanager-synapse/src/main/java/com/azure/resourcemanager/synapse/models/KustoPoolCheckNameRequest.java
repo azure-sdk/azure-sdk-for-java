@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The object sent for a kusto pool check name availability request. */
+/**
+ * The object sent for a kusto pool check name availability request.
+ */
 @Fluent
 public final class KustoPoolCheckNameRequest {
     /*
@@ -23,14 +25,15 @@ public final class KustoPoolCheckNameRequest {
     @JsonProperty(value = "type", required = true)
     private String type = "Microsoft.Synapse/workspaces/kustoPools";
 
-    /** Creates an instance of KustoPoolCheckNameRequest class. */
+    /**
+     * Creates an instance of KustoPoolCheckNameRequest class.
+     */
     public KustoPoolCheckNameRequest() {
-        type = "Microsoft.Synapse/workspaces/kustoPools";
     }
 
     /**
      * Get the name property: Kusto Pool name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -39,7 +42,7 @@ public final class KustoPoolCheckNameRequest {
 
     /**
      * Set the name property: Kusto Pool name.
-     *
+     * 
      * @param name the name value to set.
      * @return the KustoPoolCheckNameRequest object itself.
      */
@@ -50,7 +53,7 @@ public final class KustoPoolCheckNameRequest {
 
     /**
      * Get the type property: The type of resource, Microsoft.Synapse/workspaces/kustoPools.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -59,7 +62,7 @@ public final class KustoPoolCheckNameRequest {
 
     /**
      * Set the type property: The type of resource, Microsoft.Synapse/workspaces/kustoPools.
-     *
+     * 
      * @param type the type value to set.
      * @return the KustoPoolCheckNameRequest object itself.
      */
@@ -70,14 +73,13 @@ public final class KustoPoolCheckNameRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model KustoPoolCheckNameRequest"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model KustoPoolCheckNameRequest"));
         }
     }
 

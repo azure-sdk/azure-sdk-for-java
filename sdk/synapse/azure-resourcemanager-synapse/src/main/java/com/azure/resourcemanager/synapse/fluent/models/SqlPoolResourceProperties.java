@@ -12,8 +12,8 @@ import java.time.OffsetDateTime;
 
 /**
  * SQL pool properties
- *
- * <p>Properties of a SQL Analytics pool.
+ * 
+ * Properties of a SQL Analytics pool.
  */
 @Fluent
 public final class SqlPoolResourceProperties {
@@ -61,17 +61,17 @@ public final class SqlPoolResourceProperties {
 
     /*
      * Specifies the mode of sql pool creation.
-     *
+     * 
      * Default: regular sql pool creation.
-     *
+     * 
      * PointInTimeRestore: Creates a sql pool by restoring a point in time backup of an existing sql pool.
      * sourceDatabaseId must be specified as the resource ID of the existing sql pool, and restorePointInTime must be
      * specified.
-     *
-     * Recovery: Creates a sql pool by a geo-replicated backup. sourceDatabaseId  must be specified as the
+     * 
+     * Recovery: Creates a sql pool by a geo-replicated backup. sourceDatabaseId must be specified as the
      * recoverableDatabaseId to restore.
-     *
-     * Restore: Creates a sql pool by restoring a backup of a deleted sql  pool. SourceDatabaseId should be the sql
+     * 
+     * Restore: Creates a sql pool by restoring a backup of a deleted sql pool. SourceDatabaseId should be the sql
      * pool's original resource ID. SourceDatabaseId and sourceDatabaseDeletionDate must be specified.
      */
     @JsonProperty(value = "createMode")
@@ -95,13 +95,15 @@ public final class SqlPoolResourceProperties {
     @JsonProperty(value = "sourceDatabaseDeletionDate")
     private OffsetDateTime sourceDatabaseDeletionDate;
 
-    /** Creates an instance of SqlPoolResourceProperties class. */
+    /**
+     * Creates an instance of SqlPoolResourceProperties class.
+     */
     public SqlPoolResourceProperties() {
     }
 
     /**
      * Get the maxSizeBytes property: Maximum size in bytes.
-     *
+     * 
      * @return the maxSizeBytes value.
      */
     public Long maxSizeBytes() {
@@ -110,7 +112,7 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Set the maxSizeBytes property: Maximum size in bytes.
-     *
+     * 
      * @param maxSizeBytes the maxSizeBytes value to set.
      * @return the SqlPoolResourceProperties object itself.
      */
@@ -121,7 +123,7 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Get the collation property: Collation mode.
-     *
+     * 
      * @return the collation value.
      */
     public String collation() {
@@ -130,7 +132,7 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Set the collation property: Collation mode.
-     *
+     * 
      * @param collation the collation value to set.
      * @return the SqlPoolResourceProperties object itself.
      */
@@ -141,7 +143,7 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Get the sourceDatabaseId property: Source database to create from.
-     *
+     * 
      * @return the sourceDatabaseId value.
      */
     public String sourceDatabaseId() {
@@ -150,7 +152,7 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Set the sourceDatabaseId property: Source database to create from.
-     *
+     * 
      * @param sourceDatabaseId the sourceDatabaseId value to set.
      * @return the SqlPoolResourceProperties object itself.
      */
@@ -161,7 +163,7 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Get the recoverableDatabaseId property: Backup database to restore from.
-     *
+     * 
      * @return the recoverableDatabaseId value.
      */
     public String recoverableDatabaseId() {
@@ -170,7 +172,7 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Set the recoverableDatabaseId property: Backup database to restore from.
-     *
+     * 
      * @param recoverableDatabaseId the recoverableDatabaseId value to set.
      * @return the SqlPoolResourceProperties object itself.
      */
@@ -181,7 +183,7 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Get the provisioningState property: Resource state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -190,7 +192,7 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Set the provisioningState property: Resource state.
-     *
+     * 
      * @param provisioningState the provisioningState value to set.
      * @return the SqlPoolResourceProperties object itself.
      */
@@ -201,7 +203,7 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Get the status property: Resource status.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -210,7 +212,7 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Get the restorePointInTime property: Snapshot time to restore.
-     *
+     * 
      * @return the restorePointInTime value.
      */
     public OffsetDateTime restorePointInTime() {
@@ -219,7 +221,7 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Set the restorePointInTime property: Snapshot time to restore.
-     *
+     * 
      * @param restorePointInTime the restorePointInTime value to set.
      * @return the SqlPoolResourceProperties object itself.
      */
@@ -230,19 +232,19 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Get the createMode property: Specifies the mode of sql pool creation.
-     *
-     * <p>Default: regular sql pool creation.
-     *
-     * <p>PointInTimeRestore: Creates a sql pool by restoring a point in time backup of an existing sql pool.
+     * 
+     * Default: regular sql pool creation.
+     * 
+     * PointInTimeRestore: Creates a sql pool by restoring a point in time backup of an existing sql pool.
      * sourceDatabaseId must be specified as the resource ID of the existing sql pool, and restorePointInTime must be
      * specified.
-     *
-     * <p>Recovery: Creates a sql pool by a geo-replicated backup. sourceDatabaseId must be specified as the
+     * 
+     * Recovery: Creates a sql pool by a geo-replicated backup. sourceDatabaseId must be specified as the
      * recoverableDatabaseId to restore.
-     *
-     * <p>Restore: Creates a sql pool by restoring a backup of a deleted sql pool. SourceDatabaseId should be the sql
+     * 
+     * Restore: Creates a sql pool by restoring a backup of a deleted sql pool. SourceDatabaseId should be the sql
      * pool's original resource ID. SourceDatabaseId and sourceDatabaseDeletionDate must be specified.
-     *
+     * 
      * @return the createMode value.
      */
     public CreateMode createMode() {
@@ -251,19 +253,19 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Set the createMode property: Specifies the mode of sql pool creation.
-     *
-     * <p>Default: regular sql pool creation.
-     *
-     * <p>PointInTimeRestore: Creates a sql pool by restoring a point in time backup of an existing sql pool.
+     * 
+     * Default: regular sql pool creation.
+     * 
+     * PointInTimeRestore: Creates a sql pool by restoring a point in time backup of an existing sql pool.
      * sourceDatabaseId must be specified as the resource ID of the existing sql pool, and restorePointInTime must be
      * specified.
-     *
-     * <p>Recovery: Creates a sql pool by a geo-replicated backup. sourceDatabaseId must be specified as the
+     * 
+     * Recovery: Creates a sql pool by a geo-replicated backup. sourceDatabaseId must be specified as the
      * recoverableDatabaseId to restore.
-     *
-     * <p>Restore: Creates a sql pool by restoring a backup of a deleted sql pool. SourceDatabaseId should be the sql
+     * 
+     * Restore: Creates a sql pool by restoring a backup of a deleted sql pool. SourceDatabaseId should be the sql
      * pool's original resource ID. SourceDatabaseId and sourceDatabaseDeletionDate must be specified.
-     *
+     * 
      * @param createMode the createMode value to set.
      * @return the SqlPoolResourceProperties object itself.
      */
@@ -274,7 +276,7 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Get the creationDate property: Date the SQL pool was created.
-     *
+     * 
      * @return the creationDate value.
      */
     public OffsetDateTime creationDate() {
@@ -283,7 +285,7 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Get the storageAccountType property: The storage account type used to store backups for this sql pool.
-     *
+     * 
      * @return the storageAccountType value.
      */
     public StorageAccountType storageAccountType() {
@@ -292,7 +294,7 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Set the storageAccountType property: The storage account type used to store backups for this sql pool.
-     *
+     * 
      * @param storageAccountType the storageAccountType value to set.
      * @return the SqlPoolResourceProperties object itself.
      */
@@ -303,7 +305,7 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Get the sourceDatabaseDeletionDate property: Specifies the time that the sql pool was deleted.
-     *
+     * 
      * @return the sourceDatabaseDeletionDate value.
      */
     public OffsetDateTime sourceDatabaseDeletionDate() {
@@ -312,7 +314,7 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Set the sourceDatabaseDeletionDate property: Specifies the time that the sql pool was deleted.
-     *
+     * 
      * @param sourceDatabaseDeletionDate the sourceDatabaseDeletionDate value to set.
      * @return the SqlPoolResourceProperties object itself.
      */
@@ -323,7 +325,7 @@ public final class SqlPoolResourceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** Class representing an iot hub data connection. */
+/**
+ * Class representing an iot hub data connection.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("IotHub")
 @Fluent
@@ -23,20 +25,24 @@ public final class IotHubDataConnection extends DataConnectionInner {
     @JsonProperty(value = "properties")
     private IotHubConnectionProperties innerProperties;
 
-    /** Creates an instance of IotHubDataConnection class. */
+    /**
+     * Creates an instance of IotHubDataConnection class.
+     */
     public IotHubDataConnection() {
     }
 
     /**
      * Get the innerProperties property: The Iot Hub data connection properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private IotHubConnectionProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IotHubDataConnection withLocation(String location) {
         super.withLocation(location);
@@ -45,7 +51,7 @@ public final class IotHubDataConnection extends DataConnectionInner {
 
     /**
      * Get the iotHubResourceId property: The resource ID of the Iot hub to be used to create a data connection.
-     *
+     * 
      * @return the iotHubResourceId value.
      */
     public String iotHubResourceId() {
@@ -54,7 +60,7 @@ public final class IotHubDataConnection extends DataConnectionInner {
 
     /**
      * Set the iotHubResourceId property: The resource ID of the Iot hub to be used to create a data connection.
-     *
+     * 
      * @param iotHubResourceId the iotHubResourceId value to set.
      * @return the IotHubDataConnection object itself.
      */
@@ -68,7 +74,7 @@ public final class IotHubDataConnection extends DataConnectionInner {
 
     /**
      * Get the consumerGroup property: The iot hub consumer group.
-     *
+     * 
      * @return the consumerGroup value.
      */
     public String consumerGroup() {
@@ -77,7 +83,7 @@ public final class IotHubDataConnection extends DataConnectionInner {
 
     /**
      * Set the consumerGroup property: The iot hub consumer group.
-     *
+     * 
      * @param consumerGroup the consumerGroup value to set.
      * @return the IotHubDataConnection object itself.
      */
@@ -92,7 +98,7 @@ public final class IotHubDataConnection extends DataConnectionInner {
     /**
      * Get the tableName property: The table where the data should be ingested. Optionally the table information can be
      * added to each message.
-     *
+     * 
      * @return the tableName value.
      */
     public String tableName() {
@@ -102,7 +108,7 @@ public final class IotHubDataConnection extends DataConnectionInner {
     /**
      * Set the tableName property: The table where the data should be ingested. Optionally the table information can be
      * added to each message.
-     *
+     * 
      * @param tableName the tableName value to set.
      * @return the IotHubDataConnection object itself.
      */
@@ -117,7 +123,7 @@ public final class IotHubDataConnection extends DataConnectionInner {
     /**
      * Get the mappingRuleName property: The mapping rule to be used to ingest the data. Optionally the mapping
      * information can be added to each message.
-     *
+     * 
      * @return the mappingRuleName value.
      */
     public String mappingRuleName() {
@@ -127,7 +133,7 @@ public final class IotHubDataConnection extends DataConnectionInner {
     /**
      * Set the mappingRuleName property: The mapping rule to be used to ingest the data. Optionally the mapping
      * information can be added to each message.
-     *
+     * 
      * @param mappingRuleName the mappingRuleName value to set.
      * @return the IotHubDataConnection object itself.
      */
@@ -142,7 +148,7 @@ public final class IotHubDataConnection extends DataConnectionInner {
     /**
      * Get the dataFormat property: The data format of the message. Optionally the data format can be added to each
      * message.
-     *
+     * 
      * @return the dataFormat value.
      */
     public IotHubDataFormat dataFormat() {
@@ -152,7 +158,7 @@ public final class IotHubDataConnection extends DataConnectionInner {
     /**
      * Set the dataFormat property: The data format of the message. Optionally the data format can be added to each
      * message.
-     *
+     * 
      * @param dataFormat the dataFormat value to set.
      * @return the IotHubDataConnection object itself.
      */
@@ -166,7 +172,7 @@ public final class IotHubDataConnection extends DataConnectionInner {
 
     /**
      * Get the eventSystemProperties property: System properties of the iot hub.
-     *
+     * 
      * @return the eventSystemProperties value.
      */
     public List<String> eventSystemProperties() {
@@ -175,7 +181,7 @@ public final class IotHubDataConnection extends DataConnectionInner {
 
     /**
      * Set the eventSystemProperties property: System properties of the iot hub.
-     *
+     * 
      * @param eventSystemProperties the eventSystemProperties value to set.
      * @return the IotHubDataConnection object itself.
      */
@@ -189,7 +195,7 @@ public final class IotHubDataConnection extends DataConnectionInner {
 
     /**
      * Get the sharedAccessPolicyName property: The name of the share access policy.
-     *
+     * 
      * @return the sharedAccessPolicyName value.
      */
     public String sharedAccessPolicyName() {
@@ -198,7 +204,7 @@ public final class IotHubDataConnection extends DataConnectionInner {
 
     /**
      * Set the sharedAccessPolicyName property: The name of the share access policy.
-     *
+     * 
      * @param sharedAccessPolicyName the sharedAccessPolicyName value to set.
      * @return the IotHubDataConnection object itself.
      */
@@ -212,7 +218,7 @@ public final class IotHubDataConnection extends DataConnectionInner {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ResourceProvisioningState provisioningState() {
@@ -221,7 +227,7 @@ public final class IotHubDataConnection extends DataConnectionInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

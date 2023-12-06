@@ -7,7 +7,9 @@ package com.azure.resourcemanager.synapse.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Description of an available operation. */
+/**
+ * Description of an available operation.
+ */
 @Fluent
 public final class AvailableRpOperationDisplayInfo {
     /*
@@ -34,13 +36,15 @@ public final class AvailableRpOperationDisplayInfo {
     @JsonProperty(value = "operation")
     private String operation;
 
-    /** Creates an instance of AvailableRpOperationDisplayInfo class. */
+    /**
+     * Creates an instance of AvailableRpOperationDisplayInfo class.
+     */
     public AvailableRpOperationDisplayInfo() {
     }
 
     /**
      * Get the description property: Operation description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -49,7 +53,7 @@ public final class AvailableRpOperationDisplayInfo {
 
     /**
      * Set the description property: Operation description.
-     *
+     * 
      * @param description the description value to set.
      * @return the AvailableRpOperationDisplayInfo object itself.
      */
@@ -60,7 +64,7 @@ public final class AvailableRpOperationDisplayInfo {
 
     /**
      * Get the resource property: Resource type.
-     *
+     * 
      * @return the resource value.
      */
     public String resource() {
@@ -69,7 +73,7 @@ public final class AvailableRpOperationDisplayInfo {
 
     /**
      * Set the resource property: Resource type.
-     *
+     * 
      * @param resource the resource value to set.
      * @return the AvailableRpOperationDisplayInfo object itself.
      */
@@ -80,7 +84,7 @@ public final class AvailableRpOperationDisplayInfo {
 
     /**
      * Get the provider property: Resource provider name.
-     *
+     * 
      * @return the provider value.
      */
     public String provider() {
@@ -89,7 +93,7 @@ public final class AvailableRpOperationDisplayInfo {
 
     /**
      * Set the provider property: Resource provider name.
-     *
+     * 
      * @param provider the provider value to set.
      * @return the AvailableRpOperationDisplayInfo object itself.
      */
@@ -100,7 +104,7 @@ public final class AvailableRpOperationDisplayInfo {
 
     /**
      * Get the operation property: Operation name.
-     *
+     * 
      * @return the operation value.
      */
     public String operation() {
@@ -109,7 +113,7 @@ public final class AvailableRpOperationDisplayInfo {
 
     /**
      * Set the operation property: Operation name.
-     *
+     * 
      * @param operation the operation value to set.
      * @return the AvailableRpOperationDisplayInfo object itself.
      */
@@ -120,7 +124,7 @@ public final class AvailableRpOperationDisplayInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
