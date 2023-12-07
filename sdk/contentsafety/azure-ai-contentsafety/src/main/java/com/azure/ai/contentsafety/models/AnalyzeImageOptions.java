@@ -106,4 +106,33 @@ public final class AnalyzeImageOptions {
         this.outputType = outputType;
         return this;
     }
+
+    /*
+     * The incidents to detect.
+     */
+    @Generated
+    @JsonProperty(value = "incidents")
+    private IncidentOptions incidents;
+
+    /**
+     * Get the incidents property: The incidents to detect.
+     *
+     * @return the incidents value.
+     */
+    @Generated
+    public IncidentOptions getIncidents() {
+        return this.incidents;
+    }
+
+    /**
+     * Set the incidents property: The incidents to detect.
+     *
+     * @param incidents the incidents value to set.
+     * @return the AnalyzeImageOptions object itself.
+     */
+    @Generated
+    public AnalyzeImageOptions setIncidents(IncidentOptions incidents) {
+        this.incidents = incidents;
+        return this;
+    }
 }
