@@ -60,4 +60,38 @@ public final class AnalyzeTextResult {
     public List<TextCategoriesAnalysis> getCategoriesAnalysis() {
         return this.categoriesAnalysis;
     }
+
+    /*
+     * The incident match details.
+     */
+    @Generated
+    @JsonProperty(value = "incidentMatches")
+    private List<IncidentMatch> incidentMatches;
+
+    /*
+     * Sentences detected as harmful content.
+     */
+    @Generated
+    @JsonProperty(value = "reason")
+    private List<String> reason;
+
+    /**
+     * Get the incidentMatches property: The incident match details.
+     *
+     * @return the incidentMatches value.
+     */
+    @Generated
+    public List<IncidentMatch> getIncidentMatches() {
+        return this.incidentMatches;
+    }
+
+    /**
+     * Get the reason property: Sentences detected as harmful content.
+     *
+     * @return the reason value.
+     */
+    @Generated
+    public List<String> getReason() {
+        return this.reason;
+    }
 }

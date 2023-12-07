@@ -61,6 +61,12 @@ public final class ContentSafetyAsyncClient {
      *     ]
      *     haltOnBlocklistHit: Boolean (Optional)
      *     outputType: String(FourSeverityLevels/EightSeverityLevels) (Optional)
+     *     incidents (Optional): {
+     *         incidentNames (Optional): [
+     *             String (Optional)
+     *         ]
+     *         haltOnIncidentHit: Boolean (Optional)
+     *     }
      * }
      * }</pre>
      * <p>
@@ -80,6 +86,14 @@ public final class ContentSafetyAsyncClient {
      *             category: String(Hate/SelfHarm/Sexual/Violence) (Required)
      *             severity: Integer (Optional)
      *         }
+     *     ]
+     *     incidentMatches (Optional): [
+     *          (Optional){
+     *             incidentName: String (Required)
+     *         }
+     *     ]
+     *     reason (Optional): [
+     *         String (Optional)
      *     ]
      * }
      * }</pre>
@@ -116,6 +130,12 @@ public final class ContentSafetyAsyncClient {
      *         String(Hate/SelfHarm/Sexual/Violence) (Optional)
      *     ]
      *     outputType: String(FourSeverityLevels) (Optional)
+     *     incidents (Optional): {
+     *         incidentNames (Optional): [
+     *             String (Optional)
+     *         ]
+     *         haltOnIncidentHit: Boolean (Optional)
+     *     }
      * }
      * }</pre>
      * <p>
@@ -127,6 +147,11 @@ public final class ContentSafetyAsyncClient {
      *          (Required){
      *             category: String(Hate/SelfHarm/Sexual/Violence) (Required)
      *             severity: Integer (Optional)
+     *         }
+     *     ]
+     *     incidentMatches (Optional): [
+     *          (Optional){
+     *             incidentName: String (Required)
      *         }
      *     ]
      * }
