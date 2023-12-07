@@ -9,7 +9,9 @@ import com.azure.resourcemanager.kusto.fluent.models.FollowerDatabaseDefinitionI
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list Kusto database principals operation response. */
+/**
+ * The list Kusto database principals operation response.
+ */
 @Fluent
 public final class FollowerDatabaseListResult {
     /*
@@ -18,13 +20,15 @@ public final class FollowerDatabaseListResult {
     @JsonProperty(value = "value")
     private List<FollowerDatabaseDefinitionInner> value;
 
-    /** Creates an instance of FollowerDatabaseListResult class. */
+    /**
+     * Creates an instance of FollowerDatabaseListResult class.
+     */
     public FollowerDatabaseListResult() {
     }
 
     /**
      * Get the value property: The list of follower database result.
-     *
+     * 
      * @return the value value.
      */
     public List<FollowerDatabaseDefinitionInner> value() {
@@ -33,7 +37,7 @@ public final class FollowerDatabaseListResult {
 
     /**
      * Set the value property: The list of follower database result.
-     *
+     * 
      * @param value the value value to set.
      * @return the FollowerDatabaseListResult object itself.
      */
@@ -44,7 +48,7 @@ public final class FollowerDatabaseListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

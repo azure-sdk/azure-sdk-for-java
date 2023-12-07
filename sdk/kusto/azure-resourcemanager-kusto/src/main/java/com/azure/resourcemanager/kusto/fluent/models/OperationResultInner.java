@@ -10,7 +10,9 @@ import com.azure.resourcemanager.kusto.models.Status;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Operation Result Entity. */
+/**
+ * Operation Result Entity.
+ */
 @Fluent
 public final class OperationResultInner {
     /*
@@ -61,13 +63,15 @@ public final class OperationResultInner {
     @JsonProperty(value = "error")
     private OperationResultErrorProperties innerError;
 
-    /** Creates an instance of OperationResultInner class. */
+    /**
+     * Creates an instance of OperationResultInner class.
+     */
     public OperationResultInner() {
     }
 
     /**
      * Get the id property: ID of the resource.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -76,7 +80,7 @@ public final class OperationResultInner {
 
     /**
      * Get the name property: Name of the resource.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -85,7 +89,7 @@ public final class OperationResultInner {
 
     /**
      * Get the status property: status of the Operation result.
-     *
+     * 
      * @return the status value.
      */
     public Status status() {
@@ -94,7 +98,7 @@ public final class OperationResultInner {
 
     /**
      * Get the startTime property: The operation start time.
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -103,7 +107,7 @@ public final class OperationResultInner {
 
     /**
      * Set the startTime property: The operation start time.
-     *
+     * 
      * @param startTime the startTime value to set.
      * @return the OperationResultInner object itself.
      */
@@ -114,7 +118,7 @@ public final class OperationResultInner {
 
     /**
      * Get the endTime property: The operation end time.
-     *
+     * 
      * @return the endTime value.
      */
     public OffsetDateTime endTime() {
@@ -123,7 +127,7 @@ public final class OperationResultInner {
 
     /**
      * Set the endTime property: The operation end time.
-     *
+     * 
      * @param endTime the endTime value to set.
      * @return the OperationResultInner object itself.
      */
@@ -134,7 +138,7 @@ public final class OperationResultInner {
 
     /**
      * Get the percentComplete property: Percentage completed.
-     *
+     * 
      * @return the percentComplete value.
      */
     public Double percentComplete() {
@@ -143,7 +147,7 @@ public final class OperationResultInner {
 
     /**
      * Set the percentComplete property: Percentage completed.
-     *
+     * 
      * @param percentComplete the percentComplete value to set.
      * @return the OperationResultInner object itself.
      */
@@ -154,7 +158,7 @@ public final class OperationResultInner {
 
     /**
      * Get the innerProperties property: Properties of the operation results.
-     *
+     * 
      * @return the innerProperties value.
      */
     private OperationResultProperties innerProperties() {
@@ -163,7 +167,7 @@ public final class OperationResultInner {
 
     /**
      * Get the innerError property: Object that contains the error code and message if the operation failed.
-     *
+     * 
      * @return the innerError value.
      */
     private OperationResultErrorProperties innerError() {
@@ -172,7 +176,7 @@ public final class OperationResultInner {
 
     /**
      * Get the operationKind property: The kind of the operation.
-     *
+     * 
      * @return the operationKind value.
      */
     public String operationKind() {
@@ -181,7 +185,7 @@ public final class OperationResultInner {
 
     /**
      * Set the operationKind property: The kind of the operation.
-     *
+     * 
      * @param operationKind the operationKind value to set.
      * @return the OperationResultInner object itself.
      */
@@ -195,7 +199,7 @@ public final class OperationResultInner {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -204,7 +208,7 @@ public final class OperationResultInner {
 
     /**
      * Get the operationState property: The state of the operation.
-     *
+     * 
      * @return the operationState value.
      */
     public String operationState() {
@@ -213,7 +217,7 @@ public final class OperationResultInner {
 
     /**
      * Set the operationState property: The state of the operation.
-     *
+     * 
      * @param operationState the operationState value to set.
      * @return the OperationResultInner object itself.
      */
@@ -227,7 +231,7 @@ public final class OperationResultInner {
 
     /**
      * Get the code property: The code of the error.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -236,7 +240,7 @@ public final class OperationResultInner {
 
     /**
      * Set the code property: The code of the error.
-     *
+     * 
      * @param code the code value to set.
      * @return the OperationResultInner object itself.
      */
@@ -250,7 +254,7 @@ public final class OperationResultInner {
 
     /**
      * Get the message property: The error message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -259,7 +263,7 @@ public final class OperationResultInner {
 
     /**
      * Set the message property: The error message.
-     *
+     * 
      * @param message the message value to set.
      * @return the OperationResultInner object itself.
      */
@@ -273,7 +277,7 @@ public final class OperationResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

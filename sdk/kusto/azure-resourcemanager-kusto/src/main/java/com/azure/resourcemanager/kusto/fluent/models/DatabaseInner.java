@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Class representing a Kusto database. */
+/**
+ * Class representing a Kusto database.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -22,8 +24,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("Database")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "ReadWrite", value = ReadWriteDatabase.class),
-    @JsonSubTypes.Type(name = "ReadOnlyFollowing", value = ReadOnlyFollowingDatabase.class)
-})
+    @JsonSubTypes.Type(name = "ReadOnlyFollowing", value = ReadOnlyFollowingDatabase.class) })
 @Fluent
 public class DatabaseInner extends ProxyResource {
     /*
@@ -32,13 +33,15 @@ public class DatabaseInner extends ProxyResource {
     @JsonProperty(value = "location")
     private String location;
 
-    /** Creates an instance of DatabaseInner class. */
+    /**
+     * Creates an instance of DatabaseInner class.
+     */
     public DatabaseInner() {
     }
 
     /**
      * Get the location property: Resource location.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -47,7 +50,7 @@ public class DatabaseInner extends ProxyResource {
 
     /**
      * Set the location property: Resource location.
-     *
+     * 
      * @param location the location value to set.
      * @return the DatabaseInner object itself.
      */
@@ -58,7 +61,7 @@ public class DatabaseInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

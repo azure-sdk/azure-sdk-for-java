@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.kusto.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A class representing the properties of a managed private endpoint object. */
+/**
+ * A class representing the properties of a managed private endpoint object.
+ */
 @Fluent
 public final class ManagedPrivateEndpointProperties {
     /*
@@ -42,14 +44,16 @@ public final class ManagedPrivateEndpointProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of ManagedPrivateEndpointProperties class. */
+    /**
+     * Creates an instance of ManagedPrivateEndpointProperties class.
+     */
     public ManagedPrivateEndpointProperties() {
     }
 
     /**
      * Get the privateLinkResourceId property: The ARM resource ID of the resource for which the managed private
      * endpoint is created.
-     *
+     * 
      * @return the privateLinkResourceId value.
      */
     public String privateLinkResourceId() {
@@ -59,7 +63,7 @@ public final class ManagedPrivateEndpointProperties {
     /**
      * Set the privateLinkResourceId property: The ARM resource ID of the resource for which the managed private
      * endpoint is created.
-     *
+     * 
      * @param privateLinkResourceId the privateLinkResourceId value to set.
      * @return the ManagedPrivateEndpointProperties object itself.
      */
@@ -71,7 +75,7 @@ public final class ManagedPrivateEndpointProperties {
     /**
      * Get the privateLinkResourceRegion property: The region of the resource to which the managed private endpoint is
      * created.
-     *
+     * 
      * @return the privateLinkResourceRegion value.
      */
     public String privateLinkResourceRegion() {
@@ -81,7 +85,7 @@ public final class ManagedPrivateEndpointProperties {
     /**
      * Set the privateLinkResourceRegion property: The region of the resource to which the managed private endpoint is
      * created.
-     *
+     * 
      * @param privateLinkResourceRegion the privateLinkResourceRegion value to set.
      * @return the ManagedPrivateEndpointProperties object itself.
      */
@@ -92,7 +96,7 @@ public final class ManagedPrivateEndpointProperties {
 
     /**
      * Get the groupId property: The groupId in which the managed private endpoint is created.
-     *
+     * 
      * @return the groupId value.
      */
     public String groupId() {
@@ -101,7 +105,7 @@ public final class ManagedPrivateEndpointProperties {
 
     /**
      * Set the groupId property: The groupId in which the managed private endpoint is created.
-     *
+     * 
      * @param groupId the groupId value to set.
      * @return the ManagedPrivateEndpointProperties object itself.
      */
@@ -112,7 +116,7 @@ public final class ManagedPrivateEndpointProperties {
 
     /**
      * Get the requestMessage property: The user request message.
-     *
+     * 
      * @return the requestMessage value.
      */
     public String requestMessage() {
@@ -121,7 +125,7 @@ public final class ManagedPrivateEndpointProperties {
 
     /**
      * Set the requestMessage property: The user request message.
-     *
+     * 
      * @param requestMessage the requestMessage value to set.
      * @return the ManagedPrivateEndpointProperties object itself.
      */
@@ -132,7 +136,7 @@ public final class ManagedPrivateEndpointProperties {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -141,21 +145,17 @@ public final class ManagedPrivateEndpointProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (privateLinkResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property privateLinkResourceId in model ManagedPrivateEndpointProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property privateLinkResourceId in model ManagedPrivateEndpointProperties"));
         }
         if (groupId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property groupId in model ManagedPrivateEndpointProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property groupId in model ManagedPrivateEndpointProperties"));
         }
     }
 

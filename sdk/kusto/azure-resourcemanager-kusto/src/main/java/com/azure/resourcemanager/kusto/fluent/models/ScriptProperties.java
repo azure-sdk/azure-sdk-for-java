@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.kusto.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A class representing database script property. */
+/**
+ * A class representing database script property.
+ */
 @Fluent
 public final class ScriptProperties {
     /*
@@ -49,14 +51,16 @@ public final class ScriptProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of ScriptProperties class. */
+    /**
+     * Creates an instance of ScriptProperties class.
+     */
     public ScriptProperties() {
     }
 
     /**
      * Get the scriptUrl property: The url to the KQL script blob file. Must not be used together with scriptContent
      * property.
-     *
+     * 
      * @return the scriptUrl value.
      */
     public String scriptUrl() {
@@ -66,7 +70,7 @@ public final class ScriptProperties {
     /**
      * Set the scriptUrl property: The url to the KQL script blob file. Must not be used together with scriptContent
      * property.
-     *
+     * 
      * @param scriptUrl the scriptUrl value to set.
      * @return the ScriptProperties object itself.
      */
@@ -78,7 +82,7 @@ public final class ScriptProperties {
     /**
      * Get the scriptUrlSasToken property: The SaS token that provide read access to the file which contain the script.
      * Must be provided when using scriptUrl property.
-     *
+     * 
      * @return the scriptUrlSasToken value.
      */
     public String scriptUrlSasToken() {
@@ -88,7 +92,7 @@ public final class ScriptProperties {
     /**
      * Set the scriptUrlSasToken property: The SaS token that provide read access to the file which contain the script.
      * Must be provided when using scriptUrl property.
-     *
+     * 
      * @param scriptUrlSasToken the scriptUrlSasToken value to set.
      * @return the ScriptProperties object itself.
      */
@@ -100,7 +104,7 @@ public final class ScriptProperties {
     /**
      * Get the scriptContent property: The script content. This property should be used when the script is provide
      * inline and not through file in a SA. Must not be used together with scriptUrl and scriptUrlSasToken properties.
-     *
+     * 
      * @return the scriptContent value.
      */
     public String scriptContent() {
@@ -110,7 +114,7 @@ public final class ScriptProperties {
     /**
      * Set the scriptContent property: The script content. This property should be used when the script is provide
      * inline and not through file in a SA. Must not be used together with scriptUrl and scriptUrlSasToken properties.
-     *
+     * 
      * @param scriptContent the scriptContent value to set.
      * @return the ScriptProperties object itself.
      */
@@ -121,7 +125,7 @@ public final class ScriptProperties {
 
     /**
      * Get the forceUpdateTag property: A unique string. If changed the script will be applied again.
-     *
+     * 
      * @return the forceUpdateTag value.
      */
     public String forceUpdateTag() {
@@ -130,7 +134,7 @@ public final class ScriptProperties {
 
     /**
      * Set the forceUpdateTag property: A unique string. If changed the script will be applied again.
-     *
+     * 
      * @param forceUpdateTag the forceUpdateTag value to set.
      * @return the ScriptProperties object itself.
      */
@@ -141,7 +145,7 @@ public final class ScriptProperties {
 
     /**
      * Get the continueOnErrors property: Flag that indicates whether to continue if one of the command fails.
-     *
+     * 
      * @return the continueOnErrors value.
      */
     public Boolean continueOnErrors() {
@@ -150,7 +154,7 @@ public final class ScriptProperties {
 
     /**
      * Set the continueOnErrors property: Flag that indicates whether to continue if one of the command fails.
-     *
+     * 
      * @param continueOnErrors the continueOnErrors value to set.
      * @return the ScriptProperties object itself.
      */
@@ -161,7 +165,7 @@ public final class ScriptProperties {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -170,7 +174,7 @@ public final class ScriptProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

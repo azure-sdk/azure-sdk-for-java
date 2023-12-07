@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kusto.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A class that contains the optimized auto scale definition. */
+/**
+ * A class that contains the optimized auto scale definition.
+ */
 @Fluent
 public final class OptimizedAutoscale {
     /*
@@ -34,13 +36,15 @@ public final class OptimizedAutoscale {
     @JsonProperty(value = "maximum", required = true)
     private int maximum;
 
-    /** Creates an instance of OptimizedAutoscale class. */
+    /**
+     * Creates an instance of OptimizedAutoscale class.
+     */
     public OptimizedAutoscale() {
     }
 
     /**
      * Get the version property: The version of the template defined, for instance 1.
-     *
+     * 
      * @return the version value.
      */
     public int version() {
@@ -49,7 +53,7 @@ public final class OptimizedAutoscale {
 
     /**
      * Set the version property: The version of the template defined, for instance 1.
-     *
+     * 
      * @param version the version value to set.
      * @return the OptimizedAutoscale object itself.
      */
@@ -60,7 +64,7 @@ public final class OptimizedAutoscale {
 
     /**
      * Get the isEnabled property: A boolean value that indicate if the optimized autoscale feature is enabled or not.
-     *
+     * 
      * @return the isEnabled value.
      */
     public boolean isEnabled() {
@@ -69,7 +73,7 @@ public final class OptimizedAutoscale {
 
     /**
      * Set the isEnabled property: A boolean value that indicate if the optimized autoscale feature is enabled or not.
-     *
+     * 
      * @param isEnabled the isEnabled value to set.
      * @return the OptimizedAutoscale object itself.
      */
@@ -80,7 +84,7 @@ public final class OptimizedAutoscale {
 
     /**
      * Get the minimum property: Minimum allowed instances count.
-     *
+     * 
      * @return the minimum value.
      */
     public int minimum() {
@@ -89,7 +93,7 @@ public final class OptimizedAutoscale {
 
     /**
      * Set the minimum property: Minimum allowed instances count.
-     *
+     * 
      * @param minimum the minimum value to set.
      * @return the OptimizedAutoscale object itself.
      */
@@ -100,7 +104,7 @@ public final class OptimizedAutoscale {
 
     /**
      * Get the maximum property: Maximum allowed instances count.
-     *
+     * 
      * @return the maximum value.
      */
     public int maximum() {
@@ -109,7 +113,7 @@ public final class OptimizedAutoscale {
 
     /**
      * Set the maximum property: Maximum allowed instances count.
-     *
+     * 
      * @param maximum the maximum value to set.
      * @return the OptimizedAutoscale object itself.
      */
@@ -120,7 +124,7 @@ public final class OptimizedAutoscale {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

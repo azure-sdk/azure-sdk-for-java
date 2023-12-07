@@ -14,7 +14,9 @@ import com.azure.resourcemanager.kusto.models.TableLevelSharingProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 
-/** Class representing the Kusto database properties. */
+/**
+ * Class representing the Kusto database properties.
+ */
 @Fluent
 public final class ReadOnlyFollowingDatabaseProperties {
     /*
@@ -84,13 +86,15 @@ public final class ReadOnlyFollowingDatabaseProperties {
     @JsonProperty(value = "suspensionDetails", access = JsonProperty.Access.WRITE_ONLY)
     private SuspensionDetails suspensionDetails;
 
-    /** Creates an instance of ReadOnlyFollowingDatabaseProperties class. */
+    /**
+     * Creates an instance of ReadOnlyFollowingDatabaseProperties class.
+     */
     public ReadOnlyFollowingDatabaseProperties() {
     }
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -100,7 +104,7 @@ public final class ReadOnlyFollowingDatabaseProperties {
     /**
      * Get the softDeletePeriod property: The time the data should be kept before it stops being accessible to queries
      * in TimeSpan.
-     *
+     * 
      * @return the softDeletePeriod value.
      */
     public Duration softDeletePeriod() {
@@ -109,7 +113,7 @@ public final class ReadOnlyFollowingDatabaseProperties {
 
     /**
      * Get the hotCachePeriod property: The time the data should be kept in cache for fast queries in TimeSpan.
-     *
+     * 
      * @return the hotCachePeriod value.
      */
     public Duration hotCachePeriod() {
@@ -118,7 +122,7 @@ public final class ReadOnlyFollowingDatabaseProperties {
 
     /**
      * Set the hotCachePeriod property: The time the data should be kept in cache for fast queries in TimeSpan.
-     *
+     * 
      * @param hotCachePeriod the hotCachePeriod value to set.
      * @return the ReadOnlyFollowingDatabaseProperties object itself.
      */
@@ -129,7 +133,7 @@ public final class ReadOnlyFollowingDatabaseProperties {
 
     /**
      * Get the statistics property: The statistics of the database.
-     *
+     * 
      * @return the statistics value.
      */
     public DatabaseStatistics statistics() {
@@ -138,7 +142,7 @@ public final class ReadOnlyFollowingDatabaseProperties {
 
     /**
      * Get the leaderClusterResourceId property: The name of the leader cluster.
-     *
+     * 
      * @return the leaderClusterResourceId value.
      */
     public String leaderClusterResourceId() {
@@ -147,7 +151,7 @@ public final class ReadOnlyFollowingDatabaseProperties {
 
     /**
      * Get the attachedDatabaseConfigurationName property: The name of the attached database configuration cluster.
-     *
+     * 
      * @return the attachedDatabaseConfigurationName value.
      */
     public String attachedDatabaseConfigurationName() {
@@ -156,7 +160,7 @@ public final class ReadOnlyFollowingDatabaseProperties {
 
     /**
      * Get the principalsModificationKind property: The principals modification kind of the database.
-     *
+     * 
      * @return the principalsModificationKind value.
      */
     public PrincipalsModificationKind principalsModificationKind() {
@@ -165,7 +169,7 @@ public final class ReadOnlyFollowingDatabaseProperties {
 
     /**
      * Get the tableLevelSharingProperties property: Table level sharing specifications.
-     *
+     * 
      * @return the tableLevelSharingProperties value.
      */
     public TableLevelSharingProperties tableLevelSharingProperties() {
@@ -175,7 +179,7 @@ public final class ReadOnlyFollowingDatabaseProperties {
     /**
      * Get the originalDatabaseName property: The original database name, before databaseNameOverride or
      * databaseNamePrefix where applied.
-     *
+     * 
      * @return the originalDatabaseName value.
      */
     public String originalDatabaseName() {
@@ -184,7 +188,7 @@ public final class ReadOnlyFollowingDatabaseProperties {
 
     /**
      * Get the databaseShareOrigin property: The origin of the following setup.
-     *
+     * 
      * @return the databaseShareOrigin value.
      */
     public DatabaseShareOrigin databaseShareOrigin() {
@@ -194,7 +198,7 @@ public final class ReadOnlyFollowingDatabaseProperties {
     /**
      * Get the suspensionDetails property: The database suspension details. If the database is suspended, this object
      * contains information related to the database's suspension state.
-     *
+     * 
      * @return the suspensionDetails value.
      */
     public SuspensionDetails suspensionDetails() {
@@ -203,7 +207,7 @@ public final class ReadOnlyFollowingDatabaseProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

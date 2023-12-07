@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The DiagnoseVirtualNetworkResult model. */
+/**
+ * The DiagnoseVirtualNetworkResult model.
+ */
 @Fluent
 public final class DiagnoseVirtualNetworkResultInner {
     /*
@@ -17,13 +19,15 @@ public final class DiagnoseVirtualNetworkResultInner {
     @JsonProperty(value = "findings")
     private List<String> findings;
 
-    /** Creates an instance of DiagnoseVirtualNetworkResultInner class. */
+    /**
+     * Creates an instance of DiagnoseVirtualNetworkResultInner class.
+     */
     public DiagnoseVirtualNetworkResultInner() {
     }
 
     /**
      * Get the findings property: The list of network connectivity diagnostic finding.
-     *
+     * 
      * @return the findings value.
      */
     public List<String> findings() {
@@ -32,7 +36,7 @@ public final class DiagnoseVirtualNetworkResultInner {
 
     /**
      * Set the findings property: The list of network connectivity diagnostic finding.
-     *
+     * 
      * @param findings the findings value to set.
      * @return the DiagnoseVirtualNetworkResultInner object itself.
      */
@@ -43,7 +47,7 @@ public final class DiagnoseVirtualNetworkResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

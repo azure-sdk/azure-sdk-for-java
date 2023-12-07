@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Azure capacity definition. */
+/**
+ * Azure capacity definition.
+ */
 @Fluent
 public final class AzureCapacity {
     /*
@@ -35,13 +37,15 @@ public final class AzureCapacity {
     @JsonProperty(value = "default", required = true)
     private int defaultProperty;
 
-    /** Creates an instance of AzureCapacity class. */
+    /**
+     * Creates an instance of AzureCapacity class.
+     */
     public AzureCapacity() {
     }
 
     /**
      * Get the scaleType property: Scale type.
-     *
+     * 
      * @return the scaleType value.
      */
     public AzureScaleType scaleType() {
@@ -50,7 +54,7 @@ public final class AzureCapacity {
 
     /**
      * Set the scaleType property: Scale type.
-     *
+     * 
      * @param scaleType the scaleType value to set.
      * @return the AzureCapacity object itself.
      */
@@ -61,7 +65,7 @@ public final class AzureCapacity {
 
     /**
      * Get the minimum property: Minimum allowed capacity.
-     *
+     * 
      * @return the minimum value.
      */
     public int minimum() {
@@ -70,7 +74,7 @@ public final class AzureCapacity {
 
     /**
      * Set the minimum property: Minimum allowed capacity.
-     *
+     * 
      * @param minimum the minimum value to set.
      * @return the AzureCapacity object itself.
      */
@@ -81,7 +85,7 @@ public final class AzureCapacity {
 
     /**
      * Get the maximum property: Maximum allowed capacity.
-     *
+     * 
      * @return the maximum value.
      */
     public int maximum() {
@@ -90,7 +94,7 @@ public final class AzureCapacity {
 
     /**
      * Set the maximum property: Maximum allowed capacity.
-     *
+     * 
      * @param maximum the maximum value to set.
      * @return the AzureCapacity object itself.
      */
@@ -101,7 +105,7 @@ public final class AzureCapacity {
 
     /**
      * Get the defaultProperty property: The default capacity that would be used.
-     *
+     * 
      * @return the defaultProperty value.
      */
     public int defaultProperty() {
@@ -110,7 +114,7 @@ public final class AzureCapacity {
 
     /**
      * Set the defaultProperty property: The default capacity that would be used.
-     *
+     * 
      * @param defaultProperty the defaultProperty value to set.
      * @return the AzureCapacity object itself.
      */
@@ -121,14 +125,13 @@ public final class AzureCapacity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (scaleType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property scaleType in model AzureCapacity"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property scaleType in model AzureCapacity"));
         }
     }
 

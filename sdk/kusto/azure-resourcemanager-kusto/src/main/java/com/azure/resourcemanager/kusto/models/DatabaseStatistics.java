@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kusto.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A class that contains database statistics information. */
+/**
+ * A class that contains database statistics information.
+ */
 @Fluent
 public final class DatabaseStatistics {
     /*
@@ -16,13 +18,15 @@ public final class DatabaseStatistics {
     @JsonProperty(value = "size")
     private Float size;
 
-    /** Creates an instance of DatabaseStatistics class. */
+    /**
+     * Creates an instance of DatabaseStatistics class.
+     */
     public DatabaseStatistics() {
     }
 
     /**
      * Get the size property: The database size - the total size of compressed data and index in bytes.
-     *
+     * 
      * @return the size value.
      */
     public Float size() {
@@ -31,7 +35,7 @@ public final class DatabaseStatistics {
 
     /**
      * Set the size property: The database size - the total size of compressed data and index in bytes.
-     *
+     * 
      * @param size the size value to set.
      * @return the DatabaseStatistics object itself.
      */
@@ -42,7 +46,7 @@ public final class DatabaseStatistics {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

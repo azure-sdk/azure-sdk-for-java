@@ -9,7 +9,9 @@ import com.azure.resourcemanager.kusto.fluent.models.SandboxCustomImageInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list Kusto sandbox custom images operation response. */
+/**
+ * The list Kusto sandbox custom images operation response.
+ */
 @Fluent
 public final class SandboxCustomImagesListResult {
     /*
@@ -24,13 +26,15 @@ public final class SandboxCustomImagesListResult {
     @JsonProperty(value = "value")
     private List<SandboxCustomImageInner> value;
 
-    /** Creates an instance of SandboxCustomImagesListResult class. */
+    /**
+     * Creates an instance of SandboxCustomImagesListResult class.
+     */
     public SandboxCustomImagesListResult() {
     }
 
     /**
      * Get the nextLink property: Link to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class SandboxCustomImagesListResult {
 
     /**
      * Set the nextLink property: Link to the next page of results.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the SandboxCustomImagesListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class SandboxCustomImagesListResult {
 
     /**
      * Get the value property: The list of Kusto sandbox custom images.
-     *
+     * 
      * @return the value value.
      */
     public List<SandboxCustomImageInner> value() {
@@ -59,7 +63,7 @@ public final class SandboxCustomImagesListResult {
 
     /**
      * Set the value property: The list of Kusto sandbox custom images.
-     *
+     * 
      * @param value the value value to set.
      * @return the SandboxCustomImagesListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class SandboxCustomImagesListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

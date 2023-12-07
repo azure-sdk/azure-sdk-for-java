@@ -9,7 +9,9 @@ import com.azure.core.http.HttpHeaderName;
 import com.azure.core.http.HttpHeaders;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The OperationsResultsLocationsGetHeaders model. */
+/**
+ * The OperationsResultsLocationsGetHeaders model.
+ */
 @Fluent
 public final class OperationsResultsLocationsGetHeaders {
     /*
@@ -23,7 +25,7 @@ public final class OperationsResultsLocationsGetHeaders {
     // HttpHeaders containing the raw property values.
     /**
      * Creates an instance of OperationsResultsLocationsGetHeaders class.
-     *
+     * 
      * @param rawHeaders The raw HttpHeaders that will be used to create the property values.
      */
     public OperationsResultsLocationsGetHeaders(HttpHeaders rawHeaders) {
@@ -32,7 +34,7 @@ public final class OperationsResultsLocationsGetHeaders {
 
     /**
      * Get the azureAsyncOperation property: The Azure-AsyncOperation property.
-     *
+     * 
      * @return the azureAsyncOperation value.
      */
     public String azureAsyncOperation() {
@@ -41,7 +43,7 @@ public final class OperationsResultsLocationsGetHeaders {
 
     /**
      * Set the azureAsyncOperation property: The Azure-AsyncOperation property.
-     *
+     * 
      * @param azureAsyncOperation the azureAsyncOperation value to set.
      * @return the OperationsResultsLocationsGetHeaders object itself.
      */
@@ -52,7 +54,7 @@ public final class OperationsResultsLocationsGetHeaders {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
