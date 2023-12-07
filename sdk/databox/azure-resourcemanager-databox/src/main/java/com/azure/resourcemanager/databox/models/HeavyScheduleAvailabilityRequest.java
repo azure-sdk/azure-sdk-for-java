@@ -8,23 +8,31 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Request body to get the availability for scheduling heavy orders. */
+/**
+ * Request body to get the availability for scheduling heavy orders.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "skuName")
 @JsonTypeName("DataBoxHeavy")
 @Fluent
 public final class HeavyScheduleAvailabilityRequest extends ScheduleAvailabilityRequest {
-    /** Creates an instance of HeavyScheduleAvailabilityRequest class. */
+    /**
+     * Creates an instance of HeavyScheduleAvailabilityRequest class.
+     */
     public HeavyScheduleAvailabilityRequest() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HeavyScheduleAvailabilityRequest withStorageLocation(String storageLocation) {
         super.withStorageLocation(storageLocation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HeavyScheduleAvailabilityRequest withCountry(String country) {
         super.withCountry(country);
@@ -33,7 +41,7 @@ public final class HeavyScheduleAvailabilityRequest extends ScheduleAvailability
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

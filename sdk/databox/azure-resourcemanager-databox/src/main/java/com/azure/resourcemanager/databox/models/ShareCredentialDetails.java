@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Credential details of the shares in account. */
+/**
+ * Credential details of the shares in account.
+ */
 @Immutable
 public final class ShareCredentialDetails {
     /*
@@ -41,13 +43,15 @@ public final class ShareCredentialDetails {
     @JsonProperty(value = "supportedAccessProtocols", access = JsonProperty.Access.WRITE_ONLY)
     private List<AccessProtocol> supportedAccessProtocols;
 
-    /** Creates an instance of ShareCredentialDetails class. */
+    /**
+     * Creates an instance of ShareCredentialDetails class.
+     */
     public ShareCredentialDetails() {
     }
 
     /**
      * Get the shareName property: Name of the share.
-     *
+     * 
      * @return the shareName value.
      */
     public String shareName() {
@@ -56,7 +60,7 @@ public final class ShareCredentialDetails {
 
     /**
      * Get the shareType property: Type of the share.
-     *
+     * 
      * @return the shareType value.
      */
     public ShareDestinationFormatType shareType() {
@@ -65,7 +69,7 @@ public final class ShareCredentialDetails {
 
     /**
      * Get the username property: User name for the share.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -74,7 +78,7 @@ public final class ShareCredentialDetails {
 
     /**
      * Get the password property: Password for the share.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -83,7 +87,7 @@ public final class ShareCredentialDetails {
 
     /**
      * Get the supportedAccessProtocols property: Access protocols supported on the device.
-     *
+     * 
      * @return the supportedAccessProtocols value.
      */
     public List<AccessProtocol> supportedAccessProtocols() {
@@ -92,7 +96,7 @@ public final class ShareCredentialDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

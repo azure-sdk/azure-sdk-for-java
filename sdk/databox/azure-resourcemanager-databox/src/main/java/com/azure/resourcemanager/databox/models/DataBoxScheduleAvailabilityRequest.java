@@ -8,23 +8,31 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Request body to get the availability for scheduling data box orders orders. */
+/**
+ * Request body to get the availability for scheduling data box orders orders.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "skuName")
 @JsonTypeName("DataBox")
 @Fluent
 public final class DataBoxScheduleAvailabilityRequest extends ScheduleAvailabilityRequest {
-    /** Creates an instance of DataBoxScheduleAvailabilityRequest class. */
+    /**
+     * Creates an instance of DataBoxScheduleAvailabilityRequest class.
+     */
     public DataBoxScheduleAvailabilityRequest() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxScheduleAvailabilityRequest withStorageLocation(String storageLocation) {
         super.withStorageLocation(storageLocation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxScheduleAvailabilityRequest withCountry(String country) {
         super.withCountry(country);
@@ -33,7 +41,7 @@ public final class DataBoxScheduleAvailabilityRequest extends ScheduleAvailabili
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

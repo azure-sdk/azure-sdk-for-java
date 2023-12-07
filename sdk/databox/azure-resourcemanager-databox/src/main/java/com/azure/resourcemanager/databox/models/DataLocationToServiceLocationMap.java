@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Map of data location to service location. */
+/**
+ * Map of data location to service location.
+ */
 @Immutable
 public final class DataLocationToServiceLocationMap {
     /*
@@ -22,13 +24,15 @@ public final class DataLocationToServiceLocationMap {
     @JsonProperty(value = "serviceLocation", access = JsonProperty.Access.WRITE_ONLY)
     private String serviceLocation;
 
-    /** Creates an instance of DataLocationToServiceLocationMap class. */
+    /**
+     * Creates an instance of DataLocationToServiceLocationMap class.
+     */
     public DataLocationToServiceLocationMap() {
     }
 
     /**
      * Get the dataLocation property: Location of the data.
-     *
+     * 
      * @return the dataLocation value.
      */
     public String dataLocation() {
@@ -37,7 +41,7 @@ public final class DataLocationToServiceLocationMap {
 
     /**
      * Get the serviceLocation property: Location of the service.
-     *
+     * 
      * @return the serviceLocation value.
      */
     public String serviceLocation() {
@@ -46,7 +50,7 @@ public final class DataLocationToServiceLocationMap {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

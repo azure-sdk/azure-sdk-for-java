@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Minimum properties that should be present in each individual validation response. */
+/**
+ * Minimum properties that should be present in each individual validation response.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -29,8 +31,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "ValidateSkuAvailability", value = SkuAvailabilityValidationResponseProperties.class),
     @JsonSubTypes.Type(
         name = "ValidateSubscriptionIsAllowedToCreateJob",
-        value = SubscriptionIsAllowedToCreateJobValidationResponseProperties.class)
-})
+        value = SubscriptionIsAllowedToCreateJobValidationResponseProperties.class) })
 @Immutable
 public class ValidationInputResponse {
     /*
@@ -39,13 +40,15 @@ public class ValidationInputResponse {
     @JsonProperty(value = "error", access = JsonProperty.Access.WRITE_ONLY)
     private CloudError error;
 
-    /** Creates an instance of ValidationInputResponse class. */
+    /**
+     * Creates an instance of ValidationInputResponse class.
+     */
     public ValidationInputResponse() {
     }
 
     /**
      * Get the error property: Error code and message of validation response.
-     *
+     * 
      * @return the error value.
      */
     public CloudError error() {
@@ -54,7 +57,7 @@ public class ValidationInputResponse {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

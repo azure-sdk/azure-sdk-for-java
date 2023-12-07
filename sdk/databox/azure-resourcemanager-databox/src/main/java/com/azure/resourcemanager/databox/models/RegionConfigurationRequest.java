@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Request body to get the configuration for the region. */
+/**
+ * Request body to get the configuration for the region.
+ */
 @Fluent
 public final class RegionConfigurationRequest {
     /*
@@ -28,13 +30,21 @@ public final class RegionConfigurationRequest {
     @JsonProperty(value = "datacenterAddressRequest")
     private DatacenterAddressRequest datacenterAddressRequest;
 
-    /** Creates an instance of RegionConfigurationRequest class. */
+    /*
+     * Request body to get the device capabilities for a given sku.
+     */
+    @JsonProperty(value = "deviceCapabilityRequest")
+    private DeviceCapabilityRequest deviceCapabilityRequest;
+
+    /**
+     * Creates an instance of RegionConfigurationRequest class.
+     */
     public RegionConfigurationRequest() {
     }
 
     /**
      * Get the scheduleAvailabilityRequest property: Request body to get the availability for scheduling orders.
-     *
+     * 
      * @return the scheduleAvailabilityRequest value.
      */
     public ScheduleAvailabilityRequest scheduleAvailabilityRequest() {
@@ -43,19 +53,19 @@ public final class RegionConfigurationRequest {
 
     /**
      * Set the scheduleAvailabilityRequest property: Request body to get the availability for scheduling orders.
-     *
+     * 
      * @param scheduleAvailabilityRequest the scheduleAvailabilityRequest value to set.
      * @return the RegionConfigurationRequest object itself.
      */
-    public RegionConfigurationRequest withScheduleAvailabilityRequest(
-        ScheduleAvailabilityRequest scheduleAvailabilityRequest) {
+    public RegionConfigurationRequest
+        withScheduleAvailabilityRequest(ScheduleAvailabilityRequest scheduleAvailabilityRequest) {
         this.scheduleAvailabilityRequest = scheduleAvailabilityRequest;
         return this;
     }
 
     /**
      * Get the transportAvailabilityRequest property: Request body to get the transport availability for given sku.
-     *
+     * 
      * @return the transportAvailabilityRequest value.
      */
     public TransportAvailabilityRequest transportAvailabilityRequest() {
@@ -64,19 +74,19 @@ public final class RegionConfigurationRequest {
 
     /**
      * Set the transportAvailabilityRequest property: Request body to get the transport availability for given sku.
-     *
+     * 
      * @param transportAvailabilityRequest the transportAvailabilityRequest value to set.
      * @return the RegionConfigurationRequest object itself.
      */
-    public RegionConfigurationRequest withTransportAvailabilityRequest(
-        TransportAvailabilityRequest transportAvailabilityRequest) {
+    public RegionConfigurationRequest
+        withTransportAvailabilityRequest(TransportAvailabilityRequest transportAvailabilityRequest) {
         this.transportAvailabilityRequest = transportAvailabilityRequest;
         return this;
     }
 
     /**
      * Get the datacenterAddressRequest property: Request body to get the datacenter address for given sku.
-     *
+     * 
      * @return the datacenterAddressRequest value.
      */
     public DatacenterAddressRequest datacenterAddressRequest() {
@@ -85,7 +95,7 @@ public final class RegionConfigurationRequest {
 
     /**
      * Set the datacenterAddressRequest property: Request body to get the datacenter address for given sku.
-     *
+     * 
      * @param datacenterAddressRequest the datacenterAddressRequest value to set.
      * @return the RegionConfigurationRequest object itself.
      */
@@ -95,8 +105,28 @@ public final class RegionConfigurationRequest {
     }
 
     /**
+     * Get the deviceCapabilityRequest property: Request body to get the device capabilities for a given sku.
+     * 
+     * @return the deviceCapabilityRequest value.
+     */
+    public DeviceCapabilityRequest deviceCapabilityRequest() {
+        return this.deviceCapabilityRequest;
+    }
+
+    /**
+     * Set the deviceCapabilityRequest property: Request body to get the device capabilities for a given sku.
+     * 
+     * @param deviceCapabilityRequest the deviceCapabilityRequest value to set.
+     * @return the RegionConfigurationRequest object itself.
+     */
+    public RegionConfigurationRequest withDeviceCapabilityRequest(DeviceCapabilityRequest deviceCapabilityRequest) {
+        this.deviceCapabilityRequest = deviceCapabilityRequest;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -108,6 +138,9 @@ public final class RegionConfigurationRequest {
         }
         if (datacenterAddressRequest() != null) {
             datacenterAddressRequest().validate();
+        }
+        if (deviceCapabilityRequest() != null) {
+            deviceCapabilityRequest().validate();
         }
     }
 }

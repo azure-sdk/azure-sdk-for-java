@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Properties of sku availability validation response. */
+/**
+ * Properties of sku availability validation response.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationType")
 @JsonTypeName("ValidateSkuAvailability")
 @Immutable
@@ -20,13 +22,15 @@ public final class SkuAvailabilityValidationResponseProperties extends Validatio
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private ValidationStatus status;
 
-    /** Creates an instance of SkuAvailabilityValidationResponseProperties class. */
+    /**
+     * Creates an instance of SkuAvailabilityValidationResponseProperties class.
+     */
     public SkuAvailabilityValidationResponseProperties() {
     }
 
     /**
      * Get the status property: Sku availability validation status.
-     *
+     * 
      * @return the status value.
      */
     public ValidationStatus status() {
@@ -35,7 +39,7 @@ public final class SkuAvailabilityValidationResponseProperties extends Validatio
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

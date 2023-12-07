@@ -9,7 +9,9 @@ import com.azure.resourcemanager.databox.fluent.models.SkuInformationInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The available skus operation response. */
+/**
+ * The available skus operation response.
+ */
 @Fluent
 public final class AvailableSkusResult {
     /*
@@ -24,13 +26,15 @@ public final class AvailableSkusResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of AvailableSkusResult class. */
+    /**
+     * Creates an instance of AvailableSkusResult class.
+     */
     public AvailableSkusResult() {
     }
 
     /**
      * Get the value property: List of available skus.
-     *
+     * 
      * @return the value value.
      */
     public List<SkuInformationInner> value() {
@@ -39,7 +43,7 @@ public final class AvailableSkusResult {
 
     /**
      * Get the nextLink property: Link for the next set of skus.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class AvailableSkusResult {
 
     /**
      * Set the nextLink property: Link for the next set of skus.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the AvailableSkusResult object itself.
      */
@@ -59,7 +63,7 @@ public final class AvailableSkusResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Properties of create order limit for subscription validation response. */
+/**
+ * Properties of create order limit for subscription validation response.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationType")
 @JsonTypeName("ValidateCreateOrderLimit")
 @Immutable
@@ -20,13 +22,15 @@ public final class CreateOrderLimitForSubscriptionValidationResponseProperties e
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private ValidationStatus status;
 
-    /** Creates an instance of CreateOrderLimitForSubscriptionValidationResponseProperties class. */
+    /**
+     * Creates an instance of CreateOrderLimitForSubscriptionValidationResponseProperties class.
+     */
     public CreateOrderLimitForSubscriptionValidationResponseProperties() {
     }
 
     /**
      * Get the status property: Create order limit validation status.
-     *
+     * 
      * @return the status value.
      */
     public ValidationStatus status() {
@@ -35,7 +39,7 @@ public final class CreateOrderLimitForSubscriptionValidationResponseProperties e
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

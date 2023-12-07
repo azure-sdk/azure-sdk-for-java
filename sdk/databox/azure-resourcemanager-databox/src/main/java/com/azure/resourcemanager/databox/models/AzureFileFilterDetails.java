@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Filter details to transfer Azure files. */
+/**
+ * Filter details to transfer Azure files.
+ */
 @Fluent
 public final class AzureFileFilterDetails {
     /*
@@ -29,13 +31,15 @@ public final class AzureFileFilterDetails {
     @JsonProperty(value = "fileShareList")
     private List<String> fileShareList;
 
-    /** Creates an instance of AzureFileFilterDetails class. */
+    /**
+     * Creates an instance of AzureFileFilterDetails class.
+     */
     public AzureFileFilterDetails() {
     }
 
     /**
      * Get the filePrefixList property: Prefix list of the Azure files to be transferred.
-     *
+     * 
      * @return the filePrefixList value.
      */
     public List<String> filePrefixList() {
@@ -44,7 +48,7 @@ public final class AzureFileFilterDetails {
 
     /**
      * Set the filePrefixList property: Prefix list of the Azure files to be transferred.
-     *
+     * 
      * @param filePrefixList the filePrefixList value to set.
      * @return the AzureFileFilterDetails object itself.
      */
@@ -55,7 +59,7 @@ public final class AzureFileFilterDetails {
 
     /**
      * Get the filePathList property: List of full path of the files to be transferred.
-     *
+     * 
      * @return the filePathList value.
      */
     public List<String> filePathList() {
@@ -64,7 +68,7 @@ public final class AzureFileFilterDetails {
 
     /**
      * Set the filePathList property: List of full path of the files to be transferred.
-     *
+     * 
      * @param filePathList the filePathList value to set.
      * @return the AzureFileFilterDetails object itself.
      */
@@ -75,7 +79,7 @@ public final class AzureFileFilterDetails {
 
     /**
      * Get the fileShareList property: List of file shares to be transferred.
-     *
+     * 
      * @return the fileShareList value.
      */
     public List<String> fileShareList() {
@@ -84,7 +88,7 @@ public final class AzureFileFilterDetails {
 
     /**
      * Set the fileShareList property: List of file shares to be transferred.
-     *
+     * 
      * @param fileShareList the fileShareList value to set.
      * @return the AzureFileFilterDetails object itself.
      */
@@ -95,7 +99,7 @@ public final class AzureFileFilterDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** The secrets related to a databox job. */
+/**
+ * The secrets related to a databox job.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobSecretsType")
 @JsonTypeName("DataBox")
 @Fluent
@@ -21,13 +23,15 @@ public final class DataboxJobSecrets extends JobSecrets {
     @JsonProperty(value = "podSecrets")
     private List<DataBoxSecret> podSecrets;
 
-    /** Creates an instance of DataboxJobSecrets class. */
+    /**
+     * Creates an instance of DataboxJobSecrets class.
+     */
     public DataboxJobSecrets() {
     }
 
     /**
      * Get the podSecrets property: Contains the list of secret objects for a job.
-     *
+     * 
      * @return the podSecrets value.
      */
     public List<DataBoxSecret> podSecrets() {
@@ -36,7 +40,7 @@ public final class DataboxJobSecrets extends JobSecrets {
 
     /**
      * Set the podSecrets property: Contains the list of secret objects for a job.
-     *
+     * 
      * @param podSecrets the podSecrets value to set.
      * @return the DataboxJobSecrets object itself.
      */
@@ -47,7 +51,7 @@ public final class DataboxJobSecrets extends JobSecrets {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

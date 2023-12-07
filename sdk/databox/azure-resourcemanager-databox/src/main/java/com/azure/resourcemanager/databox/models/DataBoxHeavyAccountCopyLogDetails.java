@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** Copy log details for a storage account for Databox heavy. */
+/**
+ * Copy log details for a storage account for Databox heavy.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "copyLogDetailsType")
 @JsonTypeName("DataBoxHeavy")
 @Immutable
@@ -33,13 +35,15 @@ public final class DataBoxHeavyAccountCopyLogDetails extends CopyLogDetails {
     @JsonProperty(value = "copyVerboseLogLink", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> copyVerboseLogLink;
 
-    /** Creates an instance of DataBoxHeavyAccountCopyLogDetails class. */
+    /**
+     * Creates an instance of DataBoxHeavyAccountCopyLogDetails class.
+     */
     public DataBoxHeavyAccountCopyLogDetails() {
     }
 
     /**
      * Get the accountName property: Account name.
-     *
+     * 
      * @return the accountName value.
      */
     public String accountName() {
@@ -48,7 +52,7 @@ public final class DataBoxHeavyAccountCopyLogDetails extends CopyLogDetails {
 
     /**
      * Get the copyLogLink property: Link for copy logs.
-     *
+     * 
      * @return the copyLogLink value.
      */
     public List<String> copyLogLink() {
@@ -58,7 +62,7 @@ public final class DataBoxHeavyAccountCopyLogDetails extends CopyLogDetails {
     /**
      * Get the copyVerboseLogLink property: Link for copy verbose logs. This will be set only when the
      * LogCollectionLevel is set to verbose.
-     *
+     * 
      * @return the copyVerboseLogLink value.
      */
     public List<String> copyVerboseLogLink() {
@@ -67,7 +71,7 @@ public final class DataBoxHeavyAccountCopyLogDetails extends CopyLogDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
