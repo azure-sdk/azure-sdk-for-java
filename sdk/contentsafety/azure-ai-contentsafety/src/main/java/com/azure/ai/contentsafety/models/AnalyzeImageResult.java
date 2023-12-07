@@ -43,4 +43,21 @@ public final class AnalyzeImageResult {
     public List<ImageCategoriesAnalysis> getCategoriesAnalysis() {
         return this.categoriesAnalysis;
     }
+
+    /*
+     * The incident match details.
+     */
+    @Generated
+    @JsonProperty(value = "incidentMatches")
+    private List<IncidentMatch> incidentMatches;
+
+    /**
+     * Get the incidentMatches property: The incident match details.
+     *
+     * @return the incidentMatches value.
+     */
+    @Generated
+    public List<IncidentMatch> getIncidentMatches() {
+        return this.incidentMatches;
+    }
 }
