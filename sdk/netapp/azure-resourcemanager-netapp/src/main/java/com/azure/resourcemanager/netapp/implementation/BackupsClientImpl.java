@@ -25,17 +25,23 @@ import com.azure.resourcemanager.netapp.fluent.BackupsClient;
 import com.azure.resourcemanager.netapp.fluent.models.RestoreStatusInner;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in BackupsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in BackupsClient.
+ */
 public final class BackupsClientImpl implements BackupsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final BackupsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final NetAppManagementClientImpl client;
 
     /**
      * Initializes an instance of BackupsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     BackupsClientImpl(NetAppManagementClientImpl client) {
@@ -50,28 +56,22 @@ public final class BackupsClientImpl implements BackupsClient {
     @Host("{$host}")
     @ServiceInterface(name = "NetAppManagementClie")
     public interface BackupsService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/restoreStatus")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/restoreStatus")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RestoreStatusInner>> getVolumeRestoreStatus(
-            @HostParam("$host") String endpoint,
+        Mono<Response<RestoreStatusInner>> getVolumeRestoreStatus(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("accountName") String accountName,
-            @PathParam("poolName") String poolName,
-            @PathParam("volumeName") String volumeName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("accountName") String accountName,
+            @PathParam("poolName") String poolName, @PathParam("volumeName") String volumeName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Get volume's restore status
-     *
-     * <p>Get the status of the restore for a volume.
-     *
+     * 
+     * Get the status of the restore for a volume.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of the NetApp account.
      * @param poolName The name of the capacity pool.
@@ -79,23 +79,19 @@ public final class BackupsClientImpl implements BackupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of the restore for a volume along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the status of the restore for a volume along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RestoreStatusInner>> getVolumeRestoreStatusWithResponseAsync(
-        String resourceGroupName, String accountName, String poolName, String volumeName) {
+    private Mono<Response<RestoreStatusInner>> getVolumeRestoreStatusWithResponseAsync(String resourceGroupName,
+        String accountName, String poolName, String volumeName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -113,26 +109,16 @@ public final class BackupsClientImpl implements BackupsClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .getVolumeRestoreStatus(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            accountName,
-                            poolName,
-                            volumeName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+                context -> service.getVolumeRestoreStatus(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, accountName, poolName, volumeName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get volume's restore status
-     *
-     * <p>Get the status of the restore for a volume.
-     *
+     * 
+     * Get the status of the restore for a volume.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of the NetApp account.
      * @param poolName The name of the capacity pool.
@@ -141,23 +127,19 @@ public final class BackupsClientImpl implements BackupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of the restore for a volume along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the status of the restore for a volume along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RestoreStatusInner>> getVolumeRestoreStatusWithResponseAsync(
-        String resourceGroupName, String accountName, String poolName, String volumeName, Context context) {
+    private Mono<Response<RestoreStatusInner>> getVolumeRestoreStatusWithResponseAsync(String resourceGroupName,
+        String accountName, String poolName, String volumeName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -174,24 +156,15 @@ public final class BackupsClientImpl implements BackupsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getVolumeRestoreStatus(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                accountName,
-                poolName,
-                volumeName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.getVolumeRestoreStatus(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            resourceGroupName, accountName, poolName, volumeName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Get volume's restore status
-     *
-     * <p>Get the status of the restore for a volume.
-     *
+     * 
+     * Get the status of the restore for a volume.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of the NetApp account.
      * @param poolName The name of the capacity pool.
@@ -202,17 +175,17 @@ public final class BackupsClientImpl implements BackupsClient {
      * @return the status of the restore for a volume on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<RestoreStatusInner> getVolumeRestoreStatusAsync(
-        String resourceGroupName, String accountName, String poolName, String volumeName) {
+    private Mono<RestoreStatusInner> getVolumeRestoreStatusAsync(String resourceGroupName, String accountName,
+        String poolName, String volumeName) {
         return getVolumeRestoreStatusWithResponseAsync(resourceGroupName, accountName, poolName, volumeName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get volume's restore status
-     *
-     * <p>Get the status of the restore for a volume.
-     *
+     * 
+     * Get the status of the restore for a volume.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of the NetApp account.
      * @param poolName The name of the capacity pool.
@@ -224,17 +197,17 @@ public final class BackupsClientImpl implements BackupsClient {
      * @return the status of the restore for a volume along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<RestoreStatusInner> getVolumeRestoreStatusWithResponse(
-        String resourceGroupName, String accountName, String poolName, String volumeName, Context context) {
+    public Response<RestoreStatusInner> getVolumeRestoreStatusWithResponse(String resourceGroupName, String accountName,
+        String poolName, String volumeName, Context context) {
         return getVolumeRestoreStatusWithResponseAsync(resourceGroupName, accountName, poolName, volumeName, context)
             .block();
     }
 
     /**
      * Get volume's restore status
-     *
-     * <p>Get the status of the restore for a volume.
-     *
+     * 
+     * Get the status of the restore for a volume.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of the NetApp account.
      * @param poolName The name of the capacity pool.
@@ -245,8 +218,8 @@ public final class BackupsClientImpl implements BackupsClient {
      * @return the status of the restore for a volume.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public RestoreStatusInner getVolumeRestoreStatus(
-        String resourceGroupName, String accountName, String poolName, String volumeName) {
+    public RestoreStatusInner getVolumeRestoreStatus(String resourceGroupName, String accountName, String poolName,
+        String volumeName) {
         return getVolumeRestoreStatusWithResponse(resourceGroupName, accountName, poolName, volumeName, Context.NONE)
             .getValue();
     }

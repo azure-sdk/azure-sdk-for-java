@@ -7,13 +7,15 @@ package com.azure.resourcemanager.netapp.models;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of Backups. */
+/**
+ * Resource collection API of Backups.
+ */
 public interface Backups {
     /**
      * Get volume's restore status
-     *
-     * <p>Get the status of the restore for a volume.
-     *
+     * 
+     * Get the status of the restore for a volume.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of the NetApp account.
      * @param poolName The name of the capacity pool.
@@ -24,14 +26,14 @@ public interface Backups {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the status of the restore for a volume along with {@link Response}.
      */
-    Response<RestoreStatus> getVolumeRestoreStatusWithResponse(
-        String resourceGroupName, String accountName, String poolName, String volumeName, Context context);
+    Response<RestoreStatus> getVolumeRestoreStatusWithResponse(String resourceGroupName, String accountName,
+        String poolName, String volumeName, Context context);
 
     /**
      * Get volume's restore status
-     *
-     * <p>Get the status of the restore for a volume.
-     *
+     * 
+     * Get the status of the restore for a volume.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of the NetApp account.
      * @param poolName The name of the capacity pool.
@@ -41,6 +43,6 @@ public interface Backups {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the status of the restore for a volume.
      */
-    RestoreStatus getVolumeRestoreStatus(
-        String resourceGroupName, String accountName, String poolName, String volumeName);
+    RestoreStatus getVolumeRestoreStatus(String resourceGroupName, String accountName, String poolName,
+        String volumeName);
 }
