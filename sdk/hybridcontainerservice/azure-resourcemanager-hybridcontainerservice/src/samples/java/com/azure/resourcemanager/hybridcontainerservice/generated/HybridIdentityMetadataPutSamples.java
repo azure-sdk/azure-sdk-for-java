@@ -12,7 +12,7 @@ import com.azure.resourcemanager.hybridcontainerservice.fluent.models.HybridIden
 public final class HybridIdentityMetadataPutSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridaks/resource-manager/Microsoft.HybridContainerService/preview/2023-11-15-preview/examples/
+     * specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/
      * CreateHybridIdentityMetadata.json
      */
     /**

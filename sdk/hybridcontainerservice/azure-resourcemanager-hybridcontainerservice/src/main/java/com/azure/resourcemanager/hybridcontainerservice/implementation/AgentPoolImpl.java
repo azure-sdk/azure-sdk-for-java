@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.hybridcontainerservice.implementation;
 
-import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.AgentPoolInner;
 import com.azure.resourcemanager.hybridcontainerservice.models.AgentPool;
-import com.azure.resourcemanager.hybridcontainerservice.models.AgentPoolPatch;
 import com.azure.resourcemanager.hybridcontainerservice.models.AgentPoolProvisioningStatusStatus;
 import com.azure.resourcemanager.hybridcontainerservice.models.ExtendedLocation;
 import com.azure.resourcemanager.hybridcontainerservice.models.OsType;
@@ -36,10 +34,6 @@ public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, Age
         return this.innerModel().type();
     }
 
-    public String location() {
-        return this.innerModel().location();
-    }
-
     public Map<String, String> tags() {
         Map<String, String> inner = this.innerModel().tags();
         if (inner != null) {
@@ -49,12 +43,12 @@ public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, Age
         }
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
-    }
-
     public ExtendedLocation extendedLocation() {
         return this.innerModel().extendedLocation();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public Integer count() {
@@ -65,21 +59,16 @@ public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, Age
         return this.innerModel().vmSize();
     }
 
+    public String kubernetesVersion() {
+        return this.innerModel().kubernetesVersion();
+    }
+
     public ResourceProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
     }
 
     public AgentPoolProvisioningStatusStatus status() {
         return this.innerModel().status();
-    }
-
-    public List<String> availabilityZones() {
-        List<String> inner = this.innerModel().availabilityZones();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
     }
 
     public OsType osType() {
@@ -90,16 +79,38 @@ public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, Age
         return this.innerModel().osSku();
     }
 
-    public String nodeImageVersion() {
-        return this.innerModel().nodeImageVersion();
+    public Map<String, String> nodeLabels() {
+        Map<String, String> inner = this.innerModel().nodeLabels();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
-    public Region region() {
-        return Region.fromName(this.regionName());
+    public List<String> nodeTaints() {
+        List<String> inner = this.innerModel().nodeTaints();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
-    public String regionName() {
-        return this.location();
+    public Integer maxCount() {
+        return this.innerModel().maxCount();
+    }
+
+    public Integer minCount() {
+        return this.innerModel().minCount();
+    }
+
+    public Boolean enableAutoScaling() {
+        return this.innerModel().enableAutoScaling();
+    }
+
+    public Integer maxPods() {
+        return this.innerModel().maxPods();
     }
 
     public AgentPoolInner innerModel() {
@@ -113,8 +124,6 @@ public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, Age
     private String connectedClusterResourceUri;
 
     private String agentPoolName;
-
-    private AgentPoolPatch updateAgentPool;
 
     public AgentPoolImpl withExistingConnectedClusterResourceUri(String connectedClusterResourceUri) {
         this.connectedClusterResourceUri = connectedClusterResourceUri;
@@ -141,19 +150,18 @@ public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, Age
     }
 
     public AgentPoolImpl update() {
-        this.updateAgentPool = new AgentPoolPatch();
         return this;
     }
 
     public AgentPool apply() {
-        this.innerObject = serviceManager.serviceClient().getAgentPools().update(connectedClusterResourceUri,
-            agentPoolName, updateAgentPool, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getAgentPools().createOrUpdate(connectedClusterResourceUri,
+            agentPoolName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public AgentPool apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getAgentPools().update(connectedClusterResourceUri,
-            agentPoolName, updateAgentPool, context);
+        this.innerObject = serviceManager.serviceClient().getAgentPools().createOrUpdate(connectedClusterResourceUri,
+            agentPoolName, this.innerModel(), context);
         return this;
     }
 
@@ -181,24 +189,9 @@ public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, Age
         return this;
     }
 
-    public AgentPoolImpl withRegion(Region location) {
-        this.innerModel().withLocation(location.toString());
-        return this;
-    }
-
-    public AgentPoolImpl withRegion(String location) {
-        this.innerModel().withLocation(location);
-        return this;
-    }
-
     public AgentPoolImpl withTags(Map<String, String> tags) {
-        if (isInCreateMode()) {
-            this.innerModel().withTags(tags);
-            return this;
-        } else {
-            this.updateAgentPool.withTags(tags);
-            return this;
-        }
+        this.innerModel().withTags(tags);
+        return this;
     }
 
     public AgentPoolImpl withExtendedLocation(ExtendedLocation extendedLocation) {
@@ -221,11 +214,6 @@ public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, Age
         return this;
     }
 
-    public AgentPoolImpl withAvailabilityZones(List<String> availabilityZones) {
-        this.innerModel().withAvailabilityZones(availabilityZones);
-        return this;
-    }
-
     public AgentPoolImpl withOsType(OsType osType) {
         this.innerModel().withOsType(osType);
         return this;
@@ -236,12 +224,33 @@ public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, Age
         return this;
     }
 
-    public AgentPoolImpl withNodeImageVersion(String nodeImageVersion) {
-        this.innerModel().withNodeImageVersion(nodeImageVersion);
+    public AgentPoolImpl withNodeLabels(Map<String, String> nodeLabels) {
+        this.innerModel().withNodeLabels(nodeLabels);
         return this;
     }
 
-    private boolean isInCreateMode() {
-        return this.innerModel().id() == null;
+    public AgentPoolImpl withNodeTaints(List<String> nodeTaints) {
+        this.innerModel().withNodeTaints(nodeTaints);
+        return this;
+    }
+
+    public AgentPoolImpl withMaxCount(Integer maxCount) {
+        this.innerModel().withMaxCount(maxCount);
+        return this;
+    }
+
+    public AgentPoolImpl withMinCount(Integer minCount) {
+        this.innerModel().withMinCount(minCount);
+        return this;
+    }
+
+    public AgentPoolImpl withEnableAutoScaling(Boolean enableAutoScaling) {
+        this.innerModel().withEnableAutoScaling(enableAutoScaling);
+        return this;
+    }
+
+    public AgentPoolImpl withMaxPods(Integer maxPods) {
+        this.innerModel().withMaxPods(maxPods);
+        return this;
     }
 }

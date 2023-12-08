@@ -9,7 +9,7 @@ import com.azure.resourcemanager.hybridcontainerservice.models.ResourceProvision
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Defines the resource properties.
+ * Defines the resource properties for the hybrid identity metadata.
  */
 @Fluent
 public final class HybridIdentityMetadataProperties {
@@ -20,7 +20,7 @@ public final class HybridIdentityMetadataProperties {
     private String resourceUid;
 
     /*
-     * Onboarding public key for provisioning the Managed identity for the HybridAKS cluster.
+     * Onboarding public key for provisioning the Managed identity for the connected cluster.
      */
     @JsonProperty(value = "publicKey")
     private String publicKey;
@@ -58,7 +58,7 @@ public final class HybridIdentityMetadataProperties {
     }
 
     /**
-     * Get the publicKey property: Onboarding public key for provisioning the Managed identity for the HybridAKS
+     * Get the publicKey property: Onboarding public key for provisioning the Managed identity for the connected
      * cluster.
      * 
      * @return the publicKey value.
@@ -68,7 +68,7 @@ public final class HybridIdentityMetadataProperties {
     }
 
     /**
-     * Set the publicKey property: Onboarding public key for provisioning the Managed identity for the HybridAKS
+     * Set the publicKey property: Onboarding public key for provisioning the Managed identity for the connected
      * cluster.
      * 
      * @param publicKey the publicKey value to set.
