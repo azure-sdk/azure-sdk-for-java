@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Unit systems info for the data provider. */
+/**
+ * Unit systems info for the data provider.
+ */
 @Fluent
 public final class UnitSystemsInfo {
     /*
@@ -25,8 +27,14 @@ public final class UnitSystemsInfo {
     private List<String> values;
 
     /**
+     * Creates an instance of UnitSystemsInfo class.
+     */
+    public UnitSystemsInfo() {
+    }
+
+    /**
      * Get the key property: UnitSystem key sent as part of ProviderInput.
-     *
+     * 
      * @return the key value.
      */
     public String key() {
@@ -35,7 +43,7 @@ public final class UnitSystemsInfo {
 
     /**
      * Set the key property: UnitSystem key sent as part of ProviderInput.
-     *
+     * 
      * @param key the key value to set.
      * @return the UnitSystemsInfo object itself.
      */
@@ -46,7 +54,7 @@ public final class UnitSystemsInfo {
 
     /**
      * Get the values property: List of unit systems supported by this data provider.
-     *
+     * 
      * @return the values value.
      */
     public List<String> values() {
@@ -55,7 +63,7 @@ public final class UnitSystemsInfo {
 
     /**
      * Set the values property: List of unit systems supported by this data provider.
-     *
+     * 
      * @param values the values value to set.
      * @return the UnitSystemsInfo object itself.
      */
@@ -66,19 +74,17 @@ public final class UnitSystemsInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (key() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property key in model UnitSystemsInfo"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property key in model UnitSystemsInfo"));
         }
         if (values() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property values in model UnitSystemsInfo"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property values in model UnitSystemsInfo"));
         }
     }
 
