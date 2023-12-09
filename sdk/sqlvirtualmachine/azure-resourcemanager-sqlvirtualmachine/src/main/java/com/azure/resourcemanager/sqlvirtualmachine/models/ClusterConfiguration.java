@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Cluster type. */
+/**
+ * Cluster type.
+ */
 public final class ClusterConfiguration extends ExpandableStringEnum<ClusterConfiguration> {
-    /** Static value Domainful for ClusterConfiguration. */
+    /**
+     * Static value Domainful for ClusterConfiguration.
+     */
     public static final ClusterConfiguration DOMAINFUL = fromString("Domainful");
 
     /**
      * Creates a new instance of ClusterConfiguration value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class ClusterConfiguration extends ExpandableStringEnum<ClusterConf
 
     /**
      * Creates or finds a ClusterConfiguration from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ClusterConfiguration.
      */
@@ -35,7 +39,7 @@ public final class ClusterConfiguration extends ExpandableStringEnum<ClusterConf
 
     /**
      * Gets known ClusterConfiguration values.
-     *
+     * 
      * @return known ClusterConfiguration values.
      */
     public static Collection<ClusterConfiguration> values() {

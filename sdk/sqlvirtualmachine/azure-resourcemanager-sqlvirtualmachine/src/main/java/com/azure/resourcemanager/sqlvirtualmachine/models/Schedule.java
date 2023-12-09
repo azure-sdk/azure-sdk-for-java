@@ -7,7 +7,9 @@ package com.azure.resourcemanager.sqlvirtualmachine.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Set assessment schedule for SQL Server. */
+/**
+ * Set assessment schedule for SQL Server.
+ */
 @Fluent
 public final class Schedule {
     /*
@@ -41,13 +43,15 @@ public final class Schedule {
     @JsonProperty(value = "startTime")
     private String startTime;
 
-    /** Creates an instance of Schedule class. */
+    /**
+     * Creates an instance of Schedule class.
+     */
     public Schedule() {
     }
 
     /**
      * Get the enable property: Enable or disable assessment schedule on SQL virtual machine.
-     *
+     * 
      * @return the enable value.
      */
     public Boolean enable() {
@@ -56,7 +60,7 @@ public final class Schedule {
 
     /**
      * Set the enable property: Enable or disable assessment schedule on SQL virtual machine.
-     *
+     * 
      * @param enable the enable value to set.
      * @return the Schedule object itself.
      */
@@ -67,7 +71,7 @@ public final class Schedule {
 
     /**
      * Get the weeklyInterval property: Number of weeks to schedule between 2 assessment runs. Takes value from 1-6.
-     *
+     * 
      * @return the weeklyInterval value.
      */
     public Integer weeklyInterval() {
@@ -76,7 +80,7 @@ public final class Schedule {
 
     /**
      * Set the weeklyInterval property: Number of weeks to schedule between 2 assessment runs. Takes value from 1-6.
-     *
+     * 
      * @param weeklyInterval the weeklyInterval value to set.
      * @return the Schedule object itself.
      */
@@ -88,7 +92,7 @@ public final class Schedule {
     /**
      * Get the monthlyOccurrence property: Occurrence of the DayOfWeek day within a month to schedule assessment. Takes
      * values: 1,2,3,4 and -1. Use -1 for last DayOfWeek day of the month.
-     *
+     * 
      * @return the monthlyOccurrence value.
      */
     public Integer monthlyOccurrence() {
@@ -98,7 +102,7 @@ public final class Schedule {
     /**
      * Set the monthlyOccurrence property: Occurrence of the DayOfWeek day within a month to schedule assessment. Takes
      * values: 1,2,3,4 and -1. Use -1 for last DayOfWeek day of the month.
-     *
+     * 
      * @param monthlyOccurrence the monthlyOccurrence value to set.
      * @return the Schedule object itself.
      */
@@ -109,7 +113,7 @@ public final class Schedule {
 
     /**
      * Get the dayOfWeek property: Day of the week to run assessment.
-     *
+     * 
      * @return the dayOfWeek value.
      */
     public AssessmentDayOfWeek dayOfWeek() {
@@ -118,7 +122,7 @@ public final class Schedule {
 
     /**
      * Set the dayOfWeek property: Day of the week to run assessment.
-     *
+     * 
      * @param dayOfWeek the dayOfWeek value to set.
      * @return the Schedule object itself.
      */
@@ -129,7 +133,7 @@ public final class Schedule {
 
     /**
      * Get the startTime property: Time of the day in HH:mm format. Eg. 17:30.
-     *
+     * 
      * @return the startTime value.
      */
     public String startTime() {
@@ -138,7 +142,7 @@ public final class Schedule {
 
     /**
      * Set the startTime property: Time of the day in HH:mm format. Eg. 17:30.
-     *
+     * 
      * @param startTime the startTime value to set.
      * @return the Schedule object itself.
      */
@@ -149,7 +153,7 @@ public final class Schedule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** SQL image sku. */
+/**
+ * SQL image sku.
+ */
 public final class SqlVmGroupImageSku extends ExpandableStringEnum<SqlVmGroupImageSku> {
-    /** Static value Developer for SqlVmGroupImageSku. */
+    /**
+     * Static value Developer for SqlVmGroupImageSku.
+     */
     public static final SqlVmGroupImageSku DEVELOPER = fromString("Developer");
 
-    /** Static value Enterprise for SqlVmGroupImageSku. */
+    /**
+     * Static value Enterprise for SqlVmGroupImageSku.
+     */
     public static final SqlVmGroupImageSku ENTERPRISE = fromString("Enterprise");
 
     /**
      * Creates a new instance of SqlVmGroupImageSku value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class SqlVmGroupImageSku extends ExpandableStringEnum<SqlVmGroupIma
 
     /**
      * Creates or finds a SqlVmGroupImageSku from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding SqlVmGroupImageSku.
      */
@@ -38,7 +44,7 @@ public final class SqlVmGroupImageSku extends ExpandableStringEnum<SqlVmGroupIma
 
     /**
      * Gets known SqlVmGroupImageSku values.
-     *
+     * 
      * @return known SqlVmGroupImageSku values.
      */
     public static Collection<SqlVmGroupImageSku> values() {

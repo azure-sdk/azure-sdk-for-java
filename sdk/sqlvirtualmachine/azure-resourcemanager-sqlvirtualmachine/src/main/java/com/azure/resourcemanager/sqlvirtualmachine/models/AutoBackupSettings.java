@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Configure backups for databases in your SQL virtual machine. */
+/**
+ * Configure backups for databases in your SQL virtual machine.
+ */
 @Fluent
 public final class AutoBackupSettings {
     /*
@@ -95,13 +97,15 @@ public final class AutoBackupSettings {
     @JsonProperty(value = "logBackupFrequency")
     private Integer logBackupFrequency;
 
-    /** Creates an instance of AutoBackupSettings class. */
+    /**
+     * Creates an instance of AutoBackupSettings class.
+     */
     public AutoBackupSettings() {
     }
 
     /**
      * Get the enable property: Enable or disable autobackup on SQL virtual machine.
-     *
+     * 
      * @return the enable value.
      */
     public Boolean enable() {
@@ -110,7 +114,7 @@ public final class AutoBackupSettings {
 
     /**
      * Set the enable property: Enable or disable autobackup on SQL virtual machine.
-     *
+     * 
      * @param enable the enable value to set.
      * @return the AutoBackupSettings object itself.
      */
@@ -121,7 +125,7 @@ public final class AutoBackupSettings {
 
     /**
      * Get the enableEncryption property: Enable or disable encryption for backup on SQL virtual machine.
-     *
+     * 
      * @return the enableEncryption value.
      */
     public Boolean enableEncryption() {
@@ -130,7 +134,7 @@ public final class AutoBackupSettings {
 
     /**
      * Set the enableEncryption property: Enable or disable encryption for backup on SQL virtual machine.
-     *
+     * 
      * @param enableEncryption the enableEncryption value to set.
      * @return the AutoBackupSettings object itself.
      */
@@ -141,7 +145,7 @@ public final class AutoBackupSettings {
 
     /**
      * Get the retentionPeriod property: Retention period of backup: 1-90 days.
-     *
+     * 
      * @return the retentionPeriod value.
      */
     public Integer retentionPeriod() {
@@ -150,7 +154,7 @@ public final class AutoBackupSettings {
 
     /**
      * Set the retentionPeriod property: Retention period of backup: 1-90 days.
-     *
+     * 
      * @param retentionPeriod the retentionPeriod value to set.
      * @return the AutoBackupSettings object itself.
      */
@@ -161,7 +165,7 @@ public final class AutoBackupSettings {
 
     /**
      * Get the storageAccountUrl property: Storage account url where backup will be taken to.
-     *
+     * 
      * @return the storageAccountUrl value.
      */
     public String storageAccountUrl() {
@@ -170,7 +174,7 @@ public final class AutoBackupSettings {
 
     /**
      * Set the storageAccountUrl property: Storage account url where backup will be taken to.
-     *
+     * 
      * @param storageAccountUrl the storageAccountUrl value to set.
      * @return the AutoBackupSettings object itself.
      */
@@ -181,7 +185,7 @@ public final class AutoBackupSettings {
 
     /**
      * Get the storageContainerName property: Storage container name where backup will be taken to.
-     *
+     * 
      * @return the storageContainerName value.
      */
     public String storageContainerName() {
@@ -190,7 +194,7 @@ public final class AutoBackupSettings {
 
     /**
      * Set the storageContainerName property: Storage container name where backup will be taken to.
-     *
+     * 
      * @param storageContainerName the storageContainerName value to set.
      * @return the AutoBackupSettings object itself.
      */
@@ -201,7 +205,7 @@ public final class AutoBackupSettings {
 
     /**
      * Get the storageAccessKey property: Storage account key where backup will be taken to.
-     *
+     * 
      * @return the storageAccessKey value.
      */
     public String storageAccessKey() {
@@ -210,7 +214,7 @@ public final class AutoBackupSettings {
 
     /**
      * Set the storageAccessKey property: Storage account key where backup will be taken to.
-     *
+     * 
      * @param storageAccessKey the storageAccessKey value to set.
      * @return the AutoBackupSettings object itself.
      */
@@ -221,7 +225,7 @@ public final class AutoBackupSettings {
 
     /**
      * Get the password property: Password for encryption on backup.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -230,7 +234,7 @@ public final class AutoBackupSettings {
 
     /**
      * Set the password property: Password for encryption on backup.
-     *
+     * 
      * @param password the password value to set.
      * @return the AutoBackupSettings object itself.
      */
@@ -241,7 +245,7 @@ public final class AutoBackupSettings {
 
     /**
      * Get the backupSystemDbs property: Include or exclude system databases from auto backup.
-     *
+     * 
      * @return the backupSystemDbs value.
      */
     public Boolean backupSystemDbs() {
@@ -250,7 +254,7 @@ public final class AutoBackupSettings {
 
     /**
      * Set the backupSystemDbs property: Include or exclude system databases from auto backup.
-     *
+     * 
      * @param backupSystemDbs the backupSystemDbs value to set.
      * @return the AutoBackupSettings object itself.
      */
@@ -261,7 +265,7 @@ public final class AutoBackupSettings {
 
     /**
      * Get the backupScheduleType property: Backup schedule type.
-     *
+     * 
      * @return the backupScheduleType value.
      */
     public BackupScheduleType backupScheduleType() {
@@ -270,7 +274,7 @@ public final class AutoBackupSettings {
 
     /**
      * Set the backupScheduleType property: Backup schedule type.
-     *
+     * 
      * @param backupScheduleType the backupScheduleType value to set.
      * @return the AutoBackupSettings object itself.
      */
@@ -282,7 +286,7 @@ public final class AutoBackupSettings {
     /**
      * Get the fullBackupFrequency property: Frequency of full backups. In both cases, full backups begin during the
      * next scheduled time window.
-     *
+     * 
      * @return the fullBackupFrequency value.
      */
     public FullBackupFrequencyType fullBackupFrequency() {
@@ -292,7 +296,7 @@ public final class AutoBackupSettings {
     /**
      * Set the fullBackupFrequency property: Frequency of full backups. In both cases, full backups begin during the
      * next scheduled time window.
-     *
+     * 
      * @param fullBackupFrequency the fullBackupFrequency value to set.
      * @return the AutoBackupSettings object itself.
      */
@@ -303,7 +307,7 @@ public final class AutoBackupSettings {
 
     /**
      * Get the daysOfWeek property: Days of the week for the backups when FullBackupFrequency is set to Weekly.
-     *
+     * 
      * @return the daysOfWeek value.
      */
     public List<AutoBackupDaysOfWeek> daysOfWeek() {
@@ -312,7 +316,7 @@ public final class AutoBackupSettings {
 
     /**
      * Set the daysOfWeek property: Days of the week for the backups when FullBackupFrequency is set to Weekly.
-     *
+     * 
      * @param daysOfWeek the daysOfWeek value to set.
      * @return the AutoBackupSettings object itself.
      */
@@ -324,7 +328,7 @@ public final class AutoBackupSettings {
     /**
      * Get the fullBackupStartTime property: Start time of a given day during which full backups can take place. 0-23
      * hours.
-     *
+     * 
      * @return the fullBackupStartTime value.
      */
     public Integer fullBackupStartTime() {
@@ -334,7 +338,7 @@ public final class AutoBackupSettings {
     /**
      * Set the fullBackupStartTime property: Start time of a given day during which full backups can take place. 0-23
      * hours.
-     *
+     * 
      * @param fullBackupStartTime the fullBackupStartTime value to set.
      * @return the AutoBackupSettings object itself.
      */
@@ -346,7 +350,7 @@ public final class AutoBackupSettings {
     /**
      * Get the fullBackupWindowHours property: Duration of the time window of a given day during which full backups can
      * take place. 1-23 hours.
-     *
+     * 
      * @return the fullBackupWindowHours value.
      */
     public Integer fullBackupWindowHours() {
@@ -356,7 +360,7 @@ public final class AutoBackupSettings {
     /**
      * Set the fullBackupWindowHours property: Duration of the time window of a given day during which full backups can
      * take place. 1-23 hours.
-     *
+     * 
      * @param fullBackupWindowHours the fullBackupWindowHours value to set.
      * @return the AutoBackupSettings object itself.
      */
@@ -367,7 +371,7 @@ public final class AutoBackupSettings {
 
     /**
      * Get the logBackupFrequency property: Frequency of log backups. 5-60 minutes.
-     *
+     * 
      * @return the logBackupFrequency value.
      */
     public Integer logBackupFrequency() {
@@ -376,7 +380,7 @@ public final class AutoBackupSettings {
 
     /**
      * Set the logBackupFrequency property: Frequency of log backups. 5-60 minutes.
-     *
+     * 
      * @param logBackupFrequency the logBackupFrequency value to set.
      * @return the AutoBackupSettings object itself.
      */
@@ -387,7 +391,7 @@ public final class AutoBackupSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

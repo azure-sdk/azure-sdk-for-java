@@ -7,7 +7,9 @@ package com.azure.resourcemanager.sqlvirtualmachine.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Active Directory account details to operate Windows Server Failover Cluster. */
+/**
+ * Active Directory account details to operate Windows Server Failover Cluster.
+ */
 @Fluent
 public final class WsfcDomainProfile {
     /*
@@ -42,6 +44,12 @@ public final class WsfcDomainProfile {
     private String sqlServiceAccount;
 
     /*
+     * The flag to check if SQL service account is GMSA.
+     */
+    @JsonProperty(value = "isSqlServiceAccountGmsa")
+    private Boolean isSqlServiceAccountGmsa;
+
+    /*
      * Optional path for fileshare witness.
      */
     @JsonProperty(value = "fileShareWitnessPath")
@@ -65,13 +73,15 @@ public final class WsfcDomainProfile {
     @JsonProperty(value = "clusterSubnetType")
     private ClusterSubnetType clusterSubnetType;
 
-    /** Creates an instance of WsfcDomainProfile class. */
+    /**
+     * Creates an instance of WsfcDomainProfile class.
+     */
     public WsfcDomainProfile() {
     }
 
     /**
      * Get the domainFqdn property: Fully qualified name of the domain.
-     *
+     * 
      * @return the domainFqdn value.
      */
     public String domainFqdn() {
@@ -80,7 +90,7 @@ public final class WsfcDomainProfile {
 
     /**
      * Set the domainFqdn property: Fully qualified name of the domain.
-     *
+     * 
      * @param domainFqdn the domainFqdn value to set.
      * @return the WsfcDomainProfile object itself.
      */
@@ -91,7 +101,7 @@ public final class WsfcDomainProfile {
 
     /**
      * Get the ouPath property: Organizational Unit path in which the nodes and cluster will be present.
-     *
+     * 
      * @return the ouPath value.
      */
     public String ouPath() {
@@ -100,7 +110,7 @@ public final class WsfcDomainProfile {
 
     /**
      * Set the ouPath property: Organizational Unit path in which the nodes and cluster will be present.
-     *
+     * 
      * @param ouPath the ouPath value to set.
      * @return the WsfcDomainProfile object itself.
      */
@@ -110,9 +120,9 @@ public final class WsfcDomainProfile {
     }
 
     /**
-     * Get the clusterBootstrapAccount property: Account name used for creating cluster (at minimum needs permissions to
-     * 'Create Computer Objects' in domain).
-     *
+     * Get the clusterBootstrapAccount property: Account name used for creating cluster (at minimum needs permissions
+     * to 'Create Computer Objects' in domain).
+     * 
      * @return the clusterBootstrapAccount value.
      */
     public String clusterBootstrapAccount() {
@@ -120,9 +130,9 @@ public final class WsfcDomainProfile {
     }
 
     /**
-     * Set the clusterBootstrapAccount property: Account name used for creating cluster (at minimum needs permissions to
-     * 'Create Computer Objects' in domain).
-     *
+     * Set the clusterBootstrapAccount property: Account name used for creating cluster (at minimum needs permissions
+     * to 'Create Computer Objects' in domain).
+     * 
      * @param clusterBootstrapAccount the clusterBootstrapAccount value to set.
      * @return the WsfcDomainProfile object itself.
      */
@@ -134,7 +144,7 @@ public final class WsfcDomainProfile {
     /**
      * Get the clusterOperatorAccount property: Account name used for operating cluster i.e. will be part of
      * administrators group on all the participating virtual machines in the cluster.
-     *
+     * 
      * @return the clusterOperatorAccount value.
      */
     public String clusterOperatorAccount() {
@@ -144,7 +154,7 @@ public final class WsfcDomainProfile {
     /**
      * Set the clusterOperatorAccount property: Account name used for operating cluster i.e. will be part of
      * administrators group on all the participating virtual machines in the cluster.
-     *
+     * 
      * @param clusterOperatorAccount the clusterOperatorAccount value to set.
      * @return the WsfcDomainProfile object itself.
      */
@@ -156,7 +166,7 @@ public final class WsfcDomainProfile {
     /**
      * Get the sqlServiceAccount property: Account name under which SQL service will run on all participating SQL
      * virtual machines in the cluster.
-     *
+     * 
      * @return the sqlServiceAccount value.
      */
     public String sqlServiceAccount() {
@@ -166,7 +176,7 @@ public final class WsfcDomainProfile {
     /**
      * Set the sqlServiceAccount property: Account name under which SQL service will run on all participating SQL
      * virtual machines in the cluster.
-     *
+     * 
      * @param sqlServiceAccount the sqlServiceAccount value to set.
      * @return the WsfcDomainProfile object itself.
      */
@@ -176,8 +186,28 @@ public final class WsfcDomainProfile {
     }
 
     /**
+     * Get the isSqlServiceAccountGmsa property: The flag to check if SQL service account is GMSA.
+     * 
+     * @return the isSqlServiceAccountGmsa value.
+     */
+    public Boolean isSqlServiceAccountGmsa() {
+        return this.isSqlServiceAccountGmsa;
+    }
+
+    /**
+     * Set the isSqlServiceAccountGmsa property: The flag to check if SQL service account is GMSA.
+     * 
+     * @param isSqlServiceAccountGmsa the isSqlServiceAccountGmsa value to set.
+     * @return the WsfcDomainProfile object itself.
+     */
+    public WsfcDomainProfile withIsSqlServiceAccountGmsa(Boolean isSqlServiceAccountGmsa) {
+        this.isSqlServiceAccountGmsa = isSqlServiceAccountGmsa;
+        return this;
+    }
+
+    /**
      * Get the fileShareWitnessPath property: Optional path for fileshare witness.
-     *
+     * 
      * @return the fileShareWitnessPath value.
      */
     public String fileShareWitnessPath() {
@@ -186,7 +216,7 @@ public final class WsfcDomainProfile {
 
     /**
      * Set the fileShareWitnessPath property: Optional path for fileshare witness.
-     *
+     * 
      * @param fileShareWitnessPath the fileShareWitnessPath value to set.
      * @return the WsfcDomainProfile object itself.
      */
@@ -197,7 +227,7 @@ public final class WsfcDomainProfile {
 
     /**
      * Get the storageAccountUrl property: Fully qualified ARM resource id of the witness storage account.
-     *
+     * 
      * @return the storageAccountUrl value.
      */
     public String storageAccountUrl() {
@@ -206,7 +236,7 @@ public final class WsfcDomainProfile {
 
     /**
      * Set the storageAccountUrl property: Fully qualified ARM resource id of the witness storage account.
-     *
+     * 
      * @param storageAccountUrl the storageAccountUrl value to set.
      * @return the WsfcDomainProfile object itself.
      */
@@ -217,7 +247,7 @@ public final class WsfcDomainProfile {
 
     /**
      * Get the storageAccountPrimaryKey property: Primary key of the witness storage account.
-     *
+     * 
      * @return the storageAccountPrimaryKey value.
      */
     public String storageAccountPrimaryKey() {
@@ -226,7 +256,7 @@ public final class WsfcDomainProfile {
 
     /**
      * Set the storageAccountPrimaryKey property: Primary key of the witness storage account.
-     *
+     * 
      * @param storageAccountPrimaryKey the storageAccountPrimaryKey value to set.
      * @return the WsfcDomainProfile object itself.
      */
@@ -237,7 +267,7 @@ public final class WsfcDomainProfile {
 
     /**
      * Get the clusterSubnetType property: Cluster subnet type.
-     *
+     * 
      * @return the clusterSubnetType value.
      */
     public ClusterSubnetType clusterSubnetType() {
@@ -246,7 +276,7 @@ public final class WsfcDomainProfile {
 
     /**
      * Set the clusterSubnetType property: Cluster subnet type.
-     *
+     * 
      * @param clusterSubnetType the clusterSubnetType value to set.
      * @return the WsfcDomainProfile object itself.
      */
@@ -257,7 +287,7 @@ public final class WsfcDomainProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

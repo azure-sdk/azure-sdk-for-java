@@ -7,7 +7,9 @@ package com.azure.resourcemanager.sqlvirtualmachine.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** SQL VM Troubleshooting additional properties. */
+/**
+ * SQL VM Troubleshooting additional properties.
+ */
 @Fluent
 public final class TroubleshootingAdditionalProperties {
     /*
@@ -16,13 +18,15 @@ public final class TroubleshootingAdditionalProperties {
     @JsonProperty(value = "unhealthyReplicaInfo")
     private UnhealthyReplicaInfo unhealthyReplicaInfo;
 
-    /** Creates an instance of TroubleshootingAdditionalProperties class. */
+    /**
+     * Creates an instance of TroubleshootingAdditionalProperties class.
+     */
     public TroubleshootingAdditionalProperties() {
     }
 
     /**
      * Get the unhealthyReplicaInfo property: The unhealthy replica information.
-     *
+     * 
      * @return the unhealthyReplicaInfo value.
      */
     public UnhealthyReplicaInfo unhealthyReplicaInfo() {
@@ -31,7 +35,7 @@ public final class TroubleshootingAdditionalProperties {
 
     /**
      * Set the unhealthyReplicaInfo property: The unhealthy replica information.
-     *
+     * 
      * @param unhealthyReplicaInfo the unhealthyReplicaInfo value to set.
      * @return the TroubleshootingAdditionalProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class TroubleshootingAdditionalProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

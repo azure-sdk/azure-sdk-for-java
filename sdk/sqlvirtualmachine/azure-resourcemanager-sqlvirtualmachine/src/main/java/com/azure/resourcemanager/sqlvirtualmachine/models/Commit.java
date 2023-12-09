@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Replica commit mode in availability group. */
+/**
+ * Replica commit mode in availability group.
+ */
 public final class Commit extends ExpandableStringEnum<Commit> {
-    /** Static value SYNCHRONOUS_COMMIT for Commit. */
-    public static final Commit SYNCHRONOUS_COMMIT = fromString("SYNCHRONOUS_COMMIT");
+    /**
+     * Static value Synchronous_Commit for Commit.
+     */
+    public static final Commit SYNCHRONOUS_COMMIT = fromString("Synchronous_Commit");
 
-    /** Static value ASYNCHRONOUS_COMMIT for Commit. */
-    public static final Commit ASYNCHRONOUS_COMMIT = fromString("ASYNCHRONOUS_COMMIT");
+    /**
+     * Static value Asynchronous_Commit for Commit.
+     */
+    public static final Commit ASYNCHRONOUS_COMMIT = fromString("Asynchronous_Commit");
 
     /**
      * Creates a new instance of Commit value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class Commit extends ExpandableStringEnum<Commit> {
 
     /**
      * Creates or finds a Commit from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Commit.
      */
@@ -38,7 +44,7 @@ public final class Commit extends ExpandableStringEnum<Commit> {
 
     /**
      * Gets known Commit values.
-     *
+     * 
      * @return known Commit values.
      */
     public static Collection<Commit> values() {

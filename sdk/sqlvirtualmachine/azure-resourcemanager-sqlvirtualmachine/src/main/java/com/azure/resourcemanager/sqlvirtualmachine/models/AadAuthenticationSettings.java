@@ -7,7 +7,9 @@ package com.azure.resourcemanager.sqlvirtualmachine.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Enable AAD authentication for SQL VM. */
+/**
+ * Enable AAD authentication for SQL VM.
+ */
 @Fluent
 public final class AadAuthenticationSettings {
     /*
@@ -17,14 +19,16 @@ public final class AadAuthenticationSettings {
     @JsonProperty(value = "clientId")
     private String clientId;
 
-    /** Creates an instance of AadAuthenticationSettings class. */
+    /**
+     * Creates an instance of AadAuthenticationSettings class.
+     */
     public AadAuthenticationSettings() {
     }
 
     /**
      * Get the clientId property: The client Id of the Managed Identity to query Microsoft Graph API. An empty string
      * must be used for the system assigned Managed Identity.
-     *
+     * 
      * @return the clientId value.
      */
     public String clientId() {
@@ -34,7 +38,7 @@ public final class AadAuthenticationSettings {
     /**
      * Set the clientId property: The client Id of the Managed Identity to query Microsoft Graph API. An empty string
      * must be used for the system assigned Managed Identity.
-     *
+     * 
      * @param clientId the clientId value to set.
      * @return the AadAuthenticationSettings object itself.
      */
@@ -45,7 +49,7 @@ public final class AadAuthenticationSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

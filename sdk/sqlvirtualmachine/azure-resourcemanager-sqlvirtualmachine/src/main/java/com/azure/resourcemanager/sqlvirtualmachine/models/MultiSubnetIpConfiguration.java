@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Multi subnet ip configuration for an availability group listener. */
+/**
+ * Multi subnet ip configuration for an availability group listener.
+ */
 @Fluent
 public final class MultiSubnetIpConfiguration {
     /*
@@ -23,13 +25,15 @@ public final class MultiSubnetIpConfiguration {
     @JsonProperty(value = "sqlVirtualMachineInstance", required = true)
     private String sqlVirtualMachineInstance;
 
-    /** Creates an instance of MultiSubnetIpConfiguration class. */
+    /**
+     * Creates an instance of MultiSubnetIpConfiguration class.
+     */
     public MultiSubnetIpConfiguration() {
     }
 
     /**
      * Get the privateIpAddress property: Private IP address.
-     *
+     * 
      * @return the privateIpAddress value.
      */
     public PrivateIpAddress privateIpAddress() {
@@ -38,7 +42,7 @@ public final class MultiSubnetIpConfiguration {
 
     /**
      * Set the privateIpAddress property: Private IP address.
-     *
+     * 
      * @param privateIpAddress the privateIpAddress value to set.
      * @return the MultiSubnetIpConfiguration object itself.
      */
@@ -50,7 +54,7 @@ public final class MultiSubnetIpConfiguration {
     /**
      * Get the sqlVirtualMachineInstance property: SQL virtual machine instance resource id that are enrolled into the
      * availability group listener.
-     *
+     * 
      * @return the sqlVirtualMachineInstance value.
      */
     public String sqlVirtualMachineInstance() {
@@ -60,7 +64,7 @@ public final class MultiSubnetIpConfiguration {
     /**
      * Set the sqlVirtualMachineInstance property: SQL virtual machine instance resource id that are enrolled into the
      * availability group listener.
-     *
+     * 
      * @param sqlVirtualMachineInstance the sqlVirtualMachineInstance value to set.
      * @return the MultiSubnetIpConfiguration object itself.
      */
@@ -71,23 +75,19 @@ public final class MultiSubnetIpConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (privateIpAddress() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property privateIpAddress in model MultiSubnetIpConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property privateIpAddress in model MultiSubnetIpConfiguration"));
         } else {
             privateIpAddress().validate();
         }
         if (sqlVirtualMachineInstance() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sqlVirtualMachineInstance in model MultiSubnetIpConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sqlVirtualMachineInstance in model MultiSubnetIpConfiguration"));
         }
     }
 

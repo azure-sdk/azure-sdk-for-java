@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** SQL Server workload type. */
+/**
+ * SQL Server workload type.
+ */
 public final class SqlWorkloadType extends ExpandableStringEnum<SqlWorkloadType> {
-    /** Static value GENERAL for SqlWorkloadType. */
+    /**
+     * Static value GENERAL for SqlWorkloadType.
+     */
     public static final SqlWorkloadType GENERAL = fromString("GENERAL");
 
-    /** Static value OLTP for SqlWorkloadType. */
+    /**
+     * Static value OLTP for SqlWorkloadType.
+     */
     public static final SqlWorkloadType OLTP = fromString("OLTP");
 
-    /** Static value DW for SqlWorkloadType. */
+    /**
+     * Static value DW for SqlWorkloadType.
+     */
     public static final SqlWorkloadType DW = fromString("DW");
 
     /**
      * Creates a new instance of SqlWorkloadType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class SqlWorkloadType extends ExpandableStringEnum<SqlWorkloadType>
 
     /**
      * Creates or finds a SqlWorkloadType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding SqlWorkloadType.
      */
@@ -41,7 +49,7 @@ public final class SqlWorkloadType extends ExpandableStringEnum<SqlWorkloadType>
 
     /**
      * Gets known SqlWorkloadType values.
-     *
+     * 
      * @return known SqlWorkloadType values.
      */
     public static Collection<SqlWorkloadType> values() {

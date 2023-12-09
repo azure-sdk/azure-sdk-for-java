@@ -13,7 +13,9 @@ import com.azure.resourcemanager.sqlvirtualmachine.models.MultiSubnetIpConfigura
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A SQL Server availability group listener. */
+/**
+ * A SQL Server availability group listener.
+ */
 @Fluent
 public final class AvailabilityGroupListenerInner extends ProxyResource {
     /*
@@ -28,13 +30,15 @@ public final class AvailabilityGroupListenerInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of AvailabilityGroupListenerInner class. */
+    /**
+     * Creates an instance of AvailabilityGroupListenerInner class.
+     */
     public AvailabilityGroupListenerInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AvailabilityGroupListenerProperties innerProperties() {
@@ -43,7 +47,7 @@ public final class AvailabilityGroupListenerInner extends ProxyResource {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -52,7 +56,7 @@ public final class AvailabilityGroupListenerInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: Provisioning state to track the async operation status.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -61,7 +65,7 @@ public final class AvailabilityGroupListenerInner extends ProxyResource {
 
     /**
      * Get the availabilityGroupName property: Name of the availability group.
-     *
+     * 
      * @return the availabilityGroupName value.
      */
     public String availabilityGroupName() {
@@ -70,7 +74,7 @@ public final class AvailabilityGroupListenerInner extends ProxyResource {
 
     /**
      * Set the availabilityGroupName property: Name of the availability group.
-     *
+     * 
      * @param availabilityGroupName the availabilityGroupName value to set.
      * @return the AvailabilityGroupListenerInner object itself.
      */
@@ -85,7 +89,7 @@ public final class AvailabilityGroupListenerInner extends ProxyResource {
     /**
      * Get the loadBalancerConfigurations property: List of load balancer configurations for an availability group
      * listener.
-     *
+     * 
      * @return the loadBalancerConfigurations value.
      */
     public List<LoadBalancerConfiguration> loadBalancerConfigurations() {
@@ -95,12 +99,12 @@ public final class AvailabilityGroupListenerInner extends ProxyResource {
     /**
      * Set the loadBalancerConfigurations property: List of load balancer configurations for an availability group
      * listener.
-     *
+     * 
      * @param loadBalancerConfigurations the loadBalancerConfigurations value to set.
      * @return the AvailabilityGroupListenerInner object itself.
      */
-    public AvailabilityGroupListenerInner withLoadBalancerConfigurations(
-        List<LoadBalancerConfiguration> loadBalancerConfigurations) {
+    public AvailabilityGroupListenerInner
+        withLoadBalancerConfigurations(List<LoadBalancerConfiguration> loadBalancerConfigurations) {
         if (this.innerProperties() == null) {
             this.innerProperties = new AvailabilityGroupListenerProperties();
         }
@@ -110,7 +114,7 @@ public final class AvailabilityGroupListenerInner extends ProxyResource {
 
     /**
      * Get the multiSubnetIpConfigurations property: List of multi subnet IP configurations for an AG listener.
-     *
+     * 
      * @return the multiSubnetIpConfigurations value.
      */
     public List<MultiSubnetIpConfiguration> multiSubnetIpConfigurations() {
@@ -119,12 +123,12 @@ public final class AvailabilityGroupListenerInner extends ProxyResource {
 
     /**
      * Set the multiSubnetIpConfigurations property: List of multi subnet IP configurations for an AG listener.
-     *
+     * 
      * @param multiSubnetIpConfigurations the multiSubnetIpConfigurations value to set.
      * @return the AvailabilityGroupListenerInner object itself.
      */
-    public AvailabilityGroupListenerInner withMultiSubnetIpConfigurations(
-        List<MultiSubnetIpConfiguration> multiSubnetIpConfigurations) {
+    public AvailabilityGroupListenerInner
+        withMultiSubnetIpConfigurations(List<MultiSubnetIpConfiguration> multiSubnetIpConfigurations) {
         if (this.innerProperties() == null) {
             this.innerProperties = new AvailabilityGroupListenerProperties();
         }
@@ -135,24 +139,23 @@ public final class AvailabilityGroupListenerInner extends ProxyResource {
     /**
      * Get the createDefaultAvailabilityGroupIfNotExist property: Create a default availability group if it does not
      * exist.
-     *
+     * 
      * @return the createDefaultAvailabilityGroupIfNotExist value.
      */
     public Boolean createDefaultAvailabilityGroupIfNotExist() {
-        return this.innerProperties() == null
-            ? null
+        return this.innerProperties() == null ? null
             : this.innerProperties().createDefaultAvailabilityGroupIfNotExist();
     }
 
     /**
      * Set the createDefaultAvailabilityGroupIfNotExist property: Create a default availability group if it does not
      * exist.
-     *
+     * 
      * @param createDefaultAvailabilityGroupIfNotExist the createDefaultAvailabilityGroupIfNotExist value to set.
      * @return the AvailabilityGroupListenerInner object itself.
      */
-    public AvailabilityGroupListenerInner withCreateDefaultAvailabilityGroupIfNotExist(
-        Boolean createDefaultAvailabilityGroupIfNotExist) {
+    public AvailabilityGroupListenerInner
+        withCreateDefaultAvailabilityGroupIfNotExist(Boolean createDefaultAvailabilityGroupIfNotExist) {
         if (this.innerProperties() == null) {
             this.innerProperties = new AvailabilityGroupListenerProperties();
         }
@@ -162,7 +165,7 @@ public final class AvailabilityGroupListenerInner extends ProxyResource {
 
     /**
      * Get the port property: Listener port.
-     *
+     * 
      * @return the port value.
      */
     public Integer port() {
@@ -171,7 +174,7 @@ public final class AvailabilityGroupListenerInner extends ProxyResource {
 
     /**
      * Set the port property: Listener port.
-     *
+     * 
      * @param port the port value to set.
      * @return the AvailabilityGroupListenerInner object itself.
      */
@@ -185,7 +188,7 @@ public final class AvailabilityGroupListenerInner extends ProxyResource {
 
     /**
      * Get the availabilityGroupConfiguration property: Availability Group configuration.
-     *
+     * 
      * @return the availabilityGroupConfiguration value.
      */
     public AgConfiguration availabilityGroupConfiguration() {
@@ -194,12 +197,12 @@ public final class AvailabilityGroupListenerInner extends ProxyResource {
 
     /**
      * Set the availabilityGroupConfiguration property: Availability Group configuration.
-     *
+     * 
      * @param availabilityGroupConfiguration the availabilityGroupConfiguration value to set.
      * @return the AvailabilityGroupListenerInner object itself.
      */
-    public AvailabilityGroupListenerInner withAvailabilityGroupConfiguration(
-        AgConfiguration availabilityGroupConfiguration) {
+    public AvailabilityGroupListenerInner
+        withAvailabilityGroupConfiguration(AgConfiguration availabilityGroupConfiguration) {
         if (this.innerProperties() == null) {
             this.innerProperties = new AvailabilityGroupListenerProperties();
         }
@@ -209,7 +212,7 @@ public final class AvailabilityGroupListenerInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

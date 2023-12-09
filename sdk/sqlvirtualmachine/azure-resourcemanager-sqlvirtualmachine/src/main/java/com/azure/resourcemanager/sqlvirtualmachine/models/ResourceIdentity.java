@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
-/** Azure Active Directory identity configuration for a resource. */
+/**
+ * Azure Active Directory identity configuration for a resource.
+ */
 @Fluent
 public final class ResourceIdentity {
     /*
@@ -30,13 +32,15 @@ public final class ResourceIdentity {
     @JsonProperty(value = "tenantId", access = JsonProperty.Access.WRITE_ONLY)
     private UUID tenantId;
 
-    /** Creates an instance of ResourceIdentity class. */
+    /**
+     * Creates an instance of ResourceIdentity class.
+     */
     public ResourceIdentity() {
     }
 
     /**
      * Get the principalId property: The Azure Active Directory principal id.
-     *
+     * 
      * @return the principalId value.
      */
     public UUID principalId() {
@@ -46,7 +50,7 @@ public final class ResourceIdentity {
     /**
      * Get the type property: The identity type. Set this to 'SystemAssigned' in order to automatically create and
      * assign an Azure Active Directory principal for the resource.
-     *
+     * 
      * @return the type value.
      */
     public IdentityType type() {
@@ -56,7 +60,7 @@ public final class ResourceIdentity {
     /**
      * Set the type property: The identity type. Set this to 'SystemAssigned' in order to automatically create and
      * assign an Azure Active Directory principal for the resource.
-     *
+     * 
      * @param type the type value to set.
      * @return the ResourceIdentity object itself.
      */
@@ -67,7 +71,7 @@ public final class ResourceIdentity {
 
     /**
      * Get the tenantId property: The Azure Active Directory tenant id.
-     *
+     * 
      * @return the tenantId value.
      */
     public UUID tenantId() {
@@ -76,7 +80,7 @@ public final class ResourceIdentity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

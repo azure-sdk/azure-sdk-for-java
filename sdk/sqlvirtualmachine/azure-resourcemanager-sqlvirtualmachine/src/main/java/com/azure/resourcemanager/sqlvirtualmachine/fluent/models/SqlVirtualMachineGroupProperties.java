@@ -12,7 +12,9 @@ import com.azure.resourcemanager.sqlvirtualmachine.models.SqlVmGroupImageSku;
 import com.azure.resourcemanager.sqlvirtualmachine.models.WsfcDomainProfile;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of a SQL virtual machine group. */
+/**
+ * The properties of a SQL virtual machine group.
+ */
 @Fluent
 public final class SqlVirtualMachineGroupProperties {
     /*
@@ -58,13 +60,15 @@ public final class SqlVirtualMachineGroupProperties {
     @JsonProperty(value = "wsfcDomainProfile")
     private WsfcDomainProfile wsfcDomainProfile;
 
-    /** Creates an instance of SqlVirtualMachineGroupProperties class. */
+    /**
+     * Creates an instance of SqlVirtualMachineGroupProperties class.
+     */
     public SqlVirtualMachineGroupProperties() {
     }
 
     /**
      * Get the provisioningState property: Provisioning state to track the async operation status.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -73,7 +77,7 @@ public final class SqlVirtualMachineGroupProperties {
 
     /**
      * Get the sqlImageOffer property: SQL image offer. Examples may include SQL2016-WS2016, SQL2017-WS2016.
-     *
+     * 
      * @return the sqlImageOffer value.
      */
     public String sqlImageOffer() {
@@ -82,7 +86,7 @@ public final class SqlVirtualMachineGroupProperties {
 
     /**
      * Set the sqlImageOffer property: SQL image offer. Examples may include SQL2016-WS2016, SQL2017-WS2016.
-     *
+     * 
      * @param sqlImageOffer the sqlImageOffer value to set.
      * @return the SqlVirtualMachineGroupProperties object itself.
      */
@@ -93,7 +97,7 @@ public final class SqlVirtualMachineGroupProperties {
 
     /**
      * Get the sqlImageSku property: SQL image sku.
-     *
+     * 
      * @return the sqlImageSku value.
      */
     public SqlVmGroupImageSku sqlImageSku() {
@@ -102,7 +106,7 @@ public final class SqlVirtualMachineGroupProperties {
 
     /**
      * Set the sqlImageSku property: SQL image sku.
-     *
+     * 
      * @param sqlImageSku the sqlImageSku value to set.
      * @return the SqlVirtualMachineGroupProperties object itself.
      */
@@ -113,7 +117,7 @@ public final class SqlVirtualMachineGroupProperties {
 
     /**
      * Get the scaleType property: Scale type.
-     *
+     * 
      * @return the scaleType value.
      */
     public ScaleType scaleType() {
@@ -123,7 +127,7 @@ public final class SqlVirtualMachineGroupProperties {
     /**
      * Get the clusterManagerType property: Type of cluster manager: Windows Server Failover Cluster (WSFC), implied by
      * the scale type of the group and the OS type.
-     *
+     * 
      * @return the clusterManagerType value.
      */
     public ClusterManagerType clusterManagerType() {
@@ -132,7 +136,7 @@ public final class SqlVirtualMachineGroupProperties {
 
     /**
      * Get the clusterConfiguration property: Cluster type.
-     *
+     * 
      * @return the clusterConfiguration value.
      */
     public ClusterConfiguration clusterConfiguration() {
@@ -141,7 +145,7 @@ public final class SqlVirtualMachineGroupProperties {
 
     /**
      * Get the wsfcDomainProfile property: Cluster Active Directory domain profile.
-     *
+     * 
      * @return the wsfcDomainProfile value.
      */
     public WsfcDomainProfile wsfcDomainProfile() {
@@ -150,7 +154,7 @@ public final class SqlVirtualMachineGroupProperties {
 
     /**
      * Set the wsfcDomainProfile property: Cluster Active Directory domain profile.
-     *
+     * 
      * @param wsfcDomainProfile the wsfcDomainProfile value to set.
      * @return the SqlVirtualMachineGroupProperties object itself.
      */
@@ -161,7 +165,7 @@ public final class SqlVirtualMachineGroupProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

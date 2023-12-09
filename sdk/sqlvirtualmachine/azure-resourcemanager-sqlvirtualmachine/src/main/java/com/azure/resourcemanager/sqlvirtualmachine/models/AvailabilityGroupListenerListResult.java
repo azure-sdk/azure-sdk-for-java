@@ -9,7 +9,9 @@ import com.azure.resourcemanager.sqlvirtualmachine.fluent.models.AvailabilityGro
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of availability group listeners. */
+/**
+ * A list of availability group listeners.
+ */
 @Immutable
 public final class AvailabilityGroupListenerListResult {
     /*
@@ -24,13 +26,15 @@ public final class AvailabilityGroupListenerListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of AvailabilityGroupListenerListResult class. */
+    /**
+     * Creates an instance of AvailabilityGroupListenerListResult class.
+     */
     public AvailabilityGroupListenerListResult() {
     }
 
     /**
      * Get the value property: Array of results.
-     *
+     * 
      * @return the value value.
      */
     public List<AvailabilityGroupListenerInner> value() {
@@ -39,7 +43,7 @@ public final class AvailabilityGroupListenerListResult {
 
     /**
      * Get the nextLink property: Link to retrieve next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class AvailabilityGroupListenerListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
