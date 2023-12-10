@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The NetworkFabric resource definition. */
+/**
+ * The NetworkFabric resource definition.
+ */
 @Fluent
 public final class NetworkTapPatch extends TagsUpdate {
     /*
@@ -19,20 +21,24 @@ public final class NetworkTapPatch extends TagsUpdate {
     @JsonProperty(value = "properties")
     private NetworkTapPatchableParameters innerProperties;
 
-    /** Creates an instance of NetworkTapPatch class. */
+    /**
+     * Creates an instance of NetworkTapPatch class.
+     */
     public NetworkTapPatch() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private NetworkTapPatchableParameters innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkTapPatch withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -41,7 +47,7 @@ public final class NetworkTapPatch extends TagsUpdate {
 
     /**
      * Get the pollingType property: Polling type.
-     *
+     * 
      * @return the pollingType value.
      */
     public PollingType pollingType() {
@@ -50,7 +56,7 @@ public final class NetworkTapPatch extends TagsUpdate {
 
     /**
      * Set the pollingType property: Polling type.
-     *
+     * 
      * @param pollingType the pollingType value to set.
      * @return the NetworkTapPatch object itself.
      */
@@ -64,7 +70,7 @@ public final class NetworkTapPatch extends TagsUpdate {
 
     /**
      * Get the destinations property: List of destination properties to send the filter traffic.
-     *
+     * 
      * @return the destinations value.
      */
     public List<NetworkTapPatchableParametersDestinationsItem> destinations() {
@@ -73,7 +79,7 @@ public final class NetworkTapPatch extends TagsUpdate {
 
     /**
      * Set the destinations property: List of destination properties to send the filter traffic.
-     *
+     * 
      * @param destinations the destinations value to set.
      * @return the NetworkTapPatch object itself.
      */
@@ -87,7 +93,7 @@ public final class NetworkTapPatch extends TagsUpdate {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -96,7 +102,7 @@ public final class NetworkTapPatch extends TagsUpdate {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the NetworkTapPatch object itself.
      */
@@ -110,7 +116,7 @@ public final class NetworkTapPatch extends TagsUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

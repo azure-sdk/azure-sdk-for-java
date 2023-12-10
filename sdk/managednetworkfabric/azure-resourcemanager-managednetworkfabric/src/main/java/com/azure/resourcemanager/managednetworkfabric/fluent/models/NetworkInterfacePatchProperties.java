@@ -7,14 +7,20 @@ package com.azure.resourcemanager.managednetworkfabric.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.managednetworkfabric.models.AnnotationResource;
 
-/** Network Interface Patch properties. */
+/**
+ * Network Interface Patch properties.
+ */
 @Fluent
 public final class NetworkInterfacePatchProperties extends AnnotationResource {
-    /** Creates an instance of NetworkInterfacePatchProperties class. */
+    /**
+     * Creates an instance of NetworkInterfacePatchProperties class.
+     */
     public NetworkInterfacePatchProperties() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkInterfacePatchProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -23,7 +29,7 @@ public final class NetworkInterfacePatchProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -9,13 +9,16 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.managednetworkfabric.models.AddressFamilyType;
 import com.azure.resourcemanager.managednetworkfabric.models.AdministrativeState;
 import com.azure.resourcemanager.managednetworkfabric.models.AnnotationResource;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationState;
 import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.azure.resourcemanager.managednetworkfabric.models.RoutePolicyStatementProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** RoutePolicyProperties defines the resource properties. */
+/**
+ * RoutePolicyProperties defines the resource properties.
+ */
 @Fluent
 public final class RoutePolicyProperties extends AnnotationResource {
     /*
@@ -49,18 +52,26 @@ public final class RoutePolicyProperties extends AnnotationResource {
     private AdministrativeState administrativeState;
 
     /*
+     * Default action that needs to be applied when no condition is matched. Example: Permit | Deny.
+     */
+    @JsonProperty(value = "defaultAction")
+    private CommunityActionTypes defaultAction;
+
+    /*
      * Route Policy statements.
      */
     @JsonProperty(value = "statements")
     private List<RoutePolicyStatementProperties> statements;
 
-    /** Creates an instance of RoutePolicyProperties class. */
+    /**
+     * Creates an instance of RoutePolicyProperties class.
+     */
     public RoutePolicyProperties() {
     }
 
     /**
      * Get the networkFabricId property: Arm Resource ID of Network Fabric.
-     *
+     * 
      * @return the networkFabricId value.
      */
     public String networkFabricId() {
@@ -69,7 +80,7 @@ public final class RoutePolicyProperties extends AnnotationResource {
 
     /**
      * Set the networkFabricId property: Arm Resource ID of Network Fabric.
-     *
+     * 
      * @param networkFabricId the networkFabricId value to set.
      * @return the RoutePolicyProperties object itself.
      */
@@ -81,7 +92,7 @@ public final class RoutePolicyProperties extends AnnotationResource {
     /**
      * Get the addressFamilyType property: AddressFamilyType. This parameter decides whether the given ipv4 or ipv6
      * route policy.
-     *
+     * 
      * @return the addressFamilyType value.
      */
     public AddressFamilyType addressFamilyType() {
@@ -91,7 +102,7 @@ public final class RoutePolicyProperties extends AnnotationResource {
     /**
      * Set the addressFamilyType property: AddressFamilyType. This parameter decides whether the given ipv4 or ipv6
      * route policy.
-     *
+     * 
      * @param addressFamilyType the addressFamilyType value to set.
      * @return the RoutePolicyProperties object itself.
      */
@@ -102,7 +113,7 @@ public final class RoutePolicyProperties extends AnnotationResource {
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -111,7 +122,7 @@ public final class RoutePolicyProperties extends AnnotationResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -120,7 +131,7 @@ public final class RoutePolicyProperties extends AnnotationResource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -128,8 +139,30 @@ public final class RoutePolicyProperties extends AnnotationResource {
     }
 
     /**
+     * Get the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     * 
+     * @return the defaultAction value.
+     */
+    public CommunityActionTypes defaultAction() {
+        return this.defaultAction;
+    }
+
+    /**
+     * Set the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     * 
+     * @param defaultAction the defaultAction value to set.
+     * @return the RoutePolicyProperties object itself.
+     */
+    public RoutePolicyProperties withDefaultAction(CommunityActionTypes defaultAction) {
+        this.defaultAction = defaultAction;
+        return this;
+    }
+
+    /**
      * Get the statements property: Route Policy statements.
-     *
+     * 
      * @return the statements value.
      */
     public List<RoutePolicyStatementProperties> statements() {
@@ -138,7 +171,7 @@ public final class RoutePolicyProperties extends AnnotationResource {
 
     /**
      * Set the statements property: Route Policy statements.
-     *
+     * 
      * @param statements the statements value to set.
      * @return the RoutePolicyProperties object itself.
      */
@@ -147,7 +180,9 @@ public final class RoutePolicyProperties extends AnnotationResource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RoutePolicyProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -156,17 +191,15 @@ public final class RoutePolicyProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (networkFabricId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property networkFabricId in model RoutePolicyProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property networkFabricId in model RoutePolicyProperties"));
         }
         if (statements() != null) {
             statements().forEach(e -> e.validate());

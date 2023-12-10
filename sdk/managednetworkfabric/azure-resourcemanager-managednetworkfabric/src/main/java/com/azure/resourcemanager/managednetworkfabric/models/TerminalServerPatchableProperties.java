@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Network and credential configuration currently applied on terminal server. */
+/**
+ * Network and credential configuration currently applied on terminal server.
+ */
 @Fluent
 public class TerminalServerPatchableProperties {
     /*
@@ -28,13 +30,15 @@ public class TerminalServerPatchableProperties {
     @JsonProperty(value = "serialNumber")
     private String serialNumber;
 
-    /** Creates an instance of TerminalServerPatchableProperties class. */
+    /**
+     * Creates an instance of TerminalServerPatchableProperties class.
+     */
     public TerminalServerPatchableProperties() {
     }
 
     /**
      * Get the username property: Username for the terminal server connection.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -43,7 +47,7 @@ public class TerminalServerPatchableProperties {
 
     /**
      * Set the username property: Username for the terminal server connection.
-     *
+     * 
      * @param username the username value to set.
      * @return the TerminalServerPatchableProperties object itself.
      */
@@ -54,7 +58,7 @@ public class TerminalServerPatchableProperties {
 
     /**
      * Get the password property: Password for the terminal server connection.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -63,7 +67,7 @@ public class TerminalServerPatchableProperties {
 
     /**
      * Set the password property: Password for the terminal server connection.
-     *
+     * 
      * @param password the password value to set.
      * @return the TerminalServerPatchableProperties object itself.
      */
@@ -74,7 +78,7 @@ public class TerminalServerPatchableProperties {
 
     /**
      * Get the serialNumber property: Serial Number of Terminal server.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -83,7 +87,7 @@ public class TerminalServerPatchableProperties {
 
     /**
      * Set the serialNumber property: Serial Number of Terminal server.
-     *
+     * 
      * @param serialNumber the serialNumber value to set.
      * @return the TerminalServerPatchableProperties object itself.
      */
@@ -94,7 +98,7 @@ public class TerminalServerPatchableProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

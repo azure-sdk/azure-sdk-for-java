@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.NetworkTapIn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of NetworkTaps. */
+/**
+ * List of NetworkTaps.
+ */
 @Fluent
 public final class NetworkTapsListResult {
     /*
@@ -24,13 +26,15 @@ public final class NetworkTapsListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of NetworkTapsListResult class. */
+    /**
+     * Creates an instance of NetworkTapsListResult class.
+     */
     public NetworkTapsListResult() {
     }
 
     /**
      * Get the value property: List of NetworkTap resources.
-     *
+     * 
      * @return the value value.
      */
     public List<NetworkTapInner> value() {
@@ -39,7 +43,7 @@ public final class NetworkTapsListResult {
 
     /**
      * Set the value property: List of NetworkTap resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the NetworkTapsListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class NetworkTapsListResult {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class NetworkTapsListResult {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the NetworkTapsListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class NetworkTapsListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

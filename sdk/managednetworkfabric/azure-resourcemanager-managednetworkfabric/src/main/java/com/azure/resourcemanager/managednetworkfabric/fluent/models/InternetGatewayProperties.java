@@ -11,7 +11,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.GatewayType;
 import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Internet Gateway Properties defines the properties of the resource. */
+/**
+ * Internet Gateway Properties defines the properties of the resource.
+ */
 @Fluent
 public final class InternetGatewayProperties extends AnnotationResource {
     /*
@@ -50,13 +52,15 @@ public final class InternetGatewayProperties extends AnnotationResource {
     @JsonProperty(value = "internetGatewayRuleId")
     private String internetGatewayRuleId;
 
-    /** Creates an instance of InternetGatewayProperties class. */
+    /**
+     * Creates an instance of InternetGatewayProperties class.
+     */
     public InternetGatewayProperties() {
     }
 
     /**
      * Get the ipv4Address property: IPv4 Address of Internet Gateway.
-     *
+     * 
      * @return the ipv4Address value.
      */
     public String ipv4Address() {
@@ -65,7 +69,7 @@ public final class InternetGatewayProperties extends AnnotationResource {
 
     /**
      * Get the port property: Port number of Internet Gateway.
-     *
+     * 
      * @return the port value.
      */
     public Integer port() {
@@ -74,7 +78,7 @@ public final class InternetGatewayProperties extends AnnotationResource {
 
     /**
      * Get the type property: Gateway Type of the resource.
-     *
+     * 
      * @return the type value.
      */
     public GatewayType type() {
@@ -83,7 +87,7 @@ public final class InternetGatewayProperties extends AnnotationResource {
 
     /**
      * Set the type property: Gateway Type of the resource.
-     *
+     * 
      * @param type the type value to set.
      * @return the InternetGatewayProperties object itself.
      */
@@ -94,7 +98,7 @@ public final class InternetGatewayProperties extends AnnotationResource {
 
     /**
      * Get the networkFabricControllerId property: ARM Resource ID of the Network Fabric Controller.
-     *
+     * 
      * @return the networkFabricControllerId value.
      */
     public String networkFabricControllerId() {
@@ -103,7 +107,7 @@ public final class InternetGatewayProperties extends AnnotationResource {
 
     /**
      * Set the networkFabricControllerId property: ARM Resource ID of the Network Fabric Controller.
-     *
+     * 
      * @param networkFabricControllerId the networkFabricControllerId value to set.
      * @return the InternetGatewayProperties object itself.
      */
@@ -114,7 +118,7 @@ public final class InternetGatewayProperties extends AnnotationResource {
 
     /**
      * Get the provisioningState property: Provisioning state of resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -123,7 +127,7 @@ public final class InternetGatewayProperties extends AnnotationResource {
 
     /**
      * Get the internetGatewayRuleId property: ARM Resource ID of the Internet Gateway Rule.
-     *
+     * 
      * @return the internetGatewayRuleId value.
      */
     public String internetGatewayRuleId() {
@@ -132,7 +136,7 @@ public final class InternetGatewayProperties extends AnnotationResource {
 
     /**
      * Set the internetGatewayRuleId property: ARM Resource ID of the Internet Gateway Rule.
-     *
+     * 
      * @param internetGatewayRuleId the internetGatewayRuleId value to set.
      * @return the InternetGatewayProperties object itself.
      */
@@ -141,7 +145,9 @@ public final class InternetGatewayProperties extends AnnotationResource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternetGatewayProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -150,22 +156,19 @@ public final class InternetGatewayProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property type in model InternetGatewayProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model InternetGatewayProperties"));
         }
         if (networkFabricControllerId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property networkFabricControllerId in model InternetGatewayProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property networkFabricControllerId in model InternetGatewayProperties"));
         }
     }
 

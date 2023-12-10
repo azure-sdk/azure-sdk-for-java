@@ -6,6 +6,7 @@ package com.azure.resourcemanager.managednetworkfabric.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.managednetworkfabric.models.AdministrativeState;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationState;
@@ -17,7 +18,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.PeeringOption;
 import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the External Network resource. */
+/**
+ * Defines the External Network resource.
+ */
 @Fluent
 public final class ExternalNetworkInner extends ProxyResource {
     /*
@@ -26,13 +29,21 @@ public final class ExternalNetworkInner extends ProxyResource {
     @JsonProperty(value = "properties", required = true)
     private ExternalNetworkProperties innerProperties = new ExternalNetworkProperties();
 
-    /** Creates an instance of ExternalNetworkInner class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of ExternalNetworkInner class.
+     */
     public ExternalNetworkInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ExternalNetworkProperties innerProperties() {
@@ -40,17 +51,17 @@ public final class ExternalNetworkInner extends ProxyResource {
     }
 
     /**
-     * Get the networkToNetworkInterconnectId property: Gets the networkToNetworkInterconnectId of the resource.
-     *
-     * @return the networkToNetworkInterconnectId value.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
      */
-    public String networkToNetworkInterconnectId() {
-        return this.innerProperties() == null ? null : this.innerProperties().networkToNetworkInterconnectId();
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
      * Get the peeringOption property: Peering option list.
-     *
+     * 
      * @return the peeringOption value.
      */
     public PeeringOption peeringOption() {
@@ -59,7 +70,7 @@ public final class ExternalNetworkInner extends ProxyResource {
 
     /**
      * Set the peeringOption property: Peering option list.
-     *
+     * 
      * @param peeringOption the peeringOption value to set.
      * @return the ExternalNetworkInner object itself.
      */
@@ -73,7 +84,7 @@ public final class ExternalNetworkInner extends ProxyResource {
 
     /**
      * Get the optionBProperties property: option B properties object.
-     *
+     * 
      * @return the optionBProperties value.
      */
     public L3OptionBProperties optionBProperties() {
@@ -82,7 +93,7 @@ public final class ExternalNetworkInner extends ProxyResource {
 
     /**
      * Set the optionBProperties property: option B properties object.
-     *
+     * 
      * @param optionBProperties the optionBProperties value to set.
      * @return the ExternalNetworkInner object itself.
      */
@@ -96,7 +107,7 @@ public final class ExternalNetworkInner extends ProxyResource {
 
     /**
      * Get the optionAProperties property: option A properties object.
-     *
+     * 
      * @return the optionAProperties value.
      */
     public ExternalNetworkPropertiesOptionAProperties optionAProperties() {
@@ -105,7 +116,7 @@ public final class ExternalNetworkInner extends ProxyResource {
 
     /**
      * Set the optionAProperties property: option A properties object.
-     *
+     * 
      * @param optionAProperties the optionAProperties value to set.
      * @return the ExternalNetworkInner object itself.
      */
@@ -119,7 +130,7 @@ public final class ExternalNetworkInner extends ProxyResource {
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -128,7 +139,7 @@ public final class ExternalNetworkInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -137,7 +148,7 @@ public final class ExternalNetworkInner extends ProxyResource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -145,9 +156,32 @@ public final class ExternalNetworkInner extends ProxyResource {
     }
 
     /**
+     * Get the networkToNetworkInterconnectId property: Gets the networkToNetworkInterconnectId of the resource.
+     * 
+     * @return the networkToNetworkInterconnectId value.
+     */
+    public String networkToNetworkInterconnectId() {
+        return this.innerProperties() == null ? null : this.innerProperties().networkToNetworkInterconnectId();
+    }
+
+    /**
+     * Set the networkToNetworkInterconnectId property: Gets the networkToNetworkInterconnectId of the resource.
+     * 
+     * @param networkToNetworkInterconnectId the networkToNetworkInterconnectId value to set.
+     * @return the ExternalNetworkInner object itself.
+     */
+    public ExternalNetworkInner withNetworkToNetworkInterconnectId(String networkToNetworkInterconnectId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ExternalNetworkProperties();
+        }
+        this.innerProperties().withNetworkToNetworkInterconnectId(networkToNetworkInterconnectId);
+        return this;
+    }
+
+    /**
      * Get the importRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @return the importRoutePolicyId value.
      */
     public String importRoutePolicyId() {
@@ -157,7 +191,7 @@ public final class ExternalNetworkInner extends ProxyResource {
     /**
      * Set the importRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @param importRoutePolicyId the importRoutePolicyId value to set.
      * @return the ExternalNetworkInner object itself.
      */
@@ -172,7 +206,7 @@ public final class ExternalNetworkInner extends ProxyResource {
     /**
      * Get the exportRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @return the exportRoutePolicyId value.
      */
     public String exportRoutePolicyId() {
@@ -182,7 +216,7 @@ public final class ExternalNetworkInner extends ProxyResource {
     /**
      * Set the exportRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @param exportRoutePolicyId the exportRoutePolicyId value to set.
      * @return the ExternalNetworkInner object itself.
      */
@@ -196,7 +230,7 @@ public final class ExternalNetworkInner extends ProxyResource {
 
     /**
      * Get the importRoutePolicy property: Import Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @return the importRoutePolicy value.
      */
     public ImportRoutePolicy importRoutePolicy() {
@@ -205,7 +239,7 @@ public final class ExternalNetworkInner extends ProxyResource {
 
     /**
      * Set the importRoutePolicy property: Import Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @param importRoutePolicy the importRoutePolicy value to set.
      * @return the ExternalNetworkInner object itself.
      */
@@ -219,7 +253,7 @@ public final class ExternalNetworkInner extends ProxyResource {
 
     /**
      * Get the exportRoutePolicy property: Export Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @return the exportRoutePolicy value.
      */
     public ExportRoutePolicy exportRoutePolicy() {
@@ -228,7 +262,7 @@ public final class ExternalNetworkInner extends ProxyResource {
 
     /**
      * Set the exportRoutePolicy property: Export Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @param exportRoutePolicy the exportRoutePolicy value to set.
      * @return the ExternalNetworkInner object itself.
      */
@@ -242,7 +276,7 @@ public final class ExternalNetworkInner extends ProxyResource {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -251,7 +285,7 @@ public final class ExternalNetworkInner extends ProxyResource {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the ExternalNetworkInner object itself.
      */
@@ -265,15 +299,13 @@ public final class ExternalNetworkInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model ExternalNetworkInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model ExternalNetworkInner"));
         } else {
             innerProperties().validate();
         }

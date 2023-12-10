@@ -6,6 +6,7 @@ package com.azure.resourcemanager.managednetworkfabric.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.managednetworkfabric.models.DeviceInterfaceProperties;
 import com.azure.resourcemanager.managednetworkfabric.models.NetworkDeviceRoleName;
@@ -14,7 +15,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.SupportedVersionPro
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The NetworkDeviceSku resource definition. */
+/**
+ * The NetworkDeviceSku resource definition.
+ */
 @Fluent
 public final class NetworkDeviceSkuInner extends ProxyResource {
     /*
@@ -23,13 +26,21 @@ public final class NetworkDeviceSkuInner extends ProxyResource {
     @JsonProperty(value = "properties", required = true)
     private NetworkDeviceSkuProperties innerProperties = new NetworkDeviceSkuProperties();
 
-    /** Creates an instance of NetworkDeviceSkuInner class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of NetworkDeviceSkuInner class.
+     */
     public NetworkDeviceSkuInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private NetworkDeviceSkuProperties innerProperties() {
@@ -37,8 +48,17 @@ public final class NetworkDeviceSkuInner extends ProxyResource {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the model property: Model of the network device.
-     *
+     * 
      * @return the model value.
      */
     public String model() {
@@ -47,7 +67,7 @@ public final class NetworkDeviceSkuInner extends ProxyResource {
 
     /**
      * Set the model property: Model of the network device.
-     *
+     * 
      * @param model the model value to set.
      * @return the NetworkDeviceSkuInner object itself.
      */
@@ -61,7 +81,7 @@ public final class NetworkDeviceSkuInner extends ProxyResource {
 
     /**
      * Get the manufacturer property: Manufacturer of the network device.
-     *
+     * 
      * @return the manufacturer value.
      */
     public String manufacturer() {
@@ -70,7 +90,7 @@ public final class NetworkDeviceSkuInner extends ProxyResource {
 
     /**
      * Set the manufacturer property: Manufacturer of the network device.
-     *
+     * 
      * @param manufacturer the manufacturer value to set.
      * @return the NetworkDeviceSkuInner object itself.
      */
@@ -84,7 +104,7 @@ public final class NetworkDeviceSkuInner extends ProxyResource {
 
     /**
      * Get the supportedVersions property: List of supported version details of network device.
-     *
+     * 
      * @return the supportedVersions value.
      */
     public List<SupportedVersionProperties> supportedVersions() {
@@ -93,7 +113,7 @@ public final class NetworkDeviceSkuInner extends ProxyResource {
 
     /**
      * Set the supportedVersions property: List of supported version details of network device.
-     *
+     * 
      * @param supportedVersions the supportedVersions value to set.
      * @return the NetworkDeviceSkuInner object itself.
      */
@@ -107,7 +127,7 @@ public final class NetworkDeviceSkuInner extends ProxyResource {
 
     /**
      * Get the supportedRoleTypes property: Available roles for the network device.
-     *
+     * 
      * @return the supportedRoleTypes value.
      */
     public List<NetworkDeviceRoleName> supportedRoleTypes() {
@@ -116,7 +136,7 @@ public final class NetworkDeviceSkuInner extends ProxyResource {
 
     /**
      * Set the supportedRoleTypes property: Available roles for the network device.
-     *
+     * 
      * @param supportedRoleTypes the supportedRoleTypes value to set.
      * @return the NetworkDeviceSkuInner object itself.
      */
@@ -130,7 +150,7 @@ public final class NetworkDeviceSkuInner extends ProxyResource {
 
     /**
      * Get the interfaces property: List of network device interfaces.
-     *
+     * 
      * @return the interfaces value.
      */
     public List<DeviceInterfaceProperties> interfaces() {
@@ -139,7 +159,7 @@ public final class NetworkDeviceSkuInner extends ProxyResource {
 
     /**
      * Set the interfaces property: List of network device interfaces.
-     *
+     * 
      * @param interfaces the interfaces value to set.
      * @return the NetworkDeviceSkuInner object itself.
      */
@@ -153,7 +173,7 @@ public final class NetworkDeviceSkuInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -162,15 +182,13 @@ public final class NetworkDeviceSkuInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model NetworkDeviceSkuInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model NetworkDeviceSkuInner"));
         } else {
             innerProperties().validate();
         }

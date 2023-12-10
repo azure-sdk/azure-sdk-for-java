@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.NetworkDevic
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The Network Device Patch Parameters defines the patch parameters of the resource. */
+/**
+ * The Network Device Patch Parameters defines the patch parameters of the resource.
+ */
 @Fluent
 public final class NetworkDevicePatchParameters extends TagsUpdate {
     /*
@@ -18,20 +20,24 @@ public final class NetworkDevicePatchParameters extends TagsUpdate {
     @JsonProperty(value = "properties")
     private NetworkDevicePatchParametersProperties innerProperties;
 
-    /** Creates an instance of NetworkDevicePatchParameters class. */
+    /**
+     * Creates an instance of NetworkDevicePatchParameters class.
+     */
     public NetworkDevicePatchParameters() {
     }
 
     /**
      * Get the innerProperties property: Network Device Patch properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private NetworkDevicePatchParametersProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkDevicePatchParameters withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -40,7 +46,7 @@ public final class NetworkDevicePatchParameters extends TagsUpdate {
 
     /**
      * Get the hostname property: The host name of the device.
-     *
+     * 
      * @return the hostname value.
      */
     public String hostname() {
@@ -49,7 +55,7 @@ public final class NetworkDevicePatchParameters extends TagsUpdate {
 
     /**
      * Set the hostname property: The host name of the device.
-     *
+     * 
      * @param hostname the hostname value to set.
      * @return the NetworkDevicePatchParameters object itself.
      */
@@ -64,7 +70,7 @@ public final class NetworkDevicePatchParameters extends TagsUpdate {
     /**
      * Get the serialNumber property: Serial number of the device. Format of serial Number -
      * Make;Model;HardwareRevisionId;SerialNumber.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -74,7 +80,7 @@ public final class NetworkDevicePatchParameters extends TagsUpdate {
     /**
      * Set the serialNumber property: Serial number of the device. Format of serial Number -
      * Make;Model;HardwareRevisionId;SerialNumber.
-     *
+     * 
      * @param serialNumber the serialNumber value to set.
      * @return the NetworkDevicePatchParameters object itself.
      */
@@ -88,7 +94,7 @@ public final class NetworkDevicePatchParameters extends TagsUpdate {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -97,7 +103,7 @@ public final class NetworkDevicePatchParameters extends TagsUpdate {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the NetworkDevicePatchParameters object itself.
      */
@@ -111,7 +117,7 @@ public final class NetworkDevicePatchParameters extends TagsUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

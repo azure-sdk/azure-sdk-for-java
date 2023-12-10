@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Supported version details of the network device. */
+/**
+ * Supported version details of the network device.
+ */
 @Fluent
 public final class SupportedVersionProperties {
     /*
@@ -35,13 +37,15 @@ public final class SupportedVersionProperties {
     @JsonProperty(value = "isDefault")
     private BooleanEnumProperty isDefault;
 
-    /** Creates an instance of SupportedVersionProperties class. */
+    /**
+     * Creates an instance of SupportedVersionProperties class.
+     */
     public SupportedVersionProperties() {
     }
 
     /**
      * Get the version property: Operating system and firmware combined versions.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -50,7 +54,7 @@ public final class SupportedVersionProperties {
 
     /**
      * Set the version property: Operating system and firmware combined versions.
-     *
+     * 
      * @param version the version value to set.
      * @return the SupportedVersionProperties object itself.
      */
@@ -61,7 +65,7 @@ public final class SupportedVersionProperties {
 
     /**
      * Get the vendorOsVersion property: Operating system version.
-     *
+     * 
      * @return the vendorOsVersion value.
      */
     public String vendorOsVersion() {
@@ -70,7 +74,7 @@ public final class SupportedVersionProperties {
 
     /**
      * Set the vendorOsVersion property: Operating system version.
-     *
+     * 
      * @param vendorOsVersion the vendorOsVersion value to set.
      * @return the SupportedVersionProperties object itself.
      */
@@ -81,7 +85,7 @@ public final class SupportedVersionProperties {
 
     /**
      * Get the vendorFirmwareVersion property: Firmware version.
-     *
+     * 
      * @return the vendorFirmwareVersion value.
      */
     public String vendorFirmwareVersion() {
@@ -90,7 +94,7 @@ public final class SupportedVersionProperties {
 
     /**
      * Set the vendorFirmwareVersion property: Firmware version.
-     *
+     * 
      * @param vendorFirmwareVersion the vendorFirmwareVersion value to set.
      * @return the SupportedVersionProperties object itself.
      */
@@ -100,9 +104,9 @@ public final class SupportedVersionProperties {
     }
 
     /**
-     * Get the isDefault property: If true newly provisioned Fabric will use this device version by default to bootstrap
-     * the network devices for the first time.
-     *
+     * Get the isDefault property: If true newly provisioned Fabric will use this device version by default to
+     * bootstrap the network devices for the first time.
+     * 
      * @return the isDefault value.
      */
     public BooleanEnumProperty isDefault() {
@@ -110,9 +114,9 @@ public final class SupportedVersionProperties {
     }
 
     /**
-     * Set the isDefault property: If true newly provisioned Fabric will use this device version by default to bootstrap
-     * the network devices for the first time.
-     *
+     * Set the isDefault property: If true newly provisioned Fabric will use this device version by default to
+     * bootstrap the network devices for the first time.
+     * 
      * @param isDefault the isDefault value to set.
      * @return the SupportedVersionProperties object itself.
      */
@@ -123,7 +127,7 @@ public final class SupportedVersionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

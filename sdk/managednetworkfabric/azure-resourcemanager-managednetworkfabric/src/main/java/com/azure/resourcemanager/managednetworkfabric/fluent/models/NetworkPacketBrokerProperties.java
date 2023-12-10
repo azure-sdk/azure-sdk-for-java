@@ -10,7 +10,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Network Packet Broker Properties defines the properties of the resource. */
+/**
+ * Network Packet Broker Properties defines the properties of the resource.
+ */
 @Fluent
 public final class NetworkPacketBrokerProperties {
     /*
@@ -49,13 +51,15 @@ public final class NetworkPacketBrokerProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of NetworkPacketBrokerProperties class. */
+    /**
+     * Creates an instance of NetworkPacketBrokerProperties class.
+     */
     public NetworkPacketBrokerProperties() {
     }
 
     /**
      * Get the networkFabricId property: ARM resource ID of the Network Fabric.
-     *
+     * 
      * @return the networkFabricId value.
      */
     public String networkFabricId() {
@@ -64,7 +68,7 @@ public final class NetworkPacketBrokerProperties {
 
     /**
      * Set the networkFabricId property: ARM resource ID of the Network Fabric.
-     *
+     * 
      * @param networkFabricId the networkFabricId value to set.
      * @return the NetworkPacketBrokerProperties object itself.
      */
@@ -75,7 +79,7 @@ public final class NetworkPacketBrokerProperties {
 
     /**
      * Get the networkDeviceIds property: List of ARM resource IDs of Network Devices [NPB].
-     *
+     * 
      * @return the networkDeviceIds value.
      */
     public List<String> networkDeviceIds() {
@@ -83,9 +87,9 @@ public final class NetworkPacketBrokerProperties {
     }
 
     /**
-     * Get the sourceInterfaceIds property: List of network interfaces across NPB devices that are used to mirror source
-     * traffic.
-     *
+     * Get the sourceInterfaceIds property: List of network interfaces across NPB devices that are used to mirror
+     * source traffic.
+     * 
      * @return the sourceInterfaceIds value.
      */
     public List<String> sourceInterfaceIds() {
@@ -94,7 +98,7 @@ public final class NetworkPacketBrokerProperties {
 
     /**
      * Get the networkTapIds property: List of network Tap IDs configured on NPB.
-     *
+     * 
      * @return the networkTapIds value.
      */
     public List<String> networkTapIds() {
@@ -103,7 +107,7 @@ public final class NetworkPacketBrokerProperties {
 
     /**
      * Get the neighborGroupIds property: List of neighbor group IDs configured on NPB.
-     *
+     * 
      * @return the neighborGroupIds value.
      */
     public List<String> neighborGroupIds() {
@@ -112,7 +116,7 @@ public final class NetworkPacketBrokerProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -121,15 +125,13 @@ public final class NetworkPacketBrokerProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (networkFabricId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property networkFabricId in model NetworkPacketBrokerProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property networkFabricId in model NetworkPacketBrokerProperties"));
         }
     }
 

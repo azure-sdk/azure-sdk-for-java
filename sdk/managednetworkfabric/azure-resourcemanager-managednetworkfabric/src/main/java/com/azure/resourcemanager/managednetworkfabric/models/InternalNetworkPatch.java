@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.InternalNetw
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The InternalNetwork patch resource definition. */
+/**
+ * The InternalNetwork patch resource definition.
+ */
 @Fluent
 public final class InternalNetworkPatch {
     /*
@@ -18,13 +20,15 @@ public final class InternalNetworkPatch {
     @JsonProperty(value = "properties")
     private InternalNetworkPatchProperties innerProperties;
 
-    /** Creates an instance of InternalNetworkPatch class. */
+    /**
+     * Creates an instance of InternalNetworkPatch class.
+     */
     public InternalNetworkPatch() {
     }
 
     /**
      * Get the innerProperties property: InternalNetwork Patch properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private InternalNetworkPatchProperties innerProperties() {
@@ -33,7 +37,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Get the bgpConfiguration property: BGP configuration properties.
-     *
+     * 
      * @return the bgpConfiguration value.
      */
     public BgpConfiguration bgpConfiguration() {
@@ -42,7 +46,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Set the bgpConfiguration property: BGP configuration properties.
-     *
+     * 
      * @param bgpConfiguration the bgpConfiguration value to set.
      * @return the InternalNetworkPatch object itself.
      */
@@ -56,7 +60,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Get the staticRouteConfiguration property: Static Route Configuration properties.
-     *
+     * 
      * @return the staticRouteConfiguration value.
      */
     public StaticRouteConfiguration staticRouteConfiguration() {
@@ -65,7 +69,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Set the staticRouteConfiguration property: Static Route Configuration properties.
-     *
+     * 
      * @param staticRouteConfiguration the staticRouteConfiguration value to set.
      * @return the InternalNetworkPatch object itself.
      */
@@ -79,7 +83,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Get the mtu property: Maximum transmission unit. Default value is 1500.
-     *
+     * 
      * @return the mtu value.
      */
     public Integer mtu() {
@@ -88,7 +92,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Set the mtu property: Maximum transmission unit. Default value is 1500.
-     *
+     * 
      * @param mtu the mtu value to set.
      * @return the InternalNetworkPatch object itself.
      */
@@ -102,7 +106,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Get the connectedIPv4Subnets property: List of Connected IPv4 Subnets.
-     *
+     * 
      * @return the connectedIPv4Subnets value.
      */
     public List<ConnectedSubnet> connectedIPv4Subnets() {
@@ -111,7 +115,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Set the connectedIPv4Subnets property: List of Connected IPv4 Subnets.
-     *
+     * 
      * @param connectedIPv4Subnets the connectedIPv4Subnets value to set.
      * @return the InternalNetworkPatch object itself.
      */
@@ -125,7 +129,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Get the connectedIPv6Subnets property: List of connected IPv6 Subnets.
-     *
+     * 
      * @return the connectedIPv6Subnets value.
      */
     public List<ConnectedSubnet> connectedIPv6Subnets() {
@@ -134,7 +138,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Set the connectedIPv6Subnets property: List of connected IPv6 Subnets.
-     *
+     * 
      * @param connectedIPv6Subnets the connectedIPv6Subnets value to set.
      * @return the InternalNetworkPatch object itself.
      */
@@ -149,7 +153,7 @@ public final class InternalNetworkPatch {
     /**
      * Get the importRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @return the importRoutePolicyId value.
      */
     public String importRoutePolicyId() {
@@ -159,7 +163,7 @@ public final class InternalNetworkPatch {
     /**
      * Set the importRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @param importRoutePolicyId the importRoutePolicyId value to set.
      * @return the InternalNetworkPatch object itself.
      */
@@ -174,7 +178,7 @@ public final class InternalNetworkPatch {
     /**
      * Get the exportRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @return the exportRoutePolicyId value.
      */
     public String exportRoutePolicyId() {
@@ -184,7 +188,7 @@ public final class InternalNetworkPatch {
     /**
      * Set the exportRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @param exportRoutePolicyId the exportRoutePolicyId value to set.
      * @return the InternalNetworkPatch object itself.
      */
@@ -198,7 +202,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Get the importRoutePolicy property: Import Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @return the importRoutePolicy value.
      */
     public ImportRoutePolicy importRoutePolicy() {
@@ -207,7 +211,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Set the importRoutePolicy property: Import Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @param importRoutePolicy the importRoutePolicy value to set.
      * @return the InternalNetworkPatch object itself.
      */
@@ -221,7 +225,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Get the exportRoutePolicy property: Export Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @return the exportRoutePolicy value.
      */
     public ExportRoutePolicy exportRoutePolicy() {
@@ -230,7 +234,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Set the exportRoutePolicy property: Export Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @param exportRoutePolicy the exportRoutePolicy value to set.
      * @return the InternalNetworkPatch object itself.
      */
@@ -244,7 +248,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Get the ingressAclId property: Ingress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @return the ingressAclId value.
      */
     public String ingressAclId() {
@@ -253,7 +257,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Set the ingressAclId property: Ingress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @param ingressAclId the ingressAclId value to set.
      * @return the InternalNetworkPatch object itself.
      */
@@ -267,7 +271,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Get the egressAclId property: Egress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @return the egressAclId value.
      */
     public String egressAclId() {
@@ -276,7 +280,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Set the egressAclId property: Egress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @param egressAclId the egressAclId value to set.
      * @return the InternalNetworkPatch object itself.
      */
@@ -290,7 +294,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Get the isMonitoringEnabled property: To check whether monitoring of internal network is enabled or not.
-     *
+     * 
      * @return the isMonitoringEnabled value.
      */
     public IsMonitoringEnabled isMonitoringEnabled() {
@@ -299,7 +303,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Set the isMonitoringEnabled property: To check whether monitoring of internal network is enabled or not.
-     *
+     * 
      * @param isMonitoringEnabled the isMonitoringEnabled value to set.
      * @return the InternalNetworkPatch object itself.
      */
@@ -313,7 +317,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -322,7 +326,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the InternalNetworkPatch object itself.
      */
@@ -336,7 +340,7 @@ public final class InternalNetworkPatch {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

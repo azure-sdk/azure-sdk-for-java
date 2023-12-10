@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Connected Subnet Route Policy properties. */
+/**
+ * Connected Subnet Route Policy properties.
+ */
 @Fluent
 public final class ConnectedSubnetRoutePolicy {
     /*
@@ -22,14 +24,16 @@ public final class ConnectedSubnetRoutePolicy {
     @JsonProperty(value = "exportRoutePolicy")
     private L3ExportRoutePolicy exportRoutePolicy;
 
-    /** Creates an instance of ConnectedSubnetRoutePolicy class. */
+    /**
+     * Creates an instance of ConnectedSubnetRoutePolicy class.
+     */
     public ConnectedSubnetRoutePolicy() {
     }
 
     /**
      * Get the exportRoutePolicyId property: ARM Resource ID of the Route Policy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @return the exportRoutePolicyId value.
      */
     public String exportRoutePolicyId() {
@@ -39,7 +43,7 @@ public final class ConnectedSubnetRoutePolicy {
     /**
      * Set the exportRoutePolicyId property: ARM Resource ID of the Route Policy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @param exportRoutePolicyId the exportRoutePolicyId value to set.
      * @return the ConnectedSubnetRoutePolicy object itself.
      */
@@ -50,7 +54,7 @@ public final class ConnectedSubnetRoutePolicy {
 
     /**
      * Get the exportRoutePolicy property: Array of ARM Resource ID of the RoutePolicies.
-     *
+     * 
      * @return the exportRoutePolicy value.
      */
     public L3ExportRoutePolicy exportRoutePolicy() {
@@ -59,7 +63,7 @@ public final class ConnectedSubnetRoutePolicy {
 
     /**
      * Set the exportRoutePolicy property: Array of ARM Resource ID of the RoutePolicies.
-     *
+     * 
      * @param exportRoutePolicy the exportRoutePolicy value to set.
      * @return the ConnectedSubnetRoutePolicy object itself.
      */
@@ -70,7 +74,7 @@ public final class ConnectedSubnetRoutePolicy {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

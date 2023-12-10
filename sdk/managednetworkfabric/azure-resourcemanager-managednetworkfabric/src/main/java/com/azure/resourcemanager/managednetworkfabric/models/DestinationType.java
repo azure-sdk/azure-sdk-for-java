@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Type of destination. Input can be IsolationDomain or Direct. */
+/**
+ * Type of destination. Input can be IsolationDomain or Direct.
+ */
 public final class DestinationType extends ExpandableStringEnum<DestinationType> {
-    /** Static value IsolationDomain for DestinationType. */
+    /**
+     * Static value IsolationDomain for DestinationType.
+     */
     public static final DestinationType ISOLATION_DOMAIN = fromString("IsolationDomain");
 
-    /** Static value Direct for DestinationType. */
+    /**
+     * Static value Direct for DestinationType.
+     */
     public static final DestinationType DIRECT = fromString("Direct");
 
     /**
      * Creates a new instance of DestinationType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class DestinationType extends ExpandableStringEnum<DestinationType>
 
     /**
      * Creates or finds a DestinationType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding DestinationType.
      */
@@ -38,7 +44,7 @@ public final class DestinationType extends ExpandableStringEnum<DestinationType>
 
     /**
      * Gets known DestinationType values.
-     *
+     * 
      * @return known DestinationType values.
      */
     public static Collection<DestinationType> values() {

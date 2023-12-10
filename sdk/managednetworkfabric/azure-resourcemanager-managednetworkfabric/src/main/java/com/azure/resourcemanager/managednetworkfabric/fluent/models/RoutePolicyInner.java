@@ -10,6 +10,7 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.managednetworkfabric.models.AddressFamilyType;
 import com.azure.resourcemanager.managednetworkfabric.models.AdministrativeState;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationState;
 import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.azure.resourcemanager.managednetworkfabric.models.RoutePolicyStatementProperties;
@@ -17,7 +18,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The RoutePolicy resource definition. */
+/**
+ * The RoutePolicy resource definition.
+ */
 @Fluent
 public final class RoutePolicyInner extends Resource {
     /*
@@ -32,13 +35,15 @@ public final class RoutePolicyInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of RoutePolicyInner class. */
+    /**
+     * Creates an instance of RoutePolicyInner class.
+     */
     public RoutePolicyInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private RoutePolicyProperties innerProperties() {
@@ -47,21 +52,25 @@ public final class RoutePolicyInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RoutePolicyInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RoutePolicyInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -70,7 +79,7 @@ public final class RoutePolicyInner extends Resource {
 
     /**
      * Get the networkFabricId property: Arm Resource ID of Network Fabric.
-     *
+     * 
      * @return the networkFabricId value.
      */
     public String networkFabricId() {
@@ -79,7 +88,7 @@ public final class RoutePolicyInner extends Resource {
 
     /**
      * Set the networkFabricId property: Arm Resource ID of Network Fabric.
-     *
+     * 
      * @param networkFabricId the networkFabricId value to set.
      * @return the RoutePolicyInner object itself.
      */
@@ -94,7 +103,7 @@ public final class RoutePolicyInner extends Resource {
     /**
      * Get the addressFamilyType property: AddressFamilyType. This parameter decides whether the given ipv4 or ipv6
      * route policy.
-     *
+     * 
      * @return the addressFamilyType value.
      */
     public AddressFamilyType addressFamilyType() {
@@ -104,7 +113,7 @@ public final class RoutePolicyInner extends Resource {
     /**
      * Set the addressFamilyType property: AddressFamilyType. This parameter decides whether the given ipv4 or ipv6
      * route policy.
-     *
+     * 
      * @param addressFamilyType the addressFamilyType value to set.
      * @return the RoutePolicyInner object itself.
      */
@@ -118,7 +127,7 @@ public final class RoutePolicyInner extends Resource {
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -127,7 +136,7 @@ public final class RoutePolicyInner extends Resource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -136,7 +145,7 @@ public final class RoutePolicyInner extends Resource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -144,8 +153,33 @@ public final class RoutePolicyInner extends Resource {
     }
 
     /**
+     * Get the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     * 
+     * @return the defaultAction value.
+     */
+    public CommunityActionTypes defaultAction() {
+        return this.innerProperties() == null ? null : this.innerProperties().defaultAction();
+    }
+
+    /**
+     * Set the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     * 
+     * @param defaultAction the defaultAction value to set.
+     * @return the RoutePolicyInner object itself.
+     */
+    public RoutePolicyInner withDefaultAction(CommunityActionTypes defaultAction) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RoutePolicyProperties();
+        }
+        this.innerProperties().withDefaultAction(defaultAction);
+        return this;
+    }
+
+    /**
      * Get the statements property: Route Policy statements.
-     *
+     * 
      * @return the statements value.
      */
     public List<RoutePolicyStatementProperties> statements() {
@@ -154,7 +188,7 @@ public final class RoutePolicyInner extends Resource {
 
     /**
      * Set the statements property: Route Policy statements.
-     *
+     * 
      * @param statements the statements value to set.
      * @return the RoutePolicyInner object itself.
      */
@@ -168,7 +202,7 @@ public final class RoutePolicyInner extends Resource {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -177,7 +211,7 @@ public final class RoutePolicyInner extends Resource {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the RoutePolicyInner object itself.
      */
@@ -191,15 +225,13 @@ public final class RoutePolicyInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model RoutePolicyInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model RoutePolicyInner"));
         } else {
             innerProperties().validate();
         }

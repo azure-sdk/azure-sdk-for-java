@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.IpExtendedCo
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of IP Extended Communities. */
+/**
+ * List of IP Extended Communities.
+ */
 @Fluent
 public final class IpExtendedCommunityListResult {
     /*
@@ -24,13 +26,15 @@ public final class IpExtendedCommunityListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of IpExtendedCommunityListResult class. */
+    /**
+     * Creates an instance of IpExtendedCommunityListResult class.
+     */
     public IpExtendedCommunityListResult() {
     }
 
     /**
      * Get the value property: List of IP Extended Communities resources.
-     *
+     * 
      * @return the value value.
      */
     public List<IpExtendedCommunityInner> value() {
@@ -39,7 +43,7 @@ public final class IpExtendedCommunityListResult {
 
     /**
      * Set the value property: List of IP Extended Communities resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the IpExtendedCommunityListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class IpExtendedCommunityListResult {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class IpExtendedCommunityListResult {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the IpExtendedCommunityListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class IpExtendedCommunityListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

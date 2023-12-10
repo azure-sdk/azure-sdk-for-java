@@ -13,15 +13,19 @@ import java.util.Collection;
  * Tenant workloads which are required to access internet or any other MSFT/Public endpoints.
  */
 public final class IsWorkloadManagementNetworkEnabled extends ExpandableStringEnum<IsWorkloadManagementNetworkEnabled> {
-    /** Static value True for IsWorkloadManagementNetworkEnabled. */
+    /**
+     * Static value True for IsWorkloadManagementNetworkEnabled.
+     */
     public static final IsWorkloadManagementNetworkEnabled TRUE = fromString("True");
 
-    /** Static value False for IsWorkloadManagementNetworkEnabled. */
+    /**
+     * Static value False for IsWorkloadManagementNetworkEnabled.
+     */
     public static final IsWorkloadManagementNetworkEnabled FALSE = fromString("False");
 
     /**
      * Creates a new instance of IsWorkloadManagementNetworkEnabled value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +34,7 @@ public final class IsWorkloadManagementNetworkEnabled extends ExpandableStringEn
 
     /**
      * Creates or finds a IsWorkloadManagementNetworkEnabled from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding IsWorkloadManagementNetworkEnabled.
      */
@@ -41,7 +45,7 @@ public final class IsWorkloadManagementNetworkEnabled extends ExpandableStringEn
 
     /**
      * Gets known IsWorkloadManagementNetworkEnabled values.
-     *
+     * 
      * @return known IsWorkloadManagementNetworkEnabled values.
      */
     public static Collection<IsWorkloadManagementNetworkEnabled> values() {

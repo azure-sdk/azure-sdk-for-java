@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Vlan group properties. */
+/**
+ * Vlan group properties.
+ */
 @Fluent
 public final class VlanGroupProperties {
     /*
@@ -23,13 +25,15 @@ public final class VlanGroupProperties {
     @JsonProperty(value = "vlans")
     private List<String> vlans;
 
-    /** Creates an instance of VlanGroupProperties class. */
+    /**
+     * Creates an instance of VlanGroupProperties class.
+     */
     public VlanGroupProperties() {
     }
 
     /**
      * Get the name property: Vlan group name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -38,7 +42,7 @@ public final class VlanGroupProperties {
 
     /**
      * Set the name property: Vlan group name.
-     *
+     * 
      * @param name the name value to set.
      * @return the VlanGroupProperties object itself.
      */
@@ -49,7 +53,7 @@ public final class VlanGroupProperties {
 
     /**
      * Get the vlans property: List of vlans.
-     *
+     * 
      * @return the vlans value.
      */
     public List<String> vlans() {
@@ -58,7 +62,7 @@ public final class VlanGroupProperties {
 
     /**
      * Set the vlans property: List of vlans.
-     *
+     * 
      * @param vlans the vlans value to set.
      * @return the VlanGroupProperties object itself.
      */
@@ -69,7 +73,7 @@ public final class VlanGroupProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

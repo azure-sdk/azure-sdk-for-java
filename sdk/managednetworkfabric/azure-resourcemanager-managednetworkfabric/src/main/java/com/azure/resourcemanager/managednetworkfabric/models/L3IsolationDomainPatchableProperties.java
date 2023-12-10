@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** L3 Isolation Domain Patch Properties defines the patchable properties of the resource. */
+/**
+ * L3 Isolation Domain Patch Properties defines the patchable properties of the resource.
+ */
 @Fluent
 public class L3IsolationDomainPatchableProperties {
     /*
@@ -34,13 +36,15 @@ public class L3IsolationDomainPatchableProperties {
     @JsonProperty(value = "connectedSubnetRoutePolicy")
     private ConnectedSubnetRoutePolicy connectedSubnetRoutePolicy;
 
-    /** Creates an instance of L3IsolationDomainPatchableProperties class. */
+    /**
+     * Creates an instance of L3IsolationDomainPatchableProperties class.
+     */
     public L3IsolationDomainPatchableProperties() {
     }
 
     /**
      * Get the redistributeConnectedSubnets property: Advertise Connected Subnets. Ex: "True" | "False".
-     *
+     * 
      * @return the redistributeConnectedSubnets value.
      */
     public RedistributeConnectedSubnets redistributeConnectedSubnets() {
@@ -49,19 +53,19 @@ public class L3IsolationDomainPatchableProperties {
 
     /**
      * Set the redistributeConnectedSubnets property: Advertise Connected Subnets. Ex: "True" | "False".
-     *
+     * 
      * @param redistributeConnectedSubnets the redistributeConnectedSubnets value to set.
      * @return the L3IsolationDomainPatchableProperties object itself.
      */
-    public L3IsolationDomainPatchableProperties withRedistributeConnectedSubnets(
-        RedistributeConnectedSubnets redistributeConnectedSubnets) {
+    public L3IsolationDomainPatchableProperties
+        withRedistributeConnectedSubnets(RedistributeConnectedSubnets redistributeConnectedSubnets) {
         this.redistributeConnectedSubnets = redistributeConnectedSubnets;
         return this;
     }
 
     /**
      * Get the redistributeStaticRoutes property: Advertise Static Routes. Ex: "True" | "False".
-     *
+     * 
      * @return the redistributeStaticRoutes value.
      */
     public RedistributeStaticRoutes redistributeStaticRoutes() {
@@ -70,19 +74,19 @@ public class L3IsolationDomainPatchableProperties {
 
     /**
      * Set the redistributeStaticRoutes property: Advertise Static Routes. Ex: "True" | "False".
-     *
+     * 
      * @param redistributeStaticRoutes the redistributeStaticRoutes value to set.
      * @return the L3IsolationDomainPatchableProperties object itself.
      */
-    public L3IsolationDomainPatchableProperties withRedistributeStaticRoutes(
-        RedistributeStaticRoutes redistributeStaticRoutes) {
+    public L3IsolationDomainPatchableProperties
+        withRedistributeStaticRoutes(RedistributeStaticRoutes redistributeStaticRoutes) {
         this.redistributeStaticRoutes = redistributeStaticRoutes;
         return this;
     }
 
     /**
      * Get the aggregateRouteConfiguration property: Aggregate route configurations.
-     *
+     * 
      * @return the aggregateRouteConfiguration value.
      */
     public AggregateRouteConfiguration aggregateRouteConfiguration() {
@@ -91,19 +95,19 @@ public class L3IsolationDomainPatchableProperties {
 
     /**
      * Set the aggregateRouteConfiguration property: Aggregate route configurations.
-     *
+     * 
      * @param aggregateRouteConfiguration the aggregateRouteConfiguration value to set.
      * @return the L3IsolationDomainPatchableProperties object itself.
      */
-    public L3IsolationDomainPatchableProperties withAggregateRouteConfiguration(
-        AggregateRouteConfiguration aggregateRouteConfiguration) {
+    public L3IsolationDomainPatchableProperties
+        withAggregateRouteConfiguration(AggregateRouteConfiguration aggregateRouteConfiguration) {
         this.aggregateRouteConfiguration = aggregateRouteConfiguration;
         return this;
     }
 
     /**
      * Get the connectedSubnetRoutePolicy property: Connected Subnet RoutePolicy.
-     *
+     * 
      * @return the connectedSubnetRoutePolicy value.
      */
     public ConnectedSubnetRoutePolicy connectedSubnetRoutePolicy() {
@@ -112,19 +116,19 @@ public class L3IsolationDomainPatchableProperties {
 
     /**
      * Set the connectedSubnetRoutePolicy property: Connected Subnet RoutePolicy.
-     *
+     * 
      * @param connectedSubnetRoutePolicy the connectedSubnetRoutePolicy value to set.
      * @return the L3IsolationDomainPatchableProperties object itself.
      */
-    public L3IsolationDomainPatchableProperties withConnectedSubnetRoutePolicy(
-        ConnectedSubnetRoutePolicy connectedSubnetRoutePolicy) {
+    public L3IsolationDomainPatchableProperties
+        withConnectedSubnetRoutePolicy(ConnectedSubnetRoutePolicy connectedSubnetRoutePolicy) {
         this.connectedSubnetRoutePolicy = connectedSubnetRoutePolicy;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

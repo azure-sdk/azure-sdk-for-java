@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ExpressRoute circuit ID and the Auth Key are required for you to successfully deploy NFC service. */
+/**
+ * The ExpressRoute circuit ID and the Auth Key are required for you to successfully deploy NFC service.
+ */
 @Fluent
 public final class ExpressRouteConnectionInformation {
     /*
@@ -25,14 +27,16 @@ public final class ExpressRouteConnectionInformation {
     @JsonProperty(value = "expressRouteAuthorizationKey")
     private String expressRouteAuthorizationKey;
 
-    /** Creates an instance of ExpressRouteConnectionInformation class. */
+    /**
+     * Creates an instance of ExpressRouteConnectionInformation class.
+     */
     public ExpressRouteConnectionInformation() {
     }
 
     /**
      * Get the expressRouteCircuitId property: The express route circuit Azure resource ID, must be of type
      * Microsoft.Network/expressRouteCircuits/circuitName. The ExpressRoute Circuit is a mandatory attribute.
-     *
+     * 
      * @return the expressRouteCircuitId value.
      */
     public String expressRouteCircuitId() {
@@ -42,7 +46,7 @@ public final class ExpressRouteConnectionInformation {
     /**
      * Set the expressRouteCircuitId property: The express route circuit Azure resource ID, must be of type
      * Microsoft.Network/expressRouteCircuits/circuitName. The ExpressRoute Circuit is a mandatory attribute.
-     *
+     * 
      * @param expressRouteCircuitId the expressRouteCircuitId value to set.
      * @return the ExpressRouteConnectionInformation object itself.
      */
@@ -54,7 +58,7 @@ public final class ExpressRouteConnectionInformation {
     /**
      * Get the expressRouteAuthorizationKey property: Authorization key for the circuit, must be of type
      * Microsoft.Network/expressRouteCircuits/authorizations. The Auth Key is a mandatory attribute.
-     *
+     * 
      * @return the expressRouteAuthorizationKey value.
      */
     public String expressRouteAuthorizationKey() {
@@ -64,7 +68,7 @@ public final class ExpressRouteConnectionInformation {
     /**
      * Set the expressRouteAuthorizationKey property: Authorization key for the circuit, must be of type
      * Microsoft.Network/expressRouteCircuits/authorizations. The Auth Key is a mandatory attribute.
-     *
+     * 
      * @param expressRouteAuthorizationKey the expressRouteAuthorizationKey value to set.
      * @return the ExpressRouteConnectionInformation object itself.
      */
@@ -75,22 +79,17 @@ public final class ExpressRouteConnectionInformation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (expressRouteCircuitId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property expressRouteCircuitId in model ExpressRouteConnectionInformation"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property expressRouteCircuitId in model ExpressRouteConnectionInformation"));
         }
         if (expressRouteAuthorizationKey() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property expressRouteAuthorizationKey in model"
-                            + " ExpressRouteConnectionInformation"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property expressRouteAuthorizationKey in model ExpressRouteConnectionInformation"));
         }
     }
 

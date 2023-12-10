@@ -17,7 +17,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The Network Fabric resource definition. */
+/**
+ * The Network Fabric resource definition.
+ */
 @Fluent
 public final class NetworkFabricInner extends Resource {
     /*
@@ -32,13 +34,15 @@ public final class NetworkFabricInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of NetworkFabricInner class. */
+    /**
+     * Creates an instance of NetworkFabricInner class.
+     */
     public NetworkFabricInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private NetworkFabricProperties innerProperties() {
@@ -47,21 +51,25 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkFabricInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkFabricInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -69,10 +77,10 @@ public final class NetworkFabricInner extends Resource {
     }
 
     /**
-     * Get the networkFabricSku property: Supported Network Fabric SKU.Example: Compute / Aggregate racks. Once the user
-     * chooses a particular SKU, only supported racks can be added to the Network Fabric. The SKU determines whether it
-     * is a single / multi rack Network Fabric.
-     *
+     * Get the networkFabricSku property: Supported Network Fabric SKU.Example: Compute / Aggregate racks. Once the
+     * user chooses a particular SKU, only supported racks can be added to the Network Fabric. The SKU determines
+     * whether it is a single / multi rack Network Fabric.
+     * 
      * @return the networkFabricSku value.
      */
     public String networkFabricSku() {
@@ -80,10 +88,10 @@ public final class NetworkFabricInner extends Resource {
     }
 
     /**
-     * Set the networkFabricSku property: Supported Network Fabric SKU.Example: Compute / Aggregate racks. Once the user
-     * chooses a particular SKU, only supported racks can be added to the Network Fabric. The SKU determines whether it
-     * is a single / multi rack Network Fabric.
-     *
+     * Set the networkFabricSku property: Supported Network Fabric SKU.Example: Compute / Aggregate racks. Once the
+     * user chooses a particular SKU, only supported racks can be added to the Network Fabric. The SKU determines
+     * whether it is a single / multi rack Network Fabric.
+     * 
      * @param networkFabricSku the networkFabricSku value to set.
      * @return the NetworkFabricInner object itself.
      */
@@ -97,7 +105,7 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Get the fabricVersion property: The version of Network Fabric.
-     *
+     * 
      * @return the fabricVersion value.
      */
     public String fabricVersion() {
@@ -105,8 +113,22 @@ public final class NetworkFabricInner extends Resource {
     }
 
     /**
+     * Set the fabricVersion property: The version of Network Fabric.
+     * 
+     * @param fabricVersion the fabricVersion value to set.
+     * @return the NetworkFabricInner object itself.
+     */
+    public NetworkFabricInner withFabricVersion(String fabricVersion) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NetworkFabricProperties();
+        }
+        this.innerProperties().withFabricVersion(fabricVersion);
+        return this;
+    }
+
+    /**
      * Get the routerIds property: Array of router IDs.
-     *
+     * 
      * @return the routerIds value.
      */
     public List<String> routerIds() {
@@ -116,7 +138,7 @@ public final class NetworkFabricInner extends Resource {
     /**
      * Get the networkFabricControllerId property: Azure resource ID for the NetworkFabricController the NetworkFabric
      * belongs.
-     *
+     * 
      * @return the networkFabricControllerId value.
      */
     public String networkFabricControllerId() {
@@ -126,7 +148,7 @@ public final class NetworkFabricInner extends Resource {
     /**
      * Set the networkFabricControllerId property: Azure resource ID for the NetworkFabricController the NetworkFabric
      * belongs.
-     *
+     * 
      * @param networkFabricControllerId the networkFabricControllerId value to set.
      * @return the NetworkFabricInner object itself.
      */
@@ -140,7 +162,7 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Get the rackCount property: Number of compute racks associated to Network Fabric.
-     *
+     * 
      * @return the rackCount value.
      */
     public Integer rackCount() {
@@ -149,7 +171,7 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Set the rackCount property: Number of compute racks associated to Network Fabric.
-     *
+     * 
      * @param rackCount the rackCount value to set.
      * @return the NetworkFabricInner object itself.
      */
@@ -163,7 +185,7 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Get the serverCountPerRack property: Number of servers.Possible values are from 1-16.
-     *
+     * 
      * @return the serverCountPerRack value.
      */
     public int serverCountPerRack() {
@@ -172,7 +194,7 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Set the serverCountPerRack property: Number of servers.Possible values are from 1-16.
-     *
+     * 
      * @param serverCountPerRack the serverCountPerRack value to set.
      * @return the NetworkFabricInner object itself.
      */
@@ -186,7 +208,7 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Get the ipv4Prefix property: IPv4Prefix for Management Network. Example: 10.1.0.0/19.
-     *
+     * 
      * @return the ipv4Prefix value.
      */
     public String ipv4Prefix() {
@@ -195,7 +217,7 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Set the ipv4Prefix property: IPv4Prefix for Management Network. Example: 10.1.0.0/19.
-     *
+     * 
      * @param ipv4Prefix the ipv4Prefix value to set.
      * @return the NetworkFabricInner object itself.
      */
@@ -209,7 +231,7 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Get the ipv6Prefix property: IPv6Prefix for Management Network. Example: 3FFE:FFFF:0:CD40::/59.
-     *
+     * 
      * @return the ipv6Prefix value.
      */
     public String ipv6Prefix() {
@@ -218,7 +240,7 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Set the ipv6Prefix property: IPv6Prefix for Management Network. Example: 3FFE:FFFF:0:CD40::/59.
-     *
+     * 
      * @param ipv6Prefix the ipv6Prefix value to set.
      * @return the NetworkFabricInner object itself.
      */
@@ -232,7 +254,7 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Get the fabricAsn property: ASN of CE devices for CE/PE connectivity.
-     *
+     * 
      * @return the fabricAsn value.
      */
     public long fabricAsn() {
@@ -241,7 +263,7 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Set the fabricAsn property: ASN of CE devices for CE/PE connectivity.
-     *
+     * 
      * @param fabricAsn the fabricAsn value to set.
      * @return the NetworkFabricInner object itself.
      */
@@ -254,9 +276,9 @@ public final class NetworkFabricInner extends Resource {
     }
 
     /**
-     * Get the terminalServerConfiguration property: Network and credentials configuration currently applied to terminal
-     * server.
-     *
+     * Get the terminalServerConfiguration property: Network and credentials configuration currently applied to
+     * terminal server.
+     * 
      * @return the terminalServerConfiguration value.
      */
     public TerminalServerConfiguration terminalServerConfiguration() {
@@ -264,9 +286,9 @@ public final class NetworkFabricInner extends Resource {
     }
 
     /**
-     * Set the terminalServerConfiguration property: Network and credentials configuration currently applied to terminal
-     * server.
-     *
+     * Set the terminalServerConfiguration property: Network and credentials configuration currently applied to
+     * terminal server.
+     * 
      * @param terminalServerConfiguration the terminalServerConfiguration value to set.
      * @return the NetworkFabricInner object itself.
      */
@@ -280,7 +302,7 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Get the managementNetworkConfiguration property: Configuration to be used to setup the management network.
-     *
+     * 
      * @return the managementNetworkConfiguration value.
      */
     public ManagementNetworkConfigurationProperties managementNetworkConfiguration() {
@@ -289,12 +311,12 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Set the managementNetworkConfiguration property: Configuration to be used to setup the management network.
-     *
+     * 
      * @param managementNetworkConfiguration the managementNetworkConfiguration value to set.
      * @return the NetworkFabricInner object itself.
      */
-    public NetworkFabricInner withManagementNetworkConfiguration(
-        ManagementNetworkConfigurationProperties managementNetworkConfiguration) {
+    public NetworkFabricInner
+        withManagementNetworkConfiguration(ManagementNetworkConfigurationProperties managementNetworkConfiguration) {
         if (this.innerProperties() == null) {
             this.innerProperties = new NetworkFabricProperties();
         }
@@ -305,7 +327,7 @@ public final class NetworkFabricInner extends Resource {
     /**
      * Get the racks property: List of NetworkRack resource IDs under the Network Fabric. The number of racks allowed
      * depends on the Network Fabric SKU.
-     *
+     * 
      * @return the racks value.
      */
     public List<String> racks() {
@@ -314,7 +336,7 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Get the l2IsolationDomains property: List of L2 Isolation Domain resource IDs under the Network Fabric.
-     *
+     * 
      * @return the l2IsolationDomains value.
      */
     public List<String> l2IsolationDomains() {
@@ -323,7 +345,7 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Get the l3IsolationDomains property: List of L3 Isolation Domain resource IDs under the Network Fabric.
-     *
+     * 
      * @return the l3IsolationDomains value.
      */
     public List<String> l3IsolationDomains() {
@@ -332,7 +354,7 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -343,7 +365,7 @@ public final class NetworkFabricInner extends Resource {
      * Get the provisioningState property: Provides you the latest status of the NFC service, whether it is Accepted,
      * updating, Succeeded or Failed. During this process, the states keep changing based on the status of NFC
      * provisioning.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -352,7 +374,7 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -361,7 +383,7 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -370,7 +392,7 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the NetworkFabricInner object itself.
      */
@@ -384,15 +406,13 @@ public final class NetworkFabricInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model NetworkFabricInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model NetworkFabricInner"));
         } else {
             innerProperties().validate();
         }

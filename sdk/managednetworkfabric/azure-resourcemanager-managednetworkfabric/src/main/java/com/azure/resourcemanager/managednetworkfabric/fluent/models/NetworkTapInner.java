@@ -17,7 +17,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The Network Tap resource definition. */
+/**
+ * The Network Tap resource definition.
+ */
 @Fluent
 public final class NetworkTapInner extends Resource {
     /*
@@ -32,13 +34,15 @@ public final class NetworkTapInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of NetworkTapInner class. */
+    /**
+     * Creates an instance of NetworkTapInner class.
+     */
     public NetworkTapInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private NetworkTapProperties innerProperties() {
@@ -47,21 +51,25 @@ public final class NetworkTapInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkTapInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkTapInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -70,7 +78,7 @@ public final class NetworkTapInner extends Resource {
 
     /**
      * Get the networkPacketBrokerId property: ARM resource ID of the Network Packet Broker.
-     *
+     * 
      * @return the networkPacketBrokerId value.
      */
     public String networkPacketBrokerId() {
@@ -79,7 +87,7 @@ public final class NetworkTapInner extends Resource {
 
     /**
      * Set the networkPacketBrokerId property: ARM resource ID of the Network Packet Broker.
-     *
+     * 
      * @param networkPacketBrokerId the networkPacketBrokerId value to set.
      * @return the NetworkTapInner object itself.
      */
@@ -93,7 +101,7 @@ public final class NetworkTapInner extends Resource {
 
     /**
      * Get the sourceTapRuleId property: Source Tap Rule Id. ARM Resource ID of the Network Tap Rule.
-     *
+     * 
      * @return the sourceTapRuleId value.
      */
     public String sourceTapRuleId() {
@@ -102,7 +110,7 @@ public final class NetworkTapInner extends Resource {
 
     /**
      * Get the destinations property: List of destinations to send the filter traffic.
-     *
+     * 
      * @return the destinations value.
      */
     public List<NetworkTapPropertiesDestinationsItem> destinations() {
@@ -111,7 +119,7 @@ public final class NetworkTapInner extends Resource {
 
     /**
      * Set the destinations property: List of destinations to send the filter traffic.
-     *
+     * 
      * @param destinations the destinations value to set.
      * @return the NetworkTapInner object itself.
      */
@@ -125,7 +133,7 @@ public final class NetworkTapInner extends Resource {
 
     /**
      * Get the pollingType property: Polling type.
-     *
+     * 
      * @return the pollingType value.
      */
     public PollingType pollingType() {
@@ -134,7 +142,7 @@ public final class NetworkTapInner extends Resource {
 
     /**
      * Set the pollingType property: Polling type.
-     *
+     * 
      * @param pollingType the pollingType value to set.
      * @return the NetworkTapInner object itself.
      */
@@ -148,7 +156,7 @@ public final class NetworkTapInner extends Resource {
 
     /**
      * Get the configurationState property: Gets the configurations state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -159,7 +167,7 @@ public final class NetworkTapInner extends Resource {
      * Get the provisioningState property: Provides you the latest status of the NFC service, whether it is Accepted,
      * updating, Succeeded or Failed. During this process, the states keep changing based on the status of Network Tap
      * provisioning.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -168,7 +176,7 @@ public final class NetworkTapInner extends Resource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource. Example -Enabled/Disabled.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -177,7 +185,7 @@ public final class NetworkTapInner extends Resource {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -186,7 +194,7 @@ public final class NetworkTapInner extends Resource {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the NetworkTapInner object itself.
      */
@@ -200,14 +208,13 @@ public final class NetworkTapInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model NetworkTapInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model NetworkTapInner"));
         } else {
             innerProperties().validate();
         }

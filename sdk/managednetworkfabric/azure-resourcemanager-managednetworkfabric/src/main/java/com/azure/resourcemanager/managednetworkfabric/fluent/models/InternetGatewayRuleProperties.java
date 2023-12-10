@@ -12,7 +12,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.RuleProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Internet Gateway Rule Properties defines the resource properties. */
+/**
+ * Internet Gateway Rule Properties defines the resource properties.
+ */
 @Fluent
 public final class InternetGatewayRuleProperties extends AnnotationResource {
     /*
@@ -33,13 +35,15 @@ public final class InternetGatewayRuleProperties extends AnnotationResource {
     @JsonProperty(value = "internetGatewayIds", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> internetGatewayIds;
 
-    /** Creates an instance of InternetGatewayRuleProperties class. */
+    /**
+     * Creates an instance of InternetGatewayRuleProperties class.
+     */
     public InternetGatewayRuleProperties() {
     }
 
     /**
      * Get the ruleProperties property: Rules for the InternetGateways.
-     *
+     * 
      * @return the ruleProperties value.
      */
     public RuleProperties ruleProperties() {
@@ -48,7 +52,7 @@ public final class InternetGatewayRuleProperties extends AnnotationResource {
 
     /**
      * Set the ruleProperties property: Rules for the InternetGateways.
-     *
+     * 
      * @param ruleProperties the ruleProperties value to set.
      * @return the InternetGatewayRuleProperties object itself.
      */
@@ -59,7 +63,7 @@ public final class InternetGatewayRuleProperties extends AnnotationResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -68,14 +72,16 @@ public final class InternetGatewayRuleProperties extends AnnotationResource {
 
     /**
      * Get the internetGatewayIds property: List of Internet Gateway resource Id.
-     *
+     * 
      * @return the internetGatewayIds value.
      */
     public List<String> internetGatewayIds() {
         return this.internetGatewayIds;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternetGatewayRuleProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -84,17 +90,15 @@ public final class InternetGatewayRuleProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (ruleProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property ruleProperties in model InternetGatewayRuleProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property ruleProperties in model InternetGatewayRuleProperties"));
         } else {
             ruleProperties().validate();
         }

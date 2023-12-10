@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.NetworkInter
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of NetworkInterfaces. */
+/**
+ * List of NetworkInterfaces.
+ */
 @Fluent
 public final class NetworkInterfacesList {
     /*
@@ -24,13 +26,15 @@ public final class NetworkInterfacesList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of NetworkInterfacesList class. */
+    /**
+     * Creates an instance of NetworkInterfacesList class.
+     */
     public NetworkInterfacesList() {
     }
 
     /**
      * Get the value property: List of NetworkInterfaces resources.
-     *
+     * 
      * @return the value value.
      */
     public List<NetworkInterfaceInner> value() {
@@ -39,7 +43,7 @@ public final class NetworkInterfacesList {
 
     /**
      * Set the value property: List of NetworkInterfaces resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the NetworkInterfacesList object itself.
      */
@@ -50,7 +54,7 @@ public final class NetworkInterfacesList {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class NetworkInterfacesList {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the NetworkInterfacesList object itself.
      */
@@ -70,7 +74,7 @@ public final class NetworkInterfacesList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
