@@ -8,32 +8,48 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The name of the Service Tier. */
+/**
+ * The name of the Service Tier.
+ */
 public final class SkuNameEnum extends ExpandableStringEnum<SkuNameEnum> {
-    /** Static value Free for SkuNameEnum. */
+    /**
+     * Static value Free for SkuNameEnum.
+     */
     public static final SkuNameEnum FREE = fromString("Free");
 
-    /** Static value Standard for SkuNameEnum. */
+    /**
+     * Static value Standard for SkuNameEnum.
+     */
     public static final SkuNameEnum STANDARD = fromString("Standard");
 
-    /** Static value Premium for SkuNameEnum. */
+    /**
+     * Static value Premium for SkuNameEnum.
+     */
     public static final SkuNameEnum PREMIUM = fromString("Premium");
 
-    /** Static value PerNode for SkuNameEnum. */
+    /**
+     * Static value PerNode for SkuNameEnum.
+     */
     public static final SkuNameEnum PER_NODE = fromString("PerNode");
 
-    /** Static value PerGB2018 for SkuNameEnum. */
+    /**
+     * Static value PerGB2018 for SkuNameEnum.
+     */
     public static final SkuNameEnum PER_GB2018 = fromString("PerGB2018");
 
-    /** Static value Standalone for SkuNameEnum. */
+    /**
+     * Static value Standalone for SkuNameEnum.
+     */
     public static final SkuNameEnum STANDALONE = fromString("Standalone");
 
-    /** Static value CapacityReservation for SkuNameEnum. */
+    /**
+     * Static value CapacityReservation for SkuNameEnum.
+     */
     public static final SkuNameEnum CAPACITY_RESERVATION = fromString("CapacityReservation");
 
     /**
      * Creates a new instance of SkuNameEnum value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -42,7 +58,7 @@ public final class SkuNameEnum extends ExpandableStringEnum<SkuNameEnum> {
 
     /**
      * Creates or finds a SkuNameEnum from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding SkuNameEnum.
      */
@@ -53,7 +69,7 @@ public final class SkuNameEnum extends ExpandableStringEnum<SkuNameEnum> {
 
     /**
      * Gets known SkuNameEnum values.
-     *
+     * 
      * @return known SkuNameEnum values.
      */
     public static Collection<SkuNameEnum> values() {

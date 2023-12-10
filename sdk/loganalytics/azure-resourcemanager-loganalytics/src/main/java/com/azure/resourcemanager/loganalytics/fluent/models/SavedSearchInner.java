@@ -11,7 +11,9 @@ import com.azure.resourcemanager.loganalytics.models.Tag;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Value object for saved search results. */
+/**
+ * Value object for saved search results.
+ */
 @Fluent
 public final class SavedSearchInner extends ProxyResource {
     /*
@@ -26,14 +28,16 @@ public final class SavedSearchInner extends ProxyResource {
     @JsonProperty(value = "properties", required = true)
     private SavedSearchProperties innerProperties = new SavedSearchProperties();
 
-    /** Creates an instance of SavedSearchInner class. */
+    /**
+     * Creates an instance of SavedSearchInner class.
+     */
     public SavedSearchInner() {
     }
 
     /**
-     * Get the etag property: The ETag of the saved search. To override an existing saved search, use "*" or specify the
-     * current Etag.
-     *
+     * Get the etag property: The ETag of the saved search. To override an existing saved search, use "*" or specify
+     * the current Etag.
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -41,9 +45,9 @@ public final class SavedSearchInner extends ProxyResource {
     }
 
     /**
-     * Set the etag property: The ETag of the saved search. To override an existing saved search, use "*" or specify the
-     * current Etag.
-     *
+     * Set the etag property: The ETag of the saved search. To override an existing saved search, use "*" or specify
+     * the current Etag.
+     * 
      * @param etag the etag value to set.
      * @return the SavedSearchInner object itself.
      */
@@ -54,7 +58,7 @@ public final class SavedSearchInner extends ProxyResource {
 
     /**
      * Get the innerProperties property: The properties of the saved search.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SavedSearchProperties innerProperties() {
@@ -63,7 +67,7 @@ public final class SavedSearchInner extends ProxyResource {
 
     /**
      * Get the category property: The category of the saved search. This helps the user to find a saved search faster.
-     *
+     * 
      * @return the category value.
      */
     public String category() {
@@ -72,7 +76,7 @@ public final class SavedSearchInner extends ProxyResource {
 
     /**
      * Set the category property: The category of the saved search. This helps the user to find a saved search faster.
-     *
+     * 
      * @param category the category value to set.
      * @return the SavedSearchInner object itself.
      */
@@ -86,7 +90,7 @@ public final class SavedSearchInner extends ProxyResource {
 
     /**
      * Get the displayName property: Saved search display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -95,7 +99,7 @@ public final class SavedSearchInner extends ProxyResource {
 
     /**
      * Set the displayName property: Saved search display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the SavedSearchInner object itself.
      */
@@ -109,7 +113,7 @@ public final class SavedSearchInner extends ProxyResource {
 
     /**
      * Get the query property: The query expression for the saved search.
-     *
+     * 
      * @return the query value.
      */
     public String query() {
@@ -118,7 +122,7 @@ public final class SavedSearchInner extends ProxyResource {
 
     /**
      * Set the query property: The query expression for the saved search.
-     *
+     * 
      * @param query the query value to set.
      * @return the SavedSearchInner object itself.
      */
@@ -132,7 +136,7 @@ public final class SavedSearchInner extends ProxyResource {
 
     /**
      * Get the functionAlias property: The function alias if query serves as a function.
-     *
+     * 
      * @return the functionAlias value.
      */
     public String functionAlias() {
@@ -141,7 +145,7 @@ public final class SavedSearchInner extends ProxyResource {
 
     /**
      * Set the functionAlias property: The function alias if query serves as a function.
-     *
+     * 
      * @param functionAlias the functionAlias value to set.
      * @return the SavedSearchInner object itself.
      */
@@ -154,11 +158,11 @@ public final class SavedSearchInner extends ProxyResource {
     }
 
     /**
-     * Get the functionParameters property: The optional function parameters if query serves as a function. Value should
-     * be in the following format: 'param-name1:type1 = default_value1, param-name2:type2 = default_value2'. For more
-     * examples and proper syntax please refer to
+     * Get the functionParameters property: The optional function parameters if query serves as a function. Value
+     * should be in the following format: 'param-name1:type1 = default_value1, param-name2:type2 = default_value2'. For
+     * more examples and proper syntax please refer to
      * https://docs.microsoft.com/en-us/azure/kusto/query/functions/user-defined-functions.
-     *
+     * 
      * @return the functionParameters value.
      */
     public String functionParameters() {
@@ -166,11 +170,11 @@ public final class SavedSearchInner extends ProxyResource {
     }
 
     /**
-     * Set the functionParameters property: The optional function parameters if query serves as a function. Value should
-     * be in the following format: 'param-name1:type1 = default_value1, param-name2:type2 = default_value2'. For more
-     * examples and proper syntax please refer to
+     * Set the functionParameters property: The optional function parameters if query serves as a function. Value
+     * should be in the following format: 'param-name1:type1 = default_value1, param-name2:type2 = default_value2'. For
+     * more examples and proper syntax please refer to
      * https://docs.microsoft.com/en-us/azure/kusto/query/functions/user-defined-functions.
-     *
+     * 
      * @param functionParameters the functionParameters value to set.
      * @return the SavedSearchInner object itself.
      */
@@ -184,7 +188,7 @@ public final class SavedSearchInner extends ProxyResource {
 
     /**
      * Get the version property: The version number of the query language. The current version is 2 and is the default.
-     *
+     * 
      * @return the version value.
      */
     public Long version() {
@@ -193,7 +197,7 @@ public final class SavedSearchInner extends ProxyResource {
 
     /**
      * Set the version property: The version number of the query language. The current version is 2 and is the default.
-     *
+     * 
      * @param version the version value to set.
      * @return the SavedSearchInner object itself.
      */
@@ -207,7 +211,7 @@ public final class SavedSearchInner extends ProxyResource {
 
     /**
      * Get the tags property: The tags attached to the saved search.
-     *
+     * 
      * @return the tags value.
      */
     public List<Tag> tags() {
@@ -216,7 +220,7 @@ public final class SavedSearchInner extends ProxyResource {
 
     /**
      * Set the tags property: The tags attached to the saved search.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the SavedSearchInner object itself.
      */
@@ -230,15 +234,13 @@ public final class SavedSearchInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model SavedSearchInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model SavedSearchInner"));
         } else {
             innerProperties().validate();
         }

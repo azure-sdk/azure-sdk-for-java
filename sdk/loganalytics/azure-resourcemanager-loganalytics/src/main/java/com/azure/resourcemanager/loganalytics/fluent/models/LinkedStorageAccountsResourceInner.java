@@ -11,7 +11,9 @@ import com.azure.resourcemanager.loganalytics.models.DataSourceType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Linked storage accounts top level resource container. */
+/**
+ * Linked storage accounts top level resource container.
+ */
 @Fluent
 public final class LinkedStorageAccountsResourceInner extends ProxyResource {
     /*
@@ -20,13 +22,15 @@ public final class LinkedStorageAccountsResourceInner extends ProxyResource {
     @JsonProperty(value = "properties", required = true)
     private LinkedStorageAccountsProperties innerProperties = new LinkedStorageAccountsProperties();
 
-    /** Creates an instance of LinkedStorageAccountsResourceInner class. */
+    /**
+     * Creates an instance of LinkedStorageAccountsResourceInner class.
+     */
     public LinkedStorageAccountsResourceInner() {
     }
 
     /**
      * Get the innerProperties property: Linked storage accounts properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private LinkedStorageAccountsProperties innerProperties() {
@@ -35,7 +39,7 @@ public final class LinkedStorageAccountsResourceInner extends ProxyResource {
 
     /**
      * Get the dataSourceType property: Linked storage accounts type.
-     *
+     * 
      * @return the dataSourceType value.
      */
     public DataSourceType dataSourceType() {
@@ -44,7 +48,7 @@ public final class LinkedStorageAccountsResourceInner extends ProxyResource {
 
     /**
      * Get the storageAccountIds property: Linked storage accounts resources ids.
-     *
+     * 
      * @return the storageAccountIds value.
      */
     public List<String> storageAccountIds() {
@@ -53,7 +57,7 @@ public final class LinkedStorageAccountsResourceInner extends ProxyResource {
 
     /**
      * Set the storageAccountIds property: Linked storage accounts resources ids.
-     *
+     * 
      * @param storageAccountIds the storageAccountIds value to set.
      * @return the LinkedStorageAccountsResourceInner object itself.
      */
@@ -67,15 +71,13 @@ public final class LinkedStorageAccountsResourceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model LinkedStorageAccountsResourceInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model LinkedStorageAccountsResourceInner"));
         } else {
             innerProperties().validate();
         }

@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Workspace features. */
+/**
+ * Workspace features.
+ */
 @Fluent
 public final class WorkspaceFeatures {
     /*
@@ -48,15 +50,18 @@ public final class WorkspaceFeatures {
     /*
      * Workspace features.
      */
-    @JsonIgnore private Map<String, Object> additionalProperties;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
 
-    /** Creates an instance of WorkspaceFeatures class. */
+    /**
+     * Creates an instance of WorkspaceFeatures class.
+     */
     public WorkspaceFeatures() {
     }
 
     /**
      * Get the enableDataExport property: Flag that indicate if data should be exported.
-     *
+     * 
      * @return the enableDataExport value.
      */
     public Boolean enableDataExport() {
@@ -65,7 +70,7 @@ public final class WorkspaceFeatures {
 
     /**
      * Set the enableDataExport property: Flag that indicate if data should be exported.
-     *
+     * 
      * @param enableDataExport the enableDataExport value to set.
      * @return the WorkspaceFeatures object itself.
      */
@@ -76,7 +81,7 @@ public final class WorkspaceFeatures {
 
     /**
      * Get the immediatePurgeDataOn30Days property: Flag that describes if we want to remove the data after 30 days.
-     *
+     * 
      * @return the immediatePurgeDataOn30Days value.
      */
     public Boolean immediatePurgeDataOn30Days() {
@@ -85,7 +90,7 @@ public final class WorkspaceFeatures {
 
     /**
      * Set the immediatePurgeDataOn30Days property: Flag that describes if we want to remove the data after 30 days.
-     *
+     * 
      * @param immediatePurgeDataOn30Days the immediatePurgeDataOn30Days value to set.
      * @return the WorkspaceFeatures object itself.
      */
@@ -97,7 +102,7 @@ public final class WorkspaceFeatures {
     /**
      * Get the enableLogAccessUsingOnlyResourcePermissions property: Flag that indicate which permission to use -
      * resource or workspace or both.
-     *
+     * 
      * @return the enableLogAccessUsingOnlyResourcePermissions value.
      */
     public Boolean enableLogAccessUsingOnlyResourcePermissions() {
@@ -107,19 +112,19 @@ public final class WorkspaceFeatures {
     /**
      * Set the enableLogAccessUsingOnlyResourcePermissions property: Flag that indicate which permission to use -
      * resource or workspace or both.
-     *
+     * 
      * @param enableLogAccessUsingOnlyResourcePermissions the enableLogAccessUsingOnlyResourcePermissions value to set.
      * @return the WorkspaceFeatures object itself.
      */
-    public WorkspaceFeatures withEnableLogAccessUsingOnlyResourcePermissions(
-        Boolean enableLogAccessUsingOnlyResourcePermissions) {
+    public WorkspaceFeatures
+        withEnableLogAccessUsingOnlyResourcePermissions(Boolean enableLogAccessUsingOnlyResourcePermissions) {
         this.enableLogAccessUsingOnlyResourcePermissions = enableLogAccessUsingOnlyResourcePermissions;
         return this;
     }
 
     /**
      * Get the clusterResourceId property: Dedicated LA cluster resourceId that is linked to the workspaces.
-     *
+     * 
      * @return the clusterResourceId value.
      */
     public String clusterResourceId() {
@@ -128,7 +133,7 @@ public final class WorkspaceFeatures {
 
     /**
      * Set the clusterResourceId property: Dedicated LA cluster resourceId that is linked to the workspaces.
-     *
+     * 
      * @param clusterResourceId the clusterResourceId value to set.
      * @return the WorkspaceFeatures object itself.
      */
@@ -139,7 +144,7 @@ public final class WorkspaceFeatures {
 
     /**
      * Get the disableLocalAuth property: Disable Non-AAD based Auth.
-     *
+     * 
      * @return the disableLocalAuth value.
      */
     public Boolean disableLocalAuth() {
@@ -148,7 +153,7 @@ public final class WorkspaceFeatures {
 
     /**
      * Set the disableLocalAuth property: Disable Non-AAD based Auth.
-     *
+     * 
      * @param disableLocalAuth the disableLocalAuth value to set.
      * @return the WorkspaceFeatures object itself.
      */
@@ -159,7 +164,7 @@ public final class WorkspaceFeatures {
 
     /**
      * Get the additionalProperties property: Workspace features.
-     *
+     * 
      * @return the additionalProperties value.
      */
     @JsonAnyGetter
@@ -169,7 +174,7 @@ public final class WorkspaceFeatures {
 
     /**
      * Set the additionalProperties property: Workspace features.
-     *
+     * 
      * @param additionalProperties the additionalProperties value to set.
      * @return the WorkspaceFeatures object itself.
      */
@@ -188,7 +193,7 @@ public final class WorkspaceFeatures {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

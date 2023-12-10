@@ -7,7 +7,9 @@ package com.azure.resourcemanager.loganalytics.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The name of a metric. */
+/**
+ * The name of a metric.
+ */
 @Fluent
 public final class MetricName {
     /*
@@ -22,13 +24,15 @@ public final class MetricName {
     @JsonProperty(value = "localizedValue")
     private String localizedValue;
 
-    /** Creates an instance of MetricName class. */
+    /**
+     * Creates an instance of MetricName class.
+     */
     public MetricName() {
     }
 
     /**
      * Get the value property: The system name of the metric.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -37,7 +41,7 @@ public final class MetricName {
 
     /**
      * Set the value property: The system name of the metric.
-     *
+     * 
      * @param value the value value to set.
      * @return the MetricName object itself.
      */
@@ -48,7 +52,7 @@ public final class MetricName {
 
     /**
      * Get the localizedValue property: The localized name of the metric.
-     *
+     * 
      * @return the localizedValue value.
      */
     public String localizedValue() {
@@ -57,7 +61,7 @@ public final class MetricName {
 
     /**
      * Set the localizedValue property: The localized name of the metric.
-     *
+     * 
      * @param localizedValue the localizedValue value to set.
      * @return the MetricName object itself.
      */
@@ -68,7 +72,7 @@ public final class MetricName {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

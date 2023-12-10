@@ -279,12 +279,12 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.loganalytics.models.Identity",
+  "name" : "com.azure.resourcemanager.loganalytics.models.ManagedServiceIdentity",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.loganalytics.models.UserIdentityProperties",
+  "name" : "com.azure.resourcemanager.loganalytics.models.UserAssignedIdentity",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -370,6 +370,16 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.loganalytics.models.WorkspaceFeatures",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.loganalytics.models.Identity",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.loganalytics.models.UserIdentityProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -470,6 +480,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.loganalytics.models.PurgeState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.loganalytics.models.ManagedServiceIdentityType",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

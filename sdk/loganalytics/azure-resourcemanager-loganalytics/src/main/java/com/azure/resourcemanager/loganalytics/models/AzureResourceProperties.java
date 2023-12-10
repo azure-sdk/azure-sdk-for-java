@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An Azure resource QueryPack-Query object. */
+/**
+ * An Azure resource QueryPack-Query object.
+ */
 @Immutable
 public class AzureResourceProperties {
     /*
@@ -35,13 +37,15 @@ public class AzureResourceProperties {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of AzureResourceProperties class. */
+    /**
+     * Creates an instance of AzureResourceProperties class.
+     */
     public AzureResourceProperties() {
     }
 
     /**
      * Get the id property: Azure resource Id.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -50,7 +54,7 @@ public class AzureResourceProperties {
 
     /**
      * Get the name property: Azure resource name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -59,7 +63,7 @@ public class AzureResourceProperties {
 
     /**
      * Get the type property: Azure resource type.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -68,7 +72,7 @@ public class AzureResourceProperties {
 
     /**
      * Get the systemData property: Read only system data.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -77,7 +81,7 @@ public class AzureResourceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

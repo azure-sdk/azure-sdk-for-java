@@ -13,7 +13,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** Properties that define an Log Analytics QueryPack-Query resource. */
+/**
+ * Properties that define an Log Analytics QueryPack-Query resource.
+ */
 @Fluent
 public final class LogAnalyticsQueryPackQueryProperties {
     /*
@@ -77,13 +79,15 @@ public final class LogAnalyticsQueryPackQueryProperties {
     @JsonProperty(value = "properties")
     private Object properties;
 
-    /** Creates an instance of LogAnalyticsQueryPackQueryProperties class. */
+    /**
+     * Creates an instance of LogAnalyticsQueryPackQueryProperties class.
+     */
     public LogAnalyticsQueryPackQueryProperties() {
     }
 
     /**
      * Get the id property: The unique ID of your application. This field cannot be changed.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -92,7 +96,7 @@ public final class LogAnalyticsQueryPackQueryProperties {
 
     /**
      * Get the displayName property: Unique display name for your query within the Query Pack.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -101,7 +105,7 @@ public final class LogAnalyticsQueryPackQueryProperties {
 
     /**
      * Set the displayName property: Unique display name for your query within the Query Pack.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the LogAnalyticsQueryPackQueryProperties object itself.
      */
@@ -112,7 +116,7 @@ public final class LogAnalyticsQueryPackQueryProperties {
 
     /**
      * Get the timeCreated property: Creation Date for the Log Analytics Query, in ISO 8601 format.
-     *
+     * 
      * @return the timeCreated value.
      */
     public OffsetDateTime timeCreated() {
@@ -121,7 +125,7 @@ public final class LogAnalyticsQueryPackQueryProperties {
 
     /**
      * Get the timeModified property: Last modified date of the Log Analytics Query, in ISO 8601 format.
-     *
+     * 
      * @return the timeModified value.
      */
     public OffsetDateTime timeModified() {
@@ -130,7 +134,7 @@ public final class LogAnalyticsQueryPackQueryProperties {
 
     /**
      * Get the author property: Object Id of user creating the query.
-     *
+     * 
      * @return the author value.
      */
     public String author() {
@@ -139,7 +143,7 @@ public final class LogAnalyticsQueryPackQueryProperties {
 
     /**
      * Get the description property: Description of the query.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -148,7 +152,7 @@ public final class LogAnalyticsQueryPackQueryProperties {
 
     /**
      * Set the description property: Description of the query.
-     *
+     * 
      * @param description the description value to set.
      * @return the LogAnalyticsQueryPackQueryProperties object itself.
      */
@@ -159,7 +163,7 @@ public final class LogAnalyticsQueryPackQueryProperties {
 
     /**
      * Get the body property: Body of the query.
-     *
+     * 
      * @return the body value.
      */
     public String body() {
@@ -168,7 +172,7 @@ public final class LogAnalyticsQueryPackQueryProperties {
 
     /**
      * Set the body property: Body of the query.
-     *
+     * 
      * @param body the body value to set.
      * @return the LogAnalyticsQueryPackQueryProperties object itself.
      */
@@ -179,7 +183,7 @@ public final class LogAnalyticsQueryPackQueryProperties {
 
     /**
      * Get the related property: The related metadata items for the function.
-     *
+     * 
      * @return the related value.
      */
     public LogAnalyticsQueryPackQueryPropertiesRelated related() {
@@ -188,7 +192,7 @@ public final class LogAnalyticsQueryPackQueryProperties {
 
     /**
      * Set the related property: The related metadata items for the function.
-     *
+     * 
      * @param related the related value to set.
      * @return the LogAnalyticsQueryPackQueryProperties object itself.
      */
@@ -199,7 +203,7 @@ public final class LogAnalyticsQueryPackQueryProperties {
 
     /**
      * Get the tags property: Tags associated with the query.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, List<String>> tags() {
@@ -208,7 +212,7 @@ public final class LogAnalyticsQueryPackQueryProperties {
 
     /**
      * Set the tags property: Tags associated with the query.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the LogAnalyticsQueryPackQueryProperties object itself.
      */
@@ -219,7 +223,7 @@ public final class LogAnalyticsQueryPackQueryProperties {
 
     /**
      * Get the properties property: Additional properties that can be set for the query.
-     *
+     * 
      * @return the properties value.
      */
     public Object properties() {
@@ -228,7 +232,7 @@ public final class LogAnalyticsQueryPackQueryProperties {
 
     /**
      * Set the properties property: Additional properties that can be set for the query.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the LogAnalyticsQueryPackQueryProperties object itself.
      */
@@ -239,21 +243,17 @@ public final class LogAnalyticsQueryPackQueryProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (displayName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property displayName in model LogAnalyticsQueryPackQueryProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property displayName in model LogAnalyticsQueryPackQueryProperties"));
         }
         if (body() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property body in model LogAnalyticsQueryPackQueryProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property body in model LogAnalyticsQueryPackQueryProperties"));
         }
         if (related() != null) {
             related().validate();

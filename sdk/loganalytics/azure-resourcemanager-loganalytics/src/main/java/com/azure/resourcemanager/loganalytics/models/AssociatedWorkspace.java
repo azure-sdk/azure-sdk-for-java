@@ -7,23 +7,27 @@ package com.azure.resourcemanager.loganalytics.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The list of Log Analytics workspaces associated with the cluster. */
+/**
+ * The list of Log Analytics workspaces associated with the cluster.
+ */
 @Immutable
 public final class AssociatedWorkspace {
     /*
-     * The id of the assigned workspace.
+     * Associated workspace immutable id.
      */
     @JsonProperty(value = "workspaceId", access = JsonProperty.Access.WRITE_ONLY)
     private String workspaceId;
 
     /*
-     * The name id the assigned workspace.
+     * Associated workspace resource name.
      */
     @JsonProperty(value = "workspaceName", access = JsonProperty.Access.WRITE_ONLY)
     private String workspaceName;
 
     /*
-     * The ResourceId id the assigned workspace.
+     * Associated workspace arm resource id, in the form of:
+     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/
+     * workspaces/{workspaceName}.
      */
     @JsonProperty(value = "resourceId", access = JsonProperty.Access.WRITE_ONLY)
     private String resourceId;
@@ -34,13 +38,15 @@ public final class AssociatedWorkspace {
     @JsonProperty(value = "associateDate", access = JsonProperty.Access.WRITE_ONLY)
     private String associateDate;
 
-    /** Creates an instance of AssociatedWorkspace class. */
+    /**
+     * Creates an instance of AssociatedWorkspace class.
+     */
     public AssociatedWorkspace() {
     }
 
     /**
-     * Get the workspaceId property: The id of the assigned workspace.
-     *
+     * Get the workspaceId property: Associated workspace immutable id.
+     * 
      * @return the workspaceId value.
      */
     public String workspaceId() {
@@ -48,8 +54,8 @@ public final class AssociatedWorkspace {
     }
 
     /**
-     * Get the workspaceName property: The name id the assigned workspace.
-     *
+     * Get the workspaceName property: Associated workspace resource name.
+     * 
      * @return the workspaceName value.
      */
     public String workspaceName() {
@@ -57,8 +63,9 @@ public final class AssociatedWorkspace {
     }
 
     /**
-     * Get the resourceId property: The ResourceId id the assigned workspace.
-     *
+     * Get the resourceId property: Associated workspace arm resource id, in the form of:
+     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}.
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -67,7 +74,7 @@ public final class AssociatedWorkspace {
 
     /**
      * Get the associateDate property: The time of workspace association.
-     *
+     * 
      * @return the associateDate value.
      */
     public String associateDate() {
@@ -76,7 +83,7 @@ public final class AssociatedWorkspace {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,33 +7,53 @@ package com.azure.resourcemanager.loganalytics.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** The capacity reservation level in GB for this workspace, when CapacityReservation sku is selected. */
+/**
+ * The capacity reservation level in GB for this workspace, when CapacityReservation sku is selected.
+ */
 public enum CapacityReservationLevel {
-    /** Enum value 100. */
+    /**
+     * Enum value 100.
+     */
     ONE_ZERO_ZERO(100),
 
-    /** Enum value 200. */
+    /**
+     * Enum value 200.
+     */
     TWO_ZERO_ZERO(200),
 
-    /** Enum value 300. */
+    /**
+     * Enum value 300.
+     */
     THREE_ZERO_ZERO(300),
 
-    /** Enum value 400. */
+    /**
+     * Enum value 400.
+     */
     FOUR_ZERO_ZERO(400),
 
-    /** Enum value 500. */
+    /**
+     * Enum value 500.
+     */
     FIVE_ZERO_ZERO(500),
 
-    /** Enum value 1000. */
+    /**
+     * Enum value 1000.
+     */
     ONE_ZERO_ZERO_ZERO(1000),
 
-    /** Enum value 2000. */
+    /**
+     * Enum value 2000.
+     */
     TWO_ZERO_ZERO_ZERO(2000),
 
-    /** Enum value 5000. */
+    /**
+     * Enum value 5000.
+     */
     FIVE_ZERO_ZERO_ZERO(5000);
 
-    /** The actual serialized value for a CapacityReservationLevel instance. */
+    /**
+     * The actual serialized value for a CapacityReservationLevel instance.
+     */
     private final int value;
 
     CapacityReservationLevel(int value) {
@@ -42,7 +62,7 @@ public enum CapacityReservationLevel {
 
     /**
      * Parses a serialized value to a CapacityReservationLevel instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed CapacityReservationLevel object, or null if unable to parse.
      */
@@ -59,7 +79,7 @@ public enum CapacityReservationLevel {
 
     /**
      * De-serializes the instance to int value.
-     *
+     * 
      * @return the int value.
      */
     @JsonValue

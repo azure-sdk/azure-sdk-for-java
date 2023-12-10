@@ -13,7 +13,9 @@ import com.azure.resourcemanager.loganalytics.models.KeyVaultProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Cluster properties. */
+/**
+ * Cluster properties.
+ */
 @Fluent
 public final class ClusterProperties {
     /*
@@ -79,13 +81,15 @@ public final class ClusterProperties {
     @JsonProperty(value = "capacityReservationProperties")
     private CapacityReservationProperties capacityReservationProperties;
 
-    /** Creates an instance of ClusterProperties class. */
+    /**
+     * Creates an instance of ClusterProperties class.
+     */
     public ClusterProperties() {
     }
 
     /**
      * Get the clusterId property: The ID associated with the cluster.
-     *
+     * 
      * @return the clusterId value.
      */
     public String clusterId() {
@@ -94,7 +98,7 @@ public final class ClusterProperties {
 
     /**
      * Get the provisioningState property: The provisioning state of the cluster.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ClusterEntityStatus provisioningState() {
@@ -104,7 +108,7 @@ public final class ClusterProperties {
     /**
      * Get the isDoubleEncryptionEnabled property: Configures whether cluster will use double encryption. This Property
      * can not be modified after cluster creation. Default value is 'true'.
-     *
+     * 
      * @return the isDoubleEncryptionEnabled value.
      */
     public Boolean isDoubleEncryptionEnabled() {
@@ -114,7 +118,7 @@ public final class ClusterProperties {
     /**
      * Set the isDoubleEncryptionEnabled property: Configures whether cluster will use double encryption. This Property
      * can not be modified after cluster creation. Default value is 'true'.
-     *
+     * 
      * @param isDoubleEncryptionEnabled the isDoubleEncryptionEnabled value to set.
      * @return the ClusterProperties object itself.
      */
@@ -127,7 +131,7 @@ public final class ClusterProperties {
      * Get the isAvailabilityZonesEnabled property: Sets whether the cluster will support availability zones. This can
      * be set as true only in regions where Azure Data Explorer support Availability Zones. This Property can not be
      * modified after cluster creation. Default value is 'true' if region supports Availability Zones.
-     *
+     * 
      * @return the isAvailabilityZonesEnabled value.
      */
     public Boolean isAvailabilityZonesEnabled() {
@@ -138,7 +142,7 @@ public final class ClusterProperties {
      * Set the isAvailabilityZonesEnabled property: Sets whether the cluster will support availability zones. This can
      * be set as true only in regions where Azure Data Explorer support Availability Zones. This Property can not be
      * modified after cluster creation. Default value is 'true' if region supports Availability Zones.
-     *
+     * 
      * @param isAvailabilityZonesEnabled the isAvailabilityZonesEnabled value to set.
      * @return the ClusterProperties object itself.
      */
@@ -149,7 +153,7 @@ public final class ClusterProperties {
 
     /**
      * Get the billingType property: The cluster's billing type.
-     *
+     * 
      * @return the billingType value.
      */
     public BillingType billingType() {
@@ -158,7 +162,7 @@ public final class ClusterProperties {
 
     /**
      * Set the billingType property: The cluster's billing type.
-     *
+     * 
      * @param billingType the billingType value to set.
      * @return the ClusterProperties object itself.
      */
@@ -169,7 +173,7 @@ public final class ClusterProperties {
 
     /**
      * Get the keyVaultProperties property: The associated key properties.
-     *
+     * 
      * @return the keyVaultProperties value.
      */
     public KeyVaultProperties keyVaultProperties() {
@@ -178,7 +182,7 @@ public final class ClusterProperties {
 
     /**
      * Set the keyVaultProperties property: The associated key properties.
-     *
+     * 
      * @param keyVaultProperties the keyVaultProperties value to set.
      * @return the ClusterProperties object itself.
      */
@@ -189,7 +193,7 @@ public final class ClusterProperties {
 
     /**
      * Get the lastModifiedDate property: The last time the cluster was updated.
-     *
+     * 
      * @return the lastModifiedDate value.
      */
     public String lastModifiedDate() {
@@ -198,7 +202,7 @@ public final class ClusterProperties {
 
     /**
      * Get the createdDate property: The cluster creation time.
-     *
+     * 
      * @return the createdDate value.
      */
     public String createdDate() {
@@ -207,7 +211,7 @@ public final class ClusterProperties {
 
     /**
      * Get the associatedWorkspaces property: The list of Log Analytics workspaces associated with the cluster.
-     *
+     * 
      * @return the associatedWorkspaces value.
      */
     public List<AssociatedWorkspace> associatedWorkspaces() {
@@ -216,7 +220,7 @@ public final class ClusterProperties {
 
     /**
      * Set the associatedWorkspaces property: The list of Log Analytics workspaces associated with the cluster.
-     *
+     * 
      * @param associatedWorkspaces the associatedWorkspaces value to set.
      * @return the ClusterProperties object itself.
      */
@@ -227,7 +231,7 @@ public final class ClusterProperties {
 
     /**
      * Get the capacityReservationProperties property: Additional properties for capacity reservation.
-     *
+     * 
      * @return the capacityReservationProperties value.
      */
     public CapacityReservationProperties capacityReservationProperties() {
@@ -236,19 +240,19 @@ public final class ClusterProperties {
 
     /**
      * Set the capacityReservationProperties property: Additional properties for capacity reservation.
-     *
+     * 
      * @param capacityReservationProperties the capacityReservationProperties value to set.
      * @return the ClusterProperties object itself.
      */
-    public ClusterProperties withCapacityReservationProperties(
-        CapacityReservationProperties capacityReservationProperties) {
+    public ClusterProperties
+        withCapacityReservationProperties(CapacityReservationProperties capacityReservationProperties) {
         this.capacityReservationProperties = capacityReservationProperties;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
