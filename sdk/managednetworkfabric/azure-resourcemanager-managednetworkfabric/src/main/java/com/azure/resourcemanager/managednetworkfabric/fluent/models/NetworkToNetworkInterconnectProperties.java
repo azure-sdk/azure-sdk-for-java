@@ -19,7 +19,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.NpbStaticRouteConfi
 import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Configuration used to setup CE-PE connectivity. */
+/**
+ * Configuration used to setup CE-PE connectivity.
+ */
 @Fluent
 public final class NetworkToNetworkInterconnectProperties {
     /*
@@ -100,13 +102,15 @@ public final class NetworkToNetworkInterconnectProperties {
     @JsonProperty(value = "administrativeState", access = JsonProperty.Access.WRITE_ONLY)
     private AdministrativeState administrativeState;
 
-    /** Creates an instance of NetworkToNetworkInterconnectProperties class. */
+    /**
+     * Creates an instance of NetworkToNetworkInterconnectProperties class.
+     */
     public NetworkToNetworkInterconnectProperties() {
     }
 
     /**
      * Get the nniType property: Type of NNI used. Example: CE | NPB.
-     *
+     * 
      * @return the nniType value.
      */
     public NniType nniType() {
@@ -115,7 +119,7 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Set the nniType property: Type of NNI used. Example: CE | NPB.
-     *
+     * 
      * @param nniType the nniType value to set.
      * @return the NetworkToNetworkInterconnectProperties object itself.
      */
@@ -126,7 +130,7 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Get the isManagementType property: Configuration to use NNI for Infrastructure Management. Example: True/False.
-     *
+     * 
      * @return the isManagementType value.
      */
     public IsManagementType isManagementType() {
@@ -135,7 +139,7 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Set the isManagementType property: Configuration to use NNI for Infrastructure Management. Example: True/False.
-     *
+     * 
      * @param isManagementType the isManagementType value to set.
      * @return the NetworkToNetworkInterconnectProperties object itself.
      */
@@ -146,7 +150,7 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Get the useOptionB property: Based on this option layer3 parameters are mandatory. Example: True/False.
-     *
+     * 
      * @return the useOptionB value.
      */
     public BooleanEnumProperty useOptionB() {
@@ -155,7 +159,7 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Set the useOptionB property: Based on this option layer3 parameters are mandatory. Example: True/False.
-     *
+     * 
      * @param useOptionB the useOptionB value to set.
      * @return the NetworkToNetworkInterconnectProperties object itself.
      */
@@ -166,7 +170,7 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Get the layer2Configuration property: Common properties for Layer2 Configuration.
-     *
+     * 
      * @return the layer2Configuration value.
      */
     public Layer2Configuration layer2Configuration() {
@@ -175,7 +179,7 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Set the layer2Configuration property: Common properties for Layer2 Configuration.
-     *
+     * 
      * @param layer2Configuration the layer2Configuration value to set.
      * @return the NetworkToNetworkInterconnectProperties object itself.
      */
@@ -186,7 +190,7 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Get the optionBLayer3Configuration property: Common properties for Layer3Configuration.
-     *
+     * 
      * @return the optionBLayer3Configuration value.
      */
     public NetworkToNetworkInterconnectPropertiesOptionBLayer3Configuration optionBLayer3Configuration() {
@@ -195,7 +199,7 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Set the optionBLayer3Configuration property: Common properties for Layer3Configuration.
-     *
+     * 
      * @param optionBLayer3Configuration the optionBLayer3Configuration value to set.
      * @return the NetworkToNetworkInterconnectProperties object itself.
      */
@@ -207,7 +211,7 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Get the npbStaticRouteConfiguration property: NPB Static Route Configuration properties.
-     *
+     * 
      * @return the npbStaticRouteConfiguration value.
      */
     public NpbStaticRouteConfiguration npbStaticRouteConfiguration() {
@@ -216,19 +220,19 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Set the npbStaticRouteConfiguration property: NPB Static Route Configuration properties.
-     *
+     * 
      * @param npbStaticRouteConfiguration the npbStaticRouteConfiguration value to set.
      * @return the NetworkToNetworkInterconnectProperties object itself.
      */
-    public NetworkToNetworkInterconnectProperties withNpbStaticRouteConfiguration(
-        NpbStaticRouteConfiguration npbStaticRouteConfiguration) {
+    public NetworkToNetworkInterconnectProperties
+        withNpbStaticRouteConfiguration(NpbStaticRouteConfiguration npbStaticRouteConfiguration) {
         this.npbStaticRouteConfiguration = npbStaticRouteConfiguration;
         return this;
     }
 
     /**
      * Get the importRoutePolicy property: Import Route Policy configuration.
-     *
+     * 
      * @return the importRoutePolicy value.
      */
     public ImportRoutePolicyInformation importRoutePolicy() {
@@ -237,19 +241,19 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Set the importRoutePolicy property: Import Route Policy configuration.
-     *
+     * 
      * @param importRoutePolicy the importRoutePolicy value to set.
      * @return the NetworkToNetworkInterconnectProperties object itself.
      */
-    public NetworkToNetworkInterconnectProperties withImportRoutePolicy(
-        ImportRoutePolicyInformation importRoutePolicy) {
+    public NetworkToNetworkInterconnectProperties
+        withImportRoutePolicy(ImportRoutePolicyInformation importRoutePolicy) {
         this.importRoutePolicy = importRoutePolicy;
         return this;
     }
 
     /**
      * Get the exportRoutePolicy property: Export Route Policy configuration.
-     *
+     * 
      * @return the exportRoutePolicy value.
      */
     public ExportRoutePolicyInformation exportRoutePolicy() {
@@ -258,19 +262,19 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Set the exportRoutePolicy property: Export Route Policy configuration.
-     *
+     * 
      * @param exportRoutePolicy the exportRoutePolicy value to set.
      * @return the NetworkToNetworkInterconnectProperties object itself.
      */
-    public NetworkToNetworkInterconnectProperties withExportRoutePolicy(
-        ExportRoutePolicyInformation exportRoutePolicy) {
+    public NetworkToNetworkInterconnectProperties
+        withExportRoutePolicy(ExportRoutePolicyInformation exportRoutePolicy) {
         this.exportRoutePolicy = exportRoutePolicy;
         return this;
     }
 
     /**
      * Get the egressAclId property: Egress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @return the egressAclId value.
      */
     public String egressAclId() {
@@ -279,7 +283,7 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Set the egressAclId property: Egress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @param egressAclId the egressAclId value to set.
      * @return the NetworkToNetworkInterconnectProperties object itself.
      */
@@ -290,7 +294,7 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Get the ingressAclId property: Ingress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @return the ingressAclId value.
      */
     public String ingressAclId() {
@@ -299,7 +303,7 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Set the ingressAclId property: Ingress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @param ingressAclId the ingressAclId value to set.
      * @return the NetworkToNetworkInterconnectProperties object itself.
      */
@@ -310,7 +314,7 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -319,7 +323,7 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -328,7 +332,7 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -337,15 +341,13 @@ public final class NetworkToNetworkInterconnectProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (useOptionB() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property useOptionB in model NetworkToNetworkInterconnectProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property useOptionB in model NetworkToNetworkInterconnectProperties"));
         }
         if (layer2Configuration() != null) {
             layer2Configuration().validate();

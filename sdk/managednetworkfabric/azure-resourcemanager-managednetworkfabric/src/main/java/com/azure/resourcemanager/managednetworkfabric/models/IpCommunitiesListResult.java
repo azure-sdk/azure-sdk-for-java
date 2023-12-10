@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.IpCommunityI
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of IP Communities. */
+/**
+ * List of IP Communities.
+ */
 @Fluent
 public final class IpCommunitiesListResult {
     /*
@@ -24,13 +26,15 @@ public final class IpCommunitiesListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of IpCommunitiesListResult class. */
+    /**
+     * Creates an instance of IpCommunitiesListResult class.
+     */
     public IpCommunitiesListResult() {
     }
 
     /**
      * Get the value property: List of IP Community resources.
-     *
+     * 
      * @return the value value.
      */
     public List<IpCommunityInner> value() {
@@ -39,7 +43,7 @@ public final class IpCommunitiesListResult {
 
     /**
      * Set the value property: List of IP Community resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the IpCommunitiesListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class IpCommunitiesListResult {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class IpCommunitiesListResult {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the IpCommunitiesListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class IpCommunitiesListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

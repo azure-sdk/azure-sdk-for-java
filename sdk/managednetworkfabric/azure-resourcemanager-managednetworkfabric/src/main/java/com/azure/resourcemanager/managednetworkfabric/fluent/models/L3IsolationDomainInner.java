@@ -18,7 +18,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.RedistributeStaticR
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The L3 Isolation Domain resource definition. */
+/**
+ * The L3 Isolation Domain resource definition.
+ */
 @Fluent
 public final class L3IsolationDomainInner extends Resource {
     /*
@@ -33,13 +35,15 @@ public final class L3IsolationDomainInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of L3IsolationDomainInner class. */
+    /**
+     * Creates an instance of L3IsolationDomainInner class.
+     */
     public L3IsolationDomainInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private L3IsolationDomainProperties innerProperties() {
@@ -48,21 +52,25 @@ public final class L3IsolationDomainInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public L3IsolationDomainInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public L3IsolationDomainInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -71,7 +79,7 @@ public final class L3IsolationDomainInner extends Resource {
 
     /**
      * Get the networkFabricId property: ARM Resource ID of the Network Fabric.
-     *
+     * 
      * @return the networkFabricId value.
      */
     public String networkFabricId() {
@@ -80,7 +88,7 @@ public final class L3IsolationDomainInner extends Resource {
 
     /**
      * Set the networkFabricId property: ARM Resource ID of the Network Fabric.
-     *
+     * 
      * @param networkFabricId the networkFabricId value to set.
      * @return the L3IsolationDomainInner object itself.
      */
@@ -94,7 +102,7 @@ public final class L3IsolationDomainInner extends Resource {
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -103,7 +111,7 @@ public final class L3IsolationDomainInner extends Resource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -112,7 +120,7 @@ public final class L3IsolationDomainInner extends Resource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -121,7 +129,7 @@ public final class L3IsolationDomainInner extends Resource {
 
     /**
      * Get the redistributeConnectedSubnets property: Advertise Connected Subnets. Ex: "True" | "False".
-     *
+     * 
      * @return the redistributeConnectedSubnets value.
      */
     public RedistributeConnectedSubnets redistributeConnectedSubnets() {
@@ -130,12 +138,12 @@ public final class L3IsolationDomainInner extends Resource {
 
     /**
      * Set the redistributeConnectedSubnets property: Advertise Connected Subnets. Ex: "True" | "False".
-     *
+     * 
      * @param redistributeConnectedSubnets the redistributeConnectedSubnets value to set.
      * @return the L3IsolationDomainInner object itself.
      */
-    public L3IsolationDomainInner withRedistributeConnectedSubnets(
-        RedistributeConnectedSubnets redistributeConnectedSubnets) {
+    public L3IsolationDomainInner
+        withRedistributeConnectedSubnets(RedistributeConnectedSubnets redistributeConnectedSubnets) {
         if (this.innerProperties() == null) {
             this.innerProperties = new L3IsolationDomainProperties();
         }
@@ -145,7 +153,7 @@ public final class L3IsolationDomainInner extends Resource {
 
     /**
      * Get the redistributeStaticRoutes property: Advertise Static Routes. Ex: "True" | "False".
-     *
+     * 
      * @return the redistributeStaticRoutes value.
      */
     public RedistributeStaticRoutes redistributeStaticRoutes() {
@@ -154,7 +162,7 @@ public final class L3IsolationDomainInner extends Resource {
 
     /**
      * Set the redistributeStaticRoutes property: Advertise Static Routes. Ex: "True" | "False".
-     *
+     * 
      * @param redistributeStaticRoutes the redistributeStaticRoutes value to set.
      * @return the L3IsolationDomainInner object itself.
      */
@@ -168,7 +176,7 @@ public final class L3IsolationDomainInner extends Resource {
 
     /**
      * Get the aggregateRouteConfiguration property: Aggregate route configurations.
-     *
+     * 
      * @return the aggregateRouteConfiguration value.
      */
     public AggregateRouteConfiguration aggregateRouteConfiguration() {
@@ -177,12 +185,12 @@ public final class L3IsolationDomainInner extends Resource {
 
     /**
      * Set the aggregateRouteConfiguration property: Aggregate route configurations.
-     *
+     * 
      * @param aggregateRouteConfiguration the aggregateRouteConfiguration value to set.
      * @return the L3IsolationDomainInner object itself.
      */
-    public L3IsolationDomainInner withAggregateRouteConfiguration(
-        AggregateRouteConfiguration aggregateRouteConfiguration) {
+    public L3IsolationDomainInner
+        withAggregateRouteConfiguration(AggregateRouteConfiguration aggregateRouteConfiguration) {
         if (this.innerProperties() == null) {
             this.innerProperties = new L3IsolationDomainProperties();
         }
@@ -192,7 +200,7 @@ public final class L3IsolationDomainInner extends Resource {
 
     /**
      * Get the connectedSubnetRoutePolicy property: Connected Subnet RoutePolicy.
-     *
+     * 
      * @return the connectedSubnetRoutePolicy value.
      */
     public ConnectedSubnetRoutePolicy connectedSubnetRoutePolicy() {
@@ -201,12 +209,12 @@ public final class L3IsolationDomainInner extends Resource {
 
     /**
      * Set the connectedSubnetRoutePolicy property: Connected Subnet RoutePolicy.
-     *
+     * 
      * @param connectedSubnetRoutePolicy the connectedSubnetRoutePolicy value to set.
      * @return the L3IsolationDomainInner object itself.
      */
-    public L3IsolationDomainInner withConnectedSubnetRoutePolicy(
-        ConnectedSubnetRoutePolicy connectedSubnetRoutePolicy) {
+    public L3IsolationDomainInner
+        withConnectedSubnetRoutePolicy(ConnectedSubnetRoutePolicy connectedSubnetRoutePolicy) {
         if (this.innerProperties() == null) {
             this.innerProperties = new L3IsolationDomainProperties();
         }
@@ -216,7 +224,7 @@ public final class L3IsolationDomainInner extends Resource {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -225,7 +233,7 @@ public final class L3IsolationDomainInner extends Resource {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the L3IsolationDomainInner object itself.
      */
@@ -239,15 +247,13 @@ public final class L3IsolationDomainInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model L3IsolationDomainInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model L3IsolationDomainInner"));
         } else {
             innerProperties().validate();
         }

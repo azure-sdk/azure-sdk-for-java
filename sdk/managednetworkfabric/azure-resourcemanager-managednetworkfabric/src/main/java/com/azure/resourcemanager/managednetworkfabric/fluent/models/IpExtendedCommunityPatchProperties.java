@@ -10,7 +10,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.IpExtendedCommunity
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** IP Extended Community patchable properties. */
+/**
+ * IP Extended Community patchable properties.
+ */
 @Fluent
 public final class IpExtendedCommunityPatchProperties extends IpExtendedCommunityPatchableProperties {
     /*
@@ -19,13 +21,15 @@ public final class IpExtendedCommunityPatchProperties extends IpExtendedCommunit
     @JsonProperty(value = "annotation")
     private String annotation;
 
-    /** Creates an instance of IpExtendedCommunityPatchProperties class. */
+    /**
+     * Creates an instance of IpExtendedCommunityPatchProperties class.
+     */
     public IpExtendedCommunityPatchProperties() {
     }
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -34,7 +38,7 @@ public final class IpExtendedCommunityPatchProperties extends IpExtendedCommunit
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the IpExtendedCommunityPatchProperties object itself.
      */
@@ -43,17 +47,19 @@ public final class IpExtendedCommunityPatchProperties extends IpExtendedCommunit
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public IpExtendedCommunityPatchProperties withIpExtendedCommunityRules(
-        List<IpExtendedCommunityRule> ipExtendedCommunityRules) {
+    public IpExtendedCommunityPatchProperties
+        withIpExtendedCommunityRules(List<IpExtendedCommunityRule> ipExtendedCommunityRules) {
         super.withIpExtendedCommunityRules(ipExtendedCommunityRules);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

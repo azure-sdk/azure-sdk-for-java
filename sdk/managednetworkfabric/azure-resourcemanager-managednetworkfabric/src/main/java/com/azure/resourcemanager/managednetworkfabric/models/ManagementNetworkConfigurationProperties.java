@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Configuration to be used to setup the management network. */
+/**
+ * Configuration to be used to setup the management network.
+ */
 @Fluent
 public final class ManagementNetworkConfigurationProperties {
     /*
@@ -23,13 +25,15 @@ public final class ManagementNetworkConfigurationProperties {
     @JsonProperty(value = "workloadVpnConfiguration", required = true)
     private VpnConfigurationProperties workloadVpnConfiguration;
 
-    /** Creates an instance of ManagementNetworkConfigurationProperties class. */
+    /**
+     * Creates an instance of ManagementNetworkConfigurationProperties class.
+     */
     public ManagementNetworkConfigurationProperties() {
     }
 
     /**
      * Get the infrastructureVpnConfiguration property: VPN Configuration properties.
-     *
+     * 
      * @return the infrastructureVpnConfiguration value.
      */
     public VpnConfigurationProperties infrastructureVpnConfiguration() {
@@ -38,19 +42,19 @@ public final class ManagementNetworkConfigurationProperties {
 
     /**
      * Set the infrastructureVpnConfiguration property: VPN Configuration properties.
-     *
+     * 
      * @param infrastructureVpnConfiguration the infrastructureVpnConfiguration value to set.
      * @return the ManagementNetworkConfigurationProperties object itself.
      */
-    public ManagementNetworkConfigurationProperties withInfrastructureVpnConfiguration(
-        VpnConfigurationProperties infrastructureVpnConfiguration) {
+    public ManagementNetworkConfigurationProperties
+        withInfrastructureVpnConfiguration(VpnConfigurationProperties infrastructureVpnConfiguration) {
         this.infrastructureVpnConfiguration = infrastructureVpnConfiguration;
         return this;
     }
 
     /**
      * Get the workloadVpnConfiguration property: VPN Configuration properties.
-     *
+     * 
      * @return the workloadVpnConfiguration value.
      */
     public VpnConfigurationProperties workloadVpnConfiguration() {
@@ -59,37 +63,31 @@ public final class ManagementNetworkConfigurationProperties {
 
     /**
      * Set the workloadVpnConfiguration property: VPN Configuration properties.
-     *
+     * 
      * @param workloadVpnConfiguration the workloadVpnConfiguration value to set.
      * @return the ManagementNetworkConfigurationProperties object itself.
      */
-    public ManagementNetworkConfigurationProperties withWorkloadVpnConfiguration(
-        VpnConfigurationProperties workloadVpnConfiguration) {
+    public ManagementNetworkConfigurationProperties
+        withWorkloadVpnConfiguration(VpnConfigurationProperties workloadVpnConfiguration) {
         this.workloadVpnConfiguration = workloadVpnConfiguration;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (infrastructureVpnConfiguration() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property infrastructureVpnConfiguration in model"
-                            + " ManagementNetworkConfigurationProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property infrastructureVpnConfiguration in model ManagementNetworkConfigurationProperties"));
         } else {
             infrastructureVpnConfiguration().validate();
         }
         if (workloadVpnConfiguration() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property workloadVpnConfiguration in model"
-                            + " ManagementNetworkConfigurationProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property workloadVpnConfiguration in model ManagementNetworkConfigurationProperties"));
         } else {
             workloadVpnConfiguration().validate();
         }

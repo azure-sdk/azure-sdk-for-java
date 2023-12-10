@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** IP Extended Community delete operation properties. */
+/**
+ * IP Extended Community delete operation properties.
+ */
 @Fluent
 public class IpExtendedCommunityDeleteOperationProperties {
     /*
@@ -16,13 +18,15 @@ public class IpExtendedCommunityDeleteOperationProperties {
     @JsonProperty(value = "delete")
     private IpExtendedCommunityIdList delete;
 
-    /** Creates an instance of IpExtendedCommunityDeleteOperationProperties class. */
+    /**
+     * Creates an instance of IpExtendedCommunityDeleteOperationProperties class.
+     */
     public IpExtendedCommunityDeleteOperationProperties() {
     }
 
     /**
      * Get the delete property: List of IP Extended Community IDs.
-     *
+     * 
      * @return the delete value.
      */
     public IpExtendedCommunityIdList delete() {
@@ -31,7 +35,7 @@ public class IpExtendedCommunityDeleteOperationProperties {
 
     /**
      * Set the delete property: List of IP Extended Community IDs.
-     *
+     * 
      * @param delete the delete value to set.
      * @return the IpExtendedCommunityDeleteOperationProperties object itself.
      */
@@ -42,7 +46,7 @@ public class IpExtendedCommunityDeleteOperationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

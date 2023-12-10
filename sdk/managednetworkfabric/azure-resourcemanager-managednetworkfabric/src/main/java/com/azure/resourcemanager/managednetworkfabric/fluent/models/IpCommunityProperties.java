@@ -13,7 +13,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** IP Community Properties defines the resource properties. */
+/**
+ * IP Community Properties defines the resource properties.
+ */
 @Fluent
 public final class IpCommunityProperties extends AnnotationResource {
     /*
@@ -40,13 +42,15 @@ public final class IpCommunityProperties extends AnnotationResource {
     @JsonProperty(value = "ipCommunityRules")
     private List<IpCommunityRule> ipCommunityRules;
 
-    /** Creates an instance of IpCommunityProperties class. */
+    /**
+     * Creates an instance of IpCommunityProperties class.
+     */
     public IpCommunityProperties() {
     }
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -55,7 +59,7 @@ public final class IpCommunityProperties extends AnnotationResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -64,7 +68,7 @@ public final class IpCommunityProperties extends AnnotationResource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -73,7 +77,7 @@ public final class IpCommunityProperties extends AnnotationResource {
 
     /**
      * Get the ipCommunityRules property: List of IP Community Rules.
-     *
+     * 
      * @return the ipCommunityRules value.
      */
     public List<IpCommunityRule> ipCommunityRules() {
@@ -82,7 +86,7 @@ public final class IpCommunityProperties extends AnnotationResource {
 
     /**
      * Set the ipCommunityRules property: List of IP Community Rules.
-     *
+     * 
      * @param ipCommunityRules the ipCommunityRules value to set.
      * @return the IpCommunityProperties object itself.
      */
@@ -91,7 +95,9 @@ public final class IpCommunityProperties extends AnnotationResource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IpCommunityProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -100,7 +106,7 @@ public final class IpCommunityProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

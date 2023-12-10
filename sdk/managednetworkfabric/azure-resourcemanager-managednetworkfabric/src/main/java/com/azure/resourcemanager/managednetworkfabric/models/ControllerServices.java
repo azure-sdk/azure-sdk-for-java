@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Network Fabric Controller services. */
+/**
+ * Network Fabric Controller services.
+ */
 @Fluent
 public final class ControllerServices {
     /*
@@ -24,7 +26,9 @@ public final class ControllerServices {
     @JsonProperty(value = "ipv6AddressSpaces")
     private List<String> ipv6AddressSpaces;
 
-    /** Creates an instance of ControllerServices class. */
+    /**
+     * Creates an instance of ControllerServices class.
+     */
     public ControllerServices() {
     }
 
@@ -32,7 +36,7 @@ public final class ControllerServices {
      * Get the ipv4AddressSpaces property: The IPv4 Address space is optional, if the value is not defined at the time
      * of NFC creation, then the default value 10.0.0.0/19 is considered. The IPV4 address subnet is an optional
      * attribute.
-     *
+     * 
      * @return the ipv4AddressSpaces value.
      */
     public List<String> ipv4AddressSpaces() {
@@ -43,7 +47,7 @@ public final class ControllerServices {
      * Set the ipv4AddressSpaces property: The IPv4 Address space is optional, if the value is not defined at the time
      * of NFC creation, then the default value 10.0.0.0/19 is considered. The IPV4 address subnet is an optional
      * attribute.
-     *
+     * 
      * @param ipv4AddressSpaces the ipv4AddressSpaces value to set.
      * @return the ControllerServices object itself.
      */
@@ -54,7 +58,7 @@ public final class ControllerServices {
 
     /**
      * Get the ipv6AddressSpaces property: The IPv6 is not supported right now.
-     *
+     * 
      * @return the ipv6AddressSpaces value.
      */
     public List<String> ipv6AddressSpaces() {
@@ -63,7 +67,7 @@ public final class ControllerServices {
 
     /**
      * Set the ipv6AddressSpaces property: The IPv6 is not supported right now.
-     *
+     * 
      * @param ipv6AddressSpaces the ipv6AddressSpaces value to set.
      * @return the ControllerServices object itself.
      */
@@ -74,7 +78,7 @@ public final class ControllerServices {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

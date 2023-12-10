@@ -13,7 +13,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.SupportedVersionPro
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Network Device SKU Properties defines the properties of the resource. */
+/**
+ * Network Device SKU Properties defines the properties of the resource.
+ */
 @Fluent
 public final class NetworkDeviceSkuProperties {
     /*
@@ -52,13 +54,15 @@ public final class NetworkDeviceSkuProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of NetworkDeviceSkuProperties class. */
+    /**
+     * Creates an instance of NetworkDeviceSkuProperties class.
+     */
     public NetworkDeviceSkuProperties() {
     }
 
     /**
      * Get the model property: Model of the network device.
-     *
+     * 
      * @return the model value.
      */
     public String model() {
@@ -67,7 +71,7 @@ public final class NetworkDeviceSkuProperties {
 
     /**
      * Set the model property: Model of the network device.
-     *
+     * 
      * @param model the model value to set.
      * @return the NetworkDeviceSkuProperties object itself.
      */
@@ -78,7 +82,7 @@ public final class NetworkDeviceSkuProperties {
 
     /**
      * Get the manufacturer property: Manufacturer of the network device.
-     *
+     * 
      * @return the manufacturer value.
      */
     public String manufacturer() {
@@ -87,7 +91,7 @@ public final class NetworkDeviceSkuProperties {
 
     /**
      * Set the manufacturer property: Manufacturer of the network device.
-     *
+     * 
      * @param manufacturer the manufacturer value to set.
      * @return the NetworkDeviceSkuProperties object itself.
      */
@@ -98,7 +102,7 @@ public final class NetworkDeviceSkuProperties {
 
     /**
      * Get the supportedVersions property: List of supported version details of network device.
-     *
+     * 
      * @return the supportedVersions value.
      */
     public List<SupportedVersionProperties> supportedVersions() {
@@ -107,7 +111,7 @@ public final class NetworkDeviceSkuProperties {
 
     /**
      * Set the supportedVersions property: List of supported version details of network device.
-     *
+     * 
      * @param supportedVersions the supportedVersions value to set.
      * @return the NetworkDeviceSkuProperties object itself.
      */
@@ -118,7 +122,7 @@ public final class NetworkDeviceSkuProperties {
 
     /**
      * Get the supportedRoleTypes property: Available roles for the network device.
-     *
+     * 
      * @return the supportedRoleTypes value.
      */
     public List<NetworkDeviceRoleName> supportedRoleTypes() {
@@ -127,7 +131,7 @@ public final class NetworkDeviceSkuProperties {
 
     /**
      * Set the supportedRoleTypes property: Available roles for the network device.
-     *
+     * 
      * @param supportedRoleTypes the supportedRoleTypes value to set.
      * @return the NetworkDeviceSkuProperties object itself.
      */
@@ -138,7 +142,7 @@ public final class NetworkDeviceSkuProperties {
 
     /**
      * Get the interfaces property: List of network device interfaces.
-     *
+     * 
      * @return the interfaces value.
      */
     public List<DeviceInterfaceProperties> interfaces() {
@@ -147,7 +151,7 @@ public final class NetworkDeviceSkuProperties {
 
     /**
      * Set the interfaces property: List of network device interfaces.
-     *
+     * 
      * @param interfaces the interfaces value to set.
      * @return the NetworkDeviceSkuProperties object itself.
      */
@@ -158,7 +162,7 @@ public final class NetworkDeviceSkuProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -167,15 +171,13 @@ public final class NetworkDeviceSkuProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (model() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property model in model NetworkDeviceSkuProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property model in model NetworkDeviceSkuProperties"));
         }
         if (supportedVersions() != null) {
             supportedVersions().forEach(e -> e.validate());

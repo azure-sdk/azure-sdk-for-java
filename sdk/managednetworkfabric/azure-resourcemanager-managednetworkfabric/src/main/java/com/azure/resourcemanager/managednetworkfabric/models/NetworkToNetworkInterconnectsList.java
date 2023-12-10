@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.NetworkToNet
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of Network To Network Interconnects. */
+/**
+ * List of Network To Network Interconnects.
+ */
 @Fluent
 public final class NetworkToNetworkInterconnectsList {
     /*
@@ -24,13 +26,15 @@ public final class NetworkToNetworkInterconnectsList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of NetworkToNetworkInterconnectsList class. */
+    /**
+     * Creates an instance of NetworkToNetworkInterconnectsList class.
+     */
     public NetworkToNetworkInterconnectsList() {
     }
 
     /**
      * Get the value property: List of NetworkToNetworkInterconnects resources.
-     *
+     * 
      * @return the value value.
      */
     public List<NetworkToNetworkInterconnectInner> value() {
@@ -39,7 +43,7 @@ public final class NetworkToNetworkInterconnectsList {
 
     /**
      * Set the value property: List of NetworkToNetworkInterconnects resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the NetworkToNetworkInterconnectsList object itself.
      */
@@ -50,7 +54,7 @@ public final class NetworkToNetworkInterconnectsList {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class NetworkToNetworkInterconnectsList {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the NetworkToNetworkInterconnectsList object itself.
      */
@@ -70,7 +74,7 @@ public final class NetworkToNetworkInterconnectsList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

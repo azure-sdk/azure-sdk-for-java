@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** IP Community add operation properties. */
+/**
+ * IP Community add operation properties.
+ */
 @Fluent
 public class IpCommunityAddOperationProperties {
     /*
@@ -16,13 +18,15 @@ public class IpCommunityAddOperationProperties {
     @JsonProperty(value = "add")
     private IpCommunityIdList add;
 
-    /** Creates an instance of IpCommunityAddOperationProperties class. */
+    /**
+     * Creates an instance of IpCommunityAddOperationProperties class.
+     */
     public IpCommunityAddOperationProperties() {
     }
 
     /**
      * Get the add property: List of IP Community IDs.
-     *
+     * 
      * @return the add value.
      */
     public IpCommunityIdList add() {
@@ -31,7 +35,7 @@ public class IpCommunityAddOperationProperties {
 
     /**
      * Set the add property: List of IP Community IDs.
-     *
+     * 
      * @param add the add value to set.
      * @return the IpCommunityAddOperationProperties object itself.
      */
@@ -42,7 +46,7 @@ public class IpCommunityAddOperationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

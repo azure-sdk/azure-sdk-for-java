@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Network and credentials configuration currently applied to terminal server. */
+/**
+ * Network and credentials configuration currently applied to terminal server.
+ */
 @Fluent
 public final class TerminalServerConfiguration extends TerminalServerPatchableProperties {
     /*
@@ -40,13 +42,15 @@ public final class TerminalServerConfiguration extends TerminalServerPatchablePr
     @JsonProperty(value = "secondaryIpv6Prefix")
     private String secondaryIpv6Prefix;
 
-    /** Creates an instance of TerminalServerConfiguration class. */
+    /**
+     * Creates an instance of TerminalServerConfiguration class.
+     */
     public TerminalServerConfiguration() {
     }
 
     /**
      * Get the networkDeviceId property: ARM Resource ID used for the NetworkDevice.
-     *
+     * 
      * @return the networkDeviceId value.
      */
     public String networkDeviceId() {
@@ -55,7 +59,7 @@ public final class TerminalServerConfiguration extends TerminalServerPatchablePr
 
     /**
      * Get the primaryIpv4Prefix property: IPv4 Address Prefix.
-     *
+     * 
      * @return the primaryIpv4Prefix value.
      */
     public String primaryIpv4Prefix() {
@@ -64,7 +68,7 @@ public final class TerminalServerConfiguration extends TerminalServerPatchablePr
 
     /**
      * Set the primaryIpv4Prefix property: IPv4 Address Prefix.
-     *
+     * 
      * @param primaryIpv4Prefix the primaryIpv4Prefix value to set.
      * @return the TerminalServerConfiguration object itself.
      */
@@ -75,7 +79,7 @@ public final class TerminalServerConfiguration extends TerminalServerPatchablePr
 
     /**
      * Get the primaryIpv6Prefix property: IPv6 Address Prefix.
-     *
+     * 
      * @return the primaryIpv6Prefix value.
      */
     public String primaryIpv6Prefix() {
@@ -84,7 +88,7 @@ public final class TerminalServerConfiguration extends TerminalServerPatchablePr
 
     /**
      * Set the primaryIpv6Prefix property: IPv6 Address Prefix.
-     *
+     * 
      * @param primaryIpv6Prefix the primaryIpv6Prefix value to set.
      * @return the TerminalServerConfiguration object itself.
      */
@@ -95,7 +99,7 @@ public final class TerminalServerConfiguration extends TerminalServerPatchablePr
 
     /**
      * Get the secondaryIpv4Prefix property: Secondary IPv4 Address Prefix.
-     *
+     * 
      * @return the secondaryIpv4Prefix value.
      */
     public String secondaryIpv4Prefix() {
@@ -104,7 +108,7 @@ public final class TerminalServerConfiguration extends TerminalServerPatchablePr
 
     /**
      * Set the secondaryIpv4Prefix property: Secondary IPv4 Address Prefix.
-     *
+     * 
      * @param secondaryIpv4Prefix the secondaryIpv4Prefix value to set.
      * @return the TerminalServerConfiguration object itself.
      */
@@ -115,7 +119,7 @@ public final class TerminalServerConfiguration extends TerminalServerPatchablePr
 
     /**
      * Get the secondaryIpv6Prefix property: Secondary IPv6 Address Prefix.
-     *
+     * 
      * @return the secondaryIpv6Prefix value.
      */
     public String secondaryIpv6Prefix() {
@@ -124,7 +128,7 @@ public final class TerminalServerConfiguration extends TerminalServerPatchablePr
 
     /**
      * Set the secondaryIpv6Prefix property: Secondary IPv6 Address Prefix.
-     *
+     * 
      * @param secondaryIpv6Prefix the secondaryIpv6Prefix value to set.
      * @return the TerminalServerConfiguration object itself.
      */
@@ -133,21 +137,27 @@ public final class TerminalServerConfiguration extends TerminalServerPatchablePr
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TerminalServerConfiguration withUsername(String username) {
         super.withUsername(username);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TerminalServerConfiguration withPassword(String password) {
         super.withPassword(password);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TerminalServerConfiguration withSerialNumber(String serialNumber) {
         super.withSerialNumber(serialNumber);
@@ -156,7 +166,7 @@ public final class TerminalServerConfiguration extends TerminalServerPatchablePr
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

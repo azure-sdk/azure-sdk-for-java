@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Network Rack SKU name. */
+/**
+ * Network Rack SKU name.
+ */
 public final class NetworkRackType extends ExpandableStringEnum<NetworkRackType> {
-    /** Static value Aggregate for NetworkRackType. */
+    /**
+     * Static value Aggregate for NetworkRackType.
+     */
     public static final NetworkRackType AGGREGATE = fromString("Aggregate");
 
-    /** Static value Compute for NetworkRackType. */
+    /**
+     * Static value Compute for NetworkRackType.
+     */
     public static final NetworkRackType COMPUTE = fromString("Compute");
 
-    /** Static value Combined for NetworkRackType. */
+    /**
+     * Static value Combined for NetworkRackType.
+     */
     public static final NetworkRackType COMBINED = fromString("Combined");
 
     /**
      * Creates a new instance of NetworkRackType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class NetworkRackType extends ExpandableStringEnum<NetworkRackType>
 
     /**
      * Creates or finds a NetworkRackType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding NetworkRackType.
      */
@@ -41,7 +49,7 @@ public final class NetworkRackType extends ExpandableStringEnum<NetworkRackType>
 
     /**
      * Gets known NetworkRackType values.
-     *
+     * 
      * @return known NetworkRackType values.
      */
     public static Collection<NetworkRackType> values() {

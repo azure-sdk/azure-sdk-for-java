@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Peering optionA properties. */
+/**
+ * Peering optionA properties.
+ */
 @Fluent
 public class L3OptionAProperties {
     /*
@@ -52,13 +54,15 @@ public class L3OptionAProperties {
     @JsonProperty(value = "egressAclId")
     private String egressAclId;
 
-    /** Creates an instance of L3OptionAProperties class. */
+    /**
+     * Creates an instance of L3OptionAProperties class.
+     */
     public L3OptionAProperties() {
     }
 
     /**
      * Get the mtu property: MTU to use for option A peering.
-     *
+     * 
      * @return the mtu value.
      */
     public Integer mtu() {
@@ -67,7 +71,7 @@ public class L3OptionAProperties {
 
     /**
      * Set the mtu property: MTU to use for option A peering.
-     *
+     * 
      * @param mtu the mtu value to set.
      * @return the L3OptionAProperties object itself.
      */
@@ -78,7 +82,7 @@ public class L3OptionAProperties {
 
     /**
      * Get the vlanId property: Vlan identifier. Example : 501.
-     *
+     * 
      * @return the vlanId value.
      */
     public Integer vlanId() {
@@ -87,7 +91,7 @@ public class L3OptionAProperties {
 
     /**
      * Set the vlanId property: Vlan identifier. Example : 501.
-     *
+     * 
      * @param vlanId the vlanId value to set.
      * @return the L3OptionAProperties object itself.
      */
@@ -98,7 +102,7 @@ public class L3OptionAProperties {
 
     /**
      * Get the fabricAsn property: Fabric ASN number. Example 65001.
-     *
+     * 
      * @return the fabricAsn value.
      */
     public Long fabricAsn() {
@@ -107,7 +111,7 @@ public class L3OptionAProperties {
 
     /**
      * Get the peerAsn property: Peer ASN number.Example : 28.
-     *
+     * 
      * @return the peerAsn value.
      */
     public Long peerAsn() {
@@ -116,7 +120,7 @@ public class L3OptionAProperties {
 
     /**
      * Set the peerAsn property: Peer ASN number.Example : 28.
-     *
+     * 
      * @param peerAsn the peerAsn value to set.
      * @return the L3OptionAProperties object itself.
      */
@@ -127,7 +131,7 @@ public class L3OptionAProperties {
 
     /**
      * Get the bfdConfiguration property: BFD configuration properties.
-     *
+     * 
      * @return the bfdConfiguration value.
      */
     public BfdConfiguration bfdConfiguration() {
@@ -136,7 +140,7 @@ public class L3OptionAProperties {
 
     /**
      * Set the bfdConfiguration property: BFD configuration properties.
-     *
+     * 
      * @param bfdConfiguration the bfdConfiguration value to set.
      * @return the L3OptionAProperties object itself.
      */
@@ -147,7 +151,7 @@ public class L3OptionAProperties {
 
     /**
      * Get the ingressAclId property: Ingress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @return the ingressAclId value.
      */
     public String ingressAclId() {
@@ -156,7 +160,7 @@ public class L3OptionAProperties {
 
     /**
      * Set the ingressAclId property: Ingress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @param ingressAclId the ingressAclId value to set.
      * @return the L3OptionAProperties object itself.
      */
@@ -167,7 +171,7 @@ public class L3OptionAProperties {
 
     /**
      * Get the egressAclId property: Egress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @return the egressAclId value.
      */
     public String egressAclId() {
@@ -176,7 +180,7 @@ public class L3OptionAProperties {
 
     /**
      * Set the egressAclId property: Egress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @param egressAclId the egressAclId value to set.
      * @return the L3OptionAProperties object itself.
      */
@@ -187,7 +191,7 @@ public class L3OptionAProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

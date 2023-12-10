@@ -7,22 +7,26 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Update version properties. */
+/**
+ * Update version properties.
+ */
 @Fluent
-public final class UpdateVersion {
+public class UpdateVersion {
     /*
      * Specify the version.
      */
     @JsonProperty(value = "version")
     private String version;
 
-    /** Creates an instance of UpdateVersion class. */
+    /**
+     * Creates an instance of UpdateVersion class.
+     */
     public UpdateVersion() {
     }
 
     /**
      * Get the version property: Specify the version.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -31,7 +35,7 @@ public final class UpdateVersion {
 
     /**
      * Set the version property: Specify the version.
-     *
+     * 
      * @param version the version value to set.
      * @return the UpdateVersion object itself.
      */
@@ -42,7 +46,7 @@ public final class UpdateVersion {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

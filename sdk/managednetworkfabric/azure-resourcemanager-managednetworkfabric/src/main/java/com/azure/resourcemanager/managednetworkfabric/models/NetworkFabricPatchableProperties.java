@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Network Fabric updatable properties. */
+/**
+ * Network Fabric updatable properties.
+ */
 @Fluent
 public class NetworkFabricPatchableProperties {
     /*
@@ -52,13 +54,15 @@ public class NetworkFabricPatchableProperties {
     @JsonProperty(value = "managementNetworkConfiguration")
     private ManagementNetworkConfigurationPatchableProperties managementNetworkConfiguration;
 
-    /** Creates an instance of NetworkFabricPatchableProperties class. */
+    /**
+     * Creates an instance of NetworkFabricPatchableProperties class.
+     */
     public NetworkFabricPatchableProperties() {
     }
 
     /**
      * Get the rackCount property: Number of compute racks associated to Network Fabric.
-     *
+     * 
      * @return the rackCount value.
      */
     public Integer rackCount() {
@@ -67,7 +71,7 @@ public class NetworkFabricPatchableProperties {
 
     /**
      * Set the rackCount property: Number of compute racks associated to Network Fabric.
-     *
+     * 
      * @param rackCount the rackCount value to set.
      * @return the NetworkFabricPatchableProperties object itself.
      */
@@ -78,7 +82,7 @@ public class NetworkFabricPatchableProperties {
 
     /**
      * Get the serverCountPerRack property: Number of servers.Possible values are from 1-16.
-     *
+     * 
      * @return the serverCountPerRack value.
      */
     public Integer serverCountPerRack() {
@@ -87,7 +91,7 @@ public class NetworkFabricPatchableProperties {
 
     /**
      * Set the serverCountPerRack property: Number of servers.Possible values are from 1-16.
-     *
+     * 
      * @param serverCountPerRack the serverCountPerRack value to set.
      * @return the NetworkFabricPatchableProperties object itself.
      */
@@ -98,7 +102,7 @@ public class NetworkFabricPatchableProperties {
 
     /**
      * Get the ipv4Prefix property: IPv4Prefix for Management Network. Example: 10.1.0.0/19.
-     *
+     * 
      * @return the ipv4Prefix value.
      */
     public String ipv4Prefix() {
@@ -107,7 +111,7 @@ public class NetworkFabricPatchableProperties {
 
     /**
      * Set the ipv4Prefix property: IPv4Prefix for Management Network. Example: 10.1.0.0/19.
-     *
+     * 
      * @param ipv4Prefix the ipv4Prefix value to set.
      * @return the NetworkFabricPatchableProperties object itself.
      */
@@ -118,7 +122,7 @@ public class NetworkFabricPatchableProperties {
 
     /**
      * Get the ipv6Prefix property: IPv6Prefix for Management Network. Example: 3FFE:FFFF:0:CD40::/59.
-     *
+     * 
      * @return the ipv6Prefix value.
      */
     public String ipv6Prefix() {
@@ -127,7 +131,7 @@ public class NetworkFabricPatchableProperties {
 
     /**
      * Set the ipv6Prefix property: IPv6Prefix for Management Network. Example: 3FFE:FFFF:0:CD40::/59.
-     *
+     * 
      * @param ipv6Prefix the ipv6Prefix value to set.
      * @return the NetworkFabricPatchableProperties object itself.
      */
@@ -138,7 +142,7 @@ public class NetworkFabricPatchableProperties {
 
     /**
      * Get the fabricAsn property: ASN of CE devices for CE/PE connectivity.
-     *
+     * 
      * @return the fabricAsn value.
      */
     public Long fabricAsn() {
@@ -147,7 +151,7 @@ public class NetworkFabricPatchableProperties {
 
     /**
      * Set the fabricAsn property: ASN of CE devices for CE/PE connectivity.
-     *
+     * 
      * @param fabricAsn the fabricAsn value to set.
      * @return the NetworkFabricPatchableProperties object itself.
      */
@@ -159,7 +163,7 @@ public class NetworkFabricPatchableProperties {
     /**
      * Get the terminalServerConfiguration property: Network and credentials configuration already applied to terminal
      * server.
-     *
+     * 
      * @return the terminalServerConfiguration value.
      */
     public NetworkFabricPatchablePropertiesTerminalServerConfiguration terminalServerConfiguration() {
@@ -169,7 +173,7 @@ public class NetworkFabricPatchableProperties {
     /**
      * Set the terminalServerConfiguration property: Network and credentials configuration already applied to terminal
      * server.
-     *
+     * 
      * @param terminalServerConfiguration the terminalServerConfiguration value to set.
      * @return the NetworkFabricPatchableProperties object itself.
      */
@@ -181,7 +185,7 @@ public class NetworkFabricPatchableProperties {
 
     /**
      * Get the managementNetworkConfiguration property: Configuration to be used to setup the management network.
-     *
+     * 
      * @return the managementNetworkConfiguration value.
      */
     public ManagementNetworkConfigurationPatchableProperties managementNetworkConfiguration() {
@@ -190,7 +194,7 @@ public class NetworkFabricPatchableProperties {
 
     /**
      * Set the managementNetworkConfiguration property: Configuration to be used to setup the management network.
-     *
+     * 
      * @param managementNetworkConfiguration the managementNetworkConfiguration value to set.
      * @return the NetworkFabricPatchableProperties object itself.
      */
@@ -202,7 +206,7 @@ public class NetworkFabricPatchableProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -14,7 +14,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Defines the Neighbor Group. */
+/**
+ * Defines the Neighbor Group.
+ */
 @Fluent
 public final class NeighborGroupInner extends Resource {
     /*
@@ -29,13 +31,15 @@ public final class NeighborGroupInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of NeighborGroupInner class. */
+    /**
+     * Creates an instance of NeighborGroupInner class.
+     */
     public NeighborGroupInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private NeighborGroupProperties innerProperties() {
@@ -44,21 +48,25 @@ public final class NeighborGroupInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NeighborGroupInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NeighborGroupInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -67,7 +75,7 @@ public final class NeighborGroupInner extends Resource {
 
     /**
      * Get the networkTapIds property: List of NetworkTap IDs where neighbor group is associated.
-     *
+     * 
      * @return the networkTapIds value.
      */
     public List<String> networkTapIds() {
@@ -76,7 +84,7 @@ public final class NeighborGroupInner extends Resource {
 
     /**
      * Get the networkTapRuleIds property: List of Network Tap Rule IDs where neighbor group is associated.
-     *
+     * 
      * @return the networkTapRuleIds value.
      */
     public List<String> networkTapRuleIds() {
@@ -85,7 +93,7 @@ public final class NeighborGroupInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -94,7 +102,7 @@ public final class NeighborGroupInner extends Resource {
 
     /**
      * Get the destination property: An array of destination IPv4 Addresses or IPv6 Addresses.
-     *
+     * 
      * @return the destination value.
      */
     public NeighborGroupDestination destination() {
@@ -103,7 +111,7 @@ public final class NeighborGroupInner extends Resource {
 
     /**
      * Set the destination property: An array of destination IPv4 Addresses or IPv6 Addresses.
-     *
+     * 
      * @param destination the destination value to set.
      * @return the NeighborGroupInner object itself.
      */
@@ -117,7 +125,7 @@ public final class NeighborGroupInner extends Resource {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -126,7 +134,7 @@ public final class NeighborGroupInner extends Resource {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the NeighborGroupInner object itself.
      */
@@ -140,15 +148,13 @@ public final class NeighborGroupInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model NeighborGroupInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model NeighborGroupInner"));
         } else {
             innerProperties().validate();
         }

@@ -16,7 +16,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The IP Prefix resource definition. */
+/**
+ * The IP Prefix resource definition.
+ */
 @Fluent
 public final class IpPrefixInner extends Resource {
     /*
@@ -31,13 +33,15 @@ public final class IpPrefixInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of IpPrefixInner class. */
+    /**
+     * Creates an instance of IpPrefixInner class.
+     */
     public IpPrefixInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private IpPrefixProperties innerProperties() {
@@ -46,21 +50,25 @@ public final class IpPrefixInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IpPrefixInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IpPrefixInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -69,7 +77,7 @@ public final class IpPrefixInner extends Resource {
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -78,7 +86,7 @@ public final class IpPrefixInner extends Resource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -87,7 +95,7 @@ public final class IpPrefixInner extends Resource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -96,7 +104,7 @@ public final class IpPrefixInner extends Resource {
 
     /**
      * Get the ipPrefixRules property: The list of IP Prefix Rules.
-     *
+     * 
      * @return the ipPrefixRules value.
      */
     public List<IpPrefixRule> ipPrefixRules() {
@@ -105,7 +113,7 @@ public final class IpPrefixInner extends Resource {
 
     /**
      * Set the ipPrefixRules property: The list of IP Prefix Rules.
-     *
+     * 
      * @param ipPrefixRules the ipPrefixRules value to set.
      * @return the IpPrefixInner object itself.
      */
@@ -119,7 +127,7 @@ public final class IpPrefixInner extends Resource {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -128,7 +136,7 @@ public final class IpPrefixInner extends Resource {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the IpPrefixInner object itself.
      */
@@ -142,14 +150,13 @@ public final class IpPrefixInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model IpPrefixInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model IpPrefixInner"));
         } else {
             innerProperties().validate();
         }

@@ -12,7 +12,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.NpbStaticRouteConfi
 import com.azure.resourcemanager.managednetworkfabric.models.OptionBLayer3Configuration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Network to Network Interconnect patchable properties. */
+/**
+ * Network to Network Interconnect patchable properties.
+ */
 @Fluent
 public final class NetworkToNetworkInterconnectPatchableProperties {
     /*
@@ -57,13 +59,15 @@ public final class NetworkToNetworkInterconnectPatchableProperties {
     @JsonProperty(value = "ingressAclId")
     private String ingressAclId;
 
-    /** Creates an instance of NetworkToNetworkInterconnectPatchableProperties class. */
+    /**
+     * Creates an instance of NetworkToNetworkInterconnectPatchableProperties class.
+     */
     public NetworkToNetworkInterconnectPatchableProperties() {
     }
 
     /**
      * Get the layer2Configuration property: Common properties for Layer2Configuration.
-     *
+     * 
      * @return the layer2Configuration value.
      */
     public Layer2Configuration layer2Configuration() {
@@ -72,19 +76,19 @@ public final class NetworkToNetworkInterconnectPatchableProperties {
 
     /**
      * Set the layer2Configuration property: Common properties for Layer2Configuration.
-     *
+     * 
      * @param layer2Configuration the layer2Configuration value to set.
      * @return the NetworkToNetworkInterconnectPatchableProperties object itself.
      */
-    public NetworkToNetworkInterconnectPatchableProperties withLayer2Configuration(
-        Layer2Configuration layer2Configuration) {
+    public NetworkToNetworkInterconnectPatchableProperties
+        withLayer2Configuration(Layer2Configuration layer2Configuration) {
         this.layer2Configuration = layer2Configuration;
         return this;
     }
 
     /**
      * Get the optionBLayer3Configuration property: Common properties for Layer3Configuration.
-     *
+     * 
      * @return the optionBLayer3Configuration value.
      */
     public OptionBLayer3Configuration optionBLayer3Configuration() {
@@ -93,19 +97,19 @@ public final class NetworkToNetworkInterconnectPatchableProperties {
 
     /**
      * Set the optionBLayer3Configuration property: Common properties for Layer3Configuration.
-     *
+     * 
      * @param optionBLayer3Configuration the optionBLayer3Configuration value to set.
      * @return the NetworkToNetworkInterconnectPatchableProperties object itself.
      */
-    public NetworkToNetworkInterconnectPatchableProperties withOptionBLayer3Configuration(
-        OptionBLayer3Configuration optionBLayer3Configuration) {
+    public NetworkToNetworkInterconnectPatchableProperties
+        withOptionBLayer3Configuration(OptionBLayer3Configuration optionBLayer3Configuration) {
         this.optionBLayer3Configuration = optionBLayer3Configuration;
         return this;
     }
 
     /**
      * Get the npbStaticRouteConfiguration property: NPB Static Route Configuration properties.
-     *
+     * 
      * @return the npbStaticRouteConfiguration value.
      */
     public NpbStaticRouteConfiguration npbStaticRouteConfiguration() {
@@ -114,19 +118,19 @@ public final class NetworkToNetworkInterconnectPatchableProperties {
 
     /**
      * Set the npbStaticRouteConfiguration property: NPB Static Route Configuration properties.
-     *
+     * 
      * @param npbStaticRouteConfiguration the npbStaticRouteConfiguration value to set.
      * @return the NetworkToNetworkInterconnectPatchableProperties object itself.
      */
-    public NetworkToNetworkInterconnectPatchableProperties withNpbStaticRouteConfiguration(
-        NpbStaticRouteConfiguration npbStaticRouteConfiguration) {
+    public NetworkToNetworkInterconnectPatchableProperties
+        withNpbStaticRouteConfiguration(NpbStaticRouteConfiguration npbStaticRouteConfiguration) {
         this.npbStaticRouteConfiguration = npbStaticRouteConfiguration;
         return this;
     }
 
     /**
      * Get the importRoutePolicy property: Import Route Policy information.
-     *
+     * 
      * @return the importRoutePolicy value.
      */
     public ImportRoutePolicyInformation importRoutePolicy() {
@@ -135,19 +139,19 @@ public final class NetworkToNetworkInterconnectPatchableProperties {
 
     /**
      * Set the importRoutePolicy property: Import Route Policy information.
-     *
+     * 
      * @param importRoutePolicy the importRoutePolicy value to set.
      * @return the NetworkToNetworkInterconnectPatchableProperties object itself.
      */
-    public NetworkToNetworkInterconnectPatchableProperties withImportRoutePolicy(
-        ImportRoutePolicyInformation importRoutePolicy) {
+    public NetworkToNetworkInterconnectPatchableProperties
+        withImportRoutePolicy(ImportRoutePolicyInformation importRoutePolicy) {
         this.importRoutePolicy = importRoutePolicy;
         return this;
     }
 
     /**
      * Get the exportRoutePolicy property: Export Route Policy information.
-     *
+     * 
      * @return the exportRoutePolicy value.
      */
     public ExportRoutePolicyInformation exportRoutePolicy() {
@@ -156,19 +160,19 @@ public final class NetworkToNetworkInterconnectPatchableProperties {
 
     /**
      * Set the exportRoutePolicy property: Export Route Policy information.
-     *
+     * 
      * @param exportRoutePolicy the exportRoutePolicy value to set.
      * @return the NetworkToNetworkInterconnectPatchableProperties object itself.
      */
-    public NetworkToNetworkInterconnectPatchableProperties withExportRoutePolicy(
-        ExportRoutePolicyInformation exportRoutePolicy) {
+    public NetworkToNetworkInterconnectPatchableProperties
+        withExportRoutePolicy(ExportRoutePolicyInformation exportRoutePolicy) {
         this.exportRoutePolicy = exportRoutePolicy;
         return this;
     }
 
     /**
      * Get the egressAclId property: Egress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @return the egressAclId value.
      */
     public String egressAclId() {
@@ -177,7 +181,7 @@ public final class NetworkToNetworkInterconnectPatchableProperties {
 
     /**
      * Set the egressAclId property: Egress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @param egressAclId the egressAclId value to set.
      * @return the NetworkToNetworkInterconnectPatchableProperties object itself.
      */
@@ -188,7 +192,7 @@ public final class NetworkToNetworkInterconnectPatchableProperties {
 
     /**
      * Get the ingressAclId property: Ingress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @return the ingressAclId value.
      */
     public String ingressAclId() {
@@ -197,7 +201,7 @@ public final class NetworkToNetworkInterconnectPatchableProperties {
 
     /**
      * Set the ingressAclId property: Ingress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @param ingressAclId the ingressAclId value to set.
      * @return the NetworkToNetworkInterconnectPatchableProperties object itself.
      */
@@ -208,7 +212,7 @@ public final class NetworkToNetworkInterconnectPatchableProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

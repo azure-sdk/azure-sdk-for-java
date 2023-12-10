@@ -16,7 +16,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.RedistributeConnect
 import com.azure.resourcemanager.managednetworkfabric.models.RedistributeStaticRoutes;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** L3 Isolation Domain Properties defines the properties of the resource. */
+/**
+ * L3 Isolation Domain Properties defines the properties of the resource.
+ */
 @Fluent
 public final class L3IsolationDomainProperties extends AnnotationResource {
     /*
@@ -67,13 +69,15 @@ public final class L3IsolationDomainProperties extends AnnotationResource {
     @JsonProperty(value = "connectedSubnetRoutePolicy")
     private ConnectedSubnetRoutePolicy connectedSubnetRoutePolicy;
 
-    /** Creates an instance of L3IsolationDomainProperties class. */
+    /**
+     * Creates an instance of L3IsolationDomainProperties class.
+     */
     public L3IsolationDomainProperties() {
     }
 
     /**
      * Get the networkFabricId property: ARM Resource ID of the Network Fabric.
-     *
+     * 
      * @return the networkFabricId value.
      */
     public String networkFabricId() {
@@ -82,7 +86,7 @@ public final class L3IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Set the networkFabricId property: ARM Resource ID of the Network Fabric.
-     *
+     * 
      * @param networkFabricId the networkFabricId value to set.
      * @return the L3IsolationDomainProperties object itself.
      */
@@ -93,7 +97,7 @@ public final class L3IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -102,7 +106,7 @@ public final class L3IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -111,7 +115,7 @@ public final class L3IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -120,7 +124,7 @@ public final class L3IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Get the redistributeConnectedSubnets property: Advertise Connected Subnets. Ex: "True" | "False".
-     *
+     * 
      * @return the redistributeConnectedSubnets value.
      */
     public RedistributeConnectedSubnets redistributeConnectedSubnets() {
@@ -129,19 +133,19 @@ public final class L3IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Set the redistributeConnectedSubnets property: Advertise Connected Subnets. Ex: "True" | "False".
-     *
+     * 
      * @param redistributeConnectedSubnets the redistributeConnectedSubnets value to set.
      * @return the L3IsolationDomainProperties object itself.
      */
-    public L3IsolationDomainProperties withRedistributeConnectedSubnets(
-        RedistributeConnectedSubnets redistributeConnectedSubnets) {
+    public L3IsolationDomainProperties
+        withRedistributeConnectedSubnets(RedistributeConnectedSubnets redistributeConnectedSubnets) {
         this.redistributeConnectedSubnets = redistributeConnectedSubnets;
         return this;
     }
 
     /**
      * Get the redistributeStaticRoutes property: Advertise Static Routes. Ex: "True" | "False".
-     *
+     * 
      * @return the redistributeStaticRoutes value.
      */
     public RedistributeStaticRoutes redistributeStaticRoutes() {
@@ -150,7 +154,7 @@ public final class L3IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Set the redistributeStaticRoutes property: Advertise Static Routes. Ex: "True" | "False".
-     *
+     * 
      * @param redistributeStaticRoutes the redistributeStaticRoutes value to set.
      * @return the L3IsolationDomainProperties object itself.
      */
@@ -161,7 +165,7 @@ public final class L3IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Get the aggregateRouteConfiguration property: Aggregate route configurations.
-     *
+     * 
      * @return the aggregateRouteConfiguration value.
      */
     public AggregateRouteConfiguration aggregateRouteConfiguration() {
@@ -170,19 +174,19 @@ public final class L3IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Set the aggregateRouteConfiguration property: Aggregate route configurations.
-     *
+     * 
      * @param aggregateRouteConfiguration the aggregateRouteConfiguration value to set.
      * @return the L3IsolationDomainProperties object itself.
      */
-    public L3IsolationDomainProperties withAggregateRouteConfiguration(
-        AggregateRouteConfiguration aggregateRouteConfiguration) {
+    public L3IsolationDomainProperties
+        withAggregateRouteConfiguration(AggregateRouteConfiguration aggregateRouteConfiguration) {
         this.aggregateRouteConfiguration = aggregateRouteConfiguration;
         return this;
     }
 
     /**
      * Get the connectedSubnetRoutePolicy property: Connected Subnet RoutePolicy.
-     *
+     * 
      * @return the connectedSubnetRoutePolicy value.
      */
     public ConnectedSubnetRoutePolicy connectedSubnetRoutePolicy() {
@@ -191,17 +195,19 @@ public final class L3IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Set the connectedSubnetRoutePolicy property: Connected Subnet RoutePolicy.
-     *
+     * 
      * @param connectedSubnetRoutePolicy the connectedSubnetRoutePolicy value to set.
      * @return the L3IsolationDomainProperties object itself.
      */
-    public L3IsolationDomainProperties withConnectedSubnetRoutePolicy(
-        ConnectedSubnetRoutePolicy connectedSubnetRoutePolicy) {
+    public L3IsolationDomainProperties
+        withConnectedSubnetRoutePolicy(ConnectedSubnetRoutePolicy connectedSubnetRoutePolicy) {
         this.connectedSubnetRoutePolicy = connectedSubnetRoutePolicy;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public L3IsolationDomainProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -210,17 +216,15 @@ public final class L3IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (networkFabricId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property networkFabricId in model L3IsolationDomainProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property networkFabricId in model L3IsolationDomainProperties"));
         }
         if (aggregateRouteConfiguration() != null) {
             aggregateRouteConfiguration().validate();

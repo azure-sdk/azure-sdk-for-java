@@ -8,23 +8,33 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Administrative state. */
+/**
+ * Administrative state.
+ */
 public final class DeviceAdministrativeState extends ExpandableStringEnum<DeviceAdministrativeState> {
-    /** Static value RMA for DeviceAdministrativeState. */
+    /**
+     * Static value RMA for DeviceAdministrativeState.
+     */
     public static final DeviceAdministrativeState RMA = fromString("RMA");
 
-    /** Static value Resync for DeviceAdministrativeState. */
+    /**
+     * Static value Resync for DeviceAdministrativeState.
+     */
     public static final DeviceAdministrativeState RESYNC = fromString("Resync");
 
-    /** Static value GracefulQuarantine for DeviceAdministrativeState. */
+    /**
+     * Static value GracefulQuarantine for DeviceAdministrativeState.
+     */
     public static final DeviceAdministrativeState GRACEFUL_QUARANTINE = fromString("GracefulQuarantine");
 
-    /** Static value Quarantine for DeviceAdministrativeState. */
+    /**
+     * Static value Quarantine for DeviceAdministrativeState.
+     */
     public static final DeviceAdministrativeState QUARANTINE = fromString("Quarantine");
 
     /**
      * Creates a new instance of DeviceAdministrativeState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -33,7 +43,7 @@ public final class DeviceAdministrativeState extends ExpandableStringEnum<Device
 
     /**
      * Creates or finds a DeviceAdministrativeState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding DeviceAdministrativeState.
      */
@@ -44,7 +54,7 @@ public final class DeviceAdministrativeState extends ExpandableStringEnum<Device
 
     /**
      * Gets known DeviceAdministrativeState values.
-     *
+     * 
      * @return known DeviceAdministrativeState values.
      */
     public static Collection<DeviceAdministrativeState> values() {

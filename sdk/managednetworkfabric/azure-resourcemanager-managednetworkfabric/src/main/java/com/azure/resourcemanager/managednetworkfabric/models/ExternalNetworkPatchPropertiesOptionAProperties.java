@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** option A properties object. */
+/**
+ * option A properties object.
+ */
 @Fluent
 public final class ExternalNetworkPatchPropertiesOptionAProperties extends Layer3IpPrefixProperties {
     /*
@@ -52,13 +54,15 @@ public final class ExternalNetworkPatchPropertiesOptionAProperties extends Layer
     @JsonProperty(value = "egressAclId")
     private String egressAclId;
 
-    /** Creates an instance of ExternalNetworkPatchPropertiesOptionAProperties class. */
+    /**
+     * Creates an instance of ExternalNetworkPatchPropertiesOptionAProperties class.
+     */
     public ExternalNetworkPatchPropertiesOptionAProperties() {
     }
 
     /**
      * Get the mtu property: MTU to use for option A peering.
-     *
+     * 
      * @return the mtu value.
      */
     public Integer mtu() {
@@ -67,7 +71,7 @@ public final class ExternalNetworkPatchPropertiesOptionAProperties extends Layer
 
     /**
      * Set the mtu property: MTU to use for option A peering.
-     *
+     * 
      * @param mtu the mtu value to set.
      * @return the ExternalNetworkPatchPropertiesOptionAProperties object itself.
      */
@@ -78,7 +82,7 @@ public final class ExternalNetworkPatchPropertiesOptionAProperties extends Layer
 
     /**
      * Get the vlanId property: Vlan identifier. Example : 501.
-     *
+     * 
      * @return the vlanId value.
      */
     public Integer vlanId() {
@@ -87,7 +91,7 @@ public final class ExternalNetworkPatchPropertiesOptionAProperties extends Layer
 
     /**
      * Set the vlanId property: Vlan identifier. Example : 501.
-     *
+     * 
      * @param vlanId the vlanId value to set.
      * @return the ExternalNetworkPatchPropertiesOptionAProperties object itself.
      */
@@ -98,7 +102,7 @@ public final class ExternalNetworkPatchPropertiesOptionAProperties extends Layer
 
     /**
      * Get the fabricAsn property: Fabric ASN number. Example 65001.
-     *
+     * 
      * @return the fabricAsn value.
      */
     public Long fabricAsn() {
@@ -107,7 +111,7 @@ public final class ExternalNetworkPatchPropertiesOptionAProperties extends Layer
 
     /**
      * Get the peerAsn property: Peer ASN number.Example : 28.
-     *
+     * 
      * @return the peerAsn value.
      */
     public Long peerAsn() {
@@ -116,7 +120,7 @@ public final class ExternalNetworkPatchPropertiesOptionAProperties extends Layer
 
     /**
      * Set the peerAsn property: Peer ASN number.Example : 28.
-     *
+     * 
      * @param peerAsn the peerAsn value to set.
      * @return the ExternalNetworkPatchPropertiesOptionAProperties object itself.
      */
@@ -127,7 +131,7 @@ public final class ExternalNetworkPatchPropertiesOptionAProperties extends Layer
 
     /**
      * Get the bfdConfiguration property: BFD configuration properties.
-     *
+     * 
      * @return the bfdConfiguration value.
      */
     public BfdConfiguration bfdConfiguration() {
@@ -136,7 +140,7 @@ public final class ExternalNetworkPatchPropertiesOptionAProperties extends Layer
 
     /**
      * Set the bfdConfiguration property: BFD configuration properties.
-     *
+     * 
      * @param bfdConfiguration the bfdConfiguration value to set.
      * @return the ExternalNetworkPatchPropertiesOptionAProperties object itself.
      */
@@ -147,7 +151,7 @@ public final class ExternalNetworkPatchPropertiesOptionAProperties extends Layer
 
     /**
      * Get the ingressAclId property: Ingress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @return the ingressAclId value.
      */
     public String ingressAclId() {
@@ -156,7 +160,7 @@ public final class ExternalNetworkPatchPropertiesOptionAProperties extends Layer
 
     /**
      * Set the ingressAclId property: Ingress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @param ingressAclId the ingressAclId value to set.
      * @return the ExternalNetworkPatchPropertiesOptionAProperties object itself.
      */
@@ -167,7 +171,7 @@ public final class ExternalNetworkPatchPropertiesOptionAProperties extends Layer
 
     /**
      * Get the egressAclId property: Egress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @return the egressAclId value.
      */
     public String egressAclId() {
@@ -176,7 +180,7 @@ public final class ExternalNetworkPatchPropertiesOptionAProperties extends Layer
 
     /**
      * Set the egressAclId property: Egress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @param egressAclId the egressAclId value to set.
      * @return the ExternalNetworkPatchPropertiesOptionAProperties object itself.
      */
@@ -185,28 +189,36 @@ public final class ExternalNetworkPatchPropertiesOptionAProperties extends Layer
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ExternalNetworkPatchPropertiesOptionAProperties withPrimaryIpv4Prefix(String primaryIpv4Prefix) {
         super.withPrimaryIpv4Prefix(primaryIpv4Prefix);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ExternalNetworkPatchPropertiesOptionAProperties withPrimaryIpv6Prefix(String primaryIpv6Prefix) {
         super.withPrimaryIpv6Prefix(primaryIpv6Prefix);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ExternalNetworkPatchPropertiesOptionAProperties withSecondaryIpv4Prefix(String secondaryIpv4Prefix) {
         super.withSecondaryIpv4Prefix(secondaryIpv4Prefix);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ExternalNetworkPatchPropertiesOptionAProperties withSecondaryIpv6Prefix(String secondaryIpv6Prefix) {
         super.withSecondaryIpv6Prefix(secondaryIpv6Prefix);
@@ -215,7 +227,7 @@ public final class ExternalNetworkPatchPropertiesOptionAProperties extends Layer
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

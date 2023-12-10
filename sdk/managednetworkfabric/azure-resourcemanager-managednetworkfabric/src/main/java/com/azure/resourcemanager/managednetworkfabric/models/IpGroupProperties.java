@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** IP Group properties. */
+/**
+ * IP Group properties.
+ */
 @Fluent
 public final class IpGroupProperties {
     /*
@@ -29,13 +31,15 @@ public final class IpGroupProperties {
     @JsonProperty(value = "ipPrefixes")
     private List<String> ipPrefixes;
 
-    /** Creates an instance of IpGroupProperties class. */
+    /**
+     * Creates an instance of IpGroupProperties class.
+     */
     public IpGroupProperties() {
     }
 
     /**
      * Get the name property: IP Group name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -44,7 +48,7 @@ public final class IpGroupProperties {
 
     /**
      * Set the name property: IP Group name.
-     *
+     * 
      * @param name the name value to set.
      * @return the IpGroupProperties object itself.
      */
@@ -55,7 +59,7 @@ public final class IpGroupProperties {
 
     /**
      * Get the ipAddressType property: IP Address type.
-     *
+     * 
      * @return the ipAddressType value.
      */
     public IpAddressType ipAddressType() {
@@ -64,7 +68,7 @@ public final class IpGroupProperties {
 
     /**
      * Set the ipAddressType property: IP Address type.
-     *
+     * 
      * @param ipAddressType the ipAddressType value to set.
      * @return the IpGroupProperties object itself.
      */
@@ -75,7 +79,7 @@ public final class IpGroupProperties {
 
     /**
      * Get the ipPrefixes property: List of IP Prefixes.
-     *
+     * 
      * @return the ipPrefixes value.
      */
     public List<String> ipPrefixes() {
@@ -84,7 +88,7 @@ public final class IpGroupProperties {
 
     /**
      * Set the ipPrefixes property: List of IP Prefixes.
-     *
+     * 
      * @param ipPrefixes the ipPrefixes value to set.
      * @return the IpGroupProperties object itself.
      */
@@ -95,7 +99,7 @@ public final class IpGroupProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

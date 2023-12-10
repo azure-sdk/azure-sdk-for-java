@@ -13,7 +13,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The Internet Gateway resource definition. */
+/**
+ * The Internet Gateway resource definition.
+ */
 @Fluent
 public final class InternetGatewayInner extends Resource {
     /*
@@ -28,13 +30,15 @@ public final class InternetGatewayInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of InternetGatewayInner class. */
+    /**
+     * Creates an instance of InternetGatewayInner class.
+     */
     public InternetGatewayInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private InternetGatewayProperties innerProperties() {
@@ -43,21 +47,25 @@ public final class InternetGatewayInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternetGatewayInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternetGatewayInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -66,7 +74,7 @@ public final class InternetGatewayInner extends Resource {
 
     /**
      * Get the ipv4Address property: IPv4 Address of Internet Gateway.
-     *
+     * 
      * @return the ipv4Address value.
      */
     public String ipv4Address() {
@@ -75,7 +83,7 @@ public final class InternetGatewayInner extends Resource {
 
     /**
      * Get the port property: Port number of Internet Gateway.
-     *
+     * 
      * @return the port value.
      */
     public Integer port() {
@@ -84,7 +92,7 @@ public final class InternetGatewayInner extends Resource {
 
     /**
      * Get the type property: Gateway Type of the resource.
-     *
+     * 
      * @return the type value.
      */
     public GatewayType typePropertiesType() {
@@ -93,7 +101,7 @@ public final class InternetGatewayInner extends Resource {
 
     /**
      * Set the type property: Gateway Type of the resource.
-     *
+     * 
      * @param type the type value to set.
      * @return the InternetGatewayInner object itself.
      */
@@ -107,7 +115,7 @@ public final class InternetGatewayInner extends Resource {
 
     /**
      * Get the networkFabricControllerId property: ARM Resource ID of the Network Fabric Controller.
-     *
+     * 
      * @return the networkFabricControllerId value.
      */
     public String networkFabricControllerId() {
@@ -116,7 +124,7 @@ public final class InternetGatewayInner extends Resource {
 
     /**
      * Set the networkFabricControllerId property: ARM Resource ID of the Network Fabric Controller.
-     *
+     * 
      * @param networkFabricControllerId the networkFabricControllerId value to set.
      * @return the InternetGatewayInner object itself.
      */
@@ -130,7 +138,7 @@ public final class InternetGatewayInner extends Resource {
 
     /**
      * Get the provisioningState property: Provisioning state of resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -139,7 +147,7 @@ public final class InternetGatewayInner extends Resource {
 
     /**
      * Get the internetGatewayRuleId property: ARM Resource ID of the Internet Gateway Rule.
-     *
+     * 
      * @return the internetGatewayRuleId value.
      */
     public String internetGatewayRuleId() {
@@ -148,7 +156,7 @@ public final class InternetGatewayInner extends Resource {
 
     /**
      * Set the internetGatewayRuleId property: ARM Resource ID of the Internet Gateway Rule.
-     *
+     * 
      * @param internetGatewayRuleId the internetGatewayRuleId value to set.
      * @return the InternetGatewayInner object itself.
      */
@@ -162,7 +170,7 @@ public final class InternetGatewayInner extends Resource {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -171,7 +179,7 @@ public final class InternetGatewayInner extends Resource {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the InternetGatewayInner object itself.
      */
@@ -185,15 +193,13 @@ public final class InternetGatewayInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model InternetGatewayInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model InternetGatewayInner"));
         } else {
             innerProperties().validate();
         }

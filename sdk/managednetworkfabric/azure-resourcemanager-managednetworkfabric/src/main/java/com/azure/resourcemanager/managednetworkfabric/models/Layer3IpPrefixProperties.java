@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Layer 3 primary and secondary IP Address prefixes. */
+/**
+ * Layer 3 primary and secondary IP Address prefixes.
+ */
 @Fluent
 public class Layer3IpPrefixProperties {
     /*
@@ -34,13 +36,15 @@ public class Layer3IpPrefixProperties {
     @JsonProperty(value = "secondaryIpv6Prefix")
     private String secondaryIpv6Prefix;
 
-    /** Creates an instance of Layer3IpPrefixProperties class. */
+    /**
+     * Creates an instance of Layer3IpPrefixProperties class.
+     */
     public Layer3IpPrefixProperties() {
     }
 
     /**
      * Get the primaryIpv4Prefix property: IPv4 Address Prefix.
-     *
+     * 
      * @return the primaryIpv4Prefix value.
      */
     public String primaryIpv4Prefix() {
@@ -49,7 +53,7 @@ public class Layer3IpPrefixProperties {
 
     /**
      * Set the primaryIpv4Prefix property: IPv4 Address Prefix.
-     *
+     * 
      * @param primaryIpv4Prefix the primaryIpv4Prefix value to set.
      * @return the Layer3IpPrefixProperties object itself.
      */
@@ -60,7 +64,7 @@ public class Layer3IpPrefixProperties {
 
     /**
      * Get the primaryIpv6Prefix property: IPv6 Address Prefix.
-     *
+     * 
      * @return the primaryIpv6Prefix value.
      */
     public String primaryIpv6Prefix() {
@@ -69,7 +73,7 @@ public class Layer3IpPrefixProperties {
 
     /**
      * Set the primaryIpv6Prefix property: IPv6 Address Prefix.
-     *
+     * 
      * @param primaryIpv6Prefix the primaryIpv6Prefix value to set.
      * @return the Layer3IpPrefixProperties object itself.
      */
@@ -80,7 +84,7 @@ public class Layer3IpPrefixProperties {
 
     /**
      * Get the secondaryIpv4Prefix property: Secondary IPv4 Address Prefix.
-     *
+     * 
      * @return the secondaryIpv4Prefix value.
      */
     public String secondaryIpv4Prefix() {
@@ -89,7 +93,7 @@ public class Layer3IpPrefixProperties {
 
     /**
      * Set the secondaryIpv4Prefix property: Secondary IPv4 Address Prefix.
-     *
+     * 
      * @param secondaryIpv4Prefix the secondaryIpv4Prefix value to set.
      * @return the Layer3IpPrefixProperties object itself.
      */
@@ -100,7 +104,7 @@ public class Layer3IpPrefixProperties {
 
     /**
      * Get the secondaryIpv6Prefix property: Secondary IPv6 Address Prefix.
-     *
+     * 
      * @return the secondaryIpv6Prefix value.
      */
     public String secondaryIpv6Prefix() {
@@ -109,7 +113,7 @@ public class Layer3IpPrefixProperties {
 
     /**
      * Set the secondaryIpv6Prefix property: Secondary IPv6 Address Prefix.
-     *
+     * 
      * @param secondaryIpv6Prefix the secondaryIpv6Prefix value to set.
      * @return the Layer3IpPrefixProperties object itself.
      */
@@ -120,7 +124,7 @@ public class Layer3IpPrefixProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

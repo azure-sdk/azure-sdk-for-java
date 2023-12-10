@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Polling type. */
+/**
+ * Polling type.
+ */
 public final class PollingType extends ExpandableStringEnum<PollingType> {
-    /** Static value Pull for PollingType. */
+    /**
+     * Static value Pull for PollingType.
+     */
     public static final PollingType PULL = fromString("Pull");
 
-    /** Static value Push for PollingType. */
+    /**
+     * Static value Push for PollingType.
+     */
     public static final PollingType PUSH = fromString("Push");
 
     /**
      * Creates a new instance of PollingType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class PollingType extends ExpandableStringEnum<PollingType> {
 
     /**
      * Creates or finds a PollingType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding PollingType.
      */
@@ -38,7 +44,7 @@ public final class PollingType extends ExpandableStringEnum<PollingType> {
 
     /**
      * Gets known PollingType values.
-     *
+     * 
      * @return known PollingType values.
      */
     public static Collection<PollingType> values() {

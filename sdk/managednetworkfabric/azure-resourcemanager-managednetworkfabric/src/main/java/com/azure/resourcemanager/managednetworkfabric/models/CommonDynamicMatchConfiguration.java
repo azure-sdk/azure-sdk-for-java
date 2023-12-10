@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Dynamic match configuration object. */
+/**
+ * Dynamic match configuration object.
+ */
 @Fluent
 public final class CommonDynamicMatchConfiguration {
     /*
@@ -24,18 +26,20 @@ public final class CommonDynamicMatchConfiguration {
     private List<VlanGroupProperties> vlanGroups;
 
     /*
-     * List of the port group.
+     * List of the port groups.
      */
     @JsonProperty(value = "portGroups")
     private List<PortGroupProperties> portGroups;
 
-    /** Creates an instance of CommonDynamicMatchConfiguration class. */
+    /**
+     * Creates an instance of CommonDynamicMatchConfiguration class.
+     */
     public CommonDynamicMatchConfiguration() {
     }
 
     /**
      * Get the ipGroups property: List of IP Groups.
-     *
+     * 
      * @return the ipGroups value.
      */
     public List<IpGroupProperties> ipGroups() {
@@ -44,7 +48,7 @@ public final class CommonDynamicMatchConfiguration {
 
     /**
      * Set the ipGroups property: List of IP Groups.
-     *
+     * 
      * @param ipGroups the ipGroups value to set.
      * @return the CommonDynamicMatchConfiguration object itself.
      */
@@ -55,7 +59,7 @@ public final class CommonDynamicMatchConfiguration {
 
     /**
      * Get the vlanGroups property: List of vlan groups.
-     *
+     * 
      * @return the vlanGroups value.
      */
     public List<VlanGroupProperties> vlanGroups() {
@@ -64,7 +68,7 @@ public final class CommonDynamicMatchConfiguration {
 
     /**
      * Set the vlanGroups property: List of vlan groups.
-     *
+     * 
      * @param vlanGroups the vlanGroups value to set.
      * @return the CommonDynamicMatchConfiguration object itself.
      */
@@ -74,8 +78,8 @@ public final class CommonDynamicMatchConfiguration {
     }
 
     /**
-     * Get the portGroups property: List of the port group.
-     *
+     * Get the portGroups property: List of the port groups.
+     * 
      * @return the portGroups value.
      */
     public List<PortGroupProperties> portGroups() {
@@ -83,8 +87,8 @@ public final class CommonDynamicMatchConfiguration {
     }
 
     /**
-     * Set the portGroups property: List of the port group.
-     *
+     * Set the portGroups property: List of the port groups.
+     * 
      * @param portGroups the portGroups value to set.
      * @return the CommonDynamicMatchConfiguration object itself.
      */
@@ -95,7 +99,7 @@ public final class CommonDynamicMatchConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

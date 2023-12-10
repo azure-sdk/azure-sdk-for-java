@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** IP Extended Community patchable properties. */
+/**
+ * IP Extended Community patchable properties.
+ */
 @Fluent
 public class IpExtendedCommunityPatchableProperties {
     /*
@@ -18,13 +20,15 @@ public class IpExtendedCommunityPatchableProperties {
     @JsonProperty(value = "ipExtendedCommunityRules", required = true)
     private List<IpExtendedCommunityRule> ipExtendedCommunityRules;
 
-    /** Creates an instance of IpExtendedCommunityPatchableProperties class. */
+    /**
+     * Creates an instance of IpExtendedCommunityPatchableProperties class.
+     */
     public IpExtendedCommunityPatchableProperties() {
     }
 
     /**
      * Get the ipExtendedCommunityRules property: List of IP Extended Community Rules.
-     *
+     * 
      * @return the ipExtendedCommunityRules value.
      */
     public List<IpExtendedCommunityRule> ipExtendedCommunityRules() {
@@ -33,28 +37,25 @@ public class IpExtendedCommunityPatchableProperties {
 
     /**
      * Set the ipExtendedCommunityRules property: List of IP Extended Community Rules.
-     *
+     * 
      * @param ipExtendedCommunityRules the ipExtendedCommunityRules value to set.
      * @return the IpExtendedCommunityPatchableProperties object itself.
      */
-    public IpExtendedCommunityPatchableProperties withIpExtendedCommunityRules(
-        List<IpExtendedCommunityRule> ipExtendedCommunityRules) {
+    public IpExtendedCommunityPatchableProperties
+        withIpExtendedCommunityRules(List<IpExtendedCommunityRule> ipExtendedCommunityRules) {
         this.ipExtendedCommunityRules = ipExtendedCommunityRules;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (ipExtendedCommunityRules() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property ipExtendedCommunityRules in model"
-                            + " IpExtendedCommunityPatchableProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property ipExtendedCommunityRules in model IpExtendedCommunityPatchableProperties"));
         } else {
             ipExtendedCommunityRules().forEach(e -> e.validate());
         }
