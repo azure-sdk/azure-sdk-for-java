@@ -1,0 +1,1031 @@
+[ {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.OpenShiftManagedClusterListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.OpenShiftManagedClusterInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.PurchasePlan",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.OpenShiftManagedClusterProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.NetworkProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.OpenShiftRouterProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.OpenShiftManagedClusterMasterPoolProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.OpenShiftManagedClusterAgentPoolProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.OpenShiftManagedClusterAuthProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.OpenShiftManagedClusterIdentityProvider",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.OpenShiftManagedClusterBaseIdentityProvider",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.TagsObject",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.OrchestratorVersionProfileListResultInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.OrchestratorVersionProfileProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.OrchestratorVersionProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.OrchestratorProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.OperationListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.OperationValueInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.OperationValueDisplay",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.OSOptionProfileInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.OSOptionPropertyList",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.OSOptionProperty",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.KubernetesVersionListResultInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.KubernetesVersion",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.KubernetesVersionCapabilities",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.KubernetesPatchVersion",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.ManagedClusterInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterSku",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ExtendedLocation",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterIdentity",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.DelegatedResource",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedServiceIdentityUserAssignedIdentitiesValue",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.ManagedClusterProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.PowerState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterAgentPoolProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.ManagedClusterAgentPoolProfileProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.AgentPoolUpgradeSettings",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.KubeletConfig",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.LinuxOSConfig",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.SysctlConfig",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.CreationData",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.AgentPoolNetworkProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.IpTag",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.PortRange",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ContainerServiceLinuxProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ContainerServiceSshConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ContainerServiceSshPublicKey",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterWindowsProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.WindowsGmsaProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterServicePrincipalProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterAddonProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterAddonProfileIdentity",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.UserAssignedIdentity",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterPodIdentityProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterPodIdentity",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterPodIdentityProvisioningInfo",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterPodIdentityProvisioningError",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterPodIdentityProvisioningErrorBody",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterPodIdentityException",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterOidcIssuerProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ContainerServiceNetworkProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterLoadBalancerProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterLoadBalancerProfileManagedOutboundIPs",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterLoadBalancerProfileOutboundIpPrefixes",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ResourceReference",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterLoadBalancerProfileOutboundIPs",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterNatGatewayProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterManagedOutboundIpProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterAadProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterAutoUpgradeProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ClusterUpgradeSettings",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.UpgradeOverrideSettings",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterPropertiesAutoScalerProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterApiServerAccessProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.PrivateLinkResourceInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterHttpProxyConfig",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterSecurityProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterSecurityProfileDefender",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterSecurityProfileDefenderSecurityMonitoring",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.AzureKeyVaultKms",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterSecurityProfileWorkloadIdentity",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterSecurityProfileImageCleaner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterStorageProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterStorageProfileDiskCsiDriver",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterStorageProfileFileCsiDriver",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterStorageProfileSnapshotController",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterStorageProfileBlobCsiDriver",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterWorkloadAutoScalerProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterWorkloadAutoScalerProfileKeda",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterWorkloadAutoScalerProfileVerticalPodAutoscaler",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterAzureMonitorProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterAzureMonitorProfileMetrics",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterAzureMonitorProfileKubeStateMetrics",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ServiceMeshProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.IstioServiceMesh",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.IstioComponents",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.IstioIngressGateway",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.IstioEgressGateway",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.IstioCertificateAuthority",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.IstioPluginCertificateAuthority",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.ManagedClusterUpgradeProfileInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.ManagedClusterUpgradeProfileProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterPoolUpgradeProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterPoolUpgradeProfileUpgradesItem",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.ManagedClusterAccessProfileInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.AccessProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.CredentialResultsInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.CredentialResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.MaintenanceConfigurationListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.MaintenanceConfigurationInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.MaintenanceConfigurationProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.TimeInWeek",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.TimeSpan",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.MaintenanceWindow",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.Schedule",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.DailySchedule",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.WeeklySchedule",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.AbsoluteMonthlySchedule",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.RelativeMonthlySchedule",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.DateSpan",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.AgentPoolListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.AgentPoolInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.AgentPoolUpgradeProfileInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.AgentPoolUpgradeProfileProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.AgentPoolUpgradeProfilePropertiesUpgradesItem",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.AgentPoolAvailableVersionsInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.AgentPoolAvailableVersionsProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.AgentPoolAvailableVersionsPropertiesAgentPoolVersionsItem",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.PrivateEndpointConnectionListResultInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.PrivateEndpointConnectionInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.PrivateEndpointConnectionProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.PrivateEndpoint",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.PrivateLinkServiceConnectionState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.PrivateLinkResourcesListResultInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.RunCommandRequest",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.RunCommandResultInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.CommandResultProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.OutboundEnvironmentEndpointCollection",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.OutboundEnvironmentEndpointInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.EndpointDependency",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.EndpointDetail",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.SnapshotListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.SnapshotInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.SnapshotProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.MeshRevisionProfileList",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.MeshRevisionProfileInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.MeshRevisionProfileProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.MeshRevision",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.CompatibleVersions",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.MeshUpgradeProfileList",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.MeshUpgradeProfileInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.MeshUpgradeProfileProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.TrustedAccessRoleBindingListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.TrustedAccessRoleBindingInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.TrustedAccessRoleBindingProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.TrustedAccessRoleListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.fluent.models.TrustedAccessRoleInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.TrustedAccessRoleRule",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.OpenShiftManagedClusterAadIdentityProvider",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClustersGetCommandResultHeaders",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.OpenShiftContainerServiceVMSize",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.OSType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.OpenShiftAgentPoolProfileRole",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.KubernetesSupportPlan",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterSkuName",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterSkuTier",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ExtendedLocationTypes",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.Code",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.OSDiskType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.KubeletDiskType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.WorkloadRuntime",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.Ossku",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ScaleDownMode",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.AgentPoolType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.AgentPoolMode",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ScaleSetPriority",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ScaleSetEvictionPolicy",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.GpuInstanceProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.Protocol",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.LicenseType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ManagedClusterPodIdentityProvisioningState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.NetworkPlugin",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.NetworkPluginMode",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.NetworkPolicy",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.NetworkMode",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.NetworkDataplane",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.OutboundType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.LoadBalancerSku",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.BackendPoolType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.IpFamily",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.UpgradeChannel",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.NodeOSUpgradeChannel",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.Expander",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.KeyVaultNetworkAccessTypes",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.PublicNetworkAccess",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ServiceMeshMode",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.IstioIngressGatewayMode",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.Format",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.WeekDay",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.Type",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.PrivateEndpointConnectionProvisioningState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ConnectionStatus",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.SnapshotType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.TrustedAccessRoleBindingProvisioningState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.containerservicemicrosoftcontainerserviceaks.generated.models.ResourceIdentityType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+} ]
