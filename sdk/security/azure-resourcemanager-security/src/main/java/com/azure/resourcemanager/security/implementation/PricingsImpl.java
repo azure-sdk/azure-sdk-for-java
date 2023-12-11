@@ -30,10 +30,7 @@ public final class PricingsImpl implements Pricings {
     public Response<PricingList> listWithResponse(Context context) {
         Response<PricingListInner> inner = this.serviceClient().listWithResponse(context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new PricingListImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -52,10 +49,7 @@ public final class PricingsImpl implements Pricings {
     public Response<Pricing> getWithResponse(String pricingName, Context context) {
         Response<PricingInner> inner = this.serviceClient().getWithResponse(pricingName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new PricingImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -74,10 +68,7 @@ public final class PricingsImpl implements Pricings {
     public Response<Pricing> updateWithResponse(String pricingName, PricingInner pricing, Context context) {
         Response<PricingInner> inner = this.serviceClient().updateWithResponse(pricingName, pricing, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new PricingImpl(inner.getValue(), this.manager()));
         } else {
             return null;
