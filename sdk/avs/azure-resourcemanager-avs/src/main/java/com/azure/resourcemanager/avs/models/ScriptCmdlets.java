@@ -8,12 +8,14 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of ScriptCmdlets. */
+/**
+ * Resource collection API of ScriptCmdlets.
+ */
 public interface ScriptCmdlets {
     /**
      * List script cmdlet resources available for a private cloud to create a script execution resource on a private
      * cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptPackageName Name of the script package in the private cloud.
@@ -27,7 +29,7 @@ public interface ScriptCmdlets {
     /**
      * List script cmdlet resources available for a private cloud to create a script execution resource on a private
      * cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptPackageName Name of the script package in the private cloud.
@@ -37,12 +39,12 @@ public interface ScriptCmdlets {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return pageable list of scripts/cmdlets as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<ScriptCmdlet> list(
-        String resourceGroupName, String privateCloudName, String scriptPackageName, Context context);
+    PagedIterable<ScriptCmdlet> list(String resourceGroupName, String privateCloudName, String scriptPackageName,
+        Context context);
 
     /**
      * Return information about a script cmdlet resource in a specific package on a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptPackageName Name of the script package in the private cloud.
@@ -53,16 +55,12 @@ public interface ScriptCmdlets {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a cmdlet available for script execution along with {@link Response}.
      */
-    Response<ScriptCmdlet> getWithResponse(
-        String resourceGroupName,
-        String privateCloudName,
-        String scriptPackageName,
-        String scriptCmdletName,
-        Context context);
+    Response<ScriptCmdlet> getWithResponse(String resourceGroupName, String privateCloudName, String scriptPackageName,
+        String scriptCmdletName, Context context);
 
     /**
      * Return information about a script cmdlet resource in a specific package on a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptPackageName Name of the script package in the private cloud.
@@ -72,6 +70,6 @@ public interface ScriptCmdlets {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a cmdlet available for script execution.
      */
-    ScriptCmdlet get(
-        String resourceGroupName, String privateCloudName, String scriptPackageName, String scriptCmdletName);
+    ScriptCmdlet get(String resourceGroupName, String privateCloudName, String scriptPackageName,
+        String scriptCmdletName);
 }

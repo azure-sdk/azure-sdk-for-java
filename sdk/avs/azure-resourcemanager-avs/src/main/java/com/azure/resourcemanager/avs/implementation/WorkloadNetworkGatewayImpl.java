@@ -12,8 +12,8 @@ public final class WorkloadNetworkGatewayImpl implements WorkloadNetworkGateway 
 
     private final com.azure.resourcemanager.avs.AvsManager serviceManager;
 
-    WorkloadNetworkGatewayImpl(
-        WorkloadNetworkGatewayInner innerObject, com.azure.resourcemanager.avs.AvsManager serviceManager) {
+    WorkloadNetworkGatewayImpl(WorkloadNetworkGatewayInner innerObject,
+        com.azure.resourcemanager.avs.AvsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }

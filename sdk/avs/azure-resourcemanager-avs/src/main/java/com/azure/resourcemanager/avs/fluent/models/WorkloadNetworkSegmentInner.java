@@ -13,7 +13,9 @@ import com.azure.resourcemanager.avs.models.WorkloadNetworkSegmentSubnet;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** NSX Segment. */
+/**
+ * NSX Segment.
+ */
 @Fluent
 public final class WorkloadNetworkSegmentInner extends ProxyResource {
     /*
@@ -22,13 +24,15 @@ public final class WorkloadNetworkSegmentInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private WorkloadNetworkSegmentProperties innerProperties;
 
-    /** Creates an instance of WorkloadNetworkSegmentInner class. */
+    /**
+     * Creates an instance of WorkloadNetworkSegmentInner class.
+     */
     public WorkloadNetworkSegmentInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of a Workload Segment proxy resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private WorkloadNetworkSegmentProperties innerProperties() {
@@ -37,7 +41,7 @@ public final class WorkloadNetworkSegmentInner extends ProxyResource {
 
     /**
      * Get the displayName property: Display name of the segment.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -46,7 +50,7 @@ public final class WorkloadNetworkSegmentInner extends ProxyResource {
 
     /**
      * Set the displayName property: Display name of the segment.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the WorkloadNetworkSegmentInner object itself.
      */
@@ -60,7 +64,7 @@ public final class WorkloadNetworkSegmentInner extends ProxyResource {
 
     /**
      * Get the connectedGateway property: Gateway which to connect segment to.
-     *
+     * 
      * @return the connectedGateway value.
      */
     public String connectedGateway() {
@@ -69,7 +73,7 @@ public final class WorkloadNetworkSegmentInner extends ProxyResource {
 
     /**
      * Set the connectedGateway property: Gateway which to connect segment to.
-     *
+     * 
      * @param connectedGateway the connectedGateway value to set.
      * @return the WorkloadNetworkSegmentInner object itself.
      */
@@ -83,7 +87,7 @@ public final class WorkloadNetworkSegmentInner extends ProxyResource {
 
     /**
      * Get the subnet property: Subnet which to connect segment to.
-     *
+     * 
      * @return the subnet value.
      */
     public WorkloadNetworkSegmentSubnet subnet() {
@@ -92,7 +96,7 @@ public final class WorkloadNetworkSegmentInner extends ProxyResource {
 
     /**
      * Set the subnet property: Subnet which to connect segment to.
-     *
+     * 
      * @param subnet the subnet value to set.
      * @return the WorkloadNetworkSegmentInner object itself.
      */
@@ -106,7 +110,7 @@ public final class WorkloadNetworkSegmentInner extends ProxyResource {
 
     /**
      * Get the portVif property: Port Vif which segment is associated with.
-     *
+     * 
      * @return the portVif value.
      */
     public List<WorkloadNetworkSegmentPortVif> portVif() {
@@ -115,7 +119,7 @@ public final class WorkloadNetworkSegmentInner extends ProxyResource {
 
     /**
      * Get the status property: Segment status.
-     *
+     * 
      * @return the status value.
      */
     public SegmentStatusEnum status() {
@@ -124,7 +128,7 @@ public final class WorkloadNetworkSegmentInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public WorkloadNetworkSegmentProvisioningState provisioningState() {
@@ -133,7 +137,7 @@ public final class WorkloadNetworkSegmentInner extends ProxyResource {
 
     /**
      * Get the revision property: NSX revision number.
-     *
+     * 
      * @return the revision value.
      */
     public Long revision() {
@@ -142,7 +146,7 @@ public final class WorkloadNetworkSegmentInner extends ProxyResource {
 
     /**
      * Set the revision property: NSX revision number.
-     *
+     * 
      * @param revision the revision value to set.
      * @return the WorkloadNetworkSegmentInner object itself.
      */
@@ -156,7 +160,7 @@ public final class WorkloadNetworkSegmentInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

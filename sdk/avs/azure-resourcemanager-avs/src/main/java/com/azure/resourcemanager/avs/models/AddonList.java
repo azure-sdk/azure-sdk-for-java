@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.AddonInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paged list of addons. */
+/**
+ * A paged list of addons.
+ */
 @Immutable
 public final class AddonList {
     /*
@@ -24,13 +26,15 @@ public final class AddonList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of AddonList class. */
+    /**
+     * Creates an instance of AddonList class.
+     */
     public AddonList() {
     }
 
     /**
      * Get the value property: The items on a page.
-     *
+     * 
      * @return the value value.
      */
     public List<AddonInner> value() {
@@ -39,7 +43,7 @@ public final class AddonList {
 
     /**
      * Get the nextLink property: URL to get the next page if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class AddonList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

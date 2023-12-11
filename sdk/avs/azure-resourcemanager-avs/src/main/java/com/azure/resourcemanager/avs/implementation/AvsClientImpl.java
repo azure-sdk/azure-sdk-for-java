@@ -48,267 +48,313 @@ import java.time.Duration;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** Initializes a new instance of the AvsClientImpl type. */
+/**
+ * Initializes a new instance of the AvsClientImpl type.
+ */
 @ServiceClient(builder = AvsClientBuilder.class)
 public final class AvsClientImpl implements AvsClient {
-    /** The ID of the target subscription. */
+    /**
+     * The ID of the target subscription.
+     */
     private final String subscriptionId;
 
     /**
      * Gets The ID of the target subscription.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String getSubscriptionId() {
         return this.subscriptionId;
     }
 
-    /** server parameter. */
+    /**
+     * server parameter.
+     */
     private final String endpoint;
 
     /**
      * Gets server parameter.
-     *
+     * 
      * @return the endpoint value.
      */
     public String getEndpoint() {
         return this.endpoint;
     }
 
-    /** Api Version. */
+    /**
+     * Api Version.
+     */
     private final String apiVersion;
 
     /**
      * Gets Api Version.
-     *
+     * 
      * @return the apiVersion value.
      */
     public String getApiVersion() {
         return this.apiVersion;
     }
 
-    /** The HTTP pipeline to send requests through. */
+    /**
+     * The HTTP pipeline to send requests through.
+     */
     private final HttpPipeline httpPipeline;
 
     /**
      * Gets The HTTP pipeline to send requests through.
-     *
+     * 
      * @return the httpPipeline value.
      */
     public HttpPipeline getHttpPipeline() {
         return this.httpPipeline;
     }
 
-    /** The serializer to serialize an object into a string. */
+    /**
+     * The serializer to serialize an object into a string.
+     */
     private final SerializerAdapter serializerAdapter;
 
     /**
      * Gets The serializer to serialize an object into a string.
-     *
+     * 
      * @return the serializerAdapter value.
      */
     SerializerAdapter getSerializerAdapter() {
         return this.serializerAdapter;
     }
 
-    /** The default poll interval for long-running operation. */
+    /**
+     * The default poll interval for long-running operation.
+     */
     private final Duration defaultPollInterval;
 
     /**
      * Gets The default poll interval for long-running operation.
-     *
+     * 
      * @return the defaultPollInterval value.
      */
     public Duration getDefaultPollInterval() {
         return this.defaultPollInterval;
     }
 
-    /** The OperationsClient object to access its operations. */
+    /**
+     * The OperationsClient object to access its operations.
+     */
     private final OperationsClient operations;
 
     /**
      * Gets the OperationsClient object to access its operations.
-     *
+     * 
      * @return the OperationsClient object.
      */
     public OperationsClient getOperations() {
         return this.operations;
     }
 
-    /** The LocationsClient object to access its operations. */
+    /**
+     * The LocationsClient object to access its operations.
+     */
     private final LocationsClient locations;
 
     /**
      * Gets the LocationsClient object to access its operations.
-     *
+     * 
      * @return the LocationsClient object.
      */
     public LocationsClient getLocations() {
         return this.locations;
     }
 
-    /** The PrivateCloudsClient object to access its operations. */
+    /**
+     * The PrivateCloudsClient object to access its operations.
+     */
     private final PrivateCloudsClient privateClouds;
 
     /**
      * Gets the PrivateCloudsClient object to access its operations.
-     *
+     * 
      * @return the PrivateCloudsClient object.
      */
     public PrivateCloudsClient getPrivateClouds() {
         return this.privateClouds;
     }
 
-    /** The ClustersClient object to access its operations. */
+    /**
+     * The ClustersClient object to access its operations.
+     */
     private final ClustersClient clusters;
 
     /**
      * Gets the ClustersClient object to access its operations.
-     *
+     * 
      * @return the ClustersClient object.
      */
     public ClustersClient getClusters() {
         return this.clusters;
     }
 
-    /** The DatastoresClient object to access its operations. */
+    /**
+     * The DatastoresClient object to access its operations.
+     */
     private final DatastoresClient datastores;
 
     /**
      * Gets the DatastoresClient object to access its operations.
-     *
+     * 
      * @return the DatastoresClient object.
      */
     public DatastoresClient getDatastores() {
         return this.datastores;
     }
 
-    /** The HcxEnterpriseSitesClient object to access its operations. */
+    /**
+     * The HcxEnterpriseSitesClient object to access its operations.
+     */
     private final HcxEnterpriseSitesClient hcxEnterpriseSites;
 
     /**
      * Gets the HcxEnterpriseSitesClient object to access its operations.
-     *
+     * 
      * @return the HcxEnterpriseSitesClient object.
      */
     public HcxEnterpriseSitesClient getHcxEnterpriseSites() {
         return this.hcxEnterpriseSites;
     }
 
-    /** The AuthorizationsClient object to access its operations. */
+    /**
+     * The AuthorizationsClient object to access its operations.
+     */
     private final AuthorizationsClient authorizations;
 
     /**
      * Gets the AuthorizationsClient object to access its operations.
-     *
+     * 
      * @return the AuthorizationsClient object.
      */
     public AuthorizationsClient getAuthorizations() {
         return this.authorizations;
     }
 
-    /** The GlobalReachConnectionsClient object to access its operations. */
+    /**
+     * The GlobalReachConnectionsClient object to access its operations.
+     */
     private final GlobalReachConnectionsClient globalReachConnections;
 
     /**
      * Gets the GlobalReachConnectionsClient object to access its operations.
-     *
+     * 
      * @return the GlobalReachConnectionsClient object.
      */
     public GlobalReachConnectionsClient getGlobalReachConnections() {
         return this.globalReachConnections;
     }
 
-    /** The WorkloadNetworksClient object to access its operations. */
+    /**
+     * The WorkloadNetworksClient object to access its operations.
+     */
     private final WorkloadNetworksClient workloadNetworks;
 
     /**
      * Gets the WorkloadNetworksClient object to access its operations.
-     *
+     * 
      * @return the WorkloadNetworksClient object.
      */
     public WorkloadNetworksClient getWorkloadNetworks() {
         return this.workloadNetworks;
     }
 
-    /** The CloudLinksClient object to access its operations. */
+    /**
+     * The CloudLinksClient object to access its operations.
+     */
     private final CloudLinksClient cloudLinks;
 
     /**
      * Gets the CloudLinksClient object to access its operations.
-     *
+     * 
      * @return the CloudLinksClient object.
      */
     public CloudLinksClient getCloudLinks() {
         return this.cloudLinks;
     }
 
-    /** The AddonsClient object to access its operations. */
+    /**
+     * The AddonsClient object to access its operations.
+     */
     private final AddonsClient addons;
 
     /**
      * Gets the AddonsClient object to access its operations.
-     *
+     * 
      * @return the AddonsClient object.
      */
     public AddonsClient getAddons() {
         return this.addons;
     }
 
-    /** The VirtualMachinesClient object to access its operations. */
+    /**
+     * The VirtualMachinesClient object to access its operations.
+     */
     private final VirtualMachinesClient virtualMachines;
 
     /**
      * Gets the VirtualMachinesClient object to access its operations.
-     *
+     * 
      * @return the VirtualMachinesClient object.
      */
     public VirtualMachinesClient getVirtualMachines() {
         return this.virtualMachines;
     }
 
-    /** The PlacementPoliciesClient object to access its operations. */
+    /**
+     * The PlacementPoliciesClient object to access its operations.
+     */
     private final PlacementPoliciesClient placementPolicies;
 
     /**
      * Gets the PlacementPoliciesClient object to access its operations.
-     *
+     * 
      * @return the PlacementPoliciesClient object.
      */
     public PlacementPoliciesClient getPlacementPolicies() {
         return this.placementPolicies;
     }
 
-    /** The ScriptPackagesClient object to access its operations. */
+    /**
+     * The ScriptPackagesClient object to access its operations.
+     */
     private final ScriptPackagesClient scriptPackages;
 
     /**
      * Gets the ScriptPackagesClient object to access its operations.
-     *
+     * 
      * @return the ScriptPackagesClient object.
      */
     public ScriptPackagesClient getScriptPackages() {
         return this.scriptPackages;
     }
 
-    /** The ScriptCmdletsClient object to access its operations. */
+    /**
+     * The ScriptCmdletsClient object to access its operations.
+     */
     private final ScriptCmdletsClient scriptCmdlets;
 
     /**
      * Gets the ScriptCmdletsClient object to access its operations.
-     *
+     * 
      * @return the ScriptCmdletsClient object.
      */
     public ScriptCmdletsClient getScriptCmdlets() {
         return this.scriptCmdlets;
     }
 
-    /** The ScriptExecutionsClient object to access its operations. */
+    /**
+     * The ScriptExecutionsClient object to access its operations.
+     */
     private final ScriptExecutionsClient scriptExecutions;
 
     /**
      * Gets the ScriptExecutionsClient object to access its operations.
-     *
+     * 
      * @return the ScriptExecutionsClient object.
      */
     public ScriptExecutionsClient getScriptExecutions() {
@@ -317,7 +363,7 @@ public final class AvsClientImpl implements AvsClient {
 
     /**
      * Initializes an instance of AvsClient client.
-     *
+     * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
@@ -325,13 +371,8 @@ public final class AvsClientImpl implements AvsClient {
      * @param subscriptionId The ID of the target subscription.
      * @param endpoint server parameter.
      */
-    AvsClientImpl(
-        HttpPipeline httpPipeline,
-        SerializerAdapter serializerAdapter,
-        Duration defaultPollInterval,
-        AzureEnvironment environment,
-        String subscriptionId,
-        String endpoint) {
+    AvsClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, Duration defaultPollInterval,
+        AzureEnvironment environment, String subscriptionId, String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
@@ -358,7 +399,7 @@ public final class AvsClientImpl implements AvsClient {
 
     /**
      * Gets default client context.
-     *
+     * 
      * @return the default client context.
      */
     public Context getContext() {
@@ -367,7 +408,7 @@ public final class AvsClientImpl implements AvsClient {
 
     /**
      * Merges default client context with provided context.
-     *
+     * 
      * @param context the context to be merged with default client context.
      * @return the merged context.
      */
@@ -377,7 +418,7 @@ public final class AvsClientImpl implements AvsClient {
 
     /**
      * Gets long running operation result.
-     *
+     * 
      * @param activationResponse the response of activation operation.
      * @param httpPipeline the http pipeline.
      * @param pollResultType type of poll result.
@@ -387,26 +428,15 @@ public final class AvsClientImpl implements AvsClient {
      * @param <U> type of final result.
      * @return poller flux for poll result and final result.
      */
-    public <T, U> PollerFlux<PollResult<T>, U> getLroResult(
-        Mono<Response<Flux<ByteBuffer>>> activationResponse,
-        HttpPipeline httpPipeline,
-        Type pollResultType,
-        Type finalResultType,
-        Context context) {
-        return PollerFactory
-            .create(
-                serializerAdapter,
-                httpPipeline,
-                pollResultType,
-                finalResultType,
-                defaultPollInterval,
-                activationResponse,
-                context);
+    public <T, U> PollerFlux<PollResult<T>, U> getLroResult(Mono<Response<Flux<ByteBuffer>>> activationResponse,
+        HttpPipeline httpPipeline, Type pollResultType, Type finalResultType, Context context) {
+        return PollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
+            defaultPollInterval, activationResponse, context);
     }
 
     /**
      * Gets the final result, or an error, based on last async poll response.
-     *
+     * 
      * @param response the last async poll response.
      * @param <T> type of poll result.
      * @param <U> type of final result.
@@ -419,19 +449,16 @@ public final class AvsClientImpl implements AvsClient {
             HttpResponse errorResponse = null;
             PollResult.Error lroError = response.getValue().getError();
             if (lroError != null) {
-                errorResponse =
-                    new HttpResponseImpl(
-                        lroError.getResponseStatusCode(), lroError.getResponseHeaders(), lroError.getResponseBody());
+                errorResponse = new HttpResponseImpl(lroError.getResponseStatusCode(), lroError.getResponseHeaders(),
+                    lroError.getResponseBody());
 
                 errorMessage = response.getValue().getError().getMessage();
                 String errorBody = response.getValue().getError().getResponseBody();
                 if (errorBody != null) {
                     // try to deserialize error body to ManagementError
                     try {
-                        managementError =
-                            this
-                                .getSerializerAdapter()
-                                .deserialize(errorBody, ManagementError.class, SerializerEncoding.JSON);
+                        managementError = this.getSerializerAdapter().deserialize(errorBody, ManagementError.class,
+                            SerializerEncoding.JSON);
                         if (managementError.getCode() == null || managementError.getMessage() == null) {
                             managementError = null;
                         }

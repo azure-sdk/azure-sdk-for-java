@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.avs.models.AddonProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An addon resource. */
+/**
+ * An addon resource.
+ */
 @Fluent
 public final class AddonInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class AddonInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private AddonProperties properties;
 
-    /** Creates an instance of AddonInner class. */
+    /**
+     * Creates an instance of AddonInner class.
+     */
     public AddonInner() {
     }
 
     /**
      * Get the properties property: The properties of an addon resource.
-     *
+     * 
      * @return the properties value.
      */
     public AddonProperties properties() {
@@ -33,7 +37,7 @@ public final class AddonInner extends ProxyResource {
 
     /**
      * Set the properties property: The properties of an addon resource.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the AddonInner object itself.
      */
@@ -44,7 +48,7 @@ public final class AddonInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

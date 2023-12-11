@@ -7,7 +7,9 @@ package com.azure.resourcemanager.avs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Identity for the virtual machine. */
+/**
+ * Identity for the virtual machine.
+ */
 @Fluent
 public final class PrivateCloudIdentity {
     /*
@@ -30,14 +32,16 @@ public final class PrivateCloudIdentity {
     @JsonProperty(value = "type")
     private ResourceIdentityType type;
 
-    /** Creates an instance of PrivateCloudIdentity class. */
+    /**
+     * Creates an instance of PrivateCloudIdentity class.
+     */
     public PrivateCloudIdentity() {
     }
 
     /**
-     * Get the principalId property: The principal ID of private cloud identity. This property will only be provided for
-     * a system assigned identity.
-     *
+     * Get the principalId property: The principal ID of private cloud identity. This property will only be provided
+     * for a system assigned identity.
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -47,7 +51,7 @@ public final class PrivateCloudIdentity {
     /**
      * Get the tenantId property: The tenant ID associated with the private cloud. This property will only be provided
      * for a system assigned identity.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -57,7 +61,7 @@ public final class PrivateCloudIdentity {
     /**
      * Get the type property: The type of identity used for the private cloud. The type 'SystemAssigned' refers to an
      * implicitly created identity. The type 'None' will remove any identities from the Private Cloud.
-     *
+     * 
      * @return the type value.
      */
     public ResourceIdentityType type() {
@@ -67,7 +71,7 @@ public final class PrivateCloudIdentity {
     /**
      * Set the type property: The type of identity used for the private cloud. The type 'SystemAssigned' refers to an
      * implicitly created identity. The type 'None' will remove any identities from the Private Cloud.
-     *
+     * 
      * @param type the type value to set.
      * @return the PrivateCloudIdentity object itself.
      */
@@ -78,7 +82,7 @@ public final class PrivateCloudIdentity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

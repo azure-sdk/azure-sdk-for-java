@@ -7,21 +7,29 @@ package com.azure.resourcemanager.avs.models;
 import com.azure.core.annotation.Fluent;
 import java.util.List;
 
-/** The properties of a management cluster. */
+/**
+ * The properties of a management cluster.
+ */
 @Fluent
 public final class ManagementCluster extends CommonClusterProperties {
-    /** Creates an instance of ManagementCluster class. */
+    /**
+     * Creates an instance of ManagementCluster class.
+     */
     public ManagementCluster() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagementCluster withClusterSize(Integer clusterSize) {
         super.withClusterSize(clusterSize);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagementCluster withHosts(List<String> hosts) {
         super.withHosts(hosts);
@@ -30,7 +38,7 @@ public final class ManagementCluster extends CommonClusterProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

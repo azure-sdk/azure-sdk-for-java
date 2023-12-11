@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.models.ScriptParameter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Properties of a pre-canned script. */
+/**
+ * Properties of a pre-canned script.
+ */
 @Immutable
 public final class ScriptCmdletProperties {
     /*
@@ -30,13 +32,15 @@ public final class ScriptCmdletProperties {
     @JsonProperty(value = "parameters", access = JsonProperty.Access.WRITE_ONLY)
     private List<ScriptParameter> parameters;
 
-    /** Creates an instance of ScriptCmdletProperties class. */
+    /**
+     * Creates an instance of ScriptCmdletProperties class.
+     */
     public ScriptCmdletProperties() {
     }
 
     /**
      * Get the description property: Description of the scripts functionality.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -45,7 +49,7 @@ public final class ScriptCmdletProperties {
 
     /**
      * Get the timeout property: Recommended time limit for execution.
-     *
+     * 
      * @return the timeout value.
      */
     public String timeout() {
@@ -54,7 +58,7 @@ public final class ScriptCmdletProperties {
 
     /**
      * Get the parameters property: Parameters the script will accept.
-     *
+     * 
      * @return the parameters value.
      */
     public List<ScriptParameter> parameters() {
@@ -63,7 +67,7 @@ public final class ScriptCmdletProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

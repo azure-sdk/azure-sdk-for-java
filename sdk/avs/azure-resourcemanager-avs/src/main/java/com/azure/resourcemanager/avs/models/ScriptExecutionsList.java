@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.ScriptExecutionInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Pageable list of script executions. */
+/**
+ * Pageable list of script executions.
+ */
 @Immutable
 public final class ScriptExecutionsList {
     /*
@@ -24,13 +26,15 @@ public final class ScriptExecutionsList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ScriptExecutionsList class. */
+    /**
+     * Creates an instance of ScriptExecutionsList class.
+     */
     public ScriptExecutionsList() {
     }
 
     /**
      * Get the value property: List of scripts.
-     *
+     * 
      * @return the value value.
      */
     public List<ScriptExecutionInner> value() {
@@ -39,7 +43,7 @@ public final class ScriptExecutionsList {
 
     /**
      * Get the nextLink property: URL to get the next page if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class ScriptExecutionsList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

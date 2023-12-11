@@ -13,8 +13,8 @@ public final class WorkloadNetworkVirtualMachineImpl implements WorkloadNetworkV
 
     private final com.azure.resourcemanager.avs.AvsManager serviceManager;
 
-    WorkloadNetworkVirtualMachineImpl(
-        WorkloadNetworkVirtualMachineInner innerObject, com.azure.resourcemanager.avs.AvsManager serviceManager) {
+    WorkloadNetworkVirtualMachineImpl(WorkloadNetworkVirtualMachineInner innerObject,
+        com.azure.resourcemanager.avs.AvsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }

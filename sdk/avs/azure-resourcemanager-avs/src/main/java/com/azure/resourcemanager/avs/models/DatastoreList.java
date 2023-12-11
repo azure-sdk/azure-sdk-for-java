@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.DatastoreInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paged list of datastores. */
+/**
+ * A paged list of datastores.
+ */
 @Immutable
 public final class DatastoreList {
     /*
@@ -24,13 +26,15 @@ public final class DatastoreList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of DatastoreList class. */
+    /**
+     * Creates an instance of DatastoreList class.
+     */
     public DatastoreList() {
     }
 
     /**
      * Get the value property: The items on a page.
-     *
+     * 
      * @return the value value.
      */
     public List<DatastoreInner> value() {
@@ -39,7 +43,7 @@ public final class DatastoreList {
 
     /**
      * Get the nextLink property: URL to get the next page if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class DatastoreList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

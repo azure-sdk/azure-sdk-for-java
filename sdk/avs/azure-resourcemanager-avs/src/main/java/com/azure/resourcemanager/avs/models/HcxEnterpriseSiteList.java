@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.HcxEnterpriseSiteInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paged list of HCX Enterprise Sites. */
+/**
+ * A paged list of HCX Enterprise Sites.
+ */
 @Immutable
 public final class HcxEnterpriseSiteList {
     /*
@@ -24,13 +26,15 @@ public final class HcxEnterpriseSiteList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of HcxEnterpriseSiteList class. */
+    /**
+     * Creates an instance of HcxEnterpriseSiteList class.
+     */
     public HcxEnterpriseSiteList() {
     }
 
     /**
      * Get the value property: The items on a page.
-     *
+     * 
      * @return the value value.
      */
     public List<HcxEnterpriseSiteInner> value() {
@@ -39,7 +43,7 @@ public final class HcxEnterpriseSiteList {
 
     /**
      * Get the nextLink property: URL to get the next page if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class HcxEnterpriseSiteList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

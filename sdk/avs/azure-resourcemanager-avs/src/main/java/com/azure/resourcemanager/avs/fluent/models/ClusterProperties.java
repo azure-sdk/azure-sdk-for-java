@@ -8,21 +8,29 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.avs.models.CommonClusterProperties;
 import java.util.List;
 
-/** The properties of a cluster. */
+/**
+ * The properties of a cluster.
+ */
 @Fluent
 public final class ClusterProperties extends CommonClusterProperties {
-    /** Creates an instance of ClusterProperties class. */
+    /**
+     * Creates an instance of ClusterProperties class.
+     */
     public ClusterProperties() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterProperties withClusterSize(Integer clusterSize) {
         super.withClusterSize(clusterSize);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterProperties withHosts(List<String> hosts) {
         super.withHosts(hosts);
@@ -31,7 +39,7 @@ public final class ClusterProperties extends CommonClusterProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

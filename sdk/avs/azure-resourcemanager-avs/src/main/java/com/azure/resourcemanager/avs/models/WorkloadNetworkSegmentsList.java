@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.WorkloadNetworkSegmentInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of NSX Segments. */
+/**
+ * A list of NSX Segments.
+ */
 @Immutable
 public final class WorkloadNetworkSegmentsList {
     /*
@@ -24,13 +26,15 @@ public final class WorkloadNetworkSegmentsList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of WorkloadNetworkSegmentsList class. */
+    /**
+     * Creates an instance of WorkloadNetworkSegmentsList class.
+     */
     public WorkloadNetworkSegmentsList() {
     }
 
     /**
      * Get the value property: The items on the page.
-     *
+     * 
      * @return the value value.
      */
     public List<WorkloadNetworkSegmentInner> value() {
@@ -39,7 +43,7 @@ public final class WorkloadNetworkSegmentsList {
 
     /**
      * Get the nextLink property: URL to get the next page if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class WorkloadNetworkSegmentsList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

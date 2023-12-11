@@ -41,22 +41,28 @@ import java.util.List;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in ScriptExecutionsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in ScriptExecutionsClient.
+ */
 public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final ScriptExecutionsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final AvsClientImpl client;
 
     /**
      * Initializes an instance of ScriptExecutionsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     ScriptExecutionsClientImpl(AvsClientImpl client) {
-        this.service =
-            RestProxy.create(ScriptExecutionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(ScriptExecutionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -67,118 +73,91 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
     @Host("{$host}")
     @ServiceInterface(name = "AvsClientScriptExecu")
     public interface ScriptExecutionsService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ScriptExecutionsList>> list(
-            @HostParam("$host") String endpoint,
+        Mono<Response<ScriptExecutionsList>> list(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("privateCloudName") String privateCloudName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ScriptExecutionInner>> get(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("privateCloudName") String privateCloudName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
+            @PathParam("scriptExecutionName") String scriptExecutionName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("privateCloudName") String privateCloudName,
+            @PathParam("scriptExecutionName") String scriptExecutionName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") ScriptExecutionInner scriptExecution, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}")
+        @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ScriptExecutionInner>> get(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("scriptExecutionName") String scriptExecutionName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("scriptExecutionName") String scriptExecutionName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}/getExecutionLogs")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
+        Mono<Response<ScriptExecutionInner>> getExecutionLogs(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("scriptExecutionName") String scriptExecutionName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") ScriptExecutionInner scriptExecution,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}")
-        @ExpectedResponses({200, 202, 204})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("scriptExecutionName") String scriptExecutionName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}/getExecutionLogs")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ScriptExecutionInner>> getExecutionLogs(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("scriptExecutionName") String scriptExecutionName,
-            @QueryParam("api-version") String apiVersion,
+            @PathParam("scriptExecutionName") String scriptExecutionName, @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") List<ScriptOutputStreamType> scriptOutputStreamType,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ScriptExecutionsList>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<ScriptExecutionsList>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * List script executions in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of script executions along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return pageable list of script executions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ScriptExecutionInner>> listSinglePageAsync(
-        String resourceGroupName, String privateCloudName) {
+    private Mono<PagedResponse<ScriptExecutionInner>> listSinglePageAsync(String resourceGroupName,
+        String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -190,55 +169,35 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<ScriptExecutionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, privateCloudName, this.client.getApiVersion(), accept, context))
+            .<PagedResponse<ScriptExecutionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List script executions in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of script executions along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return pageable list of script executions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ScriptExecutionInner>> listSinglePageAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
+    private Mono<PagedResponse<ScriptExecutionInner>> listSinglePageAsync(String resourceGroupName,
+        String privateCloudName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -251,28 +210,15 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                this.client.getApiVersion(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, privateCloudName,
+                this.client.getApiVersion(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List script executions in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -282,14 +228,13 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ScriptExecutionInner> listAsync(String resourceGroupName, String privateCloudName) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, privateCloudName),
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, privateCloudName),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * List script executions in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -299,16 +244,15 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @return pageable list of script executions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ScriptExecutionInner> listAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, privateCloudName, context),
+    private PagedFlux<ScriptExecutionInner> listAsync(String resourceGroupName, String privateCloudName,
+        Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, privateCloudName, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List script executions in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -323,7 +267,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
 
     /**
      * List script executions in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -333,14 +277,14 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @return pageable list of script executions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ScriptExecutionInner> list(
-        String resourceGroupName, String privateCloudName, Context context) {
+    public PagedIterable<ScriptExecutionInner> list(String resourceGroupName, String privateCloudName,
+        Context context) {
         return new PagedIterable<>(listAsync(resourceGroupName, privateCloudName, context));
     }
 
     /**
      * Get an script execution by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -348,22 +292,18 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an script execution by name in a private cloud along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ScriptExecutionInner>> getWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String scriptExecutionName) {
+    private Mono<Response<ScriptExecutionInner>> getWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String scriptExecutionName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -379,24 +319,14 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            scriptExecutionName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, privateCloudName, scriptExecutionName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get an script execution by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -405,22 +335,18 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an script execution by name in a private cloud along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ScriptExecutionInner>> getWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String scriptExecutionName, Context context) {
+    private Mono<Response<ScriptExecutionInner>> getWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String scriptExecutionName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -436,21 +362,13 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                scriptExecutionName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            privateCloudName, scriptExecutionName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Get an script execution by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -460,15 +378,15 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @return an script execution by name in a private cloud on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ScriptExecutionInner> getAsync(
-        String resourceGroupName, String privateCloudName, String scriptExecutionName) {
+    private Mono<ScriptExecutionInner> getAsync(String resourceGroupName, String privateCloudName,
+        String scriptExecutionName) {
         return getWithResponseAsync(resourceGroupName, privateCloudName, scriptExecutionName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get an script execution by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -479,14 +397,14 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @return an script execution by name in a private cloud along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ScriptExecutionInner> getWithResponse(
-        String resourceGroupName, String privateCloudName, String scriptExecutionName, Context context) {
+    public Response<ScriptExecutionInner> getWithResponse(String resourceGroupName, String privateCloudName,
+        String scriptExecutionName, Context context) {
         return getWithResponseAsync(resourceGroupName, privateCloudName, scriptExecutionName, context).block();
     }
 
     /**
      * Get an script execution by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -502,7 +420,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
 
     /**
      * Create or update a script execution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -511,25 +429,18 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an instance of a script executed by a user - custom or AVS along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String scriptExecutionName,
-        ScriptExecutionInner scriptExecution) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String scriptExecutionName, ScriptExecutionInner scriptExecution) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -551,25 +462,15 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            scriptExecutionName,
-                            this.client.getApiVersion(),
-                            scriptExecution,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, privateCloudName, scriptExecutionName, this.client.getApiVersion(), scriptExecution,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update a script execution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -579,26 +480,18 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an instance of a script executed by a user - custom or AVS along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String scriptExecutionName,
-        ScriptExecutionInner scriptExecution,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String scriptExecutionName, ScriptExecutionInner scriptExecution, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -620,22 +513,13 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                scriptExecutionName,
-                this.client.getApiVersion(),
-                scriptExecution,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            privateCloudName, scriptExecutionName, this.client.getApiVersion(), scriptExecution, accept, context);
     }
 
     /**
      * Create or update a script execution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -647,25 +531,17 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ScriptExecutionInner>, ScriptExecutionInner> beginCreateOrUpdateAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String scriptExecutionName,
+        String resourceGroupName, String privateCloudName, String scriptExecutionName,
         ScriptExecutionInner scriptExecution) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, privateCloudName, scriptExecutionName, scriptExecution);
-        return this
-            .client
-            .<ScriptExecutionInner, ScriptExecutionInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                ScriptExecutionInner.class,
-                ScriptExecutionInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, privateCloudName,
+            scriptExecutionName, scriptExecution);
+        return this.client.<ScriptExecutionInner, ScriptExecutionInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ScriptExecutionInner.class, ScriptExecutionInner.class, this.client.getContext());
     }
 
     /**
      * Create or update a script execution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -678,24 +554,18 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ScriptExecutionInner>, ScriptExecutionInner> beginCreateOrUpdateAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String scriptExecutionName,
-        ScriptExecutionInner scriptExecution,
-        Context context) {
+        String resourceGroupName, String privateCloudName, String scriptExecutionName,
+        ScriptExecutionInner scriptExecution, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(
-                resourceGroupName, privateCloudName, scriptExecutionName, scriptExecution, context);
-        return this
-            .client
-            .<ScriptExecutionInner, ScriptExecutionInner>getLroResult(
-                mono, this.client.getHttpPipeline(), ScriptExecutionInner.class, ScriptExecutionInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, privateCloudName,
+            scriptExecutionName, scriptExecution, context);
+        return this.client.<ScriptExecutionInner, ScriptExecutionInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ScriptExecutionInner.class, ScriptExecutionInner.class, context);
     }
 
     /**
      * Create or update a script execution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -707,18 +577,15 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ScriptExecutionInner>, ScriptExecutionInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String scriptExecutionName,
+        String resourceGroupName, String privateCloudName, String scriptExecutionName,
         ScriptExecutionInner scriptExecution) {
-        return this
-            .beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, scriptExecutionName, scriptExecution)
+        return this.beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, scriptExecutionName, scriptExecution)
             .getSyncPoller();
     }
 
     /**
      * Create or update a script execution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -731,20 +598,15 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ScriptExecutionInner>, ScriptExecutionInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String scriptExecutionName,
-        ScriptExecutionInner scriptExecution,
-        Context context) {
-        return this
-            .beginCreateOrUpdateAsync(
-                resourceGroupName, privateCloudName, scriptExecutionName, scriptExecution, context)
-            .getSyncPoller();
+        String resourceGroupName, String privateCloudName, String scriptExecutionName,
+        ScriptExecutionInner scriptExecution, Context context) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, scriptExecutionName, scriptExecution,
+            context).getSyncPoller();
     }
 
     /**
      * Create or update a script execution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -755,19 +617,15 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @return an instance of a script executed by a user - custom or AVS on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ScriptExecutionInner> createOrUpdateAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String scriptExecutionName,
-        ScriptExecutionInner scriptExecution) {
+    private Mono<ScriptExecutionInner> createOrUpdateAsync(String resourceGroupName, String privateCloudName,
+        String scriptExecutionName, ScriptExecutionInner scriptExecution) {
         return beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, scriptExecutionName, scriptExecution)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+            .last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a script execution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -779,21 +637,15 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @return an instance of a script executed by a user - custom or AVS on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ScriptExecutionInner> createOrUpdateAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String scriptExecutionName,
-        ScriptExecutionInner scriptExecution,
-        Context context) {
-        return beginCreateOrUpdateAsync(
-                resourceGroupName, privateCloudName, scriptExecutionName, scriptExecution, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+    private Mono<ScriptExecutionInner> createOrUpdateAsync(String resourceGroupName, String privateCloudName,
+        String scriptExecutionName, ScriptExecutionInner scriptExecution, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, scriptExecutionName, scriptExecution,
+            context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a script execution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -804,17 +656,14 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @return an instance of a script executed by a user - custom or AVS.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ScriptExecutionInner createOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String scriptExecutionName,
-        ScriptExecutionInner scriptExecution) {
+    public ScriptExecutionInner createOrUpdate(String resourceGroupName, String privateCloudName,
+        String scriptExecutionName, ScriptExecutionInner scriptExecution) {
         return createOrUpdateAsync(resourceGroupName, privateCloudName, scriptExecutionName, scriptExecution).block();
     }
 
     /**
      * Create or update a script execution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -826,19 +675,15 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @return an instance of a script executed by a user - custom or AVS.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ScriptExecutionInner createOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String scriptExecutionName,
-        ScriptExecutionInner scriptExecution,
-        Context context) {
+    public ScriptExecutionInner createOrUpdate(String resourceGroupName, String privateCloudName,
+        String scriptExecutionName, ScriptExecutionInner scriptExecution, Context context) {
         return createOrUpdateAsync(resourceGroupName, privateCloudName, scriptExecutionName, scriptExecution, context)
             .block();
     }
 
     /**
      * Cancel a ScriptExecution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -848,19 +693,15 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String scriptExecutionName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String scriptExecutionName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -876,24 +717,14 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            scriptExecutionName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, privateCloudName, scriptExecutionName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Cancel a ScriptExecution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -904,19 +735,15 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String scriptExecutionName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String scriptExecutionName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -932,21 +759,13 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                scriptExecutionName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            privateCloudName, scriptExecutionName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Cancel a ScriptExecution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -956,19 +775,17 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String privateCloudName, String scriptExecutionName) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, privateCloudName, scriptExecutionName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String privateCloudName,
+        String scriptExecutionName) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, privateCloudName, scriptExecutionName);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Cancel a ScriptExecution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -979,19 +796,18 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String privateCloudName, String scriptExecutionName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String privateCloudName,
+        String scriptExecutionName, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, privateCloudName, scriptExecutionName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, privateCloudName, scriptExecutionName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Cancel a ScriptExecution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -1001,14 +817,14 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String privateCloudName, String scriptExecutionName) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String privateCloudName,
+        String scriptExecutionName) {
         return this.beginDeleteAsync(resourceGroupName, privateCloudName, scriptExecutionName).getSyncPoller();
     }
 
     /**
      * Cancel a ScriptExecution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -1019,14 +835,14 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String privateCloudName, String scriptExecutionName, Context context) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String privateCloudName,
+        String scriptExecutionName, Context context) {
         return this.beginDeleteAsync(resourceGroupName, privateCloudName, scriptExecutionName, context).getSyncPoller();
     }
 
     /**
      * Cancel a ScriptExecution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -1037,14 +853,13 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String privateCloudName, String scriptExecutionName) {
-        return beginDeleteAsync(resourceGroupName, privateCloudName, scriptExecutionName)
-            .last()
+        return beginDeleteAsync(resourceGroupName, privateCloudName, scriptExecutionName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Cancel a ScriptExecution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -1055,16 +870,15 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(
-        String resourceGroupName, String privateCloudName, String scriptExecutionName, Context context) {
-        return beginDeleteAsync(resourceGroupName, privateCloudName, scriptExecutionName, context)
-            .last()
+    private Mono<Void> deleteAsync(String resourceGroupName, String privateCloudName, String scriptExecutionName,
+        Context context) {
+        return beginDeleteAsync(resourceGroupName, privateCloudName, scriptExecutionName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Cancel a ScriptExecution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -1079,7 +893,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
 
     /**
      * Cancel a ScriptExecution in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -1095,35 +909,28 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
 
     /**
      * Return the logs for a script execution resource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
      * @param scriptOutputStreamType Name of the desired output stream to return. If not provided, will return all. An
-     *     empty array will return nothing.
+     * empty array will return nothing.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an instance of a script executed by a user - custom or AVS along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ScriptExecutionInner>> getExecutionLogsWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String scriptExecutionName,
-        List<ScriptOutputStreamType> scriptOutputStreamType) {
+    private Mono<Response<ScriptExecutionInner>> getExecutionLogsWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String scriptExecutionName, List<ScriptOutputStreamType> scriptOutputStreamType) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1139,55 +946,38 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getExecutionLogs(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            scriptExecutionName,
-                            this.client.getApiVersion(),
-                            scriptOutputStreamType,
-                            accept,
-                            context))
+            .withContext(context -> service.getExecutionLogs(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, privateCloudName, scriptExecutionName, this.client.getApiVersion(),
+                scriptOutputStreamType, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Return the logs for a script execution resource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
      * @param scriptOutputStreamType Name of the desired output stream to return. If not provided, will return all. An
-     *     empty array will return nothing.
+     * empty array will return nothing.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an instance of a script executed by a user - custom or AVS along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ScriptExecutionInner>> getExecutionLogsWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String scriptExecutionName,
-        List<ScriptOutputStreamType> scriptOutputStreamType,
+    private Mono<Response<ScriptExecutionInner>> getExecutionLogsWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String scriptExecutionName, List<ScriptOutputStreamType> scriptOutputStreamType,
         Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1203,22 +993,14 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getExecutionLogs(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                scriptExecutionName,
-                this.client.getApiVersion(),
-                scriptOutputStreamType,
-                accept,
-                context);
+        return service.getExecutionLogs(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            privateCloudName, scriptExecutionName, this.client.getApiVersion(), scriptOutputStreamType, accept,
+            context);
     }
 
     /**
      * Return the logs for a script execution resource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -1228,22 +1010,21 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @return an instance of a script executed by a user - custom or AVS on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ScriptExecutionInner> getExecutionLogsAsync(
-        String resourceGroupName, String privateCloudName, String scriptExecutionName) {
+    private Mono<ScriptExecutionInner> getExecutionLogsAsync(String resourceGroupName, String privateCloudName,
+        String scriptExecutionName) {
         final List<ScriptOutputStreamType> scriptOutputStreamType = null;
-        return getExecutionLogsWithResponseAsync(
-                resourceGroupName, privateCloudName, scriptExecutionName, scriptOutputStreamType)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+        return getExecutionLogsWithResponseAsync(resourceGroupName, privateCloudName, scriptExecutionName,
+            scriptOutputStreamType).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Return the logs for a script execution resource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
      * @param scriptOutputStreamType Name of the desired output stream to return. If not provided, will return all. An
-     *     empty array will return nothing.
+     * empty array will return nothing.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1251,20 +1032,16 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @return an instance of a script executed by a user - custom or AVS along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ScriptExecutionInner> getExecutionLogsWithResponse(
-        String resourceGroupName,
-        String privateCloudName,
-        String scriptExecutionName,
-        List<ScriptOutputStreamType> scriptOutputStreamType,
+    public Response<ScriptExecutionInner> getExecutionLogsWithResponse(String resourceGroupName,
+        String privateCloudName, String scriptExecutionName, List<ScriptOutputStreamType> scriptOutputStreamType,
         Context context) {
-        return getExecutionLogsWithResponseAsync(
-                resourceGroupName, privateCloudName, scriptExecutionName, scriptOutputStreamType, context)
-            .block();
+        return getExecutionLogsWithResponseAsync(resourceGroupName, privateCloudName, scriptExecutionName,
+            scriptOutputStreamType, context).block();
     }
 
     /**
      * Return the logs for a script execution resource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptExecutionName Name of the user-invoked script execution resource.
@@ -1274,24 +1051,24 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @return an instance of a script executed by a user - custom or AVS.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ScriptExecutionInner getExecutionLogs(
-        String resourceGroupName, String privateCloudName, String scriptExecutionName) {
+    public ScriptExecutionInner getExecutionLogs(String resourceGroupName, String privateCloudName,
+        String scriptExecutionName) {
         final List<ScriptOutputStreamType> scriptOutputStreamType = null;
-        return getExecutionLogsWithResponse(
-                resourceGroupName, privateCloudName, scriptExecutionName, scriptOutputStreamType, Context.NONE)
-            .getValue();
+        return getExecutionLogsWithResponse(resourceGroupName, privateCloudName, scriptExecutionName,
+            scriptOutputStreamType, Context.NONE).getValue();
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of script executions along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return pageable list of script executions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ScriptExecutionInner>> listNextSinglePageAsync(String nextLink) {
@@ -1299,37 +1076,28 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<ScriptExecutionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<ScriptExecutionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of script executions along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return pageable list of script executions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ScriptExecutionInner>> listNextSinglePageAsync(String nextLink, Context context) {
@@ -1337,23 +1105,13 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

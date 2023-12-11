@@ -12,7 +12,9 @@ import com.azure.resourcemanager.avs.models.DiskPoolVolume;
 import com.azure.resourcemanager.avs.models.NetAppVolume;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A datastore resource. */
+/**
+ * A datastore resource.
+ */
 @Fluent
 public final class DatastoreInner extends ProxyResource {
     /*
@@ -21,13 +23,15 @@ public final class DatastoreInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private DatastoreProperties innerProperties;
 
-    /** Creates an instance of DatastoreInner class. */
+    /**
+     * Creates an instance of DatastoreInner class.
+     */
     public DatastoreInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of a datastore resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private DatastoreProperties innerProperties() {
@@ -36,7 +40,7 @@ public final class DatastoreInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The state of the datastore provisioning.
-     *
+     * 
      * @return the provisioningState value.
      */
     public DatastoreProvisioningState provisioningState() {
@@ -45,7 +49,7 @@ public final class DatastoreInner extends ProxyResource {
 
     /**
      * Get the netAppVolume property: An Azure NetApp Files volume.
-     *
+     * 
      * @return the netAppVolume value.
      */
     public NetAppVolume netAppVolume() {
@@ -54,7 +58,7 @@ public final class DatastoreInner extends ProxyResource {
 
     /**
      * Set the netAppVolume property: An Azure NetApp Files volume.
-     *
+     * 
      * @param netAppVolume the netAppVolume value to set.
      * @return the DatastoreInner object itself.
      */
@@ -68,7 +72,7 @@ public final class DatastoreInner extends ProxyResource {
 
     /**
      * Get the diskPoolVolume property: An iSCSI volume.
-     *
+     * 
      * @return the diskPoolVolume value.
      */
     public DiskPoolVolume diskPoolVolume() {
@@ -77,7 +81,7 @@ public final class DatastoreInner extends ProxyResource {
 
     /**
      * Set the diskPoolVolume property: An iSCSI volume.
-     *
+     * 
      * @param diskPoolVolume the diskPoolVolume value to set.
      * @return the DatastoreInner object itself.
      */
@@ -91,7 +95,7 @@ public final class DatastoreInner extends ProxyResource {
 
     /**
      * Get the status property: The operational status of the datastore.
-     *
+     * 
      * @return the status value.
      */
     public DatastoreStatus status() {
@@ -100,7 +104,7 @@ public final class DatastoreInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

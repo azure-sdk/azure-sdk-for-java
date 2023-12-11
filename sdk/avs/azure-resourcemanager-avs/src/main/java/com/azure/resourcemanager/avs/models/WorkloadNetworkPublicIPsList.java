@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.WorkloadNetworkPublicIpInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of NSX Public IP Blocks. */
+/**
+ * A list of NSX Public IP Blocks.
+ */
 @Immutable
 public final class WorkloadNetworkPublicIPsList {
     /*
@@ -24,13 +26,15 @@ public final class WorkloadNetworkPublicIPsList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of WorkloadNetworkPublicIPsList class. */
+    /**
+     * Creates an instance of WorkloadNetworkPublicIPsList class.
+     */
     public WorkloadNetworkPublicIPsList() {
     }
 
     /**
      * Get the value property: The items on the page.
-     *
+     * 
      * @return the value value.
      */
     public List<WorkloadNetworkPublicIpInner> value() {
@@ -39,7 +43,7 @@ public final class WorkloadNetworkPublicIPsList {
 
     /**
      * Get the nextLink property: URL to get the next page if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class WorkloadNetworkPublicIPsList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

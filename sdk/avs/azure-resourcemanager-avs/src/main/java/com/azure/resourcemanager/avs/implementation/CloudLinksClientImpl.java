@@ -38,22 +38,28 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in CloudLinksClient. */
+/**
+ * An instance of this class provides access to all the operations defined in CloudLinksClient.
+ */
 public final class CloudLinksClientImpl implements CloudLinksClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final CloudLinksService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final AvsClientImpl client;
 
     /**
      * Initializes an instance of CloudLinksClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     CloudLinksClientImpl(AvsClientImpl client) {
-        this.service =
-            RestProxy.create(CloudLinksService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(CloudLinksService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -64,80 +70,58 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
     @Host("{$host}")
     @ServiceInterface(name = "AvsClientCloudLinks")
     public interface CloudLinksService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CloudLinkList>> list(
-            @HostParam("$host") String endpoint,
+        Mono<Response<CloudLinkList>> list(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("privateCloudName") String privateCloudName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks/{cloudLinkName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks/{cloudLinkName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CloudLinkInner>> get(
-            @HostParam("$host") String endpoint,
+        Mono<Response<CloudLinkInner>> get(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("cloudLinkName") String cloudLinkName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("cloudLinkName") String cloudLinkName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks/{cloudLinkName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks/{cloudLinkName}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("cloudLinkName") String cloudLinkName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") CloudLinkInner cloudLink,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("cloudLinkName") String cloudLinkName,
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") CloudLinkInner cloudLink,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks/{cloudLinkName}")
-        @ExpectedResponses({200, 202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks/{cloudLinkName}")
+        @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("cloudLinkName") String cloudLinkName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("cloudLinkName") String cloudLinkName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CloudLinkList>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<CloudLinkList>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * List cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -148,16 +132,12 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CloudLinkInner>> listSinglePageAsync(String resourceGroupName, String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -169,32 +149,16 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<CloudLinkInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, privateCloudName, this.client.getApiVersion(), accept, context))
+            .<PagedResponse<CloudLinkInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -204,19 +168,15 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return a paged list of cloud links along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<CloudLinkInner>> listSinglePageAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
+    private Mono<PagedResponse<CloudLinkInner>> listSinglePageAsync(String resourceGroupName, String privateCloudName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -229,28 +189,15 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                this.client.getApiVersion(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, privateCloudName,
+                this.client.getApiVersion(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -260,14 +207,13 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CloudLinkInner> listAsync(String resourceGroupName, String privateCloudName) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, privateCloudName),
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, privateCloudName),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * List cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -278,14 +224,13 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CloudLinkInner> listAsync(String resourceGroupName, String privateCloudName, Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, privateCloudName, context),
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, privateCloudName, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -300,7 +245,7 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
 
     /**
      * List cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -316,30 +261,26 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
 
     /**
      * Get an cloud link by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an cloud link by name in a private cloud along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return an cloud link by name in a private cloud along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CloudLinkInner>> getWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String cloudLinkName) {
+    private Mono<Response<CloudLinkInner>> getWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String cloudLinkName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -354,24 +295,14 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            cloudLinkName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, privateCloudName, cloudLinkName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get an cloud link by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -379,23 +310,19 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an cloud link by name in a private cloud along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return an cloud link by name in a private cloud along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CloudLinkInner>> getWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String cloudLinkName, Context context) {
+    private Mono<Response<CloudLinkInner>> getWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String cloudLinkName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -410,21 +337,13 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                cloudLinkName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            privateCloudName, cloudLinkName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Get an cloud link by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -441,7 +360,7 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
 
     /**
      * Get an cloud link by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -452,14 +371,14 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return an cloud link by name in a private cloud along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<CloudLinkInner> getWithResponse(
-        String resourceGroupName, String privateCloudName, String cloudLinkName, Context context) {
+    public Response<CloudLinkInner> getWithResponse(String resourceGroupName, String privateCloudName,
+        String cloudLinkName, Context context) {
         return getWithResponseAsync(resourceGroupName, privateCloudName, cloudLinkName, context).block();
     }
 
     /**
      * Get an cloud link by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -475,7 +394,7 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
 
     /**
      * Create or update a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -486,19 +405,15 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return a cloud link resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String cloudLinkName, CloudLinkInner cloudLink) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String cloudLinkName, CloudLinkInner cloudLink) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -518,25 +433,15 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            cloudLinkName,
-                            this.client.getApiVersion(),
-                            cloudLink,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, privateCloudName, cloudLinkName, this.client.getApiVersion(), cloudLink, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -548,23 +453,15 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return a cloud link resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String cloudLinkName,
-        CloudLinkInner cloudLink,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String cloudLinkName, CloudLinkInner cloudLink, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -584,22 +481,13 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                cloudLinkName,
-                this.client.getApiVersion(),
-                cloudLink,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            privateCloudName, cloudLinkName, this.client.getApiVersion(), cloudLink, accept, context);
     }
 
     /**
      * Create or update a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -610,23 +498,17 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return the {@link PollerFlux} for polling of a cloud link resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<CloudLinkInner>, CloudLinkInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String privateCloudName, String cloudLinkName, CloudLinkInner cloudLink) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, privateCloudName, cloudLinkName, cloudLink);
-        return this
-            .client
-            .<CloudLinkInner, CloudLinkInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                CloudLinkInner.class,
-                CloudLinkInner.class,
-                this.client.getContext());
+    private PollerFlux<PollResult<CloudLinkInner>, CloudLinkInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String privateCloudName, String cloudLinkName, CloudLinkInner cloudLink) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, privateCloudName, cloudLinkName, cloudLink);
+        return this.client.<CloudLinkInner, CloudLinkInner>getLroResult(mono, this.client.getHttpPipeline(),
+            CloudLinkInner.class, CloudLinkInner.class, this.client.getContext());
     }
 
     /**
      * Create or update a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -638,24 +520,18 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return the {@link PollerFlux} for polling of a cloud link resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<CloudLinkInner>, CloudLinkInner> beginCreateOrUpdateAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String cloudLinkName,
-        CloudLinkInner cloudLink,
-        Context context) {
+    private PollerFlux<PollResult<CloudLinkInner>, CloudLinkInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String privateCloudName, String cloudLinkName, CloudLinkInner cloudLink, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, privateCloudName, cloudLinkName, cloudLink, context);
-        return this
-            .client
-            .<CloudLinkInner, CloudLinkInner>getLroResult(
-                mono, this.client.getHttpPipeline(), CloudLinkInner.class, CloudLinkInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, privateCloudName, cloudLinkName, cloudLink, context);
+        return this.client.<CloudLinkInner, CloudLinkInner>getLroResult(mono, this.client.getHttpPipeline(),
+            CloudLinkInner.class, CloudLinkInner.class, context);
     }
 
     /**
      * Create or update a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -666,16 +542,15 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return the {@link SyncPoller} for polling of a cloud link resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<CloudLinkInner>, CloudLinkInner> beginCreateOrUpdate(
-        String resourceGroupName, String privateCloudName, String cloudLinkName, CloudLinkInner cloudLink) {
-        return this
-            .beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, cloudLinkName, cloudLink)
+    public SyncPoller<PollResult<CloudLinkInner>, CloudLinkInner> beginCreateOrUpdate(String resourceGroupName,
+        String privateCloudName, String cloudLinkName, CloudLinkInner cloudLink) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, cloudLinkName, cloudLink)
             .getSyncPoller();
     }
 
     /**
      * Create or update a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -687,20 +562,15 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return the {@link SyncPoller} for polling of a cloud link resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<CloudLinkInner>, CloudLinkInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String cloudLinkName,
-        CloudLinkInner cloudLink,
-        Context context) {
-        return this
-            .beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, cloudLinkName, cloudLink, context)
+    public SyncPoller<PollResult<CloudLinkInner>, CloudLinkInner> beginCreateOrUpdate(String resourceGroupName,
+        String privateCloudName, String cloudLinkName, CloudLinkInner cloudLink, Context context) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, cloudLinkName, cloudLink, context)
             .getSyncPoller();
     }
 
     /**
      * Create or update a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -711,16 +581,15 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return a cloud link resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CloudLinkInner> createOrUpdateAsync(
-        String resourceGroupName, String privateCloudName, String cloudLinkName, CloudLinkInner cloudLink) {
-        return beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, cloudLinkName, cloudLink)
-            .last()
+    private Mono<CloudLinkInner> createOrUpdateAsync(String resourceGroupName, String privateCloudName,
+        String cloudLinkName, CloudLinkInner cloudLink) {
+        return beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, cloudLinkName, cloudLink).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -732,20 +601,15 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return a cloud link resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CloudLinkInner> createOrUpdateAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String cloudLinkName,
-        CloudLinkInner cloudLink,
-        Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, cloudLinkName, cloudLink, context)
-            .last()
+    private Mono<CloudLinkInner> createOrUpdateAsync(String resourceGroupName, String privateCloudName,
+        String cloudLinkName, CloudLinkInner cloudLink, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, cloudLinkName, cloudLink, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -756,14 +620,14 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return a cloud link resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CloudLinkInner createOrUpdate(
-        String resourceGroupName, String privateCloudName, String cloudLinkName, CloudLinkInner cloudLink) {
+    public CloudLinkInner createOrUpdate(String resourceGroupName, String privateCloudName, String cloudLinkName,
+        CloudLinkInner cloudLink) {
         return createOrUpdateAsync(resourceGroupName, privateCloudName, cloudLinkName, cloudLink).block();
     }
 
     /**
      * Create or update a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -775,18 +639,14 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return a cloud link resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CloudLinkInner createOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String cloudLinkName,
-        CloudLinkInner cloudLink,
-        Context context) {
+    public CloudLinkInner createOrUpdate(String resourceGroupName, String privateCloudName, String cloudLinkName,
+        CloudLinkInner cloudLink, Context context) {
         return createOrUpdateAsync(resourceGroupName, privateCloudName, cloudLinkName, cloudLink, context).block();
     }
 
     /**
      * Delete a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -796,19 +656,15 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String cloudLinkName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String cloudLinkName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -823,24 +679,14 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            cloudLinkName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, privateCloudName, cloudLinkName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -851,19 +697,15 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String cloudLinkName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String cloudLinkName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -878,21 +720,13 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                cloudLinkName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            privateCloudName, cloudLinkName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Delete a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -902,19 +736,17 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String privateCloudName, String cloudLinkName) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, privateCloudName, cloudLinkName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String privateCloudName,
+        String cloudLinkName) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, privateCloudName, cloudLinkName);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Delete a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -925,19 +757,18 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String privateCloudName, String cloudLinkName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String privateCloudName,
+        String cloudLinkName, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, privateCloudName, cloudLinkName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, privateCloudName, cloudLinkName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Delete a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -947,14 +778,14 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String privateCloudName, String cloudLinkName) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String privateCloudName,
+        String cloudLinkName) {
         return this.beginDeleteAsync(resourceGroupName, privateCloudName, cloudLinkName).getSyncPoller();
     }
 
     /**
      * Delete a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -965,14 +796,14 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String privateCloudName, String cloudLinkName, Context context) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String privateCloudName,
+        String cloudLinkName, Context context) {
         return this.beginDeleteAsync(resourceGroupName, privateCloudName, cloudLinkName, context).getSyncPoller();
     }
 
     /**
      * Delete a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -983,14 +814,13 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String privateCloudName, String cloudLinkName) {
-        return beginDeleteAsync(resourceGroupName, privateCloudName, cloudLinkName)
-            .last()
+        return beginDeleteAsync(resourceGroupName, privateCloudName, cloudLinkName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -1001,16 +831,15 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(
-        String resourceGroupName, String privateCloudName, String cloudLinkName, Context context) {
-        return beginDeleteAsync(resourceGroupName, privateCloudName, cloudLinkName, context)
-            .last()
+    private Mono<Void> deleteAsync(String resourceGroupName, String privateCloudName, String cloudLinkName,
+        Context context) {
+        return beginDeleteAsync(resourceGroupName, privateCloudName, cloudLinkName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -1025,7 +854,7 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
 
     /**
      * Delete a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -1041,9 +870,10 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1055,31 +885,22 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<CloudLinkInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<CloudLinkInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1092,23 +913,13 @@ public final class CloudLinksClientImpl implements CloudLinksClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

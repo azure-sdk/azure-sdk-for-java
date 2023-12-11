@@ -12,7 +12,9 @@ import com.azure.resourcemanager.avs.models.WorkloadNetworkDnsServiceProvisionin
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** NSX DNS Service. */
+/**
+ * NSX DNS Service.
+ */
 @Fluent
 public final class WorkloadNetworkDnsServiceInner extends ProxyResource {
     /*
@@ -21,13 +23,15 @@ public final class WorkloadNetworkDnsServiceInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private WorkloadNetworkDnsServiceProperties innerProperties;
 
-    /** Creates an instance of WorkloadNetworkDnsServiceInner class. */
+    /**
+     * Creates an instance of WorkloadNetworkDnsServiceInner class.
+     */
     public WorkloadNetworkDnsServiceInner() {
     }
 
     /**
      * Get the innerProperties property: DNS Service properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private WorkloadNetworkDnsServiceProperties innerProperties() {
@@ -36,7 +40,7 @@ public final class WorkloadNetworkDnsServiceInner extends ProxyResource {
 
     /**
      * Get the displayName property: Display name of the DNS Service.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -45,7 +49,7 @@ public final class WorkloadNetworkDnsServiceInner extends ProxyResource {
 
     /**
      * Set the displayName property: Display name of the DNS Service.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the WorkloadNetworkDnsServiceInner object itself.
      */
@@ -59,7 +63,7 @@ public final class WorkloadNetworkDnsServiceInner extends ProxyResource {
 
     /**
      * Get the dnsServiceIp property: DNS service IP of the DNS Service.
-     *
+     * 
      * @return the dnsServiceIp value.
      */
     public String dnsServiceIp() {
@@ -68,7 +72,7 @@ public final class WorkloadNetworkDnsServiceInner extends ProxyResource {
 
     /**
      * Set the dnsServiceIp property: DNS service IP of the DNS Service.
-     *
+     * 
      * @param dnsServiceIp the dnsServiceIp value to set.
      * @return the WorkloadNetworkDnsServiceInner object itself.
      */
@@ -82,7 +86,7 @@ public final class WorkloadNetworkDnsServiceInner extends ProxyResource {
 
     /**
      * Get the defaultDnsZone property: Default DNS zone of the DNS Service.
-     *
+     * 
      * @return the defaultDnsZone value.
      */
     public String defaultDnsZone() {
@@ -91,7 +95,7 @@ public final class WorkloadNetworkDnsServiceInner extends ProxyResource {
 
     /**
      * Set the defaultDnsZone property: Default DNS zone of the DNS Service.
-     *
+     * 
      * @param defaultDnsZone the defaultDnsZone value to set.
      * @return the WorkloadNetworkDnsServiceInner object itself.
      */
@@ -105,7 +109,7 @@ public final class WorkloadNetworkDnsServiceInner extends ProxyResource {
 
     /**
      * Get the fqdnZones property: FQDN zones of the DNS Service.
-     *
+     * 
      * @return the fqdnZones value.
      */
     public List<String> fqdnZones() {
@@ -114,7 +118,7 @@ public final class WorkloadNetworkDnsServiceInner extends ProxyResource {
 
     /**
      * Set the fqdnZones property: FQDN zones of the DNS Service.
-     *
+     * 
      * @param fqdnZones the fqdnZones value to set.
      * @return the WorkloadNetworkDnsServiceInner object itself.
      */
@@ -128,7 +132,7 @@ public final class WorkloadNetworkDnsServiceInner extends ProxyResource {
 
     /**
      * Get the logLevel property: DNS Service log level.
-     *
+     * 
      * @return the logLevel value.
      */
     public DnsServiceLogLevelEnum logLevel() {
@@ -137,7 +141,7 @@ public final class WorkloadNetworkDnsServiceInner extends ProxyResource {
 
     /**
      * Set the logLevel property: DNS Service log level.
-     *
+     * 
      * @param logLevel the logLevel value to set.
      * @return the WorkloadNetworkDnsServiceInner object itself.
      */
@@ -151,7 +155,7 @@ public final class WorkloadNetworkDnsServiceInner extends ProxyResource {
 
     /**
      * Get the status property: DNS Service status.
-     *
+     * 
      * @return the status value.
      */
     public DnsServiceStatusEnum status() {
@@ -160,7 +164,7 @@ public final class WorkloadNetworkDnsServiceInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public WorkloadNetworkDnsServiceProvisioningState provisioningState() {
@@ -169,7 +173,7 @@ public final class WorkloadNetworkDnsServiceInner extends ProxyResource {
 
     /**
      * Get the revision property: NSX revision number.
-     *
+     * 
      * @return the revision value.
      */
     public Long revision() {
@@ -178,7 +182,7 @@ public final class WorkloadNetworkDnsServiceInner extends ProxyResource {
 
     /**
      * Set the revision property: NSX revision number.
-     *
+     * 
      * @param revision the revision value to set.
      * @return the WorkloadNetworkDnsServiceInner object itself.
      */
@@ -192,7 +196,7 @@ public final class WorkloadNetworkDnsServiceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

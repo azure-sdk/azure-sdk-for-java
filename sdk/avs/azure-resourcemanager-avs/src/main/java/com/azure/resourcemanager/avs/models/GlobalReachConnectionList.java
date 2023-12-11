@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.GlobalReachConnectionInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paged list of global reach connections. */
+/**
+ * A paged list of global reach connections.
+ */
 @Immutable
 public final class GlobalReachConnectionList {
     /*
@@ -24,13 +26,15 @@ public final class GlobalReachConnectionList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of GlobalReachConnectionList class. */
+    /**
+     * Creates an instance of GlobalReachConnectionList class.
+     */
     public GlobalReachConnectionList() {
     }
 
     /**
      * Get the value property: The items on a page.
-     *
+     * 
      * @return the value value.
      */
     public List<GlobalReachConnectionInner> value() {
@@ -39,7 +43,7 @@ public final class GlobalReachConnectionList {
 
     /**
      * Get the nextLink property: URL to get the next page if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class GlobalReachConnectionList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.VirtualMachineInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of Virtual Machines. */
+/**
+ * A list of Virtual Machines.
+ */
 @Immutable
 public final class VirtualMachinesList {
     /*
@@ -24,13 +26,15 @@ public final class VirtualMachinesList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of VirtualMachinesList class. */
+    /**
+     * Creates an instance of VirtualMachinesList class.
+     */
     public VirtualMachinesList() {
     }
 
     /**
      * Get the value property: The items to be displayed on the page.
-     *
+     * 
      * @return the value value.
      */
     public List<VirtualMachineInner> value() {
@@ -39,7 +43,7 @@ public final class VirtualMachinesList {
 
     /**
      * Get the nextLink property: URL to get the next page if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class VirtualMachinesList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

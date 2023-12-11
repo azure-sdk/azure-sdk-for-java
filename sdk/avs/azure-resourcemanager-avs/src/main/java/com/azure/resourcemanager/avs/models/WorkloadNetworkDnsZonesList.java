@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.WorkloadNetworkDnsZoneInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of NSX DNS Zones. */
+/**
+ * A list of NSX DNS Zones.
+ */
 @Immutable
 public final class WorkloadNetworkDnsZonesList {
     /*
@@ -24,13 +26,15 @@ public final class WorkloadNetworkDnsZonesList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of WorkloadNetworkDnsZonesList class. */
+    /**
+     * Creates an instance of WorkloadNetworkDnsZonesList class.
+     */
     public WorkloadNetworkDnsZonesList() {
     }
 
     /**
      * Get the value property: The items on the page.
-     *
+     * 
      * @return the value value.
      */
     public List<WorkloadNetworkDnsZoneInner> value() {
@@ -39,7 +43,7 @@ public final class WorkloadNetworkDnsZonesList {
 
     /**
      * Get the nextLink property: URL to get the next page if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class WorkloadNetworkDnsZonesList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

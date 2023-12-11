@@ -8,11 +8,13 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of ScriptPackages. */
+/**
+ * Resource collection API of ScriptPackages.
+ */
 public interface ScriptPackages {
     /**
      * List script packages available to run on the private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -24,7 +26,7 @@ public interface ScriptPackages {
 
     /**
      * List script packages available to run on the private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -37,7 +39,7 @@ public interface ScriptPackages {
 
     /**
      * Get a script package available to run on a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptPackageName Name of the script package in the private cloud.
@@ -47,12 +49,12 @@ public interface ScriptPackages {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a script package available to run on a private cloud along with {@link Response}.
      */
-    Response<ScriptPackage> getWithResponse(
-        String resourceGroupName, String privateCloudName, String scriptPackageName, Context context);
+    Response<ScriptPackage> getWithResponse(String resourceGroupName, String privateCloudName, String scriptPackageName,
+        Context context);
 
     /**
      * Get a script package available to run on a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param scriptPackageName Name of the script package in the private cloud.

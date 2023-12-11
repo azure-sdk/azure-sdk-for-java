@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The common properties of a cluster. */
+/**
+ * The common properties of a cluster.
+ */
 @Fluent
 public class CommonClusterProperties {
     /*
@@ -35,13 +37,15 @@ public class CommonClusterProperties {
     @JsonProperty(value = "hosts")
     private List<String> hosts;
 
-    /** Creates an instance of CommonClusterProperties class. */
+    /**
+     * Creates an instance of CommonClusterProperties class.
+     */
     public CommonClusterProperties() {
     }
 
     /**
      * Get the clusterSize property: The cluster size.
-     *
+     * 
      * @return the clusterSize value.
      */
     public Integer clusterSize() {
@@ -50,7 +54,7 @@ public class CommonClusterProperties {
 
     /**
      * Set the clusterSize property: The cluster size.
-     *
+     * 
      * @param clusterSize the clusterSize value to set.
      * @return the CommonClusterProperties object itself.
      */
@@ -61,7 +65,7 @@ public class CommonClusterProperties {
 
     /**
      * Get the provisioningState property: The state of the cluster provisioning.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ClusterProvisioningState provisioningState() {
@@ -70,7 +74,7 @@ public class CommonClusterProperties {
 
     /**
      * Get the clusterId property: The identity.
-     *
+     * 
      * @return the clusterId value.
      */
     public Integer clusterId() {
@@ -79,7 +83,7 @@ public class CommonClusterProperties {
 
     /**
      * Get the hosts property: The hosts.
-     *
+     * 
      * @return the hosts value.
      */
     public List<String> hosts() {
@@ -88,7 +92,7 @@ public class CommonClusterProperties {
 
     /**
      * Set the hosts property: The hosts.
-     *
+     * 
      * @param hosts the hosts value to set.
      * @return the CommonClusterProperties object itself.
      */
@@ -99,7 +103,7 @@ public class CommonClusterProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.PlacementPolicyInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Represents list of placement policies. */
+/**
+ * Represents list of placement policies.
+ */
 @Immutable
 public final class PlacementPoliciesList {
     /*
@@ -24,13 +26,15 @@ public final class PlacementPoliciesList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of PlacementPoliciesList class. */
+    /**
+     * Creates an instance of PlacementPoliciesList class.
+     */
     public PlacementPoliciesList() {
     }
 
     /**
      * Get the value property: The items on the page.
-     *
+     * 
      * @return the value value.
      */
     public List<PlacementPolicyInner> value() {
@@ -39,7 +43,7 @@ public final class PlacementPoliciesList {
 
     /**
      * Get the nextLink property: URL to get the next page if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class PlacementPoliciesList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

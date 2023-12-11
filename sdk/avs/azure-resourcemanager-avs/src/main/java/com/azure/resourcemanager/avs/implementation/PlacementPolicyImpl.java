@@ -57,8 +57,8 @@ public final class PlacementPolicyImpl implements PlacementPolicy, PlacementPoli
 
     private PlacementPolicyUpdate updatePlacementPolicyUpdate;
 
-    public PlacementPolicyImpl withExistingCluster(
-        String resourceGroupName, String privateCloudName, String clusterName) {
+    public PlacementPolicyImpl withExistingCluster(String resourceGroupName, String privateCloudName,
+        String clusterName) {
         this.resourceGroupName = resourceGroupName;
         this.privateCloudName = privateCloudName;
         this.clusterName = clusterName;
@@ -66,27 +66,14 @@ public final class PlacementPolicyImpl implements PlacementPolicy, PlacementPoli
     }
 
     public PlacementPolicy create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPlacementPolicies()
-                .createOrUpdate(
-                    resourceGroupName,
-                    privateCloudName,
-                    clusterName,
-                    placementPolicyName,
-                    this.innerModel(),
-                    Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getPlacementPolicies().createOrUpdate(resourceGroupName,
+            privateCloudName, clusterName, placementPolicyName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public PlacementPolicy create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPlacementPolicies()
-                .createOrUpdate(
-                    resourceGroupName, privateCloudName, clusterName, placementPolicyName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getPlacementPolicies().createOrUpdate(resourceGroupName,
+            privateCloudName, clusterName, placementPolicyName, this.innerModel(), context);
         return this;
     }
 
@@ -102,32 +89,14 @@ public final class PlacementPolicyImpl implements PlacementPolicy, PlacementPoli
     }
 
     public PlacementPolicy apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPlacementPolicies()
-                .update(
-                    resourceGroupName,
-                    privateCloudName,
-                    clusterName,
-                    placementPolicyName,
-                    updatePlacementPolicyUpdate,
-                    Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getPlacementPolicies().update(resourceGroupName,
+            privateCloudName, clusterName, placementPolicyName, updatePlacementPolicyUpdate, Context.NONE);
         return this;
     }
 
     public PlacementPolicy apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPlacementPolicies()
-                .update(
-                    resourceGroupName,
-                    privateCloudName,
-                    clusterName,
-                    placementPolicyName,
-                    updatePlacementPolicyUpdate,
-                    context);
+        this.innerObject = serviceManager.serviceClient().getPlacementPolicies().update(resourceGroupName,
+            privateCloudName, clusterName, placementPolicyName, updatePlacementPolicyUpdate, context);
         return this;
     }
 
@@ -141,22 +110,15 @@ public final class PlacementPolicyImpl implements PlacementPolicy, PlacementPoli
     }
 
     public PlacementPolicy refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPlacementPolicies()
-                .getWithResponse(resourceGroupName, privateCloudName, clusterName, placementPolicyName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getPlacementPolicies()
+            .getWithResponse(resourceGroupName, privateCloudName, clusterName, placementPolicyName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public PlacementPolicy refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPlacementPolicies()
-                .getWithResponse(resourceGroupName, privateCloudName, clusterName, placementPolicyName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getPlacementPolicies()
+            .getWithResponse(resourceGroupName, privateCloudName, clusterName, placementPolicyName, context).getValue();
         return this;
     }
 

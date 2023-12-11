@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.avs.models.WorkloadNetworkDhcpEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** NSX DHCP. */
+/**
+ * NSX DHCP.
+ */
 @Fluent
 public final class WorkloadNetworkDhcpInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class WorkloadNetworkDhcpInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private WorkloadNetworkDhcpEntity properties;
 
-    /** Creates an instance of WorkloadNetworkDhcpInner class. */
+    /**
+     * Creates an instance of WorkloadNetworkDhcpInner class.
+     */
     public WorkloadNetworkDhcpInner() {
     }
 
     /**
      * Get the properties property: DHCP properties.
-     *
+     * 
      * @return the properties value.
      */
     public WorkloadNetworkDhcpEntity properties() {
@@ -33,7 +37,7 @@ public final class WorkloadNetworkDhcpInner extends ProxyResource {
 
     /**
      * Set the properties property: DHCP properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the WorkloadNetworkDhcpInner object itself.
      */
@@ -44,7 +48,7 @@ public final class WorkloadNetworkDhcpInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

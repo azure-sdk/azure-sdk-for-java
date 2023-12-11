@@ -7,11 +7,13 @@ package com.azure.resourcemanager.avs.models;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of Locations. */
+/**
+ * Resource collection API of Locations.
+ */
 public interface Locations {
     /**
      * Return trial status for subscription by region.
-     *
+     * 
      * @param location Azure region.
      * @param sku The sku to check for trial availability.
      * @param context The context to associate with this operation.
@@ -24,7 +26,7 @@ public interface Locations {
 
     /**
      * Return trial status for subscription by region.
-     *
+     * 
      * @param location Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -35,7 +37,7 @@ public interface Locations {
 
     /**
      * Return quota for subscription by region.
-     *
+     * 
      * @param location Azure region.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -47,7 +49,7 @@ public interface Locations {
 
     /**
      * Return quota for subscription by region.
-     *
+     * 
      * @param location Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

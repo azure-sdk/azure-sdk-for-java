@@ -14,7 +14,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** Properties of a user-invoked script. */
+/**
+ * Properties of a user-invoked script.
+ */
 @Fluent
 public final class ScriptExecutionProperties {
     /*
@@ -109,13 +111,15 @@ public final class ScriptExecutionProperties {
     @JsonProperty(value = "errors", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> errors;
 
-    /** Creates an instance of ScriptExecutionProperties class. */
+    /**
+     * Creates an instance of ScriptExecutionProperties class.
+     */
     public ScriptExecutionProperties() {
     }
 
     /**
      * Get the scriptCmdletId property: A reference to the script cmdlet resource if user is running a AVS script.
-     *
+     * 
      * @return the scriptCmdletId value.
      */
     public String scriptCmdletId() {
@@ -124,7 +128,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Set the scriptCmdletId property: A reference to the script cmdlet resource if user is running a AVS script.
-     *
+     * 
      * @param scriptCmdletId the scriptCmdletId value to set.
      * @return the ScriptExecutionProperties object itself.
      */
@@ -135,7 +139,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Get the parameters property: Parameters the script will accept.
-     *
+     * 
      * @return the parameters value.
      */
     public List<ScriptExecutionParameter> parameters() {
@@ -144,7 +148,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Set the parameters property: Parameters the script will accept.
-     *
+     * 
      * @param parameters the parameters value to set.
      * @return the ScriptExecutionProperties object itself.
      */
@@ -156,7 +160,7 @@ public final class ScriptExecutionProperties {
     /**
      * Get the hiddenParameters property: Parameters that will be hidden/not visible to ARM, such as passwords and
      * credentials.
-     *
+     * 
      * @return the hiddenParameters value.
      */
     public List<ScriptExecutionParameter> hiddenParameters() {
@@ -166,7 +170,7 @@ public final class ScriptExecutionProperties {
     /**
      * Set the hiddenParameters property: Parameters that will be hidden/not visible to ARM, such as passwords and
      * credentials.
-     *
+     * 
      * @param hiddenParameters the hiddenParameters value to set.
      * @return the ScriptExecutionProperties object itself.
      */
@@ -178,7 +182,7 @@ public final class ScriptExecutionProperties {
     /**
      * Get the failureReason property: Error message if the script was able to run, but if the script itself had errors
      * or powershell threw an exception.
-     *
+     * 
      * @return the failureReason value.
      */
     public String failureReason() {
@@ -188,7 +192,7 @@ public final class ScriptExecutionProperties {
     /**
      * Set the failureReason property: Error message if the script was able to run, but if the script itself had errors
      * or powershell threw an exception.
-     *
+     * 
      * @param failureReason the failureReason value to set.
      * @return the ScriptExecutionProperties object itself.
      */
@@ -199,7 +203,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Get the timeout property: Time limit for execution.
-     *
+     * 
      * @return the timeout value.
      */
     public String timeout() {
@@ -208,7 +212,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Set the timeout property: Time limit for execution.
-     *
+     * 
      * @param timeout the timeout value to set.
      * @return the ScriptExecutionProperties object itself.
      */
@@ -219,7 +223,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Get the retention property: Time to live for the resource. If not provided, will be available for 60 days.
-     *
+     * 
      * @return the retention value.
      */
     public String retention() {
@@ -228,7 +232,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Set the retention property: Time to live for the resource. If not provided, will be available for 60 days.
-     *
+     * 
      * @param retention the retention value to set.
      * @return the ScriptExecutionProperties object itself.
      */
@@ -239,7 +243,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Get the submittedAt property: Time the script execution was submitted.
-     *
+     * 
      * @return the submittedAt value.
      */
     public OffsetDateTime submittedAt() {
@@ -248,7 +252,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Get the startedAt property: Time the script execution was started.
-     *
+     * 
      * @return the startedAt value.
      */
     public OffsetDateTime startedAt() {
@@ -257,7 +261,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Get the finishedAt property: Time the script execution was finished.
-     *
+     * 
      * @return the finishedAt value.
      */
     public OffsetDateTime finishedAt() {
@@ -266,7 +270,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Get the provisioningState property: The state of the script execution resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ScriptExecutionProvisioningState provisioningState() {
@@ -275,7 +279,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Get the output property: Standard output stream from the powershell execution.
-     *
+     * 
      * @return the output value.
      */
     public List<String> output() {
@@ -284,7 +288,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Set the output property: Standard output stream from the powershell execution.
-     *
+     * 
      * @param output the output value to set.
      * @return the ScriptExecutionProperties object itself.
      */
@@ -295,7 +299,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Get the namedOutputs property: User-defined dictionary.
-     *
+     * 
      * @return the namedOutputs value.
      */
     public Map<String, Object> namedOutputs() {
@@ -304,7 +308,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Set the namedOutputs property: User-defined dictionary.
-     *
+     * 
      * @param namedOutputs the namedOutputs value to set.
      * @return the ScriptExecutionProperties object itself.
      */
@@ -315,7 +319,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Get the information property: Standard information out stream from the powershell execution.
-     *
+     * 
      * @return the information value.
      */
     public List<String> information() {
@@ -324,7 +328,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Get the warnings property: Standard warning out stream from the powershell execution.
-     *
+     * 
      * @return the warnings value.
      */
     public List<String> warnings() {
@@ -333,7 +337,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Get the errors property: Standard error output stream from the powershell execution.
-     *
+     * 
      * @return the errors value.
      */
     public List<String> errors() {
@@ -342,7 +346,7 @@ public final class ScriptExecutionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -353,10 +357,8 @@ public final class ScriptExecutionProperties {
             hiddenParameters().forEach(e -> e.validate());
         }
         if (timeout() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property timeout in model ScriptExecutionProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property timeout in model ScriptExecutionProperties"));
         }
     }
 

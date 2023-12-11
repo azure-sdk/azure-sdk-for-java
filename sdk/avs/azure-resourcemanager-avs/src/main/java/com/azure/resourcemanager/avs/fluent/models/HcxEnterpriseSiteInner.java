@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.avs.models.HcxEnterpriseSiteStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An HCX Enterprise Site resource. */
+/**
+ * An HCX Enterprise Site resource.
+ */
 @Immutable
 public final class HcxEnterpriseSiteInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class HcxEnterpriseSiteInner extends ProxyResource {
     @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
     private HcxEnterpriseSiteProperties innerProperties;
 
-    /** Creates an instance of HcxEnterpriseSiteInner class. */
+    /**
+     * Creates an instance of HcxEnterpriseSiteInner class.
+     */
     public HcxEnterpriseSiteInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of an HCX Enterprise Site resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private HcxEnterpriseSiteProperties innerProperties() {
@@ -33,7 +37,7 @@ public final class HcxEnterpriseSiteInner extends ProxyResource {
 
     /**
      * Get the activationKey property: The activation key.
-     *
+     * 
      * @return the activationKey value.
      */
     public String activationKey() {
@@ -42,7 +46,7 @@ public final class HcxEnterpriseSiteInner extends ProxyResource {
 
     /**
      * Get the status property: The status of the HCX Enterprise Site.
-     *
+     * 
      * @return the status value.
      */
     public HcxEnterpriseSiteStatus status() {
@@ -51,7 +55,7 @@ public final class HcxEnterpriseSiteInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

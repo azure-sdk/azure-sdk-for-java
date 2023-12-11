@@ -13,11 +13,13 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.avs.fluent.models.CloudLinkInner;
 
-/** An instance of this class provides access to all the operations defined in CloudLinksClient. */
+/**
+ * An instance of this class provides access to all the operations defined in CloudLinksClient.
+ */
 public interface CloudLinksClient {
     /**
      * List cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -30,7 +32,7 @@ public interface CloudLinksClient {
 
     /**
      * List cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -44,7 +46,7 @@ public interface CloudLinksClient {
 
     /**
      * Get an cloud link by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -55,12 +57,12 @@ public interface CloudLinksClient {
      * @return an cloud link by name in a private cloud along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<CloudLinkInner> getWithResponse(
-        String resourceGroupName, String privateCloudName, String cloudLinkName, Context context);
+    Response<CloudLinkInner> getWithResponse(String resourceGroupName, String privateCloudName, String cloudLinkName,
+        Context context);
 
     /**
      * Get an cloud link by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -74,7 +76,7 @@ public interface CloudLinksClient {
 
     /**
      * Create or update a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -85,12 +87,12 @@ public interface CloudLinksClient {
      * @return the {@link SyncPoller} for polling of a cloud link resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<CloudLinkInner>, CloudLinkInner> beginCreateOrUpdate(
-        String resourceGroupName, String privateCloudName, String cloudLinkName, CloudLinkInner cloudLink);
+    SyncPoller<PollResult<CloudLinkInner>, CloudLinkInner> beginCreateOrUpdate(String resourceGroupName,
+        String privateCloudName, String cloudLinkName, CloudLinkInner cloudLink);
 
     /**
      * Create or update a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -102,16 +104,12 @@ public interface CloudLinksClient {
      * @return the {@link SyncPoller} for polling of a cloud link resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<CloudLinkInner>, CloudLinkInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String cloudLinkName,
-        CloudLinkInner cloudLink,
-        Context context);
+    SyncPoller<PollResult<CloudLinkInner>, CloudLinkInner> beginCreateOrUpdate(String resourceGroupName,
+        String privateCloudName, String cloudLinkName, CloudLinkInner cloudLink, Context context);
 
     /**
      * Create or update a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -122,12 +120,12 @@ public interface CloudLinksClient {
      * @return a cloud link resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    CloudLinkInner createOrUpdate(
-        String resourceGroupName, String privateCloudName, String cloudLinkName, CloudLinkInner cloudLink);
+    CloudLinkInner createOrUpdate(String resourceGroupName, String privateCloudName, String cloudLinkName,
+        CloudLinkInner cloudLink);
 
     /**
      * Create or update a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -139,16 +137,12 @@ public interface CloudLinksClient {
      * @return a cloud link resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    CloudLinkInner createOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String cloudLinkName,
-        CloudLinkInner cloudLink,
-        Context context);
+    CloudLinkInner createOrUpdate(String resourceGroupName, String privateCloudName, String cloudLinkName,
+        CloudLinkInner cloudLink, Context context);
 
     /**
      * Delete a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -158,12 +152,12 @@ public interface CloudLinksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String privateCloudName, String cloudLinkName);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String privateCloudName,
+        String cloudLinkName);
 
     /**
      * Delete a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -174,12 +168,12 @@ public interface CloudLinksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String privateCloudName, String cloudLinkName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String privateCloudName,
+        String cloudLinkName, Context context);
 
     /**
      * Delete a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.
@@ -192,7 +186,7 @@ public interface CloudLinksClient {
 
     /**
      * Delete a cloud link in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param cloudLinkName Name of the cloud link resource.

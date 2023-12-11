@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The properties of an addon. */
+/**
+ * The properties of an addon.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -21,8 +23,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "SRM", value = AddonSrmProperties.class),
     @JsonSubTypes.Type(name = "VR", value = AddonVrProperties.class),
     @JsonSubTypes.Type(name = "HCX", value = AddonHcxProperties.class),
-    @JsonSubTypes.Type(name = "Arc", value = AddonArcProperties.class)
-})
+    @JsonSubTypes.Type(name = "Arc", value = AddonArcProperties.class) })
 @Immutable
 public class AddonProperties {
     /*
@@ -31,13 +32,15 @@ public class AddonProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private AddonProvisioningState provisioningState;
 
-    /** Creates an instance of AddonProperties class. */
+    /**
+     * Creates an instance of AddonProperties class.
+     */
     public AddonProperties() {
     }
 
     /**
      * Get the provisioningState property: The state of the addon provisioning.
-     *
+     * 
      * @return the provisioningState value.
      */
     public AddonProvisioningState provisioningState() {
@@ -46,7 +49,7 @@ public class AddonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

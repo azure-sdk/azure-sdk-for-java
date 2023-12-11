@@ -12,7 +12,9 @@ import com.azure.resourcemanager.avs.models.Sku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A cluster resource. */
+/**
+ * A cluster resource.
+ */
 @Fluent
 public final class ClusterInner extends ProxyResource {
     /*
@@ -27,13 +29,15 @@ public final class ClusterInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private ClusterProperties innerProperties;
 
-    /** Creates an instance of ClusterInner class. */
+    /**
+     * Creates an instance of ClusterInner class.
+     */
     public ClusterInner() {
     }
 
     /**
      * Get the sku property: The cluster SKU.
-     *
+     * 
      * @return the sku value.
      */
     public Sku sku() {
@@ -42,7 +46,7 @@ public final class ClusterInner extends ProxyResource {
 
     /**
      * Set the sku property: The cluster SKU.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the ClusterInner object itself.
      */
@@ -53,7 +57,7 @@ public final class ClusterInner extends ProxyResource {
 
     /**
      * Get the innerProperties property: The properties of a cluster resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ClusterProperties innerProperties() {
@@ -62,7 +66,7 @@ public final class ClusterInner extends ProxyResource {
 
     /**
      * Get the clusterSize property: The cluster size.
-     *
+     * 
      * @return the clusterSize value.
      */
     public Integer clusterSize() {
@@ -71,7 +75,7 @@ public final class ClusterInner extends ProxyResource {
 
     /**
      * Set the clusterSize property: The cluster size.
-     *
+     * 
      * @param clusterSize the clusterSize value to set.
      * @return the ClusterInner object itself.
      */
@@ -85,7 +89,7 @@ public final class ClusterInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The state of the cluster provisioning.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ClusterProvisioningState provisioningState() {
@@ -94,7 +98,7 @@ public final class ClusterInner extends ProxyResource {
 
     /**
      * Get the clusterId property: The identity.
-     *
+     * 
      * @return the clusterId value.
      */
     public Integer clusterId() {
@@ -103,7 +107,7 @@ public final class ClusterInner extends ProxyResource {
 
     /**
      * Get the hosts property: The hosts.
-     *
+     * 
      * @return the hosts value.
      */
     public List<String> hosts() {
@@ -112,7 +116,7 @@ public final class ClusterInner extends ProxyResource {
 
     /**
      * Set the hosts property: The hosts.
-     *
+     * 
      * @param hosts the hosts value to set.
      * @return the ClusterInner object itself.
      */
@@ -126,14 +130,13 @@ public final class ClusterInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sku() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property sku in model ClusterInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property sku in model ClusterInner"));
         } else {
             sku().validate();
         }

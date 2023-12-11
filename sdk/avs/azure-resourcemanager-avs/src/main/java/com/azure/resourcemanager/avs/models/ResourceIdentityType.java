@@ -13,15 +13,19 @@ import java.util.Collection;
  * The type 'None' will remove any identities from the Private Cloud.
  */
 public final class ResourceIdentityType extends ExpandableStringEnum<ResourceIdentityType> {
-    /** Static value SystemAssigned for ResourceIdentityType. */
+    /**
+     * Static value SystemAssigned for ResourceIdentityType.
+     */
     public static final ResourceIdentityType SYSTEM_ASSIGNED = fromString("SystemAssigned");
 
-    /** Static value None for ResourceIdentityType. */
+    /**
+     * Static value None for ResourceIdentityType.
+     */
     public static final ResourceIdentityType NONE = fromString("None");
 
     /**
      * Creates a new instance of ResourceIdentityType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +34,7 @@ public final class ResourceIdentityType extends ExpandableStringEnum<ResourceIde
 
     /**
      * Creates or finds a ResourceIdentityType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ResourceIdentityType.
      */
@@ -41,7 +45,7 @@ public final class ResourceIdentityType extends ExpandableStringEnum<ResourceIde
 
     /**
      * Gets known ResourceIdentityType values.
-     *
+     * 
      * @return known ResourceIdentityType values.
      */
     public static Collection<ResourceIdentityType> values() {

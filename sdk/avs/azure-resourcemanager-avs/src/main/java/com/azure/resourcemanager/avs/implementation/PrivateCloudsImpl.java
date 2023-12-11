@@ -48,15 +48,12 @@ public final class PrivateCloudsImpl implements PrivateClouds {
         return Utils.mapPage(inner, inner1 -> new PrivateCloudImpl(inner1, this.manager()));
     }
 
-    public Response<PrivateCloud> getByResourceGroupWithResponse(
-        String resourceGroupName, String privateCloudName, Context context) {
-        Response<PrivateCloudInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, privateCloudName, context);
+    public Response<PrivateCloud> getByResourceGroupWithResponse(String resourceGroupName, String privateCloudName,
+        Context context) {
+        Response<PrivateCloudInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, privateCloudName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new PrivateCloudImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -96,15 +93,12 @@ public final class PrivateCloudsImpl implements PrivateClouds {
         this.serviceClient().rotateNsxtPassword(resourceGroupName, privateCloudName, context);
     }
 
-    public Response<AdminCredentials> listAdminCredentialsWithResponse(
-        String resourceGroupName, String privateCloudName, Context context) {
-        Response<AdminCredentialsInner> inner =
-            this.serviceClient().listAdminCredentialsWithResponse(resourceGroupName, privateCloudName, context);
+    public Response<AdminCredentials> listAdminCredentialsWithResponse(String resourceGroupName,
+        String privateCloudName, Context context) {
+        Response<AdminCredentialsInner> inner
+            = this.serviceClient().listAdminCredentialsWithResponse(resourceGroupName, privateCloudName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new AdminCredentialsImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -123,18 +117,13 @@ public final class PrivateCloudsImpl implements PrivateClouds {
     public PrivateCloud getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, privateCloudName, Context.NONE).getValue();
     }
@@ -142,18 +131,13 @@ public final class PrivateCloudsImpl implements PrivateClouds {
     public Response<PrivateCloud> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, privateCloudName, context);
     }
@@ -161,18 +145,13 @@ public final class PrivateCloudsImpl implements PrivateClouds {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         this.delete(resourceGroupName, privateCloudName, Context.NONE);
     }
@@ -180,18 +159,13 @@ public final class PrivateCloudsImpl implements PrivateClouds {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         this.delete(resourceGroupName, privateCloudName, context);
     }

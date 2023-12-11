@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.ScriptCmdletInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Pageable list of scripts/cmdlets. */
+/**
+ * Pageable list of scripts/cmdlets.
+ */
 @Immutable
 public final class ScriptCmdletsList {
     /*
@@ -24,13 +26,15 @@ public final class ScriptCmdletsList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ScriptCmdletsList class. */
+    /**
+     * Creates an instance of ScriptCmdletsList class.
+     */
     public ScriptCmdletsList() {
     }
 
     /**
      * Get the value property: List of scripts.
-     *
+     * 
      * @return the value value.
      */
     public List<ScriptCmdletInner> value() {
@@ -39,7 +43,7 @@ public final class ScriptCmdletsList {
 
     /**
      * Get the nextLink property: URL to get the next page if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class ScriptCmdletsList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

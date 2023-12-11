@@ -23,11 +23,13 @@ import com.azure.resourcemanager.avs.fluent.models.WorkloadNetworkVMGroupInner;
 import com.azure.resourcemanager.avs.fluent.models.WorkloadNetworkVirtualMachineInner;
 import com.azure.resourcemanager.avs.models.WorkloadNetworkName;
 
-/** An instance of this class provides access to all the operations defined in WorkloadNetworksClient. */
+/**
+ * An instance of this class provides access to all the operations defined in WorkloadNetworksClient.
+ */
 public interface WorkloadNetworksClient {
     /**
      * Get a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param workloadNetworkName Name for the workload network in the private cloud.
@@ -38,12 +40,12 @@ public interface WorkloadNetworksClient {
      * @return a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<WorkloadNetworkInner> getWithResponse(
-        String resourceGroupName, String privateCloudName, WorkloadNetworkName workloadNetworkName, Context context);
+    Response<WorkloadNetworkInner> getWithResponse(String resourceGroupName, String privateCloudName,
+        WorkloadNetworkName workloadNetworkName, Context context);
 
     /**
      * Get a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param workloadNetworkName Name for the workload network in the private cloud.
@@ -53,12 +55,12 @@ public interface WorkloadNetworksClient {
      * @return a private cloud workload network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkInner get(
-        String resourceGroupName, String privateCloudName, WorkloadNetworkName workloadNetworkName);
+    WorkloadNetworkInner get(String resourceGroupName, String privateCloudName,
+        WorkloadNetworkName workloadNetworkName);
 
     /**
      * List of workload networks in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -71,7 +73,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * List of workload networks in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -85,7 +87,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * List of segments in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -98,7 +100,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * List of segments in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -108,12 +110,12 @@ public interface WorkloadNetworksClient {
      * @return a list of NSX Segments as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<WorkloadNetworkSegmentInner> listSegments(
-        String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<WorkloadNetworkSegmentInner> listSegments(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Get a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -124,12 +126,12 @@ public interface WorkloadNetworksClient {
      * @return a segment by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<WorkloadNetworkSegmentInner> getSegmentWithResponse(
-        String resourceGroupName, String privateCloudName, String segmentId, Context context);
+    Response<WorkloadNetworkSegmentInner> getSegmentWithResponse(String resourceGroupName, String privateCloudName,
+        String segmentId, Context context);
 
     /**
      * Get a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -143,7 +145,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * Create a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -155,14 +157,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkSegmentInner>, WorkloadNetworkSegmentInner> beginCreateSegments(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
+        String resourceGroupName, String privateCloudName, String segmentId,
         WorkloadNetworkSegmentInner workloadNetworkSegment);
 
     /**
      * Create a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -175,15 +175,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkSegmentInner>, WorkloadNetworkSegmentInner> beginCreateSegments(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment,
-        Context context);
+        String resourceGroupName, String privateCloudName, String segmentId,
+        WorkloadNetworkSegmentInner workloadNetworkSegment, Context context);
 
     /**
      * Create a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -194,15 +191,12 @@ public interface WorkloadNetworksClient {
      * @return nSX Segment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkSegmentInner createSegments(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
+    WorkloadNetworkSegmentInner createSegments(String resourceGroupName, String privateCloudName, String segmentId,
         WorkloadNetworkSegmentInner workloadNetworkSegment);
 
     /**
      * Create a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -214,16 +208,12 @@ public interface WorkloadNetworksClient {
      * @return nSX Segment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkSegmentInner createSegments(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment,
-        Context context);
+    WorkloadNetworkSegmentInner createSegments(String resourceGroupName, String privateCloudName, String segmentId,
+        WorkloadNetworkSegmentInner workloadNetworkSegment, Context context);
 
     /**
      * Create or update a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -235,14 +225,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkSegmentInner>, WorkloadNetworkSegmentInner> beginUpdateSegments(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
+        String resourceGroupName, String privateCloudName, String segmentId,
         WorkloadNetworkSegmentInner workloadNetworkSegment);
 
     /**
      * Create or update a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -255,15 +243,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkSegmentInner>, WorkloadNetworkSegmentInner> beginUpdateSegments(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment,
-        Context context);
+        String resourceGroupName, String privateCloudName, String segmentId,
+        WorkloadNetworkSegmentInner workloadNetworkSegment, Context context);
 
     /**
      * Create or update a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -274,15 +259,12 @@ public interface WorkloadNetworksClient {
      * @return nSX Segment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkSegmentInner updateSegments(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
+    WorkloadNetworkSegmentInner updateSegments(String resourceGroupName, String privateCloudName, String segmentId,
         WorkloadNetworkSegmentInner workloadNetworkSegment);
 
     /**
      * Create or update a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -294,16 +276,12 @@ public interface WorkloadNetworksClient {
      * @return nSX Segment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkSegmentInner updateSegments(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment,
-        Context context);
+    WorkloadNetworkSegmentInner updateSegments(String resourceGroupName, String privateCloudName, String segmentId,
+        WorkloadNetworkSegmentInner workloadNetworkSegment, Context context);
 
     /**
      * Delete a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -313,12 +291,12 @@ public interface WorkloadNetworksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDeleteSegment(
-        String resourceGroupName, String privateCloudName, String segmentId);
+    SyncPoller<PollResult<Void>, Void> beginDeleteSegment(String resourceGroupName, String privateCloudName,
+        String segmentId);
 
     /**
      * Delete a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -329,12 +307,12 @@ public interface WorkloadNetworksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDeleteSegment(
-        String resourceGroupName, String privateCloudName, String segmentId, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDeleteSegment(String resourceGroupName, String privateCloudName,
+        String segmentId, Context context);
 
     /**
      * Delete a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -347,7 +325,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * Delete a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -361,7 +339,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * List dhcp in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -374,7 +352,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * List dhcp in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -384,12 +362,12 @@ public interface WorkloadNetworksClient {
      * @return a list of NSX dhcp entities as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<WorkloadNetworkDhcpInner> listDhcp(
-        String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<WorkloadNetworkDhcpInner> listDhcp(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Get dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
      * @param privateCloudName Name of the private cloud.
@@ -400,12 +378,12 @@ public interface WorkloadNetworksClient {
      * @return dhcp by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<WorkloadNetworkDhcpInner> getDhcpWithResponse(
-        String resourceGroupName, String dhcpId, String privateCloudName, Context context);
+    Response<WorkloadNetworkDhcpInner> getDhcpWithResponse(String resourceGroupName, String dhcpId,
+        String privateCloudName, Context context);
 
     /**
      * Get dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
      * @param privateCloudName Name of the private cloud.
@@ -419,7 +397,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * Create dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -430,12 +408,12 @@ public interface WorkloadNetworksClient {
      * @return the {@link SyncPoller} for polling of nSX DHCP.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginCreateDhcp(
-        String resourceGroupName, String privateCloudName, String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp);
+    SyncPoller<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginCreateDhcp(String resourceGroupName,
+        String privateCloudName, String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp);
 
     /**
      * Create dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -447,16 +425,12 @@ public interface WorkloadNetworksClient {
      * @return the {@link SyncPoller} for polling of nSX DHCP.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginCreateDhcp(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
-        WorkloadNetworkDhcpInner workloadNetworkDhcp,
-        Context context);
+    SyncPoller<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginCreateDhcp(String resourceGroupName,
+        String privateCloudName, String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp, Context context);
 
     /**
      * Create dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -467,12 +441,12 @@ public interface WorkloadNetworksClient {
      * @return nSX DHCP.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkDhcpInner createDhcp(
-        String resourceGroupName, String privateCloudName, String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp);
+    WorkloadNetworkDhcpInner createDhcp(String resourceGroupName, String privateCloudName, String dhcpId,
+        WorkloadNetworkDhcpInner workloadNetworkDhcp);
 
     /**
      * Create dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -484,16 +458,12 @@ public interface WorkloadNetworksClient {
      * @return nSX DHCP.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkDhcpInner createDhcp(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
-        WorkloadNetworkDhcpInner workloadNetworkDhcp,
-        Context context);
+    WorkloadNetworkDhcpInner createDhcp(String resourceGroupName, String privateCloudName, String dhcpId,
+        WorkloadNetworkDhcpInner workloadNetworkDhcp, Context context);
 
     /**
      * Create or update dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -504,12 +474,12 @@ public interface WorkloadNetworksClient {
      * @return the {@link SyncPoller} for polling of nSX DHCP.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginUpdateDhcp(
-        String resourceGroupName, String privateCloudName, String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp);
+    SyncPoller<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginUpdateDhcp(String resourceGroupName,
+        String privateCloudName, String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp);
 
     /**
      * Create or update dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -521,16 +491,12 @@ public interface WorkloadNetworksClient {
      * @return the {@link SyncPoller} for polling of nSX DHCP.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginUpdateDhcp(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
-        WorkloadNetworkDhcpInner workloadNetworkDhcp,
-        Context context);
+    SyncPoller<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginUpdateDhcp(String resourceGroupName,
+        String privateCloudName, String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp, Context context);
 
     /**
      * Create or update dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -541,12 +507,12 @@ public interface WorkloadNetworksClient {
      * @return nSX DHCP.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkDhcpInner updateDhcp(
-        String resourceGroupName, String privateCloudName, String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp);
+    WorkloadNetworkDhcpInner updateDhcp(String resourceGroupName, String privateCloudName, String dhcpId,
+        WorkloadNetworkDhcpInner workloadNetworkDhcp);
 
     /**
      * Create or update dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -558,16 +524,12 @@ public interface WorkloadNetworksClient {
      * @return nSX DHCP.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkDhcpInner updateDhcp(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
-        WorkloadNetworkDhcpInner workloadNetworkDhcp,
-        Context context);
+    WorkloadNetworkDhcpInner updateDhcp(String resourceGroupName, String privateCloudName, String dhcpId,
+        WorkloadNetworkDhcpInner workloadNetworkDhcp, Context context);
 
     /**
      * Delete dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -577,12 +539,12 @@ public interface WorkloadNetworksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDeleteDhcp(
-        String resourceGroupName, String privateCloudName, String dhcpId);
+    SyncPoller<PollResult<Void>, Void> beginDeleteDhcp(String resourceGroupName, String privateCloudName,
+        String dhcpId);
 
     /**
      * Delete dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -593,12 +555,12 @@ public interface WorkloadNetworksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDeleteDhcp(
-        String resourceGroupName, String privateCloudName, String dhcpId, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDeleteDhcp(String resourceGroupName, String privateCloudName, String dhcpId,
+        Context context);
 
     /**
      * Delete dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -611,7 +573,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * Delete dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -625,7 +587,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * List of gateways in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -638,7 +600,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * List of gateways in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -648,12 +610,12 @@ public interface WorkloadNetworksClient {
      * @return a list of NSX Gateways as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<WorkloadNetworkGatewayInner> listGateways(
-        String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<WorkloadNetworkGatewayInner> listGateways(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Get a gateway by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param gatewayId NSX Gateway identifier. Generally the same as the Gateway's display name.
@@ -664,12 +626,12 @@ public interface WorkloadNetworksClient {
      * @return a gateway by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<WorkloadNetworkGatewayInner> getGatewayWithResponse(
-        String resourceGroupName, String privateCloudName, String gatewayId, Context context);
+    Response<WorkloadNetworkGatewayInner> getGatewayWithResponse(String resourceGroupName, String privateCloudName,
+        String gatewayId, Context context);
 
     /**
      * Get a gateway by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param gatewayId NSX Gateway identifier. Generally the same as the Gateway's display name.
@@ -683,7 +645,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * List of port mirroring profiles in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -692,12 +654,12 @@ public interface WorkloadNetworksClient {
      * @return a list of NSX Port Mirroring as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<WorkloadNetworkPortMirroringInner> listPortMirroring(
-        String resourceGroupName, String privateCloudName);
+    PagedIterable<WorkloadNetworkPortMirroringInner> listPortMirroring(String resourceGroupName,
+        String privateCloudName);
 
     /**
      * List of port mirroring profiles in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -707,12 +669,12 @@ public interface WorkloadNetworksClient {
      * @return a list of NSX Port Mirroring as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<WorkloadNetworkPortMirroringInner> listPortMirroring(
-        String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<WorkloadNetworkPortMirroringInner> listPortMirroring(String resourceGroupName,
+        String privateCloudName, Context context);
 
     /**
      * Get a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -723,12 +685,12 @@ public interface WorkloadNetworksClient {
      * @return a port mirroring profile by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<WorkloadNetworkPortMirroringInner> getPortMirroringWithResponse(
-        String resourceGroupName, String privateCloudName, String portMirroringId, Context context);
+    Response<WorkloadNetworkPortMirroringInner> getPortMirroringWithResponse(String resourceGroupName,
+        String privateCloudName, String portMirroringId, Context context);
 
     /**
      * Get a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -738,12 +700,12 @@ public interface WorkloadNetworksClient {
      * @return a port mirroring profile by id in a private cloud workload network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkPortMirroringInner getPortMirroring(
-        String resourceGroupName, String privateCloudName, String portMirroringId);
+    WorkloadNetworkPortMirroringInner getPortMirroring(String resourceGroupName, String privateCloudName,
+        String portMirroringId);
 
     /**
      * Create a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -755,15 +717,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkPortMirroringInner>, WorkloadNetworkPortMirroringInner>
-        beginCreatePortMirroring(
-            String resourceGroupName,
-            String privateCloudName,
-            String portMirroringId,
+        beginCreatePortMirroring(String resourceGroupName, String privateCloudName, String portMirroringId,
             WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring);
 
     /**
      * Create a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -776,16 +735,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkPortMirroringInner>, WorkloadNetworkPortMirroringInner>
-        beginCreatePortMirroring(
-            String resourceGroupName,
-            String privateCloudName,
-            String portMirroringId,
-            WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
-            Context context);
+        beginCreatePortMirroring(String resourceGroupName, String privateCloudName, String portMirroringId,
+            WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring, Context context);
 
     /**
      * Create a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -796,15 +751,12 @@ public interface WorkloadNetworksClient {
      * @return nSX Port Mirroring.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkPortMirroringInner createPortMirroring(
-        String resourceGroupName,
-        String privateCloudName,
-        String portMirroringId,
-        WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring);
+    WorkloadNetworkPortMirroringInner createPortMirroring(String resourceGroupName, String privateCloudName,
+        String portMirroringId, WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring);
 
     /**
      * Create a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -816,16 +768,12 @@ public interface WorkloadNetworksClient {
      * @return nSX Port Mirroring.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkPortMirroringInner createPortMirroring(
-        String resourceGroupName,
-        String privateCloudName,
-        String portMirroringId,
-        WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
-        Context context);
+    WorkloadNetworkPortMirroringInner createPortMirroring(String resourceGroupName, String privateCloudName,
+        String portMirroringId, WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring, Context context);
 
     /**
      * Create or update a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -837,15 +785,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkPortMirroringInner>, WorkloadNetworkPortMirroringInner>
-        beginUpdatePortMirroring(
-            String resourceGroupName,
-            String privateCloudName,
-            String portMirroringId,
+        beginUpdatePortMirroring(String resourceGroupName, String privateCloudName, String portMirroringId,
             WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring);
 
     /**
      * Create or update a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -858,16 +803,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkPortMirroringInner>, WorkloadNetworkPortMirroringInner>
-        beginUpdatePortMirroring(
-            String resourceGroupName,
-            String privateCloudName,
-            String portMirroringId,
-            WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
-            Context context);
+        beginUpdatePortMirroring(String resourceGroupName, String privateCloudName, String portMirroringId,
+            WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring, Context context);
 
     /**
      * Create or update a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -878,15 +819,12 @@ public interface WorkloadNetworksClient {
      * @return nSX Port Mirroring.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkPortMirroringInner updatePortMirroring(
-        String resourceGroupName,
-        String privateCloudName,
-        String portMirroringId,
-        WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring);
+    WorkloadNetworkPortMirroringInner updatePortMirroring(String resourceGroupName, String privateCloudName,
+        String portMirroringId, WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring);
 
     /**
      * Create or update a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -898,16 +836,12 @@ public interface WorkloadNetworksClient {
      * @return nSX Port Mirroring.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkPortMirroringInner updatePortMirroring(
-        String resourceGroupName,
-        String privateCloudName,
-        String portMirroringId,
-        WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
-        Context context);
+    WorkloadNetworkPortMirroringInner updatePortMirroring(String resourceGroupName, String privateCloudName,
+        String portMirroringId, WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring, Context context);
 
     /**
      * Delete a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
      * @param privateCloudName Name of the private cloud.
@@ -917,12 +851,12 @@ public interface WorkloadNetworksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDeletePortMirroring(
-        String resourceGroupName, String portMirroringId, String privateCloudName);
+    SyncPoller<PollResult<Void>, Void> beginDeletePortMirroring(String resourceGroupName, String portMirroringId,
+        String privateCloudName);
 
     /**
      * Delete a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
      * @param privateCloudName Name of the private cloud.
@@ -933,12 +867,12 @@ public interface WorkloadNetworksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDeletePortMirroring(
-        String resourceGroupName, String portMirroringId, String privateCloudName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDeletePortMirroring(String resourceGroupName, String portMirroringId,
+        String privateCloudName, Context context);
 
     /**
      * Delete a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
      * @param privateCloudName Name of the private cloud.
@@ -951,7 +885,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * Delete a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
      * @param privateCloudName Name of the private cloud.
@@ -961,12 +895,12 @@ public interface WorkloadNetworksClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void deletePortMirroring(
-        String resourceGroupName, String portMirroringId, String privateCloudName, Context context);
+    void deletePortMirroring(String resourceGroupName, String portMirroringId, String privateCloudName,
+        Context context);
 
     /**
      * List of vm groups in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -979,7 +913,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * List of vm groups in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -989,12 +923,12 @@ public interface WorkloadNetworksClient {
      * @return a list of NSX VM Groups as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<WorkloadNetworkVMGroupInner> listVMGroups(
-        String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<WorkloadNetworkVMGroupInner> listVMGroups(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Get a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -1005,12 +939,12 @@ public interface WorkloadNetworksClient {
      * @return a vm group by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<WorkloadNetworkVMGroupInner> getVMGroupWithResponse(
-        String resourceGroupName, String privateCloudName, String vmGroupId, Context context);
+    Response<WorkloadNetworkVMGroupInner> getVMGroupWithResponse(String resourceGroupName, String privateCloudName,
+        String vmGroupId, Context context);
 
     /**
      * Get a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -1024,7 +958,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * Create a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -1036,14 +970,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkVMGroupInner>, WorkloadNetworkVMGroupInner> beginCreateVMGroup(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
+        String resourceGroupName, String privateCloudName, String vmGroupId,
         WorkloadNetworkVMGroupInner workloadNetworkVMGroup);
 
     /**
      * Create a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -1056,15 +988,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkVMGroupInner>, WorkloadNetworkVMGroupInner> beginCreateVMGroup(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup,
-        Context context);
+        String resourceGroupName, String privateCloudName, String vmGroupId,
+        WorkloadNetworkVMGroupInner workloadNetworkVMGroup, Context context);
 
     /**
      * Create a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -1075,15 +1004,12 @@ public interface WorkloadNetworksClient {
      * @return nSX VM Group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkVMGroupInner createVMGroup(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
+    WorkloadNetworkVMGroupInner createVMGroup(String resourceGroupName, String privateCloudName, String vmGroupId,
         WorkloadNetworkVMGroupInner workloadNetworkVMGroup);
 
     /**
      * Create a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -1095,16 +1021,12 @@ public interface WorkloadNetworksClient {
      * @return nSX VM Group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkVMGroupInner createVMGroup(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup,
-        Context context);
+    WorkloadNetworkVMGroupInner createVMGroup(String resourceGroupName, String privateCloudName, String vmGroupId,
+        WorkloadNetworkVMGroupInner workloadNetworkVMGroup, Context context);
 
     /**
      * Create or update a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -1116,14 +1038,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkVMGroupInner>, WorkloadNetworkVMGroupInner> beginUpdateVMGroup(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
+        String resourceGroupName, String privateCloudName, String vmGroupId,
         WorkloadNetworkVMGroupInner workloadNetworkVMGroup);
 
     /**
      * Create or update a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -1136,15 +1056,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkVMGroupInner>, WorkloadNetworkVMGroupInner> beginUpdateVMGroup(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup,
-        Context context);
+        String resourceGroupName, String privateCloudName, String vmGroupId,
+        WorkloadNetworkVMGroupInner workloadNetworkVMGroup, Context context);
 
     /**
      * Create or update a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -1155,15 +1072,12 @@ public interface WorkloadNetworksClient {
      * @return nSX VM Group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkVMGroupInner updateVMGroup(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
+    WorkloadNetworkVMGroupInner updateVMGroup(String resourceGroupName, String privateCloudName, String vmGroupId,
         WorkloadNetworkVMGroupInner workloadNetworkVMGroup);
 
     /**
      * Create or update a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -1175,16 +1089,12 @@ public interface WorkloadNetworksClient {
      * @return nSX VM Group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkVMGroupInner updateVMGroup(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup,
-        Context context);
+    WorkloadNetworkVMGroupInner updateVMGroup(String resourceGroupName, String privateCloudName, String vmGroupId,
+        WorkloadNetworkVMGroupInner workloadNetworkVMGroup, Context context);
 
     /**
      * Delete a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
      * @param privateCloudName Name of the private cloud.
@@ -1194,12 +1104,12 @@ public interface WorkloadNetworksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDeleteVMGroup(
-        String resourceGroupName, String vmGroupId, String privateCloudName);
+    SyncPoller<PollResult<Void>, Void> beginDeleteVMGroup(String resourceGroupName, String vmGroupId,
+        String privateCloudName);
 
     /**
      * Delete a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
      * @param privateCloudName Name of the private cloud.
@@ -1210,12 +1120,12 @@ public interface WorkloadNetworksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDeleteVMGroup(
-        String resourceGroupName, String vmGroupId, String privateCloudName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDeleteVMGroup(String resourceGroupName, String vmGroupId,
+        String privateCloudName, Context context);
 
     /**
      * Delete a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
      * @param privateCloudName Name of the private cloud.
@@ -1228,7 +1138,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * Delete a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
      * @param privateCloudName Name of the private cloud.
@@ -1242,7 +1152,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * List of virtual machines in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1251,12 +1161,12 @@ public interface WorkloadNetworksClient {
      * @return a list of NSX Virtual Machines as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<WorkloadNetworkVirtualMachineInner> listVirtualMachines(
-        String resourceGroupName, String privateCloudName);
+    PagedIterable<WorkloadNetworkVirtualMachineInner> listVirtualMachines(String resourceGroupName,
+        String privateCloudName);
 
     /**
      * List of virtual machines in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -1266,12 +1176,12 @@ public interface WorkloadNetworksClient {
      * @return a list of NSX Virtual Machines as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<WorkloadNetworkVirtualMachineInner> listVirtualMachines(
-        String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<WorkloadNetworkVirtualMachineInner> listVirtualMachines(String resourceGroupName,
+        String privateCloudName, Context context);
 
     /**
      * Get a virtual machine by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param virtualMachineId Virtual Machine identifier.
@@ -1282,12 +1192,12 @@ public interface WorkloadNetworksClient {
      * @return a virtual machine by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<WorkloadNetworkVirtualMachineInner> getVirtualMachineWithResponse(
-        String resourceGroupName, String privateCloudName, String virtualMachineId, Context context);
+    Response<WorkloadNetworkVirtualMachineInner> getVirtualMachineWithResponse(String resourceGroupName,
+        String privateCloudName, String virtualMachineId, Context context);
 
     /**
      * Get a virtual machine by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param virtualMachineId Virtual Machine identifier.
@@ -1297,12 +1207,12 @@ public interface WorkloadNetworksClient {
      * @return a virtual machine by id in a private cloud workload network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkVirtualMachineInner getVirtualMachine(
-        String resourceGroupName, String privateCloudName, String virtualMachineId);
+    WorkloadNetworkVirtualMachineInner getVirtualMachine(String resourceGroupName, String privateCloudName,
+        String virtualMachineId);
 
     /**
      * List of DNS services in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1315,7 +1225,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * List of DNS services in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -1325,12 +1235,12 @@ public interface WorkloadNetworksClient {
      * @return a list of NSX DNS Services as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<WorkloadNetworkDnsServiceInner> listDnsServices(
-        String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<WorkloadNetworkDnsServiceInner> listDnsServices(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Get a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -1341,12 +1251,12 @@ public interface WorkloadNetworksClient {
      * @return a DNS service by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<WorkloadNetworkDnsServiceInner> getDnsServiceWithResponse(
-        String resourceGroupName, String privateCloudName, String dnsServiceId, Context context);
+    Response<WorkloadNetworkDnsServiceInner> getDnsServiceWithResponse(String resourceGroupName,
+        String privateCloudName, String dnsServiceId, Context context);
 
     /**
      * Get a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -1356,12 +1266,12 @@ public interface WorkloadNetworksClient {
      * @return a DNS service by id in a private cloud workload network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkDnsServiceInner getDnsService(
-        String resourceGroupName, String privateCloudName, String dnsServiceId);
+    WorkloadNetworkDnsServiceInner getDnsService(String resourceGroupName, String privateCloudName,
+        String dnsServiceId);
 
     /**
      * Create a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -1373,14 +1283,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDnsServiceInner>, WorkloadNetworkDnsServiceInner> beginCreateDnsService(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
+        String resourceGroupName, String privateCloudName, String dnsServiceId,
         WorkloadNetworkDnsServiceInner workloadNetworkDnsService);
 
     /**
      * Create a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -1393,15 +1301,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDnsServiceInner>, WorkloadNetworkDnsServiceInner> beginCreateDnsService(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
-        Context context);
+        String resourceGroupName, String privateCloudName, String dnsServiceId,
+        WorkloadNetworkDnsServiceInner workloadNetworkDnsService, Context context);
 
     /**
      * Create a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -1412,15 +1317,12 @@ public interface WorkloadNetworksClient {
      * @return nSX DNS Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkDnsServiceInner createDnsService(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService);
+    WorkloadNetworkDnsServiceInner createDnsService(String resourceGroupName, String privateCloudName,
+        String dnsServiceId, WorkloadNetworkDnsServiceInner workloadNetworkDnsService);
 
     /**
      * Create a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -1432,16 +1334,12 @@ public interface WorkloadNetworksClient {
      * @return nSX DNS Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkDnsServiceInner createDnsService(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
-        Context context);
+    WorkloadNetworkDnsServiceInner createDnsService(String resourceGroupName, String privateCloudName,
+        String dnsServiceId, WorkloadNetworkDnsServiceInner workloadNetworkDnsService, Context context);
 
     /**
      * Create or update a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -1453,14 +1351,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDnsServiceInner>, WorkloadNetworkDnsServiceInner> beginUpdateDnsService(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
+        String resourceGroupName, String privateCloudName, String dnsServiceId,
         WorkloadNetworkDnsServiceInner workloadNetworkDnsService);
 
     /**
      * Create or update a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -1473,15 +1369,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDnsServiceInner>, WorkloadNetworkDnsServiceInner> beginUpdateDnsService(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
-        Context context);
+        String resourceGroupName, String privateCloudName, String dnsServiceId,
+        WorkloadNetworkDnsServiceInner workloadNetworkDnsService, Context context);
 
     /**
      * Create or update a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -1492,15 +1385,12 @@ public interface WorkloadNetworksClient {
      * @return nSX DNS Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkDnsServiceInner updateDnsService(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService);
+    WorkloadNetworkDnsServiceInner updateDnsService(String resourceGroupName, String privateCloudName,
+        String dnsServiceId, WorkloadNetworkDnsServiceInner workloadNetworkDnsService);
 
     /**
      * Create or update a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -1512,16 +1402,12 @@ public interface WorkloadNetworksClient {
      * @return nSX DNS Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkDnsServiceInner updateDnsService(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
-        Context context);
+    WorkloadNetworkDnsServiceInner updateDnsService(String resourceGroupName, String privateCloudName,
+        String dnsServiceId, WorkloadNetworkDnsServiceInner workloadNetworkDnsService, Context context);
 
     /**
      * Delete a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
      * @param privateCloudName Name of the private cloud.
@@ -1531,12 +1417,12 @@ public interface WorkloadNetworksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDeleteDnsService(
-        String resourceGroupName, String dnsServiceId, String privateCloudName);
+    SyncPoller<PollResult<Void>, Void> beginDeleteDnsService(String resourceGroupName, String dnsServiceId,
+        String privateCloudName);
 
     /**
      * Delete a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
      * @param privateCloudName Name of the private cloud.
@@ -1547,12 +1433,12 @@ public interface WorkloadNetworksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDeleteDnsService(
-        String resourceGroupName, String dnsServiceId, String privateCloudName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDeleteDnsService(String resourceGroupName, String dnsServiceId,
+        String privateCloudName, Context context);
 
     /**
      * Delete a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
      * @param privateCloudName Name of the private cloud.
@@ -1565,7 +1451,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * Delete a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
      * @param privateCloudName Name of the private cloud.
@@ -1579,7 +1465,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * List of DNS zones in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1592,7 +1478,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * List of DNS zones in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -1602,12 +1488,12 @@ public interface WorkloadNetworksClient {
      * @return a list of NSX DNS Zones as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<WorkloadNetworkDnsZoneInner> listDnsZones(
-        String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<WorkloadNetworkDnsZoneInner> listDnsZones(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Get a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -1618,12 +1504,12 @@ public interface WorkloadNetworksClient {
      * @return a DNS zone by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<WorkloadNetworkDnsZoneInner> getDnsZoneWithResponse(
-        String resourceGroupName, String privateCloudName, String dnsZoneId, Context context);
+    Response<WorkloadNetworkDnsZoneInner> getDnsZoneWithResponse(String resourceGroupName, String privateCloudName,
+        String dnsZoneId, Context context);
 
     /**
      * Get a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -1637,7 +1523,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * Create a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -1649,14 +1535,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDnsZoneInner>, WorkloadNetworkDnsZoneInner> beginCreateDnsZone(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
+        String resourceGroupName, String privateCloudName, String dnsZoneId,
         WorkloadNetworkDnsZoneInner workloadNetworkDnsZone);
 
     /**
      * Create a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -1669,15 +1553,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDnsZoneInner>, WorkloadNetworkDnsZoneInner> beginCreateDnsZone(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone,
-        Context context);
+        String resourceGroupName, String privateCloudName, String dnsZoneId,
+        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone, Context context);
 
     /**
      * Create a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -1688,15 +1569,12 @@ public interface WorkloadNetworksClient {
      * @return nSX DNS Zone.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkDnsZoneInner createDnsZone(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
+    WorkloadNetworkDnsZoneInner createDnsZone(String resourceGroupName, String privateCloudName, String dnsZoneId,
         WorkloadNetworkDnsZoneInner workloadNetworkDnsZone);
 
     /**
      * Create a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -1708,16 +1586,12 @@ public interface WorkloadNetworksClient {
      * @return nSX DNS Zone.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkDnsZoneInner createDnsZone(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone,
-        Context context);
+    WorkloadNetworkDnsZoneInner createDnsZone(String resourceGroupName, String privateCloudName, String dnsZoneId,
+        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone, Context context);
 
     /**
      * Create or update a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -1729,14 +1603,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDnsZoneInner>, WorkloadNetworkDnsZoneInner> beginUpdateDnsZone(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
+        String resourceGroupName, String privateCloudName, String dnsZoneId,
         WorkloadNetworkDnsZoneInner workloadNetworkDnsZone);
 
     /**
      * Create or update a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -1749,15 +1621,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDnsZoneInner>, WorkloadNetworkDnsZoneInner> beginUpdateDnsZone(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone,
-        Context context);
+        String resourceGroupName, String privateCloudName, String dnsZoneId,
+        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone, Context context);
 
     /**
      * Create or update a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -1768,15 +1637,12 @@ public interface WorkloadNetworksClient {
      * @return nSX DNS Zone.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkDnsZoneInner updateDnsZone(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
+    WorkloadNetworkDnsZoneInner updateDnsZone(String resourceGroupName, String privateCloudName, String dnsZoneId,
         WorkloadNetworkDnsZoneInner workloadNetworkDnsZone);
 
     /**
      * Create or update a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -1788,16 +1654,12 @@ public interface WorkloadNetworksClient {
      * @return nSX DNS Zone.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkDnsZoneInner updateDnsZone(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone,
-        Context context);
+    WorkloadNetworkDnsZoneInner updateDnsZone(String resourceGroupName, String privateCloudName, String dnsZoneId,
+        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone, Context context);
 
     /**
      * Delete a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
      * @param privateCloudName Name of the private cloud.
@@ -1807,12 +1669,12 @@ public interface WorkloadNetworksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDeleteDnsZone(
-        String resourceGroupName, String dnsZoneId, String privateCloudName);
+    SyncPoller<PollResult<Void>, Void> beginDeleteDnsZone(String resourceGroupName, String dnsZoneId,
+        String privateCloudName);
 
     /**
      * Delete a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
      * @param privateCloudName Name of the private cloud.
@@ -1823,12 +1685,12 @@ public interface WorkloadNetworksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDeleteDnsZone(
-        String resourceGroupName, String dnsZoneId, String privateCloudName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDeleteDnsZone(String resourceGroupName, String dnsZoneId,
+        String privateCloudName, Context context);
 
     /**
      * Delete a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
      * @param privateCloudName Name of the private cloud.
@@ -1841,7 +1703,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * Delete a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
      * @param privateCloudName Name of the private cloud.
@@ -1855,7 +1717,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * List of Public IP Blocks in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1868,7 +1730,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * List of Public IP Blocks in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -1878,12 +1740,12 @@ public interface WorkloadNetworksClient {
      * @return a list of NSX Public IP Blocks as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<WorkloadNetworkPublicIpInner> listPublicIPs(
-        String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<WorkloadNetworkPublicIpInner> listPublicIPs(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Get a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -1894,12 +1756,12 @@ public interface WorkloadNetworksClient {
      * @return a Public IP Block by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<WorkloadNetworkPublicIpInner> getPublicIpWithResponse(
-        String resourceGroupName, String privateCloudName, String publicIpId, Context context);
+    Response<WorkloadNetworkPublicIpInner> getPublicIpWithResponse(String resourceGroupName, String privateCloudName,
+        String publicIpId, Context context);
 
     /**
      * Get a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -1913,7 +1775,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * Create a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -1925,14 +1787,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkPublicIpInner>, WorkloadNetworkPublicIpInner> beginCreatePublicIp(
-        String resourceGroupName,
-        String privateCloudName,
-        String publicIpId,
+        String resourceGroupName, String privateCloudName, String publicIpId,
         WorkloadNetworkPublicIpInner workloadNetworkPublicIp);
 
     /**
      * Create a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -1945,15 +1805,12 @@ public interface WorkloadNetworksClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkPublicIpInner>, WorkloadNetworkPublicIpInner> beginCreatePublicIp(
-        String resourceGroupName,
-        String privateCloudName,
-        String publicIpId,
-        WorkloadNetworkPublicIpInner workloadNetworkPublicIp,
-        Context context);
+        String resourceGroupName, String privateCloudName, String publicIpId,
+        WorkloadNetworkPublicIpInner workloadNetworkPublicIp, Context context);
 
     /**
      * Create a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -1964,15 +1821,12 @@ public interface WorkloadNetworksClient {
      * @return nSX Public IP Block.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkPublicIpInner createPublicIp(
-        String resourceGroupName,
-        String privateCloudName,
-        String publicIpId,
+    WorkloadNetworkPublicIpInner createPublicIp(String resourceGroupName, String privateCloudName, String publicIpId,
         WorkloadNetworkPublicIpInner workloadNetworkPublicIp);
 
     /**
      * Create a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -1984,16 +1838,12 @@ public interface WorkloadNetworksClient {
      * @return nSX Public IP Block.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkloadNetworkPublicIpInner createPublicIp(
-        String resourceGroupName,
-        String privateCloudName,
-        String publicIpId,
-        WorkloadNetworkPublicIpInner workloadNetworkPublicIp,
-        Context context);
+    WorkloadNetworkPublicIpInner createPublicIp(String resourceGroupName, String privateCloudName, String publicIpId,
+        WorkloadNetworkPublicIpInner workloadNetworkPublicIp, Context context);
 
     /**
      * Delete a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
      * @param privateCloudName Name of the private cloud.
@@ -2003,12 +1853,12 @@ public interface WorkloadNetworksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDeletePublicIp(
-        String resourceGroupName, String publicIpId, String privateCloudName);
+    SyncPoller<PollResult<Void>, Void> beginDeletePublicIp(String resourceGroupName, String publicIpId,
+        String privateCloudName);
 
     /**
      * Delete a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
      * @param privateCloudName Name of the private cloud.
@@ -2019,12 +1869,12 @@ public interface WorkloadNetworksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDeletePublicIp(
-        String resourceGroupName, String publicIpId, String privateCloudName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDeletePublicIp(String resourceGroupName, String publicIpId,
+        String privateCloudName, Context context);
 
     /**
      * Delete a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
      * @param privateCloudName Name of the private cloud.
@@ -2037,7 +1887,7 @@ public interface WorkloadNetworksClient {
 
     /**
      * Delete a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
      * @param privateCloudName Name of the private cloud.

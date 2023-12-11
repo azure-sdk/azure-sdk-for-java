@@ -73,22 +73,14 @@ public final class DatastoreImpl implements Datastore, Datastore.Definition, Dat
     }
 
     public Datastore create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDatastores()
-                .createOrUpdate(
-                    resourceGroupName, privateCloudName, clusterName, datastoreName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getDatastores().createOrUpdate(resourceGroupName,
+            privateCloudName, clusterName, datastoreName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Datastore create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDatastores()
-                .createOrUpdate(
-                    resourceGroupName, privateCloudName, clusterName, datastoreName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getDatastores().createOrUpdate(resourceGroupName,
+            privateCloudName, clusterName, datastoreName, this.innerModel(), context);
         return this;
     }
 
@@ -103,22 +95,14 @@ public final class DatastoreImpl implements Datastore, Datastore.Definition, Dat
     }
 
     public Datastore apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDatastores()
-                .createOrUpdate(
-                    resourceGroupName, privateCloudName, clusterName, datastoreName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getDatastores().createOrUpdate(resourceGroupName,
+            privateCloudName, clusterName, datastoreName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Datastore apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDatastores()
-                .createOrUpdate(
-                    resourceGroupName, privateCloudName, clusterName, datastoreName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getDatastores().createOrUpdate(resourceGroupName,
+            privateCloudName, clusterName, datastoreName, this.innerModel(), context);
         return this;
     }
 
@@ -132,22 +116,14 @@ public final class DatastoreImpl implements Datastore, Datastore.Definition, Dat
     }
 
     public Datastore refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDatastores()
-                .getWithResponse(resourceGroupName, privateCloudName, clusterName, datastoreName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getDatastores()
+            .getWithResponse(resourceGroupName, privateCloudName, clusterName, datastoreName, Context.NONE).getValue();
         return this;
     }
 
     public Datastore refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDatastores()
-                .getWithResponse(resourceGroupName, privateCloudName, clusterName, datastoreName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getDatastores()
+            .getWithResponse(resourceGroupName, privateCloudName, clusterName, datastoreName, context).getValue();
         return this;
     }
 

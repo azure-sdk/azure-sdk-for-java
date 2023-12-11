@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for WorkloadNetworkName. */
+/**
+ * Defines values for WorkloadNetworkName.
+ */
 public final class WorkloadNetworkName extends ExpandableStringEnum<WorkloadNetworkName> {
-    /** Static value default for WorkloadNetworkName. */
+    /**
+     * Static value default for WorkloadNetworkName.
+     */
     public static final WorkloadNetworkName DEFAULT = fromString("default");
 
     /**
      * Creates a new instance of WorkloadNetworkName value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class WorkloadNetworkName extends ExpandableStringEnum<WorkloadNetw
 
     /**
      * Creates or finds a WorkloadNetworkName from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding WorkloadNetworkName.
      */
@@ -35,7 +39,7 @@ public final class WorkloadNetworkName extends ExpandableStringEnum<WorkloadNetw
 
     /**
      * Gets known WorkloadNetworkName values.
-     *
+     * 
      * @return known WorkloadNetworkName values.
      */
     public static Collection<WorkloadNetworkName> values() {

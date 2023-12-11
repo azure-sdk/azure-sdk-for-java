@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.ScriptPackageInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of the available script packages. */
+/**
+ * A list of the available script packages.
+ */
 @Immutable
 public final class ScriptPackagesList {
     /*
@@ -24,13 +26,15 @@ public final class ScriptPackagesList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ScriptPackagesList class. */
+    /**
+     * Creates an instance of ScriptPackagesList class.
+     */
     public ScriptPackagesList() {
     }
 
     /**
      * Get the value property: List of script package resources.
-     *
+     * 
      * @return the value value.
      */
     public List<ScriptPackageInner> value() {
@@ -39,7 +43,7 @@ public final class ScriptPackagesList {
 
     /**
      * Get the nextLink property: URL to get the next page if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class ScriptPackagesList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

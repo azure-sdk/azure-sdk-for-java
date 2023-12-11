@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.avs.models.VMTypeEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** NSX Virtual Machine Properties. */
+/**
+ * NSX Virtual Machine Properties.
+ */
 @Fluent
 public final class WorkloadNetworkVirtualMachineProperties {
     /*
@@ -23,13 +25,15 @@ public final class WorkloadNetworkVirtualMachineProperties {
     @JsonProperty(value = "vmType", access = JsonProperty.Access.WRITE_ONLY)
     private VMTypeEnum vmType;
 
-    /** Creates an instance of WorkloadNetworkVirtualMachineProperties class. */
+    /**
+     * Creates an instance of WorkloadNetworkVirtualMachineProperties class.
+     */
     public WorkloadNetworkVirtualMachineProperties() {
     }
 
     /**
      * Get the displayName property: Display name of the VM.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -38,7 +42,7 @@ public final class WorkloadNetworkVirtualMachineProperties {
 
     /**
      * Set the displayName property: Display name of the VM.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the WorkloadNetworkVirtualMachineProperties object itself.
      */
@@ -49,7 +53,7 @@ public final class WorkloadNetworkVirtualMachineProperties {
 
     /**
      * Get the vmType property: Virtual machine type.
-     *
+     * 
      * @return the vmType value.
      */
     public VMTypeEnum vmType() {
@@ -58,7 +62,7 @@ public final class WorkloadNetworkVirtualMachineProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

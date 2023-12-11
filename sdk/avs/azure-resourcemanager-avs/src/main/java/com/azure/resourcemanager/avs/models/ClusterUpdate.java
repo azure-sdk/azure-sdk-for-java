@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.ClusterUpdateProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** An update of a cluster resource. */
+/**
+ * An update of a cluster resource.
+ */
 @Fluent
 public final class ClusterUpdate {
     /*
@@ -18,13 +20,15 @@ public final class ClusterUpdate {
     @JsonProperty(value = "properties")
     private ClusterUpdateProperties innerProperties;
 
-    /** Creates an instance of ClusterUpdate class. */
+    /**
+     * Creates an instance of ClusterUpdate class.
+     */
     public ClusterUpdate() {
     }
 
     /**
      * Get the innerProperties property: The properties of a cluster resource that may be updated.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ClusterUpdateProperties innerProperties() {
@@ -33,7 +37,7 @@ public final class ClusterUpdate {
 
     /**
      * Get the clusterSize property: The cluster size.
-     *
+     * 
      * @return the clusterSize value.
      */
     public Integer clusterSize() {
@@ -42,7 +46,7 @@ public final class ClusterUpdate {
 
     /**
      * Set the clusterSize property: The cluster size.
-     *
+     * 
      * @param clusterSize the clusterSize value to set.
      * @return the ClusterUpdate object itself.
      */
@@ -56,7 +60,7 @@ public final class ClusterUpdate {
 
     /**
      * Get the hosts property: The hosts.
-     *
+     * 
      * @return the hosts value.
      */
     public List<String> hosts() {
@@ -65,7 +69,7 @@ public final class ClusterUpdate {
 
     /**
      * Set the hosts property: The hosts.
-     *
+     * 
      * @param hosts the hosts value to set.
      * @return the ClusterUpdate object itself.
      */
@@ -79,7 +83,7 @@ public final class ClusterUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

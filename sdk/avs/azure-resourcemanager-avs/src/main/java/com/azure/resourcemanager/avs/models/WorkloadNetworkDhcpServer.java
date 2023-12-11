@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** NSX DHCP Server. */
+/**
+ * NSX DHCP Server.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "dhcpType")
 @JsonTypeName("SERVER")
 @Fluent
@@ -26,13 +28,15 @@ public final class WorkloadNetworkDhcpServer extends WorkloadNetworkDhcpEntity {
     @JsonProperty(value = "leaseTime")
     private Long leaseTime;
 
-    /** Creates an instance of WorkloadNetworkDhcpServer class. */
+    /**
+     * Creates an instance of WorkloadNetworkDhcpServer class.
+     */
     public WorkloadNetworkDhcpServer() {
     }
 
     /**
      * Get the serverAddress property: DHCP Server Address.
-     *
+     * 
      * @return the serverAddress value.
      */
     public String serverAddress() {
@@ -41,7 +45,7 @@ public final class WorkloadNetworkDhcpServer extends WorkloadNetworkDhcpEntity {
 
     /**
      * Set the serverAddress property: DHCP Server Address.
-     *
+     * 
      * @param serverAddress the serverAddress value to set.
      * @return the WorkloadNetworkDhcpServer object itself.
      */
@@ -52,7 +56,7 @@ public final class WorkloadNetworkDhcpServer extends WorkloadNetworkDhcpEntity {
 
     /**
      * Get the leaseTime property: DHCP Server Lease Time.
-     *
+     * 
      * @return the leaseTime value.
      */
     public Long leaseTime() {
@@ -61,7 +65,7 @@ public final class WorkloadNetworkDhcpServer extends WorkloadNetworkDhcpEntity {
 
     /**
      * Set the leaseTime property: DHCP Server Lease Time.
-     *
+     * 
      * @param leaseTime the leaseTime value to set.
      * @return the WorkloadNetworkDhcpServer object itself.
      */
@@ -70,14 +74,18 @@ public final class WorkloadNetworkDhcpServer extends WorkloadNetworkDhcpEntity {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkloadNetworkDhcpServer withDisplayName(String displayName) {
         super.withDisplayName(displayName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkloadNetworkDhcpServer withRevision(Long revision) {
         super.withRevision(revision);
@@ -86,7 +94,7 @@ public final class WorkloadNetworkDhcpServer extends WorkloadNetworkDhcpEntity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -13,11 +13,13 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.avs.fluent.models.AddonInner;
 
-/** An instance of this class provides access to all the operations defined in AddonsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in AddonsClient.
+ */
 public interface AddonsClient {
     /**
      * List addons in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -30,7 +32,7 @@ public interface AddonsClient {
 
     /**
      * List addons in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -44,7 +46,7 @@ public interface AddonsClient {
 
     /**
      * Get an addon by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -55,12 +57,12 @@ public interface AddonsClient {
      * @return an addon by name in a private cloud along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<AddonInner> getWithResponse(
-        String resourceGroupName, String privateCloudName, String addonName, Context context);
+    Response<AddonInner> getWithResponse(String resourceGroupName, String privateCloudName, String addonName,
+        Context context);
 
     /**
      * Get an addon by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -74,7 +76,7 @@ public interface AddonsClient {
 
     /**
      * Create or update a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -85,12 +87,12 @@ public interface AddonsClient {
      * @return the {@link SyncPoller} for polling of an addon resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<AddonInner>, AddonInner> beginCreateOrUpdate(
-        String resourceGroupName, String privateCloudName, String addonName, AddonInner addon);
+    SyncPoller<PollResult<AddonInner>, AddonInner> beginCreateOrUpdate(String resourceGroupName,
+        String privateCloudName, String addonName, AddonInner addon);
 
     /**
      * Create or update a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -102,12 +104,12 @@ public interface AddonsClient {
      * @return the {@link SyncPoller} for polling of an addon resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<AddonInner>, AddonInner> beginCreateOrUpdate(
-        String resourceGroupName, String privateCloudName, String addonName, AddonInner addon, Context context);
+    SyncPoller<PollResult<AddonInner>, AddonInner> beginCreateOrUpdate(String resourceGroupName,
+        String privateCloudName, String addonName, AddonInner addon, Context context);
 
     /**
      * Create or update a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -122,7 +124,7 @@ public interface AddonsClient {
 
     /**
      * Create or update a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -134,12 +136,12 @@ public interface AddonsClient {
      * @return an addon resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    AddonInner createOrUpdate(
-        String resourceGroupName, String privateCloudName, String addonName, AddonInner addon, Context context);
+    AddonInner createOrUpdate(String resourceGroupName, String privateCloudName, String addonName, AddonInner addon,
+        Context context);
 
     /**
      * Delete a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -153,7 +155,7 @@ public interface AddonsClient {
 
     /**
      * Delete a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -164,12 +166,12 @@ public interface AddonsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String privateCloudName, String addonName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String privateCloudName, String addonName,
+        Context context);
 
     /**
      * Delete a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -182,7 +184,7 @@ public interface AddonsClient {
 
     /**
      * Delete a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.

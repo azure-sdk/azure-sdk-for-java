@@ -38,17 +38,23 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in AddonsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in AddonsClient.
+ */
 public final class AddonsClientImpl implements AddonsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final AddonsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final AvsClientImpl client;
 
     /**
      * Initializes an instance of AddonsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     AddonsClientImpl(AvsClientImpl client) {
@@ -63,80 +69,58 @@ public final class AddonsClientImpl implements AddonsClient {
     @Host("{$host}")
     @ServiceInterface(name = "AvsClientAddons")
     public interface AddonsService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AddonList>> list(
-            @HostParam("$host") String endpoint,
+        Mono<Response<AddonList>> list(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("privateCloudName") String privateCloudName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons/{addonName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons/{addonName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AddonInner>> get(
-            @HostParam("$host") String endpoint,
+        Mono<Response<AddonInner>> get(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("addonName") String addonName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("addonName") String addonName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons/{addonName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons/{addonName}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("addonName") String addonName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") AddonInner addon,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("addonName") String addonName,
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") AddonInner addon,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons/{addonName}")
-        @ExpectedResponses({200, 202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons/{addonName}")
+        @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("addonName") String addonName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("addonName") String addonName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AddonList>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<AddonList>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * List addons in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -147,16 +131,12 @@ public final class AddonsClientImpl implements AddonsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AddonInner>> listSinglePageAsync(String resourceGroupName, String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -168,32 +148,16 @@ public final class AddonsClientImpl implements AddonsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<AddonInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, privateCloudName, this.client.getApiVersion(), accept, context))
+            .<PagedResponse<AddonInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List addons in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -203,19 +167,15 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return a paged list of addons along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AddonInner>> listSinglePageAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
+    private Mono<PagedResponse<AddonInner>> listSinglePageAsync(String resourceGroupName, String privateCloudName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -228,28 +188,15 @@ public final class AddonsClientImpl implements AddonsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                this.client.getApiVersion(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, privateCloudName,
+                this.client.getApiVersion(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List addons in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -259,14 +206,13 @@ public final class AddonsClientImpl implements AddonsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AddonInner> listAsync(String resourceGroupName, String privateCloudName) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, privateCloudName),
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, privateCloudName),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * List addons in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -277,14 +223,13 @@ public final class AddonsClientImpl implements AddonsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AddonInner> listAsync(String resourceGroupName, String privateCloudName, Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, privateCloudName, context),
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, privateCloudName, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List addons in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -299,7 +244,7 @@ public final class AddonsClientImpl implements AddonsClient {
 
     /**
      * List addons in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -315,7 +260,7 @@ public final class AddonsClientImpl implements AddonsClient {
 
     /**
      * Get an addon by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -325,19 +270,15 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return an addon by name in a private cloud along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AddonInner>> getWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String addonName) {
+    private Mono<Response<AddonInner>> getWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String addonName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -352,24 +293,14 @@ public final class AddonsClientImpl implements AddonsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            addonName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, privateCloudName, addonName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get an addon by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -380,19 +311,15 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return an addon by name in a private cloud along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AddonInner>> getWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String addonName, Context context) {
+    private Mono<Response<AddonInner>> getWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String addonName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -407,21 +334,13 @@ public final class AddonsClientImpl implements AddonsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                addonName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            privateCloudName, addonName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Get an addon by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -438,7 +357,7 @@ public final class AddonsClientImpl implements AddonsClient {
 
     /**
      * Get an addon by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -449,14 +368,14 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return an addon by name in a private cloud along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<AddonInner> getWithResponse(
-        String resourceGroupName, String privateCloudName, String addonName, Context context) {
+    public Response<AddonInner> getWithResponse(String resourceGroupName, String privateCloudName, String addonName,
+        Context context) {
         return getWithResponseAsync(resourceGroupName, privateCloudName, addonName, context).block();
     }
 
     /**
      * Get an addon by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -472,7 +391,7 @@ public final class AddonsClientImpl implements AddonsClient {
 
     /**
      * Create or update a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -483,19 +402,15 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return an addon resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String addonName, AddonInner addon) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String addonName, AddonInner addon) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -515,25 +430,14 @@ public final class AddonsClientImpl implements AddonsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            addonName,
-                            this.client.getApiVersion(),
-                            addon,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, privateCloudName, addonName, this.client.getApiVersion(), addon, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -545,19 +449,15 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return an addon resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String addonName, AddonInner addon, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String addonName, AddonInner addon, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -577,22 +477,13 @@ public final class AddonsClientImpl implements AddonsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                addonName,
-                this.client.getApiVersion(),
-                addon,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            privateCloudName, addonName, this.client.getApiVersion(), addon, accept, context);
     }
 
     /**
      * Create or update a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -603,19 +494,17 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return the {@link PollerFlux} for polling of an addon resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<AddonInner>, AddonInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String privateCloudName, String addonName, AddonInner addon) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, privateCloudName, addonName, addon);
-        return this
-            .client
-            .<AddonInner, AddonInner>getLroResult(
-                mono, this.client.getHttpPipeline(), AddonInner.class, AddonInner.class, this.client.getContext());
+    private PollerFlux<PollResult<AddonInner>, AddonInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String privateCloudName, String addonName, AddonInner addon) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, privateCloudName, addonName, addon);
+        return this.client.<AddonInner, AddonInner>getLroResult(mono, this.client.getHttpPipeline(), AddonInner.class,
+            AddonInner.class, this.client.getContext());
     }
 
     /**
      * Create or update a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -627,20 +516,18 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return the {@link PollerFlux} for polling of an addon resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<AddonInner>, AddonInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String privateCloudName, String addonName, AddonInner addon, Context context) {
+    private PollerFlux<PollResult<AddonInner>, AddonInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String privateCloudName, String addonName, AddonInner addon, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, privateCloudName, addonName, addon, context);
-        return this
-            .client
-            .<AddonInner, AddonInner>getLroResult(
-                mono, this.client.getHttpPipeline(), AddonInner.class, AddonInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, privateCloudName, addonName, addon, context);
+        return this.client.<AddonInner, AddonInner>getLroResult(mono, this.client.getHttpPipeline(), AddonInner.class,
+            AddonInner.class, context);
     }
 
     /**
      * Create or update a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -651,14 +538,14 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return the {@link SyncPoller} for polling of an addon resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<AddonInner>, AddonInner> beginCreateOrUpdate(
-        String resourceGroupName, String privateCloudName, String addonName, AddonInner addon) {
+    public SyncPoller<PollResult<AddonInner>, AddonInner> beginCreateOrUpdate(String resourceGroupName,
+        String privateCloudName, String addonName, AddonInner addon) {
         return this.beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, addonName, addon).getSyncPoller();
     }
 
     /**
      * Create or update a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -670,16 +557,15 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return the {@link SyncPoller} for polling of an addon resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<AddonInner>, AddonInner> beginCreateOrUpdate(
-        String resourceGroupName, String privateCloudName, String addonName, AddonInner addon, Context context) {
-        return this
-            .beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, addonName, addon, context)
+    public SyncPoller<PollResult<AddonInner>, AddonInner> beginCreateOrUpdate(String resourceGroupName,
+        String privateCloudName, String addonName, AddonInner addon, Context context) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, addonName, addon, context)
             .getSyncPoller();
     }
 
     /**
      * Create or update a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -690,16 +576,15 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return an addon resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AddonInner> createOrUpdateAsync(
-        String resourceGroupName, String privateCloudName, String addonName, AddonInner addon) {
-        return beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, addonName, addon)
-            .last()
+    private Mono<AddonInner> createOrUpdateAsync(String resourceGroupName, String privateCloudName, String addonName,
+        AddonInner addon) {
+        return beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, addonName, addon).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -711,16 +596,15 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return an addon resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AddonInner> createOrUpdateAsync(
-        String resourceGroupName, String privateCloudName, String addonName, AddonInner addon, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, addonName, addon, context)
-            .last()
+    private Mono<AddonInner> createOrUpdateAsync(String resourceGroupName, String privateCloudName, String addonName,
+        AddonInner addon, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, privateCloudName, addonName, addon, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -731,14 +615,14 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return an addon resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AddonInner createOrUpdate(
-        String resourceGroupName, String privateCloudName, String addonName, AddonInner addon) {
+    public AddonInner createOrUpdate(String resourceGroupName, String privateCloudName, String addonName,
+        AddonInner addon) {
         return createOrUpdateAsync(resourceGroupName, privateCloudName, addonName, addon).block();
     }
 
     /**
      * Create or update a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -750,14 +634,14 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return an addon resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AddonInner createOrUpdate(
-        String resourceGroupName, String privateCloudName, String addonName, AddonInner addon, Context context) {
+    public AddonInner createOrUpdate(String resourceGroupName, String privateCloudName, String addonName,
+        AddonInner addon, Context context) {
         return createOrUpdateAsync(resourceGroupName, privateCloudName, addonName, addon, context).block();
     }
 
     /**
      * Delete a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -767,19 +651,15 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String addonName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String addonName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -794,24 +674,14 @@ public final class AddonsClientImpl implements AddonsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            privateCloudName,
-                            addonName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, privateCloudName, addonName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -822,19 +692,15 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String addonName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String privateCloudName,
+        String addonName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -849,21 +715,13 @@ public final class AddonsClientImpl implements AddonsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                privateCloudName,
-                addonName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            privateCloudName, addonName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Delete a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -873,18 +731,16 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String privateCloudName, String addonName) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String privateCloudName,
+        String addonName) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, privateCloudName, addonName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Delete a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -895,19 +751,18 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String privateCloudName, String addonName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String privateCloudName,
+        String addonName, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, privateCloudName, addonName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, privateCloudName, addonName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Delete a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -917,14 +772,14 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String privateCloudName, String addonName) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String privateCloudName,
+        String addonName) {
         return this.beginDeleteAsync(resourceGroupName, privateCloudName, addonName).getSyncPoller();
     }
 
     /**
      * Delete a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -935,14 +790,14 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String privateCloudName, String addonName, Context context) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String privateCloudName,
+        String addonName, Context context) {
         return this.beginDeleteAsync(resourceGroupName, privateCloudName, addonName, context).getSyncPoller();
     }
 
     /**
      * Delete a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -953,14 +808,13 @@ public final class AddonsClientImpl implements AddonsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String privateCloudName, String addonName) {
-        return beginDeleteAsync(resourceGroupName, privateCloudName, addonName)
-            .last()
+        return beginDeleteAsync(resourceGroupName, privateCloudName, addonName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -971,16 +825,15 @@ public final class AddonsClientImpl implements AddonsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(
-        String resourceGroupName, String privateCloudName, String addonName, Context context) {
-        return beginDeleteAsync(resourceGroupName, privateCloudName, addonName, context)
-            .last()
+    private Mono<Void> deleteAsync(String resourceGroupName, String privateCloudName, String addonName,
+        Context context) {
+        return beginDeleteAsync(resourceGroupName, privateCloudName, addonName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -995,7 +848,7 @@ public final class AddonsClientImpl implements AddonsClient {
 
     /**
      * Delete a addon in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param addonName Name of the addon for the private cloud.
@@ -1011,9 +864,10 @@ public final class AddonsClientImpl implements AddonsClient {
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1025,31 +879,22 @@ public final class AddonsClientImpl implements AddonsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<AddonInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<AddonInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1062,23 +907,13 @@ public final class AddonsClientImpl implements AddonsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

@@ -14,11 +14,13 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.avs.fluent.models.VirtualMachineInner;
 import com.azure.resourcemanager.avs.models.VirtualMachineRestrictMovement;
 
-/** An instance of this class provides access to all the operations defined in VirtualMachinesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in VirtualMachinesClient.
+ */
 public interface VirtualMachinesClient {
     /**
      * List of virtual machines in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -32,7 +34,7 @@ public interface VirtualMachinesClient {
 
     /**
      * List of virtual machines in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -43,12 +45,12 @@ public interface VirtualMachinesClient {
      * @return a list of Virtual Machines as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<VirtualMachineInner> list(
-        String resourceGroupName, String privateCloudName, String clusterName, Context context);
+    PagedIterable<VirtualMachineInner> list(String resourceGroupName, String privateCloudName, String clusterName,
+        Context context);
 
     /**
      * Get a virtual machine by id in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -60,16 +62,12 @@ public interface VirtualMachinesClient {
      * @return a virtual machine by id in a private cloud cluster along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<VirtualMachineInner> getWithResponse(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String virtualMachineId,
-        Context context);
+    Response<VirtualMachineInner> getWithResponse(String resourceGroupName, String privateCloudName, String clusterName,
+        String virtualMachineId, Context context);
 
     /**
      * Get a virtual machine by id in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -80,12 +78,12 @@ public interface VirtualMachinesClient {
      * @return a virtual machine by id in a private cloud cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    VirtualMachineInner get(
-        String resourceGroupName, String privateCloudName, String clusterName, String virtualMachineId);
+    VirtualMachineInner get(String resourceGroupName, String privateCloudName, String clusterName,
+        String virtualMachineId);
 
     /**
      * Enable or disable DRS-driven VM movement restriction.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -97,16 +95,12 @@ public interface VirtualMachinesClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginRestrictMovement(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String virtualMachineId,
-        VirtualMachineRestrictMovement restrictMovement);
+    SyncPoller<PollResult<Void>, Void> beginRestrictMovement(String resourceGroupName, String privateCloudName,
+        String clusterName, String virtualMachineId, VirtualMachineRestrictMovement restrictMovement);
 
     /**
      * Enable or disable DRS-driven VM movement restriction.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -119,17 +113,12 @@ public interface VirtualMachinesClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginRestrictMovement(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String virtualMachineId,
-        VirtualMachineRestrictMovement restrictMovement,
-        Context context);
+    SyncPoller<PollResult<Void>, Void> beginRestrictMovement(String resourceGroupName, String privateCloudName,
+        String clusterName, String virtualMachineId, VirtualMachineRestrictMovement restrictMovement, Context context);
 
     /**
      * Enable or disable DRS-driven VM movement restriction.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -140,16 +129,12 @@ public interface VirtualMachinesClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void restrictMovement(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String virtualMachineId,
-        VirtualMachineRestrictMovement restrictMovement);
+    void restrictMovement(String resourceGroupName, String privateCloudName, String clusterName,
+        String virtualMachineId, VirtualMachineRestrictMovement restrictMovement);
 
     /**
      * Enable or disable DRS-driven VM movement restriction.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -161,11 +146,6 @@ public interface VirtualMachinesClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void restrictMovement(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String virtualMachineId,
-        VirtualMachineRestrictMovement restrictMovement,
-        Context context);
+    void restrictMovement(String resourceGroupName, String privateCloudName, String clusterName,
+        String virtualMachineId, VirtualMachineRestrictMovement restrictMovement, Context context);
 }

@@ -92,20 +92,14 @@ public final class WorkloadNetworkDnsZoneImpl
     }
 
     public WorkloadNetworkDnsZone create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .createDnsZone(resourceGroupName, privateCloudName, dnsZoneId, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworks().createDnsZone(resourceGroupName,
+            privateCloudName, dnsZoneId, this.innerModel(), Context.NONE);
         return this;
     }
 
     public WorkloadNetworkDnsZone create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .createDnsZone(resourceGroupName, privateCloudName, dnsZoneId, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworks().createDnsZone(resourceGroupName,
+            privateCloudName, dnsZoneId, this.innerModel(), context);
         return this;
     }
 
@@ -120,25 +114,19 @@ public final class WorkloadNetworkDnsZoneImpl
     }
 
     public WorkloadNetworkDnsZone apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .updateDnsZone(resourceGroupName, privateCloudName, dnsZoneId, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworks().updateDnsZone(resourceGroupName,
+            privateCloudName, dnsZoneId, this.innerModel(), Context.NONE);
         return this;
     }
 
     public WorkloadNetworkDnsZone apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .updateDnsZone(resourceGroupName, privateCloudName, dnsZoneId, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworks().updateDnsZone(resourceGroupName,
+            privateCloudName, dnsZoneId, this.innerModel(), context);
         return this;
     }
 
-    WorkloadNetworkDnsZoneImpl(
-        WorkloadNetworkDnsZoneInner innerObject, com.azure.resourcemanager.avs.AvsManager serviceManager) {
+    WorkloadNetworkDnsZoneImpl(WorkloadNetworkDnsZoneInner innerObject,
+        com.azure.resourcemanager.avs.AvsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
@@ -147,22 +135,14 @@ public final class WorkloadNetworkDnsZoneImpl
     }
 
     public WorkloadNetworkDnsZone refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .getDnsZoneWithResponse(resourceGroupName, privateCloudName, dnsZoneId, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworks()
+            .getDnsZoneWithResponse(resourceGroupName, privateCloudName, dnsZoneId, Context.NONE).getValue();
         return this;
     }
 
     public WorkloadNetworkDnsZone refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .getDnsZoneWithResponse(resourceGroupName, privateCloudName, dnsZoneId, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworks()
+            .getDnsZoneWithResponse(resourceGroupName, privateCloudName, dnsZoneId, context).getValue();
         return this;
     }
 

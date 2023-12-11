@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** NSX Gateway. */
+/**
+ * NSX Gateway.
+ */
 @Fluent
 public final class WorkloadNetworkGatewayInner extends ProxyResource {
     /*
@@ -17,13 +19,15 @@ public final class WorkloadNetworkGatewayInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private WorkloadNetworkGatewayProperties innerProperties;
 
-    /** Creates an instance of WorkloadNetworkGatewayInner class. */
+    /**
+     * Creates an instance of WorkloadNetworkGatewayInner class.
+     */
     public WorkloadNetworkGatewayInner() {
     }
 
     /**
      * Get the innerProperties property: Gateway properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private WorkloadNetworkGatewayProperties innerProperties() {
@@ -32,7 +36,7 @@ public final class WorkloadNetworkGatewayInner extends ProxyResource {
 
     /**
      * Get the displayName property: Display name of the DHCP entity.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -41,7 +45,7 @@ public final class WorkloadNetworkGatewayInner extends ProxyResource {
 
     /**
      * Set the displayName property: Display name of the DHCP entity.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the WorkloadNetworkGatewayInner object itself.
      */
@@ -55,7 +59,7 @@ public final class WorkloadNetworkGatewayInner extends ProxyResource {
 
     /**
      * Get the path property: NSX Gateway Path.
-     *
+     * 
      * @return the path value.
      */
     public String path() {
@@ -64,7 +68,7 @@ public final class WorkloadNetworkGatewayInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

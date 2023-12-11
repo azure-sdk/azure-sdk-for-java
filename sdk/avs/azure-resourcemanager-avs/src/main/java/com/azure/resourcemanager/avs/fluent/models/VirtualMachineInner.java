@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.avs.models.VirtualMachineRestrictMovementState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Virtual Machine. */
+/**
+ * Virtual Machine.
+ */
 @Immutable
 public final class VirtualMachineInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class VirtualMachineInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private VirtualMachineProperties innerProperties;
 
-    /** Creates an instance of VirtualMachineInner class. */
+    /**
+     * Creates an instance of VirtualMachineInner class.
+     */
     public VirtualMachineInner() {
     }
 
     /**
      * Get the innerProperties property: Virtual machine properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private VirtualMachineProperties innerProperties() {
@@ -33,7 +37,7 @@ public final class VirtualMachineInner extends ProxyResource {
 
     /**
      * Get the displayName property: Display name of the VM.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -42,7 +46,7 @@ public final class VirtualMachineInner extends ProxyResource {
 
     /**
      * Get the moRefId property: Virtual machine managed object reference id.
-     *
+     * 
      * @return the moRefId value.
      */
     public String moRefId() {
@@ -51,7 +55,7 @@ public final class VirtualMachineInner extends ProxyResource {
 
     /**
      * Get the folderPath property: Path to virtual machine's folder starting from datacenter virtual machine folder.
-     *
+     * 
      * @return the folderPath value.
      */
     public String folderPath() {
@@ -60,7 +64,7 @@ public final class VirtualMachineInner extends ProxyResource {
 
     /**
      * Get the restrictMovement property: Whether VM DRS-driven movement is restricted (enabled) or not (disabled).
-     *
+     * 
      * @return the restrictMovement value.
      */
     public VirtualMachineRestrictMovementState restrictMovement() {
@@ -69,7 +73,7 @@ public final class VirtualMachineInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

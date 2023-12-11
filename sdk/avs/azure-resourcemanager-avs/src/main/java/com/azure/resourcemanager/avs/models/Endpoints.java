@@ -7,7 +7,9 @@ package com.azure.resourcemanager.avs.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Endpoint addresses. */
+/**
+ * Endpoint addresses.
+ */
 @Immutable
 public final class Endpoints {
     /*
@@ -28,13 +30,15 @@ public final class Endpoints {
     @JsonProperty(value = "hcxCloudManager", access = JsonProperty.Access.WRITE_ONLY)
     private String hcxCloudManager;
 
-    /** Creates an instance of Endpoints class. */
+    /**
+     * Creates an instance of Endpoints class.
+     */
     public Endpoints() {
     }
 
     /**
      * Get the nsxtManager property: Endpoint for the NSX-T Data Center manager.
-     *
+     * 
      * @return the nsxtManager value.
      */
     public String nsxtManager() {
@@ -43,7 +47,7 @@ public final class Endpoints {
 
     /**
      * Get the vcsa property: Endpoint for Virtual Center Server Appliance.
-     *
+     * 
      * @return the vcsa value.
      */
     public String vcsa() {
@@ -52,7 +56,7 @@ public final class Endpoints {
 
     /**
      * Get the hcxCloudManager property: Endpoint for the HCX Cloud Manager.
-     *
+     * 
      * @return the hcxCloudManager value.
      */
     public String hcxCloudManager() {
@@ -61,7 +65,7 @@ public final class Endpoints {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

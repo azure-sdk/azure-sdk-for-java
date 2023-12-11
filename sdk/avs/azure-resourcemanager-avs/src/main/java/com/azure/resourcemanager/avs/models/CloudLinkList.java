@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.CloudLinkInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paged list of cloud links. */
+/**
+ * A paged list of cloud links.
+ */
 @Immutable
 public final class CloudLinkList {
     /*
@@ -24,13 +26,15 @@ public final class CloudLinkList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of CloudLinkList class. */
+    /**
+     * Creates an instance of CloudLinkList class.
+     */
     public CloudLinkList() {
     }
 
     /**
      * Get the value property: The items on a page.
-     *
+     * 
      * @return the value value.
      */
     public List<CloudLinkInner> value() {
@@ -39,7 +43,7 @@ public final class CloudLinkList {
 
     /**
      * Get the nextLink property: URL to get the next page if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class CloudLinkList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

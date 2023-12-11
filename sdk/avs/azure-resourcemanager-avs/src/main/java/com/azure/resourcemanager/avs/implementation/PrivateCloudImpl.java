@@ -64,6 +64,31 @@ public final class PrivateCloudImpl implements PrivateCloud, PrivateCloud.Defini
         return this.innerModel().identity();
     }
 
+    public ManagementCluster managementCluster() {
+        return this.innerModel().managementCluster();
+    }
+
+    public InternetEnum internet() {
+        return this.innerModel().internet();
+    }
+
+    public List<IdentitySource> identitySources() {
+        List<IdentitySource> inner = this.innerModel().identitySources();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public AvailabilityProperties availability() {
+        return this.innerModel().availability();
+    }
+
+    public Encryption encryption() {
+        return this.innerModel().encryption();
+    }
+
     public PrivateCloudProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
     }
@@ -125,31 +150,6 @@ public final class PrivateCloudImpl implements PrivateCloud, PrivateCloud.Defini
         return this.innerModel().nsxPublicIpQuotaRaised();
     }
 
-    public ManagementCluster managementCluster() {
-        return this.innerModel().managementCluster();
-    }
-
-    public InternetEnum internet() {
-        return this.innerModel().internet();
-    }
-
-    public List<IdentitySource> identitySources() {
-        List<IdentitySource> inner = this.innerModel().identitySources();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
-    public AvailabilityProperties availability() {
-        return this.innerModel().availability();
-    }
-
-    public Encryption encryption() {
-        return this.innerModel().encryption();
-    }
-
     public List<String> extendedNetworkBlocks() {
         List<String> inner = this.innerModel().extendedNetworkBlocks();
         if (inner != null) {
@@ -191,20 +191,14 @@ public final class PrivateCloudImpl implements PrivateCloud, PrivateCloud.Defini
     }
 
     public PrivateCloud create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPrivateClouds()
-                .createOrUpdate(resourceGroupName, privateCloudName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getPrivateClouds().createOrUpdate(resourceGroupName,
+            privateCloudName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public PrivateCloud create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPrivateClouds()
-                .createOrUpdate(resourceGroupName, privateCloudName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getPrivateClouds().createOrUpdate(resourceGroupName,
+            privateCloudName, this.innerModel(), context);
         return this;
     }
 
@@ -220,20 +214,14 @@ public final class PrivateCloudImpl implements PrivateCloud, PrivateCloud.Defini
     }
 
     public PrivateCloud apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPrivateClouds()
-                .update(resourceGroupName, privateCloudName, updatePrivateCloudUpdate, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getPrivateClouds().update(resourceGroupName, privateCloudName,
+            updatePrivateCloudUpdate, Context.NONE);
         return this;
     }
 
     public PrivateCloud apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPrivateClouds()
-                .update(resourceGroupName, privateCloudName, updatePrivateCloudUpdate, context);
+        this.innerObject = serviceManager.serviceClient().getPrivateClouds().update(resourceGroupName, privateCloudName,
+            updatePrivateCloudUpdate, context);
         return this;
     }
 
@@ -245,22 +233,14 @@ public final class PrivateCloudImpl implements PrivateCloud, PrivateCloud.Defini
     }
 
     public PrivateCloud refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPrivateClouds()
-                .getByResourceGroupWithResponse(resourceGroupName, privateCloudName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getPrivateClouds()
+            .getByResourceGroupWithResponse(resourceGroupName, privateCloudName, Context.NONE).getValue();
         return this;
     }
 
     public PrivateCloud refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPrivateClouds()
-                .getByResourceGroupWithResponse(resourceGroupName, privateCloudName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getPrivateClouds()
+            .getByResourceGroupWithResponse(resourceGroupName, privateCloudName, context).getValue();
         return this;
     }
 
@@ -281,9 +261,8 @@ public final class PrivateCloudImpl implements PrivateCloud, PrivateCloud.Defini
     }
 
     public Response<AdminCredentials> listAdminCredentialsWithResponse(Context context) {
-        return serviceManager
-            .privateClouds()
-            .listAdminCredentialsWithResponse(resourceGroupName, privateCloudName, context);
+        return serviceManager.privateClouds().listAdminCredentialsWithResponse(resourceGroupName, privateCloudName,
+            context);
     }
 
     public AdminCredentials listAdminCredentials() {
@@ -323,31 +302,6 @@ public final class PrivateCloudImpl implements PrivateCloud, PrivateCloud.Defini
             this.updatePrivateCloudUpdate.withIdentity(identity);
             return this;
         }
-    }
-
-    public PrivateCloudImpl withCircuit(Circuit circuit) {
-        this.innerModel().withCircuit(circuit);
-        return this;
-    }
-
-    public PrivateCloudImpl withNetworkBlock(String networkBlock) {
-        this.innerModel().withNetworkBlock(networkBlock);
-        return this;
-    }
-
-    public PrivateCloudImpl withVcenterPassword(String vcenterPassword) {
-        this.innerModel().withVcenterPassword(vcenterPassword);
-        return this;
-    }
-
-    public PrivateCloudImpl withNsxtPassword(String nsxtPassword) {
-        this.innerModel().withNsxtPassword(nsxtPassword);
-        return this;
-    }
-
-    public PrivateCloudImpl withSecondaryCircuit(Circuit secondaryCircuit) {
-        this.innerModel().withSecondaryCircuit(secondaryCircuit);
-        return this;
     }
 
     public PrivateCloudImpl withManagementCluster(ManagementCluster managementCluster) {
@@ -393,6 +347,31 @@ public final class PrivateCloudImpl implements PrivateCloud, PrivateCloud.Defini
             this.updatePrivateCloudUpdate.withEncryption(encryption);
             return this;
         }
+    }
+
+    public PrivateCloudImpl withCircuit(Circuit circuit) {
+        this.innerModel().withCircuit(circuit);
+        return this;
+    }
+
+    public PrivateCloudImpl withNetworkBlock(String networkBlock) {
+        this.innerModel().withNetworkBlock(networkBlock);
+        return this;
+    }
+
+    public PrivateCloudImpl withVcenterPassword(String vcenterPassword) {
+        this.innerModel().withVcenterPassword(vcenterPassword);
+        return this;
+    }
+
+    public PrivateCloudImpl withNsxtPassword(String nsxtPassword) {
+        this.innerModel().withNsxtPassword(nsxtPassword);
+        return this;
+    }
+
+    public PrivateCloudImpl withSecondaryCircuit(Circuit secondaryCircuit) {
+        this.innerModel().withSecondaryCircuit(secondaryCircuit);
+        return this;
     }
 
     public PrivateCloudImpl withExtendedNetworkBlocks(List<String> extendedNetworkBlocks) {

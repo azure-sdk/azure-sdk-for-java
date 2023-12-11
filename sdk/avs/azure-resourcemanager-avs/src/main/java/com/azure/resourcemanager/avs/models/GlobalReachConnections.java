@@ -8,11 +8,13 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of GlobalReachConnections. */
+/**
+ * Resource collection API of GlobalReachConnections.
+ */
 public interface GlobalReachConnections {
     /**
      * List global reach connections in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -24,7 +26,7 @@ public interface GlobalReachConnections {
 
     /**
      * List global reach connections in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -37,7 +39,7 @@ public interface GlobalReachConnections {
 
     /**
      * Get a global reach connection by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param globalReachConnectionName Name of the global reach connection in the private cloud.
@@ -47,12 +49,12 @@ public interface GlobalReachConnections {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a global reach connection by name in a private cloud along with {@link Response}.
      */
-    Response<GlobalReachConnection> getWithResponse(
-        String resourceGroupName, String privateCloudName, String globalReachConnectionName, Context context);
+    Response<GlobalReachConnection> getWithResponse(String resourceGroupName, String privateCloudName,
+        String globalReachConnectionName, Context context);
 
     /**
      * Get a global reach connection by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param globalReachConnectionName Name of the global reach connection in the private cloud.
@@ -65,7 +67,7 @@ public interface GlobalReachConnections {
 
     /**
      * Delete a global reach connection in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param globalReachConnectionName Name of the global reach connection in the private cloud.
@@ -77,7 +79,7 @@ public interface GlobalReachConnections {
 
     /**
      * Delete a global reach connection in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param globalReachConnectionName Name of the global reach connection in the private cloud.
@@ -90,7 +92,7 @@ public interface GlobalReachConnections {
 
     /**
      * Get a global reach connection by name in a private cloud.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -101,7 +103,7 @@ public interface GlobalReachConnections {
 
     /**
      * Get a global reach connection by name in a private cloud.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -113,7 +115,7 @@ public interface GlobalReachConnections {
 
     /**
      * Delete a global reach connection in a private cloud.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -123,7 +125,7 @@ public interface GlobalReachConnections {
 
     /**
      * Delete a global reach connection in a private cloud.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -134,7 +136,7 @@ public interface GlobalReachConnections {
 
     /**
      * Begins definition for a new GlobalReachConnection resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new GlobalReachConnection definition.
      */

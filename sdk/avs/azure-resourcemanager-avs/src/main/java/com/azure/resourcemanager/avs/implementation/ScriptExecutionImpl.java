@@ -153,21 +153,14 @@ public final class ScriptExecutionImpl implements ScriptExecution, ScriptExecuti
     }
 
     public ScriptExecution create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getScriptExecutions()
-                .createOrUpdate(
-                    resourceGroupName, privateCloudName, scriptExecutionName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getScriptExecutions().createOrUpdate(resourceGroupName,
+            privateCloudName, scriptExecutionName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public ScriptExecution create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getScriptExecutions()
-                .createOrUpdate(resourceGroupName, privateCloudName, scriptExecutionName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getScriptExecutions().createOrUpdate(resourceGroupName,
+            privateCloudName, scriptExecutionName, this.innerModel(), context);
         return this;
     }
 
@@ -182,21 +175,14 @@ public final class ScriptExecutionImpl implements ScriptExecution, ScriptExecuti
     }
 
     public ScriptExecution apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getScriptExecutions()
-                .createOrUpdate(
-                    resourceGroupName, privateCloudName, scriptExecutionName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getScriptExecutions().createOrUpdate(resourceGroupName,
+            privateCloudName, scriptExecutionName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public ScriptExecution apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getScriptExecutions()
-                .createOrUpdate(resourceGroupName, privateCloudName, scriptExecutionName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getScriptExecutions().createOrUpdate(resourceGroupName,
+            privateCloudName, scriptExecutionName, this.innerModel(), context);
         return this;
     }
 
@@ -209,37 +195,26 @@ public final class ScriptExecutionImpl implements ScriptExecution, ScriptExecuti
     }
 
     public ScriptExecution refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getScriptExecutions()
-                .getWithResponse(resourceGroupName, privateCloudName, scriptExecutionName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getScriptExecutions()
+            .getWithResponse(resourceGroupName, privateCloudName, scriptExecutionName, Context.NONE).getValue();
         return this;
     }
 
     public ScriptExecution refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getScriptExecutions()
-                .getWithResponse(resourceGroupName, privateCloudName, scriptExecutionName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getScriptExecutions()
+            .getWithResponse(resourceGroupName, privateCloudName, scriptExecutionName, context).getValue();
         return this;
     }
 
-    public Response<ScriptExecution> getExecutionLogsWithResponse(
-        List<ScriptOutputStreamType> scriptOutputStreamType, Context context) {
-        return serviceManager
-            .scriptExecutions()
-            .getExecutionLogsWithResponse(
-                resourceGroupName, privateCloudName, scriptExecutionName, scriptOutputStreamType, context);
+    public Response<ScriptExecution> getExecutionLogsWithResponse(List<ScriptOutputStreamType> scriptOutputStreamType,
+        Context context) {
+        return serviceManager.scriptExecutions().getExecutionLogsWithResponse(resourceGroupName, privateCloudName,
+            scriptExecutionName, scriptOutputStreamType, context);
     }
 
     public ScriptExecution getExecutionLogs() {
-        return serviceManager
-            .scriptExecutions()
-            .getExecutionLogs(resourceGroupName, privateCloudName, scriptExecutionName);
+        return serviceManager.scriptExecutions().getExecutionLogs(resourceGroupName, privateCloudName,
+            scriptExecutionName);
     }
 
     public ScriptExecutionImpl withScriptCmdletId(String scriptCmdletId) {

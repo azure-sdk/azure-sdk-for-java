@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Abstract placement policy properties. */
+/**
+ * Abstract placement policy properties.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -19,8 +21,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("PlacementPolicyProperties")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "VmVm", value = VmPlacementPolicyProperties.class),
-    @JsonSubTypes.Type(name = "VmHost", value = VmHostPlacementPolicyProperties.class)
-})
+    @JsonSubTypes.Type(name = "VmHost", value = VmHostPlacementPolicyProperties.class) })
 @Fluent
 public class PlacementPolicyProperties {
     /*
@@ -41,13 +42,15 @@ public class PlacementPolicyProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private PlacementPolicyProvisioningState provisioningState;
 
-    /** Creates an instance of PlacementPolicyProperties class. */
+    /**
+     * Creates an instance of PlacementPolicyProperties class.
+     */
     public PlacementPolicyProperties() {
     }
 
     /**
      * Get the state property: Whether the placement policy is enabled or disabled.
-     *
+     * 
      * @return the state value.
      */
     public PlacementPolicyState state() {
@@ -56,7 +59,7 @@ public class PlacementPolicyProperties {
 
     /**
      * Set the state property: Whether the placement policy is enabled or disabled.
-     *
+     * 
      * @param state the state value to set.
      * @return the PlacementPolicyProperties object itself.
      */
@@ -67,7 +70,7 @@ public class PlacementPolicyProperties {
 
     /**
      * Get the displayName property: Display name of the placement policy.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -76,7 +79,7 @@ public class PlacementPolicyProperties {
 
     /**
      * Set the displayName property: Display name of the placement policy.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the PlacementPolicyProperties object itself.
      */
@@ -87,7 +90,7 @@ public class PlacementPolicyProperties {
 
     /**
      * Get the provisioningState property: The provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public PlacementPolicyProvisioningState provisioningState() {
@@ -96,7 +99,7 @@ public class PlacementPolicyProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

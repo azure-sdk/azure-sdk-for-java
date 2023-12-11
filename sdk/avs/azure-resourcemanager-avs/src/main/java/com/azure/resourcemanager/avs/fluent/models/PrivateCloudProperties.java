@@ -18,9 +18,41 @@ import com.azure.resourcemanager.avs.models.PrivateCloudProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The properties of a private cloud resource. */
+/**
+ * The properties of a private cloud resource.
+ */
 @Fluent
-public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
+public final class PrivateCloudProperties {
+    /*
+     * The default cluster used for management
+     */
+    @JsonProperty(value = "managementCluster", required = true)
+    private ManagementCluster managementCluster;
+
+    /*
+     * Connectivity to internet is enabled or disabled
+     */
+    @JsonProperty(value = "internet")
+    private InternetEnum internet;
+
+    /*
+     * vCenter Single Sign On Identity Sources
+     */
+    @JsonProperty(value = "identitySources")
+    private List<IdentitySource> identitySources;
+
+    /*
+     * Properties describing how the cloud is distributed across availability zones
+     */
+    @JsonProperty(value = "availability")
+    private AvailabilityProperties availability;
+
+    /*
+     * Customer managed key encryption, can be enabled or disabled
+     */
+    @JsonProperty(value = "encryption")
+    private Encryption encryption;
+
     /*
      * The provisioning state
      */
@@ -107,13 +139,123 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
     @JsonProperty(value = "nsxPublicIpQuotaRaised", access = JsonProperty.Access.WRITE_ONLY)
     private NsxPublicIpQuotaRaisedEnum nsxPublicIpQuotaRaised;
 
-    /** Creates an instance of PrivateCloudProperties class. */
+    /*
+     * Array of additional networks noncontiguous with networkBlock. Networks must be unique and non-overlapping across
+     * VNet in your subscription, on-premise, and this privateCloud networkBlock attribute. Make sure the CIDR format
+     * conforms to (A.B.C.D/X).
+     */
+    @JsonProperty(value = "extendedNetworkBlocks")
+    private List<String> extendedNetworkBlocks;
+
+    /**
+     * Creates an instance of PrivateCloudProperties class.
+     */
     public PrivateCloudProperties() {
     }
 
     /**
+     * Get the managementCluster property: The default cluster used for management.
+     * 
+     * @return the managementCluster value.
+     */
+    public ManagementCluster managementCluster() {
+        return this.managementCluster;
+    }
+
+    /**
+     * Set the managementCluster property: The default cluster used for management.
+     * 
+     * @param managementCluster the managementCluster value to set.
+     * @return the PrivateCloudProperties object itself.
+     */
+    public PrivateCloudProperties withManagementCluster(ManagementCluster managementCluster) {
+        this.managementCluster = managementCluster;
+        return this;
+    }
+
+    /**
+     * Get the internet property: Connectivity to internet is enabled or disabled.
+     * 
+     * @return the internet value.
+     */
+    public InternetEnum internet() {
+        return this.internet;
+    }
+
+    /**
+     * Set the internet property: Connectivity to internet is enabled or disabled.
+     * 
+     * @param internet the internet value to set.
+     * @return the PrivateCloudProperties object itself.
+     */
+    public PrivateCloudProperties withInternet(InternetEnum internet) {
+        this.internet = internet;
+        return this;
+    }
+
+    /**
+     * Get the identitySources property: vCenter Single Sign On Identity Sources.
+     * 
+     * @return the identitySources value.
+     */
+    public List<IdentitySource> identitySources() {
+        return this.identitySources;
+    }
+
+    /**
+     * Set the identitySources property: vCenter Single Sign On Identity Sources.
+     * 
+     * @param identitySources the identitySources value to set.
+     * @return the PrivateCloudProperties object itself.
+     */
+    public PrivateCloudProperties withIdentitySources(List<IdentitySource> identitySources) {
+        this.identitySources = identitySources;
+        return this;
+    }
+
+    /**
+     * Get the availability property: Properties describing how the cloud is distributed across availability zones.
+     * 
+     * @return the availability value.
+     */
+    public AvailabilityProperties availability() {
+        return this.availability;
+    }
+
+    /**
+     * Set the availability property: Properties describing how the cloud is distributed across availability zones.
+     * 
+     * @param availability the availability value to set.
+     * @return the PrivateCloudProperties object itself.
+     */
+    public PrivateCloudProperties withAvailability(AvailabilityProperties availability) {
+        this.availability = availability;
+        return this;
+    }
+
+    /**
+     * Get the encryption property: Customer managed key encryption, can be enabled or disabled.
+     * 
+     * @return the encryption value.
+     */
+    public Encryption encryption() {
+        return this.encryption;
+    }
+
+    /**
+     * Set the encryption property: Customer managed key encryption, can be enabled or disabled.
+     * 
+     * @param encryption the encryption value to set.
+     * @return the PrivateCloudProperties object itself.
+     */
+    public PrivateCloudProperties withEncryption(Encryption encryption) {
+        this.encryption = encryption;
+        return this;
+    }
+
+    /**
      * Get the provisioningState property: The provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public PrivateCloudProvisioningState provisioningState() {
@@ -122,7 +264,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the circuit property: An ExpressRoute Circuit.
-     *
+     * 
      * @return the circuit value.
      */
     public Circuit circuit() {
@@ -131,7 +273,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Set the circuit property: An ExpressRoute Circuit.
-     *
+     * 
      * @param circuit the circuit value to set.
      * @return the PrivateCloudProperties object itself.
      */
@@ -142,7 +284,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the endpoints property: The endpoints.
-     *
+     * 
      * @return the endpoints value.
      */
     public Endpoints endpoints() {
@@ -153,7 +295,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
      * Get the networkBlock property: The block of addresses should be unique across VNet in your subscription as well
      * as on-premise. Make sure the CIDR format is conformed to (A.B.C.D/X) where A,B,C,D are between 0 and 255, and X
      * is between 0 and 22.
-     *
+     * 
      * @return the networkBlock value.
      */
     public String networkBlock() {
@@ -164,7 +306,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
      * Set the networkBlock property: The block of addresses should be unique across VNet in your subscription as well
      * as on-premise. Make sure the CIDR format is conformed to (A.B.C.D/X) where A,B,C,D are between 0 and 255, and X
      * is between 0 and 22.
-     *
+     * 
      * @param networkBlock the networkBlock value to set.
      * @return the PrivateCloudProperties object itself.
      */
@@ -175,7 +317,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the managementNetwork property: Network used to access vCenter Server and NSX-T Manager.
-     *
+     * 
      * @return the managementNetwork value.
      */
     public String managementNetwork() {
@@ -184,7 +326,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the provisioningNetwork property: Used for virtual machine cold migration, cloning, and snapshot migration.
-     *
+     * 
      * @return the provisioningNetwork value.
      */
     public String provisioningNetwork() {
@@ -193,7 +335,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the vmotionNetwork property: Used for live migration of virtual machines.
-     *
+     * 
      * @return the vmotionNetwork value.
      */
     public String vmotionNetwork() {
@@ -202,7 +344,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the vcenterPassword property: Optionally, set the vCenter admin password when the private cloud is created.
-     *
+     * 
      * @return the vcenterPassword value.
      */
     public String vcenterPassword() {
@@ -211,7 +353,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Set the vcenterPassword property: Optionally, set the vCenter admin password when the private cloud is created.
-     *
+     * 
      * @param vcenterPassword the vcenterPassword value to set.
      * @return the PrivateCloudProperties object itself.
      */
@@ -222,7 +364,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the nsxtPassword property: Optionally, set the NSX-T Manager password when the private cloud is created.
-     *
+     * 
      * @return the nsxtPassword value.
      */
     public String nsxtPassword() {
@@ -231,7 +373,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Set the nsxtPassword property: Optionally, set the NSX-T Manager password when the private cloud is created.
-     *
+     * 
      * @param nsxtPassword the nsxtPassword value to set.
      * @return the PrivateCloudProperties object itself.
      */
@@ -242,7 +384,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the vcenterCertificateThumbprint property: Thumbprint of the vCenter Server SSL certificate.
-     *
+     * 
      * @return the vcenterCertificateThumbprint value.
      */
     public String vcenterCertificateThumbprint() {
@@ -251,7 +393,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the nsxtCertificateThumbprint property: Thumbprint of the NSX-T Manager SSL certificate.
-     *
+     * 
      * @return the nsxtCertificateThumbprint value.
      */
     public String nsxtCertificateThumbprint() {
@@ -260,7 +402,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
 
     /**
      * Get the externalCloudLinks property: Array of cloud link IDs from other clouds that connect to this one.
-     *
+     * 
      * @return the externalCloudLinks value.
      */
     public List<String> externalCloudLinks() {
@@ -270,7 +412,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
     /**
      * Get the secondaryCircuit property: A secondary expressRoute circuit from a separate AZ. Only present in a
      * stretched private cloud.
-     *
+     * 
      * @return the secondaryCircuit value.
      */
     public Circuit secondaryCircuit() {
@@ -280,7 +422,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
     /**
      * Set the secondaryCircuit property: A secondary expressRoute circuit from a separate AZ. Only present in a
      * stretched private cloud.
-     *
+     * 
      * @param secondaryCircuit the secondaryCircuit value to set.
      * @return the PrivateCloudProperties object itself.
      */
@@ -290,65 +432,60 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
     }
 
     /**
-     * Get the nsxPublicIpQuotaRaised property: Flag to indicate whether the private cloud has the quota for provisioned
-     * NSX Public IP count raised from 64 to 1024.
-     *
+     * Get the nsxPublicIpQuotaRaised property: Flag to indicate whether the private cloud has the quota for
+     * provisioned NSX Public IP count raised from 64 to 1024.
+     * 
      * @return the nsxPublicIpQuotaRaised value.
      */
     public NsxPublicIpQuotaRaisedEnum nsxPublicIpQuotaRaised() {
         return this.nsxPublicIpQuotaRaised;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public PrivateCloudProperties withManagementCluster(ManagementCluster managementCluster) {
-        super.withManagementCluster(managementCluster);
-        return this;
+    /**
+     * Get the extendedNetworkBlocks property: Array of additional networks noncontiguous with networkBlock. Networks
+     * must be unique and non-overlapping across VNet in your subscription, on-premise, and this privateCloud
+     * networkBlock attribute. Make sure the CIDR format conforms to (A.B.C.D/X).
+     * 
+     * @return the extendedNetworkBlocks value.
+     */
+    public List<String> extendedNetworkBlocks() {
+        return this.extendedNetworkBlocks;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public PrivateCloudProperties withInternet(InternetEnum internet) {
-        super.withInternet(internet);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PrivateCloudProperties withIdentitySources(List<IdentitySource> identitySources) {
-        super.withIdentitySources(identitySources);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PrivateCloudProperties withAvailability(AvailabilityProperties availability) {
-        super.withAvailability(availability);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PrivateCloudProperties withEncryption(Encryption encryption) {
-        super.withEncryption(encryption);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * Set the extendedNetworkBlocks property: Array of additional networks noncontiguous with networkBlock. Networks
+     * must be unique and non-overlapping across VNet in your subscription, on-premise, and this privateCloud
+     * networkBlock attribute. Make sure the CIDR format conforms to (A.B.C.D/X).
+     * 
+     * @param extendedNetworkBlocks the extendedNetworkBlocks value to set.
+     * @return the PrivateCloudProperties object itself.
+     */
     public PrivateCloudProperties withExtendedNetworkBlocks(List<String> extendedNetworkBlocks) {
-        super.withExtendedNetworkBlocks(extendedNetworkBlocks);
+        this.extendedNetworkBlocks = extendedNetworkBlocks;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    @Override
     public void validate() {
-        super.validate();
+        if (managementCluster() == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property managementCluster in model PrivateCloudProperties"));
+        } else {
+            managementCluster().validate();
+        }
+        if (identitySources() != null) {
+            identitySources().forEach(e -> e.validate());
+        }
+        if (availability() != null) {
+            availability().validate();
+        }
+        if (encryption() != null) {
+            encryption().validate();
+        }
         if (circuit() != null) {
             circuit().validate();
         }
@@ -356,10 +493,8 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
             endpoints().validate();
         }
         if (networkBlock() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property networkBlock in model PrivateCloudProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property networkBlock in model PrivateCloudProperties"));
         }
         if (secondaryCircuit() != null) {
             secondaryCircuit().validate();

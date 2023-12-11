@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.WorkloadNetworkVMGroupInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of NSX VM Groups. */
+/**
+ * A list of NSX VM Groups.
+ */
 @Immutable
 public final class WorkloadNetworkVMGroupsList {
     /*
@@ -24,13 +26,15 @@ public final class WorkloadNetworkVMGroupsList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of WorkloadNetworkVMGroupsList class. */
+    /**
+     * Creates an instance of WorkloadNetworkVMGroupsList class.
+     */
     public WorkloadNetworkVMGroupsList() {
     }
 
     /**
      * Get the value property: The items on the page.
-     *
+     * 
      * @return the value value.
      */
     public List<WorkloadNetworkVMGroupInner> value() {
@@ -39,7 +43,7 @@ public final class WorkloadNetworkVMGroupsList {
 
     /**
      * Get the nextLink property: URL to get the next page if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class WorkloadNetworkVMGroupsList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

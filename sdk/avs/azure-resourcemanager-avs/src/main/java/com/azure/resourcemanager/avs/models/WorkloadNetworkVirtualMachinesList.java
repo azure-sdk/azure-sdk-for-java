@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.WorkloadNetworkVirtualMachine
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of NSX Virtual Machines. */
+/**
+ * A list of NSX Virtual Machines.
+ */
 @Immutable
 public final class WorkloadNetworkVirtualMachinesList {
     /*
@@ -24,13 +26,15 @@ public final class WorkloadNetworkVirtualMachinesList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of WorkloadNetworkVirtualMachinesList class. */
+    /**
+     * Creates an instance of WorkloadNetworkVirtualMachinesList class.
+     */
     public WorkloadNetworkVirtualMachinesList() {
     }
 
     /**
      * Get the value property: The items on the page.
-     *
+     * 
      * @return the value value.
      */
     public List<WorkloadNetworkVirtualMachineInner> value() {
@@ -39,7 +43,7 @@ public final class WorkloadNetworkVirtualMachinesList {
 
     /**
      * Get the nextLink property: URL to get the next page if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class WorkloadNetworkVirtualMachinesList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

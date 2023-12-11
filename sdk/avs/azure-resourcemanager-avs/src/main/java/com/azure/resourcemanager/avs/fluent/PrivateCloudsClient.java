@@ -15,11 +15,13 @@ import com.azure.resourcemanager.avs.fluent.models.AdminCredentialsInner;
 import com.azure.resourcemanager.avs.fluent.models.PrivateCloudInner;
 import com.azure.resourcemanager.avs.models.PrivateCloudUpdate;
 
-/** An instance of this class provides access to all the operations defined in PrivateCloudsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in PrivateCloudsClient.
+ */
 public interface PrivateCloudsClient {
     /**
      * List private clouds in a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -31,7 +33,7 @@ public interface PrivateCloudsClient {
 
     /**
      * List private clouds in a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -44,7 +46,7 @@ public interface PrivateCloudsClient {
 
     /**
      * List private clouds in a subscription.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a paged list of private clouds as paginated response with {@link PagedIterable}.
@@ -54,7 +56,7 @@ public interface PrivateCloudsClient {
 
     /**
      * List private clouds in a subscription.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -66,7 +68,7 @@ public interface PrivateCloudsClient {
 
     /**
      * Get a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -76,12 +78,12 @@ public interface PrivateCloudsClient {
      * @return a private cloud along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<PrivateCloudInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String privateCloudName, Context context);
+    Response<PrivateCloudInner> getByResourceGroupWithResponse(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Get a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -94,7 +96,7 @@ public interface PrivateCloudsClient {
 
     /**
      * Create or update a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param privateCloud The private cloud.
@@ -104,12 +106,12 @@ public interface PrivateCloudsClient {
      * @return the {@link SyncPoller} for polling of a private cloud resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<PrivateCloudInner>, PrivateCloudInner> beginCreateOrUpdate(
-        String resourceGroupName, String privateCloudName, PrivateCloudInner privateCloud);
+    SyncPoller<PollResult<PrivateCloudInner>, PrivateCloudInner> beginCreateOrUpdate(String resourceGroupName,
+        String privateCloudName, PrivateCloudInner privateCloud);
 
     /**
      * Create or update a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param privateCloud The private cloud.
@@ -120,12 +122,12 @@ public interface PrivateCloudsClient {
      * @return the {@link SyncPoller} for polling of a private cloud resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<PrivateCloudInner>, PrivateCloudInner> beginCreateOrUpdate(
-        String resourceGroupName, String privateCloudName, PrivateCloudInner privateCloud, Context context);
+    SyncPoller<PollResult<PrivateCloudInner>, PrivateCloudInner> beginCreateOrUpdate(String resourceGroupName,
+        String privateCloudName, PrivateCloudInner privateCloud, Context context);
 
     /**
      * Create or update a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param privateCloud The private cloud.
@@ -139,7 +141,7 @@ public interface PrivateCloudsClient {
 
     /**
      * Create or update a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param privateCloud The private cloud.
@@ -150,12 +152,12 @@ public interface PrivateCloudsClient {
      * @return a private cloud resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    PrivateCloudInner createOrUpdate(
-        String resourceGroupName, String privateCloudName, PrivateCloudInner privateCloud, Context context);
+    PrivateCloudInner createOrUpdate(String resourceGroupName, String privateCloudName, PrivateCloudInner privateCloud,
+        Context context);
 
     /**
      * Update a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param privateCloudUpdate The private cloud properties to be updated.
@@ -165,12 +167,12 @@ public interface PrivateCloudsClient {
      * @return the {@link SyncPoller} for polling of a private cloud resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<PrivateCloudInner>, PrivateCloudInner> beginUpdate(
-        String resourceGroupName, String privateCloudName, PrivateCloudUpdate privateCloudUpdate);
+    SyncPoller<PollResult<PrivateCloudInner>, PrivateCloudInner> beginUpdate(String resourceGroupName,
+        String privateCloudName, PrivateCloudUpdate privateCloudUpdate);
 
     /**
      * Update a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param privateCloudUpdate The private cloud properties to be updated.
@@ -181,12 +183,12 @@ public interface PrivateCloudsClient {
      * @return the {@link SyncPoller} for polling of a private cloud resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<PrivateCloudInner>, PrivateCloudInner> beginUpdate(
-        String resourceGroupName, String privateCloudName, PrivateCloudUpdate privateCloudUpdate, Context context);
+    SyncPoller<PollResult<PrivateCloudInner>, PrivateCloudInner> beginUpdate(String resourceGroupName,
+        String privateCloudName, PrivateCloudUpdate privateCloudUpdate, Context context);
 
     /**
      * Update a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param privateCloudUpdate The private cloud properties to be updated.
@@ -200,7 +202,7 @@ public interface PrivateCloudsClient {
 
     /**
      * Update a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param privateCloudUpdate The private cloud properties to be updated.
@@ -211,12 +213,12 @@ public interface PrivateCloudsClient {
      * @return a private cloud resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    PrivateCloudInner update(
-        String resourceGroupName, String privateCloudName, PrivateCloudUpdate privateCloudUpdate, Context context);
+    PrivateCloudInner update(String resourceGroupName, String privateCloudName, PrivateCloudUpdate privateCloudUpdate,
+        Context context);
 
     /**
      * Delete a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -229,7 +231,7 @@ public interface PrivateCloudsClient {
 
     /**
      * Delete a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -243,7 +245,7 @@ public interface PrivateCloudsClient {
 
     /**
      * Delete a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -255,7 +257,7 @@ public interface PrivateCloudsClient {
 
     /**
      * Delete a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -268,7 +270,7 @@ public interface PrivateCloudsClient {
 
     /**
      * Rotate the vCenter password.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -281,7 +283,7 @@ public interface PrivateCloudsClient {
 
     /**
      * Rotate the vCenter password.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -291,12 +293,12 @@ public interface PrivateCloudsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginRotateVcenterPassword(
-        String resourceGroupName, String privateCloudName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginRotateVcenterPassword(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Rotate the vCenter password.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -308,7 +310,7 @@ public interface PrivateCloudsClient {
 
     /**
      * Rotate the vCenter password.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -321,7 +323,7 @@ public interface PrivateCloudsClient {
 
     /**
      * Rotate the NSX-T Manager password.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -334,7 +336,7 @@ public interface PrivateCloudsClient {
 
     /**
      * Rotate the NSX-T Manager password.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -344,12 +346,12 @@ public interface PrivateCloudsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginRotateNsxtPassword(
-        String resourceGroupName, String privateCloudName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginRotateNsxtPassword(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Rotate the NSX-T Manager password.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -361,7 +363,7 @@ public interface PrivateCloudsClient {
 
     /**
      * Rotate the NSX-T Manager password.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -374,7 +376,7 @@ public interface PrivateCloudsClient {
 
     /**
      * List the admin credentials for the private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -384,12 +386,12 @@ public interface PrivateCloudsClient {
      * @return administrative credentials for accessing vCenter and NSX-T along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<AdminCredentialsInner> listAdminCredentialsWithResponse(
-        String resourceGroupName, String privateCloudName, Context context);
+    Response<AdminCredentialsInner> listAdminCredentialsWithResponse(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * List the admin credentials for the private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

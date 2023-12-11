@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The arguments passed in to the execution. */
+/**
+ * The arguments passed in to the execution.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -21,8 +23,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "SecureValue", value = ScriptSecureStringExecutionParameter.class),
     @JsonSubTypes.Type(name = "Value", value = ScriptStringExecutionParameter.class),
-    @JsonSubTypes.Type(name = "Credential", value = PSCredentialExecutionParameter.class)
-})
+    @JsonSubTypes.Type(name = "Credential", value = PSCredentialExecutionParameter.class) })
 @Fluent
 public class ScriptExecutionParameter {
     /*
@@ -31,13 +32,15 @@ public class ScriptExecutionParameter {
     @JsonProperty(value = "name", required = true)
     private String name;
 
-    /** Creates an instance of ScriptExecutionParameter class. */
+    /**
+     * Creates an instance of ScriptExecutionParameter class.
+     */
     public ScriptExecutionParameter() {
     }
 
     /**
      * Get the name property: The parameter name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -46,7 +49,7 @@ public class ScriptExecutionParameter {
 
     /**
      * Set the name property: The parameter name.
-     *
+     * 
      * @param name the name value to set.
      * @return the ScriptExecutionParameter object itself.
      */
@@ -57,14 +60,13 @@ public class ScriptExecutionParameter {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model ScriptExecutionParameter"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model ScriptExecutionParameter"));
         }
     }
 

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.avs.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Specifications of the Dimension of metrics. */
+/**
+ * Specifications of the Dimension of metrics.
+ */
 @Fluent
 public final class MetricDimension {
     /*
@@ -34,13 +36,15 @@ public final class MetricDimension {
     @JsonProperty(value = "toBeExportedForShoebox")
     private Boolean toBeExportedForShoebox;
 
-    /** Creates an instance of MetricDimension class. */
+    /**
+     * Creates an instance of MetricDimension class.
+     */
     public MetricDimension() {
     }
 
     /**
      * Get the name property: Name of the dimension.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -49,7 +53,7 @@ public final class MetricDimension {
 
     /**
      * Set the name property: Name of the dimension.
-     *
+     * 
      * @param name the name value to set.
      * @return the MetricDimension object itself.
      */
@@ -60,7 +64,7 @@ public final class MetricDimension {
 
     /**
      * Get the displayName property: Localized friendly display name of the dimension.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -69,7 +73,7 @@ public final class MetricDimension {
 
     /**
      * Set the displayName property: Localized friendly display name of the dimension.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the MetricDimension object itself.
      */
@@ -80,7 +84,7 @@ public final class MetricDimension {
 
     /**
      * Get the internalName property: Name of the dimension as it appears in MDM.
-     *
+     * 
      * @return the internalName value.
      */
     public String internalName() {
@@ -89,7 +93,7 @@ public final class MetricDimension {
 
     /**
      * Set the internalName property: Name of the dimension as it appears in MDM.
-     *
+     * 
      * @param internalName the internalName value to set.
      * @return the MetricDimension object itself.
      */
@@ -101,7 +105,7 @@ public final class MetricDimension {
     /**
      * Get the toBeExportedForShoebox property: A boolean flag indicating whether this dimension should be included for
      * the shoebox export scenario.
-     *
+     * 
      * @return the toBeExportedForShoebox value.
      */
     public Boolean toBeExportedForShoebox() {
@@ -111,7 +115,7 @@ public final class MetricDimension {
     /**
      * Set the toBeExportedForShoebox property: A boolean flag indicating whether this dimension should be included for
      * the shoebox export scenario.
-     *
+     * 
      * @param toBeExportedForShoebox the toBeExportedForShoebox value to set.
      * @return the MetricDimension object itself.
      */
@@ -122,7 +126,7 @@ public final class MetricDimension {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

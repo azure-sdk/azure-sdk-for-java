@@ -11,7 +11,9 @@ import com.azure.resourcemanager.avs.models.WorkloadNetworkVMGroupProvisioningSt
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** NSX VM Group. */
+/**
+ * NSX VM Group.
+ */
 @Fluent
 public final class WorkloadNetworkVMGroupInner extends ProxyResource {
     /*
@@ -20,13 +22,15 @@ public final class WorkloadNetworkVMGroupInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private WorkloadNetworkVMGroupProperties innerProperties;
 
-    /** Creates an instance of WorkloadNetworkVMGroupInner class. */
+    /**
+     * Creates an instance of WorkloadNetworkVMGroupInner class.
+     */
     public WorkloadNetworkVMGroupInner() {
     }
 
     /**
      * Get the innerProperties property: VM Group properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private WorkloadNetworkVMGroupProperties innerProperties() {
@@ -35,7 +39,7 @@ public final class WorkloadNetworkVMGroupInner extends ProxyResource {
 
     /**
      * Get the displayName property: Display name of the VM group.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -44,7 +48,7 @@ public final class WorkloadNetworkVMGroupInner extends ProxyResource {
 
     /**
      * Set the displayName property: Display name of the VM group.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the WorkloadNetworkVMGroupInner object itself.
      */
@@ -58,7 +62,7 @@ public final class WorkloadNetworkVMGroupInner extends ProxyResource {
 
     /**
      * Get the members property: Virtual machine members of this group.
-     *
+     * 
      * @return the members value.
      */
     public List<String> members() {
@@ -67,7 +71,7 @@ public final class WorkloadNetworkVMGroupInner extends ProxyResource {
 
     /**
      * Set the members property: Virtual machine members of this group.
-     *
+     * 
      * @param members the members value to set.
      * @return the WorkloadNetworkVMGroupInner object itself.
      */
@@ -81,7 +85,7 @@ public final class WorkloadNetworkVMGroupInner extends ProxyResource {
 
     /**
      * Get the status property: VM Group status.
-     *
+     * 
      * @return the status value.
      */
     public VMGroupStatusEnum status() {
@@ -90,7 +94,7 @@ public final class WorkloadNetworkVMGroupInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public WorkloadNetworkVMGroupProvisioningState provisioningState() {
@@ -99,7 +103,7 @@ public final class WorkloadNetworkVMGroupInner extends ProxyResource {
 
     /**
      * Get the revision property: NSX revision number.
-     *
+     * 
      * @return the revision value.
      */
     public Long revision() {
@@ -108,7 +112,7 @@ public final class WorkloadNetworkVMGroupInner extends ProxyResource {
 
     /**
      * Set the revision property: NSX revision number.
-     *
+     * 
      * @param revision the revision value to set.
      * @return the WorkloadNetworkVMGroupInner object itself.
      */
@@ -122,7 +126,7 @@ public final class WorkloadNetworkVMGroupInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

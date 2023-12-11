@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.ExpressRouteAuthorizationInne
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paged list of ExpressRoute Circuit Authorizations. */
+/**
+ * A paged list of ExpressRoute Circuit Authorizations.
+ */
 @Immutable
 public final class ExpressRouteAuthorizationList {
     /*
@@ -24,13 +26,15 @@ public final class ExpressRouteAuthorizationList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ExpressRouteAuthorizationList class. */
+    /**
+     * Creates an instance of ExpressRouteAuthorizationList class.
+     */
     public ExpressRouteAuthorizationList() {
     }
 
     /**
      * Get the value property: The items on a page.
-     *
+     * 
      * @return the value value.
      */
     public List<ExpressRouteAuthorizationInner> value() {
@@ -39,7 +43,7 @@ public final class ExpressRouteAuthorizationList {
 
     /**
      * Get the nextLink property: URL to get the next page if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class ExpressRouteAuthorizationList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

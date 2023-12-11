@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.PrivateCloudInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paged list of private clouds. */
+/**
+ * A paged list of private clouds.
+ */
 @Immutable
 public final class PrivateCloudList {
     /*
@@ -24,13 +26,15 @@ public final class PrivateCloudList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of PrivateCloudList class. */
+    /**
+     * Creates an instance of PrivateCloudList class.
+     */
     public PrivateCloudList() {
     }
 
     /**
      * Get the value property: The items on the page.
-     *
+     * 
      * @return the value value.
      */
     public List<PrivateCloudInner> value() {
@@ -39,7 +43,7 @@ public final class PrivateCloudList {
 
     /**
      * Get the nextLink property: URL to get the next page if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class PrivateCloudList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

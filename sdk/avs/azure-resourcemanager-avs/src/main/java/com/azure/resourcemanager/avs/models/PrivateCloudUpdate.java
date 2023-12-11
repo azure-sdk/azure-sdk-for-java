@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** An update to a private cloud resource. */
+/**
+ * An update to a private cloud resource.
+ */
 @Fluent
 public final class PrivateCloudUpdate {
     /*
@@ -33,13 +35,15 @@ public final class PrivateCloudUpdate {
     @JsonProperty(value = "identity")
     private PrivateCloudIdentity identity;
 
-    /** Creates an instance of PrivateCloudUpdate class. */
+    /**
+     * Creates an instance of PrivateCloudUpdate class.
+     */
     public PrivateCloudUpdate() {
     }
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -48,7 +52,7 @@ public final class PrivateCloudUpdate {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the PrivateCloudUpdate object itself.
      */
@@ -59,7 +63,7 @@ public final class PrivateCloudUpdate {
 
     /**
      * Get the innerProperties property: The updatable properties of a private cloud resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private PrivateCloudUpdateProperties innerProperties() {
@@ -68,7 +72,7 @@ public final class PrivateCloudUpdate {
 
     /**
      * Get the identity property: The identity of the private cloud, if configured.
-     *
+     * 
      * @return the identity value.
      */
     public PrivateCloudIdentity identity() {
@@ -77,7 +81,7 @@ public final class PrivateCloudUpdate {
 
     /**
      * Set the identity property: The identity of the private cloud, if configured.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the PrivateCloudUpdate object itself.
      */
@@ -88,7 +92,7 @@ public final class PrivateCloudUpdate {
 
     /**
      * Get the managementCluster property: The default cluster used for management.
-     *
+     * 
      * @return the managementCluster value.
      */
     public ManagementCluster managementCluster() {
@@ -97,7 +101,7 @@ public final class PrivateCloudUpdate {
 
     /**
      * Set the managementCluster property: The default cluster used for management.
-     *
+     * 
      * @param managementCluster the managementCluster value to set.
      * @return the PrivateCloudUpdate object itself.
      */
@@ -111,7 +115,7 @@ public final class PrivateCloudUpdate {
 
     /**
      * Get the internet property: Connectivity to internet is enabled or disabled.
-     *
+     * 
      * @return the internet value.
      */
     public InternetEnum internet() {
@@ -120,7 +124,7 @@ public final class PrivateCloudUpdate {
 
     /**
      * Set the internet property: Connectivity to internet is enabled or disabled.
-     *
+     * 
      * @param internet the internet value to set.
      * @return the PrivateCloudUpdate object itself.
      */
@@ -134,7 +138,7 @@ public final class PrivateCloudUpdate {
 
     /**
      * Get the identitySources property: vCenter Single Sign On Identity Sources.
-     *
+     * 
      * @return the identitySources value.
      */
     public List<IdentitySource> identitySources() {
@@ -143,7 +147,7 @@ public final class PrivateCloudUpdate {
 
     /**
      * Set the identitySources property: vCenter Single Sign On Identity Sources.
-     *
+     * 
      * @param identitySources the identitySources value to set.
      * @return the PrivateCloudUpdate object itself.
      */
@@ -157,7 +161,7 @@ public final class PrivateCloudUpdate {
 
     /**
      * Get the availability property: Properties describing how the cloud is distributed across availability zones.
-     *
+     * 
      * @return the availability value.
      */
     public AvailabilityProperties availability() {
@@ -166,7 +170,7 @@ public final class PrivateCloudUpdate {
 
     /**
      * Set the availability property: Properties describing how the cloud is distributed across availability zones.
-     *
+     * 
      * @param availability the availability value to set.
      * @return the PrivateCloudUpdate object itself.
      */
@@ -180,7 +184,7 @@ public final class PrivateCloudUpdate {
 
     /**
      * Get the encryption property: Customer managed key encryption, can be enabled or disabled.
-     *
+     * 
      * @return the encryption value.
      */
     public Encryption encryption() {
@@ -189,7 +193,7 @@ public final class PrivateCloudUpdate {
 
     /**
      * Set the encryption property: Customer managed key encryption, can be enabled or disabled.
-     *
+     * 
      * @param encryption the encryption value to set.
      * @return the PrivateCloudUpdate object itself.
      */
@@ -205,7 +209,7 @@ public final class PrivateCloudUpdate {
      * Get the extendedNetworkBlocks property: Array of additional networks noncontiguous with networkBlock. Networks
      * must be unique and non-overlapping across VNet in your subscription, on-premise, and this privateCloud
      * networkBlock attribute. Make sure the CIDR format conforms to (A.B.C.D/X).
-     *
+     * 
      * @return the extendedNetworkBlocks value.
      */
     public List<String> extendedNetworkBlocks() {
@@ -216,7 +220,7 @@ public final class PrivateCloudUpdate {
      * Set the extendedNetworkBlocks property: Array of additional networks noncontiguous with networkBlock. Networks
      * must be unique and non-overlapping across VNet in your subscription, on-premise, and this privateCloud
      * networkBlock attribute. Make sure the CIDR format conforms to (A.B.C.D/X).
-     *
+     * 
      * @param extendedNetworkBlocks the extendedNetworkBlocks value to set.
      * @return the PrivateCloudUpdate object itself.
      */
@@ -230,7 +234,7 @@ public final class PrivateCloudUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

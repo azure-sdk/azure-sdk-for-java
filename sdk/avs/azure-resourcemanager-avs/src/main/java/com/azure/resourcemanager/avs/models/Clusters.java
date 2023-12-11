@@ -8,11 +8,13 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of Clusters. */
+/**
+ * Resource collection API of Clusters.
+ */
 public interface Clusters {
     /**
      * List clusters in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -24,7 +26,7 @@ public interface Clusters {
 
     /**
      * List clusters in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -37,7 +39,7 @@ public interface Clusters {
 
     /**
      * Get a cluster by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -47,12 +49,12 @@ public interface Clusters {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a cluster by name in a private cloud along with {@link Response}.
      */
-    Response<Cluster> getWithResponse(
-        String resourceGroupName, String privateCloudName, String clusterName, Context context);
+    Response<Cluster> getWithResponse(String resourceGroupName, String privateCloudName, String clusterName,
+        Context context);
 
     /**
      * Get a cluster by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -65,7 +67,7 @@ public interface Clusters {
 
     /**
      * Delete a cluster in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -77,7 +79,7 @@ public interface Clusters {
 
     /**
      * Delete a cluster in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -90,7 +92,7 @@ public interface Clusters {
 
     /**
      * List hosts by zone in a cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -100,12 +102,12 @@ public interface Clusters {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of all zones and associated hosts for a cluster along with {@link Response}.
      */
-    Response<ClusterZoneList> listZonesWithResponse(
-        String resourceGroupName, String privateCloudName, String clusterName, Context context);
+    Response<ClusterZoneList> listZonesWithResponse(String resourceGroupName, String privateCloudName,
+        String clusterName, Context context);
 
     /**
      * List hosts by zone in a cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -118,7 +120,7 @@ public interface Clusters {
 
     /**
      * Get a cluster by name in a private cloud.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -129,7 +131,7 @@ public interface Clusters {
 
     /**
      * Get a cluster by name in a private cloud.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -141,7 +143,7 @@ public interface Clusters {
 
     /**
      * Delete a cluster in a private cloud.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -151,7 +153,7 @@ public interface Clusters {
 
     /**
      * Delete a cluster in a private cloud.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -162,7 +164,7 @@ public interface Clusters {
 
     /**
      * Begins definition for a new Cluster resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new Cluster definition.
      */

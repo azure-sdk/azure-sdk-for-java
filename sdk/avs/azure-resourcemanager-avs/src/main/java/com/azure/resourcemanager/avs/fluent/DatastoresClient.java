@@ -13,11 +13,13 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.avs.fluent.models.DatastoreInner;
 
-/** An instance of this class provides access to all the operations defined in DatastoresClient. */
+/**
+ * An instance of this class provides access to all the operations defined in DatastoresClient.
+ */
 public interface DatastoresClient {
     /**
      * List datastores in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -31,7 +33,7 @@ public interface DatastoresClient {
 
     /**
      * List datastores in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -42,12 +44,12 @@ public interface DatastoresClient {
      * @return a paged list of datastores as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DatastoreInner> list(
-        String resourceGroupName, String privateCloudName, String clusterName, Context context);
+    PagedIterable<DatastoreInner> list(String resourceGroupName, String privateCloudName, String clusterName,
+        Context context);
 
     /**
      * Get a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -59,12 +61,12 @@ public interface DatastoresClient {
      * @return a datastore in a private cloud cluster along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<DatastoreInner> getWithResponse(
-        String resourceGroupName, String privateCloudName, String clusterName, String datastoreName, Context context);
+    Response<DatastoreInner> getWithResponse(String resourceGroupName, String privateCloudName, String clusterName,
+        String datastoreName, Context context);
 
     /**
      * Get a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -79,7 +81,7 @@ public interface DatastoresClient {
 
     /**
      * Create or update a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -91,16 +93,12 @@ public interface DatastoresClient {
      * @return the {@link SyncPoller} for polling of a datastore resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<DatastoreInner>, DatastoreInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String datastoreName,
-        DatastoreInner datastore);
+    SyncPoller<PollResult<DatastoreInner>, DatastoreInner> beginCreateOrUpdate(String resourceGroupName,
+        String privateCloudName, String clusterName, String datastoreName, DatastoreInner datastore);
 
     /**
      * Create or update a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -113,17 +111,12 @@ public interface DatastoresClient {
      * @return the {@link SyncPoller} for polling of a datastore resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<DatastoreInner>, DatastoreInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String datastoreName,
-        DatastoreInner datastore,
-        Context context);
+    SyncPoller<PollResult<DatastoreInner>, DatastoreInner> beginCreateOrUpdate(String resourceGroupName,
+        String privateCloudName, String clusterName, String datastoreName, DatastoreInner datastore, Context context);
 
     /**
      * Create or update a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -135,16 +128,12 @@ public interface DatastoresClient {
      * @return a datastore resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    DatastoreInner createOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String datastoreName,
-        DatastoreInner datastore);
+    DatastoreInner createOrUpdate(String resourceGroupName, String privateCloudName, String clusterName,
+        String datastoreName, DatastoreInner datastore);
 
     /**
      * Create or update a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -157,17 +146,12 @@ public interface DatastoresClient {
      * @return a datastore resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    DatastoreInner createOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String datastoreName,
-        DatastoreInner datastore,
-        Context context);
+    DatastoreInner createOrUpdate(String resourceGroupName, String privateCloudName, String clusterName,
+        String datastoreName, DatastoreInner datastore, Context context);
 
     /**
      * Delete a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -178,12 +162,12 @@ public interface DatastoresClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String privateCloudName, String clusterName, String datastoreName);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String privateCloudName,
+        String clusterName, String datastoreName);
 
     /**
      * Delete a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -195,12 +179,12 @@ public interface DatastoresClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String privateCloudName, String clusterName, String datastoreName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String privateCloudName,
+        String clusterName, String datastoreName, Context context);
 
     /**
      * Delete a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -214,7 +198,7 @@ public interface DatastoresClient {
 
     /**
      * Delete a datastore in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -225,6 +209,6 @@ public interface DatastoresClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(
-        String resourceGroupName, String privateCloudName, String clusterName, String datastoreName, Context context);
+    void delete(String resourceGroupName, String privateCloudName, String clusterName, String datastoreName,
+        Context context);
 }

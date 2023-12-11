@@ -60,24 +60,16 @@ public final class HcxEnterpriseSiteImpl
     }
 
     public HcxEnterpriseSite create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getHcxEnterpriseSites()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, privateCloudName, hcxEnterpriseSiteName, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getHcxEnterpriseSites().createOrUpdateWithResponse(resourceGroupName,
+                privateCloudName, hcxEnterpriseSiteName, this.innerModel(), Context.NONE).getValue();
         return this;
     }
 
     public HcxEnterpriseSite create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getHcxEnterpriseSites()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, privateCloudName, hcxEnterpriseSiteName, this.innerModel(), context)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getHcxEnterpriseSites().createOrUpdateWithResponse(resourceGroupName,
+                privateCloudName, hcxEnterpriseSiteName, this.innerModel(), context).getValue();
         return this;
     }
 
@@ -92,24 +84,16 @@ public final class HcxEnterpriseSiteImpl
     }
 
     public HcxEnterpriseSite apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getHcxEnterpriseSites()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, privateCloudName, hcxEnterpriseSiteName, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getHcxEnterpriseSites().createOrUpdateWithResponse(resourceGroupName,
+                privateCloudName, hcxEnterpriseSiteName, this.innerModel(), Context.NONE).getValue();
         return this;
     }
 
     public HcxEnterpriseSite apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getHcxEnterpriseSites()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, privateCloudName, hcxEnterpriseSiteName, this.innerModel(), context)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getHcxEnterpriseSites().createOrUpdateWithResponse(resourceGroupName,
+                privateCloudName, hcxEnterpriseSiteName, this.innerModel(), context).getValue();
         return this;
     }
 
@@ -122,22 +106,14 @@ public final class HcxEnterpriseSiteImpl
     }
 
     public HcxEnterpriseSite refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getHcxEnterpriseSites()
-                .getWithResponse(resourceGroupName, privateCloudName, hcxEnterpriseSiteName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getHcxEnterpriseSites()
+            .getWithResponse(resourceGroupName, privateCloudName, hcxEnterpriseSiteName, Context.NONE).getValue();
         return this;
     }
 
     public HcxEnterpriseSite refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getHcxEnterpriseSites()
-                .getWithResponse(resourceGroupName, privateCloudName, hcxEnterpriseSiteName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getHcxEnterpriseSites()
+            .getWithResponse(resourceGroupName, privateCloudName, hcxEnterpriseSiteName, context).getValue();
         return this;
     }
 }

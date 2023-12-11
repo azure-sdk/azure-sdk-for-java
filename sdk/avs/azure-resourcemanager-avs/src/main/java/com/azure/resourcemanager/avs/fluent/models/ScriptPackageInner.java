@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Script Package resources available for execution. */
+/**
+ * Script Package resources available for execution.
+ */
 @Immutable
 public final class ScriptPackageInner extends ProxyResource {
     /*
@@ -17,13 +19,15 @@ public final class ScriptPackageInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private ScriptPackageProperties innerProperties;
 
-    /** Creates an instance of ScriptPackageInner class. */
+    /**
+     * Creates an instance of ScriptPackageInner class.
+     */
     public ScriptPackageInner() {
     }
 
     /**
      * Get the innerProperties property: ScriptPackage resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ScriptPackageProperties innerProperties() {
@@ -32,7 +36,7 @@ public final class ScriptPackageInner extends ProxyResource {
 
     /**
      * Get the description property: User friendly description of the package.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -41,7 +45,7 @@ public final class ScriptPackageInner extends ProxyResource {
 
     /**
      * Get the version property: Module version.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -50,7 +54,7 @@ public final class ScriptPackageInner extends ProxyResource {
 
     /**
      * Get the company property: Company that created and supports the package.
-     *
+     * 
      * @return the company value.
      */
     public String company() {
@@ -59,7 +63,7 @@ public final class ScriptPackageInner extends ProxyResource {
 
     /**
      * Get the uri property: Link to support by the package vendor.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -68,7 +72,7 @@ public final class ScriptPackageInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

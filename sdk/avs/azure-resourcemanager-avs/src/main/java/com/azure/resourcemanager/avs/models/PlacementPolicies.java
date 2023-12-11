@@ -8,11 +8,13 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of PlacementPolicies. */
+/**
+ * Resource collection API of PlacementPolicies.
+ */
 public interface PlacementPolicies {
     /**
      * List placement policies in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -25,7 +27,7 @@ public interface PlacementPolicies {
 
     /**
      * List placement policies in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -35,12 +37,12 @@ public interface PlacementPolicies {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return represents list of placement policies as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<PlacementPolicy> list(
-        String resourceGroupName, String privateCloudName, String clusterName, Context context);
+    PagedIterable<PlacementPolicy> list(String resourceGroupName, String privateCloudName, String clusterName,
+        Context context);
 
     /**
      * Get a placement policy by name in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -51,16 +53,12 @@ public interface PlacementPolicies {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a placement policy by name in a private cloud cluster along with {@link Response}.
      */
-    Response<PlacementPolicy> getWithResponse(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
-        Context context);
+    Response<PlacementPolicy> getWithResponse(String resourceGroupName, String privateCloudName, String clusterName,
+        String placementPolicyName, Context context);
 
     /**
      * Get a placement policy by name in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -70,12 +68,12 @@ public interface PlacementPolicies {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a placement policy by name in a private cloud cluster.
      */
-    PlacementPolicy get(
-        String resourceGroupName, String privateCloudName, String clusterName, String placementPolicyName);
+    PlacementPolicy get(String resourceGroupName, String privateCloudName, String clusterName,
+        String placementPolicyName);
 
     /**
      * Delete a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -88,7 +86,7 @@ public interface PlacementPolicies {
 
     /**
      * Delete a placement policy in a private cloud cluster.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster in the private cloud.
@@ -98,16 +96,12 @@ public interface PlacementPolicies {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void delete(
-        String resourceGroupName,
-        String privateCloudName,
-        String clusterName,
-        String placementPolicyName,
+    void delete(String resourceGroupName, String privateCloudName, String clusterName, String placementPolicyName,
         Context context);
 
     /**
      * Get a placement policy by name in a private cloud cluster.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -118,7 +112,7 @@ public interface PlacementPolicies {
 
     /**
      * Get a placement policy by name in a private cloud cluster.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -130,7 +124,7 @@ public interface PlacementPolicies {
 
     /**
      * Delete a placement policy in a private cloud cluster.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -140,7 +134,7 @@ public interface PlacementPolicies {
 
     /**
      * Delete a placement policy in a private cloud cluster.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -151,7 +145,7 @@ public interface PlacementPolicies {
 
     /**
      * Begins definition for a new PlacementPolicy resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new PlacementPolicy definition.
      */

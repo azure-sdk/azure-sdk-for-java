@@ -58,22 +58,28 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in WorkloadNetworksClient. */
+/**
+ * An instance of this class provides access to all the operations defined in WorkloadNetworksClient.
+ */
 public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final WorkloadNetworksService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final AvsClientImpl client;
 
     /**
      * Initializes an instance of WorkloadNetworksClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     WorkloadNetworksClientImpl(AvsClientImpl client) {
-        this.service =
-            RestProxy.create(WorkloadNetworksService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(WorkloadNetworksService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -84,713 +90,508 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
     @Host("{$host}")
     @ServiceInterface(name = "AvsClientWorkloadNet")
     public interface WorkloadNetworksService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/{workloadNetworkName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/{workloadNetworkName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkInner>> get(
-            @HostParam("$host") String endpoint,
+        Mono<Response<WorkloadNetworkInner>> get(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
             @PathParam("privateCloudName") String privateCloudName,
             @PathParam("workloadNetworkName") WorkloadNetworkName workloadNetworkName,
-            @HeaderParam("Accept") String accept,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<WorkloadNetworkList>> list(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkList>> list(
-            @HostParam("$host") String endpoint,
+        Mono<Response<WorkloadNetworkSegmentsList>> listSegments(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @HeaderParam("Accept") String accept,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkSegmentsList>> listSegments(
-            @HostParam("$host") String endpoint,
+        Mono<Response<WorkloadNetworkSegmentInner>> getSegment(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("segmentId") String segmentId,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkSegmentInner>> getSegment(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> createSegments(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("segmentId") String segmentId,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}")
-        @ExpectedResponses({200, 201})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createSegments(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("segmentId") String segmentId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("segmentId") String segmentId,
             @BodyParam("application/json") WorkloadNetworkSegmentInner workloadNetworkSegment,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}")
-        @ExpectedResponses({200, 202})
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}")
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> updateSegments(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> updateSegments(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("segmentId") String segmentId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("segmentId") String segmentId,
             @BodyParam("application/json") WorkloadNetworkSegmentInner workloadNetworkSegment,
-            @HeaderParam("Accept") String accept,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}")
+        @ExpectedResponses({ 200, 202, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> deleteSegment(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("segmentId") String segmentId,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<WorkloadNetworkDhcpList>> listDhcp(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}")
-        @ExpectedResponses({200, 202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> deleteSegment(
-            @HostParam("$host") String endpoint,
+        Mono<Response<WorkloadNetworkDhcpInner>> getDhcp(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("segmentId") String segmentId,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("dhcpId") String dhcpId, @PathParam("privateCloudName") String privateCloudName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkDhcpList>> listDhcp(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> createDhcp(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkDhcpInner>> getDhcp(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("dhcpId") String dhcpId,
-            @PathParam("privateCloudName") String privateCloudName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}")
-        @ExpectedResponses({200, 201})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createDhcp(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("dhcpId") String dhcpId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("dhcpId") String dhcpId,
             @BodyParam("application/json") WorkloadNetworkDhcpInner workloadNetworkDhcp,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}")
-        @ExpectedResponses({200, 202})
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}")
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> updateDhcp(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> updateDhcp(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("dhcpId") String dhcpId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("dhcpId") String dhcpId,
             @BodyParam("application/json") WorkloadNetworkDhcpInner workloadNetworkDhcp,
-            @HeaderParam("Accept") String accept,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}")
+        @ExpectedResponses({ 200, 202, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> deleteDhcp(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("dhcpId") String dhcpId,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/gateways")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<WorkloadNetworkGatewayList>> listGateways(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}")
-        @ExpectedResponses({200, 202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/gateways/{gatewayId}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> deleteDhcp(
-            @HostParam("$host") String endpoint,
+        Mono<Response<WorkloadNetworkGatewayInner>> getGateway(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("gatewayId") String gatewayId,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<WorkloadNetworkPortMirroringList>> listPortMirroring(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<WorkloadNetworkPortMirroringInner>> getPortMirroring(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
             @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("dhcpId") String dhcpId,
-            @HeaderParam("Accept") String accept,
+            @PathParam("portMirroringId") String portMirroringId, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/gateways")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkGatewayList>> listGateways(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> createPortMirroring(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/gateways/{gatewayId}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkGatewayInner>> getGateway(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("gatewayId") String gatewayId,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkPortMirroringList>> listPortMirroring(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkPortMirroringInner>> getPortMirroring(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("portMirroringId") String portMirroringId,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}")
-        @ExpectedResponses({200, 201})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createPortMirroring(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
             @PathParam("privateCloudName") String privateCloudName,
             @PathParam("portMirroringId") String portMirroringId,
             @BodyParam("application/json") WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}")
-        @ExpectedResponses({200, 202})
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}")
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> updatePortMirroring(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> updatePortMirroring(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
             @PathParam("privateCloudName") String privateCloudName,
             @PathParam("portMirroringId") String portMirroringId,
             @BodyParam("application/json") WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}")
-        @ExpectedResponses({200, 202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}")
+        @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> deletePortMirroring(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> deletePortMirroring(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
             @PathParam("portMirroringId") String portMirroringId,
-            @PathParam("privateCloudName") String privateCloudName,
-            @HeaderParam("Accept") String accept,
+            @PathParam("privateCloudName") String privateCloudName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkVMGroupsList>> listVMGroups(
-            @HostParam("$host") String endpoint,
+        Mono<Response<WorkloadNetworkVMGroupsList>> listVMGroups(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @HeaderParam("Accept") String accept,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkVMGroupInner>> getVMGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<WorkloadNetworkVMGroupInner>> getVMGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("vmGroupId") String vmGroupId,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("vmGroupId") String vmGroupId,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createVMGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> createVMGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("vmGroupId") String vmGroupId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("vmGroupId") String vmGroupId,
             @BodyParam("application/json") WorkloadNetworkVMGroupInner workloadNetworkVMGroup,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}")
-        @ExpectedResponses({200, 202})
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}")
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> updateVMGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> updateVMGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("vmGroupId") String vmGroupId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("vmGroupId") String vmGroupId,
             @BodyParam("application/json") WorkloadNetworkVMGroupInner workloadNetworkVMGroup,
-            @HeaderParam("Accept") String accept,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}")
+        @ExpectedResponses({ 200, 202, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> deleteVMGroup(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("vmGroupId") String vmGroupId, @PathParam("privateCloudName") String privateCloudName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/virtualMachines")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<WorkloadNetworkVirtualMachinesList>> listVirtualMachines(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}")
-        @ExpectedResponses({200, 202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/virtualMachines/{virtualMachineId}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> deleteVMGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<WorkloadNetworkVirtualMachineInner>> getVirtualMachine(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("vmGroupId") String vmGroupId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
             @PathParam("privateCloudName") String privateCloudName,
-            @HeaderParam("Accept") String accept,
+            @PathParam("virtualMachineId") String virtualMachineId, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/virtualMachines")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkVirtualMachinesList>> listVirtualMachines(
-            @HostParam("$host") String endpoint,
+        Mono<Response<WorkloadNetworkDnsServicesList>> listDnsServices(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @HeaderParam("Accept") String accept,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/virtualMachines/{virtualMachineId}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkVirtualMachineInner>> getVirtualMachine(
-            @HostParam("$host") String endpoint,
+        Mono<Response<WorkloadNetworkDnsServiceInner>> getDnsService(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("virtualMachineId") String virtualMachineId,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("dnsServiceId") String dnsServiceId,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkDnsServicesList>> listDnsServices(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> createDnsService(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkDnsServiceInner>> getDnsService(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("dnsServiceId") String dnsServiceId,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}")
-        @ExpectedResponses({200, 201})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createDnsService(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("dnsServiceId") String dnsServiceId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("dnsServiceId") String dnsServiceId,
             @BodyParam("application/json") WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}")
-        @ExpectedResponses({200, 202})
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}")
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> updateDnsService(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> updateDnsService(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("dnsServiceId") String dnsServiceId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("dnsServiceId") String dnsServiceId,
             @BodyParam("application/json") WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
-            @HeaderParam("Accept") String accept,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}")
+        @ExpectedResponses({ 200, 202, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> deleteDnsService(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("dnsServiceId") String dnsServiceId, @PathParam("privateCloudName") String privateCloudName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<WorkloadNetworkDnsZonesList>> listDnsZones(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}")
-        @ExpectedResponses({200, 202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> deleteDnsService(
-            @HostParam("$host") String endpoint,
+        Mono<Response<WorkloadNetworkDnsZoneInner>> getDnsZone(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("dnsServiceId") String dnsServiceId,
-            @PathParam("privateCloudName") String privateCloudName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("dnsZoneId") String dnsZoneId,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkDnsZonesList>> listDnsZones(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> createDnsZone(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkDnsZoneInner>> getDnsZone(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("dnsZoneId") String dnsZoneId,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}")
-        @ExpectedResponses({200, 201})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createDnsZone(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("dnsZoneId") String dnsZoneId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("dnsZoneId") String dnsZoneId,
             @BodyParam("application/json") WorkloadNetworkDnsZoneInner workloadNetworkDnsZone,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}")
-        @ExpectedResponses({200, 202})
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}")
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> updateDnsZone(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> updateDnsZone(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("dnsZoneId") String dnsZoneId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("dnsZoneId") String dnsZoneId,
             @BodyParam("application/json") WorkloadNetworkDnsZoneInner workloadNetworkDnsZone,
-            @HeaderParam("Accept") String accept,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}")
+        @ExpectedResponses({ 200, 202, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> deleteDnsZone(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("dnsZoneId") String dnsZoneId, @PathParam("privateCloudName") String privateCloudName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<WorkloadNetworkPublicIPsList>> listPublicIPs(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}")
-        @ExpectedResponses({200, 202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs/{publicIPId}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> deleteDnsZone(
-            @HostParam("$host") String endpoint,
+        Mono<Response<WorkloadNetworkPublicIpInner>> getPublicIp(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("dnsZoneId") String dnsZoneId,
-            @PathParam("privateCloudName") String privateCloudName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("publicIPId") String publicIpId,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs/{publicIPId}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkPublicIPsList>> listPublicIPs(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> createPublicIp(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs/{publicIPId}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkPublicIpInner>> getPublicIp(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("publicIPId") String publicIpId,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs/{publicIPId}")
-        @ExpectedResponses({200, 201})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createPublicIp(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("privateCloudName") String privateCloudName,
-            @PathParam("publicIPId") String publicIpId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("privateCloudName") String privateCloudName, @PathParam("publicIPId") String publicIpId,
             @BodyParam("application/json") WorkloadNetworkPublicIpInner workloadNetworkPublicIp,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs/{publicIPId}")
-        @ExpectedResponses({200, 202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs/{publicIPId}")
+        @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> deletePublicIp(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> deletePublicIp(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("publicIPId") String publicIpId,
-            @PathParam("privateCloudName") String privateCloudName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("publicIPId") String publicIpId, @PathParam("privateCloudName") String privateCloudName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkloadNetworkList>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<WorkloadNetworkList>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkloadNetworkSegmentsList>> listSegmentsNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkloadNetworkDhcpList>> listDhcpNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkloadNetworkGatewayList>> listGatewaysNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkloadNetworkPortMirroringList>> listPortMirroringNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkloadNetworkVMGroupsList>> listVMGroupsNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkloadNetworkVirtualMachinesList>> listVirtualMachinesNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkloadNetworkDnsServicesList>> listDnsServicesNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkloadNetworkDnsZonesList>> listDnsZonesNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkloadNetworkPublicIPsList>> listPublicIPsNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Get a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param workloadNetworkName Name for the workload network in the private cloud.
@@ -800,19 +601,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a private cloud workload network along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkloadNetworkInner>> getWithResponseAsync(
-        String resourceGroupName, String privateCloudName, WorkloadNetworkName workloadNetworkName) {
+    private Mono<Response<WorkloadNetworkInner>> getWithResponseAsync(String resourceGroupName, String privateCloudName,
+        WorkloadNetworkName workloadNetworkName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -828,24 +625,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            workloadNetworkName,
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, workloadNetworkName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param workloadNetworkName Name for the workload network in the private cloud.
@@ -856,19 +643,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a private cloud workload network along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkloadNetworkInner>> getWithResponseAsync(
-        String resourceGroupName, String privateCloudName, WorkloadNetworkName workloadNetworkName, Context context) {
+    private Mono<Response<WorkloadNetworkInner>> getWithResponseAsync(String resourceGroupName, String privateCloudName,
+        WorkloadNetworkName workloadNetworkName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -884,21 +667,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                workloadNetworkName,
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, workloadNetworkName, accept, context);
     }
 
     /**
      * Get a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param workloadNetworkName Name for the workload network in the private cloud.
@@ -908,15 +683,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a private cloud workload network on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkInner> getAsync(
-        String resourceGroupName, String privateCloudName, WorkloadNetworkName workloadNetworkName) {
+    private Mono<WorkloadNetworkInner> getAsync(String resourceGroupName, String privateCloudName,
+        WorkloadNetworkName workloadNetworkName) {
         return getWithResponseAsync(resourceGroupName, privateCloudName, workloadNetworkName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param workloadNetworkName Name for the workload network in the private cloud.
@@ -927,14 +702,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<WorkloadNetworkInner> getWithResponse(
-        String resourceGroupName, String privateCloudName, WorkloadNetworkName workloadNetworkName, Context context) {
+    public Response<WorkloadNetworkInner> getWithResponse(String resourceGroupName, String privateCloudName,
+        WorkloadNetworkName workloadNetworkName, Context context) {
         return getWithResponseAsync(resourceGroupName, privateCloudName, workloadNetworkName, context).block();
     }
 
     /**
      * Get a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param workloadNetworkName Name for the workload network in the private cloud.
@@ -944,14 +719,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a private cloud workload network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkInner get(
-        String resourceGroupName, String privateCloudName, WorkloadNetworkName workloadNetworkName) {
+    public WorkloadNetworkInner get(String resourceGroupName, String privateCloudName,
+        WorkloadNetworkName workloadNetworkName) {
         return getWithResponse(resourceGroupName, privateCloudName, workloadNetworkName, Context.NONE).getValue();
     }
 
     /**
      * List of workload networks in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -960,19 +735,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of workload networks along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkInner>> listSinglePageAsync(
-        String resourceGroupName, String privateCloudName) {
+    private Mono<PagedResponse<WorkloadNetworkInner>> listSinglePageAsync(String resourceGroupName,
+        String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -984,32 +755,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            accept,
-                            context))
-            .<PagedResponse<WorkloadNetworkInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, accept, context))
+            .<PagedResponse<WorkloadNetworkInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List of workload networks in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -1019,19 +774,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of workload networks along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkInner>> listSinglePageAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkInner>> listSinglePageAsync(String resourceGroupName,
+        String privateCloudName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1044,28 +795,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                this.client.getApiVersion(), privateCloudName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List of workload networks in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1075,14 +813,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WorkloadNetworkInner> listAsync(String resourceGroupName, String privateCloudName) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, privateCloudName),
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, privateCloudName),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * List of workload networks in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -1092,16 +829,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of workload networks as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkloadNetworkInner> listAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, privateCloudName, context),
+    private PagedFlux<WorkloadNetworkInner> listAsync(String resourceGroupName, String privateCloudName,
+        Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, privateCloudName, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List of workload networks in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1116,7 +852,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * List of workload networks in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -1126,14 +862,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of workload networks as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<WorkloadNetworkInner> list(
-        String resourceGroupName, String privateCloudName, Context context) {
+    public PagedIterable<WorkloadNetworkInner> list(String resourceGroupName, String privateCloudName,
+        Context context) {
         return new PagedIterable<>(listAsync(resourceGroupName, privateCloudName, context));
     }
 
     /**
      * List of segments in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1142,19 +878,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Segments along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkSegmentInner>> listSegmentsSinglePageAsync(
-        String resourceGroupName, String privateCloudName) {
+    private Mono<PagedResponse<WorkloadNetworkSegmentInner>> listSegmentsSinglePageAsync(String resourceGroupName,
+        String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1166,32 +898,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listSegments(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            accept,
-                            context))
-            .<PagedResponse<WorkloadNetworkSegmentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listSegments(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, accept, context))
+            .<PagedResponse<WorkloadNetworkSegmentInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List of segments in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -1201,19 +917,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Segments along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkSegmentInner>> listSegmentsSinglePageAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkSegmentInner>> listSegmentsSinglePageAsync(String resourceGroupName,
+        String privateCloudName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1226,28 +938,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listSegments(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listSegments(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                this.client.getApiVersion(), privateCloudName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List of segments in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1256,16 +955,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Segments as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkloadNetworkSegmentInner> listSegmentsAsync(
-        String resourceGroupName, String privateCloudName) {
-        return new PagedFlux<>(
-            () -> listSegmentsSinglePageAsync(resourceGroupName, privateCloudName),
+    private PagedFlux<WorkloadNetworkSegmentInner> listSegmentsAsync(String resourceGroupName,
+        String privateCloudName) {
+        return new PagedFlux<>(() -> listSegmentsSinglePageAsync(resourceGroupName, privateCloudName),
             nextLink -> listSegmentsNextSinglePageAsync(nextLink));
     }
 
     /**
      * List of segments in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -1275,16 +973,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Segments as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkloadNetworkSegmentInner> listSegmentsAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
-        return new PagedFlux<>(
-            () -> listSegmentsSinglePageAsync(resourceGroupName, privateCloudName, context),
+    private PagedFlux<WorkloadNetworkSegmentInner> listSegmentsAsync(String resourceGroupName, String privateCloudName,
+        Context context) {
+        return new PagedFlux<>(() -> listSegmentsSinglePageAsync(resourceGroupName, privateCloudName, context),
             nextLink -> listSegmentsNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List of segments in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1299,7 +996,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * List of segments in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -1309,14 +1006,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Segments as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<WorkloadNetworkSegmentInner> listSegments(
-        String resourceGroupName, String privateCloudName, Context context) {
+    public PagedIterable<WorkloadNetworkSegmentInner> listSegments(String resourceGroupName, String privateCloudName,
+        Context context) {
         return new PagedIterable<>(listSegmentsAsync(resourceGroupName, privateCloudName, context));
     }
 
     /**
      * Get a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1324,22 +1021,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a segment by id in a private cloud workload network along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkloadNetworkSegmentInner>> getSegmentWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String segmentId) {
+    private Mono<Response<WorkloadNetworkSegmentInner>> getSegmentWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String segmentId) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1354,24 +1047,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getSegment(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            segmentId,
-                            accept,
-                            context))
+            .withContext(context -> service.getSegment(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, segmentId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1380,22 +1063,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a segment by id in a private cloud workload network along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkloadNetworkSegmentInner>> getSegmentWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String segmentId, Context context) {
+    private Mono<Response<WorkloadNetworkSegmentInner>> getSegmentWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String segmentId, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1410,21 +1089,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getSegment(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                segmentId,
-                accept,
-                context);
+        return service.getSegment(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, segmentId, accept, context);
     }
 
     /**
      * Get a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1434,15 +1105,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a segment by id in a private cloud workload network on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkSegmentInner> getSegmentAsync(
-        String resourceGroupName, String privateCloudName, String segmentId) {
+    private Mono<WorkloadNetworkSegmentInner> getSegmentAsync(String resourceGroupName, String privateCloudName,
+        String segmentId) {
         return getSegmentWithResponseAsync(resourceGroupName, privateCloudName, segmentId)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1453,14 +1124,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a segment by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<WorkloadNetworkSegmentInner> getSegmentWithResponse(
-        String resourceGroupName, String privateCloudName, String segmentId, Context context) {
+    public Response<WorkloadNetworkSegmentInner> getSegmentWithResponse(String resourceGroupName,
+        String privateCloudName, String segmentId, Context context) {
         return getSegmentWithResponseAsync(resourceGroupName, privateCloudName, segmentId, context).block();
     }
 
     /**
      * Get a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1476,7 +1147,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Create a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1487,22 +1158,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Segment along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createSegmentsWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment) {
+    private Mono<Response<Flux<ByteBuffer>>> createSegmentsWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String segmentId, WorkloadNetworkSegmentInner workloadNetworkSegment) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1516,33 +1180,22 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter segmentId is required and cannot be null."));
         }
         if (workloadNetworkSegment == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter workloadNetworkSegment is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkSegment is required and cannot be null."));
         } else {
             workloadNetworkSegment.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createSegments(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            segmentId,
-                            workloadNetworkSegment,
-                            accept,
-                            context))
+            .withContext(context -> service.createSegments(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, segmentId, workloadNetworkSegment,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1554,23 +1207,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Segment along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createSegmentsWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment,
+    private Mono<Response<Flux<ByteBuffer>>> createSegmentsWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String segmentId, WorkloadNetworkSegmentInner workloadNetworkSegment,
         Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1584,30 +1230,20 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter segmentId is required and cannot be null."));
         }
         if (workloadNetworkSegment == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter workloadNetworkSegment is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkSegment is required and cannot be null."));
         } else {
             workloadNetworkSegment.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createSegments(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                segmentId,
-                workloadNetworkSegment,
-                accept,
-                context);
+        return service.createSegments(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, segmentId, workloadNetworkSegment, accept, context);
     }
 
     /**
      * Create a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1619,25 +1255,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkSegmentInner>, WorkloadNetworkSegmentInner> beginCreateSegmentsAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
+        String resourceGroupName, String privateCloudName, String segmentId,
         WorkloadNetworkSegmentInner workloadNetworkSegment) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createSegmentsWithResponseAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment);
-        return this
-            .client
-            .<WorkloadNetworkSegmentInner, WorkloadNetworkSegmentInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkSegmentInner.class,
-                WorkloadNetworkSegmentInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createSegmentsWithResponseAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment);
+        return this.client.<WorkloadNetworkSegmentInner, WorkloadNetworkSegmentInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkSegmentInner.class, WorkloadNetworkSegmentInner.class,
+            this.client.getContext());
     }
 
     /**
      * Create a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1650,28 +1279,19 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkSegmentInner>, WorkloadNetworkSegmentInner> beginCreateSegmentsAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment,
-        Context context) {
+        String resourceGroupName, String privateCloudName, String segmentId,
+        WorkloadNetworkSegmentInner workloadNetworkSegment, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createSegmentsWithResponseAsync(
-                resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment, context);
-        return this
-            .client
-            .<WorkloadNetworkSegmentInner, WorkloadNetworkSegmentInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkSegmentInner.class,
-                WorkloadNetworkSegmentInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createSegmentsWithResponseAsync(resourceGroupName, privateCloudName,
+            segmentId, workloadNetworkSegment, context);
+        return this.client.<WorkloadNetworkSegmentInner, WorkloadNetworkSegmentInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkSegmentInner.class, WorkloadNetworkSegmentInner.class,
+            context);
     }
 
     /**
      * Create a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1683,18 +1303,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkSegmentInner>, WorkloadNetworkSegmentInner> beginCreateSegments(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
+        String resourceGroupName, String privateCloudName, String segmentId,
         WorkloadNetworkSegmentInner workloadNetworkSegment) {
-        return this
-            .beginCreateSegmentsAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment)
+        return this.beginCreateSegmentsAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment)
             .getSyncPoller();
     }
 
     /**
      * Create a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1707,11 +1324,8 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkSegmentInner>, WorkloadNetworkSegmentInner> beginCreateSegments(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment,
-        Context context) {
+        String resourceGroupName, String privateCloudName, String segmentId,
+        WorkloadNetworkSegmentInner workloadNetworkSegment, Context context) {
         return this
             .beginCreateSegmentsAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment, context)
             .getSyncPoller();
@@ -1719,7 +1333,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Create a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1730,19 +1344,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Segment on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkSegmentInner> createSegmentsAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment) {
-        return beginCreateSegmentsAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment)
-            .last()
+    private Mono<WorkloadNetworkSegmentInner> createSegmentsAsync(String resourceGroupName, String privateCloudName,
+        String segmentId, WorkloadNetworkSegmentInner workloadNetworkSegment) {
+        return beginCreateSegmentsAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1754,20 +1364,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Segment on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkSegmentInner> createSegmentsAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment,
-        Context context) {
+    private Mono<WorkloadNetworkSegmentInner> createSegmentsAsync(String resourceGroupName, String privateCloudName,
+        String segmentId, WorkloadNetworkSegmentInner workloadNetworkSegment, Context context) {
         return beginCreateSegmentsAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+            .last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1778,17 +1383,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Segment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkSegmentInner createSegments(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment) {
+    public WorkloadNetworkSegmentInner createSegments(String resourceGroupName, String privateCloudName,
+        String segmentId, WorkloadNetworkSegmentInner workloadNetworkSegment) {
         return createSegmentsAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment).block();
     }
 
     /**
      * Create a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1800,19 +1402,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Segment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkSegmentInner createSegments(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment,
-        Context context) {
+    public WorkloadNetworkSegmentInner createSegments(String resourceGroupName, String privateCloudName,
+        String segmentId, WorkloadNetworkSegmentInner workloadNetworkSegment, Context context) {
         return createSegmentsAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment, context)
             .block();
     }
 
     /**
      * Create or update a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1823,22 +1421,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Segment along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateSegmentsWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment) {
+    private Mono<Response<Flux<ByteBuffer>>> updateSegmentsWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String segmentId, WorkloadNetworkSegmentInner workloadNetworkSegment) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1852,33 +1443,22 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter segmentId is required and cannot be null."));
         }
         if (workloadNetworkSegment == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter workloadNetworkSegment is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkSegment is required and cannot be null."));
         } else {
             workloadNetworkSegment.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .updateSegments(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            segmentId,
-                            workloadNetworkSegment,
-                            accept,
-                            context))
+            .withContext(context -> service.updateSegments(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, segmentId, workloadNetworkSegment,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1890,23 +1470,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Segment along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateSegmentsWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment,
+    private Mono<Response<Flux<ByteBuffer>>> updateSegmentsWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String segmentId, WorkloadNetworkSegmentInner workloadNetworkSegment,
         Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1920,30 +1493,20 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter segmentId is required and cannot be null."));
         }
         if (workloadNetworkSegment == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter workloadNetworkSegment is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkSegment is required and cannot be null."));
         } else {
             workloadNetworkSegment.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .updateSegments(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                segmentId,
-                workloadNetworkSegment,
-                accept,
-                context);
+        return service.updateSegments(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, segmentId, workloadNetworkSegment, accept, context);
     }
 
     /**
      * Create or update a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1955,25 +1518,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkSegmentInner>, WorkloadNetworkSegmentInner> beginUpdateSegmentsAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
+        String resourceGroupName, String privateCloudName, String segmentId,
         WorkloadNetworkSegmentInner workloadNetworkSegment) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateSegmentsWithResponseAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment);
-        return this
-            .client
-            .<WorkloadNetworkSegmentInner, WorkloadNetworkSegmentInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkSegmentInner.class,
-                WorkloadNetworkSegmentInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateSegmentsWithResponseAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment);
+        return this.client.<WorkloadNetworkSegmentInner, WorkloadNetworkSegmentInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkSegmentInner.class, WorkloadNetworkSegmentInner.class,
+            this.client.getContext());
     }
 
     /**
      * Create or update a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -1986,28 +1542,19 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkSegmentInner>, WorkloadNetworkSegmentInner> beginUpdateSegmentsAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment,
-        Context context) {
+        String resourceGroupName, String privateCloudName, String segmentId,
+        WorkloadNetworkSegmentInner workloadNetworkSegment, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateSegmentsWithResponseAsync(
-                resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment, context);
-        return this
-            .client
-            .<WorkloadNetworkSegmentInner, WorkloadNetworkSegmentInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkSegmentInner.class,
-                WorkloadNetworkSegmentInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono = updateSegmentsWithResponseAsync(resourceGroupName, privateCloudName,
+            segmentId, workloadNetworkSegment, context);
+        return this.client.<WorkloadNetworkSegmentInner, WorkloadNetworkSegmentInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkSegmentInner.class, WorkloadNetworkSegmentInner.class,
+            context);
     }
 
     /**
      * Create or update a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -2019,18 +1566,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkSegmentInner>, WorkloadNetworkSegmentInner> beginUpdateSegments(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
+        String resourceGroupName, String privateCloudName, String segmentId,
         WorkloadNetworkSegmentInner workloadNetworkSegment) {
-        return this
-            .beginUpdateSegmentsAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment)
+        return this.beginUpdateSegmentsAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment)
             .getSyncPoller();
     }
 
     /**
      * Create or update a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -2043,11 +1587,8 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkSegmentInner>, WorkloadNetworkSegmentInner> beginUpdateSegments(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment,
-        Context context) {
+        String resourceGroupName, String privateCloudName, String segmentId,
+        WorkloadNetworkSegmentInner workloadNetworkSegment, Context context) {
         return this
             .beginUpdateSegmentsAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment, context)
             .getSyncPoller();
@@ -2055,7 +1596,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Create or update a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -2066,19 +1607,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Segment on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkSegmentInner> updateSegmentsAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment) {
-        return beginUpdateSegmentsAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment)
-            .last()
+    private Mono<WorkloadNetworkSegmentInner> updateSegmentsAsync(String resourceGroupName, String privateCloudName,
+        String segmentId, WorkloadNetworkSegmentInner workloadNetworkSegment) {
+        return beginUpdateSegmentsAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -2090,20 +1627,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Segment on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkSegmentInner> updateSegmentsAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment,
-        Context context) {
+    private Mono<WorkloadNetworkSegmentInner> updateSegmentsAsync(String resourceGroupName, String privateCloudName,
+        String segmentId, WorkloadNetworkSegmentInner workloadNetworkSegment, Context context) {
         return beginUpdateSegmentsAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+            .last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -2114,17 +1646,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Segment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkSegmentInner updateSegments(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment) {
+    public WorkloadNetworkSegmentInner updateSegments(String resourceGroupName, String privateCloudName,
+        String segmentId, WorkloadNetworkSegmentInner workloadNetworkSegment) {
         return updateSegmentsAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment).block();
     }
 
     /**
      * Create or update a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -2136,19 +1665,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Segment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkSegmentInner updateSegments(
-        String resourceGroupName,
-        String privateCloudName,
-        String segmentId,
-        WorkloadNetworkSegmentInner workloadNetworkSegment,
-        Context context) {
+    public WorkloadNetworkSegmentInner updateSegments(String resourceGroupName, String privateCloudName,
+        String segmentId, WorkloadNetworkSegmentInner workloadNetworkSegment, Context context) {
         return updateSegmentsAsync(resourceGroupName, privateCloudName, segmentId, workloadNetworkSegment, context)
             .block();
     }
 
     /**
      * Delete a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -2158,19 +1683,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteSegmentWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String segmentId) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteSegmentWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String segmentId) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -2185,24 +1706,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .deleteSegment(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            segmentId,
-                            accept,
-                            context))
+            .withContext(context -> service.deleteSegment(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, segmentId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -2213,19 +1724,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteSegmentWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String segmentId, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteSegmentWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String segmentId, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -2240,21 +1747,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .deleteSegment(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                segmentId,
-                accept,
-                context);
+        return service.deleteSegment(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, segmentId, accept, context);
     }
 
     /**
      * Delete a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -2264,19 +1763,17 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteSegmentAsync(
-        String resourceGroupName, String privateCloudName, String segmentId) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteSegmentWithResponseAsync(resourceGroupName, privateCloudName, segmentId);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    private PollerFlux<PollResult<Void>, Void> beginDeleteSegmentAsync(String resourceGroupName,
+        String privateCloudName, String segmentId) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteSegmentWithResponseAsync(resourceGroupName, privateCloudName, segmentId);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Delete a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -2287,19 +1784,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteSegmentAsync(
-        String resourceGroupName, String privateCloudName, String segmentId, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteSegmentAsync(String resourceGroupName,
+        String privateCloudName, String segmentId, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteSegmentWithResponseAsync(resourceGroupName, privateCloudName, segmentId, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteSegmentWithResponseAsync(resourceGroupName, privateCloudName, segmentId, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Delete a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -2309,14 +1805,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDeleteSegment(
-        String resourceGroupName, String privateCloudName, String segmentId) {
+    public SyncPoller<PollResult<Void>, Void> beginDeleteSegment(String resourceGroupName, String privateCloudName,
+        String segmentId) {
         return this.beginDeleteSegmentAsync(resourceGroupName, privateCloudName, segmentId).getSyncPoller();
     }
 
     /**
      * Delete a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -2327,14 +1823,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDeleteSegment(
-        String resourceGroupName, String privateCloudName, String segmentId, Context context) {
+    public SyncPoller<PollResult<Void>, Void> beginDeleteSegment(String resourceGroupName, String privateCloudName,
+        String segmentId, Context context) {
         return this.beginDeleteSegmentAsync(resourceGroupName, privateCloudName, segmentId, context).getSyncPoller();
     }
 
     /**
      * Delete a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -2345,14 +1841,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteSegmentAsync(String resourceGroupName, String privateCloudName, String segmentId) {
-        return beginDeleteSegmentAsync(resourceGroupName, privateCloudName, segmentId)
-            .last()
+        return beginDeleteSegmentAsync(resourceGroupName, privateCloudName, segmentId).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -2363,16 +1858,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteSegmentAsync(
-        String resourceGroupName, String privateCloudName, String segmentId, Context context) {
-        return beginDeleteSegmentAsync(resourceGroupName, privateCloudName, segmentId, context)
-            .last()
+    private Mono<Void> deleteSegmentAsync(String resourceGroupName, String privateCloudName, String segmentId,
+        Context context) {
+        return beginDeleteSegmentAsync(resourceGroupName, privateCloudName, segmentId, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -2387,7 +1881,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Delete a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -2403,7 +1897,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * List dhcp in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2412,19 +1906,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX dhcp entities along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkDhcpInner>> listDhcpSinglePageAsync(
-        String resourceGroupName, String privateCloudName) {
+    private Mono<PagedResponse<WorkloadNetworkDhcpInner>> listDhcpSinglePageAsync(String resourceGroupName,
+        String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -2436,32 +1926,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listDhcp(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            accept,
-                            context))
-            .<PagedResponse<WorkloadNetworkDhcpInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listDhcp(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, accept, context))
+            .<PagedResponse<WorkloadNetworkDhcpInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List dhcp in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -2471,19 +1945,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX dhcp entities along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkDhcpInner>> listDhcpSinglePageAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkDhcpInner>> listDhcpSinglePageAsync(String resourceGroupName,
+        String privateCloudName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -2496,28 +1966,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listDhcp(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listDhcp(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                this.client.getApiVersion(), privateCloudName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List dhcp in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2527,14 +1984,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WorkloadNetworkDhcpInner> listDhcpAsync(String resourceGroupName, String privateCloudName) {
-        return new PagedFlux<>(
-            () -> listDhcpSinglePageAsync(resourceGroupName, privateCloudName),
+        return new PagedFlux<>(() -> listDhcpSinglePageAsync(resourceGroupName, privateCloudName),
             nextLink -> listDhcpNextSinglePageAsync(nextLink));
     }
 
     /**
      * List dhcp in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -2544,16 +2000,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX dhcp entities as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkloadNetworkDhcpInner> listDhcpAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
-        return new PagedFlux<>(
-            () -> listDhcpSinglePageAsync(resourceGroupName, privateCloudName, context),
+    private PagedFlux<WorkloadNetworkDhcpInner> listDhcpAsync(String resourceGroupName, String privateCloudName,
+        Context context) {
+        return new PagedFlux<>(() -> listDhcpSinglePageAsync(resourceGroupName, privateCloudName, context),
             nextLink -> listDhcpNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List dhcp in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2568,7 +2023,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * List dhcp in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -2578,14 +2033,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX dhcp entities as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<WorkloadNetworkDhcpInner> listDhcp(
-        String resourceGroupName, String privateCloudName, Context context) {
+    public PagedIterable<WorkloadNetworkDhcpInner> listDhcp(String resourceGroupName, String privateCloudName,
+        Context context) {
         return new PagedIterable<>(listDhcpAsync(resourceGroupName, privateCloudName, context));
     }
 
     /**
      * Get dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
      * @param privateCloudName Name of the private cloud.
@@ -2593,22 +2048,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return dhcp by id in a private cloud workload network along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkloadNetworkDhcpInner>> getDhcpWithResponseAsync(
-        String resourceGroupName, String dhcpId, String privateCloudName) {
+    private Mono<Response<WorkloadNetworkDhcpInner>> getDhcpWithResponseAsync(String resourceGroupName, String dhcpId,
+        String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -2623,24 +2074,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getDhcp(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            dhcpId,
-                            privateCloudName,
-                            accept,
-                            context))
+            .withContext(context -> service.getDhcp(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), dhcpId, privateCloudName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
      * @param privateCloudName Name of the private cloud.
@@ -2649,22 +2090,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return dhcp by id in a private cloud workload network along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkloadNetworkDhcpInner>> getDhcpWithResponseAsync(
-        String resourceGroupName, String dhcpId, String privateCloudName, Context context) {
+    private Mono<Response<WorkloadNetworkDhcpInner>> getDhcpWithResponseAsync(String resourceGroupName, String dhcpId,
+        String privateCloudName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -2679,21 +2116,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getDhcp(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                dhcpId,
-                privateCloudName,
-                accept,
-                context);
+        return service.getDhcp(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), dhcpId, privateCloudName, accept, context);
     }
 
     /**
      * Get dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
      * @param privateCloudName Name of the private cloud.
@@ -2703,15 +2132,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return dhcp by id in a private cloud workload network on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkDhcpInner> getDhcpAsync(
-        String resourceGroupName, String dhcpId, String privateCloudName) {
+    private Mono<WorkloadNetworkDhcpInner> getDhcpAsync(String resourceGroupName, String dhcpId,
+        String privateCloudName) {
         return getDhcpWithResponseAsync(resourceGroupName, dhcpId, privateCloudName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
      * @param privateCloudName Name of the private cloud.
@@ -2722,14 +2151,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return dhcp by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<WorkloadNetworkDhcpInner> getDhcpWithResponse(
-        String resourceGroupName, String dhcpId, String privateCloudName, Context context) {
+    public Response<WorkloadNetworkDhcpInner> getDhcpWithResponse(String resourceGroupName, String dhcpId,
+        String privateCloudName, Context context) {
         return getDhcpWithResponseAsync(resourceGroupName, dhcpId, privateCloudName, context).block();
     }
 
     /**
      * Get dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
      * @param privateCloudName Name of the private cloud.
@@ -2745,7 +2174,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Create dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -2756,22 +2185,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DHCP along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createDhcpWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
-        WorkloadNetworkDhcpInner workloadNetworkDhcp) {
+    private Mono<Response<Flux<ByteBuffer>>> createDhcpWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -2792,25 +2214,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createDhcp(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            dhcpId,
-                            workloadNetworkDhcp,
-                            accept,
-                            context))
+            .withContext(context -> service.createDhcp(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, dhcpId, workloadNetworkDhcp, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -2822,23 +2234,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DHCP along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createDhcpWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
-        WorkloadNetworkDhcpInner workloadNetworkDhcp,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createDhcpWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -2859,22 +2263,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createDhcp(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                dhcpId,
-                workloadNetworkDhcp,
-                accept,
-                context);
+        return service.createDhcp(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, dhcpId, workloadNetworkDhcp, accept, context);
     }
 
     /**
      * Create dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -2886,25 +2281,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginCreateDhcpAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
+        String resourceGroupName, String privateCloudName, String dhcpId,
         WorkloadNetworkDhcpInner workloadNetworkDhcp) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createDhcpWithResponseAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp);
-        return this
-            .client
-            .<WorkloadNetworkDhcpInner, WorkloadNetworkDhcpInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkDhcpInner.class,
-                WorkloadNetworkDhcpInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createDhcpWithResponseAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp);
+        return this.client.<WorkloadNetworkDhcpInner, WorkloadNetworkDhcpInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkDhcpInner.class, WorkloadNetworkDhcpInner.class,
+            this.client.getContext());
     }
 
     /**
      * Create dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -2917,27 +2305,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginCreateDhcpAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
-        WorkloadNetworkDhcpInner workloadNetworkDhcp,
+        String resourceGroupName, String privateCloudName, String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp,
         Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createDhcpWithResponseAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp, context);
-        return this
-            .client
-            .<WorkloadNetworkDhcpInner, WorkloadNetworkDhcpInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkDhcpInner.class,
-                WorkloadNetworkDhcpInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createDhcpWithResponseAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp, context);
+        return this.client.<WorkloadNetworkDhcpInner, WorkloadNetworkDhcpInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkDhcpInner.class, WorkloadNetworkDhcpInner.class, context);
     }
 
     /**
      * Create dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -2949,18 +2328,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginCreateDhcp(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
+        String resourceGroupName, String privateCloudName, String dhcpId,
         WorkloadNetworkDhcpInner workloadNetworkDhcp) {
-        return this
-            .beginCreateDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp)
+        return this.beginCreateDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp)
             .getSyncPoller();
     }
 
     /**
      * Create dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -2973,19 +2349,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginCreateDhcp(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
-        WorkloadNetworkDhcpInner workloadNetworkDhcp,
+        String resourceGroupName, String privateCloudName, String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp,
         Context context) {
-        return this
-            .beginCreateDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp, context)
+        return this.beginCreateDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp, context)
             .getSyncPoller();
     }
 
     /**
      * Create dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -2996,19 +2368,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DHCP on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkDhcpInner> createDhcpAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
-        WorkloadNetworkDhcpInner workloadNetworkDhcp) {
-        return beginCreateDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp)
-            .last()
+    private Mono<WorkloadNetworkDhcpInner> createDhcpAsync(String resourceGroupName, String privateCloudName,
+        String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp) {
+        return beginCreateDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3020,20 +2388,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DHCP on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkDhcpInner> createDhcpAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
-        WorkloadNetworkDhcpInner workloadNetworkDhcp,
-        Context context) {
-        return beginCreateDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp, context)
-            .last()
+    private Mono<WorkloadNetworkDhcpInner> createDhcpAsync(String resourceGroupName, String privateCloudName,
+        String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp, Context context) {
+        return beginCreateDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3044,17 +2407,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DHCP.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkDhcpInner createDhcp(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
+    public WorkloadNetworkDhcpInner createDhcp(String resourceGroupName, String privateCloudName, String dhcpId,
         WorkloadNetworkDhcpInner workloadNetworkDhcp) {
         return createDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp).block();
     }
 
     /**
      * Create dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3066,18 +2426,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DHCP.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkDhcpInner createDhcp(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
-        WorkloadNetworkDhcpInner workloadNetworkDhcp,
-        Context context) {
+    public WorkloadNetworkDhcpInner createDhcp(String resourceGroupName, String privateCloudName, String dhcpId,
+        WorkloadNetworkDhcpInner workloadNetworkDhcp, Context context) {
         return createDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp, context).block();
     }
 
     /**
      * Create or update dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3088,22 +2444,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DHCP along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateDhcpWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
-        WorkloadNetworkDhcpInner workloadNetworkDhcp) {
+    private Mono<Response<Flux<ByteBuffer>>> updateDhcpWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -3124,25 +2473,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .updateDhcp(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            dhcpId,
-                            workloadNetworkDhcp,
-                            accept,
-                            context))
+            .withContext(context -> service.updateDhcp(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, dhcpId, workloadNetworkDhcp, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3154,23 +2493,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DHCP along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateDhcpWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
-        WorkloadNetworkDhcpInner workloadNetworkDhcp,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> updateDhcpWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -3191,22 +2522,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .updateDhcp(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                dhcpId,
-                workloadNetworkDhcp,
-                accept,
-                context);
+        return service.updateDhcp(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, dhcpId, workloadNetworkDhcp, accept, context);
     }
 
     /**
      * Create or update dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3218,25 +2540,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginUpdateDhcpAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
+        String resourceGroupName, String privateCloudName, String dhcpId,
         WorkloadNetworkDhcpInner workloadNetworkDhcp) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateDhcpWithResponseAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp);
-        return this
-            .client
-            .<WorkloadNetworkDhcpInner, WorkloadNetworkDhcpInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkDhcpInner.class,
-                WorkloadNetworkDhcpInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateDhcpWithResponseAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp);
+        return this.client.<WorkloadNetworkDhcpInner, WorkloadNetworkDhcpInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkDhcpInner.class, WorkloadNetworkDhcpInner.class,
+            this.client.getContext());
     }
 
     /**
      * Create or update dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3249,27 +2564,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginUpdateDhcpAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
-        WorkloadNetworkDhcpInner workloadNetworkDhcp,
+        String resourceGroupName, String privateCloudName, String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp,
         Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateDhcpWithResponseAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp, context);
-        return this
-            .client
-            .<WorkloadNetworkDhcpInner, WorkloadNetworkDhcpInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkDhcpInner.class,
-                WorkloadNetworkDhcpInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateDhcpWithResponseAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp, context);
+        return this.client.<WorkloadNetworkDhcpInner, WorkloadNetworkDhcpInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkDhcpInner.class, WorkloadNetworkDhcpInner.class, context);
     }
 
     /**
      * Create or update dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3281,18 +2587,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginUpdateDhcp(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
+        String resourceGroupName, String privateCloudName, String dhcpId,
         WorkloadNetworkDhcpInner workloadNetworkDhcp) {
-        return this
-            .beginUpdateDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp)
+        return this.beginUpdateDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp)
             .getSyncPoller();
     }
 
     /**
      * Create or update dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3305,19 +2608,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginUpdateDhcp(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
-        WorkloadNetworkDhcpInner workloadNetworkDhcp,
+        String resourceGroupName, String privateCloudName, String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp,
         Context context) {
-        return this
-            .beginUpdateDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp, context)
+        return this.beginUpdateDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp, context)
             .getSyncPoller();
     }
 
     /**
      * Create or update dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3328,19 +2627,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DHCP on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkDhcpInner> updateDhcpAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
-        WorkloadNetworkDhcpInner workloadNetworkDhcp) {
-        return beginUpdateDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp)
-            .last()
+    private Mono<WorkloadNetworkDhcpInner> updateDhcpAsync(String resourceGroupName, String privateCloudName,
+        String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp) {
+        return beginUpdateDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3352,20 +2647,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DHCP on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkDhcpInner> updateDhcpAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
-        WorkloadNetworkDhcpInner workloadNetworkDhcp,
-        Context context) {
-        return beginUpdateDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp, context)
-            .last()
+    private Mono<WorkloadNetworkDhcpInner> updateDhcpAsync(String resourceGroupName, String privateCloudName,
+        String dhcpId, WorkloadNetworkDhcpInner workloadNetworkDhcp, Context context) {
+        return beginUpdateDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3376,17 +2666,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DHCP.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkDhcpInner updateDhcp(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
+    public WorkloadNetworkDhcpInner updateDhcp(String resourceGroupName, String privateCloudName, String dhcpId,
         WorkloadNetworkDhcpInner workloadNetworkDhcp) {
         return updateDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp).block();
     }
 
     /**
      * Create or update dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3398,18 +2685,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DHCP.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkDhcpInner updateDhcp(
-        String resourceGroupName,
-        String privateCloudName,
-        String dhcpId,
-        WorkloadNetworkDhcpInner workloadNetworkDhcp,
-        Context context) {
+    public WorkloadNetworkDhcpInner updateDhcp(String resourceGroupName, String privateCloudName, String dhcpId,
+        WorkloadNetworkDhcpInner workloadNetworkDhcp, Context context) {
         return updateDhcpAsync(resourceGroupName, privateCloudName, dhcpId, workloadNetworkDhcp, context).block();
     }
 
     /**
      * Delete dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3419,19 +2702,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteDhcpWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String dhcpId) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteDhcpWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String dhcpId) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -3446,24 +2725,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .deleteDhcp(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            dhcpId,
-                            accept,
-                            context))
+            .withContext(context -> service.deleteDhcp(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, dhcpId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3474,19 +2743,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteDhcpWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String dhcpId, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteDhcpWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String dhcpId, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -3501,21 +2766,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .deleteDhcp(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                dhcpId,
-                accept,
-                context);
+        return service.deleteDhcp(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, dhcpId, accept, context);
     }
 
     /**
      * Delete dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3525,19 +2782,17 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteDhcpAsync(
-        String resourceGroupName, String privateCloudName, String dhcpId) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteDhcpWithResponseAsync(resourceGroupName, privateCloudName, dhcpId);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    private PollerFlux<PollResult<Void>, Void> beginDeleteDhcpAsync(String resourceGroupName, String privateCloudName,
+        String dhcpId) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteDhcpWithResponseAsync(resourceGroupName, privateCloudName, dhcpId);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Delete dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3548,19 +2803,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteDhcpAsync(
-        String resourceGroupName, String privateCloudName, String dhcpId, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteDhcpAsync(String resourceGroupName, String privateCloudName,
+        String dhcpId, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteDhcpWithResponseAsync(resourceGroupName, privateCloudName, dhcpId, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteDhcpWithResponseAsync(resourceGroupName, privateCloudName, dhcpId, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Delete dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3570,14 +2824,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDeleteDhcp(
-        String resourceGroupName, String privateCloudName, String dhcpId) {
+    public SyncPoller<PollResult<Void>, Void> beginDeleteDhcp(String resourceGroupName, String privateCloudName,
+        String dhcpId) {
         return this.beginDeleteDhcpAsync(resourceGroupName, privateCloudName, dhcpId).getSyncPoller();
     }
 
     /**
      * Delete dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3588,14 +2842,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDeleteDhcp(
-        String resourceGroupName, String privateCloudName, String dhcpId, Context context) {
+    public SyncPoller<PollResult<Void>, Void> beginDeleteDhcp(String resourceGroupName, String privateCloudName,
+        String dhcpId, Context context) {
         return this.beginDeleteDhcpAsync(resourceGroupName, privateCloudName, dhcpId, context).getSyncPoller();
     }
 
     /**
      * Delete dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3606,14 +2860,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteDhcpAsync(String resourceGroupName, String privateCloudName, String dhcpId) {
-        return beginDeleteDhcpAsync(resourceGroupName, privateCloudName, dhcpId)
-            .last()
+        return beginDeleteDhcpAsync(resourceGroupName, privateCloudName, dhcpId).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3624,16 +2877,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteDhcpAsync(
-        String resourceGroupName, String privateCloudName, String dhcpId, Context context) {
-        return beginDeleteDhcpAsync(resourceGroupName, privateCloudName, dhcpId, context)
-            .last()
+    private Mono<Void> deleteDhcpAsync(String resourceGroupName, String privateCloudName, String dhcpId,
+        Context context) {
+        return beginDeleteDhcpAsync(resourceGroupName, privateCloudName, dhcpId, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3648,7 +2900,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Delete dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -3664,7 +2916,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * List of gateways in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3673,19 +2925,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Gateways along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkGatewayInner>> listGatewaysSinglePageAsync(
-        String resourceGroupName, String privateCloudName) {
+    private Mono<PagedResponse<WorkloadNetworkGatewayInner>> listGatewaysSinglePageAsync(String resourceGroupName,
+        String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -3697,32 +2945,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listGateways(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            accept,
-                            context))
-            .<PagedResponse<WorkloadNetworkGatewayInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listGateways(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, accept, context))
+            .<PagedResponse<WorkloadNetworkGatewayInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List of gateways in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -3732,19 +2964,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Gateways along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkGatewayInner>> listGatewaysSinglePageAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkGatewayInner>> listGatewaysSinglePageAsync(String resourceGroupName,
+        String privateCloudName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -3757,28 +2985,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listGateways(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listGateways(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                this.client.getApiVersion(), privateCloudName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List of gateways in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3787,16 +3002,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Gateways as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkloadNetworkGatewayInner> listGatewaysAsync(
-        String resourceGroupName, String privateCloudName) {
-        return new PagedFlux<>(
-            () -> listGatewaysSinglePageAsync(resourceGroupName, privateCloudName),
+    private PagedFlux<WorkloadNetworkGatewayInner> listGatewaysAsync(String resourceGroupName,
+        String privateCloudName) {
+        return new PagedFlux<>(() -> listGatewaysSinglePageAsync(resourceGroupName, privateCloudName),
             nextLink -> listGatewaysNextSinglePageAsync(nextLink));
     }
 
     /**
      * List of gateways in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -3806,16 +3020,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Gateways as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkloadNetworkGatewayInner> listGatewaysAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
-        return new PagedFlux<>(
-            () -> listGatewaysSinglePageAsync(resourceGroupName, privateCloudName, context),
+    private PagedFlux<WorkloadNetworkGatewayInner> listGatewaysAsync(String resourceGroupName, String privateCloudName,
+        Context context) {
+        return new PagedFlux<>(() -> listGatewaysSinglePageAsync(resourceGroupName, privateCloudName, context),
             nextLink -> listGatewaysNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List of gateways in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3830,7 +3043,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * List of gateways in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -3840,14 +3053,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Gateways as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<WorkloadNetworkGatewayInner> listGateways(
-        String resourceGroupName, String privateCloudName, Context context) {
+    public PagedIterable<WorkloadNetworkGatewayInner> listGateways(String resourceGroupName, String privateCloudName,
+        Context context) {
         return new PagedIterable<>(listGatewaysAsync(resourceGroupName, privateCloudName, context));
     }
 
     /**
      * Get a gateway by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param gatewayId NSX Gateway identifier. Generally the same as the Gateway's display name.
@@ -3855,22 +3068,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a gateway by id in a private cloud workload network along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkloadNetworkGatewayInner>> getGatewayWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String gatewayId) {
+    private Mono<Response<WorkloadNetworkGatewayInner>> getGatewayWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String gatewayId) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -3885,24 +3094,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getGateway(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            gatewayId,
-                            accept,
-                            context))
+            .withContext(context -> service.getGateway(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, gatewayId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a gateway by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param gatewayId NSX Gateway identifier. Generally the same as the Gateway's display name.
@@ -3911,22 +3110,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a gateway by id in a private cloud workload network along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkloadNetworkGatewayInner>> getGatewayWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String gatewayId, Context context) {
+    private Mono<Response<WorkloadNetworkGatewayInner>> getGatewayWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String gatewayId, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -3941,21 +3136,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getGateway(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                gatewayId,
-                accept,
-                context);
+        return service.getGateway(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, gatewayId, accept, context);
     }
 
     /**
      * Get a gateway by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param gatewayId NSX Gateway identifier. Generally the same as the Gateway's display name.
@@ -3965,15 +3152,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a gateway by id in a private cloud workload network on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkGatewayInner> getGatewayAsync(
-        String resourceGroupName, String privateCloudName, String gatewayId) {
+    private Mono<WorkloadNetworkGatewayInner> getGatewayAsync(String resourceGroupName, String privateCloudName,
+        String gatewayId) {
         return getGatewayWithResponseAsync(resourceGroupName, privateCloudName, gatewayId)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get a gateway by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param gatewayId NSX Gateway identifier. Generally the same as the Gateway's display name.
@@ -3984,14 +3171,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a gateway by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<WorkloadNetworkGatewayInner> getGatewayWithResponse(
-        String resourceGroupName, String privateCloudName, String gatewayId, Context context) {
+    public Response<WorkloadNetworkGatewayInner> getGatewayWithResponse(String resourceGroupName,
+        String privateCloudName, String gatewayId, Context context) {
         return getGatewayWithResponseAsync(resourceGroupName, privateCloudName, gatewayId, context).block();
     }
 
     /**
      * Get a gateway by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param gatewayId NSX Gateway identifier. Generally the same as the Gateway's display name.
@@ -4007,7 +3194,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * List of port mirroring profiles in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -4016,19 +3203,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Port Mirroring along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkPortMirroringInner>> listPortMirroringSinglePageAsync(
-        String resourceGroupName, String privateCloudName) {
+    private Mono<PagedResponse<WorkloadNetworkPortMirroringInner>>
+        listPortMirroringSinglePageAsync(String resourceGroupName, String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -4041,31 +3224,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .listPortMirroring(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            accept,
-                            context))
-            .<PagedResponse<WorkloadNetworkPortMirroringInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+                context -> service.listPortMirroring(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, this.client.getApiVersion(), privateCloudName, accept, context))
+            .<PagedResponse<WorkloadNetworkPortMirroringInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List of port mirroring profiles in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -4075,19 +3243,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Port Mirroring along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkPortMirroringInner>> listPortMirroringSinglePageAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkPortMirroringInner>>
+        listPortMirroringSinglePageAsync(String resourceGroupName, String privateCloudName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -4100,28 +3264,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listPortMirroring(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listPortMirroring(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                this.client.getApiVersion(), privateCloudName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List of port mirroring profiles in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -4130,16 +3281,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Port Mirroring as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkloadNetworkPortMirroringInner> listPortMirroringAsync(
-        String resourceGroupName, String privateCloudName) {
-        return new PagedFlux<>(
-            () -> listPortMirroringSinglePageAsync(resourceGroupName, privateCloudName),
+    private PagedFlux<WorkloadNetworkPortMirroringInner> listPortMirroringAsync(String resourceGroupName,
+        String privateCloudName) {
+        return new PagedFlux<>(() -> listPortMirroringSinglePageAsync(resourceGroupName, privateCloudName),
             nextLink -> listPortMirroringNextSinglePageAsync(nextLink));
     }
 
     /**
      * List of port mirroring profiles in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -4149,16 +3299,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Port Mirroring as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkloadNetworkPortMirroringInner> listPortMirroringAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
-        return new PagedFlux<>(
-            () -> listPortMirroringSinglePageAsync(resourceGroupName, privateCloudName, context),
+    private PagedFlux<WorkloadNetworkPortMirroringInner> listPortMirroringAsync(String resourceGroupName,
+        String privateCloudName, Context context) {
+        return new PagedFlux<>(() -> listPortMirroringSinglePageAsync(resourceGroupName, privateCloudName, context),
             nextLink -> listPortMirroringNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List of port mirroring profiles in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -4167,14 +3316,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Port Mirroring as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<WorkloadNetworkPortMirroringInner> listPortMirroring(
-        String resourceGroupName, String privateCloudName) {
+    public PagedIterable<WorkloadNetworkPortMirroringInner> listPortMirroring(String resourceGroupName,
+        String privateCloudName) {
         return new PagedIterable<>(listPortMirroringAsync(resourceGroupName, privateCloudName));
     }
 
     /**
      * List of port mirroring profiles in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -4184,14 +3333,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Port Mirroring as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<WorkloadNetworkPortMirroringInner> listPortMirroring(
-        String resourceGroupName, String privateCloudName, Context context) {
+    public PagedIterable<WorkloadNetworkPortMirroringInner> listPortMirroring(String resourceGroupName,
+        String privateCloudName, Context context) {
         return new PagedIterable<>(listPortMirroringAsync(resourceGroupName, privateCloudName, context));
     }
 
     /**
      * Get a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4199,22 +3348,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a port mirroring profile by id in a private cloud workload network along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkloadNetworkPortMirroringInner>> getPortMirroringWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String portMirroringId) {
+    private Mono<Response<WorkloadNetworkPortMirroringInner>>
+        getPortMirroringWithResponseAsync(String resourceGroupName, String privateCloudName, String portMirroringId) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -4230,24 +3375,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getPortMirroring(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            portMirroringId,
-                            accept,
-                            context))
+            .withContext(context -> service.getPortMirroring(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, portMirroringId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4256,22 +3391,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a port mirroring profile by id in a private cloud workload network along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkloadNetworkPortMirroringInner>> getPortMirroringWithResponseAsync(
         String resourceGroupName, String privateCloudName, String portMirroringId, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -4287,40 +3418,32 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getPortMirroring(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                portMirroringId,
-                accept,
-                context);
+        return service.getPortMirroring(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, portMirroringId, accept, context);
     }
 
     /**
      * Get a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a port mirroring profile by id in a private cloud workload network on successful completion of {@link
-     *     Mono}.
+     * @return a port mirroring profile by id in a private cloud workload network on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkPortMirroringInner> getPortMirroringAsync(
-        String resourceGroupName, String privateCloudName, String portMirroringId) {
+    private Mono<WorkloadNetworkPortMirroringInner> getPortMirroringAsync(String resourceGroupName,
+        String privateCloudName, String portMirroringId) {
         return getPortMirroringWithResponseAsync(resourceGroupName, privateCloudName, portMirroringId)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4331,14 +3454,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a port mirroring profile by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<WorkloadNetworkPortMirroringInner> getPortMirroringWithResponse(
-        String resourceGroupName, String privateCloudName, String portMirroringId, Context context) {
+    public Response<WorkloadNetworkPortMirroringInner> getPortMirroringWithResponse(String resourceGroupName,
+        String privateCloudName, String portMirroringId, Context context) {
         return getPortMirroringWithResponseAsync(resourceGroupName, privateCloudName, portMirroringId, context).block();
     }
 
     /**
      * Get a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4348,15 +3471,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a port mirroring profile by id in a private cloud workload network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkPortMirroringInner getPortMirroring(
-        String resourceGroupName, String privateCloudName, String portMirroringId) {
+    public WorkloadNetworkPortMirroringInner getPortMirroring(String resourceGroupName, String privateCloudName,
+        String portMirroringId) {
         return getPortMirroringWithResponse(resourceGroupName, privateCloudName, portMirroringId, Context.NONE)
             .getValue();
     }
 
     /**
      * Create a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4367,22 +3490,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Port Mirroring along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createPortMirroringWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String portMirroringId,
+    private Mono<Response<Flux<ByteBuffer>>> createPortMirroringWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String portMirroringId,
         WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -4397,34 +3514,22 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
                 .error(new IllegalArgumentException("Parameter portMirroringId is required and cannot be null."));
         }
         if (workloadNetworkPortMirroring == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter workloadNetworkPortMirroring is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkPortMirroring is required and cannot be null."));
         } else {
             workloadNetworkPortMirroring.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createPortMirroring(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            portMirroringId,
-                            workloadNetworkPortMirroring,
-                            accept,
-                            context))
+            .withContext(context -> service.createPortMirroring(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), resourceGroupName, this.client.getApiVersion(), privateCloudName,
+                portMirroringId, workloadNetworkPortMirroring, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4436,23 +3541,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Port Mirroring along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createPortMirroringWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String portMirroringId,
-        WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
+    private Mono<Response<Flux<ByteBuffer>>> createPortMirroringWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String portMirroringId, WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
         Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -4467,31 +3565,21 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
                 .error(new IllegalArgumentException("Parameter portMirroringId is required and cannot be null."));
         }
         if (workloadNetworkPortMirroring == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter workloadNetworkPortMirroring is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkPortMirroring is required and cannot be null."));
         } else {
             workloadNetworkPortMirroring.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createPortMirroring(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                portMirroringId,
-                workloadNetworkPortMirroring,
-                accept,
-                context);
+        return service.createPortMirroring(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            resourceGroupName, this.client.getApiVersion(), privateCloudName, portMirroringId,
+            workloadNetworkPortMirroring, accept, context);
     }
 
     /**
      * Create a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4503,27 +3591,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkPortMirroringInner>, WorkloadNetworkPortMirroringInner>
-        beginCreatePortMirroringAsync(
-            String resourceGroupName,
-            String privateCloudName,
-            String portMirroringId,
+        beginCreatePortMirroringAsync(String resourceGroupName, String privateCloudName, String portMirroringId,
             WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createPortMirroringWithResponseAsync(
-                resourceGroupName, privateCloudName, portMirroringId, workloadNetworkPortMirroring);
-        return this
-            .client
-            .<WorkloadNetworkPortMirroringInner, WorkloadNetworkPortMirroringInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkPortMirroringInner.class,
-                WorkloadNetworkPortMirroringInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono = createPortMirroringWithResponseAsync(resourceGroupName,
+            privateCloudName, portMirroringId, workloadNetworkPortMirroring);
+        return this.client.<WorkloadNetworkPortMirroringInner, WorkloadNetworkPortMirroringInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkPortMirroringInner.class,
+            WorkloadNetworkPortMirroringInner.class, this.client.getContext());
     }
 
     /**
      * Create a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4536,29 +3615,19 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkPortMirroringInner>, WorkloadNetworkPortMirroringInner>
-        beginCreatePortMirroringAsync(
-            String resourceGroupName,
-            String privateCloudName,
-            String portMirroringId,
-            WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
-            Context context) {
+        beginCreatePortMirroringAsync(String resourceGroupName, String privateCloudName, String portMirroringId,
+            WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createPortMirroringWithResponseAsync(
-                resourceGroupName, privateCloudName, portMirroringId, workloadNetworkPortMirroring, context);
-        return this
-            .client
-            .<WorkloadNetworkPortMirroringInner, WorkloadNetworkPortMirroringInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkPortMirroringInner.class,
-                WorkloadNetworkPortMirroringInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createPortMirroringWithResponseAsync(resourceGroupName,
+            privateCloudName, portMirroringId, workloadNetworkPortMirroring, context);
+        return this.client.<WorkloadNetworkPortMirroringInner, WorkloadNetworkPortMirroringInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkPortMirroringInner.class,
+            WorkloadNetworkPortMirroringInner.class, context);
     }
 
     /**
      * Create a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4570,20 +3639,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkPortMirroringInner>, WorkloadNetworkPortMirroringInner>
-        beginCreatePortMirroring(
-            String resourceGroupName,
-            String privateCloudName,
-            String portMirroringId,
+        beginCreatePortMirroring(String resourceGroupName, String privateCloudName, String portMirroringId,
             WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring) {
-        return this
-            .beginCreatePortMirroringAsync(
-                resourceGroupName, privateCloudName, portMirroringId, workloadNetworkPortMirroring)
-            .getSyncPoller();
+        return this.beginCreatePortMirroringAsync(resourceGroupName, privateCloudName, portMirroringId,
+            workloadNetworkPortMirroring).getSyncPoller();
     }
 
     /**
      * Create a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4596,21 +3660,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkPortMirroringInner>, WorkloadNetworkPortMirroringInner>
-        beginCreatePortMirroring(
-            String resourceGroupName,
-            String privateCloudName,
-            String portMirroringId,
-            WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
-            Context context) {
-        return this
-            .beginCreatePortMirroringAsync(
-                resourceGroupName, privateCloudName, portMirroringId, workloadNetworkPortMirroring, context)
-            .getSyncPoller();
+        beginCreatePortMirroring(String resourceGroupName, String privateCloudName, String portMirroringId,
+            WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring, Context context) {
+        return this.beginCreatePortMirroringAsync(resourceGroupName, privateCloudName, portMirroringId,
+            workloadNetworkPortMirroring, context).getSyncPoller();
     }
 
     /**
      * Create a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4621,20 +3679,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Port Mirroring on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkPortMirroringInner> createPortMirroringAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String portMirroringId,
+    private Mono<WorkloadNetworkPortMirroringInner> createPortMirroringAsync(String resourceGroupName,
+        String privateCloudName, String portMirroringId,
         WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring) {
-        return beginCreatePortMirroringAsync(
-                resourceGroupName, privateCloudName, portMirroringId, workloadNetworkPortMirroring)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return beginCreatePortMirroringAsync(resourceGroupName, privateCloudName, portMirroringId,
+            workloadNetworkPortMirroring).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4646,21 +3700,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Port Mirroring on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkPortMirroringInner> createPortMirroringAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String portMirroringId,
-        WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
+    private Mono<WorkloadNetworkPortMirroringInner> createPortMirroringAsync(String resourceGroupName,
+        String privateCloudName, String portMirroringId, WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
         Context context) {
-        return beginCreatePortMirroringAsync(
-                resourceGroupName, privateCloudName, portMirroringId, workloadNetworkPortMirroring, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return beginCreatePortMirroringAsync(resourceGroupName, privateCloudName, portMirroringId,
+            workloadNetworkPortMirroring, context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4671,19 +3720,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Port Mirroring.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkPortMirroringInner createPortMirroring(
-        String resourceGroupName,
-        String privateCloudName,
-        String portMirroringId,
-        WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring) {
-        return createPortMirroringAsync(
-                resourceGroupName, privateCloudName, portMirroringId, workloadNetworkPortMirroring)
-            .block();
+    public WorkloadNetworkPortMirroringInner createPortMirroring(String resourceGroupName, String privateCloudName,
+        String portMirroringId, WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring) {
+        return createPortMirroringAsync(resourceGroupName, privateCloudName, portMirroringId,
+            workloadNetworkPortMirroring).block();
     }
 
     /**
      * Create a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4695,20 +3740,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Port Mirroring.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkPortMirroringInner createPortMirroring(
-        String resourceGroupName,
-        String privateCloudName,
-        String portMirroringId,
-        WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
-        Context context) {
-        return createPortMirroringAsync(
-                resourceGroupName, privateCloudName, portMirroringId, workloadNetworkPortMirroring, context)
-            .block();
+    public WorkloadNetworkPortMirroringInner createPortMirroring(String resourceGroupName, String privateCloudName,
+        String portMirroringId, WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring, Context context) {
+        return createPortMirroringAsync(resourceGroupName, privateCloudName, portMirroringId,
+            workloadNetworkPortMirroring, context).block();
     }
 
     /**
      * Create or update a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4719,22 +3759,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Port Mirroring along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updatePortMirroringWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String portMirroringId,
+    private Mono<Response<Flux<ByteBuffer>>> updatePortMirroringWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String portMirroringId,
         WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -4749,34 +3783,22 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
                 .error(new IllegalArgumentException("Parameter portMirroringId is required and cannot be null."));
         }
         if (workloadNetworkPortMirroring == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter workloadNetworkPortMirroring is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkPortMirroring is required and cannot be null."));
         } else {
             workloadNetworkPortMirroring.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .updatePortMirroring(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            portMirroringId,
-                            workloadNetworkPortMirroring,
-                            accept,
-                            context))
+            .withContext(context -> service.updatePortMirroring(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), resourceGroupName, this.client.getApiVersion(), privateCloudName,
+                portMirroringId, workloadNetworkPortMirroring, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4788,23 +3810,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Port Mirroring along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updatePortMirroringWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String portMirroringId,
-        WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
+    private Mono<Response<Flux<ByteBuffer>>> updatePortMirroringWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String portMirroringId, WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
         Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -4819,31 +3834,21 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
                 .error(new IllegalArgumentException("Parameter portMirroringId is required and cannot be null."));
         }
         if (workloadNetworkPortMirroring == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter workloadNetworkPortMirroring is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkPortMirroring is required and cannot be null."));
         } else {
             workloadNetworkPortMirroring.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .updatePortMirroring(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                portMirroringId,
-                workloadNetworkPortMirroring,
-                accept,
-                context);
+        return service.updatePortMirroring(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            resourceGroupName, this.client.getApiVersion(), privateCloudName, portMirroringId,
+            workloadNetworkPortMirroring, accept, context);
     }
 
     /**
      * Create or update a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4855,27 +3860,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkPortMirroringInner>, WorkloadNetworkPortMirroringInner>
-        beginUpdatePortMirroringAsync(
-            String resourceGroupName,
-            String privateCloudName,
-            String portMirroringId,
+        beginUpdatePortMirroringAsync(String resourceGroupName, String privateCloudName, String portMirroringId,
             WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updatePortMirroringWithResponseAsync(
-                resourceGroupName, privateCloudName, portMirroringId, workloadNetworkPortMirroring);
-        return this
-            .client
-            .<WorkloadNetworkPortMirroringInner, WorkloadNetworkPortMirroringInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkPortMirroringInner.class,
-                WorkloadNetworkPortMirroringInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono = updatePortMirroringWithResponseAsync(resourceGroupName,
+            privateCloudName, portMirroringId, workloadNetworkPortMirroring);
+        return this.client.<WorkloadNetworkPortMirroringInner, WorkloadNetworkPortMirroringInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkPortMirroringInner.class,
+            WorkloadNetworkPortMirroringInner.class, this.client.getContext());
     }
 
     /**
      * Create or update a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4888,29 +3884,19 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkPortMirroringInner>, WorkloadNetworkPortMirroringInner>
-        beginUpdatePortMirroringAsync(
-            String resourceGroupName,
-            String privateCloudName,
-            String portMirroringId,
-            WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
-            Context context) {
+        beginUpdatePortMirroringAsync(String resourceGroupName, String privateCloudName, String portMirroringId,
+            WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updatePortMirroringWithResponseAsync(
-                resourceGroupName, privateCloudName, portMirroringId, workloadNetworkPortMirroring, context);
-        return this
-            .client
-            .<WorkloadNetworkPortMirroringInner, WorkloadNetworkPortMirroringInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkPortMirroringInner.class,
-                WorkloadNetworkPortMirroringInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono = updatePortMirroringWithResponseAsync(resourceGroupName,
+            privateCloudName, portMirroringId, workloadNetworkPortMirroring, context);
+        return this.client.<WorkloadNetworkPortMirroringInner, WorkloadNetworkPortMirroringInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkPortMirroringInner.class,
+            WorkloadNetworkPortMirroringInner.class, context);
     }
 
     /**
      * Create or update a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4922,20 +3908,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkPortMirroringInner>, WorkloadNetworkPortMirroringInner>
-        beginUpdatePortMirroring(
-            String resourceGroupName,
-            String privateCloudName,
-            String portMirroringId,
+        beginUpdatePortMirroring(String resourceGroupName, String privateCloudName, String portMirroringId,
             WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring) {
-        return this
-            .beginUpdatePortMirroringAsync(
-                resourceGroupName, privateCloudName, portMirroringId, workloadNetworkPortMirroring)
-            .getSyncPoller();
+        return this.beginUpdatePortMirroringAsync(resourceGroupName, privateCloudName, portMirroringId,
+            workloadNetworkPortMirroring).getSyncPoller();
     }
 
     /**
      * Create or update a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4948,21 +3929,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkPortMirroringInner>, WorkloadNetworkPortMirroringInner>
-        beginUpdatePortMirroring(
-            String resourceGroupName,
-            String privateCloudName,
-            String portMirroringId,
-            WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
-            Context context) {
-        return this
-            .beginUpdatePortMirroringAsync(
-                resourceGroupName, privateCloudName, portMirroringId, workloadNetworkPortMirroring, context)
-            .getSyncPoller();
+        beginUpdatePortMirroring(String resourceGroupName, String privateCloudName, String portMirroringId,
+            WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring, Context context) {
+        return this.beginUpdatePortMirroringAsync(resourceGroupName, privateCloudName, portMirroringId,
+            workloadNetworkPortMirroring, context).getSyncPoller();
     }
 
     /**
      * Create or update a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4973,20 +3948,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Port Mirroring on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkPortMirroringInner> updatePortMirroringAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String portMirroringId,
+    private Mono<WorkloadNetworkPortMirroringInner> updatePortMirroringAsync(String resourceGroupName,
+        String privateCloudName, String portMirroringId,
         WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring) {
-        return beginUpdatePortMirroringAsync(
-                resourceGroupName, privateCloudName, portMirroringId, workloadNetworkPortMirroring)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return beginUpdatePortMirroringAsync(resourceGroupName, privateCloudName, portMirroringId,
+            workloadNetworkPortMirroring).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -4998,21 +3969,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Port Mirroring on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkPortMirroringInner> updatePortMirroringAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String portMirroringId,
-        WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
+    private Mono<WorkloadNetworkPortMirroringInner> updatePortMirroringAsync(String resourceGroupName,
+        String privateCloudName, String portMirroringId, WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
         Context context) {
-        return beginUpdatePortMirroringAsync(
-                resourceGroupName, privateCloudName, portMirroringId, workloadNetworkPortMirroring, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return beginUpdatePortMirroringAsync(resourceGroupName, privateCloudName, portMirroringId,
+            workloadNetworkPortMirroring, context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -5023,19 +3989,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Port Mirroring.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkPortMirroringInner updatePortMirroring(
-        String resourceGroupName,
-        String privateCloudName,
-        String portMirroringId,
-        WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring) {
-        return updatePortMirroringAsync(
-                resourceGroupName, privateCloudName, portMirroringId, workloadNetworkPortMirroring)
-            .block();
+    public WorkloadNetworkPortMirroringInner updatePortMirroring(String resourceGroupName, String privateCloudName,
+        String portMirroringId, WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring) {
+        return updatePortMirroringAsync(resourceGroupName, privateCloudName, portMirroringId,
+            workloadNetworkPortMirroring).block();
     }
 
     /**
      * Create or update a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -5047,20 +4009,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Port Mirroring.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkPortMirroringInner updatePortMirroring(
-        String resourceGroupName,
-        String privateCloudName,
-        String portMirroringId,
-        WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring,
-        Context context) {
-        return updatePortMirroringAsync(
-                resourceGroupName, privateCloudName, portMirroringId, workloadNetworkPortMirroring, context)
-            .block();
+    public WorkloadNetworkPortMirroringInner updatePortMirroring(String resourceGroupName, String privateCloudName,
+        String portMirroringId, WorkloadNetworkPortMirroringInner workloadNetworkPortMirroring, Context context) {
+        return updatePortMirroringAsync(resourceGroupName, privateCloudName, portMirroringId,
+            workloadNetworkPortMirroring, context).block();
     }
 
     /**
      * Delete a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
      * @param privateCloudName Name of the private cloud.
@@ -5070,19 +4027,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deletePortMirroringWithResponseAsync(
-        String resourceGroupName, String portMirroringId, String privateCloudName) {
+    private Mono<Response<Flux<ByteBuffer>>> deletePortMirroringWithResponseAsync(String resourceGroupName,
+        String portMirroringId, String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -5099,23 +4052,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .deletePortMirroring(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            portMirroringId,
-                            privateCloudName,
-                            accept,
-                            context))
+                context -> service.deletePortMirroring(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, this.client.getApiVersion(), portMirroringId, privateCloudName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
      * @param privateCloudName Name of the private cloud.
@@ -5126,19 +4070,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deletePortMirroringWithResponseAsync(
-        String resourceGroupName, String portMirroringId, String privateCloudName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deletePortMirroringWithResponseAsync(String resourceGroupName,
+        String portMirroringId, String privateCloudName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -5154,21 +4094,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .deletePortMirroring(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                portMirroringId,
-                privateCloudName,
-                accept,
-                context);
+        return service.deletePortMirroring(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            resourceGroupName, this.client.getApiVersion(), portMirroringId, privateCloudName, accept, context);
     }
 
     /**
      * Delete a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
      * @param privateCloudName Name of the private cloud.
@@ -5178,19 +4110,17 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeletePortMirroringAsync(
-        String resourceGroupName, String portMirroringId, String privateCloudName) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deletePortMirroringWithResponseAsync(resourceGroupName, portMirroringId, privateCloudName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    private PollerFlux<PollResult<Void>, Void> beginDeletePortMirroringAsync(String resourceGroupName,
+        String portMirroringId, String privateCloudName) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deletePortMirroringWithResponseAsync(resourceGroupName, portMirroringId, privateCloudName);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Delete a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
      * @param privateCloudName Name of the private cloud.
@@ -5201,19 +4131,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeletePortMirroringAsync(
-        String resourceGroupName, String portMirroringId, String privateCloudName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeletePortMirroringAsync(String resourceGroupName,
+        String portMirroringId, String privateCloudName, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deletePortMirroringWithResponseAsync(resourceGroupName, portMirroringId, privateCloudName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deletePortMirroringWithResponseAsync(resourceGroupName, portMirroringId, privateCloudName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Delete a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
      * @param privateCloudName Name of the private cloud.
@@ -5223,14 +4152,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDeletePortMirroring(
-        String resourceGroupName, String portMirroringId, String privateCloudName) {
+    public SyncPoller<PollResult<Void>, Void> beginDeletePortMirroring(String resourceGroupName, String portMirroringId,
+        String privateCloudName) {
         return this.beginDeletePortMirroringAsync(resourceGroupName, portMirroringId, privateCloudName).getSyncPoller();
     }
 
     /**
      * Delete a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
      * @param privateCloudName Name of the private cloud.
@@ -5241,16 +4170,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDeletePortMirroring(
-        String resourceGroupName, String portMirroringId, String privateCloudName, Context context) {
-        return this
-            .beginDeletePortMirroringAsync(resourceGroupName, portMirroringId, privateCloudName, context)
+    public SyncPoller<PollResult<Void>, Void> beginDeletePortMirroring(String resourceGroupName, String portMirroringId,
+        String privateCloudName, Context context) {
+        return this.beginDeletePortMirroringAsync(resourceGroupName, portMirroringId, privateCloudName, context)
             .getSyncPoller();
     }
 
     /**
      * Delete a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
      * @param privateCloudName Name of the private cloud.
@@ -5260,16 +4188,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deletePortMirroringAsync(
-        String resourceGroupName, String portMirroringId, String privateCloudName) {
-        return beginDeletePortMirroringAsync(resourceGroupName, portMirroringId, privateCloudName)
-            .last()
+    private Mono<Void> deletePortMirroringAsync(String resourceGroupName, String portMirroringId,
+        String privateCloudName) {
+        return beginDeletePortMirroringAsync(resourceGroupName, portMirroringId, privateCloudName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
      * @param privateCloudName Name of the private cloud.
@@ -5280,16 +4207,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deletePortMirroringAsync(
-        String resourceGroupName, String portMirroringId, String privateCloudName, Context context) {
-        return beginDeletePortMirroringAsync(resourceGroupName, portMirroringId, privateCloudName, context)
-            .last()
+    private Mono<Void> deletePortMirroringAsync(String resourceGroupName, String portMirroringId,
+        String privateCloudName, Context context) {
+        return beginDeletePortMirroringAsync(resourceGroupName, portMirroringId, privateCloudName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
      * @param privateCloudName Name of the private cloud.
@@ -5304,7 +4230,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Delete a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
      * @param privateCloudName Name of the private cloud.
@@ -5314,14 +4240,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deletePortMirroring(
-        String resourceGroupName, String portMirroringId, String privateCloudName, Context context) {
+    public void deletePortMirroring(String resourceGroupName, String portMirroringId, String privateCloudName,
+        Context context) {
         deletePortMirroringAsync(resourceGroupName, portMirroringId, privateCloudName, context).block();
     }
 
     /**
      * List of vm groups in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -5330,19 +4256,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX VM Groups along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkVMGroupInner>> listVMGroupsSinglePageAsync(
-        String resourceGroupName, String privateCloudName) {
+    private Mono<PagedResponse<WorkloadNetworkVMGroupInner>> listVMGroupsSinglePageAsync(String resourceGroupName,
+        String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -5354,32 +4276,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listVMGroups(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            accept,
-                            context))
-            .<PagedResponse<WorkloadNetworkVMGroupInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listVMGroups(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, accept, context))
+            .<PagedResponse<WorkloadNetworkVMGroupInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List of vm groups in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -5389,19 +4295,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX VM Groups along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkVMGroupInner>> listVMGroupsSinglePageAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkVMGroupInner>> listVMGroupsSinglePageAsync(String resourceGroupName,
+        String privateCloudName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -5414,28 +4316,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listVMGroups(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listVMGroups(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                this.client.getApiVersion(), privateCloudName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List of vm groups in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -5444,16 +4333,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX VM Groups as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkloadNetworkVMGroupInner> listVMGroupsAsync(
-        String resourceGroupName, String privateCloudName) {
-        return new PagedFlux<>(
-            () -> listVMGroupsSinglePageAsync(resourceGroupName, privateCloudName),
+    private PagedFlux<WorkloadNetworkVMGroupInner> listVMGroupsAsync(String resourceGroupName,
+        String privateCloudName) {
+        return new PagedFlux<>(() -> listVMGroupsSinglePageAsync(resourceGroupName, privateCloudName),
             nextLink -> listVMGroupsNextSinglePageAsync(nextLink));
     }
 
     /**
      * List of vm groups in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -5463,16 +4351,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX VM Groups as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkloadNetworkVMGroupInner> listVMGroupsAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
-        return new PagedFlux<>(
-            () -> listVMGroupsSinglePageAsync(resourceGroupName, privateCloudName, context),
+    private PagedFlux<WorkloadNetworkVMGroupInner> listVMGroupsAsync(String resourceGroupName, String privateCloudName,
+        Context context) {
+        return new PagedFlux<>(() -> listVMGroupsSinglePageAsync(resourceGroupName, privateCloudName, context),
             nextLink -> listVMGroupsNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List of vm groups in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -5487,7 +4374,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * List of vm groups in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -5497,14 +4384,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX VM Groups as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<WorkloadNetworkVMGroupInner> listVMGroups(
-        String resourceGroupName, String privateCloudName, Context context) {
+    public PagedIterable<WorkloadNetworkVMGroupInner> listVMGroups(String resourceGroupName, String privateCloudName,
+        Context context) {
         return new PagedIterable<>(listVMGroupsAsync(resourceGroupName, privateCloudName, context));
     }
 
     /**
      * Get a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -5512,22 +4399,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a vm group by id in a private cloud workload network along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkloadNetworkVMGroupInner>> getVMGroupWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String vmGroupId) {
+    private Mono<Response<WorkloadNetworkVMGroupInner>> getVMGroupWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String vmGroupId) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -5542,24 +4425,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getVMGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            vmGroupId,
-                            accept,
-                            context))
+            .withContext(context -> service.getVMGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, vmGroupId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -5568,22 +4441,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a vm group by id in a private cloud workload network along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkloadNetworkVMGroupInner>> getVMGroupWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String vmGroupId, Context context) {
+    private Mono<Response<WorkloadNetworkVMGroupInner>> getVMGroupWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String vmGroupId, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -5598,21 +4467,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getVMGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                vmGroupId,
-                accept,
-                context);
+        return service.getVMGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, vmGroupId, accept, context);
     }
 
     /**
      * Get a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -5622,15 +4483,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a vm group by id in a private cloud workload network on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkVMGroupInner> getVMGroupAsync(
-        String resourceGroupName, String privateCloudName, String vmGroupId) {
+    private Mono<WorkloadNetworkVMGroupInner> getVMGroupAsync(String resourceGroupName, String privateCloudName,
+        String vmGroupId) {
         return getVMGroupWithResponseAsync(resourceGroupName, privateCloudName, vmGroupId)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -5641,14 +4502,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a vm group by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<WorkloadNetworkVMGroupInner> getVMGroupWithResponse(
-        String resourceGroupName, String privateCloudName, String vmGroupId, Context context) {
+    public Response<WorkloadNetworkVMGroupInner> getVMGroupWithResponse(String resourceGroupName,
+        String privateCloudName, String vmGroupId, Context context) {
         return getVMGroupWithResponseAsync(resourceGroupName, privateCloudName, vmGroupId, context).block();
     }
 
     /**
      * Get a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -5664,7 +4525,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Create a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -5675,22 +4536,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX VM Group along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createVMGroupWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup) {
+    private Mono<Response<Flux<ByteBuffer>>> createVMGroupWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String vmGroupId, WorkloadNetworkVMGroupInner workloadNetworkVMGroup) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -5704,33 +4558,22 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter vmGroupId is required and cannot be null."));
         }
         if (workloadNetworkVMGroup == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter workloadNetworkVMGroup is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkVMGroup is required and cannot be null."));
         } else {
             workloadNetworkVMGroup.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createVMGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            vmGroupId,
-                            workloadNetworkVMGroup,
-                            accept,
-                            context))
+            .withContext(context -> service.createVMGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, vmGroupId, workloadNetworkVMGroup,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -5742,23 +4585,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX VM Group along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createVMGroupWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup,
+    private Mono<Response<Flux<ByteBuffer>>> createVMGroupWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String vmGroupId, WorkloadNetworkVMGroupInner workloadNetworkVMGroup,
         Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -5772,30 +4608,20 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter vmGroupId is required and cannot be null."));
         }
         if (workloadNetworkVMGroup == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter workloadNetworkVMGroup is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkVMGroup is required and cannot be null."));
         } else {
             workloadNetworkVMGroup.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createVMGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                vmGroupId,
-                workloadNetworkVMGroup,
-                accept,
-                context);
+        return service.createVMGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, vmGroupId, workloadNetworkVMGroup, accept, context);
     }
 
     /**
      * Create a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -5807,25 +4633,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkVMGroupInner>, WorkloadNetworkVMGroupInner> beginCreateVMGroupAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
+        String resourceGroupName, String privateCloudName, String vmGroupId,
         WorkloadNetworkVMGroupInner workloadNetworkVMGroup) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createVMGroupWithResponseAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup);
-        return this
-            .client
-            .<WorkloadNetworkVMGroupInner, WorkloadNetworkVMGroupInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkVMGroupInner.class,
-                WorkloadNetworkVMGroupInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createVMGroupWithResponseAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup);
+        return this.client.<WorkloadNetworkVMGroupInner, WorkloadNetworkVMGroupInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkVMGroupInner.class, WorkloadNetworkVMGroupInner.class,
+            this.client.getContext());
     }
 
     /**
      * Create a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -5838,28 +4657,19 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkVMGroupInner>, WorkloadNetworkVMGroupInner> beginCreateVMGroupAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup,
-        Context context) {
+        String resourceGroupName, String privateCloudName, String vmGroupId,
+        WorkloadNetworkVMGroupInner workloadNetworkVMGroup, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createVMGroupWithResponseAsync(
-                resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup, context);
-        return this
-            .client
-            .<WorkloadNetworkVMGroupInner, WorkloadNetworkVMGroupInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkVMGroupInner.class,
-                WorkloadNetworkVMGroupInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createVMGroupWithResponseAsync(resourceGroupName, privateCloudName,
+            vmGroupId, workloadNetworkVMGroup, context);
+        return this.client.<WorkloadNetworkVMGroupInner, WorkloadNetworkVMGroupInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkVMGroupInner.class, WorkloadNetworkVMGroupInner.class,
+            context);
     }
 
     /**
      * Create a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -5871,18 +4681,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkVMGroupInner>, WorkloadNetworkVMGroupInner> beginCreateVMGroup(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
+        String resourceGroupName, String privateCloudName, String vmGroupId,
         WorkloadNetworkVMGroupInner workloadNetworkVMGroup) {
-        return this
-            .beginCreateVMGroupAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup)
+        return this.beginCreateVMGroupAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup)
             .getSyncPoller();
     }
 
     /**
      * Create a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -5895,11 +4702,8 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkVMGroupInner>, WorkloadNetworkVMGroupInner> beginCreateVMGroup(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup,
-        Context context) {
+        String resourceGroupName, String privateCloudName, String vmGroupId,
+        WorkloadNetworkVMGroupInner workloadNetworkVMGroup, Context context) {
         return this
             .beginCreateVMGroupAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup, context)
             .getSyncPoller();
@@ -5907,7 +4711,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Create a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -5918,19 +4722,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX VM Group on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkVMGroupInner> createVMGroupAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup) {
-        return beginCreateVMGroupAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup)
-            .last()
+    private Mono<WorkloadNetworkVMGroupInner> createVMGroupAsync(String resourceGroupName, String privateCloudName,
+        String vmGroupId, WorkloadNetworkVMGroupInner workloadNetworkVMGroup) {
+        return beginCreateVMGroupAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -5942,20 +4742,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX VM Group on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkVMGroupInner> createVMGroupAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup,
-        Context context) {
+    private Mono<WorkloadNetworkVMGroupInner> createVMGroupAsync(String resourceGroupName, String privateCloudName,
+        String vmGroupId, WorkloadNetworkVMGroupInner workloadNetworkVMGroup, Context context) {
         return beginCreateVMGroupAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+            .last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -5966,17 +4761,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX VM Group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkVMGroupInner createVMGroup(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup) {
+    public WorkloadNetworkVMGroupInner createVMGroup(String resourceGroupName, String privateCloudName,
+        String vmGroupId, WorkloadNetworkVMGroupInner workloadNetworkVMGroup) {
         return createVMGroupAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup).block();
     }
 
     /**
      * Create a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -5988,19 +4780,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX VM Group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkVMGroupInner createVMGroup(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup,
-        Context context) {
+    public WorkloadNetworkVMGroupInner createVMGroup(String resourceGroupName, String privateCloudName,
+        String vmGroupId, WorkloadNetworkVMGroupInner workloadNetworkVMGroup, Context context) {
         return createVMGroupAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup, context)
             .block();
     }
 
     /**
      * Create or update a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -6011,22 +4799,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX VM Group along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateVMGroupWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup) {
+    private Mono<Response<Flux<ByteBuffer>>> updateVMGroupWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String vmGroupId, WorkloadNetworkVMGroupInner workloadNetworkVMGroup) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -6040,33 +4821,22 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter vmGroupId is required and cannot be null."));
         }
         if (workloadNetworkVMGroup == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter workloadNetworkVMGroup is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkVMGroup is required and cannot be null."));
         } else {
             workloadNetworkVMGroup.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .updateVMGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            vmGroupId,
-                            workloadNetworkVMGroup,
-                            accept,
-                            context))
+            .withContext(context -> service.updateVMGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, vmGroupId, workloadNetworkVMGroup,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -6078,23 +4848,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX VM Group along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateVMGroupWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup,
+    private Mono<Response<Flux<ByteBuffer>>> updateVMGroupWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String vmGroupId, WorkloadNetworkVMGroupInner workloadNetworkVMGroup,
         Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -6108,30 +4871,20 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter vmGroupId is required and cannot be null."));
         }
         if (workloadNetworkVMGroup == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter workloadNetworkVMGroup is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkVMGroup is required and cannot be null."));
         } else {
             workloadNetworkVMGroup.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .updateVMGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                vmGroupId,
-                workloadNetworkVMGroup,
-                accept,
-                context);
+        return service.updateVMGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, vmGroupId, workloadNetworkVMGroup, accept, context);
     }
 
     /**
      * Create or update a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -6143,25 +4896,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkVMGroupInner>, WorkloadNetworkVMGroupInner> beginUpdateVMGroupAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
+        String resourceGroupName, String privateCloudName, String vmGroupId,
         WorkloadNetworkVMGroupInner workloadNetworkVMGroup) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateVMGroupWithResponseAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup);
-        return this
-            .client
-            .<WorkloadNetworkVMGroupInner, WorkloadNetworkVMGroupInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkVMGroupInner.class,
-                WorkloadNetworkVMGroupInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateVMGroupWithResponseAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup);
+        return this.client.<WorkloadNetworkVMGroupInner, WorkloadNetworkVMGroupInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkVMGroupInner.class, WorkloadNetworkVMGroupInner.class,
+            this.client.getContext());
     }
 
     /**
      * Create or update a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -6174,28 +4920,19 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkVMGroupInner>, WorkloadNetworkVMGroupInner> beginUpdateVMGroupAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup,
-        Context context) {
+        String resourceGroupName, String privateCloudName, String vmGroupId,
+        WorkloadNetworkVMGroupInner workloadNetworkVMGroup, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateVMGroupWithResponseAsync(
-                resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup, context);
-        return this
-            .client
-            .<WorkloadNetworkVMGroupInner, WorkloadNetworkVMGroupInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkVMGroupInner.class,
-                WorkloadNetworkVMGroupInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono = updateVMGroupWithResponseAsync(resourceGroupName, privateCloudName,
+            vmGroupId, workloadNetworkVMGroup, context);
+        return this.client.<WorkloadNetworkVMGroupInner, WorkloadNetworkVMGroupInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkVMGroupInner.class, WorkloadNetworkVMGroupInner.class,
+            context);
     }
 
     /**
      * Create or update a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -6207,18 +4944,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkVMGroupInner>, WorkloadNetworkVMGroupInner> beginUpdateVMGroup(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
+        String resourceGroupName, String privateCloudName, String vmGroupId,
         WorkloadNetworkVMGroupInner workloadNetworkVMGroup) {
-        return this
-            .beginUpdateVMGroupAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup)
+        return this.beginUpdateVMGroupAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup)
             .getSyncPoller();
     }
 
     /**
      * Create or update a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -6231,11 +4965,8 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkVMGroupInner>, WorkloadNetworkVMGroupInner> beginUpdateVMGroup(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup,
-        Context context) {
+        String resourceGroupName, String privateCloudName, String vmGroupId,
+        WorkloadNetworkVMGroupInner workloadNetworkVMGroup, Context context) {
         return this
             .beginUpdateVMGroupAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup, context)
             .getSyncPoller();
@@ -6243,7 +4974,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Create or update a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -6254,19 +4985,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX VM Group on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkVMGroupInner> updateVMGroupAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup) {
-        return beginUpdateVMGroupAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup)
-            .last()
+    private Mono<WorkloadNetworkVMGroupInner> updateVMGroupAsync(String resourceGroupName, String privateCloudName,
+        String vmGroupId, WorkloadNetworkVMGroupInner workloadNetworkVMGroup) {
+        return beginUpdateVMGroupAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -6278,20 +5005,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX VM Group on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkVMGroupInner> updateVMGroupAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup,
-        Context context) {
+    private Mono<WorkloadNetworkVMGroupInner> updateVMGroupAsync(String resourceGroupName, String privateCloudName,
+        String vmGroupId, WorkloadNetworkVMGroupInner workloadNetworkVMGroup, Context context) {
         return beginUpdateVMGroupAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+            .last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -6302,17 +5024,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX VM Group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkVMGroupInner updateVMGroup(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup) {
+    public WorkloadNetworkVMGroupInner updateVMGroup(String resourceGroupName, String privateCloudName,
+        String vmGroupId, WorkloadNetworkVMGroupInner workloadNetworkVMGroup) {
         return updateVMGroupAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup).block();
     }
 
     /**
      * Create or update a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -6324,19 +5043,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX VM Group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkVMGroupInner updateVMGroup(
-        String resourceGroupName,
-        String privateCloudName,
-        String vmGroupId,
-        WorkloadNetworkVMGroupInner workloadNetworkVMGroup,
-        Context context) {
+    public WorkloadNetworkVMGroupInner updateVMGroup(String resourceGroupName, String privateCloudName,
+        String vmGroupId, WorkloadNetworkVMGroupInner workloadNetworkVMGroup, Context context) {
         return updateVMGroupAsync(resourceGroupName, privateCloudName, vmGroupId, workloadNetworkVMGroup, context)
             .block();
     }
 
     /**
      * Delete a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
      * @param privateCloudName Name of the private cloud.
@@ -6346,19 +5061,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteVMGroupWithResponseAsync(
-        String resourceGroupName, String vmGroupId, String privateCloudName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteVMGroupWithResponseAsync(String resourceGroupName, String vmGroupId,
+        String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -6373,24 +5084,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .deleteVMGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            vmGroupId,
-                            privateCloudName,
-                            accept,
-                            context))
+            .withContext(context -> service.deleteVMGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), vmGroupId, privateCloudName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
      * @param privateCloudName Name of the private cloud.
@@ -6401,19 +5102,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteVMGroupWithResponseAsync(
-        String resourceGroupName, String vmGroupId, String privateCloudName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteVMGroupWithResponseAsync(String resourceGroupName, String vmGroupId,
+        String privateCloudName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -6428,21 +5125,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .deleteVMGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                vmGroupId,
-                privateCloudName,
-                accept,
-                context);
+        return service.deleteVMGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), vmGroupId, privateCloudName, accept, context);
     }
 
     /**
      * Delete a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
      * @param privateCloudName Name of the private cloud.
@@ -6452,19 +5141,17 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteVMGroupAsync(
-        String resourceGroupName, String vmGroupId, String privateCloudName) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteVMGroupWithResponseAsync(resourceGroupName, vmGroupId, privateCloudName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    private PollerFlux<PollResult<Void>, Void> beginDeleteVMGroupAsync(String resourceGroupName, String vmGroupId,
+        String privateCloudName) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteVMGroupWithResponseAsync(resourceGroupName, vmGroupId, privateCloudName);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Delete a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
      * @param privateCloudName Name of the private cloud.
@@ -6475,19 +5162,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteVMGroupAsync(
-        String resourceGroupName, String vmGroupId, String privateCloudName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteVMGroupAsync(String resourceGroupName, String vmGroupId,
+        String privateCloudName, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteVMGroupWithResponseAsync(resourceGroupName, vmGroupId, privateCloudName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteVMGroupWithResponseAsync(resourceGroupName, vmGroupId, privateCloudName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Delete a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
      * @param privateCloudName Name of the private cloud.
@@ -6497,14 +5183,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDeleteVMGroup(
-        String resourceGroupName, String vmGroupId, String privateCloudName) {
+    public SyncPoller<PollResult<Void>, Void> beginDeleteVMGroup(String resourceGroupName, String vmGroupId,
+        String privateCloudName) {
         return this.beginDeleteVMGroupAsync(resourceGroupName, vmGroupId, privateCloudName).getSyncPoller();
     }
 
     /**
      * Delete a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
      * @param privateCloudName Name of the private cloud.
@@ -6515,14 +5201,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDeleteVMGroup(
-        String resourceGroupName, String vmGroupId, String privateCloudName, Context context) {
+    public SyncPoller<PollResult<Void>, Void> beginDeleteVMGroup(String resourceGroupName, String vmGroupId,
+        String privateCloudName, Context context) {
         return this.beginDeleteVMGroupAsync(resourceGroupName, vmGroupId, privateCloudName, context).getSyncPoller();
     }
 
     /**
      * Delete a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
      * @param privateCloudName Name of the private cloud.
@@ -6533,14 +5219,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteVMGroupAsync(String resourceGroupName, String vmGroupId, String privateCloudName) {
-        return beginDeleteVMGroupAsync(resourceGroupName, vmGroupId, privateCloudName)
-            .last()
+        return beginDeleteVMGroupAsync(resourceGroupName, vmGroupId, privateCloudName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
      * @param privateCloudName Name of the private cloud.
@@ -6551,16 +5236,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteVMGroupAsync(
-        String resourceGroupName, String vmGroupId, String privateCloudName, Context context) {
-        return beginDeleteVMGroupAsync(resourceGroupName, vmGroupId, privateCloudName, context)
-            .last()
+    private Mono<Void> deleteVMGroupAsync(String resourceGroupName, String vmGroupId, String privateCloudName,
+        Context context) {
+        return beginDeleteVMGroupAsync(resourceGroupName, vmGroupId, privateCloudName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
      * @param privateCloudName Name of the private cloud.
@@ -6575,7 +5259,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Delete a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
      * @param privateCloudName Name of the private cloud.
@@ -6591,7 +5275,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * List of virtual machines in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -6600,19 +5284,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Virtual Machines along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkVirtualMachineInner>> listVirtualMachinesSinglePageAsync(
-        String resourceGroupName, String privateCloudName) {
+    private Mono<PagedResponse<WorkloadNetworkVirtualMachineInner>>
+        listVirtualMachinesSinglePageAsync(String resourceGroupName, String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -6625,31 +5305,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .listVirtualMachines(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            accept,
-                            context))
-            .<PagedResponse<WorkloadNetworkVirtualMachineInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+                context -> service.listVirtualMachines(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, this.client.getApiVersion(), privateCloudName, accept, context))
+            .<PagedResponse<WorkloadNetworkVirtualMachineInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List of virtual machines in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -6659,19 +5324,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Virtual Machines along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkVirtualMachineInner>> listVirtualMachinesSinglePageAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkVirtualMachineInner>>
+        listVirtualMachinesSinglePageAsync(String resourceGroupName, String privateCloudName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -6684,28 +5345,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listVirtualMachines(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listVirtualMachines(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                this.client.getApiVersion(), privateCloudName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List of virtual machines in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -6714,16 +5362,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Virtual Machines as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkloadNetworkVirtualMachineInner> listVirtualMachinesAsync(
-        String resourceGroupName, String privateCloudName) {
-        return new PagedFlux<>(
-            () -> listVirtualMachinesSinglePageAsync(resourceGroupName, privateCloudName),
+    private PagedFlux<WorkloadNetworkVirtualMachineInner> listVirtualMachinesAsync(String resourceGroupName,
+        String privateCloudName) {
+        return new PagedFlux<>(() -> listVirtualMachinesSinglePageAsync(resourceGroupName, privateCloudName),
             nextLink -> listVirtualMachinesNextSinglePageAsync(nextLink));
     }
 
     /**
      * List of virtual machines in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -6733,16 +5380,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Virtual Machines as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkloadNetworkVirtualMachineInner> listVirtualMachinesAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
-        return new PagedFlux<>(
-            () -> listVirtualMachinesSinglePageAsync(resourceGroupName, privateCloudName, context),
+    private PagedFlux<WorkloadNetworkVirtualMachineInner> listVirtualMachinesAsync(String resourceGroupName,
+        String privateCloudName, Context context) {
+        return new PagedFlux<>(() -> listVirtualMachinesSinglePageAsync(resourceGroupName, privateCloudName, context),
             nextLink -> listVirtualMachinesNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List of virtual machines in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -6751,14 +5397,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Virtual Machines as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<WorkloadNetworkVirtualMachineInner> listVirtualMachines(
-        String resourceGroupName, String privateCloudName) {
+    public PagedIterable<WorkloadNetworkVirtualMachineInner> listVirtualMachines(String resourceGroupName,
+        String privateCloudName) {
         return new PagedIterable<>(listVirtualMachinesAsync(resourceGroupName, privateCloudName));
     }
 
     /**
      * List of virtual machines in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -6768,14 +5414,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Virtual Machines as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<WorkloadNetworkVirtualMachineInner> listVirtualMachines(
-        String resourceGroupName, String privateCloudName, Context context) {
+    public PagedIterable<WorkloadNetworkVirtualMachineInner> listVirtualMachines(String resourceGroupName,
+        String privateCloudName, Context context) {
         return new PagedIterable<>(listVirtualMachinesAsync(resourceGroupName, privateCloudName, context));
     }
 
     /**
      * Get a virtual machine by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param virtualMachineId Virtual Machine identifier.
@@ -6783,22 +5429,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a virtual machine by id in a private cloud workload network along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkloadNetworkVirtualMachineInner>> getVirtualMachineWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String virtualMachineId) {
+    private Mono<Response<WorkloadNetworkVirtualMachineInner>>
+        getVirtualMachineWithResponseAsync(String resourceGroupName, String privateCloudName, String virtualMachineId) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -6814,24 +5456,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getVirtualMachine(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            virtualMachineId,
-                            accept,
-                            context))
+            .withContext(context -> service.getVirtualMachine(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), resourceGroupName, this.client.getApiVersion(), privateCloudName,
+                virtualMachineId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a virtual machine by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param virtualMachineId Virtual Machine identifier.
@@ -6840,22 +5473,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a virtual machine by id in a private cloud workload network along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkloadNetworkVirtualMachineInner>> getVirtualMachineWithResponseAsync(
         String resourceGroupName, String privateCloudName, String virtualMachineId, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -6871,21 +5500,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getVirtualMachine(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                virtualMachineId,
-                accept,
-                context);
+        return service.getVirtualMachine(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, virtualMachineId, accept, context);
     }
 
     /**
      * Get a virtual machine by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param virtualMachineId Virtual Machine identifier.
@@ -6895,15 +5516,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a virtual machine by id in a private cloud workload network on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkVirtualMachineInner> getVirtualMachineAsync(
-        String resourceGroupName, String privateCloudName, String virtualMachineId) {
+    private Mono<WorkloadNetworkVirtualMachineInner> getVirtualMachineAsync(String resourceGroupName,
+        String privateCloudName, String virtualMachineId) {
         return getVirtualMachineWithResponseAsync(resourceGroupName, privateCloudName, virtualMachineId)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get a virtual machine by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param virtualMachineId Virtual Machine identifier.
@@ -6914,15 +5535,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a virtual machine by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<WorkloadNetworkVirtualMachineInner> getVirtualMachineWithResponse(
-        String resourceGroupName, String privateCloudName, String virtualMachineId, Context context) {
+    public Response<WorkloadNetworkVirtualMachineInner> getVirtualMachineWithResponse(String resourceGroupName,
+        String privateCloudName, String virtualMachineId, Context context) {
         return getVirtualMachineWithResponseAsync(resourceGroupName, privateCloudName, virtualMachineId, context)
             .block();
     }
 
     /**
      * Get a virtual machine by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param virtualMachineId Virtual Machine identifier.
@@ -6932,15 +5553,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a virtual machine by id in a private cloud workload network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkVirtualMachineInner getVirtualMachine(
-        String resourceGroupName, String privateCloudName, String virtualMachineId) {
+    public WorkloadNetworkVirtualMachineInner getVirtualMachine(String resourceGroupName, String privateCloudName,
+        String virtualMachineId) {
         return getVirtualMachineWithResponse(resourceGroupName, privateCloudName, virtualMachineId, Context.NONE)
             .getValue();
     }
 
     /**
      * List of DNS services in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -6949,19 +5570,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX DNS Services along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkDnsServiceInner>> listDnsServicesSinglePageAsync(
-        String resourceGroupName, String privateCloudName) {
+    private Mono<PagedResponse<WorkloadNetworkDnsServiceInner>> listDnsServicesSinglePageAsync(String resourceGroupName,
+        String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -6973,32 +5590,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listDnsServices(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            accept,
-                            context))
-            .<PagedResponse<WorkloadNetworkDnsServiceInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listDnsServices(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, accept, context))
+            .<PagedResponse<WorkloadNetworkDnsServiceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List of DNS services in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -7008,19 +5609,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX DNS Services along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkDnsServiceInner>> listDnsServicesSinglePageAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkDnsServiceInner>> listDnsServicesSinglePageAsync(String resourceGroupName,
+        String privateCloudName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -7033,28 +5630,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listDnsServices(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listDnsServices(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                this.client.getApiVersion(), privateCloudName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List of DNS services in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -7063,16 +5647,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX DNS Services as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkloadNetworkDnsServiceInner> listDnsServicesAsync(
-        String resourceGroupName, String privateCloudName) {
-        return new PagedFlux<>(
-            () -> listDnsServicesSinglePageAsync(resourceGroupName, privateCloudName),
+    private PagedFlux<WorkloadNetworkDnsServiceInner> listDnsServicesAsync(String resourceGroupName,
+        String privateCloudName) {
+        return new PagedFlux<>(() -> listDnsServicesSinglePageAsync(resourceGroupName, privateCloudName),
             nextLink -> listDnsServicesNextSinglePageAsync(nextLink));
     }
 
     /**
      * List of DNS services in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -7082,16 +5665,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX DNS Services as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkloadNetworkDnsServiceInner> listDnsServicesAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
-        return new PagedFlux<>(
-            () -> listDnsServicesSinglePageAsync(resourceGroupName, privateCloudName, context),
+    private PagedFlux<WorkloadNetworkDnsServiceInner> listDnsServicesAsync(String resourceGroupName,
+        String privateCloudName, Context context) {
+        return new PagedFlux<>(() -> listDnsServicesSinglePageAsync(resourceGroupName, privateCloudName, context),
             nextLink -> listDnsServicesNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List of DNS services in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -7100,14 +5682,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX DNS Services as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<WorkloadNetworkDnsServiceInner> listDnsServices(
-        String resourceGroupName, String privateCloudName) {
+    public PagedIterable<WorkloadNetworkDnsServiceInner> listDnsServices(String resourceGroupName,
+        String privateCloudName) {
         return new PagedIterable<>(listDnsServicesAsync(resourceGroupName, privateCloudName));
     }
 
     /**
      * List of DNS services in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -7117,14 +5699,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX DNS Services as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<WorkloadNetworkDnsServiceInner> listDnsServices(
-        String resourceGroupName, String privateCloudName, Context context) {
+    public PagedIterable<WorkloadNetworkDnsServiceInner> listDnsServices(String resourceGroupName,
+        String privateCloudName, Context context) {
         return new PagedIterable<>(listDnsServicesAsync(resourceGroupName, privateCloudName, context));
     }
 
     /**
      * Get a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7132,22 +5714,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a DNS service by id in a private cloud workload network along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkloadNetworkDnsServiceInner>> getDnsServiceWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String dnsServiceId) {
+    private Mono<Response<WorkloadNetworkDnsServiceInner>> getDnsServiceWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String dnsServiceId) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -7162,24 +5740,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getDnsService(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            dnsServiceId,
-                            accept,
-                            context))
+            .withContext(context -> service.getDnsService(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, dnsServiceId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7188,22 +5756,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a DNS service by id in a private cloud workload network along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkloadNetworkDnsServiceInner>> getDnsServiceWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String dnsServiceId, Context context) {
+    private Mono<Response<WorkloadNetworkDnsServiceInner>> getDnsServiceWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String dnsServiceId, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -7218,21 +5782,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getDnsService(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                dnsServiceId,
-                accept,
-                context);
+        return service.getDnsService(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, dnsServiceId, accept, context);
     }
 
     /**
      * Get a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7242,15 +5798,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a DNS service by id in a private cloud workload network on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkDnsServiceInner> getDnsServiceAsync(
-        String resourceGroupName, String privateCloudName, String dnsServiceId) {
+    private Mono<WorkloadNetworkDnsServiceInner> getDnsServiceAsync(String resourceGroupName, String privateCloudName,
+        String dnsServiceId) {
         return getDnsServiceWithResponseAsync(resourceGroupName, privateCloudName, dnsServiceId)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7261,14 +5817,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a DNS service by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<WorkloadNetworkDnsServiceInner> getDnsServiceWithResponse(
-        String resourceGroupName, String privateCloudName, String dnsServiceId, Context context) {
+    public Response<WorkloadNetworkDnsServiceInner> getDnsServiceWithResponse(String resourceGroupName,
+        String privateCloudName, String dnsServiceId, Context context) {
         return getDnsServiceWithResponseAsync(resourceGroupName, privateCloudName, dnsServiceId, context).block();
     }
 
     /**
      * Get a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7278,14 +5834,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a DNS service by id in a private cloud workload network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkDnsServiceInner getDnsService(
-        String resourceGroupName, String privateCloudName, String dnsServiceId) {
+    public WorkloadNetworkDnsServiceInner getDnsService(String resourceGroupName, String privateCloudName,
+        String dnsServiceId) {
         return getDnsServiceWithResponse(resourceGroupName, privateCloudName, dnsServiceId, Context.NONE).getValue();
     }
 
     /**
      * Create a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7296,22 +5852,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Service along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createDnsServiceWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService) {
+    private Mono<Response<Flux<ByteBuffer>>> createDnsServiceWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String dnsServiceId, WorkloadNetworkDnsServiceInner workloadNetworkDnsService) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -7325,34 +5874,22 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter dnsServiceId is required and cannot be null."));
         }
         if (workloadNetworkDnsService == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter workloadNetworkDnsService is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkDnsService is required and cannot be null."));
         } else {
             workloadNetworkDnsService.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createDnsService(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            dnsServiceId,
-                            workloadNetworkDnsService,
-                            accept,
-                            context))
+            .withContext(context -> service.createDnsService(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, dnsServiceId,
+                workloadNetworkDnsService, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7364,23 +5901,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Service along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createDnsServiceWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
+    private Mono<Response<Flux<ByteBuffer>>> createDnsServiceWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String dnsServiceId, WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
         Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -7394,31 +5924,20 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter dnsServiceId is required and cannot be null."));
         }
         if (workloadNetworkDnsService == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter workloadNetworkDnsService is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkDnsService is required and cannot be null."));
         } else {
             workloadNetworkDnsService.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createDnsService(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                dnsServiceId,
-                workloadNetworkDnsService,
-                accept,
-                context);
+        return service.createDnsService(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, dnsServiceId, workloadNetworkDnsService, accept, context);
     }
 
     /**
      * Create a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7430,27 +5949,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkDnsServiceInner>, WorkloadNetworkDnsServiceInner>
-        beginCreateDnsServiceAsync(
-            String resourceGroupName,
-            String privateCloudName,
-            String dnsServiceId,
+        beginCreateDnsServiceAsync(String resourceGroupName, String privateCloudName, String dnsServiceId,
             WorkloadNetworkDnsServiceInner workloadNetworkDnsService) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createDnsServiceWithResponseAsync(
-                resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService);
-        return this
-            .client
-            .<WorkloadNetworkDnsServiceInner, WorkloadNetworkDnsServiceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkDnsServiceInner.class,
-                WorkloadNetworkDnsServiceInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono = createDnsServiceWithResponseAsync(resourceGroupName, privateCloudName,
+            dnsServiceId, workloadNetworkDnsService);
+        return this.client.<WorkloadNetworkDnsServiceInner, WorkloadNetworkDnsServiceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkDnsServiceInner.class, WorkloadNetworkDnsServiceInner.class,
+            this.client.getContext());
     }
 
     /**
      * Create a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7463,29 +5973,19 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkDnsServiceInner>, WorkloadNetworkDnsServiceInner>
-        beginCreateDnsServiceAsync(
-            String resourceGroupName,
-            String privateCloudName,
-            String dnsServiceId,
-            WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
-            Context context) {
+        beginCreateDnsServiceAsync(String resourceGroupName, String privateCloudName, String dnsServiceId,
+            WorkloadNetworkDnsServiceInner workloadNetworkDnsService, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createDnsServiceWithResponseAsync(
-                resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService, context);
-        return this
-            .client
-            .<WorkloadNetworkDnsServiceInner, WorkloadNetworkDnsServiceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkDnsServiceInner.class,
-                WorkloadNetworkDnsServiceInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createDnsServiceWithResponseAsync(resourceGroupName, privateCloudName,
+            dnsServiceId, workloadNetworkDnsService, context);
+        return this.client.<WorkloadNetworkDnsServiceInner, WorkloadNetworkDnsServiceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkDnsServiceInner.class, WorkloadNetworkDnsServiceInner.class,
+            context);
     }
 
     /**
      * Create a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7497,9 +5997,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkDnsServiceInner>, WorkloadNetworkDnsServiceInner> beginCreateDnsService(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
+        String resourceGroupName, String privateCloudName, String dnsServiceId,
         WorkloadNetworkDnsServiceInner workloadNetworkDnsService) {
         return this
             .beginCreateDnsServiceAsync(resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService)
@@ -7508,7 +6006,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Create a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7521,20 +6019,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkDnsServiceInner>, WorkloadNetworkDnsServiceInner> beginCreateDnsService(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
-        Context context) {
-        return this
-            .beginCreateDnsServiceAsync(
-                resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService, context)
-            .getSyncPoller();
+        String resourceGroupName, String privateCloudName, String dnsServiceId,
+        WorkloadNetworkDnsServiceInner workloadNetworkDnsService, Context context) {
+        return this.beginCreateDnsServiceAsync(resourceGroupName, privateCloudName, dnsServiceId,
+            workloadNetworkDnsService, context).getSyncPoller();
     }
 
     /**
      * Create a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7545,19 +6038,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Service on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkDnsServiceInner> createDnsServiceAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService) {
+    private Mono<WorkloadNetworkDnsServiceInner> createDnsServiceAsync(String resourceGroupName,
+        String privateCloudName, String dnsServiceId, WorkloadNetworkDnsServiceInner workloadNetworkDnsService) {
         return beginCreateDnsServiceAsync(resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+            .last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7569,21 +6058,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Service on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkDnsServiceInner> createDnsServiceAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
+    private Mono<WorkloadNetworkDnsServiceInner> createDnsServiceAsync(String resourceGroupName,
+        String privateCloudName, String dnsServiceId, WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
         Context context) {
-        return beginCreateDnsServiceAsync(
-                resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return beginCreateDnsServiceAsync(resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService,
+            context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7594,18 +6078,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkDnsServiceInner createDnsService(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService) {
+    public WorkloadNetworkDnsServiceInner createDnsService(String resourceGroupName, String privateCloudName,
+        String dnsServiceId, WorkloadNetworkDnsServiceInner workloadNetworkDnsService) {
         return createDnsServiceAsync(resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService)
             .block();
     }
 
     /**
      * Create a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7617,20 +6098,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkDnsServiceInner createDnsService(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
-        Context context) {
-        return createDnsServiceAsync(
-                resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService, context)
-            .block();
+    public WorkloadNetworkDnsServiceInner createDnsService(String resourceGroupName, String privateCloudName,
+        String dnsServiceId, WorkloadNetworkDnsServiceInner workloadNetworkDnsService, Context context) {
+        return createDnsServiceAsync(resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService,
+            context).block();
     }
 
     /**
      * Create or update a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7641,22 +6117,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Service along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateDnsServiceWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService) {
+    private Mono<Response<Flux<ByteBuffer>>> updateDnsServiceWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String dnsServiceId, WorkloadNetworkDnsServiceInner workloadNetworkDnsService) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -7670,34 +6139,22 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter dnsServiceId is required and cannot be null."));
         }
         if (workloadNetworkDnsService == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter workloadNetworkDnsService is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkDnsService is required and cannot be null."));
         } else {
             workloadNetworkDnsService.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .updateDnsService(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            dnsServiceId,
-                            workloadNetworkDnsService,
-                            accept,
-                            context))
+            .withContext(context -> service.updateDnsService(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, dnsServiceId,
+                workloadNetworkDnsService, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7709,23 +6166,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Service along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateDnsServiceWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
+    private Mono<Response<Flux<ByteBuffer>>> updateDnsServiceWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String dnsServiceId, WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
         Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -7739,31 +6189,20 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter dnsServiceId is required and cannot be null."));
         }
         if (workloadNetworkDnsService == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter workloadNetworkDnsService is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkDnsService is required and cannot be null."));
         } else {
             workloadNetworkDnsService.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .updateDnsService(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                dnsServiceId,
-                workloadNetworkDnsService,
-                accept,
-                context);
+        return service.updateDnsService(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, dnsServiceId, workloadNetworkDnsService, accept, context);
     }
 
     /**
      * Create or update a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7775,27 +6214,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkDnsServiceInner>, WorkloadNetworkDnsServiceInner>
-        beginUpdateDnsServiceAsync(
-            String resourceGroupName,
-            String privateCloudName,
-            String dnsServiceId,
+        beginUpdateDnsServiceAsync(String resourceGroupName, String privateCloudName, String dnsServiceId,
             WorkloadNetworkDnsServiceInner workloadNetworkDnsService) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateDnsServiceWithResponseAsync(
-                resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService);
-        return this
-            .client
-            .<WorkloadNetworkDnsServiceInner, WorkloadNetworkDnsServiceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkDnsServiceInner.class,
-                WorkloadNetworkDnsServiceInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono = updateDnsServiceWithResponseAsync(resourceGroupName, privateCloudName,
+            dnsServiceId, workloadNetworkDnsService);
+        return this.client.<WorkloadNetworkDnsServiceInner, WorkloadNetworkDnsServiceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkDnsServiceInner.class, WorkloadNetworkDnsServiceInner.class,
+            this.client.getContext());
     }
 
     /**
      * Create or update a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7808,29 +6238,19 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkDnsServiceInner>, WorkloadNetworkDnsServiceInner>
-        beginUpdateDnsServiceAsync(
-            String resourceGroupName,
-            String privateCloudName,
-            String dnsServiceId,
-            WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
-            Context context) {
+        beginUpdateDnsServiceAsync(String resourceGroupName, String privateCloudName, String dnsServiceId,
+            WorkloadNetworkDnsServiceInner workloadNetworkDnsService, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateDnsServiceWithResponseAsync(
-                resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService, context);
-        return this
-            .client
-            .<WorkloadNetworkDnsServiceInner, WorkloadNetworkDnsServiceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkDnsServiceInner.class,
-                WorkloadNetworkDnsServiceInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono = updateDnsServiceWithResponseAsync(resourceGroupName, privateCloudName,
+            dnsServiceId, workloadNetworkDnsService, context);
+        return this.client.<WorkloadNetworkDnsServiceInner, WorkloadNetworkDnsServiceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkDnsServiceInner.class, WorkloadNetworkDnsServiceInner.class,
+            context);
     }
 
     /**
      * Create or update a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7842,9 +6262,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkDnsServiceInner>, WorkloadNetworkDnsServiceInner> beginUpdateDnsService(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
+        String resourceGroupName, String privateCloudName, String dnsServiceId,
         WorkloadNetworkDnsServiceInner workloadNetworkDnsService) {
         return this
             .beginUpdateDnsServiceAsync(resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService)
@@ -7853,7 +6271,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Create or update a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7866,20 +6284,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkDnsServiceInner>, WorkloadNetworkDnsServiceInner> beginUpdateDnsService(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
-        Context context) {
-        return this
-            .beginUpdateDnsServiceAsync(
-                resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService, context)
-            .getSyncPoller();
+        String resourceGroupName, String privateCloudName, String dnsServiceId,
+        WorkloadNetworkDnsServiceInner workloadNetworkDnsService, Context context) {
+        return this.beginUpdateDnsServiceAsync(resourceGroupName, privateCloudName, dnsServiceId,
+            workloadNetworkDnsService, context).getSyncPoller();
     }
 
     /**
      * Create or update a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7890,19 +6303,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Service on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkDnsServiceInner> updateDnsServiceAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService) {
+    private Mono<WorkloadNetworkDnsServiceInner> updateDnsServiceAsync(String resourceGroupName,
+        String privateCloudName, String dnsServiceId, WorkloadNetworkDnsServiceInner workloadNetworkDnsService) {
         return beginUpdateDnsServiceAsync(resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+            .last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7914,21 +6323,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Service on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkDnsServiceInner> updateDnsServiceAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
+    private Mono<WorkloadNetworkDnsServiceInner> updateDnsServiceAsync(String resourceGroupName,
+        String privateCloudName, String dnsServiceId, WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
         Context context) {
-        return beginUpdateDnsServiceAsync(
-                resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return beginUpdateDnsServiceAsync(resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService,
+            context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7939,18 +6343,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkDnsServiceInner updateDnsService(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService) {
+    public WorkloadNetworkDnsServiceInner updateDnsService(String resourceGroupName, String privateCloudName,
+        String dnsServiceId, WorkloadNetworkDnsServiceInner workloadNetworkDnsService) {
         return updateDnsServiceAsync(resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService)
             .block();
     }
 
     /**
      * Create or update a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -7962,20 +6363,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkDnsServiceInner updateDnsService(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsServiceId,
-        WorkloadNetworkDnsServiceInner workloadNetworkDnsService,
-        Context context) {
-        return updateDnsServiceAsync(
-                resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService, context)
-            .block();
+    public WorkloadNetworkDnsServiceInner updateDnsService(String resourceGroupName, String privateCloudName,
+        String dnsServiceId, WorkloadNetworkDnsServiceInner workloadNetworkDnsService, Context context) {
+        return updateDnsServiceAsync(resourceGroupName, privateCloudName, dnsServiceId, workloadNetworkDnsService,
+            context).block();
     }
 
     /**
      * Delete a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
      * @param privateCloudName Name of the private cloud.
@@ -7985,19 +6381,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteDnsServiceWithResponseAsync(
-        String resourceGroupName, String dnsServiceId, String privateCloudName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteDnsServiceWithResponseAsync(String resourceGroupName,
+        String dnsServiceId, String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -8012,24 +6404,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .deleteDnsService(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            dnsServiceId,
-                            privateCloudName,
-                            accept,
-                            context))
+            .withContext(context -> service.deleteDnsService(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), dnsServiceId, privateCloudName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
      * @param privateCloudName Name of the private cloud.
@@ -8040,19 +6422,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteDnsServiceWithResponseAsync(
-        String resourceGroupName, String dnsServiceId, String privateCloudName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteDnsServiceWithResponseAsync(String resourceGroupName,
+        String dnsServiceId, String privateCloudName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -8067,21 +6445,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .deleteDnsService(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                dnsServiceId,
-                privateCloudName,
-                accept,
-                context);
+        return service.deleteDnsService(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), dnsServiceId, privateCloudName, accept, context);
     }
 
     /**
      * Delete a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
      * @param privateCloudName Name of the private cloud.
@@ -8091,19 +6461,17 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteDnsServiceAsync(
-        String resourceGroupName, String dnsServiceId, String privateCloudName) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteDnsServiceWithResponseAsync(resourceGroupName, dnsServiceId, privateCloudName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    private PollerFlux<PollResult<Void>, Void> beginDeleteDnsServiceAsync(String resourceGroupName, String dnsServiceId,
+        String privateCloudName) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteDnsServiceWithResponseAsync(resourceGroupName, dnsServiceId, privateCloudName);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Delete a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
      * @param privateCloudName Name of the private cloud.
@@ -8114,19 +6482,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteDnsServiceAsync(
-        String resourceGroupName, String dnsServiceId, String privateCloudName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteDnsServiceAsync(String resourceGroupName, String dnsServiceId,
+        String privateCloudName, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteDnsServiceWithResponseAsync(resourceGroupName, dnsServiceId, privateCloudName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteDnsServiceWithResponseAsync(resourceGroupName, dnsServiceId, privateCloudName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Delete a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
      * @param privateCloudName Name of the private cloud.
@@ -8136,14 +6503,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDeleteDnsService(
-        String resourceGroupName, String dnsServiceId, String privateCloudName) {
+    public SyncPoller<PollResult<Void>, Void> beginDeleteDnsService(String resourceGroupName, String dnsServiceId,
+        String privateCloudName) {
         return this.beginDeleteDnsServiceAsync(resourceGroupName, dnsServiceId, privateCloudName).getSyncPoller();
     }
 
     /**
      * Delete a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
      * @param privateCloudName Name of the private cloud.
@@ -8154,16 +6521,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDeleteDnsService(
-        String resourceGroupName, String dnsServiceId, String privateCloudName, Context context) {
-        return this
-            .beginDeleteDnsServiceAsync(resourceGroupName, dnsServiceId, privateCloudName, context)
+    public SyncPoller<PollResult<Void>, Void> beginDeleteDnsService(String resourceGroupName, String dnsServiceId,
+        String privateCloudName, Context context) {
+        return this.beginDeleteDnsServiceAsync(resourceGroupName, dnsServiceId, privateCloudName, context)
             .getSyncPoller();
     }
 
     /**
      * Delete a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
      * @param privateCloudName Name of the private cloud.
@@ -8174,14 +6540,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteDnsServiceAsync(String resourceGroupName, String dnsServiceId, String privateCloudName) {
-        return beginDeleteDnsServiceAsync(resourceGroupName, dnsServiceId, privateCloudName)
-            .last()
+        return beginDeleteDnsServiceAsync(resourceGroupName, dnsServiceId, privateCloudName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
      * @param privateCloudName Name of the private cloud.
@@ -8192,16 +6557,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteDnsServiceAsync(
-        String resourceGroupName, String dnsServiceId, String privateCloudName, Context context) {
-        return beginDeleteDnsServiceAsync(resourceGroupName, dnsServiceId, privateCloudName, context)
-            .last()
+    private Mono<Void> deleteDnsServiceAsync(String resourceGroupName, String dnsServiceId, String privateCloudName,
+        Context context) {
+        return beginDeleteDnsServiceAsync(resourceGroupName, dnsServiceId, privateCloudName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
      * @param privateCloudName Name of the private cloud.
@@ -8216,7 +6580,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Delete a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
      * @param privateCloudName Name of the private cloud.
@@ -8226,14 +6590,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteDnsService(
-        String resourceGroupName, String dnsServiceId, String privateCloudName, Context context) {
+    public void deleteDnsService(String resourceGroupName, String dnsServiceId, String privateCloudName,
+        Context context) {
         deleteDnsServiceAsync(resourceGroupName, dnsServiceId, privateCloudName, context).block();
     }
 
     /**
      * List of DNS zones in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -8242,19 +6606,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX DNS Zones along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkDnsZoneInner>> listDnsZonesSinglePageAsync(
-        String resourceGroupName, String privateCloudName) {
+    private Mono<PagedResponse<WorkloadNetworkDnsZoneInner>> listDnsZonesSinglePageAsync(String resourceGroupName,
+        String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -8266,32 +6626,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listDnsZones(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            accept,
-                            context))
-            .<PagedResponse<WorkloadNetworkDnsZoneInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listDnsZones(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, accept, context))
+            .<PagedResponse<WorkloadNetworkDnsZoneInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List of DNS zones in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -8301,19 +6645,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX DNS Zones along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkDnsZoneInner>> listDnsZonesSinglePageAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkDnsZoneInner>> listDnsZonesSinglePageAsync(String resourceGroupName,
+        String privateCloudName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -8326,28 +6666,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listDnsZones(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listDnsZones(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                this.client.getApiVersion(), privateCloudName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List of DNS zones in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -8356,16 +6683,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX DNS Zones as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkloadNetworkDnsZoneInner> listDnsZonesAsync(
-        String resourceGroupName, String privateCloudName) {
-        return new PagedFlux<>(
-            () -> listDnsZonesSinglePageAsync(resourceGroupName, privateCloudName),
+    private PagedFlux<WorkloadNetworkDnsZoneInner> listDnsZonesAsync(String resourceGroupName,
+        String privateCloudName) {
+        return new PagedFlux<>(() -> listDnsZonesSinglePageAsync(resourceGroupName, privateCloudName),
             nextLink -> listDnsZonesNextSinglePageAsync(nextLink));
     }
 
     /**
      * List of DNS zones in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -8375,16 +6701,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX DNS Zones as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkloadNetworkDnsZoneInner> listDnsZonesAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
-        return new PagedFlux<>(
-            () -> listDnsZonesSinglePageAsync(resourceGroupName, privateCloudName, context),
+    private PagedFlux<WorkloadNetworkDnsZoneInner> listDnsZonesAsync(String resourceGroupName, String privateCloudName,
+        Context context) {
+        return new PagedFlux<>(() -> listDnsZonesSinglePageAsync(resourceGroupName, privateCloudName, context),
             nextLink -> listDnsZonesNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List of DNS zones in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -8399,7 +6724,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * List of DNS zones in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -8409,14 +6734,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX DNS Zones as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<WorkloadNetworkDnsZoneInner> listDnsZones(
-        String resourceGroupName, String privateCloudName, Context context) {
+    public PagedIterable<WorkloadNetworkDnsZoneInner> listDnsZones(String resourceGroupName, String privateCloudName,
+        Context context) {
         return new PagedIterable<>(listDnsZonesAsync(resourceGroupName, privateCloudName, context));
     }
 
     /**
      * Get a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -8424,22 +6749,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a DNS zone by id in a private cloud workload network along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkloadNetworkDnsZoneInner>> getDnsZoneWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String dnsZoneId) {
+    private Mono<Response<WorkloadNetworkDnsZoneInner>> getDnsZoneWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String dnsZoneId) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -8454,24 +6775,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getDnsZone(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            dnsZoneId,
-                            accept,
-                            context))
+            .withContext(context -> service.getDnsZone(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, dnsZoneId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -8480,22 +6791,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a DNS zone by id in a private cloud workload network along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkloadNetworkDnsZoneInner>> getDnsZoneWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String dnsZoneId, Context context) {
+    private Mono<Response<WorkloadNetworkDnsZoneInner>> getDnsZoneWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String dnsZoneId, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -8510,21 +6817,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getDnsZone(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                dnsZoneId,
-                accept,
-                context);
+        return service.getDnsZone(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, dnsZoneId, accept, context);
     }
 
     /**
      * Get a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -8534,15 +6833,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a DNS zone by id in a private cloud workload network on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkDnsZoneInner> getDnsZoneAsync(
-        String resourceGroupName, String privateCloudName, String dnsZoneId) {
+    private Mono<WorkloadNetworkDnsZoneInner> getDnsZoneAsync(String resourceGroupName, String privateCloudName,
+        String dnsZoneId) {
         return getDnsZoneWithResponseAsync(resourceGroupName, privateCloudName, dnsZoneId)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -8553,14 +6852,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a DNS zone by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<WorkloadNetworkDnsZoneInner> getDnsZoneWithResponse(
-        String resourceGroupName, String privateCloudName, String dnsZoneId, Context context) {
+    public Response<WorkloadNetworkDnsZoneInner> getDnsZoneWithResponse(String resourceGroupName,
+        String privateCloudName, String dnsZoneId, Context context) {
         return getDnsZoneWithResponseAsync(resourceGroupName, privateCloudName, dnsZoneId, context).block();
     }
 
     /**
      * Get a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -8576,7 +6875,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Create a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -8587,22 +6886,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Zone along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createDnsZoneWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone) {
+    private Mono<Response<Flux<ByteBuffer>>> createDnsZoneWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String dnsZoneId, WorkloadNetworkDnsZoneInner workloadNetworkDnsZone) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -8616,33 +6908,22 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter dnsZoneId is required and cannot be null."));
         }
         if (workloadNetworkDnsZone == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter workloadNetworkDnsZone is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkDnsZone is required and cannot be null."));
         } else {
             workloadNetworkDnsZone.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createDnsZone(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            dnsZoneId,
-                            workloadNetworkDnsZone,
-                            accept,
-                            context))
+            .withContext(context -> service.createDnsZone(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, dnsZoneId, workloadNetworkDnsZone,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -8654,23 +6935,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Zone along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createDnsZoneWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone,
+    private Mono<Response<Flux<ByteBuffer>>> createDnsZoneWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String dnsZoneId, WorkloadNetworkDnsZoneInner workloadNetworkDnsZone,
         Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -8684,30 +6958,20 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter dnsZoneId is required and cannot be null."));
         }
         if (workloadNetworkDnsZone == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter workloadNetworkDnsZone is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkDnsZone is required and cannot be null."));
         } else {
             workloadNetworkDnsZone.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createDnsZone(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                dnsZoneId,
-                workloadNetworkDnsZone,
-                accept,
-                context);
+        return service.createDnsZone(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, dnsZoneId, workloadNetworkDnsZone, accept, context);
     }
 
     /**
      * Create a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -8719,25 +6983,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkDnsZoneInner>, WorkloadNetworkDnsZoneInner> beginCreateDnsZoneAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
+        String resourceGroupName, String privateCloudName, String dnsZoneId,
         WorkloadNetworkDnsZoneInner workloadNetworkDnsZone) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createDnsZoneWithResponseAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone);
-        return this
-            .client
-            .<WorkloadNetworkDnsZoneInner, WorkloadNetworkDnsZoneInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkDnsZoneInner.class,
-                WorkloadNetworkDnsZoneInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createDnsZoneWithResponseAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone);
+        return this.client.<WorkloadNetworkDnsZoneInner, WorkloadNetworkDnsZoneInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkDnsZoneInner.class, WorkloadNetworkDnsZoneInner.class,
+            this.client.getContext());
     }
 
     /**
      * Create a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -8750,28 +7007,19 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkDnsZoneInner>, WorkloadNetworkDnsZoneInner> beginCreateDnsZoneAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone,
-        Context context) {
+        String resourceGroupName, String privateCloudName, String dnsZoneId,
+        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createDnsZoneWithResponseAsync(
-                resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone, context);
-        return this
-            .client
-            .<WorkloadNetworkDnsZoneInner, WorkloadNetworkDnsZoneInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkDnsZoneInner.class,
-                WorkloadNetworkDnsZoneInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createDnsZoneWithResponseAsync(resourceGroupName, privateCloudName,
+            dnsZoneId, workloadNetworkDnsZone, context);
+        return this.client.<WorkloadNetworkDnsZoneInner, WorkloadNetworkDnsZoneInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkDnsZoneInner.class, WorkloadNetworkDnsZoneInner.class,
+            context);
     }
 
     /**
      * Create a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -8783,18 +7031,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkDnsZoneInner>, WorkloadNetworkDnsZoneInner> beginCreateDnsZone(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
+        String resourceGroupName, String privateCloudName, String dnsZoneId,
         WorkloadNetworkDnsZoneInner workloadNetworkDnsZone) {
-        return this
-            .beginCreateDnsZoneAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone)
+        return this.beginCreateDnsZoneAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone)
             .getSyncPoller();
     }
 
     /**
      * Create a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -8807,11 +7052,8 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkDnsZoneInner>, WorkloadNetworkDnsZoneInner> beginCreateDnsZone(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone,
-        Context context) {
+        String resourceGroupName, String privateCloudName, String dnsZoneId,
+        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone, Context context) {
         return this
             .beginCreateDnsZoneAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone, context)
             .getSyncPoller();
@@ -8819,7 +7061,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Create a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -8830,19 +7072,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Zone on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkDnsZoneInner> createDnsZoneAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone) {
-        return beginCreateDnsZoneAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone)
-            .last()
+    private Mono<WorkloadNetworkDnsZoneInner> createDnsZoneAsync(String resourceGroupName, String privateCloudName,
+        String dnsZoneId, WorkloadNetworkDnsZoneInner workloadNetworkDnsZone) {
+        return beginCreateDnsZoneAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -8854,20 +7092,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Zone on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkDnsZoneInner> createDnsZoneAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone,
-        Context context) {
+    private Mono<WorkloadNetworkDnsZoneInner> createDnsZoneAsync(String resourceGroupName, String privateCloudName,
+        String dnsZoneId, WorkloadNetworkDnsZoneInner workloadNetworkDnsZone, Context context) {
         return beginCreateDnsZoneAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+            .last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -8878,17 +7111,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Zone.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkDnsZoneInner createDnsZone(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone) {
+    public WorkloadNetworkDnsZoneInner createDnsZone(String resourceGroupName, String privateCloudName,
+        String dnsZoneId, WorkloadNetworkDnsZoneInner workloadNetworkDnsZone) {
         return createDnsZoneAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone).block();
     }
 
     /**
      * Create a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -8900,19 +7130,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Zone.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkDnsZoneInner createDnsZone(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone,
-        Context context) {
+    public WorkloadNetworkDnsZoneInner createDnsZone(String resourceGroupName, String privateCloudName,
+        String dnsZoneId, WorkloadNetworkDnsZoneInner workloadNetworkDnsZone, Context context) {
         return createDnsZoneAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone, context)
             .block();
     }
 
     /**
      * Create or update a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -8923,22 +7149,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Zone along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateDnsZoneWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone) {
+    private Mono<Response<Flux<ByteBuffer>>> updateDnsZoneWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String dnsZoneId, WorkloadNetworkDnsZoneInner workloadNetworkDnsZone) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -8952,33 +7171,22 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter dnsZoneId is required and cannot be null."));
         }
         if (workloadNetworkDnsZone == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter workloadNetworkDnsZone is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkDnsZone is required and cannot be null."));
         } else {
             workloadNetworkDnsZone.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .updateDnsZone(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            dnsZoneId,
-                            workloadNetworkDnsZone,
-                            accept,
-                            context))
+            .withContext(context -> service.updateDnsZone(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, dnsZoneId, workloadNetworkDnsZone,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -8990,23 +7198,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Zone along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateDnsZoneWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone,
+    private Mono<Response<Flux<ByteBuffer>>> updateDnsZoneWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String dnsZoneId, WorkloadNetworkDnsZoneInner workloadNetworkDnsZone,
         Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -9020,30 +7221,20 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter dnsZoneId is required and cannot be null."));
         }
         if (workloadNetworkDnsZone == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter workloadNetworkDnsZone is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkDnsZone is required and cannot be null."));
         } else {
             workloadNetworkDnsZone.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .updateDnsZone(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                dnsZoneId,
-                workloadNetworkDnsZone,
-                accept,
-                context);
+        return service.updateDnsZone(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, dnsZoneId, workloadNetworkDnsZone, accept, context);
     }
 
     /**
      * Create or update a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -9055,25 +7246,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkDnsZoneInner>, WorkloadNetworkDnsZoneInner> beginUpdateDnsZoneAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
+        String resourceGroupName, String privateCloudName, String dnsZoneId,
         WorkloadNetworkDnsZoneInner workloadNetworkDnsZone) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateDnsZoneWithResponseAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone);
-        return this
-            .client
-            .<WorkloadNetworkDnsZoneInner, WorkloadNetworkDnsZoneInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkDnsZoneInner.class,
-                WorkloadNetworkDnsZoneInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateDnsZoneWithResponseAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone);
+        return this.client.<WorkloadNetworkDnsZoneInner, WorkloadNetworkDnsZoneInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkDnsZoneInner.class, WorkloadNetworkDnsZoneInner.class,
+            this.client.getContext());
     }
 
     /**
      * Create or update a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -9086,28 +7270,19 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkDnsZoneInner>, WorkloadNetworkDnsZoneInner> beginUpdateDnsZoneAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone,
-        Context context) {
+        String resourceGroupName, String privateCloudName, String dnsZoneId,
+        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateDnsZoneWithResponseAsync(
-                resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone, context);
-        return this
-            .client
-            .<WorkloadNetworkDnsZoneInner, WorkloadNetworkDnsZoneInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkDnsZoneInner.class,
-                WorkloadNetworkDnsZoneInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono = updateDnsZoneWithResponseAsync(resourceGroupName, privateCloudName,
+            dnsZoneId, workloadNetworkDnsZone, context);
+        return this.client.<WorkloadNetworkDnsZoneInner, WorkloadNetworkDnsZoneInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkDnsZoneInner.class, WorkloadNetworkDnsZoneInner.class,
+            context);
     }
 
     /**
      * Create or update a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -9119,18 +7294,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkDnsZoneInner>, WorkloadNetworkDnsZoneInner> beginUpdateDnsZone(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
+        String resourceGroupName, String privateCloudName, String dnsZoneId,
         WorkloadNetworkDnsZoneInner workloadNetworkDnsZone) {
-        return this
-            .beginUpdateDnsZoneAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone)
+        return this.beginUpdateDnsZoneAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone)
             .getSyncPoller();
     }
 
     /**
      * Create or update a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -9143,11 +7315,8 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkDnsZoneInner>, WorkloadNetworkDnsZoneInner> beginUpdateDnsZone(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone,
-        Context context) {
+        String resourceGroupName, String privateCloudName, String dnsZoneId,
+        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone, Context context) {
         return this
             .beginUpdateDnsZoneAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone, context)
             .getSyncPoller();
@@ -9155,7 +7324,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Create or update a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -9166,19 +7335,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Zone on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkDnsZoneInner> updateDnsZoneAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone) {
-        return beginUpdateDnsZoneAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone)
-            .last()
+    private Mono<WorkloadNetworkDnsZoneInner> updateDnsZoneAsync(String resourceGroupName, String privateCloudName,
+        String dnsZoneId, WorkloadNetworkDnsZoneInner workloadNetworkDnsZone) {
+        return beginUpdateDnsZoneAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -9190,20 +7355,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Zone on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkDnsZoneInner> updateDnsZoneAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone,
-        Context context) {
+    private Mono<WorkloadNetworkDnsZoneInner> updateDnsZoneAsync(String resourceGroupName, String privateCloudName,
+        String dnsZoneId, WorkloadNetworkDnsZoneInner workloadNetworkDnsZone, Context context) {
         return beginUpdateDnsZoneAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+            .last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -9214,17 +7374,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Zone.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkDnsZoneInner updateDnsZone(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone) {
+    public WorkloadNetworkDnsZoneInner updateDnsZone(String resourceGroupName, String privateCloudName,
+        String dnsZoneId, WorkloadNetworkDnsZoneInner workloadNetworkDnsZone) {
         return updateDnsZoneAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone).block();
     }
 
     /**
      * Create or update a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -9236,19 +7393,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX DNS Zone.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkDnsZoneInner updateDnsZone(
-        String resourceGroupName,
-        String privateCloudName,
-        String dnsZoneId,
-        WorkloadNetworkDnsZoneInner workloadNetworkDnsZone,
-        Context context) {
+    public WorkloadNetworkDnsZoneInner updateDnsZone(String resourceGroupName, String privateCloudName,
+        String dnsZoneId, WorkloadNetworkDnsZoneInner workloadNetworkDnsZone, Context context) {
         return updateDnsZoneAsync(resourceGroupName, privateCloudName, dnsZoneId, workloadNetworkDnsZone, context)
             .block();
     }
 
     /**
      * Delete a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
      * @param privateCloudName Name of the private cloud.
@@ -9258,19 +7411,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteDnsZoneWithResponseAsync(
-        String resourceGroupName, String dnsZoneId, String privateCloudName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteDnsZoneWithResponseAsync(String resourceGroupName, String dnsZoneId,
+        String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -9285,24 +7434,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .deleteDnsZone(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            dnsZoneId,
-                            privateCloudName,
-                            accept,
-                            context))
+            .withContext(context -> service.deleteDnsZone(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), dnsZoneId, privateCloudName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
      * @param privateCloudName Name of the private cloud.
@@ -9313,19 +7452,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteDnsZoneWithResponseAsync(
-        String resourceGroupName, String dnsZoneId, String privateCloudName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteDnsZoneWithResponseAsync(String resourceGroupName, String dnsZoneId,
+        String privateCloudName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -9340,21 +7475,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .deleteDnsZone(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                dnsZoneId,
-                privateCloudName,
-                accept,
-                context);
+        return service.deleteDnsZone(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), dnsZoneId, privateCloudName, accept, context);
     }
 
     /**
      * Delete a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
      * @param privateCloudName Name of the private cloud.
@@ -9364,19 +7491,17 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteDnsZoneAsync(
-        String resourceGroupName, String dnsZoneId, String privateCloudName) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteDnsZoneWithResponseAsync(resourceGroupName, dnsZoneId, privateCloudName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    private PollerFlux<PollResult<Void>, Void> beginDeleteDnsZoneAsync(String resourceGroupName, String dnsZoneId,
+        String privateCloudName) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteDnsZoneWithResponseAsync(resourceGroupName, dnsZoneId, privateCloudName);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Delete a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
      * @param privateCloudName Name of the private cloud.
@@ -9387,19 +7512,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteDnsZoneAsync(
-        String resourceGroupName, String dnsZoneId, String privateCloudName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteDnsZoneAsync(String resourceGroupName, String dnsZoneId,
+        String privateCloudName, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteDnsZoneWithResponseAsync(resourceGroupName, dnsZoneId, privateCloudName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteDnsZoneWithResponseAsync(resourceGroupName, dnsZoneId, privateCloudName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Delete a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
      * @param privateCloudName Name of the private cloud.
@@ -9409,14 +7533,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDeleteDnsZone(
-        String resourceGroupName, String dnsZoneId, String privateCloudName) {
+    public SyncPoller<PollResult<Void>, Void> beginDeleteDnsZone(String resourceGroupName, String dnsZoneId,
+        String privateCloudName) {
         return this.beginDeleteDnsZoneAsync(resourceGroupName, dnsZoneId, privateCloudName).getSyncPoller();
     }
 
     /**
      * Delete a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
      * @param privateCloudName Name of the private cloud.
@@ -9427,14 +7551,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDeleteDnsZone(
-        String resourceGroupName, String dnsZoneId, String privateCloudName, Context context) {
+    public SyncPoller<PollResult<Void>, Void> beginDeleteDnsZone(String resourceGroupName, String dnsZoneId,
+        String privateCloudName, Context context) {
         return this.beginDeleteDnsZoneAsync(resourceGroupName, dnsZoneId, privateCloudName, context).getSyncPoller();
     }
 
     /**
      * Delete a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
      * @param privateCloudName Name of the private cloud.
@@ -9445,14 +7569,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteDnsZoneAsync(String resourceGroupName, String dnsZoneId, String privateCloudName) {
-        return beginDeleteDnsZoneAsync(resourceGroupName, dnsZoneId, privateCloudName)
-            .last()
+        return beginDeleteDnsZoneAsync(resourceGroupName, dnsZoneId, privateCloudName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
      * @param privateCloudName Name of the private cloud.
@@ -9463,16 +7586,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteDnsZoneAsync(
-        String resourceGroupName, String dnsZoneId, String privateCloudName, Context context) {
-        return beginDeleteDnsZoneAsync(resourceGroupName, dnsZoneId, privateCloudName, context)
-            .last()
+    private Mono<Void> deleteDnsZoneAsync(String resourceGroupName, String dnsZoneId, String privateCloudName,
+        Context context) {
+        return beginDeleteDnsZoneAsync(resourceGroupName, dnsZoneId, privateCloudName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
      * @param privateCloudName Name of the private cloud.
@@ -9487,7 +7609,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Delete a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
      * @param privateCloudName Name of the private cloud.
@@ -9503,7 +7625,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * List of Public IP Blocks in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -9512,19 +7634,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Public IP Blocks along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkPublicIpInner>> listPublicIPsSinglePageAsync(
-        String resourceGroupName, String privateCloudName) {
+    private Mono<PagedResponse<WorkloadNetworkPublicIpInner>> listPublicIPsSinglePageAsync(String resourceGroupName,
+        String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -9536,32 +7654,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listPublicIPs(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            accept,
-                            context))
-            .<PagedResponse<WorkloadNetworkPublicIpInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listPublicIPs(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, accept, context))
+            .<PagedResponse<WorkloadNetworkPublicIpInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List of Public IP Blocks in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -9571,19 +7673,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Public IP Blocks along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkPublicIpInner>> listPublicIPsSinglePageAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkPublicIpInner>> listPublicIPsSinglePageAsync(String resourceGroupName,
+        String privateCloudName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -9596,28 +7694,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listPublicIPs(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listPublicIPs(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                this.client.getApiVersion(), privateCloudName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List of Public IP Blocks in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -9626,16 +7711,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Public IP Blocks as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkloadNetworkPublicIpInner> listPublicIPsAsync(
-        String resourceGroupName, String privateCloudName) {
-        return new PagedFlux<>(
-            () -> listPublicIPsSinglePageAsync(resourceGroupName, privateCloudName),
+    private PagedFlux<WorkloadNetworkPublicIpInner> listPublicIPsAsync(String resourceGroupName,
+        String privateCloudName) {
+        return new PagedFlux<>(() -> listPublicIPsSinglePageAsync(resourceGroupName, privateCloudName),
             nextLink -> listPublicIPsNextSinglePageAsync(nextLink));
     }
 
     /**
      * List of Public IP Blocks in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -9645,16 +7729,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Public IP Blocks as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkloadNetworkPublicIpInner> listPublicIPsAsync(
-        String resourceGroupName, String privateCloudName, Context context) {
-        return new PagedFlux<>(
-            () -> listPublicIPsSinglePageAsync(resourceGroupName, privateCloudName, context),
+    private PagedFlux<WorkloadNetworkPublicIpInner> listPublicIPsAsync(String resourceGroupName,
+        String privateCloudName, Context context) {
+        return new PagedFlux<>(() -> listPublicIPsSinglePageAsync(resourceGroupName, privateCloudName, context),
             nextLink -> listPublicIPsNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List of Public IP Blocks in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -9663,14 +7746,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Public IP Blocks as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<WorkloadNetworkPublicIpInner> listPublicIPs(
-        String resourceGroupName, String privateCloudName) {
+    public PagedIterable<WorkloadNetworkPublicIpInner> listPublicIPs(String resourceGroupName,
+        String privateCloudName) {
         return new PagedIterable<>(listPublicIPsAsync(resourceGroupName, privateCloudName));
     }
 
     /**
      * List of Public IP Blocks in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -9680,14 +7763,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Public IP Blocks as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<WorkloadNetworkPublicIpInner> listPublicIPs(
-        String resourceGroupName, String privateCloudName, Context context) {
+    public PagedIterable<WorkloadNetworkPublicIpInner> listPublicIPs(String resourceGroupName, String privateCloudName,
+        Context context) {
         return new PagedIterable<>(listPublicIPsAsync(resourceGroupName, privateCloudName, context));
     }
 
     /**
      * Get a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -9695,22 +7778,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Public IP Block by id in a private cloud workload network along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkloadNetworkPublicIpInner>> getPublicIpWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String publicIpId) {
+    private Mono<Response<WorkloadNetworkPublicIpInner>> getPublicIpWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String publicIpId) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -9725,24 +7804,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getPublicIp(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            publicIpId,
-                            accept,
-                            context))
+            .withContext(context -> service.getPublicIp(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, publicIpId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -9751,22 +7820,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Public IP Block by id in a private cloud workload network along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkloadNetworkPublicIpInner>> getPublicIpWithResponseAsync(
-        String resourceGroupName, String privateCloudName, String publicIpId, Context context) {
+    private Mono<Response<WorkloadNetworkPublicIpInner>> getPublicIpWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String publicIpId, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -9781,21 +7846,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getPublicIp(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                publicIpId,
-                accept,
-                context);
+        return service.getPublicIp(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, publicIpId, accept, context);
     }
 
     /**
      * Get a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -9805,15 +7862,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a Public IP Block by id in a private cloud workload network on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkPublicIpInner> getPublicIpAsync(
-        String resourceGroupName, String privateCloudName, String publicIpId) {
+    private Mono<WorkloadNetworkPublicIpInner> getPublicIpAsync(String resourceGroupName, String privateCloudName,
+        String publicIpId) {
         return getPublicIpWithResponseAsync(resourceGroupName, privateCloudName, publicIpId)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -9824,14 +7881,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a Public IP Block by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<WorkloadNetworkPublicIpInner> getPublicIpWithResponse(
-        String resourceGroupName, String privateCloudName, String publicIpId, Context context) {
+    public Response<WorkloadNetworkPublicIpInner> getPublicIpWithResponse(String resourceGroupName,
+        String privateCloudName, String publicIpId, Context context) {
         return getPublicIpWithResponseAsync(resourceGroupName, privateCloudName, publicIpId, context).block();
     }
 
     /**
      * Get a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -9841,14 +7898,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a Public IP Block by id in a private cloud workload network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkPublicIpInner getPublicIp(
-        String resourceGroupName, String privateCloudName, String publicIpId) {
+    public WorkloadNetworkPublicIpInner getPublicIp(String resourceGroupName, String privateCloudName,
+        String publicIpId) {
         return getPublicIpWithResponse(resourceGroupName, privateCloudName, publicIpId, Context.NONE).getValue();
     }
 
     /**
      * Create a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -9859,22 +7916,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Public IP Block along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createPublicIpWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String publicIpId,
-        WorkloadNetworkPublicIpInner workloadNetworkPublicIp) {
+    private Mono<Response<Flux<ByteBuffer>>> createPublicIpWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String publicIpId, WorkloadNetworkPublicIpInner workloadNetworkPublicIp) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -9888,33 +7938,22 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter publicIpId is required and cannot be null."));
         }
         if (workloadNetworkPublicIp == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter workloadNetworkPublicIp is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkPublicIp is required and cannot be null."));
         } else {
             workloadNetworkPublicIp.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createPublicIp(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            privateCloudName,
-                            publicIpId,
-                            workloadNetworkPublicIp,
-                            accept,
-                            context))
+            .withContext(context -> service.createPublicIp(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), privateCloudName, publicIpId, workloadNetworkPublicIp,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -9926,23 +7965,16 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Public IP Block along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createPublicIpWithResponseAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String publicIpId,
-        WorkloadNetworkPublicIpInner workloadNetworkPublicIp,
+    private Mono<Response<Flux<ByteBuffer>>> createPublicIpWithResponseAsync(String resourceGroupName,
+        String privateCloudName, String publicIpId, WorkloadNetworkPublicIpInner workloadNetworkPublicIp,
         Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -9956,30 +7988,20 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter publicIpId is required and cannot be null."));
         }
         if (workloadNetworkPublicIp == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter workloadNetworkPublicIp is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter workloadNetworkPublicIp is required and cannot be null."));
         } else {
             workloadNetworkPublicIp.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createPublicIp(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                privateCloudName,
-                publicIpId,
-                workloadNetworkPublicIp,
-                accept,
-                context);
+        return service.createPublicIp(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), privateCloudName, publicIpId, workloadNetworkPublicIp, accept, context);
     }
 
     /**
      * Create a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -9991,25 +8013,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkPublicIpInner>, WorkloadNetworkPublicIpInner> beginCreatePublicIpAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String publicIpId,
+        String resourceGroupName, String privateCloudName, String publicIpId,
         WorkloadNetworkPublicIpInner workloadNetworkPublicIp) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createPublicIpWithResponseAsync(resourceGroupName, privateCloudName, publicIpId, workloadNetworkPublicIp);
-        return this
-            .client
-            .<WorkloadNetworkPublicIpInner, WorkloadNetworkPublicIpInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkPublicIpInner.class,
-                WorkloadNetworkPublicIpInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createPublicIpWithResponseAsync(resourceGroupName, privateCloudName, publicIpId, workloadNetworkPublicIp);
+        return this.client.<WorkloadNetworkPublicIpInner, WorkloadNetworkPublicIpInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkPublicIpInner.class, WorkloadNetworkPublicIpInner.class,
+            this.client.getContext());
     }
 
     /**
      * Create a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -10022,28 +8037,19 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadNetworkPublicIpInner>, WorkloadNetworkPublicIpInner> beginCreatePublicIpAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String publicIpId,
-        WorkloadNetworkPublicIpInner workloadNetworkPublicIp,
-        Context context) {
+        String resourceGroupName, String privateCloudName, String publicIpId,
+        WorkloadNetworkPublicIpInner workloadNetworkPublicIp, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createPublicIpWithResponseAsync(
-                resourceGroupName, privateCloudName, publicIpId, workloadNetworkPublicIp, context);
-        return this
-            .client
-            .<WorkloadNetworkPublicIpInner, WorkloadNetworkPublicIpInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                WorkloadNetworkPublicIpInner.class,
-                WorkloadNetworkPublicIpInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createPublicIpWithResponseAsync(resourceGroupName, privateCloudName,
+            publicIpId, workloadNetworkPublicIp, context);
+        return this.client.<WorkloadNetworkPublicIpInner, WorkloadNetworkPublicIpInner>getLroResult(mono,
+            this.client.getHttpPipeline(), WorkloadNetworkPublicIpInner.class, WorkloadNetworkPublicIpInner.class,
+            context);
     }
 
     /**
      * Create a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -10055,18 +8061,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkPublicIpInner>, WorkloadNetworkPublicIpInner> beginCreatePublicIp(
-        String resourceGroupName,
-        String privateCloudName,
-        String publicIpId,
+        String resourceGroupName, String privateCloudName, String publicIpId,
         WorkloadNetworkPublicIpInner workloadNetworkPublicIp) {
-        return this
-            .beginCreatePublicIpAsync(resourceGroupName, privateCloudName, publicIpId, workloadNetworkPublicIp)
+        return this.beginCreatePublicIpAsync(resourceGroupName, privateCloudName, publicIpId, workloadNetworkPublicIp)
             .getSyncPoller();
     }
 
     /**
      * Create a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -10079,11 +8082,8 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadNetworkPublicIpInner>, WorkloadNetworkPublicIpInner> beginCreatePublicIp(
-        String resourceGroupName,
-        String privateCloudName,
-        String publicIpId,
-        WorkloadNetworkPublicIpInner workloadNetworkPublicIp,
-        Context context) {
+        String resourceGroupName, String privateCloudName, String publicIpId,
+        WorkloadNetworkPublicIpInner workloadNetworkPublicIp, Context context) {
         return this
             .beginCreatePublicIpAsync(resourceGroupName, privateCloudName, publicIpId, workloadNetworkPublicIp, context)
             .getSyncPoller();
@@ -10091,7 +8091,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Create a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -10102,19 +8102,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Public IP Block on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkPublicIpInner> createPublicIpAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String publicIpId,
-        WorkloadNetworkPublicIpInner workloadNetworkPublicIp) {
-        return beginCreatePublicIpAsync(resourceGroupName, privateCloudName, publicIpId, workloadNetworkPublicIp)
-            .last()
+    private Mono<WorkloadNetworkPublicIpInner> createPublicIpAsync(String resourceGroupName, String privateCloudName,
+        String publicIpId, WorkloadNetworkPublicIpInner workloadNetworkPublicIp) {
+        return beginCreatePublicIpAsync(resourceGroupName, privateCloudName, publicIpId, workloadNetworkPublicIp).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -10126,21 +8122,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Public IP Block on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkloadNetworkPublicIpInner> createPublicIpAsync(
-        String resourceGroupName,
-        String privateCloudName,
-        String publicIpId,
-        WorkloadNetworkPublicIpInner workloadNetworkPublicIp,
-        Context context) {
-        return beginCreatePublicIpAsync(
-                resourceGroupName, privateCloudName, publicIpId, workloadNetworkPublicIp, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+    private Mono<WorkloadNetworkPublicIpInner> createPublicIpAsync(String resourceGroupName, String privateCloudName,
+        String publicIpId, WorkloadNetworkPublicIpInner workloadNetworkPublicIp, Context context) {
+        return beginCreatePublicIpAsync(resourceGroupName, privateCloudName, publicIpId, workloadNetworkPublicIp,
+            context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -10151,17 +8141,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Public IP Block.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkPublicIpInner createPublicIp(
-        String resourceGroupName,
-        String privateCloudName,
-        String publicIpId,
-        WorkloadNetworkPublicIpInner workloadNetworkPublicIp) {
+    public WorkloadNetworkPublicIpInner createPublicIp(String resourceGroupName, String privateCloudName,
+        String publicIpId, WorkloadNetworkPublicIpInner workloadNetworkPublicIp) {
         return createPublicIpAsync(resourceGroupName, privateCloudName, publicIpId, workloadNetworkPublicIp).block();
     }
 
     /**
      * Create a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -10173,19 +8160,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return nSX Public IP Block.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadNetworkPublicIpInner createPublicIp(
-        String resourceGroupName,
-        String privateCloudName,
-        String publicIpId,
-        WorkloadNetworkPublicIpInner workloadNetworkPublicIp,
-        Context context) {
+    public WorkloadNetworkPublicIpInner createPublicIp(String resourceGroupName, String privateCloudName,
+        String publicIpId, WorkloadNetworkPublicIpInner workloadNetworkPublicIp, Context context) {
         return createPublicIpAsync(resourceGroupName, privateCloudName, publicIpId, workloadNetworkPublicIp, context)
             .block();
     }
 
     /**
      * Delete a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
      * @param privateCloudName Name of the private cloud.
@@ -10195,19 +8178,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deletePublicIpWithResponseAsync(
-        String resourceGroupName, String publicIpId, String privateCloudName) {
+    private Mono<Response<Flux<ByteBuffer>>> deletePublicIpWithResponseAsync(String resourceGroupName,
+        String publicIpId, String privateCloudName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -10222,24 +8201,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .deletePublicIp(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            publicIpId,
-                            privateCloudName,
-                            accept,
-                            context))
+            .withContext(context -> service.deletePublicIp(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, this.client.getApiVersion(), publicIpId, privateCloudName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
      * @param privateCloudName Name of the private cloud.
@@ -10250,19 +8219,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deletePublicIpWithResponseAsync(
-        String resourceGroupName, String publicIpId, String privateCloudName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deletePublicIpWithResponseAsync(String resourceGroupName,
+        String publicIpId, String privateCloudName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -10277,21 +8242,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .deletePublicIp(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                publicIpId,
-                privateCloudName,
-                accept,
-                context);
+        return service.deletePublicIp(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            this.client.getApiVersion(), publicIpId, privateCloudName, accept, context);
     }
 
     /**
      * Delete a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
      * @param privateCloudName Name of the private cloud.
@@ -10301,19 +8258,17 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeletePublicIpAsync(
-        String resourceGroupName, String publicIpId, String privateCloudName) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deletePublicIpWithResponseAsync(resourceGroupName, publicIpId, privateCloudName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    private PollerFlux<PollResult<Void>, Void> beginDeletePublicIpAsync(String resourceGroupName, String publicIpId,
+        String privateCloudName) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deletePublicIpWithResponseAsync(resourceGroupName, publicIpId, privateCloudName);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Delete a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
      * @param privateCloudName Name of the private cloud.
@@ -10324,19 +8279,18 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeletePublicIpAsync(
-        String resourceGroupName, String publicIpId, String privateCloudName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeletePublicIpAsync(String resourceGroupName, String publicIpId,
+        String privateCloudName, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deletePublicIpWithResponseAsync(resourceGroupName, publicIpId, privateCloudName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deletePublicIpWithResponseAsync(resourceGroupName, publicIpId, privateCloudName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Delete a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
      * @param privateCloudName Name of the private cloud.
@@ -10346,14 +8300,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDeletePublicIp(
-        String resourceGroupName, String publicIpId, String privateCloudName) {
+    public SyncPoller<PollResult<Void>, Void> beginDeletePublicIp(String resourceGroupName, String publicIpId,
+        String privateCloudName) {
         return this.beginDeletePublicIpAsync(resourceGroupName, publicIpId, privateCloudName).getSyncPoller();
     }
 
     /**
      * Delete a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
      * @param privateCloudName Name of the private cloud.
@@ -10364,14 +8318,14 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDeletePublicIp(
-        String resourceGroupName, String publicIpId, String privateCloudName, Context context) {
+    public SyncPoller<PollResult<Void>, Void> beginDeletePublicIp(String resourceGroupName, String publicIpId,
+        String privateCloudName, Context context) {
         return this.beginDeletePublicIpAsync(resourceGroupName, publicIpId, privateCloudName, context).getSyncPoller();
     }
 
     /**
      * Delete a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
      * @param privateCloudName Name of the private cloud.
@@ -10382,14 +8336,13 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deletePublicIpAsync(String resourceGroupName, String publicIpId, String privateCloudName) {
-        return beginDeletePublicIpAsync(resourceGroupName, publicIpId, privateCloudName)
-            .last()
+        return beginDeletePublicIpAsync(resourceGroupName, publicIpId, privateCloudName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
      * @param privateCloudName Name of the private cloud.
@@ -10400,16 +8353,15 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deletePublicIpAsync(
-        String resourceGroupName, String publicIpId, String privateCloudName, Context context) {
-        return beginDeletePublicIpAsync(resourceGroupName, publicIpId, privateCloudName, context)
-            .last()
+    private Mono<Void> deletePublicIpAsync(String resourceGroupName, String publicIpId, String privateCloudName,
+        Context context) {
+        return beginDeletePublicIpAsync(resourceGroupName, publicIpId, privateCloudName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
      * @param privateCloudName Name of the private cloud.
@@ -10424,7 +8376,7 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Delete a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
      * @param privateCloudName Name of the private cloud.
@@ -10440,9 +8392,10 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -10454,31 +8407,22 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<WorkloadNetworkInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<WorkloadNetworkInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -10491,31 +8435,22 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -10527,31 +8462,23 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSegmentsNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<WorkloadNetworkSegmentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<WorkloadNetworkSegmentInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -10559,37 +8486,28 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Segments along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkSegmentInner>> listSegmentsNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkSegmentInner>> listSegmentsNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listSegmentsNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listSegmentsNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -10601,31 +8519,23 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listDhcpNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<WorkloadNetworkDhcpInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<WorkloadNetworkDhcpInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -10633,37 +8543,28 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX dhcp entities along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkDhcpInner>> listDhcpNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkDhcpInner>> listDhcpNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listDhcpNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listDhcpNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -10675,31 +8576,23 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listGatewaysNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<WorkloadNetworkGatewayInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<WorkloadNetworkGatewayInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -10707,74 +8600,57 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Gateways along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkGatewayInner>> listGatewaysNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkGatewayInner>> listGatewaysNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listGatewaysNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listGatewaysNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of NSX Port Mirroring along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkPortMirroringInner>> listPortMirroringNextSinglePageAsync(
-        String nextLink) {
+    private Mono<PagedResponse<WorkloadNetworkPortMirroringInner>>
+        listPortMirroringNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listPortMirroringNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<WorkloadNetworkPortMirroringInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<WorkloadNetworkPortMirroringInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -10782,37 +8658,28 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Port Mirroring along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkPortMirroringInner>> listPortMirroringNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkPortMirroringInner>> listPortMirroringNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listPortMirroringNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listPortMirroringNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -10824,31 +8691,23 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listVMGroupsNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<WorkloadNetworkVMGroupInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<WorkloadNetworkVMGroupInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -10856,75 +8715,58 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX VM Groups along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkVMGroupInner>> listVMGroupsNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkVMGroupInner>> listVMGroupsNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listVMGroupsNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listVMGroupsNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of NSX Virtual Machines along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkVirtualMachineInner>> listVirtualMachinesNextSinglePageAsync(
-        String nextLink) {
+    private Mono<PagedResponse<WorkloadNetworkVirtualMachineInner>>
+        listVirtualMachinesNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listVirtualMachinesNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<WorkloadNetworkVirtualMachineInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<WorkloadNetworkVirtualMachineInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -10932,37 +8774,28 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Virtual Machines along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkVirtualMachineInner>> listVirtualMachinesNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkVirtualMachineInner>>
+        listVirtualMachinesNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listVirtualMachinesNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listVirtualMachinesNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -10974,31 +8807,23 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listDnsServicesNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<WorkloadNetworkDnsServiceInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<WorkloadNetworkDnsServiceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -11006,37 +8831,28 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX DNS Services along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkDnsServiceInner>> listDnsServicesNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkDnsServiceInner>> listDnsServicesNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listDnsServicesNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listDnsServicesNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -11048,31 +8864,23 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listDnsZonesNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<WorkloadNetworkDnsZoneInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<WorkloadNetworkDnsZoneInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -11080,37 +8888,28 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX DNS Zones along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkDnsZoneInner>> listDnsZonesNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkDnsZoneInner>> listDnsZonesNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listDnsZonesNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listDnsZonesNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -11122,31 +8921,23 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listPublicIPsNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<WorkloadNetworkPublicIpInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<WorkloadNetworkPublicIpInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -11154,29 +8945,19 @@ public final class WorkloadNetworksClientImpl implements WorkloadNetworksClient 
      * @return a list of NSX Public IP Blocks along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkloadNetworkPublicIpInner>> listPublicIPsNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<WorkloadNetworkPublicIpInner>> listPublicIPsNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listPublicIPsNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listPublicIPsNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

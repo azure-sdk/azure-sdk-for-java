@@ -11,11 +11,13 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.avs.fluent.models.HcxEnterpriseSiteInner;
 
-/** An instance of this class provides access to all the operations defined in HcxEnterpriseSitesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in HcxEnterpriseSitesClient.
+ */
 public interface HcxEnterpriseSitesClient {
     /**
      * List HCX on-premises key in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -28,7 +30,7 @@ public interface HcxEnterpriseSitesClient {
 
     /**
      * List HCX on-premises key in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -42,7 +44,7 @@ public interface HcxEnterpriseSitesClient {
 
     /**
      * Get an HCX on-premises key by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param hcxEnterpriseSiteName Name of the HCX Enterprise Site in the private cloud.
@@ -53,12 +55,12 @@ public interface HcxEnterpriseSitesClient {
      * @return an HCX on-premises key by name in a private cloud along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<HcxEnterpriseSiteInner> getWithResponse(
-        String resourceGroupName, String privateCloudName, String hcxEnterpriseSiteName, Context context);
+    Response<HcxEnterpriseSiteInner> getWithResponse(String resourceGroupName, String privateCloudName,
+        String hcxEnterpriseSiteName, Context context);
 
     /**
      * Get an HCX on-premises key by name in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param hcxEnterpriseSiteName Name of the HCX Enterprise Site in the private cloud.
@@ -72,7 +74,7 @@ public interface HcxEnterpriseSitesClient {
 
     /**
      * Create or update an activation key for on-premises HCX site.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param hcxEnterpriseSiteName Name of the HCX Enterprise Site in the private cloud.
@@ -84,16 +86,12 @@ public interface HcxEnterpriseSitesClient {
      * @return an HCX Enterprise Site resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<HcxEnterpriseSiteInner> createOrUpdateWithResponse(
-        String resourceGroupName,
-        String privateCloudName,
-        String hcxEnterpriseSiteName,
-        HcxEnterpriseSiteInner hcxEnterpriseSite,
-        Context context);
+    Response<HcxEnterpriseSiteInner> createOrUpdateWithResponse(String resourceGroupName, String privateCloudName,
+        String hcxEnterpriseSiteName, HcxEnterpriseSiteInner hcxEnterpriseSite, Context context);
 
     /**
      * Create or update an activation key for on-premises HCX site.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName The name of the private cloud.
      * @param hcxEnterpriseSiteName Name of the HCX Enterprise Site in the private cloud.
@@ -104,15 +102,12 @@ public interface HcxEnterpriseSitesClient {
      * @return an HCX Enterprise Site resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    HcxEnterpriseSiteInner createOrUpdate(
-        String resourceGroupName,
-        String privateCloudName,
-        String hcxEnterpriseSiteName,
-        HcxEnterpriseSiteInner hcxEnterpriseSite);
+    HcxEnterpriseSiteInner createOrUpdate(String resourceGroupName, String privateCloudName,
+        String hcxEnterpriseSiteName, HcxEnterpriseSiteInner hcxEnterpriseSite);
 
     /**
      * Delete HCX on-premises key in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param hcxEnterpriseSiteName Name of the HCX Enterprise Site in the private cloud.
@@ -123,12 +118,12 @@ public interface HcxEnterpriseSitesClient {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> deleteWithResponse(
-        String resourceGroupName, String privateCloudName, String hcxEnterpriseSiteName, Context context);
+    Response<Void> deleteWithResponse(String resourceGroupName, String privateCloudName, String hcxEnterpriseSiteName,
+        Context context);
 
     /**
      * Delete HCX on-premises key in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param hcxEnterpriseSiteName Name of the HCX Enterprise Site in the private cloud.

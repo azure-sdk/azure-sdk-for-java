@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.avs.models.CloudLinkStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A cloud link resource. */
+/**
+ * A cloud link resource.
+ */
 @Fluent
 public final class CloudLinkInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class CloudLinkInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private CloudLinkProperties innerProperties;
 
-    /** Creates an instance of CloudLinkInner class. */
+    /**
+     * Creates an instance of CloudLinkInner class.
+     */
     public CloudLinkInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of a cloud link.
-     *
+     * 
      * @return the innerProperties value.
      */
     private CloudLinkProperties innerProperties() {
@@ -33,7 +37,7 @@ public final class CloudLinkInner extends ProxyResource {
 
     /**
      * Get the status property: The state of the cloud link.
-     *
+     * 
      * @return the status value.
      */
     public CloudLinkStatus status() {
@@ -42,7 +46,7 @@ public final class CloudLinkInner extends ProxyResource {
 
     /**
      * Get the linkedCloud property: Identifier of the other private cloud participating in the link.
-     *
+     * 
      * @return the linkedCloud value.
      */
     public String linkedCloud() {
@@ -51,7 +55,7 @@ public final class CloudLinkInner extends ProxyResource {
 
     /**
      * Set the linkedCloud property: Identifier of the other private cloud participating in the link.
-     *
+     * 
      * @param linkedCloud the linkedCloud value to set.
      * @return the CloudLinkInner object itself.
      */
@@ -65,7 +69,7 @@ public final class CloudLinkInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

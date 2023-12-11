@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.avs.models.PlacementPolicyProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A vSphere Distributed Resource Scheduler (DRS) placement policy. */
+/**
+ * A vSphere Distributed Resource Scheduler (DRS) placement policy.
+ */
 @Fluent
 public final class PlacementPolicyInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class PlacementPolicyInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private PlacementPolicyProperties properties;
 
-    /** Creates an instance of PlacementPolicyInner class. */
+    /**
+     * Creates an instance of PlacementPolicyInner class.
+     */
     public PlacementPolicyInner() {
     }
 
     /**
      * Get the properties property: placement policy properties.
-     *
+     * 
      * @return the properties value.
      */
     public PlacementPolicyProperties properties() {
@@ -33,7 +37,7 @@ public final class PlacementPolicyInner extends ProxyResource {
 
     /**
      * Set the properties property: placement policy properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the PlacementPolicyInner object itself.
      */
@@ -44,7 +48,7 @@ public final class PlacementPolicyInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

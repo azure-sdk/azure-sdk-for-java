@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** Base class for WorkloadNetworkDhcpServer and WorkloadNetworkDhcpRelay to inherit from. */
+/**
+ * Base class for WorkloadNetworkDhcpServer and WorkloadNetworkDhcpRelay to inherit from.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -20,8 +22,7 @@ import java.util.List;
 @JsonTypeName("WorkloadNetworkDhcpEntity")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "SERVER", value = WorkloadNetworkDhcpServer.class),
-    @JsonSubTypes.Type(name = "RELAY", value = WorkloadNetworkDhcpRelay.class)
-})
+    @JsonSubTypes.Type(name = "RELAY", value = WorkloadNetworkDhcpRelay.class) })
 @Fluent
 public class WorkloadNetworkDhcpEntity {
     /*
@@ -48,13 +49,15 @@ public class WorkloadNetworkDhcpEntity {
     @JsonProperty(value = "revision")
     private Long revision;
 
-    /** Creates an instance of WorkloadNetworkDhcpEntity class. */
+    /**
+     * Creates an instance of WorkloadNetworkDhcpEntity class.
+     */
     public WorkloadNetworkDhcpEntity() {
     }
 
     /**
      * Get the displayName property: Display name of the DHCP entity.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -63,7 +66,7 @@ public class WorkloadNetworkDhcpEntity {
 
     /**
      * Set the displayName property: Display name of the DHCP entity.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the WorkloadNetworkDhcpEntity object itself.
      */
@@ -74,7 +77,7 @@ public class WorkloadNetworkDhcpEntity {
 
     /**
      * Get the segments property: NSX Segments consuming DHCP.
-     *
+     * 
      * @return the segments value.
      */
     public List<String> segments() {
@@ -83,7 +86,7 @@ public class WorkloadNetworkDhcpEntity {
 
     /**
      * Get the provisioningState property: The provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public WorkloadNetworkDhcpProvisioningState provisioningState() {
@@ -92,7 +95,7 @@ public class WorkloadNetworkDhcpEntity {
 
     /**
      * Get the revision property: NSX revision number.
-     *
+     * 
      * @return the revision value.
      */
     public Long revision() {
@@ -101,7 +104,7 @@ public class WorkloadNetworkDhcpEntity {
 
     /**
      * Set the revision property: NSX revision number.
-     *
+     * 
      * @param revision the revision value to set.
      * @return the WorkloadNetworkDhcpEntity object itself.
      */
@@ -112,7 +115,7 @@ public class WorkloadNetworkDhcpEntity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.avs.fluent.models.OperationInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Pageable list of operations. */
+/**
+ * Pageable list of operations.
+ */
 @Immutable
 public final class OperationList {
     /*
@@ -24,13 +26,15 @@ public final class OperationList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of OperationList class. */
+    /**
+     * Creates an instance of OperationList class.
+     */
     public OperationList() {
     }
 
     /**
      * Get the value property: List of operations.
-     *
+     * 
      * @return the value value.
      */
     public List<OperationInner> value() {
@@ -39,7 +43,7 @@ public final class OperationList {
 
     /**
      * Get the nextLink property: URL to get the next page if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class OperationList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

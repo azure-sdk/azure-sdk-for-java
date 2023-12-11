@@ -11,10 +11,8 @@ import com.azure.resourcemanager.avs.models.PortMirroringStatusEnum;
 import com.azure.resourcemanager.avs.models.WorkloadNetworkPortMirroring;
 import com.azure.resourcemanager.avs.models.WorkloadNetworkPortMirroringProvisioningState;
 
-public final class WorkloadNetworkPortMirroringImpl
-    implements WorkloadNetworkPortMirroring,
-        WorkloadNetworkPortMirroring.Definition,
-        WorkloadNetworkPortMirroring.Update {
+public final class WorkloadNetworkPortMirroringImpl implements WorkloadNetworkPortMirroring,
+    WorkloadNetworkPortMirroring.Definition, WorkloadNetworkPortMirroring.Update {
     private WorkloadNetworkPortMirroringInner innerObject;
 
     private final com.azure.resourcemanager.avs.AvsManager serviceManager;
@@ -77,29 +75,22 @@ public final class WorkloadNetworkPortMirroringImpl
 
     private String portMirroringId;
 
-    public WorkloadNetworkPortMirroringImpl withExistingPrivateCloud(
-        String resourceGroupName, String privateCloudName) {
+    public WorkloadNetworkPortMirroringImpl withExistingPrivateCloud(String resourceGroupName,
+        String privateCloudName) {
         this.resourceGroupName = resourceGroupName;
         this.privateCloudName = privateCloudName;
         return this;
     }
 
     public WorkloadNetworkPortMirroring create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .createPortMirroring(
-                    resourceGroupName, privateCloudName, portMirroringId, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworks().createPortMirroring(resourceGroupName,
+            privateCloudName, portMirroringId, this.innerModel(), Context.NONE);
         return this;
     }
 
     public WorkloadNetworkPortMirroring create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .createPortMirroring(resourceGroupName, privateCloudName, portMirroringId, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworks().createPortMirroring(resourceGroupName,
+            privateCloudName, portMirroringId, this.innerModel(), context);
         return this;
     }
 
@@ -114,26 +105,19 @@ public final class WorkloadNetworkPortMirroringImpl
     }
 
     public WorkloadNetworkPortMirroring apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .updatePortMirroring(
-                    resourceGroupName, privateCloudName, portMirroringId, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworks().updatePortMirroring(resourceGroupName,
+            privateCloudName, portMirroringId, this.innerModel(), Context.NONE);
         return this;
     }
 
     public WorkloadNetworkPortMirroring apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .updatePortMirroring(resourceGroupName, privateCloudName, portMirroringId, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworks().updatePortMirroring(resourceGroupName,
+            privateCloudName, portMirroringId, this.innerModel(), context);
         return this;
     }
 
-    WorkloadNetworkPortMirroringImpl(
-        WorkloadNetworkPortMirroringInner innerObject, com.azure.resourcemanager.avs.AvsManager serviceManager) {
+    WorkloadNetworkPortMirroringImpl(WorkloadNetworkPortMirroringInner innerObject,
+        com.azure.resourcemanager.avs.AvsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
@@ -142,22 +126,15 @@ public final class WorkloadNetworkPortMirroringImpl
     }
 
     public WorkloadNetworkPortMirroring refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .getPortMirroringWithResponse(resourceGroupName, privateCloudName, portMirroringId, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworks()
+            .getPortMirroringWithResponse(resourceGroupName, privateCloudName, portMirroringId, Context.NONE)
+            .getValue();
         return this;
     }
 
     public WorkloadNetworkPortMirroring refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkloadNetworks()
-                .getPortMirroringWithResponse(resourceGroupName, privateCloudName, portMirroringId, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getWorkloadNetworks()
+            .getPortMirroringWithResponse(resourceGroupName, privateCloudName, portMirroringId, context).getValue();
         return this;
     }
 

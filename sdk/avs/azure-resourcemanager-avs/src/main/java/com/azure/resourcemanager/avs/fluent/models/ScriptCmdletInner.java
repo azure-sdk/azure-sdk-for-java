@@ -10,7 +10,9 @@ import com.azure.resourcemanager.avs.models.ScriptParameter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A cmdlet available for script execution. */
+/**
+ * A cmdlet available for script execution.
+ */
 @Immutable
 public final class ScriptCmdletInner extends ProxyResource {
     /*
@@ -19,13 +21,15 @@ public final class ScriptCmdletInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private ScriptCmdletProperties innerProperties;
 
-    /** Creates an instance of ScriptCmdletInner class. */
+    /**
+     * Creates an instance of ScriptCmdletInner class.
+     */
     public ScriptCmdletInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of a script cmdlet resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ScriptCmdletProperties innerProperties() {
@@ -34,7 +38,7 @@ public final class ScriptCmdletInner extends ProxyResource {
 
     /**
      * Get the description property: Description of the scripts functionality.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -43,7 +47,7 @@ public final class ScriptCmdletInner extends ProxyResource {
 
     /**
      * Get the timeout property: Recommended time limit for execution.
-     *
+     * 
      * @return the timeout value.
      */
     public String timeout() {
@@ -52,7 +56,7 @@ public final class ScriptCmdletInner extends ProxyResource {
 
     /**
      * Get the parameters property: Parameters the script will accept.
-     *
+     * 
      * @return the parameters value.
      */
     public List<ScriptParameter> parameters() {
@@ -61,7 +65,7 @@ public final class ScriptCmdletInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,11 +8,13 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of WorkloadNetworks. */
+/**
+ * Resource collection API of WorkloadNetworks.
+ */
 public interface WorkloadNetworks {
     /**
      * Get a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param workloadNetworkName Name for the workload network in the private cloud.
@@ -22,12 +24,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a private cloud workload network along with {@link Response}.
      */
-    Response<WorkloadNetwork> getWithResponse(
-        String resourceGroupName, String privateCloudName, WorkloadNetworkName workloadNetworkName, Context context);
+    Response<WorkloadNetwork> getWithResponse(String resourceGroupName, String privateCloudName,
+        WorkloadNetworkName workloadNetworkName, Context context);
 
     /**
      * Get a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param workloadNetworkName Name for the workload network in the private cloud.
@@ -40,7 +42,7 @@ public interface WorkloadNetworks {
 
     /**
      * List of workload networks in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -52,7 +54,7 @@ public interface WorkloadNetworks {
 
     /**
      * List of workload networks in a private cloud.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -65,7 +67,7 @@ public interface WorkloadNetworks {
 
     /**
      * List of segments in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -77,7 +79,7 @@ public interface WorkloadNetworks {
 
     /**
      * List of segments in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -86,12 +88,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of NSX Segments as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<WorkloadNetworkSegment> listSegments(
-        String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<WorkloadNetworkSegment> listSegments(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Get a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -101,12 +103,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a segment by id in a private cloud workload network along with {@link Response}.
      */
-    Response<WorkloadNetworkSegment> getSegmentWithResponse(
-        String resourceGroupName, String privateCloudName, String segmentId, Context context);
+    Response<WorkloadNetworkSegment> getSegmentWithResponse(String resourceGroupName, String privateCloudName,
+        String segmentId, Context context);
 
     /**
      * Get a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -119,7 +121,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -131,7 +133,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a segment by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param segmentId NSX Segment identifier. Generally the same as the Segment's display name.
@@ -144,7 +146,7 @@ public interface WorkloadNetworks {
 
     /**
      * List dhcp in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -156,7 +158,7 @@ public interface WorkloadNetworks {
 
     /**
      * List dhcp in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -169,7 +171,7 @@ public interface WorkloadNetworks {
 
     /**
      * Get dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
      * @param privateCloudName Name of the private cloud.
@@ -179,12 +181,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return dhcp by id in a private cloud workload network along with {@link Response}.
      */
-    Response<WorkloadNetworkDhcp> getDhcpWithResponse(
-        String resourceGroupName, String dhcpId, String privateCloudName, Context context);
+    Response<WorkloadNetworkDhcp> getDhcpWithResponse(String resourceGroupName, String dhcpId, String privateCloudName,
+        Context context);
 
     /**
      * Get dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
      * @param privateCloudName Name of the private cloud.
@@ -197,7 +199,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -209,7 +211,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dhcpId NSX DHCP identifier. Generally the same as the DHCP display name.
@@ -222,7 +224,7 @@ public interface WorkloadNetworks {
 
     /**
      * List of gateways in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -234,7 +236,7 @@ public interface WorkloadNetworks {
 
     /**
      * List of gateways in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -243,12 +245,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of NSX Gateways as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<WorkloadNetworkGateway> listGateways(
-        String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<WorkloadNetworkGateway> listGateways(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Get a gateway by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param gatewayId NSX Gateway identifier. Generally the same as the Gateway's display name.
@@ -258,12 +260,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a gateway by id in a private cloud workload network along with {@link Response}.
      */
-    Response<WorkloadNetworkGateway> getGatewayWithResponse(
-        String resourceGroupName, String privateCloudName, String gatewayId, Context context);
+    Response<WorkloadNetworkGateway> getGatewayWithResponse(String resourceGroupName, String privateCloudName,
+        String gatewayId, Context context);
 
     /**
      * Get a gateway by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param gatewayId NSX Gateway identifier. Generally the same as the Gateway's display name.
@@ -276,7 +278,7 @@ public interface WorkloadNetworks {
 
     /**
      * List of port mirroring profiles in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -288,7 +290,7 @@ public interface WorkloadNetworks {
 
     /**
      * List of port mirroring profiles in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -297,12 +299,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of NSX Port Mirroring as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<WorkloadNetworkPortMirroring> listPortMirroring(
-        String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<WorkloadNetworkPortMirroring> listPortMirroring(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Get a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -312,12 +314,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a port mirroring profile by id in a private cloud workload network along with {@link Response}.
      */
-    Response<WorkloadNetworkPortMirroring> getPortMirroringWithResponse(
-        String resourceGroupName, String privateCloudName, String portMirroringId, Context context);
+    Response<WorkloadNetworkPortMirroring> getPortMirroringWithResponse(String resourceGroupName,
+        String privateCloudName, String portMirroringId, Context context);
 
     /**
      * Get a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
@@ -326,12 +328,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a port mirroring profile by id in a private cloud workload network.
      */
-    WorkloadNetworkPortMirroring getPortMirroring(
-        String resourceGroupName, String privateCloudName, String portMirroringId);
+    WorkloadNetworkPortMirroring getPortMirroring(String resourceGroupName, String privateCloudName,
+        String portMirroringId);
 
     /**
      * Delete a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
      * @param privateCloudName Name of the private cloud.
@@ -343,7 +345,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param portMirroringId NSX Port Mirroring identifier. Generally the same as the Port Mirroring display name.
      * @param privateCloudName Name of the private cloud.
@@ -352,12 +354,12 @@ public interface WorkloadNetworks {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void deletePortMirroring(
-        String resourceGroupName, String portMirroringId, String privateCloudName, Context context);
+    void deletePortMirroring(String resourceGroupName, String portMirroringId, String privateCloudName,
+        Context context);
 
     /**
      * List of vm groups in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -369,7 +371,7 @@ public interface WorkloadNetworks {
 
     /**
      * List of vm groups in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -378,12 +380,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of NSX VM Groups as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<WorkloadNetworkVMGroup> listVMGroups(
-        String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<WorkloadNetworkVMGroup> listVMGroups(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Get a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -393,12 +395,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a vm group by id in a private cloud workload network along with {@link Response}.
      */
-    Response<WorkloadNetworkVMGroup> getVMGroupWithResponse(
-        String resourceGroupName, String privateCloudName, String vmGroupId, Context context);
+    Response<WorkloadNetworkVMGroup> getVMGroupWithResponse(String resourceGroupName, String privateCloudName,
+        String vmGroupId, Context context);
 
     /**
      * Get a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
@@ -411,7 +413,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
      * @param privateCloudName Name of the private cloud.
@@ -423,7 +425,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vmGroupId NSX VM Group identifier. Generally the same as the VM Group's display name.
      * @param privateCloudName Name of the private cloud.
@@ -436,7 +438,7 @@ public interface WorkloadNetworks {
 
     /**
      * List of virtual machines in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -448,7 +450,7 @@ public interface WorkloadNetworks {
 
     /**
      * List of virtual machines in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -457,12 +459,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of NSX Virtual Machines as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<WorkloadNetworkVirtualMachine> listVirtualMachines(
-        String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<WorkloadNetworkVirtualMachine> listVirtualMachines(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Get a virtual machine by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param virtualMachineId Virtual Machine identifier.
@@ -472,12 +474,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a virtual machine by id in a private cloud workload network along with {@link Response}.
      */
-    Response<WorkloadNetworkVirtualMachine> getVirtualMachineWithResponse(
-        String resourceGroupName, String privateCloudName, String virtualMachineId, Context context);
+    Response<WorkloadNetworkVirtualMachine> getVirtualMachineWithResponse(String resourceGroupName,
+        String privateCloudName, String virtualMachineId, Context context);
 
     /**
      * Get a virtual machine by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param virtualMachineId Virtual Machine identifier.
@@ -486,12 +488,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a virtual machine by id in a private cloud workload network.
      */
-    WorkloadNetworkVirtualMachine getVirtualMachine(
-        String resourceGroupName, String privateCloudName, String virtualMachineId);
+    WorkloadNetworkVirtualMachine getVirtualMachine(String resourceGroupName, String privateCloudName,
+        String virtualMachineId);
 
     /**
      * List of DNS services in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -503,7 +505,7 @@ public interface WorkloadNetworks {
 
     /**
      * List of DNS services in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -512,12 +514,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of NSX DNS Services as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<WorkloadNetworkDnsService> listDnsServices(
-        String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<WorkloadNetworkDnsService> listDnsServices(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Get a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -527,12 +529,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a DNS service by id in a private cloud workload network along with {@link Response}.
      */
-    Response<WorkloadNetworkDnsService> getDnsServiceWithResponse(
-        String resourceGroupName, String privateCloudName, String dnsServiceId, Context context);
+    Response<WorkloadNetworkDnsService> getDnsServiceWithResponse(String resourceGroupName, String privateCloudName,
+        String dnsServiceId, Context context);
 
     /**
      * Get a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
@@ -545,7 +547,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
      * @param privateCloudName Name of the private cloud.
@@ -557,7 +559,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsServiceId NSX DNS Service identifier. Generally the same as the DNS Service's display name.
      * @param privateCloudName Name of the private cloud.
@@ -570,7 +572,7 @@ public interface WorkloadNetworks {
 
     /**
      * List of DNS zones in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -582,7 +584,7 @@ public interface WorkloadNetworks {
 
     /**
      * List of DNS zones in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -591,12 +593,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of NSX DNS Zones as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<WorkloadNetworkDnsZone> listDnsZones(
-        String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<WorkloadNetworkDnsZone> listDnsZones(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Get a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -606,12 +608,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a DNS zone by id in a private cloud workload network along with {@link Response}.
      */
-    Response<WorkloadNetworkDnsZone> getDnsZoneWithResponse(
-        String resourceGroupName, String privateCloudName, String dnsZoneId, Context context);
+    Response<WorkloadNetworkDnsZone> getDnsZoneWithResponse(String resourceGroupName, String privateCloudName,
+        String dnsZoneId, Context context);
 
     /**
      * Get a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
@@ -624,7 +626,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
      * @param privateCloudName Name of the private cloud.
@@ -636,7 +638,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param dnsZoneId NSX DNS Zone identifier. Generally the same as the DNS Zone's display name.
      * @param privateCloudName Name of the private cloud.
@@ -649,7 +651,7 @@ public interface WorkloadNetworks {
 
     /**
      * List of Public IP Blocks in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -661,7 +663,7 @@ public interface WorkloadNetworks {
 
     /**
      * List of Public IP Blocks in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param context The context to associate with this operation.
@@ -670,12 +672,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of NSX Public IP Blocks as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<WorkloadNetworkPublicIp> listPublicIPs(
-        String resourceGroupName, String privateCloudName, Context context);
+    PagedIterable<WorkloadNetworkPublicIp> listPublicIPs(String resourceGroupName, String privateCloudName,
+        Context context);
 
     /**
      * Get a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -685,12 +687,12 @@ public interface WorkloadNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Public IP Block by id in a private cloud workload network along with {@link Response}.
      */
-    Response<WorkloadNetworkPublicIp> getPublicIpWithResponse(
-        String resourceGroupName, String privateCloudName, String publicIpId, Context context);
+    Response<WorkloadNetworkPublicIp> getPublicIpWithResponse(String resourceGroupName, String privateCloudName,
+        String publicIpId, Context context);
 
     /**
      * Get a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateCloudName Name of the private cloud.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
@@ -703,7 +705,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
      * @param privateCloudName Name of the private cloud.
@@ -715,7 +717,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param publicIpId NSX Public IP Block identifier. Generally the same as the Public IP Block's display name.
      * @param privateCloudName Name of the private cloud.
@@ -728,7 +730,7 @@ public interface WorkloadNetworks {
 
     /**
      * Get a segment by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -739,7 +741,7 @@ public interface WorkloadNetworks {
 
     /**
      * Get a segment by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -751,7 +753,7 @@ public interface WorkloadNetworks {
 
     /**
      * Get dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -762,7 +764,7 @@ public interface WorkloadNetworks {
 
     /**
      * Get dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -774,7 +776,7 @@ public interface WorkloadNetworks {
 
     /**
      * Get a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -785,7 +787,7 @@ public interface WorkloadNetworks {
 
     /**
      * Get a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -797,7 +799,7 @@ public interface WorkloadNetworks {
 
     /**
      * Get a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -808,7 +810,7 @@ public interface WorkloadNetworks {
 
     /**
      * Get a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -820,7 +822,7 @@ public interface WorkloadNetworks {
 
     /**
      * Get a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -831,7 +833,7 @@ public interface WorkloadNetworks {
 
     /**
      * Get a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -843,7 +845,7 @@ public interface WorkloadNetworks {
 
     /**
      * Get a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -854,7 +856,7 @@ public interface WorkloadNetworks {
 
     /**
      * Get a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -866,7 +868,7 @@ public interface WorkloadNetworks {
 
     /**
      * Get a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -877,7 +879,7 @@ public interface WorkloadNetworks {
 
     /**
      * Get a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -889,7 +891,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a segment by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -899,7 +901,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a segment by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -910,7 +912,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -920,7 +922,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete dhcp by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -931,7 +933,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -941,7 +943,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a port mirroring profile by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -952,7 +954,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -962,7 +964,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a vm group by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -973,7 +975,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -983,7 +985,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a DNS service by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -994,7 +996,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -1004,7 +1006,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a DNS zone by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1015,7 +1017,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -1025,7 +1027,7 @@ public interface WorkloadNetworks {
 
     /**
      * Delete a Public IP Block by id in a private cloud workload network.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1036,7 +1038,7 @@ public interface WorkloadNetworks {
 
     /**
      * Begins definition for a new WorkloadNetworkSegment resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new WorkloadNetworkSegment definition.
      */
@@ -1044,7 +1046,7 @@ public interface WorkloadNetworks {
 
     /**
      * Begins definition for a new WorkloadNetworkDhcp resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new WorkloadNetworkDhcp definition.
      */
@@ -1052,7 +1054,7 @@ public interface WorkloadNetworks {
 
     /**
      * Begins definition for a new WorkloadNetworkPortMirroring resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new WorkloadNetworkPortMirroring definition.
      */
@@ -1060,7 +1062,7 @@ public interface WorkloadNetworks {
 
     /**
      * Begins definition for a new WorkloadNetworkVMGroup resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new WorkloadNetworkVMGroup definition.
      */
@@ -1068,7 +1070,7 @@ public interface WorkloadNetworks {
 
     /**
      * Begins definition for a new WorkloadNetworkDnsService resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new WorkloadNetworkDnsService definition.
      */
@@ -1076,7 +1078,7 @@ public interface WorkloadNetworks {
 
     /**
      * Begins definition for a new WorkloadNetworkDnsZone resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new WorkloadNetworkDnsZone definition.
      */
@@ -1084,7 +1086,7 @@ public interface WorkloadNetworks {
 
     /**
      * Begins definition for a new WorkloadNetworkPublicIp resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new WorkloadNetworkPublicIp definition.
      */

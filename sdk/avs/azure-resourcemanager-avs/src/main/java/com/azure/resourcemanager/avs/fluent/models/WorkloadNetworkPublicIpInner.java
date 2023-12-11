@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.avs.models.WorkloadNetworkPublicIpProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** NSX Public IP Block. */
+/**
+ * NSX Public IP Block.
+ */
 @Fluent
 public final class WorkloadNetworkPublicIpInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class WorkloadNetworkPublicIpInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private WorkloadNetworkPublicIpProperties innerProperties;
 
-    /** Creates an instance of WorkloadNetworkPublicIpInner class. */
+    /**
+     * Creates an instance of WorkloadNetworkPublicIpInner class.
+     */
     public WorkloadNetworkPublicIpInner() {
     }
 
     /**
      * Get the innerProperties property: Public IP Block properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private WorkloadNetworkPublicIpProperties innerProperties() {
@@ -33,7 +37,7 @@ public final class WorkloadNetworkPublicIpInner extends ProxyResource {
 
     /**
      * Get the displayName property: Display name of the Public IP Block.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -42,7 +46,7 @@ public final class WorkloadNetworkPublicIpInner extends ProxyResource {
 
     /**
      * Set the displayName property: Display name of the Public IP Block.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the WorkloadNetworkPublicIpInner object itself.
      */
@@ -56,7 +60,7 @@ public final class WorkloadNetworkPublicIpInner extends ProxyResource {
 
     /**
      * Get the numberOfPublicIPs property: Number of Public IPs requested.
-     *
+     * 
      * @return the numberOfPublicIPs value.
      */
     public Long numberOfPublicIPs() {
@@ -65,7 +69,7 @@ public final class WorkloadNetworkPublicIpInner extends ProxyResource {
 
     /**
      * Set the numberOfPublicIPs property: Number of Public IPs requested.
-     *
+     * 
      * @param numberOfPublicIPs the numberOfPublicIPs value to set.
      * @return the WorkloadNetworkPublicIpInner object itself.
      */
@@ -79,7 +83,7 @@ public final class WorkloadNetworkPublicIpInner extends ProxyResource {
 
     /**
      * Get the publicIpBlock property: CIDR Block of the Public IP Block.
-     *
+     * 
      * @return the publicIpBlock value.
      */
     public String publicIpBlock() {
@@ -88,7 +92,7 @@ public final class WorkloadNetworkPublicIpInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public WorkloadNetworkPublicIpProvisioningState provisioningState() {
@@ -97,7 +101,7 @@ public final class WorkloadNetworkPublicIpInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
