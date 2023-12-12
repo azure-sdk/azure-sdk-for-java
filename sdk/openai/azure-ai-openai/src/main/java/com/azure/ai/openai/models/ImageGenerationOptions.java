@@ -173,9 +173,7 @@ public final class ImageGenerationOptions {
     }
 
     /*
-     * The model name or Azure OpenAI model deployment name to use for image generation. If not specified, dall-e-2
-     * will be
-     * inferred as a default.
+     * The model name or Azure OpenAI model deployment name to use for image generation.
      */
     @Generated
     @JsonProperty(value = "model")
@@ -198,9 +196,7 @@ public final class ImageGenerationOptions {
     private ImageGenerationStyle style;
 
     /**
-     * Get the model property: The model name or Azure OpenAI model deployment name to use for image generation. If not
-     * specified, dall-e-2 will be
-     * inferred as a default.
+     * Get the model property: The model name or Azure OpenAI model deployment name to use for image generation.
      *
      * @return the model value.
      */
@@ -210,9 +206,7 @@ public final class ImageGenerationOptions {
     }
 
     /**
-     * Set the model property: The model name or Azure OpenAI model deployment name to use for image generation. If not
-     * specified, dall-e-2 will be
-     * inferred as a default.
+     * Set the model property: The model name or Azure OpenAI model deployment name to use for image generation.
      *
      * @param model the model value to set.
      * @return the ImageGenerationOptions object itself.
