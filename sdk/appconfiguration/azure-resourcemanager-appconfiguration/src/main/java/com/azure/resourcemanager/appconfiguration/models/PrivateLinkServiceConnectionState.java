@@ -7,7 +7,9 @@ package com.azure.resourcemanager.appconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The state of a private link service connection. */
+/**
+ * The state of a private link service connection.
+ */
 @Fluent
 public final class PrivateLinkServiceConnectionState {
     /*
@@ -28,13 +30,15 @@ public final class PrivateLinkServiceConnectionState {
     @JsonProperty(value = "actionsRequired", access = JsonProperty.Access.WRITE_ONLY)
     private ActionsRequired actionsRequired;
 
-    /** Creates an instance of PrivateLinkServiceConnectionState class. */
+    /**
+     * Creates an instance of PrivateLinkServiceConnectionState class.
+     */
     public PrivateLinkServiceConnectionState() {
     }
 
     /**
      * Get the status property: The private link service connection status.
-     *
+     * 
      * @return the status value.
      */
     public ConnectionStatus status() {
@@ -43,7 +47,7 @@ public final class PrivateLinkServiceConnectionState {
 
     /**
      * Set the status property: The private link service connection status.
-     *
+     * 
      * @param status the status value to set.
      * @return the PrivateLinkServiceConnectionState object itself.
      */
@@ -54,7 +58,7 @@ public final class PrivateLinkServiceConnectionState {
 
     /**
      * Get the description property: The private link service connection description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -63,7 +67,7 @@ public final class PrivateLinkServiceConnectionState {
 
     /**
      * Set the description property: The private link service connection description.
-     *
+     * 
      * @param description the description value to set.
      * @return the PrivateLinkServiceConnectionState object itself.
      */
@@ -75,7 +79,7 @@ public final class PrivateLinkServiceConnectionState {
     /**
      * Get the actionsRequired property: Any action that is required beyond basic workflow (approve/ reject/
      * disconnect).
-     *
+     * 
      * @return the actionsRequired value.
      */
     public ActionsRequired actionsRequired() {
@@ -84,7 +88,7 @@ public final class PrivateLinkServiceConnectionState {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

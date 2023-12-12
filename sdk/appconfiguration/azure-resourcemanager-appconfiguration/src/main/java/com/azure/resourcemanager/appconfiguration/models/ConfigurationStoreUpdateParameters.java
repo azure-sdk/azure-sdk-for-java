@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The parameters for updating a configuration store. */
+/**
+ * The parameters for updating a configuration store.
+ */
 @Fluent
 public final class ConfigurationStoreUpdateParameters {
     /*
@@ -38,13 +40,15 @@ public final class ConfigurationStoreUpdateParameters {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of ConfigurationStoreUpdateParameters class. */
+    /**
+     * Creates an instance of ConfigurationStoreUpdateParameters class.
+     */
     public ConfigurationStoreUpdateParameters() {
     }
 
     /**
      * Get the innerProperties property: The properties for updating a configuration store.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ConfigurationStorePropertiesUpdateParameters innerProperties() {
@@ -53,7 +57,7 @@ public final class ConfigurationStoreUpdateParameters {
 
     /**
      * Get the identity property: The managed identity information for the configuration store.
-     *
+     * 
      * @return the identity value.
      */
     public ResourceIdentity identity() {
@@ -62,7 +66,7 @@ public final class ConfigurationStoreUpdateParameters {
 
     /**
      * Set the identity property: The managed identity information for the configuration store.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the ConfigurationStoreUpdateParameters object itself.
      */
@@ -73,7 +77,7 @@ public final class ConfigurationStoreUpdateParameters {
 
     /**
      * Get the sku property: The SKU of the configuration store.
-     *
+     * 
      * @return the sku value.
      */
     public Sku sku() {
@@ -82,7 +86,7 @@ public final class ConfigurationStoreUpdateParameters {
 
     /**
      * Set the sku property: The SKU of the configuration store.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the ConfigurationStoreUpdateParameters object itself.
      */
@@ -93,7 +97,7 @@ public final class ConfigurationStoreUpdateParameters {
 
     /**
      * Get the tags property: The ARM resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -102,7 +106,7 @@ public final class ConfigurationStoreUpdateParameters {
 
     /**
      * Set the tags property: The ARM resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the ConfigurationStoreUpdateParameters object itself.
      */
@@ -113,7 +117,7 @@ public final class ConfigurationStoreUpdateParameters {
 
     /**
      * Get the encryption property: The encryption settings of the configuration store.
-     *
+     * 
      * @return the encryption value.
      */
     public EncryptionProperties encryption() {
@@ -122,7 +126,7 @@ public final class ConfigurationStoreUpdateParameters {
 
     /**
      * Set the encryption property: The encryption settings of the configuration store.
-     *
+     * 
      * @param encryption the encryption value to set.
      * @return the ConfigurationStoreUpdateParameters object itself.
      */
@@ -136,7 +140,7 @@ public final class ConfigurationStoreUpdateParameters {
 
     /**
      * Get the disableLocalAuth property: Disables all authentication methods other than AAD authentication.
-     *
+     * 
      * @return the disableLocalAuth value.
      */
     public Boolean disableLocalAuth() {
@@ -145,7 +149,7 @@ public final class ConfigurationStoreUpdateParameters {
 
     /**
      * Set the disableLocalAuth property: Disables all authentication methods other than AAD authentication.
-     *
+     * 
      * @param disableLocalAuth the disableLocalAuth value to set.
      * @return the ConfigurationStoreUpdateParameters object itself.
      */
@@ -158,9 +162,9 @@ public final class ConfigurationStoreUpdateParameters {
     }
 
     /**
-     * Get the publicNetworkAccess property: Control permission for data plane traffic coming from public networks while
-     * private endpoint is enabled.
-     *
+     * Get the publicNetworkAccess property: Control permission for data plane traffic coming from public networks
+     * while private endpoint is enabled.
+     * 
      * @return the publicNetworkAccess value.
      */
     public PublicNetworkAccess publicNetworkAccess() {
@@ -168,9 +172,9 @@ public final class ConfigurationStoreUpdateParameters {
     }
 
     /**
-     * Set the publicNetworkAccess property: Control permission for data plane traffic coming from public networks while
-     * private endpoint is enabled.
-     *
+     * Set the publicNetworkAccess property: Control permission for data plane traffic coming from public networks
+     * while private endpoint is enabled.
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the ConfigurationStoreUpdateParameters object itself.
      */
@@ -185,7 +189,7 @@ public final class ConfigurationStoreUpdateParameters {
     /**
      * Get the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
      * configuration store.
-     *
+     * 
      * @return the enablePurgeProtection value.
      */
     public Boolean enablePurgeProtection() {
@@ -195,7 +199,7 @@ public final class ConfigurationStoreUpdateParameters {
     /**
      * Set the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
      * configuration store.
-     *
+     * 
      * @param enablePurgeProtection the enablePurgeProtection value to set.
      * @return the ConfigurationStoreUpdateParameters object itself.
      */
@@ -208,8 +212,33 @@ public final class ConfigurationStoreUpdateParameters {
     }
 
     /**
+     * Get the dataPlaneProxy property: Property specifying the configuration of data plane proxy for Azure Resource
+     * Manager (ARM).
+     * 
+     * @return the dataPlaneProxy value.
+     */
+    public DataPlaneProxyProperties dataPlaneProxy() {
+        return this.innerProperties() == null ? null : this.innerProperties().dataPlaneProxy();
+    }
+
+    /**
+     * Set the dataPlaneProxy property: Property specifying the configuration of data plane proxy for Azure Resource
+     * Manager (ARM).
+     * 
+     * @param dataPlaneProxy the dataPlaneProxy value to set.
+     * @return the ConfigurationStoreUpdateParameters object itself.
+     */
+    public ConfigurationStoreUpdateParameters withDataPlaneProxy(DataPlaneProxyProperties dataPlaneProxy) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigurationStorePropertiesUpdateParameters();
+        }
+        this.innerProperties().withDataPlaneProxy(dataPlaneProxy);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

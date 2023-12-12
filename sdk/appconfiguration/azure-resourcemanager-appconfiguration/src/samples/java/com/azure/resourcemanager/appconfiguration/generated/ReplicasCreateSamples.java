@@ -4,22 +4,22 @@
 
 package com.azure.resourcemanager.appconfiguration.generated;
 
-/** Samples for Replicas Create. */
+/**
+ * Samples for Replicas Create.
+ */
 public final class ReplicasCreateSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2023-03-01/examples/ConfigurationStoresCreateReplica.json
+     * x-ms-original-file:
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2023-08-01-preview/examples/
+     * ConfigurationStoresCreateReplica.json
      */
     /**
      * Sample code: Replicas_Create.
-     *
+     * 
      * @param manager Entry point to AppConfigurationManager.
      */
     public static void replicasCreate(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager
-            .replicas()
-            .define("myReplicaEus")
-            .withExistingConfigurationStore("myResourceGroup", "contoso")
-            .withRegion("eastus")
-            .create();
+        manager.replicas().define("myReplicaEus").withExistingConfigurationStore("myResourceGroup", "contoso")
+            .withRegion("eastus").create();
     }
 }

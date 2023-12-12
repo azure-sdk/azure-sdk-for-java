@@ -5,11 +5,14 @@
 package com.azure.resourcemanager.appconfiguration.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.appconfiguration.models.DataPlaneProxyProperties;
 import com.azure.resourcemanager.appconfiguration.models.EncryptionProperties;
 import com.azure.resourcemanager.appconfiguration.models.PublicNetworkAccess;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties for updating a configuration store. */
+/**
+ * The properties for updating a configuration store.
+ */
 @Fluent
 public final class ConfigurationStorePropertiesUpdateParameters {
     /*
@@ -36,13 +39,21 @@ public final class ConfigurationStorePropertiesUpdateParameters {
     @JsonProperty(value = "enablePurgeProtection")
     private Boolean enablePurgeProtection;
 
-    /** Creates an instance of ConfigurationStorePropertiesUpdateParameters class. */
+    /*
+     * Property specifying the configuration of data plane proxy for Azure Resource Manager (ARM).
+     */
+    @JsonProperty(value = "dataPlaneProxy")
+    private DataPlaneProxyProperties dataPlaneProxy;
+
+    /**
+     * Creates an instance of ConfigurationStorePropertiesUpdateParameters class.
+     */
     public ConfigurationStorePropertiesUpdateParameters() {
     }
 
     /**
      * Get the encryption property: The encryption settings of the configuration store.
-     *
+     * 
      * @return the encryption value.
      */
     public EncryptionProperties encryption() {
@@ -51,7 +62,7 @@ public final class ConfigurationStorePropertiesUpdateParameters {
 
     /**
      * Set the encryption property: The encryption settings of the configuration store.
-     *
+     * 
      * @param encryption the encryption value to set.
      * @return the ConfigurationStorePropertiesUpdateParameters object itself.
      */
@@ -62,7 +73,7 @@ public final class ConfigurationStorePropertiesUpdateParameters {
 
     /**
      * Get the disableLocalAuth property: Disables all authentication methods other than AAD authentication.
-     *
+     * 
      * @return the disableLocalAuth value.
      */
     public Boolean disableLocalAuth() {
@@ -71,7 +82,7 @@ public final class ConfigurationStorePropertiesUpdateParameters {
 
     /**
      * Set the disableLocalAuth property: Disables all authentication methods other than AAD authentication.
-     *
+     * 
      * @param disableLocalAuth the disableLocalAuth value to set.
      * @return the ConfigurationStorePropertiesUpdateParameters object itself.
      */
@@ -81,9 +92,9 @@ public final class ConfigurationStorePropertiesUpdateParameters {
     }
 
     /**
-     * Get the publicNetworkAccess property: Control permission for data plane traffic coming from public networks while
-     * private endpoint is enabled.
-     *
+     * Get the publicNetworkAccess property: Control permission for data plane traffic coming from public networks
+     * while private endpoint is enabled.
+     * 
      * @return the publicNetworkAccess value.
      */
     public PublicNetworkAccess publicNetworkAccess() {
@@ -91,14 +102,14 @@ public final class ConfigurationStorePropertiesUpdateParameters {
     }
 
     /**
-     * Set the publicNetworkAccess property: Control permission for data plane traffic coming from public networks while
-     * private endpoint is enabled.
-     *
+     * Set the publicNetworkAccess property: Control permission for data plane traffic coming from public networks
+     * while private endpoint is enabled.
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the ConfigurationStorePropertiesUpdateParameters object itself.
      */
-    public ConfigurationStorePropertiesUpdateParameters withPublicNetworkAccess(
-        PublicNetworkAccess publicNetworkAccess) {
+    public ConfigurationStorePropertiesUpdateParameters
+        withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
         this.publicNetworkAccess = publicNetworkAccess;
         return this;
     }
@@ -106,7 +117,7 @@ public final class ConfigurationStorePropertiesUpdateParameters {
     /**
      * Get the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
      * configuration store.
-     *
+     * 
      * @return the enablePurgeProtection value.
      */
     public Boolean enablePurgeProtection() {
@@ -116,7 +127,7 @@ public final class ConfigurationStorePropertiesUpdateParameters {
     /**
      * Set the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
      * configuration store.
-     *
+     * 
      * @param enablePurgeProtection the enablePurgeProtection value to set.
      * @return the ConfigurationStorePropertiesUpdateParameters object itself.
      */
@@ -126,13 +137,38 @@ public final class ConfigurationStorePropertiesUpdateParameters {
     }
 
     /**
+     * Get the dataPlaneProxy property: Property specifying the configuration of data plane proxy for Azure Resource
+     * Manager (ARM).
+     * 
+     * @return the dataPlaneProxy value.
+     */
+    public DataPlaneProxyProperties dataPlaneProxy() {
+        return this.dataPlaneProxy;
+    }
+
+    /**
+     * Set the dataPlaneProxy property: Property specifying the configuration of data plane proxy for Azure Resource
+     * Manager (ARM).
+     * 
+     * @param dataPlaneProxy the dataPlaneProxy value to set.
+     * @return the ConfigurationStorePropertiesUpdateParameters object itself.
+     */
+    public ConfigurationStorePropertiesUpdateParameters withDataPlaneProxy(DataPlaneProxyProperties dataPlaneProxy) {
+        this.dataPlaneProxy = dataPlaneProxy;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (encryption() != null) {
             encryption().validate();
+        }
+        if (dataPlaneProxy() != null) {
+            dataPlaneProxy().validate();
         }
     }
 }
