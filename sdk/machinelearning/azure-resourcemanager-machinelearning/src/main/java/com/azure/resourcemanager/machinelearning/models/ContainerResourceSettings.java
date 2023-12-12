@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ContainerResourceSettings model. */
+/**
+ * The ContainerResourceSettings model.
+ */
 @Fluent
 public final class ContainerResourceSettings {
     /*
@@ -31,14 +33,16 @@ public final class ContainerResourceSettings {
     @JsonProperty(value = "memory")
     private String memory;
 
-    /** Creates an instance of ContainerResourceSettings class. */
+    /**
+     * Creates an instance of ContainerResourceSettings class.
+     */
     public ContainerResourceSettings() {
     }
 
     /**
      * Get the cpu property: Number of vCPUs request/limit for container. More info:
      * https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/.
-     *
+     * 
      * @return the cpu value.
      */
     public String cpu() {
@@ -48,7 +52,7 @@ public final class ContainerResourceSettings {
     /**
      * Set the cpu property: Number of vCPUs request/limit for container. More info:
      * https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/.
-     *
+     * 
      * @param cpu the cpu value to set.
      * @return the ContainerResourceSettings object itself.
      */
@@ -60,7 +64,7 @@ public final class ContainerResourceSettings {
     /**
      * Get the gpu property: Number of Nvidia GPU cards request/limit for container. More info:
      * https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/.
-     *
+     * 
      * @return the gpu value.
      */
     public String gpu() {
@@ -70,7 +74,7 @@ public final class ContainerResourceSettings {
     /**
      * Set the gpu property: Number of Nvidia GPU cards request/limit for container. More info:
      * https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/.
-     *
+     * 
      * @param gpu the gpu value to set.
      * @return the ContainerResourceSettings object itself.
      */
@@ -82,7 +86,7 @@ public final class ContainerResourceSettings {
     /**
      * Get the memory property: Memory size request/limit for container. More info:
      * https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/.
-     *
+     * 
      * @return the memory value.
      */
     public String memory() {
@@ -92,7 +96,7 @@ public final class ContainerResourceSettings {
     /**
      * Set the memory property: Memory size request/limit for container. More info:
      * https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/.
-     *
+     * 
      * @param memory the memory value to set.
      * @return the ContainerResourceSettings object itself.
      */
@@ -103,7 +107,7 @@ public final class ContainerResourceSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

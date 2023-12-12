@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The MLFlowModelJobInput model. */
+/**
+ * The MLFlowModelJobInput model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobInputType")
 @JsonTypeName("mlflow_model")
 @Fluent
@@ -22,18 +24,26 @@ public final class MLFlowModelJobInput extends JobInput {
     private InputDeliveryMode mode;
 
     /*
+     * Input Asset Delivery Path.
+     */
+    @JsonProperty(value = "pathOnCompute")
+    private String pathOnCompute;
+
+    /*
      * [Required] Input Asset URI.
      */
     @JsonProperty(value = "uri", required = true)
     private String uri;
 
-    /** Creates an instance of MLFlowModelJobInput class. */
+    /**
+     * Creates an instance of MLFlowModelJobInput class.
+     */
     public MLFlowModelJobInput() {
     }
 
     /**
      * Get the mode property: Input Asset Delivery Mode.
-     *
+     * 
      * @return the mode value.
      */
     public InputDeliveryMode mode() {
@@ -42,7 +52,7 @@ public final class MLFlowModelJobInput extends JobInput {
 
     /**
      * Set the mode property: Input Asset Delivery Mode.
-     *
+     * 
      * @param mode the mode value to set.
      * @return the MLFlowModelJobInput object itself.
      */
@@ -52,8 +62,28 @@ public final class MLFlowModelJobInput extends JobInput {
     }
 
     /**
+     * Get the pathOnCompute property: Input Asset Delivery Path.
+     * 
+     * @return the pathOnCompute value.
+     */
+    public String pathOnCompute() {
+        return this.pathOnCompute;
+    }
+
+    /**
+     * Set the pathOnCompute property: Input Asset Delivery Path.
+     * 
+     * @param pathOnCompute the pathOnCompute value to set.
+     * @return the MLFlowModelJobInput object itself.
+     */
+    public MLFlowModelJobInput withPathOnCompute(String pathOnCompute) {
+        this.pathOnCompute = pathOnCompute;
+        return this;
+    }
+
+    /**
      * Get the uri property: [Required] Input Asset URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -62,7 +92,7 @@ public final class MLFlowModelJobInput extends JobInput {
 
     /**
      * Set the uri property: [Required] Input Asset URI.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the MLFlowModelJobInput object itself.
      */
@@ -71,7 +101,9 @@ public final class MLFlowModelJobInput extends JobInput {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLFlowModelJobInput withDescription(String description) {
         super.withDescription(description);
@@ -80,16 +112,15 @@ public final class MLFlowModelJobInput extends JobInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (uri() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property uri in model MLFlowModelJobInput"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property uri in model MLFlowModelJobInput"));
         }
     }
 

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 import java.util.List;
 
-/** Forecasting Training related configuration. */
+/**
+ * Forecasting Training related configuration.
+ */
 @Fluent
 public final class ForecastingTrainingSettings extends TrainingSettings {
     /*
@@ -24,13 +26,15 @@ public final class ForecastingTrainingSettings extends TrainingSettings {
     @JsonProperty(value = "blockedTrainingAlgorithms")
     private List<ForecastingModels> blockedTrainingAlgorithms;
 
-    /** Creates an instance of ForecastingTrainingSettings class. */
+    /**
+     * Creates an instance of ForecastingTrainingSettings class.
+     */
     public ForecastingTrainingSettings() {
     }
 
     /**
      * Get the allowedTrainingAlgorithms property: Allowed models for forecasting task.
-     *
+     * 
      * @return the allowedTrainingAlgorithms value.
      */
     public List<ForecastingModels> allowedTrainingAlgorithms() {
@@ -39,19 +43,19 @@ public final class ForecastingTrainingSettings extends TrainingSettings {
 
     /**
      * Set the allowedTrainingAlgorithms property: Allowed models for forecasting task.
-     *
+     * 
      * @param allowedTrainingAlgorithms the allowedTrainingAlgorithms value to set.
      * @return the ForecastingTrainingSettings object itself.
      */
-    public ForecastingTrainingSettings withAllowedTrainingAlgorithms(
-        List<ForecastingModels> allowedTrainingAlgorithms) {
+    public ForecastingTrainingSettings
+        withAllowedTrainingAlgorithms(List<ForecastingModels> allowedTrainingAlgorithms) {
         this.allowedTrainingAlgorithms = allowedTrainingAlgorithms;
         return this;
     }
 
     /**
      * Get the blockedTrainingAlgorithms property: Blocked models for forecasting task.
-     *
+     * 
      * @return the blockedTrainingAlgorithms value.
      */
     public List<ForecastingModels> blockedTrainingAlgorithms() {
@@ -60,59 +64,73 @@ public final class ForecastingTrainingSettings extends TrainingSettings {
 
     /**
      * Set the blockedTrainingAlgorithms property: Blocked models for forecasting task.
-     *
+     * 
      * @param blockedTrainingAlgorithms the blockedTrainingAlgorithms value to set.
      * @return the ForecastingTrainingSettings object itself.
      */
-    public ForecastingTrainingSettings withBlockedTrainingAlgorithms(
-        List<ForecastingModels> blockedTrainingAlgorithms) {
+    public ForecastingTrainingSettings
+        withBlockedTrainingAlgorithms(List<ForecastingModels> blockedTrainingAlgorithms) {
         this.blockedTrainingAlgorithms = blockedTrainingAlgorithms;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ForecastingTrainingSettings withEnableDnnTraining(Boolean enableDnnTraining) {
         super.withEnableDnnTraining(enableDnnTraining);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ForecastingTrainingSettings withEnableModelExplainability(Boolean enableModelExplainability) {
         super.withEnableModelExplainability(enableModelExplainability);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ForecastingTrainingSettings withEnableOnnxCompatibleModels(Boolean enableOnnxCompatibleModels) {
         super.withEnableOnnxCompatibleModels(enableOnnxCompatibleModels);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ForecastingTrainingSettings withEnableStackEnsemble(Boolean enableStackEnsemble) {
         super.withEnableStackEnsemble(enableStackEnsemble);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ForecastingTrainingSettings withEnableVoteEnsemble(Boolean enableVoteEnsemble) {
         super.withEnableVoteEnsemble(enableVoteEnsemble);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ForecastingTrainingSettings withEnsembleModelDownloadTimeout(Duration ensembleModelDownloadTimeout) {
         super.withEnsembleModelDownloadTimeout(ensembleModelDownloadTimeout);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ForecastingTrainingSettings withStackEnsembleSettings(StackEnsembleSettings stackEnsembleSettings) {
         super.withStackEnsembleSettings(stackEnsembleSettings);
@@ -120,8 +138,17 @@ public final class ForecastingTrainingSettings extends TrainingSettings {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ForecastingTrainingSettings withTrainingMode(TrainingMode trainingMode) {
+        super.withTrainingMode(trainingMode);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

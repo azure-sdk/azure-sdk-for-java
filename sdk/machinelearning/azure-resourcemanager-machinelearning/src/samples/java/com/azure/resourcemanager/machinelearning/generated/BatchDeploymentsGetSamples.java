@@ -4,24 +4,23 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
-/** Samples for BatchDeployments Get. */
+/**
+ * Samples for BatchDeployments Get.
+ */
 public final class BatchDeploymentsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchDeployment/get.json
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-01-01-
+     * preview/examples/Workspace/BatchDeployment/get.json
      */
     /**
-     * Sample code: Get Batch Deployment.
-     *
+     * Sample code: Get Workspace Batch Deployment.
+     * 
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getBatchDeployment(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
-        manager
-            .batchDeployments()
-            .getWithResponse(
-                "test-rg",
-                "my-aml-workspace",
-                "testEndpointName",
-                "testDeploymentName",
-                com.azure.core.util.Context.NONE);
+    public static void
+        getWorkspaceBatchDeployment(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.batchDeployments().getWithResponse("test-rg", "my-aml-workspace", "testEndpointName",
+            "testDeploymentName", com.azure.core.util.Context.NONE);
     }
 }

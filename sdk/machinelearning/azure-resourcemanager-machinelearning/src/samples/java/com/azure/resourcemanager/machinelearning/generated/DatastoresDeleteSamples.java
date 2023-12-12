@@ -4,19 +4,22 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
-/** Samples for Datastores Delete. */
+/**
+ * Samples for Datastores Delete.
+ */
 public final class DatastoresDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/delete.json
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-01-01-
+     * preview/examples/Datastore/delete.json
      */
     /**
      * Sample code: Delete datastore.
-     *
+     * 
      * @param manager Entry point to MachineLearningManager.
      */
     public static void deleteDatastore(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
-        manager
-            .datastores()
-            .deleteWithResponse("test-rg", "my-aml-workspace", "string", com.azure.core.util.Context.NONE);
+        manager.datastores().deleteWithResponse("test-rg", "my-aml-workspace", "string",
+            com.azure.core.util.Context.NONE);
     }
 }

@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Trial component definition. */
+/**
+ * Trial component definition.
+ */
 @Fluent
 public final class TrialComponent {
     /*
@@ -50,13 +52,15 @@ public final class TrialComponent {
     @JsonProperty(value = "resources")
     private JobResourceConfiguration resources;
 
-    /** Creates an instance of TrialComponent class. */
+    /**
+     * Creates an instance of TrialComponent class.
+     */
     public TrialComponent() {
     }
 
     /**
      * Get the codeId property: ARM resource ID of the code asset.
-     *
+     * 
      * @return the codeId value.
      */
     public String codeId() {
@@ -65,7 +69,7 @@ public final class TrialComponent {
 
     /**
      * Set the codeId property: ARM resource ID of the code asset.
-     *
+     * 
      * @param codeId the codeId value to set.
      * @return the TrialComponent object itself.
      */
@@ -76,7 +80,7 @@ public final class TrialComponent {
 
     /**
      * Get the command property: [Required] The command to execute on startup of the job. eg. "python train.py".
-     *
+     * 
      * @return the command value.
      */
     public String command() {
@@ -85,7 +89,7 @@ public final class TrialComponent {
 
     /**
      * Set the command property: [Required] The command to execute on startup of the job. eg. "python train.py".
-     *
+     * 
      * @param command the command value to set.
      * @return the TrialComponent object itself.
      */
@@ -97,7 +101,7 @@ public final class TrialComponent {
     /**
      * Get the distribution property: Distribution configuration of the job. If set, this should be one of Mpi,
      * Tensorflow, PyTorch, or null.
-     *
+     * 
      * @return the distribution value.
      */
     public DistributionConfiguration distribution() {
@@ -107,7 +111,7 @@ public final class TrialComponent {
     /**
      * Set the distribution property: Distribution configuration of the job. If set, this should be one of Mpi,
      * Tensorflow, PyTorch, or null.
-     *
+     * 
      * @param distribution the distribution value to set.
      * @return the TrialComponent object itself.
      */
@@ -118,7 +122,7 @@ public final class TrialComponent {
 
     /**
      * Get the environmentId property: [Required] The ARM resource ID of the Environment specification for the job.
-     *
+     * 
      * @return the environmentId value.
      */
     public String environmentId() {
@@ -127,7 +131,7 @@ public final class TrialComponent {
 
     /**
      * Set the environmentId property: [Required] The ARM resource ID of the Environment specification for the job.
-     *
+     * 
      * @param environmentId the environmentId value to set.
      * @return the TrialComponent object itself.
      */
@@ -138,7 +142,7 @@ public final class TrialComponent {
 
     /**
      * Get the environmentVariables property: Environment variables included in the job.
-     *
+     * 
      * @return the environmentVariables value.
      */
     public Map<String, String> environmentVariables() {
@@ -147,7 +151,7 @@ public final class TrialComponent {
 
     /**
      * Set the environmentVariables property: Environment variables included in the job.
-     *
+     * 
      * @param environmentVariables the environmentVariables value to set.
      * @return the TrialComponent object itself.
      */
@@ -158,7 +162,7 @@ public final class TrialComponent {
 
     /**
      * Get the resources property: Compute Resource configuration for the job.
-     *
+     * 
      * @return the resources value.
      */
     public JobResourceConfiguration resources() {
@@ -167,7 +171,7 @@ public final class TrialComponent {
 
     /**
      * Set the resources property: Compute Resource configuration for the job.
-     *
+     * 
      * @param resources the resources value to set.
      * @return the TrialComponent object itself.
      */
@@ -178,22 +182,20 @@ public final class TrialComponent {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (command() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property command in model TrialComponent"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property command in model TrialComponent"));
         }
         if (distribution() != null) {
             distribution().validate();
         }
         if (environmentId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property environmentId in model TrialComponent"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property environmentId in model TrialComponent"));
         }
         if (resources() != null) {
             resources().validate();

@@ -7,48 +7,32 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The WorkspaceConnectionUsernamePassword model. */
+/**
+ * The WorkspaceConnectionUsernamePassword model.
+ */
 @Fluent
 public final class WorkspaceConnectionUsernamePassword {
-    /*
-     * The username property.
-     */
-    @JsonProperty(value = "username")
-    private String username;
-
     /*
      * The password property.
      */
     @JsonProperty(value = "password")
     private String password;
 
-    /** Creates an instance of WorkspaceConnectionUsernamePassword class. */
+    /*
+     * The username property.
+     */
+    @JsonProperty(value = "username")
+    private String username;
+
+    /**
+     * Creates an instance of WorkspaceConnectionUsernamePassword class.
+     */
     public WorkspaceConnectionUsernamePassword() {
     }
 
     /**
-     * Get the username property: The username property.
-     *
-     * @return the username value.
-     */
-    public String username() {
-        return this.username;
-    }
-
-    /**
-     * Set the username property: The username property.
-     *
-     * @param username the username value to set.
-     * @return the WorkspaceConnectionUsernamePassword object itself.
-     */
-    public WorkspaceConnectionUsernamePassword withUsername(String username) {
-        this.username = username;
-        return this;
-    }
-
-    /**
      * Get the password property: The password property.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -57,7 +41,7 @@ public final class WorkspaceConnectionUsernamePassword {
 
     /**
      * Set the password property: The password property.
-     *
+     * 
      * @param password the password value to set.
      * @return the WorkspaceConnectionUsernamePassword object itself.
      */
@@ -67,8 +51,28 @@ public final class WorkspaceConnectionUsernamePassword {
     }
 
     /**
+     * Get the username property: The username property.
+     * 
+     * @return the username value.
+     */
+    public String username() {
+        return this.username;
+    }
+
+    /**
+     * Set the username property: The username property.
+     * 
+     * @param username the username value to set.
+     * @return the WorkspaceConnectionUsernamePassword object itself.
+     */
+    public WorkspaceConnectionUsernamePassword withUsername(String username) {
+        this.username = username;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

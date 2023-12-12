@@ -9,11 +9,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The TritonModelJobOutput model. */
+/**
+ * The TritonModelJobOutput model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobOutputType")
 @JsonTypeName("triton_model")
 @Fluent
 public final class TritonModelJobOutput extends JobOutput {
+    /*
+     * Output Asset Name.
+     */
+    @JsonProperty(value = "assetName")
+    private String assetName;
+
+    /*
+     * Output Asset Version.
+     */
+    @JsonProperty(value = "assetVersion")
+    private String assetVersion;
+
+    /*
+     * Auto delete setting of output data asset.
+     */
+    @JsonProperty(value = "autoDeleteSetting")
+    private AutoDeleteSetting autoDeleteSetting;
+
     /*
      * Output Asset Delivery Mode.
      */
@@ -21,18 +41,86 @@ public final class TritonModelJobOutput extends JobOutput {
     private OutputDeliveryMode mode;
 
     /*
+     * Output Asset Delivery Path.
+     */
+    @JsonProperty(value = "pathOnCompute")
+    private String pathOnCompute;
+
+    /*
      * Output Asset URI.
      */
     @JsonProperty(value = "uri")
     private String uri;
 
-    /** Creates an instance of TritonModelJobOutput class. */
+    /**
+     * Creates an instance of TritonModelJobOutput class.
+     */
     public TritonModelJobOutput() {
     }
 
     /**
+     * Get the assetName property: Output Asset Name.
+     * 
+     * @return the assetName value.
+     */
+    public String assetName() {
+        return this.assetName;
+    }
+
+    /**
+     * Set the assetName property: Output Asset Name.
+     * 
+     * @param assetName the assetName value to set.
+     * @return the TritonModelJobOutput object itself.
+     */
+    public TritonModelJobOutput withAssetName(String assetName) {
+        this.assetName = assetName;
+        return this;
+    }
+
+    /**
+     * Get the assetVersion property: Output Asset Version.
+     * 
+     * @return the assetVersion value.
+     */
+    public String assetVersion() {
+        return this.assetVersion;
+    }
+
+    /**
+     * Set the assetVersion property: Output Asset Version.
+     * 
+     * @param assetVersion the assetVersion value to set.
+     * @return the TritonModelJobOutput object itself.
+     */
+    public TritonModelJobOutput withAssetVersion(String assetVersion) {
+        this.assetVersion = assetVersion;
+        return this;
+    }
+
+    /**
+     * Get the autoDeleteSetting property: Auto delete setting of output data asset.
+     * 
+     * @return the autoDeleteSetting value.
+     */
+    public AutoDeleteSetting autoDeleteSetting() {
+        return this.autoDeleteSetting;
+    }
+
+    /**
+     * Set the autoDeleteSetting property: Auto delete setting of output data asset.
+     * 
+     * @param autoDeleteSetting the autoDeleteSetting value to set.
+     * @return the TritonModelJobOutput object itself.
+     */
+    public TritonModelJobOutput withAutoDeleteSetting(AutoDeleteSetting autoDeleteSetting) {
+        this.autoDeleteSetting = autoDeleteSetting;
+        return this;
+    }
+
+    /**
      * Get the mode property: Output Asset Delivery Mode.
-     *
+     * 
      * @return the mode value.
      */
     public OutputDeliveryMode mode() {
@@ -41,7 +129,7 @@ public final class TritonModelJobOutput extends JobOutput {
 
     /**
      * Set the mode property: Output Asset Delivery Mode.
-     *
+     * 
      * @param mode the mode value to set.
      * @return the TritonModelJobOutput object itself.
      */
@@ -51,8 +139,28 @@ public final class TritonModelJobOutput extends JobOutput {
     }
 
     /**
+     * Get the pathOnCompute property: Output Asset Delivery Path.
+     * 
+     * @return the pathOnCompute value.
+     */
+    public String pathOnCompute() {
+        return this.pathOnCompute;
+    }
+
+    /**
+     * Set the pathOnCompute property: Output Asset Delivery Path.
+     * 
+     * @param pathOnCompute the pathOnCompute value to set.
+     * @return the TritonModelJobOutput object itself.
+     */
+    public TritonModelJobOutput withPathOnCompute(String pathOnCompute) {
+        this.pathOnCompute = pathOnCompute;
+        return this;
+    }
+
+    /**
      * Get the uri property: Output Asset URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -61,7 +169,7 @@ public final class TritonModelJobOutput extends JobOutput {
 
     /**
      * Set the uri property: Output Asset URI.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the TritonModelJobOutput object itself.
      */
@@ -70,7 +178,9 @@ public final class TritonModelJobOutput extends JobOutput {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TritonModelJobOutput withDescription(String description) {
         super.withDescription(description);
@@ -79,11 +189,14 @@ public final class TritonModelJobOutput extends JobOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
+        if (autoDeleteSetting() != null) {
+            autoDeleteSetting().validate();
+        }
     }
 }

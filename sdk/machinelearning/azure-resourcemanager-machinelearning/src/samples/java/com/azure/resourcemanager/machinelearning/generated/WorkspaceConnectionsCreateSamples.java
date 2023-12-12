@@ -6,27 +6,28 @@ package com.azure.resourcemanager.machinelearning.generated;
 
 import com.azure.resourcemanager.machinelearning.models.ConnectionCategory;
 import com.azure.resourcemanager.machinelearning.models.NoneAuthTypeWorkspaceConnectionProperties;
+import java.time.OffsetDateTime;
 
-/** Samples for WorkspaceConnections Create. */
+/**
+ * Samples for WorkspaceConnections Create.
+ */
 public final class WorkspaceConnectionsCreateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/WorkspaceConnection/create.json
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-01-01-
+     * preview/examples/WorkspaceConnection/create.json
      */
     /**
      * Sample code: CreateWorkspaceConnection.
-     *
+     * 
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createWorkspaceConnection(
-        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
-        manager
-            .workspaceConnections()
-            .define("connection-1")
-            .withExistingWorkspace("resourceGroup-1", "workspace-1")
+    public static void
+        createWorkspaceConnection(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.workspaceConnections().define("connection-1").withExistingWorkspace("resourceGroup-1", "workspace-1")
             .withProperties(
-                new NoneAuthTypeWorkspaceConnectionProperties()
-                    .withCategory(ConnectionCategory.CONTAINER_REGISTRY)
-                    .withTarget("www.facebook.com"))
+                new NoneAuthTypeWorkspaceConnectionProperties().withCategory(ConnectionCategory.CONTAINER_REGISTRY)
+                    .withExpiryTime(OffsetDateTime.parse("2024-03-15T14:30:00Z")).withTarget("www.facebook.com"))
             .create();
     }
 }
