@@ -8,18 +8,22 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Defines a Sampling Algorithm that exhaustively generates every value combination in the space. */
+/**
+ * Defines a Sampling Algorithm that exhaustively generates every value combination in the space.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "samplingAlgorithmType")
 @JsonTypeName("Grid")
 @Immutable
 public final class GridSamplingAlgorithm extends SamplingAlgorithm {
-    /** Creates an instance of GridSamplingAlgorithm class. */
+    /**
+     * Creates an instance of GridSamplingAlgorithm class.
+     */
     public GridSamplingAlgorithm() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
