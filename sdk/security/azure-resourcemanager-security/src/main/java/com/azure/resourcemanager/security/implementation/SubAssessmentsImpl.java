@@ -21,8 +21,8 @@ public final class SubAssessmentsImpl implements SubAssessments {
 
     private final com.azure.resourcemanager.security.SecurityManager serviceManager;
 
-    public SubAssessmentsImpl(
-        SubAssessmentsClient innerClient, com.azure.resourcemanager.security.SecurityManager serviceManager) {
+    public SubAssessmentsImpl(SubAssessmentsClient innerClient,
+        com.azure.resourcemanager.security.SecurityManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -47,15 +47,12 @@ public final class SubAssessmentsImpl implements SubAssessments {
         return Utils.mapPage(inner, inner1 -> new SecuritySubAssessmentImpl(inner1, this.manager()));
     }
 
-    public Response<SecuritySubAssessment> getWithResponse(
-        String scope, String assessmentName, String subAssessmentName, Context context) {
-        Response<SecuritySubAssessmentInner> inner =
-            this.serviceClient().getWithResponse(scope, assessmentName, subAssessmentName, context);
+    public Response<SecuritySubAssessment> getWithResponse(String scope, String assessmentName,
+        String subAssessmentName, Context context) {
+        Response<SecuritySubAssessmentInner> inner
+            = this.serviceClient().getWithResponse(scope, assessmentName, subAssessmentName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new SecuritySubAssessmentImpl(inner.getValue(), this.manager()));
         } else {
             return null;

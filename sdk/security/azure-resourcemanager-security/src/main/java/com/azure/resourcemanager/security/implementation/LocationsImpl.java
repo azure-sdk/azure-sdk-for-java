@@ -21,8 +21,8 @@ public final class LocationsImpl implements Locations {
 
     private final com.azure.resourcemanager.security.SecurityManager serviceManager;
 
-    public LocationsImpl(
-        LocationsClient innerClient, com.azure.resourcemanager.security.SecurityManager serviceManager) {
+    public LocationsImpl(LocationsClient innerClient,
+        com.azure.resourcemanager.security.SecurityManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -40,10 +40,7 @@ public final class LocationsImpl implements Locations {
     public Response<AscLocation> getWithResponse(String ascLocation, Context context) {
         Response<AscLocationInner> inner = this.serviceClient().getWithResponse(ascLocation, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new AscLocationImpl(inner.getValue(), this.manager()));
         } else {
             return null;
