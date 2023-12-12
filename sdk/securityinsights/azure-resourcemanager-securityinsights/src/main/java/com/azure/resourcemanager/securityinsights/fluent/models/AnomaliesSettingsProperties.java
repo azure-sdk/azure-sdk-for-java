@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Anomalies property bag. */
+/**
+ * Anomalies property bag.
+ */
 @Immutable
 public final class AnomaliesSettingsProperties {
     /*
@@ -17,8 +19,14 @@ public final class AnomaliesSettingsProperties {
     private Boolean isEnabled;
 
     /**
+     * Creates an instance of AnomaliesSettingsProperties class.
+     */
+    public AnomaliesSettingsProperties() {
+    }
+
+    /**
      * Get the isEnabled property: Determines whether the setting is enable or disabled.
-     *
+     * 
      * @return the isEnabled value.
      */
     public Boolean isEnabled() {
@@ -27,7 +35,7 @@ public final class AnomaliesSettingsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

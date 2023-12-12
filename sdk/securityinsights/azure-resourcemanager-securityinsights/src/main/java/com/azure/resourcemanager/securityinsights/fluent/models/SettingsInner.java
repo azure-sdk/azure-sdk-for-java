@@ -14,7 +14,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The Setting. */
+/**
+ * The Setting.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -25,11 +27,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "Anomalies", value = Anomalies.class),
     @JsonSubTypes.Type(name = "EyesOn", value = EyesOn.class),
     @JsonSubTypes.Type(name = "EntityAnalytics", value = EntityAnalytics.class),
-    @JsonSubTypes.Type(name = "Ueba", value = Ueba.class)
-})
+    @JsonSubTypes.Type(name = "Ueba", value = Ueba.class) })
 @Fluent
 public class SettingsInner extends ResourceWithEtag {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of SettingsInner class.
+     */
+    public SettingsInner() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SettingsInner withEtag(String etag) {
         super.withEtag(etag);
@@ -38,7 +47,7 @@ public class SettingsInner extends ResourceWithEtag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

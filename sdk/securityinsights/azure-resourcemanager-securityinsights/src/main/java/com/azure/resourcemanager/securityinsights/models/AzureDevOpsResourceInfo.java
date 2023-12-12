@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Resources created in Azure DevOps repository. */
+/**
+ * Resources created in Azure DevOps repository.
+ */
 @Fluent
 public final class AzureDevOpsResourceInfo {
     /*
@@ -23,8 +25,14 @@ public final class AzureDevOpsResourceInfo {
     private String serviceConnectionId;
 
     /**
+     * Creates an instance of AzureDevOpsResourceInfo class.
+     */
+    public AzureDevOpsResourceInfo() {
+    }
+
+    /**
      * Get the pipelineId property: Id of the pipeline created for the source-control.
-     *
+     * 
      * @return the pipelineId value.
      */
     public String pipelineId() {
@@ -33,7 +41,7 @@ public final class AzureDevOpsResourceInfo {
 
     /**
      * Set the pipelineId property: Id of the pipeline created for the source-control.
-     *
+     * 
      * @param pipelineId the pipelineId value to set.
      * @return the AzureDevOpsResourceInfo object itself.
      */
@@ -44,7 +52,7 @@ public final class AzureDevOpsResourceInfo {
 
     /**
      * Get the serviceConnectionId property: Id of the service-connection created for the source-control.
-     *
+     * 
      * @return the serviceConnectionId value.
      */
     public String serviceConnectionId() {
@@ -53,7 +61,7 @@ public final class AzureDevOpsResourceInfo {
 
     /**
      * Set the serviceConnectionId property: Id of the service-connection created for the source-control.
-     *
+     * 
      * @param serviceConnectionId the serviceConnectionId value to set.
      * @return the AzureDevOpsResourceInfo object itself.
      */
@@ -64,7 +72,7 @@ public final class AzureDevOpsResourceInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

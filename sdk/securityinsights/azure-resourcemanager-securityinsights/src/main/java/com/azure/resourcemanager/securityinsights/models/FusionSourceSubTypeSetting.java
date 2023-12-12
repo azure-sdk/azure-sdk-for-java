@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents a supported source subtype configuration under a source signal in Fusion detection. */
+/**
+ * Represents a supported source subtype configuration under a source signal in Fusion detection.
+ */
 @Fluent
 public final class FusionSourceSubTypeSetting {
     /*
@@ -37,9 +39,15 @@ public final class FusionSourceSubTypeSetting {
     private FusionSubTypeSeverityFilter severityFilters;
 
     /**
+     * Creates an instance of FusionSourceSubTypeSetting class.
+     */
+    public FusionSourceSubTypeSetting() {
+    }
+
+    /**
      * Get the enabled property: Determines whether this source subtype under source signal is enabled or disabled in
      * Fusion detection.
-     *
+     * 
      * @return the enabled value.
      */
     public boolean enabled() {
@@ -49,7 +57,7 @@ public final class FusionSourceSubTypeSetting {
     /**
      * Set the enabled property: Determines whether this source subtype under source signal is enabled or disabled in
      * Fusion detection.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the FusionSourceSubTypeSetting object itself.
      */
@@ -61,7 +69,7 @@ public final class FusionSourceSubTypeSetting {
     /**
      * Get the sourceSubTypeName property: The Name of the source subtype under a given source signal in Fusion
      * detection. Refer to Fusion alert rule template for supported values.
-     *
+     * 
      * @return the sourceSubTypeName value.
      */
     public String sourceSubTypeName() {
@@ -71,7 +79,7 @@ public final class FusionSourceSubTypeSetting {
     /**
      * Set the sourceSubTypeName property: The Name of the source subtype under a given source signal in Fusion
      * detection. Refer to Fusion alert rule template for supported values.
-     *
+     * 
      * @param sourceSubTypeName the sourceSubTypeName value to set.
      * @return the FusionSourceSubTypeSetting object itself.
      */
@@ -83,7 +91,7 @@ public final class FusionSourceSubTypeSetting {
     /**
      * Get the sourceSubTypeDisplayName property: The display name of source subtype under a source signal consumed in
      * Fusion detection.
-     *
+     * 
      * @return the sourceSubTypeDisplayName value.
      */
     public String sourceSubTypeDisplayName() {
@@ -92,7 +100,7 @@ public final class FusionSourceSubTypeSetting {
 
     /**
      * Get the severityFilters property: Severity configuration for a source subtype consumed in fusion detection.
-     *
+     * 
      * @return the severityFilters value.
      */
     public FusionSubTypeSeverityFilter severityFilters() {
@@ -101,7 +109,7 @@ public final class FusionSourceSubTypeSetting {
 
     /**
      * Set the severityFilters property: Severity configuration for a source subtype consumed in fusion detection.
-     *
+     * 
      * @param severityFilters the severityFilters value to set.
      * @return the FusionSourceSubTypeSetting object itself.
      */
@@ -112,21 +120,17 @@ public final class FusionSourceSubTypeSetting {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceSubTypeName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourceSubTypeName in model FusionSourceSubTypeSetting"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sourceSubTypeName in model FusionSourceSubTypeSetting"));
         }
         if (severityFilters() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property severityFilters in model FusionSourceSubTypeSetting"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property severityFilters in model FusionSourceSubTypeSetting"));
         } else {
             severityFilters().validate();
         }

@@ -7,17 +7,29 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import java.util.List;
 
-/** The CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem model. */
+/**
+ * The CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem model.
+ */
 @Fluent
 public final class CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem extends ConnectivityCriteria {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem class.
+     */
+    public CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem withType(ConnectivityType type) {
         super.withType(type);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem withValue(List<String> value) {
         super.withValue(value);
@@ -26,7 +38,7 @@ public final class CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem e
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

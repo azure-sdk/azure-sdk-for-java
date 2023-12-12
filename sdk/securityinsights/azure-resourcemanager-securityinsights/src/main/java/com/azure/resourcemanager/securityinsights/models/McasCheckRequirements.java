@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents MCAS (Microsoft Cloud App Security) requirements check request. */
+/**
+ * Represents MCAS (Microsoft Cloud App Security) requirements check request.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("MicrosoftCloudAppSecurity")
 @Fluent
@@ -22,8 +24,14 @@ public final class McasCheckRequirements extends DataConnectorsCheckRequirements
     private McasCheckRequirementsProperties innerProperties;
 
     /**
+     * Creates an instance of McasCheckRequirements class.
+     */
+    public McasCheckRequirements() {
+    }
+
+    /**
      * Get the innerProperties property: MCAS (Microsoft Cloud App Security) requirements check properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private McasCheckRequirementsProperties innerProperties() {
@@ -31,8 +39,31 @@ public final class McasCheckRequirements extends DataConnectorsCheckRequirements
     }
 
     /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     * 
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     * 
+     * @param tenantId the tenantId value to set.
+     * @return the McasCheckRequirements object itself.
+     */
+    public McasCheckRequirements withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new McasCheckRequirementsProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

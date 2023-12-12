@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** Settings with single toggle. */
+/**
+ * Settings with single toggle.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("EntityAnalytics")
 @Fluent
@@ -24,15 +26,23 @@ public final class EntityAnalytics extends SettingsInner {
     private EntityAnalyticsProperties innerProperties;
 
     /**
+     * Creates an instance of EntityAnalytics class.
+     */
+    public EntityAnalytics() {
+    }
+
+    /**
      * Get the innerProperties property: EntityAnalytics properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private EntityAnalyticsProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EntityAnalytics withEtag(String etag) {
         super.withEtag(etag);
@@ -41,7 +51,7 @@ public final class EntityAnalytics extends SettingsInner {
 
     /**
      * Get the entityProviders property: The relevant entity providers that are synced.
-     *
+     * 
      * @return the entityProviders value.
      */
     public List<EntityProviders> entityProviders() {
@@ -50,7 +60,7 @@ public final class EntityAnalytics extends SettingsInner {
 
     /**
      * Set the entityProviders property: The relevant entity providers that are synced.
-     *
+     * 
      * @param entityProviders the entityProviders value to set.
      * @return the EntityAnalytics object itself.
      */
@@ -64,7 +74,7 @@ public final class EntityAnalytics extends SettingsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

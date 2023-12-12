@@ -13,8 +13,7 @@ public final class SecurityMLAnalyticsSettingImpl implements SecurityMLAnalytics
 
     private final com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager;
 
-    SecurityMLAnalyticsSettingImpl(
-        SecurityMLAnalyticsSettingInner innerObject,
+    SecurityMLAnalyticsSettingImpl(SecurityMLAnalyticsSettingInner innerObject,
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;

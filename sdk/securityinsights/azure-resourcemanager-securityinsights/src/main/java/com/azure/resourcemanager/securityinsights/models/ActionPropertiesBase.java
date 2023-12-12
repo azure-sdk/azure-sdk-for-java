@@ -8,20 +8,29 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Action property bag base. */
+/**
+ * Action property bag base.
+ */
 @Fluent
 public class ActionPropertiesBase {
     /*
      * Logic App Resource Id,
-     * /subscriptions/{my-subscription}/resourceGroups/{my-resource-group}/providers/Microsoft.Logic/workflows/{my-workflow-id}.
+     * /subscriptions/{my-subscription}/resourceGroups/{my-resource-group}/providers/Microsoft.Logic/workflows/{my-
+     * workflow-id}.
      */
     @JsonProperty(value = "logicAppResourceId", required = true)
     private String logicAppResourceId;
 
     /**
+     * Creates an instance of ActionPropertiesBase class.
+     */
+    public ActionPropertiesBase() {
+    }
+
+    /**
      * Get the logicAppResourceId property: Logic App Resource Id,
      * /subscriptions/{my-subscription}/resourceGroups/{my-resource-group}/providers/Microsoft.Logic/workflows/{my-workflow-id}.
-     *
+     * 
      * @return the logicAppResourceId value.
      */
     public String logicAppResourceId() {
@@ -31,7 +40,7 @@ public class ActionPropertiesBase {
     /**
      * Set the logicAppResourceId property: Logic App Resource Id,
      * /subscriptions/{my-subscription}/resourceGroups/{my-resource-group}/providers/Microsoft.Logic/workflows/{my-workflow-id}.
-     *
+     * 
      * @param logicAppResourceId the logicAppResourceId value to set.
      * @return the ActionPropertiesBase object itself.
      */
@@ -42,15 +51,13 @@ public class ActionPropertiesBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (logicAppResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property logicAppResourceId in model ActionPropertiesBase"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property logicAppResourceId in model ActionPropertiesBase"));
         }
     }
 

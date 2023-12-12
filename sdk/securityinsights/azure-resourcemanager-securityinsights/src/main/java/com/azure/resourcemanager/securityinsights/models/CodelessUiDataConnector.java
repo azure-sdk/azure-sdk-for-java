@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents Codeless UI data connector. */
+/**
+ * Represents Codeless UI data connector.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("GenericUI")
 @Fluent
@@ -23,15 +25,23 @@ public final class CodelessUiDataConnector extends DataConnectorInner {
     private CodelessParameters innerProperties;
 
     /**
+     * Creates an instance of CodelessUiDataConnector class.
+     */
+    public CodelessUiDataConnector() {
+    }
+
+    /**
      * Get the innerProperties property: Codeless UI data connector properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private CodelessParameters innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodelessUiDataConnector withEtag(String etag) {
         super.withEtag(etag);
@@ -40,7 +50,7 @@ public final class CodelessUiDataConnector extends DataConnectorInner {
 
     /**
      * Get the connectorUiConfig property: Config to describe the instructions blade.
-     *
+     * 
      * @return the connectorUiConfig value.
      */
     public CodelessUiConnectorConfigProperties connectorUiConfig() {
@@ -49,7 +59,7 @@ public final class CodelessUiDataConnector extends DataConnectorInner {
 
     /**
      * Set the connectorUiConfig property: Config to describe the instructions blade.
-     *
+     * 
      * @param connectorUiConfig the connectorUiConfig value to set.
      * @return the CodelessUiDataConnector object itself.
      */
@@ -63,7 +73,7 @@ public final class CodelessUiDataConnector extends DataConnectorInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
