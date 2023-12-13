@@ -7,7 +7,9 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Scaling plan reference to hostpool. */
+/**
+ * Scaling plan reference to hostpool.
+ */
 @Fluent
 public final class ScalingHostPoolReference {
     /*
@@ -22,13 +24,15 @@ public final class ScalingHostPoolReference {
     @JsonProperty(value = "scalingPlanEnabled")
     private Boolean scalingPlanEnabled;
 
-    /** Creates an instance of ScalingHostPoolReference class. */
+    /**
+     * Creates an instance of ScalingHostPoolReference class.
+     */
     public ScalingHostPoolReference() {
     }
 
     /**
      * Get the hostPoolArmPath property: Arm path of referenced hostpool.
-     *
+     * 
      * @return the hostPoolArmPath value.
      */
     public String hostPoolArmPath() {
@@ -37,7 +41,7 @@ public final class ScalingHostPoolReference {
 
     /**
      * Set the hostPoolArmPath property: Arm path of referenced hostpool.
-     *
+     * 
      * @param hostPoolArmPath the hostPoolArmPath value to set.
      * @return the ScalingHostPoolReference object itself.
      */
@@ -48,7 +52,7 @@ public final class ScalingHostPoolReference {
 
     /**
      * Get the scalingPlanEnabled property: Is the scaling plan enabled for this hostpool.
-     *
+     * 
      * @return the scalingPlanEnabled value.
      */
     public Boolean scalingPlanEnabled() {
@@ -57,7 +61,7 @@ public final class ScalingHostPoolReference {
 
     /**
      * Set the scalingPlanEnabled property: Is the scaling plan enabled for this hostpool.
-     *
+     * 
      * @param scalingPlanEnabled the scalingPlanEnabled value to set.
      * @return the ScalingHostPoolReference object itself.
      */
@@ -68,7 +72,7 @@ public final class ScalingHostPoolReference {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

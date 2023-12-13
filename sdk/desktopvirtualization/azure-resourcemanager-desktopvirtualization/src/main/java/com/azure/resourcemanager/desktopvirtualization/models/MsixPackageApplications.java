@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Schema for MSIX Package Application properties. */
+/**
+ * Schema for MSIX Package Application properties.
+ */
 @Fluent
 public final class MsixPackageApplications {
     /*
@@ -53,13 +55,15 @@ public final class MsixPackageApplications {
     @JsonProperty(value = "rawPng")
     private byte[] rawPng;
 
-    /** Creates an instance of MsixPackageApplications class. */
+    /**
+     * Creates an instance of MsixPackageApplications class.
+     */
     public MsixPackageApplications() {
     }
 
     /**
      * Get the appId property: Package Application Id, found in appxmanifest.xml.
-     *
+     * 
      * @return the appId value.
      */
     public String appId() {
@@ -68,7 +72,7 @@ public final class MsixPackageApplications {
 
     /**
      * Set the appId property: Package Application Id, found in appxmanifest.xml.
-     *
+     * 
      * @param appId the appId value to set.
      * @return the MsixPackageApplications object itself.
      */
@@ -79,7 +83,7 @@ public final class MsixPackageApplications {
 
     /**
      * Get the description property: Description of Package Application.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -88,7 +92,7 @@ public final class MsixPackageApplications {
 
     /**
      * Set the description property: Description of Package Application.
-     *
+     * 
      * @param description the description value to set.
      * @return the MsixPackageApplications object itself.
      */
@@ -100,7 +104,7 @@ public final class MsixPackageApplications {
     /**
      * Get the appUserModelId property: Used to activate Package Application. Consists of Package Name and
      * ApplicationID. Found in appxmanifest.xml.
-     *
+     * 
      * @return the appUserModelId value.
      */
     public String appUserModelId() {
@@ -110,7 +114,7 @@ public final class MsixPackageApplications {
     /**
      * Set the appUserModelId property: Used to activate Package Application. Consists of Package Name and
      * ApplicationID. Found in appxmanifest.xml.
-     *
+     * 
      * @param appUserModelId the appUserModelId value to set.
      * @return the MsixPackageApplications object itself.
      */
@@ -121,7 +125,7 @@ public final class MsixPackageApplications {
 
     /**
      * Get the friendlyName property: User friendly name.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -130,7 +134,7 @@ public final class MsixPackageApplications {
 
     /**
      * Set the friendlyName property: User friendly name.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the MsixPackageApplications object itself.
      */
@@ -141,7 +145,7 @@ public final class MsixPackageApplications {
 
     /**
      * Get the iconImageName property: User friendly name.
-     *
+     * 
      * @return the iconImageName value.
      */
     public String iconImageName() {
@@ -150,7 +154,7 @@ public final class MsixPackageApplications {
 
     /**
      * Set the iconImageName property: User friendly name.
-     *
+     * 
      * @param iconImageName the iconImageName value to set.
      * @return the MsixPackageApplications object itself.
      */
@@ -161,7 +165,7 @@ public final class MsixPackageApplications {
 
     /**
      * Get the rawIcon property: the icon a 64 bit string as a byte array.
-     *
+     * 
      * @return the rawIcon value.
      */
     public byte[] rawIcon() {
@@ -170,7 +174,7 @@ public final class MsixPackageApplications {
 
     /**
      * Set the rawIcon property: the icon a 64 bit string as a byte array.
-     *
+     * 
      * @param rawIcon the rawIcon value to set.
      * @return the MsixPackageApplications object itself.
      */
@@ -181,7 +185,7 @@ public final class MsixPackageApplications {
 
     /**
      * Get the rawPng property: the icon a 64 bit string as a byte array.
-     *
+     * 
      * @return the rawPng value.
      */
     public byte[] rawPng() {
@@ -190,7 +194,7 @@ public final class MsixPackageApplications {
 
     /**
      * Set the rawPng property: the icon a 64 bit string as a byte array.
-     *
+     * 
      * @param rawPng the rawPng value to set.
      * @return the MsixPackageApplications object itself.
      */
@@ -201,7 +205,7 @@ public final class MsixPackageApplications {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

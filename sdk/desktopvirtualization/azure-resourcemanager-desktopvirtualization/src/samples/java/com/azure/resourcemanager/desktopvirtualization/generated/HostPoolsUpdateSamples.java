@@ -19,51 +19,40 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for HostPools Update. */
+/**
+ * Samples for HostPools Update.
+ */
 public final class HostPoolsUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2023-09-05/examples/HostPool_Update.json
+     * x-ms-original-file:
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2023-11-01-preview/
+     * examples/HostPool_Update.json
      */
     /**
      * Sample code: HostPool_Update.
-     *
+     * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
-    public static void hostPoolUpdate(
-        com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        HostPool resource =
-            manager
-                .hostPools()
-                .getByResourceGroupWithResponse("resourceGroup1", "hostPool1", com.azure.core.util.Context.NONE)
-                .getValue();
-        resource
-            .update()
-            .withTags(mapOf("tag1", "value1", "tag2", "value2"))
-            .withFriendlyName("friendly")
-            .withDescription("des1")
-            .withMaxSessionLimit(999999)
+    public static void
+        hostPoolUpdate(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+        HostPool resource = manager.hostPools()
+            .getByResourceGroupWithResponse("resourceGroup1", "hostPool1", com.azure.core.util.Context.NONE).getValue();
+        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).withFriendlyName("friendly")
+            .withDescription("des1").withMaxSessionLimit(999999)
             .withPersonalDesktopAssignmentType(PersonalDesktopAssignmentType.AUTOMATIC)
             .withLoadBalancerType(LoadBalancerType.BREADTH_FIRST)
             .withRegistrationInfo(
-                new RegistrationInfoPatch()
-                    .withExpirationTime(OffsetDateTime.parse("2020-10-01T15:01:54.9571247Z"))
+                new RegistrationInfoPatch().withExpirationTime(OffsetDateTime.parse("2020-10-01T15:01:54.9571247Z"))
                     .withRegistrationTokenOperation(RegistrationTokenOperation.UPDATE))
-            .withVmTemplate("{json:json}")
-            .withSsoadfsAuthority("https://adfs")
-            .withSsoClientId("client")
-            .withSsoClientSecretKeyVaultPath("https://keyvault/secret")
-            .withSsoSecretType(SsoSecretType.SHARED_KEY)
+            .withVmTemplate("{json:json}").withSsoadfsAuthority("https://adfs").withSsoClientId("client")
+            .withSsoClientSecretKeyVaultPath("https://keyvault/secret").withSsoSecretType(SsoSecretType.SHARED_KEY)
             .withStartVMOnConnect(false)
             .withAgentUpdate(
-                new AgentUpdatePatchProperties()
-                    .withType(SessionHostComponentUpdateType.SCHEDULED)
-                    .withUseSessionHostLocalTime(false)
-                    .withMaintenanceWindowTimeZone("Alaskan Standard Time")
-                    .withMaintenanceWindows(
-                        Arrays
-                            .asList(
-                                new MaintenanceWindowPatchProperties().withHour(7).withDayOfWeek(DayOfWeek.FRIDAY),
-                                new MaintenanceWindowPatchProperties().withHour(8).withDayOfWeek(DayOfWeek.SATURDAY))))
+                new AgentUpdatePatchProperties().withType(SessionHostComponentUpdateType.SCHEDULED)
+                    .withUseSessionHostLocalTime(false).withMaintenanceWindowTimeZone("Alaskan Standard Time")
+                    .withMaintenanceWindows(Arrays.asList(
+                        new MaintenanceWindowPatchProperties().withHour(7).withDayOfWeek(DayOfWeek.FRIDAY),
+                        new MaintenanceWindowPatchProperties().withHour(8).withDayOfWeek(DayOfWeek.SATURDAY))))
             .apply();
     }
 
