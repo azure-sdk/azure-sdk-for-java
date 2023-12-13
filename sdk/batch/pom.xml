@@ -10,6 +10,7 @@
   <version>1.0.0</version><!-- Need not change for every release-->
 
   <modules>
+    <module>Batch</module>
     <module>azure-resourcemanager-batch</module>
     <module>microsoft-azure-batch</module>
   </modules>

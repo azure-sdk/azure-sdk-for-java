@@ -38,3 +38,6 @@ extends:
       - name: azure-resourcemanager-batch
         groupId: com.azure.resourcemanager
         safeName: azureresourcemanagerbatch
+      - name: Batch
+        groupId: com.azure
+        safeName: Batch
