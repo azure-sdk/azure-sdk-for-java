@@ -21,22 +21,18 @@ public final class ApplicationGroupsImpl implements ApplicationGroups {
 
     private final com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager;
 
-    public ApplicationGroupsImpl(
-        ApplicationGroupsClient innerClient,
+    public ApplicationGroupsImpl(ApplicationGroupsClient innerClient,
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<ApplicationGroup> getByResourceGroupWithResponse(
-        String resourceGroupName, String applicationGroupName, Context context) {
-        Response<ApplicationGroupInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, applicationGroupName, context);
+    public Response<ApplicationGroup> getByResourceGroupWithResponse(String resourceGroupName,
+        String applicationGroupName, Context context) {
+        Response<ApplicationGroupInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, applicationGroupName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ApplicationGroupImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -52,8 +48,8 @@ public final class ApplicationGroupsImpl implements ApplicationGroups {
         }
     }
 
-    public Response<Void> deleteByResourceGroupWithResponse(
-        String resourceGroupName, String applicationGroupName, Context context) {
+    public Response<Void> deleteByResourceGroupWithResponse(String resourceGroupName, String applicationGroupName,
+        Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, applicationGroupName, context);
     }
 
@@ -66,17 +62,10 @@ public final class ApplicationGroupsImpl implements ApplicationGroups {
         return Utils.mapPage(inner, inner1 -> new ApplicationGroupImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ApplicationGroup> listByResourceGroup(
-        String resourceGroupName,
-        String filter,
-        Integer pageSize,
-        Boolean isDescending,
-        Integer initialSkip,
-        Context context) {
-        PagedIterable<ApplicationGroupInner> inner =
-            this
-                .serviceClient()
-                .listByResourceGroup(resourceGroupName, filter, pageSize, isDescending, initialSkip, context);
+    public PagedIterable<ApplicationGroup> listByResourceGroup(String resourceGroupName, String filter,
+        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
+        PagedIterable<ApplicationGroupInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName, filter,
+            pageSize, isDescending, initialSkip, context);
         return Utils.mapPage(inner, inner1 -> new ApplicationGroupImpl(inner1, this.manager()));
     }
 
@@ -93,20 +82,13 @@ public final class ApplicationGroupsImpl implements ApplicationGroups {
     public ApplicationGroup getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String applicationGroupName = Utils.getValueFromIdByName(id, "applicationGroups");
         if (applicationGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'applicationGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'applicationGroups'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, applicationGroupName, Context.NONE).getValue();
     }
@@ -114,20 +96,13 @@ public final class ApplicationGroupsImpl implements ApplicationGroups {
     public Response<ApplicationGroup> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String applicationGroupName = Utils.getValueFromIdByName(id, "applicationGroups");
         if (applicationGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'applicationGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'applicationGroups'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, applicationGroupName, context);
     }
@@ -135,20 +110,13 @@ public final class ApplicationGroupsImpl implements ApplicationGroups {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String applicationGroupName = Utils.getValueFromIdByName(id, "applicationGroups");
         if (applicationGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'applicationGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'applicationGroups'.", id)));
         }
         this.deleteByResourceGroupWithResponse(resourceGroupName, applicationGroupName, Context.NONE);
     }
@@ -156,20 +124,13 @@ public final class ApplicationGroupsImpl implements ApplicationGroups {
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String applicationGroupName = Utils.getValueFromIdByName(id, "applicationGroups");
         if (applicationGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'applicationGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'applicationGroups'.", id)));
         }
         return this.deleteByResourceGroupWithResponse(resourceGroupName, applicationGroupName, context);
     }
