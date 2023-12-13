@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
-/** Samples for Jobs Delete. */
+/**
+ * Samples for Jobs Delete.
+ */
 public final class JobsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/delete.json
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-01-01-
+     * preview/examples/Job/delete.json
      */
     /**
      * Sample code: Delete Job.
-     *
+     * 
      * @param manager Entry point to MachineLearningManager.
      */
     public static void deleteJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {

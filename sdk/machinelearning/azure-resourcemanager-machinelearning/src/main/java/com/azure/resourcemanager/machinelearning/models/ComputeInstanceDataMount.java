@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Defines an Aml Instance DataMount. */
+/**
+ * Defines an Aml Instance DataMount.
+ */
 @Fluent
 public final class ComputeInstanceDataMount {
     /*
@@ -36,6 +38,12 @@ public final class ComputeInstanceDataMount {
     private MountAction mountAction;
 
     /*
+     * Mount Mode.
+     */
+    @JsonProperty(value = "mountMode")
+    private MountMode mountMode;
+
+    /*
      * who this data mount created by.
      */
     @JsonProperty(value = "createdBy")
@@ -55,7 +63,7 @@ public final class ComputeInstanceDataMount {
 
     /*
      * Mounted time.
-     *
+     * 
      * The time when the disk mounted.
      */
     @JsonProperty(value = "mountedOn")
@@ -67,13 +75,15 @@ public final class ComputeInstanceDataMount {
     @JsonProperty(value = "error")
     private String error;
 
-    /** Creates an instance of ComputeInstanceDataMount class. */
+    /**
+     * Creates an instance of ComputeInstanceDataMount class.
+     */
     public ComputeInstanceDataMount() {
     }
 
     /**
      * Get the source property: Source of the ComputeInstance data mount.
-     *
+     * 
      * @return the source value.
      */
     public String source() {
@@ -82,7 +92,7 @@ public final class ComputeInstanceDataMount {
 
     /**
      * Set the source property: Source of the ComputeInstance data mount.
-     *
+     * 
      * @param source the source value to set.
      * @return the ComputeInstanceDataMount object itself.
      */
@@ -93,7 +103,7 @@ public final class ComputeInstanceDataMount {
 
     /**
      * Get the sourceType property: Data source type.
-     *
+     * 
      * @return the sourceType value.
      */
     public SourceType sourceType() {
@@ -102,7 +112,7 @@ public final class ComputeInstanceDataMount {
 
     /**
      * Set the sourceType property: Data source type.
-     *
+     * 
      * @param sourceType the sourceType value to set.
      * @return the ComputeInstanceDataMount object itself.
      */
@@ -113,7 +123,7 @@ public final class ComputeInstanceDataMount {
 
     /**
      * Get the mountName property: name of the ComputeInstance data mount.
-     *
+     * 
      * @return the mountName value.
      */
     public String mountName() {
@@ -122,7 +132,7 @@ public final class ComputeInstanceDataMount {
 
     /**
      * Set the mountName property: name of the ComputeInstance data mount.
-     *
+     * 
      * @param mountName the mountName value to set.
      * @return the ComputeInstanceDataMount object itself.
      */
@@ -133,7 +143,7 @@ public final class ComputeInstanceDataMount {
 
     /**
      * Get the mountAction property: Mount Action.
-     *
+     * 
      * @return the mountAction value.
      */
     public MountAction mountAction() {
@@ -142,7 +152,7 @@ public final class ComputeInstanceDataMount {
 
     /**
      * Set the mountAction property: Mount Action.
-     *
+     * 
      * @param mountAction the mountAction value to set.
      * @return the ComputeInstanceDataMount object itself.
      */
@@ -152,8 +162,28 @@ public final class ComputeInstanceDataMount {
     }
 
     /**
+     * Get the mountMode property: Mount Mode.
+     * 
+     * @return the mountMode value.
+     */
+    public MountMode mountMode() {
+        return this.mountMode;
+    }
+
+    /**
+     * Set the mountMode property: Mount Mode.
+     * 
+     * @param mountMode the mountMode value to set.
+     * @return the ComputeInstanceDataMount object itself.
+     */
+    public ComputeInstanceDataMount withMountMode(MountMode mountMode) {
+        this.mountMode = mountMode;
+        return this;
+    }
+
+    /**
      * Get the createdBy property: who this data mount created by.
-     *
+     * 
      * @return the createdBy value.
      */
     public String createdBy() {
@@ -162,7 +192,7 @@ public final class ComputeInstanceDataMount {
 
     /**
      * Set the createdBy property: who this data mount created by.
-     *
+     * 
      * @param createdBy the createdBy value to set.
      * @return the ComputeInstanceDataMount object itself.
      */
@@ -173,7 +203,7 @@ public final class ComputeInstanceDataMount {
 
     /**
      * Get the mountPath property: Path of this data mount.
-     *
+     * 
      * @return the mountPath value.
      */
     public String mountPath() {
@@ -182,7 +212,7 @@ public final class ComputeInstanceDataMount {
 
     /**
      * Set the mountPath property: Path of this data mount.
-     *
+     * 
      * @param mountPath the mountPath value to set.
      * @return the ComputeInstanceDataMount object itself.
      */
@@ -193,7 +223,7 @@ public final class ComputeInstanceDataMount {
 
     /**
      * Get the mountState property: Mount state.
-     *
+     * 
      * @return the mountState value.
      */
     public MountState mountState() {
@@ -202,7 +232,7 @@ public final class ComputeInstanceDataMount {
 
     /**
      * Set the mountState property: Mount state.
-     *
+     * 
      * @param mountState the mountState value to set.
      * @return the ComputeInstanceDataMount object itself.
      */
@@ -213,9 +243,9 @@ public final class ComputeInstanceDataMount {
 
     /**
      * Get the mountedOn property: Mounted time.
-     *
-     * <p>The time when the disk mounted.
-     *
+     * 
+     * The time when the disk mounted.
+     * 
      * @return the mountedOn value.
      */
     public OffsetDateTime mountedOn() {
@@ -224,9 +254,9 @@ public final class ComputeInstanceDataMount {
 
     /**
      * Set the mountedOn property: Mounted time.
-     *
-     * <p>The time when the disk mounted.
-     *
+     * 
+     * The time when the disk mounted.
+     * 
      * @param mountedOn the mountedOn value to set.
      * @return the ComputeInstanceDataMount object itself.
      */
@@ -237,7 +267,7 @@ public final class ComputeInstanceDataMount {
 
     /**
      * Get the error property: Error of this data mount.
-     *
+     * 
      * @return the error value.
      */
     public String error() {
@@ -246,7 +276,7 @@ public final class ComputeInstanceDataMount {
 
     /**
      * Set the error property: Error of this data mount.
-     *
+     * 
      * @param error the error value to set.
      * @return the ComputeInstanceDataMount object itself.
      */
@@ -257,7 +287,7 @@ public final class ComputeInstanceDataMount {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Code asset version details. */
+/**
+ * Code asset version details.
+ */
 @Fluent
 public final class CodeVersionProperties extends AssetBase {
     /*
@@ -17,13 +19,21 @@ public final class CodeVersionProperties extends AssetBase {
     @JsonProperty(value = "codeUri")
     private String codeUri;
 
-    /** Creates an instance of CodeVersionProperties class. */
+    /*
+     * Provisioning state for the code version.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AssetProvisioningState provisioningState;
+
+    /**
+     * Creates an instance of CodeVersionProperties class.
+     */
     public CodeVersionProperties() {
     }
 
     /**
      * Get the codeUri property: Uri where code is located.
-     *
+     * 
      * @return the codeUri value.
      */
     public String codeUri() {
@@ -32,7 +42,7 @@ public final class CodeVersionProperties extends AssetBase {
 
     /**
      * Set the codeUri property: Uri where code is located.
-     *
+     * 
      * @param codeUri the codeUri value to set.
      * @return the CodeVersionProperties object itself.
      */
@@ -41,35 +51,63 @@ public final class CodeVersionProperties extends AssetBase {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the provisioningState property: Provisioning state for the code version.
+     * 
+     * @return the provisioningState value.
+     */
+    public AssetProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public CodeVersionProperties withAutoDeleteSetting(AutoDeleteSetting autoDeleteSetting) {
+        super.withAutoDeleteSetting(autoDeleteSetting);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodeVersionProperties withIsAnonymous(Boolean isAnonymous) {
         super.withIsAnonymous(isAnonymous);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodeVersionProperties withIsArchived(Boolean isArchived) {
         super.withIsArchived(isArchived);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodeVersionProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodeVersionProperties withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodeVersionProperties withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -78,7 +116,7 @@ public final class CodeVersionProperties extends AssetBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

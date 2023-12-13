@@ -6,29 +6,22 @@ package com.azure.resourcemanager.machinelearning.generated;
 
 import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.machinelearning.models.AllNodes;
 import com.azure.resourcemanager.machinelearning.models.AmlToken;
-import com.azure.resourcemanager.machinelearning.models.AutoMLJob;
+import com.azure.resourcemanager.machinelearning.models.AutologgerSettings;
 import com.azure.resourcemanager.machinelearning.models.CommandJob;
 import com.azure.resourcemanager.machinelearning.models.CommandJobLimits;
-import com.azure.resourcemanager.machinelearning.models.Goal;
-import com.azure.resourcemanager.machinelearning.models.GridSamplingAlgorithm;
-import com.azure.resourcemanager.machinelearning.models.ImageClassification;
-import com.azure.resourcemanager.machinelearning.models.ImageLimitSettings;
-import com.azure.resourcemanager.machinelearning.models.ImageModelDistributionSettingsClassification;
-import com.azure.resourcemanager.machinelearning.models.ImageModelSettingsClassification;
+import com.azure.resourcemanager.machinelearning.models.EmailNotificationEnableType;
 import com.azure.resourcemanager.machinelearning.models.JobResourceConfiguration;
 import com.azure.resourcemanager.machinelearning.models.JobService;
+import com.azure.resourcemanager.machinelearning.models.JobTier;
 import com.azure.resourcemanager.machinelearning.models.LiteralJobInput;
-import com.azure.resourcemanager.machinelearning.models.MLTableJobInput;
-import com.azure.resourcemanager.machinelearning.models.MedianStoppingPolicy;
-import com.azure.resourcemanager.machinelearning.models.Mpi;
-import com.azure.resourcemanager.machinelearning.models.Objective;
+import com.azure.resourcemanager.machinelearning.models.MLFlowAutologgerState;
+import com.azure.resourcemanager.machinelearning.models.NotificationSetting;
 import com.azure.resourcemanager.machinelearning.models.OutputDeliveryMode;
 import com.azure.resourcemanager.machinelearning.models.PipelineJob;
-import com.azure.resourcemanager.machinelearning.models.SweepJob;
-import com.azure.resourcemanager.machinelearning.models.SweepJobLimits;
+import com.azure.resourcemanager.machinelearning.models.QueueSettings;
 import com.azure.resourcemanager.machinelearning.models.TensorFlow;
-import com.azure.resourcemanager.machinelearning.models.TrialComponent;
 import com.azure.resourcemanager.machinelearning.models.UriFileJobOutput;
 import java.io.IOException;
 import java.time.Duration;
@@ -36,247 +29,171 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for Jobs CreateOrUpdate. */
+/**
+ * Samples for Jobs CreateOrUpdate.
+ */
 public final class JobsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/AutoMLJob/createOrUpdate.json
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-01-01-
+     * preview/examples/Job/AutoMLJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate AutoML Job.
-     *
+     * 
      * @param manager Entry point to MachineLearningManager.
      */
     public static void createOrUpdateAutoMLJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager)
         throws IOException {
         manager
-            .jobs()
-            .define("string")
-            .withExistingWorkspace("test-rg", "my-aml-workspace")
-            .withProperties(
-                new AutoMLJob()
-                    .withDescription("string")
-                    .withProperties(mapOf("string", "string"))
-                    .withTags(mapOf("string", "string"))
-                    .withComputeId("string")
-                    .withDisplayName("string")
-                    .withExperimentName("string")
-                    .withIdentity(new AmlToken())
-                    .withIsArchived(false)
-                    .withServices(
-                        mapOf(
-                            "string",
-                            new JobService()
-                                .withEndpoint("string")
-                                .withJobServiceType("string")
-                                .withPort(1)
-                                .withProperties(mapOf("string", "string"))))
-                    .withEnvironmentId("string")
-                    .withEnvironmentVariables(mapOf("string", "string"))
-                    .withOutputs(
-                        mapOf(
-                            "string",
-                            new UriFileJobOutput()
-                                .withDescription("string")
-                                .withMode(OutputDeliveryMode.READ_WRITE_MOUNT)
-                                .withUri("string")))
-                    .withResources(
-                        new JobResourceConfiguration()
-                            .withInstanceCount(1)
-                            .withInstanceType("string")
-                            .withProperties(
-                                mapOf(
-                                    "string",
-                                    SerializerFactory
-                                        .createDefaultManagementSerializerAdapter()
-                                        .deserialize(
-                                            "{\"9bec0ab0-c62f-4fa9-a97c-7b24bbcc90ad\":null}",
-                                            Object.class,
-                                            SerializerEncoding.JSON))))
-                    .withTaskDetails(
-                        new ImageClassification()
-                            .withTargetColumnName("string")
-                            .withTrainingData(new MLTableJobInput().withUri("string"))
-                            .withModelSettings(new ImageModelSettingsClassification().withValidationCropSize(2))
-                            .withSearchSpace(
-                                Arrays
-                                    .asList(
-                                        new ImageModelDistributionSettingsClassification()
-                                            .withValidationCropSize("choice(2, 360)")))
-                            .withLimitSettings(new ImageLimitSettings().withMaxTrials(2))))
+            .jobs().define("string").withExistingWorkspace("test-rg",
+                "my-aml-workspace")
+            .withProperties(new CommandJob().withDescription("string").withProperties(mapOf("string", "string"))
+                .withTags(mapOf("string", "string")).withComponentId("string").withComputeId("string")
+                .withDisplayName("string").withExperimentName("string").withIdentity(new AmlToken())
+                .withIsArchived(false)
+                .withNotificationSetting(
+                    new NotificationSetting().withEmailOn(Arrays.asList(EmailNotificationEnableType.JOB_COMPLETED))
+                        .withEmails(Arrays.asList("string")))
+                .withServices(mapOf("string",
+                    new JobService().withEndpoint("string").withJobServiceType("string").withNodes(new AllNodes())
+                        .withPort(1).withProperties(mapOf("string", "string"))))
+                .withAutologgerSettings(new AutologgerSettings().withMlflowAutologger(MLFlowAutologgerState.DISABLED))
+                .withCodeId("fakeTokenPlaceholder").withCommand("string")
+                .withDistribution(new TensorFlow().withParameterServerCount(1).withWorkerCount(1))
+                .withEnvironmentId("string").withEnvironmentVariables(mapOf("string", "string"))
+                .withInputs(mapOf("string", new LiteralJobInput().withDescription("string").withValue("string")))
+                .withLimits(new CommandJobLimits().withTimeout(Duration.parse("PT5M")))
+                .withOutputs(mapOf("string",
+                    new UriFileJobOutput().withDescription("string").withAssetName("string").withAssetVersion("string")
+                        .withMode(OutputDeliveryMode.DIRECT).withUri("string")))
+                .withQueueSettings(new QueueSettings().withJobTier(JobTier.PREMIUM).withPriority(1))
+                .withResources(new JobResourceConfiguration().withInstanceCount(1).withInstanceType("string")
+                    .withLocations(Arrays.asList("string"))
+                    .withProperties(mapOf("string",
+                        SerializerFactory.createDefaultManagementSerializerAdapter().deserialize(
+                            "{\"f69c8d5a-9b39-4183-92d3-a2b18944cf95\":null}", Object.class, SerializerEncoding.JSON)))
+                    .withDockerArgs("string").withShmSize("2g")))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/SweepJob/createOrUpdate.json
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-01-01-
+     * preview/examples/Job/SweepJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Sweep Job.
-     *
+     * 
      * @param manager Entry point to MachineLearningManager.
      */
     public static void createOrUpdateSweepJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager)
         throws IOException {
         manager
-            .jobs()
-            .define("string")
-            .withExistingWorkspace("test-rg", "my-aml-workspace")
-            .withProperties(
-                new SweepJob()
-                    .withDescription("string")
-                    .withProperties(mapOf("string", "string"))
-                    .withTags(mapOf("string", "string"))
-                    .withComputeId("string")
-                    .withDisplayName("string")
-                    .withExperimentName("string")
-                    .withServices(
-                        mapOf(
-                            "string",
-                            new JobService()
-                                .withEndpoint("string")
-                                .withJobServiceType("string")
-                                .withPort(1)
-                                .withProperties(mapOf("string", "string"))))
-                    .withEarlyTermination(new MedianStoppingPolicy().withDelayEvaluation(1).withEvaluationInterval(1))
-                    .withLimits(
-                        new SweepJobLimits()
-                            .withMaxConcurrentTrials(1)
-                            .withMaxTotalTrials(1)
-                            .withTrialTimeout(Duration.parse("PT1S")))
-                    .withObjective(new Objective().withGoal(Goal.MINIMIZE).withPrimaryMetric("string"))
-                    .withSamplingAlgorithm(new GridSamplingAlgorithm())
-                    .withSearchSpace(
-                        SerializerFactory
-                            .createDefaultManagementSerializerAdapter()
-                            .deserialize("{\"string\":{}}", Object.class, SerializerEncoding.JSON))
-                    .withTrial(
-                        new TrialComponent()
-                            .withCodeId("fakeTokenPlaceholder")
-                            .withCommand("string")
-                            .withDistribution(new Mpi().withProcessCountPerInstance(1))
-                            .withEnvironmentId("string")
-                            .withEnvironmentVariables(mapOf("string", "string"))
-                            .withResources(
-                                new JobResourceConfiguration()
-                                    .withInstanceCount(1)
-                                    .withInstanceType("string")
-                                    .withProperties(
-                                        mapOf(
-                                            "string",
-                                            SerializerFactory
-                                                .createDefaultManagementSerializerAdapter()
-                                                .deserialize(
-                                                    "{\"e6b6493e-7d5e-4db3-be1e-306ec641327e\":null}",
-                                                    Object.class,
-                                                    SerializerEncoding.JSON))))))
+            .jobs().define("string").withExistingWorkspace("test-rg",
+                "my-aml-workspace")
+            .withProperties(new CommandJob().withDescription("string").withProperties(mapOf("string", "string"))
+                .withTags(mapOf("string", "string")).withComponentId("string").withComputeId("string")
+                .withDisplayName("string").withExperimentName("string").withIdentity(new AmlToken())
+                .withIsArchived(false)
+                .withNotificationSetting(
+                    new NotificationSetting().withEmailOn(Arrays.asList(EmailNotificationEnableType.JOB_COMPLETED))
+                        .withEmails(Arrays.asList("string")))
+                .withServices(mapOf("string",
+                    new JobService().withEndpoint("string").withJobServiceType("string").withNodes(new AllNodes())
+                        .withPort(1).withProperties(mapOf("string", "string"))))
+                .withAutologgerSettings(new AutologgerSettings().withMlflowAutologger(MLFlowAutologgerState.DISABLED))
+                .withCodeId("fakeTokenPlaceholder").withCommand("string")
+                .withDistribution(new TensorFlow().withParameterServerCount(1).withWorkerCount(1))
+                .withEnvironmentId("string").withEnvironmentVariables(mapOf("string", "string"))
+                .withInputs(mapOf("string", new LiteralJobInput().withDescription("string").withValue("string")))
+                .withLimits(new CommandJobLimits().withTimeout(Duration.parse("PT5M")))
+                .withOutputs(mapOf("string",
+                    new UriFileJobOutput().withDescription("string").withAssetName("string").withAssetVersion("string")
+                        .withMode(OutputDeliveryMode.READ_WRITE_MOUNT).withUri("string")))
+                .withQueueSettings(new QueueSettings().withJobTier(JobTier.BASIC).withPriority(1))
+                .withResources(new JobResourceConfiguration().withInstanceCount(1).withInstanceType("string")
+                    .withLocations(Arrays.asList("string"))
+                    .withProperties(mapOf("string",
+                        SerializerFactory.createDefaultManagementSerializerAdapter().deserialize(
+                            "{\"5fc1f627-491e-45a0-a6a2-f5b4be884911\":null}", Object.class, SerializerEncoding.JSON)))
+                    .withDockerArgs("string").withShmSize("2g")))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/PipelineJob/createOrUpdate.json
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-01-01-
+     * preview/examples/Job/PipelineJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Pipeline Job.
-     *
+     * 
      * @param manager Entry point to MachineLearningManager.
      */
     public static void createOrUpdatePipelineJob(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) throws IOException {
-        manager
-            .jobs()
-            .define("string")
-            .withExistingWorkspace("test-rg", "my-aml-workspace")
-            .withProperties(
-                new PipelineJob()
-                    .withDescription("string")
-                    .withProperties(mapOf("string", "string"))
-                    .withTags(mapOf("string", "string"))
-                    .withComputeId("string")
-                    .withDisplayName("string")
-                    .withExperimentName("string")
-                    .withServices(
-                        mapOf(
-                            "string",
-                            new JobService()
-                                .withEndpoint("string")
-                                .withJobServiceType("string")
-                                .withPort(1)
-                                .withProperties(mapOf("string", "string"))))
-                    .withInputs(mapOf("string", new LiteralJobInput().withDescription("string").withValue("string")))
-                    .withOutputs(
-                        mapOf(
-                            "string",
-                            new UriFileJobOutput()
-                                .withDescription("string")
-                                .withMode(OutputDeliveryMode.UPLOAD)
-                                .withUri("string")))
-                    .withSettings(
-                        SerializerFactory
-                            .createDefaultManagementSerializerAdapter()
-                            .deserialize("{}", Object.class, SerializerEncoding.JSON)))
+        manager.jobs().define("string").withExistingWorkspace("test-rg", "my-aml-workspace")
+            .withProperties(new PipelineJob().withDescription("string").withProperties(mapOf("string", "string"))
+                .withTags(mapOf("string", "string")).withComputeId("string").withDisplayName("string")
+                .withExperimentName("string")
+                .withServices(mapOf("string",
+                    new JobService().withEndpoint("string").withJobServiceType("string").withPort(1)
+                        .withProperties(mapOf("string", "string"))))
+                .withInputs(mapOf("string", new LiteralJobInput().withDescription("string").withValue("string")))
+                .withOutputs(mapOf("string",
+                    new UriFileJobOutput().withDescription("string").withMode(OutputDeliveryMode.UPLOAD)
+                        .withUri("string")))
+                .withSettings(SerializerFactory.createDefaultManagementSerializerAdapter().deserialize("{}",
+                    Object.class, SerializerEncoding.JSON)))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/CommandJob/createOrUpdate.json
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-01-01-
+     * preview/examples/Job/CommandJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Command Job.
-     *
+     * 
      * @param manager Entry point to MachineLearningManager.
      */
     public static void createOrUpdateCommandJob(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) throws IOException {
         manager
-            .jobs()
-            .define("string")
-            .withExistingWorkspace("test-rg", "my-aml-workspace")
-            .withProperties(
-                new CommandJob()
-                    .withDescription("string")
-                    .withProperties(mapOf("string", "string"))
-                    .withTags(mapOf("string", "string"))
-                    .withComputeId("string")
-                    .withDisplayName("string")
-                    .withExperimentName("string")
-                    .withIdentity(new AmlToken())
-                    .withServices(
-                        mapOf(
-                            "string",
-                            new JobService()
-                                .withEndpoint("string")
-                                .withJobServiceType("string")
-                                .withPort(1)
-                                .withProperties(mapOf("string", "string"))))
-                    .withCodeId("fakeTokenPlaceholder")
-                    .withCommand("string")
-                    .withDistribution(new TensorFlow().withParameterServerCount(1).withWorkerCount(1))
-                    .withEnvironmentId("string")
-                    .withEnvironmentVariables(mapOf("string", "string"))
-                    .withInputs(mapOf("string", new LiteralJobInput().withDescription("string").withValue("string")))
-                    .withLimits(new CommandJobLimits().withTimeout(Duration.parse("PT5M")))
-                    .withOutputs(
-                        mapOf(
-                            "string",
-                            new UriFileJobOutput()
-                                .withDescription("string")
-                                .withMode(OutputDeliveryMode.READ_WRITE_MOUNT)
-                                .withUri("string")))
-                    .withResources(
-                        new JobResourceConfiguration()
-                            .withInstanceCount(1)
-                            .withInstanceType("string")
-                            .withProperties(
-                                mapOf(
-                                    "string",
-                                    SerializerFactory
-                                        .createDefaultManagementSerializerAdapter()
-                                        .deserialize(
-                                            "{\"e6b6493e-7d5e-4db3-be1e-306ec641327e\":null}",
-                                            Object.class,
-                                            SerializerEncoding.JSON)))))
+            .jobs().define("string").withExistingWorkspace("test-rg",
+                "my-aml-workspace")
+            .withProperties(new CommandJob().withDescription("string").withProperties(mapOf("string", "string"))
+                .withTags(mapOf("string", "string")).withComponentId("string").withComputeId("string")
+                .withDisplayName("string").withExperimentName("string").withIdentity(new AmlToken())
+                .withIsArchived(false)
+                .withNotificationSetting(
+                    new NotificationSetting().withEmailOn(Arrays.asList(EmailNotificationEnableType.JOB_CANCELLED))
+                        .withEmails(Arrays.asList("string")))
+                .withServices(mapOf("string",
+                    new JobService().withEndpoint("string").withJobServiceType("string").withNodes(new AllNodes())
+                        .withPort(1).withProperties(mapOf("string", "string"))))
+                .withAutologgerSettings(new AutologgerSettings().withMlflowAutologger(MLFlowAutologgerState.DISABLED))
+                .withCodeId("fakeTokenPlaceholder").withCommand("string")
+                .withDistribution(new TensorFlow().withParameterServerCount(1).withWorkerCount(1))
+                .withEnvironmentId("string").withEnvironmentVariables(mapOf("string", "string"))
+                .withInputs(mapOf("string", new LiteralJobInput().withDescription("string").withValue("string")))
+                .withLimits(new CommandJobLimits().withTimeout(Duration.parse("PT5M")))
+                .withOutputs(mapOf("string",
+                    new UriFileJobOutput().withDescription("string").withAssetName("string").withAssetVersion("string")
+                        .withMode(OutputDeliveryMode.UPLOAD).withUri("string")))
+                .withQueueSettings(new QueueSettings().withJobTier(JobTier.BASIC).withPriority(1))
+                .withResources(new JobResourceConfiguration().withInstanceCount(1).withInstanceType("string")
+                    .withLocations(Arrays.asList("string"))
+                    .withProperties(mapOf("string",
+                        SerializerFactory.createDefaultManagementSerializerAdapter().deserialize(
+                            "{\"c9ac10d0-915b-4de5-afe8-a4c78a37a558\":null}", Object.class, SerializerEncoding.JSON)))
+                    .withDockerArgs("string").withShmSize("2g")))
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ImageObjectDetectionBase model. */
+/**
+ * The ImageObjectDetectionBase model.
+ */
 @Fluent
 public class ImageObjectDetectionBase extends ImageVertical {
     /*
@@ -23,13 +25,15 @@ public class ImageObjectDetectionBase extends ImageVertical {
     @JsonProperty(value = "searchSpace")
     private List<ImageModelDistributionSettingsObjectDetection> searchSpace;
 
-    /** Creates an instance of ImageObjectDetectionBase class. */
+    /**
+     * Creates an instance of ImageObjectDetectionBase class.
+     */
     public ImageObjectDetectionBase() {
     }
 
     /**
      * Get the modelSettings property: Settings used for training the model.
-     *
+     * 
      * @return the modelSettings value.
      */
     public ImageModelSettingsObjectDetection modelSettings() {
@@ -38,7 +42,7 @@ public class ImageObjectDetectionBase extends ImageVertical {
 
     /**
      * Set the modelSettings property: Settings used for training the model.
-     *
+     * 
      * @param modelSettings the modelSettings value to set.
      * @return the ImageObjectDetectionBase object itself.
      */
@@ -50,7 +54,7 @@ public class ImageObjectDetectionBase extends ImageVertical {
     /**
      * Get the searchSpace property: Search space for sampling different combinations of models and their
      * hyperparameters.
-     *
+     * 
      * @return the searchSpace value.
      */
     public List<ImageModelDistributionSettingsObjectDetection> searchSpace() {
@@ -60,7 +64,7 @@ public class ImageObjectDetectionBase extends ImageVertical {
     /**
      * Set the searchSpace property: Search space for sampling different combinations of models and their
      * hyperparameters.
-     *
+     * 
      * @param searchSpace the searchSpace value to set.
      * @return the ImageObjectDetectionBase object itself.
      */
@@ -69,28 +73,36 @@ public class ImageObjectDetectionBase extends ImageVertical {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageObjectDetectionBase withLimitSettings(ImageLimitSettings limitSettings) {
         super.withLimitSettings(limitSettings);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageObjectDetectionBase withSweepSettings(ImageSweepSettings sweepSettings) {
         super.withSweepSettings(sweepSettings);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageObjectDetectionBase withValidationData(MLTableJobInput validationData) {
         super.withValidationData(validationData);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageObjectDetectionBase withValidationDataSize(Double validationDataSize) {
         super.withValidationDataSize(validationDataSize);
@@ -99,7 +111,7 @@ public class ImageObjectDetectionBase extends ImageVertical {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

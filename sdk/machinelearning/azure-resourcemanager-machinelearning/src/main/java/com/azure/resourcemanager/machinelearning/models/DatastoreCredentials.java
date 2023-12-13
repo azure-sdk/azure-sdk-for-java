@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Base definition for datastore credentials. */
+/**
+ * Base definition for datastore credentials.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -19,19 +21,22 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AccountKey", value = AccountKeyDatastoreCredentials.class),
     @JsonSubTypes.Type(name = "Certificate", value = CertificateDatastoreCredentials.class),
+    @JsonSubTypes.Type(name = "KerberosKeytab", value = KerberosKeytabCredentials.class),
+    @JsonSubTypes.Type(name = "KerberosPassword", value = KerberosPasswordCredentials.class),
     @JsonSubTypes.Type(name = "None", value = NoneDatastoreCredentials.class),
     @JsonSubTypes.Type(name = "Sas", value = SasDatastoreCredentials.class),
-    @JsonSubTypes.Type(name = "ServicePrincipal", value = ServicePrincipalDatastoreCredentials.class)
-})
+    @JsonSubTypes.Type(name = "ServicePrincipal", value = ServicePrincipalDatastoreCredentials.class) })
 @Immutable
 public class DatastoreCredentials {
-    /** Creates an instance of DatastoreCredentials class. */
+    /**
+     * Creates an instance of DatastoreCredentials class.
+     */
     public DatastoreCredentials() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
