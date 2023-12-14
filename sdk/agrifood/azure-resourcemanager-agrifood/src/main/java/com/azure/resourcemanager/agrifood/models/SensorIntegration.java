@@ -8,11 +8,13 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.exception.ManagementError;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Sensor integration request model. */
+/**
+ * Sensor integration request model.
+ */
 @Fluent
 public final class SensorIntegration {
     /*
-     * Sensor integration enable state. Allowed values are True, None
+     * Sensor integration enable state.
      */
     @JsonProperty(value = "enabled")
     private String enabled;
@@ -25,7 +27,7 @@ public final class SensorIntegration {
 
     /*
      * Error response
-     *
+     * 
      * Common error response for all Azure Resource Manager APIs to return error details for failed operations. (This
      * also follows the OData error response format.).
      */
@@ -33,8 +35,14 @@ public final class SensorIntegration {
     private ManagementError provisioningInfo;
 
     /**
-     * Get the enabled property: Sensor integration enable state. Allowed values are True, None.
-     *
+     * Creates an instance of SensorIntegration class.
+     */
+    public SensorIntegration() {
+    }
+
+    /**
+     * Get the enabled property: Sensor integration enable state.
+     * 
      * @return the enabled value.
      */
     public String enabled() {
@@ -42,8 +50,8 @@ public final class SensorIntegration {
     }
 
     /**
-     * Set the enabled property: Sensor integration enable state. Allowed values are True, None.
-     *
+     * Set the enabled property: Sensor integration enable state.
+     * 
      * @param enabled the enabled value to set.
      * @return the SensorIntegration object itself.
      */
@@ -54,7 +62,7 @@ public final class SensorIntegration {
 
     /**
      * Get the provisioningState property: Sensor integration instance provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -63,10 +71,10 @@ public final class SensorIntegration {
 
     /**
      * Get the provisioningInfo property: Error response
-     *
-     * <p>Common error response for all Azure Resource Manager APIs to return error details for failed operations. (This
+     * 
+     * Common error response for all Azure Resource Manager APIs to return error details for failed operations. (This
      * also follows the OData error response format.).
-     *
+     * 
      * @return the provisioningInfo value.
      */
     public ManagementError provisioningInfo() {
@@ -75,10 +83,10 @@ public final class SensorIntegration {
 
     /**
      * Set the provisioningInfo property: Error response
-     *
-     * <p>Common error response for all Azure Resource Manager APIs to return error details for failed operations. (This
+     * 
+     * Common error response for all Azure Resource Manager APIs to return error details for failed operations. (This
      * also follows the OData error response format.).
-     *
+     * 
      * @param provisioningInfo the provisioningInfo value to set.
      * @return the SensorIntegration object itself.
      */
@@ -89,7 +97,7 @@ public final class SensorIntegration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
