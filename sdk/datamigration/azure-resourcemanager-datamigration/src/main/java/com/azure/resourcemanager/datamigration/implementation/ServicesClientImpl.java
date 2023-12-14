@@ -45,17 +45,23 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in ServicesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in ServicesClient.
+ */
 public final class ServicesClientImpl implements ServicesClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final ServicesService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final DataMigrationManagementClientImpl client;
 
     /**
      * Initializes an instance of ServicesClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     ServicesClientImpl(DataMigrationManagementClientImpl client) {
@@ -64,254 +70,177 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * The interface defining all the services for DataMigrationManagementClientServices to be used by the proxy service
-     * to perform REST calls.
+     * The interface defining all the services for DataMigrationManagementClientServices to be used by the proxy
+     * service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "DataMigrationManagem")
     public interface ServicesService {
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}")
-        @ExpectedResponses({200, 201, 202})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}")
+        @ExpectedResponses({ 200, 201, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("groupName") String groupName,
-            @PathParam("serviceName") String serviceName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") DataMigrationServiceInner parameters,
-            @HeaderParam("Accept") String accept,
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("groupName") String groupName,
+            @PathParam("serviceName") String serviceName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") DataMigrationServiceInner parameters, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DataMigrationServiceInner>> getByResourceGroup(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("groupName") String groupName,
-            @PathParam("serviceName") String serviceName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
+        Mono<Response<DataMigrationServiceInner>> getByResourceGroup(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("groupName") String groupName,
+            @PathParam("serviceName") String serviceName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}")
+        @ExpectedResponses({ 200, 202, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("groupName") String groupName,
+            @PathParam("serviceName") String serviceName, @QueryParam("api-version") String apiVersion,
+            @QueryParam("deleteRunningTasks") Boolean deleteRunningTasks, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}")
-        @ExpectedResponses({200, 202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}")
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("groupName") String groupName,
-            @PathParam("serviceName") String serviceName,
-            @QueryParam("api-version") String apiVersion,
-            @QueryParam("deleteRunningTasks") Boolean deleteRunningTasks,
-            @HeaderParam("Accept") String accept,
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("groupName") String groupName,
+            @PathParam("serviceName") String serviceName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") DataMigrationServiceInner parameters, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}")
-        @ExpectedResponses({200, 202})
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/checkStatus")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("groupName") String groupName,
-            @PathParam("serviceName") String serviceName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") DataMigrationServiceInner parameters,
-            @HeaderParam("Accept") String accept,
+        Mono<Response<DataMigrationServiceStatusResponseInner>> checkStatus(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("groupName") String groupName,
+            @PathParam("serviceName") String serviceName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/start")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> start(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("groupName") String groupName,
+            @PathParam("serviceName") String serviceName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/stop")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> stop(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("groupName") String groupName,
+            @PathParam("serviceName") String serviceName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/skus")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ServiceSkuList>> listSkus(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("groupName") String groupName,
+            @PathParam("serviceName") String serviceName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/checkNameAvailability")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<NameAvailabilityResponseInner>> checkChildrenNameAvailability(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("groupName") String groupName,
+            @QueryParam("api-version") String apiVersion, @PathParam("serviceName") String serviceName,
+            @BodyParam("application/json") NameAvailabilityRequest parameters, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/checkStatus")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DataMigrationServiceStatusResponseInner>> checkStatus(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("groupName") String groupName,
-            @PathParam("serviceName") String serviceName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/start")
-        @ExpectedResponses({200, 202})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> start(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("groupName") String groupName,
-            @PathParam("serviceName") String serviceName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/stop")
-        @ExpectedResponses({200, 202})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> stop(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("groupName") String groupName,
-            @PathParam("serviceName") String serviceName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/skus")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ServiceSkuList>> listSkus(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("groupName") String groupName,
-            @PathParam("serviceName") String serviceName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/checkNameAvailability")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<NameAvailabilityResponseInner>> nestedCheckNameAvailability(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("groupName") String groupName,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("serviceName") String serviceName,
-            @BodyParam("application/json") NameAvailabilityRequest parameters,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DataMigrationServiceList>> listByResourceGroup(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("groupName") String groupName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<DataMigrationServiceList>> listByResourceGroup(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("groupName") String groupName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.DataMigration/services")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DataMigrationServiceList>> list(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<DataMigrationServiceList>> list(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.DataMigration/locations/{location}/checkNameAvailability")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<NameAvailabilityResponseInner>> checkNameAvailability(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("location") String location,
             @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") NameAvailabilityRequest parameters, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.DataMigration/locations/{location}"
-                + "/checkNameAvailability")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<NameAvailabilityResponseInner>> checkNameAvailability(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("location") String location,
-            @BodyParam("application/json") NameAvailabilityRequest parameters,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ServiceSkuList>> listSkusNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<ServiceSkuList>> listSkusNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DataMigrationServiceList>> listByResourceGroupNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DataMigrationServiceList>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * Create or update DMS Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * Create or update DMS (classic) Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PUT method creates a new service or updates an existing one. When a service is updated, existing child
+     * resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based
+     * service, although other kinds may be added in the future. This method can change the kind, SKU, and network of
+     * the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
      * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
      * use the provisioningState property.
-     *
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return an Azure Database Migration Service (classic) resource along with {@link Response} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String groupName, String serviceName, DataMigrationServiceInner parameters) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String groupName, String serviceName,
+        DataMigrationServiceInner parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -326,32 +255,22 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            groupName,
-                            serviceName,
-                            this.client.getApiVersion(),
-                            parameters,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                groupName, serviceName, this.client.getApiVersion(), parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Create or update DMS Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * Create or update DMS (classic) Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PUT method creates a new service or updates an existing one. When a service is updated, existing child
+     * resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based
+     * service, although other kinds may be added in the future. This method can change the kind, SKU, and network of
+     * the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
      * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
      * use the provisioningState property.
-     *
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
@@ -359,23 +278,19 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return an Azure Database Migration Service (classic) resource along with {@link Response} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String groupName, String serviceName, DataMigrationServiceInner parameters, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String groupName, String serviceName,
+        DataMigrationServiceInner parameters, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -390,62 +305,49 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                groupName,
-                serviceName,
-                this.client.getApiVersion(),
-                parameters,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), groupName,
+            serviceName, this.client.getApiVersion(), parameters, accept, context);
     }
 
     /**
-     * Create or update DMS Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * Create or update DMS (classic) Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PUT method creates a new service or updates an existing one. When a service is updated, existing child
+     * resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based
+     * service, although other kinds may be added in the future. This method can change the kind, SKU, and network of
+     * the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
      * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
      * use the provisioningState property.
-     *
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a Database Migration Service resource.
+     * @return the {@link PollerFlux} for polling of an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner> beginCreateOrUpdateAsync(
-        String groupName, String serviceName, DataMigrationServiceInner parameters) {
+    private PollerFlux<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner>
+        beginCreateOrUpdateAsync(String groupName, String serviceName, DataMigrationServiceInner parameters) {
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(groupName, serviceName, parameters);
-        return this
-            .client
-            .<DataMigrationServiceInner, DataMigrationServiceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                DataMigrationServiceInner.class,
-                DataMigrationServiceInner.class,
-                this.client.getContext());
+        return this.client.<DataMigrationServiceInner, DataMigrationServiceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), DataMigrationServiceInner.class, DataMigrationServiceInner.class,
+            this.client.getContext());
     }
 
     /**
-     * Create or update DMS Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * Create or update DMS (classic) Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PUT method creates a new service or updates an existing one. When a service is updated, existing child
+     * resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based
+     * service, although other kinds may be added in the future. This method can change the kind, SKU, and network of
+     * the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
      * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
      * use the provisioningState property.
-     *
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
@@ -453,60 +355,54 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a Database Migration Service resource.
+     * @return the {@link PollerFlux} for polling of an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner> beginCreateOrUpdateAsync(
         String groupName, String serviceName, DataMigrationServiceInner parameters, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(groupName, serviceName, parameters, context);
-        return this
-            .client
-            .<DataMigrationServiceInner, DataMigrationServiceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                DataMigrationServiceInner.class,
-                DataMigrationServiceInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(groupName, serviceName, parameters, context);
+        return this.client.<DataMigrationServiceInner, DataMigrationServiceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), DataMigrationServiceInner.class, DataMigrationServiceInner.class, context);
     }
 
     /**
-     * Create or update DMS Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * Create or update DMS (classic) Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PUT method creates a new service or updates an existing one. When a service is updated, existing child
+     * resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based
+     * service, although other kinds may be added in the future. This method can change the kind, SKU, and network of
+     * the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
      * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
      * use the provisioningState property.
-     *
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a Database Migration Service resource.
+     * @return the {@link SyncPoller} for polling of an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner> beginCreateOrUpdate(
-        String groupName, String serviceName, DataMigrationServiceInner parameters) {
+    public SyncPoller<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner>
+        beginCreateOrUpdate(String groupName, String serviceName, DataMigrationServiceInner parameters) {
         return this.beginCreateOrUpdateAsync(groupName, serviceName, parameters).getSyncPoller();
     }
 
     /**
-     * Create or update DMS Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * Create or update DMS (classic) Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PUT method creates a new service or updates an existing one. When a service is updated, existing child
+     * resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based
+     * service, although other kinds may be added in the future. This method can change the kind, SKU, and network of
+     * the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
      * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
      * use the provisioningState property.
-     *
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
@@ -514,7 +410,7 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a Database Migration Service resource.
+     * @return the {@link SyncPoller} for polling of an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner> beginCreateOrUpdate(
@@ -523,43 +419,42 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * Create or update DMS (classic) Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PUT method creates a new service or updates an existing one. When a service is updated, existing child
+     * resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based
+     * service, although other kinds may be added in the future. This method can change the kind, SKU, and network of
+     * the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
      * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
      * use the provisioningState property.
-     *
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource on successful completion of {@link Mono}.
+     * @return an Azure Database Migration Service (classic) resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DataMigrationServiceInner> createOrUpdateAsync(
-        String groupName, String serviceName, DataMigrationServiceInner parameters) {
-        return beginCreateOrUpdateAsync(groupName, serviceName, parameters)
-            .last()
+    private Mono<DataMigrationServiceInner> createOrUpdateAsync(String groupName, String serviceName,
+        DataMigrationServiceInner parameters) {
+        return beginCreateOrUpdateAsync(groupName, serviceName, parameters).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Create or update DMS Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * Create or update DMS (classic) Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PUT method creates a new service or updates an existing one. When a service is updated, existing child
+     * resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based
+     * service, although other kinds may be added in the future. This method can change the kind, SKU, and network of
+     * the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
      * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
      * use the provisioningState property.
-     *
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
@@ -567,52 +462,51 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource on successful completion of {@link Mono}.
+     * @return an Azure Database Migration Service (classic) resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DataMigrationServiceInner> createOrUpdateAsync(
-        String groupName, String serviceName, DataMigrationServiceInner parameters, Context context) {
-        return beginCreateOrUpdateAsync(groupName, serviceName, parameters, context)
-            .last()
+    private Mono<DataMigrationServiceInner> createOrUpdateAsync(String groupName, String serviceName,
+        DataMigrationServiceInner parameters, Context context) {
+        return beginCreateOrUpdateAsync(groupName, serviceName, parameters, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Create or update DMS Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * Create or update DMS (classic) Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PUT method creates a new service or updates an existing one. When a service is updated, existing child
+     * resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based
+     * service, although other kinds may be added in the future. This method can change the kind, SKU, and network of
+     * the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
      * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
      * use the provisioningState property.
-     *
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource.
+     * @return an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public DataMigrationServiceInner createOrUpdate(
-        String groupName, String serviceName, DataMigrationServiceInner parameters) {
+    public DataMigrationServiceInner createOrUpdate(String groupName, String serviceName,
+        DataMigrationServiceInner parameters) {
         return createOrUpdateAsync(groupName, serviceName, parameters).block();
     }
 
     /**
-     * Create or update DMS Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * Create or update DMS (classic) Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PUT method creates a new service or updates an existing one. When a service is updated, existing child
+     * resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based
+     * service, although other kinds may be added in the future. This method can change the kind, SKU, and network of
+     * the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
      * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
      * use the provisioningState property.
-     *
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
@@ -620,42 +514,38 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource.
+     * @return an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public DataMigrationServiceInner createOrUpdate(
-        String groupName, String serviceName, DataMigrationServiceInner parameters, Context context) {
+    public DataMigrationServiceInner createOrUpdate(String groupName, String serviceName,
+        DataMigrationServiceInner parameters, Context context) {
         return createOrUpdateAsync(groupName, serviceName, parameters, context).block();
     }
 
     /**
-     * Get DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The GET method
-     * retrieves information about a service instance.
-     *
+     * Get DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The GET method retrieves information about a service instance.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return an Azure Database Migration Service (classic) resource along with {@link Response} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DataMigrationServiceInner>> getByResourceGroupWithResponseAsync(
-        String groupName, String serviceName) {
+    private Mono<Response<DataMigrationServiceInner>> getByResourceGroupWithResponseAsync(String groupName,
+        String serviceName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -665,49 +555,36 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            groupName,
-                            serviceName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), groupName, serviceName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Get DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The GET method
-     * retrieves information about a service instance.
-     *
+     * Get DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The GET method retrieves information about a service instance.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return an Azure Database Migration Service (classic) resource along with {@link Response} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DataMigrationServiceInner>> getByResourceGroupWithResponseAsync(
-        String groupName, String serviceName, Context context) {
+    private Mono<Response<DataMigrationServiceInner>> getByResourceGroupWithResponseAsync(String groupName,
+        String serviceName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -717,29 +594,22 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                groupName,
-                serviceName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), groupName,
+            serviceName, this.client.getApiVersion(), accept, context);
     }
 
     /**
-     * Get DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The GET method
-     * retrieves information about a service instance.
-     *
+     * Get DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The GET method retrieves information about a service instance.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource on successful completion of {@link Mono}.
+     * @return an Azure Database Migration Service (classic) resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DataMigrationServiceInner> getByResourceGroupAsync(String groupName, String serviceName) {
@@ -748,37 +618,37 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Get DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The GET method
-     * retrieves information about a service instance.
-     *
+     * Get DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The GET method retrieves information about a service instance.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource along with {@link Response}.
+     * @return an Azure Database Migration Service (classic) resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<DataMigrationServiceInner> getByResourceGroupWithResponse(
-        String groupName, String serviceName, Context context) {
+    public Response<DataMigrationServiceInner> getByResourceGroupWithResponse(String groupName, String serviceName,
+        Context context) {
         return getByResourceGroupWithResponseAsync(groupName, serviceName, context).block();
     }
 
     /**
-     * Get DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The GET method
-     * retrieves information about a service instance.
-     *
+     * Get DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The GET method retrieves information about a service instance.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource.
+     * @return an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public DataMigrationServiceInner getByResourceGroup(String groupName, String serviceName) {
@@ -786,11 +656,11 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
-     *
+     * Delete DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The DELETE method deletes a service. Any running tasks will be canceled.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param deleteRunningTasks Delete the resource even if it contains running tasks.
@@ -800,19 +670,15 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String groupName, String serviceName, Boolean deleteRunningTasks) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String groupName, String serviceName,
+        Boolean deleteRunningTasks) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -822,27 +688,17 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            groupName,
-                            serviceName,
-                            this.client.getApiVersion(),
-                            deleteRunningTasks,
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                groupName, serviceName, this.client.getApiVersion(), deleteRunningTasks, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Delete DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
-     *
+     * Delete DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The DELETE method deletes a service. Any running tasks will be canceled.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param deleteRunningTasks Delete the resource even if it contains running tasks.
@@ -853,19 +709,15 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String groupName, String serviceName, Boolean deleteRunningTasks, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String groupName, String serviceName,
+        Boolean deleteRunningTasks, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -875,24 +727,16 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                groupName,
-                serviceName,
-                this.client.getApiVersion(),
-                deleteRunningTasks,
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), groupName, serviceName,
+            this.client.getApiVersion(), deleteRunningTasks, accept, context);
     }
 
     /**
-     * Delete DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
-     *
+     * Delete DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The DELETE method deletes a service. Any running tasks will be canceled.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param deleteRunningTasks Delete the resource even if it contains running tasks.
@@ -902,21 +746,19 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String groupName, String serviceName, Boolean deleteRunningTasks) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String groupName, String serviceName,
+        Boolean deleteRunningTasks) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(groupName, serviceName, deleteRunningTasks);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
-     * Delete DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
-     *
+     * Delete DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The DELETE method deletes a service. Any running tasks will be canceled.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -928,18 +770,16 @@ public final class ServicesClientImpl implements ServicesClient {
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String groupName, String serviceName) {
         final Boolean deleteRunningTasks = null;
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(groupName, serviceName, deleteRunningTasks);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
-     * Delete DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
-     *
+     * Delete DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The DELETE method deletes a service. Any running tasks will be canceled.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param deleteRunningTasks Delete the resource even if it contains running tasks.
@@ -950,22 +790,21 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String groupName, String serviceName, Boolean deleteRunningTasks, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String groupName, String serviceName,
+        Boolean deleteRunningTasks, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(groupName, serviceName, deleteRunningTasks, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(groupName, serviceName, deleteRunningTasks, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
-     * Delete DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
-     *
+     * Delete DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The DELETE method deletes a service. Any running tasks will be canceled.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -980,11 +819,11 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
-     *
+     * Delete DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The DELETE method deletes a service. Any running tasks will be canceled.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param deleteRunningTasks Delete the resource even if it contains running tasks.
@@ -995,17 +834,17 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String groupName, String serviceName, Boolean deleteRunningTasks, Context context) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String groupName, String serviceName,
+        Boolean deleteRunningTasks, Context context) {
         return this.beginDeleteAsync(groupName, serviceName, deleteRunningTasks, context).getSyncPoller();
     }
 
     /**
-     * Delete DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
-     *
+     * Delete DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The DELETE method deletes a service. Any running tasks will be canceled.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param deleteRunningTasks Delete the resource even if it contains running tasks.
@@ -1016,17 +855,16 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String groupName, String serviceName, Boolean deleteRunningTasks) {
-        return beginDeleteAsync(groupName, serviceName, deleteRunningTasks)
-            .last()
+        return beginDeleteAsync(groupName, serviceName, deleteRunningTasks).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Delete DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
-     *
+     * Delete DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The DELETE method deletes a service. Any running tasks will be canceled.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1037,17 +875,16 @@ public final class ServicesClientImpl implements ServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String groupName, String serviceName) {
         final Boolean deleteRunningTasks = null;
-        return beginDeleteAsync(groupName, serviceName, deleteRunningTasks)
-            .last()
+        return beginDeleteAsync(groupName, serviceName, deleteRunningTasks).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Delete DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
-     *
+     * Delete DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The DELETE method deletes a service. Any running tasks will be canceled.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param deleteRunningTasks Delete the resource even if it contains running tasks.
@@ -1059,17 +896,16 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String groupName, String serviceName, Boolean deleteRunningTasks, Context context) {
-        return beginDeleteAsync(groupName, serviceName, deleteRunningTasks, context)
-            .last()
+        return beginDeleteAsync(groupName, serviceName, deleteRunningTasks, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Delete DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
-     *
+     * Delete DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The DELETE method deletes a service. Any running tasks will be canceled.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1083,11 +919,11 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
-     *
+     * Delete DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The DELETE method deletes a service. Any running tasks will be canceled.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param deleteRunningTasks Delete the resource even if it contains running tasks.
@@ -1102,35 +938,32 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
-     *
+     * Create or update DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PATCH method updates an existing service. This method can change the kind, SKU, and network of the service,
+     * but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return an Azure Database Migration Service (classic) resource along with {@link Response} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String groupName, String serviceName, DataMigrationServiceInner parameters) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String groupName, String serviceName,
+        DataMigrationServiceInner parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -1145,28 +978,19 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            groupName,
-                            serviceName,
-                            this.client.getApiVersion(),
-                            parameters,
-                            accept,
-                            context))
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                groupName, serviceName, this.client.getApiVersion(), parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Create or update DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
-     *
+     * Create or update DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PATCH method updates an existing service. This method can change the kind, SKU, and network of the service,
+     * but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
@@ -1174,23 +998,19 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return an Azure Database Migration Service (classic) resource along with {@link Response} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String groupName, String serviceName, DataMigrationServiceInner parameters, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String groupName, String serviceName,
+        DataMigrationServiceInner parameters, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -1205,54 +1025,43 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                groupName,
-                serviceName,
-                this.client.getApiVersion(),
-                parameters,
-                accept,
-                context);
+        return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), groupName, serviceName,
+            this.client.getApiVersion(), parameters, accept, context);
     }
 
     /**
-     * Create or update DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
-     *
+     * Create or update DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PATCH method updates an existing service. This method can change the kind, SKU, and network of the service,
+     * but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a Database Migration Service resource.
+     * @return the {@link PollerFlux} for polling of an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner> beginUpdateAsync(
-        String groupName, String serviceName, DataMigrationServiceInner parameters) {
+    private PollerFlux<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner>
+        beginUpdateAsync(String groupName, String serviceName, DataMigrationServiceInner parameters) {
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(groupName, serviceName, parameters);
-        return this
-            .client
-            .<DataMigrationServiceInner, DataMigrationServiceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                DataMigrationServiceInner.class,
-                DataMigrationServiceInner.class,
-                this.client.getContext());
+        return this.client.<DataMigrationServiceInner, DataMigrationServiceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), DataMigrationServiceInner.class, DataMigrationServiceInner.class,
+            this.client.getContext());
     }
 
     /**
-     * Create or update DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
-     *
+     * Create or update DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PATCH method updates an existing service. This method can change the kind, SKU, and network of the service,
+     * but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
@@ -1260,51 +1069,47 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a Database Migration Service resource.
+     * @return the {@link PollerFlux} for polling of an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner> beginUpdateAsync(
-        String groupName, String serviceName, DataMigrationServiceInner parameters, Context context) {
+    private PollerFlux<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner>
+        beginUpdateAsync(String groupName, String serviceName, DataMigrationServiceInner parameters, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(groupName, serviceName, parameters, context);
-        return this
-            .client
-            .<DataMigrationServiceInner, DataMigrationServiceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                DataMigrationServiceInner.class,
-                DataMigrationServiceInner.class,
-                context);
+        return this.client.<DataMigrationServiceInner, DataMigrationServiceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), DataMigrationServiceInner.class, DataMigrationServiceInner.class, context);
     }
 
     /**
-     * Create or update DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
-     *
+     * Create or update DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PATCH method updates an existing service. This method can change the kind, SKU, and network of the service,
+     * but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a Database Migration Service resource.
+     * @return the {@link SyncPoller} for polling of an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner> beginUpdate(
-        String groupName, String serviceName, DataMigrationServiceInner parameters) {
+    public SyncPoller<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner> beginUpdate(String groupName,
+        String serviceName, DataMigrationServiceInner parameters) {
         return this.beginUpdateAsync(groupName, serviceName, parameters).getSyncPoller();
     }
 
     /**
-     * Create or update DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
-     *
+     * Create or update DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PATCH method updates an existing service. This method can change the kind, SKU, and network of the service,
+     * but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
@@ -1312,44 +1117,45 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a Database Migration Service resource.
+     * @return the {@link SyncPoller} for polling of an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner> beginUpdate(
-        String groupName, String serviceName, DataMigrationServiceInner parameters, Context context) {
+    public SyncPoller<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner> beginUpdate(String groupName,
+        String serviceName, DataMigrationServiceInner parameters, Context context) {
         return this.beginUpdateAsync(groupName, serviceName, parameters, context).getSyncPoller();
     }
 
     /**
-     * Create or update DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
-     *
+     * Create or update DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PATCH method updates an existing service. This method can change the kind, SKU, and network of the service,
+     * but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource on successful completion of {@link Mono}.
+     * @return an Azure Database Migration Service (classic) resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DataMigrationServiceInner> updateAsync(
-        String groupName, String serviceName, DataMigrationServiceInner parameters) {
-        return beginUpdateAsync(groupName, serviceName, parameters)
-            .last()
+    private Mono<DataMigrationServiceInner> updateAsync(String groupName, String serviceName,
+        DataMigrationServiceInner parameters) {
+        return beginUpdateAsync(groupName, serviceName, parameters).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Create or update DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
-     *
+     * Create or update DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PATCH method updates an existing service. This method can change the kind, SKU, and network of the service,
+     * but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
@@ -1357,44 +1163,45 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource on successful completion of {@link Mono}.
+     * @return an Azure Database Migration Service (classic) resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DataMigrationServiceInner> updateAsync(
-        String groupName, String serviceName, DataMigrationServiceInner parameters, Context context) {
-        return beginUpdateAsync(groupName, serviceName, parameters, context)
-            .last()
+    private Mono<DataMigrationServiceInner> updateAsync(String groupName, String serviceName,
+        DataMigrationServiceInner parameters, Context context) {
+        return beginUpdateAsync(groupName, serviceName, parameters, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Create or update DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
-     *
+     * Create or update DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PATCH method updates an existing service. This method can change the kind, SKU, and network of the service,
+     * but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource.
+     * @return an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public DataMigrationServiceInner update(
-        String groupName, String serviceName, DataMigrationServiceInner parameters) {
+    public DataMigrationServiceInner update(String groupName, String serviceName,
+        DataMigrationServiceInner parameters) {
         return updateAsync(groupName, serviceName, parameters).block();
     }
 
     /**
-     * Create or update DMS Service Instance
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
-     *
+     * Create or update DMS (classic) Service Instance
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * The PATCH method updates an existing service. This method can change the kind, SKU, and network of the service,
+     * but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Information about the service.
@@ -1402,20 +1209,20 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource.
+     * @return an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public DataMigrationServiceInner update(
-        String groupName, String serviceName, DataMigrationServiceInner parameters, Context context) {
+    public DataMigrationServiceInner update(String groupName, String serviceName, DataMigrationServiceInner parameters,
+        Context context) {
         return updateAsync(groupName, serviceName, parameters, context).block();
     }
 
     /**
      * Check service health status
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * performs a health check and returns the status of the service and virtual machine size.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action performs a health check and returns the status of the service and virtual machine size.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1424,19 +1231,15 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return service health status along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DataMigrationServiceStatusResponseInner>> checkStatusWithResponseAsync(
-        String groupName, String serviceName) {
+    private Mono<Response<DataMigrationServiceStatusResponseInner>> checkStatusWithResponseAsync(String groupName,
+        String serviceName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -1446,26 +1249,17 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .checkStatus(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            groupName,
-                            serviceName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.checkStatus(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                groupName, serviceName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Check service health status
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * performs a health check and returns the status of the service and virtual machine size.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action performs a health check and returns the status of the service and virtual machine size.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param context The context to associate with this operation.
@@ -1475,19 +1269,15 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return service health status along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DataMigrationServiceStatusResponseInner>> checkStatusWithResponseAsync(
-        String groupName, String serviceName, Context context) {
+    private Mono<Response<DataMigrationServiceStatusResponseInner>> checkStatusWithResponseAsync(String groupName,
+        String serviceName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -1497,23 +1287,16 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .checkStatus(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                groupName,
-                serviceName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.checkStatus(this.client.getEndpoint(), this.client.getSubscriptionId(), groupName, serviceName,
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Check service health status
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * performs a health check and returns the status of the service and virtual machine size.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action performs a health check and returns the status of the service and virtual machine size.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1528,10 +1311,10 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Check service health status
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * performs a health check and returns the status of the service and virtual machine size.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action performs a health check and returns the status of the service and virtual machine size.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param context The context to associate with this operation.
@@ -1541,17 +1324,17 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return service health status along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<DataMigrationServiceStatusResponseInner> checkStatusWithResponse(
-        String groupName, String serviceName, Context context) {
+    public Response<DataMigrationServiceStatusResponseInner> checkStatusWithResponse(String groupName,
+        String serviceName, Context context) {
         return checkStatusWithResponseAsync(groupName, serviceName, context).block();
     }
 
     /**
      * Check service health status
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * performs a health check and returns the status of the service and virtual machine size.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action performs a health check and returns the status of the service and virtual machine size.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1566,10 +1349,10 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Start service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action starts the service and the service can be used for data migration.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1580,16 +1363,12 @@ public final class ServicesClientImpl implements ServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> startWithResponseAsync(String groupName, String serviceName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -1599,26 +1378,17 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .start(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            groupName,
-                            serviceName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.start(this.client.getEndpoint(), this.client.getSubscriptionId(), groupName,
+                serviceName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Start service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action starts the service and the service can be used for data migration.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param context The context to associate with this operation.
@@ -1628,19 +1398,15 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> startWithResponseAsync(
-        String groupName, String serviceName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> startWithResponseAsync(String groupName, String serviceName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -1650,23 +1416,16 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .start(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                groupName,
-                serviceName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.start(this.client.getEndpoint(), this.client.getSubscriptionId(), groupName, serviceName,
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Start service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action starts the service and the service can be used for data migration.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1677,18 +1436,16 @@ public final class ServicesClientImpl implements ServicesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginStartAsync(String groupName, String serviceName) {
         Mono<Response<Flux<ByteBuffer>>> mono = startWithResponseAsync(groupName, serviceName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Start service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action starts the service and the service can be used for data migration.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param context The context to associate with this operation.
@@ -1701,17 +1458,16 @@ public final class ServicesClientImpl implements ServicesClient {
     private PollerFlux<PollResult<Void>, Void> beginStartAsync(String groupName, String serviceName, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = startWithResponseAsync(groupName, serviceName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Start service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action starts the service and the service can be used for data migration.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1726,10 +1482,10 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Start service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action starts the service and the service can be used for data migration.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param context The context to associate with this operation.
@@ -1745,10 +1501,10 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Start service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action starts the service and the service can be used for data migration.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1763,10 +1519,10 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Start service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action starts the service and the service can be used for data migration.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param context The context to associate with this operation.
@@ -1782,10 +1538,10 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Start service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action starts the service and the service can be used for data migration.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1799,10 +1555,10 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Start service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action starts the service and the service can be used for data migration.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param context The context to associate with this operation.
@@ -1817,11 +1573,11 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Stop service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action stops the service and the service cannot be used for data migration. The service owner won't be
+     * billed when the service is stopped.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1832,16 +1588,12 @@ public final class ServicesClientImpl implements ServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> stopWithResponseAsync(String groupName, String serviceName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -1851,27 +1603,18 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .stop(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            groupName,
-                            serviceName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.stop(this.client.getEndpoint(), this.client.getSubscriptionId(), groupName,
+                serviceName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Stop service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action stops the service and the service cannot be used for data migration. The service owner won't be
+     * billed when the service is stopped.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param context The context to associate with this operation.
@@ -1881,19 +1624,15 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> stopWithResponseAsync(
-        String groupName, String serviceName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> stopWithResponseAsync(String groupName, String serviceName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -1903,24 +1642,17 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .stop(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                groupName,
-                serviceName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.stop(this.client.getEndpoint(), this.client.getSubscriptionId(), groupName, serviceName,
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Stop service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action stops the service and the service cannot be used for data migration. The service owner won't be
+     * billed when the service is stopped.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1931,19 +1663,17 @@ public final class ServicesClientImpl implements ServicesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginStopAsync(String groupName, String serviceName) {
         Mono<Response<Flux<ByteBuffer>>> mono = stopWithResponseAsync(groupName, serviceName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Stop service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action stops the service and the service cannot be used for data migration. The service owner won't be
+     * billed when the service is stopped.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param context The context to associate with this operation.
@@ -1956,18 +1686,17 @@ public final class ServicesClientImpl implements ServicesClient {
     private PollerFlux<PollResult<Void>, Void> beginStopAsync(String groupName, String serviceName, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = stopWithResponseAsync(groupName, serviceName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Stop service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action stops the service and the service cannot be used for data migration. The service owner won't be
+     * billed when the service is stopped.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1982,11 +1711,11 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Stop service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action stops the service and the service cannot be used for data migration. The service owner won't be
+     * billed when the service is stopped.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param context The context to associate with this operation.
@@ -2002,11 +1731,11 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Stop service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action stops the service and the service cannot be used for data migration. The service owner won't be
+     * billed when the service is stopped.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2021,11 +1750,11 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Stop service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action stops the service and the service cannot be used for data migration. The service owner won't be
+     * billed when the service is stopped.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param context The context to associate with this operation.
@@ -2041,11 +1770,11 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Stop service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action stops the service and the service cannot be used for data migration. The service owner won't be
+     * billed when the service is stopped.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2059,11 +1788,11 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Stop service
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This action stops the service and the service cannot be used for data migration. The service owner won't be
+     * billed when the service is stopped.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param context The context to associate with this operation.
@@ -2078,10 +1807,10 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Get compatible SKUs
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The skus
-     * action returns the list of SKUs that a service resource can be updated to.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Database Migration Service (classic). The
+     * skus action returns the list of SKUs that a service resource can be updated to.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2090,19 +1819,15 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return oData page of available SKUs along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AvailableServiceSkuInner>> listSkusSinglePageAsync(
-        String groupName, String serviceName) {
+    private Mono<PagedResponse<AvailableServiceSkuInner>> listSkusSinglePageAsync(String groupName,
+        String serviceName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -2112,35 +1837,19 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listSkus(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            groupName,
-                            serviceName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<AvailableServiceSkuInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listSkus(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                groupName, serviceName, this.client.getApiVersion(), accept, context))
+            .<PagedResponse<AvailableServiceSkuInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get compatible SKUs
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The skus
-     * action returns the list of SKUs that a service resource can be updated to.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Database Migration Service (classic). The
+     * skus action returns the list of SKUs that a service resource can be updated to.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param context The context to associate with this operation.
@@ -2150,19 +1859,15 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return oData page of available SKUs along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AvailableServiceSkuInner>> listSkusSinglePageAsync(
-        String groupName, String serviceName, Context context) {
+    private Mono<PagedResponse<AvailableServiceSkuInner>> listSkusSinglePageAsync(String groupName, String serviceName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -2173,31 +1878,18 @@ public final class ServicesClientImpl implements ServicesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listSkus(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                groupName,
-                serviceName,
-                this.client.getApiVersion(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listSkus(this.client.getEndpoint(), this.client.getSubscriptionId(), groupName, serviceName,
+                this.client.getApiVersion(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get compatible SKUs
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The skus
-     * action returns the list of SKUs that a service resource can be updated to.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Database Migration Service (classic). The
+     * skus action returns the list of SKUs that a service resource can be updated to.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2207,16 +1899,16 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AvailableServiceSkuInner> listSkusAsync(String groupName, String serviceName) {
-        return new PagedFlux<>(
-            () -> listSkusSinglePageAsync(groupName, serviceName), nextLink -> listSkusNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listSkusSinglePageAsync(groupName, serviceName),
+            nextLink -> listSkusNextSinglePageAsync(nextLink));
     }
 
     /**
      * Get compatible SKUs
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The skus
-     * action returns the list of SKUs that a service resource can be updated to.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Database Migration Service (classic). The
+     * skus action returns the list of SKUs that a service resource can be updated to.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param context The context to associate with this operation.
@@ -2227,17 +1919,16 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AvailableServiceSkuInner> listSkusAsync(String groupName, String serviceName, Context context) {
-        return new PagedFlux<>(
-            () -> listSkusSinglePageAsync(groupName, serviceName, context),
+        return new PagedFlux<>(() -> listSkusSinglePageAsync(groupName, serviceName, context),
             nextLink -> listSkusNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Get compatible SKUs
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The skus
-     * action returns the list of SKUs that a service resource can be updated to.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Database Migration Service (classic). The
+     * skus action returns the list of SKUs that a service resource can be updated to.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2252,10 +1943,10 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Get compatible SKUs
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The skus
-     * action returns the list of SKUs that a service resource can be updated to.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Database Migration Service (classic). The
+     * skus action returns the list of SKUs that a service resource can be updated to.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param context The context to associate with this operation.
@@ -2271,9 +1962,9 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Check nested resource name validity and availability
-     *
-     * <p>This method checks whether a proposed nested resource name is valid and available.
-     *
+     * 
+     * This method checks whether a proposed nested resource name is valid and available.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Requested name to validate.
@@ -2281,22 +1972,18 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return indicates whether a proposed resource name is available along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<NameAvailabilityResponseInner>> nestedCheckNameAvailabilityWithResponseAsync(
+    private Mono<Response<NameAvailabilityResponseInner>> checkChildrenNameAvailabilityWithResponseAsync(
         String groupName, String serviceName, NameAvailabilityRequest parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -2311,26 +1998,17 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .nestedCheckNameAvailability(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            groupName,
-                            this.client.getApiVersion(),
-                            serviceName,
-                            parameters,
-                            accept,
-                            context))
+            .withContext(context -> service.checkChildrenNameAvailability(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), groupName, this.client.getApiVersion(), serviceName, parameters,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Check nested resource name validity and availability
-     *
-     * <p>This method checks whether a proposed nested resource name is valid and available.
-     *
+     * 
+     * This method checks whether a proposed nested resource name is valid and available.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Requested name to validate.
@@ -2339,22 +2017,18 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return indicates whether a proposed resource name is available along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<NameAvailabilityResponseInner>> nestedCheckNameAvailabilityWithResponseAsync(
+    private Mono<Response<NameAvailabilityResponseInner>> checkChildrenNameAvailabilityWithResponseAsync(
         String groupName, String serviceName, NameAvailabilityRequest parameters, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -2369,23 +2043,15 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .nestedCheckNameAvailability(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                groupName,
-                this.client.getApiVersion(),
-                serviceName,
-                parameters,
-                accept,
-                context);
+        return service.checkChildrenNameAvailability(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            groupName, this.client.getApiVersion(), serviceName, parameters, accept, context);
     }
 
     /**
      * Check nested resource name validity and availability
-     *
-     * <p>This method checks whether a proposed nested resource name is valid and available.
-     *
+     * 
+     * This method checks whether a proposed nested resource name is valid and available.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Requested name to validate.
@@ -2395,17 +2061,17 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return indicates whether a proposed resource name is available on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<NameAvailabilityResponseInner> nestedCheckNameAvailabilityAsync(
-        String groupName, String serviceName, NameAvailabilityRequest parameters) {
-        return nestedCheckNameAvailabilityWithResponseAsync(groupName, serviceName, parameters)
+    private Mono<NameAvailabilityResponseInner> checkChildrenNameAvailabilityAsync(String groupName, String serviceName,
+        NameAvailabilityRequest parameters) {
+        return checkChildrenNameAvailabilityWithResponseAsync(groupName, serviceName, parameters)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Check nested resource name validity and availability
-     *
-     * <p>This method checks whether a proposed nested resource name is valid and available.
-     *
+     * 
+     * This method checks whether a proposed nested resource name is valid and available.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Requested name to validate.
@@ -2416,16 +2082,16 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return indicates whether a proposed resource name is available along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<NameAvailabilityResponseInner> nestedCheckNameAvailabilityWithResponse(
-        String groupName, String serviceName, NameAvailabilityRequest parameters, Context context) {
-        return nestedCheckNameAvailabilityWithResponseAsync(groupName, serviceName, parameters, context).block();
+    public Response<NameAvailabilityResponseInner> checkChildrenNameAvailabilityWithResponse(String groupName,
+        String serviceName, NameAvailabilityRequest parameters, Context context) {
+        return checkChildrenNameAvailabilityWithResponseAsync(groupName, serviceName, parameters, context).block();
     }
 
     /**
      * Check nested resource name validity and availability
-     *
-     * <p>This method checks whether a proposed nested resource name is valid and available.
-     *
+     * 
+     * This method checks whether a proposed nested resource name is valid and available.
+     * 
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param parameters Requested name to validate.
@@ -2435,17 +2101,17 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return indicates whether a proposed resource name is available.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public NameAvailabilityResponseInner nestedCheckNameAvailability(
-        String groupName, String serviceName, NameAvailabilityRequest parameters) {
-        return nestedCheckNameAvailabilityWithResponse(groupName, serviceName, parameters, Context.NONE).getValue();
+    public NameAvailabilityResponseInner checkChildrenNameAvailability(String groupName, String serviceName,
+        NameAvailabilityRequest parameters) {
+        return checkChildrenNameAvailabilityWithResponse(groupName, serviceName, parameters, Context.NONE).getValue();
     }
 
     /**
      * Get services in resource group
-     *
-     * <p>The Services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a resource group.
-     *
+     * 
+     * The Services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This method returns a list of service resources in a resource group.
+     * 
      * @param groupName Name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2455,50 +2121,31 @@ public final class ServicesClientImpl implements ServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DataMigrationServiceInner>> listByResourceGroupSinglePageAsync(String groupName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            groupName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<DataMigrationServiceInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), groupName, this.client.getApiVersion(), accept, context))
+            .<PagedResponse<DataMigrationServiceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get services in resource group
-     *
-     * <p>The Services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a resource group.
-     *
+     * 
+     * The Services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This method returns a list of service resources in a resource group.
+     * 
      * @param groupName Name of the resource group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2507,19 +2154,15 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return oData page of service objects along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DataMigrationServiceInner>> listByResourceGroupSinglePageAsync(
-        String groupName, Context context) {
+    private Mono<PagedResponse<DataMigrationServiceInner>> listByResourceGroupSinglePageAsync(String groupName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
@@ -2527,30 +2170,18 @@ public final class ServicesClientImpl implements ServicesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                groupName,
-                this.client.getApiVersion(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), groupName,
+                this.client.getApiVersion(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get services in resource group
-     *
-     * <p>The Services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a resource group.
-     *
+     * 
+     * The Services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This method returns a list of service resources in a resource group.
+     * 
      * @param groupName Name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2559,17 +2190,16 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DataMigrationServiceInner> listByResourceGroupAsync(String groupName) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(groupName),
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(groupName),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
     }
 
     /**
      * Get services in resource group
-     *
-     * <p>The Services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a resource group.
-     *
+     * 
+     * The Services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This method returns a list of service resources in a resource group.
+     * 
      * @param groupName Name of the resource group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2579,17 +2209,16 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DataMigrationServiceInner> listByResourceGroupAsync(String groupName, Context context) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(groupName, context),
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(groupName, context),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Get services in resource group
-     *
-     * <p>The Services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a resource group.
-     *
+     * 
+     * The Services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This method returns a list of service resources in a resource group.
+     * 
      * @param groupName Name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2603,10 +2232,10 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Get services in resource group
-     *
-     * <p>The Services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a resource group.
-     *
+     * 
+     * The Services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This method returns a list of service resources in a resource group.
+     * 
      * @param groupName Name of the resource group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2621,10 +2250,10 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Get services in subscription
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a subscription.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This method returns a list of service resources in a subscription.
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return oData page of service objects along with {@link PagedResponse} on successful completion of {@link Mono}.
@@ -2632,46 +2261,28 @@ public final class ServicesClientImpl implements ServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DataMigrationServiceInner>> listSinglePageAsync() {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<DataMigrationServiceInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                this.client.getApiVersion(), accept, context))
+            .<PagedResponse<DataMigrationServiceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get services in subscription
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a subscription.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This method returns a list of service resources in a subscription.
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2681,43 +2292,28 @@ public final class ServicesClientImpl implements ServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DataMigrationServiceInner>> listSinglePageAsync(Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                this.client.getApiVersion(),
-                accept,
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
                 context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get services in subscription
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a subscription.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This method returns a list of service resources in a subscription.
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return oData page of service objects as paginated response with {@link PagedFlux}.
@@ -2729,10 +2325,10 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Get services in subscription
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a subscription.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This method returns a list of service resources in a subscription.
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2741,16 +2337,16 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DataMigrationServiceInner> listAsync(Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(context), nextLink -> listNextSinglePageAsync(nextLink, context));
+        return new PagedFlux<>(() -> listSinglePageAsync(context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Get services in subscription
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a subscription.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This method returns a list of service resources in a subscription.
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return oData page of service objects as paginated response with {@link PagedIterable}.
@@ -2762,10 +2358,10 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Get services in subscription
-     *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a subscription.
-     *
+     * 
+     * The services resource is the top-level resource that represents the Azure Database Migration Service (classic).
+     * This method returns a list of service resources in a subscription.
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2779,31 +2375,27 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Check name validity and availability
-     *
-     * <p>This method checks whether a proposed top-level resource name is valid and available.
-     *
+     * 
+     * This method checks whether a proposed top-level resource name is valid and available.
+     * 
      * @param location The Azure region of the operation.
      * @param parameters Requested name to validate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return indicates whether a proposed resource name is available along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<NameAvailabilityResponseInner>> checkNameAvailabilityWithResponseAsync(
-        String location, NameAvailabilityRequest parameters) {
+    private Mono<Response<NameAvailabilityResponseInner>> checkNameAvailabilityWithResponseAsync(String location,
+        NameAvailabilityRequest parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (location == null) {
             return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
@@ -2815,25 +2407,16 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .checkNameAvailability(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            this.client.getApiVersion(),
-                            location,
-                            parameters,
-                            accept,
-                            context))
+            .withContext(context -> service.checkNameAvailability(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), location, this.client.getApiVersion(), parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Check name validity and availability
-     *
-     * <p>This method checks whether a proposed top-level resource name is valid and available.
-     *
+     * 
+     * This method checks whether a proposed top-level resource name is valid and available.
+     * 
      * @param location The Azure region of the operation.
      * @param parameters Requested name to validate.
      * @param context The context to associate with this operation.
@@ -2841,22 +2424,18 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return indicates whether a proposed resource name is available along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<NameAvailabilityResponseInner>> checkNameAvailabilityWithResponseAsync(
-        String location, NameAvailabilityRequest parameters, Context context) {
+    private Mono<Response<NameAvailabilityResponseInner>> checkNameAvailabilityWithResponseAsync(String location,
+        NameAvailabilityRequest parameters, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (location == null) {
             return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
@@ -2868,22 +2447,15 @@ public final class ServicesClientImpl implements ServicesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .checkNameAvailability(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                this.client.getApiVersion(),
-                location,
-                parameters,
-                accept,
-                context);
+        return service.checkNameAvailability(this.client.getEndpoint(), this.client.getSubscriptionId(), location,
+            this.client.getApiVersion(), parameters, accept, context);
     }
 
     /**
      * Check name validity and availability
-     *
-     * <p>This method checks whether a proposed top-level resource name is valid and available.
-     *
+     * 
+     * This method checks whether a proposed top-level resource name is valid and available.
+     * 
      * @param location The Azure region of the operation.
      * @param parameters Requested name to validate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2892,17 +2464,17 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return indicates whether a proposed resource name is available on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<NameAvailabilityResponseInner> checkNameAvailabilityAsync(
-        String location, NameAvailabilityRequest parameters) {
+    private Mono<NameAvailabilityResponseInner> checkNameAvailabilityAsync(String location,
+        NameAvailabilityRequest parameters) {
         return checkNameAvailabilityWithResponseAsync(location, parameters)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Check name validity and availability
-     *
-     * <p>This method checks whether a proposed top-level resource name is valid and available.
-     *
+     * 
+     * This method checks whether a proposed top-level resource name is valid and available.
+     * 
      * @param location The Azure region of the operation.
      * @param parameters Requested name to validate.
      * @param context The context to associate with this operation.
@@ -2912,16 +2484,16 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return indicates whether a proposed resource name is available along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<NameAvailabilityResponseInner> checkNameAvailabilityWithResponse(
-        String location, NameAvailabilityRequest parameters, Context context) {
+    public Response<NameAvailabilityResponseInner> checkNameAvailabilityWithResponse(String location,
+        NameAvailabilityRequest parameters, Context context) {
         return checkNameAvailabilityWithResponseAsync(location, parameters, context).block();
     }
 
     /**
      * Check name validity and availability
-     *
-     * <p>This method checks whether a proposed top-level resource name is valid and available.
-     *
+     * 
+     * This method checks whether a proposed top-level resource name is valid and available.
+     * 
      * @param location The Azure region of the operation.
      * @param parameters Requested name to validate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2936,9 +2508,10 @@ public final class ServicesClientImpl implements ServicesClient {
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2950,31 +2523,23 @@ public final class ServicesClientImpl implements ServicesClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSkusNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<AvailableServiceSkuInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<AvailableServiceSkuInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2982,37 +2547,28 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return oData page of available SKUs along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AvailableServiceSkuInner>> listSkusNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<AvailableServiceSkuInner>> listSkusNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listSkusNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listSkusNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -3024,32 +2580,24 @@ public final class ServicesClientImpl implements ServicesClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<DataMigrationServiceInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<DataMigrationServiceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3057,37 +2605,28 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return oData page of service objects along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DataMigrationServiceInner>> listByResourceGroupNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<DataMigrationServiceInner>> listByResourceGroupNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -3099,31 +2638,22 @@ public final class ServicesClientImpl implements ServicesClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<DataMigrationServiceInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<DataMigrationServiceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3136,23 +2666,13 @@ public final class ServicesClientImpl implements ServicesClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

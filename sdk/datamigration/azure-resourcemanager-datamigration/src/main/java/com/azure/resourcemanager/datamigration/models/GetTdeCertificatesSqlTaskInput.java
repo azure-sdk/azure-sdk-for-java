@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Input for the task that gets TDE certificates in Base64 encoded format. */
+/**
+ * Input for the task that gets TDE certificates in Base64 encoded format.
+ */
 @Fluent
 public final class GetTdeCertificatesSqlTaskInput {
     /*
@@ -30,13 +32,15 @@ public final class GetTdeCertificatesSqlTaskInput {
     @JsonProperty(value = "selectedCertificates", required = true)
     private List<SelectedCertificateInput> selectedCertificates;
 
-    /** Creates an instance of GetTdeCertificatesSqlTaskInput class. */
+    /**
+     * Creates an instance of GetTdeCertificatesSqlTaskInput class.
+     */
     public GetTdeCertificatesSqlTaskInput() {
     }
 
     /**
      * Get the connectionInfo property: Connection information for SQL Server.
-     *
+     * 
      * @return the connectionInfo value.
      */
     public SqlConnectionInfo connectionInfo() {
@@ -45,7 +49,7 @@ public final class GetTdeCertificatesSqlTaskInput {
 
     /**
      * Set the connectionInfo property: Connection information for SQL Server.
-     *
+     * 
      * @param connectionInfo the connectionInfo value to set.
      * @return the GetTdeCertificatesSqlTaskInput object itself.
      */
@@ -55,9 +59,9 @@ public final class GetTdeCertificatesSqlTaskInput {
     }
 
     /**
-     * Get the backupFileShare property: Backup file share information for file share to be used for temporarily storing
-     * files.
-     *
+     * Get the backupFileShare property: Backup file share information for file share to be used for temporarily
+     * storing files.
+     * 
      * @return the backupFileShare value.
      */
     public FileShare backupFileShare() {
@@ -65,9 +69,9 @@ public final class GetTdeCertificatesSqlTaskInput {
     }
 
     /**
-     * Set the backupFileShare property: Backup file share information for file share to be used for temporarily storing
-     * files.
-     *
+     * Set the backupFileShare property: Backup file share information for file share to be used for temporarily
+     * storing files.
+     * 
      * @param backupFileShare the backupFileShare value to set.
      * @return the GetTdeCertificatesSqlTaskInput object itself.
      */
@@ -79,7 +83,7 @@ public final class GetTdeCertificatesSqlTaskInput {
     /**
      * Get the selectedCertificates property: List containing certificate names and corresponding password to use for
      * encrypting the exported certificate.
-     *
+     * 
      * @return the selectedCertificates value.
      */
     public List<SelectedCertificateInput> selectedCertificates() {
@@ -89,43 +93,37 @@ public final class GetTdeCertificatesSqlTaskInput {
     /**
      * Set the selectedCertificates property: List containing certificate names and corresponding password to use for
      * encrypting the exported certificate.
-     *
+     * 
      * @param selectedCertificates the selectedCertificates value to set.
      * @return the GetTdeCertificatesSqlTaskInput object itself.
      */
-    public GetTdeCertificatesSqlTaskInput withSelectedCertificates(
-        List<SelectedCertificateInput> selectedCertificates) {
+    public GetTdeCertificatesSqlTaskInput
+        withSelectedCertificates(List<SelectedCertificateInput> selectedCertificates) {
         this.selectedCertificates = selectedCertificates;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (connectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property connectionInfo in model GetTdeCertificatesSqlTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property connectionInfo in model GetTdeCertificatesSqlTaskInput"));
         } else {
             connectionInfo().validate();
         }
         if (backupFileShare() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property backupFileShare in model GetTdeCertificatesSqlTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property backupFileShare in model GetTdeCertificatesSqlTaskInput"));
         } else {
             backupFileShare().validate();
         }
         if (selectedCertificates() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property selectedCertificates in model GetTdeCertificatesSqlTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property selectedCertificates in model GetTdeCertificatesSqlTaskInput"));
         } else {
             selectedCertificates().forEach(e -> e.validate());
         }

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Input for the task that validates connection to Azure Database for PostgreSQL and target server requirements. */
+/**
+ * Input for the task that validates connection to Azure Database for PostgreSQL and target server requirements.
+ */
 @Fluent
 public final class ConnectToTargetAzureDbForPostgreSqlSyncTaskInput {
     /*
@@ -23,13 +25,15 @@ public final class ConnectToTargetAzureDbForPostgreSqlSyncTaskInput {
     @JsonProperty(value = "targetConnectionInfo", required = true)
     private PostgreSqlConnectionInfo targetConnectionInfo;
 
-    /** Creates an instance of ConnectToTargetAzureDbForPostgreSqlSyncTaskInput class. */
+    /**
+     * Creates an instance of ConnectToTargetAzureDbForPostgreSqlSyncTaskInput class.
+     */
     public ConnectToTargetAzureDbForPostgreSqlSyncTaskInput() {
     }
 
     /**
      * Get the sourceConnectionInfo property: Connection information for source PostgreSQL server.
-     *
+     * 
      * @return the sourceConnectionInfo value.
      */
     public PostgreSqlConnectionInfo sourceConnectionInfo() {
@@ -38,19 +42,19 @@ public final class ConnectToTargetAzureDbForPostgreSqlSyncTaskInput {
 
     /**
      * Set the sourceConnectionInfo property: Connection information for source PostgreSQL server.
-     *
+     * 
      * @param sourceConnectionInfo the sourceConnectionInfo value to set.
      * @return the ConnectToTargetAzureDbForPostgreSqlSyncTaskInput object itself.
      */
-    public ConnectToTargetAzureDbForPostgreSqlSyncTaskInput withSourceConnectionInfo(
-        PostgreSqlConnectionInfo sourceConnectionInfo) {
+    public ConnectToTargetAzureDbForPostgreSqlSyncTaskInput
+        withSourceConnectionInfo(PostgreSqlConnectionInfo sourceConnectionInfo) {
         this.sourceConnectionInfo = sourceConnectionInfo;
         return this;
     }
 
     /**
      * Get the targetConnectionInfo property: Connection information for target Azure Database for PostgreSQL server.
-     *
+     * 
      * @return the targetConnectionInfo value.
      */
     public PostgreSqlConnectionInfo targetConnectionInfo() {
@@ -59,37 +63,31 @@ public final class ConnectToTargetAzureDbForPostgreSqlSyncTaskInput {
 
     /**
      * Set the targetConnectionInfo property: Connection information for target Azure Database for PostgreSQL server.
-     *
+     * 
      * @param targetConnectionInfo the targetConnectionInfo value to set.
      * @return the ConnectToTargetAzureDbForPostgreSqlSyncTaskInput object itself.
      */
-    public ConnectToTargetAzureDbForPostgreSqlSyncTaskInput withTargetConnectionInfo(
-        PostgreSqlConnectionInfo targetConnectionInfo) {
+    public ConnectToTargetAzureDbForPostgreSqlSyncTaskInput
+        withTargetConnectionInfo(PostgreSqlConnectionInfo targetConnectionInfo) {
         this.targetConnectionInfo = targetConnectionInfo;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourceConnectionInfo in model"
-                            + " ConnectToTargetAzureDbForPostgreSqlSyncTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sourceConnectionInfo in model ConnectToTargetAzureDbForPostgreSqlSyncTaskInput"));
         } else {
             sourceConnectionInfo().validate();
         }
         if (targetConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property targetConnectionInfo in model"
-                            + " ConnectToTargetAzureDbForPostgreSqlSyncTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property targetConnectionInfo in model ConnectToTargetAzureDbForPostgreSqlSyncTaskInput"));
         } else {
             targetConnectionInfo().validate();
         }

@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 
-/** Table level result for Sql Server to Azure Sql DB migration. */
+/**
+ * The MigrateSqlServerSqlDbTaskOutputTableLevel model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("TableLevelOutput")
 @Immutable
@@ -69,13 +71,15 @@ public final class MigrateSqlServerSqlDbTaskOutputTableLevel extends MigrateSqlS
     @JsonProperty(value = "resultPrefix", access = JsonProperty.Access.WRITE_ONLY)
     private String resultPrefix;
 
-    /** Creates an instance of MigrateSqlServerSqlDbTaskOutputTableLevel class. */
+    /**
+     * Creates an instance of MigrateSqlServerSqlDbTaskOutputTableLevel class.
+     */
     public MigrateSqlServerSqlDbTaskOutputTableLevel() {
     }
 
     /**
      * Get the objectName property: Name of the item.
-     *
+     * 
      * @return the objectName value.
      */
     public String objectName() {
@@ -84,7 +88,7 @@ public final class MigrateSqlServerSqlDbTaskOutputTableLevel extends MigrateSqlS
 
     /**
      * Get the startedOn property: Migration start time.
-     *
+     * 
      * @return the startedOn value.
      */
     public OffsetDateTime startedOn() {
@@ -93,7 +97,7 @@ public final class MigrateSqlServerSqlDbTaskOutputTableLevel extends MigrateSqlS
 
     /**
      * Get the endedOn property: Migration end time.
-     *
+     * 
      * @return the endedOn value.
      */
     public OffsetDateTime endedOn() {
@@ -102,7 +106,7 @@ public final class MigrateSqlServerSqlDbTaskOutputTableLevel extends MigrateSqlS
 
     /**
      * Get the state property: Current state of migration.
-     *
+     * 
      * @return the state value.
      */
     public MigrationState state() {
@@ -111,7 +115,7 @@ public final class MigrateSqlServerSqlDbTaskOutputTableLevel extends MigrateSqlS
 
     /**
      * Get the statusMessage property: Status message.
-     *
+     * 
      * @return the statusMessage value.
      */
     public String statusMessage() {
@@ -120,7 +124,7 @@ public final class MigrateSqlServerSqlDbTaskOutputTableLevel extends MigrateSqlS
 
     /**
      * Get the itemsCount property: Number of items.
-     *
+     * 
      * @return the itemsCount value.
      */
     public Long itemsCount() {
@@ -129,7 +133,7 @@ public final class MigrateSqlServerSqlDbTaskOutputTableLevel extends MigrateSqlS
 
     /**
      * Get the itemsCompletedCount property: Number of successfully completed items.
-     *
+     * 
      * @return the itemsCompletedCount value.
      */
     public Long itemsCompletedCount() {
@@ -138,7 +142,7 @@ public final class MigrateSqlServerSqlDbTaskOutputTableLevel extends MigrateSqlS
 
     /**
      * Get the errorPrefix property: Wildcard string prefix to use for querying all errors of the item.
-     *
+     * 
      * @return the errorPrefix value.
      */
     public String errorPrefix() {
@@ -147,7 +151,7 @@ public final class MigrateSqlServerSqlDbTaskOutputTableLevel extends MigrateSqlS
 
     /**
      * Get the resultPrefix property: Wildcard string prefix to use for querying all sub-tem results of the item.
-     *
+     * 
      * @return the resultPrefix value.
      */
     public String resultPrefix() {
@@ -156,7 +160,7 @@ public final class MigrateSqlServerSqlDbTaskOutputTableLevel extends MigrateSqlS
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

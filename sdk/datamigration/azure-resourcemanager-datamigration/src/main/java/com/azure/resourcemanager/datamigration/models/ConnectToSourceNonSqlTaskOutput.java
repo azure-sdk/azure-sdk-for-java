@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Output for connect to Oracle, MySQL type source. */
+/**
+ * Output for connect to MySQL type source.
+ */
 @Immutable
 public final class ConnectToSourceNonSqlTaskOutput {
     /*
@@ -41,13 +43,15 @@ public final class ConnectToSourceNonSqlTaskOutput {
     @JsonProperty(value = "validationErrors", access = JsonProperty.Access.WRITE_ONLY)
     private List<ReportableException> validationErrors;
 
-    /** Creates an instance of ConnectToSourceNonSqlTaskOutput class. */
+    /**
+     * Creates an instance of ConnectToSourceNonSqlTaskOutput class.
+     */
     public ConnectToSourceNonSqlTaskOutput() {
     }
 
     /**
      * Get the id property: Result identifier.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -56,7 +60,7 @@ public final class ConnectToSourceNonSqlTaskOutput {
 
     /**
      * Get the sourceServerBrandVersion property: Server brand version.
-     *
+     * 
      * @return the sourceServerBrandVersion value.
      */
     public String sourceServerBrandVersion() {
@@ -65,7 +69,7 @@ public final class ConnectToSourceNonSqlTaskOutput {
 
     /**
      * Get the serverProperties property: Server properties.
-     *
+     * 
      * @return the serverProperties value.
      */
     public ServerProperties serverProperties() {
@@ -74,7 +78,7 @@ public final class ConnectToSourceNonSqlTaskOutput {
 
     /**
      * Get the databases property: List of databases on the server.
-     *
+     * 
      * @return the databases value.
      */
     public List<String> databases() {
@@ -83,7 +87,7 @@ public final class ConnectToSourceNonSqlTaskOutput {
 
     /**
      * Get the validationErrors property: Validation errors associated with the task.
-     *
+     * 
      * @return the validationErrors value.
      */
     public List<ReportableException> validationErrors() {
@@ -92,7 +96,7 @@ public final class ConnectToSourceNonSqlTaskOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

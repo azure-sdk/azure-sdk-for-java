@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Input for task that validates migration input for SQL to Azure SQL Managed Instance. */
+/**
+ * Input for task that validates migration input for SQL to Azure SQL Managed Instance.
+ */
 @Fluent
 public final class ValidateMigrationInputSqlServerSqlMITaskInput {
     /*
@@ -54,13 +56,15 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
     @JsonProperty(value = "backupMode")
     private BackupMode backupMode;
 
-    /** Creates an instance of ValidateMigrationInputSqlServerSqlMITaskInput class. */
+    /**
+     * Creates an instance of ValidateMigrationInputSqlServerSqlMITaskInput class.
+     */
     public ValidateMigrationInputSqlServerSqlMITaskInput() {
     }
 
     /**
      * Get the sourceConnectionInfo property: Information for connecting to source.
-     *
+     * 
      * @return the sourceConnectionInfo value.
      */
     public SqlConnectionInfo sourceConnectionInfo() {
@@ -69,19 +73,19 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
 
     /**
      * Set the sourceConnectionInfo property: Information for connecting to source.
-     *
+     * 
      * @param sourceConnectionInfo the sourceConnectionInfo value to set.
      * @return the ValidateMigrationInputSqlServerSqlMITaskInput object itself.
      */
-    public ValidateMigrationInputSqlServerSqlMITaskInput withSourceConnectionInfo(
-        SqlConnectionInfo sourceConnectionInfo) {
+    public ValidateMigrationInputSqlServerSqlMITaskInput
+        withSourceConnectionInfo(SqlConnectionInfo sourceConnectionInfo) {
         this.sourceConnectionInfo = sourceConnectionInfo;
         return this;
     }
 
     /**
      * Get the targetConnectionInfo property: Information for connecting to target.
-     *
+     * 
      * @return the targetConnectionInfo value.
      */
     public SqlConnectionInfo targetConnectionInfo() {
@@ -90,19 +94,19 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
 
     /**
      * Set the targetConnectionInfo property: Information for connecting to target.
-     *
+     * 
      * @param targetConnectionInfo the targetConnectionInfo value to set.
      * @return the ValidateMigrationInputSqlServerSqlMITaskInput object itself.
      */
-    public ValidateMigrationInputSqlServerSqlMITaskInput withTargetConnectionInfo(
-        SqlConnectionInfo targetConnectionInfo) {
+    public ValidateMigrationInputSqlServerSqlMITaskInput
+        withTargetConnectionInfo(SqlConnectionInfo targetConnectionInfo) {
         this.targetConnectionInfo = targetConnectionInfo;
         return this;
     }
 
     /**
      * Get the selectedDatabases property: Databases to migrate.
-     *
+     * 
      * @return the selectedDatabases value.
      */
     public List<MigrateSqlServerSqlMIDatabaseInput> selectedDatabases() {
@@ -111,19 +115,19 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
 
     /**
      * Set the selectedDatabases property: Databases to migrate.
-     *
+     * 
      * @param selectedDatabases the selectedDatabases value to set.
      * @return the ValidateMigrationInputSqlServerSqlMITaskInput object itself.
      */
-    public ValidateMigrationInputSqlServerSqlMITaskInput withSelectedDatabases(
-        List<MigrateSqlServerSqlMIDatabaseInput> selectedDatabases) {
+    public ValidateMigrationInputSqlServerSqlMITaskInput
+        withSelectedDatabases(List<MigrateSqlServerSqlMIDatabaseInput> selectedDatabases) {
         this.selectedDatabases = selectedDatabases;
         return this;
     }
 
     /**
      * Get the selectedLogins property: Logins to migrate.
-     *
+     * 
      * @return the selectedLogins value.
      */
     public List<String> selectedLogins() {
@@ -132,7 +136,7 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
 
     /**
      * Set the selectedLogins property: Logins to migrate.
-     *
+     * 
      * @param selectedLogins the selectedLogins value to set.
      * @return the ValidateMigrationInputSqlServerSqlMITaskInput object itself.
      */
@@ -143,7 +147,7 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
 
     /**
      * Get the backupFileShare property: Backup file share information for all selected databases.
-     *
+     * 
      * @return the backupFileShare value.
      */
     public FileShare backupFileShare() {
@@ -152,7 +156,7 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
 
     /**
      * Set the backupFileShare property: Backup file share information for all selected databases.
-     *
+     * 
      * @param backupFileShare the backupFileShare value to set.
      * @return the ValidateMigrationInputSqlServerSqlMITaskInput object itself.
      */
@@ -162,8 +166,9 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
     }
 
     /**
-     * Get the backupBlobShare property: SAS URI of Azure Storage Account Container to be used for storing backup files.
-     *
+     * Get the backupBlobShare property: SAS URI of Azure Storage Account Container to be used for storing backup
+     * files.
+     * 
      * @return the backupBlobShare value.
      */
     public BlobShare backupBlobShare() {
@@ -171,8 +176,9 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
     }
 
     /**
-     * Set the backupBlobShare property: SAS URI of Azure Storage Account Container to be used for storing backup files.
-     *
+     * Set the backupBlobShare property: SAS URI of Azure Storage Account Container to be used for storing backup
+     * files.
+     * 
      * @param backupBlobShare the backupBlobShare value to set.
      * @return the ValidateMigrationInputSqlServerSqlMITaskInput object itself.
      */
@@ -183,7 +189,7 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
 
     /**
      * Get the backupMode property: Backup Mode to specify whether to use existing backup or create new backup.
-     *
+     * 
      * @return the backupMode value.
      */
     public BackupMode backupMode() {
@@ -192,7 +198,7 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
 
     /**
      * Set the backupMode property: Backup Mode to specify whether to use existing backup or create new backup.
-     *
+     * 
      * @param backupMode the backupMode value to set.
      * @return the ValidateMigrationInputSqlServerSqlMITaskInput object itself.
      */
@@ -203,34 +209,25 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourceConnectionInfo in model"
-                            + " ValidateMigrationInputSqlServerSqlMITaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sourceConnectionInfo in model ValidateMigrationInputSqlServerSqlMITaskInput"));
         } else {
             sourceConnectionInfo().validate();
         }
         if (targetConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property targetConnectionInfo in model"
-                            + " ValidateMigrationInputSqlServerSqlMITaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property targetConnectionInfo in model ValidateMigrationInputSqlServerSqlMITaskInput"));
         } else {
             targetConnectionInfo().validate();
         }
         if (selectedDatabases() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property selectedDatabases in model"
-                            + " ValidateMigrationInputSqlServerSqlMITaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property selectedDatabases in model ValidateMigrationInputSqlServerSqlMITaskInput"));
         } else {
             selectedDatabases().forEach(e -> e.validate());
         }
@@ -238,11 +235,8 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
             backupFileShare().validate();
         }
         if (backupBlobShare() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property backupBlobShare in model"
-                            + " ValidateMigrationInputSqlServerSqlMITaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property backupBlobShare in model ValidateMigrationInputSqlServerSqlMITaskInput"));
         } else {
             backupBlobShare().validate();
         }

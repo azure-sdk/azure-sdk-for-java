@@ -48,13 +48,15 @@ public final class ConnectToSourceSqlServerTaskOutputDatabaseLevel extends Conne
     @JsonProperty(value = "databaseState", access = JsonProperty.Access.WRITE_ONLY)
     private DatabaseState databaseState;
 
-    /** Creates an instance of ConnectToSourceSqlServerTaskOutputDatabaseLevel class. */
+    /**
+     * Creates an instance of ConnectToSourceSqlServerTaskOutputDatabaseLevel class.
+     */
     public ConnectToSourceSqlServerTaskOutputDatabaseLevel() {
     }
 
     /**
      * Get the name property: Database name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -63,7 +65,7 @@ public final class ConnectToSourceSqlServerTaskOutputDatabaseLevel extends Conne
 
     /**
      * Get the sizeMB property: Size of the file in megabytes.
-     *
+     * 
      * @return the sizeMB value.
      */
     public Double sizeMB() {
@@ -72,7 +74,7 @@ public final class ConnectToSourceSqlServerTaskOutputDatabaseLevel extends Conne
 
     /**
      * Get the databaseFiles property: The list of database files.
-     *
+     * 
      * @return the databaseFiles value.
      */
     public List<DatabaseFileInfo> databaseFiles() {
@@ -81,7 +83,7 @@ public final class ConnectToSourceSqlServerTaskOutputDatabaseLevel extends Conne
 
     /**
      * Get the compatibilityLevel property: SQL Server compatibility level of database.
-     *
+     * 
      * @return the compatibilityLevel value.
      */
     public DatabaseCompatLevel compatibilityLevel() {
@@ -90,7 +92,7 @@ public final class ConnectToSourceSqlServerTaskOutputDatabaseLevel extends Conne
 
     /**
      * Get the databaseState property: State of the database.
-     *
+     * 
      * @return the databaseState value.
      */
     public DatabaseState databaseState() {
@@ -99,7 +101,7 @@ public final class ConnectToSourceSqlServerTaskOutputDatabaseLevel extends Conne
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

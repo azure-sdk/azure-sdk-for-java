@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Input for task that migrates SQL Server databases to Azure SQL Database Managed Instance. */
+/**
+ * Input for task that migrates SQL Server databases to Azure SQL Database Managed Instance.
+ */
 @Fluent
 public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput {
     /*
@@ -17,6 +19,12 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
      */
     @JsonProperty(value = "selectedDatabases", required = true)
     private List<MigrateSqlServerSqlMIDatabaseInput> selectedDatabases;
+
+    /*
+     * Date and time relative to UTC when the migration was started on
+     */
+    @JsonProperty(value = "startedOn")
+    private String startedOn;
 
     /*
      * Logins to migrate.
@@ -49,13 +57,28 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
     @JsonProperty(value = "backupMode")
     private BackupMode backupMode;
 
-    /** Creates an instance of MigrateSqlServerSqlMITaskInput class. */
+    /*
+     * Azure Active Directory domain name in the format of 'contoso.com' for federated Azure AD or
+     * 'contoso.onmicrosoft.com' for managed domain, required if and only if Windows logins are selected
+     */
+    @JsonProperty(value = "aadDomainName")
+    private String aadDomainName;
+
+    /*
+     * encrypted key for secure fields
+     */
+    @JsonProperty(value = "encryptedKeyForSecureFields")
+    private String encryptedKeyForSecureFields;
+
+    /**
+     * Creates an instance of MigrateSqlServerSqlMITaskInput class.
+     */
     public MigrateSqlServerSqlMITaskInput() {
     }
 
     /**
      * Get the selectedDatabases property: Databases to migrate.
-     *
+     * 
      * @return the selectedDatabases value.
      */
     public List<MigrateSqlServerSqlMIDatabaseInput> selectedDatabases() {
@@ -64,19 +87,39 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
 
     /**
      * Set the selectedDatabases property: Databases to migrate.
-     *
+     * 
      * @param selectedDatabases the selectedDatabases value to set.
      * @return the MigrateSqlServerSqlMITaskInput object itself.
      */
-    public MigrateSqlServerSqlMITaskInput withSelectedDatabases(
-        List<MigrateSqlServerSqlMIDatabaseInput> selectedDatabases) {
+    public MigrateSqlServerSqlMITaskInput
+        withSelectedDatabases(List<MigrateSqlServerSqlMIDatabaseInput> selectedDatabases) {
         this.selectedDatabases = selectedDatabases;
         return this;
     }
 
     /**
+     * Get the startedOn property: Date and time relative to UTC when the migration was started on.
+     * 
+     * @return the startedOn value.
+     */
+    public String startedOn() {
+        return this.startedOn;
+    }
+
+    /**
+     * Set the startedOn property: Date and time relative to UTC when the migration was started on.
+     * 
+     * @param startedOn the startedOn value to set.
+     * @return the MigrateSqlServerSqlMITaskInput object itself.
+     */
+    public MigrateSqlServerSqlMITaskInput withStartedOn(String startedOn) {
+        this.startedOn = startedOn;
+        return this;
+    }
+
+    /**
      * Get the selectedLogins property: Logins to migrate.
-     *
+     * 
      * @return the selectedLogins value.
      */
     public List<String> selectedLogins() {
@@ -85,7 +128,7 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
 
     /**
      * Set the selectedLogins property: Logins to migrate.
-     *
+     * 
      * @param selectedLogins the selectedLogins value to set.
      * @return the MigrateSqlServerSqlMITaskInput object itself.
      */
@@ -96,7 +139,7 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
 
     /**
      * Get the selectedAgentJobs property: Agent Jobs to migrate.
-     *
+     * 
      * @return the selectedAgentJobs value.
      */
     public List<String> selectedAgentJobs() {
@@ -105,7 +148,7 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
 
     /**
      * Set the selectedAgentJobs property: Agent Jobs to migrate.
-     *
+     * 
      * @param selectedAgentJobs the selectedAgentJobs value to set.
      * @return the MigrateSqlServerSqlMITaskInput object itself.
      */
@@ -116,7 +159,7 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
 
     /**
      * Get the backupFileShare property: Backup file share information for all selected databases.
-     *
+     * 
      * @return the backupFileShare value.
      */
     public FileShare backupFileShare() {
@@ -125,7 +168,7 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
 
     /**
      * Set the backupFileShare property: Backup file share information for all selected databases.
-     *
+     * 
      * @param backupFileShare the backupFileShare value to set.
      * @return the MigrateSqlServerSqlMITaskInput object itself.
      */
@@ -135,8 +178,9 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
     }
 
     /**
-     * Get the backupBlobShare property: SAS URI of Azure Storage Account Container to be used for storing backup files.
-     *
+     * Get the backupBlobShare property: SAS URI of Azure Storage Account Container to be used for storing backup
+     * files.
+     * 
      * @return the backupBlobShare value.
      */
     public BlobShare backupBlobShare() {
@@ -144,8 +188,9 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
     }
 
     /**
-     * Set the backupBlobShare property: SAS URI of Azure Storage Account Container to be used for storing backup files.
-     *
+     * Set the backupBlobShare property: SAS URI of Azure Storage Account Container to be used for storing backup
+     * files.
+     * 
      * @param backupBlobShare the backupBlobShare value to set.
      * @return the MigrateSqlServerSqlMITaskInput object itself.
      */
@@ -155,9 +200,9 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
     }
 
     /**
-     * Get the backupMode property: Backup Mode to specify whether to use existing backup or create new backup. If using
-     * existing backups, backup file paths are required to be provided in selectedDatabases.
-     *
+     * Get the backupMode property: Backup Mode to specify whether to use existing backup or create new backup. If
+     * using existing backups, backup file paths are required to be provided in selectedDatabases.
+     * 
      * @return the backupMode value.
      */
     public BackupMode backupMode() {
@@ -165,9 +210,9 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
     }
 
     /**
-     * Set the backupMode property: Backup Mode to specify whether to use existing backup or create new backup. If using
-     * existing backups, backup file paths are required to be provided in selectedDatabases.
-     *
+     * Set the backupMode property: Backup Mode to specify whether to use existing backup or create new backup. If
+     * using existing backups, backup file paths are required to be provided in selectedDatabases.
+     * 
      * @param backupMode the backupMode value to set.
      * @return the MigrateSqlServerSqlMITaskInput object itself.
      */
@@ -176,14 +221,60 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the aadDomainName property: Azure Active Directory domain name in the format of 'contoso.com' for federated
+     * Azure AD or 'contoso.onmicrosoft.com' for managed domain, required if and only if Windows logins are selected.
+     * 
+     * @return the aadDomainName value.
+     */
+    public String aadDomainName() {
+        return this.aadDomainName;
+    }
+
+    /**
+     * Set the aadDomainName property: Azure Active Directory domain name in the format of 'contoso.com' for federated
+     * Azure AD or 'contoso.onmicrosoft.com' for managed domain, required if and only if Windows logins are selected.
+     * 
+     * @param aadDomainName the aadDomainName value to set.
+     * @return the MigrateSqlServerSqlMITaskInput object itself.
+     */
+    public MigrateSqlServerSqlMITaskInput withAadDomainName(String aadDomainName) {
+        this.aadDomainName = aadDomainName;
+        return this;
+    }
+
+    /**
+     * Get the encryptedKeyForSecureFields property: encrypted key for secure fields.
+     * 
+     * @return the encryptedKeyForSecureFields value.
+     */
+    public String encryptedKeyForSecureFields() {
+        return this.encryptedKeyForSecureFields;
+    }
+
+    /**
+     * Set the encryptedKeyForSecureFields property: encrypted key for secure fields.
+     * 
+     * @param encryptedKeyForSecureFields the encryptedKeyForSecureFields value to set.
+     * @return the MigrateSqlServerSqlMITaskInput object itself.
+     */
+    public MigrateSqlServerSqlMITaskInput withEncryptedKeyForSecureFields(String encryptedKeyForSecureFields) {
+        this.encryptedKeyForSecureFields = encryptedKeyForSecureFields;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MigrateSqlServerSqlMITaskInput withSourceConnectionInfo(SqlConnectionInfo sourceConnectionInfo) {
         super.withSourceConnectionInfo(sourceConnectionInfo);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MigrateSqlServerSqlMITaskInput withTargetConnectionInfo(SqlConnectionInfo targetConnectionInfo) {
         super.withTargetConnectionInfo(targetConnectionInfo);
@@ -192,17 +283,15 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (selectedDatabases() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property selectedDatabases in model MigrateSqlServerSqlMITaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property selectedDatabases in model MigrateSqlServerSqlMITaskInput"));
         } else {
             selectedDatabases().forEach(e -> e.validate());
         }
@@ -210,10 +299,8 @@ public final class MigrateSqlServerSqlMITaskInput extends SqlMigrationTaskInput 
             backupFileShare().validate();
         }
         if (backupBlobShare() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property backupBlobShare in model MigrateSqlServerSqlMITaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property backupBlobShare in model MigrateSqlServerSqlMITaskInput"));
         } else {
             backupBlobShare().validate();
         }

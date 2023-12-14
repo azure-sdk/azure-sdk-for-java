@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datamigration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A resource type and proposed name. */
+/**
+ * A resource type and proposed name.
+ */
 @Fluent
 public final class NameAvailabilityRequest {
     /*
@@ -22,13 +24,15 @@ public final class NameAvailabilityRequest {
     @JsonProperty(value = "type")
     private String type;
 
-    /** Creates an instance of NameAvailabilityRequest class. */
+    /**
+     * Creates an instance of NameAvailabilityRequest class.
+     */
     public NameAvailabilityRequest() {
     }
 
     /**
      * Get the name property: The proposed resource name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class NameAvailabilityRequest {
 
     /**
      * Set the name property: The proposed resource name.
-     *
+     * 
      * @param name the name value to set.
      * @return the NameAvailabilityRequest object itself.
      */
@@ -48,7 +52,7 @@ public final class NameAvailabilityRequest {
 
     /**
      * Get the type property: The resource type chain (e.g. virtualMachines/extensions).
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -57,7 +61,7 @@ public final class NameAvailabilityRequest {
 
     /**
      * Set the type property: The resource type chain (e.g. virtualMachines/extensions).
-     *
+     * 
      * @param type the type value to set.
      * @return the NameAvailabilityRequest object itself.
      */
@@ -68,7 +72,7 @@ public final class NameAvailabilityRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

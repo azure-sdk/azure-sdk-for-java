@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Service health status. */
+/**
+ * Service health status.
+ */
 @Fluent
 public final class DataMigrationServiceStatusResponseInner {
     /*
@@ -16,6 +18,12 @@ public final class DataMigrationServiceStatusResponseInner {
      */
     @JsonProperty(value = "agentVersion")
     private String agentVersion;
+
+    /*
+     * Agent Configuration
+     */
+    @JsonProperty(value = "agentConfiguration")
+    private Object agentConfiguration;
 
     /*
      * The machine-readable status, such as 'Initializing', 'Offline', 'Online', 'Deploying', 'Deleting', 'Stopped',
@@ -36,13 +44,15 @@ public final class DataMigrationServiceStatusResponseInner {
     @JsonProperty(value = "supportedTaskTypes")
     private List<String> supportedTaskTypes;
 
-    /** Creates an instance of DataMigrationServiceStatusResponseInner class. */
+    /**
+     * Creates an instance of DataMigrationServiceStatusResponseInner class.
+     */
     public DataMigrationServiceStatusResponseInner() {
     }
 
     /**
      * Get the agentVersion property: The DMS instance agent version.
-     *
+     * 
      * @return the agentVersion value.
      */
     public String agentVersion() {
@@ -51,7 +61,7 @@ public final class DataMigrationServiceStatusResponseInner {
 
     /**
      * Set the agentVersion property: The DMS instance agent version.
-     *
+     * 
      * @param agentVersion the agentVersion value to set.
      * @return the DataMigrationServiceStatusResponseInner object itself.
      */
@@ -61,9 +71,29 @@ public final class DataMigrationServiceStatusResponseInner {
     }
 
     /**
+     * Get the agentConfiguration property: Agent Configuration.
+     * 
+     * @return the agentConfiguration value.
+     */
+    public Object agentConfiguration() {
+        return this.agentConfiguration;
+    }
+
+    /**
+     * Set the agentConfiguration property: Agent Configuration.
+     * 
+     * @param agentConfiguration the agentConfiguration value to set.
+     * @return the DataMigrationServiceStatusResponseInner object itself.
+     */
+    public DataMigrationServiceStatusResponseInner withAgentConfiguration(Object agentConfiguration) {
+        this.agentConfiguration = agentConfiguration;
+        return this;
+    }
+
+    /**
      * Get the status property: The machine-readable status, such as 'Initializing', 'Offline', 'Online', 'Deploying',
      * 'Deleting', 'Stopped', 'Stopping', 'Starting', 'FailedToStart', 'FailedToStop' or 'Failed'.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -73,7 +103,7 @@ public final class DataMigrationServiceStatusResponseInner {
     /**
      * Set the status property: The machine-readable status, such as 'Initializing', 'Offline', 'Online', 'Deploying',
      * 'Deleting', 'Stopped', 'Stopping', 'Starting', 'FailedToStart', 'FailedToStop' or 'Failed'.
-     *
+     * 
      * @param status the status value to set.
      * @return the DataMigrationServiceStatusResponseInner object itself.
      */
@@ -84,7 +114,7 @@ public final class DataMigrationServiceStatusResponseInner {
 
     /**
      * Get the vmSize property: The services virtual machine size, such as 'Standard_D2_v2'.
-     *
+     * 
      * @return the vmSize value.
      */
     public String vmSize() {
@@ -93,7 +123,7 @@ public final class DataMigrationServiceStatusResponseInner {
 
     /**
      * Set the vmSize property: The services virtual machine size, such as 'Standard_D2_v2'.
-     *
+     * 
      * @param vmSize the vmSize value to set.
      * @return the DataMigrationServiceStatusResponseInner object itself.
      */
@@ -104,7 +134,7 @@ public final class DataMigrationServiceStatusResponseInner {
 
     /**
      * Get the supportedTaskTypes property: The list of supported task types.
-     *
+     * 
      * @return the supportedTaskTypes value.
      */
     public List<String> supportedTaskTypes() {
@@ -113,7 +143,7 @@ public final class DataMigrationServiceStatusResponseInner {
 
     /**
      * Set the supportedTaskTypes property: The list of supported task types.
-     *
+     * 
      * @param supportedTaskTypes the supportedTaskTypes value to set.
      * @return the DataMigrationServiceStatusResponseInner object itself.
      */
@@ -124,7 +154,7 @@ public final class DataMigrationServiceStatusResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

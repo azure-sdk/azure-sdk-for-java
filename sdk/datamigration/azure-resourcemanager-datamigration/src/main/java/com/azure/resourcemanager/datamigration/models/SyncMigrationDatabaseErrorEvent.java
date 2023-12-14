@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datamigration.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Database migration errors for online migration. */
+/**
+ * Database migration errors for online migration.
+ */
 @Immutable
 public final class SyncMigrationDatabaseErrorEvent {
     /*
@@ -28,13 +30,15 @@ public final class SyncMigrationDatabaseErrorEvent {
     @JsonProperty(value = "eventText", access = JsonProperty.Access.WRITE_ONLY)
     private String eventText;
 
-    /** Creates an instance of SyncMigrationDatabaseErrorEvent class. */
+    /**
+     * Creates an instance of SyncMigrationDatabaseErrorEvent class.
+     */
     public SyncMigrationDatabaseErrorEvent() {
     }
 
     /**
      * Get the timestampString property: String value of timestamp.
-     *
+     * 
      * @return the timestampString value.
      */
     public String timestampString() {
@@ -43,7 +47,7 @@ public final class SyncMigrationDatabaseErrorEvent {
 
     /**
      * Get the eventTypeString property: Event type.
-     *
+     * 
      * @return the eventTypeString value.
      */
     public String eventTypeString() {
@@ -52,7 +56,7 @@ public final class SyncMigrationDatabaseErrorEvent {
 
     /**
      * Get the eventText property: Event text.
-     *
+     * 
      * @return the eventText value.
      */
     public String eventText() {
@@ -61,7 +65,7 @@ public final class SyncMigrationDatabaseErrorEvent {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

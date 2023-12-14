@@ -9,7 +9,9 @@ import com.azure.resourcemanager.datamigration.fluent.models.AvailableServiceSku
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** OData page of available SKUs. */
+/**
+ * OData page of available SKUs.
+ */
 @Fluent
 public final class ServiceSkuList {
     /*
@@ -24,13 +26,15 @@ public final class ServiceSkuList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ServiceSkuList class. */
+    /**
+     * Creates an instance of ServiceSkuList class.
+     */
     public ServiceSkuList() {
     }
 
     /**
      * Get the value property: List of service SKUs.
-     *
+     * 
      * @return the value value.
      */
     public List<AvailableServiceSkuInner> value() {
@@ -39,7 +43,7 @@ public final class ServiceSkuList {
 
     /**
      * Set the value property: List of service SKUs.
-     *
+     * 
      * @param value the value value to set.
      * @return the ServiceSkuList object itself.
      */
@@ -50,7 +54,7 @@ public final class ServiceSkuList {
 
     /**
      * Get the nextLink property: URL to load the next page of service SKUs.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class ServiceSkuList {
 
     /**
      * Set the nextLink property: URL to load the next page of service SKUs.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ServiceSkuList object itself.
      */
@@ -70,7 +74,7 @@ public final class ServiceSkuList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

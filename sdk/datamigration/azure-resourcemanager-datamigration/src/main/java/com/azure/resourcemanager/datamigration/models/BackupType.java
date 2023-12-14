@@ -8,32 +8,48 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Enum of the different backup types. */
+/**
+ * Enum of the different backup types.
+ */
 public final class BackupType extends ExpandableStringEnum<BackupType> {
-    /** Static value Database for BackupType. */
+    /**
+     * Static value Database for BackupType.
+     */
     public static final BackupType DATABASE = fromString("Database");
 
-    /** Static value TransactionLog for BackupType. */
+    /**
+     * Static value TransactionLog for BackupType.
+     */
     public static final BackupType TRANSACTION_LOG = fromString("TransactionLog");
 
-    /** Static value File for BackupType. */
+    /**
+     * Static value File for BackupType.
+     */
     public static final BackupType FILE = fromString("File");
 
-    /** Static value DifferentialDatabase for BackupType. */
+    /**
+     * Static value DifferentialDatabase for BackupType.
+     */
     public static final BackupType DIFFERENTIAL_DATABASE = fromString("DifferentialDatabase");
 
-    /** Static value DifferentialFile for BackupType. */
+    /**
+     * Static value DifferentialFile for BackupType.
+     */
     public static final BackupType DIFFERENTIAL_FILE = fromString("DifferentialFile");
 
-    /** Static value Partial for BackupType. */
+    /**
+     * Static value Partial for BackupType.
+     */
     public static final BackupType PARTIAL = fromString("Partial");
 
-    /** Static value DifferentialPartial for BackupType. */
+    /**
+     * Static value DifferentialPartial for BackupType.
+     */
     public static final BackupType DIFFERENTIAL_PARTIAL = fromString("DifferentialPartial");
 
     /**
      * Creates a new instance of BackupType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -42,7 +58,7 @@ public final class BackupType extends ExpandableStringEnum<BackupType> {
 
     /**
      * Creates or finds a BackupType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding BackupType.
      */
@@ -53,7 +69,7 @@ public final class BackupType extends ExpandableStringEnum<BackupType> {
 
     /**
      * Gets known BackupType values.
-     *
+     * 
      * @return known BackupType values.
      */
     public static Collection<BackupType> values() {

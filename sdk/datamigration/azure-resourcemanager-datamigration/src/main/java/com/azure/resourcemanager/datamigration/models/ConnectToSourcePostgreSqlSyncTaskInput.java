@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Input for the task that validates connection to PostgreSQL and source server requirements. */
+/**
+ * Input for the task that validates connection to PostgreSQL and source server requirements.
+ */
 @Fluent
 public final class ConnectToSourcePostgreSqlSyncTaskInput {
     /*
@@ -17,13 +19,15 @@ public final class ConnectToSourcePostgreSqlSyncTaskInput {
     @JsonProperty(value = "sourceConnectionInfo", required = true)
     private PostgreSqlConnectionInfo sourceConnectionInfo;
 
-    /** Creates an instance of ConnectToSourcePostgreSqlSyncTaskInput class. */
+    /**
+     * Creates an instance of ConnectToSourcePostgreSqlSyncTaskInput class.
+     */
     public ConnectToSourcePostgreSqlSyncTaskInput() {
     }
 
     /**
      * Get the sourceConnectionInfo property: Connection information for source PostgreSQL server.
-     *
+     * 
      * @return the sourceConnectionInfo value.
      */
     public PostgreSqlConnectionInfo sourceConnectionInfo() {
@@ -32,28 +36,25 @@ public final class ConnectToSourcePostgreSqlSyncTaskInput {
 
     /**
      * Set the sourceConnectionInfo property: Connection information for source PostgreSQL server.
-     *
+     * 
      * @param sourceConnectionInfo the sourceConnectionInfo value to set.
      * @return the ConnectToSourcePostgreSqlSyncTaskInput object itself.
      */
-    public ConnectToSourcePostgreSqlSyncTaskInput withSourceConnectionInfo(
-        PostgreSqlConnectionInfo sourceConnectionInfo) {
+    public ConnectToSourcePostgreSqlSyncTaskInput
+        withSourceConnectionInfo(PostgreSqlConnectionInfo sourceConnectionInfo) {
         this.sourceConnectionInfo = sourceConnectionInfo;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourceConnectionInfo in model"
-                            + " ConnectToSourcePostgreSqlSyncTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sourceConnectionInfo in model ConnectToSourcePostgreSqlSyncTaskInput"));
         } else {
             sourceConnectionInfo().validate();
         }

@@ -23,10 +23,19 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.datamigration.fluent.DataMigrationManagementClient;
+import com.azure.resourcemanager.datamigration.fluent.DatabaseMigrationsMongoToCosmosDbRUMongoesClient;
+import com.azure.resourcemanager.datamigration.fluent.DatabaseMigrationsMongoToCosmosDbvCoreMongoesClient;
+import com.azure.resourcemanager.datamigration.fluent.DatabaseMigrationsSqlDbsClient;
+import com.azure.resourcemanager.datamigration.fluent.DatabaseMigrationsSqlMisClient;
+import com.azure.resourcemanager.datamigration.fluent.DatabaseMigrationsSqlVmsClient;
+import com.azure.resourcemanager.datamigration.fluent.FilesClient;
+import com.azure.resourcemanager.datamigration.fluent.MigrationServicesClient;
 import com.azure.resourcemanager.datamigration.fluent.OperationsClient;
 import com.azure.resourcemanager.datamigration.fluent.ProjectsClient;
 import com.azure.resourcemanager.datamigration.fluent.ResourceSkusClient;
+import com.azure.resourcemanager.datamigration.fluent.ServiceTasksClient;
 import com.azure.resourcemanager.datamigration.fluent.ServicesClient;
+import com.azure.resourcemanager.datamigration.fluent.SqlMigrationServicesClient;
 import com.azure.resourcemanager.datamigration.fluent.TasksClient;
 import com.azure.resourcemanager.datamigration.fluent.UsagesClient;
 import java.io.IOException;
@@ -38,147 +47,173 @@ import java.time.Duration;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** Initializes a new instance of the DataMigrationManagementClientImpl type. */
+/**
+ * Initializes a new instance of the DataMigrationManagementClientImpl type.
+ */
 @ServiceClient(builder = DataMigrationManagementClientBuilder.class)
 public final class DataMigrationManagementClientImpl implements DataMigrationManagementClient {
-    /** Identifier of the subscription. */
+    /**
+     * Subscription ID that identifies an Azure subscription.
+     */
     private final String subscriptionId;
 
     /**
-     * Gets Identifier of the subscription.
-     *
+     * Gets Subscription ID that identifies an Azure subscription.
+     * 
      * @return the subscriptionId value.
      */
     public String getSubscriptionId() {
         return this.subscriptionId;
     }
 
-    /** server parameter. */
+    /**
+     * server parameter.
+     */
     private final String endpoint;
 
     /**
      * Gets server parameter.
-     *
+     * 
      * @return the endpoint value.
      */
     public String getEndpoint() {
         return this.endpoint;
     }
 
-    /** Api Version. */
+    /**
+     * Api Version.
+     */
     private final String apiVersion;
 
     /**
      * Gets Api Version.
-     *
+     * 
      * @return the apiVersion value.
      */
     public String getApiVersion() {
         return this.apiVersion;
     }
 
-    /** The HTTP pipeline to send requests through. */
+    /**
+     * The HTTP pipeline to send requests through.
+     */
     private final HttpPipeline httpPipeline;
 
     /**
      * Gets The HTTP pipeline to send requests through.
-     *
+     * 
      * @return the httpPipeline value.
      */
     public HttpPipeline getHttpPipeline() {
         return this.httpPipeline;
     }
 
-    /** The serializer to serialize an object into a string. */
+    /**
+     * The serializer to serialize an object into a string.
+     */
     private final SerializerAdapter serializerAdapter;
 
     /**
      * Gets The serializer to serialize an object into a string.
-     *
+     * 
      * @return the serializerAdapter value.
      */
     SerializerAdapter getSerializerAdapter() {
         return this.serializerAdapter;
     }
 
-    /** The default poll interval for long-running operation. */
+    /**
+     * The default poll interval for long-running operation.
+     */
     private final Duration defaultPollInterval;
 
     /**
      * Gets The default poll interval for long-running operation.
-     *
+     * 
      * @return the defaultPollInterval value.
      */
     public Duration getDefaultPollInterval() {
         return this.defaultPollInterval;
     }
 
-    /** The ResourceSkusClient object to access its operations. */
-    private final ResourceSkusClient resourceSkus;
+    /**
+     * The DatabaseMigrationsMongoToCosmosDbRUMongoesClient object to access its operations.
+     */
+    private final DatabaseMigrationsMongoToCosmosDbRUMongoesClient databaseMigrationsMongoToCosmosDbRUMongoes;
 
     /**
-     * Gets the ResourceSkusClient object to access its operations.
-     *
-     * @return the ResourceSkusClient object.
+     * Gets the DatabaseMigrationsMongoToCosmosDbRUMongoesClient object to access its operations.
+     * 
+     * @return the DatabaseMigrationsMongoToCosmosDbRUMongoesClient object.
      */
-    public ResourceSkusClient getResourceSkus() {
-        return this.resourceSkus;
+    public DatabaseMigrationsMongoToCosmosDbRUMongoesClient getDatabaseMigrationsMongoToCosmosDbRUMongoes() {
+        return this.databaseMigrationsMongoToCosmosDbRUMongoes;
     }
-
-    /** The ServicesClient object to access its operations. */
-    private final ServicesClient services;
 
     /**
-     * Gets the ServicesClient object to access its operations.
-     *
-     * @return the ServicesClient object.
+     * The DatabaseMigrationsMongoToCosmosDbvCoreMongoesClient object to access its operations.
      */
-    public ServicesClient getServices() {
-        return this.services;
-    }
-
-    /** The TasksClient object to access its operations. */
-    private final TasksClient tasks;
+    private final DatabaseMigrationsMongoToCosmosDbvCoreMongoesClient databaseMigrationsMongoToCosmosDbvCoreMongoes;
 
     /**
-     * Gets the TasksClient object to access its operations.
-     *
-     * @return the TasksClient object.
+     * Gets the DatabaseMigrationsMongoToCosmosDbvCoreMongoesClient object to access its operations.
+     * 
+     * @return the DatabaseMigrationsMongoToCosmosDbvCoreMongoesClient object.
      */
-    public TasksClient getTasks() {
-        return this.tasks;
+    public DatabaseMigrationsMongoToCosmosDbvCoreMongoesClient getDatabaseMigrationsMongoToCosmosDbvCoreMongoes() {
+        return this.databaseMigrationsMongoToCosmosDbvCoreMongoes;
     }
-
-    /** The ProjectsClient object to access its operations. */
-    private final ProjectsClient projects;
 
     /**
-     * Gets the ProjectsClient object to access its operations.
-     *
-     * @return the ProjectsClient object.
+     * The DatabaseMigrationsSqlDbsClient object to access its operations.
      */
-    public ProjectsClient getProjects() {
-        return this.projects;
-    }
-
-    /** The UsagesClient object to access its operations. */
-    private final UsagesClient usages;
+    private final DatabaseMigrationsSqlDbsClient databaseMigrationsSqlDbs;
 
     /**
-     * Gets the UsagesClient object to access its operations.
-     *
-     * @return the UsagesClient object.
+     * Gets the DatabaseMigrationsSqlDbsClient object to access its operations.
+     * 
+     * @return the DatabaseMigrationsSqlDbsClient object.
      */
-    public UsagesClient getUsages() {
-        return this.usages;
+    public DatabaseMigrationsSqlDbsClient getDatabaseMigrationsSqlDbs() {
+        return this.databaseMigrationsSqlDbs;
     }
 
-    /** The OperationsClient object to access its operations. */
+    /**
+     * The DatabaseMigrationsSqlMisClient object to access its operations.
+     */
+    private final DatabaseMigrationsSqlMisClient databaseMigrationsSqlMis;
+
+    /**
+     * Gets the DatabaseMigrationsSqlMisClient object to access its operations.
+     * 
+     * @return the DatabaseMigrationsSqlMisClient object.
+     */
+    public DatabaseMigrationsSqlMisClient getDatabaseMigrationsSqlMis() {
+        return this.databaseMigrationsSqlMis;
+    }
+
+    /**
+     * The DatabaseMigrationsSqlVmsClient object to access its operations.
+     */
+    private final DatabaseMigrationsSqlVmsClient databaseMigrationsSqlVms;
+
+    /**
+     * Gets the DatabaseMigrationsSqlVmsClient object to access its operations.
+     * 
+     * @return the DatabaseMigrationsSqlVmsClient object.
+     */
+    public DatabaseMigrationsSqlVmsClient getDatabaseMigrationsSqlVms() {
+        return this.databaseMigrationsSqlVms;
+    }
+
+    /**
+     * The OperationsClient object to access its operations.
+     */
     private final OperationsClient operations;
 
     /**
      * Gets the OperationsClient object to access its operations.
-     *
+     * 
      * @return the OperationsClient object.
      */
     public OperationsClient getOperations() {
@@ -186,39 +221,171 @@ public final class DataMigrationManagementClientImpl implements DataMigrationMan
     }
 
     /**
+     * The MigrationServicesClient object to access its operations.
+     */
+    private final MigrationServicesClient migrationServices;
+
+    /**
+     * Gets the MigrationServicesClient object to access its operations.
+     * 
+     * @return the MigrationServicesClient object.
+     */
+    public MigrationServicesClient getMigrationServices() {
+        return this.migrationServices;
+    }
+
+    /**
+     * The SqlMigrationServicesClient object to access its operations.
+     */
+    private final SqlMigrationServicesClient sqlMigrationServices;
+
+    /**
+     * Gets the SqlMigrationServicesClient object to access its operations.
+     * 
+     * @return the SqlMigrationServicesClient object.
+     */
+    public SqlMigrationServicesClient getSqlMigrationServices() {
+        return this.sqlMigrationServices;
+    }
+
+    /**
+     * The ResourceSkusClient object to access its operations.
+     */
+    private final ResourceSkusClient resourceSkus;
+
+    /**
+     * Gets the ResourceSkusClient object to access its operations.
+     * 
+     * @return the ResourceSkusClient object.
+     */
+    public ResourceSkusClient getResourceSkus() {
+        return this.resourceSkus;
+    }
+
+    /**
+     * The ServicesClient object to access its operations.
+     */
+    private final ServicesClient services;
+
+    /**
+     * Gets the ServicesClient object to access its operations.
+     * 
+     * @return the ServicesClient object.
+     */
+    public ServicesClient getServices() {
+        return this.services;
+    }
+
+    /**
+     * The TasksClient object to access its operations.
+     */
+    private final TasksClient tasks;
+
+    /**
+     * Gets the TasksClient object to access its operations.
+     * 
+     * @return the TasksClient object.
+     */
+    public TasksClient getTasks() {
+        return this.tasks;
+    }
+
+    /**
+     * The ServiceTasksClient object to access its operations.
+     */
+    private final ServiceTasksClient serviceTasks;
+
+    /**
+     * Gets the ServiceTasksClient object to access its operations.
+     * 
+     * @return the ServiceTasksClient object.
+     */
+    public ServiceTasksClient getServiceTasks() {
+        return this.serviceTasks;
+    }
+
+    /**
+     * The ProjectsClient object to access its operations.
+     */
+    private final ProjectsClient projects;
+
+    /**
+     * Gets the ProjectsClient object to access its operations.
+     * 
+     * @return the ProjectsClient object.
+     */
+    public ProjectsClient getProjects() {
+        return this.projects;
+    }
+
+    /**
+     * The UsagesClient object to access its operations.
+     */
+    private final UsagesClient usages;
+
+    /**
+     * Gets the UsagesClient object to access its operations.
+     * 
+     * @return the UsagesClient object.
+     */
+    public UsagesClient getUsages() {
+        return this.usages;
+    }
+
+    /**
+     * The FilesClient object to access its operations.
+     */
+    private final FilesClient files;
+
+    /**
+     * Gets the FilesClient object to access its operations.
+     * 
+     * @return the FilesClient object.
+     */
+    public FilesClient getFiles() {
+        return this.files;
+    }
+
+    /**
      * Initializes an instance of DataMigrationManagementClient client.
-     *
+     * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId Identifier of the subscription.
+     * @param subscriptionId Subscription ID that identifies an Azure subscription.
      * @param endpoint server parameter.
      */
-    DataMigrationManagementClientImpl(
-        HttpPipeline httpPipeline,
-        SerializerAdapter serializerAdapter,
-        Duration defaultPollInterval,
-        AzureEnvironment environment,
-        String subscriptionId,
-        String endpoint) {
+    DataMigrationManagementClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
+        Duration defaultPollInterval, AzureEnvironment environment, String subscriptionId, String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2018-04-19";
+        this.apiVersion = "2023-07-15-preview";
+        this.databaseMigrationsMongoToCosmosDbRUMongoes
+            = new DatabaseMigrationsMongoToCosmosDbRUMongoesClientImpl(this);
+        this.databaseMigrationsMongoToCosmosDbvCoreMongoes
+            = new DatabaseMigrationsMongoToCosmosDbvCoreMongoesClientImpl(this);
+        this.databaseMigrationsSqlDbs = new DatabaseMigrationsSqlDbsClientImpl(this);
+        this.databaseMigrationsSqlMis = new DatabaseMigrationsSqlMisClientImpl(this);
+        this.databaseMigrationsSqlVms = new DatabaseMigrationsSqlVmsClientImpl(this);
+        this.operations = new OperationsClientImpl(this);
+        this.migrationServices = new MigrationServicesClientImpl(this);
+        this.sqlMigrationServices = new SqlMigrationServicesClientImpl(this);
         this.resourceSkus = new ResourceSkusClientImpl(this);
         this.services = new ServicesClientImpl(this);
         this.tasks = new TasksClientImpl(this);
+        this.serviceTasks = new ServiceTasksClientImpl(this);
         this.projects = new ProjectsClientImpl(this);
         this.usages = new UsagesClientImpl(this);
-        this.operations = new OperationsClientImpl(this);
+        this.files = new FilesClientImpl(this);
     }
 
     /**
      * Gets default client context.
-     *
+     * 
      * @return the default client context.
      */
     public Context getContext() {
@@ -227,7 +394,7 @@ public final class DataMigrationManagementClientImpl implements DataMigrationMan
 
     /**
      * Merges default client context with provided context.
-     *
+     * 
      * @param context the context to be merged with default client context.
      * @return the merged context.
      */
@@ -237,7 +404,7 @@ public final class DataMigrationManagementClientImpl implements DataMigrationMan
 
     /**
      * Gets long running operation result.
-     *
+     * 
      * @param activationResponse the response of activation operation.
      * @param httpPipeline the http pipeline.
      * @param pollResultType type of poll result.
@@ -247,26 +414,15 @@ public final class DataMigrationManagementClientImpl implements DataMigrationMan
      * @param <U> type of final result.
      * @return poller flux for poll result and final result.
      */
-    public <T, U> PollerFlux<PollResult<T>, U> getLroResult(
-        Mono<Response<Flux<ByteBuffer>>> activationResponse,
-        HttpPipeline httpPipeline,
-        Type pollResultType,
-        Type finalResultType,
-        Context context) {
-        return PollerFactory
-            .create(
-                serializerAdapter,
-                httpPipeline,
-                pollResultType,
-                finalResultType,
-                defaultPollInterval,
-                activationResponse,
-                context);
+    public <T, U> PollerFlux<PollResult<T>, U> getLroResult(Mono<Response<Flux<ByteBuffer>>> activationResponse,
+        HttpPipeline httpPipeline, Type pollResultType, Type finalResultType, Context context) {
+        return PollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
+            defaultPollInterval, activationResponse, context);
     }
 
     /**
      * Gets the final result, or an error, based on last async poll response.
-     *
+     * 
      * @param response the last async poll response.
      * @param <T> type of poll result.
      * @param <U> type of final result.
@@ -279,19 +435,16 @@ public final class DataMigrationManagementClientImpl implements DataMigrationMan
             HttpResponse errorResponse = null;
             PollResult.Error lroError = response.getValue().getError();
             if (lroError != null) {
-                errorResponse =
-                    new HttpResponseImpl(
-                        lroError.getResponseStatusCode(), lroError.getResponseHeaders(), lroError.getResponseBody());
+                errorResponse = new HttpResponseImpl(lroError.getResponseStatusCode(), lroError.getResponseHeaders(),
+                    lroError.getResponseBody());
 
                 errorMessage = response.getValue().getError().getMessage();
                 String errorBody = response.getValue().getError().getResponseBody();
                 if (errorBody != null) {
                     // try to deserialize error body to ManagementError
                     try {
-                        managementError =
-                            this
-                                .getSerializerAdapter()
-                                .deserialize(errorBody, ManagementError.class, SerializerEncoding.JSON);
+                        managementError = this.getSerializerAdapter().deserialize(errorBody, ManagementError.class,
+                            SerializerEncoding.JSON);
                         if (managementError.getCode() == null || managementError.getMessage() == null) {
                             managementError = null;
                         }

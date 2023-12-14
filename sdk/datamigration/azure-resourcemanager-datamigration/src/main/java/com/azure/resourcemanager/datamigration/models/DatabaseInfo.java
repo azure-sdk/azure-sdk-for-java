@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Project Database Details. */
+/**
+ * Project Database Details.
+ */
 @Fluent
 public final class DatabaseInfo {
     /*
@@ -17,13 +19,15 @@ public final class DatabaseInfo {
     @JsonProperty(value = "sourceDatabaseName", required = true)
     private String sourceDatabaseName;
 
-    /** Creates an instance of DatabaseInfo class. */
+    /**
+     * Creates an instance of DatabaseInfo class.
+     */
     public DatabaseInfo() {
     }
 
     /**
      * Get the sourceDatabaseName property: Name of the database.
-     *
+     * 
      * @return the sourceDatabaseName value.
      */
     public String sourceDatabaseName() {
@@ -32,7 +36,7 @@ public final class DatabaseInfo {
 
     /**
      * Set the sourceDatabaseName property: Name of the database.
-     *
+     * 
      * @param sourceDatabaseName the sourceDatabaseName value to set.
      * @return the DatabaseInfo object itself.
      */
@@ -43,14 +47,13 @@ public final class DatabaseInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceDatabaseName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property sourceDatabaseName in model DatabaseInfo"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property sourceDatabaseName in model DatabaseInfo"));
         }
     }
 

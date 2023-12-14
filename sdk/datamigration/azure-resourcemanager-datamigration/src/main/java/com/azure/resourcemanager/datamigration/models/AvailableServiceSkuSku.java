@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datamigration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** SKU name, tier, etc. */
+/**
+ * SKU name, tier, etc.
+ */
 @Fluent
 public final class AvailableServiceSkuSku {
     /*
@@ -29,18 +31,20 @@ public final class AvailableServiceSkuSku {
     private String size;
 
     /*
-     * The tier of the SKU, such as "Free", "Basic", "Standard", or "Premium"
+     * The tier of the SKU, such as "Basic", "General Purpose", or "Business Critical"
      */
     @JsonProperty(value = "tier")
     private String tier;
 
-    /** Creates an instance of AvailableServiceSkuSku class. */
+    /**
+     * Creates an instance of AvailableServiceSkuSku class.
+     */
     public AvailableServiceSkuSku() {
     }
 
     /**
      * Get the name property: The name of the SKU.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -49,7 +53,7 @@ public final class AvailableServiceSkuSku {
 
     /**
      * Set the name property: The name of the SKU.
-     *
+     * 
      * @param name the name value to set.
      * @return the AvailableServiceSkuSku object itself.
      */
@@ -60,7 +64,7 @@ public final class AvailableServiceSkuSku {
 
     /**
      * Get the family property: SKU family.
-     *
+     * 
      * @return the family value.
      */
     public String family() {
@@ -69,7 +73,7 @@ public final class AvailableServiceSkuSku {
 
     /**
      * Set the family property: SKU family.
-     *
+     * 
      * @param family the family value to set.
      * @return the AvailableServiceSkuSku object itself.
      */
@@ -80,7 +84,7 @@ public final class AvailableServiceSkuSku {
 
     /**
      * Get the size property: SKU size.
-     *
+     * 
      * @return the size value.
      */
     public String size() {
@@ -89,7 +93,7 @@ public final class AvailableServiceSkuSku {
 
     /**
      * Set the size property: SKU size.
-     *
+     * 
      * @param size the size value to set.
      * @return the AvailableServiceSkuSku object itself.
      */
@@ -99,8 +103,8 @@ public final class AvailableServiceSkuSku {
     }
 
     /**
-     * Get the tier property: The tier of the SKU, such as "Free", "Basic", "Standard", or "Premium".
-     *
+     * Get the tier property: The tier of the SKU, such as "Basic", "General Purpose", or "Business Critical".
+     * 
      * @return the tier value.
      */
     public String tier() {
@@ -108,8 +112,8 @@ public final class AvailableServiceSkuSku {
     }
 
     /**
-     * Set the tier property: The tier of the SKU, such as "Free", "Basic", "Standard", or "Premium".
-     *
+     * Set the tier property: The tier of the SKU, such as "Basic", "General Purpose", or "Business Critical".
+     * 
      * @param tier the tier value to set.
      * @return the AvailableServiceSkuSku object itself.
      */
@@ -120,7 +124,7 @@ public final class AvailableServiceSkuSku {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

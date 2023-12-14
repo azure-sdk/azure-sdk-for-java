@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Output for the task that validates connection to Azure SQL Database Managed Instance. */
+/**
+ * Output for the task that validates connection to Azure SQL Database Managed Instance.
+ */
 @Immutable
 public final class ConnectToTargetSqlMITaskOutput {
     /*
@@ -47,13 +49,15 @@ public final class ConnectToTargetSqlMITaskOutput {
     @JsonProperty(value = "validationErrors", access = JsonProperty.Access.WRITE_ONLY)
     private List<ReportableException> validationErrors;
 
-    /** Creates an instance of ConnectToTargetSqlMITaskOutput class. */
+    /**
+     * Creates an instance of ConnectToTargetSqlMITaskOutput class.
+     */
     public ConnectToTargetSqlMITaskOutput() {
     }
 
     /**
      * Get the id property: Result identifier.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -62,7 +66,7 @@ public final class ConnectToTargetSqlMITaskOutput {
 
     /**
      * Get the targetServerVersion property: Target server version.
-     *
+     * 
      * @return the targetServerVersion value.
      */
     public String targetServerVersion() {
@@ -71,7 +75,7 @@ public final class ConnectToTargetSqlMITaskOutput {
 
     /**
      * Get the targetServerBrandVersion property: Target server brand version.
-     *
+     * 
      * @return the targetServerBrandVersion value.
      */
     public String targetServerBrandVersion() {
@@ -80,7 +84,7 @@ public final class ConnectToTargetSqlMITaskOutput {
 
     /**
      * Get the logins property: List of logins on the target server.
-     *
+     * 
      * @return the logins value.
      */
     public List<String> logins() {
@@ -89,7 +93,7 @@ public final class ConnectToTargetSqlMITaskOutput {
 
     /**
      * Get the agentJobs property: List of agent jobs on the target server.
-     *
+     * 
      * @return the agentJobs value.
      */
     public List<String> agentJobs() {
@@ -98,7 +102,7 @@ public final class ConnectToTargetSqlMITaskOutput {
 
     /**
      * Get the validationErrors property: Validation errors.
-     *
+     * 
      * @return the validationErrors value.
      */
     public List<ReportableException> validationErrors() {
@@ -107,7 +111,7 @@ public final class ConnectToTargetSqlMITaskOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

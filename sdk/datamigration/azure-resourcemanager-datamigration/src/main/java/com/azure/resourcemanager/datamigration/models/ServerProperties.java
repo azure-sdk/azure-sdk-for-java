@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datamigration.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Server properties for Oracle, MySQL type source. */
+/**
+ * Server properties for MySQL type source.
+ */
 @Immutable
 public final class ServerProperties {
     /*
@@ -46,13 +48,15 @@ public final class ServerProperties {
     @JsonProperty(value = "serverDatabaseCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer serverDatabaseCount;
 
-    /** Creates an instance of ServerProperties class. */
+    /**
+     * Creates an instance of ServerProperties class.
+     */
     public ServerProperties() {
     }
 
     /**
      * Get the serverPlatform property: Name of the server platform.
-     *
+     * 
      * @return the serverPlatform value.
      */
     public String serverPlatform() {
@@ -61,7 +65,7 @@ public final class ServerProperties {
 
     /**
      * Get the serverName property: Name of the server.
-     *
+     * 
      * @return the serverName value.
      */
     public String serverName() {
@@ -70,7 +74,7 @@ public final class ServerProperties {
 
     /**
      * Get the serverVersion property: Version of the database server.
-     *
+     * 
      * @return the serverVersion value.
      */
     public String serverVersion() {
@@ -79,7 +83,7 @@ public final class ServerProperties {
 
     /**
      * Get the serverEdition property: Edition of the database server.
-     *
+     * 
      * @return the serverEdition value.
      */
     public String serverEdition() {
@@ -88,7 +92,7 @@ public final class ServerProperties {
 
     /**
      * Get the serverOperatingSystemVersion property: Version of the operating system.
-     *
+     * 
      * @return the serverOperatingSystemVersion value.
      */
     public String serverOperatingSystemVersion() {
@@ -97,7 +101,7 @@ public final class ServerProperties {
 
     /**
      * Get the serverDatabaseCount property: Number of databases in the server.
-     *
+     * 
      * @return the serverDatabaseCount value.
      */
     public Integer serverDatabaseCount() {
@@ -106,7 +110,7 @@ public final class ServerProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Input for the task that migrates on-prem SQL Server databases to Azure SQL Database. */
+/**
+ * Input for the task that migrates on-prem SQL Server databases to Azure SQL Database.
+ */
 @Fluent
 public final class MigrateSqlServerSqlDbTaskInput extends SqlMigrationTaskInput {
     /*
@@ -30,13 +32,27 @@ public final class MigrateSqlServerSqlDbTaskInput extends SqlMigrationTaskInput 
     @JsonProperty(value = "validationOptions")
     private MigrationValidationOptions validationOptions;
 
-    /** Creates an instance of MigrateSqlServerSqlDbTaskInput class. */
+    /*
+     * Date and time relative to UTC when the migration was started on
+     */
+    @JsonProperty(value = "startedOn")
+    private String startedOn;
+
+    /*
+     * encrypted key for secure fields
+     */
+    @JsonProperty(value = "encryptedKeyForSecureFields")
+    private String encryptedKeyForSecureFields;
+
+    /**
+     * Creates an instance of MigrateSqlServerSqlDbTaskInput class.
+     */
     public MigrateSqlServerSqlDbTaskInput() {
     }
 
     /**
      * Get the selectedDatabases property: Databases to migrate.
-     *
+     * 
      * @return the selectedDatabases value.
      */
     public List<MigrateSqlServerSqlDbDatabaseInput> selectedDatabases() {
@@ -45,24 +61,25 @@ public final class MigrateSqlServerSqlDbTaskInput extends SqlMigrationTaskInput 
 
     /**
      * Set the selectedDatabases property: Databases to migrate.
-     *
+     * 
      * @param selectedDatabases the selectedDatabases value to set.
      * @return the MigrateSqlServerSqlDbTaskInput object itself.
      */
-    public MigrateSqlServerSqlDbTaskInput withSelectedDatabases(
-        List<MigrateSqlServerSqlDbDatabaseInput> selectedDatabases) {
+    public MigrateSqlServerSqlDbTaskInput
+        withSelectedDatabases(List<MigrateSqlServerSqlDbDatabaseInput> selectedDatabases) {
         this.selectedDatabases = selectedDatabases;
         return this;
     }
 
     /**
      * Get the validationOptions property: Options for enabling various post migration validations. Available options,
-     * 1.) Data Integrity Check: Performs a checksum based comparison on source and target tables after the migration to
-     * ensure the correctness of the data. 2.) Schema Validation: Performs a thorough schema comparison between the
-     * source and target tables and provides a list of differences between the source and target database, 3.) Query
-     * Analysis: Executes a set of queries picked up automatically either from the Query Plan Cache or Query Store and
-     * execute them and compares the execution time between the source and target database.
-     *
+     * 1.) Data Integrity Check: Performs a checksum based comparison on source and target tables after the migration
+     * to ensure the correctness of the data.
+     * 2.) Schema Validation: Performs a thorough schema comparison between the source and target tables and provides a
+     * list of differences between the source and target database, 3.) Query Analysis: Executes a set of queries picked
+     * up automatically either from the Query Plan Cache or Query Store and execute them and compares the execution
+     * time between the source and target database.
+     * 
      * @return the validationOptions value.
      */
     public MigrationValidationOptions validationOptions() {
@@ -71,12 +88,13 @@ public final class MigrateSqlServerSqlDbTaskInput extends SqlMigrationTaskInput 
 
     /**
      * Set the validationOptions property: Options for enabling various post migration validations. Available options,
-     * 1.) Data Integrity Check: Performs a checksum based comparison on source and target tables after the migration to
-     * ensure the correctness of the data. 2.) Schema Validation: Performs a thorough schema comparison between the
-     * source and target tables and provides a list of differences between the source and target database, 3.) Query
-     * Analysis: Executes a set of queries picked up automatically either from the Query Plan Cache or Query Store and
-     * execute them and compares the execution time between the source and target database.
-     *
+     * 1.) Data Integrity Check: Performs a checksum based comparison on source and target tables after the migration
+     * to ensure the correctness of the data.
+     * 2.) Schema Validation: Performs a thorough schema comparison between the source and target tables and provides a
+     * list of differences between the source and target database, 3.) Query Analysis: Executes a set of queries picked
+     * up automatically either from the Query Plan Cache or Query Store and execute them and compares the execution
+     * time between the source and target database.
+     * 
      * @param validationOptions the validationOptions value to set.
      * @return the MigrateSqlServerSqlDbTaskInput object itself.
      */
@@ -85,14 +103,58 @@ public final class MigrateSqlServerSqlDbTaskInput extends SqlMigrationTaskInput 
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the startedOn property: Date and time relative to UTC when the migration was started on.
+     * 
+     * @return the startedOn value.
+     */
+    public String startedOn() {
+        return this.startedOn;
+    }
+
+    /**
+     * Set the startedOn property: Date and time relative to UTC when the migration was started on.
+     * 
+     * @param startedOn the startedOn value to set.
+     * @return the MigrateSqlServerSqlDbTaskInput object itself.
+     */
+    public MigrateSqlServerSqlDbTaskInput withStartedOn(String startedOn) {
+        this.startedOn = startedOn;
+        return this;
+    }
+
+    /**
+     * Get the encryptedKeyForSecureFields property: encrypted key for secure fields.
+     * 
+     * @return the encryptedKeyForSecureFields value.
+     */
+    public String encryptedKeyForSecureFields() {
+        return this.encryptedKeyForSecureFields;
+    }
+
+    /**
+     * Set the encryptedKeyForSecureFields property: encrypted key for secure fields.
+     * 
+     * @param encryptedKeyForSecureFields the encryptedKeyForSecureFields value to set.
+     * @return the MigrateSqlServerSqlDbTaskInput object itself.
+     */
+    public MigrateSqlServerSqlDbTaskInput withEncryptedKeyForSecureFields(String encryptedKeyForSecureFields) {
+        this.encryptedKeyForSecureFields = encryptedKeyForSecureFields;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MigrateSqlServerSqlDbTaskInput withSourceConnectionInfo(SqlConnectionInfo sourceConnectionInfo) {
         super.withSourceConnectionInfo(sourceConnectionInfo);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MigrateSqlServerSqlDbTaskInput withTargetConnectionInfo(SqlConnectionInfo targetConnectionInfo) {
         super.withTargetConnectionInfo(targetConnectionInfo);
@@ -101,17 +163,15 @@ public final class MigrateSqlServerSqlDbTaskInput extends SqlMigrationTaskInput 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (selectedDatabases() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property selectedDatabases in model MigrateSqlServerSqlDbTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property selectedDatabases in model MigrateSqlServerSqlDbTaskInput"));
         } else {
             selectedDatabases().forEach(e -> e.validate());
         }

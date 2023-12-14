@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The MigrateSqlServerSqlMISyncTaskOutputError model. */
+/**
+ * The MigrateSqlServerSqlMISyncTaskOutputError model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("ErrorOutput")
 @Immutable
@@ -20,13 +22,15 @@ public final class MigrateSqlServerSqlMISyncTaskOutputError extends MigrateSqlSe
     @JsonProperty(value = "error", access = JsonProperty.Access.WRITE_ONLY)
     private ReportableException error;
 
-    /** Creates an instance of MigrateSqlServerSqlMISyncTaskOutputError class. */
+    /**
+     * Creates an instance of MigrateSqlServerSqlMISyncTaskOutputError class.
+     */
     public MigrateSqlServerSqlMISyncTaskOutputError() {
     }
 
     /**
      * Get the error property: Migration error.
-     *
+     * 
      * @return the error value.
      */
     public ReportableException error() {
@@ -35,7 +39,7 @@ public final class MigrateSqlServerSqlMISyncTaskOutputError extends MigrateSqlSe
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

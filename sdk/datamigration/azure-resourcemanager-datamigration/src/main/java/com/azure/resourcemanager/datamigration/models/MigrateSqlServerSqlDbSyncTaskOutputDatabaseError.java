@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** The MigrateSqlServerSqlDbSyncTaskOutputDatabaseError model. */
+/**
+ * The MigrateSqlServerSqlDbSyncTaskOutputDatabaseError model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("DatabaseLevelErrorOutput")
 @Fluent
@@ -27,13 +29,15 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseError extends Migr
     @JsonProperty(value = "events")
     private List<SyncMigrationDatabaseErrorEvent> events;
 
-    /** Creates an instance of MigrateSqlServerSqlDbSyncTaskOutputDatabaseError class. */
+    /**
+     * Creates an instance of MigrateSqlServerSqlDbSyncTaskOutputDatabaseError class.
+     */
     public MigrateSqlServerSqlDbSyncTaskOutputDatabaseError() {
     }
 
     /**
      * Get the errorMessage property: Error message.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -42,7 +46,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseError extends Migr
 
     /**
      * Set the errorMessage property: Error message.
-     *
+     * 
      * @param errorMessage the errorMessage value to set.
      * @return the MigrateSqlServerSqlDbSyncTaskOutputDatabaseError object itself.
      */
@@ -53,7 +57,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseError extends Migr
 
     /**
      * Get the events property: List of error events.
-     *
+     * 
      * @return the events value.
      */
     public List<SyncMigrationDatabaseErrorEvent> events() {
@@ -62,7 +66,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseError extends Migr
 
     /**
      * Set the events property: List of error events.
-     *
+     * 
      * @param events the events value to set.
      * @return the MigrateSqlServerSqlDbSyncTaskOutputDatabaseError object itself.
      */
@@ -73,7 +77,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseError extends Migr
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

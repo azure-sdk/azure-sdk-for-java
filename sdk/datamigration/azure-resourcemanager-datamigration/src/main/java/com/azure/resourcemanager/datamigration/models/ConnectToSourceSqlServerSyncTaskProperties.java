@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Properties for the task that validates connection to SQL Server and source server requirements for online migration.
@@ -29,13 +30,15 @@ public final class ConnectToSourceSqlServerSyncTaskProperties extends ProjectTas
     @JsonProperty(value = "output", access = JsonProperty.Access.WRITE_ONLY)
     private List<ConnectToSourceSqlServerTaskOutput> output;
 
-    /** Creates an instance of ConnectToSourceSqlServerSyncTaskProperties class. */
+    /**
+     * Creates an instance of ConnectToSourceSqlServerSyncTaskProperties class.
+     */
     public ConnectToSourceSqlServerSyncTaskProperties() {
     }
 
     /**
      * Get the input property: Task input.
-     *
+     * 
      * @return the input value.
      */
     public ConnectToSourceSqlServerTaskInput input() {
@@ -44,7 +47,7 @@ public final class ConnectToSourceSqlServerSyncTaskProperties extends ProjectTas
 
     /**
      * Set the input property: Task input.
-     *
+     * 
      * @param input the input value to set.
      * @return the ConnectToSourceSqlServerSyncTaskProperties object itself.
      */
@@ -55,7 +58,7 @@ public final class ConnectToSourceSqlServerSyncTaskProperties extends ProjectTas
 
     /**
      * Get the output property: Task output. This is ignored if submitted.
-     *
+     * 
      * @return the output value.
      */
     public List<ConnectToSourceSqlServerTaskOutput> output() {
@@ -63,8 +66,17 @@ public final class ConnectToSourceSqlServerSyncTaskProperties extends ProjectTas
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ConnectToSourceSqlServerSyncTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

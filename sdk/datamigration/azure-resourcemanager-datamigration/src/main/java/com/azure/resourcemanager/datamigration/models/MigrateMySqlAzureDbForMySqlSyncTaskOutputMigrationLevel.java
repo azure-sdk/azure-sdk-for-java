@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 
-/** The MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevel model. */
+/**
+ * The MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevel model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("MigrationLevelOutput")
 @Immutable
@@ -52,13 +54,15 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevel
     @JsonProperty(value = "targetServer", access = JsonProperty.Access.WRITE_ONLY)
     private String targetServer;
 
-    /** Creates an instance of MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevel class. */
+    /**
+     * Creates an instance of MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevel class.
+     */
     public MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevel() {
     }
 
     /**
      * Get the startedOn property: Migration start time.
-     *
+     * 
      * @return the startedOn value.
      */
     public OffsetDateTime startedOn() {
@@ -67,7 +71,7 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevel
 
     /**
      * Get the endedOn property: Migration end time.
-     *
+     * 
      * @return the endedOn value.
      */
     public OffsetDateTime endedOn() {
@@ -76,7 +80,7 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevel
 
     /**
      * Get the sourceServerVersion property: Source server version.
-     *
+     * 
      * @return the sourceServerVersion value.
      */
     public String sourceServerVersion() {
@@ -85,7 +89,7 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevel
 
     /**
      * Get the sourceServer property: Source server name.
-     *
+     * 
      * @return the sourceServer value.
      */
     public String sourceServer() {
@@ -94,7 +98,7 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevel
 
     /**
      * Get the targetServerVersion property: Target server version.
-     *
+     * 
      * @return the targetServerVersion value.
      */
     public String targetServerVersion() {
@@ -103,7 +107,7 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevel
 
     /**
      * Get the targetServer property: Target server name.
-     *
+     * 
      * @return the targetServer value.
      */
     public String targetServer() {
@@ -112,7 +116,7 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskOutputMigrationLevel
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

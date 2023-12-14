@@ -9,8 +9,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
+import java.util.Map;
 
-/** Properties for task that migrates SQL Server databases to Azure SQL Database Managed Instance sync scenario. */
+/**
+ * Properties for task that migrates SQL Server databases to Azure SQL Database Managed Instance sync scenario.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
 @JsonTypeName("Migrate.SqlServer.AzureSqlDbMI.Sync.LRS")
 @Fluent
@@ -27,13 +30,21 @@ public final class MigrateSqlServerSqlMISyncTaskProperties extends ProjectTaskPr
     @JsonProperty(value = "output", access = JsonProperty.Access.WRITE_ONLY)
     private List<MigrateSqlServerSqlMISyncTaskOutput> output;
 
-    /** Creates an instance of MigrateSqlServerSqlMISyncTaskProperties class. */
+    /*
+     * DateTime in UTC when the task was created
+     */
+    @JsonProperty(value = "createdOn")
+    private String createdOn;
+
+    /**
+     * Creates an instance of MigrateSqlServerSqlMISyncTaskProperties class.
+     */
     public MigrateSqlServerSqlMISyncTaskProperties() {
     }
 
     /**
      * Get the input property: Task input.
-     *
+     * 
      * @return the input value.
      */
     public MigrateSqlServerSqlMISyncTaskInput input() {
@@ -42,7 +53,7 @@ public final class MigrateSqlServerSqlMISyncTaskProperties extends ProjectTaskPr
 
     /**
      * Set the input property: Task input.
-     *
+     * 
      * @param input the input value to set.
      * @return the MigrateSqlServerSqlMISyncTaskProperties object itself.
      */
@@ -53,7 +64,7 @@ public final class MigrateSqlServerSqlMISyncTaskProperties extends ProjectTaskPr
 
     /**
      * Get the output property: Task output. This is ignored if submitted.
-     *
+     * 
      * @return the output value.
      */
     public List<MigrateSqlServerSqlMISyncTaskOutput> output() {
@@ -61,8 +72,37 @@ public final class MigrateSqlServerSqlMISyncTaskProperties extends ProjectTaskPr
     }
 
     /**
+     * Get the createdOn property: DateTime in UTC when the task was created.
+     * 
+     * @return the createdOn value.
+     */
+    public String createdOn() {
+        return this.createdOn;
+    }
+
+    /**
+     * Set the createdOn property: DateTime in UTC when the task was created.
+     * 
+     * @param createdOn the createdOn value to set.
+     * @return the MigrateSqlServerSqlMISyncTaskProperties object itself.
+     */
+    public MigrateSqlServerSqlMISyncTaskProperties withCreatedOn(String createdOn) {
+        this.createdOn = createdOn;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MigrateSqlServerSqlMISyncTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

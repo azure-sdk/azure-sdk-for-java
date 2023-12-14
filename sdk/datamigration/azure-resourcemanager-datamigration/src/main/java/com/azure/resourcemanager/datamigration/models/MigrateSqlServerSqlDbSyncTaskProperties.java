@@ -9,8 +9,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
+import java.util.Map;
 
-/** Properties for the task that migrates on-prem SQL Server databases to Azure SQL Database for online migrations. */
+/**
+ * Properties for the task that migrates on-prem SQL Server databases to Azure SQL Database for online migrations.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
 @JsonTypeName("Migrate.SqlServer.AzureSqlDb.Sync")
 @Fluent
@@ -27,13 +30,15 @@ public final class MigrateSqlServerSqlDbSyncTaskProperties extends ProjectTaskPr
     @JsonProperty(value = "output", access = JsonProperty.Access.WRITE_ONLY)
     private List<MigrateSqlServerSqlDbSyncTaskOutput> output;
 
-    /** Creates an instance of MigrateSqlServerSqlDbSyncTaskProperties class. */
+    /**
+     * Creates an instance of MigrateSqlServerSqlDbSyncTaskProperties class.
+     */
     public MigrateSqlServerSqlDbSyncTaskProperties() {
     }
 
     /**
      * Get the input property: Task input.
-     *
+     * 
      * @return the input value.
      */
     public MigrateSqlServerSqlDbSyncTaskInput input() {
@@ -42,7 +47,7 @@ public final class MigrateSqlServerSqlDbSyncTaskProperties extends ProjectTaskPr
 
     /**
      * Set the input property: Task input.
-     *
+     * 
      * @param input the input value to set.
      * @return the MigrateSqlServerSqlDbSyncTaskProperties object itself.
      */
@@ -53,7 +58,7 @@ public final class MigrateSqlServerSqlDbSyncTaskProperties extends ProjectTaskPr
 
     /**
      * Get the output property: Task output. This is ignored if submitted.
-     *
+     * 
      * @return the output value.
      */
     public List<MigrateSqlServerSqlDbSyncTaskOutput> output() {
@@ -61,8 +66,17 @@ public final class MigrateSqlServerSqlDbSyncTaskProperties extends ProjectTaskPr
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MigrateSqlServerSqlDbSyncTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

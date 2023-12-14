@@ -5,15 +5,18 @@
 package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.datamigration.fluent.models.CommandPropertiesInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Properties for the command that completes online migration for an Azure SQL Database Managed Instance. */
+/**
+ * Properties for the command that completes online migration for an Azure SQL Database Managed Instance.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "commandType")
 @JsonTypeName("Migrate.SqlServer.AzureDbSqlMi.Complete")
 @Fluent
-public final class MigrateMISyncCompleteCommandProperties extends CommandProperties {
+public final class MigrateMISyncCompleteCommandProperties extends CommandPropertiesInner {
     /*
      * Command input
      */
@@ -26,13 +29,15 @@ public final class MigrateMISyncCompleteCommandProperties extends CommandPropert
     @JsonProperty(value = "output", access = JsonProperty.Access.WRITE_ONLY)
     private MigrateMISyncCompleteCommandOutput output;
 
-    /** Creates an instance of MigrateMISyncCompleteCommandProperties class. */
+    /**
+     * Creates an instance of MigrateMISyncCompleteCommandProperties class.
+     */
     public MigrateMISyncCompleteCommandProperties() {
     }
 
     /**
      * Get the input property: Command input.
-     *
+     * 
      * @return the input value.
      */
     public MigrateMISyncCompleteCommandInput input() {
@@ -41,7 +46,7 @@ public final class MigrateMISyncCompleteCommandProperties extends CommandPropert
 
     /**
      * Set the input property: Command input.
-     *
+     * 
      * @param input the input value to set.
      * @return the MigrateMISyncCompleteCommandProperties object itself.
      */
@@ -52,7 +57,7 @@ public final class MigrateMISyncCompleteCommandProperties extends CommandPropert
 
     /**
      * Get the output property: Command output. This is ignored if submitted.
-     *
+     * 
      * @return the output value.
      */
     public MigrateMISyncCompleteCommandOutput output() {
@@ -61,7 +66,7 @@ public final class MigrateMISyncCompleteCommandProperties extends CommandPropert
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

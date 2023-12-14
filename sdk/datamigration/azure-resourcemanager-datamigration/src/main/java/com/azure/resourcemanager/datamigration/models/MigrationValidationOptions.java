@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datamigration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Types of validations to run after the migration. */
+/**
+ * Types of validations to run after the migration.
+ */
 @Fluent
 public final class MigrationValidationOptions {
     /*
@@ -31,13 +33,15 @@ public final class MigrationValidationOptions {
     @JsonProperty(value = "enableQueryAnalysisValidation")
     private Boolean enableQueryAnalysisValidation;
 
-    /** Creates an instance of MigrationValidationOptions class. */
+    /**
+     * Creates an instance of MigrationValidationOptions class.
+     */
     public MigrationValidationOptions() {
     }
 
     /**
      * Get the enableSchemaValidation property: Allows to compare the schema information between source and target.
-     *
+     * 
      * @return the enableSchemaValidation value.
      */
     public Boolean enableSchemaValidation() {
@@ -46,7 +50,7 @@ public final class MigrationValidationOptions {
 
     /**
      * Set the enableSchemaValidation property: Allows to compare the schema information between source and target.
-     *
+     * 
      * @param enableSchemaValidation the enableSchemaValidation value to set.
      * @return the MigrationValidationOptions object itself.
      */
@@ -58,7 +62,7 @@ public final class MigrationValidationOptions {
     /**
      * Get the enableDataIntegrityValidation property: Allows to perform a checksum based data integrity validation
      * between source and target for the selected database / tables .
-     *
+     * 
      * @return the enableDataIntegrityValidation value.
      */
     public Boolean enableDataIntegrityValidation() {
@@ -68,7 +72,7 @@ public final class MigrationValidationOptions {
     /**
      * Set the enableDataIntegrityValidation property: Allows to perform a checksum based data integrity validation
      * between source and target for the selected database / tables .
-     *
+     * 
      * @param enableDataIntegrityValidation the enableDataIntegrityValidation value to set.
      * @return the MigrationValidationOptions object itself.
      */
@@ -81,7 +85,7 @@ public final class MigrationValidationOptions {
      * Get the enableQueryAnalysisValidation property: Allows to perform a quick and intelligent query analysis by
      * retrieving queries from the source database and executes them in the target. The result will have execution
      * statistics for executions in source and target databases for the extracted queries.
-     *
+     * 
      * @return the enableQueryAnalysisValidation value.
      */
     public Boolean enableQueryAnalysisValidation() {
@@ -92,7 +96,7 @@ public final class MigrationValidationOptions {
      * Set the enableQueryAnalysisValidation property: Allows to perform a quick and intelligent query analysis by
      * retrieving queries from the source database and executes them in the target. The result will have execution
      * statistics for executions in source and target databases for the extracted queries.
-     *
+     * 
      * @param enableQueryAnalysisValidation the enableQueryAnalysisValidation value to set.
      * @return the MigrationValidationOptions object itself.
      */
@@ -103,7 +107,7 @@ public final class MigrationValidationOptions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

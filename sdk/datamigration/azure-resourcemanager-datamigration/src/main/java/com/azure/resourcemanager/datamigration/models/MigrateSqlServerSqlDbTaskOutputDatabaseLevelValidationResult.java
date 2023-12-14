@@ -10,12 +10,20 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 
-/** Database validation result for Sql Server to Azure Sql DB migration. */
+/**
+ * The MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("MigrationDatabaseLevelValidationOutput")
 @Immutable
 public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult
     extends MigrateSqlServerSqlDbTaskOutput {
+    /*
+     * Result identifier
+     */
+    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
+    private String id;
+
     /*
      * Migration Identifier
      */
@@ -70,13 +78,24 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private ValidationStatus status;
 
-    /** Creates an instance of MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult class. */
+    /**
+     * Creates an instance of MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult class.
+     */
     public MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult() {
     }
 
     /**
+     * Get the id property: Result identifier.
+     * 
+     * @return the id value.
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
      * Get the migrationId property: Migration Identifier.
-     *
+     * 
      * @return the migrationId value.
      */
     public String migrationId() {
@@ -85,7 +104,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult
 
     /**
      * Get the sourceDatabaseName property: Name of the source database.
-     *
+     * 
      * @return the sourceDatabaseName value.
      */
     public String sourceDatabaseName() {
@@ -94,7 +113,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult
 
     /**
      * Get the targetDatabaseName property: Name of the target database.
-     *
+     * 
      * @return the targetDatabaseName value.
      */
     public String targetDatabaseName() {
@@ -103,7 +122,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult
 
     /**
      * Get the startedOn property: Validation start time.
-     *
+     * 
      * @return the startedOn value.
      */
     public OffsetDateTime startedOn() {
@@ -112,7 +131,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult
 
     /**
      * Get the endedOn property: Validation end time.
-     *
+     * 
      * @return the endedOn value.
      */
     public OffsetDateTime endedOn() {
@@ -122,7 +141,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult
     /**
      * Get the dataIntegrityValidationResult property: Provides data integrity validation result between the source and
      * target tables that are migrated.
-     *
+     * 
      * @return the dataIntegrityValidationResult value.
      */
     public DataIntegrityValidationResult dataIntegrityValidationResult() {
@@ -131,7 +150,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult
 
     /**
      * Get the schemaValidationResult property: Provides schema comparison result between source and target database.
-     *
+     * 
      * @return the schemaValidationResult value.
      */
     public SchemaComparisonValidationResult schemaValidationResult() {
@@ -141,7 +160,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult
     /**
      * Get the queryAnalysisValidationResult property: Results of some of the query execution result between source and
      * target database.
-     *
+     * 
      * @return the queryAnalysisValidationResult value.
      */
     public QueryAnalysisValidationResult queryAnalysisValidationResult() {
@@ -150,7 +169,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult
 
     /**
      * Get the status property: Current status of validation at the database level.
-     *
+     * 
      * @return the status value.
      */
     public ValidationStatus status() {
@@ -159,7 +178,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevelValidationResult
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

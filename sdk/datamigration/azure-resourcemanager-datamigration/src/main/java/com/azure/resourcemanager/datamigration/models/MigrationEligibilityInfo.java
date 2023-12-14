@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Information about migration eligibility of a server object. */
+/**
+ * Information about migration eligibility of a server object.
+ */
 @Immutable
 public final class MigrationEligibilityInfo {
     /*
@@ -23,13 +25,15 @@ public final class MigrationEligibilityInfo {
     @JsonProperty(value = "validationMessages", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> validationMessages;
 
-    /** Creates an instance of MigrationEligibilityInfo class. */
+    /**
+     * Creates an instance of MigrationEligibilityInfo class.
+     */
     public MigrationEligibilityInfo() {
     }
 
     /**
      * Get the isEligibleForMigration property: Whether object is eligible for migration or not.
-     *
+     * 
      * @return the isEligibleForMigration value.
      */
     public Boolean isEligibleForMigration() {
@@ -38,7 +42,7 @@ public final class MigrationEligibilityInfo {
 
     /**
      * Get the validationMessages property: Information about eligibility failure for the server object.
-     *
+     * 
      * @return the validationMessages value.
      */
     public List<String> validationMessages() {
@@ -47,7 +51,7 @@ public final class MigrationEligibilityInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

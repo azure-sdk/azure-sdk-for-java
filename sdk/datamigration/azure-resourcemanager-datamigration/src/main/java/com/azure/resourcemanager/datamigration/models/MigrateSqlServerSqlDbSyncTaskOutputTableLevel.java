@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 
-/** The MigrateSqlServerSqlDbSyncTaskOutputTableLevel model. */
+/**
+ * The MigrateSqlServerSqlDbSyncTaskOutputTableLevel model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("TableLevelOutput")
 @Immutable
@@ -93,13 +95,15 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputTableLevel extends Migrate
     @JsonProperty(value = "lastModifiedTime", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime lastModifiedTime;
 
-    /** Creates an instance of MigrateSqlServerSqlDbSyncTaskOutputTableLevel class. */
+    /**
+     * Creates an instance of MigrateSqlServerSqlDbSyncTaskOutputTableLevel class.
+     */
     public MigrateSqlServerSqlDbSyncTaskOutputTableLevel() {
     }
 
     /**
      * Get the tableName property: Name of the table.
-     *
+     * 
      * @return the tableName value.
      */
     public String tableName() {
@@ -108,7 +112,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputTableLevel extends Migrate
 
     /**
      * Get the databaseName property: Name of the database.
-     *
+     * 
      * @return the databaseName value.
      */
     public String databaseName() {
@@ -117,7 +121,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputTableLevel extends Migrate
 
     /**
      * Get the cdcInsertCounter property: Number of applied inserts.
-     *
+     * 
      * @return the cdcInsertCounter value.
      */
     public Long cdcInsertCounter() {
@@ -126,7 +130,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputTableLevel extends Migrate
 
     /**
      * Get the cdcUpdateCounter property: Number of applied updates.
-     *
+     * 
      * @return the cdcUpdateCounter value.
      */
     public Long cdcUpdateCounter() {
@@ -135,7 +139,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputTableLevel extends Migrate
 
     /**
      * Get the cdcDeleteCounter property: Number of applied deletes.
-     *
+     * 
      * @return the cdcDeleteCounter value.
      */
     public Long cdcDeleteCounter() {
@@ -144,7 +148,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputTableLevel extends Migrate
 
     /**
      * Get the fullLoadEstFinishTime property: Estimate to finish full load.
-     *
+     * 
      * @return the fullLoadEstFinishTime value.
      */
     public OffsetDateTime fullLoadEstFinishTime() {
@@ -153,7 +157,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputTableLevel extends Migrate
 
     /**
      * Get the fullLoadStartedOn property: Full load start time.
-     *
+     * 
      * @return the fullLoadStartedOn value.
      */
     public OffsetDateTime fullLoadStartedOn() {
@@ -162,7 +166,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputTableLevel extends Migrate
 
     /**
      * Get the fullLoadEndedOn property: Full load end time.
-     *
+     * 
      * @return the fullLoadEndedOn value.
      */
     public OffsetDateTime fullLoadEndedOn() {
@@ -171,7 +175,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputTableLevel extends Migrate
 
     /**
      * Get the fullLoadTotalRows property: Number of rows applied in full load.
-     *
+     * 
      * @return the fullLoadTotalRows value.
      */
     public Long fullLoadTotalRows() {
@@ -180,7 +184,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputTableLevel extends Migrate
 
     /**
      * Get the state property: Current state of the table migration.
-     *
+     * 
      * @return the state value.
      */
     public SyncTableMigrationState state() {
@@ -189,7 +193,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputTableLevel extends Migrate
 
     /**
      * Get the totalChangesApplied property: Total number of applied changes.
-     *
+     * 
      * @return the totalChangesApplied value.
      */
     public Long totalChangesApplied() {
@@ -198,7 +202,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputTableLevel extends Migrate
 
     /**
      * Get the dataErrorsCounter property: Number of data errors occurred.
-     *
+     * 
      * @return the dataErrorsCounter value.
      */
     public Long dataErrorsCounter() {
@@ -207,7 +211,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputTableLevel extends Migrate
 
     /**
      * Get the lastModifiedTime property: Last modified time on target.
-     *
+     * 
      * @return the lastModifiedTime value.
      */
     public OffsetDateTime lastModifiedTime() {
@@ -216,7 +220,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputTableLevel extends Migrate
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

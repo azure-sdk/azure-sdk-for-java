@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Properties for the task that validates connection to PostgreSQL server and source server requirements for online
@@ -30,13 +31,15 @@ public final class ConnectToSourcePostgreSqlSyncTaskProperties extends ProjectTa
     @JsonProperty(value = "output", access = JsonProperty.Access.WRITE_ONLY)
     private List<ConnectToSourcePostgreSqlSyncTaskOutput> output;
 
-    /** Creates an instance of ConnectToSourcePostgreSqlSyncTaskProperties class. */
+    /**
+     * Creates an instance of ConnectToSourcePostgreSqlSyncTaskProperties class.
+     */
     public ConnectToSourcePostgreSqlSyncTaskProperties() {
     }
 
     /**
      * Get the input property: Task input.
-     *
+     * 
      * @return the input value.
      */
     public ConnectToSourcePostgreSqlSyncTaskInput input() {
@@ -45,7 +48,7 @@ public final class ConnectToSourcePostgreSqlSyncTaskProperties extends ProjectTa
 
     /**
      * Set the input property: Task input.
-     *
+     * 
      * @param input the input value to set.
      * @return the ConnectToSourcePostgreSqlSyncTaskProperties object itself.
      */
@@ -56,7 +59,7 @@ public final class ConnectToSourcePostgreSqlSyncTaskProperties extends ProjectTa
 
     /**
      * Get the output property: Task output. This is ignored if submitted.
-     *
+     * 
      * @return the output value.
      */
     public List<ConnectToSourcePostgreSqlSyncTaskOutput> output() {
@@ -64,8 +67,17 @@ public final class ConnectToSourcePostgreSqlSyncTaskProperties extends ProjectTa
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ConnectToSourcePostgreSqlSyncTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

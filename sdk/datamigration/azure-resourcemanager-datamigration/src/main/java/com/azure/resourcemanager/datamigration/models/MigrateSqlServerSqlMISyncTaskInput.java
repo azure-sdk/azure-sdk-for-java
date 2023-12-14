@@ -5,52 +5,96 @@
 package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Input for task that migrates SQL Server databases to Azure SQL Database Managed Instance online scenario. */
+/**
+ * Input for task that migrates SQL Server databases to Azure SQL Database Managed Instance online scenario.
+ */
 @Fluent
 public final class MigrateSqlServerSqlMISyncTaskInput extends SqlServerSqlMISyncTaskInput {
-    /** Creates an instance of MigrateSqlServerSqlMISyncTaskInput class. */
+    /*
+     * Number of database migrations to start in parallel
+     */
+    @JsonProperty(value = "numberOfParallelDatabaseMigrations")
+    private Float numberOfParallelDatabaseMigrations;
+
+    /**
+     * Creates an instance of MigrateSqlServerSqlMISyncTaskInput class.
+     */
     public MigrateSqlServerSqlMISyncTaskInput() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the numberOfParallelDatabaseMigrations property: Number of database migrations to start in parallel.
+     * 
+     * @return the numberOfParallelDatabaseMigrations value.
+     */
+    public Float numberOfParallelDatabaseMigrations() {
+        return this.numberOfParallelDatabaseMigrations;
+    }
+
+    /**
+     * Set the numberOfParallelDatabaseMigrations property: Number of database migrations to start in parallel.
+     * 
+     * @param numberOfParallelDatabaseMigrations the numberOfParallelDatabaseMigrations value to set.
+     * @return the MigrateSqlServerSqlMISyncTaskInput object itself.
+     */
+    public MigrateSqlServerSqlMISyncTaskInput
+        withNumberOfParallelDatabaseMigrations(Float numberOfParallelDatabaseMigrations) {
+        this.numberOfParallelDatabaseMigrations = numberOfParallelDatabaseMigrations;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public MigrateSqlServerSqlMISyncTaskInput withSelectedDatabases(
-        List<MigrateSqlServerSqlMIDatabaseInput> selectedDatabases) {
+    public MigrateSqlServerSqlMISyncTaskInput
+        withSelectedDatabases(List<MigrateSqlServerSqlMIDatabaseInput> selectedDatabases) {
         super.withSelectedDatabases(selectedDatabases);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MigrateSqlServerSqlMISyncTaskInput withBackupFileShare(FileShare backupFileShare) {
         super.withBackupFileShare(backupFileShare);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MigrateSqlServerSqlMISyncTaskInput withStorageResourceId(String storageResourceId) {
         super.withStorageResourceId(storageResourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MigrateSqlServerSqlMISyncTaskInput withSourceConnectionInfo(SqlConnectionInfo sourceConnectionInfo) {
         super.withSourceConnectionInfo(sourceConnectionInfo);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MigrateSqlServerSqlMISyncTaskInput withTargetConnectionInfo(MiSqlConnectionInfo targetConnectionInfo) {
         super.withTargetConnectionInfo(targetConnectionInfo);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MigrateSqlServerSqlMISyncTaskInput withAzureApp(AzureActiveDirectoryApp azureApp) {
         super.withAzureApp(azureApp);
@@ -59,7 +103,7 @@ public final class MigrateSqlServerSqlMISyncTaskInput extends SqlServerSqlMISync
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

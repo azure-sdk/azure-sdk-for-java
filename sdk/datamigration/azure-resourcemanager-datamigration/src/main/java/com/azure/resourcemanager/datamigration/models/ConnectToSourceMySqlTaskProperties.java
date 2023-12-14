@@ -9,8 +9,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
+import java.util.Map;
 
-/** Properties for the task that validates MySQL database connection. */
+/**
+ * Properties for the task that validates MySQL database connection.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
 @JsonTypeName("ConnectToSource.MySql")
 @Fluent
@@ -27,13 +30,15 @@ public final class ConnectToSourceMySqlTaskProperties extends ProjectTaskPropert
     @JsonProperty(value = "output", access = JsonProperty.Access.WRITE_ONLY)
     private List<ConnectToSourceNonSqlTaskOutput> output;
 
-    /** Creates an instance of ConnectToSourceMySqlTaskProperties class. */
+    /**
+     * Creates an instance of ConnectToSourceMySqlTaskProperties class.
+     */
     public ConnectToSourceMySqlTaskProperties() {
     }
 
     /**
      * Get the input property: Task input.
-     *
+     * 
      * @return the input value.
      */
     public ConnectToSourceMySqlTaskInput input() {
@@ -42,7 +47,7 @@ public final class ConnectToSourceMySqlTaskProperties extends ProjectTaskPropert
 
     /**
      * Set the input property: Task input.
-     *
+     * 
      * @param input the input value to set.
      * @return the ConnectToSourceMySqlTaskProperties object itself.
      */
@@ -53,7 +58,7 @@ public final class ConnectToSourceMySqlTaskProperties extends ProjectTaskPropert
 
     /**
      * Get the output property: Task output. This is ignored if submitted.
-     *
+     * 
      * @return the output value.
      */
     public List<ConnectToSourceNonSqlTaskOutput> output() {
@@ -61,8 +66,17 @@ public final class ConnectToSourceMySqlTaskProperties extends ProjectTaskPropert
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ConnectToSourceMySqlTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

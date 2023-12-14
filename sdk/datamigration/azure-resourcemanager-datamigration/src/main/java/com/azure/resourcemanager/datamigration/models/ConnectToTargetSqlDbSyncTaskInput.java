@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Input for the task that validates connection to Azure SQL DB and target server requirements. */
+/**
+ * Input for the task that validates connection to Azure SQL DB and target server requirements.
+ */
 @Fluent
 public final class ConnectToTargetSqlDbSyncTaskInput {
     /*
@@ -23,13 +25,15 @@ public final class ConnectToTargetSqlDbSyncTaskInput {
     @JsonProperty(value = "targetConnectionInfo", required = true)
     private SqlConnectionInfo targetConnectionInfo;
 
-    /** Creates an instance of ConnectToTargetSqlDbSyncTaskInput class. */
+    /**
+     * Creates an instance of ConnectToTargetSqlDbSyncTaskInput class.
+     */
     public ConnectToTargetSqlDbSyncTaskInput() {
     }
 
     /**
      * Get the sourceConnectionInfo property: Connection information for source SQL Server.
-     *
+     * 
      * @return the sourceConnectionInfo value.
      */
     public SqlConnectionInfo sourceConnectionInfo() {
@@ -38,7 +42,7 @@ public final class ConnectToTargetSqlDbSyncTaskInput {
 
     /**
      * Set the sourceConnectionInfo property: Connection information for source SQL Server.
-     *
+     * 
      * @param sourceConnectionInfo the sourceConnectionInfo value to set.
      * @return the ConnectToTargetSqlDbSyncTaskInput object itself.
      */
@@ -49,7 +53,7 @@ public final class ConnectToTargetSqlDbSyncTaskInput {
 
     /**
      * Get the targetConnectionInfo property: Connection information for target SQL DB.
-     *
+     * 
      * @return the targetConnectionInfo value.
      */
     public SqlConnectionInfo targetConnectionInfo() {
@@ -58,7 +62,7 @@ public final class ConnectToTargetSqlDbSyncTaskInput {
 
     /**
      * Set the targetConnectionInfo property: Connection information for target SQL DB.
-     *
+     * 
      * @param targetConnectionInfo the targetConnectionInfo value to set.
      * @return the ConnectToTargetSqlDbSyncTaskInput object itself.
      */
@@ -69,23 +73,19 @@ public final class ConnectToTargetSqlDbSyncTaskInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourceConnectionInfo in model ConnectToTargetSqlDbSyncTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sourceConnectionInfo in model ConnectToTargetSqlDbSyncTaskInput"));
         } else {
             sourceConnectionInfo().validate();
         }
         if (targetConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property targetConnectionInfo in model ConnectToTargetSqlDbSyncTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property targetConnectionInfo in model ConnectToTargetSqlDbSyncTaskInput"));
         } else {
             targetConnectionInfo().validate();
         }

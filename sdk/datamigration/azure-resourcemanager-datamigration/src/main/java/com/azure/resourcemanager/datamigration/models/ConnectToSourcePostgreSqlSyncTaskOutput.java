@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Output for the task that validates connection to PostgreSQL and source server requirements. */
+/**
+ * Output for the task that validates connection to PostgreSQL and source server requirements.
+ */
 @Immutable
 public final class ConnectToSourcePostgreSqlSyncTaskOutput {
     /*
@@ -41,13 +43,15 @@ public final class ConnectToSourcePostgreSqlSyncTaskOutput {
     @JsonProperty(value = "validationErrors", access = JsonProperty.Access.WRITE_ONLY)
     private List<ReportableException> validationErrors;
 
-    /** Creates an instance of ConnectToSourcePostgreSqlSyncTaskOutput class. */
+    /**
+     * Creates an instance of ConnectToSourcePostgreSqlSyncTaskOutput class.
+     */
     public ConnectToSourcePostgreSqlSyncTaskOutput() {
     }
 
     /**
      * Get the id property: Result identifier.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -56,7 +60,7 @@ public final class ConnectToSourcePostgreSqlSyncTaskOutput {
 
     /**
      * Get the sourceServerVersion property: Version of the source server.
-     *
+     * 
      * @return the sourceServerVersion value.
      */
     public String sourceServerVersion() {
@@ -65,7 +69,7 @@ public final class ConnectToSourcePostgreSqlSyncTaskOutput {
 
     /**
      * Get the databases property: List of databases on source server.
-     *
+     * 
      * @return the databases value.
      */
     public List<String> databases() {
@@ -74,7 +78,7 @@ public final class ConnectToSourcePostgreSqlSyncTaskOutput {
 
     /**
      * Get the sourceServerBrandVersion property: Source server brand version.
-     *
+     * 
      * @return the sourceServerBrandVersion value.
      */
     public String sourceServerBrandVersion() {
@@ -83,7 +87,7 @@ public final class ConnectToSourcePostgreSqlSyncTaskOutput {
 
     /**
      * Get the validationErrors property: Validation errors associated with the task.
-     *
+     * 
      * @return the validationErrors value.
      */
     public List<ReportableException> validationErrors() {
@@ -92,7 +96,7 @@ public final class ConnectToSourcePostgreSqlSyncTaskOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

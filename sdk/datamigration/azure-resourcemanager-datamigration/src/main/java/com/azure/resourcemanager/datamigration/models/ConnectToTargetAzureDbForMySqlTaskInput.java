@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Input for the task that validates connection to Azure Database for MySQL and target server requirements. */
+/**
+ * Input for the task that validates connection to Azure Database for MySQL and target server requirements.
+ */
 @Fluent
 public final class ConnectToTargetAzureDbForMySqlTaskInput {
     /*
@@ -23,13 +25,21 @@ public final class ConnectToTargetAzureDbForMySqlTaskInput {
     @JsonProperty(value = "targetConnectionInfo", required = true)
     private MySqlConnectionInfo targetConnectionInfo;
 
-    /** Creates an instance of ConnectToTargetAzureDbForMySqlTaskInput class. */
+    /*
+     * Flag for whether or not the migration is offline
+     */
+    @JsonProperty(value = "isOfflineMigration")
+    private Boolean isOfflineMigration;
+
+    /**
+     * Creates an instance of ConnectToTargetAzureDbForMySqlTaskInput class.
+     */
     public ConnectToTargetAzureDbForMySqlTaskInput() {
     }
 
     /**
      * Get the sourceConnectionInfo property: Connection information for source MySQL server.
-     *
+     * 
      * @return the sourceConnectionInfo value.
      */
     public MySqlConnectionInfo sourceConnectionInfo() {
@@ -38,7 +48,7 @@ public final class ConnectToTargetAzureDbForMySqlTaskInput {
 
     /**
      * Set the sourceConnectionInfo property: Connection information for source MySQL server.
-     *
+     * 
      * @param sourceConnectionInfo the sourceConnectionInfo value to set.
      * @return the ConnectToTargetAzureDbForMySqlTaskInput object itself.
      */
@@ -49,7 +59,7 @@ public final class ConnectToTargetAzureDbForMySqlTaskInput {
 
     /**
      * Get the targetConnectionInfo property: Connection information for target Azure Database for MySQL server.
-     *
+     * 
      * @return the targetConnectionInfo value.
      */
     public MySqlConnectionInfo targetConnectionInfo() {
@@ -58,7 +68,7 @@ public final class ConnectToTargetAzureDbForMySqlTaskInput {
 
     /**
      * Set the targetConnectionInfo property: Connection information for target Azure Database for MySQL server.
-     *
+     * 
      * @param targetConnectionInfo the targetConnectionInfo value to set.
      * @return the ConnectToTargetAzureDbForMySqlTaskInput object itself.
      */
@@ -68,26 +78,40 @@ public final class ConnectToTargetAzureDbForMySqlTaskInput {
     }
 
     /**
+     * Get the isOfflineMigration property: Flag for whether or not the migration is offline.
+     * 
+     * @return the isOfflineMigration value.
+     */
+    public Boolean isOfflineMigration() {
+        return this.isOfflineMigration;
+    }
+
+    /**
+     * Set the isOfflineMigration property: Flag for whether or not the migration is offline.
+     * 
+     * @param isOfflineMigration the isOfflineMigration value to set.
+     * @return the ConnectToTargetAzureDbForMySqlTaskInput object itself.
+     */
+    public ConnectToTargetAzureDbForMySqlTaskInput withIsOfflineMigration(Boolean isOfflineMigration) {
+        this.isOfflineMigration = isOfflineMigration;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourceConnectionInfo in model"
-                            + " ConnectToTargetAzureDbForMySqlTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sourceConnectionInfo in model ConnectToTargetAzureDbForMySqlTaskInput"));
         } else {
             sourceConnectionInfo().validate();
         }
         if (targetConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property targetConnectionInfo in model"
-                            + " ConnectToTargetAzureDbForMySqlTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property targetConnectionInfo in model ConnectToTargetAzureDbForMySqlTaskInput"));
         } else {
             targetConnectionInfo().validate();
         }

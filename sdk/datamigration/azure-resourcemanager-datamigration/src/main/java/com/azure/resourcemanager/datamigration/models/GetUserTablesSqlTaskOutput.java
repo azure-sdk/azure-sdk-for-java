@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Output of the task that collects user tables for the given list of databases. */
+/**
+ * Output of the task that collects user tables for the given list of databases.
+ */
 @Immutable
 public final class GetUserTablesSqlTaskOutput {
     /*
@@ -29,13 +31,15 @@ public final class GetUserTablesSqlTaskOutput {
     @JsonProperty(value = "validationErrors", access = JsonProperty.Access.WRITE_ONLY)
     private List<ReportableException> validationErrors;
 
-    /** Creates an instance of GetUserTablesSqlTaskOutput class. */
+    /**
+     * Creates an instance of GetUserTablesSqlTaskOutput class.
+     */
     public GetUserTablesSqlTaskOutput() {
     }
 
     /**
      * Get the id property: Result identifier.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -44,7 +48,7 @@ public final class GetUserTablesSqlTaskOutput {
 
     /**
      * Get the databasesToTables property: Mapping from database name to list of tables.
-     *
+     * 
      * @return the databasesToTables value.
      */
     public String databasesToTables() {
@@ -53,7 +57,7 @@ public final class GetUserTablesSqlTaskOutput {
 
     /**
      * Get the validationErrors property: Validation errors.
-     *
+     * 
      * @return the validationErrors value.
      */
     public List<ReportableException> validationErrors() {
@@ -62,7 +66,7 @@ public final class GetUserTablesSqlTaskOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
