@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datadog.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The DatadogSingleSignOnProperties model. */
+/**
+ * The DatadogSingleSignOnProperties model.
+ */
 @Fluent
 public final class DatadogSingleSignOnProperties {
     /*
@@ -34,13 +36,15 @@ public final class DatadogSingleSignOnProperties {
     @JsonProperty(value = "singleSignOnUrl", access = JsonProperty.Access.WRITE_ONLY)
     private String singleSignOnUrl;
 
-    /** Creates an instance of DatadogSingleSignOnProperties class. */
+    /**
+     * Creates an instance of DatadogSingleSignOnProperties class.
+     */
     public DatadogSingleSignOnProperties() {
     }
 
     /**
      * Get the provisioningState property: The provisioningState property.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -49,7 +53,7 @@ public final class DatadogSingleSignOnProperties {
 
     /**
      * Get the singleSignOnState property: Various states of the SSO resource.
-     *
+     * 
      * @return the singleSignOnState value.
      */
     public SingleSignOnStates singleSignOnState() {
@@ -58,7 +62,7 @@ public final class DatadogSingleSignOnProperties {
 
     /**
      * Set the singleSignOnState property: Various states of the SSO resource.
-     *
+     * 
      * @param singleSignOnState the singleSignOnState value to set.
      * @return the DatadogSingleSignOnProperties object itself.
      */
@@ -69,7 +73,7 @@ public final class DatadogSingleSignOnProperties {
 
     /**
      * Get the enterpriseAppId property: The Id of the Enterprise App used for Single sign-on.
-     *
+     * 
      * @return the enterpriseAppId value.
      */
     public String enterpriseAppId() {
@@ -78,7 +82,7 @@ public final class DatadogSingleSignOnProperties {
 
     /**
      * Set the enterpriseAppId property: The Id of the Enterprise App used for Single sign-on.
-     *
+     * 
      * @param enterpriseAppId the enterpriseAppId value to set.
      * @return the DatadogSingleSignOnProperties object itself.
      */
@@ -89,7 +93,7 @@ public final class DatadogSingleSignOnProperties {
 
     /**
      * Get the singleSignOnUrl property: The login URL specific to this Datadog Organization.
-     *
+     * 
      * @return the singleSignOnUrl value.
      */
     public String singleSignOnUrl() {
@@ -98,7 +102,7 @@ public final class DatadogSingleSignOnProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.datadog.fluent.models.CreateResourceSupportedRe
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The CreateResourceSupportedResponseList model. */
+/**
+ * The CreateResourceSupportedResponseList model.
+ */
 @Fluent
 public final class CreateResourceSupportedResponseList {
     /*
@@ -18,13 +20,15 @@ public final class CreateResourceSupportedResponseList {
     @JsonProperty(value = "value")
     private List<CreateResourceSupportedResponseInner> value;
 
-    /** Creates an instance of CreateResourceSupportedResponseList class. */
+    /**
+     * Creates an instance of CreateResourceSupportedResponseList class.
+     */
     public CreateResourceSupportedResponseList() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<CreateResourceSupportedResponseInner> value() {
@@ -33,7 +37,7 @@ public final class CreateResourceSupportedResponseList {
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the CreateResourceSupportedResponseList object itself.
      */
@@ -44,7 +48,7 @@ public final class CreateResourceSupportedResponseList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

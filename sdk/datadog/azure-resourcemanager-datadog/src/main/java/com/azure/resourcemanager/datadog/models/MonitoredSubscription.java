@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datadog.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The list of subscriptions and it's monitoring status by current Datadog monitor. */
+/**
+ * The list of subscriptions and it's monitoring status by current Datadog monitor.
+ */
 @Fluent
 public final class MonitoredSubscription {
     /*
@@ -34,13 +36,15 @@ public final class MonitoredSubscription {
     @JsonProperty(value = "tagRules")
     private MonitoringTagRulesProperties tagRules;
 
-    /** Creates an instance of MonitoredSubscription class. */
+    /**
+     * Creates an instance of MonitoredSubscription class.
+     */
     public MonitoredSubscription() {
     }
 
     /**
      * Get the subscriptionId property: The subscriptionId to be monitored.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String subscriptionId() {
@@ -49,7 +53,7 @@ public final class MonitoredSubscription {
 
     /**
      * Set the subscriptionId property: The subscriptionId to be monitored.
-     *
+     * 
      * @param subscriptionId the subscriptionId value to set.
      * @return the MonitoredSubscription object itself.
      */
@@ -60,7 +64,7 @@ public final class MonitoredSubscription {
 
     /**
      * Get the status property: The state of monitoring.
-     *
+     * 
      * @return the status value.
      */
     public Status status() {
@@ -69,7 +73,7 @@ public final class MonitoredSubscription {
 
     /**
      * Set the status property: The state of monitoring.
-     *
+     * 
      * @param status the status value to set.
      * @return the MonitoredSubscription object itself.
      */
@@ -80,7 +84,7 @@ public final class MonitoredSubscription {
 
     /**
      * Get the error property: The reason of not monitoring the subscription.
-     *
+     * 
      * @return the error value.
      */
     public String error() {
@@ -89,7 +93,7 @@ public final class MonitoredSubscription {
 
     /**
      * Set the error property: The reason of not monitoring the subscription.
-     *
+     * 
      * @param error the error value to set.
      * @return the MonitoredSubscription object itself.
      */
@@ -100,7 +104,7 @@ public final class MonitoredSubscription {
 
     /**
      * Get the tagRules property: Definition of the properties for a TagRules resource.
-     *
+     * 
      * @return the tagRules value.
      */
     public MonitoringTagRulesProperties tagRules() {
@@ -109,7 +113,7 @@ public final class MonitoredSubscription {
 
     /**
      * Set the tagRules property: Definition of the properties for a TagRules resource.
-     *
+     * 
      * @param tagRules the tagRules value to set.
      * @return the MonitoredSubscription object itself.
      */
@@ -120,7 +124,7 @@ public final class MonitoredSubscription {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

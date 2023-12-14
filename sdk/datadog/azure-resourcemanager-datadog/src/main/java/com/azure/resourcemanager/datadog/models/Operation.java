@@ -8,26 +8,38 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The operation for the patch on the resource. */
+/**
+ * The operation for the patch on the resource.
+ */
 public final class Operation extends ExpandableStringEnum<Operation> {
-    /** Static value AddBegin for Operation. */
+    /**
+     * Static value AddBegin for Operation.
+     */
     public static final Operation ADD_BEGIN = fromString("AddBegin");
 
-    /** Static value AddComplete for Operation. */
+    /**
+     * Static value AddComplete for Operation.
+     */
     public static final Operation ADD_COMPLETE = fromString("AddComplete");
 
-    /** Static value DeleteBegin for Operation. */
+    /**
+     * Static value DeleteBegin for Operation.
+     */
     public static final Operation DELETE_BEGIN = fromString("DeleteBegin");
 
-    /** Static value DeleteComplete for Operation. */
+    /**
+     * Static value DeleteComplete for Operation.
+     */
     public static final Operation DELETE_COMPLETE = fromString("DeleteComplete");
 
-    /** Static value Active for Operation. */
+    /**
+     * Static value Active for Operation.
+     */
     public static final Operation ACTIVE = fromString("Active");
 
     /**
      * Creates a new instance of Operation value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -36,7 +48,7 @@ public final class Operation extends ExpandableStringEnum<Operation> {
 
     /**
      * Creates or finds a Operation from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Operation.
      */
@@ -47,7 +59,7 @@ public final class Operation extends ExpandableStringEnum<Operation> {
 
     /**
      * Gets known Operation values.
-     *
+     * 
      * @return known Operation values.
      */
     public static Collection<Operation> values() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The request to update subscriptions needed to be monitored by the Datadog monitor resource. */
+/**
+ * The request to update subscriptions needed to be monitored by the Datadog monitor resource.
+ */
 @Fluent
 public final class SubscriptionList {
     /*
@@ -23,13 +25,15 @@ public final class SubscriptionList {
     @JsonProperty(value = "monitoredSubscriptionList")
     private List<MonitoredSubscription> monitoredSubscriptionList;
 
-    /** Creates an instance of SubscriptionList class. */
+    /**
+     * Creates an instance of SubscriptionList class.
+     */
     public SubscriptionList() {
     }
 
     /**
      * Get the operation property: The operation for the patch on the resource.
-     *
+     * 
      * @return the operation value.
      */
     public Operation operation() {
@@ -38,7 +42,7 @@ public final class SubscriptionList {
 
     /**
      * Set the operation property: The operation for the patch on the resource.
-     *
+     * 
      * @param operation the operation value to set.
      * @return the SubscriptionList object itself.
      */
@@ -49,7 +53,7 @@ public final class SubscriptionList {
 
     /**
      * Get the monitoredSubscriptionList property: List of subscriptions and the state of the monitoring.
-     *
+     * 
      * @return the monitoredSubscriptionList value.
      */
     public List<MonitoredSubscription> monitoredSubscriptionList() {
@@ -58,7 +62,7 @@ public final class SubscriptionList {
 
     /**
      * Set the monitoredSubscriptionList property: List of subscriptions and the state of the monitoring.
-     *
+     * 
      * @param monitoredSubscriptionList the monitoredSubscriptionList value to set.
      * @return the SubscriptionList object itself.
      */
@@ -69,7 +73,7 @@ public final class SubscriptionList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

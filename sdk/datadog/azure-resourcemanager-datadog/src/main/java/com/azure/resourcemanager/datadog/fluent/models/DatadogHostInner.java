@@ -9,7 +9,9 @@ import com.azure.resourcemanager.datadog.models.DatadogHostMetadata;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The DatadogHost model. */
+/**
+ * The DatadogHost model.
+ */
 @Fluent
 public final class DatadogHostInner {
     /*
@@ -36,13 +38,15 @@ public final class DatadogHostInner {
     @JsonProperty(value = "meta")
     private DatadogHostMetadata meta;
 
-    /** Creates an instance of DatadogHostInner class. */
+    /**
+     * Creates an instance of DatadogHostInner class.
+     */
     public DatadogHostInner() {
     }
 
     /**
      * Get the name property: The name of the host.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -51,7 +55,7 @@ public final class DatadogHostInner {
 
     /**
      * Set the name property: The name of the host.
-     *
+     * 
      * @param name the name value to set.
      * @return the DatadogHostInner object itself.
      */
@@ -62,7 +66,7 @@ public final class DatadogHostInner {
 
     /**
      * Get the aliases property: The aliases for the host installed via the Datadog agent.
-     *
+     * 
      * @return the aliases value.
      */
     public List<String> aliases() {
@@ -71,7 +75,7 @@ public final class DatadogHostInner {
 
     /**
      * Set the aliases property: The aliases for the host installed via the Datadog agent.
-     *
+     * 
      * @param aliases the aliases value to set.
      * @return the DatadogHostInner object itself.
      */
@@ -82,7 +86,7 @@ public final class DatadogHostInner {
 
     /**
      * Get the apps property: The Datadog integrations reporting metrics for the host.
-     *
+     * 
      * @return the apps value.
      */
     public List<String> apps() {
@@ -91,7 +95,7 @@ public final class DatadogHostInner {
 
     /**
      * Set the apps property: The Datadog integrations reporting metrics for the host.
-     *
+     * 
      * @param apps the apps value to set.
      * @return the DatadogHostInner object itself.
      */
@@ -102,7 +106,7 @@ public final class DatadogHostInner {
 
     /**
      * Get the meta property: The meta property.
-     *
+     * 
      * @return the meta value.
      */
     public DatadogHostMetadata meta() {
@@ -111,7 +115,7 @@ public final class DatadogHostInner {
 
     /**
      * Set the meta property: The meta property.
-     *
+     * 
      * @param meta the meta value to set.
      * @return the DatadogHostInner object itself.
      */
@@ -122,7 +126,7 @@ public final class DatadogHostInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datadog.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Includes name, email and optionally, phone number. User Information can't be null. */
+/**
+ * Includes name, email and optionally, phone number. User Information can't be null.
+ */
 @Fluent
 public final class UserInfo {
     /*
@@ -28,13 +30,15 @@ public final class UserInfo {
     @JsonProperty(value = "phoneNumber")
     private String phoneNumber;
 
-    /** Creates an instance of UserInfo class. */
+    /**
+     * Creates an instance of UserInfo class.
+     */
     public UserInfo() {
     }
 
     /**
      * Get the name property: Name of the user.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -43,7 +47,7 @@ public final class UserInfo {
 
     /**
      * Set the name property: Name of the user.
-     *
+     * 
      * @param name the name value to set.
      * @return the UserInfo object itself.
      */
@@ -54,7 +58,7 @@ public final class UserInfo {
 
     /**
      * Get the emailAddress property: Email of the user used by Datadog for contacting them if needed.
-     *
+     * 
      * @return the emailAddress value.
      */
     public String emailAddress() {
@@ -63,7 +67,7 @@ public final class UserInfo {
 
     /**
      * Set the emailAddress property: Email of the user used by Datadog for contacting them if needed.
-     *
+     * 
      * @param emailAddress the emailAddress value to set.
      * @return the UserInfo object itself.
      */
@@ -74,7 +78,7 @@ public final class UserInfo {
 
     /**
      * Get the phoneNumber property: Phone number of the user used by Datadog for contacting them if needed.
-     *
+     * 
      * @return the phoneNumber value.
      */
     public String phoneNumber() {
@@ -83,7 +87,7 @@ public final class UserInfo {
 
     /**
      * Set the phoneNumber property: Phone number of the user used by Datadog for contacting them if needed.
-     *
+     * 
      * @param phoneNumber the phoneNumber value to set.
      * @return the UserInfo object itself.
      */
@@ -94,7 +98,7 @@ public final class UserInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

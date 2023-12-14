@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.datadog.models.SubscriptionList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The request to update subscriptions needed to be monitored by the Datadog monitor resource. */
+/**
+ * The request to update subscriptions needed to be monitored by the Datadog monitor resource.
+ */
 @Fluent
 public final class MonitoredSubscriptionPropertiesInner {
     /*
@@ -35,13 +37,15 @@ public final class MonitoredSubscriptionPropertiesInner {
     @JsonProperty(value = "properties")
     private SubscriptionList properties;
 
-    /** Creates an instance of MonitoredSubscriptionPropertiesInner class. */
+    /**
+     * Creates an instance of MonitoredSubscriptionPropertiesInner class.
+     */
     public MonitoredSubscriptionPropertiesInner() {
     }
 
     /**
      * Get the name property: Name of the monitored subscription resource.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -50,7 +54,7 @@ public final class MonitoredSubscriptionPropertiesInner {
 
     /**
      * Get the id property: The id of the monitored subscription resource.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -59,7 +63,7 @@ public final class MonitoredSubscriptionPropertiesInner {
 
     /**
      * Get the type property: The type of the monitored subscription resource.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -69,7 +73,7 @@ public final class MonitoredSubscriptionPropertiesInner {
     /**
      * Get the properties property: The request to update subscriptions needed to be monitored by the Datadog monitor
      * resource.
-     *
+     * 
      * @return the properties value.
      */
     public SubscriptionList properties() {
@@ -79,7 +83,7 @@ public final class MonitoredSubscriptionPropertiesInner {
     /**
      * Set the properties property: The request to update subscriptions needed to be monitored by the Datadog monitor
      * resource.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the MonitoredSubscriptionPropertiesInner object itself.
      */
@@ -90,7 +94,7 @@ public final class MonitoredSubscriptionPropertiesInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

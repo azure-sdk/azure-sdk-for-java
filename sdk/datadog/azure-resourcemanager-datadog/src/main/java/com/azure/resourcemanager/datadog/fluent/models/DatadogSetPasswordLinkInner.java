@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datadog.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The DatadogSetPasswordLink model. */
+/**
+ * The DatadogSetPasswordLink model.
+ */
 @Fluent
 public final class DatadogSetPasswordLinkInner {
     /*
@@ -16,13 +18,15 @@ public final class DatadogSetPasswordLinkInner {
     @JsonProperty(value = "setPasswordLink")
     private String setPasswordLink;
 
-    /** Creates an instance of DatadogSetPasswordLinkInner class. */
+    /**
+     * Creates an instance of DatadogSetPasswordLinkInner class.
+     */
     public DatadogSetPasswordLinkInner() {
     }
 
     /**
      * Get the setPasswordLink property: The setPasswordLink property.
-     *
+     * 
      * @return the setPasswordLink value.
      */
     public String setPasswordLink() {
@@ -31,7 +35,7 @@ public final class DatadogSetPasswordLinkInner {
 
     /**
      * Set the setPasswordLink property: The setPasswordLink property.
-     *
+     * 
      * @param setPasswordLink the setPasswordLink value to set.
      * @return the DatadogSetPasswordLinkInner object itself.
      */
@@ -42,7 +46,7 @@ public final class DatadogSetPasswordLinkInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

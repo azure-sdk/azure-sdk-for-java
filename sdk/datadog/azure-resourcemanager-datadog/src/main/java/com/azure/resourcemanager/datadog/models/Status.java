@@ -8,23 +8,33 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The state of monitoring. */
+/**
+ * The state of monitoring.
+ */
 public final class Status extends ExpandableStringEnum<Status> {
-    /** Static value InProgress for Status. */
+    /**
+     * Static value InProgress for Status.
+     */
     public static final Status IN_PROGRESS = fromString("InProgress");
 
-    /** Static value Active for Status. */
+    /**
+     * Static value Active for Status.
+     */
     public static final Status ACTIVE = fromString("Active");
 
-    /** Static value Failed for Status. */
+    /**
+     * Static value Failed for Status.
+     */
     public static final Status FAILED = fromString("Failed");
 
-    /** Static value Deleting for Status. */
+    /**
+     * Static value Deleting for Status.
+     */
     public static final Status DELETING = fromString("Deleting");
 
     /**
      * Creates a new instance of Status value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -33,7 +43,7 @@ public final class Status extends ExpandableStringEnum<Status> {
 
     /**
      * Creates or finds a Status from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Status.
      */
@@ -44,7 +54,7 @@ public final class Status extends ExpandableStringEnum<Status> {
 
     /**
      * Gets known Status values.
-     *
+     * 
      * @return known Status values.
      */
     public static Collection<Status> values() {

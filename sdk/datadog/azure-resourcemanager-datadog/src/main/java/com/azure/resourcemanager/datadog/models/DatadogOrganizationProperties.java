@@ -68,13 +68,15 @@ public final class DatadogOrganizationProperties {
     @JsonProperty(value = "cspm")
     private Boolean cspm;
 
-    /** Creates an instance of DatadogOrganizationProperties class. */
+    /**
+     * Creates an instance of DatadogOrganizationProperties class.
+     */
     public DatadogOrganizationProperties() {
     }
 
     /**
      * Get the name property: Name of the Datadog organization.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -83,7 +85,7 @@ public final class DatadogOrganizationProperties {
 
     /**
      * Set the name property: Name of the Datadog organization.
-     *
+     * 
      * @param name the name value to set.
      * @return the DatadogOrganizationProperties object itself.
      */
@@ -94,7 +96,7 @@ public final class DatadogOrganizationProperties {
 
     /**
      * Get the id property: Id of the Datadog organization.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -103,7 +105,7 @@ public final class DatadogOrganizationProperties {
 
     /**
      * Set the id property: Id of the Datadog organization.
-     *
+     * 
      * @param id the id value to set.
      * @return the DatadogOrganizationProperties object itself.
      */
@@ -114,7 +116,7 @@ public final class DatadogOrganizationProperties {
 
     /**
      * Get the linkingAuthCode property: The auth code used to linking to an existing Datadog organization.
-     *
+     * 
      * @return the linkingAuthCode value.
      */
     public String linkingAuthCode() {
@@ -123,7 +125,7 @@ public final class DatadogOrganizationProperties {
 
     /**
      * Set the linkingAuthCode property: The auth code used to linking to an existing Datadog organization.
-     *
+     * 
      * @param linkingAuthCode the linkingAuthCode value to set.
      * @return the DatadogOrganizationProperties object itself.
      */
@@ -135,7 +137,7 @@ public final class DatadogOrganizationProperties {
     /**
      * Get the linkingClientId property: The client_id from an existing in exchange for an auth token to link
      * organization.
-     *
+     * 
      * @return the linkingClientId value.
      */
     public String linkingClientId() {
@@ -145,7 +147,7 @@ public final class DatadogOrganizationProperties {
     /**
      * Set the linkingClientId property: The client_id from an existing in exchange for an auth token to link
      * organization.
-     *
+     * 
      * @param linkingClientId the linkingClientId value to set.
      * @return the DatadogOrganizationProperties object itself.
      */
@@ -156,7 +158,7 @@ public final class DatadogOrganizationProperties {
 
     /**
      * Get the redirectUri property: The redirect URI for linking.
-     *
+     * 
      * @return the redirectUri value.
      */
     public String redirectUri() {
@@ -165,7 +167,7 @@ public final class DatadogOrganizationProperties {
 
     /**
      * Set the redirectUri property: The redirect URI for linking.
-     *
+     * 
      * @param redirectUri the redirectUri value to set.
      * @return the DatadogOrganizationProperties object itself.
      */
@@ -176,7 +178,7 @@ public final class DatadogOrganizationProperties {
 
     /**
      * Get the apiKey property: Api key associated to the Datadog organization.
-     *
+     * 
      * @return the apiKey value.
      */
     public String apiKey() {
@@ -185,7 +187,7 @@ public final class DatadogOrganizationProperties {
 
     /**
      * Set the apiKey property: Api key associated to the Datadog organization.
-     *
+     * 
      * @param apiKey the apiKey value to set.
      * @return the DatadogOrganizationProperties object itself.
      */
@@ -196,7 +198,7 @@ public final class DatadogOrganizationProperties {
 
     /**
      * Get the applicationKey property: Application key associated to the Datadog organization.
-     *
+     * 
      * @return the applicationKey value.
      */
     public String applicationKey() {
@@ -205,7 +207,7 @@ public final class DatadogOrganizationProperties {
 
     /**
      * Set the applicationKey property: Application key associated to the Datadog organization.
-     *
+     * 
      * @param applicationKey the applicationKey value to set.
      * @return the DatadogOrganizationProperties object itself.
      */
@@ -216,7 +218,7 @@ public final class DatadogOrganizationProperties {
 
     /**
      * Get the enterpriseAppId property: The Id of the Enterprise App used for Single sign on.
-     *
+     * 
      * @return the enterpriseAppId value.
      */
     public String enterpriseAppId() {
@@ -225,7 +227,7 @@ public final class DatadogOrganizationProperties {
 
     /**
      * Set the enterpriseAppId property: The Id of the Enterprise App used for Single sign on.
-     *
+     * 
      * @param enterpriseAppId the enterpriseAppId value to set.
      * @return the DatadogOrganizationProperties object itself.
      */
@@ -238,7 +240,7 @@ public final class DatadogOrganizationProperties {
      * Get the cspm property: The configuration which describes the state of cloud security posture management. This
      * collects configuration information for all resources in a subscription and track conformance to industry
      * benchmarks.
-     *
+     * 
      * @return the cspm value.
      */
     public Boolean cspm() {
@@ -249,7 +251,7 @@ public final class DatadogOrganizationProperties {
      * Set the cspm property: The configuration which describes the state of cloud security posture management. This
      * collects configuration information for all resources in a subscription and track conformance to industry
      * benchmarks.
-     *
+     * 
      * @param cspm the cspm value to set.
      * @return the DatadogOrganizationProperties object itself.
      */
@@ -260,7 +262,7 @@ public final class DatadogOrganizationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
