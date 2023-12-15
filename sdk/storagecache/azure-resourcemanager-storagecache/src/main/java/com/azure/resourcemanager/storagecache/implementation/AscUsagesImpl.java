@@ -19,8 +19,8 @@ public final class AscUsagesImpl implements AscUsages {
 
     private final com.azure.resourcemanager.storagecache.StorageCacheManager serviceManager;
 
-    public AscUsagesImpl(
-        AscUsagesClient innerClient, com.azure.resourcemanager.storagecache.StorageCacheManager serviceManager) {
+    public AscUsagesImpl(AscUsagesClient innerClient,
+        com.azure.resourcemanager.storagecache.StorageCacheManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }

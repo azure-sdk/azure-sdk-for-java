@@ -119,20 +119,14 @@ public final class StorageTargetImpl implements StorageTarget, StorageTarget.Def
     }
 
     public StorageTarget create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getStorageTargets()
-                .createOrUpdate(resourceGroupName, cacheName, storageTargetName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getStorageTargets().createOrUpdate(resourceGroupName,
+            cacheName, storageTargetName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public StorageTarget create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getStorageTargets()
-                .createOrUpdate(resourceGroupName, cacheName, storageTargetName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getStorageTargets().createOrUpdate(resourceGroupName,
+            cacheName, storageTargetName, this.innerModel(), context);
         return this;
     }
 
@@ -147,25 +141,19 @@ public final class StorageTargetImpl implements StorageTarget, StorageTarget.Def
     }
 
     public StorageTarget apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getStorageTargets()
-                .createOrUpdate(resourceGroupName, cacheName, storageTargetName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getStorageTargets().createOrUpdate(resourceGroupName,
+            cacheName, storageTargetName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public StorageTarget apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getStorageTargets()
-                .createOrUpdate(resourceGroupName, cacheName, storageTargetName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getStorageTargets().createOrUpdate(resourceGroupName,
+            cacheName, storageTargetName, this.innerModel(), context);
         return this;
     }
 
-    StorageTargetImpl(
-        StorageTargetInner innerObject, com.azure.resourcemanager.storagecache.StorageCacheManager serviceManager) {
+    StorageTargetImpl(StorageTargetInner innerObject,
+        com.azure.resourcemanager.storagecache.StorageCacheManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourcegroups");
@@ -174,22 +162,14 @@ public final class StorageTargetImpl implements StorageTarget, StorageTarget.Def
     }
 
     public StorageTarget refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getStorageTargets()
-                .getWithResponse(resourceGroupName, cacheName, storageTargetName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getStorageTargets()
+            .getWithResponse(resourceGroupName, cacheName, storageTargetName, Context.NONE).getValue();
         return this;
     }
 
     public StorageTarget refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getStorageTargets()
-                .getWithResponse(resourceGroupName, cacheName, storageTargetName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getStorageTargets()
+            .getWithResponse(resourceGroupName, cacheName, storageTargetName, context).getValue();
         return this;
     }
 
