@@ -16,8 +16,7 @@ public final class PrivateEndpointConnectionWithSystemDataImpl implements Privat
 
     private final com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager;
 
-    PrivateEndpointConnectionWithSystemDataImpl(
-        PrivateEndpointConnectionWithSystemDataInner innerObject,
+    PrivateEndpointConnectionWithSystemDataImpl(PrivateEndpointConnectionWithSystemDataInner innerObject,
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
