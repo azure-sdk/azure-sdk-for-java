@@ -9,8 +9,6 @@ import com.azure.resourcemanager.hybridcontainerservice.fluent.models.Provisione
 import com.azure.resourcemanager.hybridcontainerservice.models.ProvisionedClusterPoolUpgradeProfile;
 import com.azure.resourcemanager.hybridcontainerservice.models.ProvisionedClusterUpgradeProfile;
 import com.azure.resourcemanager.hybridcontainerservice.models.ResourceProvisioningState;
-import java.util.Collections;
-import java.util.List;
 
 public final class ProvisionedClusterUpgradeProfileImpl implements ProvisionedClusterUpgradeProfile {
     private ProvisionedClusterUpgradeProfileInner innerObject;
@@ -45,15 +43,6 @@ public final class ProvisionedClusterUpgradeProfileImpl implements ProvisionedCl
 
     public ProvisionedClusterPoolUpgradeProfile controlPlaneProfile() {
         return this.innerModel().controlPlaneProfile();
-    }
-
-    public List<ProvisionedClusterPoolUpgradeProfile> agentPoolProfiles() {
-        List<ProvisionedClusterPoolUpgradeProfile> inner = this.innerModel().agentPoolProfiles();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
     }
 
     public ProvisionedClusterUpgradeProfileInner innerModel() {
