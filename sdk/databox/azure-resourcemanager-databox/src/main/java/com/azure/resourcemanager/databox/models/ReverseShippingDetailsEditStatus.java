@@ -7,18 +7,28 @@ package com.azure.resourcemanager.databox.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** The Editable status for Reverse Shipping Address and Contact Info. */
+/**
+ * The Editable status for Reverse Shipping Address and Contact Info.
+ */
 public enum ReverseShippingDetailsEditStatus {
-    /** Enum value Enabled. */
+    /**
+     * Enum value Enabled.
+     */
     ENABLED("Enabled"),
 
-    /** Enum value Disabled. */
+    /**
+     * Enum value Disabled.
+     */
     DISABLED("Disabled"),
 
-    /** Enum value NotSupported. */
+    /**
+     * Enum value NotSupported.
+     */
     NOT_SUPPORTED("NotSupported");
 
-    /** The actual serialized value for a ReverseShippingDetailsEditStatus instance. */
+    /**
+     * The actual serialized value for a ReverseShippingDetailsEditStatus instance.
+     */
     private final String value;
 
     ReverseShippingDetailsEditStatus(String value) {
@@ -27,7 +37,7 @@ public enum ReverseShippingDetailsEditStatus {
 
     /**
      * Parses a serialized value to a ReverseShippingDetailsEditStatus instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed ReverseShippingDetailsEditStatus object, or null if unable to parse.
      */
@@ -45,7 +55,9 @@ public enum ReverseShippingDetailsEditStatus {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {

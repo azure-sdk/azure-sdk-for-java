@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Properties of data transfer details validation response. */
+/**
+ * Properties of data transfer details validation response.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationType")
 @JsonTypeName("ValidateDataTransferDetails")
 @Immutable
@@ -20,13 +22,15 @@ public final class DataTransferDetailsValidationResponseProperties extends Valid
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private ValidationStatus status;
 
-    /** Creates an instance of DataTransferDetailsValidationResponseProperties class. */
+    /**
+     * Creates an instance of DataTransferDetailsValidationResponseProperties class.
+     */
     public DataTransferDetailsValidationResponseProperties() {
     }
 
     /**
      * Get the status property: Data transfer details validation status.
-     *
+     * 
      * @return the status value.
      */
     public ValidationStatus status() {
@@ -35,7 +39,7 @@ public final class DataTransferDetailsValidationResponseProperties extends Valid
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

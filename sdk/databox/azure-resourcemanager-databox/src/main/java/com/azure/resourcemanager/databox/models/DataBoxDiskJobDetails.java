@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 import java.util.Map;
 
-/** DataBox Disk Job Details. */
+/**
+ * DataBox Disk Job Details.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobDetailsType")
 @JsonTypeName("DataBoxDisk")
 @Fluent
@@ -57,7 +59,9 @@ public final class DataBoxDiskJobDetails extends JobDetails {
     @JsonProperty(value = "passkey")
     private String passkey;
 
-    /** Creates an instance of DataBoxDiskJobDetails class. */
+    /**
+     * Creates an instance of DataBoxDiskJobDetails class.
+     */
     public DataBoxDiskJobDetails() {
     }
 
@@ -65,7 +69,7 @@ public final class DataBoxDiskJobDetails extends JobDetails {
      * Get the preferredDisks property: User preference on what size disks are needed for the job. The map is from the
      * disk size in TB to the count. Eg. {2,5} means 5 disks of 2 TB size. Key is string but will be checked against an
      * int.
-     *
+     * 
      * @return the preferredDisks value.
      */
     public Map<String, Integer> preferredDisks() {
@@ -76,7 +80,7 @@ public final class DataBoxDiskJobDetails extends JobDetails {
      * Set the preferredDisks property: User preference on what size disks are needed for the job. The map is from the
      * disk size in TB to the count. Eg. {2,5} means 5 disks of 2 TB size. Key is string but will be checked against an
      * int.
-     *
+     * 
      * @param preferredDisks the preferredDisks value to set.
      * @return the DataBoxDiskJobDetails object itself.
      */
@@ -87,7 +91,7 @@ public final class DataBoxDiskJobDetails extends JobDetails {
 
     /**
      * Get the copyProgress property: Copy progress per disk.
-     *
+     * 
      * @return the copyProgress value.
      */
     public List<DataBoxDiskCopyProgress> copyProgress() {
@@ -96,7 +100,7 @@ public final class DataBoxDiskJobDetails extends JobDetails {
 
     /**
      * Get the granularCopyProgress property: Copy progress per disk.
-     *
+     * 
      * @return the granularCopyProgress value.
      */
     public List<DataBoxDiskGranularCopyProgress> granularCopyProgress() {
@@ -105,7 +109,7 @@ public final class DataBoxDiskJobDetails extends JobDetails {
 
     /**
      * Get the granularCopyLogDetails property: Copy progress per disk.
-     *
+     * 
      * @return the granularCopyLogDetails value.
      */
     public List<DataBoxDiskGranularCopyLogDetails> granularCopyLogDetails() {
@@ -115,7 +119,7 @@ public final class DataBoxDiskJobDetails extends JobDetails {
     /**
      * Get the disksAndSizeDetails property: Contains the map of disk serial number to the disk size being used for the
      * job. Is returned only after the disks are shipped to the customer.
-     *
+     * 
      * @return the disksAndSizeDetails value.
      */
     public Map<String, Integer> disksAndSizeDetails() {
@@ -124,7 +128,7 @@ public final class DataBoxDiskJobDetails extends JobDetails {
 
     /**
      * Get the passkey property: User entered passkey for DataBox Disk job.
-     *
+     * 
      * @return the passkey value.
      */
     public String passkey() {
@@ -133,7 +137,7 @@ public final class DataBoxDiskJobDetails extends JobDetails {
 
     /**
      * Set the passkey property: User entered passkey for DataBox Disk job.
-     *
+     * 
      * @param passkey the passkey value to set.
      * @return the DataBoxDiskJobDetails object itself.
      */
@@ -142,56 +146,72 @@ public final class DataBoxDiskJobDetails extends JobDetails {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxDiskJobDetails withContactDetails(ContactDetails contactDetails) {
         super.withContactDetails(contactDetails);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxDiskJobDetails withShippingAddress(ShippingAddress shippingAddress) {
         super.withShippingAddress(shippingAddress);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxDiskJobDetails withDataImportDetails(List<DataImportDetails> dataImportDetails) {
         super.withDataImportDetails(dataImportDetails);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxDiskJobDetails withDataExportDetails(List<DataExportDetails> dataExportDetails) {
         super.withDataExportDetails(dataExportDetails);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxDiskJobDetails withPreferences(Preferences preferences) {
         super.withPreferences(preferences);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxDiskJobDetails withReverseShippingDetails(ReverseShippingDetails reverseShippingDetails) {
         super.withReverseShippingDetails(reverseShippingDetails);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxDiskJobDetails withKeyEncryptionKey(KeyEncryptionKey keyEncryptionKey) {
         super.withKeyEncryptionKey(keyEncryptionKey);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxDiskJobDetails withExpectedDataSizeInTeraBytes(Integer expectedDataSizeInTeraBytes) {
         super.withExpectedDataSizeInTeraBytes(expectedDataSizeInTeraBytes);
@@ -200,7 +220,7 @@ public final class DataBoxDiskJobDetails extends JobDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

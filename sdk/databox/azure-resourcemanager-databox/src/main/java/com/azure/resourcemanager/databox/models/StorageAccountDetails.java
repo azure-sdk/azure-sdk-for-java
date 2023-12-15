@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Details for the storage account. */
+/**
+ * Details for the storage account.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "dataAccountType")
 @JsonTypeName("StorageAccount")
 @Fluent
@@ -21,13 +23,15 @@ public final class StorageAccountDetails extends DataAccountDetails {
     @JsonProperty(value = "storageAccountId", required = true)
     private String storageAccountId;
 
-    /** Creates an instance of StorageAccountDetails class. */
+    /**
+     * Creates an instance of StorageAccountDetails class.
+     */
     public StorageAccountDetails() {
     }
 
     /**
      * Get the storageAccountId property: Storage Account Resource Id.
-     *
+     * 
      * @return the storageAccountId value.
      */
     public String storageAccountId() {
@@ -36,7 +40,7 @@ public final class StorageAccountDetails extends DataAccountDetails {
 
     /**
      * Set the storageAccountId property: Storage Account Resource Id.
-     *
+     * 
      * @param storageAccountId the storageAccountId value to set.
      * @return the StorageAccountDetails object itself.
      */
@@ -45,7 +49,9 @@ public final class StorageAccountDetails extends DataAccountDetails {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public StorageAccountDetails withSharePassword(String sharePassword) {
         super.withSharePassword(sharePassword);
@@ -54,17 +60,15 @@ public final class StorageAccountDetails extends DataAccountDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (storageAccountId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property storageAccountId in model StorageAccountDetails"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property storageAccountId in model StorageAccountDetails"));
         }
     }
 

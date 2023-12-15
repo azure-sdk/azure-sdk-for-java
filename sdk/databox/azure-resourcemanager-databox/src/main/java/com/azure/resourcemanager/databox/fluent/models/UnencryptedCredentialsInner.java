@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.databox.models.JobSecrets;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Unencrypted credentials for accessing device. */
+/**
+ * Unencrypted credentials for accessing device.
+ */
 @Immutable
 public final class UnencryptedCredentialsInner {
     /*
@@ -23,13 +25,15 @@ public final class UnencryptedCredentialsInner {
     @JsonProperty(value = "jobSecrets", access = JsonProperty.Access.WRITE_ONLY)
     private JobSecrets jobSecrets;
 
-    /** Creates an instance of UnencryptedCredentialsInner class. */
+    /**
+     * Creates an instance of UnencryptedCredentialsInner class.
+     */
     public UnencryptedCredentialsInner() {
     }
 
     /**
      * Get the jobName property: Name of the job.
-     *
+     * 
      * @return the jobName value.
      */
     public String jobName() {
@@ -38,7 +42,7 @@ public final class UnencryptedCredentialsInner {
 
     /**
      * Get the jobSecrets property: Secrets related to this job.
-     *
+     * 
      * @return the jobSecrets value.
      */
     public JobSecrets jobSecrets() {
@@ -47,7 +51,7 @@ public final class UnencryptedCredentialsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

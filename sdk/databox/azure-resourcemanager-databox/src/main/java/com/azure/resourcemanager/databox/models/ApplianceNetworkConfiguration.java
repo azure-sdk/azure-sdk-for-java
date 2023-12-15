@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Network Adapter configuration of a DataBox. */
+/**
+ * The Network Adapter configuration of a DataBox.
+ */
 @Immutable
 public final class ApplianceNetworkConfiguration {
     /*
@@ -22,13 +24,15 @@ public final class ApplianceNetworkConfiguration {
     @JsonProperty(value = "macAddress", access = JsonProperty.Access.WRITE_ONLY)
     private String macAddress;
 
-    /** Creates an instance of ApplianceNetworkConfiguration class. */
+    /**
+     * Creates an instance of ApplianceNetworkConfiguration class.
+     */
     public ApplianceNetworkConfiguration() {
     }
 
     /**
      * Get the name property: Name of the network.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class ApplianceNetworkConfiguration {
 
     /**
      * Get the macAddress property: Mac Address.
-     *
+     * 
      * @return the macAddress value.
      */
     public String macAddress() {
@@ -46,7 +50,7 @@ public final class ApplianceNetworkConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

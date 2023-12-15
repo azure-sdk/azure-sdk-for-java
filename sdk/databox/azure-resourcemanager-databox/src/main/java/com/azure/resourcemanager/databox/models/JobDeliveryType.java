@@ -7,15 +7,23 @@ package com.azure.resourcemanager.databox.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Delivery type of Job. */
+/**
+ * Delivery type of Job.
+ */
 public enum JobDeliveryType {
-    /** Enum value NonScheduled. */
+    /**
+     * Enum value NonScheduled.
+     */
     NON_SCHEDULED("NonScheduled"),
 
-    /** Enum value Scheduled. */
+    /**
+     * Enum value Scheduled.
+     */
     SCHEDULED("Scheduled");
 
-    /** The actual serialized value for a JobDeliveryType instance. */
+    /**
+     * The actual serialized value for a JobDeliveryType instance.
+     */
     private final String value;
 
     JobDeliveryType(String value) {
@@ -24,7 +32,7 @@ public enum JobDeliveryType {
 
     /**
      * Parses a serialized value to a JobDeliveryType instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed JobDeliveryType object, or null if unable to parse.
      */
@@ -42,7 +50,9 @@ public enum JobDeliveryType {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {

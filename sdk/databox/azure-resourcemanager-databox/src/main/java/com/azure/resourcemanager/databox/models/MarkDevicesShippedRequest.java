@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The request body to provide the delivery package details of job. */
+/**
+ * The request body to provide the delivery package details of job.
+ */
 @Fluent
 public final class MarkDevicesShippedRequest {
     /*
@@ -17,13 +19,15 @@ public final class MarkDevicesShippedRequest {
     @JsonProperty(value = "deliverToDcPackageDetails", required = true)
     private PackageCarrierInfo deliverToDcPackageDetails;
 
-    /** Creates an instance of MarkDevicesShippedRequest class. */
+    /**
+     * Creates an instance of MarkDevicesShippedRequest class.
+     */
     public MarkDevicesShippedRequest() {
     }
 
     /**
      * Get the deliverToDcPackageDetails property: Delivery package details.
-     *
+     * 
      * @return the deliverToDcPackageDetails value.
      */
     public PackageCarrierInfo deliverToDcPackageDetails() {
@@ -32,7 +36,7 @@ public final class MarkDevicesShippedRequest {
 
     /**
      * Set the deliverToDcPackageDetails property: Delivery package details.
-     *
+     * 
      * @param deliverToDcPackageDetails the deliverToDcPackageDetails value to set.
      * @return the MarkDevicesShippedRequest object itself.
      */
@@ -43,15 +47,13 @@ public final class MarkDevicesShippedRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (deliverToDcPackageDetails() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property deliverToDcPackageDetails in model MarkDevicesShippedRequest"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property deliverToDcPackageDetails in model MarkDevicesShippedRequest"));
         } else {
             deliverToDcPackageDetails().validate();
         }

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Device erasure details with erasure completion status and erasureordestructionlog sas key. */
+/**
+ * Device erasure details with erasure completion status and erasureordestructionlog sas key.
+ */
 @Immutable
 public final class DeviceErasureDetails {
     /*
@@ -22,13 +24,15 @@ public final class DeviceErasureDetails {
     @JsonProperty(value = "erasureOrDestructionCertificateSasKey", access = JsonProperty.Access.WRITE_ONLY)
     private String erasureOrDestructionCertificateSasKey;
 
-    /** Creates an instance of DeviceErasureDetails class. */
+    /**
+     * Creates an instance of DeviceErasureDetails class.
+     */
     public DeviceErasureDetails() {
     }
 
     /**
      * Get the deviceErasureStatus property: Holds the device erasure completion status.
-     *
+     * 
      * @return the deviceErasureStatus value.
      */
     public StageStatus deviceErasureStatus() {
@@ -38,7 +42,7 @@ public final class DeviceErasureDetails {
     /**
      * Get the erasureOrDestructionCertificateSasKey property: Shared access key to download cleanup or destruction
      * certificate for device.
-     *
+     * 
      * @return the erasureOrDestructionCertificateSasKey value.
      */
     public String erasureOrDestructionCertificateSasKey() {
@@ -47,7 +51,7 @@ public final class DeviceErasureDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

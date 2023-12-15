@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Minimum fields that must be present in any type of validation request. */
+/**
+ * Minimum fields that must be present in any type of validation request.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -26,17 +28,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "ValidateSkuAvailability", value = SkuAvailabilityValidationRequest.class),
     @JsonSubTypes.Type(
         name = "ValidateSubscriptionIsAllowedToCreateJob",
-        value = SubscriptionIsAllowedToCreateJobValidationRequest.class)
-})
+        value = SubscriptionIsAllowedToCreateJobValidationRequest.class) })
 @Immutable
 public class ValidationInputRequest {
-    /** Creates an instance of ValidationInputRequest class. */
+    /**
+     * Creates an instance of ValidationInputRequest class.
+     */
     public ValidationInputRequest() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

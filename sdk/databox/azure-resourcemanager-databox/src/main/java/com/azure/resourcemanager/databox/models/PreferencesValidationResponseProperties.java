@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Properties of data center and transport preference validation response. */
+/**
+ * Properties of data center and transport preference validation response.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationType")
 @JsonTypeName("ValidatePreferences")
 @Immutable
@@ -20,13 +22,15 @@ public final class PreferencesValidationResponseProperties extends ValidationInp
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private ValidationStatus status;
 
-    /** Creates an instance of PreferencesValidationResponseProperties class. */
+    /**
+     * Creates an instance of PreferencesValidationResponseProperties class.
+     */
     public PreferencesValidationResponseProperties() {
     }
 
     /**
      * Get the status property: Validation status of requested data center and transport.
-     *
+     * 
      * @return the status value.
      */
     public ValidationStatus status() {
@@ -35,7 +39,7 @@ public final class PreferencesValidationResponseProperties extends ValidationInp
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Filter details to transfer Azure Blobs. */
+/**
+ * Filter details to transfer Azure Blobs.
+ */
 @Fluent
 public final class BlobFilterDetails {
     /*
@@ -29,13 +31,15 @@ public final class BlobFilterDetails {
     @JsonProperty(value = "containerList")
     private List<String> containerList;
 
-    /** Creates an instance of BlobFilterDetails class. */
+    /**
+     * Creates an instance of BlobFilterDetails class.
+     */
     public BlobFilterDetails() {
     }
 
     /**
      * Get the blobPrefixList property: Prefix list of the Azure blobs to be transferred.
-     *
+     * 
      * @return the blobPrefixList value.
      */
     public List<String> blobPrefixList() {
@@ -44,7 +48,7 @@ public final class BlobFilterDetails {
 
     /**
      * Set the blobPrefixList property: Prefix list of the Azure blobs to be transferred.
-     *
+     * 
      * @param blobPrefixList the blobPrefixList value to set.
      * @return the BlobFilterDetails object itself.
      */
@@ -55,7 +59,7 @@ public final class BlobFilterDetails {
 
     /**
      * Get the blobPathList property: List of full path of the blobs to be transferred.
-     *
+     * 
      * @return the blobPathList value.
      */
     public List<String> blobPathList() {
@@ -64,7 +68,7 @@ public final class BlobFilterDetails {
 
     /**
      * Set the blobPathList property: List of full path of the blobs to be transferred.
-     *
+     * 
      * @param blobPathList the blobPathList value to set.
      * @return the BlobFilterDetails object itself.
      */
@@ -75,7 +79,7 @@ public final class BlobFilterDetails {
 
     /**
      * Get the containerList property: List of blob containers to be transferred.
-     *
+     * 
      * @return the containerList value.
      */
     public List<String> containerList() {
@@ -84,7 +88,7 @@ public final class BlobFilterDetails {
 
     /**
      * Set the containerList property: List of blob containers to be transferred.
-     *
+     * 
      * @param containerList the containerList value to set.
      * @return the BlobFilterDetails object itself.
      */
@@ -95,7 +99,7 @@ public final class BlobFilterDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

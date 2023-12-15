@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Export disk details. */
+/**
+ * Export disk details.
+ */
 @Immutable
 public final class ExportDiskDetails {
     /*
@@ -28,13 +30,15 @@ public final class ExportDiskDetails {
     @JsonProperty(value = "backupManifestCloudPath", access = JsonProperty.Access.WRITE_ONLY)
     private String backupManifestCloudPath;
 
-    /** Creates an instance of ExportDiskDetails class. */
+    /**
+     * Creates an instance of ExportDiskDetails class.
+     */
     public ExportDiskDetails() {
     }
 
     /**
      * Get the manifestFile property: The relative path of the manifest file on the disk.
-     *
+     * 
      * @return the manifestFile value.
      */
     public String manifestFile() {
@@ -43,7 +47,7 @@ public final class ExportDiskDetails {
 
     /**
      * Get the manifestHash property: The Base16-encoded MD5 hash of the manifest file on the disk.
-     *
+     * 
      * @return the manifestHash value.
      */
     public String manifestHash() {
@@ -53,7 +57,7 @@ public final class ExportDiskDetails {
     /**
      * Get the backupManifestCloudPath property: Path to backed up manifest, only returned if enableManifestBackup is
      * true.
-     *
+     * 
      * @return the backupManifestCloudPath value.
      */
     public String backupManifestCloudPath() {
@@ -62,7 +66,7 @@ public final class ExportDiskDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
