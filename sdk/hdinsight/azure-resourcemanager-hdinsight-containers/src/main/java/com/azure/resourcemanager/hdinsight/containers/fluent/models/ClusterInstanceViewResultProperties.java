@@ -10,21 +10,29 @@ import com.azure.resourcemanager.hdinsight.containers.models.ClusterInstanceView
 import com.azure.resourcemanager.hdinsight.containers.models.ServiceStatus;
 import java.util.List;
 
-/** Properties of the instance view. */
+/**
+ * Properties of the instance view.
+ */
 @Fluent
 public final class ClusterInstanceViewResultProperties extends ClusterInstanceViewProperties {
-    /** Creates an instance of ClusterInstanceViewResultProperties class. */
+    /**
+     * Creates an instance of ClusterInstanceViewResultProperties class.
+     */
     public ClusterInstanceViewResultProperties() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterInstanceViewResultProperties withStatus(ClusterInstanceViewPropertiesStatus status) {
         super.withStatus(status);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterInstanceViewResultProperties withServiceStatuses(List<ServiceStatus> serviceStatuses) {
         super.withServiceStatuses(serviceStatuses);
@@ -33,7 +41,7 @@ public final class ClusterInstanceViewResultProperties extends ClusterInstanceVi
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

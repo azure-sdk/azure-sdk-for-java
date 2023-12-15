@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The metastore specification for Spark cluster. */
+/**
+ * The metastore specification for Spark cluster.
+ */
 @Fluent
 public final class SparkMetastoreSpec {
     /*
@@ -47,13 +49,15 @@ public final class SparkMetastoreSpec {
     @JsonProperty(value = "thriftUrl")
     private String thriftUrl;
 
-    /** Creates an instance of SparkMetastoreSpec class. */
+    /**
+     * Creates an instance of SparkMetastoreSpec class.
+     */
     public SparkMetastoreSpec() {
     }
 
     /**
      * Get the dbServerHost property: The database server host.
-     *
+     * 
      * @return the dbServerHost value.
      */
     public String dbServerHost() {
@@ -62,7 +66,7 @@ public final class SparkMetastoreSpec {
 
     /**
      * Set the dbServerHost property: The database server host.
-     *
+     * 
      * @param dbServerHost the dbServerHost value to set.
      * @return the SparkMetastoreSpec object itself.
      */
@@ -73,7 +77,7 @@ public final class SparkMetastoreSpec {
 
     /**
      * Get the dbName property: The database name.
-     *
+     * 
      * @return the dbName value.
      */
     public String dbName() {
@@ -82,7 +86,7 @@ public final class SparkMetastoreSpec {
 
     /**
      * Set the dbName property: The database name.
-     *
+     * 
      * @param dbName the dbName value to set.
      * @return the SparkMetastoreSpec object itself.
      */
@@ -93,7 +97,7 @@ public final class SparkMetastoreSpec {
 
     /**
      * Get the dbUsername property: The database user name.
-     *
+     * 
      * @return the dbUsername value.
      */
     public String dbUsername() {
@@ -102,7 +106,7 @@ public final class SparkMetastoreSpec {
 
     /**
      * Set the dbUsername property: The database user name.
-     *
+     * 
      * @param dbUsername the dbUsername value to set.
      * @return the SparkMetastoreSpec object itself.
      */
@@ -113,7 +117,7 @@ public final class SparkMetastoreSpec {
 
     /**
      * Get the dbPasswordSecretName property: The secret name which contains the database user password.
-     *
+     * 
      * @return the dbPasswordSecretName value.
      */
     public String dbPasswordSecretName() {
@@ -122,7 +126,7 @@ public final class SparkMetastoreSpec {
 
     /**
      * Set the dbPasswordSecretName property: The secret name which contains the database user password.
-     *
+     * 
      * @param dbPasswordSecretName the dbPasswordSecretName value to set.
      * @return the SparkMetastoreSpec object itself.
      */
@@ -133,7 +137,7 @@ public final class SparkMetastoreSpec {
 
     /**
      * Get the keyVaultId property: The key vault resource id.
-     *
+     * 
      * @return the keyVaultId value.
      */
     public String keyVaultId() {
@@ -142,7 +146,7 @@ public final class SparkMetastoreSpec {
 
     /**
      * Set the keyVaultId property: The key vault resource id.
-     *
+     * 
      * @param keyVaultId the keyVaultId value to set.
      * @return the SparkMetastoreSpec object itself.
      */
@@ -153,7 +157,7 @@ public final class SparkMetastoreSpec {
 
     /**
      * Get the thriftUrl property: The thrift url.
-     *
+     * 
      * @return the thriftUrl value.
      */
     public String thriftUrl() {
@@ -162,7 +166,7 @@ public final class SparkMetastoreSpec {
 
     /**
      * Set the thriftUrl property: The thrift url.
-     *
+     * 
      * @param thriftUrl the thriftUrl value to set.
      * @return the SparkMetastoreSpec object itself.
      */
@@ -173,35 +177,29 @@ public final class SparkMetastoreSpec {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (dbServerHost() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property dbServerHost in model SparkMetastoreSpec"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property dbServerHost in model SparkMetastoreSpec"));
         }
         if (dbName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property dbName in model SparkMetastoreSpec"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property dbName in model SparkMetastoreSpec"));
         }
         if (dbUsername() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property dbUsername in model SparkMetastoreSpec"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property dbUsername in model SparkMetastoreSpec"));
         }
         if (dbPasswordSecretName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dbPasswordSecretName in model SparkMetastoreSpec"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property dbPasswordSecretName in model SparkMetastoreSpec"));
         }
         if (keyVaultId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property keyVaultId in model SparkMetastoreSpec"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property keyVaultId in model SparkMetastoreSpec"));
         }
     }
 

@@ -4,49 +4,59 @@
 
 package com.azure.resourcemanager.hdinsight.containers.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.hdinsight.containers.fluent.models.ClusterVersionInner;
 import java.util.List;
 
-/** An immutable client-side representation of ClusterVersion. */
+/**
+ * An immutable client-side representation of ClusterVersion.
+ */
 public interface ClusterVersion {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the clusterType property: The type of cluster.
-     *
+     * 
      * @return the clusterType value.
      */
     String clusterType();
 
     /**
      * Gets the clusterVersion property: Version with three part.
-     *
+     * 
      * @return the clusterVersion value.
      */
     String clusterVersion();
 
     /**
      * Gets the ossVersion property: Version with three part.
-     *
+     * 
      * @return the ossVersion value.
      */
     String ossVersion();
@@ -54,28 +64,28 @@ public interface ClusterVersion {
     /**
      * Gets the clusterPoolVersion property: The two part cluster pool version. If the cluster version is before cluster
      * pool version on-board, the return value will be empty string.
-     *
+     * 
      * @return the clusterPoolVersion value.
      */
     String clusterPoolVersion();
 
     /**
      * Gets the isPreview property: Indicate if this version is in preview or not.
-     *
+     * 
      * @return the isPreview value.
      */
     Boolean isPreview();
 
     /**
      * Gets the components property: Component list of this cluster type and version.
-     *
+     * 
      * @return the components value.
      */
     List<ClusterComponentsItem> components();
 
     /**
      * Gets the inner com.azure.resourcemanager.hdinsight.containers.fluent.models.ClusterVersionInner object.
-     *
+     * 
      * @return the inner object.
      */
     ClusterVersionInner innerModel();

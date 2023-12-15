@@ -7,22 +7,23 @@ package com.azure.resourcemanager.hdinsight.containers.generated;
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterPoolResourcePropertiesClusterPoolProfile;
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterPoolResourcePropertiesComputeProfile;
 
-/** Samples for ClusterPools CreateOrUpdate. */
+/**
+ * Samples for ClusterPools CreateOrUpdate.
+ */
 public final class ClusterPoolsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/preview/2023-06-01-preview/examples/CreateClusterPool.json
+     * x-ms-original-file:
+     * specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/preview/2023-06-01-preview/examples/
+     * CreateClusterPool.json
      */
     /**
      * Sample code: ClusterPoolPut.
-     *
+     * 
      * @param manager Entry point to HDInsightContainersManager.
      */
-    public static void clusterPoolPut(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
-        manager
-            .clusterPools()
-            .define("clusterpool1")
-            .withRegion("West US 2")
+    public static void
+        clusterPoolPut(com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        manager.clusterPools().define("clusterpool1").withRegion("West US 2")
             .withExistingResourceGroup("hiloResourcegroup")
             .withClusterPoolProfile(new ClusterPoolResourcePropertiesClusterPoolProfile().withClusterPoolVersion("1.2"))
             .withComputeProfile(new ClusterPoolResourcePropertiesComputeProfile().withVmSize("Standard_D3_v2"))

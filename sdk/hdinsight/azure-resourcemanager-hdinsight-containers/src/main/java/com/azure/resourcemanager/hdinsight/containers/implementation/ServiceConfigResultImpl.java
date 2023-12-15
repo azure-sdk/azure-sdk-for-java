@@ -15,8 +15,7 @@ public final class ServiceConfigResultImpl implements ServiceConfigResult {
 
     private final com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager;
 
-    ServiceConfigResultImpl(
-        ServiceConfigResultInner innerObject,
+    ServiceConfigResultImpl(ServiceConfigResultInner innerObject,
         com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.hdinsight.containers.models.ClusterComponentsIt
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Cluster version properties. */
+/**
+ * Cluster version properties.
+ */
 @Fluent
 public final class ClusterVersionProperties {
     /*
@@ -49,13 +51,15 @@ public final class ClusterVersionProperties {
     @JsonProperty(value = "components", access = JsonProperty.Access.WRITE_ONLY)
     private List<ClusterComponentsItem> components;
 
-    /** Creates an instance of ClusterVersionProperties class. */
+    /**
+     * Creates an instance of ClusterVersionProperties class.
+     */
     public ClusterVersionProperties() {
     }
 
     /**
      * Get the clusterType property: The type of cluster.
-     *
+     * 
      * @return the clusterType value.
      */
     public String clusterType() {
@@ -64,7 +68,7 @@ public final class ClusterVersionProperties {
 
     /**
      * Set the clusterType property: The type of cluster.
-     *
+     * 
      * @param clusterType the clusterType value to set.
      * @return the ClusterVersionProperties object itself.
      */
@@ -75,7 +79,7 @@ public final class ClusterVersionProperties {
 
     /**
      * Get the clusterVersion property: Version with three part.
-     *
+     * 
      * @return the clusterVersion value.
      */
     public String clusterVersion() {
@@ -84,7 +88,7 @@ public final class ClusterVersionProperties {
 
     /**
      * Set the clusterVersion property: Version with three part.
-     *
+     * 
      * @param clusterVersion the clusterVersion value to set.
      * @return the ClusterVersionProperties object itself.
      */
@@ -95,7 +99,7 @@ public final class ClusterVersionProperties {
 
     /**
      * Get the ossVersion property: Version with three part.
-     *
+     * 
      * @return the ossVersion value.
      */
     public String ossVersion() {
@@ -104,7 +108,7 @@ public final class ClusterVersionProperties {
 
     /**
      * Set the ossVersion property: Version with three part.
-     *
+     * 
      * @param ossVersion the ossVersion value to set.
      * @return the ClusterVersionProperties object itself.
      */
@@ -116,7 +120,7 @@ public final class ClusterVersionProperties {
     /**
      * Get the clusterPoolVersion property: The two part cluster pool version. If the cluster version is before cluster
      * pool version on-board, the return value will be empty string.
-     *
+     * 
      * @return the clusterPoolVersion value.
      */
     public String clusterPoolVersion() {
@@ -126,7 +130,7 @@ public final class ClusterVersionProperties {
     /**
      * Set the clusterPoolVersion property: The two part cluster pool version. If the cluster version is before cluster
      * pool version on-board, the return value will be empty string.
-     *
+     * 
      * @param clusterPoolVersion the clusterPoolVersion value to set.
      * @return the ClusterVersionProperties object itself.
      */
@@ -137,7 +141,7 @@ public final class ClusterVersionProperties {
 
     /**
      * Get the isPreview property: Indicate if this version is in preview or not.
-     *
+     * 
      * @return the isPreview value.
      */
     public Boolean isPreview() {
@@ -146,7 +150,7 @@ public final class ClusterVersionProperties {
 
     /**
      * Set the isPreview property: Indicate if this version is in preview or not.
-     *
+     * 
      * @param isPreview the isPreview value to set.
      * @return the ClusterVersionProperties object itself.
      */
@@ -157,7 +161,7 @@ public final class ClusterVersionProperties {
 
     /**
      * Get the components property: Component list of this cluster type and version.
-     *
+     * 
      * @return the components value.
      */
     public List<ClusterComponentsItem> components() {
@@ -166,7 +170,7 @@ public final class ClusterVersionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

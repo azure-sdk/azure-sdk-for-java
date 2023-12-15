@@ -9,63 +9,83 @@ import com.azure.resourcemanager.hdinsight.containers.models.ServiceConfigListRe
 import com.azure.resourcemanager.hdinsight.containers.models.ServiceConfigListResultValueEntity;
 import java.util.Map;
 
-/** Cluster instance service config properties. */
+/**
+ * Cluster instance service config properties.
+ */
 @Fluent
 public final class ServiceConfigResultProperties extends ServiceConfigListResultProperties {
-    /** Creates an instance of ServiceConfigResultProperties class. */
+    /**
+     * Creates an instance of ServiceConfigResultProperties class.
+     */
     public ServiceConfigResultProperties() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ServiceConfigResultProperties withServiceName(String serviceName) {
         super.withServiceName(serviceName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ServiceConfigResultProperties withFileName(String fileName) {
         super.withFileName(fileName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ServiceConfigResultProperties withContent(String content) {
         super.withContent(content);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ServiceConfigResultProperties withComponentName(String componentName) {
         super.withComponentName(componentName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ServiceConfigResultProperties withType(String type) {
         super.withType(type);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ServiceConfigResultProperties withPath(String path) {
         super.withPath(path);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ServiceConfigResultProperties withCustomKeys(Map<String, String> customKeys) {
         super.withCustomKeys(customKeys);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ServiceConfigResultProperties withDefaultKeys(Map<String, ServiceConfigListResultValueEntity> defaultKeys) {
         super.withDefaultKeys(defaultKeys);
@@ -74,7 +94,7 @@ public final class ServiceConfigResultProperties extends ServiceConfigListResult
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

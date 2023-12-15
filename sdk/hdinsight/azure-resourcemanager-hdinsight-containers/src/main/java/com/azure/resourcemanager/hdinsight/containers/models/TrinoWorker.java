@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.hdinsight.containers.fluent.models.TrinoDebugConfig;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Trino worker. */
+/**
+ * Trino worker.
+ */
 @Fluent
 public final class TrinoWorker {
     /*
@@ -17,13 +19,15 @@ public final class TrinoWorker {
     @JsonProperty(value = "debug")
     private TrinoDebugConfig innerDebug;
 
-    /** Creates an instance of TrinoWorker class. */
+    /**
+     * Creates an instance of TrinoWorker class.
+     */
     public TrinoWorker() {
     }
 
     /**
      * Get the innerDebug property: Trino debug configuration.
-     *
+     * 
      * @return the innerDebug value.
      */
     private TrinoDebugConfig innerDebug() {
@@ -32,7 +36,7 @@ public final class TrinoWorker {
 
     /**
      * Get the enable property: The flag that if enable debug or not.
-     *
+     * 
      * @return the enable value.
      */
     public Boolean enable() {
@@ -41,7 +45,7 @@ public final class TrinoWorker {
 
     /**
      * Set the enable property: The flag that if enable debug or not.
-     *
+     * 
      * @param enable the enable value to set.
      * @return the TrinoWorker object itself.
      */
@@ -55,7 +59,7 @@ public final class TrinoWorker {
 
     /**
      * Get the port property: The debug port.
-     *
+     * 
      * @return the port value.
      */
     public Integer port() {
@@ -64,7 +68,7 @@ public final class TrinoWorker {
 
     /**
      * Set the port property: The debug port.
-     *
+     * 
      * @param port the port value to set.
      * @return the TrinoWorker object itself.
      */
@@ -78,7 +82,7 @@ public final class TrinoWorker {
 
     /**
      * Get the suspend property: The flag that if suspend debug or not.
-     *
+     * 
      * @return the suspend value.
      */
     public Boolean suspend() {
@@ -87,7 +91,7 @@ public final class TrinoWorker {
 
     /**
      * Set the suspend property: The flag that if suspend debug or not.
-     *
+     * 
      * @param suspend the suspend value to set.
      * @return the TrinoWorker object itself.
      */
@@ -101,7 +105,7 @@ public final class TrinoWorker {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
