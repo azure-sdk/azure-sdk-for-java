@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The status of the storage insight. */
+/**
+ * The status of the storage insight.
+ */
 @Fluent
 public final class StorageInsightStatus {
     /*
@@ -23,13 +25,15 @@ public final class StorageInsightStatus {
     @JsonProperty(value = "description")
     private String description;
 
-    /** Creates an instance of StorageInsightStatus class. */
+    /**
+     * Creates an instance of StorageInsightStatus class.
+     */
     public StorageInsightStatus() {
     }
 
     /**
      * Get the state property: The state of the storage insight connection to the workspace.
-     *
+     * 
      * @return the state value.
      */
     public StorageInsightState state() {
@@ -38,7 +42,7 @@ public final class StorageInsightStatus {
 
     /**
      * Set the state property: The state of the storage insight connection to the workspace.
-     *
+     * 
      * @param state the state value to set.
      * @return the StorageInsightStatus object itself.
      */
@@ -49,7 +53,7 @@ public final class StorageInsightStatus {
 
     /**
      * Get the description property: Description of the state of the storage insight.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -58,7 +62,7 @@ public final class StorageInsightStatus {
 
     /**
      * Set the description property: Description of the state of the storage insight.
-     *
+     * 
      * @param description the description value to set.
      * @return the StorageInsightStatus object itself.
      */
@@ -69,14 +73,13 @@ public final class StorageInsightStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (state() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property state in model StorageInsightStatus"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property state in model StorageInsightStatus"));
         }
     }
 

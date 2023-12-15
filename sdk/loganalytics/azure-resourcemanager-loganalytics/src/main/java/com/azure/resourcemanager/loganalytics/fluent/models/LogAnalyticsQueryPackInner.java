@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
-/** An Log Analytics QueryPack definition. */
+/**
+ * An Log Analytics QueryPack definition.
+ */
 @Fluent
 public final class LogAnalyticsQueryPackInner extends QueryPacksResource {
     /*
@@ -20,27 +22,33 @@ public final class LogAnalyticsQueryPackInner extends QueryPacksResource {
     @JsonProperty(value = "properties", required = true)
     private LogAnalyticsQueryPackProperties innerProperties = new LogAnalyticsQueryPackProperties();
 
-    /** Creates an instance of LogAnalyticsQueryPackInner class. */
+    /**
+     * Creates an instance of LogAnalyticsQueryPackInner class.
+     */
     public LogAnalyticsQueryPackInner() {
     }
 
     /**
      * Get the innerProperties property: Properties that define a Log Analytics QueryPack resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private LogAnalyticsQueryPackProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LogAnalyticsQueryPackInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LogAnalyticsQueryPackInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -49,7 +57,7 @@ public final class LogAnalyticsQueryPackInner extends QueryPacksResource {
 
     /**
      * Get the queryPackId property: The unique ID of your application. This field cannot be changed.
-     *
+     * 
      * @return the queryPackId value.
      */
     public String queryPackId() {
@@ -58,7 +66,7 @@ public final class LogAnalyticsQueryPackInner extends QueryPacksResource {
 
     /**
      * Get the timeCreated property: Creation Date for the Log Analytics QueryPack, in ISO 8601 format.
-     *
+     * 
      * @return the timeCreated value.
      */
     public OffsetDateTime timeCreated() {
@@ -67,7 +75,7 @@ public final class LogAnalyticsQueryPackInner extends QueryPacksResource {
 
     /**
      * Get the timeModified property: Last modified date of the Log Analytics QueryPack, in ISO 8601 format.
-     *
+     * 
      * @return the timeModified value.
      */
     public OffsetDateTime timeModified() {
@@ -76,9 +84,9 @@ public final class LogAnalyticsQueryPackInner extends QueryPacksResource {
 
     /**
      * Get the provisioningState property: Current state of this QueryPack: whether or not is has been provisioned
-     * within the resource group it is defined. Users cannot change this value but are able to read from it. Values will
-     * include Succeeded, Deploying, Canceled, and Failed.
-     *
+     * within the resource group it is defined. Users cannot change this value but are able to read from it. Values
+     * will include Succeeded, Deploying, Canceled, and Failed.
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -87,17 +95,15 @@ public final class LogAnalyticsQueryPackInner extends QueryPacksResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model LogAnalyticsQueryPackInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model LogAnalyticsQueryPackInner"));
         } else {
             innerProperties().validate();
         }

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The related metadata items for the function. */
+/**
+ * The related metadata items for the function.
+ */
 @Fluent
 public final class LogAnalyticsQueryPackQuerySearchPropertiesRelated {
     /*
@@ -29,13 +31,15 @@ public final class LogAnalyticsQueryPackQuerySearchPropertiesRelated {
     @JsonProperty(value = "solutions")
     private List<String> solutions;
 
-    /** Creates an instance of LogAnalyticsQueryPackQuerySearchPropertiesRelated class. */
+    /**
+     * Creates an instance of LogAnalyticsQueryPackQuerySearchPropertiesRelated class.
+     */
     public LogAnalyticsQueryPackQuerySearchPropertiesRelated() {
     }
 
     /**
      * Get the categories property: The related categories for the function.
-     *
+     * 
      * @return the categories value.
      */
     public List<String> categories() {
@@ -44,7 +48,7 @@ public final class LogAnalyticsQueryPackQuerySearchPropertiesRelated {
 
     /**
      * Set the categories property: The related categories for the function.
-     *
+     * 
      * @param categories the categories value to set.
      * @return the LogAnalyticsQueryPackQuerySearchPropertiesRelated object itself.
      */
@@ -55,7 +59,7 @@ public final class LogAnalyticsQueryPackQuerySearchPropertiesRelated {
 
     /**
      * Get the resourceTypes property: The related resource types for the function.
-     *
+     * 
      * @return the resourceTypes value.
      */
     public List<String> resourceTypes() {
@@ -64,7 +68,7 @@ public final class LogAnalyticsQueryPackQuerySearchPropertiesRelated {
 
     /**
      * Set the resourceTypes property: The related resource types for the function.
-     *
+     * 
      * @param resourceTypes the resourceTypes value to set.
      * @return the LogAnalyticsQueryPackQuerySearchPropertiesRelated object itself.
      */
@@ -75,7 +79,7 @@ public final class LogAnalyticsQueryPackQuerySearchPropertiesRelated {
 
     /**
      * Get the solutions property: The related Log Analytics solutions for the function.
-     *
+     * 
      * @return the solutions value.
      */
     public List<String> solutions() {
@@ -84,7 +88,7 @@ public final class LogAnalyticsQueryPackQuerySearchPropertiesRelated {
 
     /**
      * Set the solutions property: The related Log Analytics solutions for the function.
-     *
+     * 
      * @param solutions the solutions value to set.
      * @return the LogAnalyticsQueryPackQuerySearchPropertiesRelated object itself.
      */
@@ -95,7 +99,7 @@ public final class LogAnalyticsQueryPackQuerySearchPropertiesRelated {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

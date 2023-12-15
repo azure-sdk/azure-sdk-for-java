@@ -76,8 +76,19 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to LogAnalyticsManager. Operational Insights Client. */
+/**
+ * Entry point to LogAnalyticsManager.
+ * Operational Insights Client.
+ */
 public final class LogAnalyticsManager {
+    private Operations operations;
+
+    private Workspaces workspaces;
+
+    private DeletedWorkspaces deletedWorkspaces;
+
+    private Tables tables;
+
     private QueryPacks queryPacks;
 
     private Queries queries;
@@ -114,31 +125,19 @@ public final class LogAnalyticsManager {
 
     private Clusters clusters;
 
-    private Operations operations;
-
-    private Workspaces workspaces;
-
-    private DeletedWorkspaces deletedWorkspaces;
-
-    private Tables tables;
-
     private final OperationalInsightsManagementClient clientObject;
 
     private LogAnalyticsManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject =
-            new OperationalInsightsManagementClientBuilder()
-                .pipeline(httpPipeline)
-                .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .subscriptionId(profile.getSubscriptionId())
-                .defaultPollInterval(defaultPollInterval)
-                .buildClient();
+        this.clientObject = new OperationalInsightsManagementClientBuilder().pipeline(httpPipeline)
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval).buildClient();
     }
 
     /**
      * Creates an instance of LogAnalytics service API entry point.
-     *
+     * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
      * @return the LogAnalytics service API instance.
@@ -151,7 +150,7 @@ public final class LogAnalyticsManager {
 
     /**
      * Creates an instance of LogAnalytics service API entry point.
-     *
+     * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
      * @return the LogAnalytics service API instance.
@@ -164,14 +163,16 @@ public final class LogAnalyticsManager {
 
     /**
      * Gets a Configurable instance that can be used to create LogAnalyticsManager with optional configuration.
-     *
+     * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
         return new LogAnalyticsManager.Configurable();
     }
 
-    /** The Configurable allowing configurations to be set. */
+    /**
+     * The Configurable allowing configurations to be set.
+     */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
@@ -243,8 +244,8 @@ public final class LogAnalyticsManager {
 
         /**
          * Sets the retry options for the HTTP pipeline retry policy.
-         *
-         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         * <p>
+         * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
          *
          * @param retryOptions the retry options for the HTTP pipeline retry policy.
          * @return the configurable object itself.
@@ -261,8 +262,8 @@ public final class LogAnalyticsManager {
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval =
-                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
+            this.defaultPollInterval
+                = Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
                 throw LOGGER
                     .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
@@ -282,21 +283,12 @@ public final class LogAnalyticsManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder
-                .append("azsdk-java")
-                .append("-")
-                .append("com.azure.resourcemanager.loganalytics")
-                .append("/")
-                .append("1.0.0");
+            userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.loganalytics")
+                .append("/").append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder
-                    .append(" (")
-                    .append(Configuration.getGlobalConfiguration().get("java.version"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.name"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.version"))
-                    .append("; auto-generated)");
+                userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
+                    .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.version")).append("; auto-generated)");
             } else {
                 userAgentBuilder.append(" (auto-generated)");
             }
@@ -315,254 +307,25 @@ public final class LogAnalyticsManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY).collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
-            HttpPipeline httpPipeline =
-                new HttpPipelineBuilder()
-                    .httpClient(httpClient)
-                    .policies(policies.toArray(new HttpPipelinePolicy[0]))
-                    .build();
+            HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
+                .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
             return new LogAnalyticsManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
     /**
-     * Gets the resource collection API of QueryPacks. It manages LogAnalyticsQueryPack.
-     *
-     * @return Resource collection API of QueryPacks.
-     */
-    public QueryPacks queryPacks() {
-        if (this.queryPacks == null) {
-            this.queryPacks = new QueryPacksImpl(clientObject.getQueryPacks(), this);
-        }
-        return queryPacks;
-    }
-
-    /**
-     * Gets the resource collection API of Queries. It manages LogAnalyticsQueryPackQuery.
-     *
-     * @return Resource collection API of Queries.
-     */
-    public Queries queries() {
-        if (this.queries == null) {
-            this.queries = new QueriesImpl(clientObject.getQueries(), this);
-        }
-        return queries;
-    }
-
-    /**
-     * Gets the resource collection API of DataExports. It manages DataExport.
-     *
-     * @return Resource collection API of DataExports.
-     */
-    public DataExports dataExports() {
-        if (this.dataExports == null) {
-            this.dataExports = new DataExportsImpl(clientObject.getDataExports(), this);
-        }
-        return dataExports;
-    }
-
-    /**
-     * Gets the resource collection API of DataSources. It manages DataSource.
-     *
-     * @return Resource collection API of DataSources.
-     */
-    public DataSources dataSources() {
-        if (this.dataSources == null) {
-            this.dataSources = new DataSourcesImpl(clientObject.getDataSources(), this);
-        }
-        return dataSources;
-    }
-
-    /**
-     * Gets the resource collection API of IntelligencePacks.
-     *
-     * @return Resource collection API of IntelligencePacks.
-     */
-    public IntelligencePacks intelligencePacks() {
-        if (this.intelligencePacks == null) {
-            this.intelligencePacks = new IntelligencePacksImpl(clientObject.getIntelligencePacks(), this);
-        }
-        return intelligencePacks;
-    }
-
-    /**
-     * Gets the resource collection API of LinkedServices. It manages LinkedService.
-     *
-     * @return Resource collection API of LinkedServices.
-     */
-    public LinkedServices linkedServices() {
-        if (this.linkedServices == null) {
-            this.linkedServices = new LinkedServicesImpl(clientObject.getLinkedServices(), this);
-        }
-        return linkedServices;
-    }
-
-    /**
-     * Gets the resource collection API of LinkedStorageAccounts. It manages LinkedStorageAccountsResource.
-     *
-     * @return Resource collection API of LinkedStorageAccounts.
-     */
-    public LinkedStorageAccounts linkedStorageAccounts() {
-        if (this.linkedStorageAccounts == null) {
-            this.linkedStorageAccounts = new LinkedStorageAccountsImpl(clientObject.getLinkedStorageAccounts(), this);
-        }
-        return linkedStorageAccounts;
-    }
-
-    /**
-     * Gets the resource collection API of ManagementGroups.
-     *
-     * @return Resource collection API of ManagementGroups.
-     */
-    public ManagementGroups managementGroups() {
-        if (this.managementGroups == null) {
-            this.managementGroups = new ManagementGroupsImpl(clientObject.getManagementGroups(), this);
-        }
-        return managementGroups;
-    }
-
-    /**
-     * Gets the resource collection API of OperationStatuses.
-     *
-     * @return Resource collection API of OperationStatuses.
-     */
-    public OperationStatuses operationStatuses() {
-        if (this.operationStatuses == null) {
-            this.operationStatuses = new OperationStatusesImpl(clientObject.getOperationStatuses(), this);
-        }
-        return operationStatuses;
-    }
-
-    /**
-     * Gets the resource collection API of SharedKeysOperations.
-     *
-     * @return Resource collection API of SharedKeysOperations.
-     */
-    public SharedKeysOperations sharedKeysOperations() {
-        if (this.sharedKeysOperations == null) {
-            this.sharedKeysOperations = new SharedKeysOperationsImpl(clientObject.getSharedKeysOperations(), this);
-        }
-        return sharedKeysOperations;
-    }
-
-    /**
-     * Gets the resource collection API of Usages.
-     *
-     * @return Resource collection API of Usages.
-     */
-    public Usages usages() {
-        if (this.usages == null) {
-            this.usages = new UsagesImpl(clientObject.getUsages(), this);
-        }
-        return usages;
-    }
-
-    /**
-     * Gets the resource collection API of StorageInsightConfigs. It manages StorageInsight.
-     *
-     * @return Resource collection API of StorageInsightConfigs.
-     */
-    public StorageInsightConfigs storageInsightConfigs() {
-        if (this.storageInsightConfigs == null) {
-            this.storageInsightConfigs = new StorageInsightConfigsImpl(clientObject.getStorageInsightConfigs(), this);
-        }
-        return storageInsightConfigs;
-    }
-
-    /**
-     * Gets the resource collection API of SavedSearches. It manages SavedSearch.
-     *
-     * @return Resource collection API of SavedSearches.
-     */
-    public SavedSearches savedSearches() {
-        if (this.savedSearches == null) {
-            this.savedSearches = new SavedSearchesImpl(clientObject.getSavedSearches(), this);
-        }
-        return savedSearches;
-    }
-
-    /**
-     * Gets the resource collection API of AvailableServiceTiers.
-     *
-     * @return Resource collection API of AvailableServiceTiers.
-     */
-    public AvailableServiceTiers availableServiceTiers() {
-        if (this.availableServiceTiers == null) {
-            this.availableServiceTiers = new AvailableServiceTiersImpl(clientObject.getAvailableServiceTiers(), this);
-        }
-        return availableServiceTiers;
-    }
-
-    /**
-     * Gets the resource collection API of Gateways.
-     *
-     * @return Resource collection API of Gateways.
-     */
-    public Gateways gateways() {
-        if (this.gateways == null) {
-            this.gateways = new GatewaysImpl(clientObject.getGateways(), this);
-        }
-        return gateways;
-    }
-
-    /**
-     * Gets the resource collection API of Schemas.
-     *
-     * @return Resource collection API of Schemas.
-     */
-    public Schemas schemas() {
-        if (this.schemas == null) {
-            this.schemas = new SchemasImpl(clientObject.getSchemas(), this);
-        }
-        return schemas;
-    }
-
-    /**
-     * Gets the resource collection API of WorkspacePurges.
-     *
-     * @return Resource collection API of WorkspacePurges.
-     */
-    public WorkspacePurges workspacePurges() {
-        if (this.workspacePurges == null) {
-            this.workspacePurges = new WorkspacePurgesImpl(clientObject.getWorkspacePurges(), this);
-        }
-        return workspacePurges;
-    }
-
-    /**
-     * Gets the resource collection API of Clusters. It manages Cluster.
-     *
-     * @return Resource collection API of Clusters.
-     */
-    public Clusters clusters() {
-        if (this.clusters == null) {
-            this.clusters = new ClustersImpl(clientObject.getClusters(), this);
-        }
-        return clusters;
-    }
-
-    /**
      * Gets the resource collection API of Operations.
-     *
+     * 
      * @return Resource collection API of Operations.
      */
     public Operations operations() {
@@ -574,7 +337,7 @@ public final class LogAnalyticsManager {
 
     /**
      * Gets the resource collection API of Workspaces. It manages Workspace.
-     *
+     * 
      * @return Resource collection API of Workspaces.
      */
     public Workspaces workspaces() {
@@ -586,7 +349,7 @@ public final class LogAnalyticsManager {
 
     /**
      * Gets the resource collection API of DeletedWorkspaces.
-     *
+     * 
      * @return Resource collection API of DeletedWorkspaces.
      */
     public DeletedWorkspaces deletedWorkspaces() {
@@ -598,7 +361,7 @@ public final class LogAnalyticsManager {
 
     /**
      * Gets the resource collection API of Tables. It manages Table.
-     *
+     * 
      * @return Resource collection API of Tables.
      */
     public Tables tables() {
@@ -609,9 +372,225 @@ public final class LogAnalyticsManager {
     }
 
     /**
+     * Gets the resource collection API of QueryPacks. It manages LogAnalyticsQueryPack.
+     * 
+     * @return Resource collection API of QueryPacks.
+     */
+    public QueryPacks queryPacks() {
+        if (this.queryPacks == null) {
+            this.queryPacks = new QueryPacksImpl(clientObject.getQueryPacks(), this);
+        }
+        return queryPacks;
+    }
+
+    /**
+     * Gets the resource collection API of Queries. It manages LogAnalyticsQueryPackQuery.
+     * 
+     * @return Resource collection API of Queries.
+     */
+    public Queries queries() {
+        if (this.queries == null) {
+            this.queries = new QueriesImpl(clientObject.getQueries(), this);
+        }
+        return queries;
+    }
+
+    /**
+     * Gets the resource collection API of DataExports. It manages DataExport.
+     * 
+     * @return Resource collection API of DataExports.
+     */
+    public DataExports dataExports() {
+        if (this.dataExports == null) {
+            this.dataExports = new DataExportsImpl(clientObject.getDataExports(), this);
+        }
+        return dataExports;
+    }
+
+    /**
+     * Gets the resource collection API of DataSources. It manages DataSource.
+     * 
+     * @return Resource collection API of DataSources.
+     */
+    public DataSources dataSources() {
+        if (this.dataSources == null) {
+            this.dataSources = new DataSourcesImpl(clientObject.getDataSources(), this);
+        }
+        return dataSources;
+    }
+
+    /**
+     * Gets the resource collection API of IntelligencePacks.
+     * 
+     * @return Resource collection API of IntelligencePacks.
+     */
+    public IntelligencePacks intelligencePacks() {
+        if (this.intelligencePacks == null) {
+            this.intelligencePacks = new IntelligencePacksImpl(clientObject.getIntelligencePacks(), this);
+        }
+        return intelligencePacks;
+    }
+
+    /**
+     * Gets the resource collection API of LinkedServices. It manages LinkedService.
+     * 
+     * @return Resource collection API of LinkedServices.
+     */
+    public LinkedServices linkedServices() {
+        if (this.linkedServices == null) {
+            this.linkedServices = new LinkedServicesImpl(clientObject.getLinkedServices(), this);
+        }
+        return linkedServices;
+    }
+
+    /**
+     * Gets the resource collection API of LinkedStorageAccounts. It manages LinkedStorageAccountsResource.
+     * 
+     * @return Resource collection API of LinkedStorageAccounts.
+     */
+    public LinkedStorageAccounts linkedStorageAccounts() {
+        if (this.linkedStorageAccounts == null) {
+            this.linkedStorageAccounts = new LinkedStorageAccountsImpl(clientObject.getLinkedStorageAccounts(), this);
+        }
+        return linkedStorageAccounts;
+    }
+
+    /**
+     * Gets the resource collection API of ManagementGroups.
+     * 
+     * @return Resource collection API of ManagementGroups.
+     */
+    public ManagementGroups managementGroups() {
+        if (this.managementGroups == null) {
+            this.managementGroups = new ManagementGroupsImpl(clientObject.getManagementGroups(), this);
+        }
+        return managementGroups;
+    }
+
+    /**
+     * Gets the resource collection API of OperationStatuses.
+     * 
+     * @return Resource collection API of OperationStatuses.
+     */
+    public OperationStatuses operationStatuses() {
+        if (this.operationStatuses == null) {
+            this.operationStatuses = new OperationStatusesImpl(clientObject.getOperationStatuses(), this);
+        }
+        return operationStatuses;
+    }
+
+    /**
+     * Gets the resource collection API of SharedKeysOperations.
+     * 
+     * @return Resource collection API of SharedKeysOperations.
+     */
+    public SharedKeysOperations sharedKeysOperations() {
+        if (this.sharedKeysOperations == null) {
+            this.sharedKeysOperations = new SharedKeysOperationsImpl(clientObject.getSharedKeysOperations(), this);
+        }
+        return sharedKeysOperations;
+    }
+
+    /**
+     * Gets the resource collection API of Usages.
+     * 
+     * @return Resource collection API of Usages.
+     */
+    public Usages usages() {
+        if (this.usages == null) {
+            this.usages = new UsagesImpl(clientObject.getUsages(), this);
+        }
+        return usages;
+    }
+
+    /**
+     * Gets the resource collection API of StorageInsightConfigs. It manages StorageInsight.
+     * 
+     * @return Resource collection API of StorageInsightConfigs.
+     */
+    public StorageInsightConfigs storageInsightConfigs() {
+        if (this.storageInsightConfigs == null) {
+            this.storageInsightConfigs = new StorageInsightConfigsImpl(clientObject.getStorageInsightConfigs(), this);
+        }
+        return storageInsightConfigs;
+    }
+
+    /**
+     * Gets the resource collection API of SavedSearches. It manages SavedSearch.
+     * 
+     * @return Resource collection API of SavedSearches.
+     */
+    public SavedSearches savedSearches() {
+        if (this.savedSearches == null) {
+            this.savedSearches = new SavedSearchesImpl(clientObject.getSavedSearches(), this);
+        }
+        return savedSearches;
+    }
+
+    /**
+     * Gets the resource collection API of AvailableServiceTiers.
+     * 
+     * @return Resource collection API of AvailableServiceTiers.
+     */
+    public AvailableServiceTiers availableServiceTiers() {
+        if (this.availableServiceTiers == null) {
+            this.availableServiceTiers = new AvailableServiceTiersImpl(clientObject.getAvailableServiceTiers(), this);
+        }
+        return availableServiceTiers;
+    }
+
+    /**
+     * Gets the resource collection API of Gateways.
+     * 
+     * @return Resource collection API of Gateways.
+     */
+    public Gateways gateways() {
+        if (this.gateways == null) {
+            this.gateways = new GatewaysImpl(clientObject.getGateways(), this);
+        }
+        return gateways;
+    }
+
+    /**
+     * Gets the resource collection API of Schemas.
+     * 
+     * @return Resource collection API of Schemas.
+     */
+    public Schemas schemas() {
+        if (this.schemas == null) {
+            this.schemas = new SchemasImpl(clientObject.getSchemas(), this);
+        }
+        return schemas;
+    }
+
+    /**
+     * Gets the resource collection API of WorkspacePurges.
+     * 
+     * @return Resource collection API of WorkspacePurges.
+     */
+    public WorkspacePurges workspacePurges() {
+        if (this.workspacePurges == null) {
+            this.workspacePurges = new WorkspacePurgesImpl(clientObject.getWorkspacePurges(), this);
+        }
+        return workspacePurges;
+    }
+
+    /**
+     * Gets the resource collection API of Clusters. It manages Cluster.
+     * 
+     * @return Resource collection API of Clusters.
+     */
+    public Clusters clusters() {
+        if (this.clusters == null) {
+            this.clusters = new ClustersImpl(clientObject.getClusters(), this);
+        }
+        return clusters;
+    }
+
+    /**
      * Gets wrapped service client OperationalInsightsManagementClient providing direct access to the underlying
      * auto-generated API implementation, based on Azure REST API.
-     *
+     * 
      * @return Wrapped service client OperationalInsightsManagementClient.
      */
     public OperationalInsightsManagementClient serviceClient() {

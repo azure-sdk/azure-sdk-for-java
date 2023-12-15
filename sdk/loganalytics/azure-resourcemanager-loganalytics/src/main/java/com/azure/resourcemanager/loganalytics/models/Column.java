@@ -7,7 +7,9 @@ package com.azure.resourcemanager.loganalytics.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Table column. */
+/**
+ * Table column.
+ */
 @Fluent
 public final class Column {
     /*
@@ -52,13 +54,15 @@ public final class Column {
     @JsonProperty(value = "isHidden", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isHidden;
 
-    /** Creates an instance of Column class. */
+    /**
+     * Creates an instance of Column class.
+     */
     public Column() {
     }
 
     /**
      * Get the name property: Column name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -67,7 +71,7 @@ public final class Column {
 
     /**
      * Set the name property: Column name.
-     *
+     * 
      * @param name the name value to set.
      * @return the Column object itself.
      */
@@ -78,7 +82,7 @@ public final class Column {
 
     /**
      * Get the type property: Column data type.
-     *
+     * 
      * @return the type value.
      */
     public ColumnTypeEnum type() {
@@ -87,7 +91,7 @@ public final class Column {
 
     /**
      * Set the type property: Column data type.
-     *
+     * 
      * @param type the type value to set.
      * @return the Column object itself.
      */
@@ -98,7 +102,7 @@ public final class Column {
 
     /**
      * Get the dataTypeHint property: Column data type logical hint.
-     *
+     * 
      * @return the dataTypeHint value.
      */
     public ColumnDataTypeHintEnum dataTypeHint() {
@@ -107,7 +111,7 @@ public final class Column {
 
     /**
      * Set the dataTypeHint property: Column data type logical hint.
-     *
+     * 
      * @param dataTypeHint the dataTypeHint value to set.
      * @return the Column object itself.
      */
@@ -118,7 +122,7 @@ public final class Column {
 
     /**
      * Get the displayName property: Column display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -127,7 +131,7 @@ public final class Column {
 
     /**
      * Set the displayName property: Column display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the Column object itself.
      */
@@ -138,7 +142,7 @@ public final class Column {
 
     /**
      * Get the description property: Column description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -147,7 +151,7 @@ public final class Column {
 
     /**
      * Set the description property: Column description.
-     *
+     * 
      * @param description the description value to set.
      * @return the Column object itself.
      */
@@ -158,7 +162,7 @@ public final class Column {
 
     /**
      * Get the isDefaultDisplay property: Is displayed by default.
-     *
+     * 
      * @return the isDefaultDisplay value.
      */
     public Boolean isDefaultDisplay() {
@@ -167,7 +171,7 @@ public final class Column {
 
     /**
      * Get the isHidden property: Is column hidden.
-     *
+     * 
      * @return the isHidden value.
      */
     public Boolean isHidden() {
@@ -176,7 +180,7 @@ public final class Column {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

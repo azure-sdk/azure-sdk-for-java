@@ -7,7 +7,9 @@ package com.azure.resourcemanager.loganalytics.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The sort parameters for search. */
+/**
+ * The sort parameters for search.
+ */
 @Fluent
 public final class SearchSort {
     /*
@@ -22,13 +24,15 @@ public final class SearchSort {
     @JsonProperty(value = "order")
     private SearchSortEnum order;
 
-    /** Creates an instance of SearchSort class. */
+    /**
+     * Creates an instance of SearchSort class.
+     */
     public SearchSort() {
     }
 
     /**
      * Get the name property: The name of the field the search query is sorted on.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class SearchSort {
 
     /**
      * Set the name property: The name of the field the search query is sorted on.
-     *
+     * 
      * @param name the name value to set.
      * @return the SearchSort object itself.
      */
@@ -48,7 +52,7 @@ public final class SearchSort {
 
     /**
      * Get the order property: The sort order of the search.
-     *
+     * 
      * @return the order value.
      */
     public SearchSortEnum order() {
@@ -57,7 +61,7 @@ public final class SearchSort {
 
     /**
      * Set the order property: The sort order of the search.
-     *
+     * 
      * @param order the order value to set.
      * @return the SearchSort object itself.
      */
@@ -68,7 +72,7 @@ public final class SearchSort {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

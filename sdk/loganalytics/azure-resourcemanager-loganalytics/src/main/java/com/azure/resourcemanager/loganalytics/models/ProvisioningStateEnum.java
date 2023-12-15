@@ -13,21 +13,29 @@ import java.util.Collection;
  * forbidding any update to the table until the ongoing operation is concluded.
  */
 public final class ProvisioningStateEnum extends ExpandableStringEnum<ProvisioningStateEnum> {
-    /** Static value Updating for ProvisioningStateEnum. */
+    /**
+     * Static value Updating for ProvisioningStateEnum.
+     */
     public static final ProvisioningStateEnum UPDATING = fromString("Updating");
 
-    /** Static value InProgress for ProvisioningStateEnum. */
+    /**
+     * Static value InProgress for ProvisioningStateEnum.
+     */
     public static final ProvisioningStateEnum IN_PROGRESS = fromString("InProgress");
 
-    /** Static value Succeeded for ProvisioningStateEnum. */
+    /**
+     * Static value Succeeded for ProvisioningStateEnum.
+     */
     public static final ProvisioningStateEnum SUCCEEDED = fromString("Succeeded");
 
-    /** Static value Deleting for ProvisioningStateEnum. */
+    /**
+     * Static value Deleting for ProvisioningStateEnum.
+     */
     public static final ProvisioningStateEnum DELETING = fromString("Deleting");
 
     /**
      * Creates a new instance of ProvisioningStateEnum value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -36,7 +44,7 @@ public final class ProvisioningStateEnum extends ExpandableStringEnum<Provisioni
 
     /**
      * Creates or finds a ProvisioningStateEnum from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ProvisioningStateEnum.
      */
@@ -47,7 +55,7 @@ public final class ProvisioningStateEnum extends ExpandableStringEnum<Provisioni
 
     /**
      * Gets known ProvisioningStateEnum values.
-     *
+     * 
      * @return known ProvisioningStateEnum values.
      */
     public static Collection<ProvisioningStateEnum> values() {

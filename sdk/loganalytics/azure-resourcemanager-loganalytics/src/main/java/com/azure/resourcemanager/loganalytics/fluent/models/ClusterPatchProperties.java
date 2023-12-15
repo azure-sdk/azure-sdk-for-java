@@ -9,7 +9,9 @@ import com.azure.resourcemanager.loganalytics.models.BillingType;
 import com.azure.resourcemanager.loganalytics.models.KeyVaultProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Log Analytics cluster patch properties. */
+/**
+ * Log Analytics cluster patch properties.
+ */
 @Fluent
 public final class ClusterPatchProperties {
     /*
@@ -24,13 +26,15 @@ public final class ClusterPatchProperties {
     @JsonProperty(value = "billingType")
     private BillingType billingType;
 
-    /** Creates an instance of ClusterPatchProperties class. */
+    /**
+     * Creates an instance of ClusterPatchProperties class.
+     */
     public ClusterPatchProperties() {
     }
 
     /**
      * Get the keyVaultProperties property: The associated key properties.
-     *
+     * 
      * @return the keyVaultProperties value.
      */
     public KeyVaultProperties keyVaultProperties() {
@@ -39,7 +43,7 @@ public final class ClusterPatchProperties {
 
     /**
      * Set the keyVaultProperties property: The associated key properties.
-     *
+     * 
      * @param keyVaultProperties the keyVaultProperties value to set.
      * @return the ClusterPatchProperties object itself.
      */
@@ -50,7 +54,7 @@ public final class ClusterPatchProperties {
 
     /**
      * Get the billingType property: The cluster's billing type.
-     *
+     * 
      * @return the billingType value.
      */
     public BillingType billingType() {
@@ -59,7 +63,7 @@ public final class ClusterPatchProperties {
 
     /**
      * Set the billingType property: The cluster's billing type.
-     *
+     * 
      * @param billingType the billingType value to set.
      * @return the ClusterPatchProperties object itself.
      */
@@ -70,7 +74,7 @@ public final class ClusterPatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

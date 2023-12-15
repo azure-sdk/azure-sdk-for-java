@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The top level Log Analytics cluster resource container. */
+/**
+ * The top level Log Analytics cluster resource container.
+ */
 @Fluent
 public final class ClusterPatch {
     /*
@@ -38,13 +40,15 @@ public final class ClusterPatch {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of ClusterPatch class. */
+    /**
+     * Creates an instance of ClusterPatch class.
+     */
     public ClusterPatch() {
     }
 
     /**
      * Get the innerProperties property: Log Analytics cluster properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ClusterPatchProperties innerProperties() {
@@ -53,7 +57,7 @@ public final class ClusterPatch {
 
     /**
      * Get the identity property: The identity of the resource.
-     *
+     * 
      * @return the identity value.
      */
     public Identity identity() {
@@ -62,7 +66,7 @@ public final class ClusterPatch {
 
     /**
      * Set the identity property: The identity of the resource.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the ClusterPatch object itself.
      */
@@ -73,7 +77,7 @@ public final class ClusterPatch {
 
     /**
      * Get the sku property: The sku properties.
-     *
+     * 
      * @return the sku value.
      */
     public ClusterSku sku() {
@@ -82,7 +86,7 @@ public final class ClusterPatch {
 
     /**
      * Set the sku property: The sku properties.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the ClusterPatch object itself.
      */
@@ -93,7 +97,7 @@ public final class ClusterPatch {
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -102,7 +106,7 @@ public final class ClusterPatch {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the ClusterPatch object itself.
      */
@@ -113,7 +117,7 @@ public final class ClusterPatch {
 
     /**
      * Get the keyVaultProperties property: The associated key properties.
-     *
+     * 
      * @return the keyVaultProperties value.
      */
     public KeyVaultProperties keyVaultProperties() {
@@ -122,7 +126,7 @@ public final class ClusterPatch {
 
     /**
      * Set the keyVaultProperties property: The associated key properties.
-     *
+     * 
      * @param keyVaultProperties the keyVaultProperties value to set.
      * @return the ClusterPatch object itself.
      */
@@ -136,7 +140,7 @@ public final class ClusterPatch {
 
     /**
      * Get the billingType property: The cluster's billing type.
-     *
+     * 
      * @return the billingType value.
      */
     public BillingType billingType() {
@@ -145,7 +149,7 @@ public final class ClusterPatch {
 
     /**
      * Set the billingType property: The cluster's billing type.
-     *
+     * 
      * @param billingType the billingType value to set.
      * @return the ClusterPatch object itself.
      */
@@ -159,7 +163,7 @@ public final class ClusterPatch {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

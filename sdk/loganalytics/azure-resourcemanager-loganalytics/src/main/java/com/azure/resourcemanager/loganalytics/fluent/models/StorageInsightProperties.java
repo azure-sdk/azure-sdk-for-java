@@ -11,7 +11,9 @@ import com.azure.resourcemanager.loganalytics.models.StorageInsightStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Storage insight properties. */
+/**
+ * Storage insight properties.
+ */
 @Fluent
 public final class StorageInsightProperties {
     /*
@@ -38,13 +40,15 @@ public final class StorageInsightProperties {
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private StorageInsightStatus status;
 
-    /** Creates an instance of StorageInsightProperties class. */
+    /**
+     * Creates an instance of StorageInsightProperties class.
+     */
     public StorageInsightProperties() {
     }
 
     /**
      * Get the containers property: The names of the blob containers that the workspace should read.
-     *
+     * 
      * @return the containers value.
      */
     public List<String> containers() {
@@ -53,7 +57,7 @@ public final class StorageInsightProperties {
 
     /**
      * Set the containers property: The names of the blob containers that the workspace should read.
-     *
+     * 
      * @param containers the containers value to set.
      * @return the StorageInsightProperties object itself.
      */
@@ -64,7 +68,7 @@ public final class StorageInsightProperties {
 
     /**
      * Get the tables property: The names of the Azure tables that the workspace should read.
-     *
+     * 
      * @return the tables value.
      */
     public List<String> tables() {
@@ -73,7 +77,7 @@ public final class StorageInsightProperties {
 
     /**
      * Set the tables property: The names of the Azure tables that the workspace should read.
-     *
+     * 
      * @param tables the tables value to set.
      * @return the StorageInsightProperties object itself.
      */
@@ -84,7 +88,7 @@ public final class StorageInsightProperties {
 
     /**
      * Get the storageAccount property: The storage account connection details.
-     *
+     * 
      * @return the storageAccount value.
      */
     public StorageAccount storageAccount() {
@@ -93,7 +97,7 @@ public final class StorageInsightProperties {
 
     /**
      * Set the storageAccount property: The storage account connection details.
-     *
+     * 
      * @param storageAccount the storageAccount value to set.
      * @return the StorageInsightProperties object itself.
      */
@@ -104,7 +108,7 @@ public final class StorageInsightProperties {
 
     /**
      * Get the status property: The status of the storage insight.
-     *
+     * 
      * @return the status value.
      */
     public StorageInsightStatus status() {
@@ -113,15 +117,13 @@ public final class StorageInsightProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (storageAccount() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property storageAccount in model StorageInsightProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property storageAccount in model StorageInsightProperties"));
         } else {
             storageAccount().validate();
         }
