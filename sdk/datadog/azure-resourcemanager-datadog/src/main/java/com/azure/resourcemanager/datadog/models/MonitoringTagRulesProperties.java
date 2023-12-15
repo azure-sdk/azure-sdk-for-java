@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datadog.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Definition of the properties for a TagRules resource. */
+/**
+ * Definition of the properties for a TagRules resource.
+ */
 @Fluent
 public final class MonitoringTagRulesProperties {
     /*
@@ -34,13 +36,15 @@ public final class MonitoringTagRulesProperties {
     @JsonProperty(value = "automuting")
     private Boolean automuting;
 
-    /** Creates an instance of MonitoringTagRulesProperties class. */
+    /**
+     * Creates an instance of MonitoringTagRulesProperties class.
+     */
     public MonitoringTagRulesProperties() {
     }
 
     /**
      * Get the provisioningState property: The provisioningState property.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -49,7 +53,7 @@ public final class MonitoringTagRulesProperties {
 
     /**
      * Get the logRules property: Set of rules for sending logs for the Monitor resource.
-     *
+     * 
      * @return the logRules value.
      */
     public LogRules logRules() {
@@ -58,7 +62,7 @@ public final class MonitoringTagRulesProperties {
 
     /**
      * Set the logRules property: Set of rules for sending logs for the Monitor resource.
-     *
+     * 
      * @param logRules the logRules value to set.
      * @return the MonitoringTagRulesProperties object itself.
      */
@@ -69,7 +73,7 @@ public final class MonitoringTagRulesProperties {
 
     /**
      * Get the metricRules property: Set of rules for sending metrics for the Monitor resource.
-     *
+     * 
      * @return the metricRules value.
      */
     public MetricRules metricRules() {
@@ -78,7 +82,7 @@ public final class MonitoringTagRulesProperties {
 
     /**
      * Set the metricRules property: Set of rules for sending metrics for the Monitor resource.
-     *
+     * 
      * @param metricRules the metricRules value to set.
      * @return the MonitoringTagRulesProperties object itself.
      */
@@ -89,7 +93,7 @@ public final class MonitoringTagRulesProperties {
 
     /**
      * Get the automuting property: Configuration to enable/disable auto-muting flag.
-     *
+     * 
      * @return the automuting value.
      */
     public Boolean automuting() {
@@ -98,7 +102,7 @@ public final class MonitoringTagRulesProperties {
 
     /**
      * Set the automuting property: Configuration to enable/disable auto-muting flag.
-     *
+     * 
      * @param automuting the automuting value to set.
      * @return the MonitoringTagRulesProperties object itself.
      */
@@ -109,7 +113,7 @@ public final class MonitoringTagRulesProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

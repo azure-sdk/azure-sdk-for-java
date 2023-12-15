@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The parameters for a PATCH request to a monitor resource. */
+/**
+ * The parameters for a PATCH request to a monitor resource.
+ */
 @Fluent
 public final class DatadogMonitorResourceUpdateParameters {
     /*
@@ -31,13 +33,15 @@ public final class DatadogMonitorResourceUpdateParameters {
     @JsonProperty(value = "sku")
     private ResourceSku sku;
 
-    /** Creates an instance of DatadogMonitorResourceUpdateParameters class. */
+    /**
+     * Creates an instance of DatadogMonitorResourceUpdateParameters class.
+     */
     public DatadogMonitorResourceUpdateParameters() {
     }
 
     /**
      * Get the properties property: The set of properties that can be update in a PATCH request to a monitor resource.
-     *
+     * 
      * @return the properties value.
      */
     public MonitorUpdateProperties properties() {
@@ -46,7 +50,7 @@ public final class DatadogMonitorResourceUpdateParameters {
 
     /**
      * Set the properties property: The set of properties that can be update in a PATCH request to a monitor resource.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the DatadogMonitorResourceUpdateParameters object itself.
      */
@@ -57,7 +61,7 @@ public final class DatadogMonitorResourceUpdateParameters {
 
     /**
      * Get the tags property: The new tags of the monitor resource.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -66,7 +70,7 @@ public final class DatadogMonitorResourceUpdateParameters {
 
     /**
      * Set the tags property: The new tags of the monitor resource.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the DatadogMonitorResourceUpdateParameters object itself.
      */
@@ -77,7 +81,7 @@ public final class DatadogMonitorResourceUpdateParameters {
 
     /**
      * Get the sku property: The sku property.
-     *
+     * 
      * @return the sku value.
      */
     public ResourceSku sku() {
@@ -86,7 +90,7 @@ public final class DatadogMonitorResourceUpdateParameters {
 
     /**
      * Set the sku property: The sku property.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the DatadogMonitorResourceUpdateParameters object itself.
      */
@@ -97,7 +101,7 @@ public final class DatadogMonitorResourceUpdateParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

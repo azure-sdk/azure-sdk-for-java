@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datadog.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The DatadogInstallMethod model. */
+/**
+ * The DatadogInstallMethod model.
+ */
 @Fluent
 public final class DatadogInstallMethod {
     /*
@@ -28,13 +30,15 @@ public final class DatadogInstallMethod {
     @JsonProperty(value = "installerVersion")
     private String installerVersion;
 
-    /** Creates an instance of DatadogInstallMethod class. */
+    /**
+     * Creates an instance of DatadogInstallMethod class.
+     */
     public DatadogInstallMethod() {
     }
 
     /**
      * Get the tool property: The tool.
-     *
+     * 
      * @return the tool value.
      */
     public String tool() {
@@ -43,7 +47,7 @@ public final class DatadogInstallMethod {
 
     /**
      * Set the tool property: The tool.
-     *
+     * 
      * @param tool the tool value to set.
      * @return the DatadogInstallMethod object itself.
      */
@@ -54,7 +58,7 @@ public final class DatadogInstallMethod {
 
     /**
      * Get the toolVersion property: The tool version.
-     *
+     * 
      * @return the toolVersion value.
      */
     public String toolVersion() {
@@ -63,7 +67,7 @@ public final class DatadogInstallMethod {
 
     /**
      * Set the toolVersion property: The tool version.
-     *
+     * 
      * @param toolVersion the toolVersion value to set.
      * @return the DatadogInstallMethod object itself.
      */
@@ -74,7 +78,7 @@ public final class DatadogInstallMethod {
 
     /**
      * Get the installerVersion property: The installer version.
-     *
+     * 
      * @return the installerVersion value.
      */
     public String installerVersion() {
@@ -83,7 +87,7 @@ public final class DatadogInstallMethod {
 
     /**
      * Set the installerVersion property: The installer version.
-     *
+     * 
      * @param installerVersion the installerVersion value to set.
      * @return the DatadogInstallMethod object itself.
      */
@@ -94,7 +98,7 @@ public final class DatadogInstallMethod {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

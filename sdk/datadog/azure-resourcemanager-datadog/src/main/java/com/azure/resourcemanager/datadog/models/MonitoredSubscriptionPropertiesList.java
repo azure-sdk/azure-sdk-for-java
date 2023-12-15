@@ -9,7 +9,9 @@ import com.azure.resourcemanager.datadog.fluent.models.MonitoredSubscriptionProp
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The MonitoredSubscriptionPropertiesList model. */
+/**
+ * The MonitoredSubscriptionPropertiesList model.
+ */
 @Fluent
 public final class MonitoredSubscriptionPropertiesList {
     /*
@@ -18,13 +20,15 @@ public final class MonitoredSubscriptionPropertiesList {
     @JsonProperty(value = "value")
     private List<MonitoredSubscriptionPropertiesInner> value;
 
-    /** Creates an instance of MonitoredSubscriptionPropertiesList class. */
+    /**
+     * Creates an instance of MonitoredSubscriptionPropertiesList class.
+     */
     public MonitoredSubscriptionPropertiesList() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<MonitoredSubscriptionPropertiesInner> value() {
@@ -33,7 +37,7 @@ public final class MonitoredSubscriptionPropertiesList {
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the MonitoredSubscriptionPropertiesList object itself.
      */
@@ -44,7 +48,7 @@ public final class MonitoredSubscriptionPropertiesList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

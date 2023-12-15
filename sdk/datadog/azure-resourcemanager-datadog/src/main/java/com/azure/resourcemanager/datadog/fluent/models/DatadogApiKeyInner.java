@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The DatadogApiKey model. */
+/**
+ * The DatadogApiKey model.
+ */
 @Fluent
 public final class DatadogApiKeyInner {
     /*
@@ -35,13 +37,15 @@ public final class DatadogApiKeyInner {
     @JsonProperty(value = "created")
     private String created;
 
-    /** Creates an instance of DatadogApiKeyInner class. */
+    /**
+     * Creates an instance of DatadogApiKeyInner class.
+     */
     public DatadogApiKeyInner() {
     }
 
     /**
      * Get the createdBy property: The user that created the API key.
-     *
+     * 
      * @return the createdBy value.
      */
     public String createdBy() {
@@ -50,7 +54,7 @@ public final class DatadogApiKeyInner {
 
     /**
      * Set the createdBy property: The user that created the API key.
-     *
+     * 
      * @param createdBy the createdBy value to set.
      * @return the DatadogApiKeyInner object itself.
      */
@@ -61,7 +65,7 @@ public final class DatadogApiKeyInner {
 
     /**
      * Get the name property: The name of the API key.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -70,7 +74,7 @@ public final class DatadogApiKeyInner {
 
     /**
      * Set the name property: The name of the API key.
-     *
+     * 
      * @param name the name value to set.
      * @return the DatadogApiKeyInner object itself.
      */
@@ -81,7 +85,7 @@ public final class DatadogApiKeyInner {
 
     /**
      * Get the key property: The value of the API key.
-     *
+     * 
      * @return the key value.
      */
     public String key() {
@@ -90,7 +94,7 @@ public final class DatadogApiKeyInner {
 
     /**
      * Set the key property: The value of the API key.
-     *
+     * 
      * @param key the key value to set.
      * @return the DatadogApiKeyInner object itself.
      */
@@ -101,7 +105,7 @@ public final class DatadogApiKeyInner {
 
     /**
      * Get the created property: The time of creation of the API key.
-     *
+     * 
      * @return the created value.
      */
     public String created() {
@@ -110,7 +114,7 @@ public final class DatadogApiKeyInner {
 
     /**
      * Set the created property: The time of creation of the API key.
-     *
+     * 
      * @param created the created value to set.
      * @return the DatadogApiKeyInner object itself.
      */
@@ -121,14 +125,13 @@ public final class DatadogApiKeyInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (key() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property key in model DatadogApiKeyInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property key in model DatadogApiKeyInner"));
         }
     }
 

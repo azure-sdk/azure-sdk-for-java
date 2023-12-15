@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datadog.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The definition of a linked resource. */
+/**
+ * The definition of a linked resource.
+ */
 @Fluent
 public final class LinkedResourceInner {
     /*
@@ -16,13 +18,15 @@ public final class LinkedResourceInner {
     @JsonProperty(value = "id")
     private String id;
 
-    /** Creates an instance of LinkedResourceInner class. */
+    /**
+     * Creates an instance of LinkedResourceInner class.
+     */
     public LinkedResourceInner() {
     }
 
     /**
      * Get the id property: The ARM id of the linked resource.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -31,7 +35,7 @@ public final class LinkedResourceInner {
 
     /**
      * Set the id property: The ARM id of the linked resource.
-     *
+     * 
      * @param id the id value to set.
      * @return the LinkedResourceInner object itself.
      */
@@ -42,7 +46,7 @@ public final class LinkedResourceInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

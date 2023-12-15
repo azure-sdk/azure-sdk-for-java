@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Set of rules for sending metrics for the Monitor resource. */
+/**
+ * Set of rules for sending metrics for the Monitor resource.
+ */
 @Fluent
 public final class MetricRules {
     /*
@@ -19,7 +21,9 @@ public final class MetricRules {
     @JsonProperty(value = "filteringTags")
     private List<FilteringTag> filteringTags;
 
-    /** Creates an instance of MetricRules class. */
+    /**
+     * Creates an instance of MetricRules class.
+     */
     public MetricRules() {
     }
 
@@ -27,7 +31,7 @@ public final class MetricRules {
      * Get the filteringTags property: List of filtering tags to be used for capturing metrics. If empty, all resources
      * will be captured. If only Exclude action is specified, the rules will apply to the list of all available
      * resources. If Include actions are specified, the rules will only include resources with the associated tags.
-     *
+     * 
      * @return the filteringTags value.
      */
     public List<FilteringTag> filteringTags() {
@@ -38,7 +42,7 @@ public final class MetricRules {
      * Set the filteringTags property: List of filtering tags to be used for capturing metrics. If empty, all resources
      * will be captured. If only Exclude action is specified, the rules will apply to the list of all available
      * resources. If Include actions are specified, the rules will only include resources with the associated tags.
-     *
+     * 
      * @param filteringTags the filteringTags value to set.
      * @return the MetricRules object itself.
      */
@@ -49,7 +53,7 @@ public final class MetricRules {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datadog.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The IdentityProperties model. */
+/**
+ * The IdentityProperties model.
+ */
 @Fluent
 public final class IdentityProperties {
     /*
@@ -28,13 +30,15 @@ public final class IdentityProperties {
     @JsonProperty(value = "type")
     private ManagedIdentityTypes type;
 
-    /** Creates an instance of IdentityProperties class. */
+    /**
+     * Creates an instance of IdentityProperties class.
+     */
     public IdentityProperties() {
     }
 
     /**
      * Get the principalId property: The identity ID.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -43,7 +47,7 @@ public final class IdentityProperties {
 
     /**
      * Get the tenantId property: The tenant ID of resource.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -51,9 +55,9 @@ public final class IdentityProperties {
     }
 
     /**
-     * Get the type property: Specifies the identity type of the Datadog Monitor. At this time the only allowed value is
-     * 'SystemAssigned'.
-     *
+     * Get the type property: Specifies the identity type of the Datadog Monitor. At this time the only allowed value
+     * is 'SystemAssigned'.
+     * 
      * @return the type value.
      */
     public ManagedIdentityTypes type() {
@@ -61,9 +65,9 @@ public final class IdentityProperties {
     }
 
     /**
-     * Set the type property: Specifies the identity type of the Datadog Monitor. At this time the only allowed value is
-     * 'SystemAssigned'.
-     *
+     * Set the type property: Specifies the identity type of the Datadog Monitor. At this time the only allowed value
+     * is 'SystemAssigned'.
+     * 
      * @param type the type value to set.
      * @return the IdentityProperties object itself.
      */
@@ -74,7 +78,7 @@ public final class IdentityProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

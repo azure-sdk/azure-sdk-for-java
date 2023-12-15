@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.datadog.models.CreateResourceSupportedProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Datadog resource can be created or not. */
+/**
+ * Datadog resource can be created or not.
+ */
 @Fluent
 public final class CreateResourceSupportedResponseInner {
     /*
@@ -17,13 +19,15 @@ public final class CreateResourceSupportedResponseInner {
     @JsonProperty(value = "properties")
     private CreateResourceSupportedProperties properties;
 
-    /** Creates an instance of CreateResourceSupportedResponseInner class. */
+    /**
+     * Creates an instance of CreateResourceSupportedResponseInner class.
+     */
     public CreateResourceSupportedResponseInner() {
     }
 
     /**
      * Get the properties property: Represents the properties of the resource.
-     *
+     * 
      * @return the properties value.
      */
     public CreateResourceSupportedProperties properties() {
@@ -32,7 +36,7 @@ public final class CreateResourceSupportedResponseInner {
 
     /**
      * Set the properties property: Represents the properties of the resource.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the CreateResourceSupportedResponseInner object itself.
      */
@@ -43,7 +47,7 @@ public final class CreateResourceSupportedResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

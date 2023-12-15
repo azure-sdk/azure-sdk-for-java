@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datadog.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The DatadogHostMetadata model. */
+/**
+ * The DatadogHostMetadata model.
+ */
 @Fluent
 public final class DatadogHostMetadata {
     /*
@@ -28,13 +30,15 @@ public final class DatadogHostMetadata {
     @JsonProperty(value = "logsAgent")
     private DatadogLogsAgent logsAgent;
 
-    /** Creates an instance of DatadogHostMetadata class. */
+    /**
+     * Creates an instance of DatadogHostMetadata class.
+     */
     public DatadogHostMetadata() {
     }
 
     /**
      * Get the agentVersion property: The agent version.
-     *
+     * 
      * @return the agentVersion value.
      */
     public String agentVersion() {
@@ -43,7 +47,7 @@ public final class DatadogHostMetadata {
 
     /**
      * Set the agentVersion property: The agent version.
-     *
+     * 
      * @param agentVersion the agentVersion value to set.
      * @return the DatadogHostMetadata object itself.
      */
@@ -54,7 +58,7 @@ public final class DatadogHostMetadata {
 
     /**
      * Get the installMethod property: The installMethod property.
-     *
+     * 
      * @return the installMethod value.
      */
     public DatadogInstallMethod installMethod() {
@@ -63,7 +67,7 @@ public final class DatadogHostMetadata {
 
     /**
      * Set the installMethod property: The installMethod property.
-     *
+     * 
      * @param installMethod the installMethod value to set.
      * @return the DatadogHostMetadata object itself.
      */
@@ -74,7 +78,7 @@ public final class DatadogHostMetadata {
 
     /**
      * Get the logsAgent property: The logsAgent property.
-     *
+     * 
      * @return the logsAgent value.
      */
     public DatadogLogsAgent logsAgent() {
@@ -83,7 +87,7 @@ public final class DatadogHostMetadata {
 
     /**
      * Set the logsAgent property: The logsAgent property.
-     *
+     * 
      * @param logsAgent the logsAgent value to set.
      * @return the DatadogHostMetadata object itself.
      */
@@ -94,7 +98,7 @@ public final class DatadogHostMetadata {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

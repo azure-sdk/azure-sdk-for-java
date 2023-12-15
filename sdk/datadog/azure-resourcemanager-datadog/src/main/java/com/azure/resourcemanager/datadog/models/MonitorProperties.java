@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datadog.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties specific to the monitor resource. */
+/**
+ * Properties specific to the monitor resource.
+ */
 @Fluent
 public final class MonitorProperties {
     /*
@@ -54,13 +56,15 @@ public final class MonitorProperties {
     @JsonProperty(value = "liftrResourcePreference", access = JsonProperty.Access.WRITE_ONLY)
     private Integer liftrResourcePreference;
 
-    /** Creates an instance of MonitorProperties class. */
+    /**
+     * Creates an instance of MonitorProperties class.
+     */
     public MonitorProperties() {
     }
 
     /**
      * Get the provisioningState property: The provisioningState property.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -69,7 +73,7 @@ public final class MonitorProperties {
 
     /**
      * Get the monitoringStatus property: Flag specifying if the resource monitoring is enabled or disabled.
-     *
+     * 
      * @return the monitoringStatus value.
      */
     public MonitoringStatus monitoringStatus() {
@@ -78,7 +82,7 @@ public final class MonitorProperties {
 
     /**
      * Set the monitoringStatus property: Flag specifying if the resource monitoring is enabled or disabled.
-     *
+     * 
      * @param monitoringStatus the monitoringStatus value to set.
      * @return the MonitorProperties object itself.
      */
@@ -90,7 +94,7 @@ public final class MonitorProperties {
     /**
      * Get the marketplaceSubscriptionStatus property: Flag specifying the Marketplace Subscription Status of the
      * resource. If payment is not made in time, the resource will go in Suspended state.
-     *
+     * 
      * @return the marketplaceSubscriptionStatus value.
      */
     public MarketplaceSubscriptionStatus marketplaceSubscriptionStatus() {
@@ -100,7 +104,7 @@ public final class MonitorProperties {
     /**
      * Get the datadogOrganizationProperties property: Specify the Datadog organization name. In the case of linking to
      * existing organizations, Id, ApiKey, and Applicationkey is required as well.
-     *
+     * 
      * @return the datadogOrganizationProperties value.
      */
     public DatadogOrganizationProperties datadogOrganizationProperties() {
@@ -110,19 +114,19 @@ public final class MonitorProperties {
     /**
      * Set the datadogOrganizationProperties property: Specify the Datadog organization name. In the case of linking to
      * existing organizations, Id, ApiKey, and Applicationkey is required as well.
-     *
+     * 
      * @param datadogOrganizationProperties the datadogOrganizationProperties value to set.
      * @return the MonitorProperties object itself.
      */
-    public MonitorProperties withDatadogOrganizationProperties(
-        DatadogOrganizationProperties datadogOrganizationProperties) {
+    public MonitorProperties
+        withDatadogOrganizationProperties(DatadogOrganizationProperties datadogOrganizationProperties) {
         this.datadogOrganizationProperties = datadogOrganizationProperties;
         return this;
     }
 
     /**
      * Get the userInfo property: Includes name, email and optionally, phone number. User Information can't be null.
-     *
+     * 
      * @return the userInfo value.
      */
     public UserInfo userInfo() {
@@ -131,7 +135,7 @@ public final class MonitorProperties {
 
     /**
      * Set the userInfo property: Includes name, email and optionally, phone number. User Information can't be null.
-     *
+     * 
      * @param userInfo the userInfo value to set.
      * @return the MonitorProperties object itself.
      */
@@ -142,7 +146,7 @@ public final class MonitorProperties {
 
     /**
      * Get the liftrResourceCategory property: The liftrResourceCategory property.
-     *
+     * 
      * @return the liftrResourceCategory value.
      */
     public LiftrResourceCategories liftrResourceCategory() {
@@ -151,7 +155,7 @@ public final class MonitorProperties {
 
     /**
      * Get the liftrResourcePreference property: The priority of the resource.
-     *
+     * 
      * @return the liftrResourcePreference value.
      */
     public Integer liftrResourcePreference() {
@@ -160,7 +164,7 @@ public final class MonitorProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

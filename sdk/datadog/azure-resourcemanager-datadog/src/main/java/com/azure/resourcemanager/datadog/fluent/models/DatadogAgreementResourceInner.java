@@ -10,7 +10,9 @@ import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.datadog.models.DatadogAgreementProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The DatadogAgreementResource model. */
+/**
+ * The DatadogAgreementResource model.
+ */
 @Fluent
 public final class DatadogAgreementResourceInner extends ProxyResource {
     /*
@@ -25,13 +27,15 @@ public final class DatadogAgreementResourceInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of DatadogAgreementResourceInner class. */
+    /**
+     * Creates an instance of DatadogAgreementResourceInner class.
+     */
     public DatadogAgreementResourceInner() {
     }
 
     /**
      * Get the properties property: Represents the properties of the resource.
-     *
+     * 
      * @return the properties value.
      */
     public DatadogAgreementProperties properties() {
@@ -40,7 +44,7 @@ public final class DatadogAgreementResourceInner extends ProxyResource {
 
     /**
      * Set the properties property: Represents the properties of the resource.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the DatadogAgreementResourceInner object itself.
      */
@@ -51,7 +55,7 @@ public final class DatadogAgreementResourceInner extends ProxyResource {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -60,7 +64,7 @@ public final class DatadogAgreementResourceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

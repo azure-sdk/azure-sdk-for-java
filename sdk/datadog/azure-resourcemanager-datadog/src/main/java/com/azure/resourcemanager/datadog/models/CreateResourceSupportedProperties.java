@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datadog.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Datadog resource can be created or not properties. */
+/**
+ * Datadog resource can be created or not properties.
+ */
 @Immutable
 public final class CreateResourceSupportedProperties {
     /*
@@ -23,13 +25,15 @@ public final class CreateResourceSupportedProperties {
     @JsonProperty(value = "creationSupported", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean creationSupported;
 
-    /** Creates an instance of CreateResourceSupportedProperties class. */
+    /**
+     * Creates an instance of CreateResourceSupportedProperties class.
+     */
     public CreateResourceSupportedProperties() {
     }
 
     /**
      * Get the name property: The ARM id of the subscription.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,9 +41,9 @@ public final class CreateResourceSupportedProperties {
     }
 
     /**
-     * Get the creationSupported property: Indicates if selected subscription supports Datadog resource creation, if not
-     * it is already being monitored for the selected organization via multi subscription feature.
-     *
+     * Get the creationSupported property: Indicates if selected subscription supports Datadog resource creation, if
+     * not it is already being monitored for the selected organization via multi subscription feature.
+     * 
      * @return the creationSupported value.
      */
     public Boolean creationSupported() {
@@ -48,7 +52,7 @@ public final class CreateResourceSupportedProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

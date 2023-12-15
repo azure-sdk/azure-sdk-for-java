@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datadog.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The set of properties that can be update in a PATCH request to a monitor resource. */
+/**
+ * The set of properties that can be update in a PATCH request to a monitor resource.
+ */
 @Fluent
 public final class MonitorUpdateProperties {
     /*
@@ -23,13 +25,15 @@ public final class MonitorUpdateProperties {
     @JsonProperty(value = "cspm")
     private Boolean cspm;
 
-    /** Creates an instance of MonitorUpdateProperties class. */
+    /**
+     * Creates an instance of MonitorUpdateProperties class.
+     */
     public MonitorUpdateProperties() {
     }
 
     /**
      * Get the monitoringStatus property: Flag specifying if the resource monitoring is enabled or disabled.
-     *
+     * 
      * @return the monitoringStatus value.
      */
     public MonitoringStatus monitoringStatus() {
@@ -38,7 +42,7 @@ public final class MonitorUpdateProperties {
 
     /**
      * Set the monitoringStatus property: Flag specifying if the resource monitoring is enabled or disabled.
-     *
+     * 
      * @param monitoringStatus the monitoringStatus value to set.
      * @return the MonitorUpdateProperties object itself.
      */
@@ -50,7 +54,7 @@ public final class MonitorUpdateProperties {
     /**
      * Get the cspm property: The new cloud security posture management value of the monitor resource. This collects
      * configuration information for all resources in a subscription and track conformance to industry benchmarks.
-     *
+     * 
      * @return the cspm value.
      */
     public Boolean cspm() {
@@ -60,7 +64,7 @@ public final class MonitorUpdateProperties {
     /**
      * Set the cspm property: The new cloud security posture management value of the monitor resource. This collects
      * configuration information for all resources in a subscription and track conformance to industry benchmarks.
-     *
+     * 
      * @param cspm the cspm value to set.
      * @return the MonitorUpdateProperties object itself.
      */
@@ -71,7 +75,7 @@ public final class MonitorUpdateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

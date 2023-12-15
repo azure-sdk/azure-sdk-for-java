@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datadog.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The DatadogLogsAgent model. */
+/**
+ * The DatadogLogsAgent model.
+ */
 @Fluent
 public final class DatadogLogsAgent {
     /*
@@ -16,13 +18,15 @@ public final class DatadogLogsAgent {
     @JsonProperty(value = "transport")
     private String transport;
 
-    /** Creates an instance of DatadogLogsAgent class. */
+    /**
+     * Creates an instance of DatadogLogsAgent class.
+     */
     public DatadogLogsAgent() {
     }
 
     /**
      * Get the transport property: The transport.
-     *
+     * 
      * @return the transport value.
      */
     public String transport() {
@@ -31,7 +35,7 @@ public final class DatadogLogsAgent {
 
     /**
      * Set the transport property: The transport.
-     *
+     * 
      * @param transport the transport value to set.
      * @return the DatadogLogsAgent object itself.
      */
@@ -42,7 +46,7 @@ public final class DatadogLogsAgent {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
