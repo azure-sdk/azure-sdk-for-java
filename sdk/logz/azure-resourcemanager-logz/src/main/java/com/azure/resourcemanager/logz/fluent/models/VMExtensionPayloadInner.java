@@ -7,7 +7,9 @@ package com.azure.resourcemanager.logz.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Response of payload to be passed while installing VM agent. */
+/**
+ * Response of payload to be passed while installing VM agent.
+ */
 @Fluent
 public final class VMExtensionPayloadInner {
     /*
@@ -22,13 +24,15 @@ public final class VMExtensionPayloadInner {
     @JsonProperty(value = "region")
     private String region;
 
-    /** Creates an instance of VMExtensionPayloadInner class. */
+    /**
+     * Creates an instance of VMExtensionPayloadInner class.
+     */
     public VMExtensionPayloadInner() {
     }
 
     /**
      * Get the apiKey property: API Key corresponding to the resource.
-     *
+     * 
      * @return the apiKey value.
      */
     public String apiKey() {
@@ -37,7 +41,7 @@ public final class VMExtensionPayloadInner {
 
     /**
      * Set the apiKey property: API Key corresponding to the resource.
-     *
+     * 
      * @param apiKey the apiKey value to set.
      * @return the VMExtensionPayloadInner object itself.
      */
@@ -48,7 +52,7 @@ public final class VMExtensionPayloadInner {
 
     /**
      * Get the region property: Logz.io region where the resource has been created.
-     *
+     * 
      * @return the region value.
      */
     public String region() {
@@ -57,7 +61,7 @@ public final class VMExtensionPayloadInner {
 
     /**
      * Set the region property: Logz.io region where the resource has been created.
-     *
+     * 
      * @param region the region value to set.
      * @return the VMExtensionPayloadInner object itself.
      */
@@ -68,7 +72,7 @@ public final class VMExtensionPayloadInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

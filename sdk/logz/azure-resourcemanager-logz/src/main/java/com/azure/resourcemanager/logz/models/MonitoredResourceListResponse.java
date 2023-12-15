@@ -9,7 +9,9 @@ import com.azure.resourcemanager.logz.fluent.models.MonitoredResourceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Response of a list operation. */
+/**
+ * Response of a list operation.
+ */
 @Fluent
 public final class MonitoredResourceListResponse {
     /*
@@ -24,13 +26,15 @@ public final class MonitoredResourceListResponse {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of MonitoredResourceListResponse class. */
+    /**
+     * Creates an instance of MonitoredResourceListResponse class.
+     */
     public MonitoredResourceListResponse() {
     }
 
     /**
      * Get the value property: Results of a list operation.
-     *
+     * 
      * @return the value value.
      */
     public List<MonitoredResourceInner> value() {
@@ -39,7 +43,7 @@ public final class MonitoredResourceListResponse {
 
     /**
      * Set the value property: Results of a list operation.
-     *
+     * 
      * @param value the value value to set.
      * @return the MonitoredResourceListResponse object itself.
      */
@@ -50,7 +54,7 @@ public final class MonitoredResourceListResponse {
 
     /**
      * Get the nextLink property: Link to the next set of results, if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class MonitoredResourceListResponse {
 
     /**
      * Set the nextLink property: Link to the next set of results, if any.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the MonitoredResourceListResponse object itself.
      */
@@ -70,7 +74,7 @@ public final class MonitoredResourceListResponse {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

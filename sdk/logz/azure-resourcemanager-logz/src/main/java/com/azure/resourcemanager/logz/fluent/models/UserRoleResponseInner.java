@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.logz.models.UserRole;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Response for checking user's role for Logz.io account. */
+/**
+ * Response for checking user's role for Logz.io account.
+ */
 @Fluent
 public final class UserRoleResponseInner {
     /*
@@ -17,13 +19,15 @@ public final class UserRoleResponseInner {
     @JsonProperty(value = "role")
     private UserRole role;
 
-    /** Creates an instance of UserRoleResponseInner class. */
+    /**
+     * Creates an instance of UserRoleResponseInner class.
+     */
     public UserRoleResponseInner() {
     }
 
     /**
      * Get the role property: User roles on configured in Logz.io account.
-     *
+     * 
      * @return the role value.
      */
     public UserRole role() {
@@ -32,7 +36,7 @@ public final class UserRoleResponseInner {
 
     /**
      * Set the role property: User roles on configured in Logz.io account.
-     *
+     * 
      * @param role the role value to set.
      * @return the UserRoleResponseInner object itself.
      */
@@ -43,7 +47,7 @@ public final class UserRoleResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
