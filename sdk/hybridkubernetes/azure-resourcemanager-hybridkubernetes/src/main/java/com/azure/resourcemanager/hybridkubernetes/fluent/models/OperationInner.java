@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.hybridkubernetes.models.OperationDisplay;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Connected cluster API operation. */
+/**
+ * The Connected cluster API operation.
+ */
 @Immutable
 public final class OperationInner {
     /*
@@ -23,13 +25,15 @@ public final class OperationInner {
     @JsonProperty(value = "display", access = JsonProperty.Access.WRITE_ONLY)
     private OperationDisplay display;
 
-    /** Creates an instance of OperationInner class. */
+    /**
+     * Creates an instance of OperationInner class.
+     */
     public OperationInner() {
     }
 
     /**
      * Get the name property: Operation name: {Microsoft.Kubernetes}/{resource}/{operation}.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -38,7 +42,7 @@ public final class OperationInner {
 
     /**
      * Get the display property: The object that represents the operation.
-     *
+     * 
      * @return the display value.
      */
     public OperationDisplay display() {
@@ -47,7 +51,7 @@ public final class OperationInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
