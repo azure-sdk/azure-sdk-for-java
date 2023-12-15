@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Specifies the network settings for the Azure Bare Metal Instance disks. */
+/**
+ * Specifies the network settings for the Azure Bare Metal Instance disks.
+ */
 @Fluent
 public final class NetworkProfile {
     /*
@@ -23,13 +25,15 @@ public final class NetworkProfile {
     @JsonProperty(value = "circuitId", access = JsonProperty.Access.WRITE_ONLY)
     private String circuitId;
 
-    /** Creates an instance of NetworkProfile class. */
+    /**
+     * Creates an instance of NetworkProfile class.
+     */
     public NetworkProfile() {
     }
 
     /**
      * Get the networkInterfaces property: Specifies the network interfaces for the Azure Bare Metal Instance.
-     *
+     * 
      * @return the networkInterfaces value.
      */
     public List<NetworkInterface> networkInterfaces() {
@@ -38,7 +42,7 @@ public final class NetworkProfile {
 
     /**
      * Set the networkInterfaces property: Specifies the network interfaces for the Azure Bare Metal Instance.
-     *
+     * 
      * @param networkInterfaces the networkInterfaces value to set.
      * @return the NetworkProfile object itself.
      */
@@ -49,7 +53,7 @@ public final class NetworkProfile {
 
     /**
      * Get the circuitId property: Specifies the circuit id for connecting to express route.
-     *
+     * 
      * @return the circuitId value.
      */
     public String circuitId() {
@@ -58,7 +62,7 @@ public final class NetworkProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

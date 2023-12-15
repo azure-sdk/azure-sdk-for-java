@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.baremetalinfrastructure.models.StorageProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes the properties of an AzureBareMetalStorageInstance. */
+/**
+ * Describes the properties of an AzureBareMetalStorageInstance.
+ */
 @Fluent
 public final class AzureBareMetalStorageInstanceProperties {
     /*
@@ -23,14 +25,16 @@ public final class AzureBareMetalStorageInstanceProperties {
     @JsonProperty(value = "storageProperties")
     private StorageProperties storageProperties;
 
-    /** Creates an instance of AzureBareMetalStorageInstanceProperties class. */
+    /**
+     * Creates an instance of AzureBareMetalStorageInstanceProperties class.
+     */
     public AzureBareMetalStorageInstanceProperties() {
     }
 
     /**
-     * Get the azureBareMetalStorageInstanceUniqueIdentifier property: Specifies the AzureBareMetaStorageInstance unique
-     * ID.
-     *
+     * Get the azureBareMetalStorageInstanceUniqueIdentifier property: Specifies the AzureBareMetaStorageInstance
+     * unique ID.
+     * 
      * @return the azureBareMetalStorageInstanceUniqueIdentifier value.
      */
     public String azureBareMetalStorageInstanceUniqueIdentifier() {
@@ -38,22 +42,22 @@ public final class AzureBareMetalStorageInstanceProperties {
     }
 
     /**
-     * Set the azureBareMetalStorageInstanceUniqueIdentifier property: Specifies the AzureBareMetaStorageInstance unique
-     * ID.
-     *
+     * Set the azureBareMetalStorageInstanceUniqueIdentifier property: Specifies the AzureBareMetaStorageInstance
+     * unique ID.
+     * 
      * @param azureBareMetalStorageInstanceUniqueIdentifier the azureBareMetalStorageInstanceUniqueIdentifier value to
-     *     set.
+     * set.
      * @return the AzureBareMetalStorageInstanceProperties object itself.
      */
-    public AzureBareMetalStorageInstanceProperties withAzureBareMetalStorageInstanceUniqueIdentifier(
-        String azureBareMetalStorageInstanceUniqueIdentifier) {
+    public AzureBareMetalStorageInstanceProperties
+        withAzureBareMetalStorageInstanceUniqueIdentifier(String azureBareMetalStorageInstanceUniqueIdentifier) {
         this.azureBareMetalStorageInstanceUniqueIdentifier = azureBareMetalStorageInstanceUniqueIdentifier;
         return this;
     }
 
     /**
      * Get the storageProperties property: Specifies the storage properties for the AzureBareMetalStorage instance.
-     *
+     * 
      * @return the storageProperties value.
      */
     public StorageProperties storageProperties() {
@@ -62,7 +66,7 @@ public final class AzureBareMetalStorageInstanceProperties {
 
     /**
      * Set the storageProperties property: Specifies the storage properties for the AzureBareMetalStorage instance.
-     *
+     * 
      * @param storageProperties the storageProperties value to set.
      * @return the AzureBareMetalStorageInstanceProperties object itself.
      */
@@ -73,7 +77,7 @@ public final class AzureBareMetalStorageInstanceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

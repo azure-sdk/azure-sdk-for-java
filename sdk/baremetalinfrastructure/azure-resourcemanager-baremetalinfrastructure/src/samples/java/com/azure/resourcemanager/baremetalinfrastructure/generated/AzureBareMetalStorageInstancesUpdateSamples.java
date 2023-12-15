@@ -5,45 +5,53 @@
 package com.azure.resourcemanager.baremetalinfrastructure.generated;
 
 import com.azure.resourcemanager.baremetalinfrastructure.models.AzureBareMetalStorageInstance;
+import com.azure.resourcemanager.baremetalinfrastructure.models.AzureBareMetalStorageInstanceIdentity;
+import com.azure.resourcemanager.baremetalinfrastructure.models.ResourceIdentityType;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for AzureBareMetalStorageInstances Update. */
+/**
+ * Samples for AzureBareMetalStorageInstances Update.
+ */
 public final class AzureBareMetalStorageInstancesUpdateSamples {
     /*
-     * x-ms-original-file: specification/baremetalinfrastructure/resource-manager/Microsoft.BareMetalInfrastructure/preview/2023-08-04-preview/examples/AzureBareMetalStorageInstances_PatchTags.json
+     * x-ms-original-file:
+     * specification/baremetalinfrastructure/resource-manager/Microsoft.BareMetalInfrastructure/preview/2023-11-01-
+     * preview/examples/AzureBareMetalStorageInstances_PatchTags.json
      */
     /**
      * Sample code: Update Tags field of an AzureBareMetalStorage instance.
-     *
+     * 
      * @param manager Entry point to BareMetalInfrastructureManager.
      */
     public static void updateTagsFieldOfAnAzureBareMetalStorageInstance(
         com.azure.resourcemanager.baremetalinfrastructure.BareMetalInfrastructureManager manager) {
-        AzureBareMetalStorageInstance resource =
-            manager
-                .azureBareMetalStorageInstances()
-                .getByResourceGroupWithResponse("myResourceGroup", "myABMSInstance", com.azure.core.util.Context.NONE)
-                .getValue();
-        resource.update().withTags(mapOf("testkey", "fakeTokenPlaceholder")).apply();
+        AzureBareMetalStorageInstance resource = manager.azureBareMetalStorageInstances()
+            .getByResourceGroupWithResponse("myResourceGroup", "myABMSInstance", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("testkey", "fakeTokenPlaceholder"))
+            .withIdentity(new AzureBareMetalStorageInstanceIdentity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
+            .apply();
     }
 
     /*
-     * x-ms-original-file: specification/baremetalinfrastructure/resource-manager/Microsoft.BareMetalInfrastructure/preview/2023-08-04-preview/examples/AzureBareMetalStorageInstances_PatchTags_Delete.json
+     * x-ms-original-file:
+     * specification/baremetalinfrastructure/resource-manager/Microsoft.BareMetalInfrastructure/preview/2023-11-01-
+     * preview/examples/AzureBareMetalStorageInstances_PatchTags_Delete.json
      */
     /**
      * Sample code: Delete Tags field of an AzureBareMetalStorage instance.
-     *
+     * 
      * @param manager Entry point to BareMetalInfrastructureManager.
      */
     public static void deleteTagsFieldOfAnAzureBareMetalStorageInstance(
         com.azure.resourcemanager.baremetalinfrastructure.BareMetalInfrastructureManager manager) {
-        AzureBareMetalStorageInstance resource =
-            manager
-                .azureBareMetalStorageInstances()
-                .getByResourceGroupWithResponse("myResourceGroup", "myABMSInstance", com.azure.core.util.Context.NONE)
-                .getValue();
-        resource.update().withTags(mapOf()).apply();
+        AzureBareMetalStorageInstance resource = manager.azureBareMetalStorageInstances()
+            .getByResourceGroupWithResponse("myResourceGroup", "myABMSInstance", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf())
+            .withIdentity(new AzureBareMetalStorageInstanceIdentity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
+            .apply();
     }
 
     // Use "Map.of" if available

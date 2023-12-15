@@ -19,13 +19,15 @@ public final class ForceState {
     @JsonProperty(value = "forceState")
     private AzureBareMetalInstanceForcePowerState forceState;
 
-    /** Creates an instance of ForceState class. */
+    /**
+     * Creates an instance of ForceState class.
+     */
     public ForceState() {
     }
 
     /**
      * Get the forceState property: Whether to force restart by shutting all processes.
-     *
+     * 
      * @return the forceState value.
      */
     public AzureBareMetalInstanceForcePowerState forceState() {
@@ -34,7 +36,7 @@ public final class ForceState {
 
     /**
      * Set the forceState property: Whether to force restart by shutting all processes.
-     *
+     * 
      * @param forceState the forceState value to set.
      * @return the ForceState object itself.
      */
@@ -45,7 +47,7 @@ public final class ForceState {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
