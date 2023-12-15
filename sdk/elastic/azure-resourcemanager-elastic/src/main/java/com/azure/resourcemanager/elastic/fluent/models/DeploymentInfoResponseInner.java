@@ -9,7 +9,9 @@ import com.azure.resourcemanager.elastic.models.ElasticDeploymentStatus;
 import com.azure.resourcemanager.elastic.models.MarketplaceSaaSInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of deployment in Elastic cloud corresponding to the Elastic monitor resource. */
+/**
+ * The properties of deployment in Elastic cloud corresponding to the Elastic monitor resource.
+ */
 @Immutable
 public final class DeploymentInfoResponseInner {
     /*
@@ -37,6 +39,13 @@ public final class DeploymentInfoResponseInner {
     private String diskCapacity;
 
     /*
+     * Elasticsearch endpoint in Elastic cloud deployment. This is either the aliased_endpoint if available, or the
+     * service_url otherwise.
+     */
+    @JsonProperty(value = "elasticsearchEndPoint", access = JsonProperty.Access.WRITE_ONLY)
+    private String elasticsearchEndPoint;
+
+    /*
      * Deployment URL of the elasticsearch in Elastic cloud deployment.
      */
     @JsonProperty(value = "deploymentUrl", access = JsonProperty.Access.WRITE_ONLY)
@@ -48,13 +57,15 @@ public final class DeploymentInfoResponseInner {
     @JsonProperty(value = "marketplaceSaasInfo", access = JsonProperty.Access.WRITE_ONLY)
     private MarketplaceSaaSInfo marketplaceSaasInfo;
 
-    /** Creates an instance of DeploymentInfoResponseInner class. */
+    /**
+     * Creates an instance of DeploymentInfoResponseInner class.
+     */
     public DeploymentInfoResponseInner() {
     }
 
     /**
      * Get the status property: The Elastic deployment status.
-     *
+     * 
      * @return the status value.
      */
     public ElasticDeploymentStatus status() {
@@ -63,7 +74,7 @@ public final class DeploymentInfoResponseInner {
 
     /**
      * Get the version property: Version of the elasticsearch in Elastic cloud deployment.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -72,7 +83,7 @@ public final class DeploymentInfoResponseInner {
 
     /**
      * Get the memoryCapacity property: RAM capacity of the elasticsearch in Elastic cloud deployment.
-     *
+     * 
      * @return the memoryCapacity value.
      */
     public String memoryCapacity() {
@@ -81,7 +92,7 @@ public final class DeploymentInfoResponseInner {
 
     /**
      * Get the diskCapacity property: Disk capacity of the elasticsearch in Elastic cloud deployment.
-     *
+     * 
      * @return the diskCapacity value.
      */
     public String diskCapacity() {
@@ -89,8 +100,18 @@ public final class DeploymentInfoResponseInner {
     }
 
     /**
+     * Get the elasticsearchEndPoint property: Elasticsearch endpoint in Elastic cloud deployment. This is either the
+     * aliased_endpoint if available, or the service_url otherwise.
+     * 
+     * @return the elasticsearchEndPoint value.
+     */
+    public String elasticsearchEndPoint() {
+        return this.elasticsearchEndPoint;
+    }
+
+    /**
      * Get the deploymentUrl property: Deployment URL of the elasticsearch in Elastic cloud deployment.
-     *
+     * 
      * @return the deploymentUrl value.
      */
     public String deploymentUrl() {
@@ -99,7 +120,7 @@ public final class DeploymentInfoResponseInner {
 
     /**
      * Get the marketplaceSaasInfo property: Marketplace SaaS Info of the resource.
-     *
+     * 
      * @return the marketplaceSaasInfo value.
      */
     public MarketplaceSaaSInfo marketplaceSaasInfo() {
@@ -108,7 +129,7 @@ public final class DeploymentInfoResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

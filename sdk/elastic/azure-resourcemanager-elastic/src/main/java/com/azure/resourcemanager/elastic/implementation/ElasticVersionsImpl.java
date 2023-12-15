@@ -19,8 +19,8 @@ public final class ElasticVersionsImpl implements ElasticVersions {
 
     private final com.azure.resourcemanager.elastic.ElasticManager serviceManager;
 
-    public ElasticVersionsImpl(
-        ElasticVersionsClient innerClient, com.azure.resourcemanager.elastic.ElasticManager serviceManager) {
+    public ElasticVersionsImpl(ElasticVersionsClient innerClient,
+        com.azure.resourcemanager.elastic.ElasticManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }

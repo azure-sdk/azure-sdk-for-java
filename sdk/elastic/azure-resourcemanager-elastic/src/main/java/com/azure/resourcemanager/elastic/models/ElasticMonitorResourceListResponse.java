@@ -9,7 +9,9 @@ import com.azure.resourcemanager.elastic.fluent.models.ElasticMonitorResourceInn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Response of a list operation. */
+/**
+ * Response of a list operation.
+ */
 @Fluent
 public final class ElasticMonitorResourceListResponse {
     /*
@@ -24,13 +26,15 @@ public final class ElasticMonitorResourceListResponse {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ElasticMonitorResourceListResponse class. */
+    /**
+     * Creates an instance of ElasticMonitorResourceListResponse class.
+     */
     public ElasticMonitorResourceListResponse() {
     }
 
     /**
      * Get the value property: Results of a list operation.
-     *
+     * 
      * @return the value value.
      */
     public List<ElasticMonitorResourceInner> value() {
@@ -39,7 +43,7 @@ public final class ElasticMonitorResourceListResponse {
 
     /**
      * Set the value property: Results of a list operation.
-     *
+     * 
      * @param value the value value to set.
      * @return the ElasticMonitorResourceListResponse object itself.
      */
@@ -50,7 +54,7 @@ public final class ElasticMonitorResourceListResponse {
 
     /**
      * Get the nextLink property: Link to the next set of results, if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class ElasticMonitorResourceListResponse {
 
     /**
      * Set the nextLink property: Link to the next set of results, if any.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ElasticMonitorResourceListResponse object itself.
      */
@@ -70,7 +74,7 @@ public final class ElasticMonitorResourceListResponse {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

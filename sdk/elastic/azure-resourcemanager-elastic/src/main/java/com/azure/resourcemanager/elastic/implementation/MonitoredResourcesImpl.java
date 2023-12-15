@@ -19,8 +19,8 @@ public final class MonitoredResourcesImpl implements MonitoredResources {
 
     private final com.azure.resourcemanager.elastic.ElasticManager serviceManager;
 
-    public MonitoredResourcesImpl(
-        MonitoredResourcesClient innerClient, com.azure.resourcemanager.elastic.ElasticManager serviceManager) {
+    public MonitoredResourcesImpl(MonitoredResourcesClient innerClient,
+        com.azure.resourcemanager.elastic.ElasticManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -31,8 +31,8 @@ public final class MonitoredResourcesImpl implements MonitoredResources {
     }
 
     public PagedIterable<MonitoredResource> list(String resourceGroupName, String monitorName, Context context) {
-        PagedIterable<MonitoredResourceInner> inner =
-            this.serviceClient().list(resourceGroupName, monitorName, context);
+        PagedIterable<MonitoredResourceInner> inner
+            = this.serviceClient().list(resourceGroupName, monitorName, context);
         return Utils.mapPage(inner, inner1 -> new MonitoredResourceImpl(inner1, this.manager()));
     }
 

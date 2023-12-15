@@ -9,7 +9,9 @@ import com.azure.resourcemanager.elastic.fluent.models.VMResourcesInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Response of a list operation. */
+/**
+ * Response of a list operation.
+ */
 @Fluent
 public final class VMHostListResponse {
     /*
@@ -24,13 +26,15 @@ public final class VMHostListResponse {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of VMHostListResponse class. */
+    /**
+     * Creates an instance of VMHostListResponse class.
+     */
     public VMHostListResponse() {
     }
 
     /**
      * Get the value property: Results of a list operation.
-     *
+     * 
      * @return the value value.
      */
     public List<VMResourcesInner> value() {
@@ -39,7 +43,7 @@ public final class VMHostListResponse {
 
     /**
      * Set the value property: Results of a list operation.
-     *
+     * 
      * @param value the value value to set.
      * @return the VMHostListResponse object itself.
      */
@@ -50,7 +54,7 @@ public final class VMHostListResponse {
 
     /**
      * Get the nextLink property: Link to the next Vm resource Id, if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class VMHostListResponse {
 
     /**
      * Set the nextLink property: Link to the next Vm resource Id, if any.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the VMHostListResponse object itself.
      */
@@ -70,7 +74,7 @@ public final class VMHostListResponse {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,19 +10,23 @@ import java.util.Collection;
 
 /**
  * SendingLogs
- *
- * <p>Flag indicating the status of the resource for sending logs operation to Elastic.
+ * 
+ * Flag indicating the status of the resource for sending logs operation to Elastic.
  */
 public final class SendingLogs extends ExpandableStringEnum<SendingLogs> {
-    /** Static value True for SendingLogs. */
+    /**
+     * Static value True for SendingLogs.
+     */
     public static final SendingLogs TRUE = fromString("True");
 
-    /** Static value False for SendingLogs. */
+    /**
+     * Static value False for SendingLogs.
+     */
     public static final SendingLogs FALSE = fromString("False");
 
     /**
      * Creates a new instance of SendingLogs value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -31,7 +35,7 @@ public final class SendingLogs extends ExpandableStringEnum<SendingLogs> {
 
     /**
      * Creates or finds a SendingLogs from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding SendingLogs.
      */
@@ -42,7 +46,7 @@ public final class SendingLogs extends ExpandableStringEnum<SendingLogs> {
 
     /**
      * Gets known SendingLogs values.
-     *
+     * 
      * @return known SendingLogs values.
      */
     public static Collection<SendingLogs> values() {
