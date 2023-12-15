@@ -9,7 +9,9 @@ import com.azure.resourcemanager.hardwaresecuritymodules.models.JsonWebKeyType;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.NetworkProfile;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of the dedicated hsm. */
+/**
+ * Properties of the dedicated hsm.
+ */
 @Fluent
 public final class DedicatedHsmProperties {
     /*
@@ -43,8 +45,14 @@ public final class DedicatedHsmProperties {
     private JsonWebKeyType provisioningState;
 
     /**
+     * Creates an instance of DedicatedHsmProperties class.
+     */
+    public DedicatedHsmProperties() {
+    }
+
+    /**
      * Get the networkProfile property: Specifies the network interfaces of the dedicated hsm.
-     *
+     * 
      * @return the networkProfile value.
      */
     public NetworkProfile networkProfile() {
@@ -53,7 +61,7 @@ public final class DedicatedHsmProperties {
 
     /**
      * Set the networkProfile property: Specifies the network interfaces of the dedicated hsm.
-     *
+     * 
      * @param networkProfile the networkProfile value to set.
      * @return the DedicatedHsmProperties object itself.
      */
@@ -64,7 +72,7 @@ public final class DedicatedHsmProperties {
 
     /**
      * Get the managementNetworkProfile property: Specifies the management network interfaces of the dedicated hsm.
-     *
+     * 
      * @return the managementNetworkProfile value.
      */
     public NetworkProfile managementNetworkProfile() {
@@ -73,7 +81,7 @@ public final class DedicatedHsmProperties {
 
     /**
      * Set the managementNetworkProfile property: Specifies the management network interfaces of the dedicated hsm.
-     *
+     * 
      * @param managementNetworkProfile the managementNetworkProfile value to set.
      * @return the DedicatedHsmProperties object itself.
      */
@@ -84,7 +92,7 @@ public final class DedicatedHsmProperties {
 
     /**
      * Get the stampId property: This field will be used when RP does not support Availability zones.
-     *
+     * 
      * @return the stampId value.
      */
     public String stampId() {
@@ -93,7 +101,7 @@ public final class DedicatedHsmProperties {
 
     /**
      * Set the stampId property: This field will be used when RP does not support Availability zones.
-     *
+     * 
      * @param stampId the stampId value to set.
      * @return the DedicatedHsmProperties object itself.
      */
@@ -104,7 +112,7 @@ public final class DedicatedHsmProperties {
 
     /**
      * Get the statusMessage property: Resource Status Message.
-     *
+     * 
      * @return the statusMessage value.
      */
     public String statusMessage() {
@@ -113,7 +121,7 @@ public final class DedicatedHsmProperties {
 
     /**
      * Get the provisioningState property: Provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public JsonWebKeyType provisioningState() {
@@ -122,7 +130,7 @@ public final class DedicatedHsmProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
