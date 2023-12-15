@@ -99,7 +99,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.paloaltonetworks.ngfw.models.Country",
+  "name" : "com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.CountryInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -114,7 +114,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.paloaltonetworks.ngfw.models.PredefinedUrlCategory",
+  "name" : "com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.PredefinedUrlCategoryInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
