@@ -148,20 +148,14 @@ public final class StorageApplianceImpl
     }
 
     public StorageAppliance create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getStorageAppliances()
-                .createOrUpdate(resourceGroupName, storageApplianceName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getStorageAppliances().createOrUpdate(resourceGroupName,
+            storageApplianceName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public StorageAppliance create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getStorageAppliances()
-                .createOrUpdate(resourceGroupName, storageApplianceName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getStorageAppliances().createOrUpdate(resourceGroupName,
+            storageApplianceName, this.innerModel(), context);
         return this;
     }
 
@@ -177,25 +171,19 @@ public final class StorageApplianceImpl
     }
 
     public StorageAppliance apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getStorageAppliances()
-                .update(resourceGroupName, storageApplianceName, updateStorageApplianceUpdateParameters, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getStorageAppliances().update(resourceGroupName,
+            storageApplianceName, updateStorageApplianceUpdateParameters, Context.NONE);
         return this;
     }
 
     public StorageAppliance apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getStorageAppliances()
-                .update(resourceGroupName, storageApplianceName, updateStorageApplianceUpdateParameters, context);
+        this.innerObject = serviceManager.serviceClient().getStorageAppliances().update(resourceGroupName,
+            storageApplianceName, updateStorageApplianceUpdateParameters, context);
         return this;
     }
 
-    StorageApplianceImpl(
-        StorageApplianceInner innerObject, com.azure.resourcemanager.networkcloud.NetworkCloudManager serviceManager) {
+    StorageApplianceImpl(StorageApplianceInner innerObject,
+        com.azure.resourcemanager.networkcloud.NetworkCloudManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
@@ -203,35 +191,25 @@ public final class StorageApplianceImpl
     }
 
     public StorageAppliance refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getStorageAppliances()
-                .getByResourceGroupWithResponse(resourceGroupName, storageApplianceName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getStorageAppliances()
+            .getByResourceGroupWithResponse(resourceGroupName, storageApplianceName, Context.NONE).getValue();
         return this;
     }
 
     public StorageAppliance refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getStorageAppliances()
-                .getByResourceGroupWithResponse(resourceGroupName, storageApplianceName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getStorageAppliances()
+            .getByResourceGroupWithResponse(resourceGroupName, storageApplianceName, context).getValue();
         return this;
     }
 
     public OperationStatusResult disableRemoteVendorManagement() {
-        return serviceManager
-            .storageAppliances()
-            .disableRemoteVendorManagement(resourceGroupName, storageApplianceName);
+        return serviceManager.storageAppliances().disableRemoteVendorManagement(resourceGroupName,
+            storageApplianceName);
     }
 
     public OperationStatusResult disableRemoteVendorManagement(Context context) {
-        return serviceManager
-            .storageAppliances()
-            .disableRemoteVendorManagement(resourceGroupName, storageApplianceName, context);
+        return serviceManager.storageAppliances().disableRemoteVendorManagement(resourceGroupName, storageApplianceName,
+            context);
     }
 
     public OperationStatusResult enableRemoteVendorManagement() {
@@ -241,13 +219,8 @@ public final class StorageApplianceImpl
     public OperationStatusResult enableRemoteVendorManagement(
         StorageApplianceEnableRemoteVendorManagementParameters storageApplianceEnableRemoteVendorManagementParameters,
         Context context) {
-        return serviceManager
-            .storageAppliances()
-            .enableRemoteVendorManagement(
-                resourceGroupName,
-                storageApplianceName,
-                storageApplianceEnableRemoteVendorManagementParameters,
-                context);
+        return serviceManager.storageAppliances().enableRemoteVendorManagement(resourceGroupName, storageApplianceName,
+            storageApplianceEnableRemoteVendorManagementParameters, context);
     }
 
     public StorageApplianceImpl withRegion(Region location) {

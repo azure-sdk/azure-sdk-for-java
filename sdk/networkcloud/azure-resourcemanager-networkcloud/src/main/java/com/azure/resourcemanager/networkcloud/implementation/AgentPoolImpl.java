@@ -19,6 +19,7 @@ import com.azure.resourcemanager.networkcloud.models.AgentPoolUpgradeSettings;
 import com.azure.resourcemanager.networkcloud.models.AttachedNetworkConfiguration;
 import com.azure.resourcemanager.networkcloud.models.ExtendedLocation;
 import com.azure.resourcemanager.networkcloud.models.KubernetesLabel;
+import com.azure.resourcemanager.networkcloud.models.NodePoolAdministratorConfigurationPatch;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -167,21 +168,14 @@ public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, Age
     }
 
     public AgentPool create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAgentPools()
-                .createOrUpdate(
-                    resourceGroupName, kubernetesClusterName, agentPoolName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getAgentPools().createOrUpdate(resourceGroupName,
+            kubernetesClusterName, agentPoolName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public AgentPool create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAgentPools()
-                .createOrUpdate(resourceGroupName, kubernetesClusterName, agentPoolName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getAgentPools().createOrUpdate(resourceGroupName,
+            kubernetesClusterName, agentPoolName, this.innerModel(), context);
         return this;
     }
 
@@ -197,31 +191,19 @@ public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, Age
     }
 
     public AgentPool apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAgentPools()
-                .update(
-                    resourceGroupName,
-                    kubernetesClusterName,
-                    agentPoolName,
-                    updateAgentPoolUpdateParameters,
-                    Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getAgentPools().update(resourceGroupName,
+            kubernetesClusterName, agentPoolName, updateAgentPoolUpdateParameters, Context.NONE);
         return this;
     }
 
     public AgentPool apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAgentPools()
-                .update(
-                    resourceGroupName, kubernetesClusterName, agentPoolName, updateAgentPoolUpdateParameters, context);
+        this.innerObject = serviceManager.serviceClient().getAgentPools().update(resourceGroupName,
+            kubernetesClusterName, agentPoolName, updateAgentPoolUpdateParameters, context);
         return this;
     }
 
-    AgentPoolImpl(
-        AgentPoolInner innerObject, com.azure.resourcemanager.networkcloud.NetworkCloudManager serviceManager) {
+    AgentPoolImpl(AgentPoolInner innerObject,
+        com.azure.resourcemanager.networkcloud.NetworkCloudManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
@@ -230,22 +212,14 @@ public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, Age
     }
 
     public AgentPool refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAgentPools()
-                .getWithResponse(resourceGroupName, kubernetesClusterName, agentPoolName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAgentPools()
+            .getWithResponse(resourceGroupName, kubernetesClusterName, agentPoolName, Context.NONE).getValue();
         return this;
     }
 
     public AgentPool refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAgentPools()
-                .getWithResponse(resourceGroupName, kubernetesClusterName, agentPoolName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAgentPools()
+            .getWithResponse(resourceGroupName, kubernetesClusterName, agentPoolName, context).getValue();
         return this;
     }
 
@@ -327,6 +301,12 @@ public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, Age
             this.updateAgentPoolUpdateParameters.withUpgradeSettings(upgradeSettings);
             return this;
         }
+    }
+
+    public AgentPoolImpl
+        withAdministratorConfiguration(NodePoolAdministratorConfigurationPatch administratorConfiguration) {
+        this.updateAgentPoolUpdateParameters.withAdministratorConfiguration(administratorConfiguration);
+        return this;
     }
 
     public AgentPoolImpl withCount(Long count) {

@@ -11,33 +11,30 @@ import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for Consoles CreateOrUpdate. */
+/**
+ * Samples for Consoles CreateOrUpdate.
+ */
 public final class ConsolesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/Consoles_Create.json
+     * x-ms-original-file:
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-10-01-preview/examples/
+     * Consoles_Create.json
      */
     /**
      * Sample code: Create or update virtual machine console.
-     *
+     * 
      * @param manager Entry point to NetworkCloudManager.
      */
-    public static void createOrUpdateVirtualMachineConsole(
-        com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
-        manager
-            .consoles()
-            .define("default")
-            .withRegion("location")
+    public static void
+        createOrUpdateVirtualMachineConsole(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
+        manager.consoles().define("default").withRegion("location")
             .withExistingVirtualMachine("resourceGroupName", "virtualMachineName")
-            .withExtendedLocation(
-                new ExtendedLocation()
-                    .withName(
-                        "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ExtendedLocation/customLocations/clusterManagerExtendedLocationName")
-                    .withType("CustomLocation"))
-            .withEnabled(ConsoleEnabled.TRUE)
-            .withSshPublicKey(new SshPublicKey().withKeyData("fakeTokenPlaceholder"))
+            .withExtendedLocation(new ExtendedLocation().withName(
+                "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ExtendedLocation/customLocations/clusterManagerExtendedLocationName")
+                .withType("CustomLocation"))
+            .withEnabled(ConsoleEnabled.TRUE).withSshPublicKey(new SshPublicKey().withKeyData("fakeTokenPlaceholder"))
             .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
-            .withExpiration(OffsetDateTime.parse("2022-06-01T01:27:03.008Z"))
-            .create();
+            .withExpiration(OffsetDateTime.parse("2022-06-01T01:27:03.008Z")).create();
     }
 
     // Use "Map.of" if available

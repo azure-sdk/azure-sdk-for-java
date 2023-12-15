@@ -14,15 +14,19 @@ import java.util.Collection;
  */
 public final class VirtualMachinePlacementHintPodAffinityScope
     extends ExpandableStringEnum<VirtualMachinePlacementHintPodAffinityScope> {
-    /** Static value Rack for VirtualMachinePlacementHintPodAffinityScope. */
+    /**
+     * Static value Rack for VirtualMachinePlacementHintPodAffinityScope.
+     */
     public static final VirtualMachinePlacementHintPodAffinityScope RACK = fromString("Rack");
 
-    /** Static value Machine for VirtualMachinePlacementHintPodAffinityScope. */
+    /**
+     * Static value Machine for VirtualMachinePlacementHintPodAffinityScope.
+     */
     public static final VirtualMachinePlacementHintPodAffinityScope MACHINE = fromString("Machine");
 
     /**
      * Creates a new instance of VirtualMachinePlacementHintPodAffinityScope value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -31,7 +35,7 @@ public final class VirtualMachinePlacementHintPodAffinityScope
 
     /**
      * Creates or finds a VirtualMachinePlacementHintPodAffinityScope from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding VirtualMachinePlacementHintPodAffinityScope.
      */
@@ -42,7 +46,7 @@ public final class VirtualMachinePlacementHintPodAffinityScope
 
     /**
      * Gets known VirtualMachinePlacementHintPodAffinityScope values.
-     *
+     * 
      * @return known VirtualMachinePlacementHintPodAffinityScope values.
      */
     public static Collection<VirtualMachinePlacementHintPodAffinityScope> values() {

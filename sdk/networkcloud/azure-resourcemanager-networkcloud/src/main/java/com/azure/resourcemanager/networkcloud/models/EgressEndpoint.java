@@ -29,7 +29,9 @@ public final class EgressEndpoint {
     @JsonProperty(value = "endpoints", required = true)
     private List<EndpointDependency> endpoints;
 
-    /** Creates an instance of EgressEndpoint class. */
+    /**
+     * Creates an instance of EgressEndpoint class.
+     */
     public EgressEndpoint() {
     }
 
@@ -37,7 +39,7 @@ public final class EgressEndpoint {
      * Get the category property: The descriptive category name of endpoints accessible by the AKS agent node. For
      * example, azure-resource-management, API server, etc. The platform egress endpoints provided by default will use
      * the category 'default'.
-     *
+     * 
      * @return the category value.
      */
     public String category() {
@@ -48,7 +50,7 @@ public final class EgressEndpoint {
      * Set the category property: The descriptive category name of endpoints accessible by the AKS agent node. For
      * example, azure-resource-management, API server, etc. The platform egress endpoints provided by default will use
      * the category 'default'.
-     *
+     * 
      * @param category the category value to set.
      * @return the EgressEndpoint object itself.
      */
@@ -59,7 +61,7 @@ public final class EgressEndpoint {
 
     /**
      * Get the endpoints property: The list of endpoint dependencies.
-     *
+     * 
      * @return the endpoints value.
      */
     public List<EndpointDependency> endpoints() {
@@ -68,7 +70,7 @@ public final class EgressEndpoint {
 
     /**
      * Set the endpoints property: The list of endpoint dependencies.
-     *
+     * 
      * @param endpoints the endpoints value to set.
      * @return the EgressEndpoint object itself.
      */
@@ -79,19 +81,17 @@ public final class EgressEndpoint {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (category() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property category in model EgressEndpoint"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property category in model EgressEndpoint"));
         }
         if (endpoints() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property endpoints in model EgressEndpoint"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property endpoints in model EgressEndpoint"));
         } else {
             endpoints().forEach(e -> e.validate());
         }

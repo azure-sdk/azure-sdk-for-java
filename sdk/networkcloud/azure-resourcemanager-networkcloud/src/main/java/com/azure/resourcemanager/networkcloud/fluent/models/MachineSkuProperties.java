@@ -11,7 +11,9 @@ import com.azure.resourcemanager.networkcloud.models.NetworkInterface;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** MachineSkuProperties represents the properties of the machine SKU. */
+/**
+ * MachineSkuProperties represents the properties of the machine SKU.
+ */
 @Immutable
 public final class MachineSkuProperties {
     /*
@@ -80,13 +82,15 @@ public final class MachineSkuProperties {
     @JsonProperty(value = "vendor", access = JsonProperty.Access.WRITE_ONLY)
     private String vendor;
 
-    /** Creates an instance of MachineSkuProperties class. */
+    /**
+     * Creates an instance of MachineSkuProperties class.
+     */
     public MachineSkuProperties() {
     }
 
     /**
      * Get the bootstrapProtocol property: The type of bootstrap protocol used.
-     *
+     * 
      * @return the bootstrapProtocol value.
      */
     public BootstrapProtocol bootstrapProtocol() {
@@ -95,7 +99,7 @@ public final class MachineSkuProperties {
 
     /**
      * Get the cpuCores property: The count of CPU cores for this machine.
-     *
+     * 
      * @return the cpuCores value.
      */
     public Long cpuCores() {
@@ -104,7 +108,7 @@ public final class MachineSkuProperties {
 
     /**
      * Get the cpuSockets property: The count of CPU sockets for this machine.
-     *
+     * 
      * @return the cpuSockets value.
      */
     public Long cpuSockets() {
@@ -113,7 +117,7 @@ public final class MachineSkuProperties {
 
     /**
      * Get the disks property: The list of disks.
-     *
+     * 
      * @return the disks value.
      */
     public List<MachineDisk> disks() {
@@ -122,7 +126,7 @@ public final class MachineSkuProperties {
 
     /**
      * Get the generation property: The generation of the architecture.
-     *
+     * 
      * @return the generation value.
      */
     public String generation() {
@@ -131,7 +135,7 @@ public final class MachineSkuProperties {
 
     /**
      * Get the hardwareVersion property: The hardware version of the machine.
-     *
+     * 
      * @return the hardwareVersion value.
      */
     public String hardwareVersion() {
@@ -140,7 +144,7 @@ public final class MachineSkuProperties {
 
     /**
      * Get the memoryCapacityGB property: The maximum amount of memory in GB.
-     *
+     * 
      * @return the memoryCapacityGB value.
      */
     public Long memoryCapacityGB() {
@@ -149,7 +153,7 @@ public final class MachineSkuProperties {
 
     /**
      * Get the model property: The model of the machine.
-     *
+     * 
      * @return the model value.
      */
     public String model() {
@@ -158,7 +162,7 @@ public final class MachineSkuProperties {
 
     /**
      * Get the networkInterfaces property: The list of network interfaces.
-     *
+     * 
      * @return the networkInterfaces value.
      */
     public List<NetworkInterface> networkInterfaces() {
@@ -167,7 +171,7 @@ public final class MachineSkuProperties {
 
     /**
      * Get the totalThreads property: The count of SMT and physical core threads for this machine.
-     *
+     * 
      * @return the totalThreads value.
      */
     public Long totalThreads() {
@@ -176,7 +180,7 @@ public final class MachineSkuProperties {
 
     /**
      * Get the vendor property: The make of the machine.
-     *
+     * 
      * @return the vendor value.
      */
     public String vendor() {
@@ -185,7 +189,7 @@ public final class MachineSkuProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

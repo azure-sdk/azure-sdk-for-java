@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** AadConfiguration represents the Azure Active Directory Integration properties. */
+/**
+ * AadConfiguration represents the Azure Active Directory Integration properties.
+ */
 @Fluent
 public final class AadConfiguration {
     /*
@@ -19,14 +21,16 @@ public final class AadConfiguration {
     @JsonProperty(value = "adminGroupObjectIds", required = true)
     private List<String> adminGroupObjectIds;
 
-    /** Creates an instance of AadConfiguration class. */
+    /**
+     * Creates an instance of AadConfiguration class.
+     */
     public AadConfiguration() {
     }
 
     /**
      * Get the adminGroupObjectIds property: The list of Azure Active Directory group object IDs that will have an
      * administrative role on the Kubernetes cluster.
-     *
+     * 
      * @return the adminGroupObjectIds value.
      */
     public List<String> adminGroupObjectIds() {
@@ -36,7 +40,7 @@ public final class AadConfiguration {
     /**
      * Set the adminGroupObjectIds property: The list of Azure Active Directory group object IDs that will have an
      * administrative role on the Kubernetes cluster.
-     *
+     * 
      * @param adminGroupObjectIds the adminGroupObjectIds value to set.
      * @return the AadConfiguration object itself.
      */
@@ -47,15 +51,13 @@ public final class AadConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (adminGroupObjectIds() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property adminGroupObjectIds in model AadConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property adminGroupObjectIds in model AadConfiguration"));
         }
     }
 

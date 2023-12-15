@@ -10,7 +10,9 @@ import com.azure.resourcemanager.networkcloud.models.VolumeProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** VolumeProperties represents properties of the volume resource. */
+/**
+ * VolumeProperties represents properties of the volume resource.
+ */
 @Fluent
 public final class VolumeProperties {
     /*
@@ -49,14 +51,16 @@ public final class VolumeProperties {
     @JsonProperty(value = "sizeMiB", required = true)
     private long sizeMiB;
 
-    /** Creates an instance of VolumeProperties class. */
+    /**
+     * Creates an instance of VolumeProperties class.
+     */
     public VolumeProperties() {
     }
 
     /**
-     * Get the attachedTo property: The list of resource IDs that attach the volume. It may include virtual machines and
-     * Hybrid AKS clusters.
-     *
+     * Get the attachedTo property: The list of resource IDs that attach the volume. It may include virtual machines
+     * and Hybrid AKS clusters.
+     * 
      * @return the attachedTo value.
      */
     public List<String> attachedTo() {
@@ -65,7 +69,7 @@ public final class VolumeProperties {
 
     /**
      * Get the detailedStatus property: The more detailed status of the volume.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public VolumeDetailedStatus detailedStatus() {
@@ -74,7 +78,7 @@ public final class VolumeProperties {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -83,7 +87,7 @@ public final class VolumeProperties {
 
     /**
      * Get the provisioningState property: The provisioning state of the volume.
-     *
+     * 
      * @return the provisioningState value.
      */
     public VolumeProvisioningState provisioningState() {
@@ -92,7 +96,7 @@ public final class VolumeProperties {
 
     /**
      * Get the serialNumber property: The unique identifier of the volume.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -101,7 +105,7 @@ public final class VolumeProperties {
 
     /**
      * Get the sizeMiB property: The size of the allocation for this volume in Mebibytes.
-     *
+     * 
      * @return the sizeMiB value.
      */
     public long sizeMiB() {
@@ -110,7 +114,7 @@ public final class VolumeProperties {
 
     /**
      * Set the sizeMiB property: The size of the allocation for this volume in Mebibytes.
-     *
+     * 
      * @param sizeMiB the sizeMiB value to set.
      * @return the VolumeProperties object itself.
      */
@@ -121,7 +125,7 @@ public final class VolumeProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

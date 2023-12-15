@@ -8,26 +8,38 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The provisioning state of the rack resource. */
+/**
+ * The provisioning state of the rack resource.
+ */
 public final class RackProvisioningState extends ExpandableStringEnum<RackProvisioningState> {
-    /** Static value Succeeded for RackProvisioningState. */
+    /**
+     * Static value Succeeded for RackProvisioningState.
+     */
     public static final RackProvisioningState SUCCEEDED = fromString("Succeeded");
 
-    /** Static value Failed for RackProvisioningState. */
+    /**
+     * Static value Failed for RackProvisioningState.
+     */
     public static final RackProvisioningState FAILED = fromString("Failed");
 
-    /** Static value Canceled for RackProvisioningState. */
+    /**
+     * Static value Canceled for RackProvisioningState.
+     */
     public static final RackProvisioningState CANCELED = fromString("Canceled");
 
-    /** Static value Provisioning for RackProvisioningState. */
+    /**
+     * Static value Provisioning for RackProvisioningState.
+     */
     public static final RackProvisioningState PROVISIONING = fromString("Provisioning");
 
-    /** Static value Accepted for RackProvisioningState. */
+    /**
+     * Static value Accepted for RackProvisioningState.
+     */
     public static final RackProvisioningState ACCEPTED = fromString("Accepted");
 
     /**
      * Creates a new instance of RackProvisioningState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -36,7 +48,7 @@ public final class RackProvisioningState extends ExpandableStringEnum<RackProvis
 
     /**
      * Creates or finds a RackProvisioningState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding RackProvisioningState.
      */
@@ -47,7 +59,7 @@ public final class RackProvisioningState extends ExpandableStringEnum<RackProvis
 
     /**
      * Gets known RackProvisioningState values.
-     *
+     * 
      * @return known RackProvisioningState values.
      */
     public static Collection<RackProvisioningState> values() {

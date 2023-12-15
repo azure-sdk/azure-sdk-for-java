@@ -8,26 +8,38 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The provisioning state of the bare metal machine. */
+/**
+ * The provisioning state of the bare metal machine.
+ */
 public final class BareMetalMachineProvisioningState extends ExpandableStringEnum<BareMetalMachineProvisioningState> {
-    /** Static value Succeeded for BareMetalMachineProvisioningState. */
+    /**
+     * Static value Succeeded for BareMetalMachineProvisioningState.
+     */
     public static final BareMetalMachineProvisioningState SUCCEEDED = fromString("Succeeded");
 
-    /** Static value Failed for BareMetalMachineProvisioningState. */
+    /**
+     * Static value Failed for BareMetalMachineProvisioningState.
+     */
     public static final BareMetalMachineProvisioningState FAILED = fromString("Failed");
 
-    /** Static value Canceled for BareMetalMachineProvisioningState. */
+    /**
+     * Static value Canceled for BareMetalMachineProvisioningState.
+     */
     public static final BareMetalMachineProvisioningState CANCELED = fromString("Canceled");
 
-    /** Static value Provisioning for BareMetalMachineProvisioningState. */
+    /**
+     * Static value Provisioning for BareMetalMachineProvisioningState.
+     */
     public static final BareMetalMachineProvisioningState PROVISIONING = fromString("Provisioning");
 
-    /** Static value Accepted for BareMetalMachineProvisioningState. */
+    /**
+     * Static value Accepted for BareMetalMachineProvisioningState.
+     */
     public static final BareMetalMachineProvisioningState ACCEPTED = fromString("Accepted");
 
     /**
      * Creates a new instance of BareMetalMachineProvisioningState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -36,7 +48,7 @@ public final class BareMetalMachineProvisioningState extends ExpandableStringEnu
 
     /**
      * Creates or finds a BareMetalMachineProvisioningState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding BareMetalMachineProvisioningState.
      */
@@ -47,7 +59,7 @@ public final class BareMetalMachineProvisioningState extends ExpandableStringEnu
 
     /**
      * Gets known BareMetalMachineProvisioningState values.
-     *
+     * 
      * @return known BareMetalMachineProvisioningState values.
      */
     public static Collection<BareMetalMachineProvisioningState> values() {

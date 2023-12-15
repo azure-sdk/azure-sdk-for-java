@@ -7,7 +7,13 @@ package com.azure.resourcemanager.networkcloud.generated;
 import com.azure.resourcemanager.networkcloud.models.AdministrativeCredentials;
 import com.azure.resourcemanager.networkcloud.models.BareMetalMachineConfigurationData;
 import com.azure.resourcemanager.networkcloud.models.Cluster;
+import com.azure.resourcemanager.networkcloud.models.ClusterSecretArchive;
+import com.azure.resourcemanager.networkcloud.models.ClusterSecretArchiveEnabled;
+import com.azure.resourcemanager.networkcloud.models.ClusterUpdateStrategy;
+import com.azure.resourcemanager.networkcloud.models.ClusterUpdateStrategyType;
 import com.azure.resourcemanager.networkcloud.models.RackDefinition;
+import com.azure.resourcemanager.networkcloud.models.RuntimeProtectionConfiguration;
+import com.azure.resourcemanager.networkcloud.models.RuntimeProtectionEnforcementLevel;
 import com.azure.resourcemanager.networkcloud.models.StorageApplianceConfigurationData;
 import com.azure.resourcemanager.networkcloud.models.ValidationThreshold;
 import com.azure.resourcemanager.networkcloud.models.ValidationThresholdGrouping;
@@ -16,96 +22,134 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for Clusters Update. */
+/**
+ * Samples for Clusters Update.
+ */
 public final class ClustersUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/Clusters_Patch_Location.json
+     * x-ms-original-file:
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-10-01-preview/examples/
+     * Clusters_Patch_UpdateStrategy.json
      */
     /**
-     * Sample code: Patch cluster location.
-     *
+     * Sample code: Patch update strategy.
+     * 
      * @param manager Entry point to NetworkCloudManager.
      */
-    public static void patchClusterLocation(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
-        Cluster resource =
-            manager
-                .clusters()
-                .getByResourceGroupWithResponse("resourceGroupName", "clusterName", com.azure.core.util.Context.NONE)
-                .getValue();
-        resource
-            .update()
-            .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
-            .withClusterLocation("Foo Street, 3rd Floor, row 9")
+    public static void patchUpdateStrategy(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
+        Cluster resource = manager.clusters()
+            .getByResourceGroupWithResponse("resourceGroupName", "clusterName", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
+            .withUpdateStrategy(
+                new ClusterUpdateStrategy().withMaxUnavailable(4L).withStrategyType(ClusterUpdateStrategyType.RACK)
+                    .withThresholdType(ValidationThresholdType.COUNT_SUCCESS).withThresholdValue(4L)
+                    .withWaitTimeMinutes(10L))
             .apply();
     }
 
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/Clusters_Patch_AggregatorOrSingleRackDefinition.json
+     * x-ms-original-file:
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-10-01-preview/examples/
+     * Clusters_Patch_Location.json
+     */
+    /**
+     * Sample code: Patch cluster location.
+     * 
+     * @param manager Entry point to NetworkCloudManager.
+     */
+    public static void patchClusterLocation(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
+        Cluster resource = manager.clusters()
+            .getByResourceGroupWithResponse("resourceGroupName", "clusterName", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
+            .withClusterLocation("Foo Street, 3rd Floor, row 9").apply();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-10-01-preview/examples/
+     * Clusters_Patch_AggregatorOrSingleRackDefinition.json
      */
     /**
      * Sample code: Patch cluster AggregatorOrSingleRackDefinition.
-     *
+     * 
      * @param manager Entry point to NetworkCloudManager.
      */
     public static void patchClusterAggregatorOrSingleRackDefinition(
         com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
-        Cluster resource =
-            manager
-                .clusters()
-                .getByResourceGroupWithResponse("resourceGroupName", "clusterName", com.azure.core.util.Context.NONE)
-                .getValue();
-        resource
-            .update()
-            .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
-            .withAggregatorOrSingleRackDefinition(
-                new RackDefinition()
-                    .withBareMetalMachineConfigurationData(
-                        Arrays
-                            .asList(
-                                new BareMetalMachineConfigurationData()
-                                    .withBmcCredentials(
-                                        new AdministrativeCredentials()
-                                            .withPassword("fakeTokenPlaceholder")
-                                            .withUsername("username"))
-                                    .withBmcMacAddress("AA:BB:CC:DD:EE:FF")
-                                    .withBootMacAddress("00:BB:CC:DD:EE:FF")
-                                    .withMachineDetails("extraDetails")
-                                    .withMachineName("bmmName1")
-                                    .withRackSlot(1L)
-                                    .withSerialNumber("BM1219XXX"),
-                                new BareMetalMachineConfigurationData()
-                                    .withBmcCredentials(
-                                        new AdministrativeCredentials()
-                                            .withPassword("fakeTokenPlaceholder")
-                                            .withUsername("username"))
-                                    .withBmcMacAddress("AA:BB:CC:DD:EE:00")
-                                    .withBootMacAddress("00:BB:CC:DD:EE:00")
-                                    .withMachineDetails("extraDetails")
-                                    .withMachineName("bmmName2")
-                                    .withRackSlot(2L)
-                                    .withSerialNumber("BM1219YYY")))
-                    .withNetworkRackId(
-                        "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ManagedNetworkFabric/networkRacks/networkRackName")
-                    .withRackLocation("Foo Datacenter, Floor 3, Aisle 9, Rack 2")
-                    .withRackSerialNumber("newSerialNumber")
-                    .withRackSkuId(
-                        "/subscriptions/123e4567-e89b-12d3-a456-426655440000/providers/Microsoft.NetworkCloud/rackSkus/rackSkuName")
-                    .withStorageApplianceConfigurationData(
-                        Arrays
-                            .asList(
-                                new StorageApplianceConfigurationData()
-                                    .withAdminCredentials(
-                                        new AdministrativeCredentials()
-                                            .withPassword("fakeTokenPlaceholder")
-                                            .withUsername("username"))
-                                    .withRackSlot(1L)
-                                    .withSerialNumber("BM1219XXX")
-                                    .withStorageApplianceName("vmName"))))
+        Cluster resource = manager.clusters()
+            .getByResourceGroupWithResponse("resourceGroupName", "clusterName", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
+            .withAggregatorOrSingleRackDefinition(new RackDefinition()
+                .withBareMetalMachineConfigurationData(
+                    Arrays.asList(
+                        new BareMetalMachineConfigurationData()
+                            .withBmcCredentials(new AdministrativeCredentials().withPassword("fakeTokenPlaceholder")
+                                .withUsername("username"))
+                            .withBmcMacAddress("AA:BB:CC:DD:EE:FF").withBootMacAddress("00:BB:CC:DD:EE:FF")
+                            .withMachineDetails("extraDetails").withMachineName("bmmName1").withRackSlot(1L)
+                            .withSerialNumber("BM1219XXX"),
+                        new BareMetalMachineConfigurationData()
+                            .withBmcCredentials(new AdministrativeCredentials().withPassword("fakeTokenPlaceholder")
+                                .withUsername("username"))
+                            .withBmcMacAddress("AA:BB:CC:DD:EE:00").withBootMacAddress("00:BB:CC:DD:EE:00")
+                            .withMachineDetails("extraDetails").withMachineName("bmmName2").withRackSlot(2L)
+                            .withSerialNumber("BM1219YYY")))
+                .withNetworkRackId(
+                    "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ManagedNetworkFabric/networkRacks/networkRackName")
+                .withRackLocation("Foo Datacenter, Floor 3, Aisle 9, Rack 2").withRackSerialNumber("newSerialNumber")
+                .withRackSkuId(
+                    "/subscriptions/123e4567-e89b-12d3-a456-426655440000/providers/Microsoft.NetworkCloud/rackSkus/rackSkuName")
+                .withStorageApplianceConfigurationData(Arrays.asList(new StorageApplianceConfigurationData()
+                    .withAdminCredentials(
+                        new AdministrativeCredentials().withPassword("fakeTokenPlaceholder").withUsername("username"))
+                    .withRackSlot(1L).withSerialNumber("BM1219XXX").withStorageApplianceName("vmName"))))
             .withComputeDeploymentThreshold(
-                new ValidationThreshold()
-                    .withGrouping(ValidationThresholdGrouping.PER_CLUSTER)
-                    .withType(ValidationThresholdType.PERCENT_SUCCESS)
-                    .withValue(90L))
+                new ValidationThreshold().withGrouping(ValidationThresholdGrouping.PER_CLUSTER)
+                    .withType(ValidationThresholdType.PERCENT_SUCCESS).withValue(90L))
+            .apply();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-10-01-preview/examples/
+     * Clusters_Patch_RuntimeProtectionConfiguration.json
+     */
+    /**
+     * Sample code: Patch runtime protection configuration.
+     * 
+     * @param manager Entry point to NetworkCloudManager.
+     */
+    public static void
+        patchRuntimeProtectionConfiguration(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
+        Cluster resource = manager.clusters()
+            .getByResourceGroupWithResponse("resourceGroupName", "clusterName", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
+            .withRuntimeProtectionConfiguration(
+                new RuntimeProtectionConfiguration().withEnforcementLevel(RuntimeProtectionEnforcementLevel.ON_DEMAND))
+            .apply();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-10-01-preview/examples/
+     * Clusters_Patch_SecretArchive.json
+     */
+    /**
+     * Sample code: Patch secret archive.
+     * 
+     * @param manager Entry point to NetworkCloudManager.
+     */
+    public static void patchSecretArchive(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
+        Cluster resource = manager.clusters()
+            .getByResourceGroupWithResponse("resourceGroupName", "clusterName", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
+            .withSecretArchive(new ClusterSecretArchive().withKeyVaultId("fakeTokenPlaceholder")
+                .withUseKeyVault(ClusterSecretArchiveEnabled.TRUE))
             .apply();
     }
 

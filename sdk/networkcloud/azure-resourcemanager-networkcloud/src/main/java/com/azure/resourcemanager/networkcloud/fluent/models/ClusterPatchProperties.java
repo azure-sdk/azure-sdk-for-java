@@ -5,18 +5,23 @@
 package com.azure.resourcemanager.networkcloud.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.networkcloud.models.ClusterSecretArchive;
+import com.azure.resourcemanager.networkcloud.models.ClusterUpdateStrategy;
 import com.azure.resourcemanager.networkcloud.models.RackDefinition;
+import com.azure.resourcemanager.networkcloud.models.RuntimeProtectionConfiguration;
 import com.azure.resourcemanager.networkcloud.models.ServicePrincipalInformation;
 import com.azure.resourcemanager.networkcloud.models.ValidationThreshold;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** ClusterPatchProperties represents the properties of the cluster for patching. */
+/**
+ * ClusterPatchProperties represents the properties of the cluster for patching.
+ */
 @Fluent
 public final class ClusterPatchProperties {
     /*
      * RackDefinition represents details regarding the rack.
-     *
+     * 
      * The rack definition that is intended to reflect only a single rack in a single rack cluster, or an aggregator
      * rack in a multi-rack cluster.
      */
@@ -32,7 +37,7 @@ public final class ClusterPatchProperties {
     /*
      * ServicePrincipalInformation represents the details of the service principal to be used by the cluster during Arc
      * Appliance installation.
-     *
+     * 
      * The service principal to be used by the cluster during Arc Appliance installation.
      */
     @JsonProperty(value = "clusterServicePrincipal")
@@ -40,7 +45,7 @@ public final class ClusterPatchProperties {
 
     /*
      * ValidationThreshold indicates allowed machine and node hardware and deployment failures.
-     *
+     * 
      * The validation threshold indicating the allowable failures of compute machines during environment validation and
      * deployment.
      */
@@ -54,16 +59,42 @@ public final class ClusterPatchProperties {
     @JsonProperty(value = "computeRackDefinitions")
     private List<RackDefinition> computeRackDefinitions;
 
-    /** Creates an instance of ClusterPatchProperties class. */
+    /*
+     * RuntimeProtectionConfiguration represents the runtime protection configuration for the cluster.
+     * 
+     * The settings for cluster runtime protection.
+     */
+    @JsonProperty(value = "runtimeProtectionConfiguration")
+    private RuntimeProtectionConfiguration runtimeProtectionConfiguration;
+
+    /*
+     * ClusterSecretArchive configures the key vault to archive the secrets of the cluster for later retrieval.
+     * 
+     * The configuration for use of a key vault to store secrets for later retrieval by the operator.
+     */
+    @JsonProperty(value = "secretArchive")
+    private ClusterSecretArchive secretArchive;
+
+    /*
+     * ClusterUpdateStrategy represents the strategy for updating the cluster.
+     * 
+     * The strategy for updating the cluster.
+     */
+    @JsonProperty(value = "updateStrategy")
+    private ClusterUpdateStrategy updateStrategy;
+
+    /**
+     * Creates an instance of ClusterPatchProperties class.
+     */
     public ClusterPatchProperties() {
     }
 
     /**
      * Get the aggregatorOrSingleRackDefinition property: RackDefinition represents details regarding the rack.
-     *
-     * <p>The rack definition that is intended to reflect only a single rack in a single rack cluster, or an aggregator
+     * 
+     * The rack definition that is intended to reflect only a single rack in a single rack cluster, or an aggregator
      * rack in a multi-rack cluster.
-     *
+     * 
      * @return the aggregatorOrSingleRackDefinition value.
      */
     public RackDefinition aggregatorOrSingleRackDefinition() {
@@ -72,15 +103,15 @@ public final class ClusterPatchProperties {
 
     /**
      * Set the aggregatorOrSingleRackDefinition property: RackDefinition represents details regarding the rack.
-     *
-     * <p>The rack definition that is intended to reflect only a single rack in a single rack cluster, or an aggregator
+     * 
+     * The rack definition that is intended to reflect only a single rack in a single rack cluster, or an aggregator
      * rack in a multi-rack cluster.
-     *
+     * 
      * @param aggregatorOrSingleRackDefinition the aggregatorOrSingleRackDefinition value to set.
      * @return the ClusterPatchProperties object itself.
      */
-    public ClusterPatchProperties withAggregatorOrSingleRackDefinition(
-        RackDefinition aggregatorOrSingleRackDefinition) {
+    public ClusterPatchProperties
+        withAggregatorOrSingleRackDefinition(RackDefinition aggregatorOrSingleRackDefinition) {
         this.aggregatorOrSingleRackDefinition = aggregatorOrSingleRackDefinition;
         return this;
     }
@@ -88,7 +119,7 @@ public final class ClusterPatchProperties {
     /**
      * Get the clusterLocation property: The customer-provided location information to identify where the cluster
      * resides.
-     *
+     * 
      * @return the clusterLocation value.
      */
     public String clusterLocation() {
@@ -98,7 +129,7 @@ public final class ClusterPatchProperties {
     /**
      * Set the clusterLocation property: The customer-provided location information to identify where the cluster
      * resides.
-     *
+     * 
      * @param clusterLocation the clusterLocation value to set.
      * @return the ClusterPatchProperties object itself.
      */
@@ -110,9 +141,9 @@ public final class ClusterPatchProperties {
     /**
      * Get the clusterServicePrincipal property: ServicePrincipalInformation represents the details of the service
      * principal to be used by the cluster during Arc Appliance installation.
-     *
-     * <p>The service principal to be used by the cluster during Arc Appliance installation.
-     *
+     * 
+     * The service principal to be used by the cluster during Arc Appliance installation.
+     * 
      * @return the clusterServicePrincipal value.
      */
     public ServicePrincipalInformation clusterServicePrincipal() {
@@ -122,9 +153,9 @@ public final class ClusterPatchProperties {
     /**
      * Set the clusterServicePrincipal property: ServicePrincipalInformation represents the details of the service
      * principal to be used by the cluster during Arc Appliance installation.
-     *
-     * <p>The service principal to be used by the cluster during Arc Appliance installation.
-     *
+     * 
+     * The service principal to be used by the cluster during Arc Appliance installation.
+     * 
      * @param clusterServicePrincipal the clusterServicePrincipal value to set.
      * @return the ClusterPatchProperties object itself.
      */
@@ -136,10 +167,10 @@ public final class ClusterPatchProperties {
     /**
      * Get the computeDeploymentThreshold property: ValidationThreshold indicates allowed machine and node hardware and
      * deployment failures.
-     *
-     * <p>The validation threshold indicating the allowable failures of compute machines during environment validation
-     * and deployment.
-     *
+     * 
+     * The validation threshold indicating the allowable failures of compute machines during environment validation and
+     * deployment.
+     * 
      * @return the computeDeploymentThreshold value.
      */
     public ValidationThreshold computeDeploymentThreshold() {
@@ -149,10 +180,10 @@ public final class ClusterPatchProperties {
     /**
      * Set the computeDeploymentThreshold property: ValidationThreshold indicates allowed machine and node hardware and
      * deployment failures.
-     *
-     * <p>The validation threshold indicating the allowable failures of compute machines during environment validation
-     * and deployment.
-     *
+     * 
+     * The validation threshold indicating the allowable failures of compute machines during environment validation and
+     * deployment.
+     * 
      * @param computeDeploymentThreshold the computeDeploymentThreshold value to set.
      * @return the ClusterPatchProperties object itself.
      */
@@ -164,7 +195,7 @@ public final class ClusterPatchProperties {
     /**
      * Get the computeRackDefinitions property: The list of rack definitions for the compute racks in a multi-rack
      * cluster, or an empty list in a single-rack cluster.
-     *
+     * 
      * @return the computeRackDefinitions value.
      */
     public List<RackDefinition> computeRackDefinitions() {
@@ -174,7 +205,7 @@ public final class ClusterPatchProperties {
     /**
      * Set the computeRackDefinitions property: The list of rack definitions for the compute racks in a multi-rack
      * cluster, or an empty list in a single-rack cluster.
-     *
+     * 
      * @param computeRackDefinitions the computeRackDefinitions value to set.
      * @return the ClusterPatchProperties object itself.
      */
@@ -184,8 +215,85 @@ public final class ClusterPatchProperties {
     }
 
     /**
+     * Get the runtimeProtectionConfiguration property: RuntimeProtectionConfiguration represents the runtime
+     * protection configuration for the cluster.
+     * 
+     * The settings for cluster runtime protection.
+     * 
+     * @return the runtimeProtectionConfiguration value.
+     */
+    public RuntimeProtectionConfiguration runtimeProtectionConfiguration() {
+        return this.runtimeProtectionConfiguration;
+    }
+
+    /**
+     * Set the runtimeProtectionConfiguration property: RuntimeProtectionConfiguration represents the runtime
+     * protection configuration for the cluster.
+     * 
+     * The settings for cluster runtime protection.
+     * 
+     * @param runtimeProtectionConfiguration the runtimeProtectionConfiguration value to set.
+     * @return the ClusterPatchProperties object itself.
+     */
+    public ClusterPatchProperties
+        withRuntimeProtectionConfiguration(RuntimeProtectionConfiguration runtimeProtectionConfiguration) {
+        this.runtimeProtectionConfiguration = runtimeProtectionConfiguration;
+        return this;
+    }
+
+    /**
+     * Get the secretArchive property: ClusterSecretArchive configures the key vault to archive the secrets of the
+     * cluster for later retrieval.
+     * 
+     * The configuration for use of a key vault to store secrets for later retrieval by the operator.
+     * 
+     * @return the secretArchive value.
+     */
+    public ClusterSecretArchive secretArchive() {
+        return this.secretArchive;
+    }
+
+    /**
+     * Set the secretArchive property: ClusterSecretArchive configures the key vault to archive the secrets of the
+     * cluster for later retrieval.
+     * 
+     * The configuration for use of a key vault to store secrets for later retrieval by the operator.
+     * 
+     * @param secretArchive the secretArchive value to set.
+     * @return the ClusterPatchProperties object itself.
+     */
+    public ClusterPatchProperties withSecretArchive(ClusterSecretArchive secretArchive) {
+        this.secretArchive = secretArchive;
+        return this;
+    }
+
+    /**
+     * Get the updateStrategy property: ClusterUpdateStrategy represents the strategy for updating the cluster.
+     * 
+     * The strategy for updating the cluster.
+     * 
+     * @return the updateStrategy value.
+     */
+    public ClusterUpdateStrategy updateStrategy() {
+        return this.updateStrategy;
+    }
+
+    /**
+     * Set the updateStrategy property: ClusterUpdateStrategy represents the strategy for updating the cluster.
+     * 
+     * The strategy for updating the cluster.
+     * 
+     * @param updateStrategy the updateStrategy value to set.
+     * @return the ClusterPatchProperties object itself.
+     */
+    public ClusterPatchProperties withUpdateStrategy(ClusterUpdateStrategy updateStrategy) {
+        this.updateStrategy = updateStrategy;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -200,6 +308,15 @@ public final class ClusterPatchProperties {
         }
         if (computeRackDefinitions() != null) {
             computeRackDefinitions().forEach(e -> e.validate());
+        }
+        if (runtimeProtectionConfiguration() != null) {
+            runtimeProtectionConfiguration().validate();
+        }
+        if (secretArchive() != null) {
+            secretArchive().validate();
+        }
+        if (updateStrategy() != null) {
+            updateStrategy().validate();
         }
     }
 }

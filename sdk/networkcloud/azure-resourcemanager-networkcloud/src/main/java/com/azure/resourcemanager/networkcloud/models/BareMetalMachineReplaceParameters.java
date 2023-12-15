@@ -16,7 +16,7 @@ public final class BareMetalMachineReplaceParameters {
     /*
      * AdministrativeCredentials represents the admin credentials for the device requiring password-based
      * authentication.
-     *
+     * 
      * The credentials of the baseboard management controller on this bare metal machine.
      */
     @JsonProperty(value = "bmcCredentials")
@@ -46,16 +46,18 @@ public final class BareMetalMachineReplaceParameters {
     @JsonProperty(value = "serialNumber")
     private String serialNumber;
 
-    /** Creates an instance of BareMetalMachineReplaceParameters class. */
+    /**
+     * Creates an instance of BareMetalMachineReplaceParameters class.
+     */
     public BareMetalMachineReplaceParameters() {
     }
 
     /**
      * Get the bmcCredentials property: AdministrativeCredentials represents the admin credentials for the device
      * requiring password-based authentication.
-     *
-     * <p>The credentials of the baseboard management controller on this bare metal machine.
-     *
+     * 
+     * The credentials of the baseboard management controller on this bare metal machine.
+     * 
      * @return the bmcCredentials value.
      */
     public AdministrativeCredentials bmcCredentials() {
@@ -65,9 +67,9 @@ public final class BareMetalMachineReplaceParameters {
     /**
      * Set the bmcCredentials property: AdministrativeCredentials represents the admin credentials for the device
      * requiring password-based authentication.
-     *
-     * <p>The credentials of the baseboard management controller on this bare metal machine.
-     *
+     * 
+     * The credentials of the baseboard management controller on this bare metal machine.
+     * 
      * @param bmcCredentials the bmcCredentials value to set.
      * @return the BareMetalMachineReplaceParameters object itself.
      */
@@ -78,7 +80,7 @@ public final class BareMetalMachineReplaceParameters {
 
     /**
      * Get the bmcMacAddress property: The MAC address of the BMC device.
-     *
+     * 
      * @return the bmcMacAddress value.
      */
     public String bmcMacAddress() {
@@ -87,7 +89,7 @@ public final class BareMetalMachineReplaceParameters {
 
     /**
      * Set the bmcMacAddress property: The MAC address of the BMC device.
-     *
+     * 
      * @param bmcMacAddress the bmcMacAddress value to set.
      * @return the BareMetalMachineReplaceParameters object itself.
      */
@@ -98,7 +100,7 @@ public final class BareMetalMachineReplaceParameters {
 
     /**
      * Get the bootMacAddress property: The MAC address of a NIC connected to the PXE network.
-     *
+     * 
      * @return the bootMacAddress value.
      */
     public String bootMacAddress() {
@@ -107,7 +109,7 @@ public final class BareMetalMachineReplaceParameters {
 
     /**
      * Set the bootMacAddress property: The MAC address of a NIC connected to the PXE network.
-     *
+     * 
      * @param bootMacAddress the bootMacAddress value to set.
      * @return the BareMetalMachineReplaceParameters object itself.
      */
@@ -118,7 +120,7 @@ public final class BareMetalMachineReplaceParameters {
 
     /**
      * Get the machineName property: The OS-level hostname assigned to this machine.
-     *
+     * 
      * @return the machineName value.
      */
     public String machineName() {
@@ -127,7 +129,7 @@ public final class BareMetalMachineReplaceParameters {
 
     /**
      * Set the machineName property: The OS-level hostname assigned to this machine.
-     *
+     * 
      * @param machineName the machineName value to set.
      * @return the BareMetalMachineReplaceParameters object itself.
      */
@@ -138,7 +140,7 @@ public final class BareMetalMachineReplaceParameters {
 
     /**
      * Get the serialNumber property: The serial number of the bare metal machine.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -147,7 +149,7 @@ public final class BareMetalMachineReplaceParameters {
 
     /**
      * Set the serialNumber property: The serial number of the bare metal machine.
-     *
+     * 
      * @param serialNumber the serialNumber value to set.
      * @return the BareMetalMachineReplaceParameters object itself.
      */
@@ -158,7 +160,7 @@ public final class BareMetalMachineReplaceParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

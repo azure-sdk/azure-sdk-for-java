@@ -14,22 +14,27 @@ import com.azure.resourcemanager.networkcloud.models.ClusterConnectionStatus;
 import com.azure.resourcemanager.networkcloud.models.ClusterDetailedStatus;
 import com.azure.resourcemanager.networkcloud.models.ClusterManagerConnectionStatus;
 import com.azure.resourcemanager.networkcloud.models.ClusterProvisioningState;
+import com.azure.resourcemanager.networkcloud.models.ClusterSecretArchive;
 import com.azure.resourcemanager.networkcloud.models.ClusterType;
+import com.azure.resourcemanager.networkcloud.models.ClusterUpdateStrategy;
 import com.azure.resourcemanager.networkcloud.models.ExtendedLocation;
 import com.azure.resourcemanager.networkcloud.models.ManagedResourceGroupConfiguration;
 import com.azure.resourcemanager.networkcloud.models.RackDefinition;
+import com.azure.resourcemanager.networkcloud.models.RuntimeProtectionConfiguration;
 import com.azure.resourcemanager.networkcloud.models.ServicePrincipalInformation;
 import com.azure.resourcemanager.networkcloud.models.ValidationThreshold;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Cluster represents the on-premises Network Cloud cluster. */
+/**
+ * Cluster represents the on-premises Network Cloud cluster.
+ */
 @Fluent
 public final class ClusterInner extends Resource {
     /*
      * ExtendedLocation represents the Azure custom location where the resource will be created.
-     *
+     * 
      * The extended location of the cluster manager associated with the cluster.
      */
     @JsonProperty(value = "extendedLocation", required = true)
@@ -37,7 +42,7 @@ public final class ClusterInner extends Resource {
 
     /*
      * ClusterProperties represents the properties of a cluster.
-     *
+     * 
      * The list of the resource properties.
      */
     @JsonProperty(value = "properties", required = true)
@@ -49,16 +54,18 @@ public final class ClusterInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ClusterInner class. */
+    /**
+     * Creates an instance of ClusterInner class.
+     */
     public ClusterInner() {
     }
 
     /**
      * Get the extendedLocation property: ExtendedLocation represents the Azure custom location where the resource will
      * be created.
-     *
-     * <p>The extended location of the cluster manager associated with the cluster.
-     *
+     * 
+     * The extended location of the cluster manager associated with the cluster.
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -68,9 +75,9 @@ public final class ClusterInner extends Resource {
     /**
      * Set the extendedLocation property: ExtendedLocation represents the Azure custom location where the resource will
      * be created.
-     *
-     * <p>The extended location of the cluster manager associated with the cluster.
-     *
+     * 
+     * The extended location of the cluster manager associated with the cluster.
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the ClusterInner object itself.
      */
@@ -81,9 +88,9 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the innerProperties property: ClusterProperties represents the properties of a cluster.
-     *
-     * <p>The list of the resource properties.
-     *
+     * 
+     * The list of the resource properties.
+     * 
      * @return the innerProperties value.
      */
     private ClusterProperties innerProperties() {
@@ -92,21 +99,25 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -115,10 +126,10 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the aggregatorOrSingleRackDefinition property: RackDefinition represents details regarding the rack.
-     *
-     * <p>The rack definition that is intended to reflect only a single rack in a single rack cluster, or an aggregator
+     * 
+     * The rack definition that is intended to reflect only a single rack in a single rack cluster, or an aggregator
      * rack in a multi-rack cluster.
-     *
+     * 
      * @return the aggregatorOrSingleRackDefinition value.
      */
     public RackDefinition aggregatorOrSingleRackDefinition() {
@@ -127,10 +138,10 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the aggregatorOrSingleRackDefinition property: RackDefinition represents details regarding the rack.
-     *
-     * <p>The rack definition that is intended to reflect only a single rack in a single rack cluster, or an aggregator
+     * 
+     * The rack definition that is intended to reflect only a single rack in a single rack cluster, or an aggregator
      * rack in a multi-rack cluster.
-     *
+     * 
      * @param aggregatorOrSingleRackDefinition the aggregatorOrSingleRackDefinition value to set.
      * @return the ClusterInner object itself.
      */
@@ -145,7 +156,7 @@ public final class ClusterInner extends Resource {
     /**
      * Get the analyticsWorkspaceId property: The resource ID of the Log Analytics Workspace that will be used for
      * storing relevant logs.
-     *
+     * 
      * @return the analyticsWorkspaceId value.
      */
     public String analyticsWorkspaceId() {
@@ -155,7 +166,7 @@ public final class ClusterInner extends Resource {
     /**
      * Set the analyticsWorkspaceId property: The resource ID of the Log Analytics Workspace that will be used for
      * storing relevant logs.
-     *
+     * 
      * @param analyticsWorkspaceId the analyticsWorkspaceId value to set.
      * @return the ClusterInner object itself.
      */
@@ -170,7 +181,7 @@ public final class ClusterInner extends Resource {
     /**
      * Get the availableUpgradeVersions property: The list of cluster runtime version upgrades available for this
      * cluster.
-     *
+     * 
      * @return the availableUpgradeVersions value.
      */
     public List<ClusterAvailableUpgradeVersion> availableUpgradeVersions() {
@@ -179,9 +190,9 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the clusterCapacity property: ClusterCapacity represents various details regarding compute capacity.
-     *
-     * <p>The capacity supported by this cluster.
-     *
+     * 
+     * The capacity supported by this cluster.
+     * 
      * @return the clusterCapacity value.
      */
     public ClusterCapacity clusterCapacity() {
@@ -191,7 +202,7 @@ public final class ClusterInner extends Resource {
     /**
      * Get the clusterConnectionStatus property: The latest heartbeat status between the cluster manager and the
      * cluster.
-     *
+     * 
      * @return the clusterConnectionStatus value.
      */
     public ClusterConnectionStatus clusterConnectionStatus() {
@@ -201,10 +212,11 @@ public final class ClusterInner extends Resource {
     /**
      * Get the clusterExtendedLocation property: ExtendedLocation represents the Azure custom location where the
      * resource will be created.
-     *
-     * <p>The extended location (custom location) that represents the cluster's control plane location. This extended
-     * location is used to route the requests of child objects of the cluster that are handled by the platform operator.
-     *
+     * 
+     * The extended location (custom location) that represents the cluster's control plane location. This extended
+     * location is used to route the requests of child objects of the cluster that are handled by the platform
+     * operator.
+     * 
      * @return the clusterExtendedLocation value.
      */
     public ExtendedLocation clusterExtendedLocation() {
@@ -214,7 +226,7 @@ public final class ClusterInner extends Resource {
     /**
      * Get the clusterLocation property: The customer-provided location information to identify where the cluster
      * resides.
-     *
+     * 
      * @return the clusterLocation value.
      */
     public String clusterLocation() {
@@ -224,7 +236,7 @@ public final class ClusterInner extends Resource {
     /**
      * Set the clusterLocation property: The customer-provided location information to identify where the cluster
      * resides.
-     *
+     * 
      * @param clusterLocation the clusterLocation value to set.
      * @return the ClusterInner object itself.
      */
@@ -239,7 +251,7 @@ public final class ClusterInner extends Resource {
     /**
      * Get the clusterManagerConnectionStatus property: The latest connectivity status between cluster manager and the
      * cluster.
-     *
+     * 
      * @return the clusterManagerConnectionStatus value.
      */
     public ClusterManagerConnectionStatus clusterManagerConnectionStatus() {
@@ -249,7 +261,7 @@ public final class ClusterInner extends Resource {
     /**
      * Get the clusterManagerId property: The resource ID of the cluster manager that manages this cluster. This is set
      * by the Cluster Manager when the cluster is created.
-     *
+     * 
      * @return the clusterManagerId value.
      */
     public String clusterManagerId() {
@@ -259,9 +271,9 @@ public final class ClusterInner extends Resource {
     /**
      * Get the clusterServicePrincipal property: ServicePrincipalInformation represents the details of the service
      * principal to be used by the cluster during Arc Appliance installation.
-     *
-     * <p>The service principal to be used by the cluster during Arc Appliance installation.
-     *
+     * 
+     * The service principal to be used by the cluster during Arc Appliance installation.
+     * 
      * @return the clusterServicePrincipal value.
      */
     public ServicePrincipalInformation clusterServicePrincipal() {
@@ -271,9 +283,9 @@ public final class ClusterInner extends Resource {
     /**
      * Set the clusterServicePrincipal property: ServicePrincipalInformation represents the details of the service
      * principal to be used by the cluster during Arc Appliance installation.
-     *
-     * <p>The service principal to be used by the cluster during Arc Appliance installation.
-     *
+     * 
+     * The service principal to be used by the cluster during Arc Appliance installation.
+     * 
      * @param clusterServicePrincipal the clusterServicePrincipal value to set.
      * @return the ClusterInner object itself.
      */
@@ -287,7 +299,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the clusterType property: The type of rack configuration for the cluster.
-     *
+     * 
      * @return the clusterType value.
      */
     public ClusterType clusterType() {
@@ -296,7 +308,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the clusterType property: The type of rack configuration for the cluster.
-     *
+     * 
      * @param clusterType the clusterType value to set.
      * @return the ClusterInner object itself.
      */
@@ -310,7 +322,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the clusterVersion property: The current runtime version of the cluster.
-     *
+     * 
      * @return the clusterVersion value.
      */
     public String clusterVersion() {
@@ -319,7 +331,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the clusterVersion property: The current runtime version of the cluster.
-     *
+     * 
      * @param clusterVersion the clusterVersion value to set.
      * @return the ClusterInner object itself.
      */
@@ -334,10 +346,10 @@ public final class ClusterInner extends Resource {
     /**
      * Get the computeDeploymentThreshold property: ValidationThreshold indicates allowed machine and node hardware and
      * deployment failures.
-     *
-     * <p>The validation threshold indicating the allowable failures of compute machines during environment validation
-     * and deployment.
-     *
+     * 
+     * The validation threshold indicating the allowable failures of compute machines during environment validation and
+     * deployment.
+     * 
      * @return the computeDeploymentThreshold value.
      */
     public ValidationThreshold computeDeploymentThreshold() {
@@ -347,10 +359,10 @@ public final class ClusterInner extends Resource {
     /**
      * Set the computeDeploymentThreshold property: ValidationThreshold indicates allowed machine and node hardware and
      * deployment failures.
-     *
-     * <p>The validation threshold indicating the allowable failures of compute machines during environment validation
-     * and deployment.
-     *
+     * 
+     * The validation threshold indicating the allowable failures of compute machines during environment validation and
+     * deployment.
+     * 
      * @param computeDeploymentThreshold the computeDeploymentThreshold value to set.
      * @return the ClusterInner object itself.
      */
@@ -365,7 +377,7 @@ public final class ClusterInner extends Resource {
     /**
      * Get the computeRackDefinitions property: The list of rack definitions for the compute racks in a multi-rack
      * cluster, or an empty list in a single-rack cluster.
-     *
+     * 
      * @return the computeRackDefinitions value.
      */
     public List<RackDefinition> computeRackDefinitions() {
@@ -375,7 +387,7 @@ public final class ClusterInner extends Resource {
     /**
      * Set the computeRackDefinitions property: The list of rack definitions for the compute racks in a multi-rack
      * cluster, or an empty list in a single-rack cluster.
-     *
+     * 
      * @param computeRackDefinitions the computeRackDefinitions value to set.
      * @return the ClusterInner object itself.
      */
@@ -389,7 +401,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the detailedStatus property: The current detailed status of the cluster.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public ClusterDetailedStatus detailedStatus() {
@@ -398,7 +410,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -408,11 +420,11 @@ public final class ClusterInner extends Resource {
     /**
      * Get the hybridAksExtendedLocation property: ExtendedLocation represents the Azure custom location where the
      * resource will be created.
-     *
-     * <p>Field Deprecated. This field will not be populated in an upcoming version. The extended location (custom
+     * 
+     * Field Deprecated. This field will not be populated in an upcoming version. The extended location (custom
      * location) that represents the Hybrid AKS control plane location. This extended location is used when creating
      * provisioned clusters (Hybrid AKS clusters).
-     *
+     * 
      * @return the hybridAksExtendedLocation value.
      */
     public ExtendedLocation hybridAksExtendedLocation() {
@@ -422,9 +434,9 @@ public final class ClusterInner extends Resource {
     /**
      * Get the managedResourceGroupConfiguration property: ManagedResourceGroupConfiguration represents the
      * configuration of the resource group managed by Azure.
-     *
-     * <p>The configuration of the managed resource group associated with the resource.
-     *
+     * 
+     * The configuration of the managed resource group associated with the resource.
+     * 
      * @return the managedResourceGroupConfiguration value.
      */
     public ManagedResourceGroupConfiguration managedResourceGroupConfiguration() {
@@ -434,14 +446,14 @@ public final class ClusterInner extends Resource {
     /**
      * Set the managedResourceGroupConfiguration property: ManagedResourceGroupConfiguration represents the
      * configuration of the resource group managed by Azure.
-     *
-     * <p>The configuration of the managed resource group associated with the resource.
-     *
+     * 
+     * The configuration of the managed resource group associated with the resource.
+     * 
      * @param managedResourceGroupConfiguration the managedResourceGroupConfiguration value to set.
      * @return the ClusterInner object itself.
      */
-    public ClusterInner withManagedResourceGroupConfiguration(
-        ManagedResourceGroupConfiguration managedResourceGroupConfiguration) {
+    public ClusterInner
+        withManagedResourceGroupConfiguration(ManagedResourceGroupConfiguration managedResourceGroupConfiguration) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ClusterProperties();
         }
@@ -451,7 +463,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the manualActionCount property: The count of Manual Action Taken (MAT) events that have not been validated.
-     *
+     * 
      * @return the manualActionCount value.
      */
     public Long manualActionCount() {
@@ -460,7 +472,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the networkFabricId property: The resource ID of the Network Fabric associated with the cluster.
-     *
+     * 
      * @return the networkFabricId value.
      */
     public String networkFabricId() {
@@ -469,7 +481,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the networkFabricId property: The resource ID of the Network Fabric associated with the cluster.
-     *
+     * 
      * @param networkFabricId the networkFabricId value to set.
      * @return the ClusterInner object itself.
      */
@@ -483,7 +495,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioning state of the cluster.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ClusterProvisioningState provisioningState() {
@@ -491,8 +503,67 @@ public final class ClusterInner extends Resource {
     }
 
     /**
+     * Get the runtimeProtectionConfiguration property: RuntimeProtectionConfiguration represents the runtime
+     * protection configuration for the cluster.
+     * 
+     * The settings for cluster runtime protection.
+     * 
+     * @return the runtimeProtectionConfiguration value.
+     */
+    public RuntimeProtectionConfiguration runtimeProtectionConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().runtimeProtectionConfiguration();
+    }
+
+    /**
+     * Set the runtimeProtectionConfiguration property: RuntimeProtectionConfiguration represents the runtime
+     * protection configuration for the cluster.
+     * 
+     * The settings for cluster runtime protection.
+     * 
+     * @param runtimeProtectionConfiguration the runtimeProtectionConfiguration value to set.
+     * @return the ClusterInner object itself.
+     */
+    public ClusterInner
+        withRuntimeProtectionConfiguration(RuntimeProtectionConfiguration runtimeProtectionConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ClusterProperties();
+        }
+        this.innerProperties().withRuntimeProtectionConfiguration(runtimeProtectionConfiguration);
+        return this;
+    }
+
+    /**
+     * Get the secretArchive property: ClusterSecretArchive configures the key vault to archive the secrets of the
+     * cluster for later retrieval.
+     * 
+     * The configuration for use of a key vault to store secrets for later retrieval by the operator.
+     * 
+     * @return the secretArchive value.
+     */
+    public ClusterSecretArchive secretArchive() {
+        return this.innerProperties() == null ? null : this.innerProperties().secretArchive();
+    }
+
+    /**
+     * Set the secretArchive property: ClusterSecretArchive configures the key vault to archive the secrets of the
+     * cluster for later retrieval.
+     * 
+     * The configuration for use of a key vault to store secrets for later retrieval by the operator.
+     * 
+     * @param secretArchive the secretArchive value to set.
+     * @return the ClusterInner object itself.
+     */
+    public ClusterInner withSecretArchive(ClusterSecretArchive secretArchive) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ClusterProperties();
+        }
+        this.innerProperties().withSecretArchive(secretArchive);
+        return this;
+    }
+
+    /**
      * Get the supportExpiryDate property: The support end date of the runtime version of the cluster.
-     *
+     * 
      * @return the supportExpiryDate value.
      */
     public String supportExpiryDate() {
@@ -500,8 +571,35 @@ public final class ClusterInner extends Resource {
     }
 
     /**
+     * Get the updateStrategy property: ClusterUpdateStrategy represents the strategy for updating the cluster.
+     * 
+     * The strategy for updating the cluster.
+     * 
+     * @return the updateStrategy value.
+     */
+    public ClusterUpdateStrategy updateStrategy() {
+        return this.innerProperties() == null ? null : this.innerProperties().updateStrategy();
+    }
+
+    /**
+     * Set the updateStrategy property: ClusterUpdateStrategy represents the strategy for updating the cluster.
+     * 
+     * The strategy for updating the cluster.
+     * 
+     * @param updateStrategy the updateStrategy value to set.
+     * @return the ClusterInner object itself.
+     */
+    public ClusterInner withUpdateStrategy(ClusterUpdateStrategy updateStrategy) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ClusterProperties();
+        }
+        this.innerProperties().withUpdateStrategy(updateStrategy);
+        return this;
+    }
+
+    /**
      * Get the workloadResourceIds property: The list of workload resource IDs that are hosted within this cluster.
-     *
+     * 
      * @return the workloadResourceIds value.
      */
     public List<String> workloadResourceIds() {
@@ -510,21 +608,19 @@ public final class ClusterInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (extendedLocation() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property extendedLocation in model ClusterInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property extendedLocation in model ClusterInner"));
         } else {
             extendedLocation().validate();
         }
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model ClusterInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model ClusterInner"));
         } else {
             innerProperties().validate();
         }

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.networkcloud.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** VirtualMachinePowerOffParameters represents the body of the request to power off virtual machine. */
+/**
+ * VirtualMachinePowerOffParameters represents the body of the request to power off virtual machine.
+ */
 @Fluent
 public final class VirtualMachinePowerOffParameters {
     /*
@@ -16,14 +18,16 @@ public final class VirtualMachinePowerOffParameters {
     @JsonProperty(value = "skipShutdown")
     private SkipShutdown skipShutdown;
 
-    /** Creates an instance of VirtualMachinePowerOffParameters class. */
+    /**
+     * Creates an instance of VirtualMachinePowerOffParameters class.
+     */
     public VirtualMachinePowerOffParameters() {
     }
 
     /**
      * Get the skipShutdown property: The indicator of whether to skip the graceful OS shutdown and power off the
      * virtual machine immediately.
-     *
+     * 
      * @return the skipShutdown value.
      */
     public SkipShutdown skipShutdown() {
@@ -33,7 +37,7 @@ public final class VirtualMachinePowerOffParameters {
     /**
      * Set the skipShutdown property: The indicator of whether to skip the graceful OS shutdown and power off the
      * virtual machine immediately.
-     *
+     * 
      * @param skipShutdown the skipShutdown value to set.
      * @return the VirtualMachinePowerOffParameters object itself.
      */
@@ -44,7 +48,7 @@ public final class VirtualMachinePowerOffParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

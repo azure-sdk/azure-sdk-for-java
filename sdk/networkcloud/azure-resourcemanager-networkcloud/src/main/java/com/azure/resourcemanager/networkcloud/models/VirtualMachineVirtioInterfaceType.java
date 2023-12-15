@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Field Deprecated, use virtualizationModel instead. The type of the virtio interface. */
+/**
+ * Field Deprecated, use virtualizationModel instead. The type of the virtio interface.
+ */
 public final class VirtualMachineVirtioInterfaceType extends ExpandableStringEnum<VirtualMachineVirtioInterfaceType> {
-    /** Static value Modern for VirtualMachineVirtioInterfaceType. */
+    /**
+     * Static value Modern for VirtualMachineVirtioInterfaceType.
+     */
     public static final VirtualMachineVirtioInterfaceType MODERN = fromString("Modern");
 
-    /** Static value Transitional for VirtualMachineVirtioInterfaceType. */
+    /**
+     * Static value Transitional for VirtualMachineVirtioInterfaceType.
+     */
     public static final VirtualMachineVirtioInterfaceType TRANSITIONAL = fromString("Transitional");
 
     /**
      * Creates a new instance of VirtualMachineVirtioInterfaceType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class VirtualMachineVirtioInterfaceType extends ExpandableStringEnu
 
     /**
      * Creates or finds a VirtualMachineVirtioInterfaceType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding VirtualMachineVirtioInterfaceType.
      */
@@ -38,7 +44,7 @@ public final class VirtualMachineVirtioInterfaceType extends ExpandableStringEnu
 
     /**
      * Gets known VirtualMachineVirtioInterfaceType values.
-     *
+     * 
      * @return known VirtualMachineVirtioInterfaceType values.
      */
     public static Collection<VirtualMachineVirtioInterfaceType> values() {

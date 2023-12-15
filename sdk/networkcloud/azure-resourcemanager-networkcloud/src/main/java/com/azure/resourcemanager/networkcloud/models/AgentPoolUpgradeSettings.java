@@ -7,7 +7,9 @@ package com.azure.resourcemanager.networkcloud.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** AgentPoolUpgradeSettings specifies the upgrade settings for an agent pool. */
+/**
+ * AgentPoolUpgradeSettings specifies the upgrade settings for an agent pool.
+ */
 @Fluent
 public final class AgentPoolUpgradeSettings {
     /*
@@ -19,16 +21,18 @@ public final class AgentPoolUpgradeSettings {
     @JsonProperty(value = "maxSurge")
     private String maxSurge;
 
-    /** Creates an instance of AgentPoolUpgradeSettings class. */
+    /**
+     * Creates an instance of AgentPoolUpgradeSettings class.
+     */
     public AgentPoolUpgradeSettings() {
     }
 
     /**
      * Get the maxSurge property: The maximum number or percentage of nodes that are surged during upgrade. This can
      * either be set to an integer (e.g. '5') or a percentage (e.g. '50%'). If a percentage is specified, it is the
-     * percentage of the total agent pool size at the time of the upgrade. For percentages, fractional nodes are rounded
-     * up. If not specified, the default is 1.
-     *
+     * percentage of the total agent pool size at the time of the upgrade. For percentages, fractional nodes are
+     * rounded up. If not specified, the default is 1.
+     * 
      * @return the maxSurge value.
      */
     public String maxSurge() {
@@ -38,9 +42,9 @@ public final class AgentPoolUpgradeSettings {
     /**
      * Set the maxSurge property: The maximum number or percentage of nodes that are surged during upgrade. This can
      * either be set to an integer (e.g. '5') or a percentage (e.g. '50%'). If a percentage is specified, it is the
-     * percentage of the total agent pool size at the time of the upgrade. For percentages, fractional nodes are rounded
-     * up. If not specified, the default is 1.
-     *
+     * percentage of the total agent pool size at the time of the upgrade. For percentages, fractional nodes are
+     * rounded up. If not specified, the default is 1.
+     * 
      * @param maxSurge the maxSurge value to set.
      * @return the AgentPoolUpgradeSettings object itself.
      */
@@ -51,7 +55,7 @@ public final class AgentPoolUpgradeSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

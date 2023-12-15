@@ -34,14 +34,16 @@ public final class HardwareInventory {
     @JsonProperty(value = "nics", access = JsonProperty.Access.WRITE_ONLY)
     private List<Nic> nics;
 
-    /** Creates an instance of HardwareInventory class. */
+    /**
+     * Creates an instance of HardwareInventory class.
+     */
     public HardwareInventory() {
     }
 
     /**
-     * Get the additionalHostInformation property: Freeform data extracted from the environment about this machine. This
-     * information varies depending on the specific hardware and configuration.
-     *
+     * Get the additionalHostInformation property: Freeform data extracted from the environment about this machine.
+     * This information varies depending on the specific hardware and configuration.
+     * 
      * @return the additionalHostInformation value.
      */
     public String additionalHostInformation() {
@@ -50,7 +52,7 @@ public final class HardwareInventory {
 
     /**
      * Get the interfaces property: The list of network interfaces and associated details for the bare metal machine.
-     *
+     * 
      * @return the interfaces value.
      */
     public List<HardwareInventoryNetworkInterface> interfaces() {
@@ -60,7 +62,7 @@ public final class HardwareInventory {
     /**
      * Get the nics property: Field Deprecated. Will be removed in an upcoming version. The list of network interface
      * cards and associated details for the bare metal machine.
-     *
+     * 
      * @return the nics value.
      */
     public List<Nic> nics() {
@@ -69,7 +71,7 @@ public final class HardwareInventory {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

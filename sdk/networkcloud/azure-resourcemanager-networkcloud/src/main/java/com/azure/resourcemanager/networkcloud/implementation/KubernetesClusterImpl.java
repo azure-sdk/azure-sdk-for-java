@@ -10,6 +10,7 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.networkcloud.fluent.models.KubernetesClusterInner;
 import com.azure.resourcemanager.networkcloud.models.AadConfiguration;
 import com.azure.resourcemanager.networkcloud.models.AdministratorConfiguration;
+import com.azure.resourcemanager.networkcloud.models.AdministratorConfigurationPatch;
 import com.azure.resourcemanager.networkcloud.models.AvailableUpgrade;
 import com.azure.resourcemanager.networkcloud.models.ControlPlaneNodeConfiguration;
 import com.azure.resourcemanager.networkcloud.models.ControlPlaneNodePatchConfiguration;
@@ -193,20 +194,14 @@ public final class KubernetesClusterImpl
     }
 
     public KubernetesCluster create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getKubernetesClusters()
-                .createOrUpdate(resourceGroupName, kubernetesClusterName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getKubernetesClusters().createOrUpdate(resourceGroupName,
+            kubernetesClusterName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public KubernetesCluster create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getKubernetesClusters()
-                .createOrUpdate(resourceGroupName, kubernetesClusterName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getKubernetesClusters().createOrUpdate(resourceGroupName,
+            kubernetesClusterName, this.innerModel(), context);
         return this;
     }
 
@@ -222,26 +217,19 @@ public final class KubernetesClusterImpl
     }
 
     public KubernetesCluster apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getKubernetesClusters()
-                .update(
-                    resourceGroupName, kubernetesClusterName, updateKubernetesClusterUpdateParameters, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getKubernetesClusters().update(resourceGroupName,
+            kubernetesClusterName, updateKubernetesClusterUpdateParameters, Context.NONE);
         return this;
     }
 
     public KubernetesCluster apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getKubernetesClusters()
-                .update(resourceGroupName, kubernetesClusterName, updateKubernetesClusterUpdateParameters, context);
+        this.innerObject = serviceManager.serviceClient().getKubernetesClusters().update(resourceGroupName,
+            kubernetesClusterName, updateKubernetesClusterUpdateParameters, context);
         return this;
     }
 
-    KubernetesClusterImpl(
-        KubernetesClusterInner innerObject, com.azure.resourcemanager.networkcloud.NetworkCloudManager serviceManager) {
+    KubernetesClusterImpl(KubernetesClusterInner innerObject,
+        com.azure.resourcemanager.networkcloud.NetworkCloudManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
@@ -249,37 +237,27 @@ public final class KubernetesClusterImpl
     }
 
     public KubernetesCluster refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getKubernetesClusters()
-                .getByResourceGroupWithResponse(resourceGroupName, kubernetesClusterName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getKubernetesClusters()
+            .getByResourceGroupWithResponse(resourceGroupName, kubernetesClusterName, Context.NONE).getValue();
         return this;
     }
 
     public KubernetesCluster refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getKubernetesClusters()
-                .getByResourceGroupWithResponse(resourceGroupName, kubernetesClusterName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getKubernetesClusters()
+            .getByResourceGroupWithResponse(resourceGroupName, kubernetesClusterName, context).getValue();
         return this;
     }
 
-    public OperationStatusResult restartNode(
-        KubernetesClusterRestartNodeParameters kubernetesClusterRestartNodeParameters) {
-        return serviceManager
-            .kubernetesClusters()
-            .restartNode(resourceGroupName, kubernetesClusterName, kubernetesClusterRestartNodeParameters);
+    public OperationStatusResult
+        restartNode(KubernetesClusterRestartNodeParameters kubernetesClusterRestartNodeParameters) {
+        return serviceManager.kubernetesClusters().restartNode(resourceGroupName, kubernetesClusterName,
+            kubernetesClusterRestartNodeParameters);
     }
 
-    public OperationStatusResult restartNode(
-        KubernetesClusterRestartNodeParameters kubernetesClusterRestartNodeParameters, Context context) {
-        return serviceManager
-            .kubernetesClusters()
-            .restartNode(resourceGroupName, kubernetesClusterName, kubernetesClusterRestartNodeParameters, context);
+    public OperationStatusResult
+        restartNode(KubernetesClusterRestartNodeParameters kubernetesClusterRestartNodeParameters, Context context) {
+        return serviceManager.kubernetesClusters().restartNode(resourceGroupName, kubernetesClusterName,
+            kubernetesClusterRestartNodeParameters, context);
     }
 
     public KubernetesClusterImpl withRegion(Region location) {
@@ -297,14 +275,14 @@ public final class KubernetesClusterImpl
         return this;
     }
 
-    public KubernetesClusterImpl withControlPlaneNodeConfiguration(
-        ControlPlaneNodeConfiguration controlPlaneNodeConfiguration) {
+    public KubernetesClusterImpl
+        withControlPlaneNodeConfiguration(ControlPlaneNodeConfiguration controlPlaneNodeConfiguration) {
         this.innerModel().withControlPlaneNodeConfiguration(controlPlaneNodeConfiguration);
         return this;
     }
 
-    public KubernetesClusterImpl withInitialAgentPoolConfigurations(
-        List<InitialAgentPoolConfiguration> initialAgentPoolConfigurations) {
+    public KubernetesClusterImpl
+        withInitialAgentPoolConfigurations(List<InitialAgentPoolConfiguration> initialAgentPoolConfigurations) {
         this.innerModel().withInitialAgentPoolConfigurations(initialAgentPoolConfigurations);
         return this;
     }
@@ -344,14 +322,20 @@ public final class KubernetesClusterImpl
         return this;
     }
 
-    public KubernetesClusterImpl withManagedResourceGroupConfiguration(
-        ManagedResourceGroupConfiguration managedResourceGroupConfiguration) {
+    public KubernetesClusterImpl
+        withManagedResourceGroupConfiguration(ManagedResourceGroupConfiguration managedResourceGroupConfiguration) {
         this.innerModel().withManagedResourceGroupConfiguration(managedResourceGroupConfiguration);
         return this;
     }
 
-    public KubernetesClusterImpl withControlPlaneNodeConfiguration(
-        ControlPlaneNodePatchConfiguration controlPlaneNodeConfiguration) {
+    public KubernetesClusterImpl
+        withAdministratorConfiguration(AdministratorConfigurationPatch administratorConfiguration) {
+        this.updateKubernetesClusterUpdateParameters.withAdministratorConfiguration(administratorConfiguration);
+        return this;
+    }
+
+    public KubernetesClusterImpl
+        withControlPlaneNodeConfiguration(ControlPlaneNodePatchConfiguration controlPlaneNodeConfiguration) {
         this.updateKubernetesClusterUpdateParameters.withControlPlaneNodeConfiguration(controlPlaneNodeConfiguration);
         return this;
     }

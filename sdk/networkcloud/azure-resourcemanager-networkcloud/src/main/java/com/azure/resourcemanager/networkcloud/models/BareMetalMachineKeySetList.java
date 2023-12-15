@@ -9,7 +9,9 @@ import com.azure.resourcemanager.networkcloud.fluent.models.BareMetalMachineKeyS
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** BareMetalMachineKeySetList represents a list of bare metal machine key sets. */
+/**
+ * BareMetalMachineKeySetList represents a list of bare metal machine key sets.
+ */
 @Fluent
 public final class BareMetalMachineKeySetList {
     /*
@@ -24,13 +26,15 @@ public final class BareMetalMachineKeySetList {
     @JsonProperty(value = "value")
     private List<BareMetalMachineKeySetInner> value;
 
-    /** Creates an instance of BareMetalMachineKeySetList class. */
+    /**
+     * Creates an instance of BareMetalMachineKeySetList class.
+     */
     public BareMetalMachineKeySetList() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class BareMetalMachineKeySetList {
 
     /**
      * Set the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the BareMetalMachineKeySetList object itself.
      */
@@ -50,7 +54,7 @@ public final class BareMetalMachineKeySetList {
 
     /**
      * Get the value property: The list of bare metal machine key sets.
-     *
+     * 
      * @return the value value.
      */
     public List<BareMetalMachineKeySetInner> value() {
@@ -59,7 +63,7 @@ public final class BareMetalMachineKeySetList {
 
     /**
      * Set the value property: The list of bare metal machine key sets.
-     *
+     * 
      * @param value the value value to set.
      * @return the BareMetalMachineKeySetList object itself.
      */
@@ -70,7 +74,7 @@ public final class BareMetalMachineKeySetList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

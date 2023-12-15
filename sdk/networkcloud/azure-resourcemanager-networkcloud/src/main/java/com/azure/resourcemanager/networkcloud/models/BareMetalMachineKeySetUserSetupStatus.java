@@ -8,18 +8,24 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The indicator of whether the user is currently deployed for access. */
+/**
+ * The indicator of whether the user is currently deployed for access.
+ */
 public final class BareMetalMachineKeySetUserSetupStatus
     extends ExpandableStringEnum<BareMetalMachineKeySetUserSetupStatus> {
-    /** Static value Active for BareMetalMachineKeySetUserSetupStatus. */
+    /**
+     * Static value Active for BareMetalMachineKeySetUserSetupStatus.
+     */
     public static final BareMetalMachineKeySetUserSetupStatus ACTIVE = fromString("Active");
 
-    /** Static value Invalid for BareMetalMachineKeySetUserSetupStatus. */
+    /**
+     * Static value Invalid for BareMetalMachineKeySetUserSetupStatus.
+     */
     public static final BareMetalMachineKeySetUserSetupStatus INVALID = fromString("Invalid");
 
     /**
      * Creates a new instance of BareMetalMachineKeySetUserSetupStatus value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -28,7 +34,7 @@ public final class BareMetalMachineKeySetUserSetupStatus
 
     /**
      * Creates or finds a BareMetalMachineKeySetUserSetupStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding BareMetalMachineKeySetUserSetupStatus.
      */
@@ -39,7 +45,7 @@ public final class BareMetalMachineKeySetUserSetupStatus
 
     /**
      * Gets known BareMetalMachineKeySetUserSetupStatus values.
-     *
+     * 
      * @return known BareMetalMachineKeySetUserSetupStatus values.
      */
     public static Collection<BareMetalMachineKeySetUserSetupStatus> values() {

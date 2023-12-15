@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** KeySetUser represents the properties of the user in the key set. */
+/**
+ * KeySetUser represents the properties of the user in the key set.
+ */
 @Fluent
 public final class KeySetUser {
     /*
@@ -25,20 +27,28 @@ public final class KeySetUser {
 
     /*
      * SshPublicKey represents the public key used to authenticate with a resource through SSH.
-     *
+     * 
      * The SSH public key that will be provisioned for user access. The user is expected to have the corresponding SSH
      * private key for logging in.
      */
     @JsonProperty(value = "sshPublicKey", required = true)
     private SshPublicKey sshPublicKey;
 
-    /** Creates an instance of KeySetUser class. */
+    /*
+     * The user principal name (email format) used to validate this user's group membership.
+     */
+    @JsonProperty(value = "userPrincipalName")
+    private String userPrincipalName;
+
+    /**
+     * Creates an instance of KeySetUser class.
+     */
     public KeySetUser() {
     }
 
     /**
      * Get the azureUsername property: The user name that will be used for access.
-     *
+     * 
      * @return the azureUsername value.
      */
     public String azureUsername() {
@@ -47,7 +57,7 @@ public final class KeySetUser {
 
     /**
      * Set the azureUsername property: The user name that will be used for access.
-     *
+     * 
      * @param azureUsername the azureUsername value to set.
      * @return the KeySetUser object itself.
      */
@@ -58,7 +68,7 @@ public final class KeySetUser {
 
     /**
      * Get the description property: The free-form description for this user.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -67,7 +77,7 @@ public final class KeySetUser {
 
     /**
      * Set the description property: The free-form description for this user.
-     *
+     * 
      * @param description the description value to set.
      * @return the KeySetUser object itself.
      */
@@ -79,10 +89,10 @@ public final class KeySetUser {
     /**
      * Get the sshPublicKey property: SshPublicKey represents the public key used to authenticate with a resource
      * through SSH.
-     *
-     * <p>The SSH public key that will be provisioned for user access. The user is expected to have the corresponding
-     * SSH private key for logging in.
-     *
+     * 
+     * The SSH public key that will be provisioned for user access. The user is expected to have the corresponding SSH
+     * private key for logging in.
+     * 
      * @return the sshPublicKey value.
      */
     public SshPublicKey sshPublicKey() {
@@ -92,10 +102,10 @@ public final class KeySetUser {
     /**
      * Set the sshPublicKey property: SshPublicKey represents the public key used to authenticate with a resource
      * through SSH.
-     *
-     * <p>The SSH public key that will be provisioned for user access. The user is expected to have the corresponding
-     * SSH private key for logging in.
-     *
+     * 
+     * The SSH public key that will be provisioned for user access. The user is expected to have the corresponding SSH
+     * private key for logging in.
+     * 
      * @param sshPublicKey the sshPublicKey value to set.
      * @return the KeySetUser object itself.
      */
@@ -105,20 +115,40 @@ public final class KeySetUser {
     }
 
     /**
+     * Get the userPrincipalName property: The user principal name (email format) used to validate this user's group
+     * membership.
+     * 
+     * @return the userPrincipalName value.
+     */
+    public String userPrincipalName() {
+        return this.userPrincipalName;
+    }
+
+    /**
+     * Set the userPrincipalName property: The user principal name (email format) used to validate this user's group
+     * membership.
+     * 
+     * @param userPrincipalName the userPrincipalName value to set.
+     * @return the KeySetUser object itself.
+     */
+    public KeySetUser withUserPrincipalName(String userPrincipalName) {
+        this.userPrincipalName = userPrincipalName;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (azureUsername() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property azureUsername in model KeySetUser"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property azureUsername in model KeySetUser"));
         }
         if (sshPublicKey() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property sshPublicKey in model KeySetUser"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property sshPublicKey in model KeySetUser"));
         } else {
             sshPublicKey().validate();
         }

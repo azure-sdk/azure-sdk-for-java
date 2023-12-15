@@ -8,20 +8,33 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The latest heartbeat status between the cluster manager and the cluster. */
+/**
+ * The latest heartbeat status between the cluster manager and the cluster.
+ */
 public final class ClusterConnectionStatus extends ExpandableStringEnum<ClusterConnectionStatus> {
-    /** Static value Connected for ClusterConnectionStatus. */
+    /**
+     * Static value Connected for ClusterConnectionStatus.
+     */
     public static final ClusterConnectionStatus CONNECTED = fromString("Connected");
 
-    /** Static value Timeout for ClusterConnectionStatus. */
+    /**
+     * Static value Disconnected for ClusterConnectionStatus.
+     */
+    public static final ClusterConnectionStatus DISCONNECTED = fromString("Disconnected");
+
+    /**
+     * Static value Timeout for ClusterConnectionStatus.
+     */
     public static final ClusterConnectionStatus TIMEOUT = fromString("Timeout");
 
-    /** Static value Undefined for ClusterConnectionStatus. */
+    /**
+     * Static value Undefined for ClusterConnectionStatus.
+     */
     public static final ClusterConnectionStatus UNDEFINED = fromString("Undefined");
 
     /**
      * Creates a new instance of ClusterConnectionStatus value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +43,7 @@ public final class ClusterConnectionStatus extends ExpandableStringEnum<ClusterC
 
     /**
      * Creates or finds a ClusterConnectionStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ClusterConnectionStatus.
      */
@@ -41,7 +54,7 @@ public final class ClusterConnectionStatus extends ExpandableStringEnum<ClusterC
 
     /**
      * Gets known ClusterConnectionStatus values.
-     *
+     * 
      * @return known ClusterConnectionStatus values.
      */
     public static Collection<ClusterConnectionStatus> values() {

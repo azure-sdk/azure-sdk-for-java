@@ -9,33 +9,30 @@ import com.azure.resourcemanager.networkcloud.models.HybridAksPluginType;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for L2Networks CreateOrUpdate. */
+/**
+ * Samples for L2Networks CreateOrUpdate.
+ */
 public final class L2NetworksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/L2Networks_Create.json
+     * x-ms-original-file:
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-10-01-preview/examples/
+     * L2Networks_Create.json
      */
     /**
      * Sample code: Create or update L2 network.
-     *
+     * 
      * @param manager Entry point to NetworkCloudManager.
      */
     public static void createOrUpdateL2Network(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
-        manager
-            .l2Networks()
-            .define("l2NetworkName")
-            .withRegion("location")
+        manager.l2Networks().define("l2NetworkName").withRegion("location")
             .withExistingResourceGroup("resourceGroupName")
-            .withExtendedLocation(
-                new ExtendedLocation()
-                    .withName(
-                        "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ExtendedLocation/customLocations/clusterExtendedLocationName")
-                    .withType("CustomLocation"))
+            .withExtendedLocation(new ExtendedLocation().withName(
+                "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ExtendedLocation/customLocations/clusterExtendedLocationName")
+                .withType("CustomLocation"))
             .withL2IsolationDomainId(
                 "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.ManagedNetworkFabric/l2IsolationDomains/l2IsolationDomainName")
             .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
-            .withHybridAksPluginType(HybridAksPluginType.DPDK)
-            .withInterfaceName("eth0")
-            .create();
+            .withHybridAksPluginType(HybridAksPluginType.DPDK).withInterfaceName("eth0").create();
     }
 
     // Use "Map.of" if available

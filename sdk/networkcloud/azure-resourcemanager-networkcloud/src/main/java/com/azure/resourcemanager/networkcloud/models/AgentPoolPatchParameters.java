@@ -10,12 +10,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** AgentPoolPatchParameters represents the body of the request to patch the Kubernetes cluster agent pool. */
+/**
+ * AgentPoolPatchParameters represents the body of the request to patch the Kubernetes cluster agent pool.
+ */
 @Fluent
 public final class AgentPoolPatchParameters {
     /*
      * AgentPoolPatchProperties represents the properties of an agent pool that can be modified.
-     *
+     * 
      * The list of the resource properties.
      */
     @JsonProperty(value = "properties")
@@ -28,16 +30,18 @@ public final class AgentPoolPatchParameters {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of AgentPoolPatchParameters class. */
+    /**
+     * Creates an instance of AgentPoolPatchParameters class.
+     */
     public AgentPoolPatchParameters() {
     }
 
     /**
-     * Get the innerProperties property: AgentPoolPatchProperties represents the properties of an agent pool that can be
-     * modified.
-     *
-     * <p>The list of the resource properties.
-     *
+     * Get the innerProperties property: AgentPoolPatchProperties represents the properties of an agent pool that can
+     * be modified.
+     * 
+     * The list of the resource properties.
+     * 
      * @return the innerProperties value.
      */
     private AgentPoolPatchProperties innerProperties() {
@@ -46,7 +50,7 @@ public final class AgentPoolPatchParameters {
 
     /**
      * Get the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -55,7 +59,7 @@ public final class AgentPoolPatchParameters {
 
     /**
      * Set the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the AgentPoolPatchParameters object itself.
      */
@@ -65,8 +69,38 @@ public final class AgentPoolPatchParameters {
     }
 
     /**
+     * Get the administratorConfiguration property: NodePoolAdministratorConfigurationPatch represents the patching
+     * capabilities for the administrator configuration.
+     * 
+     * The configuration of administrator credentials for the control plane nodes.
+     * 
+     * @return the administratorConfiguration value.
+     */
+    public NodePoolAdministratorConfigurationPatch administratorConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().administratorConfiguration();
+    }
+
+    /**
+     * Set the administratorConfiguration property: NodePoolAdministratorConfigurationPatch represents the patching
+     * capabilities for the administrator configuration.
+     * 
+     * The configuration of administrator credentials for the control plane nodes.
+     * 
+     * @param administratorConfiguration the administratorConfiguration value to set.
+     * @return the AgentPoolPatchParameters object itself.
+     */
+    public AgentPoolPatchParameters
+        withAdministratorConfiguration(NodePoolAdministratorConfigurationPatch administratorConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AgentPoolPatchProperties();
+        }
+        this.innerProperties().withAdministratorConfiguration(administratorConfiguration);
+        return this;
+    }
+
+    /**
      * Get the count property: The number of virtual machines that use this configuration.
-     *
+     * 
      * @return the count value.
      */
     public Long count() {
@@ -75,7 +109,7 @@ public final class AgentPoolPatchParameters {
 
     /**
      * Set the count property: The number of virtual machines that use this configuration.
-     *
+     * 
      * @param count the count value to set.
      * @return the AgentPoolPatchParameters object itself.
      */
@@ -89,9 +123,9 @@ public final class AgentPoolPatchParameters {
 
     /**
      * Get the upgradeSettings property: AgentPoolUpgradeSettings specifies the upgrade settings for an agent pool.
-     *
-     * <p>The configuration of the agent pool.
-     *
+     * 
+     * The configuration of the agent pool.
+     * 
      * @return the upgradeSettings value.
      */
     public AgentPoolUpgradeSettings upgradeSettings() {
@@ -100,9 +134,9 @@ public final class AgentPoolPatchParameters {
 
     /**
      * Set the upgradeSettings property: AgentPoolUpgradeSettings specifies the upgrade settings for an agent pool.
-     *
-     * <p>The configuration of the agent pool.
-     *
+     * 
+     * The configuration of the agent pool.
+     * 
      * @param upgradeSettings the upgradeSettings value to set.
      * @return the AgentPoolPatchParameters object itself.
      */
@@ -116,7 +150,7 @@ public final class AgentPoolPatchParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

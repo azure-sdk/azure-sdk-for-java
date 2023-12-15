@@ -10,12 +10,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** KubernetesClusterPatchParameters represents the body of the request to patch the Hybrid AKS cluster. */
+/**
+ * KubernetesClusterPatchParameters represents the body of the request to patch the Hybrid AKS cluster.
+ */
 @Fluent
 public final class KubernetesClusterPatchParameters {
     /*
      * KubernetesClusterPatchProperties represents the properties of the Kubernetes cluster that can be patched.
-     *
+     * 
      * The list of the resource properties.
      */
     @JsonProperty(value = "properties")
@@ -28,16 +30,18 @@ public final class KubernetesClusterPatchParameters {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of KubernetesClusterPatchParameters class. */
+    /**
+     * Creates an instance of KubernetesClusterPatchParameters class.
+     */
     public KubernetesClusterPatchParameters() {
     }
 
     /**
      * Get the innerProperties property: KubernetesClusterPatchProperties represents the properties of the Kubernetes
      * cluster that can be patched.
-     *
-     * <p>The list of the resource properties.
-     *
+     * 
+     * The list of the resource properties.
+     * 
      * @return the innerProperties value.
      */
     private KubernetesClusterPatchProperties innerProperties() {
@@ -46,7 +50,7 @@ public final class KubernetesClusterPatchParameters {
 
     /**
      * Get the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -55,7 +59,7 @@ public final class KubernetesClusterPatchParameters {
 
     /**
      * Set the tags property: The Azure resource tags that will replace the existing ones.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the KubernetesClusterPatchParameters object itself.
      */
@@ -65,11 +69,41 @@ public final class KubernetesClusterPatchParameters {
     }
 
     /**
+     * Get the administratorConfiguration property: AdministratorConfigurationPatch represents the patching
+     * capabilities for the administrator configuration.
+     * 
+     * The configuration of the default administrator credentials.
+     * 
+     * @return the administratorConfiguration value.
+     */
+    public AdministratorConfigurationPatch administratorConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().administratorConfiguration();
+    }
+
+    /**
+     * Set the administratorConfiguration property: AdministratorConfigurationPatch represents the patching
+     * capabilities for the administrator configuration.
+     * 
+     * The configuration of the default administrator credentials.
+     * 
+     * @param administratorConfiguration the administratorConfiguration value to set.
+     * @return the KubernetesClusterPatchParameters object itself.
+     */
+    public KubernetesClusterPatchParameters
+        withAdministratorConfiguration(AdministratorConfigurationPatch administratorConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new KubernetesClusterPatchProperties();
+        }
+        this.innerProperties().withAdministratorConfiguration(administratorConfiguration);
+        return this;
+    }
+
+    /**
      * Get the controlPlaneNodeConfiguration property: ControlPlaneNodePatchConfiguration represents the properties of
      * the control plane that can be patched for this Kubernetes cluster.
-     *
-     * <p>The defining characteristics of the control plane that can be patched for this Kubernetes cluster.
-     *
+     * 
+     * The defining characteristics of the control plane that can be patched for this Kubernetes cluster.
+     * 
      * @return the controlPlaneNodeConfiguration value.
      */
     public ControlPlaneNodePatchConfiguration controlPlaneNodeConfiguration() {
@@ -79,14 +113,14 @@ public final class KubernetesClusterPatchParameters {
     /**
      * Set the controlPlaneNodeConfiguration property: ControlPlaneNodePatchConfiguration represents the properties of
      * the control plane that can be patched for this Kubernetes cluster.
-     *
-     * <p>The defining characteristics of the control plane that can be patched for this Kubernetes cluster.
-     *
+     * 
+     * The defining characteristics of the control plane that can be patched for this Kubernetes cluster.
+     * 
      * @param controlPlaneNodeConfiguration the controlPlaneNodeConfiguration value to set.
      * @return the KubernetesClusterPatchParameters object itself.
      */
-    public KubernetesClusterPatchParameters withControlPlaneNodeConfiguration(
-        ControlPlaneNodePatchConfiguration controlPlaneNodeConfiguration) {
+    public KubernetesClusterPatchParameters
+        withControlPlaneNodeConfiguration(ControlPlaneNodePatchConfiguration controlPlaneNodeConfiguration) {
         if (this.innerProperties() == null) {
             this.innerProperties = new KubernetesClusterPatchProperties();
         }
@@ -97,7 +131,7 @@ public final class KubernetesClusterPatchParameters {
     /**
      * Get the kubernetesVersion property: The Kubernetes version for this cluster. Accepts n.n, n.n.n, and n.n.n-n
      * format. The interpreted version used will be resolved into this field after creation or update.
-     *
+     * 
      * @return the kubernetesVersion value.
      */
     public String kubernetesVersion() {
@@ -107,7 +141,7 @@ public final class KubernetesClusterPatchParameters {
     /**
      * Set the kubernetesVersion property: The Kubernetes version for this cluster. Accepts n.n, n.n.n, and n.n.n-n
      * format. The interpreted version used will be resolved into this field after creation or update.
-     *
+     * 
      * @param kubernetesVersion the kubernetesVersion value to set.
      * @return the KubernetesClusterPatchParameters object itself.
      */
@@ -121,7 +155,7 @@ public final class KubernetesClusterPatchParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

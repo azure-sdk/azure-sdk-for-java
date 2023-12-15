@@ -16,12 +16,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** L2Network represents a network that utilizes a single isolation domain set up for layer-2 resources. */
+/**
+ * L2Network represents a network that utilizes a single isolation domain set up for layer-2 resources.
+ */
 @Fluent
 public final class L2NetworkInner extends Resource {
     /*
      * ExtendedLocation represents the Azure custom location where the resource will be created.
-     *
+     * 
      * The extended location of the cluster associated with the resource.
      */
     @JsonProperty(value = "extendedLocation", required = true)
@@ -29,7 +31,7 @@ public final class L2NetworkInner extends Resource {
 
     /*
      * L2NetworkProperties represents properties of the L2 network.
-     *
+     * 
      * The list of the resource properties.
      */
     @JsonProperty(value = "properties", required = true)
@@ -41,16 +43,18 @@ public final class L2NetworkInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of L2NetworkInner class. */
+    /**
+     * Creates an instance of L2NetworkInner class.
+     */
     public L2NetworkInner() {
     }
 
     /**
      * Get the extendedLocation property: ExtendedLocation represents the Azure custom location where the resource will
      * be created.
-     *
-     * <p>The extended location of the cluster associated with the resource.
-     *
+     * 
+     * The extended location of the cluster associated with the resource.
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -60,9 +64,9 @@ public final class L2NetworkInner extends Resource {
     /**
      * Set the extendedLocation property: ExtendedLocation represents the Azure custom location where the resource will
      * be created.
-     *
-     * <p>The extended location of the cluster associated with the resource.
-     *
+     * 
+     * The extended location of the cluster associated with the resource.
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the L2NetworkInner object itself.
      */
@@ -73,9 +77,9 @@ public final class L2NetworkInner extends Resource {
 
     /**
      * Get the innerProperties property: L2NetworkProperties represents properties of the L2 network.
-     *
-     * <p>The list of the resource properties.
-     *
+     * 
+     * The list of the resource properties.
+     * 
      * @return the innerProperties value.
      */
     private L2NetworkProperties innerProperties() {
@@ -84,21 +88,25 @@ public final class L2NetworkInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public L2NetworkInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public L2NetworkInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -108,7 +116,7 @@ public final class L2NetworkInner extends Resource {
     /**
      * Get the associatedResourceIds property: The list of resource IDs for the other Microsoft.NetworkCloud resources
      * that have attached this network.
-     *
+     * 
      * @return the associatedResourceIds value.
      */
     public List<String> associatedResourceIds() {
@@ -117,7 +125,7 @@ public final class L2NetworkInner extends Resource {
 
     /**
      * Get the clusterId property: The resource ID of the Network Cloud cluster this L2 network is associated with.
-     *
+     * 
      * @return the clusterId value.
      */
     public String clusterId() {
@@ -126,7 +134,7 @@ public final class L2NetworkInner extends Resource {
 
     /**
      * Get the detailedStatus property: The more detailed status of the L2 network.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public L2NetworkDetailedStatus detailedStatus() {
@@ -135,7 +143,7 @@ public final class L2NetworkInner extends Resource {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -145,7 +153,7 @@ public final class L2NetworkInner extends Resource {
     /**
      * Get the hybridAksClustersAssociatedIds property: Field Deprecated. These fields will be empty/omitted. The list
      * of Hybrid AKS cluster resource ID(s) that are associated with this L2 network.
-     *
+     * 
      * @return the hybridAksClustersAssociatedIds value.
      */
     public List<String> hybridAksClustersAssociatedIds() {
@@ -155,7 +163,7 @@ public final class L2NetworkInner extends Resource {
     /**
      * Get the hybridAksPluginType property: Field Deprecated. The field was previously optional, now it will have no
      * defined behavior and will be ignored. The network plugin type for Hybrid AKS.
-     *
+     * 
      * @return the hybridAksPluginType value.
      */
     public HybridAksPluginType hybridAksPluginType() {
@@ -165,7 +173,7 @@ public final class L2NetworkInner extends Resource {
     /**
      * Set the hybridAksPluginType property: Field Deprecated. The field was previously optional, now it will have no
      * defined behavior and will be ignored. The network plugin type for Hybrid AKS.
-     *
+     * 
      * @param hybridAksPluginType the hybridAksPluginType value to set.
      * @return the L2NetworkInner object itself.
      */
@@ -180,7 +188,7 @@ public final class L2NetworkInner extends Resource {
     /**
      * Get the interfaceName property: The default interface name for this L2 network in the virtual machine. This name
      * can be overridden by the name supplied in the network attachment configuration of that virtual machine.
-     *
+     * 
      * @return the interfaceName value.
      */
     public String interfaceName() {
@@ -190,7 +198,7 @@ public final class L2NetworkInner extends Resource {
     /**
      * Set the interfaceName property: The default interface name for this L2 network in the virtual machine. This name
      * can be overridden by the name supplied in the network attachment configuration of that virtual machine.
-     *
+     * 
      * @param interfaceName the interfaceName value to set.
      * @return the L2NetworkInner object itself.
      */
@@ -204,7 +212,7 @@ public final class L2NetworkInner extends Resource {
 
     /**
      * Get the l2IsolationDomainId property: The resource ID of the Network Fabric l2IsolationDomain.
-     *
+     * 
      * @return the l2IsolationDomainId value.
      */
     public String l2IsolationDomainId() {
@@ -213,7 +221,7 @@ public final class L2NetworkInner extends Resource {
 
     /**
      * Set the l2IsolationDomainId property: The resource ID of the Network Fabric l2IsolationDomain.
-     *
+     * 
      * @param l2IsolationDomainId the l2IsolationDomainId value to set.
      * @return the L2NetworkInner object itself.
      */
@@ -227,7 +235,7 @@ public final class L2NetworkInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioning state of the L2 network.
-     *
+     * 
      * @return the provisioningState value.
      */
     public L2NetworkProvisioningState provisioningState() {
@@ -238,7 +246,7 @@ public final class L2NetworkInner extends Resource {
      * Get the virtualMachinesAssociatedIds property: Field Deprecated. These fields will be empty/omitted. The list of
      * virtual machine resource ID(s), excluding any Hybrid AKS virtual machines, that are currently using this L2
      * network.
-     *
+     * 
      * @return the virtualMachinesAssociatedIds value.
      */
     public List<String> virtualMachinesAssociatedIds() {
@@ -247,21 +255,19 @@ public final class L2NetworkInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (extendedLocation() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property extendedLocation in model L2NetworkInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property extendedLocation in model L2NetworkInner"));
         } else {
             extendedLocation().validate();
         }
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model L2NetworkInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model L2NetworkInner"));
         } else {
             innerProperties().validate();
         }

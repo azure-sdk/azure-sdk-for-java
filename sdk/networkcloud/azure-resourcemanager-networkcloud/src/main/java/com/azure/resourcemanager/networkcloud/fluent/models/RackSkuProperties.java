@@ -13,8 +13,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * RackSkuProperties represents the properties of compute-related hardware for a rack. This supports both aggregator and
- * compute racks.
+ * RackSkuProperties represents the properties of compute-related hardware for a rack. This supports both aggregator
+ * and compute racks.
  */
 @Immutable
 public final class RackSkuProperties {
@@ -67,14 +67,16 @@ public final class RackSkuProperties {
     @JsonProperty(value = "supportedRackSkuIds", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> supportedRackSkuIds;
 
-    /** Creates an instance of RackSkuProperties class. */
+    /**
+     * Creates an instance of RackSkuProperties class.
+     */
     public RackSkuProperties() {
     }
 
     /**
      * Get the computeMachines property: The list of machine SKUs and associated rack slot for the compute-dedicated
      * machines in this rack model.
-     *
+     * 
      * @return the computeMachines value.
      */
     public List<MachineSkuSlot> computeMachines() {
@@ -84,7 +86,7 @@ public final class RackSkuProperties {
     /**
      * Get the controllerMachines property: The list of machine SKUs and associated rack slot for the control-plane
      * dedicated machines in this rack model.
-     *
+     * 
      * @return the controllerMachines value.
      */
     public List<MachineSkuSlot> controllerMachines() {
@@ -93,7 +95,7 @@ public final class RackSkuProperties {
 
     /**
      * Get the description property: The free-form text describing the rack.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -103,7 +105,7 @@ public final class RackSkuProperties {
     /**
      * Get the maxClusterSlots property: The maximum number of compute racks supported by an aggregator rack. 0 if this
      * is a compute rack or a rack for a single rack cluster(rackType="Single").
-     *
+     * 
      * @return the maxClusterSlots value.
      */
     public Long maxClusterSlots() {
@@ -112,7 +114,7 @@ public final class RackSkuProperties {
 
     /**
      * Get the provisioningState property: The provisioning state of the rack SKU resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public RackSkuProvisioningState provisioningState() {
@@ -121,7 +123,7 @@ public final class RackSkuProperties {
 
     /**
      * Get the rackType property: The type of the rack.
-     *
+     * 
      * @return the rackType value.
      */
     public RackSkuType rackType() {
@@ -131,7 +133,7 @@ public final class RackSkuProperties {
     /**
      * Get the storageAppliances property: The list of appliance SKUs and associated rack slot for the storage
      * appliance(s) in this rack model.
-     *
+     * 
      * @return the storageAppliances value.
      */
     public List<StorageApplianceSkuSlot> storageAppliances() {
@@ -140,7 +142,7 @@ public final class RackSkuProperties {
 
     /**
      * Get the supportedRackSkuIds property: The list of supported SKUs if the rack is an aggregator.
-     *
+     * 
      * @return the supportedRackSkuIds value.
      */
     public List<String> supportedRackSkuIds() {
@@ -149,7 +151,7 @@ public final class RackSkuProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

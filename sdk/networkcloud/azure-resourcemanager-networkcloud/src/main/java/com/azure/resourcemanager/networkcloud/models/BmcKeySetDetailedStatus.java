@@ -8,23 +8,33 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The more detailed status of the key set. */
+/**
+ * The more detailed status of the key set.
+ */
 public final class BmcKeySetDetailedStatus extends ExpandableStringEnum<BmcKeySetDetailedStatus> {
-    /** Static value AllActive for BmcKeySetDetailedStatus. */
+    /**
+     * Static value AllActive for BmcKeySetDetailedStatus.
+     */
     public static final BmcKeySetDetailedStatus ALL_ACTIVE = fromString("AllActive");
 
-    /** Static value SomeInvalid for BmcKeySetDetailedStatus. */
+    /**
+     * Static value SomeInvalid for BmcKeySetDetailedStatus.
+     */
     public static final BmcKeySetDetailedStatus SOME_INVALID = fromString("SomeInvalid");
 
-    /** Static value AllInvalid for BmcKeySetDetailedStatus. */
+    /**
+     * Static value AllInvalid for BmcKeySetDetailedStatus.
+     */
     public static final BmcKeySetDetailedStatus ALL_INVALID = fromString("AllInvalid");
 
-    /** Static value Validating for BmcKeySetDetailedStatus. */
+    /**
+     * Static value Validating for BmcKeySetDetailedStatus.
+     */
     public static final BmcKeySetDetailedStatus VALIDATING = fromString("Validating");
 
     /**
      * Creates a new instance of BmcKeySetDetailedStatus value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -33,7 +43,7 @@ public final class BmcKeySetDetailedStatus extends ExpandableStringEnum<BmcKeySe
 
     /**
      * Creates or finds a BmcKeySetDetailedStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding BmcKeySetDetailedStatus.
      */
@@ -44,7 +54,7 @@ public final class BmcKeySetDetailedStatus extends ExpandableStringEnum<BmcKeySe
 
     /**
      * Gets known BmcKeySetDetailedStatus values.
-     *
+     * 
      * @return known BmcKeySetDetailedStatus values.
      */
     public static Collection<BmcKeySetDetailedStatus> values() {

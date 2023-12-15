@@ -9,7 +9,9 @@ import com.azure.resourcemanager.networkcloud.fluent.models.TrunkedNetworkInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** TrunkedNetworkList represents a list of trunked networks. */
+/**
+ * TrunkedNetworkList represents a list of trunked networks.
+ */
 @Fluent
 public final class TrunkedNetworkList {
     /*
@@ -24,13 +26,15 @@ public final class TrunkedNetworkList {
     @JsonProperty(value = "value")
     private List<TrunkedNetworkInner> value;
 
-    /** Creates an instance of TrunkedNetworkList class. */
+    /**
+     * Creates an instance of TrunkedNetworkList class.
+     */
     public TrunkedNetworkList() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class TrunkedNetworkList {
 
     /**
      * Set the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the TrunkedNetworkList object itself.
      */
@@ -50,7 +54,7 @@ public final class TrunkedNetworkList {
 
     /**
      * Get the value property: The list of trunked networks.
-     *
+     * 
      * @return the value value.
      */
     public List<TrunkedNetworkInner> value() {
@@ -59,7 +63,7 @@ public final class TrunkedNetworkList {
 
     /**
      * Set the value property: The list of trunked networks.
-     *
+     * 
      * @param value the value value to set.
      * @return the TrunkedNetworkList object itself.
      */
@@ -70,7 +74,7 @@ public final class TrunkedNetworkList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

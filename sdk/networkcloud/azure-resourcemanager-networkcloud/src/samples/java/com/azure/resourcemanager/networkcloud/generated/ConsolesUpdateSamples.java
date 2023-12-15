@@ -11,29 +11,27 @@ import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for Consoles Update. */
+/**
+ * Samples for Consoles Update.
+ */
 public final class ConsolesUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/Consoles_Patch.json
+     * x-ms-original-file:
+     * specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-10-01-preview/examples/
+     * Consoles_Patch.json
      */
     /**
      * Sample code: Patch virtual machine console.
-     *
+     * 
      * @param manager Entry point to NetworkCloudManager.
      */
     public static void patchVirtualMachineConsole(com.azure.resourcemanager.networkcloud.NetworkCloudManager manager) {
-        Console resource =
-            manager
-                .consoles()
-                .getWithResponse("resourceGroupName", "virtualMachineName", "default", com.azure.core.util.Context.NONE)
-                .getValue();
-        resource
-            .update()
-            .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
-            .withEnabled(ConsoleEnabled.TRUE)
-            .withExpiration(OffsetDateTime.parse("2022-06-01T01:27:03.008Z"))
-            .withSshPublicKey(new SshPublicKey().withKeyData("fakeTokenPlaceholder"))
-            .apply();
+        Console resource = manager.consoles()
+            .getWithResponse("resourceGroupName", "virtualMachineName", "default", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
+            .withEnabled(ConsoleEnabled.TRUE).withExpiration(OffsetDateTime.parse("2022-06-01T01:27:03.008Z"))
+            .withSshPublicKey(new SshPublicKey().withKeyData("fakeTokenPlaceholder")).apply();
     }
 
     // Use "Map.of" if available

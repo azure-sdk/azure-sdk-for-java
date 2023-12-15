@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The more detailed status of the rack. */
+/**
+ * The more detailed status of the rack.
+ */
 public final class RackDetailedStatus extends ExpandableStringEnum<RackDetailedStatus> {
-    /** Static value Error for RackDetailedStatus. */
+    /**
+     * Static value Error for RackDetailedStatus.
+     */
     public static final RackDetailedStatus ERROR = fromString("Error");
 
-    /** Static value Available for RackDetailedStatus. */
+    /**
+     * Static value Available for RackDetailedStatus.
+     */
     public static final RackDetailedStatus AVAILABLE = fromString("Available");
 
-    /** Static value Provisioning for RackDetailedStatus. */
+    /**
+     * Static value Provisioning for RackDetailedStatus.
+     */
     public static final RackDetailedStatus PROVISIONING = fromString("Provisioning");
 
     /**
      * Creates a new instance of RackDetailedStatus value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class RackDetailedStatus extends ExpandableStringEnum<RackDetailedS
 
     /**
      * Creates or finds a RackDetailedStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding RackDetailedStatus.
      */
@@ -41,7 +49,7 @@ public final class RackDetailedStatus extends ExpandableStringEnum<RackDetailedS
 
     /**
      * Gets known RackDetailedStatus values.
-     *
+     * 
      * @return known RackDetailedStatus values.
      */
     public static Collection<RackDetailedStatus> values() {

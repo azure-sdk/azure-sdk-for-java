@@ -34,14 +34,16 @@ public final class BareMetalMachineKeySetPatchProperties {
     @JsonProperty(value = "userList")
     private List<KeySetUser> userList;
 
-    /** Creates an instance of BareMetalMachineKeySetPatchProperties class. */
+    /**
+     * Creates an instance of BareMetalMachineKeySetPatchProperties class.
+     */
     public BareMetalMachineKeySetPatchProperties() {
     }
 
     /**
      * Get the expiration property: The date and time after which the users in this key set will be removed from the
      * bare metal machines.
-     *
+     * 
      * @return the expiration value.
      */
     public OffsetDateTime expiration() {
@@ -51,7 +53,7 @@ public final class BareMetalMachineKeySetPatchProperties {
     /**
      * Set the expiration property: The date and time after which the users in this key set will be removed from the
      * bare metal machines.
-     *
+     * 
      * @param expiration the expiration value to set.
      * @return the BareMetalMachineKeySetPatchProperties object itself.
      */
@@ -63,7 +65,7 @@ public final class BareMetalMachineKeySetPatchProperties {
     /**
      * Get the jumpHostsAllowed property: The list of IP addresses of jump hosts with management network access from
      * which a login will be allowed for the users.
-     *
+     * 
      * @return the jumpHostsAllowed value.
      */
     public List<String> jumpHostsAllowed() {
@@ -73,7 +75,7 @@ public final class BareMetalMachineKeySetPatchProperties {
     /**
      * Set the jumpHostsAllowed property: The list of IP addresses of jump hosts with management network access from
      * which a login will be allowed for the users.
-     *
+     * 
      * @param jumpHostsAllowed the jumpHostsAllowed value to set.
      * @return the BareMetalMachineKeySetPatchProperties object itself.
      */
@@ -84,7 +86,7 @@ public final class BareMetalMachineKeySetPatchProperties {
 
     /**
      * Get the userList property: The unique list of permitted users.
-     *
+     * 
      * @return the userList value.
      */
     public List<KeySetUser> userList() {
@@ -93,7 +95,7 @@ public final class BareMetalMachineKeySetPatchProperties {
 
     /**
      * Set the userList property: The unique list of permitted users.
-     *
+     * 
      * @param userList the userList value to set.
      * @return the BareMetalMachineKeySetPatchProperties object itself.
      */
@@ -104,7 +106,7 @@ public final class BareMetalMachineKeySetPatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

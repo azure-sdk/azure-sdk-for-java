@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** RackDefinition represents details regarding the rack. */
+/**
+ * RackDefinition represents details regarding the rack.
+ */
 @Fluent
 public final class RackDefinition {
     /*
@@ -55,14 +57,16 @@ public final class RackDefinition {
     @JsonProperty(value = "storageApplianceConfigurationData")
     private List<StorageApplianceConfigurationData> storageApplianceConfigurationData;
 
-    /** Creates an instance of RackDefinition class. */
+    /**
+     * Creates an instance of RackDefinition class.
+     */
     public RackDefinition() {
     }
 
     /**
-     * Get the availabilityZone property: The zone name used for this rack when created. Availability zones are used for
-     * workload placement.
-     *
+     * Get the availabilityZone property: The zone name used for this rack when created. Availability zones are used
+     * for workload placement.
+     * 
      * @return the availabilityZone value.
      */
     public String availabilityZone() {
@@ -70,9 +74,9 @@ public final class RackDefinition {
     }
 
     /**
-     * Set the availabilityZone property: The zone name used for this rack when created. Availability zones are used for
-     * workload placement.
-     *
+     * Set the availabilityZone property: The zone name used for this rack when created. Availability zones are used
+     * for workload placement.
+     * 
      * @param availabilityZone the availabilityZone value to set.
      * @return the RackDefinition object itself.
      */
@@ -83,7 +87,7 @@ public final class RackDefinition {
 
     /**
      * Get the bareMetalMachineConfigurationData property: The unordered list of bare metal machine configuration.
-     *
+     * 
      * @return the bareMetalMachineConfigurationData value.
      */
     public List<BareMetalMachineConfigurationData> bareMetalMachineConfigurationData() {
@@ -92,7 +96,7 @@ public final class RackDefinition {
 
     /**
      * Set the bareMetalMachineConfigurationData property: The unordered list of bare metal machine configuration.
-     *
+     * 
      * @param bareMetalMachineConfigurationData the bareMetalMachineConfigurationData value to set.
      * @return the RackDefinition object itself.
      */
@@ -104,7 +108,7 @@ public final class RackDefinition {
 
     /**
      * Get the networkRackId property: The resource ID of the network rack that matches this rack definition.
-     *
+     * 
      * @return the networkRackId value.
      */
     public String networkRackId() {
@@ -113,7 +117,7 @@ public final class RackDefinition {
 
     /**
      * Set the networkRackId property: The resource ID of the network rack that matches this rack definition.
-     *
+     * 
      * @param networkRackId the networkRackId value to set.
      * @return the RackDefinition object itself.
      */
@@ -124,7 +128,7 @@ public final class RackDefinition {
 
     /**
      * Get the rackLocation property: The free-form description of the rack's location.
-     *
+     * 
      * @return the rackLocation value.
      */
     public String rackLocation() {
@@ -133,7 +137,7 @@ public final class RackDefinition {
 
     /**
      * Set the rackLocation property: The free-form description of the rack's location.
-     *
+     * 
      * @param rackLocation the rackLocation value to set.
      * @return the RackDefinition object itself.
      */
@@ -145,7 +149,7 @@ public final class RackDefinition {
     /**
      * Get the rackSerialNumber property: The unique identifier for the rack within Network Cloud cluster. An alternate
      * unique alphanumeric value other than a serial number may be provided if desired.
-     *
+     * 
      * @return the rackSerialNumber value.
      */
     public String rackSerialNumber() {
@@ -155,7 +159,7 @@ public final class RackDefinition {
     /**
      * Set the rackSerialNumber property: The unique identifier for the rack within Network Cloud cluster. An alternate
      * unique alphanumeric value other than a serial number may be provided if desired.
-     *
+     * 
      * @param rackSerialNumber the rackSerialNumber value to set.
      * @return the RackDefinition object itself.
      */
@@ -166,7 +170,7 @@ public final class RackDefinition {
 
     /**
      * Get the rackSkuId property: The resource ID of the sku for the rack being added.
-     *
+     * 
      * @return the rackSkuId value.
      */
     public String rackSkuId() {
@@ -175,7 +179,7 @@ public final class RackDefinition {
 
     /**
      * Set the rackSkuId property: The resource ID of the sku for the rack being added.
-     *
+     * 
      * @param rackSkuId the rackSkuId value to set.
      * @return the RackDefinition object itself.
      */
@@ -187,7 +191,7 @@ public final class RackDefinition {
     /**
      * Get the storageApplianceConfigurationData property: The list of storage appliance configuration data for this
      * rack.
-     *
+     * 
      * @return the storageApplianceConfigurationData value.
      */
     public List<StorageApplianceConfigurationData> storageApplianceConfigurationData() {
@@ -197,7 +201,7 @@ public final class RackDefinition {
     /**
      * Set the storageApplianceConfigurationData property: The list of storage appliance configuration data for this
      * rack.
-     *
+     * 
      * @param storageApplianceConfigurationData the storageApplianceConfigurationData value to set.
      * @return the RackDefinition object itself.
      */
@@ -209,7 +213,7 @@ public final class RackDefinition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -217,19 +221,16 @@ public final class RackDefinition {
             bareMetalMachineConfigurationData().forEach(e -> e.validate());
         }
         if (networkRackId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property networkRackId in model RackDefinition"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property networkRackId in model RackDefinition"));
         }
         if (rackSerialNumber() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property rackSerialNumber in model RackDefinition"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property rackSerialNumber in model RackDefinition"));
         }
         if (rackSkuId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property rackSkuId in model RackDefinition"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property rackSkuId in model RackDefinition"));
         }
         if (storageApplianceConfigurationData() != null) {
             storageApplianceConfigurationData().forEach(e -> e.validate());

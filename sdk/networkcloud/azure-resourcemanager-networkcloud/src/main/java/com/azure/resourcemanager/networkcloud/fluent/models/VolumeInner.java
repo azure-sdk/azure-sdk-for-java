@@ -15,12 +15,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Volume represents storage made available for use by resources running on the cluster. */
+/**
+ * Volume represents storage made available for use by resources running on the cluster.
+ */
 @Fluent
 public final class VolumeInner extends Resource {
     /*
      * ExtendedLocation represents the Azure custom location where the resource will be created.
-     *
+     * 
      * The extended location of the cluster associated with the resource.
      */
     @JsonProperty(value = "extendedLocation", required = true)
@@ -28,7 +30,7 @@ public final class VolumeInner extends Resource {
 
     /*
      * VolumeProperties represents properties of the volume resource.
-     *
+     * 
      * The list of the resource properties.
      */
     @JsonProperty(value = "properties", required = true)
@@ -40,16 +42,18 @@ public final class VolumeInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of VolumeInner class. */
+    /**
+     * Creates an instance of VolumeInner class.
+     */
     public VolumeInner() {
     }
 
     /**
      * Get the extendedLocation property: ExtendedLocation represents the Azure custom location where the resource will
      * be created.
-     *
-     * <p>The extended location of the cluster associated with the resource.
-     *
+     * 
+     * The extended location of the cluster associated with the resource.
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -59,9 +63,9 @@ public final class VolumeInner extends Resource {
     /**
      * Set the extendedLocation property: ExtendedLocation represents the Azure custom location where the resource will
      * be created.
-     *
-     * <p>The extended location of the cluster associated with the resource.
-     *
+     * 
+     * The extended location of the cluster associated with the resource.
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the VolumeInner object itself.
      */
@@ -72,9 +76,9 @@ public final class VolumeInner extends Resource {
 
     /**
      * Get the innerProperties property: VolumeProperties represents properties of the volume resource.
-     *
-     * <p>The list of the resource properties.
-     *
+     * 
+     * The list of the resource properties.
+     * 
      * @return the innerProperties value.
      */
     private VolumeProperties innerProperties() {
@@ -83,21 +87,25 @@ public final class VolumeInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VolumeInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VolumeInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -105,9 +113,9 @@ public final class VolumeInner extends Resource {
     }
 
     /**
-     * Get the attachedTo property: The list of resource IDs that attach the volume. It may include virtual machines and
-     * Hybrid AKS clusters.
-     *
+     * Get the attachedTo property: The list of resource IDs that attach the volume. It may include virtual machines
+     * and Hybrid AKS clusters.
+     * 
      * @return the attachedTo value.
      */
     public List<String> attachedTo() {
@@ -116,7 +124,7 @@ public final class VolumeInner extends Resource {
 
     /**
      * Get the detailedStatus property: The more detailed status of the volume.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public VolumeDetailedStatus detailedStatus() {
@@ -125,7 +133,7 @@ public final class VolumeInner extends Resource {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -134,7 +142,7 @@ public final class VolumeInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioning state of the volume.
-     *
+     * 
      * @return the provisioningState value.
      */
     public VolumeProvisioningState provisioningState() {
@@ -143,7 +151,7 @@ public final class VolumeInner extends Resource {
 
     /**
      * Get the serialNumber property: The unique identifier of the volume.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -152,7 +160,7 @@ public final class VolumeInner extends Resource {
 
     /**
      * Get the sizeMiB property: The size of the allocation for this volume in Mebibytes.
-     *
+     * 
      * @return the sizeMiB value.
      */
     public long sizeMiB() {
@@ -161,7 +169,7 @@ public final class VolumeInner extends Resource {
 
     /**
      * Set the sizeMiB property: The size of the allocation for this volume in Mebibytes.
-     *
+     * 
      * @param sizeMiB the sizeMiB value to set.
      * @return the VolumeInner object itself.
      */
@@ -175,21 +183,19 @@ public final class VolumeInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (extendedLocation() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property extendedLocation in model VolumeInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property extendedLocation in model VolumeInner"));
         } else {
             extendedLocation().validate();
         }
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model VolumeInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model VolumeInner"));
         } else {
             innerProperties().validate();
         }

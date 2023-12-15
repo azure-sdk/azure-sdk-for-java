@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** KubernetesLabel represents a single entry for a Kubernetes label or taint such as those used on a node or pod. */
+/**
+ * KubernetesLabel represents a single entry for a Kubernetes label or taint such as those used on a node or pod.
+ */
 @Fluent
 public final class KubernetesLabel {
     /*
@@ -23,13 +25,15 @@ public final class KubernetesLabel {
     @JsonProperty(value = "value", required = true)
     private String value;
 
-    /** Creates an instance of KubernetesLabel class. */
+    /**
+     * Creates an instance of KubernetesLabel class.
+     */
     public KubernetesLabel() {
     }
 
     /**
      * Get the key property: The name of the label or taint.
-     *
+     * 
      * @return the key value.
      */
     public String key() {
@@ -38,7 +42,7 @@ public final class KubernetesLabel {
 
     /**
      * Set the key property: The name of the label or taint.
-     *
+     * 
      * @param key the key value to set.
      * @return the KubernetesLabel object itself.
      */
@@ -49,7 +53,7 @@ public final class KubernetesLabel {
 
     /**
      * Get the value property: The value of the label or taint.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -58,7 +62,7 @@ public final class KubernetesLabel {
 
     /**
      * Set the value property: The value of the label or taint.
-     *
+     * 
      * @param value the value value to set.
      * @return the KubernetesLabel object itself.
      */
@@ -69,19 +73,17 @@ public final class KubernetesLabel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (key() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property key in model KubernetesLabel"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property key in model KubernetesLabel"));
         }
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model KubernetesLabel"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model KubernetesLabel"));
         }
     }
 
