@@ -19,8 +19,7 @@ public final class SecureScoreControlDefinitionsImpl implements SecureScoreContr
 
     private final com.azure.resourcemanager.security.SecurityManager serviceManager;
 
-    public SecureScoreControlDefinitionsImpl(
-        SecureScoreControlDefinitionsClient innerClient,
+    public SecureScoreControlDefinitionsImpl(SecureScoreControlDefinitionsClient innerClient,
         com.azure.resourcemanager.security.SecurityManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;

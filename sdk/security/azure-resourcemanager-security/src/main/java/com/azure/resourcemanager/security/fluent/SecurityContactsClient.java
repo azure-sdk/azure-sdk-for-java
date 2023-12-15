@@ -11,11 +11,13 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.fluent.models.SecurityContactInner;
 
-/** An instance of this class provides access to all the operations defined in SecurityContactsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in SecurityContactsClient.
+ */
 public interface SecurityContactsClient {
     /**
      * List all security contact configurations for the subscription.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of security contacts response as paginated response with {@link PagedIterable}.
@@ -25,7 +27,7 @@ public interface SecurityContactsClient {
 
     /**
      * List all security contact configurations for the subscription.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -37,7 +39,7 @@ public interface SecurityContactsClient {
 
     /**
      * Get Default Security contact configurations for the subscription.
-     *
+     * 
      * @param securityContactName Name of the security contact object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -50,7 +52,7 @@ public interface SecurityContactsClient {
 
     /**
      * Get Default Security contact configurations for the subscription.
-     *
+     * 
      * @param securityContactName Name of the security contact object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -62,7 +64,7 @@ public interface SecurityContactsClient {
 
     /**
      * Create security contact configurations for the subscription.
-     *
+     * 
      * @param securityContactName Name of the security contact object.
      * @param securityContact Security contact object.
      * @param context The context to associate with this operation.
@@ -70,15 +72,15 @@ public interface SecurityContactsClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return contact details and configurations for notifications coming from Microsoft Defender for Cloud along with
-     *     {@link Response}.
+     * {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<SecurityContactInner> createWithResponse(
-        String securityContactName, SecurityContactInner securityContact, Context context);
+    Response<SecurityContactInner> createWithResponse(String securityContactName, SecurityContactInner securityContact,
+        Context context);
 
     /**
      * Create security contact configurations for the subscription.
-     *
+     * 
      * @param securityContactName Name of the security contact object.
      * @param securityContact Security contact object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -91,7 +93,7 @@ public interface SecurityContactsClient {
 
     /**
      * Delete security contact configurations for the subscription.
-     *
+     * 
      * @param securityContactName Name of the security contact object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -104,7 +106,7 @@ public interface SecurityContactsClient {
 
     /**
      * Delete security contact configurations for the subscription.
-     *
+     * 
      * @param securityContactName Name of the security contact object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

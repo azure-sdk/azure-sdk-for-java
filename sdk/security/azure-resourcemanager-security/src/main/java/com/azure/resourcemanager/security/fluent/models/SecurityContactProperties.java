@@ -9,7 +9,9 @@ import com.azure.resourcemanager.security.models.SecurityContactPropertiesAlertN
 import com.azure.resourcemanager.security.models.SecurityContactPropertiesNotificationsByRole;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes security contact properties. */
+/**
+ * Describes security contact properties.
+ */
 @Fluent
 public final class SecurityContactProperties {
     /*
@@ -38,14 +40,16 @@ public final class SecurityContactProperties {
     @JsonProperty(value = "notificationsByRole")
     private SecurityContactPropertiesNotificationsByRole notificationsByRole;
 
-    /** Creates an instance of SecurityContactProperties class. */
+    /**
+     * Creates an instance of SecurityContactProperties class.
+     */
     public SecurityContactProperties() {
     }
 
     /**
      * Get the emails property: List of email addresses which will get notifications from Microsoft Defender for Cloud
      * by the configurations defined in this security contact.
-     *
+     * 
      * @return the emails value.
      */
     public String emails() {
@@ -55,7 +59,7 @@ public final class SecurityContactProperties {
     /**
      * Set the emails property: List of email addresses which will get notifications from Microsoft Defender for Cloud
      * by the configurations defined in this security contact.
-     *
+     * 
      * @param emails the emails value to set.
      * @return the SecurityContactProperties object itself.
      */
@@ -66,7 +70,7 @@ public final class SecurityContactProperties {
 
     /**
      * Get the phone property: The security contact's phone number.
-     *
+     * 
      * @return the phone value.
      */
     public String phone() {
@@ -75,7 +79,7 @@ public final class SecurityContactProperties {
 
     /**
      * Set the phone property: The security contact's phone number.
-     *
+     * 
      * @param phone the phone value to set.
      * @return the SecurityContactProperties object itself.
      */
@@ -86,7 +90,7 @@ public final class SecurityContactProperties {
 
     /**
      * Get the alertNotifications property: Defines whether to send email notifications about new security alerts.
-     *
+     * 
      * @return the alertNotifications value.
      */
     public SecurityContactPropertiesAlertNotifications alertNotifications() {
@@ -95,12 +99,12 @@ public final class SecurityContactProperties {
 
     /**
      * Set the alertNotifications property: Defines whether to send email notifications about new security alerts.
-     *
+     * 
      * @param alertNotifications the alertNotifications value to set.
      * @return the SecurityContactProperties object itself.
      */
-    public SecurityContactProperties withAlertNotifications(
-        SecurityContactPropertiesAlertNotifications alertNotifications) {
+    public SecurityContactProperties
+        withAlertNotifications(SecurityContactPropertiesAlertNotifications alertNotifications) {
         this.alertNotifications = alertNotifications;
         return this;
     }
@@ -108,7 +112,7 @@ public final class SecurityContactProperties {
     /**
      * Get the notificationsByRole property: Defines whether to send email notifications from Microsoft Defender for
      * Cloud to persons with specific RBAC roles on the subscription.
-     *
+     * 
      * @return the notificationsByRole value.
      */
     public SecurityContactPropertiesNotificationsByRole notificationsByRole() {
@@ -118,19 +122,19 @@ public final class SecurityContactProperties {
     /**
      * Set the notificationsByRole property: Defines whether to send email notifications from Microsoft Defender for
      * Cloud to persons with specific RBAC roles on the subscription.
-     *
+     * 
      * @param notificationsByRole the notificationsByRole value to set.
      * @return the SecurityContactProperties object itself.
      */
-    public SecurityContactProperties withNotificationsByRole(
-        SecurityContactPropertiesNotificationsByRole notificationsByRole) {
+    public SecurityContactProperties
+        withNotificationsByRole(SecurityContactPropertiesNotificationsByRole notificationsByRole) {
         this.notificationsByRole = notificationsByRole;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
