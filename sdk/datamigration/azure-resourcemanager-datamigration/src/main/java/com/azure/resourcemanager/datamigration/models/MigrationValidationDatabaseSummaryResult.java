@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Migration Validation Database level summary result. */
+/**
+ * Migration Validation Database level summary result.
+ */
 @Immutable
 public final class MigrationValidationDatabaseSummaryResult {
     /*
@@ -53,13 +55,15 @@ public final class MigrationValidationDatabaseSummaryResult {
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private ValidationStatus status;
 
-    /** Creates an instance of MigrationValidationDatabaseSummaryResult class. */
+    /**
+     * Creates an instance of MigrationValidationDatabaseSummaryResult class.
+     */
     public MigrationValidationDatabaseSummaryResult() {
     }
 
     /**
      * Get the id property: Result identifier.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -68,7 +72,7 @@ public final class MigrationValidationDatabaseSummaryResult {
 
     /**
      * Get the migrationId property: Migration Identifier.
-     *
+     * 
      * @return the migrationId value.
      */
     public String migrationId() {
@@ -77,7 +81,7 @@ public final class MigrationValidationDatabaseSummaryResult {
 
     /**
      * Get the sourceDatabaseName property: Name of the source database.
-     *
+     * 
      * @return the sourceDatabaseName value.
      */
     public String sourceDatabaseName() {
@@ -86,7 +90,7 @@ public final class MigrationValidationDatabaseSummaryResult {
 
     /**
      * Get the targetDatabaseName property: Name of the target database.
-     *
+     * 
      * @return the targetDatabaseName value.
      */
     public String targetDatabaseName() {
@@ -95,7 +99,7 @@ public final class MigrationValidationDatabaseSummaryResult {
 
     /**
      * Get the startedOn property: Validation start time.
-     *
+     * 
      * @return the startedOn value.
      */
     public OffsetDateTime startedOn() {
@@ -104,7 +108,7 @@ public final class MigrationValidationDatabaseSummaryResult {
 
     /**
      * Get the endedOn property: Validation end time.
-     *
+     * 
      * @return the endedOn value.
      */
     public OffsetDateTime endedOn() {
@@ -113,7 +117,7 @@ public final class MigrationValidationDatabaseSummaryResult {
 
     /**
      * Get the status property: Current status of validation at the database level.
-     *
+     * 
      * @return the status value.
      */
     public ValidationStatus status() {
@@ -122,7 +126,7 @@ public final class MigrationValidationDatabaseSummaryResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

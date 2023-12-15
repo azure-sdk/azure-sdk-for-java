@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Input for command that completes online migration for an Azure SQL Database Managed Instance. */
+/**
+ * Input for command that completes online migration for an Azure SQL Database Managed Instance.
+ */
 @Fluent
 public final class MigrateMISyncCompleteCommandInput {
     /*
@@ -17,13 +19,15 @@ public final class MigrateMISyncCompleteCommandInput {
     @JsonProperty(value = "sourceDatabaseName", required = true)
     private String sourceDatabaseName;
 
-    /** Creates an instance of MigrateMISyncCompleteCommandInput class. */
+    /**
+     * Creates an instance of MigrateMISyncCompleteCommandInput class.
+     */
     public MigrateMISyncCompleteCommandInput() {
     }
 
     /**
      * Get the sourceDatabaseName property: Name of managed instance database.
-     *
+     * 
      * @return the sourceDatabaseName value.
      */
     public String sourceDatabaseName() {
@@ -32,7 +36,7 @@ public final class MigrateMISyncCompleteCommandInput {
 
     /**
      * Set the sourceDatabaseName property: Name of managed instance database.
-     *
+     * 
      * @param sourceDatabaseName the sourceDatabaseName value to set.
      * @return the MigrateMISyncCompleteCommandInput object itself.
      */
@@ -43,15 +47,13 @@ public final class MigrateMISyncCompleteCommandInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceDatabaseName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourceDatabaseName in model MigrateMISyncCompleteCommandInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sourceDatabaseName in model MigrateMISyncCompleteCommandInput"));
         }
     }
 

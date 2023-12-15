@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datamigration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Database file specific information. */
+/**
+ * Database file specific information.
+ */
 @Fluent
 public final class DatabaseFileInfo {
     /*
@@ -52,13 +54,15 @@ public final class DatabaseFileInfo {
     @JsonProperty(value = "sizeMB")
     private Double sizeMB;
 
-    /** Creates an instance of DatabaseFileInfo class. */
+    /**
+     * Creates an instance of DatabaseFileInfo class.
+     */
     public DatabaseFileInfo() {
     }
 
     /**
      * Get the databaseName property: Name of the database.
-     *
+     * 
      * @return the databaseName value.
      */
     public String databaseName() {
@@ -67,7 +71,7 @@ public final class DatabaseFileInfo {
 
     /**
      * Set the databaseName property: Name of the database.
-     *
+     * 
      * @param databaseName the databaseName value to set.
      * @return the DatabaseFileInfo object itself.
      */
@@ -78,7 +82,7 @@ public final class DatabaseFileInfo {
 
     /**
      * Get the id property: Unique identifier for database file.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -87,7 +91,7 @@ public final class DatabaseFileInfo {
 
     /**
      * Set the id property: Unique identifier for database file.
-     *
+     * 
      * @param id the id value to set.
      * @return the DatabaseFileInfo object itself.
      */
@@ -98,7 +102,7 @@ public final class DatabaseFileInfo {
 
     /**
      * Get the logicalName property: Logical name of the file.
-     *
+     * 
      * @return the logicalName value.
      */
     public String logicalName() {
@@ -107,7 +111,7 @@ public final class DatabaseFileInfo {
 
     /**
      * Set the logicalName property: Logical name of the file.
-     *
+     * 
      * @param logicalName the logicalName value to set.
      * @return the DatabaseFileInfo object itself.
      */
@@ -118,7 +122,7 @@ public final class DatabaseFileInfo {
 
     /**
      * Get the physicalFullName property: Operating-system full path of the file.
-     *
+     * 
      * @return the physicalFullName value.
      */
     public String physicalFullName() {
@@ -127,7 +131,7 @@ public final class DatabaseFileInfo {
 
     /**
      * Set the physicalFullName property: Operating-system full path of the file.
-     *
+     * 
      * @param physicalFullName the physicalFullName value to set.
      * @return the DatabaseFileInfo object itself.
      */
@@ -138,7 +142,7 @@ public final class DatabaseFileInfo {
 
     /**
      * Get the restoreFullName property: Suggested full path of the file for restoring.
-     *
+     * 
      * @return the restoreFullName value.
      */
     public String restoreFullName() {
@@ -147,7 +151,7 @@ public final class DatabaseFileInfo {
 
     /**
      * Set the restoreFullName property: Suggested full path of the file for restoring.
-     *
+     * 
      * @param restoreFullName the restoreFullName value to set.
      * @return the DatabaseFileInfo object itself.
      */
@@ -158,7 +162,7 @@ public final class DatabaseFileInfo {
 
     /**
      * Get the fileType property: Database file type.
-     *
+     * 
      * @return the fileType value.
      */
     public DatabaseFileType fileType() {
@@ -167,7 +171,7 @@ public final class DatabaseFileInfo {
 
     /**
      * Set the fileType property: Database file type.
-     *
+     * 
      * @param fileType the fileType value to set.
      * @return the DatabaseFileInfo object itself.
      */
@@ -178,7 +182,7 @@ public final class DatabaseFileInfo {
 
     /**
      * Get the sizeMB property: Size of the file in megabytes.
-     *
+     * 
      * @return the sizeMB value.
      */
     public Double sizeMB() {
@@ -187,7 +191,7 @@ public final class DatabaseFileInfo {
 
     /**
      * Set the sizeMB property: Size of the file in megabytes.
-     *
+     * 
      * @param sizeMB the sizeMB value to set.
      * @return the DatabaseFileInfo object itself.
      */
@@ -198,7 +202,7 @@ public final class DatabaseFileInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

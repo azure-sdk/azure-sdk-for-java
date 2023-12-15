@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Output for the task that validates connection to Azure Database for PostgreSQL and target server requirements. */
+/**
+ * Output for the task that validates connection to Azure Database for PostgreSQL and target server requirements.
+ */
 @Immutable
 public final class ConnectToTargetAzureDbForPostgreSqlSyncTaskOutput {
     /*
@@ -41,13 +43,15 @@ public final class ConnectToTargetAzureDbForPostgreSqlSyncTaskOutput {
     @JsonProperty(value = "validationErrors", access = JsonProperty.Access.WRITE_ONLY)
     private List<ReportableException> validationErrors;
 
-    /** Creates an instance of ConnectToTargetAzureDbForPostgreSqlSyncTaskOutput class. */
+    /**
+     * Creates an instance of ConnectToTargetAzureDbForPostgreSqlSyncTaskOutput class.
+     */
     public ConnectToTargetAzureDbForPostgreSqlSyncTaskOutput() {
     }
 
     /**
      * Get the id property: Result identifier.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -56,7 +60,7 @@ public final class ConnectToTargetAzureDbForPostgreSqlSyncTaskOutput {
 
     /**
      * Get the targetServerVersion property: Version of the target server.
-     *
+     * 
      * @return the targetServerVersion value.
      */
     public String targetServerVersion() {
@@ -65,7 +69,7 @@ public final class ConnectToTargetAzureDbForPostgreSqlSyncTaskOutput {
 
     /**
      * Get the databases property: List of databases on target server.
-     *
+     * 
      * @return the databases value.
      */
     public List<String> databases() {
@@ -74,7 +78,7 @@ public final class ConnectToTargetAzureDbForPostgreSqlSyncTaskOutput {
 
     /**
      * Get the targetServerBrandVersion property: Target server brand version.
-     *
+     * 
      * @return the targetServerBrandVersion value.
      */
     public String targetServerBrandVersion() {
@@ -83,7 +87,7 @@ public final class ConnectToTargetAzureDbForPostgreSqlSyncTaskOutput {
 
     /**
      * Get the validationErrors property: Validation errors associated with the task.
-     *
+     * 
      * @return the validationErrors value.
      */
     public List<ReportableException> validationErrors() {
@@ -92,7 +96,7 @@ public final class ConnectToTargetAzureDbForPostgreSqlSyncTaskOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

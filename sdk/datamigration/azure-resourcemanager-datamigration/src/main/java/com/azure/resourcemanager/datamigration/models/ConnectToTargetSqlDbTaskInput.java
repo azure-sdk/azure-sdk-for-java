@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Input for the task that validates connection to SQL DB and target server requirements. */
+/**
+ * Input for the task that validates connection to SQL DB and target server requirements.
+ */
 @Fluent
 public final class ConnectToTargetSqlDbTaskInput {
     /*
@@ -17,13 +19,21 @@ public final class ConnectToTargetSqlDbTaskInput {
     @JsonProperty(value = "targetConnectionInfo", required = true)
     private SqlConnectionInfo targetConnectionInfo;
 
-    /** Creates an instance of ConnectToTargetSqlDbTaskInput class. */
+    /*
+     * Boolean flag indicating whether to query object counts for each database on the target server
+     */
+    @JsonProperty(value = "queryObjectCounts")
+    private Boolean queryObjectCounts;
+
+    /**
+     * Creates an instance of ConnectToTargetSqlDbTaskInput class.
+     */
     public ConnectToTargetSqlDbTaskInput() {
     }
 
     /**
      * Get the targetConnectionInfo property: Connection information for target SQL DB.
-     *
+     * 
      * @return the targetConnectionInfo value.
      */
     public SqlConnectionInfo targetConnectionInfo() {
@@ -32,7 +42,7 @@ public final class ConnectToTargetSqlDbTaskInput {
 
     /**
      * Set the targetConnectionInfo property: Connection information for target SQL DB.
-     *
+     * 
      * @param targetConnectionInfo the targetConnectionInfo value to set.
      * @return the ConnectToTargetSqlDbTaskInput object itself.
      */
@@ -42,16 +52,36 @@ public final class ConnectToTargetSqlDbTaskInput {
     }
 
     /**
+     * Get the queryObjectCounts property: Boolean flag indicating whether to query object counts for each database on
+     * the target server.
+     * 
+     * @return the queryObjectCounts value.
+     */
+    public Boolean queryObjectCounts() {
+        return this.queryObjectCounts;
+    }
+
+    /**
+     * Set the queryObjectCounts property: Boolean flag indicating whether to query object counts for each database on
+     * the target server.
+     * 
+     * @param queryObjectCounts the queryObjectCounts value to set.
+     * @return the ConnectToTargetSqlDbTaskInput object itself.
+     */
+    public ConnectToTargetSqlDbTaskInput withQueryObjectCounts(Boolean queryObjectCounts) {
+        this.queryObjectCounts = queryObjectCounts;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (targetConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property targetConnectionInfo in model ConnectToTargetSqlDbTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property targetConnectionInfo in model ConnectToTargetSqlDbTaskInput"));
         } else {
             targetConnectionInfo().validate();
         }

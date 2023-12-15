@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Input for task that migrates SQL Server databases to Azure SQL Database Managed Instance online scenario. */
+/**
+ * Input for task that migrates SQL Server databases to Azure SQL Database Managed Instance online scenario.
+ */
 @Fluent
 public class SqlServerSqlMISyncTaskInput {
     /*
@@ -43,19 +45,21 @@ public class SqlServerSqlMISyncTaskInput {
     private MiSqlConnectionInfo targetConnectionInfo;
 
     /*
-     * Azure Active Directory Application the DMS instance will use to connect to the target instance of Azure SQL
-     * Database Managed Instance and the Azure Storage Account
+     * Azure Active Directory Application the DMS (classic) instance will use to connect to the target instance of
+     * Azure SQL Database Managed Instance and the Azure Storage Account
      */
     @JsonProperty(value = "azureApp", required = true)
     private AzureActiveDirectoryApp azureApp;
 
-    /** Creates an instance of SqlServerSqlMISyncTaskInput class. */
+    /**
+     * Creates an instance of SqlServerSqlMISyncTaskInput class.
+     */
     public SqlServerSqlMISyncTaskInput() {
     }
 
     /**
      * Get the selectedDatabases property: Databases to migrate.
-     *
+     * 
      * @return the selectedDatabases value.
      */
     public List<MigrateSqlServerSqlMIDatabaseInput> selectedDatabases() {
@@ -64,19 +68,19 @@ public class SqlServerSqlMISyncTaskInput {
 
     /**
      * Set the selectedDatabases property: Databases to migrate.
-     *
+     * 
      * @param selectedDatabases the selectedDatabases value to set.
      * @return the SqlServerSqlMISyncTaskInput object itself.
      */
-    public SqlServerSqlMISyncTaskInput withSelectedDatabases(
-        List<MigrateSqlServerSqlMIDatabaseInput> selectedDatabases) {
+    public SqlServerSqlMISyncTaskInput
+        withSelectedDatabases(List<MigrateSqlServerSqlMIDatabaseInput> selectedDatabases) {
         this.selectedDatabases = selectedDatabases;
         return this;
     }
 
     /**
      * Get the backupFileShare property: Backup file share information for all selected databases.
-     *
+     * 
      * @return the backupFileShare value.
      */
     public FileShare backupFileShare() {
@@ -85,7 +89,7 @@ public class SqlServerSqlMISyncTaskInput {
 
     /**
      * Set the backupFileShare property: Backup file share information for all selected databases.
-     *
+     * 
      * @param backupFileShare the backupFileShare value to set.
      * @return the SqlServerSqlMISyncTaskInput object itself.
      */
@@ -96,7 +100,7 @@ public class SqlServerSqlMISyncTaskInput {
 
     /**
      * Get the storageResourceId property: Fully qualified resourceId of storage.
-     *
+     * 
      * @return the storageResourceId value.
      */
     public String storageResourceId() {
@@ -105,7 +109,7 @@ public class SqlServerSqlMISyncTaskInput {
 
     /**
      * Set the storageResourceId property: Fully qualified resourceId of storage.
-     *
+     * 
      * @param storageResourceId the storageResourceId value to set.
      * @return the SqlServerSqlMISyncTaskInput object itself.
      */
@@ -116,7 +120,7 @@ public class SqlServerSqlMISyncTaskInput {
 
     /**
      * Get the sourceConnectionInfo property: Connection information for source SQL Server.
-     *
+     * 
      * @return the sourceConnectionInfo value.
      */
     public SqlConnectionInfo sourceConnectionInfo() {
@@ -125,7 +129,7 @@ public class SqlServerSqlMISyncTaskInput {
 
     /**
      * Set the sourceConnectionInfo property: Connection information for source SQL Server.
-     *
+     * 
      * @param sourceConnectionInfo the sourceConnectionInfo value to set.
      * @return the SqlServerSqlMISyncTaskInput object itself.
      */
@@ -136,7 +140,7 @@ public class SqlServerSqlMISyncTaskInput {
 
     /**
      * Get the targetConnectionInfo property: Connection information for Azure SQL Database Managed Instance.
-     *
+     * 
      * @return the targetConnectionInfo value.
      */
     public MiSqlConnectionInfo targetConnectionInfo() {
@@ -145,7 +149,7 @@ public class SqlServerSqlMISyncTaskInput {
 
     /**
      * Set the targetConnectionInfo property: Connection information for Azure SQL Database Managed Instance.
-     *
+     * 
      * @param targetConnectionInfo the targetConnectionInfo value to set.
      * @return the SqlServerSqlMISyncTaskInput object itself.
      */
@@ -155,9 +159,9 @@ public class SqlServerSqlMISyncTaskInput {
     }
 
     /**
-     * Get the azureApp property: Azure Active Directory Application the DMS instance will use to connect to the target
-     * instance of Azure SQL Database Managed Instance and the Azure Storage Account.
-     *
+     * Get the azureApp property: Azure Active Directory Application the DMS (classic) instance will use to connect to
+     * the target instance of Azure SQL Database Managed Instance and the Azure Storage Account.
+     * 
      * @return the azureApp value.
      */
     public AzureActiveDirectoryApp azureApp() {
@@ -165,9 +169,9 @@ public class SqlServerSqlMISyncTaskInput {
     }
 
     /**
-     * Set the azureApp property: Azure Active Directory Application the DMS instance will use to connect to the target
-     * instance of Azure SQL Database Managed Instance and the Azure Storage Account.
-     *
+     * Set the azureApp property: Azure Active Directory Application the DMS (classic) instance will use to connect to
+     * the target instance of Azure SQL Database Managed Instance and the Azure Storage Account.
+     * 
      * @param azureApp the azureApp value to set.
      * @return the SqlServerSqlMISyncTaskInput object itself.
      */
@@ -178,15 +182,13 @@ public class SqlServerSqlMISyncTaskInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (selectedDatabases() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property selectedDatabases in model SqlServerSqlMISyncTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property selectedDatabases in model SqlServerSqlMISyncTaskInput"));
         } else {
             selectedDatabases().forEach(e -> e.validate());
         }
@@ -194,32 +196,24 @@ public class SqlServerSqlMISyncTaskInput {
             backupFileShare().validate();
         }
         if (storageResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property storageResourceId in model SqlServerSqlMISyncTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property storageResourceId in model SqlServerSqlMISyncTaskInput"));
         }
         if (sourceConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourceConnectionInfo in model SqlServerSqlMISyncTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sourceConnectionInfo in model SqlServerSqlMISyncTaskInput"));
         } else {
             sourceConnectionInfo().validate();
         }
         if (targetConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property targetConnectionInfo in model SqlServerSqlMISyncTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property targetConnectionInfo in model SqlServerSqlMISyncTaskInput"));
         } else {
             targetConnectionInfo().validate();
         }
         if (azureApp() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property azureApp in model SqlServerSqlMISyncTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property azureApp in model SqlServerSqlMISyncTaskInput"));
         } else {
             azureApp().validate();
         }

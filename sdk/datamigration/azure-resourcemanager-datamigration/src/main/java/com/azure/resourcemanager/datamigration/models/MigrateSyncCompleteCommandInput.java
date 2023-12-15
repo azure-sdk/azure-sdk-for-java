@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Input for command that completes sync migration for a database. */
+/**
+ * Input for command that completes sync migration for a database.
+ */
 @Fluent
 public final class MigrateSyncCompleteCommandInput {
     /*
@@ -24,13 +26,15 @@ public final class MigrateSyncCompleteCommandInput {
     @JsonProperty(value = "commitTimeStamp")
     private OffsetDateTime commitTimestamp;
 
-    /** Creates an instance of MigrateSyncCompleteCommandInput class. */
+    /**
+     * Creates an instance of MigrateSyncCompleteCommandInput class.
+     */
     public MigrateSyncCompleteCommandInput() {
     }
 
     /**
      * Get the databaseName property: Name of database.
-     *
+     * 
      * @return the databaseName value.
      */
     public String databaseName() {
@@ -39,7 +43,7 @@ public final class MigrateSyncCompleteCommandInput {
 
     /**
      * Set the databaseName property: Name of database.
-     *
+     * 
      * @param databaseName the databaseName value to set.
      * @return the MigrateSyncCompleteCommandInput object itself.
      */
@@ -50,7 +54,7 @@ public final class MigrateSyncCompleteCommandInput {
 
     /**
      * Get the commitTimestamp property: Time stamp to complete.
-     *
+     * 
      * @return the commitTimestamp value.
      */
     public OffsetDateTime commitTimestamp() {
@@ -59,7 +63,7 @@ public final class MigrateSyncCompleteCommandInput {
 
     /**
      * Set the commitTimestamp property: Time stamp to complete.
-     *
+     * 
      * @param commitTimestamp the commitTimestamp value to set.
      * @return the MigrateSyncCompleteCommandInput object itself.
      */
@@ -70,15 +74,13 @@ public final class MigrateSyncCompleteCommandInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (databaseName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property databaseName in model MigrateSyncCompleteCommandInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property databaseName in model MigrateSyncCompleteCommandInput"));
         }
     }
 

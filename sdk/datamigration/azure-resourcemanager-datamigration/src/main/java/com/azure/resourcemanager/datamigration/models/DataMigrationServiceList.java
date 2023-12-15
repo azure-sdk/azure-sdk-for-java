@@ -9,7 +9,9 @@ import com.azure.resourcemanager.datamigration.fluent.models.DataMigrationServic
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** OData page of service objects. */
+/**
+ * OData page of service objects.
+ */
 @Fluent
 public final class DataMigrationServiceList {
     /*
@@ -24,13 +26,15 @@ public final class DataMigrationServiceList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of DataMigrationServiceList class. */
+    /**
+     * Creates an instance of DataMigrationServiceList class.
+     */
     public DataMigrationServiceList() {
     }
 
     /**
      * Get the value property: List of services.
-     *
+     * 
      * @return the value value.
      */
     public List<DataMigrationServiceInner> value() {
@@ -39,7 +43,7 @@ public final class DataMigrationServiceList {
 
     /**
      * Set the value property: List of services.
-     *
+     * 
      * @param value the value value to set.
      * @return the DataMigrationServiceList object itself.
      */
@@ -50,7 +54,7 @@ public final class DataMigrationServiceList {
 
     /**
      * Get the nextLink property: URL to load the next page of services.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class DataMigrationServiceList {
 
     /**
      * Set the nextLink property: URL to load the next page of services.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the DataMigrationServiceList object itself.
      */
@@ -70,7 +74,7 @@ public final class DataMigrationServiceList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Output for the task that validates connection to SQL Server and also validates source server requirements. */
+/**
+ * Output for the task that validates connection to SQL Server and also validates source server requirements.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -21,8 +23,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "TaskLevelOutput", value = ConnectToSourceSqlServerTaskOutputTaskLevel.class),
     @JsonSubTypes.Type(name = "DatabaseLevelOutput", value = ConnectToSourceSqlServerTaskOutputDatabaseLevel.class),
     @JsonSubTypes.Type(name = "LoginLevelOutput", value = ConnectToSourceSqlServerTaskOutputLoginLevel.class),
-    @JsonSubTypes.Type(name = "AgentJobLevelOutput", value = ConnectToSourceSqlServerTaskOutputAgentJobLevel.class)
-})
+    @JsonSubTypes.Type(name = "AgentJobLevelOutput", value = ConnectToSourceSqlServerTaskOutputAgentJobLevel.class) })
 @Immutable
 public class ConnectToSourceSqlServerTaskOutput {
     /*
@@ -31,13 +32,15 @@ public class ConnectToSourceSqlServerTaskOutput {
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
-    /** Creates an instance of ConnectToSourceSqlServerTaskOutput class. */
+    /**
+     * Creates an instance of ConnectToSourceSqlServerTaskOutput class.
+     */
     public ConnectToSourceSqlServerTaskOutput() {
     }
 
     /**
      * Get the id property: Result identifier.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -46,7 +49,7 @@ public class ConnectToSourceSqlServerTaskOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

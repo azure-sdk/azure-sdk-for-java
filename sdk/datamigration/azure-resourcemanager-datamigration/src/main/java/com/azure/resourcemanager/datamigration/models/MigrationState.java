@@ -8,32 +8,48 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Current state of migration. */
+/**
+ * Current state of migration.
+ */
 public final class MigrationState extends ExpandableStringEnum<MigrationState> {
-    /** Static value None for MigrationState. */
+    /**
+     * Static value None for MigrationState.
+     */
     public static final MigrationState NONE = fromString("None");
 
-    /** Static value InProgress for MigrationState. */
+    /**
+     * Static value InProgress for MigrationState.
+     */
     public static final MigrationState IN_PROGRESS = fromString("InProgress");
 
-    /** Static value Failed for MigrationState. */
+    /**
+     * Static value Failed for MigrationState.
+     */
     public static final MigrationState FAILED = fromString("Failed");
 
-    /** Static value Warning for MigrationState. */
+    /**
+     * Static value Warning for MigrationState.
+     */
     public static final MigrationState WARNING = fromString("Warning");
 
-    /** Static value Completed for MigrationState. */
+    /**
+     * Static value Completed for MigrationState.
+     */
     public static final MigrationState COMPLETED = fromString("Completed");
 
-    /** Static value Skipped for MigrationState. */
+    /**
+     * Static value Skipped for MigrationState.
+     */
     public static final MigrationState SKIPPED = fromString("Skipped");
 
-    /** Static value Stopped for MigrationState. */
+    /**
+     * Static value Stopped for MigrationState.
+     */
     public static final MigrationState STOPPED = fromString("Stopped");
 
     /**
      * Creates a new instance of MigrationState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -42,7 +58,7 @@ public final class MigrationState extends ExpandableStringEnum<MigrationState> {
 
     /**
      * Creates or finds a MigrationState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding MigrationState.
      */
@@ -53,7 +69,7 @@ public final class MigrationState extends ExpandableStringEnum<MigrationState> {
 
     /**
      * Gets known MigrationState values.
-     *
+     * 
      * @return known MigrationState values.
      */
     public static Collection<MigrationState> values() {

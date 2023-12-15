@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Input for the task that migrates on-prem SQL Server databases to Azure SQL Database for online migrations. */
+/**
+ * Input for the task that migrates on-prem SQL Server databases to Azure SQL Database for online migrations.
+ */
 @Fluent
 public final class MigrateSqlServerSqlDbSyncTaskInput extends SqlMigrationTaskInput {
     /*
@@ -24,13 +26,15 @@ public final class MigrateSqlServerSqlDbSyncTaskInput extends SqlMigrationTaskIn
     @JsonProperty(value = "validationOptions")
     private MigrationValidationOptions validationOptions;
 
-    /** Creates an instance of MigrateSqlServerSqlDbSyncTaskInput class. */
+    /**
+     * Creates an instance of MigrateSqlServerSqlDbSyncTaskInput class.
+     */
     public MigrateSqlServerSqlDbSyncTaskInput() {
     }
 
     /**
      * Get the selectedDatabases property: Databases to migrate.
-     *
+     * 
      * @return the selectedDatabases value.
      */
     public List<MigrateSqlServerSqlDbSyncDatabaseInput> selectedDatabases() {
@@ -39,19 +43,19 @@ public final class MigrateSqlServerSqlDbSyncTaskInput extends SqlMigrationTaskIn
 
     /**
      * Set the selectedDatabases property: Databases to migrate.
-     *
+     * 
      * @param selectedDatabases the selectedDatabases value to set.
      * @return the MigrateSqlServerSqlDbSyncTaskInput object itself.
      */
-    public MigrateSqlServerSqlDbSyncTaskInput withSelectedDatabases(
-        List<MigrateSqlServerSqlDbSyncDatabaseInput> selectedDatabases) {
+    public MigrateSqlServerSqlDbSyncTaskInput
+        withSelectedDatabases(List<MigrateSqlServerSqlDbSyncDatabaseInput> selectedDatabases) {
         this.selectedDatabases = selectedDatabases;
         return this;
     }
 
     /**
      * Get the validationOptions property: Validation options.
-     *
+     * 
      * @return the validationOptions value.
      */
     public MigrationValidationOptions validationOptions() {
@@ -60,7 +64,7 @@ public final class MigrateSqlServerSqlDbSyncTaskInput extends SqlMigrationTaskIn
 
     /**
      * Set the validationOptions property: Validation options.
-     *
+     * 
      * @param validationOptions the validationOptions value to set.
      * @return the MigrateSqlServerSqlDbSyncTaskInput object itself.
      */
@@ -69,14 +73,18 @@ public final class MigrateSqlServerSqlDbSyncTaskInput extends SqlMigrationTaskIn
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MigrateSqlServerSqlDbSyncTaskInput withSourceConnectionInfo(SqlConnectionInfo sourceConnectionInfo) {
         super.withSourceConnectionInfo(sourceConnectionInfo);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MigrateSqlServerSqlDbSyncTaskInput withTargetConnectionInfo(SqlConnectionInfo targetConnectionInfo) {
         super.withTargetConnectionInfo(targetConnectionInfo);
@@ -85,17 +93,15 @@ public final class MigrateSqlServerSqlDbSyncTaskInput extends SqlMigrationTaskIn
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (selectedDatabases() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property selectedDatabases in model MigrateSqlServerSqlDbSyncTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property selectedDatabases in model MigrateSqlServerSqlDbSyncTaskInput"));
         } else {
             selectedDatabases().forEach(e -> e.validate());
         }

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Basic summary of a data item migration. */
+/**
+ * Basic summary of a data item migration.
+ */
 @Immutable
 public class DataItemMigrationSummaryResult {
     /*
@@ -65,13 +67,15 @@ public class DataItemMigrationSummaryResult {
     @JsonProperty(value = "resultPrefix", access = JsonProperty.Access.WRITE_ONLY)
     private String resultPrefix;
 
-    /** Creates an instance of DataItemMigrationSummaryResult class. */
+    /**
+     * Creates an instance of DataItemMigrationSummaryResult class.
+     */
     public DataItemMigrationSummaryResult() {
     }
 
     /**
      * Get the name property: Name of the item.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -80,7 +84,7 @@ public class DataItemMigrationSummaryResult {
 
     /**
      * Get the startedOn property: Migration start time.
-     *
+     * 
      * @return the startedOn value.
      */
     public OffsetDateTime startedOn() {
@@ -89,7 +93,7 @@ public class DataItemMigrationSummaryResult {
 
     /**
      * Get the endedOn property: Migration end time.
-     *
+     * 
      * @return the endedOn value.
      */
     public OffsetDateTime endedOn() {
@@ -98,7 +102,7 @@ public class DataItemMigrationSummaryResult {
 
     /**
      * Get the state property: Current state of migration.
-     *
+     * 
      * @return the state value.
      */
     public MigrationState state() {
@@ -107,7 +111,7 @@ public class DataItemMigrationSummaryResult {
 
     /**
      * Get the statusMessage property: Status message.
-     *
+     * 
      * @return the statusMessage value.
      */
     public String statusMessage() {
@@ -116,7 +120,7 @@ public class DataItemMigrationSummaryResult {
 
     /**
      * Get the itemsCount property: Number of items.
-     *
+     * 
      * @return the itemsCount value.
      */
     public Long itemsCount() {
@@ -125,7 +129,7 @@ public class DataItemMigrationSummaryResult {
 
     /**
      * Get the itemsCompletedCount property: Number of successfully completed items.
-     *
+     * 
      * @return the itemsCompletedCount value.
      */
     public Long itemsCompletedCount() {
@@ -134,7 +138,7 @@ public class DataItemMigrationSummaryResult {
 
     /**
      * Get the errorPrefix property: Wildcard string prefix to use for querying all errors of the item.
-     *
+     * 
      * @return the errorPrefix value.
      */
     public String errorPrefix() {
@@ -143,7 +147,7 @@ public class DataItemMigrationSummaryResult {
 
     /**
      * Get the resultPrefix property: Wildcard string prefix to use for querying all sub-tem results of the item.
-     *
+     * 
      * @return the resultPrefix value.
      */
     public String resultPrefix() {
@@ -152,7 +156,7 @@ public class DataItemMigrationSummaryResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

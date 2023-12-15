@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 
-/** The MigrateSqlServerSqlMISyncTaskOutputMigrationLevel model. */
+/**
+ * The MigrateSqlServerSqlMISyncTaskOutputMigrationLevel model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("MigrationLevelOutput")
 @Immutable
@@ -81,13 +83,15 @@ public final class MigrateSqlServerSqlMISyncTaskOutputMigrationLevel extends Mig
     @JsonProperty(value = "databaseErrorCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer databaseErrorCount;
 
-    /** Creates an instance of MigrateSqlServerSqlMISyncTaskOutputMigrationLevel class. */
+    /**
+     * Creates an instance of MigrateSqlServerSqlMISyncTaskOutputMigrationLevel class.
+     */
     public MigrateSqlServerSqlMISyncTaskOutputMigrationLevel() {
     }
 
     /**
      * Get the databaseCount property: Count of databases.
-     *
+     * 
      * @return the databaseCount value.
      */
     public Integer databaseCount() {
@@ -96,7 +100,7 @@ public final class MigrateSqlServerSqlMISyncTaskOutputMigrationLevel extends Mig
 
     /**
      * Get the state property: Current state of migration.
-     *
+     * 
      * @return the state value.
      */
     public MigrationState state() {
@@ -105,7 +109,7 @@ public final class MigrateSqlServerSqlMISyncTaskOutputMigrationLevel extends Mig
 
     /**
      * Get the startedOn property: Migration start time.
-     *
+     * 
      * @return the startedOn value.
      */
     public OffsetDateTime startedOn() {
@@ -114,7 +118,7 @@ public final class MigrateSqlServerSqlMISyncTaskOutputMigrationLevel extends Mig
 
     /**
      * Get the endedOn property: Migration end time.
-     *
+     * 
      * @return the endedOn value.
      */
     public OffsetDateTime endedOn() {
@@ -123,7 +127,7 @@ public final class MigrateSqlServerSqlMISyncTaskOutputMigrationLevel extends Mig
 
     /**
      * Get the sourceServerName property: Source server name.
-     *
+     * 
      * @return the sourceServerName value.
      */
     public String sourceServerName() {
@@ -132,7 +136,7 @@ public final class MigrateSqlServerSqlMISyncTaskOutputMigrationLevel extends Mig
 
     /**
      * Get the sourceServerVersion property: Source server version.
-     *
+     * 
      * @return the sourceServerVersion value.
      */
     public String sourceServerVersion() {
@@ -141,7 +145,7 @@ public final class MigrateSqlServerSqlMISyncTaskOutputMigrationLevel extends Mig
 
     /**
      * Get the sourceServerBrandVersion property: Source server brand version.
-     *
+     * 
      * @return the sourceServerBrandVersion value.
      */
     public String sourceServerBrandVersion() {
@@ -150,7 +154,7 @@ public final class MigrateSqlServerSqlMISyncTaskOutputMigrationLevel extends Mig
 
     /**
      * Get the targetServerName property: Target server name.
-     *
+     * 
      * @return the targetServerName value.
      */
     public String targetServerName() {
@@ -159,7 +163,7 @@ public final class MigrateSqlServerSqlMISyncTaskOutputMigrationLevel extends Mig
 
     /**
      * Get the targetServerVersion property: Target server version.
-     *
+     * 
      * @return the targetServerVersion value.
      */
     public String targetServerVersion() {
@@ -168,7 +172,7 @@ public final class MigrateSqlServerSqlMISyncTaskOutputMigrationLevel extends Mig
 
     /**
      * Get the targetServerBrandVersion property: Target server brand version.
-     *
+     * 
      * @return the targetServerBrandVersion value.
      */
     public String targetServerBrandVersion() {
@@ -177,7 +181,7 @@ public final class MigrateSqlServerSqlMISyncTaskOutputMigrationLevel extends Mig
 
     /**
      * Get the databaseErrorCount property: Number of database level errors.
-     *
+     * 
      * @return the databaseErrorCount value.
      */
     public Integer databaseErrorCount() {
@@ -186,7 +190,7 @@ public final class MigrateSqlServerSqlMISyncTaskOutputMigrationLevel extends Mig
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

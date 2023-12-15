@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datamigration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Information of the backup file. */
+/**
+ * Information of the backup file.
+ */
 @Fluent
 public final class BackupFileInfo {
     /*
@@ -28,13 +30,15 @@ public final class BackupFileInfo {
     @JsonProperty(value = "status")
     private BackupFileStatus status;
 
-    /** Creates an instance of BackupFileInfo class. */
+    /**
+     * Creates an instance of BackupFileInfo class.
+     */
     public BackupFileInfo() {
     }
 
     /**
      * Get the fileLocation property: Location of the backup file in shared folder.
-     *
+     * 
      * @return the fileLocation value.
      */
     public String fileLocation() {
@@ -43,7 +47,7 @@ public final class BackupFileInfo {
 
     /**
      * Set the fileLocation property: Location of the backup file in shared folder.
-     *
+     * 
      * @param fileLocation the fileLocation value to set.
      * @return the BackupFileInfo object itself.
      */
@@ -54,7 +58,7 @@ public final class BackupFileInfo {
 
     /**
      * Get the familySequenceNumber property: Sequence number of the backup file in the backup set.
-     *
+     * 
      * @return the familySequenceNumber value.
      */
     public Integer familySequenceNumber() {
@@ -63,7 +67,7 @@ public final class BackupFileInfo {
 
     /**
      * Set the familySequenceNumber property: Sequence number of the backup file in the backup set.
-     *
+     * 
      * @param familySequenceNumber the familySequenceNumber value to set.
      * @return the BackupFileInfo object itself.
      */
@@ -74,7 +78,7 @@ public final class BackupFileInfo {
 
     /**
      * Get the status property: Status of the backup file during migration.
-     *
+     * 
      * @return the status value.
      */
     public BackupFileStatus status() {
@@ -83,7 +87,7 @@ public final class BackupFileInfo {
 
     /**
      * Set the status property: Status of the backup file during migration.
-     *
+     * 
      * @param status the status value to set.
      * @return the BackupFileInfo object itself.
      */
@@ -94,7 +98,7 @@ public final class BackupFileInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

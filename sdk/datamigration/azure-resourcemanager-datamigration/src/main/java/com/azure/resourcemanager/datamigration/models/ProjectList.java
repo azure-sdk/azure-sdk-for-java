@@ -9,7 +9,9 @@ import com.azure.resourcemanager.datamigration.fluent.models.ProjectInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** OData page of project resources. */
+/**
+ * OData page of project resources.
+ */
 @Fluent
 public final class ProjectList {
     /*
@@ -24,13 +26,15 @@ public final class ProjectList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ProjectList class. */
+    /**
+     * Creates an instance of ProjectList class.
+     */
     public ProjectList() {
     }
 
     /**
      * Get the value property: List of projects.
-     *
+     * 
      * @return the value value.
      */
     public List<ProjectInner> value() {
@@ -39,7 +43,7 @@ public final class ProjectList {
 
     /**
      * Set the value property: List of projects.
-     *
+     * 
      * @param value the value value to set.
      * @return the ProjectList object itself.
      */
@@ -50,7 +54,7 @@ public final class ProjectList {
 
     /**
      * Get the nextLink property: URL to load the next page of projects.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class ProjectList {
 
     /**
      * Set the nextLink property: URL to load the next page of projects.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ProjectList object itself.
      */
@@ -70,7 +74,7 @@ public final class ProjectList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

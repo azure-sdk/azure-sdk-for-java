@@ -5,15 +5,18 @@
 package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.datamigration.fluent.models.CommandPropertiesInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Properties for the command that completes sync migration for a database. */
+/**
+ * Properties for the command that completes sync migration for a database.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "commandType")
 @JsonTypeName("Migrate.Sync.Complete.Database")
 @Fluent
-public final class MigrateSyncCompleteCommandProperties extends CommandProperties {
+public final class MigrateSyncCompleteCommandProperties extends CommandPropertiesInner {
     /*
      * Command input
      */
@@ -26,13 +29,21 @@ public final class MigrateSyncCompleteCommandProperties extends CommandPropertie
     @JsonProperty(value = "output", access = JsonProperty.Access.WRITE_ONLY)
     private MigrateSyncCompleteCommandOutput output;
 
-    /** Creates an instance of MigrateSyncCompleteCommandProperties class. */
+    /*
+     * Command id
+     */
+    @JsonProperty(value = "commandId")
+    private String commandId;
+
+    /**
+     * Creates an instance of MigrateSyncCompleteCommandProperties class.
+     */
     public MigrateSyncCompleteCommandProperties() {
     }
 
     /**
      * Get the input property: Command input.
-     *
+     * 
      * @return the input value.
      */
     public MigrateSyncCompleteCommandInput input() {
@@ -41,7 +52,7 @@ public final class MigrateSyncCompleteCommandProperties extends CommandPropertie
 
     /**
      * Set the input property: Command input.
-     *
+     * 
      * @param input the input value to set.
      * @return the MigrateSyncCompleteCommandProperties object itself.
      */
@@ -52,7 +63,7 @@ public final class MigrateSyncCompleteCommandProperties extends CommandPropertie
 
     /**
      * Get the output property: Command output. This is ignored if submitted.
-     *
+     * 
      * @return the output value.
      */
     public MigrateSyncCompleteCommandOutput output() {
@@ -60,8 +71,28 @@ public final class MigrateSyncCompleteCommandProperties extends CommandPropertie
     }
 
     /**
+     * Get the commandId property: Command id.
+     * 
+     * @return the commandId value.
+     */
+    public String commandId() {
+        return this.commandId;
+    }
+
+    /**
+     * Set the commandId property: Command id.
+     * 
+     * @param commandId the commandId value to set.
+     * @return the MigrateSyncCompleteCommandProperties object itself.
+     */
+    public MigrateSyncCompleteCommandProperties withCommandId(String commandId) {
+        this.commandId = commandId;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

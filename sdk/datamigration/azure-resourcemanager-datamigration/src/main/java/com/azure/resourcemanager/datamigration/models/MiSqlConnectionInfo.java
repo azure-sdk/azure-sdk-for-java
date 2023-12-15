@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Properties required to create a connection to Azure SQL database Managed instance. */
+/**
+ * Properties required to create a connection to Azure SQL database Managed instance.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("MiSqlConnectionInfo")
 @Fluent
@@ -21,13 +23,15 @@ public final class MiSqlConnectionInfo extends ConnectionInfo {
     @JsonProperty(value = "managedInstanceResourceId", required = true)
     private String managedInstanceResourceId;
 
-    /** Creates an instance of MiSqlConnectionInfo class. */
+    /**
+     * Creates an instance of MiSqlConnectionInfo class.
+     */
     public MiSqlConnectionInfo() {
     }
 
     /**
      * Get the managedInstanceResourceId property: Resource id for Azure SQL database Managed instance.
-     *
+     * 
      * @return the managedInstanceResourceId value.
      */
     public String managedInstanceResourceId() {
@@ -36,7 +40,7 @@ public final class MiSqlConnectionInfo extends ConnectionInfo {
 
     /**
      * Set the managedInstanceResourceId property: Resource id for Azure SQL database Managed instance.
-     *
+     * 
      * @param managedInstanceResourceId the managedInstanceResourceId value to set.
      * @return the MiSqlConnectionInfo object itself.
      */
@@ -45,14 +49,18 @@ public final class MiSqlConnectionInfo extends ConnectionInfo {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MiSqlConnectionInfo withUsername(String username) {
         super.withUsername(username);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MiSqlConnectionInfo withPassword(String password) {
         super.withPassword(password);
@@ -61,17 +69,15 @@ public final class MiSqlConnectionInfo extends ConnectionInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (managedInstanceResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property managedInstanceResourceId in model MiSqlConnectionInfo"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property managedInstanceResourceId in model MiSqlConnectionInfo"));
         }
     }
 

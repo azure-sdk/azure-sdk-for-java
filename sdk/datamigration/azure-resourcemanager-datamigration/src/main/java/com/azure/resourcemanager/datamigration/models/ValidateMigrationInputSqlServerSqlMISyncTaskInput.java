@@ -7,52 +7,68 @@ package com.azure.resourcemanager.datamigration.models;
 import com.azure.core.annotation.Fluent;
 import java.util.List;
 
-/** Input for task that migrates SQL Server databases to Azure SQL Database Managed Instance online scenario. */
+/**
+ * Input for task that migrates SQL Server databases to Azure SQL Database Managed Instance online scenario.
+ */
 @Fluent
 public final class ValidateMigrationInputSqlServerSqlMISyncTaskInput extends SqlServerSqlMISyncTaskInput {
-    /** Creates an instance of ValidateMigrationInputSqlServerSqlMISyncTaskInput class. */
+    /**
+     * Creates an instance of ValidateMigrationInputSqlServerSqlMISyncTaskInput class.
+     */
     public ValidateMigrationInputSqlServerSqlMISyncTaskInput() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ValidateMigrationInputSqlServerSqlMISyncTaskInput withSelectedDatabases(
-        List<MigrateSqlServerSqlMIDatabaseInput> selectedDatabases) {
+    public ValidateMigrationInputSqlServerSqlMISyncTaskInput
+        withSelectedDatabases(List<MigrateSqlServerSqlMIDatabaseInput> selectedDatabases) {
         super.withSelectedDatabases(selectedDatabases);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ValidateMigrationInputSqlServerSqlMISyncTaskInput withBackupFileShare(FileShare backupFileShare) {
         super.withBackupFileShare(backupFileShare);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ValidateMigrationInputSqlServerSqlMISyncTaskInput withStorageResourceId(String storageResourceId) {
         super.withStorageResourceId(storageResourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ValidateMigrationInputSqlServerSqlMISyncTaskInput withSourceConnectionInfo(
-        SqlConnectionInfo sourceConnectionInfo) {
+    public ValidateMigrationInputSqlServerSqlMISyncTaskInput
+        withSourceConnectionInfo(SqlConnectionInfo sourceConnectionInfo) {
         super.withSourceConnectionInfo(sourceConnectionInfo);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ValidateMigrationInputSqlServerSqlMISyncTaskInput withTargetConnectionInfo(
-        MiSqlConnectionInfo targetConnectionInfo) {
+    public ValidateMigrationInputSqlServerSqlMISyncTaskInput
+        withTargetConnectionInfo(MiSqlConnectionInfo targetConnectionInfo) {
         super.withTargetConnectionInfo(targetConnectionInfo);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ValidateMigrationInputSqlServerSqlMISyncTaskInput withAzureApp(AzureActiveDirectoryApp azureApp) {
         super.withAzureApp(azureApp);
@@ -61,7 +77,7 @@ public final class ValidateMigrationInputSqlServerSqlMISyncTaskInput extends Sql
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

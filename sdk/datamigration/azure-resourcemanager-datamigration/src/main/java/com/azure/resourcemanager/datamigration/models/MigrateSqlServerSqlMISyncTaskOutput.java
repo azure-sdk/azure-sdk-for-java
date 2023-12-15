@@ -22,8 +22,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "MigrationLevelOutput", value = MigrateSqlServerSqlMISyncTaskOutputMigrationLevel.class),
     @JsonSubTypes.Type(name = "DatabaseLevelOutput", value = MigrateSqlServerSqlMISyncTaskOutputDatabaseLevel.class),
-    @JsonSubTypes.Type(name = "ErrorOutput", value = MigrateSqlServerSqlMISyncTaskOutputError.class)
-})
+    @JsonSubTypes.Type(name = "ErrorOutput", value = MigrateSqlServerSqlMISyncTaskOutputError.class) })
 @Immutable
 public class MigrateSqlServerSqlMISyncTaskOutput {
     /*
@@ -32,13 +31,15 @@ public class MigrateSqlServerSqlMISyncTaskOutput {
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
-    /** Creates an instance of MigrateSqlServerSqlMISyncTaskOutput class. */
+    /**
+     * Creates an instance of MigrateSqlServerSqlMISyncTaskOutput class.
+     */
     public MigrateSqlServerSqlMISyncTaskOutput() {
     }
 
     /**
      * Get the id property: Result identifier.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -47,7 +48,7 @@ public class MigrateSqlServerSqlMISyncTaskOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

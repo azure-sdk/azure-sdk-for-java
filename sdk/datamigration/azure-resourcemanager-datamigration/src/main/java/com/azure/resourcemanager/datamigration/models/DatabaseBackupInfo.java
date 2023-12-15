@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Information about backup files when existing backup mode is used. */
+/**
+ * Information about backup files when existing backup mode is used.
+ */
 @Immutable
 public final class DatabaseBackupInfo {
     /*
@@ -60,13 +62,15 @@ public final class DatabaseBackupInfo {
     @JsonProperty(value = "backupFinishDate", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime backupFinishDate;
 
-    /** Creates an instance of DatabaseBackupInfo class. */
+    /**
+     * Creates an instance of DatabaseBackupInfo class.
+     */
     public DatabaseBackupInfo() {
     }
 
     /**
      * Get the databaseName property: Database name.
-     *
+     * 
      * @return the databaseName value.
      */
     public String databaseName() {
@@ -75,7 +79,7 @@ public final class DatabaseBackupInfo {
 
     /**
      * Get the backupType property: Backup Type.
-     *
+     * 
      * @return the backupType value.
      */
     public BackupType backupType() {
@@ -84,7 +88,7 @@ public final class DatabaseBackupInfo {
 
     /**
      * Get the backupFiles property: The list of backup files for the current database.
-     *
+     * 
      * @return the backupFiles value.
      */
     public List<String> backupFiles() {
@@ -93,7 +97,7 @@ public final class DatabaseBackupInfo {
 
     /**
      * Get the position property: Position of current database backup in the file.
-     *
+     * 
      * @return the position value.
      */
     public Integer position() {
@@ -103,7 +107,7 @@ public final class DatabaseBackupInfo {
     /**
      * Get the isDamaged property: Database was damaged when backed up, but the backup operation was requested to
      * continue despite errors.
-     *
+     * 
      * @return the isDamaged value.
      */
     public Boolean isDamaged() {
@@ -112,7 +116,7 @@ public final class DatabaseBackupInfo {
 
     /**
      * Get the isCompressed property: Whether the backup set is compressed.
-     *
+     * 
      * @return the isCompressed value.
      */
     public Boolean isCompressed() {
@@ -121,7 +125,7 @@ public final class DatabaseBackupInfo {
 
     /**
      * Get the familyCount property: Number of files in the backup set.
-     *
+     * 
      * @return the familyCount value.
      */
     public Integer familyCount() {
@@ -130,7 +134,7 @@ public final class DatabaseBackupInfo {
 
     /**
      * Get the backupFinishDate property: Date and time when the backup operation finished.
-     *
+     * 
      * @return the backupFinishDate value.
      */
     public OffsetDateTime backupFinishDate() {
@@ -139,7 +143,7 @@ public final class DatabaseBackupInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

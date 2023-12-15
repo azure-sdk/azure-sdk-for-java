@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 
-/** The MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel model. */
+/**
+ * The MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("DatabaseLevelOutput")
 @Immutable
@@ -105,13 +107,15 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel extends Migr
     @JsonProperty(value = "latency", access = JsonProperty.Access.WRITE_ONLY)
     private Long latency;
 
-    /** Creates an instance of MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel class. */
+    /**
+     * Creates an instance of MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel class.
+     */
     public MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel() {
     }
 
     /**
      * Get the databaseName property: Name of the database.
-     *
+     * 
      * @return the databaseName value.
      */
     public String databaseName() {
@@ -120,7 +124,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel extends Migr
 
     /**
      * Get the startedOn property: Migration start time.
-     *
+     * 
      * @return the startedOn value.
      */
     public OffsetDateTime startedOn() {
@@ -129,7 +133,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel extends Migr
 
     /**
      * Get the endedOn property: Migration end time.
-     *
+     * 
      * @return the endedOn value.
      */
     public OffsetDateTime endedOn() {
@@ -138,7 +142,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel extends Migr
 
     /**
      * Get the migrationState property: Migration state that this database is in.
-     *
+     * 
      * @return the migrationState value.
      */
     public SyncDatabaseMigrationReportingState migrationState() {
@@ -147,7 +151,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel extends Migr
 
     /**
      * Get the incomingChanges property: Number of incoming changes.
-     *
+     * 
      * @return the incomingChanges value.
      */
     public Long incomingChanges() {
@@ -156,7 +160,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel extends Migr
 
     /**
      * Get the appliedChanges property: Number of applied changes.
-     *
+     * 
      * @return the appliedChanges value.
      */
     public Long appliedChanges() {
@@ -165,7 +169,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel extends Migr
 
     /**
      * Get the cdcInsertCounter property: Number of cdc inserts.
-     *
+     * 
      * @return the cdcInsertCounter value.
      */
     public Long cdcInsertCounter() {
@@ -174,7 +178,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel extends Migr
 
     /**
      * Get the cdcDeleteCounter property: Number of cdc deletes.
-     *
+     * 
      * @return the cdcDeleteCounter value.
      */
     public Long cdcDeleteCounter() {
@@ -183,7 +187,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel extends Migr
 
     /**
      * Get the cdcUpdateCounter property: Number of cdc updates.
-     *
+     * 
      * @return the cdcUpdateCounter value.
      */
     public Long cdcUpdateCounter() {
@@ -192,7 +196,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel extends Migr
 
     /**
      * Get the fullLoadCompletedTables property: Number of tables completed in full load.
-     *
+     * 
      * @return the fullLoadCompletedTables value.
      */
     public Long fullLoadCompletedTables() {
@@ -201,7 +205,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel extends Migr
 
     /**
      * Get the fullLoadLoadingTables property: Number of tables loading in full load.
-     *
+     * 
      * @return the fullLoadLoadingTables value.
      */
     public Long fullLoadLoadingTables() {
@@ -210,7 +214,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel extends Migr
 
     /**
      * Get the fullLoadQueuedTables property: Number of tables queued in full load.
-     *
+     * 
      * @return the fullLoadQueuedTables value.
      */
     public Long fullLoadQueuedTables() {
@@ -219,7 +223,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel extends Migr
 
     /**
      * Get the fullLoadErroredTables property: Number of tables errored in full load.
-     *
+     * 
      * @return the fullLoadErroredTables value.
      */
     public Long fullLoadErroredTables() {
@@ -228,7 +232,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel extends Migr
 
     /**
      * Get the initializationCompleted property: Indicates if initial load (full load) has been completed.
-     *
+     * 
      * @return the initializationCompleted value.
      */
     public Boolean initializationCompleted() {
@@ -237,7 +241,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel extends Migr
 
     /**
      * Get the latency property: CDC apply latency.
-     *
+     * 
      * @return the latency value.
      */
     public Long latency() {
@@ -246,7 +250,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputDatabaseLevel extends Migr
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

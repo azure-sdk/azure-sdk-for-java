@@ -11,11 +11,19 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Validation result for Sql Server to Azure Sql DB migration. */
+/**
+ * The MigrateSqlServerSqlDbTaskOutputValidationResult model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("MigrationValidationOutput")
 @Fluent
 public final class MigrateSqlServerSqlDbTaskOutputValidationResult extends MigrateSqlServerSqlDbTaskOutput {
+    /*
+     * Migration validation result identifier
+     */
+    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
+    private String id;
+
     /*
      * Migration Identifier
      */
@@ -36,13 +44,24 @@ public final class MigrateSqlServerSqlDbTaskOutputValidationResult extends Migra
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private ValidationStatus status;
 
-    /** Creates an instance of MigrateSqlServerSqlDbTaskOutputValidationResult class. */
+    /**
+     * Creates an instance of MigrateSqlServerSqlDbTaskOutputValidationResult class.
+     */
     public MigrateSqlServerSqlDbTaskOutputValidationResult() {
     }
 
     /**
+     * Get the id property: Migration validation result identifier.
+     * 
+     * @return the id value.
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
      * Get the migrationId property: Migration Identifier.
-     *
+     * 
      * @return the migrationId value.
      */
     public String migrationId() {
@@ -51,7 +70,7 @@ public final class MigrateSqlServerSqlDbTaskOutputValidationResult extends Migra
 
     /**
      * Get the summaryResults property: Validation summary results for each database.
-     *
+     * 
      * @return the summaryResults value.
      */
     public Map<String, MigrationValidationDatabaseSummaryResult> summaryResults() {
@@ -60,20 +79,20 @@ public final class MigrateSqlServerSqlDbTaskOutputValidationResult extends Migra
 
     /**
      * Set the summaryResults property: Validation summary results for each database.
-     *
+     * 
      * @param summaryResults the summaryResults value to set.
      * @return the MigrateSqlServerSqlDbTaskOutputValidationResult object itself.
      */
-    public MigrateSqlServerSqlDbTaskOutputValidationResult withSummaryResults(
-        Map<String, MigrationValidationDatabaseSummaryResult> summaryResults) {
+    public MigrateSqlServerSqlDbTaskOutputValidationResult
+        withSummaryResults(Map<String, MigrationValidationDatabaseSummaryResult> summaryResults) {
         this.summaryResults = summaryResults;
         return this;
     }
 
     /**
-     * Get the status property: Current status of validation at the migration level. Status from the database validation
-     * result status will be aggregated here.
-     *
+     * Get the status property: Current status of validation at the migration level. Status from the database
+     * validation result status will be aggregated here.
+     * 
      * @return the status value.
      */
     public ValidationStatus status() {
@@ -82,21 +101,18 @@ public final class MigrateSqlServerSqlDbTaskOutputValidationResult extends Migra
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (summaryResults() != null) {
-            summaryResults()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            summaryResults().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 }

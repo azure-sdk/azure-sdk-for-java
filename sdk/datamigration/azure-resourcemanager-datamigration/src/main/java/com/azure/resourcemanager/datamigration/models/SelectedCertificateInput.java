@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Info for certificate to be exported for TDE enabled databases. */
+/**
+ * Info for certificate to be exported for TDE enabled databases.
+ */
 @Fluent
 public final class SelectedCertificateInput {
     /*
@@ -23,13 +25,15 @@ public final class SelectedCertificateInput {
     @JsonProperty(value = "password", required = true)
     private String password;
 
-    /** Creates an instance of SelectedCertificateInput class. */
+    /**
+     * Creates an instance of SelectedCertificateInput class.
+     */
     public SelectedCertificateInput() {
     }
 
     /**
      * Get the certificateName property: Name of certificate to be exported.
-     *
+     * 
      * @return the certificateName value.
      */
     public String certificateName() {
@@ -38,7 +42,7 @@ public final class SelectedCertificateInput {
 
     /**
      * Set the certificateName property: Name of certificate to be exported.
-     *
+     * 
      * @param certificateName the certificateName value to set.
      * @return the SelectedCertificateInput object itself.
      */
@@ -49,7 +53,7 @@ public final class SelectedCertificateInput {
 
     /**
      * Get the password property: Password to use for encrypting the exported certificate.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -58,7 +62,7 @@ public final class SelectedCertificateInput {
 
     /**
      * Set the password property: Password to use for encrypting the exported certificate.
-     *
+     * 
      * @param password the password value to set.
      * @return the SelectedCertificateInput object itself.
      */
@@ -69,21 +73,17 @@ public final class SelectedCertificateInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (certificateName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property certificateName in model SelectedCertificateInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property certificateName in model SelectedCertificateInput"));
         }
         if (password() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property password in model SelectedCertificateInput"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property password in model SelectedCertificateInput"));
         }
     }
 

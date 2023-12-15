@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** The MigrateSqlServerSqlMITaskOutputAgentJobLevel model. */
+/**
+ * The MigrateSqlServerSqlMITaskOutputAgentJobLevel model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("AgentJobLevelOutput")
 @Immutable
@@ -58,13 +60,15 @@ public final class MigrateSqlServerSqlMITaskOutputAgentJobLevel extends MigrateS
     @JsonProperty(value = "exceptionsAndWarnings", access = JsonProperty.Access.WRITE_ONLY)
     private List<ReportableException> exceptionsAndWarnings;
 
-    /** Creates an instance of MigrateSqlServerSqlMITaskOutputAgentJobLevel class. */
+    /**
+     * Creates an instance of MigrateSqlServerSqlMITaskOutputAgentJobLevel class.
+     */
     public MigrateSqlServerSqlMITaskOutputAgentJobLevel() {
     }
 
     /**
      * Get the name property: Agent Job name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -73,7 +77,7 @@ public final class MigrateSqlServerSqlMITaskOutputAgentJobLevel extends MigrateS
 
     /**
      * Get the isEnabled property: The state of the original Agent Job.
-     *
+     * 
      * @return the isEnabled value.
      */
     public Boolean isEnabled() {
@@ -82,7 +86,7 @@ public final class MigrateSqlServerSqlMITaskOutputAgentJobLevel extends MigrateS
 
     /**
      * Get the state property: Current state of migration.
-     *
+     * 
      * @return the state value.
      */
     public MigrationState state() {
@@ -91,7 +95,7 @@ public final class MigrateSqlServerSqlMITaskOutputAgentJobLevel extends MigrateS
 
     /**
      * Get the startedOn property: Migration start time.
-     *
+     * 
      * @return the startedOn value.
      */
     public OffsetDateTime startedOn() {
@@ -100,7 +104,7 @@ public final class MigrateSqlServerSqlMITaskOutputAgentJobLevel extends MigrateS
 
     /**
      * Get the endedOn property: Migration end time.
-     *
+     * 
      * @return the endedOn value.
      */
     public OffsetDateTime endedOn() {
@@ -109,7 +113,7 @@ public final class MigrateSqlServerSqlMITaskOutputAgentJobLevel extends MigrateS
 
     /**
      * Get the message property: Migration progress message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -118,7 +122,7 @@ public final class MigrateSqlServerSqlMITaskOutputAgentJobLevel extends MigrateS
 
     /**
      * Get the exceptionsAndWarnings property: Migration errors and warnings per job.
-     *
+     * 
      * @return the exceptionsAndWarnings value.
      */
     public List<ReportableException> exceptionsAndWarnings() {
@@ -127,7 +131,7 @@ public final class MigrateSqlServerSqlMITaskOutputAgentJobLevel extends MigrateS
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

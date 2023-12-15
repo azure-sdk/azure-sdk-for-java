@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Input for the task that collects user tables for the given list of databases. */
+/**
+ * Input for the task that collects user tables for the given list of databases.
+ */
 @Fluent
 public final class GetUserTablesSqlTaskInput {
     /*
@@ -24,13 +26,21 @@ public final class GetUserTablesSqlTaskInput {
     @JsonProperty(value = "selectedDatabases", required = true)
     private List<String> selectedDatabases;
 
-    /** Creates an instance of GetUserTablesSqlTaskInput class. */
+    /*
+     * encrypted key for secure fields
+     */
+    @JsonProperty(value = "encryptedKeyForSecureFields")
+    private String encryptedKeyForSecureFields;
+
+    /**
+     * Creates an instance of GetUserTablesSqlTaskInput class.
+     */
     public GetUserTablesSqlTaskInput() {
     }
 
     /**
      * Get the connectionInfo property: Connection information for SQL Server.
-     *
+     * 
      * @return the connectionInfo value.
      */
     public SqlConnectionInfo connectionInfo() {
@@ -39,7 +49,7 @@ public final class GetUserTablesSqlTaskInput {
 
     /**
      * Set the connectionInfo property: Connection information for SQL Server.
-     *
+     * 
      * @param connectionInfo the connectionInfo value to set.
      * @return the GetUserTablesSqlTaskInput object itself.
      */
@@ -50,7 +60,7 @@ public final class GetUserTablesSqlTaskInput {
 
     /**
      * Get the selectedDatabases property: List of database names to collect tables for.
-     *
+     * 
      * @return the selectedDatabases value.
      */
     public List<String> selectedDatabases() {
@@ -59,7 +69,7 @@ public final class GetUserTablesSqlTaskInput {
 
     /**
      * Set the selectedDatabases property: List of database names to collect tables for.
-     *
+     * 
      * @param selectedDatabases the selectedDatabases value to set.
      * @return the GetUserTablesSqlTaskInput object itself.
      */
@@ -69,24 +79,40 @@ public final class GetUserTablesSqlTaskInput {
     }
 
     /**
+     * Get the encryptedKeyForSecureFields property: encrypted key for secure fields.
+     * 
+     * @return the encryptedKeyForSecureFields value.
+     */
+    public String encryptedKeyForSecureFields() {
+        return this.encryptedKeyForSecureFields;
+    }
+
+    /**
+     * Set the encryptedKeyForSecureFields property: encrypted key for secure fields.
+     * 
+     * @param encryptedKeyForSecureFields the encryptedKeyForSecureFields value to set.
+     * @return the GetUserTablesSqlTaskInput object itself.
+     */
+    public GetUserTablesSqlTaskInput withEncryptedKeyForSecureFields(String encryptedKeyForSecureFields) {
+        this.encryptedKeyForSecureFields = encryptedKeyForSecureFields;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (connectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property connectionInfo in model GetUserTablesSqlTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property connectionInfo in model GetUserTablesSqlTaskInput"));
         } else {
             connectionInfo().validate();
         }
         if (selectedDatabases() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property selectedDatabases in model GetUserTablesSqlTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property selectedDatabases in model GetUserTablesSqlTaskInput"));
         }
     }
 

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Input for the task that validates connection to SQL Server and also validates source server requirements. */
+/**
+ * Input for the task that validates connection to SQL Server and also validates source server requirements.
+ */
 @Fluent
 public final class ConnectToSourceSqlServerTaskInput {
     /*
@@ -24,6 +26,12 @@ public final class ConnectToSourceSqlServerTaskInput {
     private ServerLevelPermissionsGroup checkPermissionsGroup;
 
     /*
+     * Flag for whether to collect databases from source server.
+     */
+    @JsonProperty(value = "collectDatabases")
+    private Boolean collectDatabases;
+
+    /*
      * Flag for whether to collect logins from source server.
      */
     @JsonProperty(value = "collectLogins")
@@ -35,13 +43,33 @@ public final class ConnectToSourceSqlServerTaskInput {
     @JsonProperty(value = "collectAgentJobs")
     private Boolean collectAgentJobs;
 
-    /** Creates an instance of ConnectToSourceSqlServerTaskInput class. */
+    /*
+     * Flag for whether to collect TDE Certificate names from source server.
+     */
+    @JsonProperty(value = "collectTdeCertificateInfo")
+    private Boolean collectTdeCertificateInfo;
+
+    /*
+     * Flag for whether to validate SSIS catalog is reachable on the source server.
+     */
+    @JsonProperty(value = "validateSsisCatalogOnly")
+    private Boolean validateSsisCatalogOnly;
+
+    /*
+     * encrypted key for secure fields
+     */
+    @JsonProperty(value = "encryptedKeyForSecureFields")
+    private String encryptedKeyForSecureFields;
+
+    /**
+     * Creates an instance of ConnectToSourceSqlServerTaskInput class.
+     */
     public ConnectToSourceSqlServerTaskInput() {
     }
 
     /**
      * Get the sourceConnectionInfo property: Connection information for Source SQL Server.
-     *
+     * 
      * @return the sourceConnectionInfo value.
      */
     public SqlConnectionInfo sourceConnectionInfo() {
@@ -50,7 +78,7 @@ public final class ConnectToSourceSqlServerTaskInput {
 
     /**
      * Set the sourceConnectionInfo property: Connection information for Source SQL Server.
-     *
+     * 
      * @param sourceConnectionInfo the sourceConnectionInfo value to set.
      * @return the ConnectToSourceSqlServerTaskInput object itself.
      */
@@ -61,7 +89,7 @@ public final class ConnectToSourceSqlServerTaskInput {
 
     /**
      * Get the checkPermissionsGroup property: Permission group for validations.
-     *
+     * 
      * @return the checkPermissionsGroup value.
      */
     public ServerLevelPermissionsGroup checkPermissionsGroup() {
@@ -70,19 +98,39 @@ public final class ConnectToSourceSqlServerTaskInput {
 
     /**
      * Set the checkPermissionsGroup property: Permission group for validations.
-     *
+     * 
      * @param checkPermissionsGroup the checkPermissionsGroup value to set.
      * @return the ConnectToSourceSqlServerTaskInput object itself.
      */
-    public ConnectToSourceSqlServerTaskInput withCheckPermissionsGroup(
-        ServerLevelPermissionsGroup checkPermissionsGroup) {
+    public ConnectToSourceSqlServerTaskInput
+        withCheckPermissionsGroup(ServerLevelPermissionsGroup checkPermissionsGroup) {
         this.checkPermissionsGroup = checkPermissionsGroup;
         return this;
     }
 
     /**
+     * Get the collectDatabases property: Flag for whether to collect databases from source server.
+     * 
+     * @return the collectDatabases value.
+     */
+    public Boolean collectDatabases() {
+        return this.collectDatabases;
+    }
+
+    /**
+     * Set the collectDatabases property: Flag for whether to collect databases from source server.
+     * 
+     * @param collectDatabases the collectDatabases value to set.
+     * @return the ConnectToSourceSqlServerTaskInput object itself.
+     */
+    public ConnectToSourceSqlServerTaskInput withCollectDatabases(Boolean collectDatabases) {
+        this.collectDatabases = collectDatabases;
+        return this;
+    }
+
+    /**
      * Get the collectLogins property: Flag for whether to collect logins from source server.
-     *
+     * 
      * @return the collectLogins value.
      */
     public Boolean collectLogins() {
@@ -91,7 +139,7 @@ public final class ConnectToSourceSqlServerTaskInput {
 
     /**
      * Set the collectLogins property: Flag for whether to collect logins from source server.
-     *
+     * 
      * @param collectLogins the collectLogins value to set.
      * @return the ConnectToSourceSqlServerTaskInput object itself.
      */
@@ -102,7 +150,7 @@ public final class ConnectToSourceSqlServerTaskInput {
 
     /**
      * Get the collectAgentJobs property: Flag for whether to collect agent jobs from source server.
-     *
+     * 
      * @return the collectAgentJobs value.
      */
     public Boolean collectAgentJobs() {
@@ -111,7 +159,7 @@ public final class ConnectToSourceSqlServerTaskInput {
 
     /**
      * Set the collectAgentJobs property: Flag for whether to collect agent jobs from source server.
-     *
+     * 
      * @param collectAgentJobs the collectAgentJobs value to set.
      * @return the ConnectToSourceSqlServerTaskInput object itself.
      */
@@ -121,16 +169,78 @@ public final class ConnectToSourceSqlServerTaskInput {
     }
 
     /**
+     * Get the collectTdeCertificateInfo property: Flag for whether to collect TDE Certificate names from source
+     * server.
+     * 
+     * @return the collectTdeCertificateInfo value.
+     */
+    public Boolean collectTdeCertificateInfo() {
+        return this.collectTdeCertificateInfo;
+    }
+
+    /**
+     * Set the collectTdeCertificateInfo property: Flag for whether to collect TDE Certificate names from source
+     * server.
+     * 
+     * @param collectTdeCertificateInfo the collectTdeCertificateInfo value to set.
+     * @return the ConnectToSourceSqlServerTaskInput object itself.
+     */
+    public ConnectToSourceSqlServerTaskInput withCollectTdeCertificateInfo(Boolean collectTdeCertificateInfo) {
+        this.collectTdeCertificateInfo = collectTdeCertificateInfo;
+        return this;
+    }
+
+    /**
+     * Get the validateSsisCatalogOnly property: Flag for whether to validate SSIS catalog is reachable on the source
+     * server.
+     * 
+     * @return the validateSsisCatalogOnly value.
+     */
+    public Boolean validateSsisCatalogOnly() {
+        return this.validateSsisCatalogOnly;
+    }
+
+    /**
+     * Set the validateSsisCatalogOnly property: Flag for whether to validate SSIS catalog is reachable on the source
+     * server.
+     * 
+     * @param validateSsisCatalogOnly the validateSsisCatalogOnly value to set.
+     * @return the ConnectToSourceSqlServerTaskInput object itself.
+     */
+    public ConnectToSourceSqlServerTaskInput withValidateSsisCatalogOnly(Boolean validateSsisCatalogOnly) {
+        this.validateSsisCatalogOnly = validateSsisCatalogOnly;
+        return this;
+    }
+
+    /**
+     * Get the encryptedKeyForSecureFields property: encrypted key for secure fields.
+     * 
+     * @return the encryptedKeyForSecureFields value.
+     */
+    public String encryptedKeyForSecureFields() {
+        return this.encryptedKeyForSecureFields;
+    }
+
+    /**
+     * Set the encryptedKeyForSecureFields property: encrypted key for secure fields.
+     * 
+     * @param encryptedKeyForSecureFields the encryptedKeyForSecureFields value to set.
+     * @return the ConnectToSourceSqlServerTaskInput object itself.
+     */
+    public ConnectToSourceSqlServerTaskInput withEncryptedKeyForSecureFields(String encryptedKeyForSecureFields) {
+        this.encryptedKeyForSecureFields = encryptedKeyForSecureFields;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourceConnectionInfo in model ConnectToSourceSqlServerTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sourceConnectionInfo in model ConnectToSourceSqlServerTaskInput"));
         } else {
             sourceConnectionInfo().validate();
         }

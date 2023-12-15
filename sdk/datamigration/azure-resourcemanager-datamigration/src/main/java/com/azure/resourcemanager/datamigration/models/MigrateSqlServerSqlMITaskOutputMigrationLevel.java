@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** The MigrateSqlServerSqlMITaskOutputMigrationLevel model. */
+/**
+ * The MigrateSqlServerSqlMITaskOutputMigrationLevel model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("MigrationLevelOutput")
 @Immutable
@@ -106,13 +108,15 @@ public final class MigrateSqlServerSqlMITaskOutputMigrationLevel extends Migrate
     @JsonProperty(value = "exceptionsAndWarnings", access = JsonProperty.Access.WRITE_ONLY)
     private List<ReportableException> exceptionsAndWarnings;
 
-    /** Creates an instance of MigrateSqlServerSqlMITaskOutputMigrationLevel class. */
+    /**
+     * Creates an instance of MigrateSqlServerSqlMITaskOutputMigrationLevel class.
+     */
     public MigrateSqlServerSqlMITaskOutputMigrationLevel() {
     }
 
     /**
      * Get the startedOn property: Migration start time.
-     *
+     * 
      * @return the startedOn value.
      */
     public OffsetDateTime startedOn() {
@@ -121,7 +125,7 @@ public final class MigrateSqlServerSqlMITaskOutputMigrationLevel extends Migrate
 
     /**
      * Get the endedOn property: Migration end time.
-     *
+     * 
      * @return the endedOn value.
      */
     public OffsetDateTime endedOn() {
@@ -130,7 +134,7 @@ public final class MigrateSqlServerSqlMITaskOutputMigrationLevel extends Migrate
 
     /**
      * Get the status property: Current status of migration.
-     *
+     * 
      * @return the status value.
      */
     public MigrationStatus status() {
@@ -139,7 +143,7 @@ public final class MigrateSqlServerSqlMITaskOutputMigrationLevel extends Migrate
 
     /**
      * Get the state property: Current state of migration.
-     *
+     * 
      * @return the state value.
      */
     public MigrationState state() {
@@ -148,7 +152,7 @@ public final class MigrateSqlServerSqlMITaskOutputMigrationLevel extends Migrate
 
     /**
      * Get the agentJobs property: Selected agent jobs as a map from name to id.
-     *
+     * 
      * @return the agentJobs value.
      */
     public String agentJobs() {
@@ -157,7 +161,7 @@ public final class MigrateSqlServerSqlMITaskOutputMigrationLevel extends Migrate
 
     /**
      * Get the logins property: Selected logins as a map from name to id.
-     *
+     * 
      * @return the logins value.
      */
     public String logins() {
@@ -166,7 +170,7 @@ public final class MigrateSqlServerSqlMITaskOutputMigrationLevel extends Migrate
 
     /**
      * Get the message property: Migration progress message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -175,7 +179,7 @@ public final class MigrateSqlServerSqlMITaskOutputMigrationLevel extends Migrate
 
     /**
      * Get the serverRoleResults property: Map of server role migration results.
-     *
+     * 
      * @return the serverRoleResults value.
      */
     public String serverRoleResults() {
@@ -184,7 +188,7 @@ public final class MigrateSqlServerSqlMITaskOutputMigrationLevel extends Migrate
 
     /**
      * Get the orphanedUsersInfo property: List of orphaned users.
-     *
+     * 
      * @return the orphanedUsersInfo value.
      */
     public List<OrphanedUserInfo> orphanedUsersInfo() {
@@ -193,7 +197,7 @@ public final class MigrateSqlServerSqlMITaskOutputMigrationLevel extends Migrate
 
     /**
      * Get the databases property: Selected databases as a map from database name to database id.
-     *
+     * 
      * @return the databases value.
      */
     public String databases() {
@@ -202,7 +206,7 @@ public final class MigrateSqlServerSqlMITaskOutputMigrationLevel extends Migrate
 
     /**
      * Get the sourceServerVersion property: Source server version.
-     *
+     * 
      * @return the sourceServerVersion value.
      */
     public String sourceServerVersion() {
@@ -211,7 +215,7 @@ public final class MigrateSqlServerSqlMITaskOutputMigrationLevel extends Migrate
 
     /**
      * Get the sourceServerBrandVersion property: Source server brand version.
-     *
+     * 
      * @return the sourceServerBrandVersion value.
      */
     public String sourceServerBrandVersion() {
@@ -220,7 +224,7 @@ public final class MigrateSqlServerSqlMITaskOutputMigrationLevel extends Migrate
 
     /**
      * Get the targetServerVersion property: Target server version.
-     *
+     * 
      * @return the targetServerVersion value.
      */
     public String targetServerVersion() {
@@ -229,7 +233,7 @@ public final class MigrateSqlServerSqlMITaskOutputMigrationLevel extends Migrate
 
     /**
      * Get the targetServerBrandVersion property: Target server brand version.
-     *
+     * 
      * @return the targetServerBrandVersion value.
      */
     public String targetServerBrandVersion() {
@@ -238,7 +242,7 @@ public final class MigrateSqlServerSqlMITaskOutputMigrationLevel extends Migrate
 
     /**
      * Get the exceptionsAndWarnings property: Migration exceptions and warnings.
-     *
+     * 
      * @return the exceptionsAndWarnings value.
      */
     public List<ReportableException> exceptionsAndWarnings() {
@@ -247,7 +251,7 @@ public final class MigrateSqlServerSqlMITaskOutputMigrationLevel extends Migrate
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

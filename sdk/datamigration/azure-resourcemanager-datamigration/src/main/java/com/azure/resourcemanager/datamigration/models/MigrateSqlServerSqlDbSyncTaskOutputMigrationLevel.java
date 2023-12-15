@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 
-/** The MigrateSqlServerSqlDbSyncTaskOutputMigrationLevel model. */
+/**
+ * The MigrateSqlServerSqlDbSyncTaskOutputMigrationLevel model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("MigrationLevelOutput")
 @Immutable
@@ -57,13 +59,15 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputMigrationLevel extends Mig
     @JsonProperty(value = "databaseCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer databaseCount;
 
-    /** Creates an instance of MigrateSqlServerSqlDbSyncTaskOutputMigrationLevel class. */
+    /**
+     * Creates an instance of MigrateSqlServerSqlDbSyncTaskOutputMigrationLevel class.
+     */
     public MigrateSqlServerSqlDbSyncTaskOutputMigrationLevel() {
     }
 
     /**
      * Get the startedOn property: Migration start time.
-     *
+     * 
      * @return the startedOn value.
      */
     public OffsetDateTime startedOn() {
@@ -72,7 +76,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputMigrationLevel extends Mig
 
     /**
      * Get the endedOn property: Migration end time.
-     *
+     * 
      * @return the endedOn value.
      */
     public OffsetDateTime endedOn() {
@@ -81,7 +85,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputMigrationLevel extends Mig
 
     /**
      * Get the sourceServerVersion property: Source server version.
-     *
+     * 
      * @return the sourceServerVersion value.
      */
     public String sourceServerVersion() {
@@ -90,7 +94,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputMigrationLevel extends Mig
 
     /**
      * Get the sourceServer property: Source server name.
-     *
+     * 
      * @return the sourceServer value.
      */
     public String sourceServer() {
@@ -99,7 +103,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputMigrationLevel extends Mig
 
     /**
      * Get the targetServerVersion property: Target server version.
-     *
+     * 
      * @return the targetServerVersion value.
      */
     public String targetServerVersion() {
@@ -108,7 +112,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputMigrationLevel extends Mig
 
     /**
      * Get the targetServer property: Target server name.
-     *
+     * 
      * @return the targetServer value.
      */
     public String targetServer() {
@@ -117,7 +121,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputMigrationLevel extends Mig
 
     /**
      * Get the databaseCount property: Count of databases.
-     *
+     * 
      * @return the databaseCount value.
      */
     public Integer databaseCount() {
@@ -126,7 +130,7 @@ public final class MigrateSqlServerSqlDbSyncTaskOutputMigrationLevel extends Mig
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

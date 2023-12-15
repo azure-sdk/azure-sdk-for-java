@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** File share information with Path, Username, and Password. */
+/**
+ * File share information with Path, Username, and Password.
+ */
 @Fluent
 public final class FileShare {
     /*
@@ -29,13 +31,15 @@ public final class FileShare {
     @JsonProperty(value = "path", required = true)
     private String path;
 
-    /** Creates an instance of FileShare class. */
+    /**
+     * Creates an instance of FileShare class.
+     */
     public FileShare() {
     }
 
     /**
      * Get the username property: User name credential to connect to the share location.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -44,7 +48,7 @@ public final class FileShare {
 
     /**
      * Set the username property: User name credential to connect to the share location.
-     *
+     * 
      * @param username the username value to set.
      * @return the FileShare object itself.
      */
@@ -55,7 +59,7 @@ public final class FileShare {
 
     /**
      * Get the password property: Password credential used to connect to the share location.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -64,7 +68,7 @@ public final class FileShare {
 
     /**
      * Set the password property: Password credential used to connect to the share location.
-     *
+     * 
      * @param password the password value to set.
      * @return the FileShare object itself.
      */
@@ -75,7 +79,7 @@ public final class FileShare {
 
     /**
      * Get the path property: The folder path for this share.
-     *
+     * 
      * @return the path value.
      */
     public String path() {
@@ -84,7 +88,7 @@ public final class FileShare {
 
     /**
      * Set the path property: The folder path for this share.
-     *
+     * 
      * @param path the path value to set.
      * @return the FileShare object itself.
      */
@@ -95,7 +99,7 @@ public final class FileShare {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

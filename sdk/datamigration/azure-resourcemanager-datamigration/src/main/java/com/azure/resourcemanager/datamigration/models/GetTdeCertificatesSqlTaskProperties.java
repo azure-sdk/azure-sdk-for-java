@@ -9,8 +9,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
+import java.util.Map;
 
-/** Properties for the task that gets TDE certificates in Base64 encoded format. */
+/**
+ * Properties for the task that gets TDE certificates in Base64 encoded format.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
 @JsonTypeName("GetTDECertificates.Sql")
 @Fluent
@@ -27,13 +30,15 @@ public final class GetTdeCertificatesSqlTaskProperties extends ProjectTaskProper
     @JsonProperty(value = "output", access = JsonProperty.Access.WRITE_ONLY)
     private List<GetTdeCertificatesSqlTaskOutput> output;
 
-    /** Creates an instance of GetTdeCertificatesSqlTaskProperties class. */
+    /**
+     * Creates an instance of GetTdeCertificatesSqlTaskProperties class.
+     */
     public GetTdeCertificatesSqlTaskProperties() {
     }
 
     /**
      * Get the input property: Task input.
-     *
+     * 
      * @return the input value.
      */
     public GetTdeCertificatesSqlTaskInput input() {
@@ -42,7 +47,7 @@ public final class GetTdeCertificatesSqlTaskProperties extends ProjectTaskProper
 
     /**
      * Set the input property: Task input.
-     *
+     * 
      * @param input the input value to set.
      * @return the GetTdeCertificatesSqlTaskProperties object itself.
      */
@@ -53,7 +58,7 @@ public final class GetTdeCertificatesSqlTaskProperties extends ProjectTaskProper
 
     /**
      * Get the output property: Task output. This is ignored if submitted.
-     *
+     * 
      * @return the output value.
      */
     public List<GetTdeCertificatesSqlTaskOutput> output() {
@@ -61,8 +66,17 @@ public final class GetTdeCertificatesSqlTaskProperties extends ProjectTaskProper
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public GetTdeCertificatesSqlTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

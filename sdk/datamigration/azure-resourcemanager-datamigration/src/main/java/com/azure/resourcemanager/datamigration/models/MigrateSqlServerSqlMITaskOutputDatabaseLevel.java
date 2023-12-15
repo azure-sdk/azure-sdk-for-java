@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** The MigrateSqlServerSqlMITaskOutputDatabaseLevel model. */
+/**
+ * The MigrateSqlServerSqlMITaskOutputDatabaseLevel model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("DatabaseLevelOutput")
 @Immutable
@@ -64,13 +66,15 @@ public final class MigrateSqlServerSqlMITaskOutputDatabaseLevel extends MigrateS
     @JsonProperty(value = "exceptionsAndWarnings", access = JsonProperty.Access.WRITE_ONLY)
     private List<ReportableException> exceptionsAndWarnings;
 
-    /** Creates an instance of MigrateSqlServerSqlMITaskOutputDatabaseLevel class. */
+    /**
+     * Creates an instance of MigrateSqlServerSqlMITaskOutputDatabaseLevel class.
+     */
     public MigrateSqlServerSqlMITaskOutputDatabaseLevel() {
     }
 
     /**
      * Get the databaseName property: Name of the database.
-     *
+     * 
      * @return the databaseName value.
      */
     public String databaseName() {
@@ -79,7 +83,7 @@ public final class MigrateSqlServerSqlMITaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the sizeMB property: Size of the database in megabytes.
-     *
+     * 
      * @return the sizeMB value.
      */
     public Double sizeMB() {
@@ -88,7 +92,7 @@ public final class MigrateSqlServerSqlMITaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the state property: Current state of migration.
-     *
+     * 
      * @return the state value.
      */
     public MigrationState state() {
@@ -97,7 +101,7 @@ public final class MigrateSqlServerSqlMITaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the stage property: Current stage of migration.
-     *
+     * 
      * @return the stage value.
      */
     public DatabaseMigrationStage stage() {
@@ -106,7 +110,7 @@ public final class MigrateSqlServerSqlMITaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the startedOn property: Migration start time.
-     *
+     * 
      * @return the startedOn value.
      */
     public OffsetDateTime startedOn() {
@@ -115,7 +119,7 @@ public final class MigrateSqlServerSqlMITaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the endedOn property: Migration end time.
-     *
+     * 
      * @return the endedOn value.
      */
     public OffsetDateTime endedOn() {
@@ -124,7 +128,7 @@ public final class MigrateSqlServerSqlMITaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the message property: Migration progress message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -133,7 +137,7 @@ public final class MigrateSqlServerSqlMITaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the exceptionsAndWarnings property: Migration exceptions and warnings.
-     *
+     * 
      * @return the exceptionsAndWarnings value.
      */
     public List<ReportableException> exceptionsAndWarnings() {
@@ -142,7 +146,7 @@ public final class MigrateSqlServerSqlMITaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

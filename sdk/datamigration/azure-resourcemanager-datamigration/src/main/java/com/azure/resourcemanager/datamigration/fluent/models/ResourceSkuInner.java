@@ -12,7 +12,9 @@ import com.azure.resourcemanager.datamigration.models.ResourceSkuRestrictions;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes an available DMS SKU. */
+/**
+ * Describes an available DMS (classic) SKU.
+ */
 @Immutable
 public final class ResourceSkuInner {
     /*
@@ -28,7 +30,7 @@ public final class ResourceSkuInner {
     private String name;
 
     /*
-     * Specifies the tier of DMS in a scale set.
+     * Specifies the tier of DMS (classic) in a scale set.
      */
     @JsonProperty(value = "tier", access = JsonProperty.Access.WRITE_ONLY)
     private String tier;
@@ -87,13 +89,15 @@ public final class ResourceSkuInner {
     @JsonProperty(value = "restrictions", access = JsonProperty.Access.WRITE_ONLY)
     private List<ResourceSkuRestrictions> restrictions;
 
-    /** Creates an instance of ResourceSkuInner class. */
+    /**
+     * Creates an instance of ResourceSkuInner class.
+     */
     public ResourceSkuInner() {
     }
 
     /**
      * Get the resourceType property: The type of resource the SKU applies to.
-     *
+     * 
      * @return the resourceType value.
      */
     public String resourceType() {
@@ -102,7 +106,7 @@ public final class ResourceSkuInner {
 
     /**
      * Get the name property: The name of SKU.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -110,8 +114,8 @@ public final class ResourceSkuInner {
     }
 
     /**
-     * Get the tier property: Specifies the tier of DMS in a scale set.
-     *
+     * Get the tier property: Specifies the tier of DMS (classic) in a scale set.
+     * 
      * @return the tier value.
      */
     public String tier() {
@@ -120,7 +124,7 @@ public final class ResourceSkuInner {
 
     /**
      * Get the size property: The Size of the SKU.
-     *
+     * 
      * @return the size value.
      */
     public String size() {
@@ -129,7 +133,7 @@ public final class ResourceSkuInner {
 
     /**
      * Get the family property: The Family of this particular SKU.
-     *
+     * 
      * @return the family value.
      */
     public String family() {
@@ -138,7 +142,7 @@ public final class ResourceSkuInner {
 
     /**
      * Get the kind property: The Kind of resources that are supported in this SKU.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -147,7 +151,7 @@ public final class ResourceSkuInner {
 
     /**
      * Get the capacity property: Not used.
-     *
+     * 
      * @return the capacity value.
      */
     public ResourceSkuCapacity capacity() {
@@ -156,7 +160,7 @@ public final class ResourceSkuInner {
 
     /**
      * Get the locations property: The set of locations that the SKU is available.
-     *
+     * 
      * @return the locations value.
      */
     public List<String> locations() {
@@ -165,7 +169,7 @@ public final class ResourceSkuInner {
 
     /**
      * Get the apiVersions property: The api versions that support this SKU.
-     *
+     * 
      * @return the apiVersions value.
      */
     public List<String> apiVersions() {
@@ -174,7 +178,7 @@ public final class ResourceSkuInner {
 
     /**
      * Get the costs property: Metadata for retrieving price info.
-     *
+     * 
      * @return the costs value.
      */
     public List<ResourceSkuCosts> costs() {
@@ -183,7 +187,7 @@ public final class ResourceSkuInner {
 
     /**
      * Get the capabilities property: A name value pair to describe the capability.
-     *
+     * 
      * @return the capabilities value.
      */
     public List<ResourceSkuCapabilities> capabilities() {
@@ -193,7 +197,7 @@ public final class ResourceSkuInner {
     /**
      * Get the restrictions property: The restrictions because of which SKU cannot be used. This is empty if there are
      * no restrictions.
-     *
+     * 
      * @return the restrictions value.
      */
     public List<ResourceSkuRestrictions> restrictions() {
@@ -202,7 +206,7 @@ public final class ResourceSkuInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

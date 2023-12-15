@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Properties for the task that validates connection to Azure Database For PostgreSQL server and target server
@@ -30,13 +31,15 @@ public final class ConnectToTargetAzureDbForPostgreSqlSyncTaskProperties extends
     @JsonProperty(value = "output", access = JsonProperty.Access.WRITE_ONLY)
     private List<ConnectToTargetAzureDbForPostgreSqlSyncTaskOutput> output;
 
-    /** Creates an instance of ConnectToTargetAzureDbForPostgreSqlSyncTaskProperties class. */
+    /**
+     * Creates an instance of ConnectToTargetAzureDbForPostgreSqlSyncTaskProperties class.
+     */
     public ConnectToTargetAzureDbForPostgreSqlSyncTaskProperties() {
     }
 
     /**
      * Get the input property: Task input.
-     *
+     * 
      * @return the input value.
      */
     public ConnectToTargetAzureDbForPostgreSqlSyncTaskInput input() {
@@ -45,19 +48,19 @@ public final class ConnectToTargetAzureDbForPostgreSqlSyncTaskProperties extends
 
     /**
      * Set the input property: Task input.
-     *
+     * 
      * @param input the input value to set.
      * @return the ConnectToTargetAzureDbForPostgreSqlSyncTaskProperties object itself.
      */
-    public ConnectToTargetAzureDbForPostgreSqlSyncTaskProperties withInput(
-        ConnectToTargetAzureDbForPostgreSqlSyncTaskInput input) {
+    public ConnectToTargetAzureDbForPostgreSqlSyncTaskProperties
+        withInput(ConnectToTargetAzureDbForPostgreSqlSyncTaskInput input) {
         this.input = input;
         return this;
     }
 
     /**
      * Get the output property: Task output. This is ignored if submitted.
-     *
+     * 
      * @return the output value.
      */
     public List<ConnectToTargetAzureDbForPostgreSqlSyncTaskOutput> output() {
@@ -65,8 +68,17 @@ public final class ConnectToTargetAzureDbForPostgreSqlSyncTaskProperties extends
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ConnectToTargetAzureDbForPostgreSqlSyncTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

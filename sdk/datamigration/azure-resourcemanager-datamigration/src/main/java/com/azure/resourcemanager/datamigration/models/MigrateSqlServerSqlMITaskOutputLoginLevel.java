@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** The MigrateSqlServerSqlMITaskOutputLoginLevel model. */
+/**
+ * The MigrateSqlServerSqlMITaskOutputLoginLevel model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("LoginLevelOutput")
 @Immutable
@@ -58,13 +60,15 @@ public final class MigrateSqlServerSqlMITaskOutputLoginLevel extends MigrateSqlS
     @JsonProperty(value = "exceptionsAndWarnings", access = JsonProperty.Access.WRITE_ONLY)
     private List<ReportableException> exceptionsAndWarnings;
 
-    /** Creates an instance of MigrateSqlServerSqlMITaskOutputLoginLevel class. */
+    /**
+     * Creates an instance of MigrateSqlServerSqlMITaskOutputLoginLevel class.
+     */
     public MigrateSqlServerSqlMITaskOutputLoginLevel() {
     }
 
     /**
      * Get the loginName property: Login name.
-     *
+     * 
      * @return the loginName value.
      */
     public String loginName() {
@@ -73,7 +77,7 @@ public final class MigrateSqlServerSqlMITaskOutputLoginLevel extends MigrateSqlS
 
     /**
      * Get the state property: Current state of login.
-     *
+     * 
      * @return the state value.
      */
     public MigrationState state() {
@@ -82,7 +86,7 @@ public final class MigrateSqlServerSqlMITaskOutputLoginLevel extends MigrateSqlS
 
     /**
      * Get the stage property: Current stage of login.
-     *
+     * 
      * @return the stage value.
      */
     public LoginMigrationStage stage() {
@@ -91,7 +95,7 @@ public final class MigrateSqlServerSqlMITaskOutputLoginLevel extends MigrateSqlS
 
     /**
      * Get the startedOn property: Login migration start time.
-     *
+     * 
      * @return the startedOn value.
      */
     public OffsetDateTime startedOn() {
@@ -100,7 +104,7 @@ public final class MigrateSqlServerSqlMITaskOutputLoginLevel extends MigrateSqlS
 
     /**
      * Get the endedOn property: Login migration end time.
-     *
+     * 
      * @return the endedOn value.
      */
     public OffsetDateTime endedOn() {
@@ -109,7 +113,7 @@ public final class MigrateSqlServerSqlMITaskOutputLoginLevel extends MigrateSqlS
 
     /**
      * Get the message property: Login migration progress message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -118,7 +122,7 @@ public final class MigrateSqlServerSqlMITaskOutputLoginLevel extends MigrateSqlS
 
     /**
      * Get the exceptionsAndWarnings property: Login migration errors and warnings per login.
-     *
+     * 
      * @return the exceptionsAndWarnings value.
      */
     public List<ReportableException> exceptionsAndWarnings() {
@@ -127,7 +131,7 @@ public final class MigrateSqlServerSqlMITaskOutputLoginLevel extends MigrateSqlS
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

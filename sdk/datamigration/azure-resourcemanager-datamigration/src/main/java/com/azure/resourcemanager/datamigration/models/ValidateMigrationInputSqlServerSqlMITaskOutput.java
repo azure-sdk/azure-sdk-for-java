@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Output for task that validates migration input for SQL to Azure SQL Managed Instance migrations. */
+/**
+ * Output for task that validates migration input for SQL to Azure SQL Managed Instance migrations.
+ */
 @Fluent
 public final class ValidateMigrationInputSqlServerSqlMITaskOutput {
     /*
@@ -59,13 +61,15 @@ public final class ValidateMigrationInputSqlServerSqlMITaskOutput {
     @JsonProperty(value = "databaseBackupInfo")
     private DatabaseBackupInfo databaseBackupInfo;
 
-    /** Creates an instance of ValidateMigrationInputSqlServerSqlMITaskOutput class. */
+    /**
+     * Creates an instance of ValidateMigrationInputSqlServerSqlMITaskOutput class.
+     */
     public ValidateMigrationInputSqlServerSqlMITaskOutput() {
     }
 
     /**
      * Get the id property: Result identifier.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -74,7 +78,7 @@ public final class ValidateMigrationInputSqlServerSqlMITaskOutput {
 
     /**
      * Get the name property: Name of database.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -83,7 +87,7 @@ public final class ValidateMigrationInputSqlServerSqlMITaskOutput {
 
     /**
      * Get the restoreDatabaseNameErrors property: Errors associated with the RestoreDatabaseName.
-     *
+     * 
      * @return the restoreDatabaseNameErrors value.
      */
     public List<ReportableException> restoreDatabaseNameErrors() {
@@ -92,7 +96,7 @@ public final class ValidateMigrationInputSqlServerSqlMITaskOutput {
 
     /**
      * Get the backupFolderErrors property: Errors associated with the BackupFolder path.
-     *
+     * 
      * @return the backupFolderErrors value.
      */
     public List<ReportableException> backupFolderErrors() {
@@ -102,7 +106,7 @@ public final class ValidateMigrationInputSqlServerSqlMITaskOutput {
     /**
      * Get the backupShareCredentialsErrors property: Errors associated with backup share user name and password
      * credentials.
-     *
+     * 
      * @return the backupShareCredentialsErrors value.
      */
     public List<ReportableException> backupShareCredentialsErrors() {
@@ -111,7 +115,7 @@ public final class ValidateMigrationInputSqlServerSqlMITaskOutput {
 
     /**
      * Get the backupStorageAccountErrors property: Errors associated with the storage account provided.
-     *
+     * 
      * @return the backupStorageAccountErrors value.
      */
     public List<ReportableException> backupStorageAccountErrors() {
@@ -120,7 +124,7 @@ public final class ValidateMigrationInputSqlServerSqlMITaskOutput {
 
     /**
      * Get the existingBackupErrors property: Errors associated with existing backup files.
-     *
+     * 
      * @return the existingBackupErrors value.
      */
     public List<ReportableException> existingBackupErrors() {
@@ -129,7 +133,7 @@ public final class ValidateMigrationInputSqlServerSqlMITaskOutput {
 
     /**
      * Get the databaseBackupInfo property: Information about backup files when existing backup mode is used.
-     *
+     * 
      * @return the databaseBackupInfo value.
      */
     public DatabaseBackupInfo databaseBackupInfo() {
@@ -138,19 +142,19 @@ public final class ValidateMigrationInputSqlServerSqlMITaskOutput {
 
     /**
      * Set the databaseBackupInfo property: Information about backup files when existing backup mode is used.
-     *
+     * 
      * @param databaseBackupInfo the databaseBackupInfo value to set.
      * @return the ValidateMigrationInputSqlServerSqlMITaskOutput object itself.
      */
-    public ValidateMigrationInputSqlServerSqlMITaskOutput withDatabaseBackupInfo(
-        DatabaseBackupInfo databaseBackupInfo) {
+    public ValidateMigrationInputSqlServerSqlMITaskOutput
+        withDatabaseBackupInfo(DatabaseBackupInfo databaseBackupInfo) {
         this.databaseBackupInfo = databaseBackupInfo;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

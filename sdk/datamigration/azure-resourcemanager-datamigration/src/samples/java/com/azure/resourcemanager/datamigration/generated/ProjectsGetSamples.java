@@ -4,19 +4,22 @@
 
 package com.azure.resourcemanager.datamigration.generated;
 
-/** Samples for Projects Get. */
+/**
+ * Samples for Projects Get.
+ */
 public final class ProjectsGetSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Projects_Get.json
+     * x-ms-original-file:
+     * specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2023-07-15-preview/examples/
+     * Projects_Get.json
      */
     /**
      * Sample code: Projects_Get.
-     *
+     * 
      * @param manager Entry point to DataMigrationManager.
      */
     public static void projectsGet(com.azure.resourcemanager.datamigration.DataMigrationManager manager) {
-        manager
-            .projects()
-            .getWithResponse("DmsSdkRg", "DmsSdkService", "DmsSdkProject", com.azure.core.util.Context.NONE);
+        manager.projects().getWithResponse("DmsSdkRg", "DmsSdkService", "DmsSdkProject",
+            com.azure.core.util.Context.NONE);
     }
 }

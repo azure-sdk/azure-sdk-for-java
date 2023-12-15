@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Output for command that completes online migration for an Azure SQL Database Managed Instance. */
+/**
+ * Output for command that completes online migration for an Azure SQL Database Managed Instance.
+ */
 @Fluent
 public final class MigrateMISyncCompleteCommandOutput {
     /*
@@ -17,13 +19,15 @@ public final class MigrateMISyncCompleteCommandOutput {
     @JsonProperty(value = "errors")
     private List<ReportableException> errors;
 
-    /** Creates an instance of MigrateMISyncCompleteCommandOutput class. */
+    /**
+     * Creates an instance of MigrateMISyncCompleteCommandOutput class.
+     */
     public MigrateMISyncCompleteCommandOutput() {
     }
 
     /**
      * Get the errors property: List of errors that happened during the command execution.
-     *
+     * 
      * @return the errors value.
      */
     public List<ReportableException> errors() {
@@ -32,7 +36,7 @@ public final class MigrateMISyncCompleteCommandOutput {
 
     /**
      * Set the errors property: List of errors that happened during the command execution.
-     *
+     * 
      * @param errors the errors value to set.
      * @return the MigrateMISyncCompleteCommandOutput object itself.
      */
@@ -43,7 +47,7 @@ public final class MigrateMISyncCompleteCommandOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

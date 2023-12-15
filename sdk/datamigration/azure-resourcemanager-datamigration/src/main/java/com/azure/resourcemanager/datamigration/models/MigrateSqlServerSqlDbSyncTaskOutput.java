@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Output for the task that migrates on-prem SQL Server databases to Azure SQL Database for online migrations. */
+/**
+ * Output for the task that migrates on-prem SQL Server databases to Azure SQL Database for online migrations.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -24,8 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "ErrorOutput", value = MigrateSqlServerSqlDbSyncTaskOutputError.class),
     @JsonSubTypes.Type(
         name = "DatabaseLevelErrorOutput",
-        value = MigrateSqlServerSqlDbSyncTaskOutputDatabaseError.class)
-})
+        value = MigrateSqlServerSqlDbSyncTaskOutputDatabaseError.class) })
 @Immutable
 public class MigrateSqlServerSqlDbSyncTaskOutput {
     /*
@@ -34,13 +35,15 @@ public class MigrateSqlServerSqlDbSyncTaskOutput {
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
-    /** Creates an instance of MigrateSqlServerSqlDbSyncTaskOutput class. */
+    /**
+     * Creates an instance of MigrateSqlServerSqlDbSyncTaskOutput class.
+     */
     public MigrateSqlServerSqlDbSyncTaskOutput() {
     }
 
     /**
      * Get the id property: Result identifier.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -49,7 +52,7 @@ public class MigrateSqlServerSqlDbSyncTaskOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

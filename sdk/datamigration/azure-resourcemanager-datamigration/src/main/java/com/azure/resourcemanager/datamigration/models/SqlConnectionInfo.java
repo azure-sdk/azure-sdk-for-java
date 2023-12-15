@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Information for connecting to SQL database server. */
+/**
+ * Information for connecting to SQL database server.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("SqlConnectionInfo")
 @Fluent
@@ -20,6 +22,36 @@ public final class SqlConnectionInfo extends ConnectionInfo {
      */
     @JsonProperty(value = "dataSource", required = true)
     private String dataSource;
+
+    /*
+     * name of the server
+     */
+    @JsonProperty(value = "serverName")
+    private String serverName;
+
+    /*
+     * Port for Server
+     */
+    @JsonProperty(value = "port")
+    private Integer port;
+
+    /*
+     * server version
+     */
+    @JsonProperty(value = "serverVersion")
+    private String serverVersion;
+
+    /*
+     * server brand version
+     */
+    @JsonProperty(value = "serverBrandVersion")
+    private String serverBrandVersion;
+
+    /*
+     * Represents the ID of an HTTP resource represented by an Azure resource provider.
+     */
+    @JsonProperty(value = "resourceId")
+    private String resourceId;
 
     /*
      * Authentication type to use for connection
@@ -51,13 +83,15 @@ public final class SqlConnectionInfo extends ConnectionInfo {
     @JsonProperty(value = "platform")
     private SqlSourcePlatform platform;
 
-    /** Creates an instance of SqlConnectionInfo class. */
+    /**
+     * Creates an instance of SqlConnectionInfo class.
+     */
     public SqlConnectionInfo() {
     }
 
     /**
      * Get the dataSource property: Data source in the format Protocol:MachineName\SQLServerInstanceName,PortNumber.
-     *
+     * 
      * @return the dataSource value.
      */
     public String dataSource() {
@@ -66,7 +100,7 @@ public final class SqlConnectionInfo extends ConnectionInfo {
 
     /**
      * Set the dataSource property: Data source in the format Protocol:MachineName\SQLServerInstanceName,PortNumber.
-     *
+     * 
      * @param dataSource the dataSource value to set.
      * @return the SqlConnectionInfo object itself.
      */
@@ -76,8 +110,108 @@ public final class SqlConnectionInfo extends ConnectionInfo {
     }
 
     /**
+     * Get the serverName property: name of the server.
+     * 
+     * @return the serverName value.
+     */
+    public String serverName() {
+        return this.serverName;
+    }
+
+    /**
+     * Set the serverName property: name of the server.
+     * 
+     * @param serverName the serverName value to set.
+     * @return the SqlConnectionInfo object itself.
+     */
+    public SqlConnectionInfo withServerName(String serverName) {
+        this.serverName = serverName;
+        return this;
+    }
+
+    /**
+     * Get the port property: Port for Server.
+     * 
+     * @return the port value.
+     */
+    public Integer port() {
+        return this.port;
+    }
+
+    /**
+     * Set the port property: Port for Server.
+     * 
+     * @param port the port value to set.
+     * @return the SqlConnectionInfo object itself.
+     */
+    public SqlConnectionInfo withPort(Integer port) {
+        this.port = port;
+        return this;
+    }
+
+    /**
+     * Get the serverVersion property: server version.
+     * 
+     * @return the serverVersion value.
+     */
+    public String serverVersion() {
+        return this.serverVersion;
+    }
+
+    /**
+     * Set the serverVersion property: server version.
+     * 
+     * @param serverVersion the serverVersion value to set.
+     * @return the SqlConnectionInfo object itself.
+     */
+    public SqlConnectionInfo withServerVersion(String serverVersion) {
+        this.serverVersion = serverVersion;
+        return this;
+    }
+
+    /**
+     * Get the serverBrandVersion property: server brand version.
+     * 
+     * @return the serverBrandVersion value.
+     */
+    public String serverBrandVersion() {
+        return this.serverBrandVersion;
+    }
+
+    /**
+     * Set the serverBrandVersion property: server brand version.
+     * 
+     * @param serverBrandVersion the serverBrandVersion value to set.
+     * @return the SqlConnectionInfo object itself.
+     */
+    public SqlConnectionInfo withServerBrandVersion(String serverBrandVersion) {
+        this.serverBrandVersion = serverBrandVersion;
+        return this;
+    }
+
+    /**
+     * Get the resourceId property: Represents the ID of an HTTP resource represented by an Azure resource provider.
+     * 
+     * @return the resourceId value.
+     */
+    public String resourceId() {
+        return this.resourceId;
+    }
+
+    /**
+     * Set the resourceId property: Represents the ID of an HTTP resource represented by an Azure resource provider.
+     * 
+     * @param resourceId the resourceId value to set.
+     * @return the SqlConnectionInfo object itself.
+     */
+    public SqlConnectionInfo withResourceId(String resourceId) {
+        this.resourceId = resourceId;
+        return this;
+    }
+
+    /**
      * Get the authentication property: Authentication type to use for connection.
-     *
+     * 
      * @return the authentication value.
      */
     public AuthenticationType authentication() {
@@ -86,7 +220,7 @@ public final class SqlConnectionInfo extends ConnectionInfo {
 
     /**
      * Set the authentication property: Authentication type to use for connection.
-     *
+     * 
      * @param authentication the authentication value to set.
      * @return the SqlConnectionInfo object itself.
      */
@@ -97,7 +231,7 @@ public final class SqlConnectionInfo extends ConnectionInfo {
 
     /**
      * Get the encryptConnection property: Whether to encrypt the connection.
-     *
+     * 
      * @return the encryptConnection value.
      */
     public Boolean encryptConnection() {
@@ -106,7 +240,7 @@ public final class SqlConnectionInfo extends ConnectionInfo {
 
     /**
      * Set the encryptConnection property: Whether to encrypt the connection.
-     *
+     * 
      * @param encryptConnection the encryptConnection value to set.
      * @return the SqlConnectionInfo object itself.
      */
@@ -117,7 +251,7 @@ public final class SqlConnectionInfo extends ConnectionInfo {
 
     /**
      * Get the additionalSettings property: Additional connection settings.
-     *
+     * 
      * @return the additionalSettings value.
      */
     public String additionalSettings() {
@@ -126,7 +260,7 @@ public final class SqlConnectionInfo extends ConnectionInfo {
 
     /**
      * Set the additionalSettings property: Additional connection settings.
-     *
+     * 
      * @param additionalSettings the additionalSettings value to set.
      * @return the SqlConnectionInfo object itself.
      */
@@ -137,7 +271,7 @@ public final class SqlConnectionInfo extends ConnectionInfo {
 
     /**
      * Get the trustServerCertificate property: Whether to trust the server certificate.
-     *
+     * 
      * @return the trustServerCertificate value.
      */
     public Boolean trustServerCertificate() {
@@ -146,7 +280,7 @@ public final class SqlConnectionInfo extends ConnectionInfo {
 
     /**
      * Set the trustServerCertificate property: Whether to trust the server certificate.
-     *
+     * 
      * @param trustServerCertificate the trustServerCertificate value to set.
      * @return the SqlConnectionInfo object itself.
      */
@@ -157,7 +291,7 @@ public final class SqlConnectionInfo extends ConnectionInfo {
 
     /**
      * Get the platform property: Server platform type for connection.
-     *
+     * 
      * @return the platform value.
      */
     public SqlSourcePlatform platform() {
@@ -166,7 +300,7 @@ public final class SqlConnectionInfo extends ConnectionInfo {
 
     /**
      * Set the platform property: Server platform type for connection.
-     *
+     * 
      * @param platform the platform value to set.
      * @return the SqlConnectionInfo object itself.
      */
@@ -175,14 +309,18 @@ public final class SqlConnectionInfo extends ConnectionInfo {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SqlConnectionInfo withUsername(String username) {
         super.withUsername(username);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SqlConnectionInfo withPassword(String password) {
         super.withPassword(password);
@@ -191,16 +329,15 @@ public final class SqlConnectionInfo extends ConnectionInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (dataSource() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property dataSource in model SqlConnectionInfo"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property dataSource in model SqlConnectionInfo"));
         }
     }
 

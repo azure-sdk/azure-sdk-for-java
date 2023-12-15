@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datamigration.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Output for the task that validates connection to SQL DB and target server requirements. */
+/**
+ * Output for the task that validates connection to SQL DB and target server requirements.
+ */
 @Immutable
 public final class ConnectToTargetSqlDbTaskOutput {
     /*
@@ -34,13 +36,15 @@ public final class ConnectToTargetSqlDbTaskOutput {
     @JsonProperty(value = "targetServerBrandVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String targetServerBrandVersion;
 
-    /** Creates an instance of ConnectToTargetSqlDbTaskOutput class. */
+    /**
+     * Creates an instance of ConnectToTargetSqlDbTaskOutput class.
+     */
     public ConnectToTargetSqlDbTaskOutput() {
     }
 
     /**
      * Get the id property: Result identifier.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -49,7 +53,7 @@ public final class ConnectToTargetSqlDbTaskOutput {
 
     /**
      * Get the databases property: Source databases as a map from database name to database id.
-     *
+     * 
      * @return the databases value.
      */
     public String databases() {
@@ -58,7 +62,7 @@ public final class ConnectToTargetSqlDbTaskOutput {
 
     /**
      * Get the targetServerVersion property: Version of the target server.
-     *
+     * 
      * @return the targetServerVersion value.
      */
     public String targetServerVersion() {
@@ -67,7 +71,7 @@ public final class ConnectToTargetSqlDbTaskOutput {
 
     /**
      * Get the targetServerBrandVersion property: Target server brand version.
-     *
+     * 
      * @return the targetServerBrandVersion value.
      */
     public String targetServerBrandVersion() {
@@ -76,7 +80,7 @@ public final class ConnectToTargetSqlDbTaskOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

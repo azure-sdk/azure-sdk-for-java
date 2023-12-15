@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datamigration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The name of the quota. */
+/**
+ * The name of the quota.
+ */
 @Fluent
 public final class QuotaName {
     /*
@@ -22,13 +24,15 @@ public final class QuotaName {
     @JsonProperty(value = "value")
     private String value;
 
-    /** Creates an instance of QuotaName class. */
+    /**
+     * Creates an instance of QuotaName class.
+     */
     public QuotaName() {
     }
 
     /**
      * Get the localizedValue property: The localized name of the quota.
-     *
+     * 
      * @return the localizedValue value.
      */
     public String localizedValue() {
@@ -37,7 +41,7 @@ public final class QuotaName {
 
     /**
      * Set the localizedValue property: The localized name of the quota.
-     *
+     * 
      * @param localizedValue the localizedValue value to set.
      * @return the QuotaName object itself.
      */
@@ -48,7 +52,7 @@ public final class QuotaName {
 
     /**
      * Get the value property: The unlocalized name (or ID) of the quota.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -57,7 +61,7 @@ public final class QuotaName {
 
     /**
      * Set the value property: The unlocalized name (or ID) of the quota.
-     *
+     * 
      * @param value the value value to set.
      * @return the QuotaName object itself.
      */
@@ -68,7 +72,7 @@ public final class QuotaName {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -19,8 +19,8 @@ public final class ResourceSkusImpl implements ResourceSkus {
 
     private final com.azure.resourcemanager.datamigration.DataMigrationManager serviceManager;
 
-    public ResourceSkusImpl(
-        ResourceSkusClient innerClient, com.azure.resourcemanager.datamigration.DataMigrationManager serviceManager) {
+    public ResourceSkusImpl(ResourceSkusClient innerClient,
+        com.azure.resourcemanager.datamigration.DataMigrationManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datamigration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Information of orphaned users on the SQL server database. */
+/**
+ * Information of orphaned users on the SQL server database.
+ */
 @Fluent
 public final class OrphanedUserInfo {
     /*
@@ -22,13 +24,15 @@ public final class OrphanedUserInfo {
     @JsonProperty(value = "databaseName")
     private String databaseName;
 
-    /** Creates an instance of OrphanedUserInfo class. */
+    /**
+     * Creates an instance of OrphanedUserInfo class.
+     */
     public OrphanedUserInfo() {
     }
 
     /**
      * Get the name property: Name of the orphaned user.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class OrphanedUserInfo {
 
     /**
      * Set the name property: Name of the orphaned user.
-     *
+     * 
      * @param name the name value to set.
      * @return the OrphanedUserInfo object itself.
      */
@@ -48,7 +52,7 @@ public final class OrphanedUserInfo {
 
     /**
      * Get the databaseName property: Parent database of the user.
-     *
+     * 
      * @return the databaseName value.
      */
     public String databaseName() {
@@ -57,7 +61,7 @@ public final class OrphanedUserInfo {
 
     /**
      * Set the databaseName property: Parent database of the user.
-     *
+     * 
      * @param databaseName the databaseName value to set.
      * @return the OrphanedUserInfo object itself.
      */
@@ -68,7 +72,7 @@ public final class OrphanedUserInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

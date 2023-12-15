@@ -4,37 +4,41 @@
 
 package com.azure.resourcemanager.datamigration.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Description about the errors happen while performing migration validation. */
-@Immutable
+/**
+ * Description about the errors happen while performing migration validation.
+ */
+@Fluent
 public final class SchemaComparisonValidationResultType {
     /*
      * Name of the object that has the difference
      */
-    @JsonProperty(value = "objectName", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "objectName")
     private String objectName;
 
     /*
      * Type of the object that has the difference. e.g (Table/View/StoredProcedure)
      */
-    @JsonProperty(value = "objectType", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "objectType")
     private ObjectType objectType;
 
     /*
      * Update action type with respect to target
      */
-    @JsonProperty(value = "updateAction", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "updateAction")
     private UpdateActionType updateAction;
 
-    /** Creates an instance of SchemaComparisonValidationResultType class. */
+    /**
+     * Creates an instance of SchemaComparisonValidationResultType class.
+     */
     public SchemaComparisonValidationResultType() {
     }
 
     /**
      * Get the objectName property: Name of the object that has the difference.
-     *
+     * 
      * @return the objectName value.
      */
     public String objectName() {
@@ -42,8 +46,19 @@ public final class SchemaComparisonValidationResultType {
     }
 
     /**
+     * Set the objectName property: Name of the object that has the difference.
+     * 
+     * @param objectName the objectName value to set.
+     * @return the SchemaComparisonValidationResultType object itself.
+     */
+    public SchemaComparisonValidationResultType withObjectName(String objectName) {
+        this.objectName = objectName;
+        return this;
+    }
+
+    /**
      * Get the objectType property: Type of the object that has the difference. e.g (Table/View/StoredProcedure).
-     *
+     * 
      * @return the objectType value.
      */
     public ObjectType objectType() {
@@ -51,8 +66,19 @@ public final class SchemaComparisonValidationResultType {
     }
 
     /**
+     * Set the objectType property: Type of the object that has the difference. e.g (Table/View/StoredProcedure).
+     * 
+     * @param objectType the objectType value to set.
+     * @return the SchemaComparisonValidationResultType object itself.
+     */
+    public SchemaComparisonValidationResultType withObjectType(ObjectType objectType) {
+        this.objectType = objectType;
+        return this;
+    }
+
+    /**
      * Get the updateAction property: Update action type with respect to target.
-     *
+     * 
      * @return the updateAction value.
      */
     public UpdateActionType updateAction() {
@@ -60,8 +86,19 @@ public final class SchemaComparisonValidationResultType {
     }
 
     /**
+     * Set the updateAction property: Update action type with respect to target.
+     * 
+     * @param updateAction the updateAction value to set.
+     * @return the SchemaComparisonValidationResultType object itself.
+     */
+    public SchemaComparisonValidationResultType withUpdateAction(UpdateActionType updateAction) {
+        this.updateAction = updateAction;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

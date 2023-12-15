@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** The MigrateMySqlAzureDbForMySqlSyncTaskOutputDatabaseError model. */
+/**
+ * The MigrateMySqlAzureDbForMySqlSyncTaskOutputDatabaseError model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("DatabaseLevelErrorOutput")
 @Fluent
@@ -28,13 +30,15 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskOutputDatabaseError
     @JsonProperty(value = "events")
     private List<SyncMigrationDatabaseErrorEvent> events;
 
-    /** Creates an instance of MigrateMySqlAzureDbForMySqlSyncTaskOutputDatabaseError class. */
+    /**
+     * Creates an instance of MigrateMySqlAzureDbForMySqlSyncTaskOutputDatabaseError class.
+     */
     public MigrateMySqlAzureDbForMySqlSyncTaskOutputDatabaseError() {
     }
 
     /**
      * Get the errorMessage property: Error message.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -43,7 +47,7 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskOutputDatabaseError
 
     /**
      * Set the errorMessage property: Error message.
-     *
+     * 
      * @param errorMessage the errorMessage value to set.
      * @return the MigrateMySqlAzureDbForMySqlSyncTaskOutputDatabaseError object itself.
      */
@@ -54,7 +58,7 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskOutputDatabaseError
 
     /**
      * Get the events property: List of error events.
-     *
+     * 
      * @return the events value.
      */
     public List<SyncMigrationDatabaseErrorEvent> events() {
@@ -63,19 +67,19 @@ public final class MigrateMySqlAzureDbForMySqlSyncTaskOutputDatabaseError
 
     /**
      * Set the events property: List of error events.
-     *
+     * 
      * @param events the events value to set.
      * @return the MigrateMySqlAzureDbForMySqlSyncTaskOutputDatabaseError object itself.
      */
-    public MigrateMySqlAzureDbForMySqlSyncTaskOutputDatabaseError withEvents(
-        List<SyncMigrationDatabaseErrorEvent> events) {
+    public MigrateMySqlAzureDbForMySqlSyncTaskOutputDatabaseError
+        withEvents(List<SyncMigrationDatabaseErrorEvent> events) {
         this.events = events;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

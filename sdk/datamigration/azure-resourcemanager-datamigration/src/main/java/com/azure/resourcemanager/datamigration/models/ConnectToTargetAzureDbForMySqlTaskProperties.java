@@ -9,8 +9,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
+import java.util.Map;
 
-/** Properties for the task that validates connection to Azure Database for MySQL and target server requirements. */
+/**
+ * Properties for the task that validates connection to Azure Database for MySQL and target server requirements.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
 @JsonTypeName("ConnectToTarget.AzureDbForMySql")
 @Fluent
@@ -27,13 +30,15 @@ public final class ConnectToTargetAzureDbForMySqlTaskProperties extends ProjectT
     @JsonProperty(value = "output", access = JsonProperty.Access.WRITE_ONLY)
     private List<ConnectToTargetAzureDbForMySqlTaskOutput> output;
 
-    /** Creates an instance of ConnectToTargetAzureDbForMySqlTaskProperties class. */
+    /**
+     * Creates an instance of ConnectToTargetAzureDbForMySqlTaskProperties class.
+     */
     public ConnectToTargetAzureDbForMySqlTaskProperties() {
     }
 
     /**
      * Get the input property: Task input.
-     *
+     * 
      * @return the input value.
      */
     public ConnectToTargetAzureDbForMySqlTaskInput input() {
@@ -42,7 +47,7 @@ public final class ConnectToTargetAzureDbForMySqlTaskProperties extends ProjectT
 
     /**
      * Set the input property: Task input.
-     *
+     * 
      * @param input the input value to set.
      * @return the ConnectToTargetAzureDbForMySqlTaskProperties object itself.
      */
@@ -53,7 +58,7 @@ public final class ConnectToTargetAzureDbForMySqlTaskProperties extends ProjectT
 
     /**
      * Get the output property: Task output. This is ignored if submitted.
-     *
+     * 
      * @return the output value.
      */
     public List<ConnectToTargetAzureDbForMySqlTaskOutput> output() {
@@ -61,8 +66,17 @@ public final class ConnectToTargetAzureDbForMySqlTaskProperties extends ProjectT
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ConnectToTargetAzureDbForMySqlTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
