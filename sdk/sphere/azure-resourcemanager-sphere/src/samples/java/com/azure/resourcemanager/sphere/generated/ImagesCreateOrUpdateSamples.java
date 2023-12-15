@@ -4,22 +4,23 @@
 
 package com.azure.resourcemanager.sphere.generated;
 
-/** Samples for Images CreateOrUpdate. */
+import com.azure.resourcemanager.sphere.models.ImageProperties;
+
+/**
+ * Samples for Images CreateOrUpdate.
+ */
 public final class ImagesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/preview/2022-09-01-preview/examples/PutImage.json
+     * x-ms-original-file:
+     * specification/sphere/resource-manager/Microsoft.AzureSphere/preview/2022-09-01-preview/examples/PutImage.json
      */
     /**
      * Sample code: Image_CreateOrUpdate.
-     *
+     * 
      * @param manager Entry point to AzureSphereManager.
      */
     public static void imageCreateOrUpdate(com.azure.resourcemanager.sphere.AzureSphereManager manager) {
-        manager
-            .images()
-            .define("default")
-            .withExistingCatalog("MyResourceGroup1", "MyCatalog1")
-            .withImage("bXliYXNlNjRzdHJpbmc=")
-            .create();
+        manager.images().define("default").withExistingCatalog("MyResourceGroup1", "MyCatalog1")
+            .withProperties(new ImageProperties().withImage("bXliYXNlNjRzdHJpbmc=")).create();
     }
 }
