@@ -27,7 +27,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Class representing a Kusto cluster. */
+/**
+ * Class representing a Kusto cluster.
+ */
 @Fluent
 public final class ClusterInner extends Resource {
     /*
@@ -66,13 +68,15 @@ public final class ClusterInner extends Resource {
     @JsonProperty(value = "etag", access = JsonProperty.Access.WRITE_ONLY)
     private String etag;
 
-    /** Creates an instance of ClusterInner class. */
+    /**
+     * Creates an instance of ClusterInner class.
+     */
     public ClusterInner() {
     }
 
     /**
      * Get the sku property: The SKU of the cluster.
-     *
+     * 
      * @return the sku value.
      */
     public AzureSku sku() {
@@ -81,7 +85,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the sku property: The SKU of the cluster.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the ClusterInner object itself.
      */
@@ -92,7 +96,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -101,7 +105,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the zones property: The availability zones of the cluster.
-     *
+     * 
      * @return the zones value.
      */
     public List<String> zones() {
@@ -110,7 +114,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the zones property: The availability zones of the cluster.
-     *
+     * 
      * @param zones the zones value to set.
      * @return the ClusterInner object itself.
      */
@@ -121,7 +125,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the identity property: The identity of the cluster, if configured.
-     *
+     * 
      * @return the identity value.
      */
     public Identity identity() {
@@ -130,7 +134,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the identity property: The identity of the cluster, if configured.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the ClusterInner object itself.
      */
@@ -141,7 +145,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the innerProperties property: The cluster properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ClusterProperties innerProperties() {
@@ -150,21 +154,25 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the etag property: A unique read-only string that changes whenever the resource is updated.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
         return this.etag;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -173,7 +181,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the state property: The state of the resource.
-     *
+     * 
      * @return the state value.
      */
     public State state() {
@@ -182,7 +190,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -191,7 +199,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the uri property: The cluster URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -200,7 +208,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the dataIngestionUri property: The cluster data ingestion URI.
-     *
+     * 
      * @return the dataIngestionUri value.
      */
     public String dataIngestionUri() {
@@ -209,7 +217,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the stateReason property: The reason for the cluster's current state.
-     *
+     * 
      * @return the stateReason value.
      */
     public String stateReason() {
@@ -218,7 +226,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the trustedExternalTenants property: The cluster's external tenants.
-     *
+     * 
      * @return the trustedExternalTenants value.
      */
     public List<TrustedExternalTenant> trustedExternalTenants() {
@@ -227,7 +235,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the trustedExternalTenants property: The cluster's external tenants.
-     *
+     * 
      * @param trustedExternalTenants the trustedExternalTenants value to set.
      * @return the ClusterInner object itself.
      */
@@ -241,7 +249,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the optimizedAutoscale property: Optimized auto scale definition.
-     *
+     * 
      * @return the optimizedAutoscale value.
      */
     public OptimizedAutoscale optimizedAutoscale() {
@@ -250,7 +258,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the optimizedAutoscale property: Optimized auto scale definition.
-     *
+     * 
      * @param optimizedAutoscale the optimizedAutoscale value to set.
      * @return the ClusterInner object itself.
      */
@@ -264,7 +272,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the enableDiskEncryption property: A boolean value that indicates if the cluster's disks are encrypted.
-     *
+     * 
      * @return the enableDiskEncryption value.
      */
     public Boolean enableDiskEncryption() {
@@ -273,7 +281,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the enableDiskEncryption property: A boolean value that indicates if the cluster's disks are encrypted.
-     *
+     * 
      * @param enableDiskEncryption the enableDiskEncryption value to set.
      * @return the ClusterInner object itself.
      */
@@ -287,7 +295,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the enableStreamingIngest property: A boolean value that indicates if the streaming ingest is enabled.
-     *
+     * 
      * @return the enableStreamingIngest value.
      */
     public Boolean enableStreamingIngest() {
@@ -296,7 +304,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the enableStreamingIngest property: A boolean value that indicates if the streaming ingest is enabled.
-     *
+     * 
      * @param enableStreamingIngest the enableStreamingIngest value to set.
      * @return the ClusterInner object itself.
      */
@@ -310,7 +318,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the virtualNetworkConfiguration property: Virtual network definition.
-     *
+     * 
      * @return the virtualNetworkConfiguration value.
      */
     public VirtualNetworkConfiguration virtualNetworkConfiguration() {
@@ -319,7 +327,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the virtualNetworkConfiguration property: Virtual network definition.
-     *
+     * 
      * @param virtualNetworkConfiguration the virtualNetworkConfiguration value to set.
      * @return the ClusterInner object itself.
      */
@@ -333,7 +341,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the keyVaultProperties property: KeyVault properties for the cluster encryption.
-     *
+     * 
      * @return the keyVaultProperties value.
      */
     public KeyVaultProperties keyVaultProperties() {
@@ -342,7 +350,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the keyVaultProperties property: KeyVault properties for the cluster encryption.
-     *
+     * 
      * @param keyVaultProperties the keyVaultProperties value to set.
      * @return the ClusterInner object itself.
      */
@@ -356,7 +364,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the enablePurge property: A boolean value that indicates if the purge operations are enabled.
-     *
+     * 
      * @return the enablePurge value.
      */
     public Boolean enablePurge() {
@@ -365,7 +373,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the enablePurge property: A boolean value that indicates if the purge operations are enabled.
-     *
+     * 
      * @param enablePurge the enablePurge value to set.
      * @return the ClusterInner object itself.
      */
@@ -379,7 +387,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the languageExtensions property: List of the cluster's language extensions.
-     *
+     * 
      * @return the languageExtensions value.
      */
     public LanguageExtensionsList languageExtensions() {
@@ -388,7 +396,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the languageExtensions property: List of the cluster's language extensions.
-     *
+     * 
      * @param languageExtensions the languageExtensions value to set.
      * @return the ClusterInner object itself.
      */
@@ -402,7 +410,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the enableDoubleEncryption property: A boolean value that indicates if double encryption is enabled.
-     *
+     * 
      * @return the enableDoubleEncryption value.
      */
     public Boolean enableDoubleEncryption() {
@@ -411,7 +419,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the enableDoubleEncryption property: A boolean value that indicates if double encryption is enabled.
-     *
+     * 
      * @param enableDoubleEncryption the enableDoubleEncryption value to set.
      * @return the ClusterInner object itself.
      */
@@ -426,7 +434,7 @@ public final class ClusterInner extends Resource {
     /**
      * Get the publicNetworkAccess property: Public network access to the cluster is enabled by default. When disabled,
      * only private endpoint connection to the cluster is allowed.
-     *
+     * 
      * @return the publicNetworkAccess value.
      */
     public PublicNetworkAccess publicNetworkAccess() {
@@ -436,7 +444,7 @@ public final class ClusterInner extends Resource {
     /**
      * Set the publicNetworkAccess property: Public network access to the cluster is enabled by default. When disabled,
      * only private endpoint connection to the cluster is allowed.
-     *
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the ClusterInner object itself.
      */
@@ -450,7 +458,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the allowedIpRangeList property: The list of ips in the format of CIDR allowed to connect to the cluster.
-     *
+     * 
      * @return the allowedIpRangeList value.
      */
     public List<String> allowedIpRangeList() {
@@ -459,7 +467,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the allowedIpRangeList property: The list of ips in the format of CIDR allowed to connect to the cluster.
-     *
+     * 
      * @param allowedIpRangeList the allowedIpRangeList value to set.
      * @return the ClusterInner object itself.
      */
@@ -473,7 +481,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the engineType property: The engine type.
-     *
+     * 
      * @return the engineType value.
      */
     public EngineType engineType() {
@@ -482,7 +490,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the engineType property: The engine type.
-     *
+     * 
      * @param engineType the engineType value to set.
      * @return the ClusterInner object itself.
      */
@@ -496,7 +504,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the acceptedAudiences property: The cluster's accepted audiences.
-     *
+     * 
      * @return the acceptedAudiences value.
      */
     public List<AcceptedAudiences> acceptedAudiences() {
@@ -505,7 +513,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the acceptedAudiences property: The cluster's accepted audiences.
-     *
+     * 
      * @param acceptedAudiences the acceptedAudiences value to set.
      * @return the ClusterInner object itself.
      */
@@ -520,7 +528,7 @@ public final class ClusterInner extends Resource {
     /**
      * Get the enableAutoStop property: A boolean value that indicates if the cluster could be automatically stopped
      * (due to lack of data or no activity for many days).
-     *
+     * 
      * @return the enableAutoStop value.
      */
     public Boolean enableAutoStop() {
@@ -530,7 +538,7 @@ public final class ClusterInner extends Resource {
     /**
      * Set the enableAutoStop property: A boolean value that indicates if the cluster could be automatically stopped
      * (due to lack of data or no activity for many days).
-     *
+     * 
      * @param enableAutoStop the enableAutoStop value to set.
      * @return the ClusterInner object itself.
      */
@@ -545,7 +553,7 @@ public final class ClusterInner extends Resource {
     /**
      * Get the restrictOutboundNetworkAccess property: Whether or not to restrict outbound network access. Value is
      * optional but if passed in, must be 'Enabled' or 'Disabled'.
-     *
+     * 
      * @return the restrictOutboundNetworkAccess value.
      */
     public ClusterNetworkAccessFlag restrictOutboundNetworkAccess() {
@@ -555,7 +563,7 @@ public final class ClusterInner extends Resource {
     /**
      * Set the restrictOutboundNetworkAccess property: Whether or not to restrict outbound network access. Value is
      * optional but if passed in, must be 'Enabled' or 'Disabled'.
-     *
+     * 
      * @param restrictOutboundNetworkAccess the restrictOutboundNetworkAccess value to set.
      * @return the ClusterInner object itself.
      */
@@ -569,7 +577,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the allowedFqdnList property: List of allowed FQDNs(Fully Qualified Domain Name) for egress from Cluster.
-     *
+     * 
      * @return the allowedFqdnList value.
      */
     public List<String> allowedFqdnList() {
@@ -578,7 +586,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the allowedFqdnList property: List of allowed FQDNs(Fully Qualified Domain Name) for egress from Cluster.
-     *
+     * 
      * @param allowedFqdnList the allowedFqdnList value to set.
      * @return the ClusterInner object itself.
      */
@@ -593,7 +601,7 @@ public final class ClusterInner extends Resource {
     /**
      * Get the publicIpType property: Indicates what public IP type to create - IPv4 (default), or DualStack (both IPv4
      * and IPv6).
-     *
+     * 
      * @return the publicIpType value.
      */
     public PublicIpType publicIpType() {
@@ -603,7 +611,7 @@ public final class ClusterInner extends Resource {
     /**
      * Set the publicIpType property: Indicates what public IP type to create - IPv4 (default), or DualStack (both IPv4
      * and IPv6).
-     *
+     * 
      * @param publicIpType the publicIpType value to set.
      * @return the ClusterInner object itself.
      */
@@ -617,7 +625,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the virtualClusterGraduationProperties property: Virtual Cluster graduation properties.
-     *
+     * 
      * @return the virtualClusterGraduationProperties value.
      */
     public String virtualClusterGraduationProperties() {
@@ -626,7 +634,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the virtualClusterGraduationProperties property: Virtual Cluster graduation properties.
-     *
+     * 
      * @param virtualClusterGraduationProperties the virtualClusterGraduationProperties value to set.
      * @return the ClusterInner object itself.
      */
@@ -640,7 +648,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the privateEndpointConnections property: A list of private endpoint connections.
-     *
+     * 
      * @return the privateEndpointConnections value.
      */
     public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
@@ -649,7 +657,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the migrationCluster property: Properties of the peer cluster involved in a migration to/from this cluster.
-     *
+     * 
      * @return the migrationCluster value.
      */
     public MigrationClusterProperties migrationCluster() {
@@ -658,14 +666,13 @@ public final class ClusterInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sku() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property sku in model ClusterInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property sku in model ClusterInner"));
         } else {
             sku().validate();
         }

@@ -11,7 +11,9 @@ import com.azure.resourcemanager.kusto.models.PrincipalType;
 import com.azure.resourcemanager.kusto.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Class representing a cluster principal assignment. */
+/**
+ * Class representing a cluster principal assignment.
+ */
 @Fluent
 public final class ClusterPrincipalAssignmentInner extends ProxyResource {
     /*
@@ -20,13 +22,15 @@ public final class ClusterPrincipalAssignmentInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private ClusterPrincipalProperties innerProperties;
 
-    /** Creates an instance of ClusterPrincipalAssignmentInner class. */
+    /**
+     * Creates an instance of ClusterPrincipalAssignmentInner class.
+     */
     public ClusterPrincipalAssignmentInner() {
     }
 
     /**
      * Get the innerProperties property: The cluster principal.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ClusterPrincipalProperties innerProperties() {
@@ -36,7 +40,7 @@ public final class ClusterPrincipalAssignmentInner extends ProxyResource {
     /**
      * Get the principalId property: The principal ID assigned to the cluster principal. It can be a user email,
      * application ID, or security group name.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -46,7 +50,7 @@ public final class ClusterPrincipalAssignmentInner extends ProxyResource {
     /**
      * Set the principalId property: The principal ID assigned to the cluster principal. It can be a user email,
      * application ID, or security group name.
-     *
+     * 
      * @param principalId the principalId value to set.
      * @return the ClusterPrincipalAssignmentInner object itself.
      */
@@ -60,7 +64,7 @@ public final class ClusterPrincipalAssignmentInner extends ProxyResource {
 
     /**
      * Get the role property: Cluster principal role.
-     *
+     * 
      * @return the role value.
      */
     public ClusterPrincipalRole role() {
@@ -69,7 +73,7 @@ public final class ClusterPrincipalAssignmentInner extends ProxyResource {
 
     /**
      * Set the role property: Cluster principal role.
-     *
+     * 
      * @param role the role value to set.
      * @return the ClusterPrincipalAssignmentInner object itself.
      */
@@ -83,7 +87,7 @@ public final class ClusterPrincipalAssignmentInner extends ProxyResource {
 
     /**
      * Get the tenantId property: The tenant id of the principal.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -92,7 +96,7 @@ public final class ClusterPrincipalAssignmentInner extends ProxyResource {
 
     /**
      * Set the tenantId property: The tenant id of the principal.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the ClusterPrincipalAssignmentInner object itself.
      */
@@ -106,7 +110,7 @@ public final class ClusterPrincipalAssignmentInner extends ProxyResource {
 
     /**
      * Get the principalType property: Principal type.
-     *
+     * 
      * @return the principalType value.
      */
     public PrincipalType principalType() {
@@ -115,7 +119,7 @@ public final class ClusterPrincipalAssignmentInner extends ProxyResource {
 
     /**
      * Set the principalType property: Principal type.
-     *
+     * 
      * @param principalType the principalType value to set.
      * @return the ClusterPrincipalAssignmentInner object itself.
      */
@@ -129,7 +133,7 @@ public final class ClusterPrincipalAssignmentInner extends ProxyResource {
 
     /**
      * Get the tenantName property: The tenant name of the principal.
-     *
+     * 
      * @return the tenantName value.
      */
     public String tenantName() {
@@ -138,7 +142,7 @@ public final class ClusterPrincipalAssignmentInner extends ProxyResource {
 
     /**
      * Get the principalName property: The principal name.
-     *
+     * 
      * @return the principalName value.
      */
     public String principalName() {
@@ -147,7 +151,7 @@ public final class ClusterPrincipalAssignmentInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -156,7 +160,7 @@ public final class ClusterPrincipalAssignmentInner extends ProxyResource {
 
     /**
      * Get the aadObjectId property: The service principal object id in AAD (Azure active directory).
-     *
+     * 
      * @return the aadObjectId value.
      */
     public String aadObjectId() {
@@ -165,7 +169,7 @@ public final class ClusterPrincipalAssignmentInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

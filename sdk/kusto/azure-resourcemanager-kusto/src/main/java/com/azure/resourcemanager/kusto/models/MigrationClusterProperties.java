@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kusto.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents a properties of a cluster that is part of a migration. */
+/**
+ * Represents a properties of a cluster that is part of a migration.
+ */
 @Immutable
 public final class MigrationClusterProperties {
     /*
@@ -34,13 +36,15 @@ public final class MigrationClusterProperties {
     @JsonProperty(value = "role", access = JsonProperty.Access.WRITE_ONLY)
     private MigrationClusterRole role;
 
-    /** Creates an instance of MigrationClusterProperties class. */
+    /**
+     * Creates an instance of MigrationClusterProperties class.
+     */
     public MigrationClusterProperties() {
     }
 
     /**
      * Get the id property: The resource ID of the cluster.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -49,7 +53,7 @@ public final class MigrationClusterProperties {
 
     /**
      * Get the uri property: The public URL of the cluster.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -58,7 +62,7 @@ public final class MigrationClusterProperties {
 
     /**
      * Get the dataIngestionUri property: The public data ingestion URL of the cluster.
-     *
+     * 
      * @return the dataIngestionUri value.
      */
     public String dataIngestionUri() {
@@ -67,7 +71,7 @@ public final class MigrationClusterProperties {
 
     /**
      * Get the role property: The role of the cluster in the migration process.
-     *
+     * 
      * @return the role value.
      */
     public MigrationClusterRole role() {
@@ -76,7 +80,7 @@ public final class MigrationClusterProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

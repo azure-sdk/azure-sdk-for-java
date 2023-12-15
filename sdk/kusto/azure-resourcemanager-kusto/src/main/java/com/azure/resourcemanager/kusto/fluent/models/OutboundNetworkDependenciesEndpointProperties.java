@@ -10,7 +10,9 @@ import com.azure.resourcemanager.kusto.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Endpoints accessed for a common purpose that the Kusto Service Environment requires outbound network access to. */
+/**
+ * Endpoints accessed for a common purpose that the Kusto Service Environment requires outbound network access to.
+ */
 @Fluent
 public final class OutboundNetworkDependenciesEndpointProperties {
     /*
@@ -32,14 +34,16 @@ public final class OutboundNetworkDependenciesEndpointProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of OutboundNetworkDependenciesEndpointProperties class. */
+    /**
+     * Creates an instance of OutboundNetworkDependenciesEndpointProperties class.
+     */
     public OutboundNetworkDependenciesEndpointProperties() {
     }
 
     /**
      * Get the category property: The type of service accessed by the Kusto Service Environment, e.g., Azure Storage,
      * Azure SQL Database, and Azure Active Directory.
-     *
+     * 
      * @return the category value.
      */
     public String category() {
@@ -49,7 +53,7 @@ public final class OutboundNetworkDependenciesEndpointProperties {
     /**
      * Set the category property: The type of service accessed by the Kusto Service Environment, e.g., Azure Storage,
      * Azure SQL Database, and Azure Active Directory.
-     *
+     * 
      * @param category the category value to set.
      * @return the OutboundNetworkDependenciesEndpointProperties object itself.
      */
@@ -60,7 +64,7 @@ public final class OutboundNetworkDependenciesEndpointProperties {
 
     /**
      * Get the endpoints property: The endpoints that the Kusto Service Environment reaches the service at.
-     *
+     * 
      * @return the endpoints value.
      */
     public List<EndpointDependency> endpoints() {
@@ -69,7 +73,7 @@ public final class OutboundNetworkDependenciesEndpointProperties {
 
     /**
      * Set the endpoints property: The endpoints that the Kusto Service Environment reaches the service at.
-     *
+     * 
      * @param endpoints the endpoints value to set.
      * @return the OutboundNetworkDependenciesEndpointProperties object itself.
      */
@@ -80,7 +84,7 @@ public final class OutboundNetworkDependenciesEndpointProperties {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -89,7 +93,7 @@ public final class OutboundNetworkDependenciesEndpointProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

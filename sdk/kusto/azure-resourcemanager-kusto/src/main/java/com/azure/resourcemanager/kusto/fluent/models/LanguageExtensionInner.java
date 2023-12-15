@@ -9,7 +9,9 @@ import com.azure.resourcemanager.kusto.models.LanguageExtensionImageName;
 import com.azure.resourcemanager.kusto.models.LanguageExtensionName;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The language extension object. */
+/**
+ * The language extension object.
+ */
 @Fluent
 public final class LanguageExtensionInner {
     /*
@@ -30,13 +32,15 @@ public final class LanguageExtensionInner {
     @JsonProperty(value = "languageExtensionCustomImageName")
     private String languageExtensionCustomImageName;
 
-    /** Creates an instance of LanguageExtensionInner class. */
+    /**
+     * Creates an instance of LanguageExtensionInner class.
+     */
     public LanguageExtensionInner() {
     }
 
     /**
      * Get the languageExtensionName property: The language extension name.
-     *
+     * 
      * @return the languageExtensionName value.
      */
     public LanguageExtensionName languageExtensionName() {
@@ -45,7 +49,7 @@ public final class LanguageExtensionInner {
 
     /**
      * Set the languageExtensionName property: The language extension name.
-     *
+     * 
      * @param languageExtensionName the languageExtensionName value to set.
      * @return the LanguageExtensionInner object itself.
      */
@@ -56,7 +60,7 @@ public final class LanguageExtensionInner {
 
     /**
      * Get the languageExtensionImageName property: The language extension image name.
-     *
+     * 
      * @return the languageExtensionImageName value.
      */
     public LanguageExtensionImageName languageExtensionImageName() {
@@ -65,19 +69,19 @@ public final class LanguageExtensionInner {
 
     /**
      * Set the languageExtensionImageName property: The language extension image name.
-     *
+     * 
      * @param languageExtensionImageName the languageExtensionImageName value to set.
      * @return the LanguageExtensionInner object itself.
      */
-    public LanguageExtensionInner withLanguageExtensionImageName(
-        LanguageExtensionImageName languageExtensionImageName) {
+    public LanguageExtensionInner
+        withLanguageExtensionImageName(LanguageExtensionImageName languageExtensionImageName) {
         this.languageExtensionImageName = languageExtensionImageName;
         return this;
     }
 
     /**
      * Get the languageExtensionCustomImageName property: The language extension custom image name.
-     *
+     * 
      * @return the languageExtensionCustomImageName value.
      */
     public String languageExtensionCustomImageName() {
@@ -86,7 +90,7 @@ public final class LanguageExtensionInner {
 
     /**
      * Set the languageExtensionCustomImageName property: The language extension custom image name.
-     *
+     * 
      * @param languageExtensionCustomImageName the languageExtensionCustomImageName value to set.
      * @return the LanguageExtensionInner object itself.
      */
@@ -97,7 +101,7 @@ public final class LanguageExtensionInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

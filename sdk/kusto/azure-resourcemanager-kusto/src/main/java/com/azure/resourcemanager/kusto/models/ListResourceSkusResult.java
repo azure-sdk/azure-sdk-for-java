@@ -9,7 +9,9 @@ import com.azure.resourcemanager.kusto.fluent.models.AzureResourceSkuInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of available SKUs for a Kusto Cluster. */
+/**
+ * List of available SKUs for a Kusto Cluster.
+ */
 @Fluent
 public final class ListResourceSkusResult {
     /*
@@ -18,13 +20,15 @@ public final class ListResourceSkusResult {
     @JsonProperty(value = "value")
     private List<AzureResourceSkuInner> value;
 
-    /** Creates an instance of ListResourceSkusResult class. */
+    /**
+     * Creates an instance of ListResourceSkusResult class.
+     */
     public ListResourceSkusResult() {
     }
 
     /**
      * Get the value property: The collection of available SKUs for an existing resource.
-     *
+     * 
      * @return the value value.
      */
     public List<AzureResourceSkuInner> value() {
@@ -33,7 +37,7 @@ public final class ListResourceSkusResult {
 
     /**
      * Set the value property: The collection of available SKUs for an existing resource.
-     *
+     * 
      * @param value the value value to set.
      * @return the ListResourceSkusResult object itself.
      */
@@ -44,7 +48,7 @@ public final class ListResourceSkusResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

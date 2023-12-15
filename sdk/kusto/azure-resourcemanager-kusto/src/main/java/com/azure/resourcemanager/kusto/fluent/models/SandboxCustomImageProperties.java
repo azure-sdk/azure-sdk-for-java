@@ -10,7 +10,9 @@ import com.azure.resourcemanager.kusto.models.Language;
 import com.azure.resourcemanager.kusto.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A class representing the properties of a sandbox custom image object. */
+/**
+ * A class representing the properties of a sandbox custom image object.
+ */
 @Fluent
 public final class SandboxCustomImageProperties {
     /*
@@ -37,13 +39,15 @@ public final class SandboxCustomImageProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of SandboxCustomImageProperties class. */
+    /**
+     * Creates an instance of SandboxCustomImageProperties class.
+     */
     public SandboxCustomImageProperties() {
     }
 
     /**
      * Get the language property: The language name, for example Python.
-     *
+     * 
      * @return the language value.
      */
     public Language language() {
@@ -52,7 +56,7 @@ public final class SandboxCustomImageProperties {
 
     /**
      * Set the language property: The language name, for example Python.
-     *
+     * 
      * @param language the language value to set.
      * @return the SandboxCustomImageProperties object itself.
      */
@@ -63,7 +67,7 @@ public final class SandboxCustomImageProperties {
 
     /**
      * Get the languageVersion property: The version of the language.
-     *
+     * 
      * @return the languageVersion value.
      */
     public String languageVersion() {
@@ -72,7 +76,7 @@ public final class SandboxCustomImageProperties {
 
     /**
      * Set the languageVersion property: The version of the language.
-     *
+     * 
      * @param languageVersion the languageVersion value to set.
      * @return the SandboxCustomImageProperties object itself.
      */
@@ -83,7 +87,7 @@ public final class SandboxCustomImageProperties {
 
     /**
      * Get the requirementsFileContent property: The requirements file content.
-     *
+     * 
      * @return the requirementsFileContent value.
      */
     public String requirementsFileContent() {
@@ -92,7 +96,7 @@ public final class SandboxCustomImageProperties {
 
     /**
      * Set the requirementsFileContent property: The requirements file content.
-     *
+     * 
      * @param requirementsFileContent the requirementsFileContent value to set.
      * @return the SandboxCustomImageProperties object itself.
      */
@@ -103,7 +107,7 @@ public final class SandboxCustomImageProperties {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -112,21 +116,17 @@ public final class SandboxCustomImageProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (language() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property language in model SandboxCustomImageProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property language in model SandboxCustomImageProperties"));
         }
         if (languageVersion() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property languageVersion in model SandboxCustomImageProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property languageVersion in model SandboxCustomImageProperties"));
         }
     }
 

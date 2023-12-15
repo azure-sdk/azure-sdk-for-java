@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The result returned from a sandboxCustomImage check name availability request. */
+/**
+ * The result returned from a sandboxCustomImage check name availability request.
+ */
 @Fluent
 public final class SandboxCustomImagesCheckNameRequest {
     /*
@@ -23,14 +25,15 @@ public final class SandboxCustomImagesCheckNameRequest {
     @JsonProperty(value = "type", required = true)
     private String type = "Microsoft.Kusto/clusters/sandboxCustomImages";
 
-    /** Creates an instance of SandboxCustomImagesCheckNameRequest class. */
+    /**
+     * Creates an instance of SandboxCustomImagesCheckNameRequest class.
+     */
     public SandboxCustomImagesCheckNameRequest() {
-        type = "Microsoft.Kusto/clusters/sandboxCustomImages";
     }
 
     /**
      * Get the name property: Sandbox custom image resource name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -39,7 +42,7 @@ public final class SandboxCustomImagesCheckNameRequest {
 
     /**
      * Set the name property: Sandbox custom image resource name.
-     *
+     * 
      * @param name the name value to set.
      * @return the SandboxCustomImagesCheckNameRequest object itself.
      */
@@ -50,7 +53,7 @@ public final class SandboxCustomImagesCheckNameRequest {
 
     /**
      * Get the type property: The type of resource, for instance Microsoft.Kusto/clusters/sandboxCustomImages.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -59,7 +62,7 @@ public final class SandboxCustomImagesCheckNameRequest {
 
     /**
      * Set the type property: The type of resource, for instance Microsoft.Kusto/clusters/sandboxCustomImages.
-     *
+     * 
      * @param type the type value to set.
      * @return the SandboxCustomImagesCheckNameRequest object itself.
      */
@@ -70,15 +73,13 @@ public final class SandboxCustomImagesCheckNameRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property name in model SandboxCustomImagesCheckNameRequest"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property name in model SandboxCustomImagesCheckNameRequest"));
         }
     }
 

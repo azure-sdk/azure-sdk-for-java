@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kusto.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Operation result error properties. */
+/**
+ * Operation result error properties.
+ */
 @Fluent
 public final class OperationResultErrorProperties {
     /*
@@ -22,13 +24,15 @@ public final class OperationResultErrorProperties {
     @JsonProperty(value = "message")
     private String message;
 
-    /** Creates an instance of OperationResultErrorProperties class. */
+    /**
+     * Creates an instance of OperationResultErrorProperties class.
+     */
     public OperationResultErrorProperties() {
     }
 
     /**
      * Get the code property: The code of the error.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -37,7 +41,7 @@ public final class OperationResultErrorProperties {
 
     /**
      * Set the code property: The code of the error.
-     *
+     * 
      * @param code the code value to set.
      * @return the OperationResultErrorProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class OperationResultErrorProperties {
 
     /**
      * Get the message property: The error message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -57,7 +61,7 @@ public final class OperationResultErrorProperties {
 
     /**
      * Set the message property: The error message.
-     *
+     * 
      * @param message the message value to set.
      * @return the OperationResultErrorProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class OperationResultErrorProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

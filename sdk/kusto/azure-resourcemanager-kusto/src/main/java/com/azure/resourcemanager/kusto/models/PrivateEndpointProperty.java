@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kusto.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Private endpoint which the connection belongs to. */
+/**
+ * Private endpoint which the connection belongs to.
+ */
 @Immutable
 public final class PrivateEndpointProperty {
     /*
@@ -16,13 +18,15 @@ public final class PrivateEndpointProperty {
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
-    /** Creates an instance of PrivateEndpointProperty class. */
+    /**
+     * Creates an instance of PrivateEndpointProperty class.
+     */
     public PrivateEndpointProperty() {
     }
 
     /**
      * Get the id property: Resource id of the private endpoint.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -31,7 +35,7 @@ public final class PrivateEndpointProperty {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

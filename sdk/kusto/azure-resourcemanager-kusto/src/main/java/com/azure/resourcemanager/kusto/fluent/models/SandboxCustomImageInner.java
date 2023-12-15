@@ -10,7 +10,9 @@ import com.azure.resourcemanager.kusto.models.Language;
 import com.azure.resourcemanager.kusto.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Class representing a Kusto sandbox custom image. */
+/**
+ * Class representing a Kusto sandbox custom image.
+ */
 @Fluent
 public final class SandboxCustomImageInner extends ProxyResource {
     /*
@@ -19,13 +21,15 @@ public final class SandboxCustomImageInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private SandboxCustomImageProperties innerProperties;
 
-    /** Creates an instance of SandboxCustomImageInner class. */
+    /**
+     * Creates an instance of SandboxCustomImageInner class.
+     */
     public SandboxCustomImageInner() {
     }
 
     /**
      * Get the innerProperties property: A sandbox custom image.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SandboxCustomImageProperties innerProperties() {
@@ -34,7 +38,7 @@ public final class SandboxCustomImageInner extends ProxyResource {
 
     /**
      * Get the language property: The language name, for example Python.
-     *
+     * 
      * @return the language value.
      */
     public Language language() {
@@ -43,7 +47,7 @@ public final class SandboxCustomImageInner extends ProxyResource {
 
     /**
      * Set the language property: The language name, for example Python.
-     *
+     * 
      * @param language the language value to set.
      * @return the SandboxCustomImageInner object itself.
      */
@@ -57,7 +61,7 @@ public final class SandboxCustomImageInner extends ProxyResource {
 
     /**
      * Get the languageVersion property: The version of the language.
-     *
+     * 
      * @return the languageVersion value.
      */
     public String languageVersion() {
@@ -66,7 +70,7 @@ public final class SandboxCustomImageInner extends ProxyResource {
 
     /**
      * Set the languageVersion property: The version of the language.
-     *
+     * 
      * @param languageVersion the languageVersion value to set.
      * @return the SandboxCustomImageInner object itself.
      */
@@ -80,7 +84,7 @@ public final class SandboxCustomImageInner extends ProxyResource {
 
     /**
      * Get the requirementsFileContent property: The requirements file content.
-     *
+     * 
      * @return the requirementsFileContent value.
      */
     public String requirementsFileContent() {
@@ -89,7 +93,7 @@ public final class SandboxCustomImageInner extends ProxyResource {
 
     /**
      * Set the requirementsFileContent property: The requirements file content.
-     *
+     * 
      * @param requirementsFileContent the requirementsFileContent value to set.
      * @return the SandboxCustomImageInner object itself.
      */
@@ -103,7 +107,7 @@ public final class SandboxCustomImageInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -112,7 +116,7 @@ public final class SandboxCustomImageInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The result returned from a database check name availability request. */
+/**
+ * The result returned from a database check name availability request.
+ */
 @Fluent
 public final class CheckNameRequest {
     /*
@@ -23,13 +25,15 @@ public final class CheckNameRequest {
     @JsonProperty(value = "type", required = true)
     private Type type;
 
-    /** Creates an instance of CheckNameRequest class. */
+    /**
+     * Creates an instance of CheckNameRequest class.
+     */
     public CheckNameRequest() {
     }
 
     /**
      * Get the name property: Resource name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -38,7 +42,7 @@ public final class CheckNameRequest {
 
     /**
      * Set the name property: Resource name.
-     *
+     * 
      * @param name the name value to set.
      * @return the CheckNameRequest object itself.
      */
@@ -49,7 +53,7 @@ public final class CheckNameRequest {
 
     /**
      * Get the type property: The type of resource, for instance Microsoft.Kusto/clusters/databases.
-     *
+     * 
      * @return the type value.
      */
     public Type type() {
@@ -58,7 +62,7 @@ public final class CheckNameRequest {
 
     /**
      * Set the type property: The type of resource, for instance Microsoft.Kusto/clusters/databases.
-     *
+     * 
      * @param type the type value to set.
      * @return the CheckNameRequest object itself.
      */
@@ -69,19 +73,17 @@ public final class CheckNameRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model CheckNameRequest"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model CheckNameRequest"));
         }
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property type in model CheckNameRequest"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model CheckNameRequest"));
         }
     }
 

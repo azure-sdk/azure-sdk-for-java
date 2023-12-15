@@ -9,7 +9,9 @@ import com.azure.resourcemanager.kusto.fluent.models.AttachedDatabaseConfigurati
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list attached database configurations operation response. */
+/**
+ * The list attached database configurations operation response.
+ */
 @Fluent
 public final class AttachedDatabaseConfigurationListResult {
     /*
@@ -18,13 +20,15 @@ public final class AttachedDatabaseConfigurationListResult {
     @JsonProperty(value = "value")
     private List<AttachedDatabaseConfigurationInner> value;
 
-    /** Creates an instance of AttachedDatabaseConfigurationListResult class. */
+    /**
+     * Creates an instance of AttachedDatabaseConfigurationListResult class.
+     */
     public AttachedDatabaseConfigurationListResult() {
     }
 
     /**
      * Get the value property: The list of attached database configurations.
-     *
+     * 
      * @return the value value.
      */
     public List<AttachedDatabaseConfigurationInner> value() {
@@ -33,7 +37,7 @@ public final class AttachedDatabaseConfigurationListResult {
 
     /**
      * Set the value property: The list of attached database configurations.
-     *
+     * 
      * @param value the value value to set.
      * @return the AttachedDatabaseConfigurationListResult object itself.
      */
@@ -44,7 +48,7 @@ public final class AttachedDatabaseConfigurationListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

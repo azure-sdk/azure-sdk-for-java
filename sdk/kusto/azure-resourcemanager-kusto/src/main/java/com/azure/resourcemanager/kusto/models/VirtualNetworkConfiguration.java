@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A class that contains virtual network definition. */
+/**
+ * A class that contains virtual network definition.
+ */
 @Fluent
 public final class VirtualNetworkConfiguration {
     /*
@@ -36,13 +38,15 @@ public final class VirtualNetworkConfiguration {
     @JsonProperty(value = "state")
     private VnetState state;
 
-    /** Creates an instance of VirtualNetworkConfiguration class. */
+    /**
+     * Creates an instance of VirtualNetworkConfiguration class.
+     */
     public VirtualNetworkConfiguration() {
     }
 
     /**
      * Get the subnetId property: The subnet resource id.
-     *
+     * 
      * @return the subnetId value.
      */
     public String subnetId() {
@@ -51,7 +55,7 @@ public final class VirtualNetworkConfiguration {
 
     /**
      * Set the subnetId property: The subnet resource id.
-     *
+     * 
      * @param subnetId the subnetId value to set.
      * @return the VirtualNetworkConfiguration object itself.
      */
@@ -62,7 +66,7 @@ public final class VirtualNetworkConfiguration {
 
     /**
      * Get the enginePublicIpId property: Engine service's public IP address resource id.
-     *
+     * 
      * @return the enginePublicIpId value.
      */
     public String enginePublicIpId() {
@@ -71,7 +75,7 @@ public final class VirtualNetworkConfiguration {
 
     /**
      * Set the enginePublicIpId property: Engine service's public IP address resource id.
-     *
+     * 
      * @param enginePublicIpId the enginePublicIpId value to set.
      * @return the VirtualNetworkConfiguration object itself.
      */
@@ -82,7 +86,7 @@ public final class VirtualNetworkConfiguration {
 
     /**
      * Get the dataManagementPublicIpId property: Data management's service public IP address resource id.
-     *
+     * 
      * @return the dataManagementPublicIpId value.
      */
     public String dataManagementPublicIpId() {
@@ -91,7 +95,7 @@ public final class VirtualNetworkConfiguration {
 
     /**
      * Set the dataManagementPublicIpId property: Data management's service public IP address resource id.
-     *
+     * 
      * @param dataManagementPublicIpId the dataManagementPublicIpId value to set.
      * @return the VirtualNetworkConfiguration object itself.
      */
@@ -103,7 +107,7 @@ public final class VirtualNetworkConfiguration {
     /**
      * Get the state property: When enabled, the cluster is deployed into the configured subnet, when disabled it will
      * be removed from the subnet.
-     *
+     * 
      * @return the state value.
      */
     public VnetState state() {
@@ -113,7 +117,7 @@ public final class VirtualNetworkConfiguration {
     /**
      * Set the state property: When enabled, the cluster is deployed into the configured subnet, when disabled it will
      * be removed from the subnet.
-     *
+     * 
      * @param state the state value to set.
      * @return the VirtualNetworkConfiguration object itself.
      */
@@ -124,27 +128,21 @@ public final class VirtualNetworkConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (subnetId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property subnetId in model VirtualNetworkConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property subnetId in model VirtualNetworkConfiguration"));
         }
         if (enginePublicIpId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property enginePublicIpId in model VirtualNetworkConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property enginePublicIpId in model VirtualNetworkConfiguration"));
         }
         if (dataManagementPublicIpId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dataManagementPublicIpId in model VirtualNetworkConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property dataManagementPublicIpId in model VirtualNetworkConfiguration"));
         }
     }
 

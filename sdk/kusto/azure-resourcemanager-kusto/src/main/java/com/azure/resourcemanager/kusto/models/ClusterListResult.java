@@ -9,7 +9,9 @@ import com.azure.resourcemanager.kusto.fluent.models.ClusterInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list Kusto clusters operation response. */
+/**
+ * The list Kusto clusters operation response.
+ */
 @Fluent
 public final class ClusterListResult {
     /*
@@ -18,13 +20,15 @@ public final class ClusterListResult {
     @JsonProperty(value = "value")
     private List<ClusterInner> value;
 
-    /** Creates an instance of ClusterListResult class. */
+    /**
+     * Creates an instance of ClusterListResult class.
+     */
     public ClusterListResult() {
     }
 
     /**
      * Get the value property: The list of Kusto clusters.
-     *
+     * 
      * @return the value value.
      */
     public List<ClusterInner> value() {
@@ -33,7 +37,7 @@ public final class ClusterListResult {
 
     /**
      * Set the value property: The list of Kusto clusters.
-     *
+     * 
      * @param value the value value to set.
      * @return the ClusterListResult object itself.
      */
@@ -44,7 +48,7 @@ public final class ClusterListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

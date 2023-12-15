@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A cluster migrate request. */
+/**
+ * A cluster migrate request.
+ */
 @Fluent
 public final class ClusterMigrateRequest {
     /*
@@ -17,13 +19,15 @@ public final class ClusterMigrateRequest {
     @JsonProperty(value = "clusterResourceId", required = true)
     private String clusterResourceId;
 
-    /** Creates an instance of ClusterMigrateRequest class. */
+    /**
+     * Creates an instance of ClusterMigrateRequest class.
+     */
     public ClusterMigrateRequest() {
     }
 
     /**
      * Get the clusterResourceId property: Resource ID of the destination cluster or kusto pool.
-     *
+     * 
      * @return the clusterResourceId value.
      */
     public String clusterResourceId() {
@@ -32,7 +36,7 @@ public final class ClusterMigrateRequest {
 
     /**
      * Set the clusterResourceId property: Resource ID of the destination cluster or kusto pool.
-     *
+     * 
      * @param clusterResourceId the clusterResourceId value to set.
      * @return the ClusterMigrateRequest object itself.
      */
@@ -43,15 +47,13 @@ public final class ClusterMigrateRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (clusterResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property clusterResourceId in model ClusterMigrateRequest"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property clusterResourceId in model ClusterMigrateRequest"));
         }
     }
 

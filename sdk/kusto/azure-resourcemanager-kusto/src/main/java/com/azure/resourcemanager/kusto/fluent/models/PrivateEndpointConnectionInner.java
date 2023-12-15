@@ -11,7 +11,9 @@ import com.azure.resourcemanager.kusto.models.PrivateEndpointProperty;
 import com.azure.resourcemanager.kusto.models.PrivateLinkServiceConnectionStateProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A private endpoint connection. */
+/**
+ * A private endpoint connection.
+ */
 @Fluent
 public final class PrivateEndpointConnectionInner extends ProxyResource {
     /*
@@ -26,13 +28,15 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of PrivateEndpointConnectionInner class. */
+    /**
+     * Creates an instance of PrivateEndpointConnectionInner class.
+     */
     public PrivateEndpointConnectionInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private PrivateEndpointConnectionProperties innerProperties() {
@@ -41,7 +45,7 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -50,7 +54,7 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
 
     /**
      * Get the privateEndpoint property: Private endpoint which the connection belongs to.
-     *
+     * 
      * @return the privateEndpoint value.
      */
     public PrivateEndpointProperty privateEndpoint() {
@@ -59,7 +63,7 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
 
     /**
      * Get the privateLinkServiceConnectionState property: Connection State of the Private Endpoint Connection.
-     *
+     * 
      * @return the privateLinkServiceConnectionState value.
      */
     public PrivateLinkServiceConnectionStateProperty privateLinkServiceConnectionState() {
@@ -68,7 +72,7 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
 
     /**
      * Set the privateLinkServiceConnectionState property: Connection State of the Private Endpoint Connection.
-     *
+     * 
      * @param privateLinkServiceConnectionState the privateLinkServiceConnectionState value to set.
      * @return the PrivateEndpointConnectionInner object itself.
      */
@@ -83,7 +87,7 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
 
     /**
      * Get the groupId property: Group id of the private endpoint.
-     *
+     * 
      * @return the groupId value.
      */
     public String groupId() {
@@ -92,7 +96,7 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the private endpoint.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -101,7 +105,7 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The request to invite a follower to a database. */
+/**
+ * The request to invite a follower to a database.
+ */
 @Fluent
 public final class DatabaseInviteFollowerRequest {
     /*
@@ -23,13 +25,15 @@ public final class DatabaseInviteFollowerRequest {
     @JsonProperty(value = "tableLevelSharingProperties")
     private TableLevelSharingProperties tableLevelSharingProperties;
 
-    /** Creates an instance of DatabaseInviteFollowerRequest class. */
+    /**
+     * Creates an instance of DatabaseInviteFollowerRequest class.
+     */
     public DatabaseInviteFollowerRequest() {
     }
 
     /**
      * Get the inviteeEmail property: The email of the invited user for which the follower invitation is generated.
-     *
+     * 
      * @return the inviteeEmail value.
      */
     public String inviteeEmail() {
@@ -38,7 +42,7 @@ public final class DatabaseInviteFollowerRequest {
 
     /**
      * Set the inviteeEmail property: The email of the invited user for which the follower invitation is generated.
-     *
+     * 
      * @param inviteeEmail the inviteeEmail value to set.
      * @return the DatabaseInviteFollowerRequest object itself.
      */
@@ -49,7 +53,7 @@ public final class DatabaseInviteFollowerRequest {
 
     /**
      * Get the tableLevelSharingProperties property: Table level sharing specifications.
-     *
+     * 
      * @return the tableLevelSharingProperties value.
      */
     public TableLevelSharingProperties tableLevelSharingProperties() {
@@ -58,27 +62,25 @@ public final class DatabaseInviteFollowerRequest {
 
     /**
      * Set the tableLevelSharingProperties property: Table level sharing specifications.
-     *
+     * 
      * @param tableLevelSharingProperties the tableLevelSharingProperties value to set.
      * @return the DatabaseInviteFollowerRequest object itself.
      */
-    public DatabaseInviteFollowerRequest withTableLevelSharingProperties(
-        TableLevelSharingProperties tableLevelSharingProperties) {
+    public DatabaseInviteFollowerRequest
+        withTableLevelSharingProperties(TableLevelSharingProperties tableLevelSharingProperties) {
         this.tableLevelSharingProperties = tableLevelSharingProperties;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (inviteeEmail() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property inviteeEmail in model DatabaseInviteFollowerRequest"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property inviteeEmail in model DatabaseInviteFollowerRequest"));
         }
         if (tableLevelSharingProperties() != null) {
             tableLevelSharingProperties().validate();

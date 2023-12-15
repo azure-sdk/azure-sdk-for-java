@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list Kusto database principals operation response. */
+/**
+ * The list Kusto database principals operation response.
+ */
 @Fluent
 public final class DatabasePrincipalListResultInner {
     /*
@@ -17,13 +19,15 @@ public final class DatabasePrincipalListResultInner {
     @JsonProperty(value = "value")
     private List<DatabasePrincipalInner> value;
 
-    /** Creates an instance of DatabasePrincipalListResultInner class. */
+    /**
+     * Creates an instance of DatabasePrincipalListResultInner class.
+     */
     public DatabasePrincipalListResultInner() {
     }
 
     /**
      * Get the value property: The list of Kusto database principals.
-     *
+     * 
      * @return the value value.
      */
     public List<DatabasePrincipalInner> value() {
@@ -32,7 +36,7 @@ public final class DatabasePrincipalListResultInner {
 
     /**
      * Set the value property: The list of Kusto database principals.
-     *
+     * 
      * @param value the value value to set.
      * @return the DatabasePrincipalListResultInner object itself.
      */
@@ -43,7 +47,7 @@ public final class DatabasePrincipalListResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
