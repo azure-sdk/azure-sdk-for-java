@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.appconfiguration.models.ReplicaProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** All replica properties. */
+/**
+ * All replica properties.
+ */
 @Immutable
 public final class ReplicaProperties {
     /*
@@ -23,13 +25,15 @@ public final class ReplicaProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ReplicaProvisioningState provisioningState;
 
-    /** Creates an instance of ReplicaProperties class. */
+    /**
+     * Creates an instance of ReplicaProperties class.
+     */
     public ReplicaProperties() {
     }
 
     /**
      * Get the endpoint property: The URI of the replica where the replica API will be available.
-     *
+     * 
      * @return the endpoint value.
      */
     public String endpoint() {
@@ -38,7 +42,7 @@ public final class ReplicaProperties {
 
     /**
      * Get the provisioningState property: The provisioning state of the replica.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ReplicaProvisioningState provisioningState() {
@@ -47,7 +51,7 @@ public final class ReplicaProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Parameters used for checking whether a resource name is available. */
+/**
+ * Parameters used for checking whether a resource name is available.
+ */
 @Fluent
 public final class CheckNameAvailabilityParameters {
     /*
@@ -23,13 +25,15 @@ public final class CheckNameAvailabilityParameters {
     @JsonProperty(value = "type", required = true)
     private ConfigurationResourceType type;
 
-    /** Creates an instance of CheckNameAvailabilityParameters class. */
+    /**
+     * Creates an instance of CheckNameAvailabilityParameters class.
+     */
     public CheckNameAvailabilityParameters() {
     }
 
     /**
      * Get the name property: The name to check for availability.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -38,7 +42,7 @@ public final class CheckNameAvailabilityParameters {
 
     /**
      * Set the name property: The name to check for availability.
-     *
+     * 
      * @param name the name value to set.
      * @return the CheckNameAvailabilityParameters object itself.
      */
@@ -49,7 +53,7 @@ public final class CheckNameAvailabilityParameters {
 
     /**
      * Get the type property: The resource type to check for name availability.
-     *
+     * 
      * @return the type value.
      */
     public ConfigurationResourceType type() {
@@ -58,7 +62,7 @@ public final class CheckNameAvailabilityParameters {
 
     /**
      * Set the type property: The resource type to check for name availability.
-     *
+     * 
      * @param type the type value to set.
      * @return the CheckNameAvailabilityParameters object itself.
      */
@@ -69,21 +73,17 @@ public final class CheckNameAvailabilityParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property name in model CheckNameAvailabilityParameters"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property name in model CheckNameAvailabilityParameters"));
         }
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property type in model CheckNameAvailabilityParameters"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property type in model CheckNameAvailabilityParameters"));
         }
     }
 

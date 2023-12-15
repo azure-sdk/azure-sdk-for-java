@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes a configuration store SKU. */
+/**
+ * Describes a configuration store SKU.
+ */
 @Fluent
 public final class Sku {
     /*
@@ -17,13 +19,15 @@ public final class Sku {
     @JsonProperty(value = "name", required = true)
     private String name;
 
-    /** Creates an instance of Sku class. */
+    /**
+     * Creates an instance of Sku class.
+     */
     public Sku() {
     }
 
     /**
      * Get the name property: The SKU name of the configuration store.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -32,7 +36,7 @@ public final class Sku {
 
     /**
      * Set the name property: The SKU name of the configuration store.
-     *
+     * 
      * @param name the name value to set.
      * @return the Sku object itself.
      */
@@ -43,7 +47,7 @@ public final class Sku {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

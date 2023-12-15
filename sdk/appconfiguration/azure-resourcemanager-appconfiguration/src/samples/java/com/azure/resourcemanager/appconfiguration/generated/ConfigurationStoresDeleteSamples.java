@@ -4,18 +4,22 @@
 
 package com.azure.resourcemanager.appconfiguration.generated;
 
-/** Samples for ConfigurationStores Delete. */
+/**
+ * Samples for ConfigurationStores Delete.
+ */
 public final class ConfigurationStoresDeleteSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2023-03-01/examples/ConfigurationStoresDelete.json
+     * x-ms-original-file:
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2023-08-01-preview/examples/
+     * ConfigurationStoresDelete.json
      */
     /**
      * Sample code: ConfigurationStores_Delete.
-     *
+     * 
      * @param manager Entry point to AppConfigurationManager.
      */
-    public static void configurationStoresDelete(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+    public static void
+        configurationStoresDelete(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
         manager.configurationStores().delete("myResourceGroup", "contoso", com.azure.core.util.Context.NONE);
     }
 }

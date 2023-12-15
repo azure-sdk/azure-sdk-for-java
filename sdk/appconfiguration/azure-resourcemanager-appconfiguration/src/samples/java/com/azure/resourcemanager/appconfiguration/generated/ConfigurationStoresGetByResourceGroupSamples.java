@@ -4,20 +4,23 @@
 
 package com.azure.resourcemanager.appconfiguration.generated;
 
-/** Samples for ConfigurationStores GetByResourceGroup. */
+/**
+ * Samples for ConfigurationStores GetByResourceGroup.
+ */
 public final class ConfigurationStoresGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2023-03-01/examples/ConfigurationStoresGet.json
+     * x-ms-original-file:
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2023-08-01-preview/examples/
+     * ConfigurationStoresGet.json
      */
     /**
      * Sample code: ConfigurationStores_Get.
-     *
+     * 
      * @param manager Entry point to AppConfigurationManager.
      */
-    public static void configurationStoresGet(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager
-            .configurationStores()
-            .getByResourceGroupWithResponse("myResourceGroup", "contoso", com.azure.core.util.Context.NONE);
+    public static void
+        configurationStoresGet(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        manager.configurationStores().getByResourceGroupWithResponse("myResourceGroup", "contoso",
+            com.azure.core.util.Context.NONE);
     }
 }
