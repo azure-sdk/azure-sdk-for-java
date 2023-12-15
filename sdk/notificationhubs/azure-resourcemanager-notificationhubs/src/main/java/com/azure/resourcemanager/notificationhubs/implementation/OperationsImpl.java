@@ -11,17 +11,15 @@ import com.azure.resourcemanager.notificationhubs.fluent.OperationsClient;
 import com.azure.resourcemanager.notificationhubs.fluent.models.OperationInner;
 import com.azure.resourcemanager.notificationhubs.models.Operation;
 import com.azure.resourcemanager.notificationhubs.models.Operations;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class OperationsImpl implements Operations {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(OperationsImpl.class);
 
     private final OperationsClient innerClient;
 
     private final com.azure.resourcemanager.notificationhubs.NotificationHubsManager serviceManager;
 
-    public OperationsImpl(
-        OperationsClient innerClient,
+    public OperationsImpl(OperationsClient innerClient,
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
