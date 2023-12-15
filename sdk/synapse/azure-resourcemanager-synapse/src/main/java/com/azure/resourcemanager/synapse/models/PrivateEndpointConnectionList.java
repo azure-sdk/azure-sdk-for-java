@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.fluent.models.PrivateEndpointConnection
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of private endpoint connections. */
+/**
+ * A list of private endpoint connections.
+ */
 @Immutable
 public final class PrivateEndpointConnectionList {
     /*
@@ -24,13 +26,15 @@ public final class PrivateEndpointConnectionList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of PrivateEndpointConnectionList class. */
+    /**
+     * Creates an instance of PrivateEndpointConnectionList class.
+     */
     public PrivateEndpointConnectionList() {
     }
 
     /**
      * Get the value property: Array of results.
-     *
+     * 
      * @return the value value.
      */
     public List<PrivateEndpointConnectionInner> value() {
@@ -39,7 +43,7 @@ public final class PrivateEndpointConnectionList {
 
     /**
      * Get the nextLink property: Link to retrieve next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class PrivateEndpointConnectionList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

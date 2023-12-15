@@ -18,8 +18,8 @@ import java.util.List;
 
 /**
  * Spark pool properties
- *
- * <p>Properties of a Big Data pool powered by Apache Spark.
+ * 
+ * Properties of a Big Data pool powered by Apache Spark.
  */
 @Fluent
 public final class BigDataPoolResourceProperties {
@@ -31,7 +31,7 @@ public final class BigDataPoolResourceProperties {
 
     /*
      * Spark pool auto-scaling properties
-     *
+     * 
      * Auto-scaling properties
      */
     @JsonProperty(value = "autoScale")
@@ -45,7 +45,7 @@ public final class BigDataPoolResourceProperties {
 
     /*
      * Spark pool auto-pausing properties
-     *
+     * 
      * Auto-pausing properties
      */
     @JsonProperty(value = "autoPause")
@@ -59,7 +59,7 @@ public final class BigDataPoolResourceProperties {
 
     /*
      * Enable Autotune
-     *
+     * 
      * Whether autotune is required or not.
      */
     @JsonProperty(value = "isAutotuneEnabled")
@@ -74,7 +74,7 @@ public final class BigDataPoolResourceProperties {
     /*
      * The cache size
      */
-    @JsonProperty(value = "cacheSize", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "cacheSize")
     private Integer cacheSize;
 
     /*
@@ -97,7 +97,7 @@ public final class BigDataPoolResourceProperties {
 
     /*
      * Spark pool library version requirements
-     *
+     * 
      * Library version requirements
      */
     @JsonProperty(value = "libraryRequirements")
@@ -111,7 +111,7 @@ public final class BigDataPoolResourceProperties {
 
     /*
      * Spark pool Config Properties
-     *
+     * 
      * Spark configuration file to specify additional properties
      */
     @JsonProperty(value = "sparkConfigProperties")
@@ -147,13 +147,15 @@ public final class BigDataPoolResourceProperties {
     @JsonProperty(value = "lastSucceededTimestamp", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime lastSucceededTimestamp;
 
-    /** Creates an instance of BigDataPoolResourceProperties class. */
+    /**
+     * Creates an instance of BigDataPoolResourceProperties class.
+     */
     public BigDataPoolResourceProperties() {
     }
 
     /**
      * Get the provisioningState property: The state of the Big Data pool.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -162,7 +164,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Set the provisioningState property: The state of the Big Data pool.
-     *
+     * 
      * @param provisioningState the provisioningState value to set.
      * @return the BigDataPoolResourceProperties object itself.
      */
@@ -173,9 +175,9 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Get the autoScale property: Spark pool auto-scaling properties
-     *
-     * <p>Auto-scaling properties.
-     *
+     * 
+     * Auto-scaling properties.
+     * 
      * @return the autoScale value.
      */
     public AutoScaleProperties autoScale() {
@@ -184,9 +186,9 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Set the autoScale property: Spark pool auto-scaling properties
-     *
-     * <p>Auto-scaling properties.
-     *
+     * 
+     * Auto-scaling properties.
+     * 
      * @param autoScale the autoScale value to set.
      * @return the BigDataPoolResourceProperties object itself.
      */
@@ -197,7 +199,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Get the creationDate property: The time when the Big Data pool was created.
-     *
+     * 
      * @return the creationDate value.
      */
     public OffsetDateTime creationDate() {
@@ -206,9 +208,9 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Get the autoPause property: Spark pool auto-pausing properties
-     *
-     * <p>Auto-pausing properties.
-     *
+     * 
+     * Auto-pausing properties.
+     * 
      * @return the autoPause value.
      */
     public AutoPauseProperties autoPause() {
@@ -217,9 +219,9 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Set the autoPause property: Spark pool auto-pausing properties
-     *
-     * <p>Auto-pausing properties.
-     *
+     * 
+     * Auto-pausing properties.
+     * 
      * @param autoPause the autoPause value to set.
      * @return the BigDataPoolResourceProperties object itself.
      */
@@ -230,7 +232,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Get the isComputeIsolationEnabled property: Whether compute isolation is required or not.
-     *
+     * 
      * @return the isComputeIsolationEnabled value.
      */
     public Boolean isComputeIsolationEnabled() {
@@ -239,7 +241,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Set the isComputeIsolationEnabled property: Whether compute isolation is required or not.
-     *
+     * 
      * @param isComputeIsolationEnabled the isComputeIsolationEnabled value to set.
      * @return the BigDataPoolResourceProperties object itself.
      */
@@ -250,9 +252,9 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Get the isAutotuneEnabled property: Enable Autotune
-     *
-     * <p>Whether autotune is required or not.
-     *
+     * 
+     * Whether autotune is required or not.
+     * 
      * @return the isAutotuneEnabled value.
      */
     public Boolean isAutotuneEnabled() {
@@ -261,9 +263,9 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Set the isAutotuneEnabled property: Enable Autotune
-     *
-     * <p>Whether autotune is required or not.
-     *
+     * 
+     * Whether autotune is required or not.
+     * 
      * @param isAutotuneEnabled the isAutotuneEnabled value to set.
      * @return the BigDataPoolResourceProperties object itself.
      */
@@ -274,7 +276,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Get the sessionLevelPackagesEnabled property: Whether session level packages enabled.
-     *
+     * 
      * @return the sessionLevelPackagesEnabled value.
      */
     public Boolean sessionLevelPackagesEnabled() {
@@ -283,7 +285,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Set the sessionLevelPackagesEnabled property: Whether session level packages enabled.
-     *
+     * 
      * @param sessionLevelPackagesEnabled the sessionLevelPackagesEnabled value to set.
      * @return the BigDataPoolResourceProperties object itself.
      */
@@ -294,7 +296,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Get the cacheSize property: The cache size.
-     *
+     * 
      * @return the cacheSize value.
      */
     public Integer cacheSize() {
@@ -302,8 +304,19 @@ public final class BigDataPoolResourceProperties {
     }
 
     /**
+     * Set the cacheSize property: The cache size.
+     * 
+     * @param cacheSize the cacheSize value to set.
+     * @return the BigDataPoolResourceProperties object itself.
+     */
+    public BigDataPoolResourceProperties withCacheSize(Integer cacheSize) {
+        this.cacheSize = cacheSize;
+        return this;
+    }
+
+    /**
      * Get the dynamicExecutorAllocation property: Dynamic Executor Allocation.
-     *
+     * 
      * @return the dynamicExecutorAllocation value.
      */
     public DynamicExecutorAllocation dynamicExecutorAllocation() {
@@ -312,19 +325,19 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Set the dynamicExecutorAllocation property: Dynamic Executor Allocation.
-     *
+     * 
      * @param dynamicExecutorAllocation the dynamicExecutorAllocation value to set.
      * @return the BigDataPoolResourceProperties object itself.
      */
-    public BigDataPoolResourceProperties withDynamicExecutorAllocation(
-        DynamicExecutorAllocation dynamicExecutorAllocation) {
+    public BigDataPoolResourceProperties
+        withDynamicExecutorAllocation(DynamicExecutorAllocation dynamicExecutorAllocation) {
         this.dynamicExecutorAllocation = dynamicExecutorAllocation;
         return this;
     }
 
     /**
      * Get the sparkEventsFolder property: The Spark events folder.
-     *
+     * 
      * @return the sparkEventsFolder value.
      */
     public String sparkEventsFolder() {
@@ -333,7 +346,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Set the sparkEventsFolder property: The Spark events folder.
-     *
+     * 
      * @param sparkEventsFolder the sparkEventsFolder value to set.
      * @return the BigDataPoolResourceProperties object itself.
      */
@@ -344,7 +357,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Get the nodeCount property: The number of nodes in the Big Data pool.
-     *
+     * 
      * @return the nodeCount value.
      */
     public Integer nodeCount() {
@@ -353,7 +366,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Set the nodeCount property: The number of nodes in the Big Data pool.
-     *
+     * 
      * @param nodeCount the nodeCount value to set.
      * @return the BigDataPoolResourceProperties object itself.
      */
@@ -364,9 +377,9 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Get the libraryRequirements property: Spark pool library version requirements
-     *
-     * <p>Library version requirements.
-     *
+     * 
+     * Library version requirements.
+     * 
      * @return the libraryRequirements value.
      */
     public LibraryRequirements libraryRequirements() {
@@ -375,9 +388,9 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Set the libraryRequirements property: Spark pool library version requirements
-     *
-     * <p>Library version requirements.
-     *
+     * 
+     * Library version requirements.
+     * 
      * @param libraryRequirements the libraryRequirements value to set.
      * @return the BigDataPoolResourceProperties object itself.
      */
@@ -388,7 +401,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Get the customLibraries property: List of custom libraries/packages associated with the spark pool.
-     *
+     * 
      * @return the customLibraries value.
      */
     public List<LibraryInfo> customLibraries() {
@@ -397,7 +410,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Set the customLibraries property: List of custom libraries/packages associated with the spark pool.
-     *
+     * 
      * @param customLibraries the customLibraries value to set.
      * @return the BigDataPoolResourceProperties object itself.
      */
@@ -408,9 +421,9 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Get the sparkConfigProperties property: Spark pool Config Properties
-     *
-     * <p>Spark configuration file to specify additional properties.
-     *
+     * 
+     * Spark configuration file to specify additional properties.
+     * 
      * @return the sparkConfigProperties value.
      */
     public SparkConfigProperties sparkConfigProperties() {
@@ -419,9 +432,9 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Set the sparkConfigProperties property: Spark pool Config Properties
-     *
-     * <p>Spark configuration file to specify additional properties.
-     *
+     * 
+     * Spark configuration file to specify additional properties.
+     * 
      * @param sparkConfigProperties the sparkConfigProperties value to set.
      * @return the BigDataPoolResourceProperties object itself.
      */
@@ -432,7 +445,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Get the sparkVersion property: The Apache Spark version.
-     *
+     * 
      * @return the sparkVersion value.
      */
     public String sparkVersion() {
@@ -441,7 +454,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Set the sparkVersion property: The Apache Spark version.
-     *
+     * 
      * @param sparkVersion the sparkVersion value to set.
      * @return the BigDataPoolResourceProperties object itself.
      */
@@ -452,7 +465,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Get the defaultSparkLogFolder property: The default folder where Spark logs will be written.
-     *
+     * 
      * @return the defaultSparkLogFolder value.
      */
     public String defaultSparkLogFolder() {
@@ -461,7 +474,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Set the defaultSparkLogFolder property: The default folder where Spark logs will be written.
-     *
+     * 
      * @param defaultSparkLogFolder the defaultSparkLogFolder value to set.
      * @return the BigDataPoolResourceProperties object itself.
      */
@@ -472,7 +485,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Get the nodeSize property: The level of compute power that each node in the Big Data pool has.
-     *
+     * 
      * @return the nodeSize value.
      */
     public NodeSize nodeSize() {
@@ -481,7 +494,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Set the nodeSize property: The level of compute power that each node in the Big Data pool has.
-     *
+     * 
      * @param nodeSize the nodeSize value to set.
      * @return the BigDataPoolResourceProperties object itself.
      */
@@ -492,7 +505,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Get the nodeSizeFamily property: The kind of nodes that the Big Data pool provides.
-     *
+     * 
      * @return the nodeSizeFamily value.
      */
     public NodeSizeFamily nodeSizeFamily() {
@@ -501,7 +514,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Set the nodeSizeFamily property: The kind of nodes that the Big Data pool provides.
-     *
+     * 
      * @param nodeSizeFamily the nodeSizeFamily value to set.
      * @return the BigDataPoolResourceProperties object itself.
      */
@@ -512,7 +525,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Get the lastSucceededTimestamp property: The time when the Big Data pool was updated successfully.
-     *
+     * 
      * @return the lastSucceededTimestamp value.
      */
     public OffsetDateTime lastSucceededTimestamp() {
@@ -521,7 +534,7 @@ public final class BigDataPoolResourceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

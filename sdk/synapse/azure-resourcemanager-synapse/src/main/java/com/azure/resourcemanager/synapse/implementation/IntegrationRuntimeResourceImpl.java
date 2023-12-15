@@ -68,32 +68,14 @@ public final class IntegrationRuntimeResourceImpl
     }
 
     public IntegrationRuntimeResource create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getIntegrationRuntimes()
-                .create(
-                    resourceGroupName,
-                    workspaceName,
-                    integrationRuntimeName,
-                    this.innerModel(),
-                    createIfMatch,
-                    Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getIntegrationRuntimes().create(resourceGroupName,
+            workspaceName, integrationRuntimeName, this.innerModel(), createIfMatch, Context.NONE);
         return this;
     }
 
     public IntegrationRuntimeResource create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getIntegrationRuntimes()
-                .create(
-                    resourceGroupName,
-                    workspaceName,
-                    integrationRuntimeName,
-                    this.innerModel(),
-                    createIfMatch,
-                    context);
+        this.innerObject = serviceManager.serviceClient().getIntegrationRuntimes().create(resourceGroupName,
+            workspaceName, integrationRuntimeName, this.innerModel(), createIfMatch, context);
         return this;
     }
 
@@ -110,37 +92,19 @@ public final class IntegrationRuntimeResourceImpl
     }
 
     public IntegrationRuntimeResource apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getIntegrationRuntimes()
-                .updateWithResponse(
-                    resourceGroupName,
-                    workspaceName,
-                    integrationRuntimeName,
-                    updateUpdateIntegrationRuntimeRequest,
-                    Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getIntegrationRuntimes().updateWithResponse(resourceGroupName,
+            workspaceName, integrationRuntimeName, updateUpdateIntegrationRuntimeRequest, Context.NONE).getValue();
         return this;
     }
 
     public IntegrationRuntimeResource apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getIntegrationRuntimes()
-                .updateWithResponse(
-                    resourceGroupName,
-                    workspaceName,
-                    integrationRuntimeName,
-                    updateUpdateIntegrationRuntimeRequest,
-                    context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getIntegrationRuntimes().updateWithResponse(resourceGroupName,
+            workspaceName, integrationRuntimeName, updateUpdateIntegrationRuntimeRequest, context).getValue();
         return this;
     }
 
-    IntegrationRuntimeResourceImpl(
-        IntegrationRuntimeResourceInner innerObject, com.azure.resourcemanager.synapse.SynapseManager serviceManager) {
+    IntegrationRuntimeResourceImpl(IntegrationRuntimeResourceInner innerObject,
+        com.azure.resourcemanager.synapse.SynapseManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
@@ -150,31 +114,23 @@ public final class IntegrationRuntimeResourceImpl
 
     public IntegrationRuntimeResource refresh() {
         String localIfNoneMatch = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getIntegrationRuntimes()
-                .getWithResponse(
-                    resourceGroupName, workspaceName, integrationRuntimeName, localIfNoneMatch, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getIntegrationRuntimes()
+            .getWithResponse(resourceGroupName, workspaceName, integrationRuntimeName, localIfNoneMatch, Context.NONE)
+            .getValue();
         return this;
     }
 
     public IntegrationRuntimeResource refresh(Context context) {
         String localIfNoneMatch = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getIntegrationRuntimes()
-                .getWithResponse(resourceGroupName, workspaceName, integrationRuntimeName, localIfNoneMatch, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getIntegrationRuntimes()
+            .getWithResponse(resourceGroupName, workspaceName, integrationRuntimeName, localIfNoneMatch, context)
+            .getValue();
         return this;
     }
 
     public Response<Void> upgradeWithResponse(Context context) {
-        return serviceManager
-            .integrationRuntimes()
-            .upgradeWithResponse(resourceGroupName, workspaceName, integrationRuntimeName, context);
+        return serviceManager.integrationRuntimes().upgradeWithResponse(resourceGroupName, workspaceName,
+            integrationRuntimeName, context);
     }
 
     public void upgrade() {
@@ -186,9 +142,8 @@ public final class IntegrationRuntimeResourceImpl
     }
 
     public IntegrationRuntimeStatusResponse start(Context context) {
-        return serviceManager
-            .integrationRuntimes()
-            .start(resourceGroupName, workspaceName, integrationRuntimeName, context);
+        return serviceManager.integrationRuntimes().start(resourceGroupName, workspaceName, integrationRuntimeName,
+            context);
     }
 
     public void stop() {
@@ -200,27 +155,23 @@ public final class IntegrationRuntimeResourceImpl
     }
 
     public void enableInteractiveQuery() {
-        serviceManager
-            .integrationRuntimes()
-            .enableInteractiveQuery(resourceGroupName, workspaceName, integrationRuntimeName);
+        serviceManager.integrationRuntimes().enableInteractiveQuery(resourceGroupName, workspaceName,
+            integrationRuntimeName);
     }
 
     public void enableInteractiveQuery(Context context) {
-        serviceManager
-            .integrationRuntimes()
-            .enableInteractiveQuery(resourceGroupName, workspaceName, integrationRuntimeName, context);
+        serviceManager.integrationRuntimes().enableInteractiveQuery(resourceGroupName, workspaceName,
+            integrationRuntimeName, context);
     }
 
     public void disableInteractiveQuery() {
-        serviceManager
-            .integrationRuntimes()
-            .disableInteractiveQuery(resourceGroupName, workspaceName, integrationRuntimeName);
+        serviceManager.integrationRuntimes().disableInteractiveQuery(resourceGroupName, workspaceName,
+            integrationRuntimeName);
     }
 
     public void disableInteractiveQuery(Context context) {
-        serviceManager
-            .integrationRuntimes()
-            .disableInteractiveQuery(resourceGroupName, workspaceName, integrationRuntimeName, context);
+        serviceManager.integrationRuntimes().disableInteractiveQuery(resourceGroupName, workspaceName,
+            integrationRuntimeName, context);
     }
 
     public IntegrationRuntimeResourceImpl withProperties(IntegrationRuntime properties) {

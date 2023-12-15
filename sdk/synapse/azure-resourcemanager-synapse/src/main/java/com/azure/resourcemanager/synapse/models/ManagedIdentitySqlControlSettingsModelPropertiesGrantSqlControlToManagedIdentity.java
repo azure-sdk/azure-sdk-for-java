@@ -7,9 +7,11 @@ package com.azure.resourcemanager.synapse.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Grant sql control to managed identity. */
+/**
+ * Grant sql control to managed identity.
+ */
 @Fluent
-public class ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity {
+public final class ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity {
     /*
      * Desired state
      */
@@ -30,7 +32,7 @@ public class ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToMa
 
     /**
      * Get the desiredState property: Desired state.
-     *
+     * 
      * @return the desiredState value.
      */
     public DesiredState desiredState() {
@@ -39,19 +41,19 @@ public class ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToMa
 
     /**
      * Set the desiredState property: Desired state.
-     *
+     * 
      * @param desiredState the desiredState value to set.
      * @return the ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity object itself.
      */
-    public ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity withDesiredState(
-        DesiredState desiredState) {
+    public ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity
+        withDesiredState(DesiredState desiredState) {
         this.desiredState = desiredState;
         return this;
     }
 
     /**
      * Get the actualState property: Actual state.
-     *
+     * 
      * @return the actualState value.
      */
     public ActualState actualState() {
@@ -60,7 +62,7 @@ public class ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToMa
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,7 +10,9 @@ import com.azure.resourcemanager.synapse.fluent.models.RestorableDroppedSqlPoolI
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response to a list restorable dropped Sql pools request. */
+/**
+ * The response to a list restorable dropped Sql pools request.
+ */
 @Fluent
 public final class RestorableDroppedSqlPoolListResult {
     /*
@@ -19,13 +21,15 @@ public final class RestorableDroppedSqlPoolListResult {
     @JsonProperty(value = "value", required = true)
     private List<RestorableDroppedSqlPoolInner> value;
 
-    /** Creates an instance of RestorableDroppedSqlPoolListResult class. */
+    /**
+     * Creates an instance of RestorableDroppedSqlPoolListResult class.
+     */
     public RestorableDroppedSqlPoolListResult() {
     }
 
     /**
      * Get the value property: A list of restorable dropped Sql pools.
-     *
+     * 
      * @return the value value.
      */
     public List<RestorableDroppedSqlPoolInner> value() {
@@ -34,7 +38,7 @@ public final class RestorableDroppedSqlPoolListResult {
 
     /**
      * Set the value property: A list of restorable dropped Sql pools.
-     *
+     * 
      * @param value the value value to set.
      * @return the RestorableDroppedSqlPoolListResult object itself.
      */
@@ -45,15 +49,13 @@ public final class RestorableDroppedSqlPoolListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model RestorableDroppedSqlPoolListResult"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property value in model RestorableDroppedSqlPoolListResult"));
         } else {
             value().forEach(e -> e.validate());
         }

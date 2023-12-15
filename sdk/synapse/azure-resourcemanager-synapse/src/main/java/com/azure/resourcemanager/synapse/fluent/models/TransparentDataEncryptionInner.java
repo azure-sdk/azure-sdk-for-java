@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.synapse.models.TransparentDataEncryptionStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents a Sql pool transparent data encryption configuration. */
+/**
+ * Represents a Sql pool transparent data encryption configuration.
+ */
 @Fluent
 public final class TransparentDataEncryptionInner extends ProxyResource {
     /*
@@ -24,13 +26,15 @@ public final class TransparentDataEncryptionInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private TransparentDataEncryptionProperties innerProperties;
 
-    /** Creates an instance of TransparentDataEncryptionInner class. */
+    /**
+     * Creates an instance of TransparentDataEncryptionInner class.
+     */
     public TransparentDataEncryptionInner() {
     }
 
     /**
      * Get the location property: Resource location.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -39,7 +43,7 @@ public final class TransparentDataEncryptionInner extends ProxyResource {
 
     /**
      * Get the innerProperties property: Represents the properties of the resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private TransparentDataEncryptionProperties innerProperties() {
@@ -48,7 +52,7 @@ public final class TransparentDataEncryptionInner extends ProxyResource {
 
     /**
      * Get the status property: The status of the database transparent data encryption.
-     *
+     * 
      * @return the status value.
      */
     public TransparentDataEncryptionStatus status() {
@@ -57,7 +61,7 @@ public final class TransparentDataEncryptionInner extends ProxyResource {
 
     /**
      * Set the status property: The status of the database transparent data encryption.
-     *
+     * 
      * @param status the status value to set.
      * @return the TransparentDataEncryptionInner object itself.
      */
@@ -71,7 +75,7 @@ public final class TransparentDataEncryptionInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

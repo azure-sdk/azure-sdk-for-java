@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.fluent.models.KustoPoolPrivateLinkResou
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list Kusto Private Link Resources operation response. */
+/**
+ * The list Kusto Private Link Resources operation response.
+ */
 @Fluent
 public final class PrivateLinkResources {
     /*
@@ -18,13 +20,15 @@ public final class PrivateLinkResources {
     @JsonProperty(value = "value")
     private List<KustoPoolPrivateLinkResourcesInner> value;
 
-    /** Creates an instance of PrivateLinkResources class. */
+    /**
+     * Creates an instance of PrivateLinkResources class.
+     */
     public PrivateLinkResources() {
     }
 
     /**
      * Get the value property: The list of Kusto Private Link Resources.
-     *
+     * 
      * @return the value value.
      */
     public List<KustoPoolPrivateLinkResourcesInner> value() {
@@ -33,7 +37,7 @@ public final class PrivateLinkResources {
 
     /**
      * Set the value property: The list of Kusto Private Link Resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the PrivateLinkResources object itself.
      */
@@ -44,7 +48,7 @@ public final class PrivateLinkResources {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

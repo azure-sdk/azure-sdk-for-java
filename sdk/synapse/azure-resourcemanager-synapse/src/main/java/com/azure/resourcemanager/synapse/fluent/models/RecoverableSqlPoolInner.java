@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** A recoverable sql pool. */
+/**
+ * A recoverable sql pool.
+ */
 @Immutable
 public final class RecoverableSqlPoolInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class RecoverableSqlPoolInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private RecoverableSqlPoolProperties innerProperties;
 
-    /** Creates an instance of RecoverableSqlPoolInner class. */
+    /**
+     * Creates an instance of RecoverableSqlPoolInner class.
+     */
     public RecoverableSqlPoolInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of a recoverable sql pool.
-     *
+     * 
      * @return the innerProperties value.
      */
     private RecoverableSqlPoolProperties innerProperties() {
@@ -33,7 +37,7 @@ public final class RecoverableSqlPoolInner extends ProxyResource {
 
     /**
      * Get the edition property: The edition of the database.
-     *
+     * 
      * @return the edition value.
      */
     public String edition() {
@@ -42,7 +46,7 @@ public final class RecoverableSqlPoolInner extends ProxyResource {
 
     /**
      * Get the serviceLevelObjective property: The service level objective name of the database.
-     *
+     * 
      * @return the serviceLevelObjective value.
      */
     public String serviceLevelObjective() {
@@ -51,7 +55,7 @@ public final class RecoverableSqlPoolInner extends ProxyResource {
 
     /**
      * Get the elasticPoolName property: The elastic pool name of the database.
-     *
+     * 
      * @return the elasticPoolName value.
      */
     public String elasticPoolName() {
@@ -60,7 +64,7 @@ public final class RecoverableSqlPoolInner extends ProxyResource {
 
     /**
      * Get the lastAvailableBackupDate property: The last available backup date of the database (ISO8601 format).
-     *
+     * 
      * @return the lastAvailableBackupDate value.
      */
     public OffsetDateTime lastAvailableBackupDate() {
@@ -69,7 +73,7 @@ public final class RecoverableSqlPoolInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

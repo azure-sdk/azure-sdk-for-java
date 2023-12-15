@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The properties of a recoverable sql pool. */
+/**
+ * The properties of a recoverable sql pool.
+ */
 @Immutable
 public final class RecoverableSqlPoolProperties {
     /*
@@ -35,13 +37,15 @@ public final class RecoverableSqlPoolProperties {
     @JsonProperty(value = "lastAvailableBackupDate", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime lastAvailableBackupDate;
 
-    /** Creates an instance of RecoverableSqlPoolProperties class. */
+    /**
+     * Creates an instance of RecoverableSqlPoolProperties class.
+     */
     public RecoverableSqlPoolProperties() {
     }
 
     /**
      * Get the edition property: The edition of the database.
-     *
+     * 
      * @return the edition value.
      */
     public String edition() {
@@ -50,7 +54,7 @@ public final class RecoverableSqlPoolProperties {
 
     /**
      * Get the serviceLevelObjective property: The service level objective name of the database.
-     *
+     * 
      * @return the serviceLevelObjective value.
      */
     public String serviceLevelObjective() {
@@ -59,7 +63,7 @@ public final class RecoverableSqlPoolProperties {
 
     /**
      * Get the elasticPoolName property: The elastic pool name of the database.
-     *
+     * 
      * @return the elasticPoolName value.
      */
     public String elasticPoolName() {
@@ -68,7 +72,7 @@ public final class RecoverableSqlPoolProperties {
 
     /**
      * Get the lastAvailableBackupDate property: The last available backup date of the database (ISO8601 format).
-     *
+     * 
      * @return the lastAvailableBackupDate value.
      */
     public OffsetDateTime lastAvailableBackupDate() {
@@ -77,7 +81,7 @@ public final class RecoverableSqlPoolProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

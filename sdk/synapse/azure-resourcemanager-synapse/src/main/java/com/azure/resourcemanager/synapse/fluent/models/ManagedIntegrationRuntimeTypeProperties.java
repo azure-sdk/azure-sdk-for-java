@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.models.IntegrationRuntimeComputePropert
 import com.azure.resourcemanager.synapse.models.IntegrationRuntimeSsisProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Managed integration runtime type properties. */
+/**
+ * Managed integration runtime type properties.
+ */
 @Fluent
 public final class ManagedIntegrationRuntimeTypeProperties {
     /*
@@ -24,13 +26,15 @@ public final class ManagedIntegrationRuntimeTypeProperties {
     @JsonProperty(value = "ssisProperties")
     private IntegrationRuntimeSsisProperties ssisProperties;
 
-    /** Creates an instance of ManagedIntegrationRuntimeTypeProperties class. */
+    /**
+     * Creates an instance of ManagedIntegrationRuntimeTypeProperties class.
+     */
     public ManagedIntegrationRuntimeTypeProperties() {
     }
 
     /**
      * Get the computeProperties property: The compute resource for managed integration runtime.
-     *
+     * 
      * @return the computeProperties value.
      */
     public IntegrationRuntimeComputeProperties computeProperties() {
@@ -39,19 +43,19 @@ public final class ManagedIntegrationRuntimeTypeProperties {
 
     /**
      * Set the computeProperties property: The compute resource for managed integration runtime.
-     *
+     * 
      * @param computeProperties the computeProperties value to set.
      * @return the ManagedIntegrationRuntimeTypeProperties object itself.
      */
-    public ManagedIntegrationRuntimeTypeProperties withComputeProperties(
-        IntegrationRuntimeComputeProperties computeProperties) {
+    public ManagedIntegrationRuntimeTypeProperties
+        withComputeProperties(IntegrationRuntimeComputeProperties computeProperties) {
         this.computeProperties = computeProperties;
         return this;
     }
 
     /**
      * Get the ssisProperties property: SSIS properties for managed integration runtime.
-     *
+     * 
      * @return the ssisProperties value.
      */
     public IntegrationRuntimeSsisProperties ssisProperties() {
@@ -60,7 +64,7 @@ public final class ManagedIntegrationRuntimeTypeProperties {
 
     /**
      * Set the ssisProperties property: SSIS properties for managed integration runtime.
-     *
+     * 
      * @param ssisProperties the ssisProperties value to set.
      * @return the ManagedIntegrationRuntimeTypeProperties object itself.
      */
@@ -71,7 +75,7 @@ public final class ManagedIntegrationRuntimeTypeProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

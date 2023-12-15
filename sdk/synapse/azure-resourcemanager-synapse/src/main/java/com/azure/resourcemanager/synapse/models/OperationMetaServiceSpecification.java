@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** What is this?. */
+/**
+ * What is this?.
+ */
 @Fluent
 public final class OperationMetaServiceSpecification {
     /*
@@ -23,13 +25,15 @@ public final class OperationMetaServiceSpecification {
     @JsonProperty(value = "logSpecifications")
     private List<OperationMetaLogSpecification> logSpecifications;
 
-    /** Creates an instance of OperationMetaServiceSpecification class. */
+    /**
+     * Creates an instance of OperationMetaServiceSpecification class.
+     */
     public OperationMetaServiceSpecification() {
     }
 
     /**
      * Get the metricSpecifications property: Service metric specifications.
-     *
+     * 
      * @return the metricSpecifications value.
      */
     public List<OperationMetaMetricSpecification> metricSpecifications() {
@@ -38,19 +42,19 @@ public final class OperationMetaServiceSpecification {
 
     /**
      * Set the metricSpecifications property: Service metric specifications.
-     *
+     * 
      * @param metricSpecifications the metricSpecifications value to set.
      * @return the OperationMetaServiceSpecification object itself.
      */
-    public OperationMetaServiceSpecification withMetricSpecifications(
-        List<OperationMetaMetricSpecification> metricSpecifications) {
+    public OperationMetaServiceSpecification
+        withMetricSpecifications(List<OperationMetaMetricSpecification> metricSpecifications) {
         this.metricSpecifications = metricSpecifications;
         return this;
     }
 
     /**
      * Get the logSpecifications property: Service log specifications.
-     *
+     * 
      * @return the logSpecifications value.
      */
     public List<OperationMetaLogSpecification> logSpecifications() {
@@ -59,19 +63,19 @@ public final class OperationMetaServiceSpecification {
 
     /**
      * Set the logSpecifications property: Service log specifications.
-     *
+     * 
      * @param logSpecifications the logSpecifications value to set.
      * @return the OperationMetaServiceSpecification object itself.
      */
-    public OperationMetaServiceSpecification withLogSpecifications(
-        List<OperationMetaLogSpecification> logSpecifications) {
+    public OperationMetaServiceSpecification
+        withLogSpecifications(List<OperationMetaLogSpecification> logSpecifications) {
         this.logSpecifications = logSpecifications;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

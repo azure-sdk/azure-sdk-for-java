@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.models.ResourceProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Private Link Resources Properties. */
+/**
+ * Private Link Resources Properties.
+ */
 @Immutable
 public final class PrivateLinkResourcesProperties {
     /*
@@ -36,13 +38,15 @@ public final class PrivateLinkResourcesProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ResourceProvisioningState provisioningState;
 
-    /** Creates an instance of PrivateLinkResourcesProperties class. */
+    /**
+     * Creates an instance of PrivateLinkResourcesProperties class.
+     */
     public PrivateLinkResourcesProperties() {
     }
 
     /**
      * Get the groupId property: The Private link resources GroupId.
-     *
+     * 
      * @return the groupId value.
      */
     public String groupId() {
@@ -51,7 +55,7 @@ public final class PrivateLinkResourcesProperties {
 
     /**
      * Get the requiredMembers property: The private link resource required member names.
-     *
+     * 
      * @return the requiredMembers value.
      */
     public List<String> requiredMembers() {
@@ -60,7 +64,7 @@ public final class PrivateLinkResourcesProperties {
 
     /**
      * Get the requiredZoneNames property: The private link resource required zone names.
-     *
+     * 
      * @return the requiredZoneNames value.
      */
     public List<String> requiredZoneNames() {
@@ -69,7 +73,7 @@ public final class PrivateLinkResourcesProperties {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ResourceProvisioningState provisioningState() {
@@ -78,7 +82,7 @@ public final class PrivateLinkResourcesProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,7 +10,9 @@ import com.azure.resourcemanager.synapse.fluent.models.LibraryResourceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of Library resources. */
+/**
+ * A list of Library resources.
+ */
 @Fluent
 public final class LibraryListResponse {
     /*
@@ -25,13 +27,15 @@ public final class LibraryListResponse {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of LibraryListResponse class. */
+    /**
+     * Creates an instance of LibraryListResponse class.
+     */
     public LibraryListResponse() {
     }
 
     /**
      * Get the value property: List of Library.
-     *
+     * 
      * @return the value value.
      */
     public List<LibraryResourceInner> value() {
@@ -40,7 +44,7 @@ public final class LibraryListResponse {
 
     /**
      * Set the value property: List of Library.
-     *
+     * 
      * @param value the value value to set.
      * @return the LibraryListResponse object itself.
      */
@@ -51,7 +55,7 @@ public final class LibraryListResponse {
 
     /**
      * Get the nextLink property: The link to the next page of results, if any remaining results exist.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -60,7 +64,7 @@ public final class LibraryListResponse {
 
     /**
      * Set the nextLink property: The link to the next page of results, if any remaining results exist.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the LibraryListResponse object itself.
      */
@@ -71,14 +75,13 @@ public final class LibraryListResponse {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model LibraryListResponse"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model LibraryListResponse"));
         } else {
             value().forEach(e -> e.validate());
         }

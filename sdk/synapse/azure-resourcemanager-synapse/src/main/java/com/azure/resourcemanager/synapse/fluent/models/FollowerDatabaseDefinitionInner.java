@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A class representing follower database request. */
+/**
+ * A class representing follower database request.
+ */
 @Fluent
 public final class FollowerDatabaseDefinitionInner {
     /*
@@ -29,13 +31,15 @@ public final class FollowerDatabaseDefinitionInner {
     @JsonProperty(value = "databaseName", access = JsonProperty.Access.WRITE_ONLY)
     private String databaseName;
 
-    /** Creates an instance of FollowerDatabaseDefinitionInner class. */
+    /**
+     * Creates an instance of FollowerDatabaseDefinitionInner class.
+     */
     public FollowerDatabaseDefinitionInner() {
     }
 
     /**
      * Get the kustoPoolResourceId property: Resource id of the cluster that follows a database owned by this cluster.
-     *
+     * 
      * @return the kustoPoolResourceId value.
      */
     public String kustoPoolResourceId() {
@@ -44,7 +48,7 @@ public final class FollowerDatabaseDefinitionInner {
 
     /**
      * Set the kustoPoolResourceId property: Resource id of the cluster that follows a database owned by this cluster.
-     *
+     * 
      * @param kustoPoolResourceId the kustoPoolResourceId value to set.
      * @return the FollowerDatabaseDefinitionInner object itself.
      */
@@ -56,7 +60,7 @@ public final class FollowerDatabaseDefinitionInner {
     /**
      * Get the attachedDatabaseConfigurationName property: Resource name of the attached database configuration in the
      * follower cluster.
-     *
+     * 
      * @return the attachedDatabaseConfigurationName value.
      */
     public String attachedDatabaseConfigurationName() {
@@ -66,20 +70,20 @@ public final class FollowerDatabaseDefinitionInner {
     /**
      * Set the attachedDatabaseConfigurationName property: Resource name of the attached database configuration in the
      * follower cluster.
-     *
+     * 
      * @param attachedDatabaseConfigurationName the attachedDatabaseConfigurationName value to set.
      * @return the FollowerDatabaseDefinitionInner object itself.
      */
-    public FollowerDatabaseDefinitionInner withAttachedDatabaseConfigurationName(
-        String attachedDatabaseConfigurationName) {
+    public FollowerDatabaseDefinitionInner
+        withAttachedDatabaseConfigurationName(String attachedDatabaseConfigurationName) {
         this.attachedDatabaseConfigurationName = attachedDatabaseConfigurationName;
         return this;
     }
 
     /**
-     * Get the databaseName property: The database name owned by this cluster that was followed. * in case following all
-     * databases.
-     *
+     * Get the databaseName property: The database name owned by this cluster that was followed. * in case following
+     * all databases.
+     * 
      * @return the databaseName value.
      */
     public String databaseName() {
@@ -88,22 +92,17 @@ public final class FollowerDatabaseDefinitionInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (kustoPoolResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property kustoPoolResourceId in model FollowerDatabaseDefinitionInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property kustoPoolResourceId in model FollowerDatabaseDefinitionInner"));
         }
         if (attachedDatabaseConfigurationName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property attachedDatabaseConfigurationName in model"
-                            + " FollowerDatabaseDefinitionInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property attachedDatabaseConfigurationName in model FollowerDatabaseDefinitionInner"));
         }
     }
 

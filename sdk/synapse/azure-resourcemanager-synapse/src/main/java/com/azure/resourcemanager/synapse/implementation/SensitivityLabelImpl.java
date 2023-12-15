@@ -92,13 +92,8 @@ public final class SensitivityLabelImpl
 
     private String columnName;
 
-    public SensitivityLabelImpl withExistingColumn(
-        String resourceGroupName,
-        String workspaceName,
-        String sqlPoolName,
-        String schemaName,
-        String tableName,
-        String columnName) {
+    public SensitivityLabelImpl withExistingColumn(String resourceGroupName, String workspaceName, String sqlPoolName,
+        String schemaName, String tableName, String columnName) {
         this.resourceGroupName = resourceGroupName;
         this.workspaceName = workspaceName;
         this.sqlPoolName = sqlPoolName;
@@ -109,37 +104,19 @@ public final class SensitivityLabelImpl
     }
 
     public SensitivityLabel create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSqlPoolSensitivityLabels()
-                .createOrUpdateWithResponse(
-                    resourceGroupName,
-                    workspaceName,
-                    sqlPoolName,
-                    schemaName,
-                    tableName,
-                    columnName,
-                    this.innerModel(),
-                    Context.NONE)
+        this.innerObject
+            = serviceManager
+                .serviceClient().getSqlPoolSensitivityLabels().createOrUpdateWithResponse(resourceGroupName,
+                    workspaceName, sqlPoolName, schemaName, tableName, columnName, this.innerModel(), Context.NONE)
                 .getValue();
         return this;
     }
 
     public SensitivityLabel create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSqlPoolSensitivityLabels()
-                .createOrUpdateWithResponse(
-                    resourceGroupName,
-                    workspaceName,
-                    sqlPoolName,
-                    schemaName,
-                    tableName,
-                    columnName,
-                    this.innerModel(),
-                    context)
+        this.innerObject
+            = serviceManager
+                .serviceClient().getSqlPoolSensitivityLabels().createOrUpdateWithResponse(resourceGroupName,
+                    workspaceName, sqlPoolName, schemaName, tableName, columnName, this.innerModel(), context)
                 .getValue();
         return this;
     }
@@ -154,43 +131,25 @@ public final class SensitivityLabelImpl
     }
 
     public SensitivityLabel apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSqlPoolSensitivityLabels()
-                .createOrUpdateWithResponse(
-                    resourceGroupName,
-                    workspaceName,
-                    sqlPoolName,
-                    schemaName,
-                    tableName,
-                    columnName,
-                    this.innerModel(),
-                    Context.NONE)
+        this.innerObject
+            = serviceManager
+                .serviceClient().getSqlPoolSensitivityLabels().createOrUpdateWithResponse(resourceGroupName,
+                    workspaceName, sqlPoolName, schemaName, tableName, columnName, this.innerModel(), Context.NONE)
                 .getValue();
         return this;
     }
 
     public SensitivityLabel apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSqlPoolSensitivityLabels()
-                .createOrUpdateWithResponse(
-                    resourceGroupName,
-                    workspaceName,
-                    sqlPoolName,
-                    schemaName,
-                    tableName,
-                    columnName,
-                    this.innerModel(),
-                    context)
+        this.innerObject
+            = serviceManager
+                .serviceClient().getSqlPoolSensitivityLabels().createOrUpdateWithResponse(resourceGroupName,
+                    workspaceName, sqlPoolName, schemaName, tableName, columnName, this.innerModel(), context)
                 .getValue();
         return this;
     }
 
-    SensitivityLabelImpl(
-        SensitivityLabelInner innerObject, com.azure.resourcemanager.synapse.SynapseManager serviceManager) {
+    SensitivityLabelImpl(SensitivityLabelInner innerObject,
+        com.azure.resourcemanager.synapse.SynapseManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
@@ -202,29 +161,23 @@ public final class SensitivityLabelImpl
     }
 
     public Response<Void> enableRecommendationWithResponse(Context context) {
-        return serviceManager
-            .sqlPoolSensitivityLabels()
-            .enableRecommendationWithResponse(
-                resourceGroupName, workspaceName, sqlPoolName, schemaName, tableName, columnName, context);
+        return serviceManager.sqlPoolSensitivityLabels().enableRecommendationWithResponse(resourceGroupName,
+            workspaceName, sqlPoolName, schemaName, tableName, columnName, context);
     }
 
     public void enableRecommendation() {
-        serviceManager
-            .sqlPoolSensitivityLabels()
-            .enableRecommendation(resourceGroupName, workspaceName, sqlPoolName, schemaName, tableName, columnName);
+        serviceManager.sqlPoolSensitivityLabels().enableRecommendation(resourceGroupName, workspaceName, sqlPoolName,
+            schemaName, tableName, columnName);
     }
 
     public Response<Void> disableRecommendationWithResponse(Context context) {
-        return serviceManager
-            .sqlPoolSensitivityLabels()
-            .disableRecommendationWithResponse(
-                resourceGroupName, workspaceName, sqlPoolName, schemaName, tableName, columnName, context);
+        return serviceManager.sqlPoolSensitivityLabels().disableRecommendationWithResponse(resourceGroupName,
+            workspaceName, sqlPoolName, schemaName, tableName, columnName, context);
     }
 
     public void disableRecommendation() {
-        serviceManager
-            .sqlPoolSensitivityLabels()
-            .disableRecommendation(resourceGroupName, workspaceName, sqlPoolName, schemaName, tableName, columnName);
+        serviceManager.sqlPoolSensitivityLabels().disableRecommendation(resourceGroupName, workspaceName, sqlPoolName,
+            schemaName, tableName, columnName);
     }
 
     public SensitivityLabelImpl withLabelName(String labelName) {

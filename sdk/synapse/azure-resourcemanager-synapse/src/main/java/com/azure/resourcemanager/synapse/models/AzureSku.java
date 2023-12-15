@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Azure SKU definition. */
+/**
+ * Azure SKU definition.
+ */
 @Fluent
 public final class AzureSku {
     /*
@@ -29,13 +31,15 @@ public final class AzureSku {
     @JsonProperty(value = "size", required = true)
     private SkuSize size;
 
-    /** Creates an instance of AzureSku class. */
+    /**
+     * Creates an instance of AzureSku class.
+     */
     public AzureSku() {
     }
 
     /**
      * Get the name property: SKU name.
-     *
+     * 
      * @return the name value.
      */
     public SkuName name() {
@@ -44,7 +48,7 @@ public final class AzureSku {
 
     /**
      * Set the name property: SKU name.
-     *
+     * 
      * @param name the name value to set.
      * @return the AzureSku object itself.
      */
@@ -55,7 +59,7 @@ public final class AzureSku {
 
     /**
      * Get the capacity property: The number of instances of the cluster.
-     *
+     * 
      * @return the capacity value.
      */
     public Integer capacity() {
@@ -64,7 +68,7 @@ public final class AzureSku {
 
     /**
      * Set the capacity property: The number of instances of the cluster.
-     *
+     * 
      * @param capacity the capacity value to set.
      * @return the AzureSku object itself.
      */
@@ -75,7 +79,7 @@ public final class AzureSku {
 
     /**
      * Get the size property: SKU size.
-     *
+     * 
      * @return the size value.
      */
     public SkuSize size() {
@@ -84,7 +88,7 @@ public final class AzureSku {
 
     /**
      * Set the size property: SKU size.
-     *
+     * 
      * @param size the size value to set.
      * @return the AzureSku object itself.
      */
@@ -95,7 +99,7 @@ public final class AzureSku {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

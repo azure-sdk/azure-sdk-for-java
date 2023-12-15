@@ -10,9 +10,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import java.util.UUID;
 
-/** The workspace managed identity. */
+/**
+ * The workspace managed identity.
+ */
 @Fluent
-public class ManagedIdentity {
+public final class ManagedIdentity {
     /*
      * The principal ID of the workspace managed identity
      */
@@ -38,13 +40,15 @@ public class ManagedIdentity {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, UserAssignedManagedIdentity> userAssignedIdentities;
 
-    /** Creates an instance of ManagedIdentity class. */
+    /**
+     * Creates an instance of ManagedIdentity class.
+     */
     public ManagedIdentity() {
     }
 
     /**
      * Get the principalId property: The principal ID of the workspace managed identity.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -53,7 +57,7 @@ public class ManagedIdentity {
 
     /**
      * Get the tenantId property: The tenant ID of the workspace managed identity.
-     *
+     * 
      * @return the tenantId value.
      */
     public UUID tenantId() {
@@ -62,7 +66,7 @@ public class ManagedIdentity {
 
     /**
      * Get the type property: The type of managed identity for the workspace.
-     *
+     * 
      * @return the type value.
      */
     public ResourceIdentityType type() {
@@ -71,7 +75,7 @@ public class ManagedIdentity {
 
     /**
      * Set the type property: The type of managed identity for the workspace.
-     *
+     * 
      * @param type the type value to set.
      * @return the ManagedIdentity object itself.
      */
@@ -82,7 +86,7 @@ public class ManagedIdentity {
 
     /**
      * Get the userAssignedIdentities property: The user assigned managed identities.
-     *
+     * 
      * @return the userAssignedIdentities value.
      */
     public Map<String, UserAssignedManagedIdentity> userAssignedIdentities() {
@@ -91,7 +95,7 @@ public class ManagedIdentity {
 
     /**
      * Set the userAssignedIdentities property: The user assigned managed identities.
-     *
+     * 
      * @param userAssignedIdentities the userAssignedIdentities value to set.
      * @return the ManagedIdentity object itself.
      */
@@ -102,19 +106,16 @@ public class ManagedIdentity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (userAssignedIdentities() != null) {
-            userAssignedIdentities()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            userAssignedIdentities().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 }

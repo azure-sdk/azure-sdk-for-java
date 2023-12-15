@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.fluent.models.DedicatedSQLminimalTlsSet
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of the server's dedicated sql minimal tls settings. */
+/**
+ * A list of the server's dedicated sql minimal tls settings.
+ */
 @Immutable
 public final class DedicatedSQLminimalTlsSettingsListResult {
     /*
@@ -24,13 +26,15 @@ public final class DedicatedSQLminimalTlsSettingsListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of DedicatedSQLminimalTlsSettingsListResult class. */
+    /**
+     * Creates an instance of DedicatedSQLminimalTlsSettingsListResult class.
+     */
     public DedicatedSQLminimalTlsSettingsListResult() {
     }
 
     /**
      * Get the value property: Array of results.
-     *
+     * 
      * @return the value value.
      */
     public List<DedicatedSQLminimalTlsSettingsInner> value() {
@@ -39,7 +43,7 @@ public final class DedicatedSQLminimalTlsSettingsListResult {
 
     /**
      * Get the nextLink property: Link to retrieve next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class DedicatedSQLminimalTlsSettingsListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

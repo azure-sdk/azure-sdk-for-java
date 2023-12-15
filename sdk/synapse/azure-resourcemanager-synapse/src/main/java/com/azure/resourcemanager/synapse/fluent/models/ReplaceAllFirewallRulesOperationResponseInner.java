@@ -7,7 +7,9 @@ package com.azure.resourcemanager.synapse.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An existing operation for replacing the firewall rules. */
+/**
+ * An existing operation for replacing the firewall rules.
+ */
 @Fluent
 public final class ReplaceAllFirewallRulesOperationResponseInner {
     /*
@@ -16,13 +18,15 @@ public final class ReplaceAllFirewallRulesOperationResponseInner {
     @JsonProperty(value = "operationId")
     private String operationId;
 
-    /** Creates an instance of ReplaceAllFirewallRulesOperationResponseInner class. */
+    /**
+     * Creates an instance of ReplaceAllFirewallRulesOperationResponseInner class.
+     */
     public ReplaceAllFirewallRulesOperationResponseInner() {
     }
 
     /**
      * Get the operationId property: The operation ID.
-     *
+     * 
      * @return the operationId value.
      */
     public String operationId() {
@@ -31,7 +35,7 @@ public final class ReplaceAllFirewallRulesOperationResponseInner {
 
     /**
      * Set the operationId property: The operation ID.
-     *
+     * 
      * @param operationId the operationId value to set.
      * @return the ReplaceAllFirewallRulesOperationResponseInner object itself.
      */
@@ -42,7 +46,7 @@ public final class ReplaceAllFirewallRulesOperationResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

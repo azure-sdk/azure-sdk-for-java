@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for BlobAuditingPolicyName. */
+/**
+ * Defines values for BlobAuditingPolicyName.
+ */
 public final class BlobAuditingPolicyName extends ExpandableStringEnum<BlobAuditingPolicyName> {
-    /** Static value default for BlobAuditingPolicyName. */
+    /**
+     * Static value default for BlobAuditingPolicyName.
+     */
     public static final BlobAuditingPolicyName DEFAULT = fromString("default");
 
     /**
      * Creates a new instance of BlobAuditingPolicyName value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class BlobAuditingPolicyName extends ExpandableStringEnum<BlobAudit
 
     /**
      * Creates or finds a BlobAuditingPolicyName from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding BlobAuditingPolicyName.
      */
@@ -35,7 +39,7 @@ public final class BlobAuditingPolicyName extends ExpandableStringEnum<BlobAudit
 
     /**
      * Gets known BlobAuditingPolicyName values.
-     *
+     * 
      * @return known BlobAuditingPolicyName values.
      */
     public static Collection<BlobAuditingPolicyName> values() {

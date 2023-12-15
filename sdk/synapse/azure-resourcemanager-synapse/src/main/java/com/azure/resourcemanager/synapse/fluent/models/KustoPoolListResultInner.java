@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list Kusto pools operation response. */
+/**
+ * The list Kusto pools operation response.
+ */
 @Fluent
 public final class KustoPoolListResultInner {
     /*
@@ -17,13 +19,15 @@ public final class KustoPoolListResultInner {
     @JsonProperty(value = "value")
     private List<KustoPoolInner> value;
 
-    /** Creates an instance of KustoPoolListResultInner class. */
+    /**
+     * Creates an instance of KustoPoolListResultInner class.
+     */
     public KustoPoolListResultInner() {
     }
 
     /**
      * Get the value property: The list of Kusto pools.
-     *
+     * 
      * @return the value value.
      */
     public List<KustoPoolInner> value() {
@@ -32,7 +36,7 @@ public final class KustoPoolListResultInner {
 
     /**
      * Set the value property: The list of Kusto pools.
-     *
+     * 
      * @param value the value value to set.
      * @return the KustoPoolListResultInner object itself.
      */
@@ -43,7 +47,7 @@ public final class KustoPoolListResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

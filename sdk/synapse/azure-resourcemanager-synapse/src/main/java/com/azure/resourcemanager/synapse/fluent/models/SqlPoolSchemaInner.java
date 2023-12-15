@@ -7,16 +7,20 @@ package com.azure.resourcemanager.synapse.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
 
-/** A Sql pool schema resource. */
+/**
+ * A Sql pool schema resource.
+ */
 @Immutable
 public final class SqlPoolSchemaInner extends ProxyResource {
-    /** Creates an instance of SqlPoolSchemaInner class. */
+    /**
+     * Creates an instance of SqlPoolSchemaInner class.
+     */
     public SqlPoolSchemaInner() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

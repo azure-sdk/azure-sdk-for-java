@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AzureADOnlyAuthenticationName. */
+/**
+ * Defines values for AzureADOnlyAuthenticationName.
+ */
 public final class AzureADOnlyAuthenticationName extends ExpandableStringEnum<AzureADOnlyAuthenticationName> {
-    /** Static value default for AzureADOnlyAuthenticationName. */
+    /**
+     * Static value default for AzureADOnlyAuthenticationName.
+     */
     public static final AzureADOnlyAuthenticationName DEFAULT = fromString("default");
 
     /**
      * Creates a new instance of AzureADOnlyAuthenticationName value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class AzureADOnlyAuthenticationName extends ExpandableStringEnum<Az
 
     /**
      * Creates or finds a AzureADOnlyAuthenticationName from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding AzureADOnlyAuthenticationName.
      */
@@ -35,7 +39,7 @@ public final class AzureADOnlyAuthenticationName extends ExpandableStringEnum<Az
 
     /**
      * Gets known AzureADOnlyAuthenticationName values.
-     *
+     * 
      * @return known AzureADOnlyAuthenticationName values.
      */
     public static Collection<AzureADOnlyAuthenticationName> values() {
