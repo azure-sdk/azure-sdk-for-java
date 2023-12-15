@@ -10,20 +10,20 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * A copy activity Azure SQL Managed Instance source.
+ * A copy activity Microsoft Fabric Warehouse source.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonTypeName("SqlMISource")
+@JsonTypeName("WarehouseSource")
 @Fluent
-public final class SqlMISource extends TabularSource {
+public final class WarehouseSource extends TabularSource {
     /*
-     * SQL reader query. Type: string (or Expression with resultType string).
+     * Microsoft Fabric Warehouse reader query. Type: string (or Expression with resultType string).
      */
     @JsonProperty(value = "sqlReaderQuery")
     private Object sqlReaderQuery;
 
     /*
-     * Name of the stored procedure for a Azure SQL Managed Instance source. This cannot be used at the same time as
+     * Name of the stored procedure for a Microsoft Fabric Warehouse source. This cannot be used at the same time as
      * SqlReaderQuery. Type: string (or Expression with resultType string).
      */
     @JsonProperty(value = "sqlReaderStoredProcedureName")
@@ -31,12 +31,13 @@ public final class SqlMISource extends TabularSource {
 
     /*
      * Value and type setting for stored procedure parameters. Example: "{Parameter1: {value: "1", type: "int"}}".
+     * Type: object (or Expression with resultType object), itemType: StoredProcedureParameter.
      */
     @JsonProperty(value = "storedProcedureParameters")
     private Object storedProcedureParameters;
 
     /*
-     * Specifies the transaction locking behavior for the SQL source. Allowed values:
+     * Specifies the transaction locking behavior for the Microsoft Fabric Warehouse source. Allowed values:
      * ReadCommitted/ReadUncommitted/RepeatableRead/Serializable/Snapshot. The default value is ReadCommitted. Type:
      * string (or Expression with resultType string).
      */
@@ -44,14 +45,8 @@ public final class SqlMISource extends TabularSource {
     private Object isolationLevel;
 
     /*
-     * Which additional types to produce.
-     */
-    @JsonProperty(value = "produceAdditionalTypes")
-    private Object produceAdditionalTypes;
-
-    /*
      * The partition mechanism that will be used for Sql read in parallel. Possible values include: "None",
-     * "PhysicalPartitionsOfTable", "DynamicRange". Type: string (or Expression with resultType string).
+     * "PhysicalPartitionsOfTable", "DynamicRange".
      */
     @JsonProperty(value = "partitionOption")
     private Object partitionOption;
@@ -63,13 +58,14 @@ public final class SqlMISource extends TabularSource {
     private SqlPartitionSettings partitionSettings;
 
     /**
-     * Creates an instance of SqlMISource class.
+     * Creates an instance of WarehouseSource class.
      */
-    public SqlMISource() {
+    public WarehouseSource() {
     }
 
     /**
-     * Get the sqlReaderQuery property: SQL reader query. Type: string (or Expression with resultType string).
+     * Get the sqlReaderQuery property: Microsoft Fabric Warehouse reader query. Type: string (or Expression with
+     * resultType string).
      * 
      * @return the sqlReaderQuery value.
      */
@@ -78,18 +74,19 @@ public final class SqlMISource extends TabularSource {
     }
 
     /**
-     * Set the sqlReaderQuery property: SQL reader query. Type: string (or Expression with resultType string).
+     * Set the sqlReaderQuery property: Microsoft Fabric Warehouse reader query. Type: string (or Expression with
+     * resultType string).
      * 
      * @param sqlReaderQuery the sqlReaderQuery value to set.
-     * @return the SqlMISource object itself.
+     * @return the WarehouseSource object itself.
      */
-    public SqlMISource withSqlReaderQuery(Object sqlReaderQuery) {
+    public WarehouseSource withSqlReaderQuery(Object sqlReaderQuery) {
         this.sqlReaderQuery = sqlReaderQuery;
         return this;
     }
 
     /**
-     * Get the sqlReaderStoredProcedureName property: Name of the stored procedure for a Azure SQL Managed Instance
+     * Get the sqlReaderStoredProcedureName property: Name of the stored procedure for a Microsoft Fabric Warehouse
      * source. This cannot be used at the same time as SqlReaderQuery. Type: string (or Expression with resultType
      * string).
      * 
@@ -100,21 +97,22 @@ public final class SqlMISource extends TabularSource {
     }
 
     /**
-     * Set the sqlReaderStoredProcedureName property: Name of the stored procedure for a Azure SQL Managed Instance
+     * Set the sqlReaderStoredProcedureName property: Name of the stored procedure for a Microsoft Fabric Warehouse
      * source. This cannot be used at the same time as SqlReaderQuery. Type: string (or Expression with resultType
      * string).
      * 
      * @param sqlReaderStoredProcedureName the sqlReaderStoredProcedureName value to set.
-     * @return the SqlMISource object itself.
+     * @return the WarehouseSource object itself.
      */
-    public SqlMISource withSqlReaderStoredProcedureName(Object sqlReaderStoredProcedureName) {
+    public WarehouseSource withSqlReaderStoredProcedureName(Object sqlReaderStoredProcedureName) {
         this.sqlReaderStoredProcedureName = sqlReaderStoredProcedureName;
         return this;
     }
 
     /**
      * Get the storedProcedureParameters property: Value and type setting for stored procedure parameters. Example:
-     * "{Parameter1: {value: "1", type: "int"}}".
+     * "{Parameter1: {value: "1", type: "int"}}". Type: object (or Expression with resultType object), itemType:
+     * StoredProcedureParameter.
      * 
      * @return the storedProcedureParameters value.
      */
@@ -124,20 +122,21 @@ public final class SqlMISource extends TabularSource {
 
     /**
      * Set the storedProcedureParameters property: Value and type setting for stored procedure parameters. Example:
-     * "{Parameter1: {value: "1", type: "int"}}".
+     * "{Parameter1: {value: "1", type: "int"}}". Type: object (or Expression with resultType object), itemType:
+     * StoredProcedureParameter.
      * 
      * @param storedProcedureParameters the storedProcedureParameters value to set.
-     * @return the SqlMISource object itself.
+     * @return the WarehouseSource object itself.
      */
-    public SqlMISource withStoredProcedureParameters(Object storedProcedureParameters) {
+    public WarehouseSource withStoredProcedureParameters(Object storedProcedureParameters) {
         this.storedProcedureParameters = storedProcedureParameters;
         return this;
     }
 
     /**
-     * Get the isolationLevel property: Specifies the transaction locking behavior for the SQL source. Allowed values:
-     * ReadCommitted/ReadUncommitted/RepeatableRead/Serializable/Snapshot. The default value is ReadCommitted. Type:
-     * string (or Expression with resultType string).
+     * Get the isolationLevel property: Specifies the transaction locking behavior for the Microsoft Fabric Warehouse
+     * source. Allowed values: ReadCommitted/ReadUncommitted/RepeatableRead/Serializable/Snapshot. The default value is
+     * ReadCommitted. Type: string (or Expression with resultType string).
      * 
      * @return the isolationLevel value.
      */
@@ -146,42 +145,21 @@ public final class SqlMISource extends TabularSource {
     }
 
     /**
-     * Set the isolationLevel property: Specifies the transaction locking behavior for the SQL source. Allowed values:
-     * ReadCommitted/ReadUncommitted/RepeatableRead/Serializable/Snapshot. The default value is ReadCommitted. Type:
-     * string (or Expression with resultType string).
+     * Set the isolationLevel property: Specifies the transaction locking behavior for the Microsoft Fabric Warehouse
+     * source. Allowed values: ReadCommitted/ReadUncommitted/RepeatableRead/Serializable/Snapshot. The default value is
+     * ReadCommitted. Type: string (or Expression with resultType string).
      * 
      * @param isolationLevel the isolationLevel value to set.
-     * @return the SqlMISource object itself.
+     * @return the WarehouseSource object itself.
      */
-    public SqlMISource withIsolationLevel(Object isolationLevel) {
+    public WarehouseSource withIsolationLevel(Object isolationLevel) {
         this.isolationLevel = isolationLevel;
         return this;
     }
 
     /**
-     * Get the produceAdditionalTypes property: Which additional types to produce.
-     * 
-     * @return the produceAdditionalTypes value.
-     */
-    public Object produceAdditionalTypes() {
-        return this.produceAdditionalTypes;
-    }
-
-    /**
-     * Set the produceAdditionalTypes property: Which additional types to produce.
-     * 
-     * @param produceAdditionalTypes the produceAdditionalTypes value to set.
-     * @return the SqlMISource object itself.
-     */
-    public SqlMISource withProduceAdditionalTypes(Object produceAdditionalTypes) {
-        this.produceAdditionalTypes = produceAdditionalTypes;
-        return this;
-    }
-
-    /**
      * Get the partitionOption property: The partition mechanism that will be used for Sql read in parallel. Possible
-     * values include: "None", "PhysicalPartitionsOfTable", "DynamicRange". Type: string (or Expression with resultType
-     * string).
+     * values include: "None", "PhysicalPartitionsOfTable", "DynamicRange".
      * 
      * @return the partitionOption value.
      */
@@ -191,13 +169,12 @@ public final class SqlMISource extends TabularSource {
 
     /**
      * Set the partitionOption property: The partition mechanism that will be used for Sql read in parallel. Possible
-     * values include: "None", "PhysicalPartitionsOfTable", "DynamicRange". Type: string (or Expression with resultType
-     * string).
+     * values include: "None", "PhysicalPartitionsOfTable", "DynamicRange".
      * 
      * @param partitionOption the partitionOption value to set.
-     * @return the SqlMISource object itself.
+     * @return the WarehouseSource object itself.
      */
-    public SqlMISource withPartitionOption(Object partitionOption) {
+    public WarehouseSource withPartitionOption(Object partitionOption) {
         this.partitionOption = partitionOption;
         return this;
     }
@@ -215,9 +192,9 @@ public final class SqlMISource extends TabularSource {
      * Set the partitionSettings property: The settings that will be leveraged for Sql source partitioning.
      * 
      * @param partitionSettings the partitionSettings value to set.
-     * @return the SqlMISource object itself.
+     * @return the WarehouseSource object itself.
      */
-    public SqlMISource withPartitionSettings(SqlPartitionSettings partitionSettings) {
+    public WarehouseSource withPartitionSettings(SqlPartitionSettings partitionSettings) {
         this.partitionSettings = partitionSettings;
         return this;
     }
@@ -226,7 +203,7 @@ public final class SqlMISource extends TabularSource {
      * {@inheritDoc}
      */
     @Override
-    public SqlMISource withQueryTimeout(Object queryTimeout) {
+    public WarehouseSource withQueryTimeout(Object queryTimeout) {
         super.withQueryTimeout(queryTimeout);
         return this;
     }
@@ -235,7 +212,7 @@ public final class SqlMISource extends TabularSource {
      * {@inheritDoc}
      */
     @Override
-    public SqlMISource withAdditionalColumns(Object additionalColumns) {
+    public WarehouseSource withAdditionalColumns(Object additionalColumns) {
         super.withAdditionalColumns(additionalColumns);
         return this;
     }
@@ -244,7 +221,7 @@ public final class SqlMISource extends TabularSource {
      * {@inheritDoc}
      */
     @Override
-    public SqlMISource withSourceRetryCount(Object sourceRetryCount) {
+    public WarehouseSource withSourceRetryCount(Object sourceRetryCount) {
         super.withSourceRetryCount(sourceRetryCount);
         return this;
     }
@@ -253,7 +230,7 @@ public final class SqlMISource extends TabularSource {
      * {@inheritDoc}
      */
     @Override
-    public SqlMISource withSourceRetryWait(Object sourceRetryWait) {
+    public WarehouseSource withSourceRetryWait(Object sourceRetryWait) {
         super.withSourceRetryWait(sourceRetryWait);
         return this;
     }
@@ -262,7 +239,7 @@ public final class SqlMISource extends TabularSource {
      * {@inheritDoc}
      */
     @Override
-    public SqlMISource withMaxConcurrentConnections(Object maxConcurrentConnections) {
+    public WarehouseSource withMaxConcurrentConnections(Object maxConcurrentConnections) {
         super.withMaxConcurrentConnections(maxConcurrentConnections);
         return this;
     }
@@ -271,7 +248,7 @@ public final class SqlMISource extends TabularSource {
      * {@inheritDoc}
      */
     @Override
-    public SqlMISource withDisableMetricsCollection(Object disableMetricsCollection) {
+    public WarehouseSource withDisableMetricsCollection(Object disableMetricsCollection) {
         super.withDisableMetricsCollection(disableMetricsCollection);
         return this;
     }

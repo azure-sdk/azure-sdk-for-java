@@ -78,7 +78,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "DynamicsAXSource", value = DynamicsAXSource.class),
     @JsonSubTypes.Type(name = "OracleServiceCloudSource", value = OracleServiceCloudSource.class),
     @JsonSubTypes.Type(name = "GoogleAdWordsSource", value = GoogleAdWordsSource.class),
-    @JsonSubTypes.Type(name = "AmazonRedshiftSource", value = AmazonRedshiftSource.class) })
+    @JsonSubTypes.Type(name = "AmazonRedshiftSource", value = AmazonRedshiftSource.class),
+    @JsonSubTypes.Type(name = "WarehouseSource", value = WarehouseSource.class) })
 @Fluent
 public class TabularSource extends CopySource {
     /*

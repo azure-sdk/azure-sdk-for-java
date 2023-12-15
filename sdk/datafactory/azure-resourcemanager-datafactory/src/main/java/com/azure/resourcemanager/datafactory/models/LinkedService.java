@@ -141,7 +141,8 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "Snowflake", value = SnowflakeLinkedService.class),
     @JsonSubTypes.Type(name = "SharePointOnlineList", value = SharePointOnlineListLinkedService.class),
     @JsonSubTypes.Type(name = "AzureSynapseArtifacts", value = AzureSynapseArtifactsLinkedService.class),
-    @JsonSubTypes.Type(name = "LakeHouse", value = LakeHouseLinkedService.class) })
+    @JsonSubTypes.Type(name = "LakeHouse", value = LakeHouseLinkedService.class),
+    @JsonSubTypes.Type(name = "Warehouse", value = WarehouseLinkedService.class) })
 @Fluent
 public class LinkedService {
     /*
