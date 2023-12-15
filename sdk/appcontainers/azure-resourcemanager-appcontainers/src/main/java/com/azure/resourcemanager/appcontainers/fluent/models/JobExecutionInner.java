@@ -10,7 +10,9 @@ import com.azure.resourcemanager.appcontainers.models.JobExecutionTemplate;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Container Apps Job execution. */
+/**
+ * Container Apps Job execution.
+ */
 @Fluent
 public final class JobExecutionInner {
     /*
@@ -55,13 +57,15 @@ public final class JobExecutionInner {
     @JsonProperty(value = "template")
     private JobExecutionTemplate template;
 
-    /** Creates an instance of JobExecutionInner class. */
+    /**
+     * Creates an instance of JobExecutionInner class.
+     */
     public JobExecutionInner() {
     }
 
     /**
      * Get the name property: Job execution Name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -70,7 +74,7 @@ public final class JobExecutionInner {
 
     /**
      * Set the name property: Job execution Name.
-     *
+     * 
      * @param name the name value to set.
      * @return the JobExecutionInner object itself.
      */
@@ -81,7 +85,7 @@ public final class JobExecutionInner {
 
     /**
      * Get the id property: Job execution Id.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -90,7 +94,7 @@ public final class JobExecutionInner {
 
     /**
      * Set the id property: Job execution Id.
-     *
+     * 
      * @param id the id value to set.
      * @return the JobExecutionInner object itself.
      */
@@ -101,7 +105,7 @@ public final class JobExecutionInner {
 
     /**
      * Get the type property: Job Type.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -110,7 +114,7 @@ public final class JobExecutionInner {
 
     /**
      * Set the type property: Job Type.
-     *
+     * 
      * @param type the type value to set.
      * @return the JobExecutionInner object itself.
      */
@@ -121,7 +125,7 @@ public final class JobExecutionInner {
 
     /**
      * Get the status property: Current running State of the job.
-     *
+     * 
      * @return the status value.
      */
     public JobExecutionRunningState status() {
@@ -130,7 +134,7 @@ public final class JobExecutionInner {
 
     /**
      * Get the startTime property: Job execution start time.
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -139,7 +143,7 @@ public final class JobExecutionInner {
 
     /**
      * Set the startTime property: Job execution start time.
-     *
+     * 
      * @param startTime the startTime value to set.
      * @return the JobExecutionInner object itself.
      */
@@ -150,7 +154,7 @@ public final class JobExecutionInner {
 
     /**
      * Get the endTime property: Job execution end time.
-     *
+     * 
      * @return the endTime value.
      */
     public OffsetDateTime endTime() {
@@ -159,7 +163,7 @@ public final class JobExecutionInner {
 
     /**
      * Set the endTime property: Job execution end time.
-     *
+     * 
      * @param endTime the endTime value to set.
      * @return the JobExecutionInner object itself.
      */
@@ -170,7 +174,7 @@ public final class JobExecutionInner {
 
     /**
      * Get the template property: Job's execution container.
-     *
+     * 
      * @return the template value.
      */
     public JobExecutionTemplate template() {
@@ -179,7 +183,7 @@ public final class JobExecutionInner {
 
     /**
      * Set the template property: Job's execution container.
-     *
+     * 
      * @param template the template value to set.
      * @return the JobExecutionInner object itself.
      */
@@ -190,7 +194,7 @@ public final class JobExecutionInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
