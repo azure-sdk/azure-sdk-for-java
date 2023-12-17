@@ -7,7 +7,9 @@ package com.azure.resourcemanager.chaos.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes an experiment update. */
+/**
+ * Describes an experiment update.
+ */
 @Fluent
 public final class ExperimentUpdate {
     /*
@@ -16,13 +18,15 @@ public final class ExperimentUpdate {
     @JsonProperty(value = "identity")
     private ResourceIdentity identity;
 
-    /** Creates an instance of ExperimentUpdate class. */
+    /**
+     * Creates an instance of ExperimentUpdate class.
+     */
     public ExperimentUpdate() {
     }
 
     /**
      * Get the identity property: The identity of the experiment resource.
-     *
+     * 
      * @return the identity value.
      */
     public ResourceIdentity identity() {
@@ -31,7 +35,7 @@ public final class ExperimentUpdate {
 
     /**
      * Set the identity property: The identity of the experiment resource.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the ExperimentUpdate object itself.
      */
@@ -42,7 +46,7 @@ public final class ExperimentUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
