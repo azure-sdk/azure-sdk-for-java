@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The number of past periods to lag from the target column. */
+/**
+ * The number of past periods to lag from the target column.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -18,17 +20,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("TargetLags")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Auto", value = AutoTargetLags.class),
-    @JsonSubTypes.Type(name = "Custom", value = CustomTargetLags.class)
-})
+    @JsonSubTypes.Type(name = "Custom", value = CustomTargetLags.class) })
 @Immutable
 public class TargetLags {
-    /** Creates an instance of TargetLags class. */
+    /**
+     * Creates an instance of TargetLags class.
+     */
     public TargetLags() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

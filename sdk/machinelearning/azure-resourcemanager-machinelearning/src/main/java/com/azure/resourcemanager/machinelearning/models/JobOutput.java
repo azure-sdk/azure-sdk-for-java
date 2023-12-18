@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Job output definition container information on where to find job output/logs. */
+/**
+ * Job output definition container information on where to find job output/logs.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -23,8 +25,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "mltable", value = MLTableJobOutput.class),
     @JsonSubTypes.Type(name = "triton_model", value = TritonModelJobOutput.class),
     @JsonSubTypes.Type(name = "uri_file", value = UriFileJobOutput.class),
-    @JsonSubTypes.Type(name = "uri_folder", value = UriFolderJobOutput.class)
-})
+    @JsonSubTypes.Type(name = "uri_folder", value = UriFolderJobOutput.class) })
 @Fluent
 public class JobOutput {
     /*
@@ -33,13 +34,15 @@ public class JobOutput {
     @JsonProperty(value = "description")
     private String description;
 
-    /** Creates an instance of JobOutput class. */
+    /**
+     * Creates an instance of JobOutput class.
+     */
     public JobOutput() {
     }
 
     /**
      * Get the description property: Description for the output.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -48,7 +51,7 @@ public class JobOutput {
 
     /**
      * Set the description property: Description for the output.
-     *
+     * 
      * @param description the description value to set.
      * @return the JobOutput object itself.
      */
@@ -59,7 +62,7 @@ public class JobOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

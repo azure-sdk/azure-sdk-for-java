@@ -8,18 +8,22 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** User identity configuration. */
+/**
+ * User identity configuration.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "identityType")
 @JsonTypeName("UserIdentity")
 @Immutable
-public class UserIdentity extends IdentityConfiguration {
-    /** Creates an instance of UserIdentity class. */
+public final class UserIdentity extends IdentityConfiguration {
+    /**
+     * Creates an instance of UserIdentity class.
+     */
     public UserIdentity() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

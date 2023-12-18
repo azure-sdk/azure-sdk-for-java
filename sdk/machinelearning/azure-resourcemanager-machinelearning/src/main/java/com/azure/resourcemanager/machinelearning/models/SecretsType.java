@@ -8,23 +8,43 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Enum to determine the datastore secrets type. */
+/**
+ * Enum to determine the datastore secrets type.
+ */
 public final class SecretsType extends ExpandableStringEnum<SecretsType> {
-    /** Static value AccountKey for SecretsType. */
+    /**
+     * Static value AccountKey for SecretsType.
+     */
     public static final SecretsType ACCOUNT_KEY = fromString("AccountKey");
 
-    /** Static value Certificate for SecretsType. */
+    /**
+     * Static value Certificate for SecretsType.
+     */
     public static final SecretsType CERTIFICATE = fromString("Certificate");
 
-    /** Static value Sas for SecretsType. */
+    /**
+     * Static value Sas for SecretsType.
+     */
     public static final SecretsType SAS = fromString("Sas");
 
-    /** Static value ServicePrincipal for SecretsType. */
+    /**
+     * Static value ServicePrincipal for SecretsType.
+     */
     public static final SecretsType SERVICE_PRINCIPAL = fromString("ServicePrincipal");
 
     /**
+     * Static value KerberosPassword for SecretsType.
+     */
+    public static final SecretsType KERBEROS_PASSWORD = fromString("KerberosPassword");
+
+    /**
+     * Static value KerberosKeytab for SecretsType.
+     */
+    public static final SecretsType KERBEROS_KEYTAB = fromString("KerberosKeytab");
+
+    /**
      * Creates a new instance of SecretsType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -33,7 +53,7 @@ public final class SecretsType extends ExpandableStringEnum<SecretsType> {
 
     /**
      * Creates or finds a SecretsType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding SecretsType.
      */
@@ -44,7 +64,7 @@ public final class SecretsType extends ExpandableStringEnum<SecretsType> {
 
     /**
      * Gets known SecretsType values.
-     *
+     * 
      * @return known SecretsType values.
      */
     public static Collection<SecretsType> values() {

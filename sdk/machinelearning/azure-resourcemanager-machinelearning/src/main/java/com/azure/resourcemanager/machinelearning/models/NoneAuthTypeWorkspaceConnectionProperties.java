@@ -7,47 +7,69 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.time.OffsetDateTime;
 
-/** The NoneAuthTypeWorkspaceConnectionProperties model. */
+/**
+ * The NoneAuthTypeWorkspaceConnectionProperties model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "authType")
 @JsonTypeName("None")
 @Fluent
 public final class NoneAuthTypeWorkspaceConnectionProperties extends WorkspaceConnectionPropertiesV2 {
-    /** Creates an instance of NoneAuthTypeWorkspaceConnectionProperties class. */
+    /**
+     * Creates an instance of NoneAuthTypeWorkspaceConnectionProperties class.
+     */
     public NoneAuthTypeWorkspaceConnectionProperties() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NoneAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
         super.withCategory(category);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public NoneAuthTypeWorkspaceConnectionProperties withExpiryTime(OffsetDateTime expiryTime) {
+        super.withExpiryTime(expiryTime);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public NoneAuthTypeWorkspaceConnectionProperties withIsSharedToAll(Boolean isSharedToAll) {
+        super.withIsSharedToAll(isSharedToAll);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public NoneAuthTypeWorkspaceConnectionProperties withMetadata(Object metadata) {
+        super.withMetadata(metadata);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NoneAuthTypeWorkspaceConnectionProperties withTarget(String target) {
         super.withTarget(target);
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public NoneAuthTypeWorkspaceConnectionProperties withValue(String value) {
-        super.withValue(value);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public NoneAuthTypeWorkspaceConnectionProperties withValueFormat(ValueFormat valueFormat) {
-        super.withValueFormat(valueFormat);
-        return this;
-    }
-
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -8,13 +8,19 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Distribution expressions to sweep over values of model settings. &lt;example&gt; Some examples are: &lt;code&gt;
- * ModelName = "choice('seresnext', 'resnest50')"; LearningRate = "uniform(0.001, 0.01)"; LayersToFreeze = "choice(0,
- * 2)"; &lt;/code&gt;&lt;/example&gt; All distributions can be specified as distribution_name(min, max) or choice(val1,
- * val2, ..., valn) where distribution name can be: uniform, quniform, loguniform, etc For more details on how to
- * compose distribution expressions please check the documentation:
- * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters For more information on the
- * available settings please visit the official documentation:
+ * Distribution expressions to sweep over values of model settings.
+ * &lt;example&gt;
+ * Some examples are:
+ * ```
+ * ModelName = "choice('seresnext', 'resnest50')";
+ * LearningRate = "uniform(0.001, 0.01)";
+ * LayersToFreeze = "choice(0, 2)";
+ * ```&lt;/example&gt;
+ * All distributions can be specified as distribution_name(min, max) or choice(val1, val2, ..., valn)
+ * where distribution name can be: uniform, quniform, loguniform, etc
+ * For more details on how to compose distribution expressions please check the documentation:
+ * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters
+ * For more information on the available settings please visit the official documentation:
  * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
  */
 @Fluent
@@ -82,7 +88,7 @@ public class ImageModelDistributionSettings {
     private String evaluationFrequency;
 
     /*
-     * Gradient accumulation means running a configured number of "GradAccumulationStep"\  steps without
+     * Gradient accumulation means running a configured number of "GradAccumulationStep"\ steps without
      * updating the model weights while accumulating the gradients of those steps, and then using
      * the accumulated gradients to compute the weight updates. Must be a positive integer.
      */
@@ -196,13 +202,15 @@ public class ImageModelDistributionSettings {
     @JsonProperty(value = "weightDecay")
     private String weightDecay;
 
-    /** Creates an instance of ImageModelDistributionSettings class. */
+    /**
+     * Creates an instance of ImageModelDistributionSettings class.
+     */
     public ImageModelDistributionSettings() {
     }
 
     /**
      * Get the amsGradient property: Enable AMSGrad when optimizer is 'adam' or 'adamw'.
-     *
+     * 
      * @return the amsGradient value.
      */
     public String amsGradient() {
@@ -211,7 +219,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Set the amsGradient property: Enable AMSGrad when optimizer is 'adam' or 'adamw'.
-     *
+     * 
      * @param amsGradient the amsGradient value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -222,7 +230,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Get the augmentations property: Settings for using Augmentations.
-     *
+     * 
      * @return the augmentations value.
      */
     public String augmentations() {
@@ -231,7 +239,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Set the augmentations property: Settings for using Augmentations.
-     *
+     * 
      * @param augmentations the augmentations value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -243,7 +251,7 @@ public class ImageModelDistributionSettings {
     /**
      * Get the beta1 property: Value of 'beta1' when optimizer is 'adam' or 'adamw'. Must be a float in the range [0,
      * 1].
-     *
+     * 
      * @return the beta1 value.
      */
     public String beta1() {
@@ -253,7 +261,7 @@ public class ImageModelDistributionSettings {
     /**
      * Set the beta1 property: Value of 'beta1' when optimizer is 'adam' or 'adamw'. Must be a float in the range [0,
      * 1].
-     *
+     * 
      * @param beta1 the beta1 value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -265,7 +273,7 @@ public class ImageModelDistributionSettings {
     /**
      * Get the beta2 property: Value of 'beta2' when optimizer is 'adam' or 'adamw'. Must be a float in the range [0,
      * 1].
-     *
+     * 
      * @return the beta2 value.
      */
     public String beta2() {
@@ -275,7 +283,7 @@ public class ImageModelDistributionSettings {
     /**
      * Set the beta2 property: Value of 'beta2' when optimizer is 'adam' or 'adamw'. Must be a float in the range [0,
      * 1].
-     *
+     * 
      * @param beta2 the beta2 value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -286,7 +294,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Get the distributed property: Whether to use distributer training.
-     *
+     * 
      * @return the distributed value.
      */
     public String distributed() {
@@ -295,7 +303,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Set the distributed property: Whether to use distributer training.
-     *
+     * 
      * @param distributed the distributed value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -306,7 +314,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Get the earlyStopping property: Enable early stopping logic during training.
-     *
+     * 
      * @return the earlyStopping value.
      */
     public String earlyStopping() {
@@ -315,7 +323,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Set the earlyStopping property: Enable early stopping logic during training.
-     *
+     * 
      * @param earlyStopping the earlyStopping value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -326,8 +334,9 @@ public class ImageModelDistributionSettings {
 
     /**
      * Get the earlyStoppingDelay property: Minimum number of epochs or validation evaluations to wait before primary
-     * metric improvement is tracked for early stopping. Must be a positive integer.
-     *
+     * metric improvement
+     * is tracked for early stopping. Must be a positive integer.
+     * 
      * @return the earlyStoppingDelay value.
      */
     public String earlyStoppingDelay() {
@@ -336,8 +345,9 @@ public class ImageModelDistributionSettings {
 
     /**
      * Set the earlyStoppingDelay property: Minimum number of epochs or validation evaluations to wait before primary
-     * metric improvement is tracked for early stopping. Must be a positive integer.
-     *
+     * metric improvement
+     * is tracked for early stopping. Must be a positive integer.
+     * 
      * @param earlyStoppingDelay the earlyStoppingDelay value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -347,9 +357,10 @@ public class ImageModelDistributionSettings {
     }
 
     /**
-     * Get the earlyStoppingPatience property: Minimum number of epochs or validation evaluations with no primary metric
-     * improvement before the run is stopped. Must be a positive integer.
-     *
+     * Get the earlyStoppingPatience property: Minimum number of epochs or validation evaluations with no primary
+     * metric improvement before
+     * the run is stopped. Must be a positive integer.
+     * 
      * @return the earlyStoppingPatience value.
      */
     public String earlyStoppingPatience() {
@@ -357,9 +368,10 @@ public class ImageModelDistributionSettings {
     }
 
     /**
-     * Set the earlyStoppingPatience property: Minimum number of epochs or validation evaluations with no primary metric
-     * improvement before the run is stopped. Must be a positive integer.
-     *
+     * Set the earlyStoppingPatience property: Minimum number of epochs or validation evaluations with no primary
+     * metric improvement before
+     * the run is stopped. Must be a positive integer.
+     * 
      * @param earlyStoppingPatience the earlyStoppingPatience value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -370,7 +382,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Get the enableOnnxNormalization property: Enable normalization when exporting ONNX model.
-     *
+     * 
      * @return the enableOnnxNormalization value.
      */
     public String enableOnnxNormalization() {
@@ -379,7 +391,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Set the enableOnnxNormalization property: Enable normalization when exporting ONNX model.
-     *
+     * 
      * @param enableOnnxNormalization the enableOnnxNormalization value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -391,7 +403,7 @@ public class ImageModelDistributionSettings {
     /**
      * Get the evaluationFrequency property: Frequency to evaluate validation dataset to get metric scores. Must be a
      * positive integer.
-     *
+     * 
      * @return the evaluationFrequency value.
      */
     public String evaluationFrequency() {
@@ -401,7 +413,7 @@ public class ImageModelDistributionSettings {
     /**
      * Set the evaluationFrequency property: Frequency to evaluate validation dataset to get metric scores. Must be a
      * positive integer.
-     *
+     * 
      * @param evaluationFrequency the evaluationFrequency value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -412,9 +424,10 @@ public class ImageModelDistributionSettings {
 
     /**
      * Get the gradientAccumulationStep property: Gradient accumulation means running a configured number of
-     * "GradAccumulationStep"\ steps without updating the model weights while accumulating the gradients of those steps,
-     * and then using the accumulated gradients to compute the weight updates. Must be a positive integer.
-     *
+     * "GradAccumulationStep"\ steps without
+     * updating the model weights while accumulating the gradients of those steps, and then using
+     * the accumulated gradients to compute the weight updates. Must be a positive integer.
+     * 
      * @return the gradientAccumulationStep value.
      */
     public String gradientAccumulationStep() {
@@ -423,9 +436,10 @@ public class ImageModelDistributionSettings {
 
     /**
      * Set the gradientAccumulationStep property: Gradient accumulation means running a configured number of
-     * "GradAccumulationStep"\ steps without updating the model weights while accumulating the gradients of those steps,
-     * and then using the accumulated gradients to compute the weight updates. Must be a positive integer.
-     *
+     * "GradAccumulationStep"\ steps without
+     * updating the model weights while accumulating the gradients of those steps, and then using
+     * the accumulated gradients to compute the weight updates. Must be a positive integer.
+     * 
      * @param gradientAccumulationStep the gradientAccumulationStep value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -435,11 +449,11 @@ public class ImageModelDistributionSettings {
     }
 
     /**
-     * Get the layersToFreeze property: Number of layers to freeze for the model. Must be a positive integer. For
-     * instance, passing 2 as value for 'seresnext' means freezing layer0 and layer1. For a full list of models
-     * supported and details on layer freeze, please see:
-     * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
-     *
+     * Get the layersToFreeze property: Number of layers to freeze for the model. Must be a positive integer.
+     * For instance, passing 2 as value for 'seresnext' means
+     * freezing layer0 and layer1. For a full list of models supported and details on layer freeze, please
+     * see: https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
+     * 
      * @return the layersToFreeze value.
      */
     public String layersToFreeze() {
@@ -447,11 +461,11 @@ public class ImageModelDistributionSettings {
     }
 
     /**
-     * Set the layersToFreeze property: Number of layers to freeze for the model. Must be a positive integer. For
-     * instance, passing 2 as value for 'seresnext' means freezing layer0 and layer1. For a full list of models
-     * supported and details on layer freeze, please see:
-     * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
-     *
+     * Set the layersToFreeze property: Number of layers to freeze for the model. Must be a positive integer.
+     * For instance, passing 2 as value for 'seresnext' means
+     * freezing layer0 and layer1. For a full list of models supported and details on layer freeze, please
+     * see: https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
+     * 
      * @param layersToFreeze the layersToFreeze value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -462,7 +476,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Get the learningRate property: Initial learning rate. Must be a float in the range [0, 1].
-     *
+     * 
      * @return the learningRate value.
      */
     public String learningRate() {
@@ -471,7 +485,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Set the learningRate property: Initial learning rate. Must be a float in the range [0, 1].
-     *
+     * 
      * @param learningRate the learningRate value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -482,7 +496,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Get the learningRateScheduler property: Type of learning rate scheduler. Must be 'warmup_cosine' or 'step'.
-     *
+     * 
      * @return the learningRateScheduler value.
      */
     public String learningRateScheduler() {
@@ -491,7 +505,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Set the learningRateScheduler property: Type of learning rate scheduler. Must be 'warmup_cosine' or 'step'.
-     *
+     * 
      * @param learningRateScheduler the learningRateScheduler value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -501,10 +515,10 @@ public class ImageModelDistributionSettings {
     }
 
     /**
-     * Get the modelName property: Name of the model to use for training. For more information on the available models
-     * please visit the official documentation:
+     * Get the modelName property: Name of the model to use for training.
+     * For more information on the available models please visit the official documentation:
      * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
-     *
+     * 
      * @return the modelName value.
      */
     public String modelName() {
@@ -512,10 +526,10 @@ public class ImageModelDistributionSettings {
     }
 
     /**
-     * Set the modelName property: Name of the model to use for training. For more information on the available models
-     * please visit the official documentation:
+     * Set the modelName property: Name of the model to use for training.
+     * For more information on the available models please visit the official documentation:
      * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
-     *
+     * 
      * @param modelName the modelName value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -526,7 +540,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Get the momentum property: Value of momentum when optimizer is 'sgd'. Must be a float in the range [0, 1].
-     *
+     * 
      * @return the momentum value.
      */
     public String momentum() {
@@ -535,7 +549,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Set the momentum property: Value of momentum when optimizer is 'sgd'. Must be a float in the range [0, 1].
-     *
+     * 
      * @param momentum the momentum value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -546,7 +560,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Get the nesterov property: Enable nesterov when optimizer is 'sgd'.
-     *
+     * 
      * @return the nesterov value.
      */
     public String nesterov() {
@@ -555,7 +569,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Set the nesterov property: Enable nesterov when optimizer is 'sgd'.
-     *
+     * 
      * @param nesterov the nesterov value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -566,7 +580,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Get the numberOfEpochs property: Number of training epochs. Must be a positive integer.
-     *
+     * 
      * @return the numberOfEpochs value.
      */
     public String numberOfEpochs() {
@@ -575,7 +589,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Set the numberOfEpochs property: Number of training epochs. Must be a positive integer.
-     *
+     * 
      * @param numberOfEpochs the numberOfEpochs value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -586,7 +600,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Get the numberOfWorkers property: Number of data loader workers. Must be a non-negative integer.
-     *
+     * 
      * @return the numberOfWorkers value.
      */
     public String numberOfWorkers() {
@@ -595,7 +609,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Set the numberOfWorkers property: Number of data loader workers. Must be a non-negative integer.
-     *
+     * 
      * @param numberOfWorkers the numberOfWorkers value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -606,7 +620,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Get the optimizer property: Type of optimizer. Must be either 'sgd', 'adam', or 'adamw'.
-     *
+     * 
      * @return the optimizer value.
      */
     public String optimizer() {
@@ -615,7 +629,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Set the optimizer property: Type of optimizer. Must be either 'sgd', 'adam', or 'adamw'.
-     *
+     * 
      * @param optimizer the optimizer value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -626,7 +640,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Get the randomSeed property: Random seed to be used when using deterministic training.
-     *
+     * 
      * @return the randomSeed value.
      */
     public String randomSeed() {
@@ -635,7 +649,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Set the randomSeed property: Random seed to be used when using deterministic training.
-     *
+     * 
      * @param randomSeed the randomSeed value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -645,9 +659,9 @@ public class ImageModelDistributionSettings {
     }
 
     /**
-     * Get the stepLRGamma property: Value of gamma when learning rate scheduler is 'step'. Must be a float in the range
-     * [0, 1].
-     *
+     * Get the stepLRGamma property: Value of gamma when learning rate scheduler is 'step'. Must be a float in the
+     * range [0, 1].
+     * 
      * @return the stepLRGamma value.
      */
     public String stepLRGamma() {
@@ -655,9 +669,9 @@ public class ImageModelDistributionSettings {
     }
 
     /**
-     * Set the stepLRGamma property: Value of gamma when learning rate scheduler is 'step'. Must be a float in the range
-     * [0, 1].
-     *
+     * Set the stepLRGamma property: Value of gamma when learning rate scheduler is 'step'. Must be a float in the
+     * range [0, 1].
+     * 
      * @param stepLRGamma the stepLRGamma value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -669,7 +683,7 @@ public class ImageModelDistributionSettings {
     /**
      * Get the stepLRStepSize property: Value of step size when learning rate scheduler is 'step'. Must be a positive
      * integer.
-     *
+     * 
      * @return the stepLRStepSize value.
      */
     public String stepLRStepSize() {
@@ -679,7 +693,7 @@ public class ImageModelDistributionSettings {
     /**
      * Set the stepLRStepSize property: Value of step size when learning rate scheduler is 'step'. Must be a positive
      * integer.
-     *
+     * 
      * @param stepLRStepSize the stepLRStepSize value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -690,7 +704,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Get the trainingBatchSize property: Training batch size. Must be a positive integer.
-     *
+     * 
      * @return the trainingBatchSize value.
      */
     public String trainingBatchSize() {
@@ -699,7 +713,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Set the trainingBatchSize property: Training batch size. Must be a positive integer.
-     *
+     * 
      * @param trainingBatchSize the trainingBatchSize value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -710,7 +724,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Get the validationBatchSize property: Validation batch size. Must be a positive integer.
-     *
+     * 
      * @return the validationBatchSize value.
      */
     public String validationBatchSize() {
@@ -719,7 +733,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Set the validationBatchSize property: Validation batch size. Must be a positive integer.
-     *
+     * 
      * @param validationBatchSize the validationBatchSize value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -731,7 +745,7 @@ public class ImageModelDistributionSettings {
     /**
      * Get the warmupCosineLRCycles property: Value of cosine cycle when learning rate scheduler is 'warmup_cosine'.
      * Must be a float in the range [0, 1].
-     *
+     * 
      * @return the warmupCosineLRCycles value.
      */
     public String warmupCosineLRCycles() {
@@ -741,7 +755,7 @@ public class ImageModelDistributionSettings {
     /**
      * Set the warmupCosineLRCycles property: Value of cosine cycle when learning rate scheduler is 'warmup_cosine'.
      * Must be a float in the range [0, 1].
-     *
+     * 
      * @param warmupCosineLRCycles the warmupCosineLRCycles value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -753,7 +767,7 @@ public class ImageModelDistributionSettings {
     /**
      * Get the warmupCosineLRWarmupEpochs property: Value of warmup epochs when learning rate scheduler is
      * 'warmup_cosine'. Must be a positive integer.
-     *
+     * 
      * @return the warmupCosineLRWarmupEpochs value.
      */
     public String warmupCosineLRWarmupEpochs() {
@@ -763,7 +777,7 @@ public class ImageModelDistributionSettings {
     /**
      * Set the warmupCosineLRWarmupEpochs property: Value of warmup epochs when learning rate scheduler is
      * 'warmup_cosine'. Must be a positive integer.
-     *
+     * 
      * @param warmupCosineLRWarmupEpochs the warmupCosineLRWarmupEpochs value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -775,7 +789,7 @@ public class ImageModelDistributionSettings {
     /**
      * Get the weightDecay property: Value of weight decay when optimizer is 'sgd', 'adam', or 'adamw'. Must be a float
      * in the range[0, 1].
-     *
+     * 
      * @return the weightDecay value.
      */
     public String weightDecay() {
@@ -785,7 +799,7 @@ public class ImageModelDistributionSettings {
     /**
      * Set the weightDecay property: Value of weight decay when optimizer is 'sgd', 'adam', or 'adamw'. Must be a float
      * in the range[0, 1].
-     *
+     * 
      * @param weightDecay the weightDecay value to set.
      * @return the ImageModelDistributionSettings object itself.
      */
@@ -796,7 +810,7 @@ public class ImageModelDistributionSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

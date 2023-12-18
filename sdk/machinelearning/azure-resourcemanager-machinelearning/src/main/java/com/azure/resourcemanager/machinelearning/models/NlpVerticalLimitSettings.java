@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 
-/** Job execution constraints. */
+/**
+ * Job execution constraints.
+ */
 @Fluent
 public final class NlpVerticalLimitSettings {
     /*
@@ -16,6 +18,12 @@ public final class NlpVerticalLimitSettings {
      */
     @JsonProperty(value = "maxConcurrentTrials")
     private Integer maxConcurrentTrials;
+
+    /*
+     * Maximum nodes to use for the experiment.
+     */
+    @JsonProperty(value = "maxNodes")
+    private Integer maxNodes;
 
     /*
      * Number of AutoML iterations.
@@ -29,13 +37,21 @@ public final class NlpVerticalLimitSettings {
     @JsonProperty(value = "timeout")
     private Duration timeout;
 
-    /** Creates an instance of NlpVerticalLimitSettings class. */
+    /*
+     * Timeout for individual HD trials.
+     */
+    @JsonProperty(value = "trialTimeout")
+    private Duration trialTimeout;
+
+    /**
+     * Creates an instance of NlpVerticalLimitSettings class.
+     */
     public NlpVerticalLimitSettings() {
     }
 
     /**
      * Get the maxConcurrentTrials property: Maximum Concurrent AutoML iterations.
-     *
+     * 
      * @return the maxConcurrentTrials value.
      */
     public Integer maxConcurrentTrials() {
@@ -44,7 +60,7 @@ public final class NlpVerticalLimitSettings {
 
     /**
      * Set the maxConcurrentTrials property: Maximum Concurrent AutoML iterations.
-     *
+     * 
      * @param maxConcurrentTrials the maxConcurrentTrials value to set.
      * @return the NlpVerticalLimitSettings object itself.
      */
@@ -54,8 +70,28 @@ public final class NlpVerticalLimitSettings {
     }
 
     /**
+     * Get the maxNodes property: Maximum nodes to use for the experiment.
+     * 
+     * @return the maxNodes value.
+     */
+    public Integer maxNodes() {
+        return this.maxNodes;
+    }
+
+    /**
+     * Set the maxNodes property: Maximum nodes to use for the experiment.
+     * 
+     * @param maxNodes the maxNodes value to set.
+     * @return the NlpVerticalLimitSettings object itself.
+     */
+    public NlpVerticalLimitSettings withMaxNodes(Integer maxNodes) {
+        this.maxNodes = maxNodes;
+        return this;
+    }
+
+    /**
      * Get the maxTrials property: Number of AutoML iterations.
-     *
+     * 
      * @return the maxTrials value.
      */
     public Integer maxTrials() {
@@ -64,7 +100,7 @@ public final class NlpVerticalLimitSettings {
 
     /**
      * Set the maxTrials property: Number of AutoML iterations.
-     *
+     * 
      * @param maxTrials the maxTrials value to set.
      * @return the NlpVerticalLimitSettings object itself.
      */
@@ -75,7 +111,7 @@ public final class NlpVerticalLimitSettings {
 
     /**
      * Get the timeout property: AutoML job timeout.
-     *
+     * 
      * @return the timeout value.
      */
     public Duration timeout() {
@@ -84,7 +120,7 @@ public final class NlpVerticalLimitSettings {
 
     /**
      * Set the timeout property: AutoML job timeout.
-     *
+     * 
      * @param timeout the timeout value to set.
      * @return the NlpVerticalLimitSettings object itself.
      */
@@ -94,8 +130,28 @@ public final class NlpVerticalLimitSettings {
     }
 
     /**
+     * Get the trialTimeout property: Timeout for individual HD trials.
+     * 
+     * @return the trialTimeout value.
+     */
+    public Duration trialTimeout() {
+        return this.trialTimeout;
+    }
+
+    /**
+     * Set the trialTimeout property: Timeout for individual HD trials.
+     * 
+     * @param trialTimeout the trialTimeout value to set.
+     * @return the NlpVerticalLimitSettings object itself.
+     */
+    public NlpVerticalLimitSettings withTrialTimeout(Duration trialTimeout) {
+        this.trialTimeout = trialTimeout;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

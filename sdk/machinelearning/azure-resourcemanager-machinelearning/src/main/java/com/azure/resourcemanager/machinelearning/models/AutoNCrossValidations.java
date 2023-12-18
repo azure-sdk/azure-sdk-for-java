@@ -8,18 +8,22 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** N-Cross validations determined automatically. */
+/**
+ * N-Cross validations determined automatically.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "mode")
 @JsonTypeName("Auto")
 @Immutable
 public final class AutoNCrossValidations extends NCrossValidations {
-    /** Creates an instance of AutoNCrossValidations class. */
+    /**
+     * Creates an instance of AutoNCrossValidations class.
+     */
     public AutoNCrossValidations() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
