@@ -9,8 +9,11 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.util.List;
 
-/** The authentication info when authType is servicePrincipal secret. */
+/**
+ * The authentication info when authType is servicePrincipal secret.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "authType")
 @JsonTypeName("servicePrincipalSecret")
 @Fluent
@@ -30,12 +33,36 @@ public final class ServicePrincipalSecretAuthInfo extends AuthInfoBase {
     /*
      * Secret for servicePrincipal auth.
      */
-    @JsonProperty(value = "secret", required = true)
+    @JsonProperty(value = "secret")
     private String secret;
+
+    /*
+     * Indicates whether to clean up previous operation when Linker is updating or deleting
+     */
+    @JsonProperty(value = "deleteOrUpdateBehavior")
+    private DeleteOrUpdateBehavior deleteOrUpdateBehavior;
+
+    /*
+     * Optional, this value specifies the Azure roles to be assigned. Automatically
+     */
+    @JsonProperty(value = "roles")
+    private List<String> roles;
+
+    /*
+     * Username created in the database which is mapped to a user in AAD.
+     */
+    @JsonProperty(value = "userName")
+    private String username;
+
+    /**
+     * Creates an instance of ServicePrincipalSecretAuthInfo class.
+     */
+    public ServicePrincipalSecretAuthInfo() {
+    }
 
     /**
      * Get the clientId property: ServicePrincipal application clientId for servicePrincipal auth.
-     *
+     * 
      * @return the clientId value.
      */
     public String clientId() {
@@ -44,7 +71,7 @@ public final class ServicePrincipalSecretAuthInfo extends AuthInfoBase {
 
     /**
      * Set the clientId property: ServicePrincipal application clientId for servicePrincipal auth.
-     *
+     * 
      * @param clientId the clientId value to set.
      * @return the ServicePrincipalSecretAuthInfo object itself.
      */
@@ -55,7 +82,7 @@ public final class ServicePrincipalSecretAuthInfo extends AuthInfoBase {
 
     /**
      * Get the principalId property: Principal Id for servicePrincipal auth.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -64,7 +91,7 @@ public final class ServicePrincipalSecretAuthInfo extends AuthInfoBase {
 
     /**
      * Set the principalId property: Principal Id for servicePrincipal auth.
-     *
+     * 
      * @param principalId the principalId value to set.
      * @return the ServicePrincipalSecretAuthInfo object itself.
      */
@@ -75,7 +102,7 @@ public final class ServicePrincipalSecretAuthInfo extends AuthInfoBase {
 
     /**
      * Get the secret property: Secret for servicePrincipal auth.
-     *
+     * 
      * @return the secret value.
      */
     public String secret() {
@@ -84,7 +111,7 @@ public final class ServicePrincipalSecretAuthInfo extends AuthInfoBase {
 
     /**
      * Set the secret property: Secret for servicePrincipal auth.
-     *
+     * 
      * @param secret the secret value to set.
      * @return the ServicePrincipalSecretAuthInfo object itself.
      */
@@ -94,30 +121,86 @@ public final class ServicePrincipalSecretAuthInfo extends AuthInfoBase {
     }
 
     /**
+     * Get the deleteOrUpdateBehavior property: Indicates whether to clean up previous operation when Linker is
+     * updating or deleting.
+     * 
+     * @return the deleteOrUpdateBehavior value.
+     */
+    public DeleteOrUpdateBehavior deleteOrUpdateBehavior() {
+        return this.deleteOrUpdateBehavior;
+    }
+
+    /**
+     * Set the deleteOrUpdateBehavior property: Indicates whether to clean up previous operation when Linker is
+     * updating or deleting.
+     * 
+     * @param deleteOrUpdateBehavior the deleteOrUpdateBehavior value to set.
+     * @return the ServicePrincipalSecretAuthInfo object itself.
+     */
+    public ServicePrincipalSecretAuthInfo withDeleteOrUpdateBehavior(DeleteOrUpdateBehavior deleteOrUpdateBehavior) {
+        this.deleteOrUpdateBehavior = deleteOrUpdateBehavior;
+        return this;
+    }
+
+    /**
+     * Get the roles property: Optional, this value specifies the Azure roles to be assigned. Automatically.
+     * 
+     * @return the roles value.
+     */
+    public List<String> roles() {
+        return this.roles;
+    }
+
+    /**
+     * Set the roles property: Optional, this value specifies the Azure roles to be assigned. Automatically.
+     * 
+     * @param roles the roles value to set.
+     * @return the ServicePrincipalSecretAuthInfo object itself.
+     */
+    public ServicePrincipalSecretAuthInfo withRoles(List<String> roles) {
+        this.roles = roles;
+        return this;
+    }
+
+    /**
+     * Get the username property: Username created in the database which is mapped to a user in AAD.
+     * 
+     * @return the username value.
+     */
+    public String username() {
+        return this.username;
+    }
+
+    /**
+     * Set the username property: Username created in the database which is mapped to a user in AAD.
+     * 
+     * @param username the username value to set.
+     * @return the ServicePrincipalSecretAuthInfo object itself.
+     */
+    public ServicePrincipalSecretAuthInfo withUsername(String username) {
+        this.username = username;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (clientId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property clientId in model ServicePrincipalSecretAuthInfo"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property clientId in model ServicePrincipalSecretAuthInfo"));
         }
         if (principalId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property principalId in model ServicePrincipalSecretAuthInfo"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property principalId in model ServicePrincipalSecretAuthInfo"));
         }
         if (secret() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property secret in model ServicePrincipalSecretAuthInfo"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property secret in model ServicePrincipalSecretAuthInfo"));
         }
     }
 
