@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.DataVersionBaseIn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paginated list of DataVersionBase entities. */
+/**
+ * A paginated list of DataVersionBase entities.
+ */
 @Fluent
 public final class DataVersionBaseResourceArmPaginatedResult {
     /*
@@ -24,14 +26,16 @@ public final class DataVersionBaseResourceArmPaginatedResult {
     @JsonProperty(value = "value")
     private List<DataVersionBaseInner> value;
 
-    /** Creates an instance of DataVersionBaseResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of DataVersionBaseResourceArmPaginatedResult class.
+     */
     public DataVersionBaseResourceArmPaginatedResult() {
     }
 
     /**
-     * Get the nextLink property: The link to the next page of DataVersionBase objects. If null, there are no additional
-     * pages.
-     *
+     * Get the nextLink property: The link to the next page of DataVersionBase objects. If null, there are no
+     * additional pages.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,9 +43,9 @@ public final class DataVersionBaseResourceArmPaginatedResult {
     }
 
     /**
-     * Set the nextLink property: The link to the next page of DataVersionBase objects. If null, there are no additional
-     * pages.
-     *
+     * Set the nextLink property: The link to the next page of DataVersionBase objects. If null, there are no
+     * additional pages.
+     * 
      * @param nextLink the nextLink value to set.
      * @return the DataVersionBaseResourceArmPaginatedResult object itself.
      */
@@ -52,7 +56,7 @@ public final class DataVersionBaseResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type DataVersionBase.
-     *
+     * 
      * @return the value value.
      */
     public List<DataVersionBaseInner> value() {
@@ -61,7 +65,7 @@ public final class DataVersionBaseResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type DataVersionBase.
-     *
+     * 
      * @param value the value value to set.
      * @return the DataVersionBaseResourceArmPaginatedResult object itself.
      */
@@ -72,7 +76,7 @@ public final class DataVersionBaseResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

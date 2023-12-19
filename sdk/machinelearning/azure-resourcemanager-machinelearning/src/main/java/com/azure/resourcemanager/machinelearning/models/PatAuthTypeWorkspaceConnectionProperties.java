@@ -8,8 +8,11 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.time.OffsetDateTime;
 
-/** The PatAuthTypeWorkspaceConnectionProperties model. */
+/**
+ * The PatAuthTypeWorkspaceConnectionProperties model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "authType")
 @JsonTypeName("PAT")
 @Fluent
@@ -20,13 +23,15 @@ public final class PatAuthTypeWorkspaceConnectionProperties extends WorkspaceCon
     @JsonProperty(value = "credentials")
     private WorkspaceConnectionPersonalAccessToken credentials;
 
-    /** Creates an instance of PatAuthTypeWorkspaceConnectionProperties class. */
+    /**
+     * Creates an instance of PatAuthTypeWorkspaceConnectionProperties class.
+     */
     public PatAuthTypeWorkspaceConnectionProperties() {
     }
 
     /**
      * Get the credentials property: The credentials property.
-     *
+     * 
      * @return the credentials value.
      */
     public WorkspaceConnectionPersonalAccessToken credentials() {
@@ -35,47 +40,64 @@ public final class PatAuthTypeWorkspaceConnectionProperties extends WorkspaceCon
 
     /**
      * Set the credentials property: The credentials property.
-     *
+     * 
      * @param credentials the credentials value to set.
      * @return the PatAuthTypeWorkspaceConnectionProperties object itself.
      */
-    public PatAuthTypeWorkspaceConnectionProperties withCredentials(
-        WorkspaceConnectionPersonalAccessToken credentials) {
+    public PatAuthTypeWorkspaceConnectionProperties
+        withCredentials(WorkspaceConnectionPersonalAccessToken credentials) {
         this.credentials = credentials;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PatAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
         super.withCategory(category);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PatAuthTypeWorkspaceConnectionProperties withExpiryTime(OffsetDateTime expiryTime) {
+        super.withExpiryTime(expiryTime);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PatAuthTypeWorkspaceConnectionProperties withIsSharedToAll(Boolean isSharedToAll) {
+        super.withIsSharedToAll(isSharedToAll);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PatAuthTypeWorkspaceConnectionProperties withMetadata(Object metadata) {
+        super.withMetadata(metadata);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PatAuthTypeWorkspaceConnectionProperties withTarget(String target) {
         super.withTarget(target);
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public PatAuthTypeWorkspaceConnectionProperties withValue(String value) {
-        super.withValue(value);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PatAuthTypeWorkspaceConnectionProperties withValueFormat(ValueFormat valueFormat) {
-        super.withValueFormat(valueFormat);
-        return this;
-    }
-
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

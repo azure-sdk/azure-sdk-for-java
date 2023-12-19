@@ -106,20 +106,14 @@ public final class OnlineEndpointImpl implements OnlineEndpoint, OnlineEndpoint.
     }
 
     public OnlineEndpoint create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getOnlineEndpoints()
-                .createOrUpdate(resourceGroupName, workspaceName, endpointName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getOnlineEndpoints().createOrUpdate(resourceGroupName,
+            workspaceName, endpointName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public OnlineEndpoint create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getOnlineEndpoints()
-                .createOrUpdate(resourceGroupName, workspaceName, endpointName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getOnlineEndpoints().createOrUpdate(resourceGroupName,
+            workspaceName, endpointName, this.innerModel(), context);
         return this;
     }
 
@@ -135,25 +129,18 @@ public final class OnlineEndpointImpl implements OnlineEndpoint, OnlineEndpoint.
     }
 
     public OnlineEndpoint apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getOnlineEndpoints()
-                .update(resourceGroupName, workspaceName, endpointName, updateBody, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getOnlineEndpoints().update(resourceGroupName, workspaceName,
+            endpointName, updateBody, Context.NONE);
         return this;
     }
 
     public OnlineEndpoint apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getOnlineEndpoints()
-                .update(resourceGroupName, workspaceName, endpointName, updateBody, context);
+        this.innerObject = serviceManager.serviceClient().getOnlineEndpoints().update(resourceGroupName, workspaceName,
+            endpointName, updateBody, context);
         return this;
     }
 
-    OnlineEndpointImpl(
-        OnlineEndpointInner innerObject,
+    OnlineEndpointImpl(OnlineEndpointInner innerObject,
         com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -163,29 +150,20 @@ public final class OnlineEndpointImpl implements OnlineEndpoint, OnlineEndpoint.
     }
 
     public OnlineEndpoint refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getOnlineEndpoints()
-                .getWithResponse(resourceGroupName, workspaceName, endpointName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getOnlineEndpoints()
+            .getWithResponse(resourceGroupName, workspaceName, endpointName, Context.NONE).getValue();
         return this;
     }
 
     public OnlineEndpoint refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getOnlineEndpoints()
-                .getWithResponse(resourceGroupName, workspaceName, endpointName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getOnlineEndpoints()
+            .getWithResponse(resourceGroupName, workspaceName, endpointName, context).getValue();
         return this;
     }
 
     public Response<EndpointAuthKeys> listKeysWithResponse(Context context) {
-        return serviceManager
-            .onlineEndpoints()
-            .listKeysWithResponse(resourceGroupName, workspaceName, endpointName, context);
+        return serviceManager.onlineEndpoints().listKeysWithResponse(resourceGroupName, workspaceName, endpointName,
+            context);
     }
 
     public EndpointAuthKeys listKeys() {
@@ -201,9 +179,8 @@ public final class OnlineEndpointImpl implements OnlineEndpoint, OnlineEndpoint.
     }
 
     public Response<EndpointAuthToken> getTokenWithResponse(Context context) {
-        return serviceManager
-            .onlineEndpoints()
-            .getTokenWithResponse(resourceGroupName, workspaceName, endpointName, context);
+        return serviceManager.onlineEndpoints().getTokenWithResponse(resourceGroupName, workspaceName, endpointName,
+            context);
     }
 
     public EndpointAuthToken getToken() {

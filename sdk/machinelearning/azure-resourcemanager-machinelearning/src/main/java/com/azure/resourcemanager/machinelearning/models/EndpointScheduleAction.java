@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The EndpointScheduleAction model. */
+/**
+ * The EndpointScheduleAction model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "actionType")
 @JsonTypeName("InvokeBatchEndpoint")
 @Fluent
@@ -22,14 +24,16 @@ public final class EndpointScheduleAction extends ScheduleActionBase {
     @JsonProperty(value = "endpointInvocationDefinition", required = true)
     private Object endpointInvocationDefinition;
 
-    /** Creates an instance of EndpointScheduleAction class. */
+    /**
+     * Creates an instance of EndpointScheduleAction class.
+     */
     public EndpointScheduleAction() {
     }
 
     /**
-     * Get the endpointInvocationDefinition property: [Required] Defines Schedule action definition details. &lt;see
-     * href="TBD" /&gt;.
-     *
+     * Get the endpointInvocationDefinition property: [Required] Defines Schedule action definition details.
+     * &lt;see href="TBD" /&gt;.
+     * 
      * @return the endpointInvocationDefinition value.
      */
     public Object endpointInvocationDefinition() {
@@ -37,9 +41,9 @@ public final class EndpointScheduleAction extends ScheduleActionBase {
     }
 
     /**
-     * Set the endpointInvocationDefinition property: [Required] Defines Schedule action definition details. &lt;see
-     * href="TBD" /&gt;.
-     *
+     * Set the endpointInvocationDefinition property: [Required] Defines Schedule action definition details.
+     * &lt;see href="TBD" /&gt;.
+     * 
      * @param endpointInvocationDefinition the endpointInvocationDefinition value to set.
      * @return the EndpointScheduleAction object itself.
      */
@@ -50,17 +54,15 @@ public final class EndpointScheduleAction extends ScheduleActionBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (endpointInvocationDefinition() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property endpointInvocationDefinition in model EndpointScheduleAction"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property endpointInvocationDefinition in model EndpointScheduleAction"));
         }
     }
 

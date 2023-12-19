@@ -101,8 +101,8 @@ public final class OnlineDeploymentImpl
 
     private PartialMinimalTrackedResourceWithSku updateBody;
 
-    public OnlineDeploymentImpl withExistingOnlineEndpoint(
-        String resourceGroupName, String workspaceName, String endpointName) {
+    public OnlineDeploymentImpl withExistingOnlineEndpoint(String resourceGroupName, String workspaceName,
+        String endpointName) {
         this.resourceGroupName = resourceGroupName;
         this.workspaceName = workspaceName;
         this.endpointName = endpointName;
@@ -110,22 +110,14 @@ public final class OnlineDeploymentImpl
     }
 
     public OnlineDeployment create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getOnlineDeployments()
-                .createOrUpdate(
-                    resourceGroupName, workspaceName, endpointName, deploymentName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getOnlineDeployments().createOrUpdate(resourceGroupName,
+            workspaceName, endpointName, deploymentName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public OnlineDeployment create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getOnlineDeployments()
-                .createOrUpdate(
-                    resourceGroupName, workspaceName, endpointName, deploymentName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getOnlineDeployments().createOrUpdate(resourceGroupName,
+            workspaceName, endpointName, deploymentName, this.innerModel(), context);
         return this;
     }
 
@@ -141,25 +133,18 @@ public final class OnlineDeploymentImpl
     }
 
     public OnlineDeployment apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getOnlineDeployments()
-                .update(resourceGroupName, workspaceName, endpointName, deploymentName, updateBody, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getOnlineDeployments().update(resourceGroupName,
+            workspaceName, endpointName, deploymentName, updateBody, Context.NONE);
         return this;
     }
 
     public OnlineDeployment apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getOnlineDeployments()
-                .update(resourceGroupName, workspaceName, endpointName, deploymentName, updateBody, context);
+        this.innerObject = serviceManager.serviceClient().getOnlineDeployments().update(resourceGroupName,
+            workspaceName, endpointName, deploymentName, updateBody, context);
         return this;
     }
 
-    OnlineDeploymentImpl(
-        OnlineDeploymentInner innerObject,
+    OnlineDeploymentImpl(OnlineDeploymentInner innerObject,
         com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -170,35 +155,25 @@ public final class OnlineDeploymentImpl
     }
 
     public OnlineDeployment refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getOnlineDeployments()
-                .getWithResponse(resourceGroupName, workspaceName, endpointName, deploymentName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getOnlineDeployments()
+            .getWithResponse(resourceGroupName, workspaceName, endpointName, deploymentName, Context.NONE).getValue();
         return this;
     }
 
     public OnlineDeployment refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getOnlineDeployments()
-                .getWithResponse(resourceGroupName, workspaceName, endpointName, deploymentName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getOnlineDeployments()
+            .getWithResponse(resourceGroupName, workspaceName, endpointName, deploymentName, context).getValue();
         return this;
     }
 
     public Response<DeploymentLogs> getLogsWithResponse(DeploymentLogsRequest body, Context context) {
-        return serviceManager
-            .onlineDeployments()
-            .getLogsWithResponse(resourceGroupName, workspaceName, endpointName, deploymentName, body, context);
+        return serviceManager.onlineDeployments().getLogsWithResponse(resourceGroupName, workspaceName, endpointName,
+            deploymentName, body, context);
     }
 
     public DeploymentLogs getLogs(DeploymentLogsRequest body) {
-        return serviceManager
-            .onlineDeployments()
-            .getLogs(resourceGroupName, workspaceName, endpointName, deploymentName, body);
+        return serviceManager.onlineDeployments().getLogs(resourceGroupName, workspaceName, endpointName,
+            deploymentName, body);
     }
 
     public OnlineDeploymentImpl withRegion(Region location) {
