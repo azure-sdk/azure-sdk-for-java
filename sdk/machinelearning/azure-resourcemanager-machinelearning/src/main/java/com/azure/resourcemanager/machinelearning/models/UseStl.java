@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Configure STL Decomposition of the time-series target column. */
+/**
+ * Configure STL Decomposition of the time-series target column.
+ */
 public final class UseStl extends ExpandableStringEnum<UseStl> {
-    /** Static value None for UseStl. */
+    /**
+     * Static value None for UseStl.
+     */
     public static final UseStl NONE = fromString("None");
 
-    /** Static value Season for UseStl. */
+    /**
+     * Static value Season for UseStl.
+     */
     public static final UseStl SEASON = fromString("Season");
 
-    /** Static value SeasonTrend for UseStl. */
+    /**
+     * Static value SeasonTrend for UseStl.
+     */
     public static final UseStl SEASON_TREND = fromString("SeasonTrend");
 
     /**
      * Creates a new instance of UseStl value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class UseStl extends ExpandableStringEnum<UseStl> {
 
     /**
      * Creates or finds a UseStl from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding UseStl.
      */
@@ -41,7 +49,7 @@ public final class UseStl extends ExpandableStringEnum<UseStl> {
 
     /**
      * Gets known UseStl values.
-     *
+     * 
      * @return known UseStl values.
      */
     public static Collection<UseStl> values() {

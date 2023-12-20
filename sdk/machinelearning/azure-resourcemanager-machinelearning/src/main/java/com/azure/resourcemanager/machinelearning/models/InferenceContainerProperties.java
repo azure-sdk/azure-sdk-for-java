@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The InferenceContainerProperties model. */
+/**
+ * The InferenceContainerProperties model.
+ */
 @Fluent
 public final class InferenceContainerProperties {
     /*
@@ -28,13 +30,15 @@ public final class InferenceContainerProperties {
     @JsonProperty(value = "scoringRoute")
     private Route scoringRoute;
 
-    /** Creates an instance of InferenceContainerProperties class. */
+    /**
+     * Creates an instance of InferenceContainerProperties class.
+     */
     public InferenceContainerProperties() {
     }
 
     /**
      * Get the livenessRoute property: The route to check the liveness of the inference server container.
-     *
+     * 
      * @return the livenessRoute value.
      */
     public Route livenessRoute() {
@@ -43,7 +47,7 @@ public final class InferenceContainerProperties {
 
     /**
      * Set the livenessRoute property: The route to check the liveness of the inference server container.
-     *
+     * 
      * @param livenessRoute the livenessRoute value to set.
      * @return the InferenceContainerProperties object itself.
      */
@@ -54,7 +58,7 @@ public final class InferenceContainerProperties {
 
     /**
      * Get the readinessRoute property: The route to check the readiness of the inference server container.
-     *
+     * 
      * @return the readinessRoute value.
      */
     public Route readinessRoute() {
@@ -63,7 +67,7 @@ public final class InferenceContainerProperties {
 
     /**
      * Set the readinessRoute property: The route to check the readiness of the inference server container.
-     *
+     * 
      * @param readinessRoute the readinessRoute value to set.
      * @return the InferenceContainerProperties object itself.
      */
@@ -74,7 +78,7 @@ public final class InferenceContainerProperties {
 
     /**
      * Get the scoringRoute property: The port to send the scoring requests to, within the inference server container.
-     *
+     * 
      * @return the scoringRoute value.
      */
     public Route scoringRoute() {
@@ -83,7 +87,7 @@ public final class InferenceContainerProperties {
 
     /**
      * Set the scoringRoute property: The port to send the scoring requests to, within the inference server container.
-     *
+     * 
      * @param scoringRoute the scoringRoute value to set.
      * @return the InferenceContainerProperties object itself.
      */
@@ -94,7 +98,7 @@ public final class InferenceContainerProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

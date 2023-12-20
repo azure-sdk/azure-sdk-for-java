@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Resource Name. */
+/**
+ * The Resource Name.
+ */
 @Immutable
 public final class ResourceName {
     /*
@@ -22,13 +24,15 @@ public final class ResourceName {
     @JsonProperty(value = "localizedValue", access = JsonProperty.Access.WRITE_ONLY)
     private String localizedValue;
 
-    /** Creates an instance of ResourceName class. */
+    /**
+     * Creates an instance of ResourceName class.
+     */
     public ResourceName() {
     }
 
     /**
      * Get the value property: The name of the resource.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -37,7 +41,7 @@ public final class ResourceName {
 
     /**
      * Get the localizedValue property: The localized name of the resource.
-     *
+     * 
      * @return the localizedValue value.
      */
     public String localizedValue() {
@@ -46,7 +50,7 @@ public final class ResourceName {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

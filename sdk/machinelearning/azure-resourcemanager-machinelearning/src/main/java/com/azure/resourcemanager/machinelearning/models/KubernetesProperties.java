@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Kubernetes properties. */
+/**
+ * Kubernetes properties.
+ */
 @Fluent
 public final class KubernetesProperties {
     /*
@@ -61,13 +63,15 @@ public final class KubernetesProperties {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, InstanceTypeSchema> instanceTypes;
 
-    /** Creates an instance of KubernetesProperties class. */
+    /**
+     * Creates an instance of KubernetesProperties class.
+     */
     public KubernetesProperties() {
     }
 
     /**
      * Get the relayConnectionString property: Relay connection string.
-     *
+     * 
      * @return the relayConnectionString value.
      */
     public String relayConnectionString() {
@@ -76,7 +80,7 @@ public final class KubernetesProperties {
 
     /**
      * Set the relayConnectionString property: Relay connection string.
-     *
+     * 
      * @param relayConnectionString the relayConnectionString value to set.
      * @return the KubernetesProperties object itself.
      */
@@ -87,7 +91,7 @@ public final class KubernetesProperties {
 
     /**
      * Get the serviceBusConnectionString property: ServiceBus connection string.
-     *
+     * 
      * @return the serviceBusConnectionString value.
      */
     public String serviceBusConnectionString() {
@@ -96,7 +100,7 @@ public final class KubernetesProperties {
 
     /**
      * Set the serviceBusConnectionString property: ServiceBus connection string.
-     *
+     * 
      * @param serviceBusConnectionString the serviceBusConnectionString value to set.
      * @return the KubernetesProperties object itself.
      */
@@ -107,7 +111,7 @@ public final class KubernetesProperties {
 
     /**
      * Get the extensionPrincipalId property: Extension principal-id.
-     *
+     * 
      * @return the extensionPrincipalId value.
      */
     public String extensionPrincipalId() {
@@ -116,7 +120,7 @@ public final class KubernetesProperties {
 
     /**
      * Set the extensionPrincipalId property: Extension principal-id.
-     *
+     * 
      * @param extensionPrincipalId the extensionPrincipalId value to set.
      * @return the KubernetesProperties object itself.
      */
@@ -127,7 +131,7 @@ public final class KubernetesProperties {
 
     /**
      * Get the extensionInstanceReleaseTrain property: Extension instance release train.
-     *
+     * 
      * @return the extensionInstanceReleaseTrain value.
      */
     public String extensionInstanceReleaseTrain() {
@@ -136,7 +140,7 @@ public final class KubernetesProperties {
 
     /**
      * Set the extensionInstanceReleaseTrain property: Extension instance release train.
-     *
+     * 
      * @param extensionInstanceReleaseTrain the extensionInstanceReleaseTrain value to set.
      * @return the KubernetesProperties object itself.
      */
@@ -147,7 +151,7 @@ public final class KubernetesProperties {
 
     /**
      * Get the vcName property: VC name.
-     *
+     * 
      * @return the vcName value.
      */
     public String vcName() {
@@ -156,7 +160,7 @@ public final class KubernetesProperties {
 
     /**
      * Set the vcName property: VC name.
-     *
+     * 
      * @param vcName the vcName value to set.
      * @return the KubernetesProperties object itself.
      */
@@ -167,7 +171,7 @@ public final class KubernetesProperties {
 
     /**
      * Get the namespace property: Compute namespace.
-     *
+     * 
      * @return the namespace value.
      */
     public String namespace() {
@@ -176,7 +180,7 @@ public final class KubernetesProperties {
 
     /**
      * Set the namespace property: Compute namespace.
-     *
+     * 
      * @param namespace the namespace value to set.
      * @return the KubernetesProperties object itself.
      */
@@ -187,7 +191,7 @@ public final class KubernetesProperties {
 
     /**
      * Get the defaultInstanceType property: Default instance type.
-     *
+     * 
      * @return the defaultInstanceType value.
      */
     public String defaultInstanceType() {
@@ -196,7 +200,7 @@ public final class KubernetesProperties {
 
     /**
      * Set the defaultInstanceType property: Default instance type.
-     *
+     * 
      * @param defaultInstanceType the defaultInstanceType value to set.
      * @return the KubernetesProperties object itself.
      */
@@ -207,7 +211,7 @@ public final class KubernetesProperties {
 
     /**
      * Get the instanceTypes property: Instance Type Schema.
-     *
+     * 
      * @return the instanceTypes value.
      */
     public Map<String, InstanceTypeSchema> instanceTypes() {
@@ -216,7 +220,7 @@ public final class KubernetesProperties {
 
     /**
      * Set the instanceTypes property: Instance Type Schema.
-     *
+     * 
      * @param instanceTypes the instanceTypes value to set.
      * @return the KubernetesProperties object itself.
      */
@@ -227,19 +231,16 @@ public final class KubernetesProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (instanceTypes() != null) {
-            instanceTypes()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            instanceTypes().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 }

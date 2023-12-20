@@ -8,29 +8,43 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Enum to determine the Job Output Type. */
+/**
+ * Enum to determine the Job Output Type.
+ */
 public final class JobOutputType extends ExpandableStringEnum<JobOutputType> {
-    /** Static value uri_file for JobOutputType. */
+    /**
+     * Static value uri_file for JobOutputType.
+     */
     public static final JobOutputType URI_FILE = fromString("uri_file");
 
-    /** Static value uri_folder for JobOutputType. */
+    /**
+     * Static value uri_folder for JobOutputType.
+     */
     public static final JobOutputType URI_FOLDER = fromString("uri_folder");
 
-    /** Static value mltable for JobOutputType. */
+    /**
+     * Static value mltable for JobOutputType.
+     */
     public static final JobOutputType MLTABLE = fromString("mltable");
 
-    /** Static value custom_model for JobOutputType. */
+    /**
+     * Static value custom_model for JobOutputType.
+     */
     public static final JobOutputType CUSTOM_MODEL = fromString("custom_model");
 
-    /** Static value mlflow_model for JobOutputType. */
+    /**
+     * Static value mlflow_model for JobOutputType.
+     */
     public static final JobOutputType MLFLOW_MODEL = fromString("mlflow_model");
 
-    /** Static value triton_model for JobOutputType. */
+    /**
+     * Static value triton_model for JobOutputType.
+     */
     public static final JobOutputType TRITON_MODEL = fromString("triton_model");
 
     /**
      * Creates a new instance of JobOutputType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -39,7 +53,7 @@ public final class JobOutputType extends ExpandableStringEnum<JobOutputType> {
 
     /**
      * Creates or finds a JobOutputType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding JobOutputType.
      */
@@ -50,7 +64,7 @@ public final class JobOutputType extends ExpandableStringEnum<JobOutputType> {
 
     /**
      * Gets known JobOutputType values.
-     *
+     * 
      * @return known JobOutputType values.
      */
     public static Collection<JobOutputType> values() {

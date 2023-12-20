@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Strictly used in update requests. */
+/**
+ * Strictly used in update requests.
+ */
 @Fluent
 public final class PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties {
     /*
@@ -25,13 +27,15 @@ public final class PartialBatchDeploymentPartialMinimalTrackedResourceWithProper
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties class. */
+    /**
+     * Creates an instance of PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties class.
+     */
     public PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties() {
     }
 
     /**
      * Get the properties property: Additional attributes of the entity.
-     *
+     * 
      * @return the properties value.
      */
     public PartialBatchDeployment properties() {
@@ -40,19 +44,19 @@ public final class PartialBatchDeploymentPartialMinimalTrackedResourceWithProper
 
     /**
      * Set the properties property: Additional attributes of the entity.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties object itself.
      */
-    public PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties withProperties(
-        PartialBatchDeployment properties) {
+    public PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties
+        withProperties(PartialBatchDeployment properties) {
         this.properties = properties;
         return this;
     }
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -61,7 +65,7 @@ public final class PartialBatchDeploymentPartialMinimalTrackedResourceWithProper
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties object itself.
      */
@@ -72,7 +76,7 @@ public final class PartialBatchDeploymentPartialMinimalTrackedResourceWithProper
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
