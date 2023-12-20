@@ -7,7 +7,9 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Maintenance window starting hour and day of week. */
+/**
+ * Maintenance window starting hour and day of week.
+ */
 @Fluent
 public final class MaintenanceWindowPatchProperties {
     /*
@@ -22,13 +24,15 @@ public final class MaintenanceWindowPatchProperties {
     @JsonProperty(value = "dayOfWeek")
     private DayOfWeek dayOfWeek;
 
-    /** Creates an instance of MaintenanceWindowPatchProperties class. */
+    /**
+     * Creates an instance of MaintenanceWindowPatchProperties class.
+     */
     public MaintenanceWindowPatchProperties() {
     }
 
     /**
      * Get the hour property: The update start hour of the day. (0 - 23).
-     *
+     * 
      * @return the hour value.
      */
     public Integer hour() {
@@ -37,7 +41,7 @@ public final class MaintenanceWindowPatchProperties {
 
     /**
      * Set the hour property: The update start hour of the day. (0 - 23).
-     *
+     * 
      * @param hour the hour value to set.
      * @return the MaintenanceWindowPatchProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class MaintenanceWindowPatchProperties {
 
     /**
      * Get the dayOfWeek property: Day of the week.
-     *
+     * 
      * @return the dayOfWeek value.
      */
     public DayOfWeek dayOfWeek() {
@@ -57,7 +61,7 @@ public final class MaintenanceWindowPatchProperties {
 
     /**
      * Set the dayOfWeek property: Day of the week.
-     *
+     * 
      * @param dayOfWeek the dayOfWeek value to set.
      * @return the MaintenanceWindowPatchProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class MaintenanceWindowPatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,7 +10,9 @@ import com.azure.resourcemanager.desktopvirtualization.models.PublicNetworkAcces
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Schema for Workspace properties. */
+/**
+ * Schema for Workspace properties.
+ */
 @Fluent
 public final class WorkspaceProperties {
     /*
@@ -56,13 +58,15 @@ public final class WorkspaceProperties {
     @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
     private List<PrivateEndpointConnection> privateEndpointConnections;
 
-    /** Creates an instance of WorkspaceProperties class. */
+    /**
+     * Creates an instance of WorkspaceProperties class.
+     */
     public WorkspaceProperties() {
     }
 
     /**
      * Get the objectId property: ObjectId of Workspace. (internal use).
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -71,7 +75,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the description property: Description of Workspace.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -80,7 +84,7 @@ public final class WorkspaceProperties {
 
     /**
      * Set the description property: Description of Workspace.
-     *
+     * 
      * @param description the description value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -91,7 +95,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the friendlyName property: Friendly name of Workspace.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -100,7 +104,7 @@ public final class WorkspaceProperties {
 
     /**
      * Set the friendlyName property: Friendly name of Workspace.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -111,7 +115,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the applicationGroupReferences property: List of applicationGroup resource Ids.
-     *
+     * 
      * @return the applicationGroupReferences value.
      */
     public List<String> applicationGroupReferences() {
@@ -120,7 +124,7 @@ public final class WorkspaceProperties {
 
     /**
      * Set the applicationGroupReferences property: List of applicationGroup resource Ids.
-     *
+     * 
      * @param applicationGroupReferences the applicationGroupReferences value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -131,7 +135,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the cloudPcResource property: Is cloud pc resource.
-     *
+     * 
      * @return the cloudPcResource value.
      */
     public Boolean cloudPcResource() {
@@ -141,7 +145,7 @@ public final class WorkspaceProperties {
     /**
      * Get the publicNetworkAccess property: Enabled allows this resource to be accessed from both public and private
      * networks, Disabled allows this resource to only be accessed via private endpoints.
-     *
+     * 
      * @return the publicNetworkAccess value.
      */
     public PublicNetworkAccess publicNetworkAccess() {
@@ -151,7 +155,7 @@ public final class WorkspaceProperties {
     /**
      * Set the publicNetworkAccess property: Enabled allows this resource to be accessed from both public and private
      * networks, Disabled allows this resource to only be accessed via private endpoints.
-     *
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -163,7 +167,7 @@ public final class WorkspaceProperties {
     /**
      * Get the privateEndpointConnections property: List of private endpoint connection associated with the specified
      * resource.
-     *
+     * 
      * @return the privateEndpointConnections value.
      */
     public List<PrivateEndpointConnection> privateEndpointConnections() {
@@ -172,7 +176,7 @@ public final class WorkspaceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

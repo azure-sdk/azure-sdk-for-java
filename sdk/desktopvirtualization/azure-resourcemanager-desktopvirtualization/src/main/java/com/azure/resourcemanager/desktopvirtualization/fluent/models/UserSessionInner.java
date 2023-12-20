@@ -12,7 +12,9 @@ import com.azure.resourcemanager.desktopvirtualization.models.SessionState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Represents a UserSession definition. */
+/**
+ * Represents a UserSession definition.
+ */
 @Fluent
 public final class UserSessionInner extends ProxyResource {
     /*
@@ -27,13 +29,15 @@ public final class UserSessionInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private UserSessionProperties innerProperties;
 
-    /** Creates an instance of UserSessionInner class. */
+    /**
+     * Creates an instance of UserSessionInner class.
+     */
     public UserSessionInner() {
     }
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -42,7 +46,7 @@ public final class UserSessionInner extends ProxyResource {
 
     /**
      * Get the innerProperties property: Detailed properties for UserSession.
-     *
+     * 
      * @return the innerProperties value.
      */
     private UserSessionProperties innerProperties() {
@@ -51,7 +55,7 @@ public final class UserSessionInner extends ProxyResource {
 
     /**
      * Get the objectId property: ObjectId of user session. (internal use).
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -60,7 +64,7 @@ public final class UserSessionInner extends ProxyResource {
 
     /**
      * Get the userPrincipalName property: The user principal name.
-     *
+     * 
      * @return the userPrincipalName value.
      */
     public String userPrincipalName() {
@@ -69,7 +73,7 @@ public final class UserSessionInner extends ProxyResource {
 
     /**
      * Set the userPrincipalName property: The user principal name.
-     *
+     * 
      * @param userPrincipalName the userPrincipalName value to set.
      * @return the UserSessionInner object itself.
      */
@@ -83,7 +87,7 @@ public final class UserSessionInner extends ProxyResource {
 
     /**
      * Get the applicationType property: Application type of application.
-     *
+     * 
      * @return the applicationType value.
      */
     public ApplicationType applicationType() {
@@ -92,7 +96,7 @@ public final class UserSessionInner extends ProxyResource {
 
     /**
      * Set the applicationType property: Application type of application.
-     *
+     * 
      * @param applicationType the applicationType value to set.
      * @return the UserSessionInner object itself.
      */
@@ -106,7 +110,7 @@ public final class UserSessionInner extends ProxyResource {
 
     /**
      * Get the sessionState property: State of user session.
-     *
+     * 
      * @return the sessionState value.
      */
     public SessionState sessionState() {
@@ -115,7 +119,7 @@ public final class UserSessionInner extends ProxyResource {
 
     /**
      * Set the sessionState property: State of user session.
-     *
+     * 
      * @param sessionState the sessionState value to set.
      * @return the UserSessionInner object itself.
      */
@@ -129,7 +133,7 @@ public final class UserSessionInner extends ProxyResource {
 
     /**
      * Get the activeDirectoryUsername property: The active directory user name.
-     *
+     * 
      * @return the activeDirectoryUsername value.
      */
     public String activeDirectoryUsername() {
@@ -138,7 +142,7 @@ public final class UserSessionInner extends ProxyResource {
 
     /**
      * Set the activeDirectoryUsername property: The active directory user name.
-     *
+     * 
      * @param activeDirectoryUsername the activeDirectoryUsername value to set.
      * @return the UserSessionInner object itself.
      */
@@ -152,7 +156,7 @@ public final class UserSessionInner extends ProxyResource {
 
     /**
      * Get the createTime property: The timestamp of the user session create.
-     *
+     * 
      * @return the createTime value.
      */
     public OffsetDateTime createTime() {
@@ -161,7 +165,7 @@ public final class UserSessionInner extends ProxyResource {
 
     /**
      * Set the createTime property: The timestamp of the user session create.
-     *
+     * 
      * @param createTime the createTime value to set.
      * @return the UserSessionInner object itself.
      */
@@ -175,7 +179,7 @@ public final class UserSessionInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
