@@ -3304,6 +3304,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.datafactory.models.MetadataItem",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.datafactory.models.AmazonS3CompatibleReadSettings",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -4130,11 +4135,6 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.datafactory.models.BlobSink",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.datafactory.models.MetadataItem",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

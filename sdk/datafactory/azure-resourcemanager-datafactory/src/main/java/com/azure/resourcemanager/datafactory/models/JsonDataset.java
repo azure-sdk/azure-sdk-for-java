@@ -20,6 +20,12 @@ import java.util.Map;
 @Fluent
 public final class JsonDataset extends Dataset {
     /*
+     * Any object
+     */
+    @JsonProperty(value = "schema1")
+    private Object schema1;
+
+    /*
      * Json dataset properties.
      */
     @JsonProperty(value = "typeProperties")
@@ -29,6 +35,26 @@ public final class JsonDataset extends Dataset {
      * Creates an instance of JsonDataset class.
      */
     public JsonDataset() {
+    }
+
+    /**
+     * Get the schema1 property: Any object.
+     * 
+     * @return the schema1 value.
+     */
+    public Object schema1() {
+        return this.schema1;
+    }
+
+    /**
+     * Set the schema1 property: Any object.
+     * 
+     * @param schema1 the schema1 value to set.
+     * @return the JsonDataset object itself.
+     */
+    public JsonDataset withSchema1(Object schema1) {
+        this.schema1 = schema1;
+        return this;
     }
 
     /**
