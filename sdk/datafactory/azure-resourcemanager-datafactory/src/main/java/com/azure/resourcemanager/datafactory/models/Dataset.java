@@ -125,7 +125,9 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "SnowflakeTable", value = SnowflakeDataset.class),
     @JsonSubTypes.Type(name = "SharePointOnlineListResource", value = SharePointOnlineListResourceDataset.class),
     @JsonSubTypes.Type(name = "AzureDatabricksDeltaLakeDataset", value = AzureDatabricksDeltaLakeDataset.class),
-    @JsonSubTypes.Type(name = "LakeHouseTable", value = LakeHouseTableDataset.class) })
+    @JsonSubTypes.Type(name = "LakeHouseTable", value = LakeHouseTableDataset.class),
+    @JsonSubTypes.Type(name = "SalesforceV2Object", value = SalesforceV2ObjectDataset.class),
+    @JsonSubTypes.Type(name = "SalesforceServiceCloudV2Object", value = SalesforceServiceCloudV2ObjectDataset.class) })
 @Fluent
 public class Dataset {
     /*

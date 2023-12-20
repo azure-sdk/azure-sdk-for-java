@@ -36,8 +36,8 @@ public final class WebhookActivityTypeProperties {
 
     /*
      * Represents the headers that will be sent to the request. For example, to set the language and type on a request:
-     * "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }. Type: string (or Expression with
-     * resultType string).
+     * "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }. Type: dictionary (or Expression
+     * with resultType dictionary).
      */
     @JsonProperty(value = "headers")
     private Object headers;
@@ -138,7 +138,7 @@ public final class WebhookActivityTypeProperties {
     /**
      * Get the headers property: Represents the headers that will be sent to the request. For example, to set the
      * language and type on a request: "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }.
-     * Type: string (or Expression with resultType string).
+     * Type: dictionary (or Expression with resultType dictionary).
      * 
      * @return the headers value.
      */
@@ -149,7 +149,7 @@ public final class WebhookActivityTypeProperties {
     /**
      * Set the headers property: Represents the headers that will be sent to the request. For example, to set the
      * language and type on a request: "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }.
-     * Type: string (or Expression with resultType string).
+     * Type: dictionary (or Expression with resultType dictionary).
      * 
      * @param headers the headers value to set.
      * @return the WebhookActivityTypeProperties object itself.
