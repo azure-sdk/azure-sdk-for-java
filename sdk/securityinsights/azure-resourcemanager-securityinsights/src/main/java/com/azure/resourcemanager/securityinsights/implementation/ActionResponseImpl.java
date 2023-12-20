@@ -75,23 +75,16 @@ public final class ActionResponseImpl implements ActionResponse, ActionResponse.
     }
 
     public ActionResponse create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getActions()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, ruleId, actionId, createAction, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getActions()
+            .createOrUpdateWithResponse(resourceGroupName, workspaceName, ruleId, actionId, createAction, Context.NONE)
+            .getValue();
         return this;
     }
 
     public ActionResponse create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getActions()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, ruleId, actionId, createAction, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getActions()
+            .createOrUpdateWithResponse(resourceGroupName, workspaceName, ruleId, actionId, createAction, context)
+            .getValue();
         return this;
     }
 
@@ -108,28 +101,20 @@ public final class ActionResponseImpl implements ActionResponse, ActionResponse.
     }
 
     public ActionResponse apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getActions()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, ruleId, actionId, updateAction, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getActions()
+            .createOrUpdateWithResponse(resourceGroupName, workspaceName, ruleId, actionId, updateAction, Context.NONE)
+            .getValue();
         return this;
     }
 
     public ActionResponse apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getActions()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, ruleId, actionId, updateAction, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getActions()
+            .createOrUpdateWithResponse(resourceGroupName, workspaceName, ruleId, actionId, updateAction, context)
+            .getValue();
         return this;
     }
 
-    ActionResponseImpl(
-        ActionResponseInner innerObject,
+    ActionResponseImpl(ActionResponseInner innerObject,
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -140,22 +125,14 @@ public final class ActionResponseImpl implements ActionResponse, ActionResponse.
     }
 
     public ActionResponse refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getActions()
-                .getWithResponse(resourceGroupName, workspaceName, ruleId, actionId, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getActions()
+            .getWithResponse(resourceGroupName, workspaceName, ruleId, actionId, Context.NONE).getValue();
         return this;
     }
 
     public ActionResponse refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getActions()
-                .getWithResponse(resourceGroupName, workspaceName, ruleId, actionId, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getActions()
+            .getWithResponse(resourceGroupName, workspaceName, ruleId, actionId, context).getValue();
         return this;
     }
 

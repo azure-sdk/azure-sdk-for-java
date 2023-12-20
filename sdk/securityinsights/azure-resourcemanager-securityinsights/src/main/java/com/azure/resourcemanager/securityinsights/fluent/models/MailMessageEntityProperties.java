@@ -14,7 +14,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
-/** Mail message entity property bag. */
+/**
+ * Mail message entity property bag.
+ */
 @Fluent
 public final class MailMessageEntityProperties extends EntityCommonProperties {
     /*
@@ -169,8 +171,14 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
     private DeliveryLocation deliveryLocation;
 
     /**
+     * Creates an instance of MailMessageEntityProperties class.
+     */
+    public MailMessageEntityProperties() {
+    }
+
+    /**
      * Get the fileEntityIds property: The File entity ids of this mail message's attachments.
-     *
+     * 
      * @return the fileEntityIds value.
      */
     public List<String> fileEntityIds() {
@@ -178,9 +186,9 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
     }
 
     /**
-     * Get the recipient property: The recipient of this mail message. Note that in case of multiple recipients the mail
-     * message is forked and each copy has one recipient.
-     *
+     * Get the recipient property: The recipient of this mail message. Note that in case of multiple recipients the
+     * mail message is forked and each copy has one recipient.
+     * 
      * @return the recipient value.
      */
     public String recipient() {
@@ -189,7 +197,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the urls property: The Urls contained in this mail message.
-     *
+     * 
      * @return the urls value.
      */
     public List<String> urls() {
@@ -198,7 +206,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the threats property: The threats of this mail message.
-     *
+     * 
      * @return the threats value.
      */
     public List<String> threats() {
@@ -207,7 +215,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the p1Sender property: The p1 sender's email address.
-     *
+     * 
      * @return the p1Sender value.
      */
     public String p1Sender() {
@@ -216,7 +224,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the p1SenderDisplayName property: The p1 sender's display name.
-     *
+     * 
      * @return the p1SenderDisplayName value.
      */
     public String p1SenderDisplayName() {
@@ -225,7 +233,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the p1SenderDomain property: The p1 sender's domain.
-     *
+     * 
      * @return the p1SenderDomain value.
      */
     public String p1SenderDomain() {
@@ -234,7 +242,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the senderIp property: The sender's IP address.
-     *
+     * 
      * @return the senderIp value.
      */
     public String senderIp() {
@@ -243,7 +251,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the p2Sender property: The p2 sender's email address.
-     *
+     * 
      * @return the p2Sender value.
      */
     public String p2Sender() {
@@ -252,7 +260,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the p2SenderDisplayName property: The p2 sender's display name.
-     *
+     * 
      * @return the p2SenderDisplayName value.
      */
     public String p2SenderDisplayName() {
@@ -261,7 +269,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the p2SenderDomain property: The p2 sender's domain.
-     *
+     * 
      * @return the p2SenderDomain value.
      */
     public String p2SenderDomain() {
@@ -270,7 +278,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the receiveDate property: The receive date of this message.
-     *
+     * 
      * @return the receiveDate value.
      */
     public OffsetDateTime receiveDate() {
@@ -279,7 +287,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the networkMessageId property: The network message id of this mail message.
-     *
+     * 
      * @return the networkMessageId value.
      */
     public UUID networkMessageId() {
@@ -288,7 +296,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the internetMessageId property: The internet message id of this mail message.
-     *
+     * 
      * @return the internetMessageId value.
      */
     public String internetMessageId() {
@@ -297,7 +305,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the subject property: The subject of this mail message.
-     *
+     * 
      * @return the subject value.
      */
     public String subject() {
@@ -306,7 +314,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the language property: The language of this mail message.
-     *
+     * 
      * @return the language value.
      */
     public String language() {
@@ -315,7 +323,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the threatDetectionMethods property: The threat detection methods.
-     *
+     * 
      * @return the threatDetectionMethods value.
      */
     public List<String> threatDetectionMethods() {
@@ -324,7 +332,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the bodyFingerprintBin1 property: The bodyFingerprintBin1.
-     *
+     * 
      * @return the bodyFingerprintBin1 value.
      */
     public Integer bodyFingerprintBin1() {
@@ -333,7 +341,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Set the bodyFingerprintBin1 property: The bodyFingerprintBin1.
-     *
+     * 
      * @param bodyFingerprintBin1 the bodyFingerprintBin1 value to set.
      * @return the MailMessageEntityProperties object itself.
      */
@@ -344,7 +352,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the bodyFingerprintBin2 property: The bodyFingerprintBin2.
-     *
+     * 
      * @return the bodyFingerprintBin2 value.
      */
     public Integer bodyFingerprintBin2() {
@@ -353,7 +361,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Set the bodyFingerprintBin2 property: The bodyFingerprintBin2.
-     *
+     * 
      * @param bodyFingerprintBin2 the bodyFingerprintBin2 value to set.
      * @return the MailMessageEntityProperties object itself.
      */
@@ -364,7 +372,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the bodyFingerprintBin3 property: The bodyFingerprintBin3.
-     *
+     * 
      * @return the bodyFingerprintBin3 value.
      */
     public Integer bodyFingerprintBin3() {
@@ -373,7 +381,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Set the bodyFingerprintBin3 property: The bodyFingerprintBin3.
-     *
+     * 
      * @param bodyFingerprintBin3 the bodyFingerprintBin3 value to set.
      * @return the MailMessageEntityProperties object itself.
      */
@@ -384,7 +392,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the bodyFingerprintBin4 property: The bodyFingerprintBin4.
-     *
+     * 
      * @return the bodyFingerprintBin4 value.
      */
     public Integer bodyFingerprintBin4() {
@@ -393,7 +401,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Set the bodyFingerprintBin4 property: The bodyFingerprintBin4.
-     *
+     * 
      * @param bodyFingerprintBin4 the bodyFingerprintBin4 value to set.
      * @return the MailMessageEntityProperties object itself.
      */
@@ -404,7 +412,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the bodyFingerprintBin5 property: The bodyFingerprintBin5.
-     *
+     * 
      * @return the bodyFingerprintBin5 value.
      */
     public Integer bodyFingerprintBin5() {
@@ -413,7 +421,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Set the bodyFingerprintBin5 property: The bodyFingerprintBin5.
-     *
+     * 
      * @param bodyFingerprintBin5 the bodyFingerprintBin5 value to set.
      * @return the MailMessageEntityProperties object itself.
      */
@@ -424,7 +432,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the antispamDirection property: The directionality of this mail message.
-     *
+     * 
      * @return the antispamDirection value.
      */
     public AntispamMailDirection antispamDirection() {
@@ -433,7 +441,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Set the antispamDirection property: The directionality of this mail message.
-     *
+     * 
      * @param antispamDirection the antispamDirection value to set.
      * @return the MailMessageEntityProperties object itself.
      */
@@ -444,7 +452,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the deliveryAction property: The delivery action of this mail message like Delivered, Blocked, Replaced etc.
-     *
+     * 
      * @return the deliveryAction value.
      */
     public DeliveryAction deliveryAction() {
@@ -453,7 +461,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Set the deliveryAction property: The delivery action of this mail message like Delivered, Blocked, Replaced etc.
-     *
+     * 
      * @param deliveryAction the deliveryAction value to set.
      * @return the MailMessageEntityProperties object itself.
      */
@@ -464,7 +472,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the deliveryLocation property: The delivery location of this mail message like Inbox, JunkFolder etc.
-     *
+     * 
      * @return the deliveryLocation value.
      */
     public DeliveryLocation deliveryLocation() {
@@ -473,7 +481,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Set the deliveryLocation property: The delivery location of this mail message like Inbox, JunkFolder etc.
-     *
+     * 
      * @param deliveryLocation the deliveryLocation value to set.
      * @return the MailMessageEntityProperties object itself.
      */
@@ -484,7 +492,7 @@ public final class MailMessageEntityProperties extends EntityCommonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

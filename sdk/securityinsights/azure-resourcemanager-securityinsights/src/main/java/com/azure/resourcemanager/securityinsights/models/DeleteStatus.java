@@ -8,20 +8,37 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Indicates whether the file was deleted from the storage account. */
+/**
+ * Indicates whether the file was deleted from the storage account.
+ */
 public final class DeleteStatus extends ExpandableStringEnum<DeleteStatus> {
-    /** Static value Deleted for DeleteStatus. */
+    /**
+     * Static value Deleted for DeleteStatus.
+     */
     public static final DeleteStatus DELETED = fromString("Deleted");
 
-    /** Static value NotDeleted for DeleteStatus. */
+    /**
+     * Static value NotDeleted for DeleteStatus.
+     */
     public static final DeleteStatus NOT_DELETED = fromString("NotDeleted");
 
-    /** Static value Unspecified for DeleteStatus. */
+    /**
+     * Static value Unspecified for DeleteStatus.
+     */
     public static final DeleteStatus UNSPECIFIED = fromString("Unspecified");
 
     /**
+     * Creates a new instance of DeleteStatus value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public DeleteStatus() {
+    }
+
+    /**
      * Creates or finds a DeleteStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding DeleteStatus.
      */
@@ -32,7 +49,7 @@ public final class DeleteStatus extends ExpandableStringEnum<DeleteStatus> {
 
     /**
      * Gets known DeleteStatus values.
-     *
+     * 
      * @return known DeleteStatus values.
      */
     public static Collection<DeleteStatus> values() {

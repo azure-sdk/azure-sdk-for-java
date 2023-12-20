@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents a Severity filter setting for a given source subtype consumed in Fusion detection. */
+/**
+ * Represents a Severity filter setting for a given source subtype consumed in Fusion detection.
+ */
 @Fluent
 public final class FusionSubTypeSeverityFiltersItem {
     /*
@@ -24,8 +26,14 @@ public final class FusionSubTypeSeverityFiltersItem {
     private boolean enabled;
 
     /**
+     * Creates an instance of FusionSubTypeSeverityFiltersItem class.
+     */
+    public FusionSubTypeSeverityFiltersItem() {
+    }
+
+    /**
      * Get the severity property: The Severity for a given source subtype consumed in Fusion detection.
-     *
+     * 
      * @return the severity value.
      */
     public AlertSeverity severity() {
@@ -34,7 +42,7 @@ public final class FusionSubTypeSeverityFiltersItem {
 
     /**
      * Set the severity property: The Severity for a given source subtype consumed in Fusion detection.
-     *
+     * 
      * @param severity the severity value to set.
      * @return the FusionSubTypeSeverityFiltersItem object itself.
      */
@@ -46,7 +54,7 @@ public final class FusionSubTypeSeverityFiltersItem {
     /**
      * Get the enabled property: Determines whether this severity is enabled or disabled for this source subtype
      * consumed in Fusion detection.
-     *
+     * 
      * @return the enabled value.
      */
     public boolean enabled() {
@@ -56,7 +64,7 @@ public final class FusionSubTypeSeverityFiltersItem {
     /**
      * Set the enabled property: Determines whether this severity is enabled or disabled for this source subtype
      * consumed in Fusion detection.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the FusionSubTypeSeverityFiltersItem object itself.
      */
@@ -67,15 +75,13 @@ public final class FusionSubTypeSeverityFiltersItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (severity() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property severity in model FusionSubTypeSeverityFiltersItem"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property severity in model FusionSubTypeSeverityFiltersItem"));
         }
     }
 

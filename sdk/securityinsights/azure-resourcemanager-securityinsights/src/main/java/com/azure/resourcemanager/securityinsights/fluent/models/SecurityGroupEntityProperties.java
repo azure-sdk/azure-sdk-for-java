@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.EntityCommonProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
-/** SecurityGroup entity property bag. */
+/**
+ * SecurityGroup entity property bag.
+ */
 @Immutable
 public final class SecurityGroupEntityProperties extends EntityCommonProperties {
     /*
@@ -31,8 +33,14 @@ public final class SecurityGroupEntityProperties extends EntityCommonProperties 
     private String sid;
 
     /**
+     * Creates an instance of SecurityGroupEntityProperties class.
+     */
+    public SecurityGroupEntityProperties() {
+    }
+
+    /**
      * Get the distinguishedName property: The group distinguished name.
-     *
+     * 
      * @return the distinguishedName value.
      */
     public String distinguishedName() {
@@ -42,7 +50,7 @@ public final class SecurityGroupEntityProperties extends EntityCommonProperties 
     /**
      * Get the objectGuid property: A single-value attribute that is the unique identifier for the object, assigned by
      * active directory.
-     *
+     * 
      * @return the objectGuid value.
      */
     public UUID objectGuid() {
@@ -52,7 +60,7 @@ public final class SecurityGroupEntityProperties extends EntityCommonProperties 
     /**
      * Get the sid property: The SID attribute is a single-value attribute that specifies the security identifier (SID)
      * of the group.
-     *
+     * 
      * @return the sid value.
      */
     public String sid() {
@@ -61,7 +69,7 @@ public final class SecurityGroupEntityProperties extends EntityCommonProperties 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

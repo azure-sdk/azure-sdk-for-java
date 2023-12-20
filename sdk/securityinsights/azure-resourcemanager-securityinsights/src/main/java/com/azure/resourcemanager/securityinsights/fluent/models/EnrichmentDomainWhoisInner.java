@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.EnrichmentDomainWhoisDe
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Whois information for a given domain and associated metadata. */
+/**
+ * Whois information for a given domain and associated metadata.
+ */
 @Fluent
 public final class EnrichmentDomainWhoisInner {
     /*
@@ -49,8 +51,14 @@ public final class EnrichmentDomainWhoisInner {
     private EnrichmentDomainWhoisDetails parsedWhois;
 
     /**
+     * Creates an instance of EnrichmentDomainWhoisInner class.
+     */
+    public EnrichmentDomainWhoisInner() {
+    }
+
+    /**
      * Get the domain property: The domain for this whois record.
-     *
+     * 
      * @return the domain value.
      */
     public String domain() {
@@ -59,7 +67,7 @@ public final class EnrichmentDomainWhoisInner {
 
     /**
      * Set the domain property: The domain for this whois record.
-     *
+     * 
      * @param domain the domain value to set.
      * @return the EnrichmentDomainWhoisInner object itself.
      */
@@ -70,7 +78,7 @@ public final class EnrichmentDomainWhoisInner {
 
     /**
      * Get the server property: The hostname of this registrar's whois server.
-     *
+     * 
      * @return the server value.
      */
     public String server() {
@@ -79,7 +87,7 @@ public final class EnrichmentDomainWhoisInner {
 
     /**
      * Set the server property: The hostname of this registrar's whois server.
-     *
+     * 
      * @param server the server value to set.
      * @return the EnrichmentDomainWhoisInner object itself.
      */
@@ -90,7 +98,7 @@ public final class EnrichmentDomainWhoisInner {
 
     /**
      * Get the created property: The timestamp at which this record was created.
-     *
+     * 
      * @return the created value.
      */
     public OffsetDateTime created() {
@@ -99,7 +107,7 @@ public final class EnrichmentDomainWhoisInner {
 
     /**
      * Set the created property: The timestamp at which this record was created.
-     *
+     * 
      * @param created the created value to set.
      * @return the EnrichmentDomainWhoisInner object itself.
      */
@@ -110,7 +118,7 @@ public final class EnrichmentDomainWhoisInner {
 
     /**
      * Get the updated property: The timestamp at which this record was last updated.
-     *
+     * 
      * @return the updated value.
      */
     public OffsetDateTime updated() {
@@ -119,7 +127,7 @@ public final class EnrichmentDomainWhoisInner {
 
     /**
      * Set the updated property: The timestamp at which this record was last updated.
-     *
+     * 
      * @param updated the updated value to set.
      * @return the EnrichmentDomainWhoisInner object itself.
      */
@@ -130,7 +138,7 @@ public final class EnrichmentDomainWhoisInner {
 
     /**
      * Get the expires property: The timestamp at which this record will expire.
-     *
+     * 
      * @return the expires value.
      */
     public OffsetDateTime expires() {
@@ -139,7 +147,7 @@ public final class EnrichmentDomainWhoisInner {
 
     /**
      * Set the expires property: The timestamp at which this record will expire.
-     *
+     * 
      * @param expires the expires value to set.
      * @return the EnrichmentDomainWhoisInner object itself.
      */
@@ -150,7 +158,7 @@ public final class EnrichmentDomainWhoisInner {
 
     /**
      * Get the parsedWhois property: The whois record for a given domain.
-     *
+     * 
      * @return the parsedWhois value.
      */
     public EnrichmentDomainWhoisDetails parsedWhois() {
@@ -159,7 +167,7 @@ public final class EnrichmentDomainWhoisInner {
 
     /**
      * Set the parsedWhois property: The whois record for a given domain.
-     *
+     * 
      * @param parsedWhois the parsedWhois value to set.
      * @return the EnrichmentDomainWhoisInner object itself.
      */
@@ -170,7 +178,7 @@ public final class EnrichmentDomainWhoisInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

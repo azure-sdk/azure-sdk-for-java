@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Describes bookmark properties. */
+/**
+ * Describes bookmark properties.
+ */
 @Fluent
 public final class HuntingBookmarkProperties extends EntityCommonProperties {
     /*
@@ -83,8 +85,14 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
     private IncidentInfo incidentInfo;
 
     /**
+     * Creates an instance of HuntingBookmarkProperties class.
+     */
+    public HuntingBookmarkProperties() {
+    }
+
+    /**
      * Get the created property: The time the bookmark was created.
-     *
+     * 
      * @return the created value.
      */
     public OffsetDateTime created() {
@@ -93,7 +101,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Set the created property: The time the bookmark was created.
-     *
+     * 
      * @param created the created value to set.
      * @return the HuntingBookmarkProperties object itself.
      */
@@ -104,7 +112,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Get the createdBy property: Describes a user that created the bookmark.
-     *
+     * 
      * @return the createdBy value.
      */
     public UserInfo createdBy() {
@@ -113,7 +121,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Set the createdBy property: Describes a user that created the bookmark.
-     *
+     * 
      * @param createdBy the createdBy value to set.
      * @return the HuntingBookmarkProperties object itself.
      */
@@ -124,7 +132,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Get the displayName property: The display name of the bookmark.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -133,7 +141,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Set the displayName property: The display name of the bookmark.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the HuntingBookmarkProperties object itself.
      */
@@ -144,7 +152,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Get the eventTime property: The time of the event.
-     *
+     * 
      * @return the eventTime value.
      */
     public OffsetDateTime eventTime() {
@@ -153,7 +161,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Set the eventTime property: The time of the event.
-     *
+     * 
      * @param eventTime the eventTime value to set.
      * @return the HuntingBookmarkProperties object itself.
      */
@@ -164,7 +172,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Get the labels property: List of labels relevant to this bookmark.
-     *
+     * 
      * @return the labels value.
      */
     public List<String> labels() {
@@ -173,7 +181,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Set the labels property: List of labels relevant to this bookmark.
-     *
+     * 
      * @param labels the labels value to set.
      * @return the HuntingBookmarkProperties object itself.
      */
@@ -184,7 +192,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Get the notes property: The notes of the bookmark.
-     *
+     * 
      * @return the notes value.
      */
     public String notes() {
@@ -193,7 +201,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Set the notes property: The notes of the bookmark.
-     *
+     * 
      * @param notes the notes value to set.
      * @return the HuntingBookmarkProperties object itself.
      */
@@ -204,7 +212,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Get the query property: The query of the bookmark.
-     *
+     * 
      * @return the query value.
      */
     public String query() {
@@ -213,7 +221,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Set the query property: The query of the bookmark.
-     *
+     * 
      * @param query the query value to set.
      * @return the HuntingBookmarkProperties object itself.
      */
@@ -224,7 +232,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Get the queryResult property: The query result of the bookmark.
-     *
+     * 
      * @return the queryResult value.
      */
     public String queryResult() {
@@ -233,7 +241,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Set the queryResult property: The query result of the bookmark.
-     *
+     * 
      * @param queryResult the queryResult value to set.
      * @return the HuntingBookmarkProperties object itself.
      */
@@ -244,7 +252,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Get the updated property: The last time the bookmark was updated.
-     *
+     * 
      * @return the updated value.
      */
     public OffsetDateTime updated() {
@@ -253,7 +261,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Set the updated property: The last time the bookmark was updated.
-     *
+     * 
      * @param updated the updated value to set.
      * @return the HuntingBookmarkProperties object itself.
      */
@@ -264,7 +272,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Get the updatedBy property: Describes a user that updated the bookmark.
-     *
+     * 
      * @return the updatedBy value.
      */
     public UserInfo updatedBy() {
@@ -273,7 +281,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Set the updatedBy property: Describes a user that updated the bookmark.
-     *
+     * 
      * @param updatedBy the updatedBy value to set.
      * @return the HuntingBookmarkProperties object itself.
      */
@@ -284,7 +292,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Get the incidentInfo property: Describes an incident that relates to bookmark.
-     *
+     * 
      * @return the incidentInfo value.
      */
     public IncidentInfo incidentInfo() {
@@ -293,7 +301,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Set the incidentInfo property: Describes an incident that relates to bookmark.
-     *
+     * 
      * @param incidentInfo the incidentInfo value to set.
      * @return the HuntingBookmarkProperties object itself.
      */
@@ -304,7 +312,7 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
@@ -314,15 +322,12 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
             createdBy().validate();
         }
         if (displayName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property displayName in model HuntingBookmarkProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property displayName in model HuntingBookmarkProperties"));
         }
         if (query() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property query in model HuntingBookmarkProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property query in model HuntingBookmarkProperties"));
         }
         if (updatedBy() != null) {
             updatedBy().validate();

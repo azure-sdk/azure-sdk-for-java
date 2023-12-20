@@ -8,14 +8,22 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Amazon Web Services CloudTrail requirements check request. */
+/**
+ * Amazon Web Services CloudTrail requirements check request.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("AmazonWebServicesCloudTrail")
 @Immutable
 public final class AwsCloudTrailCheckRequirements extends DataConnectorsCheckRequirements {
     /**
+     * Creates an instance of AwsCloudTrailCheckRequirements class.
+     */
+    public AwsCloudTrailCheckRequirements() {
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

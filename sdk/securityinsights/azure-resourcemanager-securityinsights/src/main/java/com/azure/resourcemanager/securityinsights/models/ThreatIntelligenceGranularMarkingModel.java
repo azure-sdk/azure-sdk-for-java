@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes threat granular marking model entity. */
+/**
+ * Describes threat granular marking model entity.
+ */
 @Fluent
 public final class ThreatIntelligenceGranularMarkingModel {
     /*
@@ -30,8 +32,14 @@ public final class ThreatIntelligenceGranularMarkingModel {
     private List<String> selectors;
 
     /**
+     * Creates an instance of ThreatIntelligenceGranularMarkingModel class.
+     */
+    public ThreatIntelligenceGranularMarkingModel() {
+    }
+
+    /**
      * Get the language property: Language granular marking model.
-     *
+     * 
      * @return the language value.
      */
     public String language() {
@@ -40,7 +48,7 @@ public final class ThreatIntelligenceGranularMarkingModel {
 
     /**
      * Set the language property: Language granular marking model.
-     *
+     * 
      * @param language the language value to set.
      * @return the ThreatIntelligenceGranularMarkingModel object itself.
      */
@@ -51,7 +59,7 @@ public final class ThreatIntelligenceGranularMarkingModel {
 
     /**
      * Get the markingRef property: marking reference granular marking model.
-     *
+     * 
      * @return the markingRef value.
      */
     public Integer markingRef() {
@@ -60,7 +68,7 @@ public final class ThreatIntelligenceGranularMarkingModel {
 
     /**
      * Set the markingRef property: marking reference granular marking model.
-     *
+     * 
      * @param markingRef the markingRef value to set.
      * @return the ThreatIntelligenceGranularMarkingModel object itself.
      */
@@ -71,7 +79,7 @@ public final class ThreatIntelligenceGranularMarkingModel {
 
     /**
      * Get the selectors property: granular marking model selectors.
-     *
+     * 
      * @return the selectors value.
      */
     public List<String> selectors() {
@@ -80,7 +88,7 @@ public final class ThreatIntelligenceGranularMarkingModel {
 
     /**
      * Set the selectors property: granular marking model selectors.
-     *
+     * 
      * @param selectors the selectors value to set.
      * @return the ThreatIntelligenceGranularMarkingModel object itself.
      */
@@ -91,7 +99,7 @@ public final class ThreatIntelligenceGranularMarkingModel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

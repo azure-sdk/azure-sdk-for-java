@@ -14,7 +14,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Describes bookmark properties. */
+/**
+ * Describes bookmark properties.
+ */
 @Fluent
 public final class BookmarkProperties {
     /*
@@ -114,8 +116,14 @@ public final class BookmarkProperties {
     private List<String> techniques;
 
     /**
+     * Creates an instance of BookmarkProperties class.
+     */
+    public BookmarkProperties() {
+    }
+
+    /**
      * Get the created property: The time the bookmark was created.
-     *
+     * 
      * @return the created value.
      */
     public OffsetDateTime created() {
@@ -124,7 +132,7 @@ public final class BookmarkProperties {
 
     /**
      * Set the created property: The time the bookmark was created.
-     *
+     * 
      * @param created the created value to set.
      * @return the BookmarkProperties object itself.
      */
@@ -135,7 +143,7 @@ public final class BookmarkProperties {
 
     /**
      * Get the createdBy property: Describes a user that created the bookmark.
-     *
+     * 
      * @return the createdBy value.
      */
     public UserInfo createdBy() {
@@ -144,7 +152,7 @@ public final class BookmarkProperties {
 
     /**
      * Set the createdBy property: Describes a user that created the bookmark.
-     *
+     * 
      * @param createdBy the createdBy value to set.
      * @return the BookmarkProperties object itself.
      */
@@ -155,7 +163,7 @@ public final class BookmarkProperties {
 
     /**
      * Get the displayName property: The display name of the bookmark.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -164,7 +172,7 @@ public final class BookmarkProperties {
 
     /**
      * Set the displayName property: The display name of the bookmark.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the BookmarkProperties object itself.
      */
@@ -175,7 +183,7 @@ public final class BookmarkProperties {
 
     /**
      * Get the labels property: List of labels relevant to this bookmark.
-     *
+     * 
      * @return the labels value.
      */
     public List<String> labels() {
@@ -184,7 +192,7 @@ public final class BookmarkProperties {
 
     /**
      * Set the labels property: List of labels relevant to this bookmark.
-     *
+     * 
      * @param labels the labels value to set.
      * @return the BookmarkProperties object itself.
      */
@@ -195,7 +203,7 @@ public final class BookmarkProperties {
 
     /**
      * Get the notes property: The notes of the bookmark.
-     *
+     * 
      * @return the notes value.
      */
     public String notes() {
@@ -204,7 +212,7 @@ public final class BookmarkProperties {
 
     /**
      * Set the notes property: The notes of the bookmark.
-     *
+     * 
      * @param notes the notes value to set.
      * @return the BookmarkProperties object itself.
      */
@@ -215,7 +223,7 @@ public final class BookmarkProperties {
 
     /**
      * Get the query property: The query of the bookmark.
-     *
+     * 
      * @return the query value.
      */
     public String query() {
@@ -224,7 +232,7 @@ public final class BookmarkProperties {
 
     /**
      * Set the query property: The query of the bookmark.
-     *
+     * 
      * @param query the query value to set.
      * @return the BookmarkProperties object itself.
      */
@@ -235,7 +243,7 @@ public final class BookmarkProperties {
 
     /**
      * Get the queryResult property: The query result of the bookmark.
-     *
+     * 
      * @return the queryResult value.
      */
     public String queryResult() {
@@ -244,7 +252,7 @@ public final class BookmarkProperties {
 
     /**
      * Set the queryResult property: The query result of the bookmark.
-     *
+     * 
      * @param queryResult the queryResult value to set.
      * @return the BookmarkProperties object itself.
      */
@@ -255,7 +263,7 @@ public final class BookmarkProperties {
 
     /**
      * Get the updated property: The last time the bookmark was updated.
-     *
+     * 
      * @return the updated value.
      */
     public OffsetDateTime updated() {
@@ -264,7 +272,7 @@ public final class BookmarkProperties {
 
     /**
      * Set the updated property: The last time the bookmark was updated.
-     *
+     * 
      * @param updated the updated value to set.
      * @return the BookmarkProperties object itself.
      */
@@ -275,7 +283,7 @@ public final class BookmarkProperties {
 
     /**
      * Get the updatedBy property: Describes a user that updated the bookmark.
-     *
+     * 
      * @return the updatedBy value.
      */
     public UserInfo updatedBy() {
@@ -284,7 +292,7 @@ public final class BookmarkProperties {
 
     /**
      * Set the updatedBy property: Describes a user that updated the bookmark.
-     *
+     * 
      * @param updatedBy the updatedBy value to set.
      * @return the BookmarkProperties object itself.
      */
@@ -295,7 +303,7 @@ public final class BookmarkProperties {
 
     /**
      * Get the eventTime property: The bookmark event time.
-     *
+     * 
      * @return the eventTime value.
      */
     public OffsetDateTime eventTime() {
@@ -304,7 +312,7 @@ public final class BookmarkProperties {
 
     /**
      * Set the eventTime property: The bookmark event time.
-     *
+     * 
      * @param eventTime the eventTime value to set.
      * @return the BookmarkProperties object itself.
      */
@@ -315,7 +323,7 @@ public final class BookmarkProperties {
 
     /**
      * Get the queryStartTime property: The start time for the query.
-     *
+     * 
      * @return the queryStartTime value.
      */
     public OffsetDateTime queryStartTime() {
@@ -324,7 +332,7 @@ public final class BookmarkProperties {
 
     /**
      * Set the queryStartTime property: The start time for the query.
-     *
+     * 
      * @param queryStartTime the queryStartTime value to set.
      * @return the BookmarkProperties object itself.
      */
@@ -335,7 +343,7 @@ public final class BookmarkProperties {
 
     /**
      * Get the queryEndTime property: The end time for the query.
-     *
+     * 
      * @return the queryEndTime value.
      */
     public OffsetDateTime queryEndTime() {
@@ -344,7 +352,7 @@ public final class BookmarkProperties {
 
     /**
      * Set the queryEndTime property: The end time for the query.
-     *
+     * 
      * @param queryEndTime the queryEndTime value to set.
      * @return the BookmarkProperties object itself.
      */
@@ -355,7 +363,7 @@ public final class BookmarkProperties {
 
     /**
      * Get the incidentInfo property: Describes an incident that relates to bookmark.
-     *
+     * 
      * @return the incidentInfo value.
      */
     public IncidentInfo incidentInfo() {
@@ -364,7 +372,7 @@ public final class BookmarkProperties {
 
     /**
      * Set the incidentInfo property: Describes an incident that relates to bookmark.
-     *
+     * 
      * @param incidentInfo the incidentInfo value to set.
      * @return the BookmarkProperties object itself.
      */
@@ -375,7 +383,7 @@ public final class BookmarkProperties {
 
     /**
      * Get the entityMappings property: Describes the entity mappings of the bookmark.
-     *
+     * 
      * @return the entityMappings value.
      */
     public List<BookmarkEntityMappings> entityMappings() {
@@ -384,7 +392,7 @@ public final class BookmarkProperties {
 
     /**
      * Set the entityMappings property: Describes the entity mappings of the bookmark.
-     *
+     * 
      * @param entityMappings the entityMappings value to set.
      * @return the BookmarkProperties object itself.
      */
@@ -395,7 +403,7 @@ public final class BookmarkProperties {
 
     /**
      * Get the tactics property: A list of relevant mitre attacks.
-     *
+     * 
      * @return the tactics value.
      */
     public List<AttackTactic> tactics() {
@@ -404,7 +412,7 @@ public final class BookmarkProperties {
 
     /**
      * Set the tactics property: A list of relevant mitre attacks.
-     *
+     * 
      * @param tactics the tactics value to set.
      * @return the BookmarkProperties object itself.
      */
@@ -415,7 +423,7 @@ public final class BookmarkProperties {
 
     /**
      * Get the techniques property: A list of relevant mitre techniques.
-     *
+     * 
      * @return the techniques value.
      */
     public List<String> techniques() {
@@ -424,7 +432,7 @@ public final class BookmarkProperties {
 
     /**
      * Set the techniques property: A list of relevant mitre techniques.
-     *
+     * 
      * @param techniques the techniques value to set.
      * @return the BookmarkProperties object itself.
      */
@@ -435,7 +443,7 @@ public final class BookmarkProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -443,14 +451,12 @@ public final class BookmarkProperties {
             createdBy().validate();
         }
         if (displayName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property displayName in model BookmarkProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property displayName in model BookmarkProperties"));
         }
         if (query() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property query in model BookmarkProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property query in model BookmarkProperties"));
         }
         if (updatedBy() != null) {
             updatedBy().validate();
