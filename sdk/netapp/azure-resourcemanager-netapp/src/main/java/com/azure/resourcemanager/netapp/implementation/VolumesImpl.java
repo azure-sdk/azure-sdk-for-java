@@ -121,15 +121,6 @@ public final class VolumesImpl implements Volumes {
         this.serviceClient().resetCifsPassword(resourceGroupName, accountName, poolName, volumeName, context);
     }
 
-    public void splitCloneFromParent(String resourceGroupName, String accountName, String poolName, String volumeName) {
-        this.serviceClient().splitCloneFromParent(resourceGroupName, accountName, poolName, volumeName);
-    }
-
-    public void splitCloneFromParent(String resourceGroupName, String accountName, String poolName, String volumeName,
-        Context context) {
-        this.serviceClient().splitCloneFromParent(resourceGroupName, accountName, poolName, volumeName, context);
-    }
-
     public void breakFileLocks(String resourceGroupName, String accountName, String poolName, String volumeName) {
         this.serviceClient().breakFileLocks(resourceGroupName, accountName, poolName, volumeName);
     }
