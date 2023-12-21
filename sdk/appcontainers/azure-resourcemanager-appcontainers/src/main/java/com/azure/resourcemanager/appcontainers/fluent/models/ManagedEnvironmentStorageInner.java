@@ -6,50 +6,106 @@ package com.azure.resourcemanager.appcontainers.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentStorageProperties;
+import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.appcontainers.models.AzureFileProperties;
+import com.azure.resourcemanager.appcontainers.models.NfsAzureFileProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Storage resource for managedEnvironment. */
+/**
+ * Storage resource for managedEnvironment.
+ */
 @Fluent
 public final class ManagedEnvironmentStorageInner extends ProxyResource {
     /*
      * Storage properties
      */
     @JsonProperty(value = "properties")
-    private ManagedEnvironmentStorageProperties properties;
+    private ManagedEnvironmentStorageProperties innerProperties;
 
-    /** Creates an instance of ManagedEnvironmentStorageInner class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of ManagedEnvironmentStorageInner class.
+     */
     public ManagedEnvironmentStorageInner() {
     }
 
     /**
-     * Get the properties property: Storage properties.
-     *
-     * @return the properties value.
+     * Get the innerProperties property: Storage properties.
+     * 
+     * @return the innerProperties value.
      */
-    public ManagedEnvironmentStorageProperties properties() {
-        return this.properties;
+    private ManagedEnvironmentStorageProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the properties property: Storage properties.
-     *
-     * @param properties the properties value to set.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * Get the azureFile property: Azure file properties.
+     * 
+     * @return the azureFile value.
+     */
+    public AzureFileProperties azureFile() {
+        return this.innerProperties() == null ? null : this.innerProperties().azureFile();
+    }
+
+    /**
+     * Set the azureFile property: Azure file properties.
+     * 
+     * @param azureFile the azureFile value to set.
      * @return the ManagedEnvironmentStorageInner object itself.
      */
-    public ManagedEnvironmentStorageInner withProperties(ManagedEnvironmentStorageProperties properties) {
-        this.properties = properties;
+    public ManagedEnvironmentStorageInner withAzureFile(AzureFileProperties azureFile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ManagedEnvironmentStorageProperties();
+        }
+        this.innerProperties().withAzureFile(azureFile);
+        return this;
+    }
+
+    /**
+     * Get the nfsAzureFile property: NFS Azure file properties.
+     * 
+     * @return the nfsAzureFile value.
+     */
+    public NfsAzureFileProperties nfsAzureFile() {
+        return this.innerProperties() == null ? null : this.innerProperties().nfsAzureFile();
+    }
+
+    /**
+     * Set the nfsAzureFile property: NFS Azure file properties.
+     * 
+     * @param nfsAzureFile the nfsAzureFile value to set.
+     * @return the ManagedEnvironmentStorageInner object itself.
+     */
+    public ManagedEnvironmentStorageInner withNfsAzureFile(NfsAzureFileProperties nfsAzureFile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ManagedEnvironmentStorageProperties();
+        }
+        this.innerProperties().withNfsAzureFile(nfsAzureFile);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }
