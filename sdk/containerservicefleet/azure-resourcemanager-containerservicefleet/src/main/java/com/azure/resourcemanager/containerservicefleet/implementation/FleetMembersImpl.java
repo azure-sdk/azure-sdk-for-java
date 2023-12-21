@@ -21,8 +21,7 @@ public final class FleetMembersImpl implements FleetMembers {
 
     private final com.azure.resourcemanager.containerservicefleet.ContainerServiceFleetManager serviceManager;
 
-    public FleetMembersImpl(
-        FleetMembersClient innerClient,
+    public FleetMembersImpl(FleetMembersClient innerClient,
         com.azure.resourcemanager.containerservicefleet.ContainerServiceFleetManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -38,15 +37,12 @@ public final class FleetMembersImpl implements FleetMembers {
         return Utils.mapPage(inner, inner1 -> new FleetMemberImpl(inner1, this.manager()));
     }
 
-    public Response<FleetMember> getWithResponse(
-        String resourceGroupName, String fleetName, String fleetMemberName, Context context) {
-        Response<FleetMemberInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, fleetName, fleetMemberName, context);
+    public Response<FleetMember> getWithResponse(String resourceGroupName, String fleetName, String fleetMemberName,
+        Context context) {
+        Response<FleetMemberInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, fleetName, fleetMemberName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new FleetMemberImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -66,33 +62,26 @@ public final class FleetMembersImpl implements FleetMembers {
         this.serviceClient().delete(resourceGroupName, fleetName, fleetMemberName);
     }
 
-    public void delete(
-        String resourceGroupName, String fleetName, String fleetMemberName, String ifMatch, Context context) {
+    public void delete(String resourceGroupName, String fleetName, String fleetMemberName, String ifMatch,
+        Context context) {
         this.serviceClient().delete(resourceGroupName, fleetName, fleetMemberName, ifMatch, context);
     }
 
     public FleetMember getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String fleetName = Utils.getValueFromIdByName(id, "fleets");
         if (fleetName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'fleets'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'fleets'.", id)));
         }
         String fleetMemberName = Utils.getValueFromIdByName(id, "members");
         if (fleetMemberName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'members'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'members'.", id)));
         }
         return this.getWithResponse(resourceGroupName, fleetName, fleetMemberName, Context.NONE).getValue();
     }
@@ -100,25 +89,18 @@ public final class FleetMembersImpl implements FleetMembers {
     public Response<FleetMember> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String fleetName = Utils.getValueFromIdByName(id, "fleets");
         if (fleetName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'fleets'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'fleets'.", id)));
         }
         String fleetMemberName = Utils.getValueFromIdByName(id, "members");
         if (fleetMemberName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'members'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'members'.", id)));
         }
         return this.getWithResponse(resourceGroupName, fleetName, fleetMemberName, context);
     }
@@ -126,25 +108,18 @@ public final class FleetMembersImpl implements FleetMembers {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String fleetName = Utils.getValueFromIdByName(id, "fleets");
         if (fleetName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'fleets'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'fleets'.", id)));
         }
         String fleetMemberName = Utils.getValueFromIdByName(id, "members");
         if (fleetMemberName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'members'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'members'.", id)));
         }
         String localIfMatch = null;
         this.delete(resourceGroupName, fleetName, fleetMemberName, localIfMatch, Context.NONE);
@@ -153,25 +128,18 @@ public final class FleetMembersImpl implements FleetMembers {
     public void deleteByIdWithResponse(String id, String ifMatch, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String fleetName = Utils.getValueFromIdByName(id, "fleets");
         if (fleetName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'fleets'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'fleets'.", id)));
         }
         String fleetMemberName = Utils.getValueFromIdByName(id, "members");
         if (fleetMemberName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'members'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'members'.", id)));
         }
         this.delete(resourceGroupName, fleetName, fleetMemberName, ifMatch, context);
     }

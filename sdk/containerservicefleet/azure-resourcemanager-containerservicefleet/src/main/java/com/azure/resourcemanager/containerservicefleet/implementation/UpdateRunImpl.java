@@ -91,39 +91,19 @@ public final class UpdateRunImpl implements UpdateRun, UpdateRun.Definition, Upd
     }
 
     public UpdateRun create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getUpdateRuns()
-                .createOrUpdate(
-                    resourceGroupName,
-                    fleetName,
-                    updateRunName,
-                    this.innerModel(),
-                    createIfMatch,
-                    createIfNoneMatch,
-                    Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getUpdateRuns().createOrUpdate(resourceGroupName, fleetName,
+            updateRunName, this.innerModel(), createIfMatch, createIfNoneMatch, Context.NONE);
         return this;
     }
 
     public UpdateRun create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getUpdateRuns()
-                .createOrUpdate(
-                    resourceGroupName,
-                    fleetName,
-                    updateRunName,
-                    this.innerModel(),
-                    createIfMatch,
-                    createIfNoneMatch,
-                    context);
+        this.innerObject = serviceManager.serviceClient().getUpdateRuns().createOrUpdate(resourceGroupName, fleetName,
+            updateRunName, this.innerModel(), createIfMatch, createIfNoneMatch, context);
         return this;
     }
 
-    UpdateRunImpl(
-        String name, com.azure.resourcemanager.containerservicefleet.ContainerServiceFleetManager serviceManager) {
+    UpdateRunImpl(String name,
+        com.azure.resourcemanager.containerservicefleet.ContainerServiceFleetManager serviceManager) {
         this.innerObject = new UpdateRunInner();
         this.serviceManager = serviceManager;
         this.updateRunName = name;
@@ -138,39 +118,18 @@ public final class UpdateRunImpl implements UpdateRun, UpdateRun.Definition, Upd
     }
 
     public UpdateRun apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getUpdateRuns()
-                .createOrUpdate(
-                    resourceGroupName,
-                    fleetName,
-                    updateRunName,
-                    this.innerModel(),
-                    updateIfMatch,
-                    updateIfNoneMatch,
-                    Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getUpdateRuns().createOrUpdate(resourceGroupName, fleetName,
+            updateRunName, this.innerModel(), updateIfMatch, updateIfNoneMatch, Context.NONE);
         return this;
     }
 
     public UpdateRun apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getUpdateRuns()
-                .createOrUpdate(
-                    resourceGroupName,
-                    fleetName,
-                    updateRunName,
-                    this.innerModel(),
-                    updateIfMatch,
-                    updateIfNoneMatch,
-                    context);
+        this.innerObject = serviceManager.serviceClient().getUpdateRuns().createOrUpdate(resourceGroupName, fleetName,
+            updateRunName, this.innerModel(), updateIfMatch, updateIfNoneMatch, context);
         return this;
     }
 
-    UpdateRunImpl(
-        UpdateRunInner innerObject,
+    UpdateRunImpl(UpdateRunInner innerObject,
         com.azure.resourcemanager.containerservicefleet.ContainerServiceFleetManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -180,22 +139,14 @@ public final class UpdateRunImpl implements UpdateRun, UpdateRun.Definition, Upd
     }
 
     public UpdateRun refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getUpdateRuns()
-                .getWithResponse(resourceGroupName, fleetName, updateRunName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getUpdateRuns()
+            .getWithResponse(resourceGroupName, fleetName, updateRunName, Context.NONE).getValue();
         return this;
     }
 
     public UpdateRun refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getUpdateRuns()
-                .getWithResponse(resourceGroupName, fleetName, updateRunName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getUpdateRuns()
+            .getWithResponse(resourceGroupName, fleetName, updateRunName, context).getValue();
         return this;
     }
 
