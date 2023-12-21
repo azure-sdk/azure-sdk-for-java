@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** Represents Expansion entity query. */
+/**
+ * Represents Expansion entity query.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("Expansion")
 @Fluent
@@ -24,15 +26,23 @@ public final class ExpansionEntityQuery extends EntityQueryInner {
     private ExpansionEntityQueriesProperties innerProperties;
 
     /**
+     * Creates an instance of ExpansionEntityQuery class.
+     */
+    public ExpansionEntityQuery() {
+    }
+
+    /**
      * Get the innerProperties property: Expansion entity query properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ExpansionEntityQueriesProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ExpansionEntityQuery withEtag(String etag) {
         super.withEtag(etag);
@@ -41,7 +51,7 @@ public final class ExpansionEntityQuery extends EntityQueryInner {
 
     /**
      * Get the dataSources property: List of the data sources that are required to run the query.
-     *
+     * 
      * @return the dataSources value.
      */
     public List<String> dataSources() {
@@ -50,7 +60,7 @@ public final class ExpansionEntityQuery extends EntityQueryInner {
 
     /**
      * Set the dataSources property: List of the data sources that are required to run the query.
-     *
+     * 
      * @param dataSources the dataSources value to set.
      * @return the ExpansionEntityQuery object itself.
      */
@@ -64,7 +74,7 @@ public final class ExpansionEntityQuery extends EntityQueryInner {
 
     /**
      * Get the displayName property: The query display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -73,7 +83,7 @@ public final class ExpansionEntityQuery extends EntityQueryInner {
 
     /**
      * Set the displayName property: The query display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ExpansionEntityQuery object itself.
      */
@@ -87,7 +97,7 @@ public final class ExpansionEntityQuery extends EntityQueryInner {
 
     /**
      * Get the inputEntityType property: The type of the query's source entity.
-     *
+     * 
      * @return the inputEntityType value.
      */
     public EntityType inputEntityType() {
@@ -96,7 +106,7 @@ public final class ExpansionEntityQuery extends EntityQueryInner {
 
     /**
      * Set the inputEntityType property: The type of the query's source entity.
-     *
+     * 
      * @param inputEntityType the inputEntityType value to set.
      * @return the ExpansionEntityQuery object itself.
      */
@@ -110,7 +120,7 @@ public final class ExpansionEntityQuery extends EntityQueryInner {
 
     /**
      * Get the inputFields property: List of the fields of the source entity that are required to run the query.
-     *
+     * 
      * @return the inputFields value.
      */
     public List<String> inputFields() {
@@ -119,7 +129,7 @@ public final class ExpansionEntityQuery extends EntityQueryInner {
 
     /**
      * Set the inputFields property: List of the fields of the source entity that are required to run the query.
-     *
+     * 
      * @param inputFields the inputFields value to set.
      * @return the ExpansionEntityQuery object itself.
      */
@@ -133,7 +143,7 @@ public final class ExpansionEntityQuery extends EntityQueryInner {
 
     /**
      * Get the outputEntityTypes property: List of the desired output types to be constructed from the result.
-     *
+     * 
      * @return the outputEntityTypes value.
      */
     public List<EntityType> outputEntityTypes() {
@@ -142,7 +152,7 @@ public final class ExpansionEntityQuery extends EntityQueryInner {
 
     /**
      * Set the outputEntityTypes property: List of the desired output types to be constructed from the result.
-     *
+     * 
      * @param outputEntityTypes the outputEntityTypes value to set.
      * @return the ExpansionEntityQuery object itself.
      */
@@ -156,7 +166,7 @@ public final class ExpansionEntityQuery extends EntityQueryInner {
 
     /**
      * Get the queryTemplate property: The template query string to be parsed and formatted.
-     *
+     * 
      * @return the queryTemplate value.
      */
     public String queryTemplate() {
@@ -165,7 +175,7 @@ public final class ExpansionEntityQuery extends EntityQueryInner {
 
     /**
      * Set the queryTemplate property: The template query string to be parsed and formatted.
-     *
+     * 
      * @param queryTemplate the queryTemplate value to set.
      * @return the ExpansionEntityQuery object itself.
      */
@@ -179,7 +189,7 @@ public final class ExpansionEntityQuery extends EntityQueryInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

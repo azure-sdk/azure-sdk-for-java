@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The available data types for Office Microsoft PowerBI data connector. */
+/**
+ * The available data types for Office Microsoft PowerBI data connector.
+ */
 @Fluent
 public final class OfficePowerBIConnectorDataTypes {
     /*
@@ -18,8 +20,14 @@ public final class OfficePowerBIConnectorDataTypes {
     private OfficePowerBIConnectorDataTypesLogs logs;
 
     /**
+     * Creates an instance of OfficePowerBIConnectorDataTypes class.
+     */
+    public OfficePowerBIConnectorDataTypes() {
+    }
+
+    /**
      * Get the logs property: Logs data type.
-     *
+     * 
      * @return the logs value.
      */
     public OfficePowerBIConnectorDataTypesLogs logs() {
@@ -28,7 +36,7 @@ public final class OfficePowerBIConnectorDataTypes {
 
     /**
      * Set the logs property: Logs data type.
-     *
+     * 
      * @param logs the logs value to set.
      * @return the OfficePowerBIConnectorDataTypes object itself.
      */
@@ -39,15 +47,13 @@ public final class OfficePowerBIConnectorDataTypes {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (logs() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property logs in model OfficePowerBIConnectorDataTypes"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property logs in model OfficePowerBIConnectorDataTypes"));
         } else {
             logs().validate();
         }

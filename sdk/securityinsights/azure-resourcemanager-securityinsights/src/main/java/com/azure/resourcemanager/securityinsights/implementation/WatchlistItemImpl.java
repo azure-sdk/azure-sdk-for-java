@@ -108,8 +108,8 @@ public final class WatchlistItemImpl implements WatchlistItem, WatchlistItem.Def
 
     private String watchlistItemId;
 
-    public WatchlistItemImpl withExistingWatchlist(
-        String resourceGroupName, String workspaceName, String watchlistAlias) {
+    public WatchlistItemImpl withExistingWatchlist(String resourceGroupName, String workspaceName,
+        String watchlistAlias) {
         this.resourceGroupName = resourceGroupName;
         this.workspaceName = workspaceName;
         this.watchlistAlias = watchlistAlias;
@@ -117,24 +117,16 @@ public final class WatchlistItemImpl implements WatchlistItem, WatchlistItem.Def
     }
 
     public WatchlistItem create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWatchlistItems()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, watchlistAlias, watchlistItemId, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getWatchlistItems().createOrUpdateWithResponse(resourceGroupName,
+                workspaceName, watchlistAlias, watchlistItemId, this.innerModel(), Context.NONE).getValue();
         return this;
     }
 
     public WatchlistItem create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWatchlistItems()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, watchlistAlias, watchlistItemId, this.innerModel(), context)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getWatchlistItems().createOrUpdateWithResponse(resourceGroupName,
+                workspaceName, watchlistAlias, watchlistItemId, this.innerModel(), context).getValue();
         return this;
     }
 
@@ -149,29 +141,20 @@ public final class WatchlistItemImpl implements WatchlistItem, WatchlistItem.Def
     }
 
     public WatchlistItem apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWatchlistItems()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, watchlistAlias, watchlistItemId, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getWatchlistItems().createOrUpdateWithResponse(resourceGroupName,
+                workspaceName, watchlistAlias, watchlistItemId, this.innerModel(), Context.NONE).getValue();
         return this;
     }
 
     public WatchlistItem apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWatchlistItems()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, watchlistAlias, watchlistItemId, this.innerModel(), context)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getWatchlistItems().createOrUpdateWithResponse(resourceGroupName,
+                workspaceName, watchlistAlias, watchlistItemId, this.innerModel(), context).getValue();
         return this;
     }
 
-    WatchlistItemImpl(
-        WatchlistItemInner innerObject,
+    WatchlistItemImpl(WatchlistItemInner innerObject,
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -182,22 +165,15 @@ public final class WatchlistItemImpl implements WatchlistItem, WatchlistItem.Def
     }
 
     public WatchlistItem refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWatchlistItems()
-                .getWithResponse(resourceGroupName, workspaceName, watchlistAlias, watchlistItemId, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getWatchlistItems()
+            .getWithResponse(resourceGroupName, workspaceName, watchlistAlias, watchlistItemId, Context.NONE)
+            .getValue();
         return this;
     }
 
     public WatchlistItem refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWatchlistItems()
-                .getWithResponse(resourceGroupName, workspaceName, watchlistAlias, watchlistItemId, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getWatchlistItems()
+            .getWithResponse(resourceGroupName, workspaceName, watchlistAlias, watchlistItemId, context).getValue();
         return this;
     }
 

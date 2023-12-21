@@ -36,16 +36,16 @@ public final class IncidentCommentImpl implements IncidentComment, IncidentComme
         return this.innerModel().systemData();
     }
 
+    public String message() {
+        return this.innerModel().message();
+    }
+
     public OffsetDateTime createdTimeUtc() {
         return this.innerModel().createdTimeUtc();
     }
 
     public OffsetDateTime lastModifiedTimeUtc() {
         return this.innerModel().lastModifiedTimeUtc();
-    }
-
-    public String message() {
-        return this.innerModel().message();
     }
 
     public ClientInfo author() {
@@ -80,29 +80,21 @@ public final class IncidentCommentImpl implements IncidentComment, IncidentComme
     }
 
     public IncidentComment create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getIncidentComments()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, incidentId, incidentCommentId, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getIncidentComments().createOrUpdateWithResponse(resourceGroupName,
+                workspaceName, incidentId, incidentCommentId, this.innerModel(), Context.NONE).getValue();
         return this;
     }
 
     public IncidentComment create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getIncidentComments()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, incidentId, incidentCommentId, this.innerModel(), context)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getIncidentComments().createOrUpdateWithResponse(resourceGroupName,
+                workspaceName, incidentId, incidentCommentId, this.innerModel(), context).getValue();
         return this;
     }
 
-    IncidentCommentImpl(
-        String name, com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
+    IncidentCommentImpl(String name,
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
         this.innerObject = new IncidentCommentInner();
         this.serviceManager = serviceManager;
         this.incidentCommentId = name;
@@ -113,29 +105,20 @@ public final class IncidentCommentImpl implements IncidentComment, IncidentComme
     }
 
     public IncidentComment apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getIncidentComments()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, incidentId, incidentCommentId, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getIncidentComments().createOrUpdateWithResponse(resourceGroupName,
+                workspaceName, incidentId, incidentCommentId, this.innerModel(), Context.NONE).getValue();
         return this;
     }
 
     public IncidentComment apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getIncidentComments()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, incidentId, incidentCommentId, this.innerModel(), context)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getIncidentComments().createOrUpdateWithResponse(resourceGroupName,
+                workspaceName, incidentId, incidentCommentId, this.innerModel(), context).getValue();
         return this;
     }
 
-    IncidentCommentImpl(
-        IncidentCommentInner innerObject,
+    IncidentCommentImpl(IncidentCommentInner innerObject,
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -146,22 +129,14 @@ public final class IncidentCommentImpl implements IncidentComment, IncidentComme
     }
 
     public IncidentComment refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getIncidentComments()
-                .getWithResponse(resourceGroupName, workspaceName, incidentId, incidentCommentId, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getIncidentComments()
+            .getWithResponse(resourceGroupName, workspaceName, incidentId, incidentCommentId, Context.NONE).getValue();
         return this;
     }
 
     public IncidentComment refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getIncidentComments()
-                .getWithResponse(resourceGroupName, workspaceName, incidentId, incidentCommentId, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getIncidentComments()
+            .getWithResponse(resourceGroupName, workspaceName, incidentId, incidentCommentId, context).getValue();
         return this;
     }
 

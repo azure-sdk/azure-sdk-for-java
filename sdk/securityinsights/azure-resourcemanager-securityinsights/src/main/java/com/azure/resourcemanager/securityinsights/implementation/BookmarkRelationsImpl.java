@@ -21,8 +21,7 @@ public final class BookmarkRelationsImpl implements BookmarkRelations {
 
     private final com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager;
 
-    public BookmarkRelationsImpl(
-        BookmarkRelationsClient innerClient,
+    public BookmarkRelationsImpl(BookmarkRelationsClient innerClient,
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -33,20 +32,23 @@ public final class BookmarkRelationsImpl implements BookmarkRelations {
         return Utils.mapPage(inner, inner1 -> new RelationImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Relation> list(
-        String resourceGroupName,
-        String workspaceName,
-        String bookmarkId,
-        String filter,
-        String orderby,
-        Integer top,
-        String skipToken,
-        Context context) {
-        PagedIterable<RelationInner> inner =
-            this
-                .serviceClient()
-                .list(resourceGroupName, workspaceName, bookmarkId, filter, orderby, top, skipToken, context);
+    public PagedIterable<Relation> list(String resourceGroupName, String workspaceName, String bookmarkId,
+        String filter, String orderby, Integer top, String skipToken, Context context) {
+        PagedIterable<RelationInner> inner = this.serviceClient().list(resourceGroupName, workspaceName, bookmarkId,
+            filter, orderby, top, skipToken, context);
         return Utils.mapPage(inner, inner1 -> new RelationImpl(inner1, this.manager()));
+    }
+
+    public Response<Relation> getWithResponse(String resourceGroupName, String workspaceName, String bookmarkId,
+        String relationName, Context context) {
+        Response<RelationInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, workspaceName, bookmarkId, relationName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new RelationImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
     }
 
     public Relation get(String resourceGroupName, String workspaceName, String bookmarkId, String relationName) {
@@ -58,96 +60,61 @@ public final class BookmarkRelationsImpl implements BookmarkRelations {
         }
     }
 
-    public Response<Relation> getWithResponse(
-        String resourceGroupName, String workspaceName, String bookmarkId, String relationName, Context context) {
-        Response<RelationInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, workspaceName, bookmarkId, relationName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new RelationImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
+    public Response<Void> deleteWithResponse(String resourceGroupName, String workspaceName, String bookmarkId,
+        String relationName, Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, bookmarkId, relationName,
+            context);
     }
 
     public void delete(String resourceGroupName, String workspaceName, String bookmarkId, String relationName) {
         this.serviceClient().delete(resourceGroupName, workspaceName, bookmarkId, relationName);
     }
 
-    public Response<Void> deleteWithResponse(
-        String resourceGroupName, String workspaceName, String bookmarkId, String relationName, Context context) {
-        return this
-            .serviceClient()
-            .deleteWithResponse(resourceGroupName, workspaceName, bookmarkId, relationName, context);
-    }
-
     public Relation getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String bookmarkId = Utils.getValueFromIdByName(id, "bookmarks");
         if (bookmarkId == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'bookmarks'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'bookmarks'.", id)));
         }
         String relationName = Utils.getValueFromIdByName(id, "relations");
         if (relationName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'relations'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'relations'.", id)));
         }
-        return this
-            .getWithResponse(resourceGroupName, workspaceName, bookmarkId, relationName, Context.NONE)
+        return this.getWithResponse(resourceGroupName, workspaceName, bookmarkId, relationName, Context.NONE)
             .getValue();
     }
 
     public Response<Relation> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String bookmarkId = Utils.getValueFromIdByName(id, "bookmarks");
         if (bookmarkId == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'bookmarks'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'bookmarks'.", id)));
         }
         String relationName = Utils.getValueFromIdByName(id, "relations");
         if (relationName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'relations'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'relations'.", id)));
         }
         return this.getWithResponse(resourceGroupName, workspaceName, bookmarkId, relationName, context);
     }
@@ -155,32 +122,23 @@ public final class BookmarkRelationsImpl implements BookmarkRelations {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String bookmarkId = Utils.getValueFromIdByName(id, "bookmarks");
         if (bookmarkId == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'bookmarks'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'bookmarks'.", id)));
         }
         String relationName = Utils.getValueFromIdByName(id, "relations");
         if (relationName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'relations'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'relations'.", id)));
         }
         this.deleteWithResponse(resourceGroupName, workspaceName, bookmarkId, relationName, Context.NONE);
     }
@@ -188,32 +146,23 @@ public final class BookmarkRelationsImpl implements BookmarkRelations {
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String bookmarkId = Utils.getValueFromIdByName(id, "bookmarks");
         if (bookmarkId == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'bookmarks'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'bookmarks'.", id)));
         }
         String relationName = Utils.getValueFromIdByName(id, "relations");
         if (relationName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'relations'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'relations'.", id)));
         }
         return this.deleteWithResponse(resourceGroupName, workspaceName, bookmarkId, relationName, context);
     }

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Represents a repository. */
+/**
+ * Represents a repository.
+ */
 @Fluent
 public final class RepoInner {
     /*
@@ -24,14 +26,26 @@ public final class RepoInner {
     private String fullName;
 
     /*
+     * The installation id of the repository.
+     */
+    @JsonProperty(value = "installationId")
+    private Long installationId;
+
+    /*
      * Array of branches.
      */
     @JsonProperty(value = "branches")
     private List<String> branches;
 
     /**
+     * Creates an instance of RepoInner class.
+     */
+    public RepoInner() {
+    }
+
+    /**
      * Get the url property: The url to access the repository.
-     *
+     * 
      * @return the url value.
      */
     public String url() {
@@ -40,7 +54,7 @@ public final class RepoInner {
 
     /**
      * Set the url property: The url to access the repository.
-     *
+     * 
      * @param url the url value to set.
      * @return the RepoInner object itself.
      */
@@ -51,7 +65,7 @@ public final class RepoInner {
 
     /**
      * Get the fullName property: The name of the repository.
-     *
+     * 
      * @return the fullName value.
      */
     public String fullName() {
@@ -60,7 +74,7 @@ public final class RepoInner {
 
     /**
      * Set the fullName property: The name of the repository.
-     *
+     * 
      * @param fullName the fullName value to set.
      * @return the RepoInner object itself.
      */
@@ -70,8 +84,28 @@ public final class RepoInner {
     }
 
     /**
+     * Get the installationId property: The installation id of the repository.
+     * 
+     * @return the installationId value.
+     */
+    public Long installationId() {
+        return this.installationId;
+    }
+
+    /**
+     * Set the installationId property: The installation id of the repository.
+     * 
+     * @param installationId the installationId value to set.
+     * @return the RepoInner object itself.
+     */
+    public RepoInner withInstallationId(Long installationId) {
+        this.installationId = installationId;
+        return this;
+    }
+
+    /**
      * Get the branches property: Array of branches.
-     *
+     * 
      * @return the branches value.
      */
     public List<String> branches() {
@@ -80,7 +114,7 @@ public final class RepoInner {
 
     /**
      * Set the branches property: Array of branches.
-     *
+     * 
      * @param branches the branches value to set.
      * @return the RepoInner object itself.
      */
@@ -91,7 +125,7 @@ public final class RepoInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

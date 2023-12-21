@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The available data types for Threat Intelligence TAXII data connector. */
+/**
+ * The available data types for Threat Intelligence TAXII data connector.
+ */
 @Fluent
 public final class TiTaxiiDataConnectorDataTypes {
     /*
@@ -18,8 +20,14 @@ public final class TiTaxiiDataConnectorDataTypes {
     private TiTaxiiDataConnectorDataTypesTaxiiClient taxiiClient;
 
     /**
+     * Creates an instance of TiTaxiiDataConnectorDataTypes class.
+     */
+    public TiTaxiiDataConnectorDataTypes() {
+    }
+
+    /**
      * Get the taxiiClient property: Data type for TAXII connector.
-     *
+     * 
      * @return the taxiiClient value.
      */
     public TiTaxiiDataConnectorDataTypesTaxiiClient taxiiClient() {
@@ -28,7 +36,7 @@ public final class TiTaxiiDataConnectorDataTypes {
 
     /**
      * Set the taxiiClient property: Data type for TAXII connector.
-     *
+     * 
      * @param taxiiClient the taxiiClient value to set.
      * @return the TiTaxiiDataConnectorDataTypes object itself.
      */
@@ -39,15 +47,13 @@ public final class TiTaxiiDataConnectorDataTypes {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (taxiiClient() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property taxiiClient in model TiTaxiiDataConnectorDataTypes"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property taxiiClient in model TiTaxiiDataConnectorDataTypes"));
         } else {
             taxiiClient().validate();
         }

@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.UUID;
 
-/** IoTDevice entity property bag. */
+/**
+ * IoTDevice entity property bag.
+ */
 @Fluent
 public final class IoTDeviceEntityProperties extends EntityCommonProperties {
     /*
@@ -184,8 +186,14 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
     private Boolean isScanner;
 
     /**
+     * Creates an instance of IoTDeviceEntityProperties class.
+     */
+    public IoTDeviceEntityProperties() {
+    }
+
+    /**
      * Get the deviceId property: The ID of the IoT Device in the IoT Hub.
-     *
+     * 
      * @return the deviceId value.
      */
     public String deviceId() {
@@ -194,7 +202,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the deviceName property: The friendly name of the device.
-     *
+     * 
      * @return the deviceName value.
      */
     public String deviceName() {
@@ -203,7 +211,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the source property: The source of the device.
-     *
+     * 
      * @return the source value.
      */
     public String source() {
@@ -212,7 +220,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the iotSecurityAgentId property: The ID of the security agent running on the device.
-     *
+     * 
      * @return the iotSecurityAgentId value.
      */
     public UUID iotSecurityAgentId() {
@@ -221,7 +229,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the deviceType property: The type of the device.
-     *
+     * 
      * @return the deviceType value.
      */
     public String deviceType() {
@@ -230,7 +238,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the vendor property: The vendor of the device.
-     *
+     * 
      * @return the vendor value.
      */
     public String vendor() {
@@ -239,7 +247,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the edgeId property: The ID of the edge device.
-     *
+     * 
      * @return the edgeId value.
      */
     public String edgeId() {
@@ -248,7 +256,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the macAddress property: The MAC address of the device.
-     *
+     * 
      * @return the macAddress value.
      */
     public String macAddress() {
@@ -257,7 +265,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the model property: The model of the device.
-     *
+     * 
      * @return the model value.
      */
     public String model() {
@@ -266,7 +274,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the serialNumber property: The serial number of the device.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -275,7 +283,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the firmwareVersion property: The firmware version of the device.
-     *
+     * 
      * @return the firmwareVersion value.
      */
     public String firmwareVersion() {
@@ -284,7 +292,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the operatingSystem property: The operating system of the device.
-     *
+     * 
      * @return the operatingSystem value.
      */
     public String operatingSystem() {
@@ -293,7 +301,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the iotHubEntityId property: The AzureResource entity id of the IoT Hub.
-     *
+     * 
      * @return the iotHubEntityId value.
      */
     public String iotHubEntityId() {
@@ -302,7 +310,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the hostEntityId property: The Host entity id of this device.
-     *
+     * 
      * @return the hostEntityId value.
      */
     public String hostEntityId() {
@@ -311,7 +319,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the ipAddressEntityId property: The IP entity if of this device.
-     *
+     * 
      * @return the ipAddressEntityId value.
      */
     public String ipAddressEntityId() {
@@ -320,7 +328,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the threatIntelligence property: A list of TI contexts attached to the IoTDevice entity.
-     *
+     * 
      * @return the threatIntelligence value.
      */
     public List<ThreatIntelligence> threatIntelligence() {
@@ -329,7 +337,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the protocols property: A list of protocols of the IoTDevice entity.
-     *
+     * 
      * @return the protocols value.
      */
     public List<String> protocols() {
@@ -338,7 +346,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the owners property: A list of owners of the IoTDevice entity.
-     *
+     * 
      * @return the owners value.
      */
     public List<String> owners() {
@@ -347,7 +355,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the nicEntityIds property: A list of Nic entity ids of the IoTDevice entity.
-     *
+     * 
      * @return the nicEntityIds value.
      */
     public List<String> nicEntityIds() {
@@ -356,7 +364,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the site property: The site of the device.
-     *
+     * 
      * @return the site value.
      */
     public String site() {
@@ -365,7 +373,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the zone property: The zone location of the device within a site.
-     *
+     * 
      * @return the zone value.
      */
     public String zone() {
@@ -374,7 +382,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the sensor property: The sensor the device is monitored by.
-     *
+     * 
      * @return the sensor value.
      */
     public String sensor() {
@@ -383,7 +391,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the deviceSubType property: The subType of the device ('PLC', 'HMI', 'EWS', etc.).
-     *
+     * 
      * @return the deviceSubType value.
      */
     public String deviceSubType() {
@@ -392,7 +400,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the importance property: Device importance, determines if the device classified as 'crown jewel'.
-     *
+     * 
      * @return the importance value.
      */
     public DeviceImportance importance() {
@@ -401,7 +409,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Set the importance property: Device importance, determines if the device classified as 'crown jewel'.
-     *
+     * 
      * @param importance the importance value to set.
      * @return the IoTDeviceEntityProperties object itself.
      */
@@ -412,7 +420,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the purdueLayer property: The Purdue Layer of the device.
-     *
+     * 
      * @return the purdueLayer value.
      */
     public String purdueLayer() {
@@ -421,7 +429,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the isAuthorized property: Determines whether the device classified as authorized device.
-     *
+     * 
      * @return the isAuthorized value.
      */
     public Boolean isAuthorized() {
@@ -430,7 +438,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the isProgramming property: Determines whether the device classified as programming device.
-     *
+     * 
      * @return the isProgramming value.
      */
     public Boolean isProgramming() {
@@ -439,7 +447,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the isScanner property: Is the device classified as a scanner device.
-     *
+     * 
      * @return the isScanner value.
      */
     public Boolean isScanner() {
@@ -448,7 +456,7 @@ public final class IoTDeviceEntityProperties extends EntityCommonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

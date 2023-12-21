@@ -21,8 +21,7 @@ public final class MetadatasImpl implements Metadatas {
 
     private final com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager;
 
-    public MetadatasImpl(
-        MetadatasClient innerClient,
+    public MetadatasImpl(MetadatasClient innerClient,
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -33,17 +32,23 @@ public final class MetadatasImpl implements Metadatas {
         return Utils.mapPage(inner, inner1 -> new MetadataModelImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<MetadataModel> list(
-        String resourceGroupName,
-        String workspaceName,
-        String filter,
-        String orderby,
-        Integer top,
-        Integer skip,
-        Context context) {
-        PagedIterable<MetadataModelInner> inner =
-            this.serviceClient().list(resourceGroupName, workspaceName, filter, orderby, top, skip, context);
+    public PagedIterable<MetadataModel> list(String resourceGroupName, String workspaceName, String filter,
+        String orderby, Integer top, Integer skip, Context context) {
+        PagedIterable<MetadataModelInner> inner
+            = this.serviceClient().list(resourceGroupName, workspaceName, filter, orderby, top, skip, context);
         return Utils.mapPage(inner, inner1 -> new MetadataModelImpl(inner1, this.manager()));
+    }
+
+    public Response<MetadataModel> getWithResponse(String resourceGroupName, String workspaceName, String metadataName,
+        Context context) {
+        Response<MetadataModelInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, workspaceName, metadataName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new MetadataModelImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
     }
 
     public MetadataModel get(String resourceGroupName, String workspaceName, String metadataName) {
@@ -55,52 +60,30 @@ public final class MetadatasImpl implements Metadatas {
         }
     }
 
-    public Response<MetadataModel> getWithResponse(
-        String resourceGroupName, String workspaceName, String metadataName, Context context) {
-        Response<MetadataModelInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, workspaceName, metadataName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new MetadataModelImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
+    public Response<Void> deleteWithResponse(String resourceGroupName, String workspaceName, String metadataName,
+        Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, metadataName, context);
     }
 
     public void delete(String resourceGroupName, String workspaceName, String metadataName) {
         this.serviceClient().delete(resourceGroupName, workspaceName, metadataName);
     }
 
-    public Response<Void> deleteWithResponse(
-        String resourceGroupName, String workspaceName, String metadataName, Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, metadataName, context);
-    }
-
     public MetadataModel getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String metadataName = Utils.getValueFromIdByName(id, "metadata");
         if (metadataName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'metadata'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'metadata'.", id)));
         }
         return this.getWithResponse(resourceGroupName, workspaceName, metadataName, Context.NONE).getValue();
     }
@@ -108,25 +91,18 @@ public final class MetadatasImpl implements Metadatas {
     public Response<MetadataModel> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String metadataName = Utils.getValueFromIdByName(id, "metadata");
         if (metadataName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'metadata'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'metadata'.", id)));
         }
         return this.getWithResponse(resourceGroupName, workspaceName, metadataName, context);
     }
@@ -134,25 +110,18 @@ public final class MetadatasImpl implements Metadatas {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String metadataName = Utils.getValueFromIdByName(id, "metadata");
         if (metadataName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'metadata'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'metadata'.", id)));
         }
         this.deleteWithResponse(resourceGroupName, workspaceName, metadataName, Context.NONE);
     }
@@ -160,25 +129,18 @@ public final class MetadatasImpl implements Metadatas {
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String metadataName = Utils.getValueFromIdByName(id, "metadata");
         if (metadataName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'metadata'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'metadata'.", id)));
         }
         return this.deleteWithResponse(resourceGroupName, workspaceName, metadataName, context);
     }

@@ -6,17 +6,29 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The CodelessUiConnectorConfigPropertiesSampleQueriesItem model. */
+/**
+ * The CodelessUiConnectorConfigPropertiesSampleQueriesItem model.
+ */
 @Fluent
 public final class CodelessUiConnectorConfigPropertiesSampleQueriesItem extends SampleQueries {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of CodelessUiConnectorConfigPropertiesSampleQueriesItem class.
+     */
+    public CodelessUiConnectorConfigPropertiesSampleQueriesItem() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodelessUiConnectorConfigPropertiesSampleQueriesItem withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodelessUiConnectorConfigPropertiesSampleQueriesItem withQuery(String query) {
         super.withQuery(query);
@@ -25,7 +37,7 @@ public final class CodelessUiConnectorConfigPropertiesSampleQueriesItem extends 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

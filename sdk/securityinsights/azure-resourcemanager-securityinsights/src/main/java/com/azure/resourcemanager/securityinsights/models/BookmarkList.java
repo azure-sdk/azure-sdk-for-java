@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.BookmarkInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List all the bookmarks. */
+/**
+ * List all the bookmarks.
+ */
 @Fluent
 public final class BookmarkList {
     /*
@@ -26,8 +28,14 @@ public final class BookmarkList {
     private List<BookmarkInner> value;
 
     /**
+     * Creates an instance of BookmarkList class.
+     */
+    public BookmarkList() {
+    }
+
+    /**
      * Get the nextLink property: URL to fetch the next set of bookmarks.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -36,7 +44,7 @@ public final class BookmarkList {
 
     /**
      * Get the value property: Array of bookmarks.
-     *
+     * 
      * @return the value value.
      */
     public List<BookmarkInner> value() {
@@ -45,7 +53,7 @@ public final class BookmarkList {
 
     /**
      * Set the value property: Array of bookmarks.
-     *
+     * 
      * @param value the value value to set.
      * @return the BookmarkList object itself.
      */
@@ -56,14 +64,13 @@ public final class BookmarkList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model BookmarkList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model BookmarkList"));
         } else {
             value().forEach(e -> e.validate());
         }

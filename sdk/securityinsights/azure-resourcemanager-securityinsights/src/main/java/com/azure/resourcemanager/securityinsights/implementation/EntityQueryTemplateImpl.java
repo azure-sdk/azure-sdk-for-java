@@ -13,8 +13,7 @@ public final class EntityQueryTemplateImpl implements EntityQueryTemplate {
 
     private final com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager;
 
-    EntityQueryTemplateImpl(
-        EntityQueryTemplateInner innerObject,
+    EntityQueryTemplateImpl(EntityQueryTemplateInner innerObject,
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;

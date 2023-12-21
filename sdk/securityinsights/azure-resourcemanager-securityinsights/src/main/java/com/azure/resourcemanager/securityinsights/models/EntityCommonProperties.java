@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Entity common property bag. */
+/**
+ * Entity common property bag.
+ */
 @Immutable
 public class EntityCommonProperties {
     /*
@@ -27,9 +29,15 @@ public class EntityCommonProperties {
     private String friendlyName;
 
     /**
+     * Creates an instance of EntityCommonProperties class.
+     */
+    public EntityCommonProperties() {
+    }
+
+    /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -39,7 +47,7 @@ public class EntityCommonProperties {
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -48,7 +56,7 @@ public class EntityCommonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
