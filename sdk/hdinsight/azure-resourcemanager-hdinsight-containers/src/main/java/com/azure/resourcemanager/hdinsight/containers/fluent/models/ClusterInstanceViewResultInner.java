@@ -11,7 +11,9 @@ import com.azure.resourcemanager.hdinsight.containers.models.ServiceStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Cluster Instance View. */
+/**
+ * Cluster Instance View.
+ */
 @Fluent
 public final class ClusterInstanceViewResultInner {
     /*
@@ -26,13 +28,15 @@ public final class ClusterInstanceViewResultInner {
     @JsonProperty(value = "properties", required = true)
     private ClusterInstanceViewResultProperties innerProperties = new ClusterInstanceViewResultProperties();
 
-    /** Creates an instance of ClusterInstanceViewResultInner class. */
+    /**
+     * Creates an instance of ClusterInstanceViewResultInner class.
+     */
     public ClusterInstanceViewResultInner() {
     }
 
     /**
      * Get the name property: Name of the instance view.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -41,7 +45,7 @@ public final class ClusterInstanceViewResultInner {
 
     /**
      * Set the name property: Name of the instance view.
-     *
+     * 
      * @param name the name value to set.
      * @return the ClusterInstanceViewResultInner object itself.
      */
@@ -52,7 +56,7 @@ public final class ClusterInstanceViewResultInner {
 
     /**
      * Get the innerProperties property: Properties of the instance view.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ClusterInstanceViewResultProperties innerProperties() {
@@ -61,7 +65,7 @@ public final class ClusterInstanceViewResultInner {
 
     /**
      * Get the status property: Status of the instance view.
-     *
+     * 
      * @return the status value.
      */
     public ClusterInstanceViewPropertiesStatus status() {
@@ -70,7 +74,7 @@ public final class ClusterInstanceViewResultInner {
 
     /**
      * Set the status property: Status of the instance view.
-     *
+     * 
      * @param status the status value to set.
      * @return the ClusterInstanceViewResultInner object itself.
      */
@@ -83,9 +87,9 @@ public final class ClusterInstanceViewResultInner {
     }
 
     /**
-     * Get the serviceStatuses property: List of statuses of relevant services that make up the HDInsight on aks cluster
-     * to surface to the customer.
-     *
+     * Get the serviceStatuses property: List of statuses of relevant services that make up the HDInsight on aks
+     * cluster to surface to the customer.
+     * 
      * @return the serviceStatuses value.
      */
     public List<ServiceStatus> serviceStatuses() {
@@ -93,9 +97,9 @@ public final class ClusterInstanceViewResultInner {
     }
 
     /**
-     * Set the serviceStatuses property: List of statuses of relevant services that make up the HDInsight on aks cluster
-     * to surface to the customer.
-     *
+     * Set the serviceStatuses property: List of statuses of relevant services that make up the HDInsight on aks
+     * cluster to surface to the customer.
+     * 
      * @param serviceStatuses the serviceStatuses value to set.
      * @return the ClusterInstanceViewResultInner object itself.
      */
@@ -109,21 +113,17 @@ public final class ClusterInstanceViewResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property name in model ClusterInstanceViewResultInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model ClusterInstanceViewResultInner"));
         }
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model ClusterInstanceViewResultInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model ClusterInstanceViewResultInner"));
         } else {
             innerProperties().validate();
         }

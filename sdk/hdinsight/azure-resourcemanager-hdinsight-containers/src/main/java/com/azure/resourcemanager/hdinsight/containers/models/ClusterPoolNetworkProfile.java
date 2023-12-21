@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Cluster pool networking configuration. */
+/**
+ * Cluster pool networking configuration.
+ */
 @Fluent
 public class ClusterPoolNetworkProfile {
     /*
@@ -17,13 +19,15 @@ public class ClusterPoolNetworkProfile {
     @JsonProperty(value = "subnetId", required = true)
     private String subnetId;
 
-    /** Creates an instance of ClusterPoolNetworkProfile class. */
+    /**
+     * Creates an instance of ClusterPoolNetworkProfile class.
+     */
     public ClusterPoolNetworkProfile() {
     }
 
     /**
      * Get the subnetId property: Cluster pool subnet resource id.
-     *
+     * 
      * @return the subnetId value.
      */
     public String subnetId() {
@@ -32,7 +36,7 @@ public class ClusterPoolNetworkProfile {
 
     /**
      * Set the subnetId property: Cluster pool subnet resource id.
-     *
+     * 
      * @param subnetId the subnetId value to set.
      * @return the ClusterPoolNetworkProfile object itself.
      */
@@ -43,15 +47,13 @@ public class ClusterPoolNetworkProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (subnetId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property subnetId in model ClusterPoolNetworkProfile"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property subnetId in model ClusterPoolNetworkProfile"));
         }
     }
 

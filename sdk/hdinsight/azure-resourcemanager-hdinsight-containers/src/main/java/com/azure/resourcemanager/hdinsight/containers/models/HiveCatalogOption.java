@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Hive Catalog Option. */
+/**
+ * Hive Catalog Option.
+ */
 @Fluent
 public final class HiveCatalogOption {
     /*
@@ -42,13 +44,15 @@ public final class HiveCatalogOption {
     @JsonProperty(value = "metastoreWarehouseDir", required = true)
     private String metastoreWarehouseDir;
 
-    /** Creates an instance of HiveCatalogOption class. */
+    /**
+     * Creates an instance of HiveCatalogOption class.
+     */
     public HiveCatalogOption() {
     }
 
     /**
      * Get the catalogName property: Name of trino catalog which should use specified hive metastore.
-     *
+     * 
      * @return the catalogName value.
      */
     public String catalogName() {
@@ -57,7 +61,7 @@ public final class HiveCatalogOption {
 
     /**
      * Set the catalogName property: Name of trino catalog which should use specified hive metastore.
-     *
+     * 
      * @param catalogName the catalogName value to set.
      * @return the HiveCatalogOption object itself.
      */
@@ -69,7 +73,7 @@ public final class HiveCatalogOption {
     /**
      * Get the metastoreDbConnectionPasswordSecret property: Secret reference name from secretsProfile.secrets
      * containing password for database connection.
-     *
+     * 
      * @return the metastoreDbConnectionPasswordSecret value.
      */
     public String metastoreDbConnectionPasswordSecret() {
@@ -79,7 +83,7 @@ public final class HiveCatalogOption {
     /**
      * Set the metastoreDbConnectionPasswordSecret property: Secret reference name from secretsProfile.secrets
      * containing password for database connection.
-     *
+     * 
      * @param metastoreDbConnectionPasswordSecret the metastoreDbConnectionPasswordSecret value to set.
      * @return the HiveCatalogOption object itself.
      */
@@ -90,7 +94,7 @@ public final class HiveCatalogOption {
 
     /**
      * Get the metastoreDbConnectionUrl property: Connection string for hive metastore database.
-     *
+     * 
      * @return the metastoreDbConnectionUrl value.
      */
     public String metastoreDbConnectionUrl() {
@@ -99,7 +103,7 @@ public final class HiveCatalogOption {
 
     /**
      * Set the metastoreDbConnectionUrl property: Connection string for hive metastore database.
-     *
+     * 
      * @param metastoreDbConnectionUrl the metastoreDbConnectionUrl value to set.
      * @return the HiveCatalogOption object itself.
      */
@@ -110,7 +114,7 @@ public final class HiveCatalogOption {
 
     /**
      * Get the metastoreDbConnectionUsername property: User name for database connection.
-     *
+     * 
      * @return the metastoreDbConnectionUsername value.
      */
     public String metastoreDbConnectionUsername() {
@@ -119,7 +123,7 @@ public final class HiveCatalogOption {
 
     /**
      * Set the metastoreDbConnectionUsername property: User name for database connection.
-     *
+     * 
      * @param metastoreDbConnectionUsername the metastoreDbConnectionUsername value to set.
      * @return the HiveCatalogOption object itself.
      */
@@ -132,7 +136,7 @@ public final class HiveCatalogOption {
      * Get the metastoreWarehouseDir property: Metastore root directory URI, format:
      * abfs[s]://&lt;container&gt;@&lt;account_name&gt;.dfs.core.windows.net/&lt;path&gt;. More details:
      * https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction-abfs-uri.
-     *
+     * 
      * @return the metastoreWarehouseDir value.
      */
     public String metastoreWarehouseDir() {
@@ -143,7 +147,7 @@ public final class HiveCatalogOption {
      * Set the metastoreWarehouseDir property: Metastore root directory URI, format:
      * abfs[s]://&lt;container&gt;@&lt;account_name&gt;.dfs.core.windows.net/&lt;path&gt;. More details:
      * https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction-abfs-uri.
-     *
+     * 
      * @param metastoreWarehouseDir the metastoreWarehouseDir value to set.
      * @return the HiveCatalogOption object itself.
      */
@@ -154,38 +158,29 @@ public final class HiveCatalogOption {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (catalogName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property catalogName in model HiveCatalogOption"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property catalogName in model HiveCatalogOption"));
         }
         if (metastoreDbConnectionPasswordSecret() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property metastoreDbConnectionPasswordSecret in model HiveCatalogOption"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property metastoreDbConnectionPasswordSecret in model HiveCatalogOption"));
         }
         if (metastoreDbConnectionUrl() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property metastoreDbConnectionUrl in model HiveCatalogOption"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property metastoreDbConnectionUrl in model HiveCatalogOption"));
         }
         if (metastoreDbConnectionUsername() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property metastoreDbConnectionUsername in model HiveCatalogOption"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property metastoreDbConnectionUsername in model HiveCatalogOption"));
         }
         if (metastoreWarehouseDir() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property metastoreWarehouseDir in model HiveCatalogOption"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property metastoreWarehouseDir in model HiveCatalogOption"));
         }
     }
 

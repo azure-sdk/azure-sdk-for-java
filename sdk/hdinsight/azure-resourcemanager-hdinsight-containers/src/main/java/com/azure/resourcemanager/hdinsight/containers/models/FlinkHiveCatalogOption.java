@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Hive Catalog Option for Flink cluster. */
+/**
+ * Hive Catalog Option for Flink cluster.
+ */
 @Fluent
 public final class FlinkHiveCatalogOption {
     /*
@@ -29,14 +31,16 @@ public final class FlinkHiveCatalogOption {
     @JsonProperty(value = "metastoreDbConnectionUserName", required = true)
     private String metastoreDbConnectionUsername;
 
-    /** Creates an instance of FlinkHiveCatalogOption class. */
+    /**
+     * Creates an instance of FlinkHiveCatalogOption class.
+     */
     public FlinkHiveCatalogOption() {
     }
 
     /**
      * Get the metastoreDbConnectionPasswordSecret property: Secret reference name from secretsProfile.secrets
      * containing password for database connection.
-     *
+     * 
      * @return the metastoreDbConnectionPasswordSecret value.
      */
     public String metastoreDbConnectionPasswordSecret() {
@@ -46,7 +50,7 @@ public final class FlinkHiveCatalogOption {
     /**
      * Set the metastoreDbConnectionPasswordSecret property: Secret reference name from secretsProfile.secrets
      * containing password for database connection.
-     *
+     * 
      * @param metastoreDbConnectionPasswordSecret the metastoreDbConnectionPasswordSecret value to set.
      * @return the FlinkHiveCatalogOption object itself.
      */
@@ -57,7 +61,7 @@ public final class FlinkHiveCatalogOption {
 
     /**
      * Get the metastoreDbConnectionUrl property: Connection string for hive metastore database.
-     *
+     * 
      * @return the metastoreDbConnectionUrl value.
      */
     public String metastoreDbConnectionUrl() {
@@ -66,7 +70,7 @@ public final class FlinkHiveCatalogOption {
 
     /**
      * Set the metastoreDbConnectionUrl property: Connection string for hive metastore database.
-     *
+     * 
      * @param metastoreDbConnectionUrl the metastoreDbConnectionUrl value to set.
      * @return the FlinkHiveCatalogOption object itself.
      */
@@ -77,7 +81,7 @@ public final class FlinkHiveCatalogOption {
 
     /**
      * Get the metastoreDbConnectionUsername property: User name for database connection.
-     *
+     * 
      * @return the metastoreDbConnectionUsername value.
      */
     public String metastoreDbConnectionUsername() {
@@ -86,7 +90,7 @@ public final class FlinkHiveCatalogOption {
 
     /**
      * Set the metastoreDbConnectionUsername property: User name for database connection.
-     *
+     * 
      * @param metastoreDbConnectionUsername the metastoreDbConnectionUsername value to set.
      * @return the FlinkHiveCatalogOption object itself.
      */
@@ -97,28 +101,21 @@ public final class FlinkHiveCatalogOption {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (metastoreDbConnectionPasswordSecret() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property metastoreDbConnectionPasswordSecret in model"
-                            + " FlinkHiveCatalogOption"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property metastoreDbConnectionPasswordSecret in model FlinkHiveCatalogOption"));
         }
         if (metastoreDbConnectionUrl() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property metastoreDbConnectionUrl in model FlinkHiveCatalogOption"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property metastoreDbConnectionUrl in model FlinkHiveCatalogOption"));
         }
         if (metastoreDbConnectionUsername() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property metastoreDbConnectionUsername in model FlinkHiveCatalogOption"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property metastoreDbConnectionUsername in model FlinkHiveCatalogOption"));
         }
     }
 

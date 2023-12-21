@@ -11,7 +11,9 @@ import com.azure.resourcemanager.hdinsight.containers.fluent.models.ClusterPatch
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The patch for a cluster. */
+/**
+ * The patch for a cluster.
+ */
 @Fluent
 public final class ClusterPatch extends Resource {
     /*
@@ -26,13 +28,15 @@ public final class ClusterPatch extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ClusterPatch class. */
+    /**
+     * Creates an instance of ClusterPatch class.
+     */
     public ClusterPatch() {
     }
 
     /**
      * Get the innerProperties property: Define cluster patch specific properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ClusterPatchProperties innerProperties() {
@@ -41,21 +45,25 @@ public final class ClusterPatch extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterPatch withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterPatch withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -64,7 +72,7 @@ public final class ClusterPatch extends Resource {
 
     /**
      * Get the clusterProfile property: Cluster resource patch properties.
-     *
+     * 
      * @return the clusterProfile value.
      */
     public UpdatableClusterProfile clusterProfile() {
@@ -73,7 +81,7 @@ public final class ClusterPatch extends Resource {
 
     /**
      * Set the clusterProfile property: Cluster resource patch properties.
-     *
+     * 
      * @param clusterProfile the clusterProfile value to set.
      * @return the ClusterPatch object itself.
      */
@@ -87,7 +95,7 @@ public final class ClusterPatch extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

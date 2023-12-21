@@ -6,14 +6,20 @@ package com.azure.resourcemanager.hdinsight.containers.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Cluster pool network profile. */
+/**
+ * Cluster pool network profile.
+ */
 @Fluent
 public final class ClusterPoolResourcePropertiesNetworkProfile extends ClusterPoolNetworkProfile {
-    /** Creates an instance of ClusterPoolResourcePropertiesNetworkProfile class. */
+    /**
+     * Creates an instance of ClusterPoolResourcePropertiesNetworkProfile class.
+     */
     public ClusterPoolResourcePropertiesNetworkProfile() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterPoolResourcePropertiesNetworkProfile withSubnetId(String subnetId) {
         super.withSubnetId(subnetId);
@@ -22,7 +28,7 @@ public final class ClusterPoolResourcePropertiesNetworkProfile extends ClusterPo
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

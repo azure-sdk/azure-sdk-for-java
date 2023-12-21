@@ -11,7 +11,9 @@ import com.azure.resourcemanager.hdinsight.containers.fluent.models.ClusterResiz
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The parameters for resizing a cluster. */
+/**
+ * The parameters for resizing a cluster.
+ */
 @Fluent
 public final class ClusterResizeData extends Resource {
     /*
@@ -26,13 +28,15 @@ public final class ClusterResizeData extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ClusterResizeData class. */
+    /**
+     * Creates an instance of ClusterResizeData class.
+     */
     public ClusterResizeData() {
     }
 
     /**
      * Get the innerProperties property: Sets the properties. Define cluster resize specific properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ClusterResizeProperties innerProperties() {
@@ -41,21 +45,25 @@ public final class ClusterResizeData extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterResizeData withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterResizeData withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -64,7 +72,7 @@ public final class ClusterResizeData extends Resource {
 
     /**
      * Get the targetWorkerNodeCount property: Target node count of worker node.
-     *
+     * 
      * @return the targetWorkerNodeCount value.
      */
     public Integer targetWorkerNodeCount() {
@@ -73,7 +81,7 @@ public final class ClusterResizeData extends Resource {
 
     /**
      * Set the targetWorkerNodeCount property: Target node count of worker node.
-     *
+     * 
      * @param targetWorkerNodeCount the targetWorkerNodeCount value to set.
      * @return the ClusterResizeData object itself.
      */
@@ -87,7 +95,7 @@ public final class ClusterResizeData extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

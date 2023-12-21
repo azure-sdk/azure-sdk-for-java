@@ -6,9 +6,12 @@ package com.azure.resourcemanager.hdinsight.containers.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Available cluster pool version. */
+/**
+ * Available cluster pool version.
+ */
 @Fluent
 public final class ClusterPoolVersionInner extends ProxyResource {
     /*
@@ -17,13 +20,21 @@ public final class ClusterPoolVersionInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private ClusterPoolVersionProperties innerProperties;
 
-    /** Creates an instance of ClusterPoolVersionInner class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of ClusterPoolVersionInner class.
+     */
     public ClusterPoolVersionInner() {
     }
 
     /**
      * Get the innerProperties property: Cluster pool version properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ClusterPoolVersionProperties innerProperties() {
@@ -31,8 +42,17 @@ public final class ClusterPoolVersionInner extends ProxyResource {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the clusterPoolVersion property: Cluster pool version is a 2-part version.
-     *
+     * 
      * @return the clusterPoolVersion value.
      */
     public String clusterPoolVersion() {
@@ -41,7 +61,7 @@ public final class ClusterPoolVersionInner extends ProxyResource {
 
     /**
      * Set the clusterPoolVersion property: Cluster pool version is a 2-part version.
-     *
+     * 
      * @param clusterPoolVersion the clusterPoolVersion value to set.
      * @return the ClusterPoolVersionInner object itself.
      */
@@ -55,7 +75,7 @@ public final class ClusterPoolVersionInner extends ProxyResource {
 
     /**
      * Get the aksVersion property: AKS version.
-     *
+     * 
      * @return the aksVersion value.
      */
     public String aksVersion() {
@@ -64,7 +84,7 @@ public final class ClusterPoolVersionInner extends ProxyResource {
 
     /**
      * Set the aksVersion property: AKS version.
-     *
+     * 
      * @param aksVersion the aksVersion value to set.
      * @return the ClusterPoolVersionInner object itself.
      */
@@ -78,7 +98,7 @@ public final class ClusterPoolVersionInner extends ProxyResource {
 
     /**
      * Get the isPreview property: Indicate if this version is in preview or not.
-     *
+     * 
      * @return the isPreview value.
      */
     public Boolean isPreview() {
@@ -87,7 +107,7 @@ public final class ClusterPoolVersionInner extends ProxyResource {
 
     /**
      * Set the isPreview property: Indicate if this version is in preview or not.
-     *
+     * 
      * @param isPreview the isPreview value to set.
      * @return the ClusterPoolVersionInner object itself.
      */
@@ -101,7 +121,7 @@ public final class ClusterPoolVersionInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
