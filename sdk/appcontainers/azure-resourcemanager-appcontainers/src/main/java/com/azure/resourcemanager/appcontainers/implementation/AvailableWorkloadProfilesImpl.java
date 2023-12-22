@@ -19,8 +19,7 @@ public final class AvailableWorkloadProfilesImpl implements AvailableWorkloadPro
 
     private final com.azure.resourcemanager.appcontainers.ContainerAppsApiManager serviceManager;
 
-    public AvailableWorkloadProfilesImpl(
-        AvailableWorkloadProfilesClient innerClient,
+    public AvailableWorkloadProfilesImpl(AvailableWorkloadProfilesClient innerClient,
         com.azure.resourcemanager.appcontainers.ContainerAppsApiManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
