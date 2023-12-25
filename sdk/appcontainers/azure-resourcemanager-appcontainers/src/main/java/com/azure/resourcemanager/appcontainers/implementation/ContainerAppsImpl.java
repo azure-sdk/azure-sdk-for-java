@@ -27,8 +27,7 @@ public final class ContainerAppsImpl implements ContainerApps {
 
     private final com.azure.resourcemanager.appcontainers.ContainerAppsApiManager serviceManager;
 
-    public ContainerAppsImpl(
-        ContainerAppsClient innerClient,
+    public ContainerAppsImpl(ContainerAppsClient innerClient,
         com.azure.resourcemanager.appcontainers.ContainerAppsApiManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -54,15 +53,12 @@ public final class ContainerAppsImpl implements ContainerApps {
         return Utils.mapPage(inner, inner1 -> new ContainerAppImpl(inner1, this.manager()));
     }
 
-    public Response<ContainerApp> getByResourceGroupWithResponse(
-        String resourceGroupName, String containerAppName, Context context) {
-        Response<ContainerAppInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, containerAppName, context);
+    public Response<ContainerApp> getByResourceGroupWithResponse(String resourceGroupName, String containerAppName,
+        Context context) {
+        Response<ContainerAppInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, containerAppName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ContainerAppImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -86,17 +82,12 @@ public final class ContainerAppsImpl implements ContainerApps {
         this.serviceClient().delete(resourceGroupName, containerAppName, context);
     }
 
-    public Response<CustomHostnameAnalysisResult> listCustomHostnameAnalysisWithResponse(
-        String resourceGroupName, String containerAppName, String customHostname, Context context) {
-        Response<CustomHostnameAnalysisResultInner> inner =
-            this
-                .serviceClient()
-                .listCustomHostnameAnalysisWithResponse(resourceGroupName, containerAppName, customHostname, context);
+    public Response<CustomHostnameAnalysisResult> listCustomHostnameAnalysisWithResponse(String resourceGroupName,
+        String containerAppName, String customHostname, Context context) {
+        Response<CustomHostnameAnalysisResultInner> inner = this.serviceClient()
+            .listCustomHostnameAnalysisWithResponse(resourceGroupName, containerAppName, customHostname, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new CustomHostnameAnalysisResultImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -104,8 +95,8 @@ public final class ContainerAppsImpl implements ContainerApps {
     }
 
     public CustomHostnameAnalysisResult listCustomHostnameAnalysis(String resourceGroupName, String containerAppName) {
-        CustomHostnameAnalysisResultInner inner =
-            this.serviceClient().listCustomHostnameAnalysis(resourceGroupName, containerAppName);
+        CustomHostnameAnalysisResultInner inner
+            = this.serviceClient().listCustomHostnameAnalysis(resourceGroupName, containerAppName);
         if (inner != null) {
             return new CustomHostnameAnalysisResultImpl(inner, this.manager());
         } else {
@@ -113,15 +104,12 @@ public final class ContainerAppsImpl implements ContainerApps {
         }
     }
 
-    public Response<SecretsCollection> listSecretsWithResponse(
-        String resourceGroupName, String containerAppName, Context context) {
-        Response<SecretsCollectionInner> inner =
-            this.serviceClient().listSecretsWithResponse(resourceGroupName, containerAppName, context);
+    public Response<SecretsCollection> listSecretsWithResponse(String resourceGroupName, String containerAppName,
+        Context context) {
+        Response<SecretsCollectionInner> inner
+            = this.serviceClient().listSecretsWithResponse(resourceGroupName, containerAppName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new SecretsCollectionImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -137,15 +125,12 @@ public final class ContainerAppsImpl implements ContainerApps {
         }
     }
 
-    public Response<ContainerAppAuthToken> getAuthTokenWithResponse(
-        String resourceGroupName, String containerAppName, Context context) {
-        Response<ContainerAppAuthTokenInner> inner =
-            this.serviceClient().getAuthTokenWithResponse(resourceGroupName, containerAppName, context);
+    public Response<ContainerAppAuthToken> getAuthTokenWithResponse(String resourceGroupName, String containerAppName,
+        Context context) {
+        Response<ContainerAppAuthTokenInner> inner
+            = this.serviceClient().getAuthTokenWithResponse(resourceGroupName, containerAppName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ContainerAppAuthTokenImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -200,18 +185,13 @@ public final class ContainerAppsImpl implements ContainerApps {
     public ContainerApp getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String containerAppName = Utils.getValueFromIdByName(id, "containerApps");
         if (containerAppName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'containerApps'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'containerApps'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, containerAppName, Context.NONE).getValue();
     }
@@ -219,18 +199,13 @@ public final class ContainerAppsImpl implements ContainerApps {
     public Response<ContainerApp> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String containerAppName = Utils.getValueFromIdByName(id, "containerApps");
         if (containerAppName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'containerApps'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'containerApps'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, containerAppName, context);
     }
@@ -238,18 +213,13 @@ public final class ContainerAppsImpl implements ContainerApps {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String containerAppName = Utils.getValueFromIdByName(id, "containerApps");
         if (containerAppName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'containerApps'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'containerApps'.", id)));
         }
         this.delete(resourceGroupName, containerAppName, Context.NONE);
     }
@@ -257,18 +227,13 @@ public final class ContainerAppsImpl implements ContainerApps {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String containerAppName = Utils.getValueFromIdByName(id, "containerApps");
         if (containerAppName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'containerApps'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'containerApps'.", id)));
         }
         this.delete(resourceGroupName, containerAppName, context);
     }
