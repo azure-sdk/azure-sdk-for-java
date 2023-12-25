@@ -1,0 +1,166 @@
+[ {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.OperationListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.fluent.models.OperationInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.OperationDisplay",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.SpringbootsitesModelListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.fluent.models.SpringbootsitesModelInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.fluent.models.SpringbootsitesProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.SpringbootsitesModelExtendedLocation",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.SpringbootappsModelListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.fluent.models.SpringbootappsModelInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.fluent.models.SpringbootappsProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.SpringbootappsPropertiesApplicationConfigurationsItem",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.SpringbootappsPropertiesMiscsItem",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.SpringbootappsPropertiesInstancesItem",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.Error",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.SpringbootserversModelListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.fluent.models.SpringbootserversModelInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.fluent.models.SpringbootserversProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.SpringbootsitesModelUpdate",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.fluent.models.SpringbootsitesModelUpdateProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.ErrorSummaryListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.fluent.models.ErrorSummaryInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.fluent.models.ErrorSummariesProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.ErrorSummaryModel",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.SpringbootappsModelUpdate",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.fluent.models.SpringbootappsModelUpdateProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.SpringbootserversModelUpdate",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.fluent.models.SpringbootserversModelUpdateProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.SummaryListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.fluent.models.SummaryInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.fluent.models.SummariesProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.Origin",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.ActionType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.offazurespringboot.models.ProvisioningState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+} ]
