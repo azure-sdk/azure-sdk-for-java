@@ -205,5 +205,6 @@
     <module>sdk/voiceservices</module>
     <module>sdk/webpubsub</module>
     <module>sdk/workloads</module>
+    <module>sdk/workloadsmicrosoftworkloadssapvirtualinstance</module>
   </modules>
 </project>
