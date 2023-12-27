@@ -7,41 +7,38 @@ package com.azure.resourcemanager.loganalytics.generated;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for QueryPacks CreateOrUpdate. */
+/**
+ * Samples for QueryPacks CreateOrUpdate.
+ */
 public final class QueryPacksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2019-09-01/examples/QueryPacksCreate.json
+     * x-ms-original-file:
+     * specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2019-09-01/examples/
+     * QueryPacksCreate.json
      */
     /**
      * Sample code: QueryPackCreate.
-     *
+     * 
      * @param manager Entry point to LogAnalyticsManager.
      */
     public static void queryPackCreate(com.azure.resourcemanager.loganalytics.LogAnalyticsManager manager) {
-        manager
-            .queryPacks()
-            .define("my-querypack")
-            .withRegion("South Central US")
-            .withExistingResourceGroup("my-resource-group")
-            .create();
+        manager.queryPacks().define("my-querypack").withRegion("South Central US")
+            .withExistingResourceGroup("my-resource-group").create();
     }
 
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2019-09-01/examples/QueryPacksUpdate.json
+     * x-ms-original-file:
+     * specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2019-09-01/examples/
+     * QueryPacksUpdate.json
      */
     /**
      * Sample code: QueryPackUpdate.
-     *
+     * 
      * @param manager Entry point to LogAnalyticsManager.
      */
     public static void queryPackUpdate(com.azure.resourcemanager.loganalytics.LogAnalyticsManager manager) {
-        manager
-            .queryPacks()
-            .define("my-querypack")
-            .withRegion("South Central US")
-            .withExistingResourceGroup("my-resource-group")
-            .withTags(mapOf("Tag1", "Value1"))
-            .create();
+        manager.queryPacks().define("my-querypack").withRegion("South Central US")
+            .withExistingResourceGroup("my-resource-group").withTags(mapOf("Tag1", "Value1")).create();
     }
 
     // Use "Map.of" if available

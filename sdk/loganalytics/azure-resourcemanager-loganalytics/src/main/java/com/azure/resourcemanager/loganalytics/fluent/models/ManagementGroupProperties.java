@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Management group properties. */
+/**
+ * Management group properties.
+ */
 @Fluent
 public final class ManagementGroupProperties {
     /*
@@ -59,13 +61,15 @@ public final class ManagementGroupProperties {
     @JsonProperty(value = "sku")
     private String sku;
 
-    /** Creates an instance of ManagementGroupProperties class. */
+    /**
+     * Creates an instance of ManagementGroupProperties class.
+     */
     public ManagementGroupProperties() {
     }
 
     /**
      * Get the serverCount property: The number of servers connected to the management group.
-     *
+     * 
      * @return the serverCount value.
      */
     public Integer serverCount() {
@@ -74,7 +78,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Set the serverCount property: The number of servers connected to the management group.
-     *
+     * 
      * @param serverCount the serverCount value to set.
      * @return the ManagementGroupProperties object itself.
      */
@@ -85,7 +89,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Get the isGateway property: Gets or sets a value indicating whether the management group is a gateway.
-     *
+     * 
      * @return the isGateway value.
      */
     public Boolean isGateway() {
@@ -94,7 +98,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Set the isGateway property: Gets or sets a value indicating whether the management group is a gateway.
-     *
+     * 
      * @param isGateway the isGateway value to set.
      * @return the ManagementGroupProperties object itself.
      */
@@ -105,7 +109,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Get the name property: The name of the management group.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -114,7 +118,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Set the name property: The name of the management group.
-     *
+     * 
      * @param name the name value to set.
      * @return the ManagementGroupProperties object itself.
      */
@@ -125,7 +129,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Get the id property: The unique ID of the management group.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -134,7 +138,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Set the id property: The unique ID of the management group.
-     *
+     * 
      * @param id the id value to set.
      * @return the ManagementGroupProperties object itself.
      */
@@ -145,7 +149,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Get the created property: The datetime that the management group was created.
-     *
+     * 
      * @return the created value.
      */
     public OffsetDateTime created() {
@@ -154,7 +158,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Set the created property: The datetime that the management group was created.
-     *
+     * 
      * @param created the created value to set.
      * @return the ManagementGroupProperties object itself.
      */
@@ -165,7 +169,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Get the dataReceived property: The last datetime that the management group received data.
-     *
+     * 
      * @return the dataReceived value.
      */
     public OffsetDateTime dataReceived() {
@@ -174,7 +178,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Set the dataReceived property: The last datetime that the management group received data.
-     *
+     * 
      * @param dataReceived the dataReceived value to set.
      * @return the ManagementGroupProperties object itself.
      */
@@ -185,7 +189,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Get the version property: The version of System Center that is managing the management group.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -194,7 +198,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Set the version property: The version of System Center that is managing the management group.
-     *
+     * 
      * @param version the version value to set.
      * @return the ManagementGroupProperties object itself.
      */
@@ -205,7 +209,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Get the sku property: The SKU of System Center that is managing the management group.
-     *
+     * 
      * @return the sku value.
      */
     public String sku() {
@@ -214,7 +218,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Set the sku property: The SKU of System Center that is managing the management group.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the ManagementGroupProperties object itself.
      */
@@ -225,7 +229,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

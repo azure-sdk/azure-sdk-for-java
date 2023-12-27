@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The top level Linked service resource container. */
+/**
+ * The top level Linked service resource container.
+ */
 @Fluent
 public final class LinkedServiceInner extends ProxyResource {
     /*
@@ -28,13 +30,15 @@ public final class LinkedServiceInner extends ProxyResource {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of LinkedServiceInner class. */
+    /**
+     * Creates an instance of LinkedServiceInner class.
+     */
     public LinkedServiceInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of the linked service.
-     *
+     * 
      * @return the innerProperties value.
      */
     private LinkedServiceProperties innerProperties() {
@@ -43,7 +47,7 @@ public final class LinkedServiceInner extends ProxyResource {
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -52,7 +56,7 @@ public final class LinkedServiceInner extends ProxyResource {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the LinkedServiceInner object itself.
      */
@@ -62,9 +66,9 @@ public final class LinkedServiceInner extends ProxyResource {
     }
 
     /**
-     * Get the resourceId property: The resource id of the resource that will be linked to the workspace. This should be
-     * used for linking resources which require read access.
-     *
+     * Get the resourceId property: The resource id of the resource that will be linked to the workspace. This should
+     * be used for linking resources which require read access.
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -72,9 +76,9 @@ public final class LinkedServiceInner extends ProxyResource {
     }
 
     /**
-     * Set the resourceId property: The resource id of the resource that will be linked to the workspace. This should be
-     * used for linking resources which require read access.
-     *
+     * Set the resourceId property: The resource id of the resource that will be linked to the workspace. This should
+     * be used for linking resources which require read access.
+     * 
      * @param resourceId the resourceId value to set.
      * @return the LinkedServiceInner object itself.
      */
@@ -89,7 +93,7 @@ public final class LinkedServiceInner extends ProxyResource {
     /**
      * Get the writeAccessResourceId property: The resource id of the resource that will be linked to the workspace.
      * This should be used for linking resources which require write access.
-     *
+     * 
      * @return the writeAccessResourceId value.
      */
     public String writeAccessResourceId() {
@@ -99,7 +103,7 @@ public final class LinkedServiceInner extends ProxyResource {
     /**
      * Set the writeAccessResourceId property: The resource id of the resource that will be linked to the workspace.
      * This should be used for linking resources which require write access.
-     *
+     * 
      * @param writeAccessResourceId the writeAccessResourceId value to set.
      * @return the LinkedServiceInner object itself.
      */
@@ -113,7 +117,7 @@ public final class LinkedServiceInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The provisioning state of the linked service.
-     *
+     * 
      * @return the provisioningState value.
      */
     public LinkedServiceEntityStatus provisioningState() {
@@ -122,7 +126,7 @@ public final class LinkedServiceInner extends ProxyResource {
 
     /**
      * Set the provisioningState property: The provisioning state of the linked service.
-     *
+     * 
      * @param provisioningState the provisioningState value to set.
      * @return the LinkedServiceInner object itself.
      */
@@ -136,15 +140,13 @@ public final class LinkedServiceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model LinkedServiceInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model LinkedServiceInner"));
         } else {
             innerProperties().validate();
         }

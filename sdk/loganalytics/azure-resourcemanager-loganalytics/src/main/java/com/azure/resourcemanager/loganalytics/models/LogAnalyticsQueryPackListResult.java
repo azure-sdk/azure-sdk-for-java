@@ -10,7 +10,9 @@ import com.azure.resourcemanager.loganalytics.fluent.models.LogAnalyticsQueryPac
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes the list of Log Analytics QueryPack resources. */
+/**
+ * Describes the list of Log Analytics QueryPack resources.
+ */
 @Fluent
 public final class LogAnalyticsQueryPackListResult {
     /*
@@ -26,13 +28,15 @@ public final class LogAnalyticsQueryPackListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of LogAnalyticsQueryPackListResult class. */
+    /**
+     * Creates an instance of LogAnalyticsQueryPackListResult class.
+     */
     public LogAnalyticsQueryPackListResult() {
     }
 
     /**
      * Get the value property: List of Log Analytics QueryPack definitions.
-     *
+     * 
      * @return the value value.
      */
     public List<LogAnalyticsQueryPackInner> value() {
@@ -41,7 +45,7 @@ public final class LogAnalyticsQueryPackListResult {
 
     /**
      * Set the value property: List of Log Analytics QueryPack definitions.
-     *
+     * 
      * @param value the value value to set.
      * @return the LogAnalyticsQueryPackListResult object itself.
      */
@@ -53,7 +57,7 @@ public final class LogAnalyticsQueryPackListResult {
     /**
      * Get the nextLink property: The URI to get the next set of Log Analytics QueryPack definitions if too many
      * QueryPacks where returned in the result set.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -63,7 +67,7 @@ public final class LogAnalyticsQueryPackListResult {
     /**
      * Set the nextLink property: The URI to get the next set of Log Analytics QueryPack definitions if too many
      * QueryPacks where returned in the result set.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the LogAnalyticsQueryPackListResult object itself.
      */
@@ -74,15 +78,13 @@ public final class LogAnalyticsQueryPackListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model LogAnalyticsQueryPackListResult"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property value in model LogAnalyticsQueryPackListResult"));
         } else {
             value().forEach(e -> e.validate());
         }

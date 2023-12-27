@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Datasources under OMS Workspace. */
+/**
+ * Datasources under OMS Workspace.
+ */
 @Fluent
 public final class DataSourceInner extends ProxyResource {
     /*
@@ -40,14 +42,16 @@ public final class DataSourceInner extends ProxyResource {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of DataSourceInner class. */
+    /**
+     * Creates an instance of DataSourceInner class.
+     */
     public DataSourceInner() {
     }
 
     /**
      * Get the properties property: The data source properties in raw json format, each kind of data source have it's
      * own schema.
-     *
+     * 
      * @return the properties value.
      */
     public Object properties() {
@@ -57,7 +61,7 @@ public final class DataSourceInner extends ProxyResource {
     /**
      * Set the properties property: The data source properties in raw json format, each kind of data source have it's
      * own schema.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the DataSourceInner object itself.
      */
@@ -68,7 +72,7 @@ public final class DataSourceInner extends ProxyResource {
 
     /**
      * Get the etag property: The ETag of the data source.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -77,7 +81,7 @@ public final class DataSourceInner extends ProxyResource {
 
     /**
      * Set the etag property: The ETag of the data source.
-     *
+     * 
      * @param etag the etag value to set.
      * @return the DataSourceInner object itself.
      */
@@ -88,7 +92,7 @@ public final class DataSourceInner extends ProxyResource {
 
     /**
      * Get the kind property: The kind of the DataSource.
-     *
+     * 
      * @return the kind value.
      */
     public DataSourceKind kind() {
@@ -97,7 +101,7 @@ public final class DataSourceInner extends ProxyResource {
 
     /**
      * Set the kind property: The kind of the DataSource.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the DataSourceInner object itself.
      */
@@ -108,7 +112,7 @@ public final class DataSourceInner extends ProxyResource {
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -117,7 +121,7 @@ public final class DataSourceInner extends ProxyResource {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the DataSourceInner object itself.
      */
@@ -128,19 +132,17 @@ public final class DataSourceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property properties in model DataSourceInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property properties in model DataSourceInner"));
         }
         if (kind() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property kind in model DataSourceInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property kind in model DataSourceInner"));
         }
     }
 

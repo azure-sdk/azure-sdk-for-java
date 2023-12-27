@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes a storage account connection. */
+/**
+ * Describes a storage account connection.
+ */
 @Fluent
 public final class StorageAccount {
     /*
@@ -23,13 +25,15 @@ public final class StorageAccount {
     @JsonProperty(value = "key", required = true)
     private String key;
 
-    /** Creates an instance of StorageAccount class. */
+    /**
+     * Creates an instance of StorageAccount class.
+     */
     public StorageAccount() {
     }
 
     /**
      * Get the id property: The Azure Resource Manager ID of the storage account resource.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -38,7 +42,7 @@ public final class StorageAccount {
 
     /**
      * Set the id property: The Azure Resource Manager ID of the storage account resource.
-     *
+     * 
      * @param id the id value to set.
      * @return the StorageAccount object itself.
      */
@@ -49,7 +53,7 @@ public final class StorageAccount {
 
     /**
      * Get the key property: The storage account key.
-     *
+     * 
      * @return the key value.
      */
     public String key() {
@@ -58,7 +62,7 @@ public final class StorageAccount {
 
     /**
      * Set the key property: The storage account key.
-     *
+     * 
      * @param key the key value to set.
      * @return the StorageAccount object itself.
      */
@@ -69,19 +73,17 @@ public final class StorageAccount {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (id() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property id in model StorageAccount"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property id in model StorageAccount"));
         }
         if (key() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property key in model StorageAccount"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property key in model StorageAccount"));
         }
     }
 

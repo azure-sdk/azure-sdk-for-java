@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Properties that define an Log Analytics QueryPack-Query search properties. */
+/**
+ * Properties that define an Log Analytics QueryPack-Query search properties.
+ */
 @Fluent
 public final class LogAnalyticsQueryPackQuerySearchProperties {
     /*
@@ -26,13 +28,15 @@ public final class LogAnalyticsQueryPackQuerySearchProperties {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, List<String>> tags;
 
-    /** Creates an instance of LogAnalyticsQueryPackQuerySearchProperties class. */
+    /**
+     * Creates an instance of LogAnalyticsQueryPackQuerySearchProperties class.
+     */
     public LogAnalyticsQueryPackQuerySearchProperties() {
     }
 
     /**
      * Get the related property: The related metadata items for the function.
-     *
+     * 
      * @return the related value.
      */
     public LogAnalyticsQueryPackQuerySearchPropertiesRelated related() {
@@ -41,19 +45,19 @@ public final class LogAnalyticsQueryPackQuerySearchProperties {
 
     /**
      * Set the related property: The related metadata items for the function.
-     *
+     * 
      * @param related the related value to set.
      * @return the LogAnalyticsQueryPackQuerySearchProperties object itself.
      */
-    public LogAnalyticsQueryPackQuerySearchProperties withRelated(
-        LogAnalyticsQueryPackQuerySearchPropertiesRelated related) {
+    public LogAnalyticsQueryPackQuerySearchProperties
+        withRelated(LogAnalyticsQueryPackQuerySearchPropertiesRelated related) {
         this.related = related;
         return this;
     }
 
     /**
      * Get the tags property: Tags associated with the query.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, List<String>> tags() {
@@ -62,7 +66,7 @@ public final class LogAnalyticsQueryPackQuerySearchProperties {
 
     /**
      * Set the tags property: Tags associated with the query.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the LogAnalyticsQueryPackQuerySearchProperties object itself.
      */
@@ -73,7 +77,7 @@ public final class LogAnalyticsQueryPackQuerySearchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
