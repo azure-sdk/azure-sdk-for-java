@@ -8,19 +8,21 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Properties of a private link resource. */
+/**
+ * Properties of a private link resource.
+ */
 @Fluent
 public final class PrivateLinkResourceProperties {
     /*
      * The private link resource group id.
      */
-    @JsonProperty(value = "groupId", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "groupId")
     private String groupId;
 
     /*
      * The private link resource required member names.
      */
-    @JsonProperty(value = "requiredMembers", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "requiredMembers")
     private List<String> requiredMembers;
 
     /*
@@ -29,13 +31,15 @@ public final class PrivateLinkResourceProperties {
     @JsonProperty(value = "requiredZoneNames")
     private List<String> requiredZoneNames;
 
-    /** Creates an instance of PrivateLinkResourceProperties class. */
+    /**
+     * Creates an instance of PrivateLinkResourceProperties class.
+     */
     public PrivateLinkResourceProperties() {
     }
 
     /**
      * Get the groupId property: The private link resource group id.
-     *
+     * 
      * @return the groupId value.
      */
     public String groupId() {
@@ -43,8 +47,19 @@ public final class PrivateLinkResourceProperties {
     }
 
     /**
+     * Set the groupId property: The private link resource group id.
+     * 
+     * @param groupId the groupId value to set.
+     * @return the PrivateLinkResourceProperties object itself.
+     */
+    public PrivateLinkResourceProperties withGroupId(String groupId) {
+        this.groupId = groupId;
+        return this;
+    }
+
+    /**
      * Get the requiredMembers property: The private link resource required member names.
-     *
+     * 
      * @return the requiredMembers value.
      */
     public List<String> requiredMembers() {
@@ -52,8 +67,19 @@ public final class PrivateLinkResourceProperties {
     }
 
     /**
+     * Set the requiredMembers property: The private link resource required member names.
+     * 
+     * @param requiredMembers the requiredMembers value to set.
+     * @return the PrivateLinkResourceProperties object itself.
+     */
+    public PrivateLinkResourceProperties withRequiredMembers(List<String> requiredMembers) {
+        this.requiredMembers = requiredMembers;
+        return this;
+    }
+
+    /**
      * Get the requiredZoneNames property: The private link resource Private link DNS zone name.
-     *
+     * 
      * @return the requiredZoneNames value.
      */
     public List<String> requiredZoneNames() {
@@ -62,7 +88,7 @@ public final class PrivateLinkResourceProperties {
 
     /**
      * Set the requiredZoneNames property: The private link resource Private link DNS zone name.
-     *
+     * 
      * @param requiredZoneNames the requiredZoneNames value to set.
      * @return the PrivateLinkResourceProperties object itself.
      */
@@ -73,7 +99,7 @@ public final class PrivateLinkResourceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

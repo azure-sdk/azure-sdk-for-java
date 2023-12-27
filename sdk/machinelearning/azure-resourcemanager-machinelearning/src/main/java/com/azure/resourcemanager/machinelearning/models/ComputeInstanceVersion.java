@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Version of computeInstance. */
+/**
+ * Version of computeInstance.
+ */
 @Fluent
 public final class ComputeInstanceVersion {
     /*
@@ -16,13 +18,15 @@ public final class ComputeInstanceVersion {
     @JsonProperty(value = "runtime")
     private String runtime;
 
-    /** Creates an instance of ComputeInstanceVersion class. */
+    /**
+     * Creates an instance of ComputeInstanceVersion class.
+     */
     public ComputeInstanceVersion() {
     }
 
     /**
      * Get the runtime property: Runtime of compute instance.
-     *
+     * 
      * @return the runtime value.
      */
     public String runtime() {
@@ -31,7 +35,7 @@ public final class ComputeInstanceVersion {
 
     /**
      * Set the runtime property: Runtime of compute instance.
-     *
+     * 
      * @param runtime the runtime value to set.
      * @return the ComputeInstanceVersion object itself.
      */
@@ -42,7 +46,7 @@ public final class ComputeInstanceVersion {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

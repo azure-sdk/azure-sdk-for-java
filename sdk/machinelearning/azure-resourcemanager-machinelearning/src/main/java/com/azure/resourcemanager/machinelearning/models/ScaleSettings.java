@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 
-/** scale settings for AML Compute. */
+/**
+ * scale settings for AML Compute.
+ */
 @Fluent
 public final class ScaleSettings {
     /*
@@ -29,13 +31,15 @@ public final class ScaleSettings {
     @JsonProperty(value = "nodeIdleTimeBeforeScaleDown")
     private Duration nodeIdleTimeBeforeScaleDown;
 
-    /** Creates an instance of ScaleSettings class. */
+    /**
+     * Creates an instance of ScaleSettings class.
+     */
     public ScaleSettings() {
     }
 
     /**
      * Get the maxNodeCount property: Max number of nodes to use.
-     *
+     * 
      * @return the maxNodeCount value.
      */
     public int maxNodeCount() {
@@ -44,7 +48,7 @@ public final class ScaleSettings {
 
     /**
      * Set the maxNodeCount property: Max number of nodes to use.
-     *
+     * 
      * @param maxNodeCount the maxNodeCount value to set.
      * @return the ScaleSettings object itself.
      */
@@ -55,7 +59,7 @@ public final class ScaleSettings {
 
     /**
      * Get the minNodeCount property: Min number of nodes to use.
-     *
+     * 
      * @return the minNodeCount value.
      */
     public Integer minNodeCount() {
@@ -64,7 +68,7 @@ public final class ScaleSettings {
 
     /**
      * Set the minNodeCount property: Min number of nodes to use.
-     *
+     * 
      * @param minNodeCount the minNodeCount value to set.
      * @return the ScaleSettings object itself.
      */
@@ -74,9 +78,9 @@ public final class ScaleSettings {
     }
 
     /**
-     * Get the nodeIdleTimeBeforeScaleDown property: Node Idle Time before scaling down amlCompute. This string needs to
-     * be in the RFC Format.
-     *
+     * Get the nodeIdleTimeBeforeScaleDown property: Node Idle Time before scaling down amlCompute. This string needs
+     * to be in the RFC Format.
+     * 
      * @return the nodeIdleTimeBeforeScaleDown value.
      */
     public Duration nodeIdleTimeBeforeScaleDown() {
@@ -84,9 +88,9 @@ public final class ScaleSettings {
     }
 
     /**
-     * Set the nodeIdleTimeBeforeScaleDown property: Node Idle Time before scaling down amlCompute. This string needs to
-     * be in the RFC Format.
-     *
+     * Set the nodeIdleTimeBeforeScaleDown property: Node Idle Time before scaling down amlCompute. This string needs
+     * to be in the RFC Format.
+     * 
      * @param nodeIdleTimeBeforeScaleDown the nodeIdleTimeBeforeScaleDown value to set.
      * @return the ScaleSettings object itself.
      */
@@ -97,7 +101,7 @@ public final class ScaleSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
