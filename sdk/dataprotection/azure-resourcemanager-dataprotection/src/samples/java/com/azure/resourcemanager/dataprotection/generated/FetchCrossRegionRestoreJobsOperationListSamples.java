@@ -12,7 +12,7 @@ import com.azure.resourcemanager.dataprotection.models.CrossRegionRestoreJobsReq
 public final class FetchCrossRegionRestoreJobsOperationListSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-11-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-12-01/examples/
      * CrossRegionRestore/FetchCrossRegionRestoreJobs.json
      */
     /**
