@@ -4,60 +4,65 @@
 
 package com.azure.resourcemanager.hybridcompute.models;
 
+import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.management.exception.ManagementError;
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.hybridcompute.fluent.models.LicenseProfileMachineInstanceViewInner;
 import com.azure.resourcemanager.hybridcompute.fluent.models.MachineInner;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** An immutable client-side representation of Machine. */
+/**
+ * An immutable client-side representation of Machine.
+ */
 public interface Machine {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
      * Gets the location property: The geo-location where the resource lives.
-     *
+     * 
      * @return the location value.
      */
     String location();
 
     /**
      * Gets the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     Map<String, String> tags();
 
     /**
      * Gets the resources property: The list of extensions affiliated to the machine.
-     *
+     * 
      * @return the resources value.
      */
     List<MachineExtension> resources();
 
     /**
      * Gets the identity property: Identity for the resource.
-     *
+     * 
      * @return the identity value.
      */
     Identity identity();
@@ -65,21 +70,21 @@ public interface Machine {
     /**
      * Gets the kind property: Indicates which kind of Arc machine placement on-premises, such as HCI, SCVMM or VMware
      * etc.
-     *
+     * 
      * @return the kind value.
      */
     ArcKindEnum kind();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     SystemData systemData();
 
     /**
      * Gets the locationData property: Metadata pertaining to the geographic location of the resource.
-     *
+     * 
      * @return the locationData value.
      */
     LocationData locationData();
@@ -87,98 +92,98 @@ public interface Machine {
     /**
      * Gets the agentConfiguration property: Configurable properties that the user can set locally via the azcmagent
      * config command, or remotely via ARM.
-     *
+     * 
      * @return the agentConfiguration value.
      */
     AgentConfiguration agentConfiguration();
 
     /**
      * Gets the serviceStatuses property: Statuses of dependent services that are reported back to ARM.
-     *
+     * 
      * @return the serviceStatuses value.
      */
     ServiceStatuses serviceStatuses();
 
     /**
      * Gets the cloudMetadata property: The metadata of the cloud environment (Azure/GCP/AWS/OCI...).
-     *
+     * 
      * @return the cloudMetadata value.
      */
     CloudMetadata cloudMetadata();
 
     /**
      * Gets the agentUpgrade property: The info of the machine w.r.t Agent Upgrade.
-     *
+     * 
      * @return the agentUpgrade value.
      */
     AgentUpgrade agentUpgrade();
 
     /**
      * Gets the osProfile property: Specifies the operating system settings for the hybrid machine.
-     *
+     * 
      * @return the osProfile value.
      */
     OSProfile osProfile();
 
     /**
-     * Gets the licenseProfile property: Specifies the ESU related properties for a machine.
-     *
+     * Gets the licenseProfile property: Specifies the License related properties for a machine.
+     * 
      * @return the licenseProfile value.
      */
     LicenseProfileMachineInstanceView licenseProfile();
 
     /**
      * Gets the provisioningState property: The provisioning state, which only appears in the response.
-     *
+     * 
      * @return the provisioningState value.
      */
     String provisioningState();
 
     /**
      * Gets the status property: The status of the hybrid machine agent.
-     *
+     * 
      * @return the status value.
      */
     StatusTypes status();
 
     /**
      * Gets the lastStatusChange property: The time of the last status change.
-     *
+     * 
      * @return the lastStatusChange value.
      */
     OffsetDateTime lastStatusChange();
 
     /**
      * Gets the errorDetails property: Details about the error state.
-     *
+     * 
      * @return the errorDetails value.
      */
     List<ManagementError> errorDetails();
 
     /**
      * Gets the agentVersion property: The hybrid machine agent full version.
-     *
+     * 
      * @return the agentVersion value.
      */
     String agentVersion();
 
     /**
      * Gets the vmId property: Specifies the hybrid machine unique ID.
-     *
+     * 
      * @return the vmId value.
      */
     String vmId();
 
     /**
      * Gets the displayName property: Specifies the hybrid machine display name.
-     *
+     * 
      * @return the displayName value.
      */
     String displayName();
 
     /**
      * Gets the machineFqdn property: Specifies the hybrid machine FQDN.
-     *
+     * 
      * @return the machineFqdn value.
      */
     String machineFqdn();
@@ -186,70 +191,77 @@ public interface Machine {
     /**
      * Gets the clientPublicKey property: Public Key that the client provides to be used during initial resource
      * onboarding.
-     *
+     * 
      * @return the clientPublicKey value.
      */
     String clientPublicKey();
 
     /**
      * Gets the osName property: The Operating System running on the hybrid machine.
-     *
+     * 
      * @return the osName value.
      */
     String osName();
 
     /**
      * Gets the osVersion property: The version of Operating System running on the hybrid machine.
-     *
+     * 
      * @return the osVersion value.
      */
     String osVersion();
 
     /**
      * Gets the osType property: The type of Operating System (windows/linux).
-     *
+     * 
      * @return the osType value.
      */
     String osType();
 
     /**
      * Gets the vmUuid property: Specifies the Arc Machine's unique SMBIOS ID.
-     *
+     * 
      * @return the vmUuid value.
      */
     String vmUuid();
 
     /**
      * Gets the extensions property: Machine Extensions information (deprecated field).
-     *
+     * 
      * @return the extensions value.
      */
     List<MachineExtensionInstanceView> extensions();
 
     /**
      * Gets the osSku property: Specifies the Operating System product SKU.
-     *
+     * 
      * @return the osSku value.
      */
     String osSku();
 
     /**
+     * Gets the osEdition property: The edition of the Operating System.
+     * 
+     * @return the osEdition value.
+     */
+    String osEdition();
+
+    /**
      * Gets the domainName property: Specifies the Windows domain name.
-     *
+     * 
      * @return the domainName value.
      */
     String domainName();
 
     /**
      * Gets the adFqdn property: Specifies the AD fully qualified display name.
-     *
+     * 
      * @return the adFqdn value.
      */
     String adFqdn();
 
     /**
      * Gets the dnsFqdn property: Specifies the DNS fully qualified display name.
-     *
+     * 
      * @return the dnsFqdn value.
      */
     String dnsFqdn();
@@ -257,7 +269,7 @@ public interface Machine {
     /**
      * Gets the privateLinkScopeResourceId property: The resource id of the private link scope this machine is assigned
      * to, if any.
-     *
+     * 
      * @return the privateLinkScopeResourceId value.
      */
     String privateLinkScopeResourceId();
@@ -265,36 +277,536 @@ public interface Machine {
     /**
      * Gets the parentClusterResourceId property: The resource id of the parent cluster (Azure HCI) this machine is
      * assigned to, if any.
-     *
+     * 
      * @return the parentClusterResourceId value.
      */
     String parentClusterResourceId();
 
     /**
      * Gets the mssqlDiscovered property: Specifies whether any MS SQL instance is discovered on the machine.
-     *
+     * 
      * @return the mssqlDiscovered value.
      */
     String mssqlDiscovered();
 
     /**
      * Gets the detectedProperties property: Detected properties from the machine.
-     *
+     * 
      * @return the detectedProperties value.
      */
     Map<String, String> detectedProperties();
 
     /**
      * Gets the networkProfile property: Information about the network the machine is on.
-     *
+     * 
      * @return the networkProfile value.
      */
     NetworkProfile networkProfile();
 
     /**
+     * Gets the region of the resource.
+     * 
+     * @return the region of the resource.
+     */
+    Region region();
+
+    /**
+     * Gets the name of the resource region.
+     * 
+     * @return the name of the resource region.
+     */
+    String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     * 
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.hybridcompute.fluent.models.MachineInner object.
-     *
+     * 
      * @return the inner object.
      */
     MachineInner innerModel();
+
+    /**
+     * The entirety of the Machine definition.
+     */
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
+        DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
+    }
+
+    /**
+     * The Machine definition stages.
+     */
+    interface DefinitionStages {
+        /**
+         * The first stage of the Machine definition.
+         */
+        interface Blank extends WithLocation {
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify location.
+         */
+        interface WithLocation {
+            /**
+             * Specifies the region for the resource.
+             * 
+             * @param location The geo-location where the resource lives.
+             * @return the next definition stage.
+             */
+            WithResourceGroup withRegion(Region location);
+
+            /**
+             * Specifies the region for the resource.
+             * 
+             * @param location The geo-location where the resource lives.
+             * @return the next definition stage.
+             */
+            WithResourceGroup withRegion(String location);
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify parent resource.
+         */
+        interface WithResourceGroup {
+            /**
+             * Specifies resourceGroupName.
+             * 
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
+             * @return the next definition stage.
+             */
+            WithCreate withExistingResourceGroup(String resourceGroupName);
+        }
+
+        /**
+         * The stage of the Machine definition which contains all the minimum required properties for the resource to be
+         * created, but also allows for any other optional properties to be specified.
+         */
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity,
+            DefinitionStages.WithKind, DefinitionStages.WithLocationData, DefinitionStages.WithServiceStatuses,
+            DefinitionStages.WithCloudMetadata, DefinitionStages.WithAgentUpgrade, DefinitionStages.WithOsProfile,
+            DefinitionStages.WithLicenseProfile, DefinitionStages.WithVmId, DefinitionStages.WithClientPublicKey,
+            DefinitionStages.WithOsType, DefinitionStages.WithExtensions,
+            DefinitionStages.WithPrivateLinkScopeResourceId, DefinitionStages.WithParentClusterResourceId,
+            DefinitionStages.WithMssqlDiscovered, DefinitionStages.WithExpand {
+            /**
+             * Executes the create request.
+             * 
+             * @return the created resource.
+             */
+            Machine create();
+
+            /**
+             * Executes the create request.
+             * 
+             * @param context The context to associate with this operation.
+             * @return the created resource.
+             */
+            Machine create(Context context);
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify tags.
+         */
+        interface WithTags {
+            /**
+             * Specifies the tags property: Resource tags..
+             * 
+             * @param tags Resource tags.
+             * @return the next definition stage.
+             */
+            WithCreate withTags(Map<String, String> tags);
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify identity.
+         */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: Identity for the resource..
+             * 
+             * @param identity Identity for the resource.
+             * @return the next definition stage.
+             */
+            WithCreate withIdentity(Identity identity);
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify kind.
+         */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Indicates which kind of Arc machine placement on-premises, such as HCI,
+             * SCVMM or VMware etc..
+             * 
+             * @param kind Indicates which kind of Arc machine placement on-premises, such as HCI, SCVMM or VMware etc.
+             * @return the next definition stage.
+             */
+            WithCreate withKind(ArcKindEnum kind);
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify locationData.
+         */
+        interface WithLocationData {
+            /**
+             * Specifies the locationData property: Metadata pertaining to the geographic location of the resource..
+             * 
+             * @param locationData Metadata pertaining to the geographic location of the resource.
+             * @return the next definition stage.
+             */
+            WithCreate withLocationData(LocationData locationData);
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify serviceStatuses.
+         */
+        interface WithServiceStatuses {
+            /**
+             * Specifies the serviceStatuses property: Statuses of dependent services that are reported back to ARM..
+             * 
+             * @param serviceStatuses Statuses of dependent services that are reported back to ARM.
+             * @return the next definition stage.
+             */
+            WithCreate withServiceStatuses(ServiceStatuses serviceStatuses);
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify cloudMetadata.
+         */
+        interface WithCloudMetadata {
+            /**
+             * Specifies the cloudMetadata property: The metadata of the cloud environment (Azure/GCP/AWS/OCI...)..
+             * 
+             * @param cloudMetadata The metadata of the cloud environment (Azure/GCP/AWS/OCI...).
+             * @return the next definition stage.
+             */
+            WithCreate withCloudMetadata(CloudMetadata cloudMetadata);
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify agentUpgrade.
+         */
+        interface WithAgentUpgrade {
+            /**
+             * Specifies the agentUpgrade property: The info of the machine w.r.t Agent Upgrade.
+             * 
+             * @param agentUpgrade The info of the machine w.r.t Agent Upgrade.
+             * @return the next definition stage.
+             */
+            WithCreate withAgentUpgrade(AgentUpgrade agentUpgrade);
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify osProfile.
+         */
+        interface WithOsProfile {
+            /**
+             * Specifies the osProfile property: Specifies the operating system settings for the hybrid machine..
+             * 
+             * @param osProfile Specifies the operating system settings for the hybrid machine.
+             * @return the next definition stage.
+             */
+            WithCreate withOsProfile(OSProfile osProfile);
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify licenseProfile.
+         */
+        interface WithLicenseProfile {
+            /**
+             * Specifies the licenseProfile property: Specifies the License related properties for a machine..
+             * 
+             * @param licenseProfile Specifies the License related properties for a machine.
+             * @return the next definition stage.
+             */
+            WithCreate withLicenseProfile(LicenseProfileMachineInstanceViewInner licenseProfile);
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify vmId.
+         */
+        interface WithVmId {
+            /**
+             * Specifies the vmId property: Specifies the hybrid machine unique ID..
+             * 
+             * @param vmId Specifies the hybrid machine unique ID.
+             * @return the next definition stage.
+             */
+            WithCreate withVmId(String vmId);
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify clientPublicKey.
+         */
+        interface WithClientPublicKey {
+            /**
+             * Specifies the clientPublicKey property: Public Key that the client provides to be used during initial
+             * resource onboarding.
+             * 
+             * @param clientPublicKey Public Key that the client provides to be used during initial resource onboarding.
+             * @return the next definition stage.
+             */
+            WithCreate withClientPublicKey(String clientPublicKey);
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify osType.
+         */
+        interface WithOsType {
+            /**
+             * Specifies the osType property: The type of Operating System (windows/linux)..
+             * 
+             * @param osType The type of Operating System (windows/linux).
+             * @return the next definition stage.
+             */
+            WithCreate withOsType(String osType);
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify extensions.
+         */
+        interface WithExtensions {
+            /**
+             * Specifies the extensions property: Machine Extensions information (deprecated field).
+             * 
+             * @param extensions Machine Extensions information (deprecated field).
+             * @return the next definition stage.
+             */
+            WithCreate withExtensions(List<MachineExtensionInstanceView> extensions);
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify privateLinkScopeResourceId.
+         */
+        interface WithPrivateLinkScopeResourceId {
+            /**
+             * Specifies the privateLinkScopeResourceId property: The resource id of the private link scope this machine
+             * is assigned to, if any..
+             * 
+             * @param privateLinkScopeResourceId The resource id of the private link scope this machine is assigned to,
+             * if any.
+             * @return the next definition stage.
+             */
+            WithCreate withPrivateLinkScopeResourceId(String privateLinkScopeResourceId);
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify parentClusterResourceId.
+         */
+        interface WithParentClusterResourceId {
+            /**
+             * Specifies the parentClusterResourceId property: The resource id of the parent cluster (Azure HCI) this
+             * machine is assigned to, if any..
+             * 
+             * @param parentClusterResourceId The resource id of the parent cluster (Azure HCI) this machine is assigned
+             * to, if any.
+             * @return the next definition stage.
+             */
+            WithCreate withParentClusterResourceId(String parentClusterResourceId);
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify mssqlDiscovered.
+         */
+        interface WithMssqlDiscovered {
+            /**
+             * Specifies the mssqlDiscovered property: Specifies whether any MS SQL instance is discovered on the
+             * machine..
+             * 
+             * @param mssqlDiscovered Specifies whether any MS SQL instance is discovered on the machine.
+             * @return the next definition stage.
+             */
+            WithCreate withMssqlDiscovered(String mssqlDiscovered);
+        }
+
+        /**
+         * The stage of the Machine definition allowing to specify expand.
+         */
+        interface WithExpand {
+            /**
+             * Specifies the expand property: Expands referenced resources..
+             * 
+             * @param expand Expands referenced resources.
+             * @return the next definition stage.
+             */
+            WithCreate withExpand(String expand);
+        }
+    }
+
+    /**
+     * Begins update for the Machine resource.
+     * 
+     * @return the stage of resource update.
+     */
+    Machine.Update update();
+
+    /**
+     * The template for Machine update.
+     */
+    interface Update
+        extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithKind, UpdateStages.WithLocationData,
+        UpdateStages.WithOsProfile, UpdateStages.WithCloudMetadata, UpdateStages.WithAgentUpgrade,
+        UpdateStages.WithParentClusterResourceId, UpdateStages.WithPrivateLinkScopeResourceId {
+        /**
+         * Executes the update request.
+         * 
+         * @return the updated resource.
+         */
+        Machine apply();
+
+        /**
+         * Executes the update request.
+         * 
+         * @param context The context to associate with this operation.
+         * @return the updated resource.
+         */
+        Machine apply(Context context);
+    }
+
+    /**
+     * The Machine update stages.
+     */
+    interface UpdateStages {
+        /**
+         * The stage of the Machine update allowing to specify tags.
+         */
+        interface WithTags {
+            /**
+             * Specifies the tags property: Resource tags.
+             * 
+             * @param tags Resource tags.
+             * @return the next definition stage.
+             */
+            Update withTags(Map<String, String> tags);
+        }
+
+        /**
+         * The stage of the Machine update allowing to specify identity.
+         */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: Identity for the resource..
+             * 
+             * @param identity Identity for the resource.
+             * @return the next definition stage.
+             */
+            Update withIdentity(Identity identity);
+        }
+
+        /**
+         * The stage of the Machine update allowing to specify kind.
+         */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Indicates which kind of Arc machine placement on-premises, such as HCI,
+             * SCVMM or VMware etc..
+             * 
+             * @param kind Indicates which kind of Arc machine placement on-premises, such as HCI, SCVMM or VMware etc.
+             * @return the next definition stage.
+             */
+            Update withKind(ArcKindEnum kind);
+        }
+
+        /**
+         * The stage of the Machine update allowing to specify locationData.
+         */
+        interface WithLocationData {
+            /**
+             * Specifies the locationData property: Metadata pertaining to the geographic location of the resource..
+             * 
+             * @param locationData Metadata pertaining to the geographic location of the resource.
+             * @return the next definition stage.
+             */
+            Update withLocationData(LocationData locationData);
+        }
+
+        /**
+         * The stage of the Machine update allowing to specify osProfile.
+         */
+        interface WithOsProfile {
+            /**
+             * Specifies the osProfile property: Specifies the operating system settings for the hybrid machine..
+             * 
+             * @param osProfile Specifies the operating system settings for the hybrid machine.
+             * @return the next definition stage.
+             */
+            Update withOsProfile(OSProfile osProfile);
+        }
+
+        /**
+         * The stage of the Machine update allowing to specify cloudMetadata.
+         */
+        interface WithCloudMetadata {
+            /**
+             * Specifies the cloudMetadata property: The metadata of the cloud environment (Azure/GCP/AWS/OCI...)..
+             * 
+             * @param cloudMetadata The metadata of the cloud environment (Azure/GCP/AWS/OCI...).
+             * @return the next definition stage.
+             */
+            Update withCloudMetadata(CloudMetadata cloudMetadata);
+        }
+
+        /**
+         * The stage of the Machine update allowing to specify agentUpgrade.
+         */
+        interface WithAgentUpgrade {
+            /**
+             * Specifies the agentUpgrade property: The info of the machine w.r.t Agent Upgrade.
+             * 
+             * @param agentUpgrade The info of the machine w.r.t Agent Upgrade.
+             * @return the next definition stage.
+             */
+            Update withAgentUpgrade(AgentUpgrade agentUpgrade);
+        }
+
+        /**
+         * The stage of the Machine update allowing to specify parentClusterResourceId.
+         */
+        interface WithParentClusterResourceId {
+            /**
+             * Specifies the parentClusterResourceId property: The resource id of the parent cluster (Azure HCI) this
+             * machine is assigned to, if any..
+             * 
+             * @param parentClusterResourceId The resource id of the parent cluster (Azure HCI) this machine is assigned
+             * to, if any.
+             * @return the next definition stage.
+             */
+            Update withParentClusterResourceId(String parentClusterResourceId);
+        }
+
+        /**
+         * The stage of the Machine update allowing to specify privateLinkScopeResourceId.
+         */
+        interface WithPrivateLinkScopeResourceId {
+            /**
+             * Specifies the privateLinkScopeResourceId property: The resource id of the private link scope this machine
+             * is assigned to, if any..
+             * 
+             * @param privateLinkScopeResourceId The resource id of the private link scope this machine is assigned to,
+             * if any.
+             * @return the next definition stage.
+             */
+            Update withPrivateLinkScopeResourceId(String privateLinkScopeResourceId);
+        }
+    }
+
+    /**
+     * Refreshes the resource to sync with Azure.
+     * 
+     * @return the refreshed resource.
+     */
+    Machine refresh();
+
+    /**
+     * Refreshes the resource to sync with Azure.
+     * 
+     * @param context The context to associate with this operation.
+     * @return the refreshed resource.
+     */
+    Machine refresh(Context context);
 }

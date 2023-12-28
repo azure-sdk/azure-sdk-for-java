@@ -6,32 +6,34 @@ package com.azure.resourcemanager.hybridcompute.models;
 
 import com.azure.resourcemanager.hybridcompute.fluent.models.AgentVersionInner;
 
-/** An immutable client-side representation of AgentVersion. */
+/**
+ * An immutable client-side representation of AgentVersion.
+ */
 public interface AgentVersion {
     /**
      * Gets the agentVersion property: Represents the agent version.
-     *
+     * 
      * @return the agentVersion value.
      */
     String agentVersion();
 
     /**
      * Gets the downloadLink property: Represents the download link of specific agent version.
-     *
+     * 
      * @return the downloadLink value.
      */
     String downloadLink();
 
     /**
      * Gets the osType property: Defines the os type.
-     *
+     * 
      * @return the osType value.
      */
     String osType();
 
     /**
      * Gets the inner com.azure.resourcemanager.hybridcompute.fluent.models.AgentVersionInner object.
-     *
+     * 
      * @return the inner object.
      */
     AgentVersionInner innerModel();

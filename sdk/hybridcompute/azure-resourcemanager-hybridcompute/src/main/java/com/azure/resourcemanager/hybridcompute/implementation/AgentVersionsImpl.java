@@ -22,8 +22,8 @@ public final class AgentVersionsImpl implements AgentVersions {
 
     private final com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager;
 
-    public AgentVersionsImpl(
-        AgentVersionsClient innerClient, com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager) {
+    public AgentVersionsImpl(AgentVersionsClient innerClient,
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -31,10 +31,7 @@ public final class AgentVersionsImpl implements AgentVersions {
     public Response<AgentVersionsList> listWithResponse(String osType, Context context) {
         Response<AgentVersionsListInner> inner = this.serviceClient().listWithResponse(osType, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new AgentVersionsListImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -53,10 +50,7 @@ public final class AgentVersionsImpl implements AgentVersions {
     public Response<AgentVersion> getWithResponse(String osType, String version, Context context) {
         Response<AgentVersionInner> inner = this.serviceClient().getWithResponse(osType, version, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new AgentVersionImpl(inner.getValue(), this.manager()));
         } else {
             return null;

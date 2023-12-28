@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.hybridcompute.models.Identity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the resource properties. */
+/**
+ * Defines the resource properties.
+ */
 @Fluent
 public final class HybridIdentityMetadataProperties {
     /*
@@ -29,13 +31,15 @@ public final class HybridIdentityMetadataProperties {
     @JsonProperty(value = "identity", access = JsonProperty.Access.WRITE_ONLY)
     private Identity identity;
 
-    /** Creates an instance of HybridIdentityMetadataProperties class. */
+    /**
+     * Creates an instance of HybridIdentityMetadataProperties class.
+     */
     public HybridIdentityMetadataProperties() {
     }
 
     /**
      * Get the vmId property: The unique identifier for the resource.
-     *
+     * 
      * @return the vmId value.
      */
     public String vmId() {
@@ -44,7 +48,7 @@ public final class HybridIdentityMetadataProperties {
 
     /**
      * Set the vmId property: The unique identifier for the resource.
-     *
+     * 
      * @param vmId the vmId value to set.
      * @return the HybridIdentityMetadataProperties object itself.
      */
@@ -55,7 +59,7 @@ public final class HybridIdentityMetadataProperties {
 
     /**
      * Get the publicKey property: The Public Key.
-     *
+     * 
      * @return the publicKey value.
      */
     public String publicKey() {
@@ -64,7 +68,7 @@ public final class HybridIdentityMetadataProperties {
 
     /**
      * Set the publicKey property: The Public Key.
-     *
+     * 
      * @param publicKey the publicKey value to set.
      * @return the HybridIdentityMetadataProperties object itself.
      */
@@ -75,7 +79,7 @@ public final class HybridIdentityMetadataProperties {
 
     /**
      * Get the identity property: Identity for the resource.
-     *
+     * 
      * @return the identity value.
      */
     public Identity identity() {
@@ -84,7 +88,7 @@ public final class HybridIdentityMetadataProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

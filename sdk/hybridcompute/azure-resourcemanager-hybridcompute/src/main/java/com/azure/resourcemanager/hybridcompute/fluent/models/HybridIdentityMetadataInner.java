@@ -11,7 +11,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridcompute.models.Identity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the HybridIdentityMetadata. */
+/**
+ * Defines the HybridIdentityMetadata.
+ */
 @Fluent
 public final class HybridIdentityMetadataInner extends ProxyResource {
     /*
@@ -26,13 +28,15 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of HybridIdentityMetadataInner class. */
+    /**
+     * Creates an instance of HybridIdentityMetadataInner class.
+     */
     public HybridIdentityMetadataInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private HybridIdentityMetadataProperties innerProperties() {
@@ -41,7 +45,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -50,7 +54,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Get the vmId property: The unique identifier for the resource.
-     *
+     * 
      * @return the vmId value.
      */
     public String vmId() {
@@ -59,7 +63,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Set the vmId property: The unique identifier for the resource.
-     *
+     * 
      * @param vmId the vmId value to set.
      * @return the HybridIdentityMetadataInner object itself.
      */
@@ -73,7 +77,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Get the publicKey property: The Public Key.
-     *
+     * 
      * @return the publicKey value.
      */
     public String publicKey() {
@@ -82,7 +86,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Set the publicKey property: The Public Key.
-     *
+     * 
      * @param publicKey the publicKey value to set.
      * @return the HybridIdentityMetadataInner object itself.
      */
@@ -96,7 +100,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Get the identity property: Identity for the resource.
-     *
+     * 
      * @return the identity value.
      */
     public Identity identity() {
@@ -105,15 +109,13 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model HybridIdentityMetadataInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model HybridIdentityMetadataInner"));
         } else {
             innerProperties().validate();
         }

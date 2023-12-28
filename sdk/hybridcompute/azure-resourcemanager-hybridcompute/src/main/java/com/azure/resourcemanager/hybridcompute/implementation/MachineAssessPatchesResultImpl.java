@@ -19,8 +19,7 @@ public final class MachineAssessPatchesResultImpl implements MachineAssessPatche
 
     private final com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager;
 
-    MachineAssessPatchesResultImpl(
-        MachineAssessPatchesResultInner innerObject,
+    MachineAssessPatchesResultImpl(MachineAssessPatchesResultInner innerObject,
         com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;

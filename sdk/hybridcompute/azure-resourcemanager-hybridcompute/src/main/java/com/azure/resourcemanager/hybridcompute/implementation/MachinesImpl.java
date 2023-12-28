@@ -27,14 +27,14 @@ public final class MachinesImpl implements Machines {
 
     private final com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager;
 
-    public MachinesImpl(
-        MachinesClient innerClient, com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager) {
+    public MachinesImpl(MachinesClient innerClient,
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<Void> deleteByResourceGroupWithResponse(
-        String resourceGroupName, String machineName, Context context) {
+    public Response<Void> deleteByResourceGroupWithResponse(String resourceGroupName, String machineName,
+        Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, machineName, context);
     }
 
@@ -42,15 +42,12 @@ public final class MachinesImpl implements Machines {
         this.serviceClient().delete(resourceGroupName, machineName);
     }
 
-    public Response<Machine> getByResourceGroupWithResponse(
-        String resourceGroupName, String machineName, InstanceViewTypes expand, Context context) {
-        Response<MachineInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, machineName, expand, context);
+    public Response<Machine> getByResourceGroupWithResponse(String resourceGroupName, String machineName,
+        InstanceViewTypes expand, Context context) {
+        Response<MachineInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, machineName, expand, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new MachineImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -84,10 +81,10 @@ public final class MachinesImpl implements Machines {
         }
     }
 
-    public MachineInstallPatchesResult installPatches(
-        String resourceGroupName, String name, MachineInstallPatchesParameters installPatchesInput) {
-        MachineInstallPatchesResultInner inner =
-            this.serviceClient().installPatches(resourceGroupName, name, installPatchesInput);
+    public MachineInstallPatchesResult installPatches(String resourceGroupName, String name,
+        MachineInstallPatchesParameters installPatchesInput) {
+        MachineInstallPatchesResultInner inner
+            = this.serviceClient().installPatches(resourceGroupName, name, installPatchesInput);
         if (inner != null) {
             return new MachineInstallPatchesResultImpl(inner, this.manager());
         } else {
@@ -95,10 +92,10 @@ public final class MachinesImpl implements Machines {
         }
     }
 
-    public MachineInstallPatchesResult installPatches(
-        String resourceGroupName, String name, MachineInstallPatchesParameters installPatchesInput, Context context) {
-        MachineInstallPatchesResultInner inner =
-            this.serviceClient().installPatches(resourceGroupName, name, installPatchesInput, context);
+    public MachineInstallPatchesResult installPatches(String resourceGroupName, String name,
+        MachineInstallPatchesParameters installPatchesInput, Context context) {
+        MachineInstallPatchesResultInner inner
+            = this.serviceClient().installPatches(resourceGroupName, name, installPatchesInput, context);
         if (inner != null) {
             return new MachineInstallPatchesResultImpl(inner, this.manager());
         } else {
@@ -112,8 +109,8 @@ public final class MachinesImpl implements Machines {
     }
 
     public PagedIterable<Machine> listByResourceGroup(String resourceGroupName, String expand, Context context) {
-        PagedIterable<MachineInner> inner =
-            this.serviceClient().listByResourceGroup(resourceGroupName, expand, context);
+        PagedIterable<MachineInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, expand, context);
         return Utils.mapPage(inner, inner1 -> new MachineImpl(inner1, this.manager()));
     }
 
@@ -127,11 +124,73 @@ public final class MachinesImpl implements Machines {
         return Utils.mapPage(inner, inner1 -> new MachineImpl(inner1, this.manager()));
     }
 
+    public Machine getById(String id) {
+        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String machineName = Utils.getValueFromIdByName(id, "machines");
+        if (machineName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'machines'.", id)));
+        }
+        InstanceViewTypes localExpand = null;
+        return this.getByResourceGroupWithResponse(resourceGroupName, machineName, localExpand, Context.NONE)
+            .getValue();
+    }
+
+    public Response<Machine> getByIdWithResponse(String id, InstanceViewTypes expand, Context context) {
+        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String machineName = Utils.getValueFromIdByName(id, "machines");
+        if (machineName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'machines'.", id)));
+        }
+        return this.getByResourceGroupWithResponse(resourceGroupName, machineName, expand, context);
+    }
+
+    public void deleteById(String id) {
+        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String machineName = Utils.getValueFromIdByName(id, "machines");
+        if (machineName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'machines'.", id)));
+        }
+        this.deleteByResourceGroupWithResponse(resourceGroupName, machineName, Context.NONE);
+    }
+
+    public Response<Void> deleteByIdWithResponse(String id, Context context) {
+        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String machineName = Utils.getValueFromIdByName(id, "machines");
+        if (machineName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'machines'.", id)));
+        }
+        return this.deleteByResourceGroupWithResponse(resourceGroupName, machineName, context);
+    }
+
     private MachinesClient serviceClient() {
         return this.innerClient;
     }
 
     private com.azure.resourcemanager.hybridcompute.HybridComputeManager manager() {
         return this.serviceManager;
+    }
+
+    public MachineImpl define(String name) {
+        return new MachineImpl(name, this.manager());
     }
 }

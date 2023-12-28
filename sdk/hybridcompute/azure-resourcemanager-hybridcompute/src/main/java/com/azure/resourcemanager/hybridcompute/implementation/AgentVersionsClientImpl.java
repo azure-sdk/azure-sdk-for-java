@@ -26,22 +26,28 @@ import com.azure.resourcemanager.hybridcompute.fluent.models.AgentVersionInner;
 import com.azure.resourcemanager.hybridcompute.fluent.models.AgentVersionsListInner;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in AgentVersionsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in AgentVersionsClient.
+ */
 public final class AgentVersionsClientImpl implements AgentVersionsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final AgentVersionsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final HybridComputeManagementClientImpl client;
 
     /**
      * Initializes an instance of AgentVersionsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     AgentVersionsClientImpl(HybridComputeManagementClientImpl client) {
-        this.service =
-            RestProxy.create(AgentVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(AgentVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -52,77 +58,64 @@ public final class AgentVersionsClientImpl implements AgentVersionsClient {
     @Host("{$host}")
     @ServiceInterface(name = "HybridComputeManagem")
     public interface AgentVersionsService {
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.HybridCompute/osType/{osType}/agentVersions")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AgentVersionsListInner>> list(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("osType") String osType,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<AgentVersionsListInner>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("osType") String osType,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.HybridCompute/osType/{osType}/agentVersions/{version}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AgentVersionInner>> get(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("osType") String osType,
-            @PathParam("version") String version,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<AgentVersionInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("osType") String osType,
+            @PathParam("version") String version, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Gets all Agent Versions along with the download link currently present.
-     *
+     * 
      * @param osType Defines the os type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all Agent Versions along with the download link currently present along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AgentVersionsListInner>> listWithResponseAsync(String osType) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (osType == null) {
             return Mono.error(new IllegalArgumentException("Parameter osType is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service.list(this.client.getEndpoint(), this.client.getApiVersion(), osType, accept, context))
+        return FluxUtil.withContext(
+            context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), osType, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets all Agent Versions along with the download link currently present.
-     *
+     * 
      * @param osType Defines the os type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all Agent Versions along with the download link currently present along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AgentVersionsListInner>> listWithResponseAsync(String osType, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (osType == null) {
             return Mono.error(new IllegalArgumentException("Parameter osType is required and cannot be null."));
@@ -134,13 +127,13 @@ public final class AgentVersionsClientImpl implements AgentVersionsClient {
 
     /**
      * Gets all Agent Versions along with the download link currently present.
-     *
+     * 
      * @param osType Defines the os type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Agent Versions along with the download link currently present on successful completion of {@link
-     *     Mono}.
+     * @return all Agent Versions along with the download link currently present on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AgentVersionsListInner> listAsync(String osType) {
@@ -149,7 +142,7 @@ public final class AgentVersionsClientImpl implements AgentVersionsClient {
 
     /**
      * Gets all Agent Versions along with the download link currently present.
-     *
+     * 
      * @param osType Defines the os type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -164,7 +157,7 @@ public final class AgentVersionsClientImpl implements AgentVersionsClient {
 
     /**
      * Gets all Agent Versions along with the download link currently present.
-     *
+     * 
      * @param osType Defines the os type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -178,22 +171,20 @@ public final class AgentVersionsClientImpl implements AgentVersionsClient {
 
     /**
      * Gets an Agent Version along with the download link currently present.
-     *
+     * 
      * @param osType Defines the os type.
      * @param version Defines the agent version. To get latest, use latest or else a specific agent version.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an Agent Version along with the download link currently present along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AgentVersionInner>> getWithResponseAsync(String osType, String version) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (osType == null) {
             return Mono.error(new IllegalArgumentException("Parameter osType is required and cannot be null."));
@@ -203,16 +194,14 @@ public final class AgentVersionsClientImpl implements AgentVersionsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(this.client.getEndpoint(), this.client.getApiVersion(), osType, version, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), osType, version,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets an Agent Version along with the download link currently present.
-     *
+     * 
      * @param osType Defines the os type.
      * @param version Defines the agent version. To get latest, use latest or else a specific agent version.
      * @param context The context to associate with this operation.
@@ -220,15 +209,13 @@ public final class AgentVersionsClientImpl implements AgentVersionsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an Agent Version along with the download link currently present along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AgentVersionInner>> getWithResponseAsync(String osType, String version, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (osType == null) {
             return Mono.error(new IllegalArgumentException("Parameter osType is required and cannot be null."));
@@ -243,7 +230,7 @@ public final class AgentVersionsClientImpl implements AgentVersionsClient {
 
     /**
      * Gets an Agent Version along with the download link currently present.
-     *
+     * 
      * @param osType Defines the os type.
      * @param version Defines the agent version. To get latest, use latest or else a specific agent version.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -258,7 +245,7 @@ public final class AgentVersionsClientImpl implements AgentVersionsClient {
 
     /**
      * Gets an Agent Version along with the download link currently present.
-     *
+     * 
      * @param osType Defines the os type.
      * @param version Defines the agent version. To get latest, use latest or else a specific agent version.
      * @param context The context to associate with this operation.
@@ -274,7 +261,7 @@ public final class AgentVersionsClientImpl implements AgentVersionsClient {
 
     /**
      * Gets an Agent Version along with the download link currently present.
-     *
+     * 
      * @param osType Defines the os type.
      * @param version Defines the agent version. To get latest, use latest or else a specific agent version.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

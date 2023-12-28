@@ -7,25 +7,27 @@ package com.azure.resourcemanager.hybridcompute.models;
 import com.azure.resourcemanager.hybridcompute.fluent.models.AgentVersionsListInner;
 import java.util.List;
 
-/** An immutable client-side representation of AgentVersionsList. */
+/**
+ * An immutable client-side representation of AgentVersionsList.
+ */
 public interface AgentVersionsList {
     /**
      * Gets the value property: The list of available Agent Versions.
-     *
+     * 
      * @return the value value.
      */
     List<AgentVersion> value();
 
     /**
      * Gets the nextLink property: The URI to fetch the next 10 available Agent Versions.
-     *
+     * 
      * @return the nextLink value.
      */
     String nextLink();
 
     /**
      * Gets the inner com.azure.resourcemanager.hybridcompute.fluent.models.AgentVersionsListInner object.
-     *
+     * 
      * @return the inner object.
      */
     AgentVersionsListInner innerModel();

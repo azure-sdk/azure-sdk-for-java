@@ -4,8 +4,10 @@
 
 package com.azure.resourcemanager.hybridcompute.implementation;
 
+import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.management.exception.ManagementError;
+import com.azure.core.util.Context;
 import com.azure.resourcemanager.hybridcompute.fluent.models.LicenseProfileMachineInstanceViewInner;
 import com.azure.resourcemanager.hybridcompute.fluent.models.MachineExtensionInner;
 import com.azure.resourcemanager.hybridcompute.fluent.models.MachineInner;
@@ -15,11 +17,13 @@ import com.azure.resourcemanager.hybridcompute.models.AgentUpgrade;
 import com.azure.resourcemanager.hybridcompute.models.ArcKindEnum;
 import com.azure.resourcemanager.hybridcompute.models.CloudMetadata;
 import com.azure.resourcemanager.hybridcompute.models.Identity;
+import com.azure.resourcemanager.hybridcompute.models.InstanceViewTypes;
 import com.azure.resourcemanager.hybridcompute.models.LicenseProfileMachineInstanceView;
 import com.azure.resourcemanager.hybridcompute.models.LocationData;
 import com.azure.resourcemanager.hybridcompute.models.Machine;
 import com.azure.resourcemanager.hybridcompute.models.MachineExtension;
 import com.azure.resourcemanager.hybridcompute.models.MachineExtensionInstanceView;
+import com.azure.resourcemanager.hybridcompute.models.MachineUpdate;
 import com.azure.resourcemanager.hybridcompute.models.NetworkProfile;
 import com.azure.resourcemanager.hybridcompute.models.OSProfile;
 import com.azure.resourcemanager.hybridcompute.models.ServiceStatuses;
@@ -30,15 +34,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public final class MachineImpl implements Machine {
+public final class MachineImpl implements Machine, Machine.Definition, Machine.Update {
     private MachineInner innerObject;
 
     private final com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager;
-
-    MachineImpl(MachineInner innerObject, com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager) {
-        this.innerObject = innerObject;
-        this.serviceManager = serviceManager;
-    }
 
     public String id() {
         return this.innerModel().id();
@@ -68,12 +67,8 @@ public final class MachineImpl implements Machine {
     public List<MachineExtension> resources() {
         List<MachineExtensionInner> inner = this.innerModel().resources();
         if (inner != null) {
-            return Collections
-                .unmodifiableList(
-                    inner
-                        .stream()
-                        .map(inner1 -> new MachineExtensionImpl(inner1, this.manager()))
-                        .collect(Collectors.toList()));
+            return Collections.unmodifiableList(inner.stream()
+                .map(inner1 -> new MachineExtensionImpl(inner1, this.manager())).collect(Collectors.toList()));
         } else {
             return Collections.emptyList();
         }
@@ -194,6 +189,10 @@ public final class MachineImpl implements Machine {
         return this.innerModel().osSku();
     }
 
+    public String osEdition() {
+        return this.innerModel().osEdition();
+    }
+
     public String domainName() {
         return this.innerModel().domainName();
     }
@@ -236,11 +235,239 @@ public final class MachineImpl implements Machine {
         }
     }
 
+    public Region region() {
+        return Region.fromName(this.regionName());
+    }
+
+    public String regionName() {
+        return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public MachineInner innerModel() {
         return this.innerObject;
     }
 
     private com.azure.resourcemanager.hybridcompute.HybridComputeManager manager() {
         return this.serviceManager;
+    }
+
+    private String resourceGroupName;
+
+    private String machineName;
+
+    private String createExpand;
+
+    private MachineUpdate updateParameters;
+
+    public MachineImpl withExistingResourceGroup(String resourceGroupName) {
+        this.resourceGroupName = resourceGroupName;
+        return this;
+    }
+
+    public Machine create() {
+        this.innerObject = serviceManager.serviceClient().getMachines()
+            .createOrUpdateWithResponse(resourceGroupName, machineName, this.innerModel(), createExpand, Context.NONE)
+            .getValue();
+        return this;
+    }
+
+    public Machine create(Context context) {
+        this.innerObject = serviceManager.serviceClient().getMachines()
+            .createOrUpdateWithResponse(resourceGroupName, machineName, this.innerModel(), createExpand, context)
+            .getValue();
+        return this;
+    }
+
+    MachineImpl(String name, com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager) {
+        this.innerObject = new MachineInner();
+        this.serviceManager = serviceManager;
+        this.machineName = name;
+        this.createExpand = null;
+    }
+
+    public MachineImpl update() {
+        this.updateParameters = new MachineUpdate();
+        return this;
+    }
+
+    public Machine apply() {
+        this.innerObject = serviceManager.serviceClient().getMachines()
+            .updateWithResponse(resourceGroupName, machineName, updateParameters, Context.NONE).getValue();
+        return this;
+    }
+
+    public Machine apply(Context context) {
+        this.innerObject = serviceManager.serviceClient().getMachines()
+            .updateWithResponse(resourceGroupName, machineName, updateParameters, context).getValue();
+        return this;
+    }
+
+    MachineImpl(MachineInner innerObject, com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager) {
+        this.innerObject = innerObject;
+        this.serviceManager = serviceManager;
+        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.machineName = Utils.getValueFromIdByName(innerObject.id(), "machines");
+    }
+
+    public Machine refresh() {
+        InstanceViewTypes localExpand = null;
+        this.innerObject = serviceManager.serviceClient().getMachines()
+            .getByResourceGroupWithResponse(resourceGroupName, machineName, localExpand, Context.NONE).getValue();
+        return this;
+    }
+
+    public Machine refresh(Context context) {
+        InstanceViewTypes localExpand = null;
+        this.innerObject = serviceManager.serviceClient().getMachines()
+            .getByResourceGroupWithResponse(resourceGroupName, machineName, localExpand, context).getValue();
+        return this;
+    }
+
+    public MachineImpl withRegion(Region location) {
+        this.innerModel().withLocation(location.toString());
+        return this;
+    }
+
+    public MachineImpl withRegion(String location) {
+        this.innerModel().withLocation(location);
+        return this;
+    }
+
+    public MachineImpl withTags(Map<String, String> tags) {
+        if (isInCreateMode()) {
+            this.innerModel().withTags(tags);
+            return this;
+        } else {
+            this.updateParameters.withTags(tags);
+            return this;
+        }
+    }
+
+    public MachineImpl withIdentity(Identity identity) {
+        if (isInCreateMode()) {
+            this.innerModel().withIdentity(identity);
+            return this;
+        } else {
+            this.updateParameters.withIdentity(identity);
+            return this;
+        }
+    }
+
+    public MachineImpl withKind(ArcKindEnum kind) {
+        if (isInCreateMode()) {
+            this.innerModel().withKind(kind);
+            return this;
+        } else {
+            this.updateParameters.withKind(kind);
+            return this;
+        }
+    }
+
+    public MachineImpl withLocationData(LocationData locationData) {
+        if (isInCreateMode()) {
+            this.innerModel().withLocationData(locationData);
+            return this;
+        } else {
+            this.updateParameters.withLocationData(locationData);
+            return this;
+        }
+    }
+
+    public MachineImpl withServiceStatuses(ServiceStatuses serviceStatuses) {
+        this.innerModel().withServiceStatuses(serviceStatuses);
+        return this;
+    }
+
+    public MachineImpl withCloudMetadata(CloudMetadata cloudMetadata) {
+        if (isInCreateMode()) {
+            this.innerModel().withCloudMetadata(cloudMetadata);
+            return this;
+        } else {
+            this.updateParameters.withCloudMetadata(cloudMetadata);
+            return this;
+        }
+    }
+
+    public MachineImpl withAgentUpgrade(AgentUpgrade agentUpgrade) {
+        if (isInCreateMode()) {
+            this.innerModel().withAgentUpgrade(agentUpgrade);
+            return this;
+        } else {
+            this.updateParameters.withAgentUpgrade(agentUpgrade);
+            return this;
+        }
+    }
+
+    public MachineImpl withOsProfile(OSProfile osProfile) {
+        if (isInCreateMode()) {
+            this.innerModel().withOsProfile(osProfile);
+            return this;
+        } else {
+            this.updateParameters.withOsProfile(osProfile);
+            return this;
+        }
+    }
+
+    public MachineImpl withLicenseProfile(LicenseProfileMachineInstanceViewInner licenseProfile) {
+        this.innerModel().withLicenseProfile(licenseProfile);
+        return this;
+    }
+
+    public MachineImpl withVmId(String vmId) {
+        this.innerModel().withVmId(vmId);
+        return this;
+    }
+
+    public MachineImpl withClientPublicKey(String clientPublicKey) {
+        this.innerModel().withClientPublicKey(clientPublicKey);
+        return this;
+    }
+
+    public MachineImpl withOsType(String osType) {
+        this.innerModel().withOsType(osType);
+        return this;
+    }
+
+    public MachineImpl withExtensions(List<MachineExtensionInstanceView> extensions) {
+        this.innerModel().withExtensions(extensions);
+        return this;
+    }
+
+    public MachineImpl withPrivateLinkScopeResourceId(String privateLinkScopeResourceId) {
+        if (isInCreateMode()) {
+            this.innerModel().withPrivateLinkScopeResourceId(privateLinkScopeResourceId);
+            return this;
+        } else {
+            this.updateParameters.withPrivateLinkScopeResourceId(privateLinkScopeResourceId);
+            return this;
+        }
+    }
+
+    public MachineImpl withParentClusterResourceId(String parentClusterResourceId) {
+        if (isInCreateMode()) {
+            this.innerModel().withParentClusterResourceId(parentClusterResourceId);
+            return this;
+        } else {
+            this.updateParameters.withParentClusterResourceId(parentClusterResourceId);
+            return this;
+        }
+    }
+
+    public MachineImpl withMssqlDiscovered(String mssqlDiscovered) {
+        this.innerModel().withMssqlDiscovered(mssqlDiscovered);
+        return this;
+    }
+
+    public MachineImpl withExpand(String expand) {
+        this.createExpand = expand;
+        return this;
+    }
+
+    private boolean isInCreateMode() {
+        return this.innerModel().id() == null;
     }
 }
