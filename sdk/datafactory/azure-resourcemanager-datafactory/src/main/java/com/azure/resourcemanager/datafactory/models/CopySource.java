@@ -62,7 +62,8 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "LakeHouseTableSource", value = LakeHouseTableSource.class),
     @JsonSubTypes.Type(name = "SnowflakeSource", value = SnowflakeSource.class),
     @JsonSubTypes.Type(name = "AzureDatabricksDeltaLakeSource", value = AzureDatabricksDeltaLakeSource.class),
-    @JsonSubTypes.Type(name = "SharePointOnlineListSource", value = SharePointOnlineListSource.class) })
+    @JsonSubTypes.Type(name = "SharePointOnlineListSource", value = SharePointOnlineListSource.class),
+    @JsonSubTypes.Type(name = "SalesforceServiceCloudV2Source", value = SalesforceServiceCloudV2Source.class) })
 @Fluent
 public class CopySource {
     /*
