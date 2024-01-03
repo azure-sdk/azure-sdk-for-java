@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the request body for bulk remove of move resources operation. */
+/**
+ * Defines the request body for bulk remove of move resources operation.
+ */
 @Fluent
 public final class BulkRemoveRequest {
     /*
@@ -30,14 +32,16 @@ public final class BulkRemoveRequest {
     @JsonProperty(value = "moveResourceInputType")
     private MoveResourceInputType moveResourceInputType;
 
-    /** Creates an instance of BulkRemoveRequest class. */
+    /**
+     * Creates an instance of BulkRemoveRequest class.
+     */
     public BulkRemoveRequest() {
     }
 
     /**
      * Get the validateOnly property: Gets or sets a value indicating whether the operation needs to only run
      * pre-requisite.
-     *
+     * 
      * @return the validateOnly value.
      */
     public Boolean validateOnly() {
@@ -47,7 +51,7 @@ public final class BulkRemoveRequest {
     /**
      * Set the validateOnly property: Gets or sets a value indicating whether the operation needs to only run
      * pre-requisite.
-     *
+     * 
      * @param validateOnly the validateOnly value to set.
      * @return the BulkRemoveRequest object itself.
      */
@@ -59,7 +63,7 @@ public final class BulkRemoveRequest {
     /**
      * Get the moveResources property: Gets or sets the list of resource Id's, by default it accepts move resource id's
      * unless the input type is switched via moveResourceInputType property.
-     *
+     * 
      * @return the moveResources value.
      */
     public List<String> moveResources() {
@@ -69,7 +73,7 @@ public final class BulkRemoveRequest {
     /**
      * Set the moveResources property: Gets or sets the list of resource Id's, by default it accepts move resource id's
      * unless the input type is switched via moveResourceInputType property.
-     *
+     * 
      * @param moveResources the moveResources value to set.
      * @return the BulkRemoveRequest object itself.
      */
@@ -80,7 +84,7 @@ public final class BulkRemoveRequest {
 
     /**
      * Get the moveResourceInputType property: Defines the move resource input type.
-     *
+     * 
      * @return the moveResourceInputType value.
      */
     public MoveResourceInputType moveResourceInputType() {
@@ -89,7 +93,7 @@ public final class BulkRemoveRequest {
 
     /**
      * Set the moveResourceInputType property: Defines the move resource input type.
-     *
+     * 
      * @param moveResourceInputType the moveResourceInputType value to set.
      * @return the BulkRemoveRequest object itself.
      */
@@ -100,7 +104,7 @@ public final class BulkRemoveRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Defines the Sql Database resource settings. */
+/**
+ * Defines the Sql Database resource settings.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
 @JsonTypeName("Microsoft.Sql/servers/databases")
 @Fluent
@@ -29,13 +31,15 @@ public final class SqlDatabaseResourceSettings extends ResourceSettings {
     @JsonProperty(value = "zoneRedundant")
     private ZoneRedundant zoneRedundant;
 
-    /** Creates an instance of SqlDatabaseResourceSettings class. */
+    /**
+     * Creates an instance of SqlDatabaseResourceSettings class.
+     */
     public SqlDatabaseResourceSettings() {
     }
 
     /**
      * Get the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -44,7 +48,7 @@ public final class SqlDatabaseResourceSettings extends ResourceSettings {
 
     /**
      * Set the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the SqlDatabaseResourceSettings object itself.
      */
@@ -55,7 +59,7 @@ public final class SqlDatabaseResourceSettings extends ResourceSettings {
 
     /**
      * Get the zoneRedundant property: Defines the zone redundant resource setting.
-     *
+     * 
      * @return the zoneRedundant value.
      */
     public ZoneRedundant zoneRedundant() {
@@ -64,7 +68,7 @@ public final class SqlDatabaseResourceSettings extends ResourceSettings {
 
     /**
      * Set the zoneRedundant property: Defines the zone redundant resource setting.
-     *
+     * 
      * @param zoneRedundant the zoneRedundant value to set.
      * @return the SqlDatabaseResourceSettings object itself.
      */
@@ -73,14 +77,18 @@ public final class SqlDatabaseResourceSettings extends ResourceSettings {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SqlDatabaseResourceSettings withTargetResourceName(String targetResourceName) {
         super.withTargetResourceName(targetResourceName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SqlDatabaseResourceSettings withTargetResourceGroupName(String targetResourceGroupName) {
         super.withTargetResourceGroupName(targetResourceGroupName);
@@ -88,8 +96,17 @@ public final class SqlDatabaseResourceSettings extends ResourceSettings {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlDatabaseResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        super.withTargetSubscriptionId(targetSubscriptionId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

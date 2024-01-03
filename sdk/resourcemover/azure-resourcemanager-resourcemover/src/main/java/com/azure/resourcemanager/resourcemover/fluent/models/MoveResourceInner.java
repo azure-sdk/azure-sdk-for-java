@@ -10,7 +10,9 @@ import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.resourcemover.models.MoveResourceProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the move resource. */
+/**
+ * Defines the move resource.
+ */
 @Fluent
 public final class MoveResourceInner extends ProxyResource {
     /*
@@ -25,13 +27,15 @@ public final class MoveResourceInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of MoveResourceInner class. */
+    /**
+     * Creates an instance of MoveResourceInner class.
+     */
     public MoveResourceInner() {
     }
 
     /**
      * Get the properties property: Defines the move resource properties.
-     *
+     * 
      * @return the properties value.
      */
     public MoveResourceProperties properties() {
@@ -40,7 +44,7 @@ public final class MoveResourceInner extends ProxyResource {
 
     /**
      * Set the properties property: Defines the move resource properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the MoveResourceInner object itself.
      */
@@ -51,7 +55,7 @@ public final class MoveResourceInner extends ProxyResource {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -60,7 +64,7 @@ public final class MoveResourceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

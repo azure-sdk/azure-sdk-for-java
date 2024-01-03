@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcemover.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the move resource status. */
+/**
+ * Defines the move resource status.
+ */
 @Fluent
 public class MoveResourceStatus {
     /*
@@ -28,13 +30,15 @@ public class MoveResourceStatus {
     @JsonProperty(value = "errors")
     private MoveResourceError errors;
 
-    /** Creates an instance of MoveResourceStatus class. */
+    /**
+     * Creates an instance of MoveResourceStatus class.
+     */
     public MoveResourceStatus() {
     }
 
     /**
      * Get the moveState property: Defines the MoveResource states.
-     *
+     * 
      * @return the moveState value.
      */
     public MoveState moveState() {
@@ -43,7 +47,7 @@ public class MoveResourceStatus {
 
     /**
      * Get the jobStatus property: Defines the job status.
-     *
+     * 
      * @return the jobStatus value.
      */
     public JobStatus jobStatus() {
@@ -52,7 +56,7 @@ public class MoveResourceStatus {
 
     /**
      * Set the jobStatus property: Defines the job status.
-     *
+     * 
      * @param jobStatus the jobStatus value to set.
      * @return the MoveResourceStatus object itself.
      */
@@ -63,7 +67,7 @@ public class MoveResourceStatus {
 
     /**
      * Get the errors property: An error response from the azure resource mover service.
-     *
+     * 
      * @return the errors value.
      */
     public MoveResourceError errors() {
@@ -72,7 +76,7 @@ public class MoveResourceStatus {
 
     /**
      * Set the errors property: An error response from the azure resource mover service.
-     *
+     * 
      * @param errors the errors value to set.
      * @return the MoveResourceStatus object itself.
      */
@@ -83,7 +87,7 @@ public class MoveResourceStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

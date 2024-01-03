@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcemover.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the MSI properties of the Move Collection. */
+/**
+ * Defines the MSI properties of the Move Collection.
+ */
 @Fluent
 public final class Identity {
     /*
@@ -28,13 +30,15 @@ public final class Identity {
     @JsonProperty(value = "tenantId")
     private String tenantId;
 
-    /** Creates an instance of Identity class. */
+    /**
+     * Creates an instance of Identity class.
+     */
     public Identity() {
     }
 
     /**
      * Get the type property: The type of identity used for the resource mover service.
-     *
+     * 
      * @return the type value.
      */
     public ResourceIdentityType type() {
@@ -43,7 +47,7 @@ public final class Identity {
 
     /**
      * Set the type property: The type of identity used for the resource mover service.
-     *
+     * 
      * @param type the type value to set.
      * @return the Identity object itself.
      */
@@ -54,7 +58,7 @@ public final class Identity {
 
     /**
      * Get the principalId property: Gets or sets the principal id.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -63,7 +67,7 @@ public final class Identity {
 
     /**
      * Set the principalId property: Gets or sets the principal id.
-     *
+     * 
      * @param principalId the principalId value to set.
      * @return the Identity object itself.
      */
@@ -74,7 +78,7 @@ public final class Identity {
 
     /**
      * Get the tenantId property: Gets or sets the tenant id.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -83,7 +87,7 @@ public final class Identity {
 
     /**
      * Set the tenantId property: Gets or sets the tenant id.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the Identity object itself.
      */
@@ -94,7 +98,7 @@ public final class Identity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

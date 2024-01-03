@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcemover.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the job status. */
+/**
+ * Defines the job status.
+ */
 @Immutable
 public final class JobStatus {
     /*
@@ -22,13 +24,15 @@ public final class JobStatus {
     @JsonProperty(value = "jobProgress", access = JsonProperty.Access.WRITE_ONLY)
     private String jobProgress;
 
-    /** Creates an instance of JobStatus class. */
+    /**
+     * Creates an instance of JobStatus class.
+     */
     public JobStatus() {
     }
 
     /**
      * Get the jobName property: Defines the job name.
-     *
+     * 
      * @return the jobName value.
      */
     public JobName jobName() {
@@ -37,7 +41,7 @@ public final class JobStatus {
 
     /**
      * Get the jobProgress property: Gets or sets the monitoring job percentage.
-     *
+     * 
      * @return the jobProgress value.
      */
     public String jobProgress() {
@@ -46,7 +50,7 @@ public final class JobStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

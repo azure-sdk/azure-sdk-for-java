@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Defines the Sql ElasticPool resource settings. */
+/**
+ * Defines the Sql ElasticPool resource settings.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
 @JsonTypeName("Microsoft.Sql/servers/elasticPools")
 @Fluent
@@ -29,13 +31,15 @@ public final class SqlElasticPoolResourceSettings extends ResourceSettings {
     @JsonProperty(value = "zoneRedundant")
     private ZoneRedundant zoneRedundant;
 
-    /** Creates an instance of SqlElasticPoolResourceSettings class. */
+    /**
+     * Creates an instance of SqlElasticPoolResourceSettings class.
+     */
     public SqlElasticPoolResourceSettings() {
     }
 
     /**
      * Get the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -44,7 +48,7 @@ public final class SqlElasticPoolResourceSettings extends ResourceSettings {
 
     /**
      * Set the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the SqlElasticPoolResourceSettings object itself.
      */
@@ -55,7 +59,7 @@ public final class SqlElasticPoolResourceSettings extends ResourceSettings {
 
     /**
      * Get the zoneRedundant property: Defines the zone redundant resource setting.
-     *
+     * 
      * @return the zoneRedundant value.
      */
     public ZoneRedundant zoneRedundant() {
@@ -64,7 +68,7 @@ public final class SqlElasticPoolResourceSettings extends ResourceSettings {
 
     /**
      * Set the zoneRedundant property: Defines the zone redundant resource setting.
-     *
+     * 
      * @param zoneRedundant the zoneRedundant value to set.
      * @return the SqlElasticPoolResourceSettings object itself.
      */
@@ -73,14 +77,18 @@ public final class SqlElasticPoolResourceSettings extends ResourceSettings {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SqlElasticPoolResourceSettings withTargetResourceName(String targetResourceName) {
         super.withTargetResourceName(targetResourceName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SqlElasticPoolResourceSettings withTargetResourceGroupName(String targetResourceGroupName) {
         super.withTargetResourceGroupName(targetResourceGroupName);
@@ -88,8 +96,17 @@ public final class SqlElasticPoolResourceSettings extends ResourceSettings {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlElasticPoolResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        super.withTargetSubscriptionId(targetSubscriptionId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

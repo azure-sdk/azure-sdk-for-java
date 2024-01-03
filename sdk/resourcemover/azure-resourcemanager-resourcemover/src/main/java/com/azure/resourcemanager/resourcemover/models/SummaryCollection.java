@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Summary Collection. */
+/**
+ * Summary Collection.
+ */
 @Fluent
 public final class SummaryCollection {
     /*
@@ -23,13 +25,15 @@ public final class SummaryCollection {
     @JsonProperty(value = "summary")
     private List<Summary> summary;
 
-    /** Creates an instance of SummaryCollection class. */
+    /**
+     * Creates an instance of SummaryCollection class.
+     */
     public SummaryCollection() {
     }
 
     /**
      * Get the fieldName property: Gets or sets the field name on which summary is done.
-     *
+     * 
      * @return the fieldName value.
      */
     public String fieldName() {
@@ -38,7 +42,7 @@ public final class SummaryCollection {
 
     /**
      * Set the fieldName property: Gets or sets the field name on which summary is done.
-     *
+     * 
      * @param fieldName the fieldName value to set.
      * @return the SummaryCollection object itself.
      */
@@ -49,7 +53,7 @@ public final class SummaryCollection {
 
     /**
      * Get the summary property: Gets or sets the list of summary items.
-     *
+     * 
      * @return the summary value.
      */
     public List<Summary> summary() {
@@ -58,7 +62,7 @@ public final class SummaryCollection {
 
     /**
      * Set the summary property: Gets or sets the list of summary items.
-     *
+     * 
      * @param summary the summary value to set.
      * @return the SummaryCollection object itself.
      */
@@ -69,7 +73,7 @@ public final class SummaryCollection {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

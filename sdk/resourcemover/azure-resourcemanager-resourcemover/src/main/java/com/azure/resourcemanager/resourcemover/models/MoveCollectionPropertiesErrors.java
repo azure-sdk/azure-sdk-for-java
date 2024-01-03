@@ -6,14 +6,20 @@ package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Defines the move collection errors. */
+/**
+ * Defines the move collection errors.
+ */
 @Fluent
 public final class MoveCollectionPropertiesErrors extends MoveResourceError {
-    /** Creates an instance of MoveCollectionPropertiesErrors class. */
+    /**
+     * Creates an instance of MoveCollectionPropertiesErrors class.
+     */
     public MoveCollectionPropertiesErrors() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MoveCollectionPropertiesErrors withProperties(MoveResourceErrorBody properties) {
         super.withProperties(properties);
@@ -22,7 +28,7 @@ public final class MoveCollectionPropertiesErrors extends MoveResourceError {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

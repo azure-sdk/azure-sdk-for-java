@@ -6,14 +6,20 @@ package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Defines reference to a public IP. */
+/**
+ * Defines reference to a public IP.
+ */
 @Fluent
 public final class PublicIpReference extends AzureResourceReference {
-    /** Creates an instance of PublicIpReference class. */
+    /**
+     * Creates an instance of PublicIpReference class.
+     */
     public PublicIpReference() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PublicIpReference withSourceArmResourceId(String sourceArmResourceId) {
         super.withSourceArmResourceId(sourceArmResourceId);
@@ -22,7 +28,7 @@ public final class PublicIpReference extends AzureResourceReference {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

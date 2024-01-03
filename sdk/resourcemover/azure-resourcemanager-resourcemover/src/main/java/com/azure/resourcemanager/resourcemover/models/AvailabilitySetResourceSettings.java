@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Gets or sets the availability set resource settings. */
+/**
+ * Gets or sets the availability set resource settings.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
 @JsonTypeName("Microsoft.Compute/availabilitySets")
 @Fluent
@@ -35,13 +37,15 @@ public final class AvailabilitySetResourceSettings extends ResourceSettings {
     @JsonProperty(value = "updateDomain")
     private Integer updateDomain;
 
-    /** Creates an instance of AvailabilitySetResourceSettings class. */
+    /**
+     * Creates an instance of AvailabilitySetResourceSettings class.
+     */
     public AvailabilitySetResourceSettings() {
     }
 
     /**
      * Get the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -50,7 +54,7 @@ public final class AvailabilitySetResourceSettings extends ResourceSettings {
 
     /**
      * Set the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the AvailabilitySetResourceSettings object itself.
      */
@@ -61,7 +65,7 @@ public final class AvailabilitySetResourceSettings extends ResourceSettings {
 
     /**
      * Get the faultDomain property: Gets or sets the target fault domain.
-     *
+     * 
      * @return the faultDomain value.
      */
     public Integer faultDomain() {
@@ -70,7 +74,7 @@ public final class AvailabilitySetResourceSettings extends ResourceSettings {
 
     /**
      * Set the faultDomain property: Gets or sets the target fault domain.
-     *
+     * 
      * @param faultDomain the faultDomain value to set.
      * @return the AvailabilitySetResourceSettings object itself.
      */
@@ -81,7 +85,7 @@ public final class AvailabilitySetResourceSettings extends ResourceSettings {
 
     /**
      * Get the updateDomain property: Gets or sets the target update domain.
-     *
+     * 
      * @return the updateDomain value.
      */
     public Integer updateDomain() {
@@ -90,7 +94,7 @@ public final class AvailabilitySetResourceSettings extends ResourceSettings {
 
     /**
      * Set the updateDomain property: Gets or sets the target update domain.
-     *
+     * 
      * @param updateDomain the updateDomain value to set.
      * @return the AvailabilitySetResourceSettings object itself.
      */
@@ -99,14 +103,18 @@ public final class AvailabilitySetResourceSettings extends ResourceSettings {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AvailabilitySetResourceSettings withTargetResourceName(String targetResourceName) {
         super.withTargetResourceName(targetResourceName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AvailabilitySetResourceSettings withTargetResourceGroupName(String targetResourceGroupName) {
         super.withTargetResourceGroupName(targetResourceGroupName);
@@ -114,8 +122,17 @@ public final class AvailabilitySetResourceSettings extends ResourceSettings {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AvailabilitySetResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        super.withTargetSubscriptionId(targetSubscriptionId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

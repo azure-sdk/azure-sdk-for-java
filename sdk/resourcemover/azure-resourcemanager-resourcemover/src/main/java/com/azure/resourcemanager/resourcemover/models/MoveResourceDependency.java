@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcemover.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the dependency of the move resource. */
+/**
+ * Defines the dependency of the move resource.
+ */
 @Fluent
 public final class MoveResourceDependency {
     /*
@@ -52,13 +54,15 @@ public final class MoveResourceDependency {
     @JsonProperty(value = "isOptional")
     private String isOptional;
 
-    /** Creates an instance of MoveResourceDependency class. */
+    /**
+     * Creates an instance of MoveResourceDependency class.
+     */
     public MoveResourceDependency() {
     }
 
     /**
      * Get the id property: Gets the source ARM ID of the dependent resource.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -67,7 +71,7 @@ public final class MoveResourceDependency {
 
     /**
      * Set the id property: Gets the source ARM ID of the dependent resource.
-     *
+     * 
      * @param id the id value to set.
      * @return the MoveResourceDependency object itself.
      */
@@ -78,7 +82,7 @@ public final class MoveResourceDependency {
 
     /**
      * Get the resolutionStatus property: Gets the dependency resolution status.
-     *
+     * 
      * @return the resolutionStatus value.
      */
     public String resolutionStatus() {
@@ -87,7 +91,7 @@ public final class MoveResourceDependency {
 
     /**
      * Set the resolutionStatus property: Gets the dependency resolution status.
-     *
+     * 
      * @param resolutionStatus the resolutionStatus value to set.
      * @return the MoveResourceDependency object itself.
      */
@@ -98,7 +102,7 @@ public final class MoveResourceDependency {
 
     /**
      * Get the resolutionType property: Defines the resolution type.
-     *
+     * 
      * @return the resolutionType value.
      */
     public ResolutionType resolutionType() {
@@ -107,7 +111,7 @@ public final class MoveResourceDependency {
 
     /**
      * Set the resolutionType property: Defines the resolution type.
-     *
+     * 
      * @param resolutionType the resolutionType value to set.
      * @return the MoveResourceDependency object itself.
      */
@@ -118,7 +122,7 @@ public final class MoveResourceDependency {
 
     /**
      * Get the dependencyType property: Defines the dependency type.
-     *
+     * 
      * @return the dependencyType value.
      */
     public DependencyType dependencyType() {
@@ -127,7 +131,7 @@ public final class MoveResourceDependency {
 
     /**
      * Set the dependencyType property: Defines the dependency type.
-     *
+     * 
      * @param dependencyType the dependencyType value to set.
      * @return the MoveResourceDependency object itself.
      */
@@ -138,7 +142,7 @@ public final class MoveResourceDependency {
 
     /**
      * Get the manualResolution property: Defines the properties for manual resolution.
-     *
+     * 
      * @return the manualResolution value.
      */
     public ManualResolutionProperties manualResolution() {
@@ -147,7 +151,7 @@ public final class MoveResourceDependency {
 
     /**
      * Set the manualResolution property: Defines the properties for manual resolution.
-     *
+     * 
      * @param manualResolution the manualResolution value to set.
      * @return the MoveResourceDependency object itself.
      */
@@ -158,7 +162,7 @@ public final class MoveResourceDependency {
 
     /**
      * Get the automaticResolution property: Defines the properties for automatic resolution.
-     *
+     * 
      * @return the automaticResolution value.
      */
     public AutomaticResolutionProperties automaticResolution() {
@@ -167,7 +171,7 @@ public final class MoveResourceDependency {
 
     /**
      * Set the automaticResolution property: Defines the properties for automatic resolution.
-     *
+     * 
      * @param automaticResolution the automaticResolution value to set.
      * @return the MoveResourceDependency object itself.
      */
@@ -178,7 +182,7 @@ public final class MoveResourceDependency {
 
     /**
      * Get the isOptional property: Gets or sets a value indicating whether the dependency is optional.
-     *
+     * 
      * @return the isOptional value.
      */
     public String isOptional() {
@@ -187,7 +191,7 @@ public final class MoveResourceDependency {
 
     /**
      * Set the isOptional property: Gets or sets a value indicating whether the dependency is optional.
-     *
+     * 
      * @param isOptional the isOptional value to set.
      * @return the MoveResourceDependency object itself.
      */
@@ -198,7 +202,7 @@ public final class MoveResourceDependency {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

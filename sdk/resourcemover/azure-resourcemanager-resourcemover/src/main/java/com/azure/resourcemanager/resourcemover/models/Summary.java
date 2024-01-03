@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcemover.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Summary item. */
+/**
+ * Summary item.
+ */
 @Fluent
 public final class Summary {
     /*
@@ -22,13 +24,15 @@ public final class Summary {
     @JsonProperty(value = "item")
     private String item;
 
-    /** Creates an instance of Summary class. */
+    /**
+     * Creates an instance of Summary class.
+     */
     public Summary() {
     }
 
     /**
      * Get the count property: Gets the count.
-     *
+     * 
      * @return the count value.
      */
     public Integer count() {
@@ -37,7 +41,7 @@ public final class Summary {
 
     /**
      * Set the count property: Gets the count.
-     *
+     * 
      * @param count the count value to set.
      * @return the Summary object itself.
      */
@@ -48,7 +52,7 @@ public final class Summary {
 
     /**
      * Get the item property: Gets the item.
-     *
+     * 
      * @return the item value.
      */
     public String item() {
@@ -57,7 +61,7 @@ public final class Summary {
 
     /**
      * Set the item property: Gets the item.
-     *
+     * 
      * @param item the item value to set.
      * @return the Summary object itself.
      */
@@ -68,7 +72,7 @@ public final class Summary {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

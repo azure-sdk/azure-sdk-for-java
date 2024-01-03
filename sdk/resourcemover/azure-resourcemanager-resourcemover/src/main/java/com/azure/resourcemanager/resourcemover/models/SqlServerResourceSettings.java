@@ -8,23 +8,31 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Defines the SQL Server resource settings. */
+/**
+ * Defines the SQL Server resource settings.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
 @JsonTypeName("Microsoft.Sql/servers")
 @Fluent
 public final class SqlServerResourceSettings extends ResourceSettings {
-    /** Creates an instance of SqlServerResourceSettings class. */
+    /**
+     * Creates an instance of SqlServerResourceSettings class.
+     */
     public SqlServerResourceSettings() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SqlServerResourceSettings withTargetResourceName(String targetResourceName) {
         super.withTargetResourceName(targetResourceName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SqlServerResourceSettings withTargetResourceGroupName(String targetResourceGroupName) {
         super.withTargetResourceGroupName(targetResourceGroupName);
@@ -32,8 +40,17 @@ public final class SqlServerResourceSettings extends ResourceSettings {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        super.withTargetSubscriptionId(targetSubscriptionId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

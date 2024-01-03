@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Defines the request body for updating move collection. */
+/**
+ * Defines the request body for updating move collection.
+ */
 @Fluent
 public final class UpdateMoveCollectionRequest {
     /*
@@ -25,13 +27,15 @@ public final class UpdateMoveCollectionRequest {
     @JsonProperty(value = "identity")
     private Identity identity;
 
-    /** Creates an instance of UpdateMoveCollectionRequest class. */
+    /**
+     * Creates an instance of UpdateMoveCollectionRequest class.
+     */
     public UpdateMoveCollectionRequest() {
     }
 
     /**
      * Get the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -40,7 +44,7 @@ public final class UpdateMoveCollectionRequest {
 
     /**
      * Set the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the UpdateMoveCollectionRequest object itself.
      */
@@ -51,7 +55,7 @@ public final class UpdateMoveCollectionRequest {
 
     /**
      * Get the identity property: Defines the MSI properties of the Move Collection.
-     *
+     * 
      * @return the identity value.
      */
     public Identity identity() {
@@ -60,7 +64,7 @@ public final class UpdateMoveCollectionRequest {
 
     /**
      * Set the identity property: Defines the MSI properties of the Move Collection.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the UpdateMoveCollectionRequest object itself.
      */
@@ -71,7 +75,7 @@ public final class UpdateMoveCollectionRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

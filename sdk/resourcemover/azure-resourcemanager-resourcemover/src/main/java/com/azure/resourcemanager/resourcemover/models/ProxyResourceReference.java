@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcemover.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines reference to a proxy resource. */
+/**
+ * Defines reference to a proxy resource.
+ */
 @Fluent
 public class ProxyResourceReference extends AzureResourceReference {
     /*
@@ -16,13 +18,15 @@ public class ProxyResourceReference extends AzureResourceReference {
     @JsonProperty(value = "name")
     private String name;
 
-    /** Creates an instance of ProxyResourceReference class. */
+    /**
+     * Creates an instance of ProxyResourceReference class.
+     */
     public ProxyResourceReference() {
     }
 
     /**
      * Get the name property: Gets the name of the proxy resource on the target side.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -31,7 +35,7 @@ public class ProxyResourceReference extends AzureResourceReference {
 
     /**
      * Set the name property: Gets the name of the proxy resource on the target side.
-     *
+     * 
      * @param name the name value to set.
      * @return the ProxyResourceReference object itself.
      */
@@ -40,7 +44,9 @@ public class ProxyResourceReference extends AzureResourceReference {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ProxyResourceReference withSourceArmResourceId(String sourceArmResourceId) {
         super.withSourceArmResourceId(sourceArmResourceId);
@@ -49,7 +55,7 @@ public class ProxyResourceReference extends AzureResourceReference {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

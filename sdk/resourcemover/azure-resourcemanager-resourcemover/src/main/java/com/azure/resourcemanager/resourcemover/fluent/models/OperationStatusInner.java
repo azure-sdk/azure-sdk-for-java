@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.resourcemover.models.OperationStatusError;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Operation status REST resource. */
+/**
+ * Operation status REST resource.
+ */
 @Immutable
 public final class OperationStatusInner {
     /*
@@ -54,13 +56,15 @@ public final class OperationStatusInner {
     @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
     private Object properties;
 
-    /** Creates an instance of OperationStatusInner class. */
+    /**
+     * Creates an instance of OperationStatusInner class.
+     */
     public OperationStatusInner() {
     }
 
     /**
      * Get the id property: Resource Id.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -69,7 +73,7 @@ public final class OperationStatusInner {
 
     /**
      * Get the name property: Operation name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -77,9 +81,9 @@ public final class OperationStatusInner {
     }
 
     /**
-     * Get the status property: Status of the operation. ARM expects the terminal status to be one of Succeeded/ Failed/
-     * Canceled. All other values imply that the operation is still running.
-     *
+     * Get the status property: Status of the operation. ARM expects the terminal status to be one of Succeeded/
+     * Failed/ Canceled. All other values imply that the operation is still running.
+     * 
      * @return the status value.
      */
     public String status() {
@@ -88,7 +92,7 @@ public final class OperationStatusInner {
 
     /**
      * Get the startTime property: Start time.
-     *
+     * 
      * @return the startTime value.
      */
     public String startTime() {
@@ -97,7 +101,7 @@ public final class OperationStatusInner {
 
     /**
      * Get the endTime property: End time.
-     *
+     * 
      * @return the endTime value.
      */
     public String endTime() {
@@ -106,7 +110,7 @@ public final class OperationStatusInner {
 
     /**
      * Get the error property: Error stating all error details for the operation.
-     *
+     * 
      * @return the error value.
      */
     public OperationStatusError error() {
@@ -115,7 +119,7 @@ public final class OperationStatusInner {
 
     /**
      * Get the properties property: Custom data.
-     *
+     * 
      * @return the properties value.
      */
     public Object properties() {
@@ -124,7 +128,7 @@ public final class OperationStatusInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

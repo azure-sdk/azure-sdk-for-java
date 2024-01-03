@@ -6,21 +6,29 @@ package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Defines the move resource status. */
+/**
+ * Defines the move resource status.
+ */
 @Fluent
 public final class MoveResourcePropertiesMoveStatus extends MoveResourceStatus {
-    /** Creates an instance of MoveResourcePropertiesMoveStatus class. */
+    /**
+     * Creates an instance of MoveResourcePropertiesMoveStatus class.
+     */
     public MoveResourcePropertiesMoveStatus() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MoveResourcePropertiesMoveStatus withJobStatus(JobStatus jobStatus) {
         super.withJobStatus(jobStatus);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MoveResourcePropertiesMoveStatus withErrors(MoveResourceError errors) {
         super.withErrors(errors);
@@ -29,7 +37,7 @@ public final class MoveResourcePropertiesMoveStatus extends MoveResourceStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

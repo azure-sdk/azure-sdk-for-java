@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 import java.util.Map;
 
-/** Defines the network interface resource settings. */
+/**
+ * Defines the network interface resource settings.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
 @JsonTypeName("Microsoft.Network/networkInterfaces")
 @Fluent
@@ -36,13 +38,15 @@ public final class NetworkInterfaceResourceSettings extends ResourceSettings {
     @JsonProperty(value = "enableAcceleratedNetworking")
     private Boolean enableAcceleratedNetworking;
 
-    /** Creates an instance of NetworkInterfaceResourceSettings class. */
+    /**
+     * Creates an instance of NetworkInterfaceResourceSettings class.
+     */
     public NetworkInterfaceResourceSettings() {
     }
 
     /**
      * Get the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -51,7 +55,7 @@ public final class NetworkInterfaceResourceSettings extends ResourceSettings {
 
     /**
      * Set the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the NetworkInterfaceResourceSettings object itself.
      */
@@ -62,7 +66,7 @@ public final class NetworkInterfaceResourceSettings extends ResourceSettings {
 
     /**
      * Get the ipConfigurations property: Gets or sets the IP configurations of the NIC.
-     *
+     * 
      * @return the ipConfigurations value.
      */
     public List<NicIpConfigurationResourceSettings> ipConfigurations() {
@@ -71,12 +75,12 @@ public final class NetworkInterfaceResourceSettings extends ResourceSettings {
 
     /**
      * Set the ipConfigurations property: Gets or sets the IP configurations of the NIC.
-     *
+     * 
      * @param ipConfigurations the ipConfigurations value to set.
      * @return the NetworkInterfaceResourceSettings object itself.
      */
-    public NetworkInterfaceResourceSettings withIpConfigurations(
-        List<NicIpConfigurationResourceSettings> ipConfigurations) {
+    public NetworkInterfaceResourceSettings
+        withIpConfigurations(List<NicIpConfigurationResourceSettings> ipConfigurations) {
         this.ipConfigurations = ipConfigurations;
         return this;
     }
@@ -84,7 +88,7 @@ public final class NetworkInterfaceResourceSettings extends ResourceSettings {
     /**
      * Get the enableAcceleratedNetworking property: Gets or sets a value indicating whether accelerated networking is
      * enabled.
-     *
+     * 
      * @return the enableAcceleratedNetworking value.
      */
     public Boolean enableAcceleratedNetworking() {
@@ -94,7 +98,7 @@ public final class NetworkInterfaceResourceSettings extends ResourceSettings {
     /**
      * Set the enableAcceleratedNetworking property: Gets or sets a value indicating whether accelerated networking is
      * enabled.
-     *
+     * 
      * @param enableAcceleratedNetworking the enableAcceleratedNetworking value to set.
      * @return the NetworkInterfaceResourceSettings object itself.
      */
@@ -103,14 +107,18 @@ public final class NetworkInterfaceResourceSettings extends ResourceSettings {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkInterfaceResourceSettings withTargetResourceName(String targetResourceName) {
         super.withTargetResourceName(targetResourceName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkInterfaceResourceSettings withTargetResourceGroupName(String targetResourceGroupName) {
         super.withTargetResourceGroupName(targetResourceGroupName);
@@ -118,8 +126,17 @@ public final class NetworkInterfaceResourceSettings extends ResourceSettings {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public NetworkInterfaceResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        super.withTargetSubscriptionId(targetSubscriptionId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

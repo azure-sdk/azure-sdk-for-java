@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcemover.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines load balancer backend address pool properties. */
+/**
+ * Defines load balancer backend address pool properties.
+ */
 @Fluent
 public final class LBBackendAddressPoolResourceSettings {
     /*
@@ -16,13 +18,15 @@ public final class LBBackendAddressPoolResourceSettings {
     @JsonProperty(value = "name")
     private String name;
 
-    /** Creates an instance of LBBackendAddressPoolResourceSettings class. */
+    /**
+     * Creates an instance of LBBackendAddressPoolResourceSettings class.
+     */
     public LBBackendAddressPoolResourceSettings() {
     }
 
     /**
      * Get the name property: Gets or sets the backend address pool name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -31,7 +35,7 @@ public final class LBBackendAddressPoolResourceSettings {
 
     /**
      * Set the name property: Gets or sets the backend address pool name.
-     *
+     * 
      * @param name the name value to set.
      * @return the LBBackendAddressPoolResourceSettings object itself.
      */
@@ -42,7 +46,7 @@ public final class LBBackendAddressPoolResourceSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

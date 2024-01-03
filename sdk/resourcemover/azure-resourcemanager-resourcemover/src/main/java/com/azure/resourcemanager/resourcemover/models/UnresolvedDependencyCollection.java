@@ -9,7 +9,9 @@ import com.azure.resourcemanager.resourcemover.fluent.models.UnresolvedDependenc
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Unresolved dependency collection. */
+/**
+ * Unresolved dependency collection.
+ */
 @Fluent
 public final class UnresolvedDependencyCollection {
     /*
@@ -19,7 +21,7 @@ public final class UnresolvedDependencyCollection {
     private List<UnresolvedDependencyInner> value;
 
     /*
-     * Gets or sets the value of  next link.
+     * Gets or sets the value of next link.
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
@@ -36,13 +38,15 @@ public final class UnresolvedDependencyCollection {
     @JsonProperty(value = "totalCount", access = JsonProperty.Access.WRITE_ONLY)
     private Long totalCount;
 
-    /** Creates an instance of UnresolvedDependencyCollection class. */
+    /**
+     * Creates an instance of UnresolvedDependencyCollection class.
+     */
     public UnresolvedDependencyCollection() {
     }
 
     /**
      * Get the value property: Gets or sets the list of unresolved dependencies.
-     *
+     * 
      * @return the value value.
      */
     public List<UnresolvedDependencyInner> value() {
@@ -51,7 +55,7 @@ public final class UnresolvedDependencyCollection {
 
     /**
      * Set the value property: Gets or sets the list of unresolved dependencies.
-     *
+     * 
      * @param value the value value to set.
      * @return the UnresolvedDependencyCollection object itself.
      */
@@ -62,7 +66,7 @@ public final class UnresolvedDependencyCollection {
 
     /**
      * Get the nextLink property: Gets or sets the value of next link.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -71,7 +75,7 @@ public final class UnresolvedDependencyCollection {
 
     /**
      * Set the nextLink property: Gets or sets the value of next link.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the UnresolvedDependencyCollection object itself.
      */
@@ -83,7 +87,7 @@ public final class UnresolvedDependencyCollection {
     /**
      * Get the summaryCollection property: Gets or sets the list of summary items and the field on which summary is
      * done.
-     *
+     * 
      * @return the summaryCollection value.
      */
     public SummaryCollection summaryCollection() {
@@ -92,7 +96,7 @@ public final class UnresolvedDependencyCollection {
 
     /**
      * Get the totalCount property: Gets the total count.
-     *
+     * 
      * @return the totalCount value.
      */
     public Long totalCount() {
@@ -101,7 +105,7 @@ public final class UnresolvedDependencyCollection {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

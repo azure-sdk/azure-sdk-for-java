@@ -6,14 +6,20 @@ package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Defines reference to NSG. */
+/**
+ * Defines reference to NSG.
+ */
 @Fluent
 public final class NsgReference extends AzureResourceReference {
-    /** Creates an instance of NsgReference class. */
+    /**
+     * Creates an instance of NsgReference class.
+     */
     public NsgReference() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NsgReference withSourceArmResourceId(String sourceArmResourceId) {
         super.withSourceArmResourceId(sourceArmResourceId);
@@ -22,7 +28,7 @@ public final class NsgReference extends AzureResourceReference {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

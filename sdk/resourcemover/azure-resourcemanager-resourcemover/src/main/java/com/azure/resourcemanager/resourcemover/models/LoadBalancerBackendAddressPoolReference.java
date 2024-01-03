@@ -6,21 +6,29 @@ package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Defines reference to load balancer backend address pools. */
+/**
+ * Defines reference to load balancer backend address pools.
+ */
 @Fluent
 public final class LoadBalancerBackendAddressPoolReference extends ProxyResourceReference {
-    /** Creates an instance of LoadBalancerBackendAddressPoolReference class. */
+    /**
+     * Creates an instance of LoadBalancerBackendAddressPoolReference class.
+     */
     public LoadBalancerBackendAddressPoolReference() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LoadBalancerBackendAddressPoolReference withName(String name) {
         super.withName(name);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LoadBalancerBackendAddressPoolReference withSourceArmResourceId(String sourceArmResourceId) {
         super.withSourceArmResourceId(sourceArmResourceId);
@@ -29,7 +37,7 @@ public final class LoadBalancerBackendAddressPoolReference extends ProxyResource
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

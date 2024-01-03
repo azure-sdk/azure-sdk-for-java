@@ -6,21 +6,29 @@ package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Defines reference to subnet. */
+/**
+ * Defines reference to subnet.
+ */
 @Fluent
 public final class SubnetReference extends ProxyResourceReference {
-    /** Creates an instance of SubnetReference class. */
+    /**
+     * Creates an instance of SubnetReference class.
+     */
     public SubnetReference() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SubnetReference withName(String name) {
         super.withName(name);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SubnetReference withSourceArmResourceId(String sourceArmResourceId) {
         super.withSourceArmResourceId(sourceArmResourceId);
@@ -29,7 +37,7 @@ public final class SubnetReference extends ProxyResourceReference {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

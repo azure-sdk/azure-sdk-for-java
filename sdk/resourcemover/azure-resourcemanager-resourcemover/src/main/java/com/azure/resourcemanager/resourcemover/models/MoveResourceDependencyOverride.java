@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcemover.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the dependency override of the move resource. */
+/**
+ * Defines the dependency override of the move resource.
+ */
 @Fluent
 public final class MoveResourceDependencyOverride {
     /*
@@ -23,13 +25,15 @@ public final class MoveResourceDependencyOverride {
     @JsonProperty(value = "targetId")
     private String targetId;
 
-    /** Creates an instance of MoveResourceDependencyOverride class. */
+    /**
+     * Creates an instance of MoveResourceDependencyOverride class.
+     */
     public MoveResourceDependencyOverride() {
     }
 
     /**
      * Get the id property: Gets or sets the ARM ID of the dependent resource.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -38,7 +42,7 @@ public final class MoveResourceDependencyOverride {
 
     /**
      * Set the id property: Gets or sets the ARM ID of the dependent resource.
-     *
+     * 
      * @param id the id value to set.
      * @return the MoveResourceDependencyOverride object itself.
      */
@@ -50,7 +54,7 @@ public final class MoveResourceDependencyOverride {
     /**
      * Get the targetId property: Gets or sets the resource ARM id of either the MoveResource or the resource ARM ID of
      * the dependent resource.
-     *
+     * 
      * @return the targetId value.
      */
     public String targetId() {
@@ -60,7 +64,7 @@ public final class MoveResourceDependencyOverride {
     /**
      * Set the targetId property: Gets or sets the resource ARM id of either the MoveResource or the resource ARM ID of
      * the dependent resource.
-     *
+     * 
      * @param targetId the targetId value to set.
      * @return the MoveResourceDependencyOverride object itself.
      */
@@ -71,7 +75,7 @@ public final class MoveResourceDependencyOverride {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

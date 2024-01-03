@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Gets or sets the resource settings. */
+/**
+ * Gets or sets the resource settings.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -32,8 +34,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "resourceGroups", value = ResourceGroupResourceSettings.class),
     @JsonSubTypes.Type(name = "Microsoft.Network/publicIPAddresses", value = PublicIpAddressResourceSettings.class),
     @JsonSubTypes.Type(name = "Microsoft.KeyVault/vaults", value = KeyVaultResourceSettings.class),
-    @JsonSubTypes.Type(name = "Microsoft.Compute/diskEncryptionSets", value = DiskEncryptionSetResourceSettings.class)
-})
+    @JsonSubTypes.Type(
+        name = "Microsoft.Compute/diskEncryptionSets",
+        value = DiskEncryptionSetResourceSettings.class) })
 @Fluent
 public class ResourceSettings {
     /*
@@ -48,13 +51,21 @@ public class ResourceSettings {
     @JsonProperty(value = "targetResourceGroupName")
     private String targetResourceGroupName;
 
-    /** Creates an instance of ResourceSettings class. */
+    /*
+     * Gets or sets the target subscription Id.
+     */
+    @JsonProperty(value = "targetSubscriptionId")
+    private String targetSubscriptionId;
+
+    /**
+     * Creates an instance of ResourceSettings class.
+     */
     public ResourceSettings() {
     }
 
     /**
      * Get the targetResourceName property: Gets or sets the target Resource name.
-     *
+     * 
      * @return the targetResourceName value.
      */
     public String targetResourceName() {
@@ -63,7 +74,7 @@ public class ResourceSettings {
 
     /**
      * Set the targetResourceName property: Gets or sets the target Resource name.
-     *
+     * 
      * @param targetResourceName the targetResourceName value to set.
      * @return the ResourceSettings object itself.
      */
@@ -74,7 +85,7 @@ public class ResourceSettings {
 
     /**
      * Get the targetResourceGroupName property: Gets or sets the target resource group name.
-     *
+     * 
      * @return the targetResourceGroupName value.
      */
     public String targetResourceGroupName() {
@@ -83,7 +94,7 @@ public class ResourceSettings {
 
     /**
      * Set the targetResourceGroupName property: Gets or sets the target resource group name.
-     *
+     * 
      * @param targetResourceGroupName the targetResourceGroupName value to set.
      * @return the ResourceSettings object itself.
      */
@@ -93,8 +104,28 @@ public class ResourceSettings {
     }
 
     /**
+     * Get the targetSubscriptionId property: Gets or sets the target subscription Id.
+     * 
+     * @return the targetSubscriptionId value.
+     */
+    public String targetSubscriptionId() {
+        return this.targetSubscriptionId;
+    }
+
+    /**
+     * Set the targetSubscriptionId property: Gets or sets the target subscription Id.
+     * 
+     * @param targetSubscriptionId the targetSubscriptionId value to set.
+     * @return the ResourceSettings object itself.
+     */
+    public ResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        this.targetSubscriptionId = targetSubscriptionId;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

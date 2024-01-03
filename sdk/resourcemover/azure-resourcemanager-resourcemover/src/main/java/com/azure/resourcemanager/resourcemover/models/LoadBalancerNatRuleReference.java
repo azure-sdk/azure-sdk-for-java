@@ -6,21 +6,29 @@ package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Defines reference to load balancer NAT rules. */
+/**
+ * Defines reference to load balancer NAT rules.
+ */
 @Fluent
 public final class LoadBalancerNatRuleReference extends ProxyResourceReference {
-    /** Creates an instance of LoadBalancerNatRuleReference class. */
+    /**
+     * Creates an instance of LoadBalancerNatRuleReference class.
+     */
     public LoadBalancerNatRuleReference() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LoadBalancerNatRuleReference withName(String name) {
         super.withName(name);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LoadBalancerNatRuleReference withSourceArmResourceId(String sourceArmResourceId) {
         super.withSourceArmResourceId(sourceArmResourceId);
@@ -29,7 +37,7 @@ public final class LoadBalancerNatRuleReference extends ProxyResourceReference {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

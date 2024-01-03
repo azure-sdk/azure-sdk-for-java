@@ -9,7 +9,9 @@ import com.azure.resourcemanager.resourcemover.fluent.models.MoveCollectionInner
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the collection of move collections. */
+/**
+ * Defines the collection of move collections.
+ */
 @Fluent
 public final class MoveCollectionResultList {
     /*
@@ -19,18 +21,20 @@ public final class MoveCollectionResultList {
     private List<MoveCollectionInner> value;
 
     /*
-     * Gets the value of  next link.
+     * Gets the value of next link.
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of MoveCollectionResultList class. */
+    /**
+     * Creates an instance of MoveCollectionResultList class.
+     */
     public MoveCollectionResultList() {
     }
 
     /**
      * Get the value property: Gets the list of move collections.
-     *
+     * 
      * @return the value value.
      */
     public List<MoveCollectionInner> value() {
@@ -39,7 +43,7 @@ public final class MoveCollectionResultList {
 
     /**
      * Set the value property: Gets the list of move collections.
-     *
+     * 
      * @param value the value value to set.
      * @return the MoveCollectionResultList object itself.
      */
@@ -50,7 +54,7 @@ public final class MoveCollectionResultList {
 
     /**
      * Get the nextLink property: Gets the value of next link.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class MoveCollectionResultList {
 
     /**
      * Set the nextLink property: Gets the value of next link.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the MoveCollectionResultList object itself.
      */
@@ -70,7 +74,7 @@ public final class MoveCollectionResultList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

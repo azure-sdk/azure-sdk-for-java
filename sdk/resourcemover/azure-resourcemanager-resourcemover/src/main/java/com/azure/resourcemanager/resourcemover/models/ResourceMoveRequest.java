@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the request body for resource move operation. */
+/**
+ * Defines the request body for resource move operation.
+ */
 @Fluent
 public final class ResourceMoveRequest {
     /*
@@ -31,14 +33,16 @@ public final class ResourceMoveRequest {
     @JsonProperty(value = "moveResourceInputType")
     private MoveResourceInputType moveResourceInputType;
 
-    /** Creates an instance of ResourceMoveRequest class. */
+    /**
+     * Creates an instance of ResourceMoveRequest class.
+     */
     public ResourceMoveRequest() {
     }
 
     /**
      * Get the validateOnly property: Gets or sets a value indicating whether the operation needs to only run
      * pre-requisite.
-     *
+     * 
      * @return the validateOnly value.
      */
     public Boolean validateOnly() {
@@ -48,7 +52,7 @@ public final class ResourceMoveRequest {
     /**
      * Set the validateOnly property: Gets or sets a value indicating whether the operation needs to only run
      * pre-requisite.
-     *
+     * 
      * @param validateOnly the validateOnly value to set.
      * @return the ResourceMoveRequest object itself.
      */
@@ -60,7 +64,7 @@ public final class ResourceMoveRequest {
     /**
      * Get the moveResources property: Gets or sets the list of resource Id's, by default it accepts move resource id's
      * unless the input type is switched via moveResourceInputType property.
-     *
+     * 
      * @return the moveResources value.
      */
     public List<String> moveResources() {
@@ -70,7 +74,7 @@ public final class ResourceMoveRequest {
     /**
      * Set the moveResources property: Gets or sets the list of resource Id's, by default it accepts move resource id's
      * unless the input type is switched via moveResourceInputType property.
-     *
+     * 
      * @param moveResources the moveResources value to set.
      * @return the ResourceMoveRequest object itself.
      */
@@ -81,7 +85,7 @@ public final class ResourceMoveRequest {
 
     /**
      * Get the moveResourceInputType property: Defines the move resource input type.
-     *
+     * 
      * @return the moveResourceInputType value.
      */
     public MoveResourceInputType moveResourceInputType() {
@@ -90,7 +94,7 @@ public final class ResourceMoveRequest {
 
     /**
      * Set the moveResourceInputType property: Defines the move resource input type.
-     *
+     * 
      * @param moveResourceInputType the moveResourceInputType value to set.
      * @return the ResourceMoveRequest object itself.
      */
@@ -101,15 +105,13 @@ public final class ResourceMoveRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (moveResources() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property moveResources in model ResourceMoveRequest"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property moveResources in model ResourceMoveRequest"));
         }
     }
 

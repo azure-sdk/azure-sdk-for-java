@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcemover.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the move collection properties. */
+/**
+ * Defines the move collection properties.
+ */
 @Fluent
 public final class MoveCollectionProperties {
     /*
@@ -52,13 +54,15 @@ public final class MoveCollectionProperties {
     @JsonProperty(value = "errors", access = JsonProperty.Access.WRITE_ONLY)
     private MoveCollectionPropertiesErrors errors;
 
-    /** Creates an instance of MoveCollectionProperties class. */
+    /**
+     * Creates an instance of MoveCollectionProperties class.
+     */
     public MoveCollectionProperties() {
     }
 
     /**
      * Get the sourceRegion property: Gets or sets the source region.
-     *
+     * 
      * @return the sourceRegion value.
      */
     public String sourceRegion() {
@@ -67,7 +71,7 @@ public final class MoveCollectionProperties {
 
     /**
      * Set the sourceRegion property: Gets or sets the source region.
-     *
+     * 
      * @param sourceRegion the sourceRegion value to set.
      * @return the MoveCollectionProperties object itself.
      */
@@ -78,7 +82,7 @@ public final class MoveCollectionProperties {
 
     /**
      * Get the targetRegion property: Gets or sets the target region.
-     *
+     * 
      * @return the targetRegion value.
      */
     public String targetRegion() {
@@ -87,7 +91,7 @@ public final class MoveCollectionProperties {
 
     /**
      * Set the targetRegion property: Gets or sets the target region.
-     *
+     * 
      * @param targetRegion the targetRegion value to set.
      * @return the MoveCollectionProperties object itself.
      */
@@ -99,7 +103,7 @@ public final class MoveCollectionProperties {
     /**
      * Get the moveRegion property: Gets or sets the move region which indicates the region where the VM Regional to
      * Zonal move will be conducted.
-     *
+     * 
      * @return the moveRegion value.
      */
     public String moveRegion() {
@@ -109,7 +113,7 @@ public final class MoveCollectionProperties {
     /**
      * Set the moveRegion property: Gets or sets the move region which indicates the region where the VM Regional to
      * Zonal move will be conducted.
-     *
+     * 
      * @param moveRegion the moveRegion value to set.
      * @return the MoveCollectionProperties object itself.
      */
@@ -120,7 +124,7 @@ public final class MoveCollectionProperties {
 
     /**
      * Get the provisioningState property: Defines the provisioning states.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -129,7 +133,7 @@ public final class MoveCollectionProperties {
 
     /**
      * Get the version property: Gets or sets the version of move collection.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -138,7 +142,7 @@ public final class MoveCollectionProperties {
 
     /**
      * Set the version property: Gets or sets the version of move collection.
-     *
+     * 
      * @param version the version value to set.
      * @return the MoveCollectionProperties object itself.
      */
@@ -149,7 +153,7 @@ public final class MoveCollectionProperties {
 
     /**
      * Get the moveType property: Defines the MoveType.
-     *
+     * 
      * @return the moveType value.
      */
     public MoveType moveType() {
@@ -158,7 +162,7 @@ public final class MoveCollectionProperties {
 
     /**
      * Set the moveType property: Defines the MoveType.
-     *
+     * 
      * @param moveType the moveType value to set.
      * @return the MoveCollectionProperties object itself.
      */
@@ -169,7 +173,7 @@ public final class MoveCollectionProperties {
 
     /**
      * Get the errors property: Defines the move collection errors.
-     *
+     * 
      * @return the errors value.
      */
     public MoveCollectionPropertiesErrors errors() {
@@ -178,7 +182,7 @@ public final class MoveCollectionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

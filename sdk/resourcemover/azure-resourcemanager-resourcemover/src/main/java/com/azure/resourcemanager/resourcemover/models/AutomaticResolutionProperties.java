@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcemover.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the properties for automatic resolution. */
+/**
+ * Defines the properties for automatic resolution.
+ */
 @Fluent
 public final class AutomaticResolutionProperties {
     /*
@@ -17,14 +19,16 @@ public final class AutomaticResolutionProperties {
     @JsonProperty(value = "moveResourceId")
     private String moveResourceId;
 
-    /** Creates an instance of AutomaticResolutionProperties class. */
+    /**
+     * Creates an instance of AutomaticResolutionProperties class.
+     */
     public AutomaticResolutionProperties() {
     }
 
     /**
-     * Get the moveResourceId property: Gets the MoveResource ARM ID of the dependent resource if the resolution type is
-     * Automatic.
-     *
+     * Get the moveResourceId property: Gets the MoveResource ARM ID of
+     * the dependent resource if the resolution type is Automatic.
+     * 
      * @return the moveResourceId value.
      */
     public String moveResourceId() {
@@ -32,9 +36,9 @@ public final class AutomaticResolutionProperties {
     }
 
     /**
-     * Set the moveResourceId property: Gets the MoveResource ARM ID of the dependent resource if the resolution type is
-     * Automatic.
-     *
+     * Set the moveResourceId property: Gets the MoveResource ARM ID of
+     * the dependent resource if the resolution type is Automatic.
+     * 
      * @param moveResourceId the moveResourceId value to set.
      * @return the AutomaticResolutionProperties object itself.
      */
@@ -45,7 +49,7 @@ public final class AutomaticResolutionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

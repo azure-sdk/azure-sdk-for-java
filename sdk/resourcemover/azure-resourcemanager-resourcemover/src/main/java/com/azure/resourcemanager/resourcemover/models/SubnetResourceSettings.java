@@ -6,8 +6,11 @@ package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
-/** Defines the virtual network subnets resource settings. */
+/**
+ * Defines the virtual network subnets resource settings.
+ */
 @Fluent
 public final class SubnetResourceSettings {
     /*
@@ -23,18 +26,26 @@ public final class SubnetResourceSettings {
     private String addressPrefix;
 
     /*
+     * Gets or sets multiple address prefixes for the subnet.
+     */
+    @JsonProperty(value = "addressPrefixes")
+    private List<String> addressPrefixes;
+
+    /*
      * Defines reference to NSG.
      */
     @JsonProperty(value = "networkSecurityGroup")
     private NsgReference networkSecurityGroup;
 
-    /** Creates an instance of SubnetResourceSettings class. */
+    /**
+     * Creates an instance of SubnetResourceSettings class.
+     */
     public SubnetResourceSettings() {
     }
 
     /**
      * Get the name property: Gets or sets the Subnet name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -43,7 +54,7 @@ public final class SubnetResourceSettings {
 
     /**
      * Set the name property: Gets or sets the Subnet name.
-     *
+     * 
      * @param name the name value to set.
      * @return the SubnetResourceSettings object itself.
      */
@@ -54,7 +65,7 @@ public final class SubnetResourceSettings {
 
     /**
      * Get the addressPrefix property: Gets or sets address prefix for the subnet.
-     *
+     * 
      * @return the addressPrefix value.
      */
     public String addressPrefix() {
@@ -63,7 +74,7 @@ public final class SubnetResourceSettings {
 
     /**
      * Set the addressPrefix property: Gets or sets address prefix for the subnet.
-     *
+     * 
      * @param addressPrefix the addressPrefix value to set.
      * @return the SubnetResourceSettings object itself.
      */
@@ -73,8 +84,28 @@ public final class SubnetResourceSettings {
     }
 
     /**
+     * Get the addressPrefixes property: Gets or sets multiple address prefixes for the subnet.
+     * 
+     * @return the addressPrefixes value.
+     */
+    public List<String> addressPrefixes() {
+        return this.addressPrefixes;
+    }
+
+    /**
+     * Set the addressPrefixes property: Gets or sets multiple address prefixes for the subnet.
+     * 
+     * @param addressPrefixes the addressPrefixes value to set.
+     * @return the SubnetResourceSettings object itself.
+     */
+    public SubnetResourceSettings withAddressPrefixes(List<String> addressPrefixes) {
+        this.addressPrefixes = addressPrefixes;
+        return this;
+    }
+
+    /**
      * Get the networkSecurityGroup property: Defines reference to NSG.
-     *
+     * 
      * @return the networkSecurityGroup value.
      */
     public NsgReference networkSecurityGroup() {
@@ -83,7 +114,7 @@ public final class SubnetResourceSettings {
 
     /**
      * Set the networkSecurityGroup property: Defines reference to NSG.
-     *
+     * 
      * @param networkSecurityGroup the networkSecurityGroup value to set.
      * @return the SubnetResourceSettings object itself.
      */
@@ -94,7 +125,7 @@ public final class SubnetResourceSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

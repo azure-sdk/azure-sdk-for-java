@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcemover.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An error response from the azure resource mover service. */
+/**
+ * An error response from the azure resource mover service.
+ */
 @Fluent
 public class MoveResourceError {
     /*
@@ -16,13 +18,15 @@ public class MoveResourceError {
     @JsonProperty(value = "properties")
     private MoveResourceErrorBody properties;
 
-    /** Creates an instance of MoveResourceError class. */
+    /**
+     * Creates an instance of MoveResourceError class.
+     */
     public MoveResourceError() {
     }
 
     /**
      * Get the properties property: The move resource error body.
-     *
+     * 
      * @return the properties value.
      */
     public MoveResourceErrorBody properties() {
@@ -31,7 +35,7 @@ public class MoveResourceError {
 
     /**
      * Set the properties property: The move resource error body.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the MoveResourceError object itself.
      */
@@ -42,7 +46,7 @@ public class MoveResourceError {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

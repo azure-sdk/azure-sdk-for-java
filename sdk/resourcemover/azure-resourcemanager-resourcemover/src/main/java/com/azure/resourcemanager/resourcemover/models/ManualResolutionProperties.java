@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcemover.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the properties for manual resolution. */
+/**
+ * Defines the properties for manual resolution.
+ */
 @Fluent
 public final class ManualResolutionProperties {
     /*
@@ -16,14 +18,16 @@ public final class ManualResolutionProperties {
     @JsonProperty(value = "targetId")
     private String targetId;
 
-    /** Creates an instance of ManualResolutionProperties class. */
+    /**
+     * Creates an instance of ManualResolutionProperties class.
+     */
     public ManualResolutionProperties() {
     }
 
     /**
-     * Get the targetId property: Gets or sets the target resource ARM ID of the dependent resource if the resource type
-     * is Manual.
-     *
+     * Get the targetId property: Gets or sets the target resource ARM ID of the dependent resource if the resource
+     * type is Manual.
+     * 
      * @return the targetId value.
      */
     public String targetId() {
@@ -31,9 +35,9 @@ public final class ManualResolutionProperties {
     }
 
     /**
-     * Set the targetId property: Gets or sets the target resource ARM ID of the dependent resource if the resource type
-     * is Manual.
-     *
+     * Set the targetId property: Gets or sets the target resource ARM ID of the dependent resource if the resource
+     * type is Manual.
+     * 
      * @param targetId the targetId value to set.
      * @return the ManualResolutionProperties object itself.
      */
@@ -44,7 +48,7 @@ public final class ManualResolutionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

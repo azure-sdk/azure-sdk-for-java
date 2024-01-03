@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the move resource properties. */
+/**
+ * Defines the move resource properties.
+ */
 @Fluent
 public final class MoveResourceProperties {
     /*
@@ -78,13 +80,15 @@ public final class MoveResourceProperties {
     @JsonProperty(value = "errors", access = JsonProperty.Access.WRITE_ONLY)
     private MoveResourcePropertiesErrors errors;
 
-    /** Creates an instance of MoveResourceProperties class. */
+    /**
+     * Creates an instance of MoveResourceProperties class.
+     */
     public MoveResourceProperties() {
     }
 
     /**
      * Get the provisioningState property: Defines the provisioning states.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -93,7 +97,7 @@ public final class MoveResourceProperties {
 
     /**
      * Get the sourceId property: Gets or sets the Source ARM Id of the resource.
-     *
+     * 
      * @return the sourceId value.
      */
     public String sourceId() {
@@ -102,7 +106,7 @@ public final class MoveResourceProperties {
 
     /**
      * Set the sourceId property: Gets or sets the Source ARM Id of the resource.
-     *
+     * 
      * @param sourceId the sourceId value to set.
      * @return the MoveResourceProperties object itself.
      */
@@ -113,7 +117,7 @@ public final class MoveResourceProperties {
 
     /**
      * Get the targetId property: Gets or sets the Target ARM Id of the resource.
-     *
+     * 
      * @return the targetId value.
      */
     public String targetId() {
@@ -122,7 +126,7 @@ public final class MoveResourceProperties {
 
     /**
      * Get the existingTargetId property: Gets or sets the existing target ARM Id of the resource.
-     *
+     * 
      * @return the existingTargetId value.
      */
     public String existingTargetId() {
@@ -131,7 +135,7 @@ public final class MoveResourceProperties {
 
     /**
      * Set the existingTargetId property: Gets or sets the existing target ARM Id of the resource.
-     *
+     * 
      * @param existingTargetId the existingTargetId value to set.
      * @return the MoveResourceProperties object itself.
      */
@@ -142,7 +146,7 @@ public final class MoveResourceProperties {
 
     /**
      * Get the resourceSettings property: Gets or sets the resource settings.
-     *
+     * 
      * @return the resourceSettings value.
      */
     public ResourceSettings resourceSettings() {
@@ -151,7 +155,7 @@ public final class MoveResourceProperties {
 
     /**
      * Set the resourceSettings property: Gets or sets the resource settings.
-     *
+     * 
      * @param resourceSettings the resourceSettings value to set.
      * @return the MoveResourceProperties object itself.
      */
@@ -162,7 +166,7 @@ public final class MoveResourceProperties {
 
     /**
      * Get the sourceResourceSettings property: Gets or sets the source resource settings.
-     *
+     * 
      * @return the sourceResourceSettings value.
      */
     public ResourceSettings sourceResourceSettings() {
@@ -171,7 +175,7 @@ public final class MoveResourceProperties {
 
     /**
      * Get the moveStatus property: Defines the move resource status.
-     *
+     * 
      * @return the moveStatus value.
      */
     public MoveResourcePropertiesMoveStatus moveStatus() {
@@ -180,7 +184,7 @@ public final class MoveResourceProperties {
 
     /**
      * Get the dependsOn property: Gets or sets the move resource dependencies.
-     *
+     * 
      * @return the dependsOn value.
      */
     public List<MoveResourceDependency> dependsOn() {
@@ -189,7 +193,7 @@ public final class MoveResourceProperties {
 
     /**
      * Get the dependsOnOverrides property: Gets or sets the move resource dependencies overrides.
-     *
+     * 
      * @return the dependsOnOverrides value.
      */
     public List<MoveResourceDependencyOverride> dependsOnOverrides() {
@@ -198,7 +202,7 @@ public final class MoveResourceProperties {
 
     /**
      * Set the dependsOnOverrides property: Gets or sets the move resource dependencies overrides.
-     *
+     * 
      * @param dependsOnOverrides the dependsOnOverrides value to set.
      * @return the MoveResourceProperties object itself.
      */
@@ -210,7 +214,7 @@ public final class MoveResourceProperties {
     /**
      * Get the isResolveRequired property: Gets a value indicating whether the resolve action is required over the move
      * collection.
-     *
+     * 
      * @return the isResolveRequired value.
      */
     public Boolean isResolveRequired() {
@@ -219,7 +223,7 @@ public final class MoveResourceProperties {
 
     /**
      * Get the errors property: Defines the move resource errors.
-     *
+     * 
      * @return the errors value.
      */
     public MoveResourcePropertiesErrors errors() {
@@ -228,14 +232,13 @@ public final class MoveResourceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property sourceId in model MoveResourceProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property sourceId in model MoveResourceProperties"));
         }
         if (resourceSettings() != null) {
             resourceSettings().validate();

@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines the zone redundant resource setting. */
+/**
+ * Defines the zone redundant resource setting.
+ */
 public final class ZoneRedundant extends ExpandableStringEnum<ZoneRedundant> {
-    /** Static value Enable for ZoneRedundant. */
+    /**
+     * Static value Enable for ZoneRedundant.
+     */
     public static final ZoneRedundant ENABLE = fromString("Enable");
 
-    /** Static value Disable for ZoneRedundant. */
+    /**
+     * Static value Disable for ZoneRedundant.
+     */
     public static final ZoneRedundant DISABLE = fromString("Disable");
 
     /**
      * Creates a new instance of ZoneRedundant value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class ZoneRedundant extends ExpandableStringEnum<ZoneRedundant> {
 
     /**
      * Creates or finds a ZoneRedundant from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ZoneRedundant.
      */
@@ -38,7 +44,7 @@ public final class ZoneRedundant extends ExpandableStringEnum<ZoneRedundant> {
 
     /**
      * Gets known ZoneRedundant values.
-     *
+     * 
      * @return known ZoneRedundant values.
      */
     public static Collection<ZoneRedundant> values() {

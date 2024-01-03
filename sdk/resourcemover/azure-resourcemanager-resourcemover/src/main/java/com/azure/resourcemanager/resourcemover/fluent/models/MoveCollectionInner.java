@@ -12,7 +12,9 @@ import com.azure.resourcemanager.resourcemover.models.MoveCollectionProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Define the move collection. */
+/**
+ * Define the move collection.
+ */
 @Fluent
 public final class MoveCollectionInner extends Resource {
     /*
@@ -39,13 +41,15 @@ public final class MoveCollectionInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of MoveCollectionInner class. */
+    /**
+     * Creates an instance of MoveCollectionInner class.
+     */
     public MoveCollectionInner() {
     }
 
     /**
      * Get the etag property: The etag of the resource.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -54,7 +58,7 @@ public final class MoveCollectionInner extends Resource {
 
     /**
      * Get the identity property: Defines the MSI properties of the Move Collection.
-     *
+     * 
      * @return the identity value.
      */
     public Identity identity() {
@@ -63,7 +67,7 @@ public final class MoveCollectionInner extends Resource {
 
     /**
      * Set the identity property: Defines the MSI properties of the Move Collection.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the MoveCollectionInner object itself.
      */
@@ -74,7 +78,7 @@ public final class MoveCollectionInner extends Resource {
 
     /**
      * Get the properties property: Defines the move collection properties.
-     *
+     * 
      * @return the properties value.
      */
     public MoveCollectionProperties properties() {
@@ -83,7 +87,7 @@ public final class MoveCollectionInner extends Resource {
 
     /**
      * Set the properties property: Defines the move collection properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the MoveCollectionInner object itself.
      */
@@ -94,21 +98,25 @@ public final class MoveCollectionInner extends Resource {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MoveCollectionInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MoveCollectionInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -117,7 +125,7 @@ public final class MoveCollectionInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

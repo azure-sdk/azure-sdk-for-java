@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcemover.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The operation error info. */
+/**
+ * The operation error info.
+ */
 @Immutable
 public final class OperationErrorAdditionalInfo {
     /*
@@ -22,13 +24,15 @@ public final class OperationErrorAdditionalInfo {
     @JsonProperty(value = "info", access = JsonProperty.Access.WRITE_ONLY)
     private MoveErrorInfo info;
 
-    /** Creates an instance of OperationErrorAdditionalInfo class. */
+    /**
+     * Creates an instance of OperationErrorAdditionalInfo class.
+     */
     public OperationErrorAdditionalInfo() {
     }
 
     /**
      * Get the type property: The error type.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -37,7 +41,7 @@ public final class OperationErrorAdditionalInfo {
 
     /**
      * Get the info property: The operation error info.
-     *
+     * 
      * @return the info value.
      */
     public MoveErrorInfo info() {
@@ -46,7 +50,7 @@ public final class OperationErrorAdditionalInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Required for resources collection. */
+/**
+ * Required for resources collection.
+ */
 @Fluent
 public final class RequiredForResourcesCollectionInner {
     /*
@@ -17,13 +19,15 @@ public final class RequiredForResourcesCollectionInner {
     @JsonProperty(value = "sourceIds")
     private List<String> sourceIds;
 
-    /** Creates an instance of RequiredForResourcesCollectionInner class. */
+    /**
+     * Creates an instance of RequiredForResourcesCollectionInner class.
+     */
     public RequiredForResourcesCollectionInner() {
     }
 
     /**
      * Get the sourceIds property: Gets or sets the list of source Ids for which the input resource is required.
-     *
+     * 
      * @return the sourceIds value.
      */
     public List<String> sourceIds() {
@@ -32,7 +36,7 @@ public final class RequiredForResourcesCollectionInner {
 
     /**
      * Set the sourceIds property: Gets or sets the list of source Ids for which the input resource is required.
-     *
+     * 
      * @param sourceIds the sourceIds value to set.
      * @return the RequiredForResourcesCollectionInner object itself.
      */
@@ -43,7 +47,7 @@ public final class RequiredForResourcesCollectionInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

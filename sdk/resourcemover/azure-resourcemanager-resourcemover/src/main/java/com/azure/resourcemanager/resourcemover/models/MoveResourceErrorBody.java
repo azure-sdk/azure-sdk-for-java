@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** An error response from the Azure Migrate service. */
+/**
+ * An error response from the Azure Migrate service.
+ */
 @Immutable
 public final class MoveResourceErrorBody {
     /*
@@ -35,14 +37,16 @@ public final class MoveResourceErrorBody {
     @JsonProperty(value = "details", access = JsonProperty.Access.WRITE_ONLY)
     private List<MoveResourceErrorBody> details;
 
-    /** Creates an instance of MoveResourceErrorBody class. */
+    /**
+     * Creates an instance of MoveResourceErrorBody class.
+     */
     public MoveResourceErrorBody() {
     }
 
     /**
      * Get the code property: An identifier for the error. Codes are invariant and are intended to be consumed
      * programmatically.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -52,7 +56,7 @@ public final class MoveResourceErrorBody {
     /**
      * Get the message property: A message describing the error, intended to be suitable for display in a user
      * interface.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -61,7 +65,7 @@ public final class MoveResourceErrorBody {
 
     /**
      * Get the target property: The target of the particular error. For example, the name of the property in error.
-     *
+     * 
      * @return the target value.
      */
     public String target() {
@@ -70,7 +74,7 @@ public final class MoveResourceErrorBody {
 
     /**
      * Get the details property: A list of additional details about the error.
-     *
+     * 
      * @return the details value.
      */
     public List<MoveResourceErrorBody> details() {
@@ -79,7 +83,7 @@ public final class MoveResourceErrorBody {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

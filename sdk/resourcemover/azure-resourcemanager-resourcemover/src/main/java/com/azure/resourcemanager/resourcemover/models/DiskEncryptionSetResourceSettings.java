@@ -8,23 +8,31 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Defines the disk encryption set resource settings. */
+/**
+ * Defines the disk encryption set resource settings.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
 @JsonTypeName("Microsoft.Compute/diskEncryptionSets")
 @Fluent
 public final class DiskEncryptionSetResourceSettings extends ResourceSettings {
-    /** Creates an instance of DiskEncryptionSetResourceSettings class. */
+    /**
+     * Creates an instance of DiskEncryptionSetResourceSettings class.
+     */
     public DiskEncryptionSetResourceSettings() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DiskEncryptionSetResourceSettings withTargetResourceName(String targetResourceName) {
         super.withTargetResourceName(targetResourceName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DiskEncryptionSetResourceSettings withTargetResourceGroupName(String targetResourceGroupName) {
         super.withTargetResourceGroupName(targetResourceGroupName);
@@ -32,8 +40,17 @@ public final class DiskEncryptionSetResourceSettings extends ResourceSettings {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public DiskEncryptionSetResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        super.withTargetSubscriptionId(targetSubscriptionId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

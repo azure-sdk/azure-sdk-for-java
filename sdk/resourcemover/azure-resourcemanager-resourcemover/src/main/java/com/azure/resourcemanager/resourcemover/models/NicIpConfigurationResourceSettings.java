@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines NIC IP configuration properties. */
+/**
+ * Defines NIC IP configuration properties.
+ */
 @Fluent
 public final class NicIpConfigurationResourceSettings {
     /*
@@ -59,13 +61,15 @@ public final class NicIpConfigurationResourceSettings {
     @JsonProperty(value = "publicIp")
     private PublicIpReference publicIp;
 
-    /** Creates an instance of NicIpConfigurationResourceSettings class. */
+    /**
+     * Creates an instance of NicIpConfigurationResourceSettings class.
+     */
     public NicIpConfigurationResourceSettings() {
     }
 
     /**
      * Get the name property: Gets or sets the IP configuration name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -74,7 +78,7 @@ public final class NicIpConfigurationResourceSettings {
 
     /**
      * Set the name property: Gets or sets the IP configuration name.
-     *
+     * 
      * @param name the name value to set.
      * @return the NicIpConfigurationResourceSettings object itself.
      */
@@ -84,8 +88,9 @@ public final class NicIpConfigurationResourceSettings {
     }
 
     /**
-     * Get the privateIpAddress property: Gets or sets the private IP address of the network interface IP Configuration.
-     *
+     * Get the privateIpAddress property: Gets or sets the private IP address of the network interface IP
+     * Configuration.
+     * 
      * @return the privateIpAddress value.
      */
     public String privateIpAddress() {
@@ -93,8 +98,9 @@ public final class NicIpConfigurationResourceSettings {
     }
 
     /**
-     * Set the privateIpAddress property: Gets or sets the private IP address of the network interface IP Configuration.
-     *
+     * Set the privateIpAddress property: Gets or sets the private IP address of the network interface IP
+     * Configuration.
+     * 
      * @param privateIpAddress the privateIpAddress value to set.
      * @return the NicIpConfigurationResourceSettings object itself.
      */
@@ -105,7 +111,7 @@ public final class NicIpConfigurationResourceSettings {
 
     /**
      * Get the privateIpAllocationMethod property: Gets or sets the private IP address allocation method.
-     *
+     * 
      * @return the privateIpAllocationMethod value.
      */
     public String privateIpAllocationMethod() {
@@ -114,7 +120,7 @@ public final class NicIpConfigurationResourceSettings {
 
     /**
      * Set the privateIpAllocationMethod property: Gets or sets the private IP address allocation method.
-     *
+     * 
      * @param privateIpAllocationMethod the privateIpAllocationMethod value to set.
      * @return the NicIpConfigurationResourceSettings object itself.
      */
@@ -125,7 +131,7 @@ public final class NicIpConfigurationResourceSettings {
 
     /**
      * Get the subnet property: Defines reference to subnet.
-     *
+     * 
      * @return the subnet value.
      */
     public SubnetReference subnet() {
@@ -134,7 +140,7 @@ public final class NicIpConfigurationResourceSettings {
 
     /**
      * Set the subnet property: Defines reference to subnet.
-     *
+     * 
      * @param subnet the subnet value to set.
      * @return the NicIpConfigurationResourceSettings object itself.
      */
@@ -145,7 +151,7 @@ public final class NicIpConfigurationResourceSettings {
 
     /**
      * Get the primary property: Gets or sets a value indicating whether this IP configuration is the primary.
-     *
+     * 
      * @return the primary value.
      */
     public Boolean primary() {
@@ -154,7 +160,7 @@ public final class NicIpConfigurationResourceSettings {
 
     /**
      * Set the primary property: Gets or sets a value indicating whether this IP configuration is the primary.
-     *
+     * 
      * @param primary the primary value to set.
      * @return the NicIpConfigurationResourceSettings object itself.
      */
@@ -166,7 +172,7 @@ public final class NicIpConfigurationResourceSettings {
     /**
      * Get the loadBalancerBackendAddressPools property: Gets or sets the references of the load balancer backend
      * address pools.
-     *
+     * 
      * @return the loadBalancerBackendAddressPools value.
      */
     public List<LoadBalancerBackendAddressPoolReference> loadBalancerBackendAddressPools() {
@@ -176,7 +182,7 @@ public final class NicIpConfigurationResourceSettings {
     /**
      * Set the loadBalancerBackendAddressPools property: Gets or sets the references of the load balancer backend
      * address pools.
-     *
+     * 
      * @param loadBalancerBackendAddressPools the loadBalancerBackendAddressPools value to set.
      * @return the NicIpConfigurationResourceSettings object itself.
      */
@@ -188,7 +194,7 @@ public final class NicIpConfigurationResourceSettings {
 
     /**
      * Get the loadBalancerNatRules property: Gets or sets the references of the load balancer NAT rules.
-     *
+     * 
      * @return the loadBalancerNatRules value.
      */
     public List<LoadBalancerNatRuleReference> loadBalancerNatRules() {
@@ -197,19 +203,19 @@ public final class NicIpConfigurationResourceSettings {
 
     /**
      * Set the loadBalancerNatRules property: Gets or sets the references of the load balancer NAT rules.
-     *
+     * 
      * @param loadBalancerNatRules the loadBalancerNatRules value to set.
      * @return the NicIpConfigurationResourceSettings object itself.
      */
-    public NicIpConfigurationResourceSettings withLoadBalancerNatRules(
-        List<LoadBalancerNatRuleReference> loadBalancerNatRules) {
+    public NicIpConfigurationResourceSettings
+        withLoadBalancerNatRules(List<LoadBalancerNatRuleReference> loadBalancerNatRules) {
         this.loadBalancerNatRules = loadBalancerNatRules;
         return this;
     }
 
     /**
      * Get the publicIp property: Defines reference to a public IP.
-     *
+     * 
      * @return the publicIp value.
      */
     public PublicIpReference publicIp() {
@@ -218,7 +224,7 @@ public final class NicIpConfigurationResourceSettings {
 
     /**
      * Set the publicIp property: Defines reference to a public IP.
-     *
+     * 
      * @param publicIp the publicIp value to set.
      * @return the NicIpConfigurationResourceSettings object itself.
      */
@@ -229,7 +235,7 @@ public final class NicIpConfigurationResourceSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

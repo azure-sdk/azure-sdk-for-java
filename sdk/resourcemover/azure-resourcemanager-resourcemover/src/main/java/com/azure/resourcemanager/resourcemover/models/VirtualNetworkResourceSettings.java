@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 import java.util.Map;
 
-/** Defines the virtual network resource settings. */
+/**
+ * Defines the virtual network resource settings.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
 @JsonTypeName("Microsoft.Network/virtualNetworks")
 @Fluent
@@ -50,13 +52,15 @@ public final class VirtualNetworkResourceSettings extends ResourceSettings {
     @JsonProperty(value = "subnets")
     private List<SubnetResourceSettings> subnets;
 
-    /** Creates an instance of VirtualNetworkResourceSettings class. */
+    /**
+     * Creates an instance of VirtualNetworkResourceSettings class.
+     */
     public VirtualNetworkResourceSettings() {
     }
 
     /**
      * Get the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -65,7 +69,7 @@ public final class VirtualNetworkResourceSettings extends ResourceSettings {
 
     /**
      * Set the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the VirtualNetworkResourceSettings object itself.
      */
@@ -75,9 +79,9 @@ public final class VirtualNetworkResourceSettings extends ResourceSettings {
     }
 
     /**
-     * Get the enableDdosProtection property: Gets or sets a value indicating whether gets or sets whether the DDOS
-     * protection should be switched on.
-     *
+     * Get the enableDdosProtection property: Gets or sets a value indicating whether gets or sets whether the
+     * DDOS protection should be switched on.
+     * 
      * @return the enableDdosProtection value.
      */
     public Boolean enableDdosProtection() {
@@ -85,9 +89,9 @@ public final class VirtualNetworkResourceSettings extends ResourceSettings {
     }
 
     /**
-     * Set the enableDdosProtection property: Gets or sets a value indicating whether gets or sets whether the DDOS
-     * protection should be switched on.
-     *
+     * Set the enableDdosProtection property: Gets or sets a value indicating whether gets or sets whether the
+     * DDOS protection should be switched on.
+     * 
      * @param enableDdosProtection the enableDdosProtection value to set.
      * @return the VirtualNetworkResourceSettings object itself.
      */
@@ -98,7 +102,7 @@ public final class VirtualNetworkResourceSettings extends ResourceSettings {
 
     /**
      * Get the addressSpace property: Gets or sets the address prefixes for the virtual network.
-     *
+     * 
      * @return the addressSpace value.
      */
     public List<String> addressSpace() {
@@ -107,7 +111,7 @@ public final class VirtualNetworkResourceSettings extends ResourceSettings {
 
     /**
      * Set the addressSpace property: Gets or sets the address prefixes for the virtual network.
-     *
+     * 
      * @param addressSpace the addressSpace value to set.
      * @return the VirtualNetworkResourceSettings object itself.
      */
@@ -119,7 +123,7 @@ public final class VirtualNetworkResourceSettings extends ResourceSettings {
     /**
      * Get the dnsServers property: Gets or sets DHCPOptions that contains an array of DNS servers available to VMs
      * deployed in the virtual network.
-     *
+     * 
      * @return the dnsServers value.
      */
     public List<String> dnsServers() {
@@ -129,7 +133,7 @@ public final class VirtualNetworkResourceSettings extends ResourceSettings {
     /**
      * Set the dnsServers property: Gets or sets DHCPOptions that contains an array of DNS servers available to VMs
      * deployed in the virtual network.
-     *
+     * 
      * @param dnsServers the dnsServers value to set.
      * @return the VirtualNetworkResourceSettings object itself.
      */
@@ -140,7 +144,7 @@ public final class VirtualNetworkResourceSettings extends ResourceSettings {
 
     /**
      * Get the subnets property: Gets or sets List of subnets in a VirtualNetwork.
-     *
+     * 
      * @return the subnets value.
      */
     public List<SubnetResourceSettings> subnets() {
@@ -149,7 +153,7 @@ public final class VirtualNetworkResourceSettings extends ResourceSettings {
 
     /**
      * Set the subnets property: Gets or sets List of subnets in a VirtualNetwork.
-     *
+     * 
      * @param subnets the subnets value to set.
      * @return the VirtualNetworkResourceSettings object itself.
      */
@@ -158,14 +162,18 @@ public final class VirtualNetworkResourceSettings extends ResourceSettings {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualNetworkResourceSettings withTargetResourceName(String targetResourceName) {
         super.withTargetResourceName(targetResourceName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualNetworkResourceSettings withTargetResourceGroupName(String targetResourceGroupName) {
         super.withTargetResourceGroupName(targetResourceGroupName);
@@ -173,8 +181,17 @@ public final class VirtualNetworkResourceSettings extends ResourceSettings {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public VirtualNetworkResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        super.withTargetSubscriptionId(targetSubscriptionId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

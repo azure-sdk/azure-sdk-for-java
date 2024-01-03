@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Defines the public IP address resource settings. */
+/**
+ * Defines the public IP address resource settings.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
 @JsonTypeName("Microsoft.Network/publicIPAddresses")
 @Fluent
@@ -53,13 +55,15 @@ public final class PublicIpAddressResourceSettings extends ResourceSettings {
     @JsonProperty(value = "zones")
     private String zones;
 
-    /** Creates an instance of PublicIpAddressResourceSettings class. */
+    /**
+     * Creates an instance of PublicIpAddressResourceSettings class.
+     */
     public PublicIpAddressResourceSettings() {
     }
 
     /**
      * Get the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -68,7 +72,7 @@ public final class PublicIpAddressResourceSettings extends ResourceSettings {
 
     /**
      * Set the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the PublicIpAddressResourceSettings object itself.
      */
@@ -79,7 +83,7 @@ public final class PublicIpAddressResourceSettings extends ResourceSettings {
 
     /**
      * Get the domainNameLabel property: Gets or sets the domain name label.
-     *
+     * 
      * @return the domainNameLabel value.
      */
     public String domainNameLabel() {
@@ -88,7 +92,7 @@ public final class PublicIpAddressResourceSettings extends ResourceSettings {
 
     /**
      * Set the domainNameLabel property: Gets or sets the domain name label.
-     *
+     * 
      * @param domainNameLabel the domainNameLabel value to set.
      * @return the PublicIpAddressResourceSettings object itself.
      */
@@ -99,7 +103,7 @@ public final class PublicIpAddressResourceSettings extends ResourceSettings {
 
     /**
      * Get the fqdn property: Gets or sets the fully qualified domain name.
-     *
+     * 
      * @return the fqdn value.
      */
     public String fqdn() {
@@ -108,7 +112,7 @@ public final class PublicIpAddressResourceSettings extends ResourceSettings {
 
     /**
      * Set the fqdn property: Gets or sets the fully qualified domain name.
-     *
+     * 
      * @param fqdn the fqdn value to set.
      * @return the PublicIpAddressResourceSettings object itself.
      */
@@ -119,7 +123,7 @@ public final class PublicIpAddressResourceSettings extends ResourceSettings {
 
     /**
      * Get the publicIpAllocationMethod property: Gets or sets public IP allocation method.
-     *
+     * 
      * @return the publicIpAllocationMethod value.
      */
     public String publicIpAllocationMethod() {
@@ -128,7 +132,7 @@ public final class PublicIpAddressResourceSettings extends ResourceSettings {
 
     /**
      * Set the publicIpAllocationMethod property: Gets or sets public IP allocation method.
-     *
+     * 
      * @param publicIpAllocationMethod the publicIpAllocationMethod value to set.
      * @return the PublicIpAddressResourceSettings object itself.
      */
@@ -139,7 +143,7 @@ public final class PublicIpAddressResourceSettings extends ResourceSettings {
 
     /**
      * Get the sku property: Gets or sets public IP sku.
-     *
+     * 
      * @return the sku value.
      */
     public String sku() {
@@ -148,7 +152,7 @@ public final class PublicIpAddressResourceSettings extends ResourceSettings {
 
     /**
      * Set the sku property: Gets or sets public IP sku.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the PublicIpAddressResourceSettings object itself.
      */
@@ -159,7 +163,7 @@ public final class PublicIpAddressResourceSettings extends ResourceSettings {
 
     /**
      * Get the zones property: Gets or sets public IP zones.
-     *
+     * 
      * @return the zones value.
      */
     public String zones() {
@@ -168,7 +172,7 @@ public final class PublicIpAddressResourceSettings extends ResourceSettings {
 
     /**
      * Set the zones property: Gets or sets public IP zones.
-     *
+     * 
      * @param zones the zones value to set.
      * @return the PublicIpAddressResourceSettings object itself.
      */
@@ -177,14 +181,18 @@ public final class PublicIpAddressResourceSettings extends ResourceSettings {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PublicIpAddressResourceSettings withTargetResourceName(String targetResourceName) {
         super.withTargetResourceName(targetResourceName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PublicIpAddressResourceSettings withTargetResourceGroupName(String targetResourceGroupName) {
         super.withTargetResourceGroupName(targetResourceGroupName);
@@ -192,8 +200,17 @@ public final class PublicIpAddressResourceSettings extends ResourceSettings {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PublicIpAddressResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        super.withTargetSubscriptionId(targetSubscriptionId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

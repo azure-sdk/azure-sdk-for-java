@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The RP custom operation error info. */
+/**
+ * The RP custom operation error info.
+ */
 @Immutable
 public final class AffectedMoveResource {
     /*
@@ -29,13 +31,15 @@ public final class AffectedMoveResource {
     @JsonProperty(value = "moveResources", access = JsonProperty.Access.WRITE_ONLY)
     private List<AffectedMoveResource> moveResources;
 
-    /** Creates an instance of AffectedMoveResource class. */
+    /**
+     * Creates an instance of AffectedMoveResource class.
+     */
     public AffectedMoveResource() {
     }
 
     /**
      * Get the id property: The affected move resource id.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -44,7 +48,7 @@ public final class AffectedMoveResource {
 
     /**
      * Get the sourceId property: The affected move resource source id.
-     *
+     * 
      * @return the sourceId value.
      */
     public String sourceId() {
@@ -53,7 +57,7 @@ public final class AffectedMoveResource {
 
     /**
      * Get the moveResources property: The affected move resources.
-     *
+     * 
      * @return the moveResources value.
      */
     public List<AffectedMoveResource> moveResources() {
@@ -62,7 +66,7 @@ public final class AffectedMoveResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

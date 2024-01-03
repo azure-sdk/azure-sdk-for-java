@@ -9,7 +9,9 @@ import com.azure.resourcemanager.resourcemover.models.OperationsDiscovery;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Collection of ClientDiscovery details. */
+/**
+ * Collection of ClientDiscovery details.
+ */
 @Fluent
 public final class OperationsDiscoveryCollectionInner {
     /*
@@ -24,13 +26,15 @@ public final class OperationsDiscoveryCollectionInner {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of OperationsDiscoveryCollectionInner class. */
+    /**
+     * Creates an instance of OperationsDiscoveryCollectionInner class.
+     */
     public OperationsDiscoveryCollectionInner() {
     }
 
     /**
      * Get the value property: Gets or sets the ClientDiscovery details.
-     *
+     * 
      * @return the value value.
      */
     public List<OperationsDiscovery> value() {
@@ -39,7 +43,7 @@ public final class OperationsDiscoveryCollectionInner {
 
     /**
      * Set the value property: Gets or sets the ClientDiscovery details.
-     *
+     * 
      * @param value the value value to set.
      * @return the OperationsDiscoveryCollectionInner object itself.
      */
@@ -50,7 +54,7 @@ public final class OperationsDiscoveryCollectionInner {
 
     /**
      * Get the nextLink property: Gets or sets the value of next link.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class OperationsDiscoveryCollectionInner {
 
     /**
      * Set the nextLink property: Gets or sets the value of next link.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the OperationsDiscoveryCollectionInner object itself.
      */
@@ -70,7 +74,7 @@ public final class OperationsDiscoveryCollectionInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

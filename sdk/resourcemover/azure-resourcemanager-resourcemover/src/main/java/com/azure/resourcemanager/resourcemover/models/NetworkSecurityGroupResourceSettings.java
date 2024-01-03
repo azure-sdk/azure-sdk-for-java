@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 import java.util.Map;
 
-/** Defines the NSG resource settings. */
+/**
+ * Defines the NSG resource settings.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
 @JsonTypeName("Microsoft.Network/networkSecurityGroups")
 @Fluent
@@ -30,13 +32,15 @@ public final class NetworkSecurityGroupResourceSettings extends ResourceSettings
     @JsonProperty(value = "securityRules")
     private List<NsgSecurityRule> securityRules;
 
-    /** Creates an instance of NetworkSecurityGroupResourceSettings class. */
+    /**
+     * Creates an instance of NetworkSecurityGroupResourceSettings class.
+     */
     public NetworkSecurityGroupResourceSettings() {
     }
 
     /**
      * Get the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -45,7 +49,7 @@ public final class NetworkSecurityGroupResourceSettings extends ResourceSettings
 
     /**
      * Set the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the NetworkSecurityGroupResourceSettings object itself.
      */
@@ -56,7 +60,7 @@ public final class NetworkSecurityGroupResourceSettings extends ResourceSettings
 
     /**
      * Get the securityRules property: Gets or sets Security rules of network security group.
-     *
+     * 
      * @return the securityRules value.
      */
     public List<NsgSecurityRule> securityRules() {
@@ -65,7 +69,7 @@ public final class NetworkSecurityGroupResourceSettings extends ResourceSettings
 
     /**
      * Set the securityRules property: Gets or sets Security rules of network security group.
-     *
+     * 
      * @param securityRules the securityRules value to set.
      * @return the NetworkSecurityGroupResourceSettings object itself.
      */
@@ -74,14 +78,18 @@ public final class NetworkSecurityGroupResourceSettings extends ResourceSettings
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkSecurityGroupResourceSettings withTargetResourceName(String targetResourceName) {
         super.withTargetResourceName(targetResourceName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkSecurityGroupResourceSettings withTargetResourceGroupName(String targetResourceGroupName) {
         super.withTargetResourceGroupName(targetResourceGroupName);
@@ -89,8 +97,17 @@ public final class NetworkSecurityGroupResourceSettings extends ResourceSettings
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public NetworkSecurityGroupResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        super.withTargetSubscriptionId(targetSubscriptionId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

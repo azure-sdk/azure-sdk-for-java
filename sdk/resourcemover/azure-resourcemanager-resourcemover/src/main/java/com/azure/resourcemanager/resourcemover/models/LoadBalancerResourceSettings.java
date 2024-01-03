@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 import java.util.Map;
 
-/** Defines the load balancer resource settings. */
+/**
+ * Defines the load balancer resource settings.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
 @JsonTypeName("Microsoft.Network/loadBalancers")
 @Fluent
@@ -49,13 +51,15 @@ public final class LoadBalancerResourceSettings extends ResourceSettings {
     @JsonProperty(value = "zones")
     private String zones;
 
-    /** Creates an instance of LoadBalancerResourceSettings class. */
+    /**
+     * Creates an instance of LoadBalancerResourceSettings class.
+     */
     public LoadBalancerResourceSettings() {
     }
 
     /**
      * Get the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -64,7 +68,7 @@ public final class LoadBalancerResourceSettings extends ResourceSettings {
 
     /**
      * Set the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the LoadBalancerResourceSettings object itself.
      */
@@ -75,7 +79,7 @@ public final class LoadBalancerResourceSettings extends ResourceSettings {
 
     /**
      * Get the sku property: Gets or sets load balancer sku (Basic/Standard).
-     *
+     * 
      * @return the sku value.
      */
     public String sku() {
@@ -84,7 +88,7 @@ public final class LoadBalancerResourceSettings extends ResourceSettings {
 
     /**
      * Set the sku property: Gets or sets load balancer sku (Basic/Standard).
-     *
+     * 
      * @param sku the sku value to set.
      * @return the LoadBalancerResourceSettings object itself.
      */
@@ -95,7 +99,7 @@ public final class LoadBalancerResourceSettings extends ResourceSettings {
 
     /**
      * Get the frontendIpConfigurations property: Gets or sets the frontend IP configurations of the load balancer.
-     *
+     * 
      * @return the frontendIpConfigurations value.
      */
     public List<LBFrontendIpConfigurationResourceSettings> frontendIpConfigurations() {
@@ -104,19 +108,19 @@ public final class LoadBalancerResourceSettings extends ResourceSettings {
 
     /**
      * Set the frontendIpConfigurations property: Gets or sets the frontend IP configurations of the load balancer.
-     *
+     * 
      * @param frontendIpConfigurations the frontendIpConfigurations value to set.
      * @return the LoadBalancerResourceSettings object itself.
      */
-    public LoadBalancerResourceSettings withFrontendIpConfigurations(
-        List<LBFrontendIpConfigurationResourceSettings> frontendIpConfigurations) {
+    public LoadBalancerResourceSettings
+        withFrontendIpConfigurations(List<LBFrontendIpConfigurationResourceSettings> frontendIpConfigurations) {
         this.frontendIpConfigurations = frontendIpConfigurations;
         return this;
     }
 
     /**
      * Get the backendAddressPools property: Gets or sets the backend address pools of the load balancer.
-     *
+     * 
      * @return the backendAddressPools value.
      */
     public List<LBBackendAddressPoolResourceSettings> backendAddressPools() {
@@ -125,20 +129,21 @@ public final class LoadBalancerResourceSettings extends ResourceSettings {
 
     /**
      * Set the backendAddressPools property: Gets or sets the backend address pools of the load balancer.
-     *
+     * 
      * @param backendAddressPools the backendAddressPools value to set.
      * @return the LoadBalancerResourceSettings object itself.
      */
-    public LoadBalancerResourceSettings withBackendAddressPools(
-        List<LBBackendAddressPoolResourceSettings> backendAddressPools) {
+    public LoadBalancerResourceSettings
+        withBackendAddressPools(List<LBBackendAddressPoolResourceSettings> backendAddressPools) {
         this.backendAddressPools = backendAddressPools;
         return this;
     }
 
     /**
      * Get the zones property: Gets or sets the csv list of zones common for all frontend IP configurations. Note this
-     * is given precedence only if frontend IP configurations settings are not present.
-     *
+     * is given
+     * precedence only if frontend IP configurations settings are not present.
+     * 
      * @return the zones value.
      */
     public String zones() {
@@ -147,8 +152,9 @@ public final class LoadBalancerResourceSettings extends ResourceSettings {
 
     /**
      * Set the zones property: Gets or sets the csv list of zones common for all frontend IP configurations. Note this
-     * is given precedence only if frontend IP configurations settings are not present.
-     *
+     * is given
+     * precedence only if frontend IP configurations settings are not present.
+     * 
      * @param zones the zones value to set.
      * @return the LoadBalancerResourceSettings object itself.
      */
@@ -157,14 +163,18 @@ public final class LoadBalancerResourceSettings extends ResourceSettings {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LoadBalancerResourceSettings withTargetResourceName(String targetResourceName) {
         super.withTargetResourceName(targetResourceName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LoadBalancerResourceSettings withTargetResourceGroupName(String targetResourceGroupName) {
         super.withTargetResourceGroupName(targetResourceGroupName);
@@ -172,8 +182,17 @@ public final class LoadBalancerResourceSettings extends ResourceSettings {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public LoadBalancerResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        super.withTargetSubscriptionId(targetSubscriptionId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

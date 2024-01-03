@@ -41,8 +41,9 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * Entry point to ResourceMoverManager. A first party Azure service orchestrating the move of Azure resources from one
- * Azure region to another or between zones within a region.
+ * Entry point to ResourceMoverManager.
+ * A first party Azure service orchestrating the move of Azure resources from one Azure region to another or between
+ * zones within a region.
  */
 public final class ResourceMoverManager {
     private MoveCollections moveCollections;
@@ -58,18 +59,14 @@ public final class ResourceMoverManager {
     private ResourceMoverManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject =
-            new ResourceMoverServiceApiBuilder()
-                .pipeline(httpPipeline)
-                .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .subscriptionId(profile.getSubscriptionId())
-                .defaultPollInterval(defaultPollInterval)
-                .buildClient();
+        this.clientObject = new ResourceMoverServiceApiBuilder().pipeline(httpPipeline)
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval).buildClient();
     }
 
     /**
      * Creates an instance of ResourceMover service API entry point.
-     *
+     * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
      * @return the ResourceMover service API instance.
@@ -82,7 +79,7 @@ public final class ResourceMoverManager {
 
     /**
      * Creates an instance of ResourceMover service API entry point.
-     *
+     * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
      * @return the ResourceMover service API instance.
@@ -95,14 +92,16 @@ public final class ResourceMoverManager {
 
     /**
      * Gets a Configurable instance that can be used to create ResourceMoverManager with optional configuration.
-     *
+     * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
         return new ResourceMoverManager.Configurable();
     }
 
-    /** The Configurable allowing configurations to be set. */
+    /**
+     * The Configurable allowing configurations to be set.
+     */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
@@ -174,8 +173,8 @@ public final class ResourceMoverManager {
 
         /**
          * Sets the retry options for the HTTP pipeline retry policy.
-         *
-         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         * <p>
+         * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
          *
          * @param retryOptions the retry options for the HTTP pipeline retry policy.
          * @return the configurable object itself.
@@ -192,8 +191,8 @@ public final class ResourceMoverManager {
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval =
-                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
+            this.defaultPollInterval
+                = Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
                 throw LOGGER
                     .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
@@ -213,21 +212,12 @@ public final class ResourceMoverManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder
-                .append("azsdk-java")
-                .append("-")
-                .append("com.azure.resourcemanager.resourcemover")
-                .append("/")
-                .append("1.1.0");
+            userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.resourcemover")
+                .append("/").append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder
-                    .append(" (")
-                    .append(Configuration.getGlobalConfiguration().get("java.version"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.name"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.version"))
-                    .append("; auto-generated)");
+                userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
+                    .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.version")).append("; auto-generated)");
             } else {
                 userAgentBuilder.append(" (auto-generated)");
             }
@@ -246,38 +236,25 @@ public final class ResourceMoverManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY).collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
-            HttpPipeline httpPipeline =
-                new HttpPipelineBuilder()
-                    .httpClient(httpClient)
-                    .policies(policies.toArray(new HttpPipelinePolicy[0]))
-                    .build();
+            HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
+                .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
             return new ResourceMoverManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
     /**
      * Gets the resource collection API of MoveCollections. It manages MoveCollection.
-     *
+     * 
      * @return Resource collection API of MoveCollections.
      */
     public MoveCollections moveCollections() {
@@ -289,7 +266,7 @@ public final class ResourceMoverManager {
 
     /**
      * Gets the resource collection API of MoveResources. It manages MoveResource.
-     *
+     * 
      * @return Resource collection API of MoveResources.
      */
     public MoveResources moveResources() {
@@ -301,20 +278,20 @@ public final class ResourceMoverManager {
 
     /**
      * Gets the resource collection API of UnresolvedDependencies.
-     *
+     * 
      * @return Resource collection API of UnresolvedDependencies.
      */
     public UnresolvedDependencies unresolvedDependencies() {
         if (this.unresolvedDependencies == null) {
-            this.unresolvedDependencies =
-                new UnresolvedDependenciesImpl(clientObject.getUnresolvedDependencies(), this);
+            this.unresolvedDependencies
+                = new UnresolvedDependenciesImpl(clientObject.getUnresolvedDependencies(), this);
         }
         return unresolvedDependencies;
     }
 
     /**
      * Gets the resource collection API of OperationsDiscoveries.
-     *
+     * 
      * @return Resource collection API of OperationsDiscoveries.
      */
     public OperationsDiscoveries operationsDiscoveries() {
@@ -327,7 +304,7 @@ public final class ResourceMoverManager {
     /**
      * Gets wrapped service client ResourceMoverServiceApi providing direct access to the underlying auto-generated API
      * implementation, based on Azure REST API.
-     *
+     * 
      * @return Wrapped service client ResourceMoverServiceApi.
      */
     public ResourceMoverServiceApi serviceClient() {

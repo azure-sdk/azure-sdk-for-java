@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines reference to an Azure resource. */
+/**
+ * Defines reference to an Azure resource.
+ */
 @Fluent
 public class AzureResourceReference {
     /*
@@ -17,13 +19,15 @@ public class AzureResourceReference {
     @JsonProperty(value = "sourceArmResourceId", required = true)
     private String sourceArmResourceId;
 
-    /** Creates an instance of AzureResourceReference class. */
+    /**
+     * Creates an instance of AzureResourceReference class.
+     */
     public AzureResourceReference() {
     }
 
     /**
      * Get the sourceArmResourceId property: Gets the ARM resource ID of the tracked resource being referenced.
-     *
+     * 
      * @return the sourceArmResourceId value.
      */
     public String sourceArmResourceId() {
@@ -32,7 +36,7 @@ public class AzureResourceReference {
 
     /**
      * Set the sourceArmResourceId property: Gets the ARM resource ID of the tracked resource being referenced.
-     *
+     * 
      * @param sourceArmResourceId the sourceArmResourceId value to set.
      * @return the AzureResourceReference object itself.
      */
@@ -43,15 +47,13 @@ public class AzureResourceReference {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceArmResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourceArmResourceId in model AzureResourceReference"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sourceArmResourceId in model AzureResourceReference"));
         }
     }
 

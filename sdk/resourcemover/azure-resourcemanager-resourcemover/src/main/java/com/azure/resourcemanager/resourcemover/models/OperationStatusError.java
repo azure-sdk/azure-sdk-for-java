@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Class for operation status errors. */
+/**
+ * Class for operation status errors.
+ */
 @Immutable
 public final class OperationStatusError {
     /*
@@ -35,13 +37,15 @@ public final class OperationStatusError {
     @JsonProperty(value = "additionalInfo", access = JsonProperty.Access.WRITE_ONLY)
     private List<OperationErrorAdditionalInfo> additionalInfo;
 
-    /** Creates an instance of OperationStatusError class. */
+    /**
+     * Creates an instance of OperationStatusError class.
+     */
     public OperationStatusError() {
     }
 
     /**
      * Get the code property: The error code.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -50,7 +54,7 @@ public final class OperationStatusError {
 
     /**
      * Get the message property: The error message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -59,7 +63,7 @@ public final class OperationStatusError {
 
     /**
      * Get the details property: The error details.
-     *
+     * 
      * @return the details value.
      */
     public List<OperationStatusError> details() {
@@ -68,7 +72,7 @@ public final class OperationStatusError {
 
     /**
      * Get the additionalInfo property: The additional info.
-     *
+     * 
      * @return the additionalInfo value.
      */
     public List<OperationErrorAdditionalInfo> additionalInfo() {
@@ -77,7 +81,7 @@ public final class OperationStatusError {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
