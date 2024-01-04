@@ -11,13 +11,15 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.hybridcompute.fluent.models.HybridIdentityMetadataInner;
 
-/** An instance of this class provides access to all the operations defined in HybridIdentityMetadatasClient. */
+/**
+ * An instance of this class provides access to all the operations defined in HybridIdentityMetadatasClient.
+ */
 public interface HybridIdentityMetadatasClient {
     /**
      * Gets HybridIdentityMetadata.
-     *
-     * <p>Implements HybridIdentityMetadata GET method.
-     *
+     * 
+     * Implements HybridIdentityMetadata GET method.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
      * @param metadataName Name of the HybridIdentityMetadata.
@@ -28,14 +30,14 @@ public interface HybridIdentityMetadatasClient {
      * @return defines the HybridIdentityMetadata along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<HybridIdentityMetadataInner> getWithResponse(
-        String resourceGroupName, String machineName, String metadataName, Context context);
+    Response<HybridIdentityMetadataInner> getWithResponse(String resourceGroupName, String machineName,
+        String metadataName, Context context);
 
     /**
      * Gets HybridIdentityMetadata.
-     *
-     * <p>Implements HybridIdentityMetadata GET method.
-     *
+     * 
+     * Implements HybridIdentityMetadata GET method.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
      * @param metadataName Name of the HybridIdentityMetadata.
@@ -49,9 +51,9 @@ public interface HybridIdentityMetadatasClient {
 
     /**
      * Implements GET HybridIdentityMetadata in a machine.
-     *
-     * <p>Returns the list of HybridIdentityMetadata of the given machine.
-     *
+     * 
+     * Returns the list of HybridIdentityMetadata of the given machine.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -64,9 +66,9 @@ public interface HybridIdentityMetadatasClient {
 
     /**
      * Implements GET HybridIdentityMetadata in a machine.
-     *
-     * <p>Returns the list of HybridIdentityMetadata of the given machine.
-     *
+     * 
+     * Returns the list of HybridIdentityMetadata of the given machine.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
      * @param context The context to associate with this operation.
@@ -76,6 +78,6 @@ public interface HybridIdentityMetadatasClient {
      * @return list of HybridIdentityMetadata as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<HybridIdentityMetadataInner> listByMachines(
-        String resourceGroupName, String machineName, Context context);
+    PagedIterable<HybridIdentityMetadataInner> listByMachines(String resourceGroupName, String machineName,
+        Context context);
 }

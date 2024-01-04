@@ -30,23 +30,28 @@ import com.azure.resourcemanager.hybridcompute.fluent.models.HybridIdentityMetad
 import com.azure.resourcemanager.hybridcompute.models.HybridIdentityMetadataList;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in HybridIdentityMetadatasClient. */
+/**
+ * An instance of this class provides access to all the operations defined in HybridIdentityMetadatasClient.
+ */
 public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMetadatasClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final HybridIdentityMetadatasService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final HybridComputeManagementClientImpl client;
 
     /**
      * Initializes an instance of HybridIdentityMetadatasClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     HybridIdentityMetadatasClientImpl(HybridComputeManagementClientImpl client) {
-        this.service =
-            RestProxy
-                .create(HybridIdentityMetadatasService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service = RestProxy.create(HybridIdentityMetadatasService.class, client.getHttpPipeline(),
+            client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -57,51 +62,39 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
     @Host("{$host}")
     @ServiceInterface(name = "HybridComputeManagem")
     public interface HybridIdentityMetadatasService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/hybridIdentityMetadata/{metadataName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/hybridIdentityMetadata/{metadataName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<HybridIdentityMetadataInner>> get(
-            @HostParam("$host") String endpoint,
+        Mono<Response<HybridIdentityMetadataInner>> get(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("machineName") String machineName,
-            @PathParam("metadataName") String metadataName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("machineName") String machineName,
+            @PathParam("metadataName") String metadataName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/hybridIdentityMetadata")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/hybridIdentityMetadata")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<HybridIdentityMetadataList>> listByMachines(
-            @HostParam("$host") String endpoint,
+        Mono<Response<HybridIdentityMetadataList>> listByMachines(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("machineName") String machineName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("machineName") String machineName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<HybridIdentityMetadataList>> listByMachinesNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Gets HybridIdentityMetadata.
-     *
-     * <p>Implements HybridIdentityMetadata GET method.
-     *
+     * 
+     * Implements HybridIdentityMetadata GET method.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
      * @param metadataName Name of the HybridIdentityMetadata.
@@ -111,19 +104,15 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return defines the HybridIdentityMetadata along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<HybridIdentityMetadataInner>> getWithResponseAsync(
-        String resourceGroupName, String machineName, String metadataName) {
+    private Mono<Response<HybridIdentityMetadataInner>> getWithResponseAsync(String resourceGroupName,
+        String machineName, String metadataName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -137,26 +126,16 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            machineName,
-                            metadataName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, machineName, metadataName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets HybridIdentityMetadata.
-     *
-     * <p>Implements HybridIdentityMetadata GET method.
-     *
+     * 
+     * Implements HybridIdentityMetadata GET method.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
      * @param metadataName Name of the HybridIdentityMetadata.
@@ -167,19 +146,15 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return defines the HybridIdentityMetadata along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<HybridIdentityMetadataInner>> getWithResponseAsync(
-        String resourceGroupName, String machineName, String metadataName, Context context) {
+    private Mono<Response<HybridIdentityMetadataInner>> getWithResponseAsync(String resourceGroupName,
+        String machineName, String metadataName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -193,23 +168,15 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                machineName,
-                metadataName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, machineName,
+            metadataName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Gets HybridIdentityMetadata.
-     *
-     * <p>Implements HybridIdentityMetadata GET method.
-     *
+     * 
+     * Implements HybridIdentityMetadata GET method.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
      * @param metadataName Name of the HybridIdentityMetadata.
@@ -219,17 +186,17 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return defines the HybridIdentityMetadata on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<HybridIdentityMetadataInner> getAsync(
-        String resourceGroupName, String machineName, String metadataName) {
+    private Mono<HybridIdentityMetadataInner> getAsync(String resourceGroupName, String machineName,
+        String metadataName) {
         return getWithResponseAsync(resourceGroupName, machineName, metadataName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Gets HybridIdentityMetadata.
-     *
-     * <p>Implements HybridIdentityMetadata GET method.
-     *
+     * 
+     * Implements HybridIdentityMetadata GET method.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
      * @param metadataName Name of the HybridIdentityMetadata.
@@ -240,16 +207,16 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return defines the HybridIdentityMetadata along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<HybridIdentityMetadataInner> getWithResponse(
-        String resourceGroupName, String machineName, String metadataName, Context context) {
+    public Response<HybridIdentityMetadataInner> getWithResponse(String resourceGroupName, String machineName,
+        String metadataName, Context context) {
         return getWithResponseAsync(resourceGroupName, machineName, metadataName, context).block();
     }
 
     /**
      * Gets HybridIdentityMetadata.
-     *
-     * <p>Implements HybridIdentityMetadata GET method.
-     *
+     * 
+     * Implements HybridIdentityMetadata GET method.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
      * @param metadataName Name of the HybridIdentityMetadata.
@@ -265,9 +232,9 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
 
     /**
      * Implements GET HybridIdentityMetadata in a machine.
-     *
-     * <p>Returns the list of HybridIdentityMetadata of the given machine.
-     *
+     * 
+     * Returns the list of HybridIdentityMetadata of the given machine.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -276,19 +243,15 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return list of HybridIdentityMetadata along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<HybridIdentityMetadataInner>> listByMachinesSinglePageAsync(
-        String resourceGroupName, String machineName) {
+    private Mono<PagedResponse<HybridIdentityMetadataInner>> listByMachinesSinglePageAsync(String resourceGroupName,
+        String machineName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -299,34 +262,18 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByMachines(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            machineName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<HybridIdentityMetadataInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByMachines(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, machineName, this.client.getApiVersion(), accept, context))
+            .<PagedResponse<HybridIdentityMetadataInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Implements GET HybridIdentityMetadata in a machine.
-     *
-     * <p>Returns the list of HybridIdentityMetadata of the given machine.
-     *
+     * 
+     * Returns the list of HybridIdentityMetadata of the given machine.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
      * @param context The context to associate with this operation.
@@ -336,19 +283,15 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return list of HybridIdentityMetadata along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<HybridIdentityMetadataInner>> listByMachinesSinglePageAsync(
-        String resourceGroupName, String machineName, Context context) {
+    private Mono<PagedResponse<HybridIdentityMetadataInner>> listByMachinesSinglePageAsync(String resourceGroupName,
+        String machineName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -360,30 +303,17 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByMachines(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                machineName,
-                this.client.getApiVersion(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByMachines(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, machineName,
+                this.client.getApiVersion(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Implements GET HybridIdentityMetadata in a machine.
-     *
-     * <p>Returns the list of HybridIdentityMetadata of the given machine.
-     *
+     * 
+     * Returns the list of HybridIdentityMetadata of the given machine.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -393,16 +323,15 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<HybridIdentityMetadataInner> listByMachinesAsync(String resourceGroupName, String machineName) {
-        return new PagedFlux<>(
-            () -> listByMachinesSinglePageAsync(resourceGroupName, machineName),
+        return new PagedFlux<>(() -> listByMachinesSinglePageAsync(resourceGroupName, machineName),
             nextLink -> listByMachinesNextSinglePageAsync(nextLink));
     }
 
     /**
      * Implements GET HybridIdentityMetadata in a machine.
-     *
-     * <p>Returns the list of HybridIdentityMetadata of the given machine.
-     *
+     * 
+     * Returns the list of HybridIdentityMetadata of the given machine.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
      * @param context The context to associate with this operation.
@@ -412,18 +341,17 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return list of HybridIdentityMetadata as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<HybridIdentityMetadataInner> listByMachinesAsync(
-        String resourceGroupName, String machineName, Context context) {
-        return new PagedFlux<>(
-            () -> listByMachinesSinglePageAsync(resourceGroupName, machineName, context),
+    private PagedFlux<HybridIdentityMetadataInner> listByMachinesAsync(String resourceGroupName, String machineName,
+        Context context) {
+        return new PagedFlux<>(() -> listByMachinesSinglePageAsync(resourceGroupName, machineName, context),
             nextLink -> listByMachinesNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Implements GET HybridIdentityMetadata in a machine.
-     *
-     * <p>Returns the list of HybridIdentityMetadata of the given machine.
-     *
+     * 
+     * Returns the list of HybridIdentityMetadata of the given machine.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -438,9 +366,9 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
 
     /**
      * Implements GET HybridIdentityMetadata in a machine.
-     *
-     * <p>Returns the list of HybridIdentityMetadata of the given machine.
-     *
+     * 
+     * Returns the list of HybridIdentityMetadata of the given machine.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
      * @param context The context to associate with this operation.
@@ -450,16 +378,17 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return list of HybridIdentityMetadata as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<HybridIdentityMetadataInner> listByMachines(
-        String resourceGroupName, String machineName, Context context) {
+    public PagedIterable<HybridIdentityMetadataInner> listByMachines(String resourceGroupName, String machineName,
+        Context context) {
         return new PagedIterable<>(listByMachinesAsync(resourceGroupName, machineName, context));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -471,31 +400,23 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByMachinesNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<HybridIdentityMetadataInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<HybridIdentityMetadataInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -503,29 +424,19 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return list of HybridIdentityMetadata along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<HybridIdentityMetadataInner>> listByMachinesNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<HybridIdentityMetadataInner>> listByMachinesNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByMachinesNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByMachinesNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

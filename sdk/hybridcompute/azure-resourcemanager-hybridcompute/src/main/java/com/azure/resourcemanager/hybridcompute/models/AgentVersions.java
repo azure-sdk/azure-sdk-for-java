@@ -7,11 +7,13 @@ package com.azure.resourcemanager.hybridcompute.models;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of AgentVersions. */
+/**
+ * Resource collection API of AgentVersions.
+ */
 public interface AgentVersions {
     /**
      * Gets all Agent Versions along with the download link currently present.
-     *
+     * 
      * @param osType Defines the os type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -23,7 +25,7 @@ public interface AgentVersions {
 
     /**
      * Gets all Agent Versions along with the download link currently present.
-     *
+     * 
      * @param osType Defines the os type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -34,7 +36,7 @@ public interface AgentVersions {
 
     /**
      * Gets an Agent Version along with the download link currently present.
-     *
+     * 
      * @param osType Defines the os type.
      * @param version Defines the agent version. To get latest, use latest or else a specific agent version.
      * @param context The context to associate with this operation.
@@ -47,7 +49,7 @@ public interface AgentVersions {
 
     /**
      * Gets an Agent Version along with the download link currently present.
-     *
+     * 
      * @param osType Defines the os type.
      * @param version Defines the agent version. To get latest, use latest or else a specific agent version.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

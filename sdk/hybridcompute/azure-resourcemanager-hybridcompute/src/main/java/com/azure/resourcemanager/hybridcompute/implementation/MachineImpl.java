@@ -68,12 +68,8 @@ public final class MachineImpl implements Machine {
     public List<MachineExtension> resources() {
         List<MachineExtensionInner> inner = this.innerModel().resources();
         if (inner != null) {
-            return Collections
-                .unmodifiableList(
-                    inner
-                        .stream()
-                        .map(inner1 -> new MachineExtensionImpl(inner1, this.manager()))
-                        .collect(Collectors.toList()));
+            return Collections.unmodifiableList(inner.stream()
+                .map(inner1 -> new MachineExtensionImpl(inner1, this.manager())).collect(Collectors.toList()));
         } else {
             return Collections.emptyList();
         }
@@ -192,6 +188,10 @@ public final class MachineImpl implements Machine {
 
     public String osSku() {
         return this.innerModel().osSku();
+    }
+
+    public String osEdition() {
+        return this.innerModel().osEdition();
     }
 
     public String domainName() {

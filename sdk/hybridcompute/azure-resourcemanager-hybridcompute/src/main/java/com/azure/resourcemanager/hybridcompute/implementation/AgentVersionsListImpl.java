@@ -17,8 +17,7 @@ public final class AgentVersionsListImpl implements AgentVersionsList {
 
     private final com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager;
 
-    AgentVersionsListImpl(
-        AgentVersionsListInner innerObject,
+    AgentVersionsListImpl(AgentVersionsListInner innerObject,
         com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -27,12 +26,8 @@ public final class AgentVersionsListImpl implements AgentVersionsList {
     public List<AgentVersion> value() {
         List<AgentVersionInner> inner = this.innerModel().value();
         if (inner != null) {
-            return Collections
-                .unmodifiableList(
-                    inner
-                        .stream()
-                        .map(inner1 -> new AgentVersionImpl(inner1, this.manager()))
-                        .collect(Collectors.toList()));
+            return Collections.unmodifiableList(inner.stream()
+                .map(inner1 -> new AgentVersionImpl(inner1, this.manager())).collect(Collectors.toList()));
         } else {
             return Collections.emptyList();
         }

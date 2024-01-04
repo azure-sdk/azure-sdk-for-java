@@ -14,8 +14,7 @@ public final class HybridIdentityMetadataImpl implements HybridIdentityMetadata 
 
     private final com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager;
 
-    HybridIdentityMetadataImpl(
-        HybridIdentityMetadataInner innerObject,
+    HybridIdentityMetadataImpl(HybridIdentityMetadataInner innerObject,
         com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;

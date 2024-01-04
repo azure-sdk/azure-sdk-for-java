@@ -21,22 +21,18 @@ public final class HybridIdentityMetadatasImpl implements HybridIdentityMetadata
 
     private final com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager;
 
-    public HybridIdentityMetadatasImpl(
-        HybridIdentityMetadatasClient innerClient,
+    public HybridIdentityMetadatasImpl(HybridIdentityMetadatasClient innerClient,
         com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<HybridIdentityMetadata> getWithResponse(
-        String resourceGroupName, String machineName, String metadataName, Context context) {
-        Response<HybridIdentityMetadataInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, machineName, metadataName, context);
+    public Response<HybridIdentityMetadata> getWithResponse(String resourceGroupName, String machineName,
+        String metadataName, Context context) {
+        Response<HybridIdentityMetadataInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, machineName, metadataName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new HybridIdentityMetadataImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -53,15 +49,15 @@ public final class HybridIdentityMetadatasImpl implements HybridIdentityMetadata
     }
 
     public PagedIterable<HybridIdentityMetadata> listByMachines(String resourceGroupName, String machineName) {
-        PagedIterable<HybridIdentityMetadataInner> inner =
-            this.serviceClient().listByMachines(resourceGroupName, machineName);
+        PagedIterable<HybridIdentityMetadataInner> inner
+            = this.serviceClient().listByMachines(resourceGroupName, machineName);
         return Utils.mapPage(inner, inner1 -> new HybridIdentityMetadataImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<HybridIdentityMetadata> listByMachines(
-        String resourceGroupName, String machineName, Context context) {
-        PagedIterable<HybridIdentityMetadataInner> inner =
-            this.serviceClient().listByMachines(resourceGroupName, machineName, context);
+    public PagedIterable<HybridIdentityMetadata> listByMachines(String resourceGroupName, String machineName,
+        Context context) {
+        PagedIterable<HybridIdentityMetadataInner> inner
+            = this.serviceClient().listByMachines(resourceGroupName, machineName, context);
         return Utils.mapPage(inner, inner1 -> new HybridIdentityMetadataImpl(inner1, this.manager()));
     }
 
