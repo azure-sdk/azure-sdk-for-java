@@ -19,8 +19,7 @@ public final class WorkspaceFeaturesImpl implements WorkspaceFeatures {
 
     private final com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager;
 
-    public WorkspaceFeaturesImpl(
-        WorkspaceFeaturesClient innerClient,
+    public WorkspaceFeaturesImpl(WorkspaceFeaturesClient innerClient,
         com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;

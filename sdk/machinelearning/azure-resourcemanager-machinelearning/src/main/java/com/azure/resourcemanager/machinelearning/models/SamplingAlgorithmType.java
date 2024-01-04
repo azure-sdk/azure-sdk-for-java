@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SamplingAlgorithmType. */
+/**
+ * Defines values for SamplingAlgorithmType.
+ */
 public final class SamplingAlgorithmType extends ExpandableStringEnum<SamplingAlgorithmType> {
-    /** Static value Grid for SamplingAlgorithmType. */
+    /**
+     * Static value Grid for SamplingAlgorithmType.
+     */
     public static final SamplingAlgorithmType GRID = fromString("Grid");
 
-    /** Static value Random for SamplingAlgorithmType. */
+    /**
+     * Static value Random for SamplingAlgorithmType.
+     */
     public static final SamplingAlgorithmType RANDOM = fromString("Random");
 
-    /** Static value Bayesian for SamplingAlgorithmType. */
+    /**
+     * Static value Bayesian for SamplingAlgorithmType.
+     */
     public static final SamplingAlgorithmType BAYESIAN = fromString("Bayesian");
 
     /**
      * Creates a new instance of SamplingAlgorithmType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class SamplingAlgorithmType extends ExpandableStringEnum<SamplingAl
 
     /**
      * Creates or finds a SamplingAlgorithmType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding SamplingAlgorithmType.
      */
@@ -41,7 +49,7 @@ public final class SamplingAlgorithmType extends ExpandableStringEnum<SamplingAl
 
     /**
      * Gets known SamplingAlgorithmType values.
-     *
+     * 
      * @return known SamplingAlgorithmType values.
      */
     public static Collection<SamplingAlgorithmType> values() {

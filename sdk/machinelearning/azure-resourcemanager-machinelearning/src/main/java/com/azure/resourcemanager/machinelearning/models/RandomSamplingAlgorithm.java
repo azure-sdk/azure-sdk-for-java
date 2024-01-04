@@ -9,11 +9,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Defines a Sampling Algorithm that generates values randomly. */
+/**
+ * Defines a Sampling Algorithm that generates values randomly.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "samplingAlgorithmType")
 @JsonTypeName("Random")
 @Fluent
 public final class RandomSamplingAlgorithm extends SamplingAlgorithm {
+    /*
+     * An optional positive number or e in string format to be used as base for log based random sampling
+     */
+    @JsonProperty(value = "logbase")
+    private String logbase;
+
     /*
      * The specific type of random algorithm
      */
@@ -26,13 +34,37 @@ public final class RandomSamplingAlgorithm extends SamplingAlgorithm {
     @JsonProperty(value = "seed")
     private Integer seed;
 
-    /** Creates an instance of RandomSamplingAlgorithm class. */
+    /**
+     * Creates an instance of RandomSamplingAlgorithm class.
+     */
     public RandomSamplingAlgorithm() {
     }
 
     /**
+     * Get the logbase property: An optional positive number or e in string format to be used as base for log based
+     * random sampling.
+     * 
+     * @return the logbase value.
+     */
+    public String logbase() {
+        return this.logbase;
+    }
+
+    /**
+     * Set the logbase property: An optional positive number or e in string format to be used as base for log based
+     * random sampling.
+     * 
+     * @param logbase the logbase value to set.
+     * @return the RandomSamplingAlgorithm object itself.
+     */
+    public RandomSamplingAlgorithm withLogbase(String logbase) {
+        this.logbase = logbase;
+        return this;
+    }
+
+    /**
      * Get the rule property: The specific type of random algorithm.
-     *
+     * 
      * @return the rule value.
      */
     public RandomSamplingAlgorithmRule rule() {
@@ -41,7 +73,7 @@ public final class RandomSamplingAlgorithm extends SamplingAlgorithm {
 
     /**
      * Set the rule property: The specific type of random algorithm.
-     *
+     * 
      * @param rule the rule value to set.
      * @return the RandomSamplingAlgorithm object itself.
      */
@@ -52,7 +84,7 @@ public final class RandomSamplingAlgorithm extends SamplingAlgorithm {
 
     /**
      * Get the seed property: An optional integer to use as the seed for random number generation.
-     *
+     * 
      * @return the seed value.
      */
     public Integer seed() {
@@ -61,7 +93,7 @@ public final class RandomSamplingAlgorithm extends SamplingAlgorithm {
 
     /**
      * Set the seed property: An optional integer to use as the seed for random number generation.
-     *
+     * 
      * @param seed the seed value to set.
      * @return the RandomSamplingAlgorithm object itself.
      */
@@ -72,7 +104,7 @@ public final class RandomSamplingAlgorithm extends SamplingAlgorithm {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

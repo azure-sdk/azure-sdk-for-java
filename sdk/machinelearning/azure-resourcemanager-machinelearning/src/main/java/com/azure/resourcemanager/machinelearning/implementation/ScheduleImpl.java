@@ -4,11 +4,14 @@
 
 package com.azure.resourcemanager.machinelearning.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.ScheduleInner;
 import com.azure.resourcemanager.machinelearning.models.Schedule;
 import com.azure.resourcemanager.machinelearning.models.ScheduleProperties;
+import com.azure.resourcemanager.machinelearning.models.TriggerOnceRequest;
+import com.azure.resourcemanager.machinelearning.models.TriggerRunSubmissionDto;
 
 public final class ScheduleImpl implements Schedule, Schedule.Definition, Schedule.Update {
     private ScheduleInner innerObject;
@@ -60,20 +63,14 @@ public final class ScheduleImpl implements Schedule, Schedule.Definition, Schedu
     }
 
     public Schedule create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSchedules()
-                .createOrUpdate(resourceGroupName, workspaceName, name, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getSchedules().createOrUpdate(resourceGroupName,
+            workspaceName, name, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Schedule create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSchedules()
-                .createOrUpdate(resourceGroupName, workspaceName, name, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getSchedules().createOrUpdate(resourceGroupName,
+            workspaceName, name, this.innerModel(), context);
         return this;
     }
 
@@ -88,25 +85,19 @@ public final class ScheduleImpl implements Schedule, Schedule.Definition, Schedu
     }
 
     public Schedule apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSchedules()
-                .createOrUpdate(resourceGroupName, workspaceName, name, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getSchedules().createOrUpdate(resourceGroupName,
+            workspaceName, name, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Schedule apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSchedules()
-                .createOrUpdate(resourceGroupName, workspaceName, name, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getSchedules().createOrUpdate(resourceGroupName,
+            workspaceName, name, this.innerModel(), context);
         return this;
     }
 
-    ScheduleImpl(
-        ScheduleInner innerObject, com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
+    ScheduleImpl(ScheduleInner innerObject,
+        com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
@@ -115,23 +106,23 @@ public final class ScheduleImpl implements Schedule, Schedule.Definition, Schedu
     }
 
     public Schedule refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSchedules()
-                .getWithResponse(resourceGroupName, workspaceName, name, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getSchedules()
+            .getWithResponse(resourceGroupName, workspaceName, name, Context.NONE).getValue();
         return this;
     }
 
     public Schedule refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSchedules()
-                .getWithResponse(resourceGroupName, workspaceName, name, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getSchedules()
+            .getWithResponse(resourceGroupName, workspaceName, name, context).getValue();
         return this;
+    }
+
+    public Response<TriggerRunSubmissionDto> triggerWithResponse(TriggerOnceRequest body, Context context) {
+        return serviceManager.schedules().triggerWithResponse(resourceGroupName, workspaceName, name, body, context);
+    }
+
+    public TriggerRunSubmissionDto trigger(TriggerOnceRequest body) {
+        return serviceManager.schedules().trigger(resourceGroupName, workspaceName, name, body);
     }
 
     public ScheduleImpl withProperties(ScheduleProperties properties) {
