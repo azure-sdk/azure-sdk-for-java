@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.managementgroups.models.DescendantParentGroupInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The generic properties of subscription under a management group. */
+/**
+ * The generic properties of subscription under a management group.
+ */
 @Fluent
 public final class SubscriptionUnderManagementGroupProperties {
     /*
@@ -35,14 +37,16 @@ public final class SubscriptionUnderManagementGroupProperties {
     @JsonProperty(value = "state")
     private String state;
 
-    /** Creates an instance of SubscriptionUnderManagementGroupProperties class. */
+    /**
+     * Creates an instance of SubscriptionUnderManagementGroupProperties class.
+     */
     public SubscriptionUnderManagementGroupProperties() {
     }
 
     /**
      * Get the tenant property: The AAD Tenant ID associated with the subscription. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the tenant value.
      */
     public String tenant() {
@@ -52,7 +56,7 @@ public final class SubscriptionUnderManagementGroupProperties {
     /**
      * Set the tenant property: The AAD Tenant ID associated with the subscription. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @param tenant the tenant value to set.
      * @return the SubscriptionUnderManagementGroupProperties object itself.
      */
@@ -63,7 +67,7 @@ public final class SubscriptionUnderManagementGroupProperties {
 
     /**
      * Get the displayName property: The friendly name of the subscription.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -72,7 +76,7 @@ public final class SubscriptionUnderManagementGroupProperties {
 
     /**
      * Set the displayName property: The friendly name of the subscription.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the SubscriptionUnderManagementGroupProperties object itself.
      */
@@ -83,7 +87,7 @@ public final class SubscriptionUnderManagementGroupProperties {
 
     /**
      * Get the parent property: The ID of the parent management group.
-     *
+     * 
      * @return the parent value.
      */
     public DescendantParentGroupInfo parent() {
@@ -92,7 +96,7 @@ public final class SubscriptionUnderManagementGroupProperties {
 
     /**
      * Set the parent property: The ID of the parent management group.
-     *
+     * 
      * @param parent the parent value to set.
      * @return the SubscriptionUnderManagementGroupProperties object itself.
      */
@@ -103,7 +107,7 @@ public final class SubscriptionUnderManagementGroupProperties {
 
     /**
      * Get the state property: The state of the subscription.
-     *
+     * 
      * @return the state value.
      */
     public String state() {
@@ -112,7 +116,7 @@ public final class SubscriptionUnderManagementGroupProperties {
 
     /**
      * Set the state property: The state of the subscription.
-     *
+     * 
      * @param state the state value to set.
      * @return the SubscriptionUnderManagementGroupProperties object itself.
      */
@@ -123,7 +127,7 @@ public final class SubscriptionUnderManagementGroupProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

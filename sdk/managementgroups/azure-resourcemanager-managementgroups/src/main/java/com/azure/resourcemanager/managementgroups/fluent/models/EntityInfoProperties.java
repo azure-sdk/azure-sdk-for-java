@@ -10,7 +10,9 @@ import com.azure.resourcemanager.managementgroups.models.Permissions;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The generic properties of an entity. */
+/**
+ * The generic properties of an entity.
+ */
 @Fluent
 public final class EntityInfoProperties {
     /*
@@ -51,7 +53,7 @@ public final class EntityInfoProperties {
 
     /*
      * Number of Children
-     *
+     * 
      * Number of children is the number of Groups and Subscriptions that are exactly one level underneath the current
      * Group.
      */
@@ -60,7 +62,7 @@ public final class EntityInfoProperties {
 
     /*
      * Number of Child Groups
-     *
+     * 
      * Number of children is the number of Groups that are exactly one level underneath the current Group.
      */
     @JsonProperty(value = "numberOfChildGroups")
@@ -78,14 +80,16 @@ public final class EntityInfoProperties {
     @JsonProperty(value = "parentNameChain")
     private List<String> parentNameChain;
 
-    /** Creates an instance of EntityInfoProperties class. */
+    /**
+     * Creates an instance of EntityInfoProperties class.
+     */
     public EntityInfoProperties() {
     }
 
     /**
      * Get the tenantId property: The AAD Tenant ID associated with the entity. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -95,7 +99,7 @@ public final class EntityInfoProperties {
     /**
      * Set the tenantId property: The AAD Tenant ID associated with the entity. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the EntityInfoProperties object itself.
      */
@@ -106,7 +110,7 @@ public final class EntityInfoProperties {
 
     /**
      * Get the displayName property: The friendly name of the management group.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -115,7 +119,7 @@ public final class EntityInfoProperties {
 
     /**
      * Set the displayName property: The friendly name of the management group.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the EntityInfoProperties object itself.
      */
@@ -126,7 +130,7 @@ public final class EntityInfoProperties {
 
     /**
      * Get the parent property: (Optional) The ID of the parent management group.
-     *
+     * 
      * @return the parent value.
      */
     public EntityParentGroupInfo parent() {
@@ -135,7 +139,7 @@ public final class EntityInfoProperties {
 
     /**
      * Set the parent property: (Optional) The ID of the parent management group.
-     *
+     * 
      * @param parent the parent value to set.
      * @return the EntityInfoProperties object itself.
      */
@@ -146,7 +150,7 @@ public final class EntityInfoProperties {
 
     /**
      * Get the permissions property: The users specific permissions to this item.
-     *
+     * 
      * @return the permissions value.
      */
     public Permissions permissions() {
@@ -155,7 +159,7 @@ public final class EntityInfoProperties {
 
     /**
      * Set the permissions property: The users specific permissions to this item.
-     *
+     * 
      * @param permissions the permissions value to set.
      * @return the EntityInfoProperties object itself.
      */
@@ -166,7 +170,7 @@ public final class EntityInfoProperties {
 
     /**
      * Get the inheritedPermissions property: The users specific permissions to this item.
-     *
+     * 
      * @return the inheritedPermissions value.
      */
     public Permissions inheritedPermissions() {
@@ -175,7 +179,7 @@ public final class EntityInfoProperties {
 
     /**
      * Set the inheritedPermissions property: The users specific permissions to this item.
-     *
+     * 
      * @param inheritedPermissions the inheritedPermissions value to set.
      * @return the EntityInfoProperties object itself.
      */
@@ -186,7 +190,7 @@ public final class EntityInfoProperties {
 
     /**
      * Get the numberOfDescendants property: Number of Descendants.
-     *
+     * 
      * @return the numberOfDescendants value.
      */
     public Integer numberOfDescendants() {
@@ -195,7 +199,7 @@ public final class EntityInfoProperties {
 
     /**
      * Set the numberOfDescendants property: Number of Descendants.
-     *
+     * 
      * @param numberOfDescendants the numberOfDescendants value to set.
      * @return the EntityInfoProperties object itself.
      */
@@ -206,10 +210,10 @@ public final class EntityInfoProperties {
 
     /**
      * Get the numberOfChildren property: Number of Children
-     *
-     * <p>Number of children is the number of Groups and Subscriptions that are exactly one level underneath the current
+     * 
+     * Number of children is the number of Groups and Subscriptions that are exactly one level underneath the current
      * Group.
-     *
+     * 
      * @return the numberOfChildren value.
      */
     public Integer numberOfChildren() {
@@ -218,10 +222,10 @@ public final class EntityInfoProperties {
 
     /**
      * Set the numberOfChildren property: Number of Children
-     *
-     * <p>Number of children is the number of Groups and Subscriptions that are exactly one level underneath the current
+     * 
+     * Number of children is the number of Groups and Subscriptions that are exactly one level underneath the current
      * Group.
-     *
+     * 
      * @param numberOfChildren the numberOfChildren value to set.
      * @return the EntityInfoProperties object itself.
      */
@@ -232,9 +236,9 @@ public final class EntityInfoProperties {
 
     /**
      * Get the numberOfChildGroups property: Number of Child Groups
-     *
-     * <p>Number of children is the number of Groups that are exactly one level underneath the current Group.
-     *
+     * 
+     * Number of children is the number of Groups that are exactly one level underneath the current Group.
+     * 
      * @return the numberOfChildGroups value.
      */
     public Integer numberOfChildGroups() {
@@ -243,9 +247,9 @@ public final class EntityInfoProperties {
 
     /**
      * Set the numberOfChildGroups property: Number of Child Groups
-     *
-     * <p>Number of children is the number of Groups that are exactly one level underneath the current Group.
-     *
+     * 
+     * Number of children is the number of Groups that are exactly one level underneath the current Group.
+     * 
      * @param numberOfChildGroups the numberOfChildGroups value to set.
      * @return the EntityInfoProperties object itself.
      */
@@ -257,7 +261,7 @@ public final class EntityInfoProperties {
     /**
      * Get the parentDisplayNameChain property: The parent display name chain from the root group to the immediate
      * parent.
-     *
+     * 
      * @return the parentDisplayNameChain value.
      */
     public List<String> parentDisplayNameChain() {
@@ -267,7 +271,7 @@ public final class EntityInfoProperties {
     /**
      * Set the parentDisplayNameChain property: The parent display name chain from the root group to the immediate
      * parent.
-     *
+     * 
      * @param parentDisplayNameChain the parentDisplayNameChain value to set.
      * @return the EntityInfoProperties object itself.
      */
@@ -278,7 +282,7 @@ public final class EntityInfoProperties {
 
     /**
      * Get the parentNameChain property: The parent name chain from the root group to the immediate parent.
-     *
+     * 
      * @return the parentNameChain value.
      */
     public List<String> parentNameChain() {
@@ -287,7 +291,7 @@ public final class EntityInfoProperties {
 
     /**
      * Set the parentNameChain property: The parent name chain from the root group to the immediate parent.
-     *
+     * 
      * @param parentNameChain the parentNameChain value to set.
      * @return the EntityInfoProperties object itself.
      */
@@ -298,7 +302,7 @@ public final class EntityInfoProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managementgroups.fluent.models.DescendantInfoIn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes the result of the request to view descendants. */
+/**
+ * Describes the result of the request to view descendants.
+ */
 @Fluent
 public final class DescendantListResult {
     /*
@@ -24,13 +26,15 @@ public final class DescendantListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of DescendantListResult class. */
+    /**
+     * Creates an instance of DescendantListResult class.
+     */
     public DescendantListResult() {
     }
 
     /**
      * Get the value property: The list of descendants.
-     *
+     * 
      * @return the value value.
      */
     public List<DescendantInfoInner> value() {
@@ -39,7 +43,7 @@ public final class DescendantListResult {
 
     /**
      * Set the value property: The list of descendants.
-     *
+     * 
      * @param value the value value to set.
      * @return the DescendantListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class DescendantListResult {
 
     /**
      * Get the nextLink property: The URL to use for getting the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class DescendantListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

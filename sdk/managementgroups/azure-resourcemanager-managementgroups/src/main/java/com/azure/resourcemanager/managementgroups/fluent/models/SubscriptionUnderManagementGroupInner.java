@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.managementgroups.models.DescendantParentGroupInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The details of subscription under management group. */
+/**
+ * The details of subscription under management group.
+ */
 @Fluent
 public final class SubscriptionUnderManagementGroupInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class SubscriptionUnderManagementGroupInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private SubscriptionUnderManagementGroupProperties innerProperties;
 
-    /** Creates an instance of SubscriptionUnderManagementGroupInner class. */
+    /**
+     * Creates an instance of SubscriptionUnderManagementGroupInner class.
+     */
     public SubscriptionUnderManagementGroupInner() {
     }
 
     /**
      * Get the innerProperties property: The generic properties of subscription under a management group.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SubscriptionUnderManagementGroupProperties innerProperties() {
@@ -34,7 +38,7 @@ public final class SubscriptionUnderManagementGroupInner extends ProxyResource {
     /**
      * Get the tenant property: The AAD Tenant ID associated with the subscription. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the tenant value.
      */
     public String tenant() {
@@ -44,7 +48,7 @@ public final class SubscriptionUnderManagementGroupInner extends ProxyResource {
     /**
      * Set the tenant property: The AAD Tenant ID associated with the subscription. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @param tenant the tenant value to set.
      * @return the SubscriptionUnderManagementGroupInner object itself.
      */
@@ -58,7 +62,7 @@ public final class SubscriptionUnderManagementGroupInner extends ProxyResource {
 
     /**
      * Get the displayName property: The friendly name of the subscription.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -67,7 +71,7 @@ public final class SubscriptionUnderManagementGroupInner extends ProxyResource {
 
     /**
      * Set the displayName property: The friendly name of the subscription.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the SubscriptionUnderManagementGroupInner object itself.
      */
@@ -81,7 +85,7 @@ public final class SubscriptionUnderManagementGroupInner extends ProxyResource {
 
     /**
      * Get the parent property: The ID of the parent management group.
-     *
+     * 
      * @return the parent value.
      */
     public DescendantParentGroupInfo parent() {
@@ -90,7 +94,7 @@ public final class SubscriptionUnderManagementGroupInner extends ProxyResource {
 
     /**
      * Set the parent property: The ID of the parent management group.
-     *
+     * 
      * @param parent the parent value to set.
      * @return the SubscriptionUnderManagementGroupInner object itself.
      */
@@ -104,7 +108,7 @@ public final class SubscriptionUnderManagementGroupInner extends ProxyResource {
 
     /**
      * Get the state property: The state of the subscription.
-     *
+     * 
      * @return the state value.
      */
     public String state() {
@@ -113,7 +117,7 @@ public final class SubscriptionUnderManagementGroupInner extends ProxyResource {
 
     /**
      * Set the state property: The state of the subscription.
-     *
+     * 
      * @param state the state value to set.
      * @return the SubscriptionUnderManagementGroupInner object itself.
      */
@@ -127,7 +131,7 @@ public final class SubscriptionUnderManagementGroupInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

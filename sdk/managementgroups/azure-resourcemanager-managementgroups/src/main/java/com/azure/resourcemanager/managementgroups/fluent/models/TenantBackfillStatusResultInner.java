@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.managementgroups.models.Status;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The tenant backfill status. */
+/**
+ * The tenant backfill status.
+ */
 @Immutable
 public final class TenantBackfillStatusResultInner {
     /*
@@ -23,14 +25,16 @@ public final class TenantBackfillStatusResultInner {
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private Status status;
 
-    /** Creates an instance of TenantBackfillStatusResultInner class. */
+    /**
+     * Creates an instance of TenantBackfillStatusResultInner class.
+     */
     public TenantBackfillStatusResultInner() {
     }
 
     /**
      * Get the tenantId property: The AAD Tenant ID associated with the management group. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -39,7 +43,7 @@ public final class TenantBackfillStatusResultInner {
 
     /**
      * Get the status property: The status of the Tenant Backfill.
-     *
+     * 
      * @return the status value.
      */
     public Status status() {
@@ -48,7 +52,7 @@ public final class TenantBackfillStatusResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

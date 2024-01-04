@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managementgroups.models.HierarchySettingsInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Lists all hierarchy settings. */
+/**
+ * Lists all hierarchy settings.
+ */
 @Fluent
 public final class HierarchySettingsListInner {
     /*
@@ -24,13 +26,15 @@ public final class HierarchySettingsListInner {
     @JsonProperty(value = "@nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of HierarchySettingsListInner class. */
+    /**
+     * Creates an instance of HierarchySettingsListInner class.
+     */
     public HierarchySettingsListInner() {
     }
 
     /**
      * Get the value property: The list of hierarchy settings.
-     *
+     * 
      * @return the value value.
      */
     public List<HierarchySettingsInfo> value() {
@@ -39,7 +43,7 @@ public final class HierarchySettingsListInner {
 
     /**
      * Set the value property: The list of hierarchy settings.
-     *
+     * 
      * @param value the value value to set.
      * @return the HierarchySettingsListInner object itself.
      */
@@ -50,7 +54,7 @@ public final class HierarchySettingsListInner {
 
     /**
      * Get the nextLink property: The URL to use for getting the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class HierarchySettingsListInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

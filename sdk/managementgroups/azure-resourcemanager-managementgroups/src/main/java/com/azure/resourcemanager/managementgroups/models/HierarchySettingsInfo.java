@@ -8,18 +8,20 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.managementgroups.fluent.models.HierarchySettingsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The hierarchy settings resource. */
+/**
+ * The hierarchy settings resource.
+ */
 @Fluent
 public final class HierarchySettingsInfo {
     /*
-     * The fully qualified ID for the settings object.  For example,
+     * The fully qualified ID for the settings object. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000/settings/default.
      */
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
     /*
-     * The type of the resource.  For example, Microsoft.Management/managementGroups/settings.
+     * The type of the resource. For example, Microsoft.Management/managementGroups/settings.
      */
     @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
     private String type;
@@ -36,14 +38,16 @@ public final class HierarchySettingsInfo {
     @JsonProperty(value = "properties")
     private HierarchySettingsProperties innerProperties;
 
-    /** Creates an instance of HierarchySettingsInfo class. */
+    /**
+     * Creates an instance of HierarchySettingsInfo class.
+     */
     public HierarchySettingsInfo() {
     }
 
     /**
      * Get the id property: The fully qualified ID for the settings object. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000/settings/default.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -52,7 +56,7 @@ public final class HierarchySettingsInfo {
 
     /**
      * Get the type property: The type of the resource. For example, Microsoft.Management/managementGroups/settings.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -61,7 +65,7 @@ public final class HierarchySettingsInfo {
 
     /**
      * Get the name property: The name of the object. In this case, default.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -70,7 +74,7 @@ public final class HierarchySettingsInfo {
 
     /**
      * Get the innerProperties property: The generic properties of hierarchy settings.
-     *
+     * 
      * @return the innerProperties value.
      */
     private HierarchySettingsProperties innerProperties() {
@@ -80,7 +84,7 @@ public final class HierarchySettingsInfo {
     /**
      * Get the tenantId property: The AAD Tenant ID associated with the hierarchy settings. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -90,7 +94,7 @@ public final class HierarchySettingsInfo {
     /**
      * Set the tenantId property: The AAD Tenant ID associated with the hierarchy settings. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the HierarchySettingsInfo object itself.
      */
@@ -108,7 +112,7 @@ public final class HierarchySettingsInfo {
      * Microsoft.Management/managementGroups/write action on the root Management Group scope in order to create new
      * Groups directly under the root. This will prevent new users from creating new Management Groups, unless they are
      * given access.
-     *
+     * 
      * @return the requireAuthorizationForGroupCreation value.
      */
     public Boolean requireAuthorizationForGroupCreation() {
@@ -121,12 +125,12 @@ public final class HierarchySettingsInfo {
      * Microsoft.Management/managementGroups/write action on the root Management Group scope in order to create new
      * Groups directly under the root. This will prevent new users from creating new Management Groups, unless they are
      * given access.
-     *
+     * 
      * @param requireAuthorizationForGroupCreation the requireAuthorizationForGroupCreation value to set.
      * @return the HierarchySettingsInfo object itself.
      */
-    public HierarchySettingsInfo withRequireAuthorizationForGroupCreation(
-        Boolean requireAuthorizationForGroupCreation) {
+    public HierarchySettingsInfo
+        withRequireAuthorizationForGroupCreation(Boolean requireAuthorizationForGroupCreation) {
         if (this.innerProperties() == null) {
             this.innerProperties = new HierarchySettingsProperties();
         }
@@ -138,7 +142,7 @@ public final class HierarchySettingsInfo {
      * Get the defaultManagementGroup property: Settings that sets the default Management Group under which new
      * subscriptions get added in this tenant. For example,
      * /providers/Microsoft.Management/managementGroups/defaultGroup.
-     *
+     * 
      * @return the defaultManagementGroup value.
      */
     public String defaultManagementGroup() {
@@ -149,7 +153,7 @@ public final class HierarchySettingsInfo {
      * Set the defaultManagementGroup property: Settings that sets the default Management Group under which new
      * subscriptions get added in this tenant. For example,
      * /providers/Microsoft.Management/managementGroups/defaultGroup.
-     *
+     * 
      * @param defaultManagementGroup the defaultManagementGroup value to set.
      * @return the HierarchySettingsInfo object itself.
      */
@@ -163,7 +167,7 @@ public final class HierarchySettingsInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

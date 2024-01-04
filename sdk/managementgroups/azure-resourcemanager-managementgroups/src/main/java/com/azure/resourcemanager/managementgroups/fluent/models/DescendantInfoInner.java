@@ -8,11 +8,13 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.managementgroups.models.DescendantParentGroupInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The descendant. */
+/**
+ * The descendant.
+ */
 @Fluent
 public final class DescendantInfoInner {
     /*
-     * The fully qualified ID for the descendant.  For example,
+     * The fully qualified ID for the descendant. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000 or
      * /subscriptions/0000000-0000-0000-0000-000000000000
      */
@@ -37,7 +39,9 @@ public final class DescendantInfoInner {
     @JsonProperty(value = "properties")
     private DescendantInfoProperties innerProperties;
 
-    /** Creates an instance of DescendantInfoInner class. */
+    /**
+     * Creates an instance of DescendantInfoInner class.
+     */
     public DescendantInfoInner() {
     }
 
@@ -45,7 +49,7 @@ public final class DescendantInfoInner {
      * Get the id property: The fully qualified ID for the descendant. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000 or
      * /subscriptions/0000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -55,7 +59,7 @@ public final class DescendantInfoInner {
     /**
      * Get the type property: The type of the resource. For example, Microsoft.Management/managementGroups or
      * /subscriptions.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -64,7 +68,7 @@ public final class DescendantInfoInner {
 
     /**
      * Get the name property: The name of the descendant. For example, 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -73,7 +77,7 @@ public final class DescendantInfoInner {
 
     /**
      * Get the innerProperties property: The generic properties of an descendant.
-     *
+     * 
      * @return the innerProperties value.
      */
     private DescendantInfoProperties innerProperties() {
@@ -82,7 +86,7 @@ public final class DescendantInfoInner {
 
     /**
      * Get the displayName property: The friendly name of the management group.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -91,7 +95,7 @@ public final class DescendantInfoInner {
 
     /**
      * Set the displayName property: The friendly name of the management group.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the DescendantInfoInner object itself.
      */
@@ -105,7 +109,7 @@ public final class DescendantInfoInner {
 
     /**
      * Get the parent property: The ID of the parent management group.
-     *
+     * 
      * @return the parent value.
      */
     public DescendantParentGroupInfo parent() {
@@ -114,7 +118,7 @@ public final class DescendantInfoInner {
 
     /**
      * Set the parent property: The ID of the parent management group.
-     *
+     * 
      * @param parent the parent value to set.
      * @return the DescendantInfoInner object itself.
      */
@@ -128,7 +132,7 @@ public final class DescendantInfoInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,26 +8,38 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for EntitySearchType. */
+/**
+ * Defines values for EntitySearchType.
+ */
 public final class EntitySearchType extends ExpandableStringEnum<EntitySearchType> {
-    /** Static value AllowedParents for EntitySearchType. */
+    /**
+     * Static value AllowedParents for EntitySearchType.
+     */
     public static final EntitySearchType ALLOWED_PARENTS = fromString("AllowedParents");
 
-    /** Static value AllowedChildren for EntitySearchType. */
+    /**
+     * Static value AllowedChildren for EntitySearchType.
+     */
     public static final EntitySearchType ALLOWED_CHILDREN = fromString("AllowedChildren");
 
-    /** Static value ParentAndFirstLevelChildren for EntitySearchType. */
+    /**
+     * Static value ParentAndFirstLevelChildren for EntitySearchType.
+     */
     public static final EntitySearchType PARENT_AND_FIRST_LEVEL_CHILDREN = fromString("ParentAndFirstLevelChildren");
 
-    /** Static value ParentOnly for EntitySearchType. */
+    /**
+     * Static value ParentOnly for EntitySearchType.
+     */
     public static final EntitySearchType PARENT_ONLY = fromString("ParentOnly");
 
-    /** Static value ChildrenOnly for EntitySearchType. */
+    /**
+     * Static value ChildrenOnly for EntitySearchType.
+     */
     public static final EntitySearchType CHILDREN_ONLY = fromString("ChildrenOnly");
 
     /**
      * Creates a new instance of EntitySearchType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -36,7 +48,7 @@ public final class EntitySearchType extends ExpandableStringEnum<EntitySearchTyp
 
     /**
      * Creates or finds a EntitySearchType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding EntitySearchType.
      */
@@ -47,7 +59,7 @@ public final class EntitySearchType extends ExpandableStringEnum<EntitySearchTyp
 
     /**
      * Gets known EntitySearchType values.
-     *
+     * 
      * @return known EntitySearchType values.
      */
     public static Collection<EntitySearchType> values() {

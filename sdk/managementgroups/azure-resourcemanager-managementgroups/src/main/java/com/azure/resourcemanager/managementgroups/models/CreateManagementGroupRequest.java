@@ -10,7 +10,9 @@ import com.azure.resourcemanager.managementgroups.fluent.models.CreateManagement
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Management group creation parameters. */
+/**
+ * Management group creation parameters.
+ */
 @Fluent
 public final class CreateManagementGroupRequest extends ProxyResource {
     /*
@@ -25,13 +27,15 @@ public final class CreateManagementGroupRequest extends ProxyResource {
     @JsonProperty(value = "properties")
     private CreateManagementGroupProperties innerProperties;
 
-    /** Creates an instance of CreateManagementGroupRequest class. */
+    /**
+     * Creates an instance of CreateManagementGroupRequest class.
+     */
     public CreateManagementGroupRequest() {
     }
 
     /**
      * Get the name property: The name of the management group. For example, 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -40,7 +44,7 @@ public final class CreateManagementGroupRequest extends ProxyResource {
 
     /**
      * Set the name property: The name of the management group. For example, 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @param name the name value to set.
      * @return the CreateManagementGroupRequest object itself.
      */
@@ -51,7 +55,7 @@ public final class CreateManagementGroupRequest extends ProxyResource {
 
     /**
      * Get the innerProperties property: The generic properties of a management group used during creation.
-     *
+     * 
      * @return the innerProperties value.
      */
     private CreateManagementGroupProperties innerProperties() {
@@ -61,7 +65,7 @@ public final class CreateManagementGroupRequest extends ProxyResource {
     /**
      * Get the tenantId property: The AAD Tenant ID associated with the management group. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -71,7 +75,7 @@ public final class CreateManagementGroupRequest extends ProxyResource {
     /**
      * Get the displayName property: The friendly name of the management group. If no value is passed then this field
      * will be set to the groupId.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -81,7 +85,7 @@ public final class CreateManagementGroupRequest extends ProxyResource {
     /**
      * Set the displayName property: The friendly name of the management group. If no value is passed then this field
      * will be set to the groupId.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the CreateManagementGroupRequest object itself.
      */
@@ -95,7 +99,7 @@ public final class CreateManagementGroupRequest extends ProxyResource {
 
     /**
      * Get the details property: The details of a management group used during creation.
-     *
+     * 
      * @return the details value.
      */
     public CreateManagementGroupDetails details() {
@@ -104,7 +108,7 @@ public final class CreateManagementGroupRequest extends ProxyResource {
 
     /**
      * Set the details property: The details of a management group used during creation.
-     *
+     * 
      * @param details the details value to set.
      * @return the CreateManagementGroupRequest object itself.
      */
@@ -118,7 +122,7 @@ public final class CreateManagementGroupRequest extends ProxyResource {
 
     /**
      * Get the children property: The list of children.
-     *
+     * 
      * @return the children value.
      */
     public List<CreateManagementGroupChildInfo> children() {
@@ -127,7 +131,7 @@ public final class CreateManagementGroupRequest extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

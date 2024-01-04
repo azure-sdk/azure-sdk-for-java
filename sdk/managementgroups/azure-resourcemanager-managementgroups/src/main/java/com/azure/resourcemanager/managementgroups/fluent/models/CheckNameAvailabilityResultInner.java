@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.managementgroups.models.Reason;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes the result of the request to check management group name availability. */
+/**
+ * Describes the result of the request to check management group name availability.
+ */
 @Immutable
 public final class CheckNameAvailabilityResultInner {
     /*
@@ -33,14 +35,16 @@ public final class CheckNameAvailabilityResultInner {
     @JsonProperty(value = "message", access = JsonProperty.Access.WRITE_ONLY)
     private String message;
 
-    /** Creates an instance of CheckNameAvailabilityResultInner class. */
+    /**
+     * Creates an instance of CheckNameAvailabilityResultInner class.
+     */
     public CheckNameAvailabilityResultInner() {
     }
 
     /**
-     * Get the nameAvailable property: Required. True indicates name is valid and available. False indicates the name is
-     * invalid, unavailable, or both.
-     *
+     * Get the nameAvailable property: Required. True indicates name is valid and available. False indicates the name
+     * is invalid, unavailable, or both.
+     * 
      * @return the nameAvailable value.
      */
     public Boolean nameAvailable() {
@@ -51,7 +55,7 @@ public final class CheckNameAvailabilityResultInner {
      * Get the reason property: Required if nameAvailable == false. Invalid indicates the name provided does not match
      * the resource provider's naming requirements (incorrect length, unsupported characters, etc.) AlreadyExists
      * indicates that the name is already in use and is therefore unavailable.
-     *
+     * 
      * @return the reason value.
      */
     public Reason reason() {
@@ -63,7 +67,7 @@ public final class CheckNameAvailabilityResultInner {
      * with the reason why the given name is invalid, and provide the resource naming requirements so that the user can
      * select a valid name. If reason == AlreadyExists, explain that is already in use, and direct them to select a
      * different name.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -72,7 +76,7 @@ public final class CheckNameAvailabilityResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

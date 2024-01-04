@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managementgroups.fluent.models.EntityInfoInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes the result of the request to view entities. */
+/**
+ * Describes the result of the request to view entities.
+ */
 @Fluent
 public final class EntityListResult {
     /*
@@ -30,13 +32,15 @@ public final class EntityListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of EntityListResult class. */
+    /**
+     * Creates an instance of EntityListResult class.
+     */
     public EntityListResult() {
     }
 
     /**
      * Get the value property: The list of entities.
-     *
+     * 
      * @return the value value.
      */
     public List<EntityInfoInner> value() {
@@ -45,7 +49,7 @@ public final class EntityListResult {
 
     /**
      * Set the value property: The list of entities.
-     *
+     * 
      * @param value the value value to set.
      * @return the EntityListResult object itself.
      */
@@ -56,7 +60,7 @@ public final class EntityListResult {
 
     /**
      * Get the count property: Total count of records that match the filter.
-     *
+     * 
      * @return the count value.
      */
     public Integer count() {
@@ -65,7 +69,7 @@ public final class EntityListResult {
 
     /**
      * Get the nextLink property: The URL to use for getting the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -74,7 +78,7 @@ public final class EntityListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

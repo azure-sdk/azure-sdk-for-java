@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managementgroups.fluent.models.SubscriptionUnde
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The details of all subscriptions under management group. */
+/**
+ * The details of all subscriptions under management group.
+ */
 @Fluent
 public final class ListSubscriptionUnderManagementGroup {
     /*
@@ -24,13 +26,15 @@ public final class ListSubscriptionUnderManagementGroup {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ListSubscriptionUnderManagementGroup class. */
+    /**
+     * Creates an instance of ListSubscriptionUnderManagementGroup class.
+     */
     public ListSubscriptionUnderManagementGroup() {
     }
 
     /**
      * Get the value property: The list of subscriptions.
-     *
+     * 
      * @return the value value.
      */
     public List<SubscriptionUnderManagementGroupInner> value() {
@@ -39,7 +43,7 @@ public final class ListSubscriptionUnderManagementGroup {
 
     /**
      * Set the value property: The list of subscriptions.
-     *
+     * 
      * @param value the value value to set.
      * @return the ListSubscriptionUnderManagementGroup object itself.
      */
@@ -50,7 +54,7 @@ public final class ListSubscriptionUnderManagementGroup {
 
     /**
      * Get the nextLink property: The URL to use for getting the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class ListSubscriptionUnderManagementGroup {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

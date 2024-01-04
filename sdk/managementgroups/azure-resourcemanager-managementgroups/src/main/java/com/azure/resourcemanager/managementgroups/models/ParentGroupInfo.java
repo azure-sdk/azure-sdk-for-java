@@ -7,11 +7,13 @@ package com.azure.resourcemanager.managementgroups.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** (Optional) The ID of the parent management group. */
+/**
+ * (Optional) The ID of the parent management group.
+ */
 @Fluent
 public final class ParentGroupInfo {
     /*
-     * The fully qualified ID for the parent management group.  For example,
+     * The fully qualified ID for the parent management group. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000
      */
     @JsonProperty(value = "id")
@@ -29,14 +31,16 @@ public final class ParentGroupInfo {
     @JsonProperty(value = "displayName")
     private String displayName;
 
-    /** Creates an instance of ParentGroupInfo class. */
+    /**
+     * Creates an instance of ParentGroupInfo class.
+     */
     public ParentGroupInfo() {
     }
 
     /**
      * Get the id property: The fully qualified ID for the parent management group. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -46,7 +50,7 @@ public final class ParentGroupInfo {
     /**
      * Set the id property: The fully qualified ID for the parent management group. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @param id the id value to set.
      * @return the ParentGroupInfo object itself.
      */
@@ -57,7 +61,7 @@ public final class ParentGroupInfo {
 
     /**
      * Get the name property: The name of the parent management group.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -66,7 +70,7 @@ public final class ParentGroupInfo {
 
     /**
      * Set the name property: The name of the parent management group.
-     *
+     * 
      * @param name the name value to set.
      * @return the ParentGroupInfo object itself.
      */
@@ -77,7 +81,7 @@ public final class ParentGroupInfo {
 
     /**
      * Get the displayName property: The friendly name of the parent management group.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -86,7 +90,7 @@ public final class ParentGroupInfo {
 
     /**
      * Set the displayName property: The friendly name of the parent management group.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ParentGroupInfo object itself.
      */
@@ -97,7 +101,7 @@ public final class ParentGroupInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
