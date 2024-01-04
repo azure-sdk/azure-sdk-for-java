@@ -12,7 +12,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationState;
 import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** L2Isolation Domain Properties defines the properties of the resource. */
+/**
+ * L2Isolation Domain Properties defines the properties of the resource.
+ */
 @Fluent
 public final class L2IsolationDomainProperties extends AnnotationResource {
     /*
@@ -51,13 +53,15 @@ public final class L2IsolationDomainProperties extends AnnotationResource {
     @JsonProperty(value = "administrativeState", access = JsonProperty.Access.WRITE_ONLY)
     private AdministrativeState administrativeState;
 
-    /** Creates an instance of L2IsolationDomainProperties class. */
+    /**
+     * Creates an instance of L2IsolationDomainProperties class.
+     */
     public L2IsolationDomainProperties() {
     }
 
     /**
      * Get the networkFabricId property: ARM Resource ID of the Network Fabric.
-     *
+     * 
      * @return the networkFabricId value.
      */
     public String networkFabricId() {
@@ -66,7 +70,7 @@ public final class L2IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Set the networkFabricId property: ARM Resource ID of the Network Fabric.
-     *
+     * 
      * @param networkFabricId the networkFabricId value to set.
      * @return the L2IsolationDomainProperties object itself.
      */
@@ -77,7 +81,7 @@ public final class L2IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Get the vlanId property: Vlan Identifier of the Network Fabric. Example: 501.
-     *
+     * 
      * @return the vlanId value.
      */
     public int vlanId() {
@@ -86,7 +90,7 @@ public final class L2IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Set the vlanId property: Vlan Identifier of the Network Fabric. Example: 501.
-     *
+     * 
      * @param vlanId the vlanId value to set.
      * @return the L2IsolationDomainProperties object itself.
      */
@@ -97,7 +101,7 @@ public final class L2IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Get the mtu property: Maximum transmission unit. Default value is 1500.
-     *
+     * 
      * @return the mtu value.
      */
     public Integer mtu() {
@@ -106,7 +110,7 @@ public final class L2IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Set the mtu property: Maximum transmission unit. Default value is 1500.
-     *
+     * 
      * @param mtu the mtu value to set.
      * @return the L2IsolationDomainProperties object itself.
      */
@@ -117,7 +121,7 @@ public final class L2IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -126,7 +130,7 @@ public final class L2IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -135,14 +139,16 @@ public final class L2IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
         return this.administrativeState;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public L2IsolationDomainProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -151,17 +157,15 @@ public final class L2IsolationDomainProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (networkFabricId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property networkFabricId in model L2IsolationDomainProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property networkFabricId in model L2IsolationDomainProperties"));
         }
     }
 

@@ -17,7 +17,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Network Tap Rule Properties defines the resource properties. */
+/**
+ * Network Tap Rule Properties defines the resource properties.
+ */
 @Fluent
 public final class NetworkTapRuleProperties extends AnnotationResource {
     /*
@@ -80,13 +82,15 @@ public final class NetworkTapRuleProperties extends AnnotationResource {
     @JsonProperty(value = "dynamicMatchConfigurations")
     private List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations;
 
-    /** Creates an instance of NetworkTapRuleProperties class. */
+    /**
+     * Creates an instance of NetworkTapRuleProperties class.
+     */
     public NetworkTapRuleProperties() {
     }
 
     /**
      * Get the networkTapId property: The ARM resource Id of the NetworkTap.
-     *
+     * 
      * @return the networkTapId value.
      */
     public String networkTapId() {
@@ -95,7 +99,7 @@ public final class NetworkTapRuleProperties extends AnnotationResource {
 
     /**
      * Get the pollingIntervalInSeconds property: Polling interval in seconds.
-     *
+     * 
      * @return the pollingIntervalInSeconds value.
      */
     public PollingIntervalInSeconds pollingIntervalInSeconds() {
@@ -104,7 +108,7 @@ public final class NetworkTapRuleProperties extends AnnotationResource {
 
     /**
      * Set the pollingIntervalInSeconds property: Polling interval in seconds.
-     *
+     * 
      * @param pollingIntervalInSeconds the pollingIntervalInSeconds value to set.
      * @return the NetworkTapRuleProperties object itself.
      */
@@ -115,7 +119,7 @@ public final class NetworkTapRuleProperties extends AnnotationResource {
 
     /**
      * Get the lastSyncedTime property: The last sync timestamp.
-     *
+     * 
      * @return the lastSyncedTime value.
      */
     public OffsetDateTime lastSyncedTime() {
@@ -124,7 +128,7 @@ public final class NetworkTapRuleProperties extends AnnotationResource {
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -133,7 +137,7 @@ public final class NetworkTapRuleProperties extends AnnotationResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -142,7 +146,7 @@ public final class NetworkTapRuleProperties extends AnnotationResource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -151,7 +155,7 @@ public final class NetworkTapRuleProperties extends AnnotationResource {
 
     /**
      * Get the configurationType property: Input method to configure Network Tap Rule.
-     *
+     * 
      * @return the configurationType value.
      */
     public ConfigurationType configurationType() {
@@ -160,7 +164,7 @@ public final class NetworkTapRuleProperties extends AnnotationResource {
 
     /**
      * Set the configurationType property: Input method to configure Network Tap Rule.
-     *
+     * 
      * @param configurationType the configurationType value to set.
      * @return the NetworkTapRuleProperties object itself.
      */
@@ -171,7 +175,7 @@ public final class NetworkTapRuleProperties extends AnnotationResource {
 
     /**
      * Get the tapRulesUrl property: Network Tap Rules file URL.
-     *
+     * 
      * @return the tapRulesUrl value.
      */
     public String tapRulesUrl() {
@@ -180,7 +184,7 @@ public final class NetworkTapRuleProperties extends AnnotationResource {
 
     /**
      * Set the tapRulesUrl property: Network Tap Rules file URL.
-     *
+     * 
      * @param tapRulesUrl the tapRulesUrl value to set.
      * @return the NetworkTapRuleProperties object itself.
      */
@@ -191,7 +195,7 @@ public final class NetworkTapRuleProperties extends AnnotationResource {
 
     /**
      * Get the matchConfigurations property: List of match configurations.
-     *
+     * 
      * @return the matchConfigurations value.
      */
     public List<NetworkTapRuleMatchConfiguration> matchConfigurations() {
@@ -200,19 +204,19 @@ public final class NetworkTapRuleProperties extends AnnotationResource {
 
     /**
      * Set the matchConfigurations property: List of match configurations.
-     *
+     * 
      * @param matchConfigurations the matchConfigurations value to set.
      * @return the NetworkTapRuleProperties object itself.
      */
-    public NetworkTapRuleProperties withMatchConfigurations(
-        List<NetworkTapRuleMatchConfiguration> matchConfigurations) {
+    public NetworkTapRuleProperties
+        withMatchConfigurations(List<NetworkTapRuleMatchConfiguration> matchConfigurations) {
         this.matchConfigurations = matchConfigurations;
         return this;
     }
 
     /**
      * Get the dynamicMatchConfigurations property: List of dynamic match configurations.
-     *
+     * 
      * @return the dynamicMatchConfigurations value.
      */
     public List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations() {
@@ -221,17 +225,19 @@ public final class NetworkTapRuleProperties extends AnnotationResource {
 
     /**
      * Set the dynamicMatchConfigurations property: List of dynamic match configurations.
-     *
+     * 
      * @param dynamicMatchConfigurations the dynamicMatchConfigurations value to set.
      * @return the NetworkTapRuleProperties object itself.
      */
-    public NetworkTapRuleProperties withDynamicMatchConfigurations(
-        List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations) {
+    public NetworkTapRuleProperties
+        withDynamicMatchConfigurations(List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations) {
         this.dynamicMatchConfigurations = dynamicMatchConfigurations;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkTapRuleProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -240,7 +246,7 @@ public final class NetworkTapRuleProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

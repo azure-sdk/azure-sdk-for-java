@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Static Route Configuration properties. */
+/**
+ * Static Route Configuration properties.
+ */
 @Fluent
 public class StaticRouteConfiguration {
     /*
@@ -29,13 +31,15 @@ public class StaticRouteConfiguration {
     @JsonProperty(value = "ipv6Routes")
     private List<StaticRouteProperties> ipv6Routes;
 
-    /** Creates an instance of StaticRouteConfiguration class. */
+    /**
+     * Creates an instance of StaticRouteConfiguration class.
+     */
     public StaticRouteConfiguration() {
     }
 
     /**
      * Get the bfdConfiguration property: BFD configuration properties.
-     *
+     * 
      * @return the bfdConfiguration value.
      */
     public BfdConfiguration bfdConfiguration() {
@@ -44,7 +48,7 @@ public class StaticRouteConfiguration {
 
     /**
      * Set the bfdConfiguration property: BFD configuration properties.
-     *
+     * 
      * @param bfdConfiguration the bfdConfiguration value to set.
      * @return the StaticRouteConfiguration object itself.
      */
@@ -55,7 +59,7 @@ public class StaticRouteConfiguration {
 
     /**
      * Get the ipv4Routes property: List of IPv4 Routes.
-     *
+     * 
      * @return the ipv4Routes value.
      */
     public List<StaticRouteProperties> ipv4Routes() {
@@ -64,7 +68,7 @@ public class StaticRouteConfiguration {
 
     /**
      * Set the ipv4Routes property: List of IPv4 Routes.
-     *
+     * 
      * @param ipv4Routes the ipv4Routes value to set.
      * @return the StaticRouteConfiguration object itself.
      */
@@ -75,7 +79,7 @@ public class StaticRouteConfiguration {
 
     /**
      * Get the ipv6Routes property: List of IPv6 Routes.
-     *
+     * 
      * @return the ipv6Routes value.
      */
     public List<StaticRouteProperties> ipv6Routes() {
@@ -84,7 +88,7 @@ public class StaticRouteConfiguration {
 
     /**
      * Set the ipv6Routes property: List of IPv6 Routes.
-     *
+     * 
      * @param ipv6Routes the ipv6Routes value to set.
      * @return the StaticRouteConfiguration object itself.
      */
@@ -95,7 +99,7 @@ public class StaticRouteConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

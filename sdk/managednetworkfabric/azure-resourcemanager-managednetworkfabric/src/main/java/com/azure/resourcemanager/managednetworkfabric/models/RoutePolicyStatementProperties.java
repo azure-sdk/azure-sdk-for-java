@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Route Policy Statement properties. */
+/**
+ * Route Policy Statement properties.
+ */
 @Fluent
 public final class RoutePolicyStatementProperties extends AnnotationResource {
     /*
@@ -29,13 +31,15 @@ public final class RoutePolicyStatementProperties extends AnnotationResource {
     @JsonProperty(value = "action", required = true)
     private StatementActionProperties action;
 
-    /** Creates an instance of RoutePolicyStatementProperties class. */
+    /**
+     * Creates an instance of RoutePolicyStatementProperties class.
+     */
     public RoutePolicyStatementProperties() {
     }
 
     /**
      * Get the sequenceNumber property: Sequence to insert to/delete from existing route.
-     *
+     * 
      * @return the sequenceNumber value.
      */
     public long sequenceNumber() {
@@ -44,7 +48,7 @@ public final class RoutePolicyStatementProperties extends AnnotationResource {
 
     /**
      * Set the sequenceNumber property: Sequence to insert to/delete from existing route.
-     *
+     * 
      * @param sequenceNumber the sequenceNumber value to set.
      * @return the RoutePolicyStatementProperties object itself.
      */
@@ -55,7 +59,7 @@ public final class RoutePolicyStatementProperties extends AnnotationResource {
 
     /**
      * Get the condition property: Route policy condition properties.
-     *
+     * 
      * @return the condition value.
      */
     public StatementConditionProperties condition() {
@@ -64,7 +68,7 @@ public final class RoutePolicyStatementProperties extends AnnotationResource {
 
     /**
      * Set the condition property: Route policy condition properties.
-     *
+     * 
      * @param condition the condition value to set.
      * @return the RoutePolicyStatementProperties object itself.
      */
@@ -75,7 +79,7 @@ public final class RoutePolicyStatementProperties extends AnnotationResource {
 
     /**
      * Get the action property: Route policy action properties.
-     *
+     * 
      * @return the action value.
      */
     public StatementActionProperties action() {
@@ -84,7 +88,7 @@ public final class RoutePolicyStatementProperties extends AnnotationResource {
 
     /**
      * Set the action property: Route policy action properties.
-     *
+     * 
      * @param action the action value to set.
      * @return the RoutePolicyStatementProperties object itself.
      */
@@ -93,7 +97,9 @@ public final class RoutePolicyStatementProperties extends AnnotationResource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RoutePolicyStatementProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -102,25 +108,21 @@ public final class RoutePolicyStatementProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (condition() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property condition in model RoutePolicyStatementProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property condition in model RoutePolicyStatementProperties"));
         } else {
             condition().validate();
         }
         if (action() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property action in model RoutePolicyStatementProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property action in model RoutePolicyStatementProperties"));
         } else {
             action().validate();
         }

@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** IP Community patchable properties. */
+/**
+ * IP Community patchable properties.
+ */
 @Fluent
 public final class IpCommunityRule {
     /*
@@ -38,13 +40,15 @@ public final class IpCommunityRule {
     @JsonProperty(value = "communityMembers", required = true)
     private List<String> communityMembers;
 
-    /** Creates an instance of IpCommunityRule class. */
+    /**
+     * Creates an instance of IpCommunityRule class.
+     */
     public IpCommunityRule() {
     }
 
     /**
      * Get the action property: Action to be taken on the configuration. Example: Permit | Deny.
-     *
+     * 
      * @return the action value.
      */
     public CommunityActionTypes action() {
@@ -53,7 +57,7 @@ public final class IpCommunityRule {
 
     /**
      * Set the action property: Action to be taken on the configuration. Example: Permit | Deny.
-     *
+     * 
      * @param action the action value to set.
      * @return the IpCommunityRule object itself.
      */
@@ -66,7 +70,7 @@ public final class IpCommunityRule {
      * Get the sequenceNumber property: Sequence to insert to/delete from existing route. Prefix lists are evaluated
      * starting with the lowest sequence number and continue down the list until a match is made. Once a match is made,
      * the permit or deny statement is applied to that network and the rest of the list is ignored.
-     *
+     * 
      * @return the sequenceNumber value.
      */
     public long sequenceNumber() {
@@ -77,7 +81,7 @@ public final class IpCommunityRule {
      * Set the sequenceNumber property: Sequence to insert to/delete from existing route. Prefix lists are evaluated
      * starting with the lowest sequence number and continue down the list until a match is made. Once a match is made,
      * the permit or deny statement is applied to that network and the rest of the list is ignored.
-     *
+     * 
      * @param sequenceNumber the sequenceNumber value to set.
      * @return the IpCommunityRule object itself.
      */
@@ -88,7 +92,7 @@ public final class IpCommunityRule {
 
     /**
      * Get the wellKnownCommunities property: Supported well known Community List.
-     *
+     * 
      * @return the wellKnownCommunities value.
      */
     public List<WellKnownCommunities> wellKnownCommunities() {
@@ -97,7 +101,7 @@ public final class IpCommunityRule {
 
     /**
      * Set the wellKnownCommunities property: Supported well known Community List.
-     *
+     * 
      * @param wellKnownCommunities the wellKnownCommunities value to set.
      * @return the IpCommunityRule object itself.
      */
@@ -108,7 +112,7 @@ public final class IpCommunityRule {
 
     /**
      * Get the communityMembers property: List the community members of IP Community.
-     *
+     * 
      * @return the communityMembers value.
      */
     public List<String> communityMembers() {
@@ -117,7 +121,7 @@ public final class IpCommunityRule {
 
     /**
      * Set the communityMembers property: List the community members of IP Community.
-     *
+     * 
      * @param communityMembers the communityMembers value to set.
      * @return the IpCommunityRule object itself.
      */
@@ -128,20 +132,17 @@ public final class IpCommunityRule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (action() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property action in model IpCommunityRule"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property action in model IpCommunityRule"));
         }
         if (communityMembers() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property communityMembers in model IpCommunityRule"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property communityMembers in model IpCommunityRule"));
         }
     }
 

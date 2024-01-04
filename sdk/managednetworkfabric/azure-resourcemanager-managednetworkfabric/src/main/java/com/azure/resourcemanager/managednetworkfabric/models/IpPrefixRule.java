@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** IP Prefix Rule properties. */
+/**
+ * IP Prefix Rule properties.
+ */
 @Fluent
 public final class IpPrefixRule {
     /*
@@ -45,13 +47,15 @@ public final class IpPrefixRule {
     @JsonProperty(value = "subnetMaskLength")
     private String subnetMaskLength;
 
-    /** Creates an instance of IpPrefixRule class. */
+    /**
+     * Creates an instance of IpPrefixRule class.
+     */
     public IpPrefixRule() {
     }
 
     /**
      * Get the action property: Action to be taken on the configuration. Example: Permit | Deny.
-     *
+     * 
      * @return the action value.
      */
     public CommunityActionTypes action() {
@@ -60,7 +64,7 @@ public final class IpPrefixRule {
 
     /**
      * Set the action property: Action to be taken on the configuration. Example: Permit | Deny.
-     *
+     * 
      * @param action the action value to set.
      * @return the IpPrefixRule object itself.
      */
@@ -73,7 +77,7 @@ public final class IpPrefixRule {
      * Get the sequenceNumber property: Sequence to insert to/delete from existing route. Prefix lists are evaluated
      * starting with the lowest sequence number and continue down the list until a match is made. Once a match is made,
      * the permit or deny statement is applied to that network and the rest of the list is ignored.
-     *
+     * 
      * @return the sequenceNumber value.
      */
     public long sequenceNumber() {
@@ -84,7 +88,7 @@ public final class IpPrefixRule {
      * Set the sequenceNumber property: Sequence to insert to/delete from existing route. Prefix lists are evaluated
      * starting with the lowest sequence number and continue down the list until a match is made. Once a match is made,
      * the permit or deny statement is applied to that network and the rest of the list is ignored.
-     *
+     * 
      * @param sequenceNumber the sequenceNumber value to set.
      * @return the IpPrefixRule object itself.
      */
@@ -96,7 +100,7 @@ public final class IpPrefixRule {
     /**
      * Get the networkPrefix property: Network Prefix specifying IPv4/IPv6 packets to be permitted or denied. Example:
      * 1.1.1.0/24 | 3FFE:FFFF:0:CD30::/126.
-     *
+     * 
      * @return the networkPrefix value.
      */
     public String networkPrefix() {
@@ -106,7 +110,7 @@ public final class IpPrefixRule {
     /**
      * Set the networkPrefix property: Network Prefix specifying IPv4/IPv6 packets to be permitted or denied. Example:
      * 1.1.1.0/24 | 3FFE:FFFF:0:CD30::/126.
-     *
+     * 
      * @param networkPrefix the networkPrefix value to set.
      * @return the IpPrefixRule object itself.
      */
@@ -117,7 +121,7 @@ public final class IpPrefixRule {
 
     /**
      * Get the condition property: Specify prefix-list bounds.
-     *
+     * 
      * @return the condition value.
      */
     public Condition condition() {
@@ -126,7 +130,7 @@ public final class IpPrefixRule {
 
     /**
      * Set the condition property: Specify prefix-list bounds.
-     *
+     * 
      * @param condition the condition value to set.
      * @return the IpPrefixRule object itself.
      */
@@ -138,7 +142,7 @@ public final class IpPrefixRule {
     /**
      * Get the subnetMaskLength property: SubnetMaskLength gives the minimum NetworkPrefix length to be matched.
      * Possible values for IPv4 are 1 - 32 . Possible values of IPv6 are 1 - 128.
-     *
+     * 
      * @return the subnetMaskLength value.
      */
     public String subnetMaskLength() {
@@ -148,7 +152,7 @@ public final class IpPrefixRule {
     /**
      * Set the subnetMaskLength property: SubnetMaskLength gives the minimum NetworkPrefix length to be matched.
      * Possible values for IPv4 are 1 - 32 . Possible values of IPv6 are 1 - 128.
-     *
+     * 
      * @param subnetMaskLength the subnetMaskLength value to set.
      * @return the IpPrefixRule object itself.
      */
@@ -159,19 +163,17 @@ public final class IpPrefixRule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (action() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property action in model IpPrefixRule"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property action in model IpPrefixRule"));
         }
         if (networkPrefix() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property networkPrefix in model IpPrefixRule"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property networkPrefix in model IpPrefixRule"));
         }
     }
 

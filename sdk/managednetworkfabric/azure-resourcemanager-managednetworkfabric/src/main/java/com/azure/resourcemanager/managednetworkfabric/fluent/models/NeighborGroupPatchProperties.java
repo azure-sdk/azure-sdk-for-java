@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.AnnotationResource;
 import com.azure.resourcemanager.managednetworkfabric.models.NeighborGroupDestination;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Neighbor Group Patch properties. */
+/**
+ * Neighbor Group Patch properties.
+ */
 @Fluent
 public final class NeighborGroupPatchProperties extends AnnotationResource {
     /*
@@ -18,13 +20,15 @@ public final class NeighborGroupPatchProperties extends AnnotationResource {
     @JsonProperty(value = "destination")
     private NeighborGroupDestination destination;
 
-    /** Creates an instance of NeighborGroupPatchProperties class. */
+    /**
+     * Creates an instance of NeighborGroupPatchProperties class.
+     */
     public NeighborGroupPatchProperties() {
     }
 
     /**
      * Get the destination property: An array of destination IPv4 Addresses or IPv6 Addresses.
-     *
+     * 
      * @return the destination value.
      */
     public NeighborGroupDestination destination() {
@@ -33,7 +37,7 @@ public final class NeighborGroupPatchProperties extends AnnotationResource {
 
     /**
      * Set the destination property: An array of destination IPv4 Addresses or IPv6 Addresses.
-     *
+     * 
      * @param destination the destination value to set.
      * @return the NeighborGroupPatchProperties object itself.
      */
@@ -42,7 +46,9 @@ public final class NeighborGroupPatchProperties extends AnnotationResource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NeighborGroupPatchProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -51,7 +57,7 @@ public final class NeighborGroupPatchProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

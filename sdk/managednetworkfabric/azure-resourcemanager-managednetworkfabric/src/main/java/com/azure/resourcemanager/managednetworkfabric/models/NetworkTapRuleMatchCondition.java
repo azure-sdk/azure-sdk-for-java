@@ -8,11 +8,13 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the match condition that is supported to filter the traffic. */
+/**
+ * Defines the match condition that is supported to filter the traffic.
+ */
 @Fluent
 public final class NetworkTapRuleMatchCondition extends CommonMatchConditions {
     /*
-     * Encapsulation Type.
+     * Encapsulation Type that needs to be matched.
      */
     @JsonProperty(value = "encapsulationType")
     private EncapsulationType encapsulationType;
@@ -23,13 +25,15 @@ public final class NetworkTapRuleMatchCondition extends CommonMatchConditions {
     @JsonProperty(value = "portCondition")
     private PortCondition portCondition;
 
-    /** Creates an instance of NetworkTapRuleMatchCondition class. */
+    /**
+     * Creates an instance of NetworkTapRuleMatchCondition class.
+     */
     public NetworkTapRuleMatchCondition() {
     }
 
     /**
-     * Get the encapsulationType property: Encapsulation Type.
-     *
+     * Get the encapsulationType property: Encapsulation Type that needs to be matched.
+     * 
      * @return the encapsulationType value.
      */
     public EncapsulationType encapsulationType() {
@@ -37,8 +41,8 @@ public final class NetworkTapRuleMatchCondition extends CommonMatchConditions {
     }
 
     /**
-     * Set the encapsulationType property: Encapsulation Type.
-     *
+     * Set the encapsulationType property: Encapsulation Type that needs to be matched.
+     * 
      * @param encapsulationType the encapsulationType value to set.
      * @return the NetworkTapRuleMatchCondition object itself.
      */
@@ -49,7 +53,7 @@ public final class NetworkTapRuleMatchCondition extends CommonMatchConditions {
 
     /**
      * Get the portCondition property: Defines the port condition that needs to be matched.
-     *
+     * 
      * @return the portCondition value.
      */
     public PortCondition portCondition() {
@@ -58,7 +62,7 @@ public final class NetworkTapRuleMatchCondition extends CommonMatchConditions {
 
     /**
      * Set the portCondition property: Defines the port condition that needs to be matched.
-     *
+     * 
      * @param portCondition the portCondition value to set.
      * @return the NetworkTapRuleMatchCondition object itself.
      */
@@ -67,21 +71,27 @@ public final class NetworkTapRuleMatchCondition extends CommonMatchConditions {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkTapRuleMatchCondition withProtocolTypes(List<String> protocolTypes) {
         super.withProtocolTypes(protocolTypes);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkTapRuleMatchCondition withVlanMatchCondition(VlanMatchCondition vlanMatchCondition) {
         super.withVlanMatchCondition(vlanMatchCondition);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkTapRuleMatchCondition withIpCondition(IpMatchCondition ipCondition) {
         super.withIpCondition(ipCondition);
@@ -90,7 +100,7 @@ public final class NetworkTapRuleMatchCondition extends CommonMatchConditions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

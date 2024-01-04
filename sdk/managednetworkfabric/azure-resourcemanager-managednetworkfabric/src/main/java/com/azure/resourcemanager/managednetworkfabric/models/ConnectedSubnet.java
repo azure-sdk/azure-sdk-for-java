@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Connected Subnet properties. */
+/**
+ * Connected Subnet properties.
+ */
 @Fluent
 public final class ConnectedSubnet extends AnnotationResource {
     /*
@@ -17,13 +19,15 @@ public final class ConnectedSubnet extends AnnotationResource {
     @JsonProperty(value = "prefix", required = true)
     private String prefix;
 
-    /** Creates an instance of ConnectedSubnet class. */
+    /**
+     * Creates an instance of ConnectedSubnet class.
+     */
     public ConnectedSubnet() {
     }
 
     /**
      * Get the prefix property: Prefix of the Connected Subnet.
-     *
+     * 
      * @return the prefix value.
      */
     public String prefix() {
@@ -32,7 +36,7 @@ public final class ConnectedSubnet extends AnnotationResource {
 
     /**
      * Set the prefix property: Prefix of the Connected Subnet.
-     *
+     * 
      * @param prefix the prefix value to set.
      * @return the ConnectedSubnet object itself.
      */
@@ -41,7 +45,9 @@ public final class ConnectedSubnet extends AnnotationResource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ConnectedSubnet withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -50,16 +56,15 @@ public final class ConnectedSubnet extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (prefix() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property prefix in model ConnectedSubnet"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property prefix in model ConnectedSubnet"));
         }
     }
 

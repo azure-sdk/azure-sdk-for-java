@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** IP Extended Community Properties. */
+/**
+ * IP Extended Community Properties.
+ */
 @Fluent
 public final class ActionIpExtendedCommunityProperties extends IpExtendedCommunityAddOperationProperties {
     /*
@@ -22,13 +24,15 @@ public final class ActionIpExtendedCommunityProperties extends IpExtendedCommuni
     @JsonProperty(value = "set")
     private IpExtendedCommunityIdList set;
 
-    /** Creates an instance of ActionIpExtendedCommunityProperties class. */
+    /**
+     * Creates an instance of ActionIpExtendedCommunityProperties class.
+     */
     public ActionIpExtendedCommunityProperties() {
     }
 
     /**
      * Get the delete property: List of IP Extended Community IDs.
-     *
+     * 
      * @return the delete value.
      */
     public IpExtendedCommunityIdList delete() {
@@ -37,7 +41,7 @@ public final class ActionIpExtendedCommunityProperties extends IpExtendedCommuni
 
     /**
      * Set the delete property: List of IP Extended Community IDs.
-     *
+     * 
      * @param delete the delete value to set.
      * @return the ActionIpExtendedCommunityProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class ActionIpExtendedCommunityProperties extends IpExtendedCommuni
 
     /**
      * Get the set property: List of IP Extended Community IDs.
-     *
+     * 
      * @return the set value.
      */
     public IpExtendedCommunityIdList set() {
@@ -57,7 +61,7 @@ public final class ActionIpExtendedCommunityProperties extends IpExtendedCommuni
 
     /**
      * Set the set property: List of IP Extended Community IDs.
-     *
+     * 
      * @param set the set value to set.
      * @return the ActionIpExtendedCommunityProperties object itself.
      */
@@ -66,7 +70,9 @@ public final class ActionIpExtendedCommunityProperties extends IpExtendedCommuni
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ActionIpExtendedCommunityProperties withAdd(IpExtendedCommunityIdList add) {
         super.withAdd(add);
@@ -75,7 +81,7 @@ public final class ActionIpExtendedCommunityProperties extends IpExtendedCommuni
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

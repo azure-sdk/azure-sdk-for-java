@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.L3IsolationD
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The L3 Isolation Domain patch resource definition. */
+/**
+ * The L3 Isolation Domain patch resource definition.
+ */
 @Fluent
 public final class L3IsolationDomainPatch extends TagsUpdate {
     /*
@@ -18,20 +20,24 @@ public final class L3IsolationDomainPatch extends TagsUpdate {
     @JsonProperty(value = "properties")
     private L3IsolationDomainPatchProperties innerProperties;
 
-    /** Creates an instance of L3IsolationDomainPatch class. */
+    /**
+     * Creates an instance of L3IsolationDomainPatch class.
+     */
     public L3IsolationDomainPatch() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private L3IsolationDomainPatchProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public L3IsolationDomainPatch withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -40,7 +46,7 @@ public final class L3IsolationDomainPatch extends TagsUpdate {
 
     /**
      * Get the redistributeConnectedSubnets property: Advertise Connected Subnets. Ex: "True" | "False".
-     *
+     * 
      * @return the redistributeConnectedSubnets value.
      */
     public RedistributeConnectedSubnets redistributeConnectedSubnets() {
@@ -49,12 +55,12 @@ public final class L3IsolationDomainPatch extends TagsUpdate {
 
     /**
      * Set the redistributeConnectedSubnets property: Advertise Connected Subnets. Ex: "True" | "False".
-     *
+     * 
      * @param redistributeConnectedSubnets the redistributeConnectedSubnets value to set.
      * @return the L3IsolationDomainPatch object itself.
      */
-    public L3IsolationDomainPatch withRedistributeConnectedSubnets(
-        RedistributeConnectedSubnets redistributeConnectedSubnets) {
+    public L3IsolationDomainPatch
+        withRedistributeConnectedSubnets(RedistributeConnectedSubnets redistributeConnectedSubnets) {
         if (this.innerProperties() == null) {
             this.innerProperties = new L3IsolationDomainPatchProperties();
         }
@@ -64,7 +70,7 @@ public final class L3IsolationDomainPatch extends TagsUpdate {
 
     /**
      * Get the redistributeStaticRoutes property: Advertise Static Routes. Ex: "True" | "False".
-     *
+     * 
      * @return the redistributeStaticRoutes value.
      */
     public RedistributeStaticRoutes redistributeStaticRoutes() {
@@ -73,7 +79,7 @@ public final class L3IsolationDomainPatch extends TagsUpdate {
 
     /**
      * Set the redistributeStaticRoutes property: Advertise Static Routes. Ex: "True" | "False".
-     *
+     * 
      * @param redistributeStaticRoutes the redistributeStaticRoutes value to set.
      * @return the L3IsolationDomainPatch object itself.
      */
@@ -87,7 +93,7 @@ public final class L3IsolationDomainPatch extends TagsUpdate {
 
     /**
      * Get the aggregateRouteConfiguration property: Aggregate route configurations.
-     *
+     * 
      * @return the aggregateRouteConfiguration value.
      */
     public AggregateRouteConfiguration aggregateRouteConfiguration() {
@@ -96,12 +102,12 @@ public final class L3IsolationDomainPatch extends TagsUpdate {
 
     /**
      * Set the aggregateRouteConfiguration property: Aggregate route configurations.
-     *
+     * 
      * @param aggregateRouteConfiguration the aggregateRouteConfiguration value to set.
      * @return the L3IsolationDomainPatch object itself.
      */
-    public L3IsolationDomainPatch withAggregateRouteConfiguration(
-        AggregateRouteConfiguration aggregateRouteConfiguration) {
+    public L3IsolationDomainPatch
+        withAggregateRouteConfiguration(AggregateRouteConfiguration aggregateRouteConfiguration) {
         if (this.innerProperties() == null) {
             this.innerProperties = new L3IsolationDomainPatchProperties();
         }
@@ -111,7 +117,7 @@ public final class L3IsolationDomainPatch extends TagsUpdate {
 
     /**
      * Get the connectedSubnetRoutePolicy property: Connected Subnet RoutePolicy.
-     *
+     * 
      * @return the connectedSubnetRoutePolicy value.
      */
     public ConnectedSubnetRoutePolicy connectedSubnetRoutePolicy() {
@@ -120,12 +126,12 @@ public final class L3IsolationDomainPatch extends TagsUpdate {
 
     /**
      * Set the connectedSubnetRoutePolicy property: Connected Subnet RoutePolicy.
-     *
+     * 
      * @param connectedSubnetRoutePolicy the connectedSubnetRoutePolicy value to set.
      * @return the L3IsolationDomainPatch object itself.
      */
-    public L3IsolationDomainPatch withConnectedSubnetRoutePolicy(
-        ConnectedSubnetRoutePolicy connectedSubnetRoutePolicy) {
+    public L3IsolationDomainPatch
+        withConnectedSubnetRoutePolicy(ConnectedSubnetRoutePolicy connectedSubnetRoutePolicy) {
         if (this.innerProperties() == null) {
             this.innerProperties = new L3IsolationDomainPatchProperties();
         }
@@ -135,7 +141,7 @@ public final class L3IsolationDomainPatch extends TagsUpdate {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -144,7 +150,7 @@ public final class L3IsolationDomainPatch extends TagsUpdate {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the L3IsolationDomainPatch object itself.
      */
@@ -158,7 +164,7 @@ public final class L3IsolationDomainPatch extends TagsUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

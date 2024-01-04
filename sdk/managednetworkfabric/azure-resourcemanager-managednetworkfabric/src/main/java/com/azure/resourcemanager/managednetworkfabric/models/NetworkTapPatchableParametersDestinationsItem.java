@@ -6,43 +6,57 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Destination. */
+/**
+ * Destination.
+ */
 @Fluent
 public final class NetworkTapPatchableParametersDestinationsItem extends DestinationProperties {
-    /** Creates an instance of NetworkTapPatchableParametersDestinationsItem class. */
+    /**
+     * Creates an instance of NetworkTapPatchableParametersDestinationsItem class.
+     */
     public NetworkTapPatchableParametersDestinationsItem() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkTapPatchableParametersDestinationsItem withName(String name) {
         super.withName(name);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkTapPatchableParametersDestinationsItem withDestinationType(DestinationType destinationType) {
         super.withDestinationType(destinationType);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkTapPatchableParametersDestinationsItem withDestinationId(String destinationId) {
         super.withDestinationId(destinationId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public NetworkTapPatchableParametersDestinationsItem withIsolationDomainProperties(
-        IsolationDomainProperties isolationDomainProperties) {
+    public NetworkTapPatchableParametersDestinationsItem
+        withIsolationDomainProperties(IsolationDomainProperties isolationDomainProperties) {
         super.withIsolationDomainProperties(isolationDomainProperties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkTapPatchableParametersDestinationsItem withDestinationTapRuleId(String destinationTapRuleId) {
         super.withDestinationTapRuleId(destinationTapRuleId);
@@ -51,7 +65,7 @@ public final class NetworkTapPatchableParametersDestinationsItem extends Destina
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

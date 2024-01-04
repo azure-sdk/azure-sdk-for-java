@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Network Tap Rule updatable properties. */
+/**
+ * Network Tap Rule updatable properties.
+ */
 @Fluent
 public class NetworkTapRulePatchableProperties {
     /*
@@ -35,13 +37,15 @@ public class NetworkTapRulePatchableProperties {
     @JsonProperty(value = "dynamicMatchConfigurations")
     private List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations;
 
-    /** Creates an instance of NetworkTapRulePatchableProperties class. */
+    /**
+     * Creates an instance of NetworkTapRulePatchableProperties class.
+     */
     public NetworkTapRulePatchableProperties() {
     }
 
     /**
      * Get the configurationType property: Input method to configure Network Tap Rule.
-     *
+     * 
      * @return the configurationType value.
      */
     public ConfigurationType configurationType() {
@@ -50,7 +54,7 @@ public class NetworkTapRulePatchableProperties {
 
     /**
      * Set the configurationType property: Input method to configure Network Tap Rule.
-     *
+     * 
      * @param configurationType the configurationType value to set.
      * @return the NetworkTapRulePatchableProperties object itself.
      */
@@ -61,7 +65,7 @@ public class NetworkTapRulePatchableProperties {
 
     /**
      * Get the tapRulesUrl property: Network Tap Rules file URL.
-     *
+     * 
      * @return the tapRulesUrl value.
      */
     public String tapRulesUrl() {
@@ -70,7 +74,7 @@ public class NetworkTapRulePatchableProperties {
 
     /**
      * Set the tapRulesUrl property: Network Tap Rules file URL.
-     *
+     * 
      * @param tapRulesUrl the tapRulesUrl value to set.
      * @return the NetworkTapRulePatchableProperties object itself.
      */
@@ -81,7 +85,7 @@ public class NetworkTapRulePatchableProperties {
 
     /**
      * Get the matchConfigurations property: List of match configurations.
-     *
+     * 
      * @return the matchConfigurations value.
      */
     public List<NetworkTapRuleMatchConfiguration> matchConfigurations() {
@@ -90,19 +94,19 @@ public class NetworkTapRulePatchableProperties {
 
     /**
      * Set the matchConfigurations property: List of match configurations.
-     *
+     * 
      * @param matchConfigurations the matchConfigurations value to set.
      * @return the NetworkTapRulePatchableProperties object itself.
      */
-    public NetworkTapRulePatchableProperties withMatchConfigurations(
-        List<NetworkTapRuleMatchConfiguration> matchConfigurations) {
+    public NetworkTapRulePatchableProperties
+        withMatchConfigurations(List<NetworkTapRuleMatchConfiguration> matchConfigurations) {
         this.matchConfigurations = matchConfigurations;
         return this;
     }
 
     /**
      * Get the dynamicMatchConfigurations property: List of dynamic match configurations.
-     *
+     * 
      * @return the dynamicMatchConfigurations value.
      */
     public List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations() {
@@ -111,19 +115,19 @@ public class NetworkTapRulePatchableProperties {
 
     /**
      * Set the dynamicMatchConfigurations property: List of dynamic match configurations.
-     *
+     * 
      * @param dynamicMatchConfigurations the dynamicMatchConfigurations value to set.
      * @return the NetworkTapRulePatchableProperties object itself.
      */
-    public NetworkTapRulePatchableProperties withDynamicMatchConfigurations(
-        List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations) {
+    public NetworkTapRulePatchableProperties
+        withDynamicMatchConfigurations(List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations) {
         this.dynamicMatchConfigurations = dynamicMatchConfigurations;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

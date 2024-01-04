@@ -6,13 +6,16 @@ package com.azure.resourcemanager.managednetworkfabric.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.managednetworkfabric.models.AdministrativeState;
 import com.azure.resourcemanager.managednetworkfabric.models.InterfaceType;
 import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the NetworkInterface resource. */
+/**
+ * Defines the NetworkInterface resource.
+ */
 @Fluent
 public final class NetworkInterfaceInner extends ProxyResource {
     /*
@@ -21,13 +24,21 @@ public final class NetworkInterfaceInner extends ProxyResource {
     @JsonProperty(value = "properties", required = true)
     private NetworkInterfaceProperties innerProperties = new NetworkInterfaceProperties();
 
-    /** Creates an instance of NetworkInterfaceInner class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of NetworkInterfaceInner class.
+     */
     public NetworkInterfaceInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private NetworkInterfaceProperties innerProperties() {
@@ -35,8 +46,17 @@ public final class NetworkInterfaceInner extends ProxyResource {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the physicalIdentifier property: Physical Identifier of the network interface.
-     *
+     * 
      * @return the physicalIdentifier value.
      */
     public String physicalIdentifier() {
@@ -45,7 +65,7 @@ public final class NetworkInterfaceInner extends ProxyResource {
 
     /**
      * Get the connectedTo property: The ARM resource id of the interface or compute server its connected to.
-     *
+     * 
      * @return the connectedTo value.
      */
     public String connectedTo() {
@@ -54,7 +74,7 @@ public final class NetworkInterfaceInner extends ProxyResource {
 
     /**
      * Get the interfaceType property: The Interface Type. Example: Management/Data.
-     *
+     * 
      * @return the interfaceType value.
      */
     public InterfaceType interfaceType() {
@@ -63,7 +83,7 @@ public final class NetworkInterfaceInner extends ProxyResource {
 
     /**
      * Get the ipv4Address property: IPv4Address of the interface.
-     *
+     * 
      * @return the ipv4Address value.
      */
     public String ipv4Address() {
@@ -72,7 +92,7 @@ public final class NetworkInterfaceInner extends ProxyResource {
 
     /**
      * Get the ipv6Address property: IPv6Address of the interface.
-     *
+     * 
      * @return the ipv6Address value.
      */
     public String ipv6Address() {
@@ -81,7 +101,7 @@ public final class NetworkInterfaceInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -90,7 +110,7 @@ public final class NetworkInterfaceInner extends ProxyResource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -99,7 +119,7 @@ public final class NetworkInterfaceInner extends ProxyResource {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -108,7 +128,7 @@ public final class NetworkInterfaceInner extends ProxyResource {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the NetworkInterfaceInner object itself.
      */
@@ -122,15 +142,13 @@ public final class NetworkInterfaceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model NetworkInterfaceInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model NetworkInterfaceInner"));
         } else {
             innerProperties().validate();
         }

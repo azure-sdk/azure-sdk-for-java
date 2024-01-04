@@ -12,35 +12,39 @@ import java.util.Map;
 
 /**
  * Network Fabric Controller patch parameters
- *
- * <p>The Network Fabric Controller Patch payload definition.
+ * 
+ * The Network Fabric Controller Patch payload definition.
  */
 @Fluent
 public final class NetworkFabricControllerPatch extends TagsUpdate {
     /*
      * Network Fabric Controller updatable properties
-     *
+     * 
      * Network Fabric Controller patch properties.
      */
     @JsonProperty(value = "properties")
     private NetworkFabricControllerPatchableProperties innerProperties;
 
-    /** Creates an instance of NetworkFabricControllerPatch class. */
+    /**
+     * Creates an instance of NetworkFabricControllerPatch class.
+     */
     public NetworkFabricControllerPatch() {
     }
 
     /**
      * Get the innerProperties property: Network Fabric Controller updatable properties
-     *
-     * <p>Network Fabric Controller patch properties.
-     *
+     * 
+     * Network Fabric Controller patch properties.
+     * 
      * @return the innerProperties value.
      */
     private NetworkFabricControllerPatchableProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkFabricControllerPatch withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -51,7 +55,7 @@ public final class NetworkFabricControllerPatch extends TagsUpdate {
      * Get the infrastructureExpressRouteConnections property: As part of an update, the Infrastructure ExpressRoute
      * CircuitID should be provided to create and Provision a NFC. This Express route is dedicated for Infrastructure
      * services. (This is a Mandatory attribute).
-     *
+     * 
      * @return the infrastructureExpressRouteConnections value.
      */
     public List<ExpressRouteConnectionInformation> infrastructureExpressRouteConnections() {
@@ -62,7 +66,7 @@ public final class NetworkFabricControllerPatch extends TagsUpdate {
      * Set the infrastructureExpressRouteConnections property: As part of an update, the Infrastructure ExpressRoute
      * CircuitID should be provided to create and Provision a NFC. This Express route is dedicated for Infrastructure
      * services. (This is a Mandatory attribute).
-     *
+     * 
      * @param infrastructureExpressRouteConnections the infrastructureExpressRouteConnections value to set.
      * @return the NetworkFabricControllerPatch object itself.
      */
@@ -77,9 +81,9 @@ public final class NetworkFabricControllerPatch extends TagsUpdate {
 
     /**
      * Get the workloadExpressRouteConnections property: As part of an update, the workload ExpressRoute CircuitID
-     * should be provided to create and Provision a NFC. This Express route is dedicated for Workload services. (This is
-     * a Mandatory attribute).
-     *
+     * should be provided to create and Provision a NFC. This Express route is dedicated for Workload services. (This
+     * is a Mandatory attribute).
+     * 
      * @return the workloadExpressRouteConnections value.
      */
     public List<ExpressRouteConnectionInformation> workloadExpressRouteConnections() {
@@ -88,14 +92,14 @@ public final class NetworkFabricControllerPatch extends TagsUpdate {
 
     /**
      * Set the workloadExpressRouteConnections property: As part of an update, the workload ExpressRoute CircuitID
-     * should be provided to create and Provision a NFC. This Express route is dedicated for Workload services. (This is
-     * a Mandatory attribute).
-     *
+     * should be provided to create and Provision a NFC. This Express route is dedicated for Workload services. (This
+     * is a Mandatory attribute).
+     * 
      * @param workloadExpressRouteConnections the workloadExpressRouteConnections value to set.
      * @return the NetworkFabricControllerPatch object itself.
      */
-    public NetworkFabricControllerPatch withWorkloadExpressRouteConnections(
-        List<ExpressRouteConnectionInformation> workloadExpressRouteConnections) {
+    public NetworkFabricControllerPatch
+        withWorkloadExpressRouteConnections(List<ExpressRouteConnectionInformation> workloadExpressRouteConnections) {
         if (this.innerProperties() == null) {
             this.innerProperties = new NetworkFabricControllerPatchableProperties();
         }
@@ -105,7 +109,7 @@ public final class NetworkFabricControllerPatch extends TagsUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** aggregateIpv4Route model. */
+/**
+ * aggregateIpv4Route model.
+ */
 @Fluent
 public final class AggregateRoute {
     /*
@@ -17,13 +19,15 @@ public final class AggregateRoute {
     @JsonProperty(value = "prefix", required = true)
     private String prefix;
 
-    /** Creates an instance of AggregateRoute class. */
+    /**
+     * Creates an instance of AggregateRoute class.
+     */
     public AggregateRoute() {
     }
 
     /**
      * Get the prefix property: IPv4 Prefix of the aggregate Ipv4Route.
-     *
+     * 
      * @return the prefix value.
      */
     public String prefix() {
@@ -32,7 +36,7 @@ public final class AggregateRoute {
 
     /**
      * Set the prefix property: IPv4 Prefix of the aggregate Ipv4Route.
-     *
+     * 
      * @param prefix the prefix value to set.
      * @return the AggregateRoute object itself.
      */
@@ -43,14 +47,13 @@ public final class AggregateRoute {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (prefix() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property prefix in model AggregateRoute"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property prefix in model AggregateRoute"));
         }
     }
 

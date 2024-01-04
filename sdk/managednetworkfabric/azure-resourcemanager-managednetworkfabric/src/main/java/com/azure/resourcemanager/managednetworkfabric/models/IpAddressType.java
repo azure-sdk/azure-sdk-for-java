@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** IP Address type. */
+/**
+ * IP Address type.
+ */
 public final class IpAddressType extends ExpandableStringEnum<IpAddressType> {
-    /** Static value IPv4 for IpAddressType. */
+    /**
+     * Static value IPv4 for IpAddressType.
+     */
     public static final IpAddressType IPV4 = fromString("IPv4");
 
-    /** Static value IPv6 for IpAddressType. */
+    /**
+     * Static value IPv6 for IpAddressType.
+     */
     public static final IpAddressType IPV6 = fromString("IPv6");
 
     /**
      * Creates a new instance of IpAddressType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class IpAddressType extends ExpandableStringEnum<IpAddressType> {
 
     /**
      * Creates or finds a IpAddressType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding IpAddressType.
      */
@@ -38,7 +44,7 @@ public final class IpAddressType extends ExpandableStringEnum<IpAddressType> {
 
     /**
      * Gets known IpAddressType values.
-     *
+     * 
      * @return known IpAddressType values.
      */
     public static Collection<IpAddressType> values() {

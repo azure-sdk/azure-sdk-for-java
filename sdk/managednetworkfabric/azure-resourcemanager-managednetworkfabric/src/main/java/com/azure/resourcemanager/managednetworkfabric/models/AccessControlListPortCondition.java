@@ -8,22 +8,29 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the port condition that needs to be matched. */
+/**
+ * Defines the port condition that needs to be matched.
+ */
 @Fluent
 public final class AccessControlListPortCondition extends PortCondition {
     /*
-     * List of protocol flags that needs to be matched.
+     * List of protocol flags that need to be matched. Example: established | initial | <List-of-TCP-flags>. List of
+     * eligible TCP Flags are ack, fin, not-ack, not-fin, not-psh, not-rst, not-syn, not-urg, psh, rst, syn, urg
      */
     @JsonProperty(value = "flags")
     private List<String> flags;
 
-    /** Creates an instance of AccessControlListPortCondition class. */
+    /**
+     * Creates an instance of AccessControlListPortCondition class.
+     */
     public AccessControlListPortCondition() {
     }
 
     /**
-     * Get the flags property: List of protocol flags that needs to be matched.
-     *
+     * Get the flags property: List of protocol flags that need to be matched. Example: established | initial |
+     * &lt;List-of-TCP-flags&gt;. List of eligible TCP Flags are ack, fin, not-ack, not-fin, not-psh, not-rst, not-syn,
+     * not-urg, psh, rst, syn, urg.
+     * 
      * @return the flags value.
      */
     public List<String> flags() {
@@ -31,8 +38,10 @@ public final class AccessControlListPortCondition extends PortCondition {
     }
 
     /**
-     * Set the flags property: List of protocol flags that needs to be matched.
-     *
+     * Set the flags property: List of protocol flags that need to be matched. Example: established | initial |
+     * &lt;List-of-TCP-flags&gt;. List of eligible TCP Flags are ack, fin, not-ack, not-fin, not-psh, not-rst, not-syn,
+     * not-urg, psh, rst, syn, urg.
+     * 
      * @param flags the flags value to set.
      * @return the AccessControlListPortCondition object itself.
      */
@@ -41,28 +50,36 @@ public final class AccessControlListPortCondition extends PortCondition {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AccessControlListPortCondition withPortType(PortType portType) {
         super.withPortType(portType);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AccessControlListPortCondition withLayer4Protocol(Layer4Protocol layer4Protocol) {
         super.withLayer4Protocol(layer4Protocol);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AccessControlListPortCondition withPorts(List<String> ports) {
         super.withPorts(ports);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AccessControlListPortCondition withPortGroupNames(List<String> portGroupNames) {
         super.withPortGroupNames(portGroupNames);
@@ -71,7 +88,7 @@ public final class AccessControlListPortCondition extends PortCondition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Access Control List Patch Properties defines the patchable resource properties. */
+/**
+ * Access Control List Patch Properties defines the patchable resource properties.
+ */
 @Fluent
 public class AccessControlListPatchableProperties {
     /*
@@ -24,6 +26,12 @@ public class AccessControlListPatchableProperties {
     private String aclsUrl;
 
     /*
+     * Default action that needs to be applied when no condition is matched. Example: Permit | Deny.
+     */
+    @JsonProperty(value = "defaultAction")
+    private CommunityActionTypes defaultAction;
+
+    /*
      * List of match configurations.
      */
     @JsonProperty(value = "matchConfigurations")
@@ -35,13 +43,15 @@ public class AccessControlListPatchableProperties {
     @JsonProperty(value = "dynamicMatchConfigurations")
     private List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations;
 
-    /** Creates an instance of AccessControlListPatchableProperties class. */
+    /**
+     * Creates an instance of AccessControlListPatchableProperties class.
+     */
     public AccessControlListPatchableProperties() {
     }
 
     /**
      * Get the configurationType property: Input method to configure Access Control List.
-     *
+     * 
      * @return the configurationType value.
      */
     public ConfigurationType configurationType() {
@@ -50,7 +60,7 @@ public class AccessControlListPatchableProperties {
 
     /**
      * Set the configurationType property: Input method to configure Access Control List.
-     *
+     * 
      * @param configurationType the configurationType value to set.
      * @return the AccessControlListPatchableProperties object itself.
      */
@@ -61,7 +71,7 @@ public class AccessControlListPatchableProperties {
 
     /**
      * Get the aclsUrl property: Access Control List file URL.
-     *
+     * 
      * @return the aclsUrl value.
      */
     public String aclsUrl() {
@@ -70,7 +80,7 @@ public class AccessControlListPatchableProperties {
 
     /**
      * Set the aclsUrl property: Access Control List file URL.
-     *
+     * 
      * @param aclsUrl the aclsUrl value to set.
      * @return the AccessControlListPatchableProperties object itself.
      */
@@ -80,8 +90,30 @@ public class AccessControlListPatchableProperties {
     }
 
     /**
+     * Get the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     * 
+     * @return the defaultAction value.
+     */
+    public CommunityActionTypes defaultAction() {
+        return this.defaultAction;
+    }
+
+    /**
+     * Set the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     * 
+     * @param defaultAction the defaultAction value to set.
+     * @return the AccessControlListPatchableProperties object itself.
+     */
+    public AccessControlListPatchableProperties withDefaultAction(CommunityActionTypes defaultAction) {
+        this.defaultAction = defaultAction;
+        return this;
+    }
+
+    /**
      * Get the matchConfigurations property: List of match configurations.
-     *
+     * 
      * @return the matchConfigurations value.
      */
     public List<AccessControlListMatchConfiguration> matchConfigurations() {
@@ -90,19 +122,19 @@ public class AccessControlListPatchableProperties {
 
     /**
      * Set the matchConfigurations property: List of match configurations.
-     *
+     * 
      * @param matchConfigurations the matchConfigurations value to set.
      * @return the AccessControlListPatchableProperties object itself.
      */
-    public AccessControlListPatchableProperties withMatchConfigurations(
-        List<AccessControlListMatchConfiguration> matchConfigurations) {
+    public AccessControlListPatchableProperties
+        withMatchConfigurations(List<AccessControlListMatchConfiguration> matchConfigurations) {
         this.matchConfigurations = matchConfigurations;
         return this;
     }
 
     /**
      * Get the dynamicMatchConfigurations property: List of dynamic match configurations.
-     *
+     * 
      * @return the dynamicMatchConfigurations value.
      */
     public List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations() {
@@ -111,19 +143,19 @@ public class AccessControlListPatchableProperties {
 
     /**
      * Set the dynamicMatchConfigurations property: List of dynamic match configurations.
-     *
+     * 
      * @param dynamicMatchConfigurations the dynamicMatchConfigurations value to set.
      * @return the AccessControlListPatchableProperties object itself.
      */
-    public AccessControlListPatchableProperties withDynamicMatchConfigurations(
-        List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations) {
+    public AccessControlListPatchableProperties
+        withDynamicMatchConfigurations(List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations) {
         this.dynamicMatchConfigurations = dynamicMatchConfigurations;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

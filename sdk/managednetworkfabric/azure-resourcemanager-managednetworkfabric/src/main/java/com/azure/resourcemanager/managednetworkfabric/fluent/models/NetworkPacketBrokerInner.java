@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The NetworkPacketBroker resource definition. */
+/**
+ * The NetworkPacketBroker resource definition.
+ */
 @Fluent
 public final class NetworkPacketBrokerInner extends Resource {
     /*
@@ -28,13 +30,15 @@ public final class NetworkPacketBrokerInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of NetworkPacketBrokerInner class. */
+    /**
+     * Creates an instance of NetworkPacketBrokerInner class.
+     */
     public NetworkPacketBrokerInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private NetworkPacketBrokerProperties innerProperties() {
@@ -43,21 +47,25 @@ public final class NetworkPacketBrokerInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkPacketBrokerInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkPacketBrokerInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -66,7 +74,7 @@ public final class NetworkPacketBrokerInner extends Resource {
 
     /**
      * Get the networkFabricId property: ARM resource ID of the Network Fabric.
-     *
+     * 
      * @return the networkFabricId value.
      */
     public String networkFabricId() {
@@ -75,7 +83,7 @@ public final class NetworkPacketBrokerInner extends Resource {
 
     /**
      * Set the networkFabricId property: ARM resource ID of the Network Fabric.
-     *
+     * 
      * @param networkFabricId the networkFabricId value to set.
      * @return the NetworkPacketBrokerInner object itself.
      */
@@ -89,7 +97,7 @@ public final class NetworkPacketBrokerInner extends Resource {
 
     /**
      * Get the networkDeviceIds property: List of ARM resource IDs of Network Devices [NPB].
-     *
+     * 
      * @return the networkDeviceIds value.
      */
     public List<String> networkDeviceIds() {
@@ -97,9 +105,9 @@ public final class NetworkPacketBrokerInner extends Resource {
     }
 
     /**
-     * Get the sourceInterfaceIds property: List of network interfaces across NPB devices that are used to mirror source
-     * traffic.
-     *
+     * Get the sourceInterfaceIds property: List of network interfaces across NPB devices that are used to mirror
+     * source traffic.
+     * 
      * @return the sourceInterfaceIds value.
      */
     public List<String> sourceInterfaceIds() {
@@ -108,7 +116,7 @@ public final class NetworkPacketBrokerInner extends Resource {
 
     /**
      * Get the networkTapIds property: List of network Tap IDs configured on NPB.
-     *
+     * 
      * @return the networkTapIds value.
      */
     public List<String> networkTapIds() {
@@ -117,7 +125,7 @@ public final class NetworkPacketBrokerInner extends Resource {
 
     /**
      * Get the neighborGroupIds property: List of neighbor group IDs configured on NPB.
-     *
+     * 
      * @return the neighborGroupIds value.
      */
     public List<String> neighborGroupIds() {
@@ -126,7 +134,7 @@ public final class NetworkPacketBrokerInner extends Resource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -135,15 +143,13 @@ public final class NetworkPacketBrokerInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model NetworkPacketBrokerInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model NetworkPacketBrokerInner"));
         } else {
             innerProperties().validate();
         }

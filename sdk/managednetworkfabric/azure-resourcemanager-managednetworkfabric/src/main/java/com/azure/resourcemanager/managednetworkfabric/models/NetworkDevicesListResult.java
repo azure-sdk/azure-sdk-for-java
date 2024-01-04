@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.NetworkDevic
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of NetworkDevices. */
+/**
+ * List of NetworkDevices.
+ */
 @Fluent
 public final class NetworkDevicesListResult {
     /*
@@ -24,13 +26,15 @@ public final class NetworkDevicesListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of NetworkDevicesListResult class. */
+    /**
+     * Creates an instance of NetworkDevicesListResult class.
+     */
     public NetworkDevicesListResult() {
     }
 
     /**
      * Get the value property: List of NetworkDevice resources.
-     *
+     * 
      * @return the value value.
      */
     public List<NetworkDeviceInner> value() {
@@ -39,7 +43,7 @@ public final class NetworkDevicesListResult {
 
     /**
      * Set the value property: List of NetworkDevice resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the NetworkDevicesListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class NetworkDevicesListResult {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class NetworkDevicesListResult {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the NetworkDevicesListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class NetworkDevicesListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

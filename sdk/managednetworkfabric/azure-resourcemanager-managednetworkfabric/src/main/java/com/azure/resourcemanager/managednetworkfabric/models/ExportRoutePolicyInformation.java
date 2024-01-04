@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Export Route Policy Configuration. */
+/**
+ * Export Route Policy Configuration.
+ */
 @Fluent
 public final class ExportRoutePolicyInformation {
     /*
@@ -22,13 +24,15 @@ public final class ExportRoutePolicyInformation {
     @JsonProperty(value = "exportIpv6RoutePolicyId")
     private String exportIpv6RoutePolicyId;
 
-    /** Creates an instance of ExportRoutePolicyInformation class. */
+    /**
+     * Creates an instance of ExportRoutePolicyInformation class.
+     */
     public ExportRoutePolicyInformation() {
     }
 
     /**
      * Get the exportIpv4RoutePolicyId property: Export IPv4 Route Policy Id.
-     *
+     * 
      * @return the exportIpv4RoutePolicyId value.
      */
     public String exportIpv4RoutePolicyId() {
@@ -37,7 +41,7 @@ public final class ExportRoutePolicyInformation {
 
     /**
      * Set the exportIpv4RoutePolicyId property: Export IPv4 Route Policy Id.
-     *
+     * 
      * @param exportIpv4RoutePolicyId the exportIpv4RoutePolicyId value to set.
      * @return the ExportRoutePolicyInformation object itself.
      */
@@ -48,7 +52,7 @@ public final class ExportRoutePolicyInformation {
 
     /**
      * Get the exportIpv6RoutePolicyId property: Export IPv6 Route Policy Id.
-     *
+     * 
      * @return the exportIpv6RoutePolicyId value.
      */
     public String exportIpv6RoutePolicyId() {
@@ -57,7 +61,7 @@ public final class ExportRoutePolicyInformation {
 
     /**
      * Set the exportIpv6RoutePolicyId property: Export IPv6 Route Policy Id.
-     *
+     * 
      * @param exportIpv6RoutePolicyId the exportIpv6RoutePolicyId value to set.
      * @return the ExportRoutePolicyInformation object itself.
      */
@@ -68,7 +72,7 @@ public final class ExportRoutePolicyInformation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
