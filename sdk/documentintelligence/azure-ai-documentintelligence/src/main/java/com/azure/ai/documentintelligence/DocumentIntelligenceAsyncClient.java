@@ -4,7 +4,7 @@
 
 package com.azure.ai.documentintelligence;
 
-import com.azure.ai.documentintelligence.implementation.DocumentAnalysisClientImpl;
+import com.azure.ai.documentintelligence.implementation.DocumentIntelligenceClientImpl;
 import com.azure.ai.documentintelligence.models.AnalyzeDocumentRequest;
 import com.azure.ai.documentintelligence.models.AnalyzeResultOperation;
 import com.azure.ai.documentintelligence.models.ClassifyDocumentRequest;
@@ -23,27 +23,25 @@ import com.azure.core.exception.ResourceNotFoundException;
 import com.azure.core.http.rest.RequestOptions;
 import com.azure.core.util.BinaryData;
 import com.azure.core.util.polling.PollerFlux;
-import com.azure.core.util.serializer.CollectionFormat;
-import com.azure.core.util.serializer.JacksonAdapter;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * Initializes a new instance of the asynchronous DocumentAnalysisClient type.
+ * Initializes a new instance of the asynchronous DocumentIntelligenceClient type.
  */
 @ServiceClient(builder = DocumentIntelligenceClientBuilder.class, isAsync = true)
 public final class DocumentIntelligenceAsyncClient {
     @Generated
-    private final DocumentAnalysisClientImpl serviceClient;
+    private final DocumentIntelligenceClientImpl serviceClient;
 
     /**
-     * Initializes an instance of DocumentAnalysisAsyncClient class.
-     *
+     * Initializes an instance of DocumentIntelligenceAsyncClient class.
+     * 
      * @param serviceClient the service client implementation.
      */
     @Generated
-    DocumentIntelligenceAsyncClient(DocumentAnalysisClientImpl serviceClient) {
+    DocumentIntelligenceAsyncClient(DocumentIntelligenceClientImpl serviceClient) {
         this.serviceClient = serviceClient;
     }
 
@@ -110,7 +108,7 @@ public final class DocumentIntelligenceAsyncClient {
      *     base64Source: byte[] (Optional)
      * }
      * }</pre>
-     *
+     * 
      * @param modelId Unique document model name.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -121,8 +119,92 @@ public final class DocumentIntelligenceAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public PollerFlux<BinaryData, BinaryData> beginAnalyzeDocument(String modelId, RequestOptions requestOptions) {
-        return this.serviceClient.beginAnalyzeDocumentAsync(modelId, requestOptions);
+    public PollerFlux<BinaryData, BinaryData> beginAnalyzeDocumentFromUrl(String modelId,
+        RequestOptions requestOptions) {
+        return this.serviceClient.beginAnalyzeDocumentFromUrlAsync(modelId, requestOptions);
+    }
+
+    /**
+     * Analyzes document with document model.
+     * <p>
+     * <strong>Query Parameters</strong>
+     * </p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr>
+     * <th>Name</th>
+     * <th>Type</th>
+     * <th>Required</th>
+     * <th>Description</th>
+     * </tr>
+     * <tr>
+     * <td>pages</td>
+     * <td>String</td>
+     * <td>No</td>
+     * <td>List of 1-based page numbers to analyze. Ex. "1-3,5,7-9"</td>
+     * </tr>
+     * <tr>
+     * <td>locale</td>
+     * <td>String</td>
+     * <td>No</td>
+     * <td>Locale hint for text recognition and document analysis. Value may contain only
+     * the language code (ex. "en", "fr") or BCP 47 language tag (ex. "en-US").</td>
+     * </tr>
+     * <tr>
+     * <td>stringIndexType</td>
+     * <td>String</td>
+     * <td>No</td>
+     * <td>Method used to compute string offset and length. Allowed values: "textElements", "unicodeCodePoint",
+     * "utf16CodeUnit".</td>
+     * </tr>
+     * <tr>
+     * <td>features</td>
+     * <td>List&lt;String&gt;</td>
+     * <td>No</td>
+     * <td>List of optional analysis features. In the form of "," separated string.</td>
+     * </tr>
+     * <tr>
+     * <td>queryFields</td>
+     * <td>List&lt;String&gt;</td>
+     * <td>No</td>
+     * <td>List of additional fields to extract. Ex. "NumberOfGuests,StoreNumber". In the form of "," separated
+     * string.</td>
+     * </tr>
+     * <tr>
+     * <td>outputContentFormat</td>
+     * <td>String</td>
+     * <td>No</td>
+     * <td>Format of the analyze result top-level content. Allowed values: "text", "markdown".</td>
+     * </tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p>
+     * <strong>Request Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * byte[]
+     * }</pre>
+     * 
+     * @param modelId Unique document model name.
+     * @param contentType Input content type. Allowed values: "application/octet-stream", "application/pdf",
+     * "image/jpeg", "image/png", "image/tiff", "image/bmp", "image/heif", "text/html",
+     * "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+     * "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+     * "application/vnd.openxmlformats-officedocument.presentationml.presentation".
+     * @param input Input content.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public PollerFlux<BinaryData, BinaryData> beginAnalyzeDocument(String modelId, String contentType, BinaryData input,
+        RequestOptions requestOptions) {
+        // Convenience API is not generated, as operation 'analyzeDocument' is multiple content-type
+        return this.serviceClient.beginAnalyzeDocumentAsync(modelId, contentType, input, requestOptions);
     }
 
     /**
@@ -162,7 +244,7 @@ public final class DocumentIntelligenceAsyncClient {
      *     base64Source: byte[] (Optional)
      * }
      * }</pre>
-     *
+     * 
      * @param classifierId Unique document classifier name.
      * @param classifyRequest Classify request parameters.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
@@ -174,14 +256,71 @@ public final class DocumentIntelligenceAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public PollerFlux<BinaryData, BinaryData> beginClassifyDocument(String classifierId, BinaryData classifyRequest,
-        RequestOptions requestOptions) {
-        return this.serviceClient.beginClassifyDocumentAsync(classifierId, classifyRequest, requestOptions);
+    public PollerFlux<BinaryData, BinaryData> beginClassifyDocumentFromUrl(String classifierId,
+        BinaryData classifyRequest, RequestOptions requestOptions) {
+        return this.serviceClient.beginClassifyDocumentFromUrlAsync(classifierId, classifyRequest, requestOptions);
+    }
+
+    /**
+     * Classifies document with document classifier.
+     * <p>
+     * <strong>Query Parameters</strong>
+     * </p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr>
+     * <th>Name</th>
+     * <th>Type</th>
+     * <th>Required</th>
+     * <th>Description</th>
+     * </tr>
+     * <tr>
+     * <td>stringIndexType</td>
+     * <td>String</td>
+     * <td>No</td>
+     * <td>Method used to compute string offset and length. Allowed values: "textElements", "unicodeCodePoint",
+     * "utf16CodeUnit".</td>
+     * </tr>
+     * <tr>
+     * <td>split</td>
+     * <td>String</td>
+     * <td>No</td>
+     * <td>Document splitting mode. Allowed values: "auto", "none", "perPage".</td>
+     * </tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p>
+     * <strong>Request Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * byte[]
+     * }</pre>
+     * 
+     * @param classifierId Unique document classifier name.
+     * @param contentType Input content type. Allowed values: "application/octet-stream", "application/pdf",
+     * "image/jpeg", "image/png", "image/tiff", "image/bmp", "image/heif", "text/html",
+     * "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+     * "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+     * "application/vnd.openxmlformats-officedocument.presentationml.presentation".
+     * @param input Input content.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public PollerFlux<BinaryData, BinaryData> beginClassifyDocument(String classifierId, String contentType,
+        BinaryData input, RequestOptions requestOptions) {
+        // Convenience API is not generated, as operation 'classifyDocument' is multiple content-type
+        return this.serviceClient.beginClassifyDocumentAsync(classifierId, contentType, input, requestOptions);
     }
 
     /**
      * Analyzes document with document model.
-     *
+     * 
      * @param modelId Unique document model name.
      * @param pages List of 1-based page numbers to analyze. Ex. "1-3,5,7-9".
      * @param locale Locale hint for text recognition and document analysis. Value may contain only
@@ -201,10 +340,10 @@ public final class DocumentIntelligenceAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public PollerFlux<AnalyzeResultOperation, AnalyzeResultOperation> beginAnalyzeDocument(String modelId, String pages,
-        String locale, StringIndexType stringIndexType, List<DocumentAnalysisFeature> features,
+    public PollerFlux<AnalyzeResultOperation, AnalyzeResultOperation> beginAnalyzeDocumentFromUrl(String modelId,
+        String pages, String locale, StringIndexType stringIndexType, List<DocumentAnalysisFeature> features,
         List<String> queryFields, ContentFormat outputContentFormat, AnalyzeDocumentRequest analyzeRequest) {
-        // Generated convenience method for beginAnalyzeDocumentWithModel
+        // Generated convenience method for beginAnalyzeDocumentFromUrlWithModel
         RequestOptions requestOptions = new RequestOptions();
         if (pages != null) {
             requestOptions.addQueryParam("pages", pages, false);
@@ -216,9 +355,8 @@ public final class DocumentIntelligenceAsyncClient {
             requestOptions.addQueryParam("stringIndexType", stringIndexType.toString(), false);
         }
         if (features != null) {
-            requestOptions.addQueryParam("features",
-                JacksonAdapter.createDefaultSerializerAdapter().serializeIterable(features, CollectionFormat.CSV),
-                false);
+            requestOptions.addQueryParam("features", features.stream()
+                .map(paramItemValue -> Objects.toString(paramItemValue, "")).collect(Collectors.joining(",")), false);
         }
         if (queryFields != null) {
             requestOptions.addQueryParam("queryFields", queryFields.stream()
@@ -230,12 +368,12 @@ public final class DocumentIntelligenceAsyncClient {
         if (analyzeRequest != null) {
             requestOptions.setBody(BinaryData.fromObject(analyzeRequest));
         }
-        return serviceClient.beginAnalyzeDocumentWithModelAsync(modelId, requestOptions);
+        return serviceClient.beginAnalyzeDocumentFromUrlWithModelAsync(modelId, requestOptions);
     }
 
     /**
      * Analyzes document with document model.
-     *
+     * 
      * @param modelId Unique document model name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -247,15 +385,15 @@ public final class DocumentIntelligenceAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public PollerFlux<AnalyzeResultOperation, AnalyzeResultOperation> beginAnalyzeDocument(String modelId) {
-        // Generated convenience method for beginAnalyzeDocumentWithModel
+    public PollerFlux<AnalyzeResultOperation, AnalyzeResultOperation> beginAnalyzeDocumentFromUrl(String modelId) {
+        // Generated convenience method for beginAnalyzeDocumentFromUrlWithModel
         RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.beginAnalyzeDocumentWithModelAsync(modelId, requestOptions);
+        return serviceClient.beginAnalyzeDocumentFromUrlWithModelAsync(modelId, requestOptions);
     }
 
     /**
      * Classifies document with document classifier.
-     *
+     * 
      * @param classifierId Unique document classifier name.
      * @param classifyRequest Classify request parameters.
      * @param stringIndexType Method used to compute string offset and length.
@@ -270,9 +408,9 @@ public final class DocumentIntelligenceAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public PollerFlux<AnalyzeResultOperation, AnalyzeResultOperation> beginClassifyDocument(String classifierId,
+    public PollerFlux<AnalyzeResultOperation, AnalyzeResultOperation> beginClassifyDocumentFromUrl(String classifierId,
         ClassifyDocumentRequest classifyRequest, StringIndexType stringIndexType, SplitMode split) {
-        // Generated convenience method for beginClassifyDocumentWithModel
+        // Generated convenience method for beginClassifyDocumentFromUrlWithModel
         RequestOptions requestOptions = new RequestOptions();
         if (stringIndexType != null) {
             requestOptions.addQueryParam("stringIndexType", stringIndexType.toString(), false);
@@ -280,13 +418,13 @@ public final class DocumentIntelligenceAsyncClient {
         if (split != null) {
             requestOptions.addQueryParam("split", split.toString(), false);
         }
-        return serviceClient.beginClassifyDocumentWithModelAsync(classifierId, BinaryData.fromObject(classifyRequest),
-            requestOptions);
+        return serviceClient.beginClassifyDocumentFromUrlWithModelAsync(classifierId,
+            BinaryData.fromObject(classifyRequest), requestOptions);
     }
 
     /**
      * Classifies document with document classifier.
-     *
+     * 
      * @param classifierId Unique document classifier name.
      * @param classifyRequest Classify request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -299,11 +437,11 @@ public final class DocumentIntelligenceAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public PollerFlux<AnalyzeResultOperation, AnalyzeResultOperation> beginClassifyDocument(String classifierId,
+    public PollerFlux<AnalyzeResultOperation, AnalyzeResultOperation> beginClassifyDocumentFromUrl(String classifierId,
         ClassifyDocumentRequest classifyRequest) {
-        // Generated convenience method for beginClassifyDocumentWithModel
+        // Generated convenience method for beginClassifyDocumentFromUrlWithModel
         RequestOptions requestOptions = new RequestOptions();
-        return serviceClient.beginClassifyDocumentWithModelAsync(classifierId, BinaryData.fromObject(classifyRequest),
-            requestOptions);
+        return serviceClient.beginClassifyDocumentFromUrlWithModelAsync(classifierId,
+            BinaryData.fromObject(classifyRequest), requestOptions);
     }
 }
