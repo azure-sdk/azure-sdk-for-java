@@ -7,7 +7,9 @@ package com.azure.resourcemanager.appcontainers.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Secret to be added to volume. */
+/**
+ * Secret to be added to volume.
+ */
 @Fluent
 public final class SecretVolumeItem {
     /*
@@ -17,18 +19,26 @@ public final class SecretVolumeItem {
     private String secretRef;
 
     /*
+     * Resource id of the referenced environment secret from which to pull the secret value.
+     */
+    @JsonProperty(value = "secretId")
+    private String secretId;
+
+    /*
      * Path to project secret to. If no path is provided, path defaults to name of secret listed in secretRef.
      */
     @JsonProperty(value = "path")
     private String path;
 
-    /** Creates an instance of SecretVolumeItem class. */
+    /**
+     * Creates an instance of SecretVolumeItem class.
+     */
     public SecretVolumeItem() {
     }
 
     /**
      * Get the secretRef property: Name of the Container App secret from which to pull the secret value.
-     *
+     * 
      * @return the secretRef value.
      */
     public String secretRef() {
@@ -37,7 +47,7 @@ public final class SecretVolumeItem {
 
     /**
      * Set the secretRef property: Name of the Container App secret from which to pull the secret value.
-     *
+     * 
      * @param secretRef the secretRef value to set.
      * @return the SecretVolumeItem object itself.
      */
@@ -47,9 +57,29 @@ public final class SecretVolumeItem {
     }
 
     /**
+     * Get the secretId property: Resource id of the referenced environment secret from which to pull the secret value.
+     * 
+     * @return the secretId value.
+     */
+    public String secretId() {
+        return this.secretId;
+    }
+
+    /**
+     * Set the secretId property: Resource id of the referenced environment secret from which to pull the secret value.
+     * 
+     * @param secretId the secretId value to set.
+     * @return the SecretVolumeItem object itself.
+     */
+    public SecretVolumeItem withSecretId(String secretId) {
+        this.secretId = secretId;
+        return this;
+    }
+
+    /**
      * Get the path property: Path to project secret to. If no path is provided, path defaults to name of secret listed
      * in secretRef.
-     *
+     * 
      * @return the path value.
      */
     public String path() {
@@ -59,7 +89,7 @@ public final class SecretVolumeItem {
     /**
      * Set the path property: Path to project secret to. If no path is provided, path defaults to name of secret listed
      * in secretRef.
-     *
+     * 
      * @param path the path value to set.
      * @return the SecretVolumeItem object itself.
      */
@@ -70,7 +100,7 @@ public final class SecretVolumeItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.appcontainers.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Auth Secrets for Scale Rule. */
+/**
+ * Auth Secrets for Scale Rule.
+ */
 @Fluent
 public final class ScaleRuleAuth {
     /*
@@ -17,18 +19,26 @@ public final class ScaleRuleAuth {
     private String secretRef;
 
     /*
+     * Resource id of the environment secret from which to pull the auth params.
+     */
+    @JsonProperty(value = "secretId")
+    private String secretId;
+
+    /*
      * Trigger Parameter that uses the secret
      */
     @JsonProperty(value = "triggerParameter")
     private String triggerParameter;
 
-    /** Creates an instance of ScaleRuleAuth class. */
+    /**
+     * Creates an instance of ScaleRuleAuth class.
+     */
     public ScaleRuleAuth() {
     }
 
     /**
      * Get the secretRef property: Name of the secret from which to pull the auth params.
-     *
+     * 
      * @return the secretRef value.
      */
     public String secretRef() {
@@ -37,7 +47,7 @@ public final class ScaleRuleAuth {
 
     /**
      * Set the secretRef property: Name of the secret from which to pull the auth params.
-     *
+     * 
      * @param secretRef the secretRef value to set.
      * @return the ScaleRuleAuth object itself.
      */
@@ -47,8 +57,28 @@ public final class ScaleRuleAuth {
     }
 
     /**
+     * Get the secretId property: Resource id of the environment secret from which to pull the auth params.
+     * 
+     * @return the secretId value.
+     */
+    public String secretId() {
+        return this.secretId;
+    }
+
+    /**
+     * Set the secretId property: Resource id of the environment secret from which to pull the auth params.
+     * 
+     * @param secretId the secretId value to set.
+     * @return the ScaleRuleAuth object itself.
+     */
+    public ScaleRuleAuth withSecretId(String secretId) {
+        this.secretId = secretId;
+        return this;
+    }
+
+    /**
      * Get the triggerParameter property: Trigger Parameter that uses the secret.
-     *
+     * 
      * @return the triggerParameter value.
      */
     public String triggerParameter() {
@@ -57,7 +87,7 @@ public final class ScaleRuleAuth {
 
     /**
      * Set the triggerParameter property: Trigger Parameter that uses the secret.
-     *
+     * 
      * @param triggerParameter the triggerParameter value to set.
      * @return the ScaleRuleAuth object itself.
      */
@@ -68,7 +98,7 @@ public final class ScaleRuleAuth {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

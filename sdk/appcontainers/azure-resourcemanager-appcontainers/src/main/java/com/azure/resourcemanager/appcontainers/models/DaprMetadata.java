@@ -7,7 +7,9 @@ package com.azure.resourcemanager.appcontainers.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Dapr component metadata. */
+/**
+ * Dapr component metadata.
+ */
 @Fluent
 public final class DaprMetadata {
     /*
@@ -28,13 +30,21 @@ public final class DaprMetadata {
     @JsonProperty(value = "secretRef")
     private String secretRef;
 
-    /** Creates an instance of DaprMetadata class. */
+    /*
+     * Resource id of the environment secret from which to pull the metadata property value.
+     */
+    @JsonProperty(value = "secretId")
+    private String secretId;
+
+    /**
+     * Creates an instance of DaprMetadata class.
+     */
     public DaprMetadata() {
     }
 
     /**
      * Get the name property: Metadata property name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -43,7 +53,7 @@ public final class DaprMetadata {
 
     /**
      * Set the name property: Metadata property name.
-     *
+     * 
      * @param name the name value to set.
      * @return the DaprMetadata object itself.
      */
@@ -54,7 +64,7 @@ public final class DaprMetadata {
 
     /**
      * Get the value property: Metadata property value.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -63,7 +73,7 @@ public final class DaprMetadata {
 
     /**
      * Set the value property: Metadata property value.
-     *
+     * 
      * @param value the value value to set.
      * @return the DaprMetadata object itself.
      */
@@ -74,7 +84,7 @@ public final class DaprMetadata {
 
     /**
      * Get the secretRef property: Name of the Dapr Component secret from which to pull the metadata property value.
-     *
+     * 
      * @return the secretRef value.
      */
     public String secretRef() {
@@ -83,7 +93,7 @@ public final class DaprMetadata {
 
     /**
      * Set the secretRef property: Name of the Dapr Component secret from which to pull the metadata property value.
-     *
+     * 
      * @param secretRef the secretRef value to set.
      * @return the DaprMetadata object itself.
      */
@@ -93,8 +103,28 @@ public final class DaprMetadata {
     }
 
     /**
+     * Get the secretId property: Resource id of the environment secret from which to pull the metadata property value.
+     * 
+     * @return the secretId value.
+     */
+    public String secretId() {
+        return this.secretId;
+    }
+
+    /**
+     * Set the secretId property: Resource id of the environment secret from which to pull the metadata property value.
+     * 
+     * @param secretId the secretId value to set.
+     * @return the DaprMetadata object itself.
+     */
+    public DaprMetadata withSecretId(String secretId) {
+        this.secretId = secretId;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.appcontainers.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Container App Private Registry. */
+/**
+ * Container App Private Registry.
+ */
 @Fluent
 public final class RegistryCredentials {
     /*
@@ -29,19 +31,27 @@ public final class RegistryCredentials {
     private String passwordSecretRef;
 
     /*
+     * Resource id of the referenced environment secret that contains the registry login password
+     */
+    @JsonProperty(value = "passwordSecretId")
+    private String passwordSecretId;
+
+    /*
      * A Managed Identity to use to authenticate with Azure Container Registry. For user-assigned identities, use the
      * full user-assigned identity Resource ID. For system-assigned identities, use 'system'
      */
     @JsonProperty(value = "identity")
     private String identity;
 
-    /** Creates an instance of RegistryCredentials class. */
+    /**
+     * Creates an instance of RegistryCredentials class.
+     */
     public RegistryCredentials() {
     }
 
     /**
      * Get the server property: Container Registry Server.
-     *
+     * 
      * @return the server value.
      */
     public String server() {
@@ -50,7 +60,7 @@ public final class RegistryCredentials {
 
     /**
      * Set the server property: Container Registry Server.
-     *
+     * 
      * @param server the server value to set.
      * @return the RegistryCredentials object itself.
      */
@@ -61,7 +71,7 @@ public final class RegistryCredentials {
 
     /**
      * Get the username property: Container Registry Username.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -70,7 +80,7 @@ public final class RegistryCredentials {
 
     /**
      * Set the username property: Container Registry Username.
-     *
+     * 
      * @param username the username value to set.
      * @return the RegistryCredentials object itself.
      */
@@ -81,7 +91,7 @@ public final class RegistryCredentials {
 
     /**
      * Get the passwordSecretRef property: The name of the Secret that contains the registry login password.
-     *
+     * 
      * @return the passwordSecretRef value.
      */
     public String passwordSecretRef() {
@@ -90,7 +100,7 @@ public final class RegistryCredentials {
 
     /**
      * Set the passwordSecretRef property: The name of the Secret that contains the registry login password.
-     *
+     * 
      * @param passwordSecretRef the passwordSecretRef value to set.
      * @return the RegistryCredentials object itself.
      */
@@ -100,10 +110,32 @@ public final class RegistryCredentials {
     }
 
     /**
+     * Get the passwordSecretId property: Resource id of the referenced environment secret that contains the registry
+     * login password.
+     * 
+     * @return the passwordSecretId value.
+     */
+    public String passwordSecretId() {
+        return this.passwordSecretId;
+    }
+
+    /**
+     * Set the passwordSecretId property: Resource id of the referenced environment secret that contains the registry
+     * login password.
+     * 
+     * @param passwordSecretId the passwordSecretId value to set.
+     * @return the RegistryCredentials object itself.
+     */
+    public RegistryCredentials withPasswordSecretId(String passwordSecretId) {
+        this.passwordSecretId = passwordSecretId;
+        return this;
+    }
+
+    /**
      * Get the identity property: A Managed Identity to use to authenticate with Azure Container Registry. For
      * user-assigned identities, use the full user-assigned identity Resource ID. For system-assigned identities, use
      * 'system'.
-     *
+     * 
      * @return the identity value.
      */
     public String identity() {
@@ -114,7 +146,7 @@ public final class RegistryCredentials {
      * Set the identity property: A Managed Identity to use to authenticate with Azure Container Registry. For
      * user-assigned identities, use the full user-assigned identity Resource ID. For system-assigned identities, use
      * 'system'.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the RegistryCredentials object itself.
      */
@@ -125,7 +157,7 @@ public final class RegistryCredentials {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
