@@ -6,6 +6,7 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.datafactory.models.IntegrationRuntimeReference;
 import com.azure.resourcemanager.datafactory.models.WebActivityAuthentication;
 import com.azure.resourcemanager.datafactory.models.WebhookActivityMethod;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -36,8 +37,8 @@ public final class WebhookActivityTypeProperties {
 
     /*
      * Represents the headers that will be sent to the request. For example, to set the language and type on a request:
-     * "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }. Type: string (or Expression with
-     * resultType string).
+     * "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }. Type: dictionary (or Expression
+     * with resultType dictionary).
      */
     @JsonProperty(value = "headers")
     private Object headers;
@@ -62,6 +63,12 @@ public final class WebhookActivityTypeProperties {
      */
     @JsonProperty(value = "reportStatusOnCallBack")
     private Object reportStatusOnCallBack;
+
+    /*
+     * The integration runtime reference.
+     */
+    @JsonProperty(value = "connectVia")
+    private IntegrationRuntimeReference connectVia;
 
     /**
      * Creates an instance of WebhookActivityTypeProperties class.
@@ -138,7 +145,7 @@ public final class WebhookActivityTypeProperties {
     /**
      * Get the headers property: Represents the headers that will be sent to the request. For example, to set the
      * language and type on a request: "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }.
-     * Type: string (or Expression with resultType string).
+     * Type: dictionary (or Expression with resultType dictionary).
      * 
      * @return the headers value.
      */
@@ -149,7 +156,7 @@ public final class WebhookActivityTypeProperties {
     /**
      * Set the headers property: Represents the headers that will be sent to the request. For example, to set the
      * language and type on a request: "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }.
-     * Type: string (or Expression with resultType string).
+     * Type: dictionary (or Expression with resultType dictionary).
      * 
      * @param headers the headers value to set.
      * @return the WebhookActivityTypeProperties object itself.
@@ -226,6 +233,26 @@ public final class WebhookActivityTypeProperties {
     }
 
     /**
+     * Get the connectVia property: The integration runtime reference.
+     * 
+     * @return the connectVia value.
+     */
+    public IntegrationRuntimeReference connectVia() {
+        return this.connectVia;
+    }
+
+    /**
+     * Set the connectVia property: The integration runtime reference.
+     * 
+     * @param connectVia the connectVia value to set.
+     * @return the WebhookActivityTypeProperties object itself.
+     */
+    public WebhookActivityTypeProperties withConnectVia(IntegrationRuntimeReference connectVia) {
+        this.connectVia = connectVia;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -241,6 +268,9 @@ public final class WebhookActivityTypeProperties {
         }
         if (authentication() != null) {
             authentication().validate();
+        }
+        if (connectVia() != null) {
+            connectVia().validate();
         }
     }
 

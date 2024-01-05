@@ -79,6 +79,7 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "SapOpenHub", value = SapOpenHubLinkedService.class),
     @JsonSubTypes.Type(name = "SapOdp", value = SapOdpLinkedService.class),
     @JsonSubTypes.Type(name = "RestService", value = RestServiceLinkedService.class),
+    @JsonSubTypes.Type(name = "WebConnection", value = WebConnectionLinkedService.class),
     @JsonSubTypes.Type(name = "TeamDesk", value = TeamDeskLinkedService.class),
     @JsonSubTypes.Type(name = "Quickbase", value = QuickbaseLinkedService.class),
     @JsonSubTypes.Type(name = "Smartsheet", value = SmartsheetLinkedService.class),
@@ -141,7 +142,10 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "Snowflake", value = SnowflakeLinkedService.class),
     @JsonSubTypes.Type(name = "SharePointOnlineList", value = SharePointOnlineListLinkedService.class),
     @JsonSubTypes.Type(name = "AzureSynapseArtifacts", value = AzureSynapseArtifactsLinkedService.class),
-    @JsonSubTypes.Type(name = "LakeHouse", value = LakeHouseLinkedService.class) })
+    @JsonSubTypes.Type(name = "LakeHouse", value = LakeHouseLinkedService.class),
+    @JsonSubTypes.Type(name = "SalesforceV2", value = SalesforceV2LinkedService.class),
+    @JsonSubTypes.Type(name = "SalesforceServiceCloudV2", value = SalesforceServiceCloudV2LinkedService.class),
+    @JsonSubTypes.Type(name = "Warehouse", value = WarehouseLinkedService.class) })
 @Fluent
 public class LinkedService {
     /*

@@ -163,7 +163,7 @@ public final class AzureFunctionActivity extends ExecutionActivity {
     /**
      * Get the headers property: Represents the headers that will be sent to the request. For example, to set the
      * language and type on a request: "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }.
-     * Type: string (or Expression with resultType string).
+     * Type: dictionary (or Expression with resultType dictionary).
      * 
      * @return the headers value.
      */
@@ -174,7 +174,7 @@ public final class AzureFunctionActivity extends ExecutionActivity {
     /**
      * Set the headers property: Represents the headers that will be sent to the request. For example, to set the
      * language and type on a request: "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }.
-     * Type: string (or Expression with resultType string).
+     * Type: dictionary (or Expression with resultType dictionary).
      * 
      * @param headers the headers value to set.
      * @return the AzureFunctionActivity object itself.

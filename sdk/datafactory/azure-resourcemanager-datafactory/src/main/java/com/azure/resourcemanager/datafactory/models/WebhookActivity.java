@@ -198,7 +198,7 @@ public final class WebhookActivity extends ControlActivity {
     /**
      * Get the headers property: Represents the headers that will be sent to the request. For example, to set the
      * language and type on a request: "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }.
-     * Type: string (or Expression with resultType string).
+     * Type: dictionary (or Expression with resultType dictionary).
      * 
      * @return the headers value.
      */
@@ -209,7 +209,7 @@ public final class WebhookActivity extends ControlActivity {
     /**
      * Set the headers property: Represents the headers that will be sent to the request. For example, to set the
      * language and type on a request: "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }.
-     * Type: string (or Expression with resultType string).
+     * Type: dictionary (or Expression with resultType dictionary).
      * 
      * @param headers the headers value to set.
      * @return the WebhookActivity object itself.
@@ -294,6 +294,29 @@ public final class WebhookActivity extends ControlActivity {
             this.innerTypeProperties = new WebhookActivityTypeProperties();
         }
         this.innerTypeProperties().withReportStatusOnCallBack(reportStatusOnCallBack);
+        return this;
+    }
+
+    /**
+     * Get the connectVia property: The integration runtime reference.
+     * 
+     * @return the connectVia value.
+     */
+    public IntegrationRuntimeReference connectVia() {
+        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().connectVia();
+    }
+
+    /**
+     * Set the connectVia property: The integration runtime reference.
+     * 
+     * @param connectVia the connectVia value to set.
+     * @return the WebhookActivity object itself.
+     */
+    public WebhookActivity withConnectVia(IntegrationRuntimeReference connectVia) {
+        if (this.innerTypeProperties() == null) {
+            this.innerTypeProperties = new WebhookActivityTypeProperties();
+        }
+        this.innerTypeProperties().withConnectVia(connectVia);
         return this;
     }
 
