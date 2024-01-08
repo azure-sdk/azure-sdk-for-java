@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Identifies the unique system identifier for each Azure resource. */
+/**
+ * Identifies the unique system identifier for each Azure resource.
+ */
 @Fluent
 public final class Sku {
     /*
@@ -43,7 +45,9 @@ public final class Sku {
     @JsonProperty(value = "capacity")
     private String capacity;
 
-    /** Creates an instance of Sku class. */
+    /**
+     * Creates an instance of Sku class.
+     */
     public Sku() {
     }
 
@@ -51,7 +55,7 @@ public final class Sku {
      * Get the name property: Name of SKU is RS0 (Recovery Services 0th version) and the tier is standard tier. They do
      * not have affect on backend storage redundancy or any other vault settings. To manage storage redundancy, use the
      * backupstorageconfig.
-     *
+     * 
      * @return the name value.
      */
     public SkuName name() {
@@ -62,7 +66,7 @@ public final class Sku {
      * Set the name property: Name of SKU is RS0 (Recovery Services 0th version) and the tier is standard tier. They do
      * not have affect on backend storage redundancy or any other vault settings. To manage storage redundancy, use the
      * backupstorageconfig.
-     *
+     * 
      * @param name the name value to set.
      * @return the Sku object itself.
      */
@@ -73,7 +77,7 @@ public final class Sku {
 
     /**
      * Get the tier property: The Sku tier.
-     *
+     * 
      * @return the tier value.
      */
     public String tier() {
@@ -82,7 +86,7 @@ public final class Sku {
 
     /**
      * Set the tier property: The Sku tier.
-     *
+     * 
      * @param tier the tier value to set.
      * @return the Sku object itself.
      */
@@ -93,7 +97,7 @@ public final class Sku {
 
     /**
      * Get the family property: The sku family.
-     *
+     * 
      * @return the family value.
      */
     public String family() {
@@ -102,7 +106,7 @@ public final class Sku {
 
     /**
      * Set the family property: The sku family.
-     *
+     * 
      * @param family the family value to set.
      * @return the Sku object itself.
      */
@@ -113,7 +117,7 @@ public final class Sku {
 
     /**
      * Get the size property: The sku size.
-     *
+     * 
      * @return the size value.
      */
     public String size() {
@@ -122,7 +126,7 @@ public final class Sku {
 
     /**
      * Set the size property: The sku size.
-     *
+     * 
      * @param size the size value to set.
      * @return the Sku object itself.
      */
@@ -133,7 +137,7 @@ public final class Sku {
 
     /**
      * Get the capacity property: The sku capacity.
-     *
+     * 
      * @return the capacity value.
      */
     public String capacity() {
@@ -142,7 +146,7 @@ public final class Sku {
 
     /**
      * Set the capacity property: The sku capacity.
-     *
+     * 
      * @param capacity the capacity value to set.
      * @return the Sku object itself.
      */
@@ -153,7 +157,7 @@ public final class Sku {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -21,8 +21,7 @@ public final class PrivateLinkResourcesOperationsImpl implements PrivateLinkReso
 
     private final com.azure.resourcemanager.recoveryservices.RecoveryServicesManager serviceManager;
 
-    public PrivateLinkResourcesOperationsImpl(
-        PrivateLinkResourcesOperationsClient innerClient,
+    public PrivateLinkResourcesOperationsImpl(PrivateLinkResourcesOperationsClient innerClient,
         com.azure.resourcemanager.recoveryservices.RecoveryServicesManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -34,20 +33,17 @@ public final class PrivateLinkResourcesOperationsImpl implements PrivateLinkReso
     }
 
     public PagedIterable<PrivateLinkResource> list(String resourceGroupName, String vaultName, Context context) {
-        PagedIterable<PrivateLinkResourceInner> inner =
-            this.serviceClient().list(resourceGroupName, vaultName, context);
+        PagedIterable<PrivateLinkResourceInner> inner
+            = this.serviceClient().list(resourceGroupName, vaultName, context);
         return Utils.mapPage(inner, inner1 -> new PrivateLinkResourceImpl(inner1, this.manager()));
     }
 
-    public Response<PrivateLinkResource> getWithResponse(
-        String resourceGroupName, String vaultName, String privateLinkResourceName, Context context) {
-        Response<PrivateLinkResourceInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, vaultName, privateLinkResourceName, context);
+    public Response<PrivateLinkResource> getWithResponse(String resourceGroupName, String vaultName,
+        String privateLinkResourceName, Context context) {
+        Response<PrivateLinkResourceInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, vaultName, privateLinkResourceName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new PrivateLinkResourceImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -55,8 +51,8 @@ public final class PrivateLinkResourcesOperationsImpl implements PrivateLinkReso
     }
 
     public PrivateLinkResource get(String resourceGroupName, String vaultName, String privateLinkResourceName) {
-        PrivateLinkResourceInner inner =
-            this.serviceClient().get(resourceGroupName, vaultName, privateLinkResourceName);
+        PrivateLinkResourceInner inner
+            = this.serviceClient().get(resourceGroupName, vaultName, privateLinkResourceName);
         if (inner != null) {
             return new PrivateLinkResourceImpl(inner, this.manager());
         } else {
