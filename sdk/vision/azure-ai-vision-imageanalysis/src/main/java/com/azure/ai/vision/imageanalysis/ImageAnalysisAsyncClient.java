@@ -38,7 +38,7 @@ public final class ImageAnalysisAsyncClient {
 
     /**
      * Initializes an instance of ImageAnalysisAsyncClient class.
-     * 
+     *
      * @param serviceClient the service client implementation.
      */
     @Generated
@@ -65,8 +65,7 @@ public final class ImageAnalysisAsyncClient {
      * <td>No</td>
      * <td>The desired language for result generation (a two-letter language code).
      * If this option is not specified, the default value 'en' is used (English).
-     * See https://aka.ms/cv-languages for a list of supported languages.
-     * At the moment, only tags can be generated in none-English languages.</td>
+     * See https://aka.ms/cv-languages for a list of supported languages.</td>
      * </tr>
      * <tr>
      * <td>gender-neutral-caption</td>
@@ -196,7 +195,7 @@ public final class ImageAnalysisAsyncClient {
      *     }
      * }
      * }</pre>
-     * 
+     *
      * @param visualFeatures A list of visual features to analyze.
      * Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
      * At least one visual feature must be specified.
@@ -235,8 +234,7 @@ public final class ImageAnalysisAsyncClient {
      * <td>No</td>
      * <td>The desired language for result generation (a two-letter language code).
      * If this option is not specified, the default value 'en' is used (English).
-     * See https://aka.ms/cv-languages for a list of supported languages.
-     * At the moment, only tags can be generated in none-English languages.</td>
+     * See https://aka.ms/cv-languages for a list of supported languages.</td>
      * </tr>
      * <tr>
      * <td>gender-neutral-caption</td>
@@ -368,7 +366,7 @@ public final class ImageAnalysisAsyncClient {
      *     }
      * }
      * }</pre>
-     * 
+     *
      * @param visualFeatures A list of visual features to analyze.
      * Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
      * At least one visual feature must be specified.
@@ -390,7 +388,7 @@ public final class ImageAnalysisAsyncClient {
 
     /**
      * Performs a single Image Analysis operation.
-     * 
+     *
      * @param visualFeatures A list of visual features to analyze.
      * Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
      * At least one visual feature must be specified.
@@ -398,7 +396,6 @@ public final class ImageAnalysisAsyncClient {
      * @param language The desired language for result generation (a two-letter language code).
      * If this option is not specified, the default value 'en' is used (English).
      * See https://aka.ms/cv-languages for a list of supported languages.
-     * At the moment, only tags can be generated in none-English languages.
      * @param genderNeutralCaption Boolean flag for enabling gender-neutral captioning for Caption and Dense Captions
      * features.
      * By default captions may contain gender terms (for example: 'man', 'woman', or 'boy', 'girl').
@@ -449,7 +446,7 @@ public final class ImageAnalysisAsyncClient {
 
     /**
      * Performs a single Image Analysis operation.
-     * 
+     *
      * @param visualFeatures A list of visual features to analyze.
      * Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
      * At least one visual feature must be specified.
@@ -475,7 +472,7 @@ public final class ImageAnalysisAsyncClient {
 
     /**
      * Performs a single Image Analysis operation.
-     * 
+     *
      * @param visualFeatures A list of visual features to analyze.
      * Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
      * At least one visual feature must be specified.
@@ -483,7 +480,6 @@ public final class ImageAnalysisAsyncClient {
      * @param language The desired language for result generation (a two-letter language code).
      * If this option is not specified, the default value 'en' is used (English).
      * See https://aka.ms/cv-languages for a list of supported languages.
-     * At the moment, only tags can be generated in none-English languages.
      * @param genderNeutralCaption Boolean flag for enabling gender-neutral captioning for Caption and Dense Captions
      * features.
      * By default captions may contain gender terms (for example: 'man', 'woman', or 'boy', 'girl').
@@ -534,7 +530,7 @@ public final class ImageAnalysisAsyncClient {
 
     /**
      * Performs a single Image Analysis operation.
-     * 
+     *
      * @param visualFeatures A list of visual features to analyze.
      * Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
      * At least one visual feature must be specified.
@@ -566,14 +562,14 @@ public final class ImageAnalysisAsyncClient {
      * Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
      * At least one visual feature must be specified.
      * @param options Additional image analysis options.
-     * 
+     *
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * 
+     *
      * @return represents the outcome of an Image Analysis operation on successful completion of {@link Mono}.
      */
     public Mono<ImageAnalysisResult> analyze(URL imageUrl, List<VisualFeatures> visualFeatures,
@@ -594,14 +590,14 @@ public final class ImageAnalysisAsyncClient {
      * Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
      * At least one visual feature must be specified.
      * @param options Additional image analysis options.
-     * 
+     *
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * 
+     *
      * @return represents the outcome of an Image Analysis operation on successful completion of {@link Mono}.
      */
     public Mono<ImageAnalysisResult> analyze(BinaryData imageBuffer, List<VisualFeatures> visualFeatures,
