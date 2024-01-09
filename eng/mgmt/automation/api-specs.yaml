@@ -22,6 +22,7 @@ containerregistry:
 containerservice:
   suffix: generated
 containerservice/Microsoft.ContainerService/aks:
+  service: containerservicemicrosoftcontainerserviceaks
   suffix: generated
 containerservice/Microsoft.ContainerService/fleet:
   service: containerservicefleet
