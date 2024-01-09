@@ -7,18 +7,20 @@ package com.azure.resourcemanager.hdinsight.containers.models;
 import com.azure.resourcemanager.hdinsight.containers.fluent.models.ClusterInstanceViewResultInner;
 import java.util.List;
 
-/** An immutable client-side representation of ClusterInstanceViewResult. */
+/**
+ * An immutable client-side representation of ClusterInstanceViewResult.
+ */
 public interface ClusterInstanceViewResult {
     /**
      * Gets the name property: Name of the instance view.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the status property: Status of the instance view.
-     *
+     * 
      * @return the status value.
      */
     ClusterInstanceViewPropertiesStatus status();
@@ -26,7 +28,7 @@ public interface ClusterInstanceViewResult {
     /**
      * Gets the serviceStatuses property: List of statuses of relevant services that make up the HDInsight on aks
      * cluster to surface to the customer.
-     *
+     * 
      * @return the serviceStatuses value.
      */
     List<ServiceStatus> serviceStatuses();
@@ -34,7 +36,7 @@ public interface ClusterInstanceViewResult {
     /**
      * Gets the inner com.azure.resourcemanager.hdinsight.containers.fluent.models.ClusterInstanceViewResultInner
      * object.
-     *
+     * 
      * @return the inner object.
      */
     ClusterInstanceViewResultInner innerModel();

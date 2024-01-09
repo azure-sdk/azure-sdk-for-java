@@ -19,17 +19,16 @@ public final class ClusterJobsImpl implements ClusterJobs {
 
     private final com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager;
 
-    public ClusterJobsImpl(
-        ClusterJobsClient innerClient,
+    public ClusterJobsImpl(ClusterJobsClient innerClient,
         com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public ClusterJob runJob(
-        String resourceGroupName, String clusterPoolName, String clusterName, ClusterJobInner clusterJob) {
-        ClusterJobInner inner =
-            this.serviceClient().runJob(resourceGroupName, clusterPoolName, clusterName, clusterJob);
+    public ClusterJob runJob(String resourceGroupName, String clusterPoolName, String clusterName,
+        ClusterJobInner clusterJob) {
+        ClusterJobInner inner
+            = this.serviceClient().runJob(resourceGroupName, clusterPoolName, clusterName, clusterJob);
         if (inner != null) {
             return new ClusterJobImpl(inner, this.manager());
         } else {
@@ -37,14 +36,10 @@ public final class ClusterJobsImpl implements ClusterJobs {
         }
     }
 
-    public ClusterJob runJob(
-        String resourceGroupName,
-        String clusterPoolName,
-        String clusterName,
-        ClusterJobInner clusterJob,
-        Context context) {
-        ClusterJobInner inner =
-            this.serviceClient().runJob(resourceGroupName, clusterPoolName, clusterName, clusterJob, context);
+    public ClusterJob runJob(String resourceGroupName, String clusterPoolName, String clusterName,
+        ClusterJobInner clusterJob, Context context) {
+        ClusterJobInner inner
+            = this.serviceClient().runJob(resourceGroupName, clusterPoolName, clusterName, clusterJob, context);
         if (inner != null) {
             return new ClusterJobImpl(inner, this.manager());
         } else {
@@ -53,15 +48,15 @@ public final class ClusterJobsImpl implements ClusterJobs {
     }
 
     public PagedIterable<ClusterJob> list(String resourceGroupName, String clusterPoolName, String clusterName) {
-        PagedIterable<ClusterJobInner> inner =
-            this.serviceClient().list(resourceGroupName, clusterPoolName, clusterName);
+        PagedIterable<ClusterJobInner> inner
+            = this.serviceClient().list(resourceGroupName, clusterPoolName, clusterName);
         return Utils.mapPage(inner, inner1 -> new ClusterJobImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ClusterJob> list(
-        String resourceGroupName, String clusterPoolName, String clusterName, Context context) {
-        PagedIterable<ClusterJobInner> inner =
-            this.serviceClient().list(resourceGroupName, clusterPoolName, clusterName, context);
+    public PagedIterable<ClusterJob> list(String resourceGroupName, String clusterPoolName, String clusterName,
+        Context context) {
+        PagedIterable<ClusterJobInner> inner
+            = this.serviceClient().list(resourceGroupName, clusterPoolName, clusterName, context);
         return Utils.mapPage(inner, inner1 -> new ClusterJobImpl(inner1, this.manager()));
     }
 

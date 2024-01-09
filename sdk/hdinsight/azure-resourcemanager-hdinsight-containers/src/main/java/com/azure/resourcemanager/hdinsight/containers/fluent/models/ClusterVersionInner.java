@@ -6,11 +6,14 @@ package com.azure.resourcemanager.hdinsight.containers.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterComponentsItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Available cluster version. */
+/**
+ * Available cluster version.
+ */
 @Fluent
 public final class ClusterVersionInner extends ProxyResource {
     /*
@@ -19,13 +22,21 @@ public final class ClusterVersionInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private ClusterVersionProperties innerProperties;
 
-    /** Creates an instance of ClusterVersionInner class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of ClusterVersionInner class.
+     */
     public ClusterVersionInner() {
     }
 
     /**
      * Get the innerProperties property: Cluster version properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ClusterVersionProperties innerProperties() {
@@ -33,8 +44,17 @@ public final class ClusterVersionInner extends ProxyResource {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the clusterType property: The type of cluster.
-     *
+     * 
      * @return the clusterType value.
      */
     public String clusterType() {
@@ -43,7 +63,7 @@ public final class ClusterVersionInner extends ProxyResource {
 
     /**
      * Set the clusterType property: The type of cluster.
-     *
+     * 
      * @param clusterType the clusterType value to set.
      * @return the ClusterVersionInner object itself.
      */
@@ -57,7 +77,7 @@ public final class ClusterVersionInner extends ProxyResource {
 
     /**
      * Get the clusterVersion property: Version with three part.
-     *
+     * 
      * @return the clusterVersion value.
      */
     public String clusterVersion() {
@@ -66,7 +86,7 @@ public final class ClusterVersionInner extends ProxyResource {
 
     /**
      * Set the clusterVersion property: Version with three part.
-     *
+     * 
      * @param clusterVersion the clusterVersion value to set.
      * @return the ClusterVersionInner object itself.
      */
@@ -80,7 +100,7 @@ public final class ClusterVersionInner extends ProxyResource {
 
     /**
      * Get the ossVersion property: Version with three part.
-     *
+     * 
      * @return the ossVersion value.
      */
     public String ossVersion() {
@@ -89,7 +109,7 @@ public final class ClusterVersionInner extends ProxyResource {
 
     /**
      * Set the ossVersion property: Version with three part.
-     *
+     * 
      * @param ossVersion the ossVersion value to set.
      * @return the ClusterVersionInner object itself.
      */
@@ -104,7 +124,7 @@ public final class ClusterVersionInner extends ProxyResource {
     /**
      * Get the clusterPoolVersion property: The two part cluster pool version. If the cluster version is before cluster
      * pool version on-board, the return value will be empty string.
-     *
+     * 
      * @return the clusterPoolVersion value.
      */
     public String clusterPoolVersion() {
@@ -114,7 +134,7 @@ public final class ClusterVersionInner extends ProxyResource {
     /**
      * Set the clusterPoolVersion property: The two part cluster pool version. If the cluster version is before cluster
      * pool version on-board, the return value will be empty string.
-     *
+     * 
      * @param clusterPoolVersion the clusterPoolVersion value to set.
      * @return the ClusterVersionInner object itself.
      */
@@ -128,7 +148,7 @@ public final class ClusterVersionInner extends ProxyResource {
 
     /**
      * Get the isPreview property: Indicate if this version is in preview or not.
-     *
+     * 
      * @return the isPreview value.
      */
     public Boolean isPreview() {
@@ -137,7 +157,7 @@ public final class ClusterVersionInner extends ProxyResource {
 
     /**
      * Set the isPreview property: Indicate if this version is in preview or not.
-     *
+     * 
      * @param isPreview the isPreview value to set.
      * @return the ClusterVersionInner object itself.
      */
@@ -151,7 +171,7 @@ public final class ClusterVersionInner extends ProxyResource {
 
     /**
      * Get the components property: Component list of this cluster type and version.
-     *
+     * 
      * @return the components value.
      */
     public List<ClusterComponentsItem> components() {
@@ -160,7 +180,7 @@ public final class ClusterVersionInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

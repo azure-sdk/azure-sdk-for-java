@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Web connectivity endpoint details. */
+/**
+ * Web connectivity endpoint details.
+ */
 @Fluent
 public class WebConnectivityEndpoint {
     /*
@@ -17,13 +19,15 @@ public class WebConnectivityEndpoint {
     @JsonProperty(value = "fqdn", required = true)
     private String fqdn;
 
-    /** Creates an instance of WebConnectivityEndpoint class. */
+    /**
+     * Creates an instance of WebConnectivityEndpoint class.
+     */
     public WebConnectivityEndpoint() {
     }
 
     /**
      * Get the fqdn property: Web connectivity endpoint.
-     *
+     * 
      * @return the fqdn value.
      */
     public String fqdn() {
@@ -32,7 +36,7 @@ public class WebConnectivityEndpoint {
 
     /**
      * Set the fqdn property: Web connectivity endpoint.
-     *
+     * 
      * @param fqdn the fqdn value to set.
      * @return the WebConnectivityEndpoint object itself.
      */
@@ -43,14 +47,13 @@ public class WebConnectivityEndpoint {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (fqdn() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property fqdn in model WebConnectivityEndpoint"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property fqdn in model WebConnectivityEndpoint"));
         }
     }
 

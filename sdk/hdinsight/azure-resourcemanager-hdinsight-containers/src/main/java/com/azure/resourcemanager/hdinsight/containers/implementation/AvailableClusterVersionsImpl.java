@@ -19,8 +19,7 @@ public final class AvailableClusterVersionsImpl implements AvailableClusterVersi
 
     private final com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager;
 
-    public AvailableClusterVersionsImpl(
-        AvailableClusterVersionsClient innerClient,
+    public AvailableClusterVersionsImpl(AvailableClusterVersionsClient innerClient,
         com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;

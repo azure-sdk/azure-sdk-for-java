@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Flink cluster profile. */
+/**
+ * The Flink cluster profile.
+ */
 @Fluent
 public final class FlinkProfile {
     /*
@@ -47,13 +49,15 @@ public final class FlinkProfile {
     @JsonProperty(value = "catalogOptions")
     private FlinkCatalogOptions catalogOptions;
 
-    /** Creates an instance of FlinkProfile class. */
+    /**
+     * Creates an instance of FlinkProfile class.
+     */
     public FlinkProfile() {
     }
 
     /**
      * Get the storage property: The storage profile.
-     *
+     * 
      * @return the storage value.
      */
     public FlinkStorageProfile storage() {
@@ -62,7 +66,7 @@ public final class FlinkProfile {
 
     /**
      * Set the storage property: The storage profile.
-     *
+     * 
      * @param storage the storage value to set.
      * @return the FlinkProfile object itself.
      */
@@ -73,7 +77,7 @@ public final class FlinkProfile {
 
     /**
      * Get the numReplicas property: The number of task managers.
-     *
+     * 
      * @return the numReplicas value.
      */
     public Integer numReplicas() {
@@ -82,7 +86,7 @@ public final class FlinkProfile {
 
     /**
      * Set the numReplicas property: The number of task managers.
-     *
+     * 
      * @param numReplicas the numReplicas value to set.
      * @return the FlinkProfile object itself.
      */
@@ -93,7 +97,7 @@ public final class FlinkProfile {
 
     /**
      * Get the jobManager property: Job Manager container/ process CPU and memory requirements.
-     *
+     * 
      * @return the jobManager value.
      */
     public ComputeResourceDefinition jobManager() {
@@ -102,7 +106,7 @@ public final class FlinkProfile {
 
     /**
      * Set the jobManager property: Job Manager container/ process CPU and memory requirements.
-     *
+     * 
      * @param jobManager the jobManager value to set.
      * @return the FlinkProfile object itself.
      */
@@ -113,7 +117,7 @@ public final class FlinkProfile {
 
     /**
      * Get the historyServer property: History Server container/ process CPU and memory requirements.
-     *
+     * 
      * @return the historyServer value.
      */
     public ComputeResourceDefinition historyServer() {
@@ -122,7 +126,7 @@ public final class FlinkProfile {
 
     /**
      * Set the historyServer property: History Server container/ process CPU and memory requirements.
-     *
+     * 
      * @param historyServer the historyServer value to set.
      * @return the FlinkProfile object itself.
      */
@@ -133,7 +137,7 @@ public final class FlinkProfile {
 
     /**
      * Get the taskManager property: Task Manager container/ process CPU and memory requirements.
-     *
+     * 
      * @return the taskManager value.
      */
     public ComputeResourceDefinition taskManager() {
@@ -142,7 +146,7 @@ public final class FlinkProfile {
 
     /**
      * Set the taskManager property: Task Manager container/ process CPU and memory requirements.
-     *
+     * 
      * @param taskManager the taskManager value to set.
      * @return the FlinkProfile object itself.
      */
@@ -153,7 +157,7 @@ public final class FlinkProfile {
 
     /**
      * Get the catalogOptions property: Flink cluster catalog options.
-     *
+     * 
      * @return the catalogOptions value.
      */
     public FlinkCatalogOptions catalogOptions() {
@@ -162,7 +166,7 @@ public final class FlinkProfile {
 
     /**
      * Set the catalogOptions property: Flink cluster catalog options.
-     *
+     * 
      * @param catalogOptions the catalogOptions value to set.
      * @return the FlinkProfile object itself.
      */
@@ -173,21 +177,19 @@ public final class FlinkProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (storage() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property storage in model FlinkProfile"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property storage in model FlinkProfile"));
         } else {
             storage().validate();
         }
         if (jobManager() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property jobManager in model FlinkProfile"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property jobManager in model FlinkProfile"));
         } else {
             jobManager().validate();
         }
@@ -195,9 +197,8 @@ public final class FlinkProfile {
             historyServer().validate();
         }
         if (taskManager() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property taskManager in model FlinkProfile"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property taskManager in model FlinkProfile"));
         } else {
             taskManager().validate();
         }
