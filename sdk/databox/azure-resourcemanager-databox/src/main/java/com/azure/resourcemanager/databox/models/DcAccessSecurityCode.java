@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Dc access security code. */
+/**
+ * Dc access security code.
+ */
 @Fluent
 public final class DcAccessSecurityCode {
     /*
@@ -22,13 +24,15 @@ public final class DcAccessSecurityCode {
     @JsonProperty(value = "forwardDCAccessCode")
     private String forwardDCAccessCode;
 
-    /** Creates an instance of DcAccessSecurityCode class. */
+    /**
+     * Creates an instance of DcAccessSecurityCode class.
+     */
     public DcAccessSecurityCode() {
     }
 
     /**
      * Get the reverseDCAccessCode property: Reverse Dc access security code.
-     *
+     * 
      * @return the reverseDCAccessCode value.
      */
     public String reverseDCAccessCode() {
@@ -37,7 +41,7 @@ public final class DcAccessSecurityCode {
 
     /**
      * Set the reverseDCAccessCode property: Reverse Dc access security code.
-     *
+     * 
      * @param reverseDCAccessCode the reverseDCAccessCode value to set.
      * @return the DcAccessSecurityCode object itself.
      */
@@ -48,7 +52,7 @@ public final class DcAccessSecurityCode {
 
     /**
      * Get the forwardDCAccessCode property: Forward Dc access security code.
-     *
+     * 
      * @return the forwardDCAccessCode value.
      */
     public String forwardDCAccessCode() {
@@ -57,7 +61,7 @@ public final class DcAccessSecurityCode {
 
     /**
      * Set the forwardDCAccessCode property: Forward Dc access security code.
-     *
+     * 
      * @param forwardDCAccessCode the forwardDCAccessCode value to set.
      * @return the DcAccessSecurityCode object itself.
      */
@@ -68,7 +72,7 @@ public final class DcAccessSecurityCode {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

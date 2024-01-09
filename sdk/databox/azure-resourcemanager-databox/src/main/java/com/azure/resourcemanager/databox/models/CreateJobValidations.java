@@ -9,16 +9,22 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** It does all pre-job creation validations. */
+/**
+ * It does all pre-job creation validations.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationCategory")
 @JsonTypeName("JobCreationValidation")
 @Fluent
 public final class CreateJobValidations extends ValidationRequest {
-    /** Creates an instance of CreateJobValidations class. */
+    /**
+     * Creates an instance of CreateJobValidations class.
+     */
     public CreateJobValidations() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CreateJobValidations withIndividualRequestDetails(List<ValidationInputRequest> individualRequestDetails) {
         super.withIndividualRequestDetails(individualRequestDetails);
@@ -27,7 +33,7 @@ public final class CreateJobValidations extends ValidationRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

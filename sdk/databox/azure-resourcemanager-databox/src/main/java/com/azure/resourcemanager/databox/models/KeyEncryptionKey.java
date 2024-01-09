@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Encryption key containing details about key to encrypt different keys. */
+/**
+ * Encryption key containing details about key to encrypt different keys.
+ */
 @Fluent
 public final class KeyEncryptionKey {
     /*
@@ -35,13 +37,15 @@ public final class KeyEncryptionKey {
     @JsonProperty(value = "kekVaultResourceID")
     private String kekVaultResourceId;
 
-    /** Creates an instance of KeyEncryptionKey class. */
+    /**
+     * Creates an instance of KeyEncryptionKey class.
+     */
     public KeyEncryptionKey() {
     }
 
     /**
      * Get the kekType property: Type of encryption key used for key encryption.
-     *
+     * 
      * @return the kekType value.
      */
     public KekType kekType() {
@@ -50,7 +54,7 @@ public final class KeyEncryptionKey {
 
     /**
      * Set the kekType property: Type of encryption key used for key encryption.
-     *
+     * 
      * @param kekType the kekType value to set.
      * @return the KeyEncryptionKey object itself.
      */
@@ -61,7 +65,7 @@ public final class KeyEncryptionKey {
 
     /**
      * Get the identityProperties property: Managed identity properties used for key encryption.
-     *
+     * 
      * @return the identityProperties value.
      */
     public IdentityProperties identityProperties() {
@@ -70,7 +74,7 @@ public final class KeyEncryptionKey {
 
     /**
      * Set the identityProperties property: Managed identity properties used for key encryption.
-     *
+     * 
      * @param identityProperties the identityProperties value to set.
      * @return the KeyEncryptionKey object itself.
      */
@@ -81,7 +85,7 @@ public final class KeyEncryptionKey {
 
     /**
      * Get the kekUrl property: Key encryption key. It is required in case of Customer managed KekType.
-     *
+     * 
      * @return the kekUrl value.
      */
     public String kekUrl() {
@@ -90,7 +94,7 @@ public final class KeyEncryptionKey {
 
     /**
      * Set the kekUrl property: Key encryption key. It is required in case of Customer managed KekType.
-     *
+     * 
      * @param kekUrl the kekUrl value to set.
      * @return the KeyEncryptionKey object itself.
      */
@@ -101,7 +105,7 @@ public final class KeyEncryptionKey {
 
     /**
      * Get the kekVaultResourceId property: Kek vault resource id. It is required in case of Customer managed KekType.
-     *
+     * 
      * @return the kekVaultResourceId value.
      */
     public String kekVaultResourceId() {
@@ -110,7 +114,7 @@ public final class KeyEncryptionKey {
 
     /**
      * Set the kekVaultResourceId property: Kek vault resource id. It is required in case of Customer managed KekType.
-     *
+     * 
      * @param kekVaultResourceId the kekVaultResourceId value to set.
      * @return the KeyEncryptionKey object itself.
      */
@@ -121,14 +125,13 @@ public final class KeyEncryptionKey {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (kekType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property kekType in model KeyEncryptionKey"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property kekType in model KeyEncryptionKey"));
         }
         if (identityProperties() != null) {
             identityProperties().validate();

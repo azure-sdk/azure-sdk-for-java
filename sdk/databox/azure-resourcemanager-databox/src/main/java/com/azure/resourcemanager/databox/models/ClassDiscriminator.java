@@ -7,21 +7,33 @@ package com.azure.resourcemanager.databox.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Indicates the type of job details. */
+/**
+ * Indicates the type of job details.
+ */
 public enum ClassDiscriminator {
-    /** Enum value DataBox. */
+    /**
+     * Enum value DataBox.
+     */
     DATA_BOX("DataBox"),
 
-    /** Enum value DataBoxDisk. */
+    /**
+     * Enum value DataBoxDisk.
+     */
     DATA_BOX_DISK("DataBoxDisk"),
 
-    /** Enum value DataBoxHeavy. */
+    /**
+     * Enum value DataBoxHeavy.
+     */
     DATA_BOX_HEAVY("DataBoxHeavy"),
 
-    /** Enum value DataBoxCustomerDisk. */
+    /**
+     * Enum value DataBoxCustomerDisk.
+     */
     DATA_BOX_CUSTOMER_DISK("DataBoxCustomerDisk");
 
-    /** The actual serialized value for a ClassDiscriminator instance. */
+    /**
+     * The actual serialized value for a ClassDiscriminator instance.
+     */
     private final String value;
 
     ClassDiscriminator(String value) {
@@ -30,7 +42,7 @@ public enum ClassDiscriminator {
 
     /**
      * Parses a serialized value to a ClassDiscriminator instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed ClassDiscriminator object, or null if unable to parse.
      */
@@ -48,7 +60,9 @@ public enum ClassDiscriminator {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {

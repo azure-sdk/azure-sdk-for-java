@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Datacenter instruction for given storage location. */
+/**
+ * Datacenter instruction for given storage location.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "datacenterAddressType")
 @JsonTypeName("DatacenterAddressInstruction")
 @Immutable
@@ -20,13 +22,15 @@ public final class DatacenterAddressInstructionResponse extends DatacenterAddres
     @JsonProperty(value = "communicationInstruction", access = JsonProperty.Access.WRITE_ONLY)
     private String communicationInstruction;
 
-    /** Creates an instance of DatacenterAddressInstructionResponse class. */
+    /**
+     * Creates an instance of DatacenterAddressInstructionResponse class.
+     */
     public DatacenterAddressInstructionResponse() {
     }
 
     /**
      * Get the communicationInstruction property: Data center communication instruction.
-     *
+     * 
      * @return the communicationInstruction value.
      */
     public String communicationInstruction() {
@@ -35,7 +39,7 @@ public final class DatacenterAddressInstructionResponse extends DatacenterAddres
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Contact Details. */
+/**
+ * Contact Details.
+ */
 @Fluent
 public final class ContactDetails {
     /*
@@ -48,13 +50,15 @@ public final class ContactDetails {
     @JsonProperty(value = "notificationPreference")
     private List<NotificationPreference> notificationPreference;
 
-    /** Creates an instance of ContactDetails class. */
+    /**
+     * Creates an instance of ContactDetails class.
+     */
     public ContactDetails() {
     }
 
     /**
      * Get the contactName property: Contact name of the person.
-     *
+     * 
      * @return the contactName value.
      */
     public String contactName() {
@@ -63,7 +67,7 @@ public final class ContactDetails {
 
     /**
      * Set the contactName property: Contact name of the person.
-     *
+     * 
      * @param contactName the contactName value to set.
      * @return the ContactDetails object itself.
      */
@@ -74,7 +78,7 @@ public final class ContactDetails {
 
     /**
      * Get the phone property: Phone number of the contact person.
-     *
+     * 
      * @return the phone value.
      */
     public String phone() {
@@ -83,7 +87,7 @@ public final class ContactDetails {
 
     /**
      * Set the phone property: Phone number of the contact person.
-     *
+     * 
      * @param phone the phone value to set.
      * @return the ContactDetails object itself.
      */
@@ -94,7 +98,7 @@ public final class ContactDetails {
 
     /**
      * Get the phoneExtension property: Phone extension number of the contact person.
-     *
+     * 
      * @return the phoneExtension value.
      */
     public String phoneExtension() {
@@ -103,7 +107,7 @@ public final class ContactDetails {
 
     /**
      * Set the phoneExtension property: Phone extension number of the contact person.
-     *
+     * 
      * @param phoneExtension the phoneExtension value to set.
      * @return the ContactDetails object itself.
      */
@@ -114,7 +118,7 @@ public final class ContactDetails {
 
     /**
      * Get the mobile property: Mobile number of the contact person.
-     *
+     * 
      * @return the mobile value.
      */
     public String mobile() {
@@ -123,7 +127,7 @@ public final class ContactDetails {
 
     /**
      * Set the mobile property: Mobile number of the contact person.
-     *
+     * 
      * @param mobile the mobile value to set.
      * @return the ContactDetails object itself.
      */
@@ -134,7 +138,7 @@ public final class ContactDetails {
 
     /**
      * Get the emailList property: List of Email-ids to be notified about job progress.
-     *
+     * 
      * @return the emailList value.
      */
     public List<String> emailList() {
@@ -143,7 +147,7 @@ public final class ContactDetails {
 
     /**
      * Set the emailList property: List of Email-ids to be notified about job progress.
-     *
+     * 
      * @param emailList the emailList value to set.
      * @return the ContactDetails object itself.
      */
@@ -154,7 +158,7 @@ public final class ContactDetails {
 
     /**
      * Get the notificationPreference property: Notification preference for a job stage.
-     *
+     * 
      * @return the notificationPreference value.
      */
     public List<NotificationPreference> notificationPreference() {
@@ -163,7 +167,7 @@ public final class ContactDetails {
 
     /**
      * Set the notificationPreference property: Notification preference for a job stage.
-     *
+     * 
      * @param notificationPreference the notificationPreference value to set.
      * @return the ContactDetails object itself.
      */
@@ -174,24 +178,21 @@ public final class ContactDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (contactName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property contactName in model ContactDetails"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property contactName in model ContactDetails"));
         }
         if (phone() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property phone in model ContactDetails"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property phone in model ContactDetails"));
         }
         if (emailList() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property emailList in model ContactDetails"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property emailList in model ContactDetails"));
         }
         if (notificationPreference() != null) {
             notificationPreference().forEach(e -> e.validate());

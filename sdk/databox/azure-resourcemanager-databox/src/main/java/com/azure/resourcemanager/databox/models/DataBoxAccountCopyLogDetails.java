@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Copy log details for a storage account of a DataBox job. */
+/**
+ * Copy log details for a storage account of a DataBox job.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "copyLogDetailsType")
 @JsonTypeName("DataBox")
 @Immutable
@@ -32,13 +34,15 @@ public final class DataBoxAccountCopyLogDetails extends CopyLogDetails {
     @JsonProperty(value = "copyVerboseLogLink", access = JsonProperty.Access.WRITE_ONLY)
     private String copyVerboseLogLink;
 
-    /** Creates an instance of DataBoxAccountCopyLogDetails class. */
+    /**
+     * Creates an instance of DataBoxAccountCopyLogDetails class.
+     */
     public DataBoxAccountCopyLogDetails() {
     }
 
     /**
      * Get the accountName property: Account name.
-     *
+     * 
      * @return the accountName value.
      */
     public String accountName() {
@@ -47,7 +51,7 @@ public final class DataBoxAccountCopyLogDetails extends CopyLogDetails {
 
     /**
      * Get the copyLogLink property: Link for copy logs.
-     *
+     * 
      * @return the copyLogLink value.
      */
     public String copyLogLink() {
@@ -55,9 +59,9 @@ public final class DataBoxAccountCopyLogDetails extends CopyLogDetails {
     }
 
     /**
-     * Get the copyVerboseLogLink property: Link for copy verbose logs. This will be set only when LogCollectionLevel is
-     * set to Verbose.
-     *
+     * Get the copyVerboseLogLink property: Link for copy verbose logs. This will be set only when LogCollectionLevel
+     * is set to Verbose.
+     * 
      * @return the copyVerboseLogLink value.
      */
     public String copyVerboseLogLink() {
@@ -66,7 +70,7 @@ public final class DataBoxAccountCopyLogDetails extends CopyLogDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

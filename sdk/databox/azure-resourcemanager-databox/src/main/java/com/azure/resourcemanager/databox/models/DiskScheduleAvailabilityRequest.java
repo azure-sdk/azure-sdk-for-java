@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Request body to get the availability for scheduling disk orders. */
+/**
+ * Request body to get the availability for scheduling disk orders.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "skuName")
 @JsonTypeName("DataBoxDisk")
 @Fluent
@@ -20,14 +22,16 @@ public final class DiskScheduleAvailabilityRequest extends ScheduleAvailabilityR
     @JsonProperty(value = "expectedDataSizeInTeraBytes", required = true)
     private int expectedDataSizeInTeraBytes;
 
-    /** Creates an instance of DiskScheduleAvailabilityRequest class. */
+    /**
+     * Creates an instance of DiskScheduleAvailabilityRequest class.
+     */
     public DiskScheduleAvailabilityRequest() {
     }
 
     /**
      * Get the expectedDataSizeInTeraBytes property: The expected size of the data, which needs to be transferred in
      * this job, in terabytes.
-     *
+     * 
      * @return the expectedDataSizeInTeraBytes value.
      */
     public int expectedDataSizeInTeraBytes() {
@@ -37,7 +41,7 @@ public final class DiskScheduleAvailabilityRequest extends ScheduleAvailabilityR
     /**
      * Set the expectedDataSizeInTeraBytes property: The expected size of the data, which needs to be transferred in
      * this job, in terabytes.
-     *
+     * 
      * @param expectedDataSizeInTeraBytes the expectedDataSizeInTeraBytes value to set.
      * @return the DiskScheduleAvailabilityRequest object itself.
      */
@@ -46,14 +50,18 @@ public final class DiskScheduleAvailabilityRequest extends ScheduleAvailabilityR
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DiskScheduleAvailabilityRequest withStorageLocation(String storageLocation) {
         super.withStorageLocation(storageLocation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DiskScheduleAvailabilityRequest withCountry(String country) {
         super.withCountry(country);
@@ -62,7 +70,7 @@ public final class DiskScheduleAvailabilityRequest extends ScheduleAvailabilityR
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

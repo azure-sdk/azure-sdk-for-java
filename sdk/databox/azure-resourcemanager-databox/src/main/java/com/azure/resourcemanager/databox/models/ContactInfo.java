@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Contact Info. */
+/**
+ * Contact Info.
+ */
 @Fluent
 public final class ContactInfo {
     /*
@@ -35,13 +37,15 @@ public final class ContactInfo {
     @JsonProperty(value = "mobile")
     private String mobile;
 
-    /** Creates an instance of ContactInfo class. */
+    /**
+     * Creates an instance of ContactInfo class.
+     */
     public ContactInfo() {
     }
 
     /**
      * Get the contactName property: Contact name of the person.
-     *
+     * 
      * @return the contactName value.
      */
     public String contactName() {
@@ -50,7 +54,7 @@ public final class ContactInfo {
 
     /**
      * Set the contactName property: Contact name of the person.
-     *
+     * 
      * @param contactName the contactName value to set.
      * @return the ContactInfo object itself.
      */
@@ -61,7 +65,7 @@ public final class ContactInfo {
 
     /**
      * Get the phone property: Phone number of the contact person.
-     *
+     * 
      * @return the phone value.
      */
     public String phone() {
@@ -70,7 +74,7 @@ public final class ContactInfo {
 
     /**
      * Set the phone property: Phone number of the contact person.
-     *
+     * 
      * @param phone the phone value to set.
      * @return the ContactInfo object itself.
      */
@@ -81,7 +85,7 @@ public final class ContactInfo {
 
     /**
      * Get the phoneExtension property: Phone extension number of the contact person.
-     *
+     * 
      * @return the phoneExtension value.
      */
     public String phoneExtension() {
@@ -90,7 +94,7 @@ public final class ContactInfo {
 
     /**
      * Set the phoneExtension property: Phone extension number of the contact person.
-     *
+     * 
      * @param phoneExtension the phoneExtension value to set.
      * @return the ContactInfo object itself.
      */
@@ -101,7 +105,7 @@ public final class ContactInfo {
 
     /**
      * Get the mobile property: Mobile number of the contact person.
-     *
+     * 
      * @return the mobile value.
      */
     public String mobile() {
@@ -110,7 +114,7 @@ public final class ContactInfo {
 
     /**
      * Set the mobile property: Mobile number of the contact person.
-     *
+     * 
      * @param mobile the mobile value to set.
      * @return the ContactInfo object itself.
      */
@@ -121,19 +125,17 @@ public final class ContactInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (contactName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property contactName in model ContactInfo"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property contactName in model ContactInfo"));
         }
         if (phone() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property phone in model ContactInfo"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property phone in model ContactInfo"));
         }
     }
 

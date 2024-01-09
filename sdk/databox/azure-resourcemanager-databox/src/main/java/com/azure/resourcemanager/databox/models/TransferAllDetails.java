@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Details to transfer all data. */
+/**
+ * Details to transfer all data.
+ */
 @Fluent
 public final class TransferAllDetails {
     /*
@@ -29,13 +31,15 @@ public final class TransferAllDetails {
     @JsonProperty(value = "transferAllFiles")
     private Boolean transferAllFiles;
 
-    /** Creates an instance of TransferAllDetails class. */
+    /**
+     * Creates an instance of TransferAllDetails class.
+     */
     public TransferAllDetails() {
     }
 
     /**
      * Get the dataAccountType property: Type of the account of data.
-     *
+     * 
      * @return the dataAccountType value.
      */
     public DataAccountType dataAccountType() {
@@ -44,7 +48,7 @@ public final class TransferAllDetails {
 
     /**
      * Set the dataAccountType property: Type of the account of data.
-     *
+     * 
      * @param dataAccountType the dataAccountType value to set.
      * @return the TransferAllDetails object itself.
      */
@@ -55,7 +59,7 @@ public final class TransferAllDetails {
 
     /**
      * Get the transferAllBlobs property: To indicate if all Azure blobs have to be transferred.
-     *
+     * 
      * @return the transferAllBlobs value.
      */
     public Boolean transferAllBlobs() {
@@ -64,7 +68,7 @@ public final class TransferAllDetails {
 
     /**
      * Set the transferAllBlobs property: To indicate if all Azure blobs have to be transferred.
-     *
+     * 
      * @param transferAllBlobs the transferAllBlobs value to set.
      * @return the TransferAllDetails object itself.
      */
@@ -75,7 +79,7 @@ public final class TransferAllDetails {
 
     /**
      * Get the transferAllFiles property: To indicate if all Azure Files have to be transferred.
-     *
+     * 
      * @return the transferAllFiles value.
      */
     public Boolean transferAllFiles() {
@@ -84,7 +88,7 @@ public final class TransferAllDetails {
 
     /**
      * Set the transferAllFiles property: To indicate if all Azure Files have to be transferred.
-     *
+     * 
      * @param transferAllFiles the transferAllFiles value to set.
      * @return the TransferAllDetails object itself.
      */
@@ -95,15 +99,13 @@ public final class TransferAllDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (dataAccountType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dataAccountType in model TransferAllDetails"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property dataAccountType in model TransferAllDetails"));
         }
     }
 
