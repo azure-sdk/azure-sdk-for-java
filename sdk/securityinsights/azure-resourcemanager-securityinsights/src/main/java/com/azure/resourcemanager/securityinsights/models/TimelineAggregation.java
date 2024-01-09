@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** timeline aggregation information per kind. */
+/**
+ * timeline aggregation information per kind.
+ */
 @Fluent
 public final class TimelineAggregation {
     /*
@@ -24,8 +26,14 @@ public final class TimelineAggregation {
     private EntityTimelineKind kind;
 
     /**
+     * Creates an instance of TimelineAggregation class.
+     */
+    public TimelineAggregation() {
+    }
+
+    /**
      * Get the count property: the total items found for a kind.
-     *
+     * 
      * @return the count value.
      */
     public int count() {
@@ -34,7 +42,7 @@ public final class TimelineAggregation {
 
     /**
      * Set the count property: the total items found for a kind.
-     *
+     * 
      * @param count the count value to set.
      * @return the TimelineAggregation object itself.
      */
@@ -45,7 +53,7 @@ public final class TimelineAggregation {
 
     /**
      * Get the kind property: the query kind.
-     *
+     * 
      * @return the kind value.
      */
     public EntityTimelineKind kind() {
@@ -54,7 +62,7 @@ public final class TimelineAggregation {
 
     /**
      * Set the kind property: the query kind.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the TimelineAggregation object itself.
      */
@@ -65,14 +73,13 @@ public final class TimelineAggregation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (kind() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property kind in model TimelineAggregation"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property kind in model TimelineAggregation"));
         }
     }
 

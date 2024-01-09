@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.EntityCommonProperties;
 import com.azure.resourcemanager.securityinsights.models.RegistryValueKind;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** RegistryValue entity property bag. */
+/**
+ * RegistryValue entity property bag.
+ */
 @Immutable
 public final class RegistryValueEntityProperties extends EntityCommonProperties {
     /*
@@ -38,8 +40,14 @@ public final class RegistryValueEntityProperties extends EntityCommonProperties 
     private RegistryValueKind valueType;
 
     /**
+     * Creates an instance of RegistryValueEntityProperties class.
+     */
+    public RegistryValueEntityProperties() {
+    }
+
+    /**
      * Get the keyEntityId property: The registry key entity id.
-     *
+     * 
      * @return the keyEntityId value.
      */
     public String keyEntityId() {
@@ -48,7 +56,7 @@ public final class RegistryValueEntityProperties extends EntityCommonProperties 
 
     /**
      * Get the valueData property: String formatted representation of the value data.
-     *
+     * 
      * @return the valueData value.
      */
     public String valueData() {
@@ -57,7 +65,7 @@ public final class RegistryValueEntityProperties extends EntityCommonProperties 
 
     /**
      * Get the valueName property: The registry value name.
-     *
+     * 
      * @return the valueName value.
      */
     public String valueName() {
@@ -67,7 +75,7 @@ public final class RegistryValueEntityProperties extends EntityCommonProperties 
     /**
      * Get the valueType property: Specifies the data types to use when storing values in the registry, or identifies
      * the data type of a value in the registry.
-     *
+     * 
      * @return the valueType value.
      */
     public RegistryValueKind valueType() {
@@ -76,7 +84,7 @@ public final class RegistryValueEntityProperties extends EntityCommonProperties 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

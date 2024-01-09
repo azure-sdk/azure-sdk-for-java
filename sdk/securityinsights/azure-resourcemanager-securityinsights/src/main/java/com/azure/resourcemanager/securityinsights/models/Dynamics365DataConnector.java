@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents Dynamics365 data connector. */
+/**
+ * Represents Dynamics365 data connector.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("Dynamics365")
 @Fluent
@@ -23,15 +25,23 @@ public final class Dynamics365DataConnector extends DataConnectorInner {
     private Dynamics365DataConnectorProperties innerProperties;
 
     /**
+     * Creates an instance of Dynamics365DataConnector class.
+     */
+    public Dynamics365DataConnector() {
+    }
+
+    /**
      * Get the innerProperties property: Dynamics365 data connector properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private Dynamics365DataConnectorProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Dynamics365DataConnector withEtag(String etag) {
         super.withEtag(etag);
@@ -40,7 +50,7 @@ public final class Dynamics365DataConnector extends DataConnectorInner {
 
     /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public Dynamics365DataConnectorDataTypes dataTypes() {
@@ -49,7 +59,7 @@ public final class Dynamics365DataConnector extends DataConnectorInner {
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the Dynamics365DataConnector object itself.
      */
@@ -63,7 +73,7 @@ public final class Dynamics365DataConnector extends DataConnectorInner {
 
     /**
      * Get the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -72,7 +82,7 @@ public final class Dynamics365DataConnector extends DataConnectorInner {
 
     /**
      * Set the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the Dynamics365DataConnector object itself.
      */
@@ -86,7 +96,7 @@ public final class Dynamics365DataConnector extends DataConnectorInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

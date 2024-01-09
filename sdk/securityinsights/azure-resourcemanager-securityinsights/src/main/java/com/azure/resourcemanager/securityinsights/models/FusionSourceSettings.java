@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Represents a supported source signal configuration in Fusion detection. */
+/**
+ * Represents a supported source signal configuration in Fusion detection.
+ */
 @Fluent
 public final class FusionSourceSettings {
     /*
@@ -31,8 +33,14 @@ public final class FusionSourceSettings {
     private List<FusionSourceSubTypeSetting> sourceSubTypes;
 
     /**
+     * Creates an instance of FusionSourceSettings class.
+     */
+    public FusionSourceSettings() {
+    }
+
+    /**
      * Get the enabled property: Determines whether this source signal is enabled or disabled in Fusion detection.
-     *
+     * 
      * @return the enabled value.
      */
     public boolean enabled() {
@@ -41,7 +49,7 @@ public final class FusionSourceSettings {
 
     /**
      * Set the enabled property: Determines whether this source signal is enabled or disabled in Fusion detection.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the FusionSourceSettings object itself.
      */
@@ -53,7 +61,7 @@ public final class FusionSourceSettings {
     /**
      * Get the sourceName property: Name of the Fusion source signal. Refer to Fusion alert rule template for supported
      * values.
-     *
+     * 
      * @return the sourceName value.
      */
     public String sourceName() {
@@ -63,7 +71,7 @@ public final class FusionSourceSettings {
     /**
      * Set the sourceName property: Name of the Fusion source signal. Refer to Fusion alert rule template for supported
      * values.
-     *
+     * 
      * @param sourceName the sourceName value to set.
      * @return the FusionSourceSettings object itself.
      */
@@ -75,7 +83,7 @@ public final class FusionSourceSettings {
     /**
      * Get the sourceSubTypes property: Configuration for all source subtypes under this source signal consumed in
      * fusion detection.
-     *
+     * 
      * @return the sourceSubTypes value.
      */
     public List<FusionSourceSubTypeSetting> sourceSubTypes() {
@@ -85,7 +93,7 @@ public final class FusionSourceSettings {
     /**
      * Set the sourceSubTypes property: Configuration for all source subtypes under this source signal consumed in
      * fusion detection.
-     *
+     * 
      * @param sourceSubTypes the sourceSubTypes value to set.
      * @return the FusionSourceSettings object itself.
      */
@@ -96,14 +104,13 @@ public final class FusionSourceSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property sourceName in model FusionSourceSettings"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property sourceName in model FusionSourceSettings"));
         }
         if (sourceSubTypes() != null) {
             sourceSubTypes().forEach(e -> e.validate());

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** ASC (Azure Security Center) requirements check properties. */
+/**
+ * ASC (Azure Security Center) requirements check properties.
+ */
 @Fluent
 public final class AscCheckRequirementsProperties {
     /*
@@ -17,8 +19,14 @@ public final class AscCheckRequirementsProperties {
     private String subscriptionId;
 
     /**
+     * Creates an instance of AscCheckRequirementsProperties class.
+     */
+    public AscCheckRequirementsProperties() {
+    }
+
+    /**
      * Get the subscriptionId property: The subscription id to connect to, and get the data from.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String subscriptionId() {
@@ -27,7 +35,7 @@ public final class AscCheckRequirementsProperties {
 
     /**
      * Set the subscriptionId property: The subscription id to connect to, and get the data from.
-     *
+     * 
      * @param subscriptionId the subscriptionId value to set.
      * @return the AscCheckRequirementsProperties object itself.
      */
@@ -38,7 +46,7 @@ public final class AscCheckRequirementsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

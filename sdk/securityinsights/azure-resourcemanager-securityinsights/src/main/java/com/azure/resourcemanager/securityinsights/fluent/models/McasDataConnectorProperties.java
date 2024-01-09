@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 import com.azure.resourcemanager.securityinsights.models.McasDataConnectorDataTypes;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** MCAS (Microsoft Cloud App Security) data connector properties. */
+/**
+ * MCAS (Microsoft Cloud App Security) data connector properties.
+ */
 @Fluent
 public final class McasDataConnectorProperties extends DataConnectorTenantId {
     /*
@@ -20,8 +22,14 @@ public final class McasDataConnectorProperties extends DataConnectorTenantId {
     private McasDataConnectorDataTypes dataTypes;
 
     /**
+     * Creates an instance of McasDataConnectorProperties class.
+     */
+    public McasDataConnectorProperties() {
+    }
+
+    /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public McasDataConnectorDataTypes dataTypes() {
@@ -30,7 +38,7 @@ public final class McasDataConnectorProperties extends DataConnectorTenantId {
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the McasDataConnectorProperties object itself.
      */
@@ -39,7 +47,9 @@ public final class McasDataConnectorProperties extends DataConnectorTenantId {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public McasDataConnectorProperties withTenantId(String tenantId) {
         super.withTenantId(tenantId);
@@ -48,17 +58,15 @@ public final class McasDataConnectorProperties extends DataConnectorTenantId {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (dataTypes() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dataTypes in model McasDataConnectorProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property dataTypes in model McasDataConnectorProperties"));
         } else {
             dataTypes().validate();
         }

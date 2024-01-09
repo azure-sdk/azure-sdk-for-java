@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
-/** The parameters required to execute an expand operation on the given bookmark. */
+/**
+ * The parameters required to execute an expand operation on the given bookmark.
+ */
 @Fluent
 public final class BookmarkExpandParameters {
     /*
@@ -31,8 +33,14 @@ public final class BookmarkExpandParameters {
     private OffsetDateTime startTime;
 
     /**
+     * Creates an instance of BookmarkExpandParameters class.
+     */
+    public BookmarkExpandParameters() {
+    }
+
+    /**
      * Get the endTime property: The end date filter, so the only expansion results returned are before this date.
-     *
+     * 
      * @return the endTime value.
      */
     public OffsetDateTime endTime() {
@@ -41,7 +49,7 @@ public final class BookmarkExpandParameters {
 
     /**
      * Set the endTime property: The end date filter, so the only expansion results returned are before this date.
-     *
+     * 
      * @param endTime the endTime value to set.
      * @return the BookmarkExpandParameters object itself.
      */
@@ -52,7 +60,7 @@ public final class BookmarkExpandParameters {
 
     /**
      * Get the expansionId property: The Id of the expansion to perform.
-     *
+     * 
      * @return the expansionId value.
      */
     public UUID expansionId() {
@@ -61,7 +69,7 @@ public final class BookmarkExpandParameters {
 
     /**
      * Set the expansionId property: The Id of the expansion to perform.
-     *
+     * 
      * @param expansionId the expansionId value to set.
      * @return the BookmarkExpandParameters object itself.
      */
@@ -72,7 +80,7 @@ public final class BookmarkExpandParameters {
 
     /**
      * Get the startTime property: The start date filter, so the only expansion results returned are after this date.
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -81,7 +89,7 @@ public final class BookmarkExpandParameters {
 
     /**
      * Set the startTime property: The start date filter, so the only expansion results returned are after this date.
-     *
+     * 
      * @param startTime the startTime value to set.
      * @return the BookmarkExpandParameters object itself.
      */
@@ -92,7 +100,7 @@ public final class BookmarkExpandParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

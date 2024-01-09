@@ -5,16 +5,19 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
-/** The PlaybookActionProperties model. */
+/**
+ * The PlaybookActionProperties model.
+ */
 @Fluent
 public final class PlaybookActionProperties {
     /*
      * The resource id of the playbook resource.
      */
-    @JsonProperty(value = "logicAppResourceId")
+    @JsonProperty(value = "logicAppResourceId", required = true)
     private String logicAppResourceId;
 
     /*
@@ -24,8 +27,14 @@ public final class PlaybookActionProperties {
     private UUID tenantId;
 
     /**
+     * Creates an instance of PlaybookActionProperties class.
+     */
+    public PlaybookActionProperties() {
+    }
+
+    /**
      * Get the logicAppResourceId property: The resource id of the playbook resource.
-     *
+     * 
      * @return the logicAppResourceId value.
      */
     public String logicAppResourceId() {
@@ -34,7 +43,7 @@ public final class PlaybookActionProperties {
 
     /**
      * Set the logicAppResourceId property: The resource id of the playbook resource.
-     *
+     * 
      * @param logicAppResourceId the logicAppResourceId value to set.
      * @return the PlaybookActionProperties object itself.
      */
@@ -45,7 +54,7 @@ public final class PlaybookActionProperties {
 
     /**
      * Get the tenantId property: The tenant id of the playbook resource.
-     *
+     * 
      * @return the tenantId value.
      */
     public UUID tenantId() {
@@ -54,7 +63,7 @@ public final class PlaybookActionProperties {
 
     /**
      * Set the tenantId property: The tenant id of the playbook resource.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the PlaybookActionProperties object itself.
      */
@@ -65,9 +74,15 @@ public final class PlaybookActionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (logicAppResourceId() == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property logicAppResourceId in model PlaybookActionProperties"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(PlaybookActionProperties.class);
 }
