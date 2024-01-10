@@ -8,22 +8,26 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.apicenter.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of the service. */
+/**
+ * The properties of the service.
+ */
 @Immutable
 public final class ServiceProperties {
     /*
-     * The status of the last operation.
+     * Provisioning state of the service.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of ServiceProperties class. */
+    /**
+     * Creates an instance of ServiceProperties class.
+     */
     public ServiceProperties() {
     }
 
     /**
-     * Get the provisioningState property: The status of the last operation.
-     *
+     * Get the provisioningState property: Provisioning state of the service.
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -32,7 +36,7 @@ public final class ServiceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
