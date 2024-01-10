@@ -4,20 +4,36 @@
 
 package com.azure.resourcemanager.databoxedge.generated;
 
-/** Samples for Devices GetByResourceGroup. */
+/**
+ * Samples for Devices GetByResourceGroup.
+ */
 public final class DevicesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/DataBoxEdgeDeviceGetByName.json
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2023-12-01/examples/
+     * DataBoxEdgeDeviceGetByName.json
      */
     /**
      * Sample code: DataBoxEdgeDeviceGetByName.
-     *
+     * 
      * @param manager Entry point to DataBoxEdgeManager.
      */
     public static void dataBoxEdgeDeviceGetByName(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
-        manager
-            .devices()
-            .getByResourceGroupWithResponse(
-                "GroupForEdgeAutomation", "testedgedevice", com.azure.core.util.Context.NONE);
+        manager.devices().getByResourceGroupWithResponse("GroupForEdgeAutomation", "testedgedevice",
+            com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2023-12-01/examples/
+     * DataBoxEdgeDeviceGetByNameWithDataResidency.json
+     */
+    /**
+     * Sample code: DataBoxEdgeDeviceGetByNameWithDataResidency.
+     * 
+     * @param manager Entry point to DataBoxEdgeManager.
+     */
+    public static void
+        dataBoxEdgeDeviceGetByNameWithDataResidency(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
+        manager.devices().getByResourceGroupWithResponse("GroupForEdgeAutomation", "testedgedevice",
+            com.azure.core.util.Context.NONE);
     }
 }

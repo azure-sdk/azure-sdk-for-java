@@ -4,34 +4,44 @@
 
 package com.azure.resourcemanager.databoxedge.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.databoxedge.fluent.models.RoleInner;
 
-/** An immutable client-side representation of Role. */
+/**
+ * An immutable client-side representation of Role.
+ */
 public interface Role {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
+     * Gets the systemData property: Metadata pertaining to creation and last modification of Role.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the inner com.azure.resourcemanager.databoxedge.fluent.models.RoleInner object.
-     *
+     * 
      * @return the inner object.
      */
     RoleInner innerModel();

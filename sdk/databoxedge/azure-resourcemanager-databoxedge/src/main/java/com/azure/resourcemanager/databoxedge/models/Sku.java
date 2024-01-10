@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databoxedge.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The SKU type. */
+/**
+ * The SKU type.
+ */
 @Fluent
 public final class Sku {
     /*
@@ -22,13 +24,15 @@ public final class Sku {
     @JsonProperty(value = "tier")
     private SkuTier tier;
 
-    /** Creates an instance of Sku class. */
+    /**
+     * Creates an instance of Sku class.
+     */
     public Sku() {
     }
 
     /**
      * Get the name property: SKU name.
-     *
+     * 
      * @return the name value.
      */
     public SkuName name() {
@@ -37,7 +41,7 @@ public final class Sku {
 
     /**
      * Set the name property: SKU name.
-     *
+     * 
      * @param name the name value to set.
      * @return the Sku object itself.
      */
@@ -48,7 +52,7 @@ public final class Sku {
 
     /**
      * Get the tier property: The SKU tier. This is based on the SKU name.
-     *
+     * 
      * @return the tier value.
      */
     public SkuTier tier() {
@@ -57,7 +61,7 @@ public final class Sku {
 
     /**
      * Set the tier property: The SKU tier. This is based on the SKU name.
-     *
+     * 
      * @param tier the tier value to set.
      * @return the Sku object itself.
      */
@@ -68,7 +72,7 @@ public final class Sku {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

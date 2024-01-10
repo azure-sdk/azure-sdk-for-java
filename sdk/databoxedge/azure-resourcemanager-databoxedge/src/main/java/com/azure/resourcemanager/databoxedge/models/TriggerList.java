@@ -9,7 +9,9 @@ import com.azure.resourcemanager.databoxedge.fluent.models.TriggerInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Collection of all trigger on the data box edge device. */
+/**
+ * Collection of all trigger on the data box edge device.
+ */
 @Immutable
 public final class TriggerList {
     /*
@@ -24,13 +26,15 @@ public final class TriggerList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of TriggerList class. */
+    /**
+     * Creates an instance of TriggerList class.
+     */
     public TriggerList() {
     }
 
     /**
      * Get the value property: The list of triggers.
-     *
+     * 
      * @return the value value.
      */
     public List<TriggerInner> value() {
@@ -39,7 +43,7 @@ public final class TriggerList {
 
     /**
      * Get the nextLink property: Link to the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class TriggerList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

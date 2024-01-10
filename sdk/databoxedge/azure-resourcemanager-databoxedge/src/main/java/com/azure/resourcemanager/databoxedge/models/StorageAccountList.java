@@ -9,7 +9,9 @@ import com.azure.resourcemanager.databoxedge.fluent.models.StorageAccountInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Collection of all the Storage Accounts on the Data Box Edge/Gateway device. */
+/**
+ * Collection of all the Storage Accounts on the Data Box Edge/Gateway device.
+ */
 @Immutable
 public final class StorageAccountList {
     /*
@@ -24,13 +26,15 @@ public final class StorageAccountList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of StorageAccountList class. */
+    /**
+     * Creates an instance of StorageAccountList class.
+     */
     public StorageAccountList() {
     }
 
     /**
      * Get the value property: The list of storageAccounts.
-     *
+     * 
      * @return the value value.
      */
     public List<StorageAccountInner> value() {
@@ -39,7 +43,7 @@ public final class StorageAccountList {
 
     /**
      * Get the nextLink property: Link to the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class StorageAccountList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

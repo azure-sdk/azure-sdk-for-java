@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** File source details. */
+/**
+ * File source details.
+ */
 @Fluent
 public final class FileSourceInfo {
     /*
@@ -17,13 +19,15 @@ public final class FileSourceInfo {
     @JsonProperty(value = "shareId", required = true)
     private String shareId;
 
-    /** Creates an instance of FileSourceInfo class. */
+    /**
+     * Creates an instance of FileSourceInfo class.
+     */
     public FileSourceInfo() {
     }
 
     /**
      * Get the shareId property: File share ID.
-     *
+     * 
      * @return the shareId value.
      */
     public String shareId() {
@@ -32,7 +36,7 @@ public final class FileSourceInfo {
 
     /**
      * Set the shareId property: File share ID.
-     *
+     * 
      * @param shareId the shareId value to set.
      * @return the FileSourceInfo object itself.
      */
@@ -43,14 +47,13 @@ public final class FileSourceInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (shareId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property shareId in model FileSourceInfo"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property shareId in model FileSourceInfo"));
         }
     }
 

@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.databoxedge.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.databoxedge.fluent.models.UserInner;
 import com.azure.resourcemanager.databoxedge.models.AsymmetricEncryptedSecret;
@@ -28,6 +29,10 @@ public final class UserImpl implements User, User.Definition, User.Update {
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public AsymmetricEncryptedSecret encryptedPassword() {
@@ -72,20 +77,14 @@ public final class UserImpl implements User, User.Definition, User.Update {
     }
 
     public User create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getUsers()
-                .createOrUpdate(deviceName, name, resourceGroupName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getUsers().createOrUpdate(deviceName, name, resourceGroupName,
+            this.innerModel(), Context.NONE);
         return this;
     }
 
     public User create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getUsers()
-                .createOrUpdate(deviceName, name, resourceGroupName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getUsers().createOrUpdate(deviceName, name, resourceGroupName,
+            this.innerModel(), context);
         return this;
     }
 
@@ -100,20 +99,14 @@ public final class UserImpl implements User, User.Definition, User.Update {
     }
 
     public User apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getUsers()
-                .createOrUpdate(deviceName, name, resourceGroupName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getUsers().createOrUpdate(deviceName, name, resourceGroupName,
+            this.innerModel(), Context.NONE);
         return this;
     }
 
     public User apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getUsers()
-                .createOrUpdate(deviceName, name, resourceGroupName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getUsers().createOrUpdate(deviceName, name, resourceGroupName,
+            this.innerModel(), context);
         return this;
     }
 
@@ -126,22 +119,14 @@ public final class UserImpl implements User, User.Definition, User.Update {
     }
 
     public User refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getUsers()
-                .getWithResponse(deviceName, name, resourceGroupName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getUsers()
+            .getWithResponse(deviceName, name, resourceGroupName, Context.NONE).getValue();
         return this;
     }
 
     public User refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getUsers()
-                .getWithResponse(deviceName, name, resourceGroupName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getUsers()
+            .getWithResponse(deviceName, name, resourceGroupName, context).getValue();
         return this;
     }
 
@@ -152,11 +137,6 @@ public final class UserImpl implements User, User.Definition, User.Update {
 
     public UserImpl withEncryptedPassword(AsymmetricEncryptedSecret encryptedPassword) {
         this.innerModel().withEncryptedPassword(encryptedPassword);
-        return this;
-    }
-
-    public UserImpl withShareAccessRights(List<ShareAccessRight> shareAccessRights) {
-        this.innerModel().withShareAccessRights(shareAccessRights);
         return this;
     }
 }

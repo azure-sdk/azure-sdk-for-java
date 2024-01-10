@@ -9,7 +9,9 @@ import com.azure.resourcemanager.databoxedge.fluent.models.DataBoxEdgeDeviceInne
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The collection of Data Box Edge/Gateway devices. */
+/**
+ * The collection of Data Box Edge/Gateway devices.
+ */
 @Immutable
 public final class DataBoxEdgeDeviceList {
     /*
@@ -24,13 +26,15 @@ public final class DataBoxEdgeDeviceList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of DataBoxEdgeDeviceList class. */
+    /**
+     * Creates an instance of DataBoxEdgeDeviceList class.
+     */
     public DataBoxEdgeDeviceList() {
     }
 
     /**
      * Get the value property: The list of Data Box Edge/Gateway devices.
-     *
+     * 
      * @return the value value.
      */
     public List<DataBoxEdgeDeviceInner> value() {
@@ -39,7 +43,7 @@ public final class DataBoxEdgeDeviceList {
 
     /**
      * Get the nextLink property: Link to the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class DataBoxEdgeDeviceList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

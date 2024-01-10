@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.databoxedge.models.AuthenticationType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The upload registration certificate response. */
+/**
+ * The upload registration certificate response.
+ */
 @Fluent
 public final class UploadCertificateResponseInner {
     /*
@@ -59,13 +61,15 @@ public final class UploadCertificateResponseInner {
     @JsonProperty(value = "aadAudience", access = JsonProperty.Access.WRITE_ONLY)
     private String aadAudience;
 
-    /** Creates an instance of UploadCertificateResponseInner class. */
+    /**
+     * Creates an instance of UploadCertificateResponseInner class.
+     */
     public UploadCertificateResponseInner() {
     }
 
     /**
      * Get the authType property: Specifies authentication type.
-     *
+     * 
      * @return the authType value.
      */
     public AuthenticationType authType() {
@@ -74,7 +78,7 @@ public final class UploadCertificateResponseInner {
 
     /**
      * Set the authType property: Specifies authentication type.
-     *
+     * 
      * @param authType the authType value to set.
      * @return the UploadCertificateResponseInner object itself.
      */
@@ -85,7 +89,7 @@ public final class UploadCertificateResponseInner {
 
     /**
      * Get the resourceId property: The resource ID of the Data Box Edge/Gateway device.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -94,7 +98,7 @@ public final class UploadCertificateResponseInner {
 
     /**
      * Get the aadAuthority property: Azure Active Directory tenant authority.
-     *
+     * 
      * @return the aadAuthority value.
      */
     public String aadAuthority() {
@@ -103,7 +107,7 @@ public final class UploadCertificateResponseInner {
 
     /**
      * Get the aadTenantId property: Azure Active Directory tenant ID.
-     *
+     * 
      * @return the aadTenantId value.
      */
     public String aadTenantId() {
@@ -112,7 +116,7 @@ public final class UploadCertificateResponseInner {
 
     /**
      * Get the servicePrincipalClientId property: Azure Active Directory service principal client ID.
-     *
+     * 
      * @return the servicePrincipalClientId value.
      */
     public String servicePrincipalClientId() {
@@ -121,7 +125,7 @@ public final class UploadCertificateResponseInner {
 
     /**
      * Get the servicePrincipalObjectId property: Azure Active Directory service principal object ID.
-     *
+     * 
      * @return the servicePrincipalObjectId value.
      */
     public String servicePrincipalObjectId() {
@@ -130,7 +134,7 @@ public final class UploadCertificateResponseInner {
 
     /**
      * Get the azureManagementEndpointAudience property: The azure management endpoint audience.
-     *
+     * 
      * @return the azureManagementEndpointAudience value.
      */
     public String azureManagementEndpointAudience() {
@@ -139,7 +143,7 @@ public final class UploadCertificateResponseInner {
 
     /**
      * Get the aadAudience property: Identifier of the target resource that is the recipient of the requested token.
-     *
+     * 
      * @return the aadAudience value.
      */
     public String aadAudience() {
@@ -148,7 +152,7 @@ public final class UploadCertificateResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

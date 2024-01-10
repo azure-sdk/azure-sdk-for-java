@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Periodic timer event source. */
+/**
+ * Periodic timer event source.
+ */
 @Fluent
 public final class PeriodicTimerSourceInfo {
     /*
@@ -32,7 +34,9 @@ public final class PeriodicTimerSourceInfo {
     @JsonProperty(value = "topic")
     private String topic;
 
-    /** Creates an instance of PeriodicTimerSourceInfo class. */
+    /**
+     * Creates an instance of PeriodicTimerSourceInfo class.
+     */
     public PeriodicTimerSourceInfo() {
     }
 
@@ -40,7 +44,7 @@ public final class PeriodicTimerSourceInfo {
      * Get the startTime property: The time of the day that results in a valid trigger. Schedule is computed with
      * reference to the time specified upto seconds. If timezone is not specified the time will considered to be in
      * device timezone. The value will always be returned as UTC time.
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -51,7 +55,7 @@ public final class PeriodicTimerSourceInfo {
      * Set the startTime property: The time of the day that results in a valid trigger. Schedule is computed with
      * reference to the time specified upto seconds. If timezone is not specified the time will considered to be in
      * device timezone. The value will always be returned as UTC time.
-     *
+     * 
      * @param startTime the startTime value to set.
      * @return the PeriodicTimerSourceInfo object itself.
      */
@@ -63,7 +67,7 @@ public final class PeriodicTimerSourceInfo {
     /**
      * Get the schedule property: Periodic frequency at which timer event needs to be raised. Supports daily, hourly,
      * minutes, and seconds.
-     *
+     * 
      * @return the schedule value.
      */
     public String schedule() {
@@ -73,7 +77,7 @@ public final class PeriodicTimerSourceInfo {
     /**
      * Set the schedule property: Periodic frequency at which timer event needs to be raised. Supports daily, hourly,
      * minutes, and seconds.
-     *
+     * 
      * @param schedule the schedule value to set.
      * @return the PeriodicTimerSourceInfo object itself.
      */
@@ -84,7 +88,7 @@ public final class PeriodicTimerSourceInfo {
 
     /**
      * Get the topic property: Topic where periodic events are published to IoT device.
-     *
+     * 
      * @return the topic value.
      */
     public String topic() {
@@ -93,7 +97,7 @@ public final class PeriodicTimerSourceInfo {
 
     /**
      * Set the topic property: Topic where periodic events are published to IoT device.
-     *
+     * 
      * @param topic the topic value to set.
      * @return the PeriodicTimerSourceInfo object itself.
      */
@@ -104,21 +108,17 @@ public final class PeriodicTimerSourceInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (startTime() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property startTime in model PeriodicTimerSourceInfo"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property startTime in model PeriodicTimerSourceInfo"));
         }
         if (schedule() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property schedule in model PeriodicTimerSourceInfo"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property schedule in model PeriodicTimerSourceInfo"));
         }
     }
 

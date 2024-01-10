@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databoxedge.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The metadata for retrieving price info. */
+/**
+ * The metadata for retrieving price info.
+ */
 @Immutable
 public final class SkuCost {
     /*
@@ -23,18 +25,20 @@ public final class SkuCost {
     private Long quantity;
 
     /*
-     * Restriction of the SKU for the location/zone
+     * The extended unit.
      */
     @JsonProperty(value = "extendedUnit", access = JsonProperty.Access.WRITE_ONLY)
     private String extendedUnit;
 
-    /** Creates an instance of SkuCost class. */
+    /**
+     * Creates an instance of SkuCost class.
+     */
     public SkuCost() {
     }
 
     /**
      * Get the meterId property: Used for querying price from commerce.
-     *
+     * 
      * @return the meterId value.
      */
     public String meterId() {
@@ -43,7 +47,7 @@ public final class SkuCost {
 
     /**
      * Get the quantity property: The cost quantity.
-     *
+     * 
      * @return the quantity value.
      */
     public Long quantity() {
@@ -51,8 +55,8 @@ public final class SkuCost {
     }
 
     /**
-     * Get the extendedUnit property: Restriction of the SKU for the location/zone.
-     *
+     * Get the extendedUnit property: The extended unit.
+     * 
      * @return the extendedUnit value.
      */
     public String extendedUnit() {
@@ -61,7 +65,7 @@ public final class SkuCost {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -5,11 +5,14 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.databoxedge.models.DataPolicy;
 import com.azure.resourcemanager.databoxedge.models.StorageAccountStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The storage account properties. */
+/**
+ * The storage account properties.
+ */
 @Fluent
 public final class StorageAccountProperties {
     /*
@@ -27,7 +30,7 @@ public final class StorageAccountProperties {
     /*
      * Data policy of the storage Account.
      */
-    @JsonProperty(value = "dataPolicy")
+    @JsonProperty(value = "dataPolicy", required = true)
     private DataPolicy dataPolicy;
 
     /*
@@ -48,13 +51,15 @@ public final class StorageAccountProperties {
     @JsonProperty(value = "containerCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer containerCount;
 
-    /** Creates an instance of StorageAccountProperties class. */
+    /**
+     * Creates an instance of StorageAccountProperties class.
+     */
     public StorageAccountProperties() {
     }
 
     /**
      * Get the description property: Description for the storage Account.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -63,7 +68,7 @@ public final class StorageAccountProperties {
 
     /**
      * Set the description property: Description for the storage Account.
-     *
+     * 
      * @param description the description value to set.
      * @return the StorageAccountProperties object itself.
      */
@@ -74,7 +79,7 @@ public final class StorageAccountProperties {
 
     /**
      * Get the storageAccountStatus property: Current status of the storage account.
-     *
+     * 
      * @return the storageAccountStatus value.
      */
     public StorageAccountStatus storageAccountStatus() {
@@ -83,7 +88,7 @@ public final class StorageAccountProperties {
 
     /**
      * Set the storageAccountStatus property: Current status of the storage account.
-     *
+     * 
      * @param storageAccountStatus the storageAccountStatus value to set.
      * @return the StorageAccountProperties object itself.
      */
@@ -94,7 +99,7 @@ public final class StorageAccountProperties {
 
     /**
      * Get the dataPolicy property: Data policy of the storage Account.
-     *
+     * 
      * @return the dataPolicy value.
      */
     public DataPolicy dataPolicy() {
@@ -103,7 +108,7 @@ public final class StorageAccountProperties {
 
     /**
      * Set the dataPolicy property: Data policy of the storage Account.
-     *
+     * 
      * @param dataPolicy the dataPolicy value to set.
      * @return the StorageAccountProperties object itself.
      */
@@ -114,7 +119,7 @@ public final class StorageAccountProperties {
 
     /**
      * Get the storageAccountCredentialId property: Storage Account Credential Id.
-     *
+     * 
      * @return the storageAccountCredentialId value.
      */
     public String storageAccountCredentialId() {
@@ -123,7 +128,7 @@ public final class StorageAccountProperties {
 
     /**
      * Set the storageAccountCredentialId property: Storage Account Credential Id.
-     *
+     * 
      * @param storageAccountCredentialId the storageAccountCredentialId value to set.
      * @return the StorageAccountProperties object itself.
      */
@@ -134,7 +139,7 @@ public final class StorageAccountProperties {
 
     /**
      * Get the blobEndpoint property: BlobEndpoint of Storage Account.
-     *
+     * 
      * @return the blobEndpoint value.
      */
     public String blobEndpoint() {
@@ -144,7 +149,7 @@ public final class StorageAccountProperties {
     /**
      * Get the containerCount property: The Container Count. Present only for Storage Accounts with DataPolicy set to
      * Cloud.
-     *
+     * 
      * @return the containerCount value.
      */
     public Integer containerCount() {
@@ -153,9 +158,15 @@ public final class StorageAccountProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (dataPolicy() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property dataPolicy in model StorageAccountProperties"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(StorageAccountProperties.class);
 }

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.databoxedge.fluent.models.AlertInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Collection of alerts. */
+/**
+ * Collection of alerts.
+ */
 @Immutable
 public final class AlertList {
     /*
@@ -24,13 +26,15 @@ public final class AlertList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of AlertList class. */
+    /**
+     * Creates an instance of AlertList class.
+     */
     public AlertList() {
     }
 
     /**
      * Get the value property: The value.
-     *
+     * 
      * @return the value value.
      */
     public List<AlertInner> value() {
@@ -39,7 +43,7 @@ public final class AlertList {
 
     /**
      * Get the nextLink property: Link to the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class AlertList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

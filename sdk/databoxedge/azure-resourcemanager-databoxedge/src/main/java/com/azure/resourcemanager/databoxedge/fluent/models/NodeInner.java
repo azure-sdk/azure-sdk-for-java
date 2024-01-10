@@ -10,8 +10,9 @@ import com.azure.resourcemanager.databoxedge.models.NodeStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Represents a single node in a Data box Edge/Gateway device Gateway devices, standalone Edge devices and a single node
- * cluster Edge device will all have 1 node Multi-node Edge devices will have more than 1 nodes.
+ * Represents a single node in a Data box Edge/Gateway device
+ * Gateway devices, standalone Edge devices and a single node cluster Edge device will all have 1 node
+ * Multi-node Edge devices will have more than 1 nodes.
  */
 @Immutable
 public final class NodeInner extends ArmBaseModel {
@@ -21,13 +22,15 @@ public final class NodeInner extends ArmBaseModel {
     @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
     private NodeProperties innerProperties;
 
-    /** Creates an instance of NodeInner class. */
+    /**
+     * Creates an instance of NodeInner class.
+     */
     public NodeInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of the node.
-     *
+     * 
      * @return the innerProperties value.
      */
     private NodeProperties innerProperties() {
@@ -36,7 +39,7 @@ public final class NodeInner extends ArmBaseModel {
 
     /**
      * Get the nodeStatus property: The current status of the individual node.
-     *
+     * 
      * @return the nodeStatus value.
      */
     public NodeStatus nodeStatus() {
@@ -45,7 +48,7 @@ public final class NodeInner extends ArmBaseModel {
 
     /**
      * Get the nodeChassisSerialNumber property: Serial number of the Chassis.
-     *
+     * 
      * @return the nodeChassisSerialNumber value.
      */
     public String nodeChassisSerialNumber() {
@@ -54,7 +57,7 @@ public final class NodeInner extends ArmBaseModel {
 
     /**
      * Get the nodeSerialNumber property: Serial number of the individual node.
-     *
+     * 
      * @return the nodeSerialNumber value.
      */
     public String nodeSerialNumber() {
@@ -63,7 +66,7 @@ public final class NodeInner extends ArmBaseModel {
 
     /**
      * Get the nodeDisplayName property: Display Name of the individual node.
-     *
+     * 
      * @return the nodeDisplayName value.
      */
     public String nodeDisplayName() {
@@ -73,7 +76,7 @@ public final class NodeInner extends ArmBaseModel {
     /**
      * Get the nodeFriendlySoftwareVersion property: Friendly software version name that is currently installed on the
      * node.
-     *
+     * 
      * @return the nodeFriendlySoftwareVersion value.
      */
     public String nodeFriendlySoftwareVersion() {
@@ -82,7 +85,7 @@ public final class NodeInner extends ArmBaseModel {
 
     /**
      * Get the nodeHcsVersion property: HCS version that is currently installed on the node.
-     *
+     * 
      * @return the nodeHcsVersion value.
      */
     public String nodeHcsVersion() {
@@ -91,7 +94,7 @@ public final class NodeInner extends ArmBaseModel {
 
     /**
      * Get the nodeInstanceId property: Guid instance id of the node.
-     *
+     * 
      * @return the nodeInstanceId value.
      */
     public String nodeInstanceId() {
@@ -100,7 +103,7 @@ public final class NodeInner extends ArmBaseModel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

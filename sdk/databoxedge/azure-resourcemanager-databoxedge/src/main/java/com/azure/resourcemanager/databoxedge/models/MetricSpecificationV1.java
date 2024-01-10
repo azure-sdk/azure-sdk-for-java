@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Metric specification version 1. */
+/**
+ * Metric specification version 1.
+ */
 @Fluent
 public final class MetricSpecificationV1 {
     /*
@@ -77,13 +79,15 @@ public final class MetricSpecificationV1 {
     @JsonProperty(value = "supportedAggregationTypes")
     private List<MetricAggregationType> supportedAggregationTypes;
 
-    /** Creates an instance of MetricSpecificationV1 class. */
+    /**
+     * Creates an instance of MetricSpecificationV1 class.
+     */
     public MetricSpecificationV1() {
     }
 
     /**
      * Get the name property: Name of the metric.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -92,7 +96,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Set the name property: Name of the metric.
-     *
+     * 
      * @param name the name value to set.
      * @return the MetricSpecificationV1 object itself.
      */
@@ -103,7 +107,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Get the displayName property: Display name of the metric.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -112,7 +116,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Set the displayName property: Display name of the metric.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the MetricSpecificationV1 object itself.
      */
@@ -123,7 +127,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Get the displayDescription property: Description of the metric to be displayed.
-     *
+     * 
      * @return the displayDescription value.
      */
     public String displayDescription() {
@@ -132,7 +136,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Set the displayDescription property: Description of the metric to be displayed.
-     *
+     * 
      * @param displayDescription the displayDescription value to set.
      * @return the MetricSpecificationV1 object itself.
      */
@@ -143,7 +147,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Get the unit property: Metric units.
-     *
+     * 
      * @return the unit value.
      */
     public MetricUnit unit() {
@@ -152,7 +156,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Set the unit property: Metric units.
-     *
+     * 
      * @param unit the unit value to set.
      * @return the MetricSpecificationV1 object itself.
      */
@@ -163,7 +167,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Get the aggregationType property: Metric aggregation type.
-     *
+     * 
      * @return the aggregationType value.
      */
     public MetricAggregationType aggregationType() {
@@ -172,7 +176,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Set the aggregationType property: Metric aggregation type.
-     *
+     * 
      * @param aggregationType the aggregationType value to set.
      * @return the MetricSpecificationV1 object itself.
      */
@@ -183,7 +187,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Get the dimensions property: Metric dimensions, other than default dimension which is resource.
-     *
+     * 
      * @return the dimensions value.
      */
     public List<MetricDimensionV1> dimensions() {
@@ -192,7 +196,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Set the dimensions property: Metric dimensions, other than default dimension which is resource.
-     *
+     * 
      * @param dimensions the dimensions value to set.
      * @return the MetricSpecificationV1 object itself.
      */
@@ -203,7 +207,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Get the fillGapWithZero property: Set true to fill the gaps with zero.
-     *
+     * 
      * @return the fillGapWithZero value.
      */
     public Boolean fillGapWithZero() {
@@ -212,7 +216,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Set the fillGapWithZero property: Set true to fill the gaps with zero.
-     *
+     * 
      * @param fillGapWithZero the fillGapWithZero value to set.
      * @return the MetricSpecificationV1 object itself.
      */
@@ -223,7 +227,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Get the category property: Metric category.
-     *
+     * 
      * @return the category value.
      */
     public MetricCategory category() {
@@ -232,7 +236,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Set the category property: Metric category.
-     *
+     * 
      * @param category the category value to set.
      * @return the MetricSpecificationV1 object itself.
      */
@@ -243,7 +247,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Get the resourceIdDimensionNameOverride property: Resource name override.
-     *
+     * 
      * @return the resourceIdDimensionNameOverride value.
      */
     public String resourceIdDimensionNameOverride() {
@@ -252,7 +256,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Set the resourceIdDimensionNameOverride property: Resource name override.
-     *
+     * 
      * @param resourceIdDimensionNameOverride the resourceIdDimensionNameOverride value to set.
      * @return the MetricSpecificationV1 object itself.
      */
@@ -263,7 +267,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Get the supportedTimeGrainTypes property: Support granularity of metrics.
-     *
+     * 
      * @return the supportedTimeGrainTypes value.
      */
     public List<TimeGrain> supportedTimeGrainTypes() {
@@ -272,7 +276,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Set the supportedTimeGrainTypes property: Support granularity of metrics.
-     *
+     * 
      * @param supportedTimeGrainTypes the supportedTimeGrainTypes value to set.
      * @return the MetricSpecificationV1 object itself.
      */
@@ -283,7 +287,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Get the supportedAggregationTypes property: Support metric aggregation type.
-     *
+     * 
      * @return the supportedAggregationTypes value.
      */
     public List<MetricAggregationType> supportedAggregationTypes() {
@@ -292,7 +296,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Set the supportedAggregationTypes property: Support metric aggregation type.
-     *
+     * 
      * @param supportedAggregationTypes the supportedAggregationTypes value to set.
      * @return the MetricSpecificationV1 object itself.
      */
@@ -303,7 +307,7 @@ public final class MetricSpecificationV1 {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

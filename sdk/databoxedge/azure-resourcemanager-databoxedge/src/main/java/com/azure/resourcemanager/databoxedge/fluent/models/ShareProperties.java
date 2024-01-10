@@ -18,7 +18,9 @@ import com.azure.resourcemanager.databoxedge.models.UserAccessRight;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The share properties. */
+/**
+ * The share properties.
+ */
 @Fluent
 public final class ShareProperties {
     /*
@@ -81,13 +83,15 @@ public final class ShareProperties {
     @JsonProperty(value = "dataPolicy")
     private DataPolicy dataPolicy;
 
-    /** Creates an instance of ShareProperties class. */
+    /**
+     * Creates an instance of ShareProperties class.
+     */
     public ShareProperties() {
     }
 
     /**
      * Get the description property: Description for the share.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -96,7 +100,7 @@ public final class ShareProperties {
 
     /**
      * Set the description property: Description for the share.
-     *
+     * 
      * @param description the description value to set.
      * @return the ShareProperties object itself.
      */
@@ -107,7 +111,7 @@ public final class ShareProperties {
 
     /**
      * Get the shareStatus property: Current status of the share.
-     *
+     * 
      * @return the shareStatus value.
      */
     public ShareStatus shareStatus() {
@@ -116,7 +120,7 @@ public final class ShareProperties {
 
     /**
      * Set the shareStatus property: Current status of the share.
-     *
+     * 
      * @param shareStatus the shareStatus value to set.
      * @return the ShareProperties object itself.
      */
@@ -127,7 +131,7 @@ public final class ShareProperties {
 
     /**
      * Get the monitoringStatus property: Current monitoring status of the share.
-     *
+     * 
      * @return the monitoringStatus value.
      */
     public MonitoringStatus monitoringStatus() {
@@ -136,7 +140,7 @@ public final class ShareProperties {
 
     /**
      * Set the monitoringStatus property: Current monitoring status of the share.
-     *
+     * 
      * @param monitoringStatus the monitoringStatus value to set.
      * @return the ShareProperties object itself.
      */
@@ -147,7 +151,7 @@ public final class ShareProperties {
 
     /**
      * Get the azureContainerInfo property: Azure container mapping for the share.
-     *
+     * 
      * @return the azureContainerInfo value.
      */
     public AzureContainerInfo azureContainerInfo() {
@@ -156,7 +160,7 @@ public final class ShareProperties {
 
     /**
      * Set the azureContainerInfo property: Azure container mapping for the share.
-     *
+     * 
      * @param azureContainerInfo the azureContainerInfo value to set.
      * @return the ShareProperties object itself.
      */
@@ -167,7 +171,7 @@ public final class ShareProperties {
 
     /**
      * Get the accessProtocol property: Access protocol to be used by the share.
-     *
+     * 
      * @return the accessProtocol value.
      */
     public ShareAccessProtocol accessProtocol() {
@@ -176,7 +180,7 @@ public final class ShareProperties {
 
     /**
      * Set the accessProtocol property: Access protocol to be used by the share.
-     *
+     * 
      * @param accessProtocol the accessProtocol value to set.
      * @return the ShareProperties object itself.
      */
@@ -188,7 +192,7 @@ public final class ShareProperties {
     /**
      * Get the userAccessRights property: Mapping of users and corresponding access rights on the share (required for
      * SMB protocol).
-     *
+     * 
      * @return the userAccessRights value.
      */
     public List<UserAccessRight> userAccessRights() {
@@ -198,7 +202,7 @@ public final class ShareProperties {
     /**
      * Set the userAccessRights property: Mapping of users and corresponding access rights on the share (required for
      * SMB protocol).
-     *
+     * 
      * @param userAccessRights the userAccessRights value to set.
      * @return the ShareProperties object itself.
      */
@@ -210,7 +214,7 @@ public final class ShareProperties {
     /**
      * Get the clientAccessRights property: List of IP addresses and corresponding access rights on the share(required
      * for NFS protocol).
-     *
+     * 
      * @return the clientAccessRights value.
      */
     public List<ClientAccessRight> clientAccessRights() {
@@ -220,7 +224,7 @@ public final class ShareProperties {
     /**
      * Set the clientAccessRights property: List of IP addresses and corresponding access rights on the share(required
      * for NFS protocol).
-     *
+     * 
      * @param clientAccessRights the clientAccessRights value to set.
      * @return the ShareProperties object itself.
      */
@@ -231,7 +235,7 @@ public final class ShareProperties {
 
     /**
      * Get the refreshDetails property: Details of the refresh job on this share.
-     *
+     * 
      * @return the refreshDetails value.
      */
     public RefreshDetails refreshDetails() {
@@ -240,7 +244,7 @@ public final class ShareProperties {
 
     /**
      * Set the refreshDetails property: Details of the refresh job on this share.
-     *
+     * 
      * @param refreshDetails the refreshDetails value to set.
      * @return the ShareProperties object itself.
      */
@@ -251,7 +255,7 @@ public final class ShareProperties {
 
     /**
      * Get the shareMappings property: Share mount point to the role.
-     *
+     * 
      * @return the shareMappings value.
      */
     public List<MountPointMap> shareMappings() {
@@ -260,7 +264,7 @@ public final class ShareProperties {
 
     /**
      * Get the dataPolicy property: Data policy of the share.
-     *
+     * 
      * @return the dataPolicy value.
      */
     public DataPolicy dataPolicy() {
@@ -269,7 +273,7 @@ public final class ShareProperties {
 
     /**
      * Set the dataPolicy property: Data policy of the share.
-     *
+     * 
      * @param dataPolicy the dataPolicy value to set.
      * @return the ShareProperties object itself.
      */
@@ -280,28 +284,24 @@ public final class ShareProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (shareStatus() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property shareStatus in model ShareProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property shareStatus in model ShareProperties"));
         }
         if (monitoringStatus() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property monitoringStatus in model ShareProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property monitoringStatus in model ShareProperties"));
         }
         if (azureContainerInfo() != null) {
             azureContainerInfo().validate();
         }
         if (accessProtocol() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property accessProtocol in model ShareProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property accessProtocol in model ShareProperties"));
         }
         if (userAccessRights() != null) {
             userAccessRights().forEach(e -> e.validate());

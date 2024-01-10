@@ -14,7 +14,9 @@ import com.azure.resourcemanager.databoxedge.models.UpdateOperationStage;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** A device job. */
+/**
+ * A device job.
+ */
 @Immutable
 public final class JobInner {
     /*
@@ -71,13 +73,15 @@ public final class JobInner {
     @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
     private JobProperties innerProperties;
 
-    /** Creates an instance of JobInner class. */
+    /**
+     * Creates an instance of JobInner class.
+     */
     public JobInner() {
     }
 
     /**
      * Get the id property: The path ID that uniquely identifies the object.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -86,7 +90,7 @@ public final class JobInner {
 
     /**
      * Get the name property: The name of the object.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -95,7 +99,7 @@ public final class JobInner {
 
     /**
      * Get the type property: The hierarchical type of the object.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -104,7 +108,7 @@ public final class JobInner {
 
     /**
      * Get the status property: The current status of the job.
-     *
+     * 
      * @return the status value.
      */
     public JobStatus status() {
@@ -113,7 +117,7 @@ public final class JobInner {
 
     /**
      * Get the startTime property: The UTC date and time at which the job started.
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -122,7 +126,7 @@ public final class JobInner {
 
     /**
      * Get the endTime property: The UTC date and time at which the job completed.
-     *
+     * 
      * @return the endTime value.
      */
     public OffsetDateTime endTime() {
@@ -131,7 +135,7 @@ public final class JobInner {
 
     /**
      * Get the percentComplete property: The percentage of the job that is complete.
-     *
+     * 
      * @return the percentComplete value.
      */
     public Integer percentComplete() {
@@ -140,7 +144,7 @@ public final class JobInner {
 
     /**
      * Get the error property: The error details.
-     *
+     * 
      * @return the error value.
      */
     public JobErrorDetails error() {
@@ -149,7 +153,7 @@ public final class JobInner {
 
     /**
      * Get the innerProperties property: The properties of the job.
-     *
+     * 
      * @return the innerProperties value.
      */
     private JobProperties innerProperties() {
@@ -158,7 +162,7 @@ public final class JobInner {
 
     /**
      * Get the jobType property: The type of the job.
-     *
+     * 
      * @return the jobType value.
      */
     public JobType jobType() {
@@ -167,7 +171,7 @@ public final class JobInner {
 
     /**
      * Get the currentStage property: Current stage of the update operation.
-     *
+     * 
      * @return the currentStage value.
      */
     public UpdateOperationStage currentStage() {
@@ -176,7 +180,7 @@ public final class JobInner {
 
     /**
      * Get the downloadProgress property: The download progress.
-     *
+     * 
      * @return the downloadProgress value.
      */
     public UpdateDownloadProgress downloadProgress() {
@@ -185,7 +189,7 @@ public final class JobInner {
 
     /**
      * Get the installProgress property: The install progress.
-     *
+     * 
      * @return the installProgress value.
      */
     public UpdateInstallProgress installProgress() {
@@ -194,7 +198,7 @@ public final class JobInner {
 
     /**
      * Get the totalRefreshErrors property: Total number of errors encountered during the refresh process.
-     *
+     * 
      * @return the totalRefreshErrors value.
      */
     public Integer totalRefreshErrors() {
@@ -204,7 +208,7 @@ public final class JobInner {
     /**
      * Get the errorManifestFile property: Local share/remote container relative path to the error manifest file of the
      * refresh.
-     *
+     * 
      * @return the errorManifestFile value.
      */
     public String errorManifestFile() {
@@ -213,7 +217,7 @@ public final class JobInner {
 
     /**
      * Get the refreshedEntityId property: ARM ID of the entity that was refreshed.
-     *
+     * 
      * @return the refreshedEntityId value.
      */
     public String refreshedEntityId() {
@@ -223,7 +227,7 @@ public final class JobInner {
     /**
      * Get the folder property: If only subfolders need to be refreshed, then the subfolder path inside the share or
      * container. (The path is empty if there are no subfolders.).
-     *
+     * 
      * @return the folder value.
      */
     public String folder() {
@@ -233,7 +237,7 @@ public final class JobInner {
     /**
      * Set the folder property: If only subfolders need to be refreshed, then the subfolder path inside the share or
      * container. (The path is empty if there are no subfolders.).
-     *
+     * 
      * @param folder the folder value to set.
      * @return the JobInner object itself.
      */
@@ -247,7 +251,7 @@ public final class JobInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

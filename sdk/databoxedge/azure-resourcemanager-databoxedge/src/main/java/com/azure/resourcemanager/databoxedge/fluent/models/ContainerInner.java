@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.databoxedge.models.ArmBaseModel;
 import com.azure.resourcemanager.databoxedge.models.AzureContainerDataFormat;
@@ -13,7 +14,9 @@ import com.azure.resourcemanager.databoxedge.models.RefreshDetails;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Represents a container on the Data Box Edge/Gateway device. */
+/**
+ * Represents a container on the Data Box Edge/Gateway device.
+ */
 @Fluent
 public final class ContainerInner extends ArmBaseModel {
     /*
@@ -22,13 +25,21 @@ public final class ContainerInner extends ArmBaseModel {
     @JsonProperty(value = "properties", required = true)
     private ContainerProperties innerProperties = new ContainerProperties();
 
-    /** Creates an instance of ContainerInner class. */
+    /*
+     * Metadata pertaining to creation and last modification of Container
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of ContainerInner class.
+     */
     public ContainerInner() {
     }
 
     /**
      * Get the innerProperties property: The container properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ContainerProperties innerProperties() {
@@ -36,8 +47,17 @@ public final class ContainerInner extends ArmBaseModel {
     }
 
     /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of Container.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the containerStatus property: Current status of the container.
-     *
+     * 
      * @return the containerStatus value.
      */
     public ContainerStatus containerStatus() {
@@ -46,7 +66,7 @@ public final class ContainerInner extends ArmBaseModel {
 
     /**
      * Get the dataFormat property: DataFormat for Container.
-     *
+     * 
      * @return the dataFormat value.
      */
     public AzureContainerDataFormat dataFormat() {
@@ -55,7 +75,7 @@ public final class ContainerInner extends ArmBaseModel {
 
     /**
      * Set the dataFormat property: DataFormat for Container.
-     *
+     * 
      * @param dataFormat the dataFormat value to set.
      * @return the ContainerInner object itself.
      */
@@ -69,7 +89,7 @@ public final class ContainerInner extends ArmBaseModel {
 
     /**
      * Get the refreshDetails property: Details of the refresh job on this container.
-     *
+     * 
      * @return the refreshDetails value.
      */
     public RefreshDetails refreshDetails() {
@@ -78,7 +98,7 @@ public final class ContainerInner extends ArmBaseModel {
 
     /**
      * Get the createdDateTime property: The UTC time when container got created.
-     *
+     * 
      * @return the createdDateTime value.
      */
     public OffsetDateTime createdDateTime() {
@@ -87,16 +107,15 @@ public final class ContainerInner extends ArmBaseModel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model ContainerInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model ContainerInner"));
         } else {
             innerProperties().validate();
         }

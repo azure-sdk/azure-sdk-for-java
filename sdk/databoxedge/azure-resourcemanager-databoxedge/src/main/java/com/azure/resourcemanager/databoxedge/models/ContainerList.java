@@ -9,7 +9,9 @@ import com.azure.resourcemanager.databoxedge.fluent.models.ContainerInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Collection of all the containers on the Data Box Edge/Gateway device. */
+/**
+ * Collection of all the containers on the Data Box Edge/Gateway device.
+ */
 @Immutable
 public final class ContainerList {
     /*
@@ -24,13 +26,15 @@ public final class ContainerList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ContainerList class. */
+    /**
+     * Creates an instance of ContainerList class.
+     */
     public ContainerList() {
     }
 
     /**
      * Get the value property: The list of containers.
-     *
+     * 
      * @return the value value.
      */
     public List<ContainerInner> value() {
@@ -39,7 +43,7 @@ public final class ContainerList {
 
     /**
      * Get the nextLink property: Link to the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class ContainerList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

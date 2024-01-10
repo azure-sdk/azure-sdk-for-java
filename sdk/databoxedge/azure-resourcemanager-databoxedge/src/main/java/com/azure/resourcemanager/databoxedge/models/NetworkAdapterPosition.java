@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databoxedge.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The network adapter position. */
+/**
+ * The network adapter position.
+ */
 @Immutable
 public final class NetworkAdapterPosition {
     /*
@@ -22,13 +24,15 @@ public final class NetworkAdapterPosition {
     @JsonProperty(value = "port", access = JsonProperty.Access.WRITE_ONLY)
     private Integer port;
 
-    /** Creates an instance of NetworkAdapterPosition class. */
+    /**
+     * Creates an instance of NetworkAdapterPosition class.
+     */
     public NetworkAdapterPosition() {
     }
 
     /**
      * Get the networkGroup property: The network group.
-     *
+     * 
      * @return the networkGroup value.
      */
     public NetworkGroup networkGroup() {
@@ -37,7 +41,7 @@ public final class NetworkAdapterPosition {
 
     /**
      * Get the port property: The port.
-     *
+     * 
      * @return the port value.
      */
     public Integer port() {
@@ -46,7 +50,7 @@ public final class NetworkAdapterPosition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

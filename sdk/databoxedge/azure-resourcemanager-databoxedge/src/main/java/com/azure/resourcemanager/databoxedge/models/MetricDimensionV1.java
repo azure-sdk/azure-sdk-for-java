@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databoxedge.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Metric Dimension v1. */
+/**
+ * Metric Dimension v1.
+ */
 @Fluent
 public final class MetricDimensionV1 {
     /*
@@ -28,13 +30,15 @@ public final class MetricDimensionV1 {
     @JsonProperty(value = "toBeExportedForShoebox")
     private Boolean toBeExportedForShoebox;
 
-    /** Creates an instance of MetricDimensionV1 class. */
+    /**
+     * Creates an instance of MetricDimensionV1 class.
+     */
     public MetricDimensionV1() {
     }
 
     /**
      * Get the name property: Name of the metrics dimension.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -43,7 +47,7 @@ public final class MetricDimensionV1 {
 
     /**
      * Set the name property: Name of the metrics dimension.
-     *
+     * 
      * @param name the name value to set.
      * @return the MetricDimensionV1 object itself.
      */
@@ -54,7 +58,7 @@ public final class MetricDimensionV1 {
 
     /**
      * Get the displayName property: Display name of the metrics dimension.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -63,7 +67,7 @@ public final class MetricDimensionV1 {
 
     /**
      * Set the displayName property: Display name of the metrics dimension.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the MetricDimensionV1 object itself.
      */
@@ -74,7 +78,7 @@ public final class MetricDimensionV1 {
 
     /**
      * Get the toBeExportedForShoebox property: To be exported to shoe box.
-     *
+     * 
      * @return the toBeExportedForShoebox value.
      */
     public Boolean toBeExportedForShoebox() {
@@ -83,7 +87,7 @@ public final class MetricDimensionV1 {
 
     /**
      * Set the toBeExportedForShoebox property: To be exported to shoe box.
-     *
+     * 
      * @param toBeExportedForShoebox the toBeExportedForShoebox value to set.
      * @return the MetricDimensionV1 object itself.
      */
@@ -94,7 +98,7 @@ public final class MetricDimensionV1 {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

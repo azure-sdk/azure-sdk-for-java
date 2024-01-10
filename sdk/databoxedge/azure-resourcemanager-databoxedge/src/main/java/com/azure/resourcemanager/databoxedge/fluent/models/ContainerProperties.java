@@ -12,7 +12,9 @@ import com.azure.resourcemanager.databoxedge.models.RefreshDetails;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The container properties. */
+/**
+ * The container properties.
+ */
 @Fluent
 public final class ContainerProperties {
     /*
@@ -39,13 +41,15 @@ public final class ContainerProperties {
     @JsonProperty(value = "createdDateTime", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime createdDateTime;
 
-    /** Creates an instance of ContainerProperties class. */
+    /**
+     * Creates an instance of ContainerProperties class.
+     */
     public ContainerProperties() {
     }
 
     /**
      * Get the containerStatus property: Current status of the container.
-     *
+     * 
      * @return the containerStatus value.
      */
     public ContainerStatus containerStatus() {
@@ -54,7 +58,7 @@ public final class ContainerProperties {
 
     /**
      * Get the dataFormat property: DataFormat for Container.
-     *
+     * 
      * @return the dataFormat value.
      */
     public AzureContainerDataFormat dataFormat() {
@@ -63,7 +67,7 @@ public final class ContainerProperties {
 
     /**
      * Set the dataFormat property: DataFormat for Container.
-     *
+     * 
      * @param dataFormat the dataFormat value to set.
      * @return the ContainerProperties object itself.
      */
@@ -74,7 +78,7 @@ public final class ContainerProperties {
 
     /**
      * Get the refreshDetails property: Details of the refresh job on this container.
-     *
+     * 
      * @return the refreshDetails value.
      */
     public RefreshDetails refreshDetails() {
@@ -83,7 +87,7 @@ public final class ContainerProperties {
 
     /**
      * Get the createdDateTime property: The UTC time when container got created.
-     *
+     * 
      * @return the createdDateTime value.
      */
     public OffsetDateTime createdDateTime() {
@@ -92,14 +96,13 @@ public final class ContainerProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (dataFormat() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property dataFormat in model ContainerProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property dataFormat in model ContainerProperties"));
         }
         if (refreshDetails() != null) {
             refreshDetails().validate();

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databoxedge.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Error details for the alert. */
+/**
+ * Error details for the alert.
+ */
 @Immutable
 public final class AlertErrorDetails {
     /*
@@ -28,13 +30,15 @@ public final class AlertErrorDetails {
     @JsonProperty(value = "occurrences", access = JsonProperty.Access.WRITE_ONLY)
     private Integer occurrences;
 
-    /** Creates an instance of AlertErrorDetails class. */
+    /**
+     * Creates an instance of AlertErrorDetails class.
+     */
     public AlertErrorDetails() {
     }
 
     /**
      * Get the errorCode property: Error code.
-     *
+     * 
      * @return the errorCode value.
      */
     public String errorCode() {
@@ -43,7 +47,7 @@ public final class AlertErrorDetails {
 
     /**
      * Get the errorMessage property: Error Message.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -52,7 +56,7 @@ public final class AlertErrorDetails {
 
     /**
      * Get the occurrences property: Number of occurrences.
-     *
+     * 
      * @return the occurrences value.
      */
     public Integer occurrences() {
@@ -61,7 +65,7 @@ public final class AlertErrorDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

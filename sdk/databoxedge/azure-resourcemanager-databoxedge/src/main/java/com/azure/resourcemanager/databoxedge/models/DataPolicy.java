@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Data policy of the share. */
+/**
+ * Data policy of the share.
+ */
 public final class DataPolicy extends ExpandableStringEnum<DataPolicy> {
-    /** Static value Cloud for DataPolicy. */
+    /**
+     * Static value Cloud for DataPolicy.
+     */
     public static final DataPolicy CLOUD = fromString("Cloud");
 
-    /** Static value Local for DataPolicy. */
+    /**
+     * Static value Local for DataPolicy.
+     */
     public static final DataPolicy LOCAL = fromString("Local");
 
     /**
      * Creates a new instance of DataPolicy value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class DataPolicy extends ExpandableStringEnum<DataPolicy> {
 
     /**
      * Creates or finds a DataPolicy from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding DataPolicy.
      */
@@ -38,7 +44,7 @@ public final class DataPolicy extends ExpandableStringEnum<DataPolicy> {
 
     /**
      * Gets known DataPolicy values.
-     *
+     * 
      * @return known DataPolicy values.
      */
     public static Collection<DataPolicy> values() {

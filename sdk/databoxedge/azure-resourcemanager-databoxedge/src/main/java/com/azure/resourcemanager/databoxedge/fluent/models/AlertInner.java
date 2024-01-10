@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.databoxedge.models.AlertErrorDetails;
 import com.azure.resourcemanager.databoxedge.models.AlertSeverity;
 import com.azure.resourcemanager.databoxedge.models.ArmBaseModel;
@@ -12,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
-/** Alert on the data box edge/gateway device. */
+/**
+ * Alert on the data box edge/gateway device.
+ */
 @Immutable
 public final class AlertInner extends ArmBaseModel {
     /*
@@ -21,13 +24,21 @@ public final class AlertInner extends ArmBaseModel {
     @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
     private AlertProperties innerProperties;
 
-    /** Creates an instance of AlertInner class. */
+    /*
+     * Metadata pertaining to creation and last modification of Alert
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of AlertInner class.
+     */
     public AlertInner() {
     }
 
     /**
      * Get the innerProperties property: Properties of alert.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AlertProperties innerProperties() {
@@ -35,8 +46,17 @@ public final class AlertInner extends ArmBaseModel {
     }
 
     /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of Alert.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the title property: Alert title.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -45,7 +65,7 @@ public final class AlertInner extends ArmBaseModel {
 
     /**
      * Get the alertType property: Alert type.
-     *
+     * 
      * @return the alertType value.
      */
     public String alertType() {
@@ -54,7 +74,7 @@ public final class AlertInner extends ArmBaseModel {
 
     /**
      * Get the appearedAtDateTime property: UTC time when the alert appeared.
-     *
+     * 
      * @return the appearedAtDateTime value.
      */
     public OffsetDateTime appearedAtDateTime() {
@@ -63,7 +83,7 @@ public final class AlertInner extends ArmBaseModel {
 
     /**
      * Get the recommendation property: Alert recommendation.
-     *
+     * 
      * @return the recommendation value.
      */
     public String recommendation() {
@@ -72,7 +92,7 @@ public final class AlertInner extends ArmBaseModel {
 
     /**
      * Get the severity property: Severity of the alert.
-     *
+     * 
      * @return the severity value.
      */
     public AlertSeverity severity() {
@@ -81,7 +101,7 @@ public final class AlertInner extends ArmBaseModel {
 
     /**
      * Get the errorDetails property: Error details of the alert.
-     *
+     * 
      * @return the errorDetails value.
      */
     public AlertErrorDetails errorDetails() {
@@ -90,7 +110,7 @@ public final class AlertInner extends ArmBaseModel {
 
     /**
      * Get the detailedInformation property: Alert details.
-     *
+     * 
      * @return the detailedInformation value.
      */
     public Map<String, String> detailedInformation() {
@@ -99,7 +119,7 @@ public final class AlertInner extends ArmBaseModel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

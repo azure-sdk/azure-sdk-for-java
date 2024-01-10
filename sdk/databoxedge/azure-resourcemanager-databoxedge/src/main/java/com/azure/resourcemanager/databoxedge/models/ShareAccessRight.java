@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Specifies the mapping between this particular user and the type of access he has on shares on this device. */
+/**
+ * Specifies the mapping between this particular user and the type of access he has on shares on this device.
+ */
 @Fluent
 public final class ShareAccessRight {
     /*
@@ -23,13 +25,15 @@ public final class ShareAccessRight {
     @JsonProperty(value = "accessType", required = true)
     private ShareAccessType accessType;
 
-    /** Creates an instance of ShareAccessRight class. */
+    /**
+     * Creates an instance of ShareAccessRight class.
+     */
     public ShareAccessRight() {
     }
 
     /**
      * Get the shareId property: The share ID.
-     *
+     * 
      * @return the shareId value.
      */
     public String shareId() {
@@ -38,7 +42,7 @@ public final class ShareAccessRight {
 
     /**
      * Set the shareId property: The share ID.
-     *
+     * 
      * @param shareId the shareId value to set.
      * @return the ShareAccessRight object itself.
      */
@@ -49,7 +53,7 @@ public final class ShareAccessRight {
 
     /**
      * Get the accessType property: Type of access to be allowed on the share for this user.
-     *
+     * 
      * @return the accessType value.
      */
     public ShareAccessType accessType() {
@@ -58,7 +62,7 @@ public final class ShareAccessRight {
 
     /**
      * Set the accessType property: Type of access to be allowed on the share for this user.
-     *
+     * 
      * @param accessType the accessType value to set.
      * @return the ShareAccessRight object itself.
      */
@@ -69,19 +73,17 @@ public final class ShareAccessRight {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (shareId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property shareId in model ShareAccessRight"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property shareId in model ShareAccessRight"));
         }
         if (accessType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property accessType in model ShareAccessRight"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property accessType in model ShareAccessRight"));
         }
     }
 

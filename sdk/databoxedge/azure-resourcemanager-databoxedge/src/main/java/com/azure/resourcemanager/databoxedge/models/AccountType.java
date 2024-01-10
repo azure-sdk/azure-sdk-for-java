@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Type of storage accessed on the storage account. */
+/**
+ * Type of storage accessed on the storage account.
+ */
 public final class AccountType extends ExpandableStringEnum<AccountType> {
-    /** Static value GeneralPurposeStorage for AccountType. */
+    /**
+     * Static value GeneralPurposeStorage for AccountType.
+     */
     public static final AccountType GENERAL_PURPOSE_STORAGE = fromString("GeneralPurposeStorage");
 
-    /** Static value BlobStorage for AccountType. */
+    /**
+     * Static value BlobStorage for AccountType.
+     */
     public static final AccountType BLOB_STORAGE = fromString("BlobStorage");
 
     /**
      * Creates a new instance of AccountType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class AccountType extends ExpandableStringEnum<AccountType> {
 
     /**
      * Creates or finds a AccountType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding AccountType.
      */
@@ -38,7 +44,7 @@ public final class AccountType extends ExpandableStringEnum<AccountType> {
 
     /**
      * Gets known AccountType values.
-     *
+     * 
      * @return known AccountType values.
      */
     public static Collection<AccountType> values() {

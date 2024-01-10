@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Metric category. */
+/**
+ * Metric category.
+ */
 public final class MetricCategory extends ExpandableStringEnum<MetricCategory> {
-    /** Static value Capacity for MetricCategory. */
+    /**
+     * Static value Capacity for MetricCategory.
+     */
     public static final MetricCategory CAPACITY = fromString("Capacity");
 
-    /** Static value Transaction for MetricCategory. */
+    /**
+     * Static value Transaction for MetricCategory.
+     */
     public static final MetricCategory TRANSACTION = fromString("Transaction");
 
     /**
      * Creates a new instance of MetricCategory value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class MetricCategory extends ExpandableStringEnum<MetricCategory> {
 
     /**
      * Creates or finds a MetricCategory from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding MetricCategory.
      */
@@ -38,7 +44,7 @@ public final class MetricCategory extends ExpandableStringEnum<MetricCategory> {
 
     /**
      * Gets known MetricCategory values.
-     *
+     * 
      * @return known MetricCategory values.
      */
     public static Collection<MetricCategory> values() {

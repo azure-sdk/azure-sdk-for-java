@@ -10,7 +10,9 @@ import com.azure.resourcemanager.databoxedge.models.FileSourceInfo;
 import com.azure.resourcemanager.databoxedge.models.RoleSinkInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** File trigger properties. */
+/**
+ * File trigger properties.
+ */
 @Fluent
 public final class FileTriggerProperties {
     /*
@@ -33,13 +35,15 @@ public final class FileTriggerProperties {
     @JsonProperty(value = "customContextTag")
     private String customContextTag;
 
-    /** Creates an instance of FileTriggerProperties class. */
+    /**
+     * Creates an instance of FileTriggerProperties class.
+     */
     public FileTriggerProperties() {
     }
 
     /**
      * Get the sourceInfo property: File event source details.
-     *
+     * 
      * @return the sourceInfo value.
      */
     public FileSourceInfo sourceInfo() {
@@ -48,7 +52,7 @@ public final class FileTriggerProperties {
 
     /**
      * Set the sourceInfo property: File event source details.
-     *
+     * 
      * @param sourceInfo the sourceInfo value to set.
      * @return the FileTriggerProperties object itself.
      */
@@ -59,7 +63,7 @@ public final class FileTriggerProperties {
 
     /**
      * Get the sinkInfo property: Role sink info.
-     *
+     * 
      * @return the sinkInfo value.
      */
     public RoleSinkInfo sinkInfo() {
@@ -68,7 +72,7 @@ public final class FileTriggerProperties {
 
     /**
      * Set the sinkInfo property: Role sink info.
-     *
+     * 
      * @param sinkInfo the sinkInfo value to set.
      * @return the FileTriggerProperties object itself.
      */
@@ -81,7 +85,7 @@ public final class FileTriggerProperties {
      * Get the customContextTag property: A custom context tag typically used to correlate the trigger against its
      * usage. For example, if a periodic timer trigger is intended for certain specific IoT modules in the device, the
      * tag can be the name or the image URL of the module.
-     *
+     * 
      * @return the customContextTag value.
      */
     public String customContextTag() {
@@ -92,7 +96,7 @@ public final class FileTriggerProperties {
      * Set the customContextTag property: A custom context tag typically used to correlate the trigger against its
      * usage. For example, if a periodic timer trigger is intended for certain specific IoT modules in the device, the
      * tag can be the name or the image URL of the module.
-     *
+     * 
      * @param customContextTag the customContextTag value to set.
      * @return the FileTriggerProperties object itself.
      */
@@ -103,22 +107,19 @@ public final class FileTriggerProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourceInfo in model FileTriggerProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property sourceInfo in model FileTriggerProperties"));
         } else {
             sourceInfo().validate();
         }
         if (sinkInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property sinkInfo in model FileTriggerProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property sinkInfo in model FileTriggerProperties"));
         } else {
             sinkInfo().validate();
         }

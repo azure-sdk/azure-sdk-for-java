@@ -7,16 +7,20 @@ package com.azure.resourcemanager.databoxedge.models;
 import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
 
-/** Represents the base class for all object models. */
+/**
+ * Represents the base class for all object models.
+ */
 @Immutable
 public class ArmBaseModel extends ProxyResource {
-    /** Creates an instance of ArmBaseModel class. */
+    /**
+     * Creates an instance of ArmBaseModel class.
+     */
     public ArmBaseModel() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

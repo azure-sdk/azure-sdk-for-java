@@ -9,7 +9,9 @@ import com.azure.resourcemanager.databoxedge.fluent.models.ShareInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Collection of all the shares on the Data Box Edge/Gateway device. */
+/**
+ * Collection of all the shares on the Data Box Edge/Gateway device.
+ */
 @Immutable
 public final class ShareList {
     /*
@@ -24,13 +26,15 @@ public final class ShareList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ShareList class. */
+    /**
+     * Creates an instance of ShareList class.
+     */
     public ShareList() {
     }
 
     /**
      * Get the value property: The list of shares.
-     *
+     * 
      * @return the value value.
      */
     public List<ShareInner> value() {
@@ -39,7 +43,7 @@ public final class ShareList {
 
     /**
      * Get the nextLink property: Link to the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class ShareList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

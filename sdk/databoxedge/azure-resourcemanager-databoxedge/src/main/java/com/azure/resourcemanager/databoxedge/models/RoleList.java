@@ -9,7 +9,9 @@ import com.azure.resourcemanager.databoxedge.fluent.models.RoleInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Collection of all the roles on the Data Box Edge device. */
+/**
+ * Collection of all the roles on the Data Box Edge device.
+ */
 @Immutable
 public final class RoleList {
     /*
@@ -24,13 +26,15 @@ public final class RoleList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of RoleList class. */
+    /**
+     * Creates an instance of RoleList class.
+     */
     public RoleList() {
     }
 
     /**
      * Get the value property: The Value.
-     *
+     * 
      * @return the value value.
      */
     public List<RoleInner> value() {
@@ -39,7 +43,7 @@ public final class RoleList {
 
     /**
      * Get the nextLink property: Link to the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class RoleList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

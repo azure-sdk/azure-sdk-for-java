@@ -9,13 +9,22 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.databoxedge.models.Address;
 import com.azure.resourcemanager.databoxedge.models.ContactDetails;
 import com.azure.resourcemanager.databoxedge.models.OrderStatus;
+import com.azure.resourcemanager.databoxedge.models.ShipmentType;
 import com.azure.resourcemanager.databoxedge.models.TrackingInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Order properties. */
+/**
+ * Order properties.
+ */
 @Fluent
 public final class OrderProperties {
+    /*
+     * It specify the order resource id.
+     */
+    @JsonProperty(value = "orderId", access = JsonProperty.Access.WRITE_ONLY)
+    private String orderId;
+
     /*
      * The contact details.
      */
@@ -25,13 +34,13 @@ public final class OrderProperties {
     /*
      * The shipping address.
      */
-    @JsonProperty(value = "shippingAddress", required = true)
+    @JsonProperty(value = "shippingAddress")
     private Address shippingAddress;
 
     /*
      * Current status of the order.
      */
-    @JsonProperty(value = "currentStatus")
+    @JsonProperty(value = "currentStatus", access = JsonProperty.Access.WRITE_ONLY)
     private OrderStatus currentStatus;
 
     /*
@@ -60,13 +69,30 @@ public final class OrderProperties {
     @JsonProperty(value = "returnTrackingInfo", access = JsonProperty.Access.WRITE_ONLY)
     private List<TrackingInfo> returnTrackingInfo;
 
-    /** Creates an instance of OrderProperties class. */
+    /*
+     * ShipmentType of the order
+     */
+    @JsonProperty(value = "shipmentType")
+    private ShipmentType shipmentType;
+
+    /**
+     * Creates an instance of OrderProperties class.
+     */
     public OrderProperties() {
     }
 
     /**
+     * Get the orderId property: It specify the order resource id.
+     * 
+     * @return the orderId value.
+     */
+    public String orderId() {
+        return this.orderId;
+    }
+
+    /**
      * Get the contactInformation property: The contact details.
-     *
+     * 
      * @return the contactInformation value.
      */
     public ContactDetails contactInformation() {
@@ -75,7 +101,7 @@ public final class OrderProperties {
 
     /**
      * Set the contactInformation property: The contact details.
-     *
+     * 
      * @param contactInformation the contactInformation value to set.
      * @return the OrderProperties object itself.
      */
@@ -86,7 +112,7 @@ public final class OrderProperties {
 
     /**
      * Get the shippingAddress property: The shipping address.
-     *
+     * 
      * @return the shippingAddress value.
      */
     public Address shippingAddress() {
@@ -95,7 +121,7 @@ public final class OrderProperties {
 
     /**
      * Set the shippingAddress property: The shipping address.
-     *
+     * 
      * @param shippingAddress the shippingAddress value to set.
      * @return the OrderProperties object itself.
      */
@@ -106,7 +132,7 @@ public final class OrderProperties {
 
     /**
      * Get the currentStatus property: Current status of the order.
-     *
+     * 
      * @return the currentStatus value.
      */
     public OrderStatus currentStatus() {
@@ -114,19 +140,8 @@ public final class OrderProperties {
     }
 
     /**
-     * Set the currentStatus property: Current status of the order.
-     *
-     * @param currentStatus the currentStatus value to set.
-     * @return the OrderProperties object itself.
-     */
-    public OrderProperties withCurrentStatus(OrderStatus currentStatus) {
-        this.currentStatus = currentStatus;
-        return this;
-    }
-
-    /**
      * Get the orderHistory property: List of status changes in the order.
-     *
+     * 
      * @return the orderHistory value.
      */
     public List<OrderStatus> orderHistory() {
@@ -135,7 +150,7 @@ public final class OrderProperties {
 
     /**
      * Get the serialNumber property: Serial number of the device.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -145,7 +160,7 @@ public final class OrderProperties {
     /**
      * Get the deliveryTrackingInfo property: Tracking information for the package delivered to the customer whether it
      * has an original or a replacement device.
-     *
+     * 
      * @return the deliveryTrackingInfo value.
      */
     public List<TrackingInfo> deliveryTrackingInfo() {
@@ -155,7 +170,7 @@ public final class OrderProperties {
     /**
      * Get the returnTrackingInfo property: Tracking information for the package returned from the customer whether it
      * has an original or a replacement device.
-     *
+     * 
      * @return the returnTrackingInfo value.
      */
     public List<TrackingInfo> returnTrackingInfo() {
@@ -163,24 +178,38 @@ public final class OrderProperties {
     }
 
     /**
+     * Get the shipmentType property: ShipmentType of the order.
+     * 
+     * @return the shipmentType value.
+     */
+    public ShipmentType shipmentType() {
+        return this.shipmentType;
+    }
+
+    /**
+     * Set the shipmentType property: ShipmentType of the order.
+     * 
+     * @param shipmentType the shipmentType value to set.
+     * @return the OrderProperties object itself.
+     */
+    public OrderProperties withShipmentType(ShipmentType shipmentType) {
+        this.shipmentType = shipmentType;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (contactInformation() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property contactInformation in model OrderProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property contactInformation in model OrderProperties"));
         } else {
             contactInformation().validate();
         }
-        if (shippingAddress() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property shippingAddress in model OrderProperties"));
-        } else {
+        if (shippingAddress() != null) {
             shippingAddress().validate();
         }
         if (currentStatus() != null) {

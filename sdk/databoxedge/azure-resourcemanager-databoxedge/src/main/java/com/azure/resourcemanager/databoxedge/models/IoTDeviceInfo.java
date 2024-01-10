@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Metadata of IoT device/IoT Edge device to be configured. */
+/**
+ * Metadata of IoT device/IoT Edge device to be configured.
+ */
 @Fluent
 public final class IoTDeviceInfo {
     /*
@@ -30,18 +32,20 @@ public final class IoTDeviceInfo {
     private String ioTHostHubId;
 
     /*
-     * IoT device authentication info.
+     * Encrypted IoT device/IoT edge device connection string.
      */
     @JsonProperty(value = "authentication")
     private Authentication authentication;
 
-    /** Creates an instance of IoTDeviceInfo class. */
+    /**
+     * Creates an instance of IoTDeviceInfo class.
+     */
     public IoTDeviceInfo() {
     }
 
     /**
      * Get the deviceId property: ID of the IoT device/edge device.
-     *
+     * 
      * @return the deviceId value.
      */
     public String deviceId() {
@@ -50,7 +54,7 @@ public final class IoTDeviceInfo {
 
     /**
      * Set the deviceId property: ID of the IoT device/edge device.
-     *
+     * 
      * @param deviceId the deviceId value to set.
      * @return the IoTDeviceInfo object itself.
      */
@@ -61,7 +65,7 @@ public final class IoTDeviceInfo {
 
     /**
      * Get the ioTHostHub property: Host name for the IoT hub associated to the device.
-     *
+     * 
      * @return the ioTHostHub value.
      */
     public String ioTHostHub() {
@@ -70,7 +74,7 @@ public final class IoTDeviceInfo {
 
     /**
      * Set the ioTHostHub property: Host name for the IoT hub associated to the device.
-     *
+     * 
      * @param ioTHostHub the ioTHostHub value to set.
      * @return the IoTDeviceInfo object itself.
      */
@@ -81,7 +85,7 @@ public final class IoTDeviceInfo {
 
     /**
      * Get the ioTHostHubId property: Id for the IoT hub associated to the device.
-     *
+     * 
      * @return the ioTHostHubId value.
      */
     public String ioTHostHubId() {
@@ -90,7 +94,7 @@ public final class IoTDeviceInfo {
 
     /**
      * Set the ioTHostHubId property: Id for the IoT hub associated to the device.
-     *
+     * 
      * @param ioTHostHubId the ioTHostHubId value to set.
      * @return the IoTDeviceInfo object itself.
      */
@@ -100,8 +104,8 @@ public final class IoTDeviceInfo {
     }
 
     /**
-     * Get the authentication property: IoT device authentication info.
-     *
+     * Get the authentication property: Encrypted IoT device/IoT edge device connection string.
+     * 
      * @return the authentication value.
      */
     public Authentication authentication() {
@@ -109,8 +113,8 @@ public final class IoTDeviceInfo {
     }
 
     /**
-     * Set the authentication property: IoT device authentication info.
-     *
+     * Set the authentication property: Encrypted IoT device/IoT edge device connection string.
+     * 
      * @param authentication the authentication value to set.
      * @return the IoTDeviceInfo object itself.
      */
@@ -121,19 +125,17 @@ public final class IoTDeviceInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (deviceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property deviceId in model IoTDeviceInfo"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property deviceId in model IoTDeviceInfo"));
         }
         if (ioTHostHub() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property ioTHostHub in model IoTDeviceInfo"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property ioTHostHub in model IoTDeviceInfo"));
         }
         if (authentication() != null) {
             authentication().validate();
