@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.apicenter.fluent.models.ServiceProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The service properties to be updated. */
+/**
+ * The service properties to be updated.
+ */
 @Immutable
 public final class ServiceUpdate {
     /*
@@ -17,13 +19,15 @@ public final class ServiceUpdate {
     @JsonProperty(value = "properties")
     private ServiceProperties innerProperties;
 
-    /** Creates an instance of ServiceUpdate class. */
+    /**
+     * Creates an instance of ServiceUpdate class.
+     */
     public ServiceUpdate() {
     }
 
     /**
      * Get the innerProperties property: The properties of the service.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ServiceProperties innerProperties() {
@@ -31,8 +35,8 @@ public final class ServiceUpdate {
     }
 
     /**
-     * Get the provisioningState property: The status of the last operation.
-     *
+     * Get the provisioningState property: Provisioning state of the service.
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -41,7 +45,7 @@ public final class ServiceUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
