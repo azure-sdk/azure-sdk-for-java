@@ -10,8 +10,8 @@ package com.azure.resourcemanager.hybridcontainerservice.generated;
 public final class VirtualNetworksGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridaks/resource-manager/Microsoft.HybridContainerService/preview/2023-11-15-preview/examples/
-     * GetVirtualNetwork.json
+     * specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/
+     * virtualNetworks_Retrieve.json
      */
     /**
      * Sample code: GetVirtualNetwork.

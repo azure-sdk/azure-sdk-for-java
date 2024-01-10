@@ -14,179 +14,141 @@ import com.azure.resourcemanager.hybridcontainerservice.fluent.models.VmSkuProfi
  */
 public interface ResourceProviders {
     /**
-     * Gets the supported kubernetes versions
+     * Lists the supported kubernetes versions for the specified custom location.
      * 
-     * Gets the supported kubernetes versions from the underlying custom location.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the supported kubernetes versions from the underlying custom location along with {@link Response}.
+     * @return the supported kubernetes versions along with {@link Response}.
      */
-    Response<KubernetesVersionProfile> getKubernetesVersionsWithResponse(String customLocationResourceUri,
+    Response<KubernetesVersionProfile> getKubernetesVersionsWithResponse(String resourceUri, Context context);
+
+    /**
+     * Lists the supported kubernetes versions for the specified custom location.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the supported kubernetes versions.
+     */
+    KubernetesVersionProfile getKubernetesVersions(String resourceUri);
+
+    /**
+     * Puts the default kubernetes version resource type (one time operation, before listing the kubernetes versions).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the supported kubernetes versions.
+     */
+    KubernetesVersionProfile putKubernetesVersions(String resourceUri, KubernetesVersionProfileInner resource);
+
+    /**
+     * Puts the default kubernetes version resource type (one time operation, before listing the kubernetes versions).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the supported kubernetes versions.
+     */
+    KubernetesVersionProfile putKubernetesVersions(String resourceUri, KubernetesVersionProfileInner resource,
         Context context);
 
     /**
-     * Gets the supported kubernetes versions
+     * Delete the default kubernetes versions resource type.
      * 
-     * Gets the supported kubernetes versions from the underlying custom location.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the supported kubernetes versions from the underlying custom location.
-     */
-    KubernetesVersionProfile getKubernetesVersions(String customLocationResourceUri);
-
-    /**
-     * Puts the kubernetes version
-     * 
-     * Puts the kubernetes version resource type.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
-     * @param kubernetesVersions Kubernetes Versions resource definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the supported kubernetes versions.
-     */
-    KubernetesVersionProfile putKubernetesVersions(String customLocationResourceUri,
-        KubernetesVersionProfileInner kubernetesVersions);
-
-    /**
-     * Puts the kubernetes version
-     * 
-     * Puts the kubernetes version resource type.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
-     * @param kubernetesVersions Kubernetes Versions resource definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the supported kubernetes versions.
-     */
-    KubernetesVersionProfile putKubernetesVersions(String customLocationResourceUri,
-        KubernetesVersionProfileInner kubernetesVersions, Context context);
-
-    /**
-     * Delete the kubernetes versions
-     * 
-     * Delete the kubernetes versions resource type.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void deleteKubernetesVersions(String customLocationResourceUri);
+    void deleteKubernetesVersions(String resourceUri);
 
     /**
-     * Delete the kubernetes versions
+     * Delete the default kubernetes versions resource type.
      * 
-     * Delete the kubernetes versions resource type.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void deleteKubernetesVersions(String customLocationResourceUri, Context context);
+    void deleteKubernetesVersions(String resourceUri, Context context);
 
     /**
-     * Gets the supported VM skus
+     * Lists the supported VM skus for the specified custom location.
      * 
-     * Gets the supported VM skus from the underlying custom location.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the supported VM skus from the underlying custom location along with {@link Response}.
+     * @return the list of supported VM SKUs along with {@link Response}.
      */
-    Response<VmSkuProfile> getVMSkusWithResponse(String customLocationResourceUri, Context context);
+    Response<VmSkuProfile> getVMSkusWithResponse(String resourceUri, Context context);
 
     /**
-     * Gets the supported VM skus
+     * Lists the supported VM skus for the specified custom location.
      * 
-     * Gets the supported VM skus from the underlying custom location.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the supported VM skus from the underlying custom location.
-     */
-    VmSkuProfile getVMSkus(String customLocationResourceUri);
-
-    /**
-     * Puts the VM SKUs
-     * 
-     * Puts the VM SKUs resource type.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
-     * @param skus VM SKUs resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of supported VM SKUs.
      */
-    VmSkuProfile putVMSkus(String customLocationResourceUri, VmSkuProfileInner skus);
+    VmSkuProfile getVMSkus(String resourceUri);
 
     /**
-     * Puts the VM SKUs
+     * Puts the default VM skus resource type (one time operation, before listing the VM skus).
      * 
-     * Puts the VM SKUs resource type.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of supported VM SKUs.
+     */
+    VmSkuProfile putVMSkus(String resourceUri, VmSkuProfileInner resource);
+
+    /**
+     * Puts the default VM skus resource type (one time operation, before listing the VM skus).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
-     * @param skus VM SKUs resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of supported VM SKUs.
      */
-    VmSkuProfile putVMSkus(String customLocationResourceUri, VmSkuProfileInner skus, Context context);
+    VmSkuProfile putVMSkus(String resourceUri, VmSkuProfileInner resource, Context context);
 
     /**
-     * Deletes the Vm Skus
+     * Deletes the default VM skus resource type.
      * 
-     * Deletes the Vm Sku resource type.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void deleteVMSkus(String customLocationResourceUri);
+    void deleteVMSkus(String resourceUri);
 
     /**
-     * Deletes the Vm Skus
+     * Deletes the default VM skus resource type.
      * 
-     * Deletes the Vm Sku resource type.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void deleteVMSkus(String customLocationResourceUri, Context context);
+    void deleteVMSkus(String resourceUri, Context context);
 }

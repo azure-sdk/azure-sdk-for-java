@@ -15,33 +15,27 @@ import com.azure.resourcemanager.hybridcontainerservice.fluent.models.VmSkuProfi
  */
 public interface VMSkusClient {
     /**
-     * Lists the supported VM SKUs
+     * Lists the supported VM skus for the specified custom location.
      * 
-     * Lists the supported VM SKUs from the underlying custom location.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of VM SKU resources as paginated response with {@link PagedIterable}.
+     * @return the response of a VmSkuProfile list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<VmSkuProfileInner> list(String customLocationResourceUri);
+    PagedIterable<VmSkuProfileInner> list(String resourceUri);
 
     /**
-     * Lists the supported VM SKUs
+     * Lists the supported VM skus for the specified custom location.
      * 
-     * Lists the supported VM SKUs from the underlying custom location.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of VM SKU resources as paginated response with {@link PagedIterable}.
+     * @return the response of a VmSkuProfile list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<VmSkuProfileInner> list(String customLocationResourceUri, Context context);
+    PagedIterable<VmSkuProfileInner> list(String resourceUri, Context context);
 }

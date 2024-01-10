@@ -10,8 +10,8 @@ package com.azure.resourcemanager.hybridcontainerservice.generated;
 public final class ProvisionedClusterInstancesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridaks/resource-manager/Microsoft.HybridContainerService/preview/2023-11-15-preview/examples/
-     * GetProvisionedClusterInstance.json
+     * specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/
+     * provisionedClusterInstances_Get.json
      */
     /**
      * Sample code: GetProvisionedClusterInstance.
@@ -20,8 +20,6 @@ public final class ProvisionedClusterInstancesGetSamples {
      */
     public static void getProvisionedClusterInstance(
         com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.provisionedClusterInstances().getWithResponse(
-            "subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/test-hybridakscluster",
-            com.azure.core.util.Context.NONE);
+        manager.provisionedClusterInstances().getWithResponse(null, com.azure.core.util.Context.NONE);
     }
 }

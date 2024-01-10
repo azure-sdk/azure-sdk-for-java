@@ -130,45 +130,17 @@ public final class HybridContainerServiceImpl implements HybridContainerService 
     }
 
     /**
-     * The ProvisionedClusterInstancesClient object to access its operations.
+     * The KubernetesVersionsClient object to access its operations.
      */
-    private final ProvisionedClusterInstancesClient provisionedClusterInstances;
+    private final KubernetesVersionsClient kubernetesVersions;
 
     /**
-     * Gets the ProvisionedClusterInstancesClient object to access its operations.
+     * Gets the KubernetesVersionsClient object to access its operations.
      * 
-     * @return the ProvisionedClusterInstancesClient object.
+     * @return the KubernetesVersionsClient object.
      */
-    public ProvisionedClusterInstancesClient getProvisionedClusterInstances() {
-        return this.provisionedClusterInstances;
-    }
-
-    /**
-     * The HybridIdentityMetadatasClient object to access its operations.
-     */
-    private final HybridIdentityMetadatasClient hybridIdentityMetadatas;
-
-    /**
-     * Gets the HybridIdentityMetadatasClient object to access its operations.
-     * 
-     * @return the HybridIdentityMetadatasClient object.
-     */
-    public HybridIdentityMetadatasClient getHybridIdentityMetadatas() {
-        return this.hybridIdentityMetadatas;
-    }
-
-    /**
-     * The AgentPoolsClient object to access its operations.
-     */
-    private final AgentPoolsClient agentPools;
-
-    /**
-     * Gets the AgentPoolsClient object to access its operations.
-     * 
-     * @return the AgentPoolsClient object.
-     */
-    public AgentPoolsClient getAgentPools() {
-        return this.agentPools;
+    public KubernetesVersionsClient getKubernetesVersions() {
+        return this.kubernetesVersions;
     }
 
     /**
@@ -186,17 +158,45 @@ public final class HybridContainerServiceImpl implements HybridContainerService 
     }
 
     /**
-     * The KubernetesVersionsClient object to access its operations.
+     * The ProvisionedClusterInstancesClient object to access its operations.
      */
-    private final KubernetesVersionsClient kubernetesVersions;
+    private final ProvisionedClusterInstancesClient provisionedClusterInstances;
 
     /**
-     * Gets the KubernetesVersionsClient object to access its operations.
+     * Gets the ProvisionedClusterInstancesClient object to access its operations.
      * 
-     * @return the KubernetesVersionsClient object.
+     * @return the ProvisionedClusterInstancesClient object.
      */
-    public KubernetesVersionsClient getKubernetesVersions() {
-        return this.kubernetesVersions;
+    public ProvisionedClusterInstancesClient getProvisionedClusterInstances() {
+        return this.provisionedClusterInstances;
+    }
+
+    /**
+     * The AgentPoolsClient object to access its operations.
+     */
+    private final AgentPoolsClient agentPools;
+
+    /**
+     * Gets the AgentPoolsClient object to access its operations.
+     * 
+     * @return the AgentPoolsClient object.
+     */
+    public AgentPoolsClient getAgentPools() {
+        return this.agentPools;
+    }
+
+    /**
+     * The HybridIdentityMetadatasClient object to access its operations.
+     */
+    private final HybridIdentityMetadatasClient hybridIdentityMetadatas;
+
+    /**
+     * Gets the HybridIdentityMetadatasClient object to access its operations.
+     * 
+     * @return the HybridIdentityMetadatasClient object.
+     */
+    public HybridIdentityMetadatasClient getHybridIdentityMetadatas() {
+        return this.hybridIdentityMetadatas;
     }
 
     /**
@@ -258,12 +258,12 @@ public final class HybridContainerServiceImpl implements HybridContainerService 
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-11-15-preview";
-        this.provisionedClusterInstances = new ProvisionedClusterInstancesClientImpl(this);
-        this.hybridIdentityMetadatas = new HybridIdentityMetadatasClientImpl(this);
-        this.agentPools = new AgentPoolsClientImpl(this);
-        this.resourceProviders = new ResourceProvidersClientImpl(this);
+        this.apiVersion = "2024-01-01";
         this.kubernetesVersions = new KubernetesVersionsClientImpl(this);
+        this.resourceProviders = new ResourceProvidersClientImpl(this);
+        this.provisionedClusterInstances = new ProvisionedClusterInstancesClientImpl(this);
+        this.agentPools = new AgentPoolsClientImpl(this);
+        this.hybridIdentityMetadatas = new HybridIdentityMetadatasClientImpl(this);
         this.vMSkus = new VMSkusClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.virtualNetworks = new VirtualNetworksClientImpl(this);

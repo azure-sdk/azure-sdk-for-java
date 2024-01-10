@@ -6,6 +6,7 @@ package com.azure.resourcemanager.hybridcontainerservice.models;
 
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.KubernetesVersionProfileInner;
+import java.util.List;
 
 /**
  * An immutable client-side representation of KubernetesVersionProfile.
@@ -33,18 +34,11 @@ public interface KubernetesVersionProfile {
     String type();
 
     /**
-     * Gets the extendedLocation property: Extended Location definition.
+     * Gets the extendedLocation property: Extended location pointing to the underlying infrastructure.
      * 
      * @return the extendedLocation value.
      */
     ExtendedLocation extendedLocation();
-
-    /**
-     * Gets the properties property: The properties property.
-     * 
-     * @return the properties value.
-     */
-    KubernetesVersionProfileProperties properties();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -52,6 +46,20 @@ public interface KubernetesVersionProfile {
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the provisioningState property: Provisioning state of the resource.
+     * 
+     * @return the provisioningState value.
+     */
+    ResourceProvisioningState provisioningState();
+
+    /**
+     * Gets the values property: List of supported Kubernetes versions.
+     * 
+     * @return the values value.
+     */
+    List<KubernetesVersionProperties> values();
 
     /**
      * Gets the inner com.azure.resourcemanager.hybridcontainerservice.fluent.models.KubernetesVersionProfileInner

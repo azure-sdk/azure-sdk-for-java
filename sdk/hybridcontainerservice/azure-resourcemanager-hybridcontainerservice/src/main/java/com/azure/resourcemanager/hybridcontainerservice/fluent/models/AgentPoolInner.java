@@ -5,7 +5,7 @@
 package com.azure.resourcemanager.hybridcontainerservice.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.Resource;
+import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.hybridcontainerservice.models.AgentPoolProvisioningStatusStatus;
 import com.azure.resourcemanager.hybridcontainerservice.models.ExtendedLocation;
@@ -20,24 +20,24 @@ import java.util.Map;
  * The agentPool resource definition.
  */
 @Fluent
-public final class AgentPoolInner extends Resource {
+public final class AgentPoolInner extends ProxyResource {
     /*
-     * The properties property.
+     * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
     private AgentPoolProperties innerProperties;
 
     /*
-     * Metadata pertaining to creation and last modification of the resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /*
-     * Extended Location definition
+     * Extended location pointing to the underlying infrastructure
      */
     @JsonProperty(value = "extendedLocation")
     private ExtendedLocation extendedLocation;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
     /**
      * Creates an instance of AgentPoolInner class.
@@ -46,7 +46,7 @@ public final class AgentPoolInner extends Resource {
     }
 
     /**
-     * Get the innerProperties property: The properties property.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
      * @return the innerProperties value.
      */
@@ -55,16 +55,7 @@ public final class AgentPoolInner extends Resource {
     }
 
     /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     * 
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
-     * Get the extendedLocation property: Extended Location definition.
+     * Get the extendedLocation property: Extended location pointing to the underlying infrastructure.
      * 
      * @return the extendedLocation value.
      */
@@ -73,7 +64,7 @@ public final class AgentPoolInner extends Resource {
     }
 
     /**
-     * Set the extendedLocation property: Extended Location definition.
+     * Set the extendedLocation property: Extended location pointing to the underlying infrastructure.
      * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the AgentPoolInner object itself.
@@ -84,130 +75,16 @@ public final class AgentPoolInner extends Resource {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AgentPoolInner withLocation(String location) {
-        super.withLocation(location);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AgentPoolInner withTags(Map<String, String> tags) {
-        super.withTags(tags);
-        return this;
-    }
-
-    /**
-     * Get the count property: Count - Number of agents to host docker containers. Allowed values must be in the range
-     * of 1 to 100 (inclusive). The default value is 1.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the count value.
+     * @return the systemData value.
      */
-    public Integer count() {
-        return this.innerProperties() == null ? null : this.innerProperties().count();
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
-     * Set the count property: Count - Number of agents to host docker containers. Allowed values must be in the range
-     * of 1 to 100 (inclusive). The default value is 1.
-     * 
-     * @param count the count value to set.
-     * @return the AgentPoolInner object itself.
-     */
-    public AgentPoolInner withCount(Integer count) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AgentPoolProperties();
-        }
-        this.innerProperties().withCount(count);
-        return this;
-    }
-
-    /**
-     * Get the vmSize property: VmSize - The size of the agent pool VMs.
-     * 
-     * @return the vmSize value.
-     */
-    public String vmSize() {
-        return this.innerProperties() == null ? null : this.innerProperties().vmSize();
-    }
-
-    /**
-     * Set the vmSize property: VmSize - The size of the agent pool VMs.
-     * 
-     * @param vmSize the vmSize value to set.
-     * @return the AgentPoolInner object itself.
-     */
-    public AgentPoolInner withVmSize(String vmSize) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AgentPoolProperties();
-        }
-        this.innerProperties().withVmSize(vmSize);
-        return this;
-    }
-
-    /**
-     * Get the provisioningState property: Provisioning state of the resource.
-     * 
-     * @return the provisioningState value.
-     */
-    public ResourceProvisioningState provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
-     * Get the status property: Defines the observed state of the agent pool.
-     * 
-     * @return the status value.
-     */
-    public AgentPoolProvisioningStatusStatus status() {
-        return this.innerProperties() == null ? null : this.innerProperties().status();
-    }
-
-    /**
-     * Set the status property: Defines the observed state of the agent pool.
-     * 
-     * @param status the status value to set.
-     * @return the AgentPoolInner object itself.
-     */
-    public AgentPoolInner withStatus(AgentPoolProvisioningStatusStatus status) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AgentPoolProperties();
-        }
-        this.innerProperties().withStatus(status);
-        return this;
-    }
-
-    /**
-     * Get the availabilityZones property: AvailabilityZones - The list of Availability zones to use for nodes.
-     * Datacenter racks modelled as zones.
-     * 
-     * @return the availabilityZones value.
-     */
-    public List<String> availabilityZones() {
-        return this.innerProperties() == null ? null : this.innerProperties().availabilityZones();
-    }
-
-    /**
-     * Set the availabilityZones property: AvailabilityZones - The list of Availability zones to use for nodes.
-     * Datacenter racks modelled as zones.
-     * 
-     * @param availabilityZones the availabilityZones value to set.
-     * @return the AgentPoolInner object itself.
-     */
-    public AgentPoolInner withAvailabilityZones(List<String> availabilityZones) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AgentPoolProperties();
-        }
-        this.innerProperties().withAvailabilityZones(availabilityZones);
-        return this;
-    }
-
-    /**
-     * Get the osType property: The particular KubernetesVersion's Image's OS Type (Linux, Windows).
+     * Get the osType property: The particular KubernetesVersion Image OS Type (Linux, Windows).
      * 
      * @return the osType value.
      */
@@ -216,7 +93,7 @@ public final class AgentPoolInner extends Resource {
     }
 
     /**
-     * Set the osType property: The particular KubernetesVersion's Image's OS Type (Linux, Windows).
+     * Set the osType property: The particular KubernetesVersion Image OS Type (Linux, Windows).
      * 
      * @param osType the osType value to set.
      * @return the AgentPoolInner object itself.
@@ -255,25 +132,230 @@ public final class AgentPoolInner extends Resource {
     }
 
     /**
-     * Get the nodeImageVersion property: The version of node image.
+     * Get the nodeLabels property: The node labels to be persisted across all nodes in agent pool.
      * 
-     * @return the nodeImageVersion value.
+     * @return the nodeLabels value.
      */
-    public String nodeImageVersion() {
-        return this.innerProperties() == null ? null : this.innerProperties().nodeImageVersion();
+    public Map<String, String> nodeLabels() {
+        return this.innerProperties() == null ? null : this.innerProperties().nodeLabels();
     }
 
     /**
-     * Set the nodeImageVersion property: The version of node image.
+     * Set the nodeLabels property: The node labels to be persisted across all nodes in agent pool.
      * 
-     * @param nodeImageVersion the nodeImageVersion value to set.
+     * @param nodeLabels the nodeLabels value to set.
      * @return the AgentPoolInner object itself.
      */
-    public AgentPoolInner withNodeImageVersion(String nodeImageVersion) {
+    public AgentPoolInner withNodeLabels(Map<String, String> nodeLabels) {
         if (this.innerProperties() == null) {
             this.innerProperties = new AgentPoolProperties();
         }
-        this.innerProperties().withNodeImageVersion(nodeImageVersion);
+        this.innerProperties().withNodeLabels(nodeLabels);
+        return this;
+    }
+
+    /**
+     * Get the nodeTaints property: Taints added to new nodes during node pool create and scale. For example,
+     * key=value:NoSchedule.
+     * 
+     * @return the nodeTaints value.
+     */
+    public List<String> nodeTaints() {
+        return this.innerProperties() == null ? null : this.innerProperties().nodeTaints();
+    }
+
+    /**
+     * Set the nodeTaints property: Taints added to new nodes during node pool create and scale. For example,
+     * key=value:NoSchedule.
+     * 
+     * @param nodeTaints the nodeTaints value to set.
+     * @return the AgentPoolInner object itself.
+     */
+    public AgentPoolInner withNodeTaints(List<String> nodeTaints) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AgentPoolProperties();
+        }
+        this.innerProperties().withNodeTaints(nodeTaints);
+        return this;
+    }
+
+    /**
+     * Get the maxCount property: The maximum number of nodes for auto-scaling.
+     * 
+     * @return the maxCount value.
+     */
+    public Integer maxCount() {
+        return this.innerProperties() == null ? null : this.innerProperties().maxCount();
+    }
+
+    /**
+     * Set the maxCount property: The maximum number of nodes for auto-scaling.
+     * 
+     * @param maxCount the maxCount value to set.
+     * @return the AgentPoolInner object itself.
+     */
+    public AgentPoolInner withMaxCount(Integer maxCount) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AgentPoolProperties();
+        }
+        this.innerProperties().withMaxCount(maxCount);
+        return this;
+    }
+
+    /**
+     * Get the minCount property: The minimum number of nodes for auto-scaling.
+     * 
+     * @return the minCount value.
+     */
+    public Integer minCount() {
+        return this.innerProperties() == null ? null : this.innerProperties().minCount();
+    }
+
+    /**
+     * Set the minCount property: The minimum number of nodes for auto-scaling.
+     * 
+     * @param minCount the minCount value to set.
+     * @return the AgentPoolInner object itself.
+     */
+    public AgentPoolInner withMinCount(Integer minCount) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AgentPoolProperties();
+        }
+        this.innerProperties().withMinCount(minCount);
+        return this;
+    }
+
+    /**
+     * Get the enableAutoScaling property: Whether to enable auto-scaler. Default value is false.
+     * 
+     * @return the enableAutoScaling value.
+     */
+    public Boolean enableAutoScaling() {
+        return this.innerProperties() == null ? null : this.innerProperties().enableAutoScaling();
+    }
+
+    /**
+     * Set the enableAutoScaling property: Whether to enable auto-scaler. Default value is false.
+     * 
+     * @param enableAutoScaling the enableAutoScaling value to set.
+     * @return the AgentPoolInner object itself.
+     */
+    public AgentPoolInner withEnableAutoScaling(Boolean enableAutoScaling) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AgentPoolProperties();
+        }
+        this.innerProperties().withEnableAutoScaling(enableAutoScaling);
+        return this;
+    }
+
+    /**
+     * Get the maxPods property: The maximum number of pods that can run on a node.
+     * 
+     * @return the maxPods value.
+     */
+    public Integer maxPods() {
+        return this.innerProperties() == null ? null : this.innerProperties().maxPods();
+    }
+
+    /**
+     * Set the maxPods property: The maximum number of pods that can run on a node.
+     * 
+     * @param maxPods the maxPods value to set.
+     * @return the AgentPoolInner object itself.
+     */
+    public AgentPoolInner withMaxPods(Integer maxPods) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AgentPoolProperties();
+        }
+        this.innerProperties().withMaxPods(maxPods);
+        return this;
+    }
+
+    /**
+     * Get the count property: Number of nodes in the agent pool. The default value is 1.
+     * 
+     * @return the count value.
+     */
+    public Integer count() {
+        return this.innerProperties() == null ? null : this.innerProperties().count();
+    }
+
+    /**
+     * Set the count property: Number of nodes in the agent pool. The default value is 1.
+     * 
+     * @param count the count value to set.
+     * @return the AgentPoolInner object itself.
+     */
+    public AgentPoolInner withCount(Integer count) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AgentPoolProperties();
+        }
+        this.innerProperties().withCount(count);
+        return this;
+    }
+
+    /**
+     * Get the vmSize property: The VM sku size of the agent pool node VMs.
+     * 
+     * @return the vmSize value.
+     */
+    public String vmSize() {
+        return this.innerProperties() == null ? null : this.innerProperties().vmSize();
+    }
+
+    /**
+     * Set the vmSize property: The VM sku size of the agent pool node VMs.
+     * 
+     * @param vmSize the vmSize value to set.
+     * @return the AgentPoolInner object itself.
+     */
+    public AgentPoolInner withVmSize(String vmSize) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AgentPoolProperties();
+        }
+        this.innerProperties().withVmSize(vmSize);
+        return this;
+    }
+
+    /**
+     * Get the kubernetesVersion property: Version of Kubernetes in use by the agent pool. This is inherited from the
+     * kubernetesVersion of the provisioned cluster.
+     * 
+     * @return the kubernetesVersion value.
+     */
+    public String kubernetesVersion() {
+        return this.innerProperties() == null ? null : this.innerProperties().kubernetesVersion();
+    }
+
+    /**
+     * Get the provisioningState property: The status of the latest long running operation for the agent pool.
+     * 
+     * @return the provisioningState value.
+     */
+    public ResourceProvisioningState provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the status property: The observed status of the agent pool.
+     * 
+     * @return the status value.
+     */
+    public AgentPoolProvisioningStatusStatus status() {
+        return this.innerProperties() == null ? null : this.innerProperties().status();
+    }
+
+    /**
+     * Set the status property: The observed status of the agent pool.
+     * 
+     * @param status the status value to set.
+     * @return the AgentPoolInner object itself.
+     */
+    public AgentPoolInner withStatus(AgentPoolProvisioningStatusStatus status) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AgentPoolProperties();
+        }
+        this.innerProperties().withStatus(status);
         return this;
     }
 

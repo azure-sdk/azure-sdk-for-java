@@ -8,11 +8,16 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.VirtualNetworkInner;
+import com.azure.resourcemanager.hybridcontainerservice.models.ProvisioningState;
 import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetwork;
 import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkExtendedLocation;
-import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkProperties;
+import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkPropertiesInfraVnetProfile;
+import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkPropertiesStatus;
+import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkPropertiesVipPoolItem;
+import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkPropertiesVmipPoolItem;
 import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworksPatch;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public final class VirtualNetworkImpl implements VirtualNetwork, VirtualNetwork.Definition, VirtualNetwork.Update {
@@ -45,16 +50,63 @@ public final class VirtualNetworkImpl implements VirtualNetwork, VirtualNetwork.
         }
     }
 
-    public VirtualNetworkProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public VirtualNetworkExtendedLocation extendedLocation() {
         return this.innerModel().extendedLocation();
     }
 
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public VirtualNetworkPropertiesInfraVnetProfile infraVnetProfile() {
+        return this.innerModel().infraVnetProfile();
+    }
+
+    public List<VirtualNetworkPropertiesVipPoolItem> vipPool() {
+        List<VirtualNetworkPropertiesVipPoolItem> inner = this.innerModel().vipPool();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<VirtualNetworkPropertiesVmipPoolItem> vmipPool() {
+        List<VirtualNetworkPropertiesVmipPoolItem> inner = this.innerModel().vmipPool();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<String> dnsServers() {
+        List<String> inner = this.innerModel().dnsServers();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String gateway() {
+        return this.innerModel().gateway();
+    }
+
+    public String ipAddressPrefix() {
+        return this.innerModel().ipAddressPrefix();
+    }
+
+    public Integer vlanId() {
+        return this.innerModel().vlanId();
+    }
+
+    public ProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public VirtualNetworkPropertiesStatus status() {
+        return this.innerModel().status();
     }
 
     public Region region() {
@@ -81,7 +133,7 @@ public final class VirtualNetworkImpl implements VirtualNetwork, VirtualNetwork.
 
     private String virtualNetworkName;
 
-    private VirtualNetworksPatch updateVirtualNetworks;
+    private VirtualNetworksPatch updateProperties;
 
     public VirtualNetworkImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -108,19 +160,19 @@ public final class VirtualNetworkImpl implements VirtualNetwork, VirtualNetwork.
     }
 
     public VirtualNetworkImpl update() {
-        this.updateVirtualNetworks = new VirtualNetworksPatch();
+        this.updateProperties = new VirtualNetworksPatch();
         return this;
     }
 
     public VirtualNetwork apply() {
         this.innerObject = serviceManager.serviceClient().getVirtualNetworks().update(resourceGroupName,
-            virtualNetworkName, updateVirtualNetworks, Context.NONE);
+            virtualNetworkName, updateProperties, Context.NONE);
         return this;
     }
 
     public VirtualNetwork apply(Context context) {
         this.innerObject = serviceManager.serviceClient().getVirtualNetworks().update(resourceGroupName,
-            virtualNetworkName, updateVirtualNetworks, context);
+            virtualNetworkName, updateProperties, context);
         return this;
     }
 
@@ -159,18 +211,48 @@ public final class VirtualNetworkImpl implements VirtualNetwork, VirtualNetwork.
             this.innerModel().withTags(tags);
             return this;
         } else {
-            this.updateVirtualNetworks.withTags(tags);
+            this.updateProperties.withTags(tags);
             return this;
         }
     }
 
-    public VirtualNetworkImpl withProperties(VirtualNetworkProperties properties) {
-        this.innerModel().withProperties(properties);
+    public VirtualNetworkImpl withExtendedLocation(VirtualNetworkExtendedLocation extendedLocation) {
+        this.innerModel().withExtendedLocation(extendedLocation);
         return this;
     }
 
-    public VirtualNetworkImpl withExtendedLocation(VirtualNetworkExtendedLocation extendedLocation) {
-        this.innerModel().withExtendedLocation(extendedLocation);
+    public VirtualNetworkImpl withInfraVnetProfile(VirtualNetworkPropertiesInfraVnetProfile infraVnetProfile) {
+        this.innerModel().withInfraVnetProfile(infraVnetProfile);
+        return this;
+    }
+
+    public VirtualNetworkImpl withVipPool(List<VirtualNetworkPropertiesVipPoolItem> vipPool) {
+        this.innerModel().withVipPool(vipPool);
+        return this;
+    }
+
+    public VirtualNetworkImpl withVmipPool(List<VirtualNetworkPropertiesVmipPoolItem> vmipPool) {
+        this.innerModel().withVmipPool(vmipPool);
+        return this;
+    }
+
+    public VirtualNetworkImpl withDnsServers(List<String> dnsServers) {
+        this.innerModel().withDnsServers(dnsServers);
+        return this;
+    }
+
+    public VirtualNetworkImpl withGateway(String gateway) {
+        this.innerModel().withGateway(gateway);
+        return this;
+    }
+
+    public VirtualNetworkImpl withIpAddressPrefix(String ipAddressPrefix) {
+        this.innerModel().withIpAddressPrefix(ipAddressPrefix);
+        return this;
+    }
+
+    public VirtualNetworkImpl withVlanId(Integer vlanId) {
+        this.innerModel().withVlanId(vlanId);
         return this;
     }
 

@@ -7,24 +7,29 @@ package com.azure.resourcemanager.hybridcontainerservice.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.hybridcontainerservice.models.ProvisioningState;
 import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkExtendedLocation;
-import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkProperties;
+import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkPropertiesInfraVnetProfile;
+import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkPropertiesStatus;
+import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkPropertiesVipPoolItem;
+import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkPropertiesVmipPoolItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import java.util.Map;
 
 /**
- * The virtualNetworks resource definition.
+ * The Virtual Network resource definition.
  */
 @Fluent
 public final class VirtualNetworkInner extends Resource {
     /*
-     * HybridAKSNetworkSpec defines the desired state of HybridAKSNetwork
+     * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
-    private VirtualNetworkProperties properties;
+    private VirtualNetworkProperties innerProperties;
 
     /*
-     * The extendedLocation property.
+     * Extended location pointing to the underlying infrastructure
      */
     @JsonProperty(value = "extendedLocation")
     private VirtualNetworkExtendedLocation extendedLocation;
@@ -42,27 +47,16 @@ public final class VirtualNetworkInner extends Resource {
     }
 
     /**
-     * Get the properties property: HybridAKSNetworkSpec defines the desired state of HybridAKSNetwork.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public VirtualNetworkProperties properties() {
-        return this.properties;
+    private VirtualNetworkProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the properties property: HybridAKSNetworkSpec defines the desired state of HybridAKSNetwork.
-     * 
-     * @param properties the properties value to set.
-     * @return the VirtualNetworkInner object itself.
-     */
-    public VirtualNetworkInner withProperties(VirtualNetworkProperties properties) {
-        this.properties = properties;
-        return this;
-    }
-
-    /**
-     * Get the extendedLocation property: The extendedLocation property.
+     * Get the extendedLocation property: Extended location pointing to the underlying infrastructure.
      * 
      * @return the extendedLocation value.
      */
@@ -71,7 +65,7 @@ public final class VirtualNetworkInner extends Resource {
     }
 
     /**
-     * Set the extendedLocation property: The extendedLocation property.
+     * Set the extendedLocation property: Extended location pointing to the underlying infrastructure.
      * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the VirtualNetworkInner object itself.
@@ -109,13 +103,194 @@ public final class VirtualNetworkInner extends Resource {
     }
 
     /**
+     * Get the infraVnetProfile property: The infraVnetProfile property.
+     * 
+     * @return the infraVnetProfile value.
+     */
+    public VirtualNetworkPropertiesInfraVnetProfile infraVnetProfile() {
+        return this.innerProperties() == null ? null : this.innerProperties().infraVnetProfile();
+    }
+
+    /**
+     * Set the infraVnetProfile property: The infraVnetProfile property.
+     * 
+     * @param infraVnetProfile the infraVnetProfile value to set.
+     * @return the VirtualNetworkInner object itself.
+     */
+    public VirtualNetworkInner withInfraVnetProfile(VirtualNetworkPropertiesInfraVnetProfile infraVnetProfile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new VirtualNetworkProperties();
+        }
+        this.innerProperties().withInfraVnetProfile(infraVnetProfile);
+        return this;
+    }
+
+    /**
+     * Get the vipPool property: Range of IP Addresses for Kubernetes API Server and services if using HA Proxy load
+     * balancer.
+     * 
+     * @return the vipPool value.
+     */
+    public List<VirtualNetworkPropertiesVipPoolItem> vipPool() {
+        return this.innerProperties() == null ? null : this.innerProperties().vipPool();
+    }
+
+    /**
+     * Set the vipPool property: Range of IP Addresses for Kubernetes API Server and services if using HA Proxy load
+     * balancer.
+     * 
+     * @param vipPool the vipPool value to set.
+     * @return the VirtualNetworkInner object itself.
+     */
+    public VirtualNetworkInner withVipPool(List<VirtualNetworkPropertiesVipPoolItem> vipPool) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new VirtualNetworkProperties();
+        }
+        this.innerProperties().withVipPool(vipPool);
+        return this;
+    }
+
+    /**
+     * Get the vmipPool property: Range of IP Addresses for Kubernetes node VMs.
+     * 
+     * @return the vmipPool value.
+     */
+    public List<VirtualNetworkPropertiesVmipPoolItem> vmipPool() {
+        return this.innerProperties() == null ? null : this.innerProperties().vmipPool();
+    }
+
+    /**
+     * Set the vmipPool property: Range of IP Addresses for Kubernetes node VMs.
+     * 
+     * @param vmipPool the vmipPool value to set.
+     * @return the VirtualNetworkInner object itself.
+     */
+    public VirtualNetworkInner withVmipPool(List<VirtualNetworkPropertiesVmipPoolItem> vmipPool) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new VirtualNetworkProperties();
+        }
+        this.innerProperties().withVmipPool(vmipPool);
+        return this;
+    }
+
+    /**
+     * Get the dnsServers property: List of DNS server IP Addresses associated with the network.
+     * 
+     * @return the dnsServers value.
+     */
+    public List<String> dnsServers() {
+        return this.innerProperties() == null ? null : this.innerProperties().dnsServers();
+    }
+
+    /**
+     * Set the dnsServers property: List of DNS server IP Addresses associated with the network.
+     * 
+     * @param dnsServers the dnsServers value to set.
+     * @return the VirtualNetworkInner object itself.
+     */
+    public VirtualNetworkInner withDnsServers(List<String> dnsServers) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new VirtualNetworkProperties();
+        }
+        this.innerProperties().withDnsServers(dnsServers);
+        return this;
+    }
+
+    /**
+     * Get the gateway property: IP Address of the Gateway associated with the network.
+     * 
+     * @return the gateway value.
+     */
+    public String gateway() {
+        return this.innerProperties() == null ? null : this.innerProperties().gateway();
+    }
+
+    /**
+     * Set the gateway property: IP Address of the Gateway associated with the network.
+     * 
+     * @param gateway the gateway value to set.
+     * @return the VirtualNetworkInner object itself.
+     */
+    public VirtualNetworkInner withGateway(String gateway) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new VirtualNetworkProperties();
+        }
+        this.innerProperties().withGateway(gateway);
+        return this;
+    }
+
+    /**
+     * Get the ipAddressPrefix property: IP Address Prefix of the network.
+     * 
+     * @return the ipAddressPrefix value.
+     */
+    public String ipAddressPrefix() {
+        return this.innerProperties() == null ? null : this.innerProperties().ipAddressPrefix();
+    }
+
+    /**
+     * Set the ipAddressPrefix property: IP Address Prefix of the network.
+     * 
+     * @param ipAddressPrefix the ipAddressPrefix value to set.
+     * @return the VirtualNetworkInner object itself.
+     */
+    public VirtualNetworkInner withIpAddressPrefix(String ipAddressPrefix) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new VirtualNetworkProperties();
+        }
+        this.innerProperties().withIpAddressPrefix(ipAddressPrefix);
+        return this;
+    }
+
+    /**
+     * Get the vlanId property: VLAN Id used by the network.
+     * 
+     * @return the vlanId value.
+     */
+    public Integer vlanId() {
+        return this.innerProperties() == null ? null : this.innerProperties().vlanId();
+    }
+
+    /**
+     * Set the vlanId property: VLAN Id used by the network.
+     * 
+     * @param vlanId the vlanId value to set.
+     * @return the VirtualNetworkInner object itself.
+     */
+    public VirtualNetworkInner withVlanId(Integer vlanId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new VirtualNetworkProperties();
+        }
+        this.innerProperties().withVlanId(vlanId);
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: The provisioningState property.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the status property: Status of the virtual network resource.
+     * 
+     * @return the status value.
+     */
+    public VirtualNetworkPropertiesStatus status() {
+        return this.innerProperties() == null ? null : this.innerProperties().status();
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
         if (extendedLocation() != null) {
             extendedLocation().validate();

@@ -12,7 +12,6 @@ import com.azure.core.annotation.HeaderParam;
 import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
-import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
@@ -20,6 +19,10 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.annotation.UnexpectedResponseExceptionType;
+import com.azure.core.http.rest.PagedFlux;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.PagedResponse;
+import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
@@ -30,8 +33,7 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.AgentPoolsClient;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.AgentPoolInner;
-import com.azure.resourcemanager.hybridcontainerservice.fluent.models.AgentPoolListResultInner;
-import com.azure.resourcemanager.hybridcontainerservice.models.AgentPoolPatch;
+import com.azure.resourcemanager.hybridcontainerservice.models.AgentPoolListResult;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -69,228 +71,322 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
     @ServiceInterface(name = "HybridContainerServi")
     public interface AgentPoolsService {
         @Headers({ "Content-Type: application/json" })
-        @Get("/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}")
+        @Get("/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<AgentPoolListResult>> listByProvisionedCluster(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AgentPoolInner>> get(@HostParam("$host") String endpoint,
-            @PathParam(value = "connectedClusterResourceUri", encoded = true) String connectedClusterResourceUri,
-            @PathParam("agentPoolName") String agentPoolName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri,
+            @PathParam("agentPoolName") String agentPoolName, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Put("/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}")
+        @Put("/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
-            @PathParam(value = "connectedClusterResourceUri", encoded = true) String connectedClusterResourceUri,
-            @PathParam("agentPoolName") String agentPoolName, @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") AgentPoolInner agentPool, @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Delete("/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}")
-        @ExpectedResponses({ 202, 204 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
-            @PathParam(value = "connectedClusterResourceUri", encoded = true) String connectedClusterResourceUri,
-            @PathParam("agentPoolName") String agentPoolName, @QueryParam("api-version") String apiVersion,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri,
+            @PathParam("agentPoolName") String agentPoolName, @BodyParam("application/json") AgentPoolInner resource,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Patch("/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}")
-        @ExpectedResponses({ 200, 202 })
+        @Delete("/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}")
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
-            @PathParam(value = "connectedClusterResourceUri", encoded = true) String connectedClusterResourceUri,
-            @PathParam("agentPoolName") String agentPoolName, @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") AgentPoolPatch agentPool, @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri,
+            @PathParam("agentPoolName") String agentPoolName, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools")
+        @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AgentPoolListResultInner>> listByProvisionedCluster(@HostParam("$host") String endpoint,
-            @PathParam(value = "connectedClusterResourceUri", encoded = true) String connectedClusterResourceUri,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+        Mono<Response<AgentPoolListResult>> listByProvisionedClusterNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * Gets the agent pool in the provisioned cluster instance
+     * Gets the list of agent pools in the specified provisioned cluster.
      * 
-     * Gets the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the agent pool in the Hybrid AKS provisioned cluster instance along with {@link Response} on successful
-     * completion of {@link Mono}.
+     * @return the list of agent pools in the specified provisioned cluster along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AgentPoolInner>> getWithResponseAsync(String connectedClusterResourceUri,
-        String agentPoolName) {
+    private Mono<PagedResponse<AgentPoolInner>> listByProvisionedClusterSinglePageAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        if (agentPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter agentPoolName is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), connectedClusterResourceUri, agentPoolName,
-                this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.listByProvisionedCluster(this.client.getEndpoint(),
+                this.client.getApiVersion(), resourceUri, accept, context))
+            .<PagedResponse<AgentPoolInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets the agent pool in the provisioned cluster instance
+     * Gets the list of agent pools in the specified provisioned cluster.
      * 
-     * Gets the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the agent pool in the Hybrid AKS provisioned cluster instance along with {@link Response} on successful
-     * completion of {@link Mono}.
+     * @return the list of agent pools in the specified provisioned cluster along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AgentPoolInner>> getWithResponseAsync(String connectedClusterResourceUri,
-        String agentPoolName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        if (agentPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter agentPoolName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), connectedClusterResourceUri, agentPoolName,
-            this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Gets the agent pool in the provisioned cluster instance
-     * 
-     * Gets the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the agent pool in the Hybrid AKS provisioned cluster instance on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AgentPoolInner> getAsync(String connectedClusterResourceUri, String agentPoolName) {
-        return getWithResponseAsync(connectedClusterResourceUri, agentPoolName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Gets the agent pool in the provisioned cluster instance
-     * 
-     * Gets the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the agent pool in the Hybrid AKS provisioned cluster instance along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<AgentPoolInner> getWithResponse(String connectedClusterResourceUri, String agentPoolName,
+    private Mono<PagedResponse<AgentPoolInner>> listByProvisionedClusterSinglePageAsync(String resourceUri,
         Context context) {
-        return getWithResponseAsync(connectedClusterResourceUri, agentPoolName, context).block();
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByProvisionedCluster(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, accept,
+                context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
-     * Gets the agent pool in the provisioned cluster instance
+     * Gets the list of agent pools in the specified provisioned cluster.
      * 
-     * Gets the agent pool in the Hybrid AKS provisioned cluster instance.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of agent pools in the specified provisioned cluster as paginated response with
+     * {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<AgentPoolInner> listByProvisionedClusterAsync(String resourceUri) {
+        return new PagedFlux<>(() -> listByProvisionedClusterSinglePageAsync(resourceUri),
+            nextLink -> listByProvisionedClusterNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Gets the list of agent pools in the specified provisioned cluster.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of agent pools in the specified provisioned cluster as paginated response with
+     * {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<AgentPoolInner> listByProvisionedClusterAsync(String resourceUri, Context context) {
+        return new PagedFlux<>(() -> listByProvisionedClusterSinglePageAsync(resourceUri, context),
+            nextLink -> listByProvisionedClusterNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Gets the list of agent pools in the specified provisioned cluster.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of agent pools in the specified provisioned cluster as paginated response with
+     * {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<AgentPoolInner> listByProvisionedCluster(String resourceUri) {
+        return new PagedIterable<>(listByProvisionedClusterAsync(resourceUri));
+    }
+
+    /**
+     * Gets the list of agent pools in the specified provisioned cluster.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of agent pools in the specified provisioned cluster as paginated response with
+     * {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<AgentPoolInner> listByProvisionedCluster(String resourceUri, Context context) {
+        return new PagedIterable<>(listByProvisionedClusterAsync(resourceUri, context));
+    }
+
+    /**
+     * Gets the specified agent pool in the provisioned cluster.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the agent pool in the Hybrid AKS provisioned cluster instance.
+     * @return the specified agent pool in the provisioned cluster along with {@link Response} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AgentPoolInner get(String connectedClusterResourceUri, String agentPoolName) {
-        return getWithResponse(connectedClusterResourceUri, agentPoolName, Context.NONE).getValue();
+    private Mono<Response<AgentPoolInner>> getWithResponseAsync(String resourceUri, String agentPoolName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        if (agentPoolName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter agentPoolName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
+                agentPoolName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Creates the agent pool in the provisioned cluster instance
+     * Gets the specified agent pool in the provisioned cluster.
      * 
-     * Creates the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource definition.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified agent pool in the provisioned cluster along with {@link Response} on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<AgentPoolInner>> getWithResponseAsync(String resourceUri, String agentPoolName,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        if (agentPoolName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter agentPoolName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, agentPoolName, accept,
+            context);
+    }
+
+    /**
+     * Gets the specified agent pool in the provisioned cluster.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified agent pool in the provisioned cluster on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<AgentPoolInner> getAsync(String resourceUri, String agentPoolName) {
+        return getWithResponseAsync(resourceUri, agentPoolName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets the specified agent pool in the provisioned cluster.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified agent pool in the provisioned cluster along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<AgentPoolInner> getWithResponse(String resourceUri, String agentPoolName, Context context) {
+        return getWithResponseAsync(resourceUri, agentPoolName, context).block();
+    }
+
+    /**
+     * Gets the specified agent pool in the provisioned cluster.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified agent pool in the provisioned cluster.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AgentPoolInner get(String resourceUri, String agentPoolName) {
+        return getWithResponse(resourceUri, agentPoolName, Context.NONE).getValue();
+    }
+
+    /**
+     * Creates or updates the agent pool in the provisioned cluster.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the agentPool resource definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String connectedClusterResourceUri,
-        String agentPoolName, AgentPoolInner agentPool) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceUri, String agentPoolName,
+        AgentPoolInner resource) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         if (agentPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter agentPoolName is required and cannot be null."));
         }
-        if (agentPool == null) {
-            return Mono.error(new IllegalArgumentException("Parameter agentPool is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            agentPool.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), connectedClusterResourceUri,
-                agentPoolName, this.client.getApiVersion(), agentPool, accept, context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                resourceUri, agentPoolName, resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Creates the agent pool in the provisioned cluster instance
+     * Creates or updates the agent pool in the provisioned cluster.
      * 
-     * Creates the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource definition.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -298,62 +394,54 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @return the agentPool resource definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String connectedClusterResourceUri,
-        String agentPoolName, AgentPoolInner agentPool, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceUri, String agentPoolName,
+        AgentPoolInner resource, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         if (agentPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter agentPoolName is required and cannot be null."));
         }
-        if (agentPool == null) {
-            return Mono.error(new IllegalArgumentException("Parameter agentPool is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            agentPool.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), connectedClusterResourceUri, agentPoolName,
-            this.client.getApiVersion(), agentPool, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
+            agentPoolName, resource, accept, context);
     }
 
     /**
-     * Creates the agent pool in the provisioned cluster instance
+     * Creates or updates the agent pool in the provisioned cluster.
      * 
-     * Creates the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource definition.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of the agentPool resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<AgentPoolInner>, AgentPoolInner>
-        beginCreateOrUpdateAsync(String connectedClusterResourceUri, String agentPoolName, AgentPoolInner agentPool) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(connectedClusterResourceUri, agentPoolName, agentPool);
+    private PollerFlux<PollResult<AgentPoolInner>, AgentPoolInner> beginCreateOrUpdateAsync(String resourceUri,
+        String agentPoolName, AgentPoolInner resource) {
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceUri, agentPoolName, resource);
         return this.client.<AgentPoolInner, AgentPoolInner>getLroResult(mono, this.client.getHttpPipeline(),
             AgentPoolInner.class, AgentPoolInner.class, this.client.getContext());
     }
 
     /**
-     * Creates the agent pool in the provisioned cluster instance
+     * Creates or updates the agent pool in the provisioned cluster.
      * 
-     * Creates the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource definition.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -361,44 +449,38 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @return the {@link PollerFlux} for polling of the agentPool resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<AgentPoolInner>, AgentPoolInner> beginCreateOrUpdateAsync(
-        String connectedClusterResourceUri, String agentPoolName, AgentPoolInner agentPool, Context context) {
+    private PollerFlux<PollResult<AgentPoolInner>, AgentPoolInner> beginCreateOrUpdateAsync(String resourceUri,
+        String agentPoolName, AgentPoolInner resource, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(connectedClusterResourceUri, agentPoolName, agentPool, context);
+            = createOrUpdateWithResponseAsync(resourceUri, agentPoolName, resource, context);
         return this.client.<AgentPoolInner, AgentPoolInner>getLroResult(mono, this.client.getHttpPipeline(),
             AgentPoolInner.class, AgentPoolInner.class, context);
     }
 
     /**
-     * Creates the agent pool in the provisioned cluster instance
+     * Creates or updates the agent pool in the provisioned cluster.
      * 
-     * Creates the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource definition.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of the agentPool resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<AgentPoolInner>, AgentPoolInner>
-        beginCreateOrUpdate(String connectedClusterResourceUri, String agentPoolName, AgentPoolInner agentPool) {
-        return this.beginCreateOrUpdateAsync(connectedClusterResourceUri, agentPoolName, agentPool).getSyncPoller();
+    public SyncPoller<PollResult<AgentPoolInner>, AgentPoolInner> beginCreateOrUpdate(String resourceUri,
+        String agentPoolName, AgentPoolInner resource) {
+        return this.beginCreateOrUpdateAsync(resourceUri, agentPoolName, resource).getSyncPoller();
     }
 
     /**
-     * Creates the agent pool in the provisioned cluster instance
+     * Creates or updates the agent pool in the provisioned cluster.
      * 
-     * Creates the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource definition.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -406,42 +488,35 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @return the {@link SyncPoller} for polling of the agentPool resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<AgentPoolInner>, AgentPoolInner> beginCreateOrUpdate(
-        String connectedClusterResourceUri, String agentPoolName, AgentPoolInner agentPool, Context context) {
-        return this.beginCreateOrUpdateAsync(connectedClusterResourceUri, agentPoolName, agentPool, context)
-            .getSyncPoller();
+    public SyncPoller<PollResult<AgentPoolInner>, AgentPoolInner> beginCreateOrUpdate(String resourceUri,
+        String agentPoolName, AgentPoolInner resource, Context context) {
+        return this.beginCreateOrUpdateAsync(resourceUri, agentPoolName, resource, context).getSyncPoller();
     }
 
     /**
-     * Creates the agent pool in the provisioned cluster instance
+     * Creates or updates the agent pool in the provisioned cluster.
      * 
-     * Creates the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource definition.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the agentPool resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AgentPoolInner> createOrUpdateAsync(String connectedClusterResourceUri, String agentPoolName,
-        AgentPoolInner agentPool) {
-        return beginCreateOrUpdateAsync(connectedClusterResourceUri, agentPoolName, agentPool).last()
+    private Mono<AgentPoolInner> createOrUpdateAsync(String resourceUri, String agentPoolName,
+        AgentPoolInner resource) {
+        return beginCreateOrUpdateAsync(resourceUri, agentPoolName, resource).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Creates the agent pool in the provisioned cluster instance
+     * Creates or updates the agent pool in the provisioned cluster.
      * 
-     * Creates the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource definition.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -449,41 +524,34 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @return the agentPool resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AgentPoolInner> createOrUpdateAsync(String connectedClusterResourceUri, String agentPoolName,
-        AgentPoolInner agentPool, Context context) {
-        return beginCreateOrUpdateAsync(connectedClusterResourceUri, agentPoolName, agentPool, context).last()
+    private Mono<AgentPoolInner> createOrUpdateAsync(String resourceUri, String agentPoolName, AgentPoolInner resource,
+        Context context) {
+        return beginCreateOrUpdateAsync(resourceUri, agentPoolName, resource, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Creates the agent pool in the provisioned cluster instance
+     * Creates or updates the agent pool in the provisioned cluster.
      * 
-     * Creates the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource definition.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the agentPool resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AgentPoolInner createOrUpdate(String connectedClusterResourceUri, String agentPoolName,
-        AgentPoolInner agentPool) {
-        return createOrUpdateAsync(connectedClusterResourceUri, agentPoolName, agentPool).block();
+    public AgentPoolInner createOrUpdate(String resourceUri, String agentPoolName, AgentPoolInner resource) {
+        return createOrUpdateAsync(resourceUri, agentPoolName, resource).block();
     }
 
     /**
-     * Creates the agent pool in the provisioned cluster instance
+     * Creates or updates the agent pool in the provisioned cluster.
      * 
-     * Creates the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource definition.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -491,18 +559,15 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @return the agentPool resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AgentPoolInner createOrUpdate(String connectedClusterResourceUri, String agentPoolName,
-        AgentPoolInner agentPool, Context context) {
-        return createOrUpdateAsync(connectedClusterResourceUri, agentPoolName, agentPool, context).block();
+    public AgentPoolInner createOrUpdate(String resourceUri, String agentPoolName, AgentPoolInner resource,
+        Context context) {
+        return createOrUpdateAsync(resourceUri, agentPoolName, resource, context).block();
     }
 
     /**
-     * Deletes the agent pool in the provisioned cluster instance
+     * Deletes the specified agent pool in the provisioned cluster.
      * 
-     * Deletes the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -510,33 +575,28 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String connectedClusterResourceUri,
-        String agentPoolName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceUri, String agentPoolName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         if (agentPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter agentPoolName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), connectedClusterResourceUri,
-                agentPoolName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
+                agentPoolName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Deletes the agent pool in the provisioned cluster instance
+     * Deletes the specified agent pool in the provisioned cluster.
      * 
-     * Deletes the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -545,32 +605,28 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String connectedClusterResourceUri,
-        String agentPoolName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceUri, String agentPoolName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         if (agentPoolName == null) {
             return Mono.error(new IllegalArgumentException("Parameter agentPoolName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), connectedClusterResourceUri, agentPoolName,
-            this.client.getApiVersion(), accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, agentPoolName,
+            accept, context);
     }
 
     /**
-     * Deletes the agent pool in the provisioned cluster instance
+     * Deletes the specified agent pool in the provisioned cluster.
      * 
-     * Deletes the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -578,20 +634,16 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String connectedClusterResourceUri,
-        String agentPoolName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(connectedClusterResourceUri, agentPoolName);
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceUri, String agentPoolName) {
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceUri, agentPoolName);
         return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
             this.client.getContext());
     }
 
     /**
-     * Deletes the agent pool in the provisioned cluster instance
+     * Deletes the specified agent pool in the provisioned cluster.
      * 
-     * Deletes the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -600,22 +652,18 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String connectedClusterResourceUri,
-        String agentPoolName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceUri, String agentPoolName,
+        Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = deleteWithResponseAsync(connectedClusterResourceUri, agentPoolName, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceUri, agentPoolName, context);
         return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
             context);
     }
 
     /**
-     * Deletes the agent pool in the provisioned cluster instance
+     * Deletes the specified agent pool in the provisioned cluster.
      * 
-     * Deletes the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -623,17 +671,14 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String connectedClusterResourceUri, String agentPoolName) {
-        return this.beginDeleteAsync(connectedClusterResourceUri, agentPoolName).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceUri, String agentPoolName) {
+        return this.beginDeleteAsync(resourceUri, agentPoolName).getSyncPoller();
     }
 
     /**
-     * Deletes the agent pool in the provisioned cluster instance
+     * Deletes the specified agent pool in the provisioned cluster.
      * 
-     * Deletes the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -642,18 +687,14 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String connectedClusterResourceUri, String agentPoolName,
-        Context context) {
-        return this.beginDeleteAsync(connectedClusterResourceUri, agentPoolName, context).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceUri, String agentPoolName, Context context) {
+        return this.beginDeleteAsync(resourceUri, agentPoolName, context).getSyncPoller();
     }
 
     /**
-     * Deletes the agent pool in the provisioned cluster instance
+     * Deletes the specified agent pool in the provisioned cluster.
      * 
-     * Deletes the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -661,18 +702,14 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String connectedClusterResourceUri, String agentPoolName) {
-        return beginDeleteAsync(connectedClusterResourceUri, agentPoolName).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+    private Mono<Void> deleteAsync(String resourceUri, String agentPoolName) {
+        return beginDeleteAsync(resourceUri, agentPoolName).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Deletes the agent pool in the provisioned cluster instance
+     * Deletes the specified agent pool in the provisioned cluster.
      * 
-     * Deletes the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -681,35 +718,29 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String connectedClusterResourceUri, String agentPoolName, Context context) {
-        return beginDeleteAsync(connectedClusterResourceUri, agentPoolName, context).last()
+    private Mono<Void> deleteAsync(String resourceUri, String agentPoolName, Context context) {
+        return beginDeleteAsync(resourceUri, agentPoolName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Deletes the agent pool in the provisioned cluster instance
+     * Deletes the specified agent pool in the provisioned cluster.
      * 
-     * Deletes the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String connectedClusterResourceUri, String agentPoolName) {
-        deleteAsync(connectedClusterResourceUri, agentPoolName).block();
+    public void delete(String resourceUri, String agentPoolName) {
+        deleteAsync(resourceUri, agentPoolName).block();
     }
 
     /**
-     * Deletes the agent pool in the provisioned cluster instance
+     * Deletes the specified agent pool in the provisioned cluster.
      * 
-     * Deletes the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -717,375 +748,67 @@ public final class AgentPoolsClientImpl implements AgentPoolsClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String connectedClusterResourceUri, String agentPoolName, Context context) {
-        deleteAsync(connectedClusterResourceUri, agentPoolName, context).block();
+    public void delete(String resourceUri, String agentPoolName, Context context) {
+        deleteAsync(resourceUri, agentPoolName, context).block();
     }
 
     /**
-     * Updates the agent pool in the provisioned cluster instance
+     * Get the next page of items.
      * 
-     * Updates the agent pool in the Hybrid AKS provisioned cluster instance.
+     * @param nextLink The URL to get the next list of items
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource patch definition.
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the agentPool resource definition along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response of a AgentPool list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String connectedClusterResourceUri,
-        String agentPoolName, AgentPoolPatch agentPool) {
+    private Mono<PagedResponse<AgentPoolInner>> listByProvisionedClusterNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        if (agentPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter agentPoolName is required and cannot be null."));
-        }
-        if (agentPool == null) {
-            return Mono.error(new IllegalArgumentException("Parameter agentPool is required and cannot be null."));
-        } else {
-            agentPool.validate();
-        }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.update(this.client.getEndpoint(), connectedClusterResourceUri,
-                agentPoolName, this.client.getApiVersion(), agentPool, accept, context))
+            .withContext(
+                context -> service.listByProvisionedClusterNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<AgentPoolInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Updates the agent pool in the provisioned cluster instance
+     * Get the next page of items.
      * 
-     * Updates the agent pool in the Hybrid AKS provisioned cluster instance.
+     * @param nextLink The URL to get the next list of items
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource patch definition.
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the agentPool resource definition along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response of a AgentPool list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String connectedClusterResourceUri,
-        String agentPoolName, AgentPoolPatch agentPool, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        if (agentPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter agentPoolName is required and cannot be null."));
-        }
-        if (agentPool == null) {
-            return Mono.error(new IllegalArgumentException("Parameter agentPool is required and cannot be null."));
-        } else {
-            agentPool.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), connectedClusterResourceUri, agentPoolName,
-            this.client.getApiVersion(), agentPool, accept, context);
-    }
-
-    /**
-     * Updates the agent pool in the provisioned cluster instance
-     * 
-     * Updates the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource patch definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the agentPool resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<AgentPoolInner>, AgentPoolInner> beginUpdateAsync(String connectedClusterResourceUri,
-        String agentPoolName, AgentPoolPatch agentPool) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(connectedClusterResourceUri, agentPoolName, agentPool);
-        return this.client.<AgentPoolInner, AgentPoolInner>getLroResult(mono, this.client.getHttpPipeline(),
-            AgentPoolInner.class, AgentPoolInner.class, this.client.getContext());
-    }
-
-    /**
-     * Updates the agent pool in the provisioned cluster instance
-     * 
-     * Updates the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource patch definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the agentPool resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<AgentPoolInner>, AgentPoolInner> beginUpdateAsync(String connectedClusterResourceUri,
-        String agentPoolName, AgentPoolPatch agentPool, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(connectedClusterResourceUri, agentPoolName, agentPool, context);
-        return this.client.<AgentPoolInner, AgentPoolInner>getLroResult(mono, this.client.getHttpPipeline(),
-            AgentPoolInner.class, AgentPoolInner.class, context);
-    }
-
-    /**
-     * Updates the agent pool in the provisioned cluster instance
-     * 
-     * Updates the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource patch definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the agentPool resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<AgentPoolInner>, AgentPoolInner> beginUpdate(String connectedClusterResourceUri,
-        String agentPoolName, AgentPoolPatch agentPool) {
-        return this.beginUpdateAsync(connectedClusterResourceUri, agentPoolName, agentPool).getSyncPoller();
-    }
-
-    /**
-     * Updates the agent pool in the provisioned cluster instance
-     * 
-     * Updates the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource patch definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the agentPool resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<AgentPoolInner>, AgentPoolInner> beginUpdate(String connectedClusterResourceUri,
-        String agentPoolName, AgentPoolPatch agentPool, Context context) {
-        return this.beginUpdateAsync(connectedClusterResourceUri, agentPoolName, agentPool, context).getSyncPoller();
-    }
-
-    /**
-     * Updates the agent pool in the provisioned cluster instance
-     * 
-     * Updates the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource patch definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the agentPool resource definition on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AgentPoolInner> updateAsync(String connectedClusterResourceUri, String agentPoolName,
-        AgentPoolPatch agentPool) {
-        return beginUpdateAsync(connectedClusterResourceUri, agentPoolName, agentPool).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Updates the agent pool in the provisioned cluster instance
-     * 
-     * Updates the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource patch definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the agentPool resource definition on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AgentPoolInner> updateAsync(String connectedClusterResourceUri, String agentPoolName,
-        AgentPoolPatch agentPool, Context context) {
-        return beginUpdateAsync(connectedClusterResourceUri, agentPoolName, agentPool, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Updates the agent pool in the provisioned cluster instance
-     * 
-     * Updates the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource patch definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the agentPool resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AgentPoolInner update(String connectedClusterResourceUri, String agentPoolName, AgentPoolPatch agentPool) {
-        return updateAsync(connectedClusterResourceUri, agentPoolName, agentPool).block();
-    }
-
-    /**
-     * Updates the agent pool in the provisioned cluster instance
-     * 
-     * Updates the agent pool in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
-     * @param agentPool The agentPool resource patch definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the agentPool resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AgentPoolInner update(String connectedClusterResourceUri, String agentPoolName, AgentPoolPatch agentPool,
+    private Mono<PagedResponse<AgentPoolInner>> listByProvisionedClusterNextSinglePageAsync(String nextLink,
         Context context) {
-        return updateAsync(connectedClusterResourceUri, agentPoolName, agentPool, context).block();
-    }
-
-    /**
-     * Gets the agent pools in the provisioned cluster instance
-     * 
-     * Gets the agent pools in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the agent pools in the Hybrid AKS provisioned cluster instance along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AgentPoolListResultInner>>
-        listByProvisionedClusterWithResponseAsync(String connectedClusterResourceUri) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listByProvisionedCluster(this.client.getEndpoint(),
-                connectedClusterResourceUri, this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets the agent pools in the provisioned cluster instance
-     * 
-     * Gets the agent pools in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the agent pools in the Hybrid AKS provisioned cluster instance along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AgentPoolListResultInner>>
-        listByProvisionedClusterWithResponseAsync(String connectedClusterResourceUri, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listByProvisionedCluster(this.client.getEndpoint(), connectedClusterResourceUri,
-            this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Gets the agent pools in the provisioned cluster instance
-     * 
-     * Gets the agent pools in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the agent pools in the Hybrid AKS provisioned cluster instance on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AgentPoolListResultInner> listByProvisionedClusterAsync(String connectedClusterResourceUri) {
-        return listByProvisionedClusterWithResponseAsync(connectedClusterResourceUri)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Gets the agent pools in the provisioned cluster instance
-     * 
-     * Gets the agent pools in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the agent pools in the Hybrid AKS provisioned cluster instance along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<AgentPoolListResultInner> listByProvisionedClusterWithResponse(String connectedClusterResourceUri,
-        Context context) {
-        return listByProvisionedClusterWithResponseAsync(connectedClusterResourceUri, context).block();
-    }
-
-    /**
-     * Gets the agent pools in the provisioned cluster instance
-     * 
-     * Gets the agent pools in the Hybrid AKS provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the agent pools in the Hybrid AKS provisioned cluster instance.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AgentPoolListResultInner listByProvisionedCluster(String connectedClusterResourceUri) {
-        return listByProvisionedClusterWithResponse(connectedClusterResourceUri, Context.NONE).getValue();
+        return service.listByProvisionedClusterNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

@@ -8,7 +8,10 @@ import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.KubernetesVersionProfileInner;
 import com.azure.resourcemanager.hybridcontainerservice.models.ExtendedLocation;
 import com.azure.resourcemanager.hybridcontainerservice.models.KubernetesVersionProfile;
-import com.azure.resourcemanager.hybridcontainerservice.models.KubernetesVersionProfileProperties;
+import com.azure.resourcemanager.hybridcontainerservice.models.KubernetesVersionProperties;
+import com.azure.resourcemanager.hybridcontainerservice.models.ResourceProvisioningState;
+import java.util.Collections;
+import java.util.List;
 
 public final class KubernetesVersionProfileImpl implements KubernetesVersionProfile {
     private KubernetesVersionProfileInner innerObject;
@@ -37,12 +40,21 @@ public final class KubernetesVersionProfileImpl implements KubernetesVersionProf
         return this.innerModel().extendedLocation();
     }
 
-    public KubernetesVersionProfileProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public ResourceProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public List<KubernetesVersionProperties> values() {
+        List<KubernetesVersionProperties> inner = this.innerModel().values();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public KubernetesVersionProfileInner innerModel() {

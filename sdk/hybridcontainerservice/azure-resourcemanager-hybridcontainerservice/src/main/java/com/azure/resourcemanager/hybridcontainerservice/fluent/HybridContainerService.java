@@ -47,25 +47,11 @@ public interface HybridContainerService {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the ProvisionedClusterInstancesClient object to access its operations.
+     * Gets the KubernetesVersionsClient object to access its operations.
      * 
-     * @return the ProvisionedClusterInstancesClient object.
+     * @return the KubernetesVersionsClient object.
      */
-    ProvisionedClusterInstancesClient getProvisionedClusterInstances();
-
-    /**
-     * Gets the HybridIdentityMetadatasClient object to access its operations.
-     * 
-     * @return the HybridIdentityMetadatasClient object.
-     */
-    HybridIdentityMetadatasClient getHybridIdentityMetadatas();
-
-    /**
-     * Gets the AgentPoolsClient object to access its operations.
-     * 
-     * @return the AgentPoolsClient object.
-     */
-    AgentPoolsClient getAgentPools();
+    KubernetesVersionsClient getKubernetesVersions();
 
     /**
      * Gets the ResourceProvidersClient object to access its operations.
@@ -75,11 +61,25 @@ public interface HybridContainerService {
     ResourceProvidersClient getResourceProviders();
 
     /**
-     * Gets the KubernetesVersionsClient object to access its operations.
+     * Gets the ProvisionedClusterInstancesClient object to access its operations.
      * 
-     * @return the KubernetesVersionsClient object.
+     * @return the ProvisionedClusterInstancesClient object.
      */
-    KubernetesVersionsClient getKubernetesVersions();
+    ProvisionedClusterInstancesClient getProvisionedClusterInstances();
+
+    /**
+     * Gets the AgentPoolsClient object to access its operations.
+     * 
+     * @return the AgentPoolsClient object.
+     */
+    AgentPoolsClient getAgentPools();
+
+    /**
+     * Gets the HybridIdentityMetadatasClient object to access its operations.
+     * 
+     * @return the HybridIdentityMetadatasClient object.
+     */
+    HybridIdentityMetadatasClient getHybridIdentityMetadatas();
 
     /**
      * Gets the VMSkusClient object to access its operations.

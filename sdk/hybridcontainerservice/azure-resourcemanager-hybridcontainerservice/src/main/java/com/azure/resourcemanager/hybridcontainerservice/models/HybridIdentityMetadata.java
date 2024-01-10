@@ -47,7 +47,7 @@ public interface HybridIdentityMetadata {
     String resourceUid();
 
     /**
-     * Gets the publicKey property: Onboarding public key for provisioning the Managed identity for the HybridAKS
+     * Gets the publicKey property: Onboarding public key for provisioning the Managed identity for the connected
      * cluster.
      * 
      * @return the publicKey value.

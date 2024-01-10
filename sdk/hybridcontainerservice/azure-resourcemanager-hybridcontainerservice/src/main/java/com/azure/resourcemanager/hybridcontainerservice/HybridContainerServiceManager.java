@@ -53,15 +53,15 @@ import java.util.stream.Collectors;
  * The Microsoft.HybridContainerService Rest API spec.
  */
 public final class HybridContainerServiceManager {
-    private ProvisionedClusterInstances provisionedClusterInstances;
-
-    private HybridIdentityMetadatas hybridIdentityMetadatas;
-
-    private AgentPools agentPools;
+    private KubernetesVersions kubernetesVersions;
 
     private ResourceProviders resourceProviders;
 
-    private KubernetesVersions kubernetesVersions;
+    private ProvisionedClusterInstances provisionedClusterInstances;
+
+    private AgentPools agentPools;
+
+    private HybridIdentityMetadatas hybridIdentityMetadatas;
 
     private VMSkus vMSkus;
 
@@ -230,7 +230,7 @@ public final class HybridContainerServiceManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.hybridcontainerservice")
-                .append("/").append("1.0.0-beta.3");
+                .append("/").append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
@@ -270,41 +270,15 @@ public final class HybridContainerServiceManager {
     }
 
     /**
-     * Gets the resource collection API of ProvisionedClusterInstances.
+     * Gets the resource collection API of KubernetesVersions.
      * 
-     * @return Resource collection API of ProvisionedClusterInstances.
+     * @return Resource collection API of KubernetesVersions.
      */
-    public ProvisionedClusterInstances provisionedClusterInstances() {
-        if (this.provisionedClusterInstances == null) {
-            this.provisionedClusterInstances
-                = new ProvisionedClusterInstancesImpl(clientObject.getProvisionedClusterInstances(), this);
+    public KubernetesVersions kubernetesVersions() {
+        if (this.kubernetesVersions == null) {
+            this.kubernetesVersions = new KubernetesVersionsImpl(clientObject.getKubernetesVersions(), this);
         }
-        return provisionedClusterInstances;
-    }
-
-    /**
-     * Gets the resource collection API of HybridIdentityMetadatas.
-     * 
-     * @return Resource collection API of HybridIdentityMetadatas.
-     */
-    public HybridIdentityMetadatas hybridIdentityMetadatas() {
-        if (this.hybridIdentityMetadatas == null) {
-            this.hybridIdentityMetadatas
-                = new HybridIdentityMetadatasImpl(clientObject.getHybridIdentityMetadatas(), this);
-        }
-        return hybridIdentityMetadatas;
-    }
-
-    /**
-     * Gets the resource collection API of AgentPools. It manages AgentPool.
-     * 
-     * @return Resource collection API of AgentPools.
-     */
-    public AgentPools agentPools() {
-        if (this.agentPools == null) {
-            this.agentPools = new AgentPoolsImpl(clientObject.getAgentPools(), this);
-        }
-        return agentPools;
+        return kubernetesVersions;
     }
 
     /**
@@ -320,15 +294,41 @@ public final class HybridContainerServiceManager {
     }
 
     /**
-     * Gets the resource collection API of KubernetesVersions.
+     * Gets the resource collection API of ProvisionedClusterInstances.
      * 
-     * @return Resource collection API of KubernetesVersions.
+     * @return Resource collection API of ProvisionedClusterInstances.
      */
-    public KubernetesVersions kubernetesVersions() {
-        if (this.kubernetesVersions == null) {
-            this.kubernetesVersions = new KubernetesVersionsImpl(clientObject.getKubernetesVersions(), this);
+    public ProvisionedClusterInstances provisionedClusterInstances() {
+        if (this.provisionedClusterInstances == null) {
+            this.provisionedClusterInstances
+                = new ProvisionedClusterInstancesImpl(clientObject.getProvisionedClusterInstances(), this);
         }
-        return kubernetesVersions;
+        return provisionedClusterInstances;
+    }
+
+    /**
+     * Gets the resource collection API of AgentPools. It manages AgentPool.
+     * 
+     * @return Resource collection API of AgentPools.
+     */
+    public AgentPools agentPools() {
+        if (this.agentPools == null) {
+            this.agentPools = new AgentPoolsImpl(clientObject.getAgentPools(), this);
+        }
+        return agentPools;
+    }
+
+    /**
+     * Gets the resource collection API of HybridIdentityMetadatas.
+     * 
+     * @return Resource collection API of HybridIdentityMetadatas.
+     */
+    public HybridIdentityMetadatas hybridIdentityMetadatas() {
+        if (this.hybridIdentityMetadatas == null) {
+            this.hybridIdentityMetadatas
+                = new HybridIdentityMetadatasImpl(clientObject.getHybridIdentityMetadatas(), this);
+        }
+        return hybridIdentityMetadatas;
     }
 
     /**

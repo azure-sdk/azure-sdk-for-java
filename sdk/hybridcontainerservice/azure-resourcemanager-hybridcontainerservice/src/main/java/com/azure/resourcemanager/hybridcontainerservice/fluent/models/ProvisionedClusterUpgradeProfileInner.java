@@ -7,23 +7,20 @@ package com.azure.resourcemanager.hybridcontainerservice.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridcontainerservice.models.ProvisionedClusterPoolUpgradeProfile;
 import com.azure.resourcemanager.hybridcontainerservice.models.ResourceProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
 /**
- * The list of available upgrades for compute pools.
+ * The list of available kubernetes version upgrades for the provisioned cluster.
  */
 @Fluent
 public final class ProvisionedClusterUpgradeProfileInner extends ProxyResource {
     /*
-     * The properties of the upgrade profile.
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private ProvisionedClusterUpgradeProfileProperties innerProperties
-        = new ProvisionedClusterUpgradeProfileProperties();
+    @JsonProperty(value = "properties")
+    private ProvisionedClusterUpgradeProfileProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -38,7 +35,7 @@ public final class ProvisionedClusterUpgradeProfileInner extends ProxyResource {
     }
 
     /**
-     * Get the innerProperties property: The properties of the upgrade profile.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
      * @return the innerProperties value.
      */
@@ -65,7 +62,7 @@ public final class ProvisionedClusterUpgradeProfileInner extends ProxyResource {
     }
 
     /**
-     * Get the controlPlaneProfile property: The list of available upgrade versions for the control plane.
+     * Get the controlPlaneProfile property: The list of available kubernetes version upgrades for the control plane.
      * 
      * @return the controlPlaneProfile value.
      */
@@ -74,7 +71,7 @@ public final class ProvisionedClusterUpgradeProfileInner extends ProxyResource {
     }
 
     /**
-     * Set the controlPlaneProfile property: The list of available upgrade versions for the control plane.
+     * Set the controlPlaneProfile property: The list of available kubernetes version upgrades for the control plane.
      * 
      * @param controlPlaneProfile the controlPlaneProfile value to set.
      * @return the ProvisionedClusterUpgradeProfileInner object itself.
@@ -89,42 +86,13 @@ public final class ProvisionedClusterUpgradeProfileInner extends ProxyResource {
     }
 
     /**
-     * Get the agentPoolProfiles property: The list of available upgrade versions for agent pools.
-     * 
-     * @return the agentPoolProfiles value.
-     */
-    public List<ProvisionedClusterPoolUpgradeProfile> agentPoolProfiles() {
-        return this.innerProperties() == null ? null : this.innerProperties().agentPoolProfiles();
-    }
-
-    /**
-     * Set the agentPoolProfiles property: The list of available upgrade versions for agent pools.
-     * 
-     * @param agentPoolProfiles the agentPoolProfiles value to set.
-     * @return the ProvisionedClusterUpgradeProfileInner object itself.
-     */
-    public ProvisionedClusterUpgradeProfileInner
-        withAgentPoolProfiles(List<ProvisionedClusterPoolUpgradeProfile> agentPoolProfiles) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ProvisionedClusterUpgradeProfileProperties();
-        }
-        this.innerProperties().withAgentPoolProfiles(agentPoolProfiles);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property innerProperties in model ProvisionedClusterUpgradeProfileInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ProvisionedClusterUpgradeProfileInner.class);
 }

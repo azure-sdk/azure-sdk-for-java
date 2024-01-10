@@ -8,8 +8,10 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.hybridcontainerservice.models.ExtendedLocation;
-import com.azure.resourcemanager.hybridcontainerservice.models.KubernetesVersionProfileProperties;
+import com.azure.resourcemanager.hybridcontainerservice.models.KubernetesVersionProperties;
+import com.azure.resourcemanager.hybridcontainerservice.models.ResourceProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /**
  * The supported kubernetes versions.
@@ -17,16 +19,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class KubernetesVersionProfileInner extends ProxyResource {
     /*
-     * Extended Location definition
+     * The resource-specific properties for this resource.
+     */
+    @JsonProperty(value = "properties")
+    private KubernetesVersionProfileProperties innerProperties;
+
+    /*
+     * Extended location pointing to the underlying infrastructure
      */
     @JsonProperty(value = "extendedLocation")
     private ExtendedLocation extendedLocation;
-
-    /*
-     * The properties property.
-     */
-    @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
-    private KubernetesVersionProfileProperties properties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -41,7 +43,16 @@ public final class KubernetesVersionProfileInner extends ProxyResource {
     }
 
     /**
-     * Get the extendedLocation property: Extended Location definition.
+     * Get the innerProperties property: The resource-specific properties for this resource.
+     * 
+     * @return the innerProperties value.
+     */
+    private KubernetesVersionProfileProperties innerProperties() {
+        return this.innerProperties;
+    }
+
+    /**
+     * Get the extendedLocation property: Extended location pointing to the underlying infrastructure.
      * 
      * @return the extendedLocation value.
      */
@@ -50,7 +61,7 @@ public final class KubernetesVersionProfileInner extends ProxyResource {
     }
 
     /**
-     * Set the extendedLocation property: Extended Location definition.
+     * Set the extendedLocation property: Extended location pointing to the underlying infrastructure.
      * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the KubernetesVersionProfileInner object itself.
@@ -58,15 +69,6 @@ public final class KubernetesVersionProfileInner extends ProxyResource {
     public KubernetesVersionProfileInner withExtendedLocation(ExtendedLocation extendedLocation) {
         this.extendedLocation = extendedLocation;
         return this;
-    }
-
-    /**
-     * Get the properties property: The properties property.
-     * 
-     * @return the properties value.
-     */
-    public KubernetesVersionProfileProperties properties() {
-        return this.properties;
     }
 
     /**
@@ -79,16 +81,48 @@ public final class KubernetesVersionProfileInner extends ProxyResource {
     }
 
     /**
+     * Get the provisioningState property: Provisioning state of the resource.
+     * 
+     * @return the provisioningState value.
+     */
+    public ResourceProvisioningState provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the values property: List of supported Kubernetes versions.
+     * 
+     * @return the values value.
+     */
+    public List<KubernetesVersionProperties> values() {
+        return this.innerProperties() == null ? null : this.innerProperties().values();
+    }
+
+    /**
+     * Set the values property: List of supported Kubernetes versions.
+     * 
+     * @param values the values value to set.
+     * @return the KubernetesVersionProfileInner object itself.
+     */
+    public KubernetesVersionProfileInner withValues(List<KubernetesVersionProperties> values) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new KubernetesVersionProfileProperties();
+        }
+        this.innerProperties().withValues(values);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (innerProperties() != null) {
+            innerProperties().validate();
+        }
         if (extendedLocation() != null) {
             extendedLocation().validate();
-        }
-        if (properties() != null) {
-            properties().validate();
         }
     }
 }

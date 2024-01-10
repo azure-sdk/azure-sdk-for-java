@@ -34,7 +34,7 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.VirtualNetworksClient;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.VirtualNetworkInner;
-import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworksListResult;
+import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkListResult;
 import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworksPatch;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
@@ -73,24 +73,52 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     @ServiceInterface(name = "HybridContainerServi")
     public interface VirtualNetworksService {
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.HybridContainerService/virtualNetworks")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<VirtualNetworkListResult>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridContainerService/virtualNetworks")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<VirtualNetworkListResult>> listByResourceGroup(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridContainerService/virtualNetworks/{virtualNetworkName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<VirtualNetworkInner>> getByResourceGroup(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("virtualNetworkName") String virtualNetworkName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("virtualNetworkName") String virtualNetworkName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridContainerService/virtualNetworks/{virtualNetworkName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("virtualNetworkName") String virtualNetworkName, @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") VirtualNetworkInner virtualNetworks, @HeaderParam("Accept") String accept,
+            @PathParam("virtualNetworkName") String virtualNetworkName,
+            @BodyParam("application/json") VirtualNetworkInner resource, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridContainerService/virtualNetworks/{virtualNetworkName}")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("virtualNetworkName") String virtualNetworkName,
+            @BodyParam("application/json") VirtualNetworksPatch properties, @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -98,44 +126,16 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
         @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("virtualNetworkName") String virtualNetworkName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridContainerService/virtualNetworks/{virtualNetworkName}")
-        @ExpectedResponses({ 200, 202 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("virtualNetworkName") String virtualNetworkName, @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") VirtualNetworksPatch virtualNetworks, @HeaderParam("Accept") String accept,
+            @PathParam("virtualNetworkName") String virtualNetworkName, @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridContainerService/virtualNetworks")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualNetworksListResult>> listByResourceGroup(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.HybridContainerService/virtualNetworks")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualNetworksListResult>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualNetworksListResult>> listByResourceGroupNext(
+        Mono<Response<VirtualNetworkListResult>> listBySubscriptionNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -143,26 +143,21 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualNetworksListResult>> listBySubscriptionNext(
+        Mono<Response<VirtualNetworkListResult>> listByResourceGroupNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * Gets the virtual network
+     * Lists the virtual networks in the specified subscription.
      * 
-     * Gets the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Hybrid AKS virtual network along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response of a VirtualNetwork list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<VirtualNetworkInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
-        String virtualNetworkName) {
+    private Mono<PagedResponse<VirtualNetworkInner>> listSinglePageAsync() {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -171,38 +166,27 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (virtualNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter virtualNetworkName is required and cannot be null."));
-        }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                    resourceGroupName, virtualNetworkName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
+            .<PagedResponse<VirtualNetworkInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets the virtual network
+     * Lists the virtual networks in the specified subscription.
      * 
-     * Gets the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Hybrid AKS virtual network along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response of a VirtualNetwork list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<VirtualNetworkInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
-        String virtualNetworkName, Context context) {
+    private Mono<PagedResponse<VirtualNetworkInner>> listSinglePageAsync(Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -211,822 +195,78 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (virtualNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter virtualNetworkName is required and cannot be null."));
-        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            virtualNetworkName, this.client.getApiVersion(), accept, context);
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
+                context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
-     * Gets the virtual network
+     * Lists the virtual networks in the specified subscription.
      * 
-     * Gets the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Hybrid AKS virtual network on successful completion of {@link Mono}.
+     * @return the response of a VirtualNetwork list operation as paginated response with {@link PagedFlux}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualNetworkInner> getByResourceGroupAsync(String resourceGroupName, String virtualNetworkName) {
-        return getByResourceGroupWithResponseAsync(resourceGroupName, virtualNetworkName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<VirtualNetworkInner> listAsync() {
+        return new PagedFlux<>(() -> listSinglePageAsync(),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Gets the virtual network
+     * Lists the virtual networks in the specified subscription.
      * 
-     * Gets the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Hybrid AKS virtual network along with {@link Response}.
+     * @return the response of a VirtualNetwork list operation as paginated response with {@link PagedFlux}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<VirtualNetworkInner> getByResourceGroupWithResponse(String resourceGroupName,
-        String virtualNetworkName, Context context) {
-        return getByResourceGroupWithResponseAsync(resourceGroupName, virtualNetworkName, context).block();
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<VirtualNetworkInner> listAsync(Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(context),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * Gets the virtual network
+     * Lists the virtual networks in the specified subscription.
      * 
-     * Gets the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Hybrid AKS virtual network.
+     * @return the response of a VirtualNetwork list operation as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualNetworkInner getByResourceGroup(String resourceGroupName, String virtualNetworkName) {
-        return getByResourceGroupWithResponse(resourceGroupName, virtualNetworkName, Context.NONE).getValue();
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<VirtualNetworkInner> list() {
+        return new PagedIterable<>(listAsync());
     }
 
     /**
-     * Puts the virtual network
+     * Lists the virtual networks in the specified subscription.
      * 
-     * Puts the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the virtualNetworks resource definition along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String virtualNetworkName, VirtualNetworkInner virtualNetworks) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (virtualNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter virtualNetworkName is required and cannot be null."));
-        }
-        if (virtualNetworks == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter virtualNetworks is required and cannot be null."));
-        } else {
-            virtualNetworks.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, virtualNetworkName, this.client.getApiVersion(), virtualNetworks, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Puts the virtual network
-     * 
-     * Puts the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource definition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the virtualNetworks resource definition along with {@link Response} on successful completion of
-     * {@link Mono}.
+     * @return the response of a VirtualNetwork list operation as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String virtualNetworkName, VirtualNetworkInner virtualNetworks, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (virtualNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter virtualNetworkName is required and cannot be null."));
-        }
-        if (virtualNetworks == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter virtualNetworks is required and cannot be null."));
-        } else {
-            virtualNetworks.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            virtualNetworkName, this.client.getApiVersion(), virtualNetworks, accept, context);
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<VirtualNetworkInner> list(Context context) {
+        return new PagedIterable<>(listAsync(context));
     }
 
     /**
-     * Puts the virtual network
-     * 
-     * Puts the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the virtualNetworks resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String virtualNetworkName, VirtualNetworkInner virtualNetworks) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, virtualNetworkName, virtualNetworks);
-        return this.client.<VirtualNetworkInner, VirtualNetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
-            VirtualNetworkInner.class, VirtualNetworkInner.class, this.client.getContext());
-    }
-
-    /**
-     * Puts the virtual network
-     * 
-     * Puts the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the virtualNetworks resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String virtualNetworkName, VirtualNetworkInner virtualNetworks, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, virtualNetworkName, virtualNetworks, context);
-        return this.client.<VirtualNetworkInner, VirtualNetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
-            VirtualNetworkInner.class, VirtualNetworkInner.class, context);
-    }
-
-    /**
-     * Puts the virtual network
-     * 
-     * Puts the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the virtualNetworks resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner>
-        beginCreateOrUpdate(String resourceGroupName, String virtualNetworkName, VirtualNetworkInner virtualNetworks) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, virtualNetworkName, virtualNetworks).getSyncPoller();
-    }
-
-    /**
-     * Puts the virtual network
-     * 
-     * Puts the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the virtualNetworks resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginCreateOrUpdate(
-        String resourceGroupName, String virtualNetworkName, VirtualNetworkInner virtualNetworks, Context context) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, virtualNetworkName, virtualNetworks, context)
-            .getSyncPoller();
-    }
-
-    /**
-     * Puts the virtual network
-     * 
-     * Puts the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the virtualNetworks resource definition on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualNetworkInner> createOrUpdateAsync(String resourceGroupName, String virtualNetworkName,
-        VirtualNetworkInner virtualNetworks) {
-        return beginCreateOrUpdateAsync(resourceGroupName, virtualNetworkName, virtualNetworks).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Puts the virtual network
-     * 
-     * Puts the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the virtualNetworks resource definition on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualNetworkInner> createOrUpdateAsync(String resourceGroupName, String virtualNetworkName,
-        VirtualNetworkInner virtualNetworks, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, virtualNetworkName, virtualNetworks, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Puts the virtual network
-     * 
-     * Puts the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the virtualNetworks resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualNetworkInner createOrUpdate(String resourceGroupName, String virtualNetworkName,
-        VirtualNetworkInner virtualNetworks) {
-        return createOrUpdateAsync(resourceGroupName, virtualNetworkName, virtualNetworks).block();
-    }
-
-    /**
-     * Puts the virtual network
-     * 
-     * Puts the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the virtualNetworks resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualNetworkInner createOrUpdate(String resourceGroupName, String virtualNetworkName,
-        VirtualNetworkInner virtualNetworks, Context context) {
-        return createOrUpdateAsync(resourceGroupName, virtualNetworkName, virtualNetworks, context).block();
-    }
-
-    /**
-     * Deletes the virtual network
-     * 
-     * Deletes the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String virtualNetworkName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (virtualNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter virtualNetworkName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, virtualNetworkName, this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Deletes the virtual network
-     * 
-     * Deletes the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String virtualNetworkName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (virtualNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter virtualNetworkName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            virtualNetworkName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Deletes the virtual network
-     * 
-     * Deletes the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String virtualNetworkName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, virtualNetworkName);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Deletes the virtual network
-     * 
-     * Deletes the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String virtualNetworkName,
-        Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, virtualNetworkName, context);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            context);
-    }
-
-    /**
-     * Deletes the virtual network
-     * 
-     * Deletes the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualNetworkName) {
-        return this.beginDeleteAsync(resourceGroupName, virtualNetworkName).getSyncPoller();
-    }
-
-    /**
-     * Deletes the virtual network
-     * 
-     * Deletes the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualNetworkName,
-        Context context) {
-        return this.beginDeleteAsync(resourceGroupName, virtualNetworkName, context).getSyncPoller();
-    }
-
-    /**
-     * Deletes the virtual network
-     * 
-     * Deletes the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String virtualNetworkName) {
-        return beginDeleteAsync(resourceGroupName, virtualNetworkName).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Deletes the virtual network
-     * 
-     * Deletes the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String virtualNetworkName, Context context) {
-        return beginDeleteAsync(resourceGroupName, virtualNetworkName, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Deletes the virtual network
-     * 
-     * Deletes the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String virtualNetworkName) {
-        deleteAsync(resourceGroupName, virtualNetworkName).block();
-    }
-
-    /**
-     * Deletes the virtual network
-     * 
-     * Deletes the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String virtualNetworkName, Context context) {
-        deleteAsync(resourceGroupName, virtualNetworkName, context).block();
-    }
-
-    /**
-     * Patches the virtual network
-     * 
-     * Patches the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource patch definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the virtualNetworks resource definition along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
-        String virtualNetworkName, VirtualNetworksPatch virtualNetworks) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (virtualNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter virtualNetworkName is required and cannot be null."));
-        }
-        if (virtualNetworks == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter virtualNetworks is required and cannot be null."));
-        } else {
-            virtualNetworks.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, virtualNetworkName, this.client.getApiVersion(), virtualNetworks, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Patches the virtual network
-     * 
-     * Patches the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource patch definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the virtualNetworks resource definition along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
-        String virtualNetworkName, VirtualNetworksPatch virtualNetworks, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (virtualNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter virtualNetworkName is required and cannot be null."));
-        }
-        if (virtualNetworks == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter virtualNetworks is required and cannot be null."));
-        } else {
-            virtualNetworks.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            virtualNetworkName, this.client.getApiVersion(), virtualNetworks, accept, context);
-    }
-
-    /**
-     * Patches the virtual network
-     * 
-     * Patches the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource patch definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the virtualNetworks resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginUpdateAsync(String resourceGroupName,
-        String virtualNetworkName, VirtualNetworksPatch virtualNetworks) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceGroupName, virtualNetworkName, virtualNetworks);
-        return this.client.<VirtualNetworkInner, VirtualNetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
-            VirtualNetworkInner.class, VirtualNetworkInner.class, this.client.getContext());
-    }
-
-    /**
-     * Patches the virtual network
-     * 
-     * Patches the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource patch definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the virtualNetworks resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginUpdateAsync(String resourceGroupName,
-        String virtualNetworkName, VirtualNetworksPatch virtualNetworks, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceGroupName, virtualNetworkName, virtualNetworks, context);
-        return this.client.<VirtualNetworkInner, VirtualNetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
-            VirtualNetworkInner.class, VirtualNetworkInner.class, context);
-    }
-
-    /**
-     * Patches the virtual network
-     * 
-     * Patches the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource patch definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the virtualNetworks resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginUpdate(String resourceGroupName,
-        String virtualNetworkName, VirtualNetworksPatch virtualNetworks) {
-        return this.beginUpdateAsync(resourceGroupName, virtualNetworkName, virtualNetworks).getSyncPoller();
-    }
-
-    /**
-     * Patches the virtual network
-     * 
-     * Patches the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource patch definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the virtualNetworks resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginUpdate(String resourceGroupName,
-        String virtualNetworkName, VirtualNetworksPatch virtualNetworks, Context context) {
-        return this.beginUpdateAsync(resourceGroupName, virtualNetworkName, virtualNetworks, context).getSyncPoller();
-    }
-
-    /**
-     * Patches the virtual network
-     * 
-     * Patches the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource patch definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the virtualNetworks resource definition on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualNetworkInner> updateAsync(String resourceGroupName, String virtualNetworkName,
-        VirtualNetworksPatch virtualNetworks) {
-        return beginUpdateAsync(resourceGroupName, virtualNetworkName, virtualNetworks).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Patches the virtual network
-     * 
-     * Patches the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource patch definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the virtualNetworks resource definition on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualNetworkInner> updateAsync(String resourceGroupName, String virtualNetworkName,
-        VirtualNetworksPatch virtualNetworks, Context context) {
-        return beginUpdateAsync(resourceGroupName, virtualNetworkName, virtualNetworks, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Patches the virtual network
-     * 
-     * Patches the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource patch definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the virtualNetworks resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualNetworkInner update(String resourceGroupName, String virtualNetworkName,
-        VirtualNetworksPatch virtualNetworks) {
-        return updateAsync(resourceGroupName, virtualNetworkName, virtualNetworks).block();
-    }
-
-    /**
-     * Patches the virtual network
-     * 
-     * Patches the Hybrid AKS virtual network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param virtualNetworkName Parameter for the name of the virtual network.
-     * @param virtualNetworks The virtualNetworks resource patch definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the virtualNetworks resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualNetworkInner update(String resourceGroupName, String virtualNetworkName,
-        VirtualNetworksPatch virtualNetworks, Context context) {
-        return updateAsync(resourceGroupName, virtualNetworkName, virtualNetworks, context).block();
-    }
-
-    /**
-     * List virtual networks by resource group
-     * 
-     * Lists the Hybrid AKS virtual networks by resource group.
+     * Lists the virtual networks in the specified resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a VirtualNetwork list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualNetworkInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
@@ -1044,24 +284,23 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, accept, context))
             .<PagedResponse<VirtualNetworkInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * List virtual networks by resource group
-     * 
-     * Lists the Hybrid AKS virtual networks by resource group.
+     * Lists the virtual networks in the specified resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a VirtualNetwork list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualNetworkInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
@@ -1081,22 +320,20 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                this.client.getApiVersion(), accept, context)
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
-     * List virtual networks by resource group
-     * 
-     * Lists the Hybrid AKS virtual networks by resource group.
+     * Lists the virtual networks in the specified resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedFlux}.
+     * @return the response of a VirtualNetwork list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<VirtualNetworkInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -1105,16 +342,14 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * List virtual networks by resource group
-     * 
-     * Lists the Hybrid AKS virtual networks by resource group.
+     * Lists the virtual networks in the specified resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedFlux}.
+     * @return the response of a VirtualNetwork list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<VirtualNetworkInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -1123,15 +358,13 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * List virtual networks by resource group
-     * 
-     * Lists the Hybrid AKS virtual networks by resource group.
+     * Lists the virtual networks in the specified resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return the response of a VirtualNetwork list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<VirtualNetworkInner> listByResourceGroup(String resourceGroupName) {
@@ -1139,16 +372,14 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * List virtual networks by resource group
-     * 
-     * Lists the Hybrid AKS virtual networks by resource group.
+     * Lists the virtual networks in the specified resource group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return the response of a VirtualNetwork list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<VirtualNetworkInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -1156,16 +387,19 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * List virtual networks by subscription
+     * Gets the specified virtual network resource.
      * 
-     * Lists the Hybrid AKS virtual networks by subscription.
-     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the specified virtual network resource along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualNetworkInner>> listSinglePageAsync() {
+    private Mono<Response<VirtualNetworkInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String virtualNetworkName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1174,28 +408,36 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (virtualNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualNetworkName is required and cannot be null."));
+        }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context))
-            .<PagedResponse<VirtualNetworkInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, virtualNetworkName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * List virtual networks by subscription
+     * Gets the specified virtual network resource.
      * 
-     * Lists the Hybrid AKS virtual networks by subscription.
-     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the specified virtual network resource along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualNetworkInner>> listSinglePageAsync(Context context) {
+    private Mono<Response<VirtualNetworkInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String virtualNetworkName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1203,134 +445,740 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (virtualNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualNetworkName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-                context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, virtualNetworkName, accept, context);
     }
 
     /**
-     * List virtual networks by subscription
+     * Gets the specified virtual network resource.
      * 
-     * Lists the Hybrid AKS virtual networks by subscription.
-     * 
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<VirtualNetworkInner> listAsync() {
-        return new PagedFlux<>(() -> listSinglePageAsync(),
-            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * List virtual networks by subscription
-     * 
-     * Lists the Hybrid AKS virtual networks by subscription.
-     * 
-     * @param context The context to associate with this operation.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<VirtualNetworkInner> listAsync(Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(context),
-            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * List virtual networks by subscription
-     * 
-     * Lists the Hybrid AKS virtual networks by subscription.
-     * 
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<VirtualNetworkInner> list() {
-        return new PagedIterable<>(listAsync());
-    }
-
-    /**
-     * List virtual networks by subscription
-     * 
-     * Lists the Hybrid AKS virtual networks by subscription.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<VirtualNetworkInner> list(Context context) {
-        return new PagedIterable<>(listAsync(context));
-    }
-
-    /**
-     * Get the next page of items.
-     * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the specified virtual network resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualNetworkInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
+    private Mono<VirtualNetworkInner> getByResourceGroupAsync(String resourceGroupName, String virtualNetworkName) {
+        return getByResourceGroupWithResponseAsync(resourceGroupName, virtualNetworkName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets the specified virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified virtual network resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<VirtualNetworkInner> getByResourceGroupWithResponse(String resourceGroupName,
+        String virtualNetworkName, Context context) {
+        return getByResourceGroupWithResponseAsync(resourceGroupName, virtualNetworkName, context).block();
+    }
+
+    /**
+     * Gets the specified virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified virtual network resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VirtualNetworkInner getByResourceGroup(String resourceGroupName, String virtualNetworkName) {
+        return getByResourceGroupWithResponse(resourceGroupName, virtualNetworkName, Context.NONE).getValue();
+    }
+
+    /**
+     * Creates or updates the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Virtual Network resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String virtualNetworkName, VirtualNetworkInner resource) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (virtualNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualNetworkName is required and cannot be null."));
+        }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<VirtualNetworkInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, virtualNetworkName, resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Get the next page of items.
+     * Creates or updates the virtual network resource.
      * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the Virtual Network resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualNetworkInner>> listByResourceGroupNextSinglePageAsync(String nextLink,
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String virtualNetworkName, VirtualNetworkInner resource, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (virtualNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualNetworkName is required and cannot be null."));
+        }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, virtualNetworkName, resource, accept, context);
+    }
+
+    /**
+     * Creates or updates the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the Virtual Network resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<VirtualNetworkInner>, VirtualNetworkInner>
+        beginCreateOrUpdateAsync(String resourceGroupName, String virtualNetworkName, VirtualNetworkInner resource) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, virtualNetworkName, resource);
+        return this.client.<VirtualNetworkInner, VirtualNetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
+            VirtualNetworkInner.class, VirtualNetworkInner.class, this.client.getContext());
+    }
+
+    /**
+     * Creates or updates the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the Virtual Network resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String virtualNetworkName, VirtualNetworkInner resource, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, virtualNetworkName, resource, context);
+        return this.client.<VirtualNetworkInner, VirtualNetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
+            VirtualNetworkInner.class, VirtualNetworkInner.class, context);
+    }
+
+    /**
+     * Creates or updates the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the Virtual Network resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner>
+        beginCreateOrUpdate(String resourceGroupName, String virtualNetworkName, VirtualNetworkInner resource) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, virtualNetworkName, resource).getSyncPoller();
+    }
+
+    /**
+     * Creates or updates the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the Virtual Network resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginCreateOrUpdate(
+        String resourceGroupName, String virtualNetworkName, VirtualNetworkInner resource, Context context) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, virtualNetworkName, resource, context).getSyncPoller();
+    }
+
+    /**
+     * Creates or updates the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Virtual Network resource definition on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<VirtualNetworkInner> createOrUpdateAsync(String resourceGroupName, String virtualNetworkName,
+        VirtualNetworkInner resource) {
+        return beginCreateOrUpdateAsync(resourceGroupName, virtualNetworkName, resource).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Creates or updates the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Virtual Network resource definition on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<VirtualNetworkInner> createOrUpdateAsync(String resourceGroupName, String virtualNetworkName,
+        VirtualNetworkInner resource, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, virtualNetworkName, resource, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Creates or updates the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Virtual Network resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VirtualNetworkInner createOrUpdate(String resourceGroupName, String virtualNetworkName,
+        VirtualNetworkInner resource) {
+        return createOrUpdateAsync(resourceGroupName, virtualNetworkName, resource).block();
+    }
+
+    /**
+     * Creates or updates the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Virtual Network resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VirtualNetworkInner createOrUpdate(String resourceGroupName, String virtualNetworkName,
+        VirtualNetworkInner resource, Context context) {
+        return createOrUpdateAsync(resourceGroupName, virtualNetworkName, resource, context).block();
+    }
+
+    /**
+     * Patches the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Virtual Network resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
+        String virtualNetworkName, VirtualNetworksPatch properties) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (virtualNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualNetworkName is required and cannot be null."));
+        }
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        } else {
+            properties.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, virtualNetworkName, properties, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Patches the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Virtual Network resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
+        String virtualNetworkName, VirtualNetworksPatch properties, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (virtualNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualNetworkName is required and cannot be null."));
+        }
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        } else {
+            properties.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, virtualNetworkName, properties, accept, context);
+    }
+
+    /**
+     * Patches the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the Virtual Network resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginUpdateAsync(String resourceGroupName,
+        String virtualNetworkName, VirtualNetworksPatch properties) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, virtualNetworkName, properties);
+        return this.client.<VirtualNetworkInner, VirtualNetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
+            VirtualNetworkInner.class, VirtualNetworkInner.class, this.client.getContext());
+    }
+
+    /**
+     * Patches the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the Virtual Network resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginUpdateAsync(String resourceGroupName,
+        String virtualNetworkName, VirtualNetworksPatch properties, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, virtualNetworkName, properties, context);
+        return this.client.<VirtualNetworkInner, VirtualNetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
+            VirtualNetworkInner.class, VirtualNetworkInner.class, context);
+    }
+
+    /**
+     * Patches the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the Virtual Network resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginUpdate(String resourceGroupName,
+        String virtualNetworkName, VirtualNetworksPatch properties) {
+        return this.beginUpdateAsync(resourceGroupName, virtualNetworkName, properties).getSyncPoller();
+    }
+
+    /**
+     * Patches the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the Virtual Network resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginUpdate(String resourceGroupName,
+        String virtualNetworkName, VirtualNetworksPatch properties, Context context) {
+        return this.beginUpdateAsync(resourceGroupName, virtualNetworkName, properties, context).getSyncPoller();
+    }
+
+    /**
+     * Patches the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Virtual Network resource definition on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<VirtualNetworkInner> updateAsync(String resourceGroupName, String virtualNetworkName,
+        VirtualNetworksPatch properties) {
+        return beginUpdateAsync(resourceGroupName, virtualNetworkName, properties).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Patches the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Virtual Network resource definition on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<VirtualNetworkInner> updateAsync(String resourceGroupName, String virtualNetworkName,
+        VirtualNetworksPatch properties, Context context) {
+        return beginUpdateAsync(resourceGroupName, virtualNetworkName, properties, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Patches the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Virtual Network resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VirtualNetworkInner update(String resourceGroupName, String virtualNetworkName,
+        VirtualNetworksPatch properties) {
+        return updateAsync(resourceGroupName, virtualNetworkName, properties).block();
+    }
+
+    /**
+     * Patches the virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Virtual Network resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VirtualNetworkInner update(String resourceGroupName, String virtualNetworkName,
+        VirtualNetworksPatch properties, Context context) {
+        return updateAsync(resourceGroupName, virtualNetworkName, properties, context).block();
+    }
+
+    /**
+     * Deletes the specified virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
+        String virtualNetworkName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (virtualNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualNetworkName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, virtualNetworkName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Deletes the specified virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
+        String virtualNetworkName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (virtualNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualNetworkName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, virtualNetworkName, accept, context);
+    }
+
+    /**
+     * Deletes the specified virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String virtualNetworkName) {
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, virtualNetworkName);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Deletes the specified virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String virtualNetworkName,
         Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, virtualNetworkName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
+    }
+
+    /**
+     * Deletes the specified virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualNetworkName) {
+        return this.beginDeleteAsync(resourceGroupName, virtualNetworkName).getSyncPoller();
+    }
+
+    /**
+     * Deletes the specified virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualNetworkName,
+        Context context) {
+        return this.beginDeleteAsync(resourceGroupName, virtualNetworkName, context).getSyncPoller();
+    }
+
+    /**
+     * Deletes the specified virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceGroupName, String virtualNetworkName) {
+        return beginDeleteAsync(resourceGroupName, virtualNetworkName).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Deletes the specified virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceGroupName, String virtualNetworkName, Context context) {
+        return beginDeleteAsync(resourceGroupName, virtualNetworkName, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Deletes the specified virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String virtualNetworkName) {
+        deleteAsync(resourceGroupName, virtualNetworkName).block();
+    }
+
+    /**
+     * Deletes the specified virtual network resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Parameter for the name of the virtual network.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String virtualNetworkName, Context context) {
+        deleteAsync(resourceGroupName, virtualNetworkName, context).block();
     }
 
     /**
@@ -1342,7 +1190,8 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a VirtualNetwork list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualNetworkInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
@@ -1372,7 +1221,8 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a VirtualNetwork list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualNetworkInner>> listBySubscriptionNextSinglePageAsync(String nextLink,
@@ -1387,6 +1237,66 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a VirtualNetwork list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<VirtualNetworkInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<VirtualNetworkInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a VirtualNetwork list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<VirtualNetworkInner>> listByResourceGroupNextSinglePageAsync(String nextLink,
+        Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

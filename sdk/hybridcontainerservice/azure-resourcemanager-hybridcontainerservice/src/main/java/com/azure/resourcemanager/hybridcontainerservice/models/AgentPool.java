@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.hybridcontainerservice.models;
 
-import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.AgentPoolInner;
@@ -37,72 +36,21 @@ public interface AgentPool {
     String type();
 
     /**
-     * Gets the location property: The geo-location where the resource lives.
-     * 
-     * @return the location value.
-     */
-    String location();
-
-    /**
-     * Gets the tags property: Resource tags.
-     * 
-     * @return the tags value.
-     */
-    Map<String, String> tags();
-
-    /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
-     * 
-     * @return the systemData value.
-     */
-    SystemData systemData();
-
-    /**
-     * Gets the extendedLocation property: Extended Location definition.
+     * Gets the extendedLocation property: Extended location pointing to the underlying infrastructure.
      * 
      * @return the extendedLocation value.
      */
     ExtendedLocation extendedLocation();
 
     /**
-     * Gets the count property: Count - Number of agents to host docker containers. Allowed values must be in the range
-     * of 1 to 100 (inclusive). The default value is 1.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the count value.
+     * @return the systemData value.
      */
-    Integer count();
+    SystemData systemData();
 
     /**
-     * Gets the vmSize property: VmSize - The size of the agent pool VMs.
-     * 
-     * @return the vmSize value.
-     */
-    String vmSize();
-
-    /**
-     * Gets the provisioningState property: Provisioning state of the resource.
-     * 
-     * @return the provisioningState value.
-     */
-    ResourceProvisioningState provisioningState();
-
-    /**
-     * Gets the status property: Defines the observed state of the agent pool.
-     * 
-     * @return the status value.
-     */
-    AgentPoolProvisioningStatusStatus status();
-
-    /**
-     * Gets the availabilityZones property: AvailabilityZones - The list of Availability zones to use for nodes.
-     * Datacenter racks modelled as zones.
-     * 
-     * @return the availabilityZones value.
-     */
-    List<String> availabilityZones();
-
-    /**
-     * Gets the osType property: The particular KubernetesVersion's Image's OS Type (Linux, Windows).
+     * Gets the osType property: The particular KubernetesVersion Image OS Type (Linux, Windows).
      * 
      * @return the osType value.
      */
@@ -117,25 +65,83 @@ public interface AgentPool {
     Ossku osSku();
 
     /**
-     * Gets the nodeImageVersion property: The version of node image.
+     * Gets the nodeLabels property: The node labels to be persisted across all nodes in agent pool.
      * 
-     * @return the nodeImageVersion value.
+     * @return the nodeLabels value.
      */
-    String nodeImageVersion();
+    Map<String, String> nodeLabels();
 
     /**
-     * Gets the region of the resource.
+     * Gets the nodeTaints property: Taints added to new nodes during node pool create and scale. For example,
+     * key=value:NoSchedule.
      * 
-     * @return the region of the resource.
+     * @return the nodeTaints value.
      */
-    Region region();
+    List<String> nodeTaints();
 
     /**
-     * Gets the name of the resource region.
+     * Gets the maxCount property: The maximum number of nodes for auto-scaling.
      * 
-     * @return the name of the resource region.
+     * @return the maxCount value.
      */
-    String regionName();
+    Integer maxCount();
+
+    /**
+     * Gets the minCount property: The minimum number of nodes for auto-scaling.
+     * 
+     * @return the minCount value.
+     */
+    Integer minCount();
+
+    /**
+     * Gets the enableAutoScaling property: Whether to enable auto-scaler. Default value is false.
+     * 
+     * @return the enableAutoScaling value.
+     */
+    Boolean enableAutoScaling();
+
+    /**
+     * Gets the maxPods property: The maximum number of pods that can run on a node.
+     * 
+     * @return the maxPods value.
+     */
+    Integer maxPods();
+
+    /**
+     * Gets the count property: Number of nodes in the agent pool. The default value is 1.
+     * 
+     * @return the count value.
+     */
+    Integer count();
+
+    /**
+     * Gets the vmSize property: The VM sku size of the agent pool node VMs.
+     * 
+     * @return the vmSize value.
+     */
+    String vmSize();
+
+    /**
+     * Gets the kubernetesVersion property: Version of Kubernetes in use by the agent pool. This is inherited from the
+     * kubernetesVersion of the provisioned cluster.
+     * 
+     * @return the kubernetesVersion value.
+     */
+    String kubernetesVersion();
+
+    /**
+     * Gets the provisioningState property: The status of the latest long running operation for the agent pool.
+     * 
+     * @return the provisioningState value.
+     */
+    ResourceProvisioningState provisioningState();
+
+    /**
+     * Gets the status property: The observed status of the agent pool.
+     * 
+     * @return the status value.
+     */
+    AgentPoolProvisioningStatusStatus status();
 
     /**
      * Gets the inner com.azure.resourcemanager.hybridcontainerservice.fluent.models.AgentPoolInner object.
@@ -147,8 +153,7 @@ public interface AgentPool {
     /**
      * The entirety of the AgentPool definition.
      */
-    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation, DefinitionStages.WithScope,
-        DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithScope, DefinitionStages.WithCreate {
     }
 
     /**
@@ -158,28 +163,7 @@ public interface AgentPool {
         /**
          * The first stage of the AgentPool definition.
          */
-        interface Blank extends WithLocation {
-        }
-
-        /**
-         * The stage of the AgentPool definition allowing to specify location.
-         */
-        interface WithLocation {
-            /**
-             * Specifies the region for the resource.
-             * 
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithScope withRegion(Region location);
-
-            /**
-             * Specifies the region for the resource.
-             * 
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithScope withRegion(String location);
+        interface Blank extends WithScope {
         }
 
         /**
@@ -187,13 +171,12 @@ public interface AgentPool {
          */
         interface WithScope {
             /**
-             * Specifies connectedClusterResourceUri.
+             * Specifies resourceUri.
              * 
-             * @param connectedClusterResourceUri The fully qualified Azure Resource manager identifier of the connected
-             * cluster resource.
+             * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
              * @return the next definition stage.
              */
-            WithCreate withExistingConnectedClusterResourceUri(String connectedClusterResourceUri);
+            WithCreate withExistingResourceUri(String resourceUri);
         }
 
         /**
@@ -201,9 +184,10 @@ public interface AgentPool {
          * be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate
-            extends DefinitionStages.WithTags, DefinitionStages.WithExtendedLocation, DefinitionStages.WithCount,
-            DefinitionStages.WithVmSize, DefinitionStages.WithStatus, DefinitionStages.WithAvailabilityZones,
-            DefinitionStages.WithOsType, DefinitionStages.WithOsSku, DefinitionStages.WithNodeImageVersion {
+            extends DefinitionStages.WithExtendedLocation, DefinitionStages.WithOsType, DefinitionStages.WithOsSku,
+            DefinitionStages.WithNodeLabels, DefinitionStages.WithNodeTaints, DefinitionStages.WithMaxCount,
+            DefinitionStages.WithMinCount, DefinitionStages.WithEnableAutoScaling, DefinitionStages.WithMaxPods,
+            DefinitionStages.WithCount, DefinitionStages.WithVmSize, DefinitionStages.WithStatus {
             /**
              * Executes the create request.
              * 
@@ -221,85 +205,16 @@ public interface AgentPool {
         }
 
         /**
-         * The stage of the AgentPool definition allowing to specify tags.
-         */
-        interface WithTags {
-            /**
-             * Specifies the tags property: Resource tags..
-             * 
-             * @param tags Resource tags.
-             * @return the next definition stage.
-             */
-            WithCreate withTags(Map<String, String> tags);
-        }
-
-        /**
          * The stage of the AgentPool definition allowing to specify extendedLocation.
          */
         interface WithExtendedLocation {
             /**
-             * Specifies the extendedLocation property: Extended Location definition.
+             * Specifies the extendedLocation property: Extended location pointing to the underlying infrastructure.
              * 
-             * @param extendedLocation Extended Location definition.
+             * @param extendedLocation Extended location pointing to the underlying infrastructure.
              * @return the next definition stage.
              */
             WithCreate withExtendedLocation(ExtendedLocation extendedLocation);
-        }
-
-        /**
-         * The stage of the AgentPool definition allowing to specify count.
-         */
-        interface WithCount {
-            /**
-             * Specifies the count property: Count - Number of agents to host docker containers. Allowed values must be
-             * in the range of 1 to 100 (inclusive). The default value is 1..
-             * 
-             * @param count Count - Number of agents to host docker containers. Allowed values must be in the range of 1
-             * to 100 (inclusive). The default value is 1.
-             * @return the next definition stage.
-             */
-            WithCreate withCount(Integer count);
-        }
-
-        /**
-         * The stage of the AgentPool definition allowing to specify vmSize.
-         */
-        interface WithVmSize {
-            /**
-             * Specifies the vmSize property: VmSize - The size of the agent pool VMs..
-             * 
-             * @param vmSize VmSize - The size of the agent pool VMs.
-             * @return the next definition stage.
-             */
-            WithCreate withVmSize(String vmSize);
-        }
-
-        /**
-         * The stage of the AgentPool definition allowing to specify status.
-         */
-        interface WithStatus {
-            /**
-             * Specifies the status property: Defines the observed state of the agent pool.
-             * 
-             * @param status Defines the observed state of the agent pool.
-             * @return the next definition stage.
-             */
-            WithCreate withStatus(AgentPoolProvisioningStatusStatus status);
-        }
-
-        /**
-         * The stage of the AgentPool definition allowing to specify availabilityZones.
-         */
-        interface WithAvailabilityZones {
-            /**
-             * Specifies the availabilityZones property: AvailabilityZones - The list of Availability zones to use for
-             * nodes. Datacenter racks modelled as zones.
-             * 
-             * @param availabilityZones AvailabilityZones - The list of Availability zones to use for nodes. Datacenter
-             * racks modelled as zones.
-             * @return the next definition stage.
-             */
-            WithCreate withAvailabilityZones(List<String> availabilityZones);
         }
 
         /**
@@ -307,9 +222,9 @@ public interface AgentPool {
          */
         interface WithOsType {
             /**
-             * Specifies the osType property: The particular KubernetesVersion's Image's OS Type (Linux, Windows).
+             * Specifies the osType property: The particular KubernetesVersion Image OS Type (Linux, Windows).
              * 
-             * @param osType The particular KubernetesVersion's Image's OS Type (Linux, Windows).
+             * @param osType The particular KubernetesVersion Image OS Type (Linux, Windows).
              * @return the next definition stage.
              */
             WithCreate withOsType(OsType osType);
@@ -331,16 +246,122 @@ public interface AgentPool {
         }
 
         /**
-         * The stage of the AgentPool definition allowing to specify nodeImageVersion.
+         * The stage of the AgentPool definition allowing to specify nodeLabels.
          */
-        interface WithNodeImageVersion {
+        interface WithNodeLabels {
             /**
-             * Specifies the nodeImageVersion property: The version of node image.
+             * Specifies the nodeLabels property: The node labels to be persisted across all nodes in agent pool..
              * 
-             * @param nodeImageVersion The version of node image.
+             * @param nodeLabels The node labels to be persisted across all nodes in agent pool.
              * @return the next definition stage.
              */
-            WithCreate withNodeImageVersion(String nodeImageVersion);
+            WithCreate withNodeLabels(Map<String, String> nodeLabels);
+        }
+
+        /**
+         * The stage of the AgentPool definition allowing to specify nodeTaints.
+         */
+        interface WithNodeTaints {
+            /**
+             * Specifies the nodeTaints property: Taints added to new nodes during node pool create and scale. For
+             * example, key=value:NoSchedule..
+             * 
+             * @param nodeTaints Taints added to new nodes during node pool create and scale. For example,
+             * key=value:NoSchedule.
+             * @return the next definition stage.
+             */
+            WithCreate withNodeTaints(List<String> nodeTaints);
+        }
+
+        /**
+         * The stage of the AgentPool definition allowing to specify maxCount.
+         */
+        interface WithMaxCount {
+            /**
+             * Specifies the maxCount property: The maximum number of nodes for auto-scaling.
+             * 
+             * @param maxCount The maximum number of nodes for auto-scaling.
+             * @return the next definition stage.
+             */
+            WithCreate withMaxCount(Integer maxCount);
+        }
+
+        /**
+         * The stage of the AgentPool definition allowing to specify minCount.
+         */
+        interface WithMinCount {
+            /**
+             * Specifies the minCount property: The minimum number of nodes for auto-scaling.
+             * 
+             * @param minCount The minimum number of nodes for auto-scaling.
+             * @return the next definition stage.
+             */
+            WithCreate withMinCount(Integer minCount);
+        }
+
+        /**
+         * The stage of the AgentPool definition allowing to specify enableAutoScaling.
+         */
+        interface WithEnableAutoScaling {
+            /**
+             * Specifies the enableAutoScaling property: Whether to enable auto-scaler. Default value is false.
+             * 
+             * @param enableAutoScaling Whether to enable auto-scaler. Default value is false.
+             * @return the next definition stage.
+             */
+            WithCreate withEnableAutoScaling(Boolean enableAutoScaling);
+        }
+
+        /**
+         * The stage of the AgentPool definition allowing to specify maxPods.
+         */
+        interface WithMaxPods {
+            /**
+             * Specifies the maxPods property: The maximum number of pods that can run on a node..
+             * 
+             * @param maxPods The maximum number of pods that can run on a node.
+             * @return the next definition stage.
+             */
+            WithCreate withMaxPods(Integer maxPods);
+        }
+
+        /**
+         * The stage of the AgentPool definition allowing to specify count.
+         */
+        interface WithCount {
+            /**
+             * Specifies the count property: Number of nodes in the agent pool. The default value is 1..
+             * 
+             * @param count Number of nodes in the agent pool. The default value is 1.
+             * @return the next definition stage.
+             */
+            WithCreate withCount(Integer count);
+        }
+
+        /**
+         * The stage of the AgentPool definition allowing to specify vmSize.
+         */
+        interface WithVmSize {
+            /**
+             * Specifies the vmSize property: The VM sku size of the agent pool node VMs..
+             * 
+             * @param vmSize The VM sku size of the agent pool node VMs.
+             * @return the next definition stage.
+             */
+            WithCreate withVmSize(String vmSize);
+        }
+
+        /**
+         * The stage of the AgentPool definition allowing to specify status.
+         */
+        interface WithStatus {
+            /**
+             * Specifies the status property: The observed status of the agent pool..
+             * 
+             * @param status The observed status of the agent pool.
+             * @return the next definition stage.
+             */
+            WithCreate withStatus(AgentPoolProvisioningStatusStatus status);
         }
     }
 
@@ -354,7 +375,10 @@ public interface AgentPool {
     /**
      * The template for AgentPool update.
      */
-    interface Update extends UpdateStages.WithTags {
+    interface Update extends UpdateStages.WithExtendedLocation, UpdateStages.WithOsType, UpdateStages.WithOsSku,
+        UpdateStages.WithNodeLabels, UpdateStages.WithNodeTaints, UpdateStages.WithMaxCount, UpdateStages.WithMinCount,
+        UpdateStages.WithEnableAutoScaling, UpdateStages.WithMaxPods, UpdateStages.WithCount, UpdateStages.WithVmSize,
+        UpdateStages.WithStatus {
         /**
          * Executes the update request.
          * 
@@ -376,16 +400,163 @@ public interface AgentPool {
      */
     interface UpdateStages {
         /**
-         * The stage of the AgentPool update allowing to specify tags.
+         * The stage of the AgentPool update allowing to specify extendedLocation.
          */
-        interface WithTags {
+        interface WithExtendedLocation {
             /**
-             * Specifies the tags property: Resource tags.
+             * Specifies the extendedLocation property: Extended location pointing to the underlying infrastructure.
              * 
-             * @param tags Resource tags.
+             * @param extendedLocation Extended location pointing to the underlying infrastructure.
              * @return the next definition stage.
              */
-            Update withTags(Map<String, String> tags);
+            Update withExtendedLocation(ExtendedLocation extendedLocation);
+        }
+
+        /**
+         * The stage of the AgentPool update allowing to specify osType.
+         */
+        interface WithOsType {
+            /**
+             * Specifies the osType property: The particular KubernetesVersion Image OS Type (Linux, Windows).
+             * 
+             * @param osType The particular KubernetesVersion Image OS Type (Linux, Windows).
+             * @return the next definition stage.
+             */
+            Update withOsType(OsType osType);
+        }
+
+        /**
+         * The stage of the AgentPool update allowing to specify osSku.
+         */
+        interface WithOsSku {
+            /**
+             * Specifies the osSku property: Specifies the OS SKU used by the agent pool. The default is CBLMariner if
+             * OSType is Linux. The default is Windows2019 when OSType is Windows..
+             * 
+             * @param osSku Specifies the OS SKU used by the agent pool. The default is CBLMariner if OSType is Linux.
+             * The default is Windows2019 when OSType is Windows.
+             * @return the next definition stage.
+             */
+            Update withOsSku(Ossku osSku);
+        }
+
+        /**
+         * The stage of the AgentPool update allowing to specify nodeLabels.
+         */
+        interface WithNodeLabels {
+            /**
+             * Specifies the nodeLabels property: The node labels to be persisted across all nodes in agent pool..
+             * 
+             * @param nodeLabels The node labels to be persisted across all nodes in agent pool.
+             * @return the next definition stage.
+             */
+            Update withNodeLabels(Map<String, String> nodeLabels);
+        }
+
+        /**
+         * The stage of the AgentPool update allowing to specify nodeTaints.
+         */
+        interface WithNodeTaints {
+            /**
+             * Specifies the nodeTaints property: Taints added to new nodes during node pool create and scale. For
+             * example, key=value:NoSchedule..
+             * 
+             * @param nodeTaints Taints added to new nodes during node pool create and scale. For example,
+             * key=value:NoSchedule.
+             * @return the next definition stage.
+             */
+            Update withNodeTaints(List<String> nodeTaints);
+        }
+
+        /**
+         * The stage of the AgentPool update allowing to specify maxCount.
+         */
+        interface WithMaxCount {
+            /**
+             * Specifies the maxCount property: The maximum number of nodes for auto-scaling.
+             * 
+             * @param maxCount The maximum number of nodes for auto-scaling.
+             * @return the next definition stage.
+             */
+            Update withMaxCount(Integer maxCount);
+        }
+
+        /**
+         * The stage of the AgentPool update allowing to specify minCount.
+         */
+        interface WithMinCount {
+            /**
+             * Specifies the minCount property: The minimum number of nodes for auto-scaling.
+             * 
+             * @param minCount The minimum number of nodes for auto-scaling.
+             * @return the next definition stage.
+             */
+            Update withMinCount(Integer minCount);
+        }
+
+        /**
+         * The stage of the AgentPool update allowing to specify enableAutoScaling.
+         */
+        interface WithEnableAutoScaling {
+            /**
+             * Specifies the enableAutoScaling property: Whether to enable auto-scaler. Default value is false.
+             * 
+             * @param enableAutoScaling Whether to enable auto-scaler. Default value is false.
+             * @return the next definition stage.
+             */
+            Update withEnableAutoScaling(Boolean enableAutoScaling);
+        }
+
+        /**
+         * The stage of the AgentPool update allowing to specify maxPods.
+         */
+        interface WithMaxPods {
+            /**
+             * Specifies the maxPods property: The maximum number of pods that can run on a node..
+             * 
+             * @param maxPods The maximum number of pods that can run on a node.
+             * @return the next definition stage.
+             */
+            Update withMaxPods(Integer maxPods);
+        }
+
+        /**
+         * The stage of the AgentPool update allowing to specify count.
+         */
+        interface WithCount {
+            /**
+             * Specifies the count property: Number of nodes in the agent pool. The default value is 1..
+             * 
+             * @param count Number of nodes in the agent pool. The default value is 1.
+             * @return the next definition stage.
+             */
+            Update withCount(Integer count);
+        }
+
+        /**
+         * The stage of the AgentPool update allowing to specify vmSize.
+         */
+        interface WithVmSize {
+            /**
+             * Specifies the vmSize property: The VM sku size of the agent pool node VMs..
+             * 
+             * @param vmSize The VM sku size of the agent pool node VMs.
+             * @return the next definition stage.
+             */
+            Update withVmSize(String vmSize);
+        }
+
+        /**
+         * The stage of the AgentPool update allowing to specify status.
+         */
+        interface WithStatus {
+            /**
+             * Specifies the status property: The observed status of the agent pool..
+             * 
+             * @param status The observed status of the agent pool.
+             * @return the next definition stage.
+             */
+            Update withStatus(AgentPoolProvisioningStatusStatus status);
         }
     }
 

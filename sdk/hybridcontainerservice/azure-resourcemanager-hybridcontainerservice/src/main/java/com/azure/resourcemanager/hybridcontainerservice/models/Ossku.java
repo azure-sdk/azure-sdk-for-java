@@ -9,8 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * Specifies the OS SKU used by the agent pool. The default is CBLMariner if OSType is Linux. The default is Windows2019
- * when OSType is Windows.
+ * Defines values for Ossku.
  */
 public final class Ossku extends ExpandableStringEnum<Ossku> {
     /**

@@ -8,6 +8,7 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.VirtualNetworkInner;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -50,14 +51,7 @@ public interface VirtualNetwork {
     Map<String, String> tags();
 
     /**
-     * Gets the properties property: HybridAKSNetworkSpec defines the desired state of HybridAKSNetwork.
-     * 
-     * @return the properties value.
-     */
-    VirtualNetworkProperties properties();
-
-    /**
-     * Gets the extendedLocation property: The extendedLocation property.
+     * Gets the extendedLocation property: Extended location pointing to the underlying infrastructure.
      * 
      * @return the extendedLocation value.
      */
@@ -69,6 +63,70 @@ public interface VirtualNetwork {
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the infraVnetProfile property: The infraVnetProfile property.
+     * 
+     * @return the infraVnetProfile value.
+     */
+    VirtualNetworkPropertiesInfraVnetProfile infraVnetProfile();
+
+    /**
+     * Gets the vipPool property: Range of IP Addresses for Kubernetes API Server and services if using HA Proxy load
+     * balancer.
+     * 
+     * @return the vipPool value.
+     */
+    List<VirtualNetworkPropertiesVipPoolItem> vipPool();
+
+    /**
+     * Gets the vmipPool property: Range of IP Addresses for Kubernetes node VMs.
+     * 
+     * @return the vmipPool value.
+     */
+    List<VirtualNetworkPropertiesVmipPoolItem> vmipPool();
+
+    /**
+     * Gets the dnsServers property: List of DNS server IP Addresses associated with the network.
+     * 
+     * @return the dnsServers value.
+     */
+    List<String> dnsServers();
+
+    /**
+     * Gets the gateway property: IP Address of the Gateway associated with the network.
+     * 
+     * @return the gateway value.
+     */
+    String gateway();
+
+    /**
+     * Gets the ipAddressPrefix property: IP Address Prefix of the network.
+     * 
+     * @return the ipAddressPrefix value.
+     */
+    String ipAddressPrefix();
+
+    /**
+     * Gets the vlanId property: VLAN Id used by the network.
+     * 
+     * @return the vlanId value.
+     */
+    Integer vlanId();
+
+    /**
+     * Gets the provisioningState property: The provisioningState property.
+     * 
+     * @return the provisioningState value.
+     */
+    ProvisioningState provisioningState();
+
+    /**
+     * Gets the status property: Status of the virtual network resource.
+     * 
+     * @return the status value.
+     */
+    VirtualNetworkPropertiesStatus status();
 
     /**
      * Gets the region of the resource.
@@ -153,8 +211,10 @@ public interface VirtualNetwork {
          * The stage of the VirtualNetwork definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithTags, DefinitionStages.WithProperties, DefinitionStages.WithExtendedLocation {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithExtendedLocation,
+            DefinitionStages.WithInfraVnetProfile, DefinitionStages.WithVipPool, DefinitionStages.WithVmipPool,
+            DefinitionStages.WithDnsServers, DefinitionStages.WithGateway, DefinitionStages.WithIpAddressPrefix,
+            DefinitionStages.WithVlanId {
             /**
              * Executes the create request.
              * 
@@ -185,29 +245,109 @@ public interface VirtualNetwork {
         }
 
         /**
-         * The stage of the VirtualNetwork definition allowing to specify properties.
-         */
-        interface WithProperties {
-            /**
-             * Specifies the properties property: HybridAKSNetworkSpec defines the desired state of HybridAKSNetwork.
-             * 
-             * @param properties HybridAKSNetworkSpec defines the desired state of HybridAKSNetwork.
-             * @return the next definition stage.
-             */
-            WithCreate withProperties(VirtualNetworkProperties properties);
-        }
-
-        /**
          * The stage of the VirtualNetwork definition allowing to specify extendedLocation.
          */
         interface WithExtendedLocation {
             /**
-             * Specifies the extendedLocation property: The extendedLocation property..
+             * Specifies the extendedLocation property: Extended location pointing to the underlying infrastructure.
              * 
-             * @param extendedLocation The extendedLocation property.
+             * @param extendedLocation Extended location pointing to the underlying infrastructure.
              * @return the next definition stage.
              */
             WithCreate withExtendedLocation(VirtualNetworkExtendedLocation extendedLocation);
+        }
+
+        /**
+         * The stage of the VirtualNetwork definition allowing to specify infraVnetProfile.
+         */
+        interface WithInfraVnetProfile {
+            /**
+             * Specifies the infraVnetProfile property: The infraVnetProfile property..
+             * 
+             * @param infraVnetProfile The infraVnetProfile property.
+             * @return the next definition stage.
+             */
+            WithCreate withInfraVnetProfile(VirtualNetworkPropertiesInfraVnetProfile infraVnetProfile);
+        }
+
+        /**
+         * The stage of the VirtualNetwork definition allowing to specify vipPool.
+         */
+        interface WithVipPool {
+            /**
+             * Specifies the vipPool property: Range of IP Addresses for Kubernetes API Server and services if using HA
+             * Proxy load balancer.
+             * 
+             * @param vipPool Range of IP Addresses for Kubernetes API Server and services if using HA Proxy load
+             * balancer.
+             * @return the next definition stage.
+             */
+            WithCreate withVipPool(List<VirtualNetworkPropertiesVipPoolItem> vipPool);
+        }
+
+        /**
+         * The stage of the VirtualNetwork definition allowing to specify vmipPool.
+         */
+        interface WithVmipPool {
+            /**
+             * Specifies the vmipPool property: Range of IP Addresses for Kubernetes node VMs.
+             * 
+             * @param vmipPool Range of IP Addresses for Kubernetes node VMs.
+             * @return the next definition stage.
+             */
+            WithCreate withVmipPool(List<VirtualNetworkPropertiesVmipPoolItem> vmipPool);
+        }
+
+        /**
+         * The stage of the VirtualNetwork definition allowing to specify dnsServers.
+         */
+        interface WithDnsServers {
+            /**
+             * Specifies the dnsServers property: List of DNS server IP Addresses associated with the network.
+             * 
+             * @param dnsServers List of DNS server IP Addresses associated with the network.
+             * @return the next definition stage.
+             */
+            WithCreate withDnsServers(List<String> dnsServers);
+        }
+
+        /**
+         * The stage of the VirtualNetwork definition allowing to specify gateway.
+         */
+        interface WithGateway {
+            /**
+             * Specifies the gateway property: IP Address of the Gateway associated with the network.
+             * 
+             * @param gateway IP Address of the Gateway associated with the network.
+             * @return the next definition stage.
+             */
+            WithCreate withGateway(String gateway);
+        }
+
+        /**
+         * The stage of the VirtualNetwork definition allowing to specify ipAddressPrefix.
+         */
+        interface WithIpAddressPrefix {
+            /**
+             * Specifies the ipAddressPrefix property: IP Address Prefix of the network.
+             * 
+             * @param ipAddressPrefix IP Address Prefix of the network.
+             * @return the next definition stage.
+             */
+            WithCreate withIpAddressPrefix(String ipAddressPrefix);
+        }
+
+        /**
+         * The stage of the VirtualNetwork definition allowing to specify vlanId.
+         */
+        interface WithVlanId {
+            /**
+             * Specifies the vlanId property: VLAN Id used by the network.
+             * 
+             * @param vlanId VLAN Id used by the network.
+             * @return the next definition stage.
+             */
+            WithCreate withVlanId(Integer vlanId);
         }
     }
 

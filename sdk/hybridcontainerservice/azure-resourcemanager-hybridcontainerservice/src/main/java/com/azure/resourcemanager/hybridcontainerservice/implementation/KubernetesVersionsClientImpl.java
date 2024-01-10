@@ -27,7 +27,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.KubernetesVersionsClient;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.KubernetesVersionProfileInner;
-import com.azure.resourcemanager.hybridcontainerservice.models.KubernetesVersionProfileList;
+import com.azure.resourcemanager.hybridcontainerservice.models.KubernetesVersionProfileListResult;
 import reactor.core.publisher.Mono;
 
 /**
@@ -63,157 +63,138 @@ public final class KubernetesVersionsClientImpl implements KubernetesVersionsCli
     @ServiceInterface(name = "HybridContainerServi")
     public interface KubernetesVersionsService {
         @Headers({ "Content-Type: application/json" })
-        @Get("/{customLocationResourceUri}/providers/Microsoft.HybridContainerService/kubernetesVersions")
+        @Get("/{resourceUri}/providers/Microsoft.HybridContainerService/kubernetesVersions")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<KubernetesVersionProfileList>> list(@HostParam("$host") String endpoint,
-            @PathParam(value = "customLocationResourceUri", encoded = true) String customLocationResourceUri,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+        Mono<Response<KubernetesVersionProfileListResult>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<KubernetesVersionProfileList>> listNext(
+        Mono<Response<KubernetesVersionProfileListResult>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * Lists the supported kubernetes versions
+     * Lists the supported kubernetes versions for the specified custom location.
      * 
-     * Lists the supported kubernetes versions from the underlying custom location.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of kubernetes version resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a KubernetesVersionProfile list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<KubernetesVersionProfileInner>> listSinglePageAsync(String customLocationResourceUri) {
+    private Mono<PagedResponse<KubernetesVersionProfileInner>> listSinglePageAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (customLocationResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter customLocationResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), customLocationResourceUri,
-                this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
+                accept, context))
             .<PagedResponse<KubernetesVersionProfileInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Lists the supported kubernetes versions
+     * Lists the supported kubernetes versions for the specified custom location.
      * 
-     * Lists the supported kubernetes versions from the underlying custom location.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of kubernetes version resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a KubernetesVersionProfile list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<KubernetesVersionProfileInner>> listSinglePageAsync(String customLocationResourceUri,
+    private Mono<PagedResponse<KubernetesVersionProfileInner>> listSinglePageAsync(String resourceUri,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (customLocationResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter customLocationResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), customLocationResourceUri, this.client.getApiVersion(), accept, context)
+        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
-     * Lists the supported kubernetes versions
+     * Lists the supported kubernetes versions for the specified custom location.
      * 
-     * Lists the supported kubernetes versions from the underlying custom location.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of kubernetes version resources as paginated response with {@link PagedFlux}.
+     * @return the response of a KubernetesVersionProfile list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<KubernetesVersionProfileInner> listAsync(String customLocationResourceUri) {
-        return new PagedFlux<>(() -> listSinglePageAsync(customLocationResourceUri),
-            nextLink -> listNextSinglePageAsync(nextLink));
+    private PagedFlux<KubernetesVersionProfileInner> listAsync(String resourceUri) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceUri), nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Lists the supported kubernetes versions
+     * Lists the supported kubernetes versions for the specified custom location.
      * 
-     * Lists the supported kubernetes versions from the underlying custom location.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of kubernetes version resources as paginated response with {@link PagedFlux}.
+     * @return the response of a KubernetesVersionProfile list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<KubernetesVersionProfileInner> listAsync(String customLocationResourceUri, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(customLocationResourceUri, context),
+    private PagedFlux<KubernetesVersionProfileInner> listAsync(String resourceUri, Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceUri, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * Lists the supported kubernetes versions
+     * Lists the supported kubernetes versions for the specified custom location.
      * 
-     * Lists the supported kubernetes versions from the underlying custom location.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of kubernetes version resources as paginated response with {@link PagedIterable}.
+     * @return the response of a KubernetesVersionProfile list operation as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<KubernetesVersionProfileInner> list(String customLocationResourceUri) {
-        return new PagedIterable<>(listAsync(customLocationResourceUri));
+    public PagedIterable<KubernetesVersionProfileInner> list(String resourceUri) {
+        return new PagedIterable<>(listAsync(resourceUri));
     }
 
     /**
-     * Lists the supported kubernetes versions
+     * Lists the supported kubernetes versions for the specified custom location.
      * 
-     * Lists the supported kubernetes versions from the underlying custom location.
-     * 
-     * @param customLocationResourceUri The fully qualified Azure Resource manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of kubernetes version resources as paginated response with {@link PagedIterable}.
+     * @return the response of a KubernetesVersionProfile list operation as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<KubernetesVersionProfileInner> list(String customLocationResourceUri, Context context) {
-        return new PagedIterable<>(listAsync(customLocationResourceUri, context));
+    public PagedIterable<KubernetesVersionProfileInner> list(String resourceUri, Context context) {
+        return new PagedIterable<>(listAsync(resourceUri, context));
     }
 
     /**
@@ -225,8 +206,8 @@ public final class KubernetesVersionsClientImpl implements KubernetesVersionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of kubernetes version resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a KubernetesVersionProfile list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<KubernetesVersionProfileInner>> listNextSinglePageAsync(String nextLink) {
@@ -254,8 +235,8 @@ public final class KubernetesVersionsClientImpl implements KubernetesVersionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of kubernetes version resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a KubernetesVersionProfile list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<KubernetesVersionProfileInner>> listNextSinglePageAsync(String nextLink,

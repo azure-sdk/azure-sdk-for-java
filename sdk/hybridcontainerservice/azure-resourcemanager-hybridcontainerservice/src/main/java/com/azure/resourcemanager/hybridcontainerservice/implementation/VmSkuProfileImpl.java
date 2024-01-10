@@ -7,8 +7,11 @@ package com.azure.resourcemanager.hybridcontainerservice.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.VmSkuProfileInner;
 import com.azure.resourcemanager.hybridcontainerservice.models.ExtendedLocation;
+import com.azure.resourcemanager.hybridcontainerservice.models.ResourceProvisioningState;
 import com.azure.resourcemanager.hybridcontainerservice.models.VmSkuProfile;
-import com.azure.resourcemanager.hybridcontainerservice.models.VmSkuProfileProperties;
+import com.azure.resourcemanager.hybridcontainerservice.models.VmSkuProperties;
+import java.util.Collections;
+import java.util.List;
 
 public final class VmSkuProfileImpl implements VmSkuProfile {
     private VmSkuProfileInner innerObject;
@@ -37,12 +40,21 @@ public final class VmSkuProfileImpl implements VmSkuProfile {
         return this.innerModel().extendedLocation();
     }
 
-    public VmSkuProfileProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public ResourceProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public List<VmSkuProperties> values() {
+        List<VmSkuProperties> inner = this.innerModel().values();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public VmSkuProfileInner innerModel() {

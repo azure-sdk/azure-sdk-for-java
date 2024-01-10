@@ -4,31 +4,88 @@
 
 package com.azure.resourcemanager.hybridcontainerservice.models;
 
-import com.azure.resourcemanager.hybridcontainerservice.fluent.models.AgentPoolListResultInner;
+import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.hybridcontainerservice.fluent.models.AgentPoolInner;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * An immutable client-side representation of AgentPoolListResult.
+ * The response of a AgentPool list operation.
  */
-public interface AgentPoolListResult {
+@Fluent
+public final class AgentPoolListResult {
+    /*
+     * The AgentPool items on this page
+     */
+    @JsonProperty(value = "value", required = true)
+    private List<AgentPoolInner> value;
+
+    /*
+     * The link to the next page of items
+     */
+    @JsonProperty(value = "nextLink")
+    private String nextLink;
+
     /**
-     * Gets the value property: The value property.
+     * Creates an instance of AgentPoolListResult class.
+     */
+    public AgentPoolListResult() {
+    }
+
+    /**
+     * Get the value property: The AgentPool items on this page.
      * 
      * @return the value value.
      */
-    List<AgentPool> value();
+    public List<AgentPoolInner> value() {
+        return this.value;
+    }
 
     /**
-     * Gets the nextLink property: The nextLink property.
+     * Set the value property: The AgentPool items on this page.
+     * 
+     * @param value the value value to set.
+     * @return the AgentPoolListResult object itself.
+     */
+    public AgentPoolListResult withValue(List<AgentPoolInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
-    String nextLink();
+    public String nextLink() {
+        return this.nextLink;
+    }
 
     /**
-     * Gets the inner com.azure.resourcemanager.hybridcontainerservice.fluent.models.AgentPoolListResultInner object.
+     * Set the nextLink property: The link to the next page of items.
      * 
-     * @return the inner object.
+     * @param nextLink the nextLink value to set.
+     * @return the AgentPoolListResult object itself.
      */
-    AgentPoolListResultInner innerModel();
+    public AgentPoolListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
+     * Validates the instance.
+     * 
+     * @throws IllegalArgumentException thrown if the instance is not valid.
+     */
+    public void validate() {
+        if (value() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model AgentPoolListResult"));
+        } else {
+            value().forEach(e -> e.validate());
+        }
+    }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AgentPoolListResult.class);
 }

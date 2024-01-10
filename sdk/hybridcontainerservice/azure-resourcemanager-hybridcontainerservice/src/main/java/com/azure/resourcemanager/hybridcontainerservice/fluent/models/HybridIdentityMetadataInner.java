@@ -7,7 +7,6 @@ package com.azure.resourcemanager.hybridcontainerservice.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridcontainerservice.models.ResourceProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -17,10 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class HybridIdentityMetadataInner extends ProxyResource {
     /*
-     * Resource properties.
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private HybridIdentityMetadataProperties innerProperties = new HybridIdentityMetadataProperties();
+    @JsonProperty(value = "properties")
+    private HybridIdentityMetadataProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -35,7 +34,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
     }
 
     /**
-     * Get the innerProperties property: Resource properties.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
      * @return the innerProperties value.
      */
@@ -76,7 +75,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
     }
 
     /**
-     * Get the publicKey property: Onboarding public key for provisioning the Managed identity for the HybridAKS
+     * Get the publicKey property: Onboarding public key for provisioning the Managed identity for the connected
      * cluster.
      * 
      * @return the publicKey value.
@@ -86,7 +85,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
     }
 
     /**
-     * Set the publicKey property: Onboarding public key for provisioning the Managed identity for the HybridAKS
+     * Set the publicKey property: Onboarding public key for provisioning the Managed identity for the connected
      * cluster.
      * 
      * @param publicKey the publicKey value to set.
@@ -115,13 +114,8 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property innerProperties in model HybridIdentityMetadataInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(HybridIdentityMetadataInner.class);
 }

@@ -9,8 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * Observed phase of the addon on the target cluster. Possible values include: 'pending', 'provisioning', 'provisioning
- * {HelmChartInstalled}', 'provisioning {MSICertificateDownloaded}', 'provisioned', 'deleting', 'failed', 'upgrading'.
+ * Defines values for AddonPhase.
  */
 public final class AddonPhase extends ExpandableStringEnum<AddonPhase> {
     /**
