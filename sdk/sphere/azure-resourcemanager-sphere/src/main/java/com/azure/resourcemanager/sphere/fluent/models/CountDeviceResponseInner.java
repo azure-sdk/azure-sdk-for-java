@@ -7,14 +7,20 @@ package com.azure.resourcemanager.sphere.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.sphere.models.CountElementsResponse;
 
-/** Response to the action call for count devices in a catalog. */
+/**
+ * Response to the action call for count devices in a catalog (preview API).
+ */
 @Fluent
 public final class CountDeviceResponseInner extends CountElementsResponse {
-    /** Creates an instance of CountDeviceResponseInner class. */
+    /**
+     * Creates an instance of CountDeviceResponseInner class.
+     */
     public CountDeviceResponseInner() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CountDeviceResponseInner withValue(int value) {
         super.withValue(value);
@@ -23,7 +29,7 @@ public final class CountDeviceResponseInner extends CountElementsResponse {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
