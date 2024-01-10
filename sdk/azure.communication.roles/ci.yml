@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/azure.communication.roles/ci.yml
+      - sdk/azure.communication.roles/roles/
+    exclude:
+      - sdk/azure.communication.roles/pom.xml
+      - sdk/azure.communication.roles/roles/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/azure.communication.roles/ci.yml
+      - sdk/azure.communication.roles/roles/
+    exclude:
+      - sdk/azure.communication.roles/pom.xml
+      - sdk/azure.communication.roles/roles/pom.xml
+
+parameters:
+  - name: release_roles
+    displayName: roles
+    type: boolean
+    default: true
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: azure.communication.roles
+    EnableBatchRelease: true
+    Artifacts:
+      - name: roles
+        groupId: com.azure
+        safeName: roles
+        releaseInBatch: ${{ parameters.release_roles }}
