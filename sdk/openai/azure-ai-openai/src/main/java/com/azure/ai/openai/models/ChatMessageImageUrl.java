@@ -9,13 +9,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * An internet location from which the model may retrieve an image.
+ * A representation of the image data in a chat message content item.
  */
 @Fluent
 public final class ChatMessageImageUrl {
 
     /*
-     * The URL of the image.
+     * The URL or base64-encoded binary data of the image.
      */
     @Generated
     @JsonProperty(value = "url")
@@ -33,7 +33,7 @@ public final class ChatMessageImageUrl {
     }
 
     /**
-     * Get the url property: The URL of the image.
+     * Get the url property: The URL or base64-encoded binary data of the image.
      *
      * @return the url value.
      */

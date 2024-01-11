@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Parameters for configuring Azure OpenAI Pinecone chat extensions.
+ * Parameters for configuring Azure OpenAI Pinecone chat extensions. The supported authentication type is APIKey.
  */
 @Fluent
 public final class PineconeChatExtensionParameters {
@@ -84,23 +84,6 @@ public final class PineconeChatExtensionParameters {
     @Generated
     @JsonProperty(value = "embeddingDependency")
     private OnYourDataVectorizationSource embeddingDependency;
-
-    /**
-     * Creates an instance of PineconeChatExtensionParameters class.
-     *
-     * @param environment the environment value to set.
-     * @param indexName the indexName value to set.
-     * @param fieldsMapping the fieldsMapping value to set.
-     */
-    @Generated
-    @JsonCreator
-    public PineconeChatExtensionParameters(@JsonProperty(value = "environment") String environment,
-        @JsonProperty(value = "indexName") String indexName,
-        @JsonProperty(value = "fieldsMapping") PineconeFieldMappingOptions fieldsMapping) {
-        this.environment = environment;
-        this.indexName = indexName;
-        this.fieldsMapping = fieldsMapping;
-    }
 
     /**
      * Get the authentication property: The authentication method to use when accessing the defined data source.
@@ -269,14 +252,22 @@ public final class PineconeChatExtensionParameters {
     }
 
     /**
-     * Set the embeddingDependency property: The embedding dependency for vector search.
+     * Creates an instance of PineconeChatExtensionParameters class.
      *
+     * @param environment the environment value to set.
+     * @param indexName the indexName value to set.
+     * @param fieldsMapping the fieldsMapping value to set.
      * @param embeddingDependency the embeddingDependency value to set.
-     * @return the PineconeChatExtensionParameters object itself.
      */
     @Generated
-    public PineconeChatExtensionParameters setEmbeddingDependency(OnYourDataVectorizationSource embeddingDependency) {
+    @JsonCreator
+    public PineconeChatExtensionParameters(@JsonProperty(value = "environment") String environment,
+        @JsonProperty(value = "indexName") String indexName,
+        @JsonProperty(value = "fieldsMapping") PineconeFieldMappingOptions fieldsMapping,
+        @JsonProperty(value = "embeddingDependency") OnYourDataVectorizationSource embeddingDependency) {
+        this.environment = environment;
+        this.indexName = indexName;
+        this.fieldsMapping = fieldsMapping;
         this.embeddingDependency = embeddingDependency;
-        return this;
     }
 }
