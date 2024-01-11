@@ -13,7 +13,22 @@ public enum ContentSafetyServiceVersion implements ServiceVersion {
     /**
      * Enum value 2023-10-01.
      */
-    V2023_10_01("2023-10-01");
+    V2023_10_01("2023-10-01"),
+
+    /**
+     * Enum value 2023-10-15-preview.
+     */
+    V2023_10_15_PREVIEW("2023-10-15-preview"),
+
+    /**
+     * Enum value 2023-10-30-preview.
+     */
+    V2023_10_30_PREVIEW("2023-10-30-preview"),
+
+    /**
+     * Enum value 2024-01-30-preview.
+     */
+    V2024_01_30_PREVIEW("2024-01-30-preview");
 
     private final String version;
 
@@ -35,6 +50,6 @@ public enum ContentSafetyServiceVersion implements ServiceVersion {
      * @return The latest {@link ContentSafetyServiceVersion}.
      */
     public static ContentSafetyServiceVersion getLatest() {
-        return V2023_10_01;
+        return V2024_01_30_PREVIEW;
     }
 }

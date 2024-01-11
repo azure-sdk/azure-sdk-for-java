@@ -6,7 +6,11 @@ package com.azure.ai.contentsafety;
 import com.azure.ai.contentsafety.implementation.ContentSafetyClientImpl;
 import com.azure.ai.contentsafety.models.AnalyzeImageOptions;
 import com.azure.ai.contentsafety.models.AnalyzeImageResult;
+import com.azure.ai.contentsafety.models.AnalyzeTextJailbreakOptions;
+import com.azure.ai.contentsafety.models.AnalyzeTextJailbreakResult;
 import com.azure.ai.contentsafety.models.AnalyzeTextOptions;
+import com.azure.ai.contentsafety.models.AnalyzeTextProtectedMaterialOptions;
+import com.azure.ai.contentsafety.models.AnalyzeTextProtectedMaterialResult;
 import com.azure.ai.contentsafety.models.AnalyzeTextResult;
 import com.azure.ai.contentsafety.models.ContentSafetyImageData;
 import com.azure.core.annotation.Generated;
@@ -59,6 +63,12 @@ public final class ContentSafetyClient {
      *     ]
      *     haltOnBlocklistHit: Boolean (Optional)
      *     outputType: String(FourSeverityLevels/EightSeverityLevels) (Optional)
+     *     incidents (Optional): {
+     *         incidentNames (Optional): [
+     *             String (Optional)
+     *         ]
+     *         haltOnIncidentHit: Boolean (Optional)
+     *     }
      * }
      * }</pre>
      * <p>
@@ -78,6 +88,14 @@ public final class ContentSafetyClient {
      *             category: String(Hate/SelfHarm/Sexual/Violence) (Required)
      *             severity: Integer (Optional)
      *         }
+     *     ]
+     *     incidentMatches (Optional): [
+     *          (Optional){
+     *             incidentName: String (Required)
+     *         }
+     *     ]
+     *     citation (Optional): [
+     *         String (Optional)
      *     ]
      * }
      * }</pre>
@@ -114,6 +132,12 @@ public final class ContentSafetyClient {
      *         String(Hate/SelfHarm/Sexual/Violence) (Optional)
      *     ]
      *     outputType: String(FourSeverityLevels) (Optional)
+     *     incidents (Optional): {
+     *         incidentNames (Optional): [
+     *             String (Optional)
+     *         ]
+     *         haltOnIncidentHit: Boolean (Optional)
+     *     }
      * }
      * }</pre>
      * <p>
@@ -125,6 +149,11 @@ public final class ContentSafetyClient {
      *          (Required){
      *             category: String(Hate/SelfHarm/Sexual/Violence) (Required)
      *             severity: Integer (Optional)
+     *         }
+     *     ]
+     *     incidentMatches (Optional): [
+     *          (Optional){
+     *             incidentName: String (Required)
      *         }
      *     ]
      * }
@@ -256,5 +285,126 @@ public final class ContentSafetyClient {
         // Customized convenience method for analyzeImageWithResponse
         AnalyzeImageOptions body = new AnalyzeImageOptions(new ContentSafetyImageData().setContent(content));
         return analyzeImage(body);
+    }
+
+    /**
+     * Analyze Text Jailbreak
+     *
+     * A synchronous API for the analysis of text jailbreak.
+     * <p>
+     * <strong>Request Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     text: String (Required)
+     * }
+     * }</pre>
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     jailbreakAnalysis (Required): {
+     *         detected: boolean (Required)
+     *     }
+     * }
+     * }</pre>
+     *
+     * @param options The text jailbreak analysis request.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the text jailbreak analysis request along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> detectTextJailbreakWithResponse(BinaryData options, RequestOptions requestOptions) {
+        return this.serviceClient.detectTextJailbreakWithResponse(options, requestOptions);
+    }
+
+    /**
+     * Analyze Protected Material
+     *
+     * A synchronous API for the analysis of protected material.
+     * <p>
+     * <strong>Request Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     text: String (Required)
+     * }
+     * }</pre>
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     protectedMaterialAnalysis (Required): {
+     *         detected: boolean (Required)
+     *     }
+     * }
+     * }</pre>
+     *
+     * @param options The text protected material analysis request.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the protected material analysis response along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> detectTextProtectedMaterialWithResponse(BinaryData options,
+        RequestOptions requestOptions) {
+        return this.serviceClient.detectTextProtectedMaterialWithResponse(options, requestOptions);
+    }
+
+    /**
+     * Analyze Text Jailbreak
+     *
+     * A synchronous API for the analysis of text jailbreak.
+     *
+     * @param options The text jailbreak analysis request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the text jailbreak analysis request.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AnalyzeTextJailbreakResult detectTextJailbreak(AnalyzeTextJailbreakOptions options) {
+        // Generated convenience method for detectTextJailbreakWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return detectTextJailbreakWithResponse(BinaryData.fromObject(options), requestOptions).getValue()
+            .toObject(AnalyzeTextJailbreakResult.class);
+    }
+
+    /**
+     * Analyze Protected Material
+     *
+     * A synchronous API for the analysis of protected material.
+     *
+     * @param options The text protected material analysis request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the protected material analysis response.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AnalyzeTextProtectedMaterialResult detectTextProtectedMaterial(AnalyzeTextProtectedMaterialOptions options) {
+        // Generated convenience method for detectTextProtectedMaterialWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return detectTextProtectedMaterialWithResponse(BinaryData.fromObject(options), requestOptions).getValue()
+            .toObject(AnalyzeTextProtectedMaterialResult.class);
     }
 }
