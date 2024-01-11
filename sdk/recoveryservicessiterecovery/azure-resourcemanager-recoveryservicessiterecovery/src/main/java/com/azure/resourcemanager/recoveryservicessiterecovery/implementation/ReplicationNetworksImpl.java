@@ -21,36 +21,32 @@ public final class ReplicationNetworksImpl implements ReplicationNetworks {
 
     private final com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager serviceManager;
 
-    public ReplicationNetworksImpl(
-        ReplicationNetworksClient innerClient,
+    public ReplicationNetworksImpl(ReplicationNetworksClient innerClient,
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<Network> listByReplicationFabrics(
-        String resourceName, String resourceGroupName, String fabricName) {
-        PagedIterable<NetworkInner> inner =
-            this.serviceClient().listByReplicationFabrics(resourceName, resourceGroupName, fabricName);
+    public PagedIterable<Network> listByReplicationFabrics(String resourceName, String resourceGroupName,
+        String fabricName) {
+        PagedIterable<NetworkInner> inner
+            = this.serviceClient().listByReplicationFabrics(resourceName, resourceGroupName, fabricName);
         return Utils.mapPage(inner, inner1 -> new NetworkImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Network> listByReplicationFabrics(
-        String resourceName, String resourceGroupName, String fabricName, Context context) {
-        PagedIterable<NetworkInner> inner =
-            this.serviceClient().listByReplicationFabrics(resourceName, resourceGroupName, fabricName, context);
+    public PagedIterable<Network> listByReplicationFabrics(String resourceName, String resourceGroupName,
+        String fabricName, Context context) {
+        PagedIterable<NetworkInner> inner
+            = this.serviceClient().listByReplicationFabrics(resourceName, resourceGroupName, fabricName, context);
         return Utils.mapPage(inner, inner1 -> new NetworkImpl(inner1, this.manager()));
     }
 
-    public Response<Network> getWithResponse(
-        String resourceName, String resourceGroupName, String fabricName, String networkName, Context context) {
-        Response<NetworkInner> inner =
-            this.serviceClient().getWithResponse(resourceName, resourceGroupName, fabricName, networkName, context);
+    public Response<Network> getWithResponse(String resourceName, String resourceGroupName, String fabricName,
+        String networkName, Context context) {
+        Response<NetworkInner> inner
+            = this.serviceClient().getWithResponse(resourceName, resourceGroupName, fabricName, networkName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new NetworkImpl(inner.getValue(), this.manager()));
         } else {
             return null;

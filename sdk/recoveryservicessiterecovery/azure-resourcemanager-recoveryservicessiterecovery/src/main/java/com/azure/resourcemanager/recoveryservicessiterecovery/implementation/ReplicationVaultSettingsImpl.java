@@ -21,8 +21,7 @@ public final class ReplicationVaultSettingsImpl implements ReplicationVaultSetti
 
     private final com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager serviceManager;
 
-    public ReplicationVaultSettingsImpl(
-        ReplicationVaultSettingsClient innerClient,
+    public ReplicationVaultSettingsImpl(ReplicationVaultSettingsClient innerClient,
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -38,15 +37,12 @@ public final class ReplicationVaultSettingsImpl implements ReplicationVaultSetti
         return Utils.mapPage(inner, inner1 -> new VaultSettingImpl(inner1, this.manager()));
     }
 
-    public Response<VaultSetting> getWithResponse(
-        String resourceName, String resourceGroupName, String vaultSettingName, Context context) {
-        Response<VaultSettingInner> inner =
-            this.serviceClient().getWithResponse(resourceName, resourceGroupName, vaultSettingName, context);
+    public Response<VaultSetting> getWithResponse(String resourceName, String resourceGroupName,
+        String vaultSettingName, Context context) {
+        Response<VaultSettingInner> inner
+            = this.serviceClient().getWithResponse(resourceName, resourceGroupName, vaultSettingName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new VaultSettingImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -65,28 +61,18 @@ public final class ReplicationVaultSettingsImpl implements ReplicationVaultSetti
     public VaultSetting getById(String id) {
         String resourceName = Utils.getValueFromIdByName(id, "vaults");
         if (resourceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'vaults'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'vaults'.", id)));
         }
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String vaultSettingName = Utils.getValueFromIdByName(id, "replicationVaultSettings");
         if (vaultSettingName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'replicationVaultSettings'.",
-                                id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
+                .format("The resource ID '%s' is not valid. Missing path segment 'replicationVaultSettings'.", id)));
         }
         return this.getWithResponse(resourceName, resourceGroupName, vaultSettingName, Context.NONE).getValue();
     }
@@ -94,28 +80,18 @@ public final class ReplicationVaultSettingsImpl implements ReplicationVaultSetti
     public Response<VaultSetting> getByIdWithResponse(String id, Context context) {
         String resourceName = Utils.getValueFromIdByName(id, "vaults");
         if (resourceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'vaults'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'vaults'.", id)));
         }
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String vaultSettingName = Utils.getValueFromIdByName(id, "replicationVaultSettings");
         if (vaultSettingName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'replicationVaultSettings'.",
-                                id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
+                .format("The resource ID '%s' is not valid. Missing path segment 'replicationVaultSettings'.", id)));
         }
         return this.getWithResponse(resourceName, resourceGroupName, vaultSettingName, context);
     }

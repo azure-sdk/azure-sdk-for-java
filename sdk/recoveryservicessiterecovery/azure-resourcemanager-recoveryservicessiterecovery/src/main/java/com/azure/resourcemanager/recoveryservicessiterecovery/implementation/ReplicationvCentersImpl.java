@@ -21,36 +21,32 @@ public final class ReplicationvCentersImpl implements ReplicationvCenters {
 
     private final com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager serviceManager;
 
-    public ReplicationvCentersImpl(
-        ReplicationvCentersClient innerClient,
+    public ReplicationvCentersImpl(ReplicationvCentersClient innerClient,
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<VCenter> listByReplicationFabrics(
-        String resourceName, String resourceGroupName, String fabricName) {
-        PagedIterable<VCenterInner> inner =
-            this.serviceClient().listByReplicationFabrics(resourceName, resourceGroupName, fabricName);
+    public PagedIterable<VCenter> listByReplicationFabrics(String resourceName, String resourceGroupName,
+        String fabricName) {
+        PagedIterable<VCenterInner> inner
+            = this.serviceClient().listByReplicationFabrics(resourceName, resourceGroupName, fabricName);
         return Utils.mapPage(inner, inner1 -> new VCenterImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<VCenter> listByReplicationFabrics(
-        String resourceName, String resourceGroupName, String fabricName, Context context) {
-        PagedIterable<VCenterInner> inner =
-            this.serviceClient().listByReplicationFabrics(resourceName, resourceGroupName, fabricName, context);
+    public PagedIterable<VCenter> listByReplicationFabrics(String resourceName, String resourceGroupName,
+        String fabricName, Context context) {
+        PagedIterable<VCenterInner> inner
+            = this.serviceClient().listByReplicationFabrics(resourceName, resourceGroupName, fabricName, context);
         return Utils.mapPage(inner, inner1 -> new VCenterImpl(inner1, this.manager()));
     }
 
-    public Response<VCenter> getWithResponse(
-        String resourceName, String resourceGroupName, String fabricName, String vcenterName, Context context) {
-        Response<VCenterInner> inner =
-            this.serviceClient().getWithResponse(resourceName, resourceGroupName, fabricName, vcenterName, context);
+    public Response<VCenter> getWithResponse(String resourceName, String resourceGroupName, String fabricName,
+        String vcenterName, Context context) {
+        Response<VCenterInner> inner
+            = this.serviceClient().getWithResponse(resourceName, resourceGroupName, fabricName, vcenterName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new VCenterImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -70,8 +66,8 @@ public final class ReplicationvCentersImpl implements ReplicationvCenters {
         this.serviceClient().delete(resourceName, resourceGroupName, fabricName, vcenterName);
     }
 
-    public void delete(
-        String resourceName, String resourceGroupName, String fabricName, String vcenterName, Context context) {
+    public void delete(String resourceName, String resourceGroupName, String fabricName, String vcenterName,
+        Context context) {
         this.serviceClient().delete(resourceName, resourceGroupName, fabricName, vcenterName, context);
     }
 
@@ -88,36 +84,23 @@ public final class ReplicationvCentersImpl implements ReplicationvCenters {
     public VCenter getById(String id) {
         String resourceName = Utils.getValueFromIdByName(id, "vaults");
         if (resourceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'vaults'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'vaults'.", id)));
         }
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String fabricName = Utils.getValueFromIdByName(id, "replicationFabrics");
         if (fabricName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'replicationFabrics'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'replicationFabrics'.", id)));
         }
         String vcenterName = Utils.getValueFromIdByName(id, "replicationvCenters");
         if (vcenterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'replicationvCenters'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'replicationvCenters'.", id)));
         }
         return this.getWithResponse(resourceName, resourceGroupName, fabricName, vcenterName, Context.NONE).getValue();
     }
@@ -125,36 +108,23 @@ public final class ReplicationvCentersImpl implements ReplicationvCenters {
     public Response<VCenter> getByIdWithResponse(String id, Context context) {
         String resourceName = Utils.getValueFromIdByName(id, "vaults");
         if (resourceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'vaults'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'vaults'.", id)));
         }
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String fabricName = Utils.getValueFromIdByName(id, "replicationFabrics");
         if (fabricName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'replicationFabrics'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'replicationFabrics'.", id)));
         }
         String vcenterName = Utils.getValueFromIdByName(id, "replicationvCenters");
         if (vcenterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'replicationvCenters'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'replicationvCenters'.", id)));
         }
         return this.getWithResponse(resourceName, resourceGroupName, fabricName, vcenterName, context);
     }
@@ -162,36 +132,23 @@ public final class ReplicationvCentersImpl implements ReplicationvCenters {
     public void deleteById(String id) {
         String resourceName = Utils.getValueFromIdByName(id, "vaults");
         if (resourceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'vaults'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'vaults'.", id)));
         }
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String fabricName = Utils.getValueFromIdByName(id, "replicationFabrics");
         if (fabricName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'replicationFabrics'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'replicationFabrics'.", id)));
         }
         String vcenterName = Utils.getValueFromIdByName(id, "replicationvCenters");
         if (vcenterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'replicationvCenters'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'replicationvCenters'.", id)));
         }
         this.delete(resourceName, resourceGroupName, fabricName, vcenterName, Context.NONE);
     }
@@ -199,36 +156,23 @@ public final class ReplicationvCentersImpl implements ReplicationvCenters {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceName = Utils.getValueFromIdByName(id, "vaults");
         if (resourceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'vaults'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'vaults'.", id)));
         }
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String fabricName = Utils.getValueFromIdByName(id, "replicationFabrics");
         if (fabricName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'replicationFabrics'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'replicationFabrics'.", id)));
         }
         String vcenterName = Utils.getValueFromIdByName(id, "replicationvCenters");
         if (vcenterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'replicationvCenters'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'replicationvCenters'.", id)));
         }
         this.delete(resourceName, resourceGroupName, fabricName, vcenterName, context);
     }
