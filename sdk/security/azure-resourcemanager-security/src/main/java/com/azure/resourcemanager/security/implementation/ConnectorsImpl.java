@@ -21,8 +21,8 @@ public final class ConnectorsImpl implements Connectors {
 
     private final com.azure.resourcemanager.security.SecurityManager serviceManager;
 
-    public ConnectorsImpl(
-        ConnectorsClient innerClient, com.azure.resourcemanager.security.SecurityManager serviceManager) {
+    public ConnectorsImpl(ConnectorsClient innerClient,
+        com.azure.resourcemanager.security.SecurityManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -40,10 +40,7 @@ public final class ConnectorsImpl implements Connectors {
     public Response<ConnectorSetting> getWithResponse(String connectorName, Context context) {
         Response<ConnectorSettingInner> inner = this.serviceClient().getWithResponse(connectorName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ConnectorSettingImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -70,10 +67,8 @@ public final class ConnectorsImpl implements Connectors {
     public ConnectorSetting getById(String id) {
         String connectorName = Utils.getValueFromIdByName(id, "connectors");
         if (connectorName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'connectors'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'connectors'.", id)));
         }
         return this.getWithResponse(connectorName, Context.NONE).getValue();
     }
@@ -81,10 +76,8 @@ public final class ConnectorsImpl implements Connectors {
     public Response<ConnectorSetting> getByIdWithResponse(String id, Context context) {
         String connectorName = Utils.getValueFromIdByName(id, "connectors");
         if (connectorName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'connectors'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'connectors'.", id)));
         }
         return this.getWithResponse(connectorName, context);
     }
@@ -92,10 +85,8 @@ public final class ConnectorsImpl implements Connectors {
     public void deleteById(String id) {
         String connectorName = Utils.getValueFromIdByName(id, "connectors");
         if (connectorName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'connectors'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'connectors'.", id)));
         }
         this.deleteWithResponse(connectorName, Context.NONE);
     }
@@ -103,10 +94,8 @@ public final class ConnectorsImpl implements Connectors {
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String connectorName = Utils.getValueFromIdByName(id, "connectors");
         if (connectorName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'connectors'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'connectors'.", id)));
         }
         return this.deleteWithResponse(connectorName, context);
     }

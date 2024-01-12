@@ -9,7 +9,9 @@ import com.azure.resourcemanager.security.fluent.models.SecurityContactInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of security contacts response. */
+/**
+ * List of security contacts response.
+ */
 @Immutable
 public final class SecurityContactList {
     /*
@@ -24,13 +26,15 @@ public final class SecurityContactList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of SecurityContactList class. */
+    /**
+     * Creates an instance of SecurityContactList class.
+     */
     public SecurityContactList() {
     }
 
     /**
      * Get the value property: List of security contacts.
-     *
+     * 
      * @return the value value.
      */
     public List<SecurityContactInner> value() {
@@ -39,7 +43,7 @@ public final class SecurityContactList {
 
     /**
      * Get the nextLink property: The URI to fetch the next page.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class SecurityContactList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -33,23 +33,28 @@ import com.azure.resourcemanager.security.fluent.models.GovernanceAssignmentInne
 import com.azure.resourcemanager.security.models.GovernanceAssignmentsList;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in GovernanceAssignmentsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in GovernanceAssignmentsClient.
+ */
 public final class GovernanceAssignmentsClientImpl implements GovernanceAssignmentsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final GovernanceAssignmentsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final SecurityCenterImpl client;
 
     /**
      * Initializes an instance of GovernanceAssignmentsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     GovernanceAssignmentsClientImpl(SecurityCenterImpl client) {
-        this.service =
-            RestProxy
-                .create(GovernanceAssignmentsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service = RestProxy.create(GovernanceAssignmentsService.class, client.getHttpPipeline(),
+            client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -60,89 +65,69 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
     @Host("{$host}")
     @ServiceInterface(name = "SecurityCenterGovern")
     public interface GovernanceAssignmentsService {
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<GovernanceAssignmentsList>> list(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("scope") String scope,
-            @PathParam("assessmentName") String assessmentName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<GovernanceAssignmentsList>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam(value = "scope", encoded = true) String scope,
+            @PathParam("assessmentName") String assessmentName, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<GovernanceAssignmentInner>> get(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("scope") String scope,
-            @PathParam("assessmentName") String assessmentName,
-            @PathParam("assignmentKey") String assignmentKey,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<GovernanceAssignmentInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam(value = "scope", encoded = true) String scope,
+            @PathParam("assessmentName") String assessmentName, @PathParam("assignmentKey") String assignmentKey,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Put("/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}")
-        @ExpectedResponses({200, 201})
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<GovernanceAssignmentInner>> createOrUpdate(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("scope") String scope,
-            @PathParam("assessmentName") String assessmentName,
-            @PathParam("assignmentKey") String assignmentKey,
+        Mono<Response<GovernanceAssignmentInner>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam(value = "scope", encoded = true) String scope,
+            @PathParam("assessmentName") String assessmentName, @PathParam("assignmentKey") String assignmentKey,
             @BodyParam("application/json") GovernanceAssignmentInner governanceAssignment,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
-        @Delete(
-            "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}")
-        @ExpectedResponses({200, 204})
+        @Headers({ "Accept: application/json;q=0.9", "Content-Type: application/json" })
+        @Delete("/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}")
+        @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("scope") String scope,
-            @PathParam("assessmentName") String assessmentName,
-            @PathParam("assignmentKey") String assignmentKey,
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "scope", encoded = true) String scope,
+            @PathParam("assessmentName") String assessmentName, @PathParam("assignmentKey") String assignmentKey,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<GovernanceAssignmentsList>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Get governance assignments on all of your resources inside a scope.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return governance assignments on all of your resources inside a scope along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GovernanceAssignmentInner>> listSinglePageAsync(String scope, String assessmentName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
@@ -155,40 +140,31 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
         return FluxUtil
             .withContext(
                 context -> service.list(this.client.getEndpoint(), apiVersion, scope, assessmentName, accept, context))
-            .<PagedResponse<GovernanceAssignmentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<GovernanceAssignmentInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get governance assignments on all of your resources inside a scope.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return governance assignments on all of your resources inside a scope along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<GovernanceAssignmentInner>> listSinglePageAsync(
-        String scope, String assessmentName, Context context) {
+    private Mono<PagedResponse<GovernanceAssignmentInner>> listSinglePageAsync(String scope, String assessmentName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
@@ -199,71 +175,62 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
         final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), apiVersion, scope, assessmentName, accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.list(this.client.getEndpoint(), apiVersion, scope, assessmentName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get governance assignments on all of your resources inside a scope.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return governance assignments on all of your resources inside a scope as paginated response with {@link
-     *     PagedFlux}.
+     * @return governance assignments on all of your resources inside a scope as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<GovernanceAssignmentInner> listAsync(String scope, String assessmentName) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(scope, assessmentName), nextLink -> listNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listSinglePageAsync(scope, assessmentName),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * Get governance assignments on all of your resources inside a scope.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return governance assignments on all of your resources inside a scope as paginated response with {@link
-     *     PagedFlux}.
+     * @return governance assignments on all of your resources inside a scope as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<GovernanceAssignmentInner> listAsync(String scope, String assessmentName, Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(scope, assessmentName, context),
+        return new PagedFlux<>(() -> listSinglePageAsync(scope, assessmentName, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Get governance assignments on all of your resources inside a scope.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return governance assignments on all of your resources inside a scope as paginated response with {@link
-     *     PagedIterable}.
+     * @return governance assignments on all of your resources inside a scope as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<GovernanceAssignmentInner> list(String scope, String assessmentName) {
@@ -272,17 +239,17 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
 
     /**
      * Get governance assignments on all of your resources inside a scope.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return governance assignments on all of your resources inside a scope as paginated response with {@link
-     *     PagedIterable}.
+     * @return governance assignments on all of your resources inside a scope as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<GovernanceAssignmentInner> list(String scope, String assessmentName, Context context) {
@@ -291,26 +258,24 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
 
     /**
      * Get a specific governanceAssignment for the requested scope by AssignmentKey.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @param assignmentKey The governance assignment key - the assessment key of the required governance assignment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a specific governanceAssignment for the requested scope by AssignmentKey along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<GovernanceAssignmentInner>> getWithResponseAsync(
-        String scope, String assessmentName, String assignmentKey) {
+    private Mono<Response<GovernanceAssignmentInner>> getWithResponseAsync(String scope, String assessmentName,
+        String assignmentKey) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
@@ -324,26 +289,17 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
         final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            scope,
-                            assessmentName,
-                            assignmentKey,
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, scope, assessmentName,
+                assignmentKey, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a specific governanceAssignment for the requested scope by AssignmentKey.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @param assignmentKey The governance assignment key - the assessment key of the required governance assignment.
      * @param context The context to associate with this operation.
@@ -351,16 +307,14 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a specific governanceAssignment for the requested scope by AssignmentKey along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<GovernanceAssignmentInner>> getWithResponseAsync(
-        String scope, String assessmentName, String assignmentKey, Context context) {
+    private Mono<Response<GovernanceAssignmentInner>> getWithResponseAsync(String scope, String assessmentName,
+        String assignmentKey, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
@@ -374,23 +328,23 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
         final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(this.client.getEndpoint(), apiVersion, scope, assessmentName, assignmentKey, accept, context);
+        return service.get(this.client.getEndpoint(), apiVersion, scope, assessmentName, assignmentKey, accept,
+            context);
     }
 
     /**
      * Get a specific governanceAssignment for the requested scope by AssignmentKey.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @param assignmentKey The governance assignment key - the assessment key of the required governance assignment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a specific governanceAssignment for the requested scope by AssignmentKey on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<GovernanceAssignmentInner> getAsync(String scope, String assessmentName, String assignmentKey) {
@@ -400,10 +354,10 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
 
     /**
      * Get a specific governanceAssignment for the requested scope by AssignmentKey.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @param assignmentKey The governance assignment key - the assessment key of the required governance assignment.
      * @param context The context to associate with this operation.
@@ -413,17 +367,17 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
      * @return a specific governanceAssignment for the requested scope by AssignmentKey along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<GovernanceAssignmentInner> getWithResponse(
-        String scope, String assessmentName, String assignmentKey, Context context) {
+    public Response<GovernanceAssignmentInner> getWithResponse(String scope, String assessmentName,
+        String assignmentKey, Context context) {
         return getWithResponseAsync(scope, assessmentName, assignmentKey, context).block();
     }
 
     /**
      * Get a specific governanceAssignment for the requested scope by AssignmentKey.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @param assignmentKey The governance assignment key - the assessment key of the required governance assignment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -438,27 +392,25 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
 
     /**
      * Creates or updates a governance assignment on the given subscription.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @param assignmentKey The governance assignment key - the assessment key of the required governance assignment.
      * @param governanceAssignment Governance assignment over a subscription scope.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return governance assignment over a given scope along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return governance assignment over a given scope along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<GovernanceAssignmentInner>> createOrUpdateWithResponseAsync(
-        String scope, String assessmentName, String assignmentKey, GovernanceAssignmentInner governanceAssignment) {
+    private Mono<Response<GovernanceAssignmentInner>> createOrUpdateWithResponseAsync(String scope,
+        String assessmentName, String assignmentKey, GovernanceAssignmentInner governanceAssignment) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
@@ -478,27 +430,17 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
         final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            scope,
-                            assessmentName,
-                            assignmentKey,
-                            governanceAssignment,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), apiVersion, scope, assessmentName,
+                assignmentKey, governanceAssignment, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Creates or updates a governance assignment on the given subscription.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @param assignmentKey The governance assignment key - the assessment key of the required governance assignment.
      * @param governanceAssignment Governance assignment over a subscription scope.
@@ -506,21 +448,15 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return governance assignment over a given scope along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return governance assignment over a given scope along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<GovernanceAssignmentInner>> createOrUpdateWithResponseAsync(
-        String scope,
-        String assessmentName,
-        String assignmentKey,
-        GovernanceAssignmentInner governanceAssignment,
-        Context context) {
+    private Mono<Response<GovernanceAssignmentInner>> createOrUpdateWithResponseAsync(String scope,
+        String assessmentName, String assignmentKey, GovernanceAssignmentInner governanceAssignment, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
@@ -540,24 +476,16 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
         final String apiVersion = "2022-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                apiVersion,
-                scope,
-                assessmentName,
-                assignmentKey,
-                governanceAssignment,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), apiVersion, scope, assessmentName, assignmentKey,
+            governanceAssignment, accept, context);
     }
 
     /**
      * Creates or updates a governance assignment on the given subscription.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @param assignmentKey The governance assignment key - the assessment key of the required governance assignment.
      * @param governanceAssignment Governance assignment over a subscription scope.
@@ -567,18 +495,18 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
      * @return governance assignment over a given scope on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<GovernanceAssignmentInner> createOrUpdateAsync(
-        String scope, String assessmentName, String assignmentKey, GovernanceAssignmentInner governanceAssignment) {
+    private Mono<GovernanceAssignmentInner> createOrUpdateAsync(String scope, String assessmentName,
+        String assignmentKey, GovernanceAssignmentInner governanceAssignment) {
         return createOrUpdateWithResponseAsync(scope, assessmentName, assignmentKey, governanceAssignment)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Creates or updates a governance assignment on the given subscription.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @param assignmentKey The governance assignment key - the assessment key of the required governance assignment.
      * @param governanceAssignment Governance assignment over a subscription scope.
@@ -589,22 +517,18 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
      * @return governance assignment over a given scope along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<GovernanceAssignmentInner> createOrUpdateWithResponse(
-        String scope,
-        String assessmentName,
-        String assignmentKey,
-        GovernanceAssignmentInner governanceAssignment,
-        Context context) {
+    public Response<GovernanceAssignmentInner> createOrUpdateWithResponse(String scope, String assessmentName,
+        String assignmentKey, GovernanceAssignmentInner governanceAssignment, Context context) {
         return createOrUpdateWithResponseAsync(scope, assessmentName, assignmentKey, governanceAssignment, context)
             .block();
     }
 
     /**
      * Creates or updates a governance assignment on the given subscription.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @param assignmentKey The governance assignment key - the assessment key of the required governance assignment.
      * @param governanceAssignment Governance assignment over a subscription scope.
@@ -614,18 +538,18 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
      * @return governance assignment over a given scope.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public GovernanceAssignmentInner createOrUpdate(
-        String scope, String assessmentName, String assignmentKey, GovernanceAssignmentInner governanceAssignment) {
+    public GovernanceAssignmentInner createOrUpdate(String scope, String assessmentName, String assignmentKey,
+        GovernanceAssignmentInner governanceAssignment) {
         return createOrUpdateWithResponse(scope, assessmentName, assignmentKey, governanceAssignment, Context.NONE)
             .getValue();
     }
 
     /**
      * Delete a GovernanceAssignment over a given scope.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @param assignmentKey The governance assignment key - the assessment key of the required governance assignment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -636,10 +560,8 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(String scope, String assessmentName, String assignmentKey) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
@@ -652,19 +574,17 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
         }
         final String apiVersion = "2022-01-01-preview";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(this.client.getEndpoint(), apiVersion, scope, assessmentName, assignmentKey, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), apiVersion, scope, assessmentName,
+                assignmentKey, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete a GovernanceAssignment over a given scope.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @param assignmentKey The governance assignment key - the assessment key of the required governance assignment.
      * @param context The context to associate with this operation.
@@ -674,13 +594,11 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(
-        String scope, String assessmentName, String assignmentKey, Context context) {
+    private Mono<Response<Void>> deleteWithResponseAsync(String scope, String assessmentName, String assignmentKey,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
@@ -698,10 +616,10 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
 
     /**
      * Delete a GovernanceAssignment over a given scope.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @param assignmentKey The governance assignment key - the assessment key of the required governance assignment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -716,10 +634,10 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
 
     /**
      * Delete a GovernanceAssignment over a given scope.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @param assignmentKey The governance assignment key - the assessment key of the required governance assignment.
      * @param context The context to associate with this operation.
@@ -729,17 +647,17 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(
-        String scope, String assessmentName, String assignmentKey, Context context) {
+    public Response<Void> deleteWithResponse(String scope, String assessmentName, String assignmentKey,
+        Context context) {
         return deleteWithResponseAsync(scope, assessmentName, assignmentKey, context).block();
     }
 
     /**
      * Delete a GovernanceAssignment over a given scope.
-     *
+     * 
      * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
-     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param assessmentName The Assessment Key - A unique key for the assessment type.
      * @param assignmentKey The governance assignment key - the assessment key of the required governance assignment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -753,14 +671,15 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return page of a governance assignments list along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return page of a governance assignments list along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GovernanceAssignmentInner>> listNextSinglePageAsync(String nextLink) {
@@ -768,37 +687,28 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<GovernanceAssignmentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<GovernanceAssignmentInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return page of a governance assignments list along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return page of a governance assignments list along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GovernanceAssignmentInner>> listNextSinglePageAsync(String nextLink, Context context) {
@@ -806,23 +716,13 @@ public final class GovernanceAssignmentsClientImpl implements GovernanceAssignme
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }
