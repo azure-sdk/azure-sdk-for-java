@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.advisor.models.Category;
 import com.azure.resourcemanager.advisor.models.Impact;
 import com.azure.resourcemanager.advisor.models.ResourceMetadata;
+import com.azure.resourcemanager.advisor.models.Risk;
 import com.azure.resourcemanager.advisor.models.ShortDescription;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,7 +17,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-/** The properties of the recommendation. */
+/**
+ * The properties of the recommendation.
+ */
 @Fluent
 public final class RecommendationProperties {
     /*
@@ -61,6 +64,12 @@ public final class RecommendationProperties {
      */
     @JsonProperty(value = "recommendationTypeId")
     private String recommendationTypeId;
+
+    /*
+     * The potential risk of not implementing the recommendation.
+     */
+    @JsonProperty(value = "risk")
+    private Risk risk;
 
     /*
      * A summary of the recommendation.
@@ -131,13 +140,15 @@ public final class RecommendationProperties {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, Object> exposedMetadataProperties;
 
-    /** Creates an instance of RecommendationProperties class. */
+    /**
+     * Creates an instance of RecommendationProperties class.
+     */
     public RecommendationProperties() {
     }
 
     /**
      * Get the category property: The category of the recommendation.
-     *
+     * 
      * @return the category value.
      */
     public Category category() {
@@ -146,7 +157,7 @@ public final class RecommendationProperties {
 
     /**
      * Set the category property: The category of the recommendation.
-     *
+     * 
      * @param category the category value to set.
      * @return the RecommendationProperties object itself.
      */
@@ -157,7 +168,7 @@ public final class RecommendationProperties {
 
     /**
      * Get the impact property: The business impact of the recommendation.
-     *
+     * 
      * @return the impact value.
      */
     public Impact impact() {
@@ -166,7 +177,7 @@ public final class RecommendationProperties {
 
     /**
      * Set the impact property: The business impact of the recommendation.
-     *
+     * 
      * @param impact the impact value to set.
      * @return the RecommendationProperties object itself.
      */
@@ -177,7 +188,7 @@ public final class RecommendationProperties {
 
     /**
      * Get the impactedField property: The resource type identified by Advisor.
-     *
+     * 
      * @return the impactedField value.
      */
     public String impactedField() {
@@ -186,7 +197,7 @@ public final class RecommendationProperties {
 
     /**
      * Set the impactedField property: The resource type identified by Advisor.
-     *
+     * 
      * @param impactedField the impactedField value to set.
      * @return the RecommendationProperties object itself.
      */
@@ -197,7 +208,7 @@ public final class RecommendationProperties {
 
     /**
      * Get the impactedValue property: The resource identified by Advisor.
-     *
+     * 
      * @return the impactedValue value.
      */
     public String impactedValue() {
@@ -206,7 +217,7 @@ public final class RecommendationProperties {
 
     /**
      * Set the impactedValue property: The resource identified by Advisor.
-     *
+     * 
      * @param impactedValue the impactedValue value to set.
      * @return the RecommendationProperties object itself.
      */
@@ -217,7 +228,7 @@ public final class RecommendationProperties {
 
     /**
      * Get the lastUpdated property: The most recent time that Advisor checked the validity of the recommendation.
-     *
+     * 
      * @return the lastUpdated value.
      */
     public OffsetDateTime lastUpdated() {
@@ -226,7 +237,7 @@ public final class RecommendationProperties {
 
     /**
      * Set the lastUpdated property: The most recent time that Advisor checked the validity of the recommendation.
-     *
+     * 
      * @param lastUpdated the lastUpdated value to set.
      * @return the RecommendationProperties object itself.
      */
@@ -237,7 +248,7 @@ public final class RecommendationProperties {
 
     /**
      * Get the metadata property: The recommendation metadata.
-     *
+     * 
      * @return the metadata value.
      */
     public Map<String, Object> metadata() {
@@ -246,7 +257,7 @@ public final class RecommendationProperties {
 
     /**
      * Set the metadata property: The recommendation metadata.
-     *
+     * 
      * @param metadata the metadata value to set.
      * @return the RecommendationProperties object itself.
      */
@@ -257,7 +268,7 @@ public final class RecommendationProperties {
 
     /**
      * Get the recommendationTypeId property: The recommendation-type GUID.
-     *
+     * 
      * @return the recommendationTypeId value.
      */
     public String recommendationTypeId() {
@@ -266,7 +277,7 @@ public final class RecommendationProperties {
 
     /**
      * Set the recommendationTypeId property: The recommendation-type GUID.
-     *
+     * 
      * @param recommendationTypeId the recommendationTypeId value to set.
      * @return the RecommendationProperties object itself.
      */
@@ -276,8 +287,28 @@ public final class RecommendationProperties {
     }
 
     /**
+     * Get the risk property: The potential risk of not implementing the recommendation.
+     * 
+     * @return the risk value.
+     */
+    public Risk risk() {
+        return this.risk;
+    }
+
+    /**
+     * Set the risk property: The potential risk of not implementing the recommendation.
+     * 
+     * @param risk the risk value to set.
+     * @return the RecommendationProperties object itself.
+     */
+    public RecommendationProperties withRisk(Risk risk) {
+        this.risk = risk;
+        return this;
+    }
+
+    /**
      * Get the shortDescription property: A summary of the recommendation.
-     *
+     * 
      * @return the shortDescription value.
      */
     public ShortDescription shortDescription() {
@@ -286,7 +317,7 @@ public final class RecommendationProperties {
 
     /**
      * Set the shortDescription property: A summary of the recommendation.
-     *
+     * 
      * @param shortDescription the shortDescription value to set.
      * @return the RecommendationProperties object itself.
      */
@@ -297,7 +328,7 @@ public final class RecommendationProperties {
 
     /**
      * Get the suppressionIds property: The list of snoozed and dismissed rules for the recommendation.
-     *
+     * 
      * @return the suppressionIds value.
      */
     public List<UUID> suppressionIds() {
@@ -306,7 +337,7 @@ public final class RecommendationProperties {
 
     /**
      * Set the suppressionIds property: The list of snoozed and dismissed rules for the recommendation.
-     *
+     * 
      * @param suppressionIds the suppressionIds value to set.
      * @return the RecommendationProperties object itself.
      */
@@ -317,7 +348,7 @@ public final class RecommendationProperties {
 
     /**
      * Get the extendedProperties property: Extended properties.
-     *
+     * 
      * @return the extendedProperties value.
      */
     public Map<String, String> extendedProperties() {
@@ -326,7 +357,7 @@ public final class RecommendationProperties {
 
     /**
      * Set the extendedProperties property: Extended properties.
-     *
+     * 
      * @param extendedProperties the extendedProperties value to set.
      * @return the RecommendationProperties object itself.
      */
@@ -337,7 +368,7 @@ public final class RecommendationProperties {
 
     /**
      * Get the resourceMetadata property: Metadata of resource that was assessed.
-     *
+     * 
      * @return the resourceMetadata value.
      */
     public ResourceMetadata resourceMetadata() {
@@ -346,7 +377,7 @@ public final class RecommendationProperties {
 
     /**
      * Set the resourceMetadata property: Metadata of resource that was assessed.
-     *
+     * 
      * @param resourceMetadata the resourceMetadata value to set.
      * @return the RecommendationProperties object itself.
      */
@@ -357,7 +388,7 @@ public final class RecommendationProperties {
 
     /**
      * Get the description property: The detailed description of recommendation.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -366,7 +397,7 @@ public final class RecommendationProperties {
 
     /**
      * Set the description property: The detailed description of recommendation.
-     *
+     * 
      * @param description the description value to set.
      * @return the RecommendationProperties object itself.
      */
@@ -377,7 +408,7 @@ public final class RecommendationProperties {
 
     /**
      * Get the label property: The label of recommendation.
-     *
+     * 
      * @return the label value.
      */
     public String label() {
@@ -386,7 +417,7 @@ public final class RecommendationProperties {
 
     /**
      * Set the label property: The label of recommendation.
-     *
+     * 
      * @param label the label value to set.
      * @return the RecommendationProperties object itself.
      */
@@ -397,7 +428,7 @@ public final class RecommendationProperties {
 
     /**
      * Get the learnMoreLink property: The link to learn more about recommendation and generation logic.
-     *
+     * 
      * @return the learnMoreLink value.
      */
     public String learnMoreLink() {
@@ -406,7 +437,7 @@ public final class RecommendationProperties {
 
     /**
      * Set the learnMoreLink property: The link to learn more about recommendation and generation logic.
-     *
+     * 
      * @param learnMoreLink the learnMoreLink value to set.
      * @return the RecommendationProperties object itself.
      */
@@ -417,7 +448,7 @@ public final class RecommendationProperties {
 
     /**
      * Get the potentialBenefits property: The potential benefit of implementing recommendation.
-     *
+     * 
      * @return the potentialBenefits value.
      */
     public String potentialBenefits() {
@@ -426,7 +457,7 @@ public final class RecommendationProperties {
 
     /**
      * Set the potentialBenefits property: The potential benefit of implementing recommendation.
-     *
+     * 
      * @param potentialBenefits the potentialBenefits value to set.
      * @return the RecommendationProperties object itself.
      */
@@ -437,7 +468,7 @@ public final class RecommendationProperties {
 
     /**
      * Get the actions property: The list of recommended actions to implement recommendation.
-     *
+     * 
      * @return the actions value.
      */
     public List<Map<String, Object>> actions() {
@@ -446,7 +477,7 @@ public final class RecommendationProperties {
 
     /**
      * Set the actions property: The list of recommended actions to implement recommendation.
-     *
+     * 
      * @param actions the actions value to set.
      * @return the RecommendationProperties object itself.
      */
@@ -457,7 +488,7 @@ public final class RecommendationProperties {
 
     /**
      * Get the remediation property: The automated way to apply recommendation.
-     *
+     * 
      * @return the remediation value.
      */
     public Map<String, Object> remediation() {
@@ -466,7 +497,7 @@ public final class RecommendationProperties {
 
     /**
      * Set the remediation property: The automated way to apply recommendation.
-     *
+     * 
      * @param remediation the remediation value to set.
      * @return the RecommendationProperties object itself.
      */
@@ -476,9 +507,9 @@ public final class RecommendationProperties {
     }
 
     /**
-     * Get the exposedMetadataProperties property: The recommendation metadata properties exposed to customer to provide
-     * additional information.
-     *
+     * Get the exposedMetadataProperties property: The recommendation metadata properties exposed to customer to
+     * provide additional information.
+     * 
      * @return the exposedMetadataProperties value.
      */
     public Map<String, Object> exposedMetadataProperties() {
@@ -486,9 +517,9 @@ public final class RecommendationProperties {
     }
 
     /**
-     * Set the exposedMetadataProperties property: The recommendation metadata properties exposed to customer to provide
-     * additional information.
-     *
+     * Set the exposedMetadataProperties property: The recommendation metadata properties exposed to customer to
+     * provide additional information.
+     * 
      * @param exposedMetadataProperties the exposedMetadataProperties value to set.
      * @return the RecommendationProperties object itself.
      */
@@ -499,7 +530,7 @@ public final class RecommendationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

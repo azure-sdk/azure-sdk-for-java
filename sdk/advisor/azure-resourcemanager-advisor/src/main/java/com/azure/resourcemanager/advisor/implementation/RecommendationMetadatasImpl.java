@@ -21,8 +21,8 @@ public final class RecommendationMetadatasImpl implements RecommendationMetadata
 
     private final com.azure.resourcemanager.advisor.AdvisorManager serviceManager;
 
-    public RecommendationMetadatasImpl(
-        RecommendationMetadatasClient innerClient, com.azure.resourcemanager.advisor.AdvisorManager serviceManager) {
+    public RecommendationMetadatasImpl(RecommendationMetadatasClient innerClient,
+        com.azure.resourcemanager.advisor.AdvisorManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -30,10 +30,7 @@ public final class RecommendationMetadatasImpl implements RecommendationMetadata
     public Response<MetadataEntity> getWithResponse(String name, Context context) {
         Response<MetadataEntityInner> inner = this.serviceClient().getWithResponse(name, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new MetadataEntityImpl(inner.getValue(), this.manager()));
         } else {
             return null;

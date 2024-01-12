@@ -7,10 +7,13 @@ package com.azure.resourcemanager.advisor.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.advisor.models.CpuThreshold;
 import com.azure.resourcemanager.advisor.models.DigestConfig;
+import com.azure.resourcemanager.advisor.models.DurationModel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Configuration data properties. */
+/**
+ * Configuration data properties.
+ */
 @Fluent
 public final class ConfigDataProperties {
     /*
@@ -27,18 +30,27 @@ public final class ConfigDataProperties {
     private CpuThreshold lowCpuThreshold;
 
     /*
+     * Minimum duration for Advisor low CPU utilization evaluation. Valid only for subscriptions. Valid values: 7
+     * (default), 14, 21, 30, 60 or 90.
+     */
+    @JsonProperty(value = "duration")
+    private DurationModel duration;
+
+    /*
      * Advisor digest configuration. Valid only for subscriptions
      */
     @JsonProperty(value = "digests")
     private List<DigestConfig> digests;
 
-    /** Creates an instance of ConfigDataProperties class. */
+    /**
+     * Creates an instance of ConfigDataProperties class.
+     */
     public ConfigDataProperties() {
     }
 
     /**
      * Get the exclude property: Exclude the resource from Advisor evaluations. Valid values: False (default) or True.
-     *
+     * 
      * @return the exclude value.
      */
     public Boolean exclude() {
@@ -47,7 +59,7 @@ public final class ConfigDataProperties {
 
     /**
      * Set the exclude property: Exclude the resource from Advisor evaluations. Valid values: False (default) or True.
-     *
+     * 
      * @param exclude the exclude value to set.
      * @return the ConfigDataProperties object itself.
      */
@@ -59,7 +71,7 @@ public final class ConfigDataProperties {
     /**
      * Get the lowCpuThreshold property: Minimum percentage threshold for Advisor low CPU utilization evaluation. Valid
      * only for subscriptions. Valid values: 5 (default), 10, 15 or 20.
-     *
+     * 
      * @return the lowCpuThreshold value.
      */
     public CpuThreshold lowCpuThreshold() {
@@ -69,7 +81,7 @@ public final class ConfigDataProperties {
     /**
      * Set the lowCpuThreshold property: Minimum percentage threshold for Advisor low CPU utilization evaluation. Valid
      * only for subscriptions. Valid values: 5 (default), 10, 15 or 20.
-     *
+     * 
      * @param lowCpuThreshold the lowCpuThreshold value to set.
      * @return the ConfigDataProperties object itself.
      */
@@ -79,8 +91,30 @@ public final class ConfigDataProperties {
     }
 
     /**
+     * Get the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+     * subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+     * 
+     * @return the duration value.
+     */
+    public DurationModel duration() {
+        return this.duration;
+    }
+
+    /**
+     * Set the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+     * subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+     * 
+     * @param duration the duration value to set.
+     * @return the ConfigDataProperties object itself.
+     */
+    public ConfigDataProperties withDuration(DurationModel duration) {
+        this.duration = duration;
+        return this;
+    }
+
+    /**
      * Get the digests property: Advisor digest configuration. Valid only for subscriptions.
-     *
+     * 
      * @return the digests value.
      */
     public List<DigestConfig> digests() {
@@ -89,7 +123,7 @@ public final class ConfigDataProperties {
 
     /**
      * Set the digests property: Advisor digest configuration. Valid only for subscriptions.
-     *
+     * 
      * @param digests the digests value to set.
      * @return the ConfigDataProperties object itself.
      */
@@ -100,7 +134,7 @@ public final class ConfigDataProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

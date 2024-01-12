@@ -9,7 +9,9 @@ import com.azure.resourcemanager.advisor.fluent.models.SuppressionContractInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of Advisor suppressions. */
+/**
+ * The list of Advisor suppressions.
+ */
 @Fluent
 public final class SuppressionContractListResult {
     /*
@@ -24,13 +26,15 @@ public final class SuppressionContractListResult {
     @JsonProperty(value = "value")
     private List<SuppressionContractInner> value;
 
-    /** Creates an instance of SuppressionContractListResult class. */
+    /**
+     * Creates an instance of SuppressionContractListResult class.
+     */
     public SuppressionContractListResult() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of suppressions.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class SuppressionContractListResult {
 
     /**
      * Set the nextLink property: The link used to get the next page of suppressions.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the SuppressionContractListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class SuppressionContractListResult {
 
     /**
      * Get the value property: The list of suppressions.
-     *
+     * 
      * @return the value value.
      */
     public List<SuppressionContractInner> value() {
@@ -59,7 +63,7 @@ public final class SuppressionContractListResult {
 
     /**
      * Set the value property: The list of suppressions.
-     *
+     * 
      * @param value the value value to set.
      * @return the SuppressionContractListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class SuppressionContractListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

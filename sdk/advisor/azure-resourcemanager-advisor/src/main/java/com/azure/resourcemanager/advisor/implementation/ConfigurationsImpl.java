@@ -22,8 +22,8 @@ public final class ConfigurationsImpl implements Configurations {
 
     private final com.azure.resourcemanager.advisor.AdvisorManager serviceManager;
 
-    public ConfigurationsImpl(
-        ConfigurationsClient innerClient, com.azure.resourcemanager.advisor.AdvisorManager serviceManager) {
+    public ConfigurationsImpl(ConfigurationsClient innerClient,
+        com.azure.resourcemanager.advisor.AdvisorManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -38,15 +38,12 @@ public final class ConfigurationsImpl implements Configurations {
         return Utils.mapPage(inner, inner1 -> new ConfigDataImpl(inner1, this.manager()));
     }
 
-    public Response<ConfigData> createInSubscriptionWithResponse(
-        ConfigurationName configurationName, ConfigDataInner configContract, Context context) {
-        Response<ConfigDataInner> inner =
-            this.serviceClient().createInSubscriptionWithResponse(configurationName, configContract, context);
+    public Response<ConfigData> createInSubscriptionWithResponse(ConfigurationName configurationName,
+        ConfigDataInner configContract, Context context) {
+        Response<ConfigDataInner> inner
+            = this.serviceClient().createInSubscriptionWithResponse(configurationName, configContract, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ConfigDataImpl(inner.getValue(), this.manager()));
         } else {
             return null;

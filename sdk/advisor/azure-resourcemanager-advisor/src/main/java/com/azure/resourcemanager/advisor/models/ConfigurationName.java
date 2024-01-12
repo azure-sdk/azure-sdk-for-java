@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ConfigurationName. */
+/**
+ * Defines values for ConfigurationName.
+ */
 public final class ConfigurationName extends ExpandableStringEnum<ConfigurationName> {
-    /** Static value default for ConfigurationName. */
+    /**
+     * Static value default for ConfigurationName.
+     */
     public static final ConfigurationName DEFAULT = fromString("default");
 
     /**
      * Creates a new instance of ConfigurationName value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class ConfigurationName extends ExpandableStringEnum<ConfigurationN
 
     /**
      * Creates or finds a ConfigurationName from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ConfigurationName.
      */
@@ -35,7 +39,7 @@ public final class ConfigurationName extends ExpandableStringEnum<ConfigurationN
 
     /**
      * Gets known ConfigurationName values.
-     *
+     * 
      * @return known ConfigurationName values.
      */
     public static Collection<ConfigurationName> values() {
