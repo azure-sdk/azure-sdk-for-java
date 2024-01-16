@@ -28,7 +28,7 @@ public final class PoolProperties {
      * size
      * 
      * Provisioned size of the pool (in bytes). Allowed values are in 1TiB chunks (value must be multiply of
-     * 4398046511104).
+     * 1099511627776).
      */
     @JsonProperty(value = "size", required = true)
     private long size;
@@ -101,7 +101,7 @@ public final class PoolProperties {
      * Get the size property: size
      * 
      * Provisioned size of the pool (in bytes). Allowed values are in 1TiB chunks (value must be multiply of
-     * 4398046511104).
+     * 1099511627776).
      * 
      * @return the size value.
      */
@@ -113,7 +113,7 @@ public final class PoolProperties {
      * Set the size property: size
      * 
      * Provisioned size of the pool (in bytes). Allowed values are in 1TiB chunks (value must be multiply of
-     * 4398046511104).
+     * 1099511627776).
      * 
      * @param size the size value to set.
      * @return the PoolProperties object itself.
