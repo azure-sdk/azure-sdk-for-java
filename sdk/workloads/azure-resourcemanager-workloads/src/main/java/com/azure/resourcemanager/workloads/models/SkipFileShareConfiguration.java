@@ -16,13 +16,15 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("Skip")
 @Immutable
 public final class SkipFileShareConfiguration extends FileShareConfiguration {
-    /** Creates an instance of SkipFileShareConfiguration class. */
+    /**
+     * Creates an instance of SkipFileShareConfiguration class.
+     */
     public SkipFileShareConfiguration() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

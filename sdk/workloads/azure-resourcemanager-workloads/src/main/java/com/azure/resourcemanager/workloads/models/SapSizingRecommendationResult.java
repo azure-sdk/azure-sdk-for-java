@@ -6,11 +6,13 @@ package com.azure.resourcemanager.workloads.models;
 
 import com.azure.resourcemanager.workloads.fluent.models.SapSizingRecommendationResultInner;
 
-/** An immutable client-side representation of SapSizingRecommendationResult. */
+/**
+ * An immutable client-side representation of SapSizingRecommendationResult.
+ */
 public interface SapSizingRecommendationResult {
     /**
      * Gets the inner com.azure.resourcemanager.workloads.fluent.models.SapSizingRecommendationResultInner object.
-     *
+     * 
      * @return the inner object.
      */
     SapSizingRecommendationResultInner innerModel();

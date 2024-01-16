@@ -32,13 +32,15 @@ public final class DatabaseServerFullResourceNames {
     @JsonProperty(value = "loadBalancer")
     private LoadBalancerResourceNames loadBalancer;
 
-    /** Creates an instance of DatabaseServerFullResourceNames class. */
+    /**
+     * Creates an instance of DatabaseServerFullResourceNames class.
+     */
     public DatabaseServerFullResourceNames() {
     }
 
     /**
      * Get the virtualMachines property: The list of virtual machine naming details.
-     *
+     * 
      * @return the virtualMachines value.
      */
     public List<VirtualMachineResourceNames> virtualMachines() {
@@ -47,7 +49,7 @@ public final class DatabaseServerFullResourceNames {
 
     /**
      * Set the virtualMachines property: The list of virtual machine naming details.
-     *
+     * 
      * @param virtualMachines the virtualMachines value to set.
      * @return the DatabaseServerFullResourceNames object itself.
      */
@@ -59,7 +61,7 @@ public final class DatabaseServerFullResourceNames {
     /**
      * Get the availabilitySetName property: The full name for availability set. In case name is not provided, it will
      * be defaulted to {SID}-DB-AvSet.
-     *
+     * 
      * @return the availabilitySetName value.
      */
     public String availabilitySetName() {
@@ -69,7 +71,7 @@ public final class DatabaseServerFullResourceNames {
     /**
      * Set the availabilitySetName property: The full name for availability set. In case name is not provided, it will
      * be defaulted to {SID}-DB-AvSet.
-     *
+     * 
      * @param availabilitySetName the availabilitySetName value to set.
      * @return the DatabaseServerFullResourceNames object itself.
      */
@@ -80,7 +82,7 @@ public final class DatabaseServerFullResourceNames {
 
     /**
      * Get the loadBalancer property: The resource names object for load balancer and related resources.
-     *
+     * 
      * @return the loadBalancer value.
      */
     public LoadBalancerResourceNames loadBalancer() {
@@ -89,7 +91,7 @@ public final class DatabaseServerFullResourceNames {
 
     /**
      * Set the loadBalancer property: The resource names object for load balancer and related resources.
-     *
+     * 
      * @param loadBalancer the loadBalancer value to set.
      * @return the DatabaseServerFullResourceNames object itself.
      */
@@ -100,7 +102,7 @@ public final class DatabaseServerFullResourceNames {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

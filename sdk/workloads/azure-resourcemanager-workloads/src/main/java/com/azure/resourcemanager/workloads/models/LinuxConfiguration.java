@@ -37,13 +37,15 @@ public final class LinuxConfiguration extends OSConfiguration {
     @JsonProperty(value = "sshKeyPair")
     private SshKeyPair sshKeyPair;
 
-    /** Creates an instance of LinuxConfiguration class. */
+    /**
+     * Creates an instance of LinuxConfiguration class.
+     */
     public LinuxConfiguration() {
     }
 
     /**
      * Get the disablePasswordAuthentication property: Specifies whether password authentication should be disabled.
-     *
+     * 
      * @return the disablePasswordAuthentication value.
      */
     public Boolean disablePasswordAuthentication() {
@@ -52,7 +54,7 @@ public final class LinuxConfiguration extends OSConfiguration {
 
     /**
      * Set the disablePasswordAuthentication property: Specifies whether password authentication should be disabled.
-     *
+     * 
      * @param disablePasswordAuthentication the disablePasswordAuthentication value to set.
      * @return the LinuxConfiguration object itself.
      */
@@ -64,7 +66,7 @@ public final class LinuxConfiguration extends OSConfiguration {
     /**
      * Get the ssh property: Specifies the ssh key configuration for a Linux OS. (This property is deprecated, please
      * use 'sshKeyPair' instead).
-     *
+     * 
      * @return the ssh value.
      */
     public SshConfiguration ssh() {
@@ -74,7 +76,7 @@ public final class LinuxConfiguration extends OSConfiguration {
     /**
      * Set the ssh property: Specifies the ssh key configuration for a Linux OS. (This property is deprecated, please
      * use 'sshKeyPair' instead).
-     *
+     * 
      * @param ssh the ssh value to set.
      * @return the LinuxConfiguration object itself.
      */
@@ -85,7 +87,7 @@ public final class LinuxConfiguration extends OSConfiguration {
 
     /**
      * Get the sshKeyPair property: The SSH Key-pair used to authenticate with the VM's.
-     *
+     * 
      * @return the sshKeyPair value.
      */
     public SshKeyPair sshKeyPair() {
@@ -94,7 +96,7 @@ public final class LinuxConfiguration extends OSConfiguration {
 
     /**
      * Set the sshKeyPair property: The SSH Key-pair used to authenticate with the VM's.
-     *
+     * 
      * @param sshKeyPair the sshKeyPair value to set.
      * @return the LinuxConfiguration object itself.
      */
@@ -105,7 +107,7 @@ public final class LinuxConfiguration extends OSConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

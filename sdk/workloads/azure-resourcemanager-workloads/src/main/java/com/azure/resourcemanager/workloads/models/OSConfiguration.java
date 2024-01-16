@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Defines the OS configuration. */
+/**
+ * Defines the OS configuration.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -18,17 +20,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("OSConfiguration")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Windows", value = WindowsConfiguration.class),
-    @JsonSubTypes.Type(name = "Linux", value = LinuxConfiguration.class)
-})
+    @JsonSubTypes.Type(name = "Linux", value = LinuxConfiguration.class) })
 @Immutable
 public class OSConfiguration {
-    /** Creates an instance of OSConfiguration class. */
+    /**
+     * Creates an instance of OSConfiguration class.
+     */
     public OSConfiguration() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

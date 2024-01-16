@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The type of file share config. */
+/**
+ * The type of file share config.
+ */
 public final class ConfigurationType extends ExpandableStringEnum<ConfigurationType> {
-    /** Static value Skip for ConfigurationType. */
+    /**
+     * Static value Skip for ConfigurationType.
+     */
     public static final ConfigurationType SKIP = fromString("Skip");
 
-    /** Static value CreateAndMount for ConfigurationType. */
+    /**
+     * Static value CreateAndMount for ConfigurationType.
+     */
     public static final ConfigurationType CREATE_AND_MOUNT = fromString("CreateAndMount");
 
-    /** Static value Mount for ConfigurationType. */
+    /**
+     * Static value Mount for ConfigurationType.
+     */
     public static final ConfigurationType MOUNT = fromString("Mount");
 
     /**
      * Creates a new instance of ConfigurationType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class ConfigurationType extends ExpandableStringEnum<ConfigurationT
 
     /**
      * Creates or finds a ConfigurationType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ConfigurationType.
      */
@@ -41,7 +49,7 @@ public final class ConfigurationType extends ExpandableStringEnum<ConfigurationT
 
     /**
      * Gets known ConfigurationType values.
-     *
+     * 
      * @return known ConfigurationType values.
      */
     public static Collection<ConfigurationType> values() {
