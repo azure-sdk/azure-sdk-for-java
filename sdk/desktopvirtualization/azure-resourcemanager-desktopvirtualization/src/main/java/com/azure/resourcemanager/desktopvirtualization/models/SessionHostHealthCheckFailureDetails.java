@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Contains details on the failure. */
+/**
+ * Contains details on the failure.
+ */
 @Immutable
 public final class SessionHostHealthCheckFailureDetails {
     /*
@@ -29,13 +31,15 @@ public final class SessionHostHealthCheckFailureDetails {
     @JsonProperty(value = "lastHealthCheckDateTime", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime lastHealthCheckDateTime;
 
-    /** Creates an instance of SessionHostHealthCheckFailureDetails class. */
+    /**
+     * Creates an instance of SessionHostHealthCheckFailureDetails class.
+     */
     public SessionHostHealthCheckFailureDetails() {
     }
 
     /**
      * Get the message property: Failure message: hints on what is wrong and how to recover.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -44,7 +48,7 @@ public final class SessionHostHealthCheckFailureDetails {
 
     /**
      * Get the errorCode property: Error code corresponding for the failure.
-     *
+     * 
      * @return the errorCode value.
      */
     public Integer errorCode() {
@@ -53,7 +57,7 @@ public final class SessionHostHealthCheckFailureDetails {
 
     /**
      * Get the lastHealthCheckDateTime property: The timestamp of the last update.
-     *
+     * 
      * @return the lastHealthCheckDateTime value.
      */
     public OffsetDateTime lastHealthCheckDateTime() {
@@ -62,7 +66,7 @@ public final class SessionHostHealthCheckFailureDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

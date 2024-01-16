@@ -4,20 +4,23 @@
 
 package com.azure.resourcemanager.desktopvirtualization.generated;
 
-/** Samples for Desktops Get. */
+/**
+ * Samples for Desktops Get.
+ */
 public final class DesktopsGetSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2023-09-05/examples/Desktop_Get.json
+     * x-ms-original-file:
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-01-16-preview/
+     * examples/Desktop_Get.json
      */
     /**
      * Sample code: Desktop_Get.
-     *
+     * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
-    public static void desktopGet(
-        com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager
-            .desktops()
-            .getWithResponse("resourceGroup1", "applicationGroup1", "SessionDesktop", com.azure.core.util.Context.NONE);
+    public static void
+        desktopGet(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+        manager.desktops().getWithResponse("resourceGroup1", "applicationGroup1", "SessionDesktop",
+            com.azure.core.util.Context.NONE);
     }
 }

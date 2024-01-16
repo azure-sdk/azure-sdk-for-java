@@ -7,7 +7,9 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The report for session host information. */
+/**
+ * The report for session host information.
+ */
 @Immutable
 public final class SessionHostHealthCheckReport {
     /*
@@ -28,13 +30,15 @@ public final class SessionHostHealthCheckReport {
     @JsonProperty(value = "additionalFailureDetails", access = JsonProperty.Access.WRITE_ONLY)
     private SessionHostHealthCheckFailureDetails additionalFailureDetails;
 
-    /** Creates an instance of SessionHostHealthCheckReport class. */
+    /**
+     * Creates an instance of SessionHostHealthCheckReport class.
+     */
     public SessionHostHealthCheckReport() {
     }
 
     /**
      * Get the healthCheckName property: Represents the name of the health check operation performed.
-     *
+     * 
      * @return the healthCheckName value.
      */
     public HealthCheckName healthCheckName() {
@@ -43,7 +47,7 @@ public final class SessionHostHealthCheckReport {
 
     /**
      * Get the healthCheckResult property: Represents the Health state of the health check we performed.
-     *
+     * 
      * @return the healthCheckResult value.
      */
     public HealthCheckResult healthCheckResult() {
@@ -52,7 +56,7 @@ public final class SessionHostHealthCheckReport {
 
     /**
      * Get the additionalFailureDetails property: Additional detailed information on the failure.
-     *
+     * 
      * @return the additionalFailureDetails value.
      */
     public SessionHostHealthCheckFailureDetails additionalFailureDetails() {
@@ -61,7 +65,7 @@ public final class SessionHostHealthCheckReport {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

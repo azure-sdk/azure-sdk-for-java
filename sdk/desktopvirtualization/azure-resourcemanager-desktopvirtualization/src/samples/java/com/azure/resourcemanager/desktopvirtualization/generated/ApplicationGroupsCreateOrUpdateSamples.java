@@ -8,31 +8,29 @@ import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroupTy
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for ApplicationGroups CreateOrUpdate. */
+/**
+ * Samples for ApplicationGroups CreateOrUpdate.
+ */
 public final class ApplicationGroupsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2023-09-05/examples/ApplicationGroup_Create.json
+     * x-ms-original-file:
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-01-16-preview/
+     * examples/ApplicationGroup_Create.json
      */
     /**
      * Sample code: ApplicationGroup_Create.
-     *
+     * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
-    public static void applicationGroupCreate(
-        com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager
-            .applicationGroups()
-            .define("applicationGroup1")
-            .withRegion("centralus")
+    public static void
+        applicationGroupCreate(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+        manager.applicationGroups().define("applicationGroup1").withRegion("centralus")
             .withExistingResourceGroup("resourceGroup1")
             .withHostPoolArmPath(
                 "/subscriptions/daefabc0-95b4-48b3-b645-8a753a63c4fa/resourceGroups/resourceGroup1/providers/Microsoft.DesktopVirtualization/hostPools/hostPool1")
             .withApplicationGroupType(ApplicationGroupType.REMOTE_APP)
-            .withTags(mapOf("tag1", "value1", "tag2", "value2"))
-            .withDescription("des1")
-            .withFriendlyName("friendly")
-            .withShowInFeed(true)
-            .create();
+            .withTags(mapOf("tag1", "value1", "tag2", "value2")).withDescription("des1").withFriendlyName("friendly")
+            .withShowInFeed(true).create();
     }
 
     // Use "Map.of" if available

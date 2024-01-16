@@ -12,7 +12,9 @@ import com.azure.resourcemanager.desktopvirtualization.models.ScalingSchedule;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Scaling plan properties. */
+/**
+ * Scaling plan properties.
+ */
 @Fluent
 public final class ScalingPlanProperties {
     /*
@@ -63,13 +65,15 @@ public final class ScalingPlanProperties {
     @JsonProperty(value = "hostPoolReferences")
     private List<ScalingHostPoolReference> hostPoolReferences;
 
-    /** Creates an instance of ScalingPlanProperties class. */
+    /**
+     * Creates an instance of ScalingPlanProperties class.
+     */
     public ScalingPlanProperties() {
     }
 
     /**
      * Get the objectId property: ObjectId of scaling plan. (internal use).
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -78,7 +82,7 @@ public final class ScalingPlanProperties {
 
     /**
      * Get the description property: Description of scaling plan.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -87,7 +91,7 @@ public final class ScalingPlanProperties {
 
     /**
      * Set the description property: Description of scaling plan.
-     *
+     * 
      * @param description the description value to set.
      * @return the ScalingPlanProperties object itself.
      */
@@ -98,7 +102,7 @@ public final class ScalingPlanProperties {
 
     /**
      * Get the friendlyName property: User friendly name of scaling plan.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -107,7 +111,7 @@ public final class ScalingPlanProperties {
 
     /**
      * Set the friendlyName property: User friendly name of scaling plan.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the ScalingPlanProperties object itself.
      */
@@ -118,7 +122,7 @@ public final class ScalingPlanProperties {
 
     /**
      * Get the timeZone property: Timezone of the scaling plan.
-     *
+     * 
      * @return the timeZone value.
      */
     public String timeZone() {
@@ -127,7 +131,7 @@ public final class ScalingPlanProperties {
 
     /**
      * Set the timeZone property: Timezone of the scaling plan.
-     *
+     * 
      * @param timeZone the timeZone value to set.
      * @return the ScalingPlanProperties object itself.
      */
@@ -138,7 +142,7 @@ public final class ScalingPlanProperties {
 
     /**
      * Get the hostPoolType property: HostPool type for desktop.
-     *
+     * 
      * @return the hostPoolType value.
      */
     public ScalingHostPoolType hostPoolType() {
@@ -147,7 +151,7 @@ public final class ScalingPlanProperties {
 
     /**
      * Set the hostPoolType property: HostPool type for desktop.
-     *
+     * 
      * @param hostPoolType the hostPoolType value to set.
      * @return the ScalingPlanProperties object itself.
      */
@@ -158,7 +162,7 @@ public final class ScalingPlanProperties {
 
     /**
      * Get the exclusionTag property: Exclusion tag for scaling plan.
-     *
+     * 
      * @return the exclusionTag value.
      */
     public String exclusionTag() {
@@ -167,7 +171,7 @@ public final class ScalingPlanProperties {
 
     /**
      * Set the exclusionTag property: Exclusion tag for scaling plan.
-     *
+     * 
      * @param exclusionTag the exclusionTag value to set.
      * @return the ScalingPlanProperties object itself.
      */
@@ -178,7 +182,7 @@ public final class ScalingPlanProperties {
 
     /**
      * Get the schedules property: List of ScalingPlanPooledSchedule definitions.
-     *
+     * 
      * @return the schedules value.
      */
     public List<ScalingSchedule> schedules() {
@@ -187,7 +191,7 @@ public final class ScalingPlanProperties {
 
     /**
      * Set the schedules property: List of ScalingPlanPooledSchedule definitions.
-     *
+     * 
      * @param schedules the schedules value to set.
      * @return the ScalingPlanProperties object itself.
      */
@@ -198,7 +202,7 @@ public final class ScalingPlanProperties {
 
     /**
      * Get the hostPoolReferences property: List of ScalingHostPoolReference definitions.
-     *
+     * 
      * @return the hostPoolReferences value.
      */
     public List<ScalingHostPoolReference> hostPoolReferences() {
@@ -207,7 +211,7 @@ public final class ScalingPlanProperties {
 
     /**
      * Set the hostPoolReferences property: List of ScalingHostPoolReference definitions.
-     *
+     * 
      * @param hostPoolReferences the hostPoolReferences value to set.
      * @return the ScalingPlanProperties object itself.
      */
@@ -218,14 +222,13 @@ public final class ScalingPlanProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (timeZone() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property timeZone in model ScalingPlanProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property timeZone in model ScalingPlanProperties"));
         }
         if (schedules() != null) {
             schedules().forEach(e -> e.validate());

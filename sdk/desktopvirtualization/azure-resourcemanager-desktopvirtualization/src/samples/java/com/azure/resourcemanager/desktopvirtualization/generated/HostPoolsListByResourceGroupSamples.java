@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.desktopvirtualization.generated;
 
-/** Samples for HostPools ListByResourceGroup. */
+/**
+ * Samples for HostPools ListByResourceGroup.
+ */
 public final class HostPoolsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2023-09-05/examples/HostPool_ListByResourceGroup.json
+     * x-ms-original-file:
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-01-16-preview/
+     * examples/HostPool_ListByResourceGroup.json
      */
     /**
      * Sample code: HostPool_ListByResourceGroup.
-     *
+     * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
     public static void hostPoolListByResourceGroup(

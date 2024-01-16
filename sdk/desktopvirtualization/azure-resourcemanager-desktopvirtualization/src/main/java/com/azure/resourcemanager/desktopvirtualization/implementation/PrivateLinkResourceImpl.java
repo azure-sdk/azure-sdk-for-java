@@ -14,8 +14,7 @@ public final class PrivateLinkResourceImpl implements PrivateLinkResource {
 
     private final com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager;
 
-    PrivateLinkResourceImpl(
-        PrivateLinkResourceInner innerObject,
+    PrivateLinkResourceImpl(PrivateLinkResourceInner innerObject,
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;

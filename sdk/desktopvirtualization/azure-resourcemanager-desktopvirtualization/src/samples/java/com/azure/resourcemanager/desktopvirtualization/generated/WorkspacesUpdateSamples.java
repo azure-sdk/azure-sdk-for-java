@@ -8,29 +8,27 @@ import com.azure.resourcemanager.desktopvirtualization.models.Workspace;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for Workspaces Update. */
+/**
+ * Samples for Workspaces Update.
+ */
 public final class WorkspacesUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2023-09-05/examples/Workspace_Update.json
+     * x-ms-original-file:
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-01-16-preview/
+     * examples/Workspace_Update.json
      */
     /**
      * Sample code: Workspace_Update.
-     *
+     * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
-    public static void workspaceUpdate(
-        com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        Workspace resource =
-            manager
-                .workspaces()
-                .getByResourceGroupWithResponse("resourceGroup1", "workspace1", com.azure.core.util.Context.NONE)
-                .getValue();
-        resource
-            .update()
-            .withTags(mapOf("tag1", "value1", "tag2", "value2"))
-            .withDescription("des1")
-            .withFriendlyName("friendly")
-            .apply();
+    public static void
+        workspaceUpdate(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+        Workspace resource = manager.workspaces()
+            .getByResourceGroupWithResponse("resourceGroup1", "workspace1", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).withDescription("des1")
+            .withFriendlyName("friendly").apply();
     }
 
     // Use "Map.of" if available

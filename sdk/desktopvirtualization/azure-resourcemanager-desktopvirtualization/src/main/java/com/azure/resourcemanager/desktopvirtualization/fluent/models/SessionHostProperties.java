@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Schema for SessionHost properties. */
+/**
+ * Schema for SessionHost properties.
+ */
 @Fluent
 public final class SessionHostProperties {
     /*
@@ -112,18 +114,32 @@ public final class SessionHostProperties {
     private String updateErrorMessage;
 
     /*
+     * The last time update was completed.
+     */
+    @JsonProperty(value = "lastSessionHostUpdateTime", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime lastSessionHostUpdateTime;
+
+    /*
+     * SessionHostConfiguration version reference at the time the update is initiated, in the format of date time.
+     */
+    @JsonProperty(value = "sessionHostConfiguration", access = JsonProperty.Access.WRITE_ONLY)
+    private String sessionHostConfiguration;
+
+    /*
      * List of SessionHostHealthCheckReports
      */
     @JsonProperty(value = "sessionHostHealthCheckResults", access = JsonProperty.Access.WRITE_ONLY)
     private List<SessionHostHealthCheckReport> sessionHostHealthCheckResults;
 
-    /** Creates an instance of SessionHostProperties class. */
+    /**
+     * Creates an instance of SessionHostProperties class.
+     */
     public SessionHostProperties() {
     }
 
     /**
      * Get the objectId property: ObjectId of SessionHost. (internal use).
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -132,7 +148,7 @@ public final class SessionHostProperties {
 
     /**
      * Get the lastHeartBeat property: Last heart beat from SessionHost.
-     *
+     * 
      * @return the lastHeartBeat value.
      */
     public OffsetDateTime lastHeartBeat() {
@@ -141,7 +157,7 @@ public final class SessionHostProperties {
 
     /**
      * Set the lastHeartBeat property: Last heart beat from SessionHost.
-     *
+     * 
      * @param lastHeartBeat the lastHeartBeat value to set.
      * @return the SessionHostProperties object itself.
      */
@@ -152,7 +168,7 @@ public final class SessionHostProperties {
 
     /**
      * Get the sessions property: Number of sessions on SessionHost.
-     *
+     * 
      * @return the sessions value.
      */
     public Integer sessions() {
@@ -161,7 +177,7 @@ public final class SessionHostProperties {
 
     /**
      * Set the sessions property: Number of sessions on SessionHost.
-     *
+     * 
      * @param sessions the sessions value to set.
      * @return the SessionHostProperties object itself.
      */
@@ -172,7 +188,7 @@ public final class SessionHostProperties {
 
     /**
      * Get the agentVersion property: Version of agent on SessionHost.
-     *
+     * 
      * @return the agentVersion value.
      */
     public String agentVersion() {
@@ -181,7 +197,7 @@ public final class SessionHostProperties {
 
     /**
      * Set the agentVersion property: Version of agent on SessionHost.
-     *
+     * 
      * @param agentVersion the agentVersion value to set.
      * @return the SessionHostProperties object itself.
      */
@@ -192,7 +208,7 @@ public final class SessionHostProperties {
 
     /**
      * Get the allowNewSession property: Allow a new session.
-     *
+     * 
      * @return the allowNewSession value.
      */
     public Boolean allowNewSession() {
@@ -201,7 +217,7 @@ public final class SessionHostProperties {
 
     /**
      * Set the allowNewSession property: Allow a new session.
-     *
+     * 
      * @param allowNewSession the allowNewSession value to set.
      * @return the SessionHostProperties object itself.
      */
@@ -212,7 +228,7 @@ public final class SessionHostProperties {
 
     /**
      * Get the virtualMachineId property: Virtual Machine Id of SessionHost's underlying virtual machine.
-     *
+     * 
      * @return the virtualMachineId value.
      */
     public String virtualMachineId() {
@@ -221,7 +237,7 @@ public final class SessionHostProperties {
 
     /**
      * Get the resourceId property: Resource Id of SessionHost's underlying virtual machine.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -230,7 +246,7 @@ public final class SessionHostProperties {
 
     /**
      * Get the assignedUser property: User assigned to SessionHost.
-     *
+     * 
      * @return the assignedUser value.
      */
     public String assignedUser() {
@@ -239,7 +255,7 @@ public final class SessionHostProperties {
 
     /**
      * Set the assignedUser property: User assigned to SessionHost.
-     *
+     * 
      * @param assignedUser the assignedUser value to set.
      * @return the SessionHostProperties object itself.
      */
@@ -250,7 +266,7 @@ public final class SessionHostProperties {
 
     /**
      * Get the friendlyName property: Friendly name of SessionHost.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -259,7 +275,7 @@ public final class SessionHostProperties {
 
     /**
      * Set the friendlyName property: Friendly name of SessionHost.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the SessionHostProperties object itself.
      */
@@ -270,7 +286,7 @@ public final class SessionHostProperties {
 
     /**
      * Get the status property: Status for a SessionHost.
-     *
+     * 
      * @return the status value.
      */
     public Status status() {
@@ -279,7 +295,7 @@ public final class SessionHostProperties {
 
     /**
      * Set the status property: Status for a SessionHost.
-     *
+     * 
      * @param status the status value to set.
      * @return the SessionHostProperties object itself.
      */
@@ -290,7 +306,7 @@ public final class SessionHostProperties {
 
     /**
      * Get the statusTimestamp property: The timestamp of the status.
-     *
+     * 
      * @return the statusTimestamp value.
      */
     public OffsetDateTime statusTimestamp() {
@@ -299,7 +315,7 @@ public final class SessionHostProperties {
 
     /**
      * Get the osVersion property: The version of the OS on the session host.
-     *
+     * 
      * @return the osVersion value.
      */
     public String osVersion() {
@@ -308,7 +324,7 @@ public final class SessionHostProperties {
 
     /**
      * Set the osVersion property: The version of the OS on the session host.
-     *
+     * 
      * @param osVersion the osVersion value to set.
      * @return the SessionHostProperties object itself.
      */
@@ -319,7 +335,7 @@ public final class SessionHostProperties {
 
     /**
      * Get the sxSStackVersion property: The version of the side by side stack on the session host.
-     *
+     * 
      * @return the sxSStackVersion value.
      */
     public String sxSStackVersion() {
@@ -328,7 +344,7 @@ public final class SessionHostProperties {
 
     /**
      * Set the sxSStackVersion property: The version of the side by side stack on the session host.
-     *
+     * 
      * @param sxSStackVersion the sxSStackVersion value to set.
      * @return the SessionHostProperties object itself.
      */
@@ -339,7 +355,7 @@ public final class SessionHostProperties {
 
     /**
      * Get the updateState property: Update state of a SessionHost.
-     *
+     * 
      * @return the updateState value.
      */
     public UpdateState updateState() {
@@ -348,7 +364,7 @@ public final class SessionHostProperties {
 
     /**
      * Set the updateState property: Update state of a SessionHost.
-     *
+     * 
      * @param updateState the updateState value to set.
      * @return the SessionHostProperties object itself.
      */
@@ -359,7 +375,7 @@ public final class SessionHostProperties {
 
     /**
      * Get the lastUpdateTime property: The timestamp of the last update.
-     *
+     * 
      * @return the lastUpdateTime value.
      */
     public OffsetDateTime lastUpdateTime() {
@@ -368,7 +384,7 @@ public final class SessionHostProperties {
 
     /**
      * Get the updateErrorMessage property: The error message.
-     *
+     * 
      * @return the updateErrorMessage value.
      */
     public String updateErrorMessage() {
@@ -377,7 +393,7 @@ public final class SessionHostProperties {
 
     /**
      * Set the updateErrorMessage property: The error message.
-     *
+     * 
      * @param updateErrorMessage the updateErrorMessage value to set.
      * @return the SessionHostProperties object itself.
      */
@@ -387,8 +403,27 @@ public final class SessionHostProperties {
     }
 
     /**
+     * Get the lastSessionHostUpdateTime property: The last time update was completed.
+     * 
+     * @return the lastSessionHostUpdateTime value.
+     */
+    public OffsetDateTime lastSessionHostUpdateTime() {
+        return this.lastSessionHostUpdateTime;
+    }
+
+    /**
+     * Get the sessionHostConfiguration property: SessionHostConfiguration version reference at the time the update is
+     * initiated, in the format of date time.
+     * 
+     * @return the sessionHostConfiguration value.
+     */
+    public String sessionHostConfiguration() {
+        return this.sessionHostConfiguration;
+    }
+
+    /**
      * Get the sessionHostHealthCheckResults property: List of SessionHostHealthCheckReports.
-     *
+     * 
      * @return the sessionHostHealthCheckResults value.
      */
     public List<SessionHostHealthCheckReport> sessionHostHealthCheckResults() {
@@ -397,7 +432,7 @@ public final class SessionHostProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

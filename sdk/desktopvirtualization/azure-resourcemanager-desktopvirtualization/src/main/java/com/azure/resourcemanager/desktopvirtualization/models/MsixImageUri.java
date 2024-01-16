@@ -7,7 +7,9 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents URI referring to MSIX Image. */
+/**
+ * Represents URI referring to MSIX Image.
+ */
 @Fluent
 public final class MsixImageUri {
     /*
@@ -16,13 +18,15 @@ public final class MsixImageUri {
     @JsonProperty(value = "uri")
     private String uri;
 
-    /** Creates an instance of MsixImageUri class. */
+    /**
+     * Creates an instance of MsixImageUri class.
+     */
     public MsixImageUri() {
     }
 
     /**
      * Get the uri property: URI to Image.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -31,7 +35,7 @@ public final class MsixImageUri {
 
     /**
      * Set the uri property: URI to Image.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the MsixImageUri object itself.
      */
@@ -42,7 +46,7 @@ public final class MsixImageUri {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
