@@ -6,7 +6,6 @@ package com.azure.resourcemanager.hybridcontainerservice.models;
 
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.ProvisionedClusterUpgradeProfileInner;
-import java.util.List;
 
 /**
  * An immutable client-side representation of ProvisionedClusterUpgradeProfile.
@@ -48,18 +47,11 @@ public interface ProvisionedClusterUpgradeProfile {
     ResourceProvisioningState provisioningState();
 
     /**
-     * Gets the controlPlaneProfile property: The list of available upgrade versions for the control plane.
+     * Gets the controlPlaneProfile property: The list of available kubernetes version upgrades for the control plane.
      * 
      * @return the controlPlaneProfile value.
      */
     ProvisionedClusterPoolUpgradeProfile controlPlaneProfile();
-
-    /**
-     * Gets the agentPoolProfiles property: The list of available upgrade versions for agent pools.
-     * 
-     * @return the agentPoolProfiles value.
-     */
-    List<ProvisionedClusterPoolUpgradeProfile> agentPoolProfiles();
 
     /**
      * Gets the inner

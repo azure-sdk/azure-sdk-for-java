@@ -4,15 +4,14 @@
 
 package com.azure.resourcemanager.hybridcontainerservice.implementation;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.AgentPoolsClient;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.AgentPoolInner;
-import com.azure.resourcemanager.hybridcontainerservice.fluent.models.AgentPoolListResultInner;
 import com.azure.resourcemanager.hybridcontainerservice.models.AgentPool;
-import com.azure.resourcemanager.hybridcontainerservice.models.AgentPoolListResult;
 import com.azure.resourcemanager.hybridcontainerservice.models.AgentPools;
 
 public final class AgentPoolsImpl implements AgentPools {
@@ -57,25 +56,16 @@ public final class AgentPoolsImpl implements AgentPools {
         this.serviceClient().delete(connectedClusterResourceUri, agentPoolName, context);
     }
 
-    public Response<AgentPoolListResult> listByProvisionedClusterWithResponse(String connectedClusterResourceUri,
-        Context context) {
-        Response<AgentPoolListResultInner> inner
-            = this.serviceClient().listByProvisionedClusterWithResponse(connectedClusterResourceUri, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new AgentPoolListResultImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
+    public PagedIterable<AgentPool> listByProvisionedCluster(String connectedClusterResourceUri) {
+        PagedIterable<AgentPoolInner> inner
+            = this.serviceClient().listByProvisionedCluster(connectedClusterResourceUri);
+        return Utils.mapPage(inner, inner1 -> new AgentPoolImpl(inner1, this.manager()));
     }
 
-    public AgentPoolListResult listByProvisionedCluster(String connectedClusterResourceUri) {
-        AgentPoolListResultInner inner = this.serviceClient().listByProvisionedCluster(connectedClusterResourceUri);
-        if (inner != null) {
-            return new AgentPoolListResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public PagedIterable<AgentPool> listByProvisionedCluster(String connectedClusterResourceUri, Context context) {
+        PagedIterable<AgentPoolInner> inner
+            = this.serviceClient().listByProvisionedCluster(connectedClusterResourceUri, context);
+        return Utils.mapPage(inner, inner1 -> new AgentPoolImpl(inner1, this.manager()));
     }
 
     public AgentPool getById(String id) {

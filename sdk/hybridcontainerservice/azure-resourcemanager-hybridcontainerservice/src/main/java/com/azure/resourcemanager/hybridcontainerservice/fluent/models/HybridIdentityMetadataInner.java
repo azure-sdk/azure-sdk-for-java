@@ -76,7 +76,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
     }
 
     /**
-     * Get the publicKey property: Onboarding public key for provisioning the Managed identity for the HybridAKS
+     * Get the publicKey property: Onboarding public key for provisioning the Managed identity for the connected
      * cluster.
      * 
      * @return the publicKey value.
@@ -86,7 +86,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
     }
 
     /**
-     * Set the publicKey property: Onboarding public key for provisioning the Managed identity for the HybridAKS
+     * Set the publicKey property: Onboarding public key for provisioning the Managed identity for the connected
      * cluster.
      * 
      * @param publicKey the publicKey value to set.
