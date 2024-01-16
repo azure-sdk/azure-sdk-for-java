@@ -34,254 +34,207 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.scvmm.fluent.VirtualMachineTemplatesClient;
 import com.azure.resourcemanager.scvmm.fluent.models.VirtualMachineTemplateInner;
+import com.azure.resourcemanager.scvmm.models.Force;
 import com.azure.resourcemanager.scvmm.models.ResourcePatch;
 import com.azure.resourcemanager.scvmm.models.VirtualMachineTemplateListResult;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in VirtualMachineTemplatesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in VirtualMachineTemplatesClient.
+ */
 public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTemplatesClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final VirtualMachineTemplatesService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final ScvmmClientImpl client;
 
     /**
      * Initializes an instance of VirtualMachineTemplatesClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     VirtualMachineTemplatesClientImpl(ScvmmClientImpl client) {
-        this.service =
-            RestProxy
-                .create(VirtualMachineTemplatesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service = RestProxy.create(VirtualMachineTemplatesService.class, client.getHttpPipeline(),
+            client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for ScvmmClientVirtualMachineTemplates to be used by the proxy service to
-     * perform REST calls.
+     * The interface defining all the services for ScvmmClientVirtualMachineTemplates to be used by the proxy service
+     * to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "ScvmmClientVirtualMa")
-    private interface VirtualMachineTemplatesService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualMachineTemplates/{virtualMachineTemplateName}")
-        @ExpectedResponses({200})
+    public interface VirtualMachineTemplatesService {
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachineTemplates/{virtualMachineTemplateName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualMachineTemplateInner>> getByResourceGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<VirtualMachineTemplateInner>> getByResourceGroup(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("virtualMachineTemplateName") String virtualMachineTemplateName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachineTemplates/{virtualMachineTemplateName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("virtualMachineTemplateName") String virtualMachineTemplateName,
             @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") VirtualMachineTemplateInner body, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualMachineTemplates/{virtualMachineTemplateName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachineTemplates/{virtualMachineTemplateName}")
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("virtualMachineTemplateName") String virtualMachineTemplateName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") VirtualMachineTemplateInner body,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @QueryParam("force") Force force,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualMachineTemplates/{virtualMachineTemplateName}")
-        @ExpectedResponses({200, 202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachineTemplates/{virtualMachineTemplateName}")
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("virtualMachineTemplateName") String virtualMachineTemplateName,
-            @QueryParam("api-version") String apiVersion,
-            @QueryParam("force") Boolean force,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualMachineTemplates/{virtualMachineTemplateName}")
-        @ExpectedResponses({200, 201, 202})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(
-            @HostParam("$host") String endpoint,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("virtualMachineTemplateName") String virtualMachineTemplateName,
-            @BodyParam("application/json") ResourcePatch body,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @BodyParam("application/json") ResourcePatch body, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualMachineTemplates")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachineTemplates")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualMachineTemplateListResult>> listByResourceGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<VirtualMachineTemplateListResult>> listByResourceGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.ScVmm/virtualMachineTemplates")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualMachineTemplateListResult>> list(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<VirtualMachineTemplateListResult>> list(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<VirtualMachineTemplateListResult>> listByResourceGroupNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<VirtualMachineTemplateListResult>> listBySubscriptionNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
+     * Gets a VirtualMachineTemplate.
+     * 
      * Implements VirtualMachineTemplate GET method.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the VirtualMachineTemplates resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<VirtualMachineTemplateInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String virtualMachineTemplateName) {
+    private Mono<Response<VirtualMachineTemplateInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String virtualMachineTemplateName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (virtualMachineTemplateName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter virtualMachineTemplateName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter virtualMachineTemplateName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .getByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            virtualMachineTemplateName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+                context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, virtualMachineTemplateName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Gets a VirtualMachineTemplate.
+     * 
      * Implements VirtualMachineTemplate GET method.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the VirtualMachineTemplates resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<VirtualMachineTemplateInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String virtualMachineTemplateName, Context context) {
+    private Mono<Response<VirtualMachineTemplateInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String virtualMachineTemplateName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (virtualMachineTemplateName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter virtualMachineTemplateName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter virtualMachineTemplateName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                virtualMachineTemplateName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            virtualMachineTemplateName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Gets a VirtualMachineTemplate.
+     * 
      * Implements VirtualMachineTemplate GET method.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -289,38 +242,18 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @return the VirtualMachineTemplates resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualMachineTemplateInner> getByResourceGroupAsync(
-        String resourceGroupName, String virtualMachineTemplateName) {
+    private Mono<VirtualMachineTemplateInner> getByResourceGroupAsync(String resourceGroupName,
+        String virtualMachineTemplateName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, virtualMachineTemplateName)
-            .flatMap(
-                (Response<VirtualMachineTemplateInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
+     * Gets a VirtualMachineTemplate.
+     * 
      * Implements VirtualMachineTemplate GET method.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the VirtualMachineTemplates resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineTemplateInner getByResourceGroup(String resourceGroupName, String virtualMachineTemplateName) {
-        return getByResourceGroupAsync(resourceGroupName, virtualMachineTemplateName).block();
-    }
-
-    /**
-     * Implements VirtualMachineTemplate GET method.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -329,47 +262,60 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @return the VirtualMachineTemplates resource definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<VirtualMachineTemplateInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String virtualMachineTemplateName, Context context) {
+    public Response<VirtualMachineTemplateInner> getByResourceGroupWithResponse(String resourceGroupName,
+        String virtualMachineTemplateName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, virtualMachineTemplateName, context).block();
     }
 
     /**
+     * Gets a VirtualMachineTemplate.
+     * 
+     * Implements VirtualMachineTemplate GET method.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the VirtualMachineTemplates resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VirtualMachineTemplateInner getByResourceGroup(String resourceGroupName, String virtualMachineTemplateName) {
+        return getByResourceGroupWithResponse(resourceGroupName, virtualMachineTemplateName, Context.NONE).getValue();
+    }
+
+    /**
+     * Implements VirtualMachineTemplates PUT method.
+     * 
      * Onboards the ScVmm VM Template as an Azure VM Template resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the VirtualMachineTemplates resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String virtualMachineTemplateName, VirtualMachineTemplateInner body) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String virtualMachineTemplateName, VirtualMachineTemplateInner body) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (virtualMachineTemplateName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter virtualMachineTemplateName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter virtualMachineTemplateName is required and cannot be null."));
         }
         if (body == null) {
             return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
@@ -378,25 +324,17 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            virtualMachineTemplateName,
-                            this.client.getApiVersion(),
-                            body,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, virtualMachineTemplateName, this.client.getApiVersion(), body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Implements VirtualMachineTemplates PUT method.
+     * 
      * Onboards the ScVmm VM Template as an Azure VM Template resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body Request payload.
      * @param context The context to associate with this operation.
@@ -404,35 +342,26 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the VirtualMachineTemplates resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName,
-        String virtualMachineTemplateName,
-        VirtualMachineTemplateInner body,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String virtualMachineTemplateName, VirtualMachineTemplateInner body, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (virtualMachineTemplateName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter virtualMachineTemplateName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter virtualMachineTemplateName is required and cannot be null."));
         }
         if (body == null) {
             return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
@@ -441,22 +370,16 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                virtualMachineTemplateName,
-                this.client.getApiVersion(),
-                body,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            virtualMachineTemplateName, this.client.getApiVersion(), body, accept, context);
     }
 
     /**
+     * Implements VirtualMachineTemplates PUT method.
+     * 
      * Onboards the ScVmm VM Template as an Azure VM Template resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -467,22 +390,19 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<VirtualMachineTemplateInner>, VirtualMachineTemplateInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String virtualMachineTemplateName, VirtualMachineTemplateInner body) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, virtualMachineTemplateName, body);
-        return this
-            .client
-            .<VirtualMachineTemplateInner, VirtualMachineTemplateInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                VirtualMachineTemplateInner.class,
-                VirtualMachineTemplateInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, virtualMachineTemplateName, body);
+        return this.client.<VirtualMachineTemplateInner, VirtualMachineTemplateInner>getLroResult(mono,
+            this.client.getHttpPipeline(), VirtualMachineTemplateInner.class, VirtualMachineTemplateInner.class,
+            this.client.getContext());
     }
 
     /**
+     * Implements VirtualMachineTemplates PUT method.
+     * 
      * Onboards the ScVmm VM Template as an Azure VM Template resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body Request payload.
      * @param context The context to associate with this operation.
@@ -493,27 +413,22 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<VirtualMachineTemplateInner>, VirtualMachineTemplateInner> beginCreateOrUpdateAsync(
-        String resourceGroupName,
-        String virtualMachineTemplateName,
-        VirtualMachineTemplateInner body,
+        String resourceGroupName, String virtualMachineTemplateName, VirtualMachineTemplateInner body,
         Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, virtualMachineTemplateName, body, context);
-        return this
-            .client
-            .<VirtualMachineTemplateInner, VirtualMachineTemplateInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                VirtualMachineTemplateInner.class,
-                VirtualMachineTemplateInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, virtualMachineTemplateName, body, context);
+        return this.client.<VirtualMachineTemplateInner, VirtualMachineTemplateInner>getLroResult(mono,
+            this.client.getHttpPipeline(), VirtualMachineTemplateInner.class, VirtualMachineTemplateInner.class,
+            context);
     }
 
     /**
+     * Implements VirtualMachineTemplates PUT method.
+     * 
      * Onboards the ScVmm VM Template as an Azure VM Template resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -524,13 +439,15 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualMachineTemplateInner>, VirtualMachineTemplateInner> beginCreateOrUpdate(
         String resourceGroupName, String virtualMachineTemplateName, VirtualMachineTemplateInner body) {
-        return beginCreateOrUpdateAsync(resourceGroupName, virtualMachineTemplateName, body).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, virtualMachineTemplateName, body).getSyncPoller();
     }
 
     /**
+     * Implements VirtualMachineTemplates PUT method.
+     * 
      * Onboards the ScVmm VM Template as an Azure VM Template resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body Request payload.
      * @param context The context to associate with this operation.
@@ -541,17 +458,18 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualMachineTemplateInner>, VirtualMachineTemplateInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String virtualMachineTemplateName,
-        VirtualMachineTemplateInner body,
+        String resourceGroupName, String virtualMachineTemplateName, VirtualMachineTemplateInner body,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, virtualMachineTemplateName, body, context).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, virtualMachineTemplateName, body, context)
+            .getSyncPoller();
     }
 
     /**
+     * Implements VirtualMachineTemplates PUT method.
+     * 
      * Onboards the ScVmm VM Template as an Azure VM Template resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -560,17 +478,18 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @return the VirtualMachineTemplates resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualMachineTemplateInner> createOrUpdateAsync(
-        String resourceGroupName, String virtualMachineTemplateName, VirtualMachineTemplateInner body) {
-        return beginCreateOrUpdateAsync(resourceGroupName, virtualMachineTemplateName, body)
-            .last()
+    private Mono<VirtualMachineTemplateInner> createOrUpdateAsync(String resourceGroupName,
+        String virtualMachineTemplateName, VirtualMachineTemplateInner body) {
+        return beginCreateOrUpdateAsync(resourceGroupName, virtualMachineTemplateName, body).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
+     * Implements VirtualMachineTemplates PUT method.
+     * 
      * Onboards the ScVmm VM Template as an Azure VM Template resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body Request payload.
      * @param context The context to associate with this operation.
@@ -580,20 +499,18 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @return the VirtualMachineTemplates resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualMachineTemplateInner> createOrUpdateAsync(
-        String resourceGroupName,
-        String virtualMachineTemplateName,
-        VirtualMachineTemplateInner body,
-        Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, virtualMachineTemplateName, body, context)
-            .last()
+    private Mono<VirtualMachineTemplateInner> createOrUpdateAsync(String resourceGroupName,
+        String virtualMachineTemplateName, VirtualMachineTemplateInner body, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, virtualMachineTemplateName, body, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
+     * Implements VirtualMachineTemplates PUT method.
+     * 
      * Onboards the ScVmm VM Template as an Azure VM Template resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -602,15 +519,17 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @return the VirtualMachineTemplates resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineTemplateInner createOrUpdate(
-        String resourceGroupName, String virtualMachineTemplateName, VirtualMachineTemplateInner body) {
+    public VirtualMachineTemplateInner createOrUpdate(String resourceGroupName, String virtualMachineTemplateName,
+        VirtualMachineTemplateInner body) {
         return createOrUpdateAsync(resourceGroupName, virtualMachineTemplateName, body).block();
     }
 
     /**
+     * Implements VirtualMachineTemplates PUT method.
+     * 
      * Onboards the ScVmm VM Template as an Azure VM Template resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body Request payload.
      * @param context The context to associate with this operation.
@@ -620,75 +539,60 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @return the VirtualMachineTemplates resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineTemplateInner createOrUpdate(
-        String resourceGroupName,
-        String virtualMachineTemplateName,
-        VirtualMachineTemplateInner body,
-        Context context) {
+    public VirtualMachineTemplateInner createOrUpdate(String resourceGroupName, String virtualMachineTemplateName,
+        VirtualMachineTemplateInner body, Context context) {
         return createOrUpdateAsync(resourceGroupName, virtualMachineTemplateName, body, context).block();
     }
 
     /**
+     * Implements VirtualMachineTemplate DELETE method.
+     * 
      * Deregisters the ScVmm VM Template from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * too.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String virtualMachineTemplateName, Boolean force) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
+        String virtualMachineTemplateName, Force force) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (virtualMachineTemplateName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter virtualMachineTemplateName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter virtualMachineTemplateName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            virtualMachineTemplateName,
-                            this.client.getApiVersion(),
-                            force,
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, virtualMachineTemplateName, this.client.getApiVersion(), force, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Implements VirtualMachineTemplate DELETE method.
+     * 
      * Deregisters the ScVmm VM Template from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * too.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -696,74 +600,84 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String virtualMachineTemplateName, Boolean force, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
+        String virtualMachineTemplateName, Force force, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (virtualMachineTemplateName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter virtualMachineTemplateName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter virtualMachineTemplateName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                virtualMachineTemplateName,
-                this.client.getApiVersion(),
-                force,
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            virtualMachineTemplateName, this.client.getApiVersion(), force, accept, context);
     }
 
     /**
+     * Implements VirtualMachineTemplate DELETE method.
+     * 
      * Deregisters the ScVmm VM Template from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * too.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String virtualMachineTemplateName, Boolean force) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, virtualMachineTemplateName, force);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName,
+        String virtualMachineTemplateName, Force force) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, virtualMachineTemplateName, force);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
+     * Implements VirtualMachineTemplate DELETE method.
+     * 
      * Deregisters the ScVmm VM Template from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName,
+        String virtualMachineTemplateName) {
+        final Force force = null;
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, virtualMachineTemplateName, force);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Implements VirtualMachineTemplate DELETE method.
+     * 
+     * Deregisters the ScVmm VM Template from Azure.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * too.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -771,41 +685,42 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String virtualMachineTemplateName, Boolean force, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName,
+        String virtualMachineTemplateName, Force force, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, virtualMachineTemplateName, force, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, virtualMachineTemplateName, force, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
+     * Implements VirtualMachineTemplate DELETE method.
+     * 
      * Deregisters the ScVmm VM Template from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
-     * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String virtualMachineTemplateName, Boolean force) {
-        return beginDeleteAsync(resourceGroupName, virtualMachineTemplateName, force).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualMachineTemplateName) {
+        final Force force = null;
+        return this.beginDeleteAsync(resourceGroupName, virtualMachineTemplateName, force).getSyncPoller();
     }
 
     /**
+     * Implements VirtualMachineTemplate DELETE method.
+     * 
      * Deregisters the ScVmm VM Template from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * too.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -813,34 +728,37 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String virtualMachineTemplateName, Boolean force, Context context) {
-        return beginDeleteAsync(resourceGroupName, virtualMachineTemplateName, force, context).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualMachineTemplateName,
+        Force force, Context context) {
+        return this.beginDeleteAsync(resourceGroupName, virtualMachineTemplateName, force, context).getSyncPoller();
     }
 
     /**
+     * Implements VirtualMachineTemplate DELETE method.
+     * 
      * Deregisters the ScVmm VM Template from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * too.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String virtualMachineTemplateName, Boolean force) {
-        return beginDeleteAsync(resourceGroupName, virtualMachineTemplateName, force)
-            .last()
+    private Mono<Void> deleteAsync(String resourceGroupName, String virtualMachineTemplateName, Force force) {
+        return beginDeleteAsync(resourceGroupName, virtualMachineTemplateName, force).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
+     * Implements VirtualMachineTemplate DELETE method.
+     * 
      * Deregisters the ScVmm VM Template from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -849,19 +767,20 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String virtualMachineTemplateName) {
-        final Boolean force = null;
-        return beginDeleteAsync(resourceGroupName, virtualMachineTemplateName, force)
-            .last()
+        final Force force = null;
+        return beginDeleteAsync(resourceGroupName, virtualMachineTemplateName, force).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
+     * Implements VirtualMachineTemplate DELETE method.
+     * 
      * Deregisters the ScVmm VM Template from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * too.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -869,33 +788,18 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(
-        String resourceGroupName, String virtualMachineTemplateName, Boolean force, Context context) {
-        return beginDeleteAsync(resourceGroupName, virtualMachineTemplateName, force, context)
-            .last()
+    private Mono<Void> deleteAsync(String resourceGroupName, String virtualMachineTemplateName, Force force,
+        Context context) {
+        return beginDeleteAsync(resourceGroupName, virtualMachineTemplateName, force, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
+     * Implements VirtualMachineTemplate DELETE method.
+     * 
      * Deregisters the ScVmm VM Template from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
-     * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String virtualMachineTemplateName, Boolean force) {
-        deleteAsync(resourceGroupName, virtualMachineTemplateName, force).block();
-    }
-
-    /**
-     * Deregisters the ScVmm VM Template from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -903,63 +807,61 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String virtualMachineTemplateName) {
-        final Boolean force = null;
+        final Force force = null;
         deleteAsync(resourceGroupName, virtualMachineTemplateName, force).block();
     }
 
     /**
+     * Implements VirtualMachineTemplate DELETE method.
+     * 
      * Deregisters the ScVmm VM Template from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * too.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String virtualMachineTemplateName, Boolean force, Context context) {
+    public void delete(String resourceGroupName, String virtualMachineTemplateName, Force force, Context context) {
         deleteAsync(resourceGroupName, virtualMachineTemplateName, force, context).block();
     }
 
     /**
+     * Implements the VirtualMachineTemplate PATCH method.
+     * 
      * Updates the VirtualMachineTemplate resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body VirtualMachineTemplates patch details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the VirtualMachineTemplates resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName, String virtualMachineTemplateName, ResourcePatch body) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
+        String virtualMachineTemplateName, ResourcePatch body) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (virtualMachineTemplateName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter virtualMachineTemplateName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter virtualMachineTemplateName is required and cannot be null."));
         }
         if (body == null) {
             return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
@@ -969,24 +871,17 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            virtualMachineTemplateName,
-                            body,
-                            accept,
-                            context))
+                context -> service.update(this.client.getEndpoint(), resourceGroupName, this.client.getApiVersion(),
+                    this.client.getSubscriptionId(), virtualMachineTemplateName, body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Implements the VirtualMachineTemplate PATCH method.
+     * 
      * Updates the VirtualMachineTemplate resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body VirtualMachineTemplates patch details.
      * @param context The context to associate with this operation.
@@ -994,32 +889,26 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the VirtualMachineTemplates resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName, String virtualMachineTemplateName, ResourcePatch body, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
+        String virtualMachineTemplateName, ResourcePatch body, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (virtualMachineTemplateName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter virtualMachineTemplateName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter virtualMachineTemplateName is required and cannot be null."));
         }
         if (body == null) {
             return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
@@ -1028,22 +917,16 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                virtualMachineTemplateName,
-                body,
-                accept,
-                context);
+        return service.update(this.client.getEndpoint(), resourceGroupName, this.client.getApiVersion(),
+            this.client.getSubscriptionId(), virtualMachineTemplateName, body, accept, context);
     }
 
     /**
+     * Implements the VirtualMachineTemplate PATCH method.
+     * 
      * Updates the VirtualMachineTemplate resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body VirtualMachineTemplates patch details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1052,24 +935,21 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @return the {@link PollerFlux} for polling of the VirtualMachineTemplates resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<VirtualMachineTemplateInner>, VirtualMachineTemplateInner> beginUpdateAsync(
-        String resourceGroupName, String virtualMachineTemplateName, ResourcePatch body) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, virtualMachineTemplateName, body);
-        return this
-            .client
-            .<VirtualMachineTemplateInner, VirtualMachineTemplateInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                VirtualMachineTemplateInner.class,
-                VirtualMachineTemplateInner.class,
-                this.client.getContext());
+    private PollerFlux<PollResult<VirtualMachineTemplateInner>, VirtualMachineTemplateInner>
+        beginUpdateAsync(String resourceGroupName, String virtualMachineTemplateName, ResourcePatch body) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, virtualMachineTemplateName, body);
+        return this.client.<VirtualMachineTemplateInner, VirtualMachineTemplateInner>getLroResult(mono,
+            this.client.getHttpPipeline(), VirtualMachineTemplateInner.class, VirtualMachineTemplateInner.class,
+            this.client.getContext());
     }
 
     /**
+     * Implements the VirtualMachineTemplate PATCH method.
+     * 
      * Updates the VirtualMachineTemplate resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body VirtualMachineTemplates patch details.
      * @param context The context to associate with this operation.
@@ -1082,22 +962,19 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
     private PollerFlux<PollResult<VirtualMachineTemplateInner>, VirtualMachineTemplateInner> beginUpdateAsync(
         String resourceGroupName, String virtualMachineTemplateName, ResourcePatch body, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, virtualMachineTemplateName, body, context);
-        return this
-            .client
-            .<VirtualMachineTemplateInner, VirtualMachineTemplateInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                VirtualMachineTemplateInner.class,
-                VirtualMachineTemplateInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, virtualMachineTemplateName, body, context);
+        return this.client.<VirtualMachineTemplateInner, VirtualMachineTemplateInner>getLroResult(mono,
+            this.client.getHttpPipeline(), VirtualMachineTemplateInner.class, VirtualMachineTemplateInner.class,
+            context);
     }
 
     /**
+     * Implements the VirtualMachineTemplate PATCH method.
+     * 
      * Updates the VirtualMachineTemplate resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body VirtualMachineTemplates patch details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1106,15 +983,17 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @return the {@link SyncPoller} for polling of the VirtualMachineTemplates resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualMachineTemplateInner>, VirtualMachineTemplateInner> beginUpdate(
-        String resourceGroupName, String virtualMachineTemplateName, ResourcePatch body) {
-        return beginUpdateAsync(resourceGroupName, virtualMachineTemplateName, body).getSyncPoller();
+    public SyncPoller<PollResult<VirtualMachineTemplateInner>, VirtualMachineTemplateInner>
+        beginUpdate(String resourceGroupName, String virtualMachineTemplateName, ResourcePatch body) {
+        return this.beginUpdateAsync(resourceGroupName, virtualMachineTemplateName, body).getSyncPoller();
     }
 
     /**
+     * Implements the VirtualMachineTemplate PATCH method.
+     * 
      * Updates the VirtualMachineTemplate resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body VirtualMachineTemplates patch details.
      * @param context The context to associate with this operation.
@@ -1124,15 +1003,17 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @return the {@link SyncPoller} for polling of the VirtualMachineTemplates resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualMachineTemplateInner>, VirtualMachineTemplateInner> beginUpdate(
-        String resourceGroupName, String virtualMachineTemplateName, ResourcePatch body, Context context) {
-        return beginUpdateAsync(resourceGroupName, virtualMachineTemplateName, body, context).getSyncPoller();
+    public SyncPoller<PollResult<VirtualMachineTemplateInner>, VirtualMachineTemplateInner>
+        beginUpdate(String resourceGroupName, String virtualMachineTemplateName, ResourcePatch body, Context context) {
+        return this.beginUpdateAsync(resourceGroupName, virtualMachineTemplateName, body, context).getSyncPoller();
     }
 
     /**
+     * Implements the VirtualMachineTemplate PATCH method.
+     * 
      * Updates the VirtualMachineTemplate resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body VirtualMachineTemplates patch details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1141,17 +1022,18 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @return the VirtualMachineTemplates resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualMachineTemplateInner> updateAsync(
-        String resourceGroupName, String virtualMachineTemplateName, ResourcePatch body) {
-        return beginUpdateAsync(resourceGroupName, virtualMachineTemplateName, body)
-            .last()
+    private Mono<VirtualMachineTemplateInner> updateAsync(String resourceGroupName, String virtualMachineTemplateName,
+        ResourcePatch body) {
+        return beginUpdateAsync(resourceGroupName, virtualMachineTemplateName, body).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
+     * Implements the VirtualMachineTemplate PATCH method.
+     * 
      * Updates the VirtualMachineTemplate resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body VirtualMachineTemplates patch details.
      * @param context The context to associate with this operation.
@@ -1161,17 +1043,18 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @return the VirtualMachineTemplates resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualMachineTemplateInner> updateAsync(
-        String resourceGroupName, String virtualMachineTemplateName, ResourcePatch body, Context context) {
-        return beginUpdateAsync(resourceGroupName, virtualMachineTemplateName, body, context)
-            .last()
+    private Mono<VirtualMachineTemplateInner> updateAsync(String resourceGroupName, String virtualMachineTemplateName,
+        ResourcePatch body, Context context) {
+        return beginUpdateAsync(resourceGroupName, virtualMachineTemplateName, body, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
+     * Implements the VirtualMachineTemplate PATCH method.
+     * 
      * Updates the VirtualMachineTemplate resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body VirtualMachineTemplates patch details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1180,15 +1063,17 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @return the VirtualMachineTemplates resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineTemplateInner update(
-        String resourceGroupName, String virtualMachineTemplateName, ResourcePatch body) {
+    public VirtualMachineTemplateInner update(String resourceGroupName, String virtualMachineTemplateName,
+        ResourcePatch body) {
         return updateAsync(resourceGroupName, virtualMachineTemplateName, body).block();
     }
 
     /**
+     * Implements the VirtualMachineTemplate PATCH method.
+     * 
      * Updates the VirtualMachineTemplate resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualMachineTemplateName Name of the VirtualMachineTemplate.
      * @param body VirtualMachineTemplates patch details.
      * @param context The context to associate with this operation.
@@ -1198,35 +1083,33 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      * @return the VirtualMachineTemplates resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineTemplateInner update(
-        String resourceGroupName, String virtualMachineTemplateName, ResourcePatch body, Context context) {
+    public VirtualMachineTemplateInner update(String resourceGroupName, String virtualMachineTemplateName,
+        ResourcePatch body, Context context) {
         return updateAsync(resourceGroupName, virtualMachineTemplateName, body, context).block();
     }
 
     /**
+     * Implements GET VirtualMachineTemplates in a resource group.
+     * 
      * List of VirtualMachineTemplates in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of VirtualMachineTemplates along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of VirtualMachineTemplates along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualMachineTemplateInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName) {
+    private Mono<PagedResponse<VirtualMachineTemplateInner>>
+        listByResourceGroupSinglePageAsync(String resourceGroupName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1234,53 +1117,36 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<VirtualMachineTemplateInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), resourceGroupName, this.client.getApiVersion(), accept, context))
+            .<PagedResponse<VirtualMachineTemplateInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Implements GET VirtualMachineTemplates in a resource group.
+     * 
      * List of VirtualMachineTemplates in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of VirtualMachineTemplates along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of VirtualMachineTemplates along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualMachineTemplateInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, Context context) {
+    private Mono<PagedResponse<VirtualMachineTemplateInner>>
+        listByResourceGroupSinglePageAsync(String resourceGroupName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1289,28 +1155,18 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                this.client.getApiVersion(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
+     * Implements GET VirtualMachineTemplates in a resource group.
+     * 
      * List of VirtualMachineTemplates in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1318,15 +1174,16 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<VirtualMachineTemplateInner> listByResourceGroupAsync(String resourceGroupName) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName),
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
     }
 
     /**
+     * Implements GET VirtualMachineTemplates in a resource group.
+     * 
      * List of VirtualMachineTemplates in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1335,15 +1192,16 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<VirtualMachineTemplateInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
     }
 
     /**
+     * Implements GET VirtualMachineTemplates in a resource group.
+     * 
      * List of VirtualMachineTemplates in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1355,9 +1213,11 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
     }
 
     /**
+     * Implements GET VirtualMachineTemplates in a resource group.
+     * 
      * List of VirtualMachineTemplates in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1370,110 +1230,85 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
     }
 
     /**
+     * Implements GET VirtualMachineTemplates in a subscription.
+     * 
      * List of VirtualMachineTemplates in a subscription.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of VirtualMachineTemplates along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of VirtualMachineTemplates along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualMachineTemplateInner>> listSinglePageAsync() {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<VirtualMachineTemplateInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                this.client.getApiVersion(), accept, context))
+            .<PagedResponse<VirtualMachineTemplateInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Implements GET VirtualMachineTemplates in a subscription.
+     * 
      * List of VirtualMachineTemplates in a subscription.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of VirtualMachineTemplates along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of VirtualMachineTemplates along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualMachineTemplateInner>> listSinglePageAsync(Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                this.client.getApiVersion(),
-                accept,
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
                 context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
+     * Implements GET VirtualMachineTemplates in a subscription.
+     * 
      * List of VirtualMachineTemplates in a subscription.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of VirtualMachineTemplates as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<VirtualMachineTemplateInner> listAsync() {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listSinglePageAsync(),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
     }
 
     /**
+     * Implements GET VirtualMachineTemplates in a subscription.
+     * 
      * List of VirtualMachineTemplates in a subscription.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1482,13 +1317,15 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<VirtualMachineTemplateInner> listAsync(Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(context), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
+        return new PagedFlux<>(() -> listSinglePageAsync(context),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
     }
 
     /**
+     * Implements GET VirtualMachineTemplates in a subscription.
+     * 
      * List of VirtualMachineTemplates in a subscription.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of VirtualMachineTemplates as paginated response with {@link PagedIterable}.
@@ -1499,8 +1336,10 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
     }
 
     /**
+     * Implements GET VirtualMachineTemplates in a subscription.
+     * 
      * List of VirtualMachineTemplates in a subscription.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1514,13 +1353,15 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of VirtualMachineTemplates along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of VirtualMachineTemplates along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualMachineTemplateInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -1528,74 +1369,59 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<VirtualMachineTemplateInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<VirtualMachineTemplateInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of VirtualMachineTemplates along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of VirtualMachineTemplates along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualMachineTemplateInner>> listByResourceGroupNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<VirtualMachineTemplateInner>> listByResourceGroupNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of VirtualMachineTemplates along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of VirtualMachineTemplates along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualMachineTemplateInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
@@ -1603,62 +1429,45 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<VirtualMachineTemplateInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<VirtualMachineTemplateInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of VirtualMachineTemplates along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of VirtualMachineTemplates along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualMachineTemplateInner>> listBySubscriptionNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<VirtualMachineTemplateInner>> listBySubscriptionNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

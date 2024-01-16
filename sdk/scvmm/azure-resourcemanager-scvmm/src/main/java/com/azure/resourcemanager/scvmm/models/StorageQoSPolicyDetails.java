@@ -7,7 +7,9 @@ package com.azure.resourcemanager.scvmm.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The StorageQoSPolicyDetails definition. */
+/**
+ * The StorageQoSPolicyDetails definition.
+ */
 @Fluent
 public final class StorageQoSPolicyDetails {
     /*
@@ -23,8 +25,14 @@ public final class StorageQoSPolicyDetails {
     private String id;
 
     /**
+     * Creates an instance of StorageQoSPolicyDetails class.
+     */
+    public StorageQoSPolicyDetails() {
+    }
+
+    /**
      * Get the name property: The name of the policy.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -33,7 +41,7 @@ public final class StorageQoSPolicyDetails {
 
     /**
      * Set the name property: The name of the policy.
-     *
+     * 
      * @param name the name value to set.
      * @return the StorageQoSPolicyDetails object itself.
      */
@@ -44,7 +52,7 @@ public final class StorageQoSPolicyDetails {
 
     /**
      * Get the id property: The ID of the QoS policy.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -53,7 +61,7 @@ public final class StorageQoSPolicyDetails {
 
     /**
      * Set the id property: The ID of the QoS policy.
-     *
+     * 
      * @param id the id value to set.
      * @return the StorageQoSPolicyDetails object itself.
      */
@@ -64,7 +72,7 @@ public final class StorageQoSPolicyDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

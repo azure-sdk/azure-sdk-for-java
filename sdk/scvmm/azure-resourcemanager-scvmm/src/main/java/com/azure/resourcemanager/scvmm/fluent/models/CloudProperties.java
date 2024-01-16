@@ -6,11 +6,14 @@ package com.azure.resourcemanager.scvmm.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.scvmm.models.CloudCapacity;
+import com.azure.resourcemanager.scvmm.models.ProvisioningState;
 import com.azure.resourcemanager.scvmm.models.StorageQoSPolicy;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the resource properties. */
+/**
+ * Defines the resource properties.
+ */
 @Fluent
 public final class CloudProperties {
     /*
@@ -50,14 +53,20 @@ public final class CloudProperties {
     private List<StorageQoSPolicy> storageQoSPolicies;
 
     /*
-     * Gets or sets the provisioning state.
+     * Provisioning state of the resource.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
-    private String provisioningState;
+    private ProvisioningState provisioningState;
+
+    /**
+     * Creates an instance of CloudProperties class.
+     */
+    public CloudProperties() {
+    }
 
     /**
      * Get the inventoryItemId property: Gets or sets the inventory Item ID for the resource.
-     *
+     * 
      * @return the inventoryItemId value.
      */
     public String inventoryItemId() {
@@ -66,7 +75,7 @@ public final class CloudProperties {
 
     /**
      * Set the inventoryItemId property: Gets or sets the inventory Item ID for the resource.
-     *
+     * 
      * @param inventoryItemId the inventoryItemId value to set.
      * @return the CloudProperties object itself.
      */
@@ -77,7 +86,7 @@ public final class CloudProperties {
 
     /**
      * Get the uuid property: Unique ID of the cloud.
-     *
+     * 
      * @return the uuid value.
      */
     public String uuid() {
@@ -86,7 +95,7 @@ public final class CloudProperties {
 
     /**
      * Set the uuid property: Unique ID of the cloud.
-     *
+     * 
      * @param uuid the uuid value to set.
      * @return the CloudProperties object itself.
      */
@@ -97,7 +106,7 @@ public final class CloudProperties {
 
     /**
      * Get the vmmServerId property: ARM Id of the vmmServer resource in which this resource resides.
-     *
+     * 
      * @return the vmmServerId value.
      */
     public String vmmServerId() {
@@ -106,7 +115,7 @@ public final class CloudProperties {
 
     /**
      * Set the vmmServerId property: ARM Id of the vmmServer resource in which this resource resides.
-     *
+     * 
      * @param vmmServerId the vmmServerId value to set.
      * @return the CloudProperties object itself.
      */
@@ -117,7 +126,7 @@ public final class CloudProperties {
 
     /**
      * Get the cloudName property: Name of the cloud in VMMServer.
-     *
+     * 
      * @return the cloudName value.
      */
     public String cloudName() {
@@ -126,7 +135,7 @@ public final class CloudProperties {
 
     /**
      * Get the cloudCapacity property: Capacity of the cloud.
-     *
+     * 
      * @return the cloudCapacity value.
      */
     public CloudCapacity cloudCapacity() {
@@ -135,7 +144,7 @@ public final class CloudProperties {
 
     /**
      * Get the storageQoSPolicies property: List of QoS policies available for the cloud.
-     *
+     * 
      * @return the storageQoSPolicies value.
      */
     public List<StorageQoSPolicy> storageQoSPolicies() {
@@ -143,17 +152,17 @@ public final class CloudProperties {
     }
 
     /**
-     * Get the provisioningState property: Gets or sets the provisioning state.
-     *
+     * Get the provisioningState property: Provisioning state of the resource.
+     * 
      * @return the provisioningState value.
      */
-    public String provisioningState() {
+    public ProvisioningState provisioningState() {
         return this.provisioningState;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

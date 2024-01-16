@@ -4,19 +4,20 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
-
-/** Samples for Clouds ListByResourceGroup. */
+/**
+ * Samples for Clouds ListByResourceGroup.
+ */
 public final class CloudsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/preview/2020-06-05-preview/examples/ListCloudsByResourceGroup.json
+     * x-ms-original-file:
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/ListCloudsByResourceGroup.json
      */
     /**
      * Sample code: ListCloudsByResourceGroup.
-     *
+     * 
      * @param manager Entry point to ScvmmManager.
      */
     public static void listCloudsByResourceGroup(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.clouds().listByResourceGroup("testrg", Context.NONE);
+        manager.clouds().listByResourceGroup("testrg", com.azure.core.util.Context.NONE);
     }
 }
