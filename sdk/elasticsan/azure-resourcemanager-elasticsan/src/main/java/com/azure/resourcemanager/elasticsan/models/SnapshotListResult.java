@@ -6,20 +6,20 @@ package com.azure.resourcemanager.elasticsan.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.elasticsan.fluent.models.PrivateEndpointConnectionInner;
+import com.azure.resourcemanager.elasticsan.fluent.models.SnapshotInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * The response of a PrivateEndpointConnection list operation.
+ * The response of a Snapshot list operation.
  */
 @Fluent
-public final class PrivateEndpointConnectionListResult {
+public final class SnapshotListResult {
     /*
-     * The PrivateEndpointConnection items on this page
+     * The Snapshot items on this page
      */
     @JsonProperty(value = "value", required = true)
-    private List<PrivateEndpointConnectionInner> value;
+    private List<SnapshotInner> value;
 
     /*
      * The link to the next page of items
@@ -28,27 +28,27 @@ public final class PrivateEndpointConnectionListResult {
     private String nextLink;
 
     /**
-     * Creates an instance of PrivateEndpointConnectionListResult class.
+     * Creates an instance of SnapshotListResult class.
      */
-    public PrivateEndpointConnectionListResult() {
+    public SnapshotListResult() {
     }
 
     /**
-     * Get the value property: The PrivateEndpointConnection items on this page.
+     * Get the value property: The Snapshot items on this page.
      * 
      * @return the value value.
      */
-    public List<PrivateEndpointConnectionInner> value() {
+    public List<SnapshotInner> value() {
         return this.value;
     }
 
     /**
-     * Set the value property: The PrivateEndpointConnection items on this page.
+     * Set the value property: The Snapshot items on this page.
      * 
      * @param value the value value to set.
-     * @return the PrivateEndpointConnectionListResult object itself.
+     * @return the SnapshotListResult object itself.
      */
-    public PrivateEndpointConnectionListResult withValue(List<PrivateEndpointConnectionInner> value) {
+    public SnapshotListResult withValue(List<SnapshotInner> value) {
         this.value = value;
         return this;
     }
@@ -66,9 +66,9 @@ public final class PrivateEndpointConnectionListResult {
      * Set the nextLink property: The link to the next page of items.
      * 
      * @param nextLink the nextLink value to set.
-     * @return the PrivateEndpointConnectionListResult object itself.
+     * @return the SnapshotListResult object itself.
      */
-    public PrivateEndpointConnectionListResult withNextLink(String nextLink) {
+    public SnapshotListResult withNextLink(String nextLink) {
         this.nextLink = nextLink;
         return this;
     }
@@ -80,12 +80,12 @@ public final class PrivateEndpointConnectionListResult {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property value in model PrivateEndpointConnectionListResult"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model SnapshotListResult"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(PrivateEndpointConnectionListResult.class);
+    private static final ClientLogger LOGGER = new ClientLogger(SnapshotListResult.class);
 }

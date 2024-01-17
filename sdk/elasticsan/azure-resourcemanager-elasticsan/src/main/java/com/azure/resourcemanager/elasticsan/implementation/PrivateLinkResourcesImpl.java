@@ -4,13 +4,12 @@
 
 package com.azure.resourcemanager.elasticsan.implementation;
 
-import com.azure.core.http.rest.Response;
-import com.azure.core.http.rest.SimpleResponse;
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.elasticsan.fluent.PrivateLinkResourcesClient;
-import com.azure.resourcemanager.elasticsan.fluent.models.PrivateLinkResourceListResultInner;
-import com.azure.resourcemanager.elasticsan.models.PrivateLinkResourceListResult;
+import com.azure.resourcemanager.elasticsan.fluent.models.PrivateLinkResourceInner;
+import com.azure.resourcemanager.elasticsan.models.PrivateLinkResource;
 import com.azure.resourcemanager.elasticsan.models.PrivateLinkResources;
 
 public final class PrivateLinkResourcesImpl implements PrivateLinkResources {
@@ -20,35 +19,23 @@ public final class PrivateLinkResourcesImpl implements PrivateLinkResources {
 
     private final com.azure.resourcemanager.elasticsan.ElasticSanManager serviceManager;
 
-    public PrivateLinkResourcesImpl(
-        PrivateLinkResourcesClient innerClient, com.azure.resourcemanager.elasticsan.ElasticSanManager serviceManager) {
+    public PrivateLinkResourcesImpl(PrivateLinkResourcesClient innerClient,
+        com.azure.resourcemanager.elasticsan.ElasticSanManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<PrivateLinkResourceListResult> listByElasticSanWithResponse(
-        String resourceGroupName, String elasticSanName, Context context) {
-        Response<PrivateLinkResourceListResultInner> inner =
-            this.serviceClient().listByElasticSanWithResponse(resourceGroupName, elasticSanName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new PrivateLinkResourceListResultImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
+    public PagedIterable<PrivateLinkResource> listByElasticSan(String resourceGroupName, String elasticSanName) {
+        PagedIterable<PrivateLinkResourceInner> inner
+            = this.serviceClient().listByElasticSan(resourceGroupName, elasticSanName);
+        return Utils.mapPage(inner, inner1 -> new PrivateLinkResourceImpl(inner1, this.manager()));
     }
 
-    public PrivateLinkResourceListResult listByElasticSan(String resourceGroupName, String elasticSanName) {
-        PrivateLinkResourceListResultInner inner =
-            this.serviceClient().listByElasticSan(resourceGroupName, elasticSanName);
-        if (inner != null) {
-            return new PrivateLinkResourceListResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public PagedIterable<PrivateLinkResource> listByElasticSan(String resourceGroupName, String elasticSanName,
+        Context context) {
+        PagedIterable<PrivateLinkResourceInner> inner
+            = this.serviceClient().listByElasticSan(resourceGroupName, elasticSanName, context);
+        return Utils.mapPage(inner, inner1 -> new PrivateLinkResourceImpl(inner1, this.manager()));
     }
 
     private PrivateLinkResourcesClient serviceClient() {

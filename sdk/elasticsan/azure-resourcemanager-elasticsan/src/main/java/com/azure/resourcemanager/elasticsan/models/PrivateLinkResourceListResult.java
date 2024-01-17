@@ -4,29 +4,88 @@
 
 package com.azure.resourcemanager.elasticsan.models;
 
-import com.azure.resourcemanager.elasticsan.fluent.models.PrivateLinkResourceListResultInner;
+import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.elasticsan.fluent.models.PrivateLinkResourceInner;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** An immutable client-side representation of PrivateLinkResourceListResult. */
-public interface PrivateLinkResourceListResult {
+/**
+ * The response of a PrivateLinkResource list operation.
+ */
+@Fluent
+public final class PrivateLinkResourceListResult {
+    /*
+     * The PrivateLinkResource items on this page
+     */
+    @JsonProperty(value = "value", required = true)
+    private List<PrivateLinkResourceInner> value;
+
+    /*
+     * The link to the next page of items
+     */
+    @JsonProperty(value = "nextLink")
+    private String nextLink;
+
     /**
-     * Gets the value property: Array of private link resources.
-     *
+     * Creates an instance of PrivateLinkResourceListResult class.
+     */
+    public PrivateLinkResourceListResult() {
+    }
+
+    /**
+     * Get the value property: The PrivateLinkResource items on this page.
+     * 
      * @return the value value.
      */
-    List<PrivateLinkResource> value();
+    public List<PrivateLinkResourceInner> value() {
+        return this.value;
+    }
 
     /**
-     * Gets the nextLink property: URI to fetch the next section of the paginated response.
-     *
+     * Set the value property: The PrivateLinkResource items on this page.
+     * 
+     * @param value the value value to set.
+     * @return the PrivateLinkResourceListResult object itself.
+     */
+    public PrivateLinkResourceListResult withValue(List<PrivateLinkResourceInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
+     * Get the nextLink property: The link to the next page of items.
+     * 
      * @return the nextLink value.
      */
-    String nextLink();
+    public String nextLink() {
+        return this.nextLink;
+    }
 
     /**
-     * Gets the inner com.azure.resourcemanager.elasticsan.fluent.models.PrivateLinkResourceListResultInner object.
-     *
-     * @return the inner object.
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the PrivateLinkResourceListResult object itself.
      */
-    PrivateLinkResourceListResultInner innerModel();
+    public PrivateLinkResourceListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
+     * Validates the instance.
+     * 
+     * @throws IllegalArgumentException thrown if the instance is not valid.
+     */
+    public void validate() {
+        if (value() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model PrivateLinkResourceListResult"));
+        } else {
+            value().forEach(e -> e.validate());
+        }
+    }
+
+    private static final ClientLogger LOGGER = new ClientLogger(PrivateLinkResourceListResult.class);
 }

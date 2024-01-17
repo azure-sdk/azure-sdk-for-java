@@ -4,99 +4,67 @@
 
 package com.azure.resourcemanager.elasticsan.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.elasticsan.fluent.models.PrivateLinkResourceProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.elasticsan.fluent.models.PrivateLinkResourceInner;
 import java.util.List;
 
-/** A private link resource. */
-@Fluent
-public final class PrivateLinkResource extends ProxyResource {
-    /*
-     * Resource properties.
+/**
+ * An immutable client-side representation of PrivateLinkResource.
+ */
+public interface PrivateLinkResource {
+    /**
+     * Gets the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
      */
-    @JsonProperty(value = "properties")
-    private PrivateLinkResourceProperties innerProperties;
-
-    /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /** Creates an instance of PrivateLinkResource class. */
-    public PrivateLinkResource() {
-    }
+    String id();
 
     /**
-     * Get the innerProperties property: Resource properties.
-     *
-     * @return the innerProperties value.
+     * Gets the name property: The name of the resource.
+     * 
+     * @return the name value.
      */
-    private PrivateLinkResourceProperties innerProperties() {
-        return this.innerProperties;
-    }
+    String name();
 
     /**
-     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * Gets the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    String type();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
      * @return the systemData value.
      */
-    public SystemData systemData() {
-        return this.systemData;
-    }
+    SystemData systemData();
 
     /**
-     * Get the groupId property: The private link resource group id.
-     *
+     * Gets the groupId property: The private link resource group id.
+     * 
      * @return the groupId value.
      */
-    public String groupId() {
-        return this.innerProperties() == null ? null : this.innerProperties().groupId();
-    }
+    String groupId();
 
     /**
-     * Get the requiredMembers property: The private link resource required member names.
-     *
+     * Gets the requiredMembers property: The private link resource required member names.
+     * 
      * @return the requiredMembers value.
      */
-    public List<String> requiredMembers() {
-        return this.innerProperties() == null ? null : this.innerProperties().requiredMembers();
-    }
+    List<String> requiredMembers();
 
     /**
-     * Get the requiredZoneNames property: The private link resource Private link DNS zone name.
-     *
+     * Gets the requiredZoneNames property: The private link resource Private link DNS zone name.
+     * 
      * @return the requiredZoneNames value.
      */
-    public List<String> requiredZoneNames() {
-        return this.innerProperties() == null ? null : this.innerProperties().requiredZoneNames();
-    }
+    List<String> requiredZoneNames();
 
     /**
-     * Set the requiredZoneNames property: The private link resource Private link DNS zone name.
-     *
-     * @param requiredZoneNames the requiredZoneNames value to set.
-     * @return the PrivateLinkResource object itself.
+     * Gets the inner com.azure.resourcemanager.elasticsan.fluent.models.PrivateLinkResourceInner object.
+     * 
+     * @return the inner object.
      */
-    public PrivateLinkResource withRequiredZoneNames(List<String> requiredZoneNames) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new PrivateLinkResourceProperties();
-        }
-        this.innerProperties().withRequiredZoneNames(requiredZoneNames);
-        return this;
-    }
-
-    /**
-     * Validates the instance.
-     *
-     * @throws IllegalArgumentException thrown if the instance is not valid.
-     */
-    public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
-        }
-    }
+    PrivateLinkResourceInner innerModel();
 }

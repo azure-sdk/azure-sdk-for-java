@@ -8,24 +8,26 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of VolumeSnapshots. */
+/**
+ * Resource collection API of VolumeSnapshots.
+ */
 public interface VolumeSnapshots {
     /**
      * List Snapshots in a VolumeGroup or List Snapshots by Volume (name) in a VolumeGroup using filter.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
      * @param volumeGroupName The name of the VolumeGroup.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Snapshots as paginated response with {@link PagedIterable}.
+     * @return the response of a Snapshot list operation as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Snapshot> listByVolumeGroup(String resourceGroupName, String elasticSanName, String volumeGroupName);
 
     /**
      * List Snapshots in a VolumeGroup or List Snapshots by Volume (name) in a VolumeGroup using filter.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
      * @param volumeGroupName The name of the VolumeGroup.
@@ -34,42 +36,14 @@ public interface VolumeSnapshots {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Snapshots as paginated response with {@link PagedIterable}.
+     * @return the response of a Snapshot list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Snapshot> listByVolumeGroup(
-        String resourceGroupName, String elasticSanName, String volumeGroupName, String filter, Context context);
-
-    /**
-     * Delete a Volume Snapshot.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param snapshotName The name of the volume snapshot within the given volume group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName);
-
-    /**
-     * Delete a Volume Snapshot.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param snapshotName The name of the volume snapshot within the given volume group.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void delete(
-        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName, Context context);
+    PagedIterable<Snapshot> listByVolumeGroup(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        String filter, Context context);
 
     /**
      * Get a Volume Snapshot.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
      * @param volumeGroupName The name of the VolumeGroup.
@@ -80,12 +54,12 @@ public interface VolumeSnapshots {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Volume Snapshot along with {@link Response}.
      */
-    Response<Snapshot> getWithResponse(
-        String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName, Context context);
+    Response<Snapshot> getWithResponse(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        String snapshotName, Context context);
 
     /**
      * Get a Volume Snapshot.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param elasticSanName The name of the ElasticSan.
      * @param volumeGroupName The name of the VolumeGroup.
@@ -98,8 +72,36 @@ public interface VolumeSnapshots {
     Snapshot get(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName);
 
     /**
+     * Delete a Volume Snapshot.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName);
+
+    /**
+     * Delete a Volume Snapshot.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName,
+        Context context);
+
+    /**
      * Get a Volume Snapshot.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -110,7 +112,7 @@ public interface VolumeSnapshots {
 
     /**
      * Get a Volume Snapshot.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -122,7 +124,7 @@ public interface VolumeSnapshots {
 
     /**
      * Delete a Volume Snapshot.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -132,7 +134,7 @@ public interface VolumeSnapshots {
 
     /**
      * Delete a Volume Snapshot.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -143,7 +145,7 @@ public interface VolumeSnapshots {
 
     /**
      * Begins definition for a new Snapshot resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new Snapshot definition.
      */
