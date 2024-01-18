@@ -15,6 +15,7 @@
     <module>sdk/agrifood</module>
     <module>sdk/alertsmanagement</module>
     <module>sdk/anomalydetector</module>
+    <module>sdk/aodgv1</module>
     <module>sdk/aot</module>
     <module>sdk/apicenter</module>
     <module>sdk/apimanagement</module>

@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/aodgv1/ci.yml
+      - sdk/aodgv1/azure-resourcemanager-aodgv1/
+    exclude:
+      - sdk/aodgv1/pom.xml
+      - sdk/aodgv1/azure-resourcemanager-aodgv1/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/aodgv1/ci.yml
+      - sdk/aodgv1/azure-resourcemanager-aodgv1/
+    exclude:
+      - sdk/aodgv1/pom.xml
+      - sdk/aodgv1/azure-resourcemanager-aodgv1/pom.xml
+
+parameters:
+  - name: release_azureresourcemanageraodgv1
+    displayName: azure-resourcemanager-aodgv1
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: aodgv1
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-aodgv1
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanageraodgv1
+        releaseInBatch: ${{ parameters.release_azureresourcemanageraodgv1 }}
