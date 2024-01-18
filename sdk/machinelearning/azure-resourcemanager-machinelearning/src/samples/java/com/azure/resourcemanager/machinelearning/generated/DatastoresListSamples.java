@@ -6,29 +6,22 @@ package com.azure.resourcemanager.machinelearning.generated;
 
 import java.util.Arrays;
 
-/** Samples for Datastores List. */
+/**
+ * Samples for Datastores List.
+ */
 public final class DatastoresListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/list.json
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-01-01-
+     * preview/examples/Datastore/list.json
      */
     /**
      * Sample code: List datastores.
-     *
+     * 
      * @param manager Entry point to MachineLearningManager.
      */
     public static void listDatastores(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
-        manager
-            .datastores()
-            .list(
-                "test-rg",
-                "my-aml-workspace",
-                null,
-                1,
-                false,
-                Arrays.asList("string"),
-                "string",
-                "string",
-                false,
-                com.azure.core.util.Context.NONE);
+        manager.datastores().list("test-rg", "my-aml-workspace", null, 1, false, Arrays.asList("string"), "string",
+            "string", false, com.azure.core.util.Context.NONE);
     }
 }

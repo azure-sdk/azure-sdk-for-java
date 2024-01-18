@@ -23,8 +23,7 @@ public final class BatchEndpointsImpl implements BatchEndpoints {
 
     private final com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager;
 
-    public BatchEndpointsImpl(
-        BatchEndpointsClient innerClient,
+    public BatchEndpointsImpl(BatchEndpointsClient innerClient,
         com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -35,10 +34,10 @@ public final class BatchEndpointsImpl implements BatchEndpoints {
         return Utils.mapPage(inner, inner1 -> new BatchEndpointImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<BatchEndpoint> list(
-        String resourceGroupName, String workspaceName, Integer count, String skip, Context context) {
-        PagedIterable<BatchEndpointInner> inner =
-            this.serviceClient().list(resourceGroupName, workspaceName, count, skip, context);
+    public PagedIterable<BatchEndpoint> list(String resourceGroupName, String workspaceName, Integer count, String skip,
+        Context context) {
+        PagedIterable<BatchEndpointInner> inner
+            = this.serviceClient().list(resourceGroupName, workspaceName, count, skip, context);
         return Utils.mapPage(inner, inner1 -> new BatchEndpointImpl(inner1, this.manager()));
     }
 
@@ -50,15 +49,12 @@ public final class BatchEndpointsImpl implements BatchEndpoints {
         this.serviceClient().delete(resourceGroupName, workspaceName, endpointName, context);
     }
 
-    public Response<BatchEndpoint> getWithResponse(
-        String resourceGroupName, String workspaceName, String endpointName, Context context) {
-        Response<BatchEndpointInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, workspaceName, endpointName, context);
+    public Response<BatchEndpoint> getWithResponse(String resourceGroupName, String workspaceName, String endpointName,
+        Context context) {
+        Response<BatchEndpointInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, workspaceName, endpointName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new BatchEndpointImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -74,15 +70,12 @@ public final class BatchEndpointsImpl implements BatchEndpoints {
         }
     }
 
-    public Response<EndpointAuthKeys> listKeysWithResponse(
-        String resourceGroupName, String workspaceName, String endpointName, Context context) {
-        Response<EndpointAuthKeysInner> inner =
-            this.serviceClient().listKeysWithResponse(resourceGroupName, workspaceName, endpointName, context);
+    public Response<EndpointAuthKeys> listKeysWithResponse(String resourceGroupName, String workspaceName,
+        String endpointName, Context context) {
+        Response<EndpointAuthKeysInner> inner
+            = this.serviceClient().listKeysWithResponse(resourceGroupName, workspaceName, endpointName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new EndpointAuthKeysImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -101,26 +94,18 @@ public final class BatchEndpointsImpl implements BatchEndpoints {
     public BatchEndpoint getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String endpointName = Utils.getValueFromIdByName(id, "batchEndpoints");
         if (endpointName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'batchEndpoints'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'batchEndpoints'.", id)));
         }
         return this.getWithResponse(resourceGroupName, workspaceName, endpointName, Context.NONE).getValue();
     }
@@ -128,26 +113,18 @@ public final class BatchEndpointsImpl implements BatchEndpoints {
     public Response<BatchEndpoint> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String endpointName = Utils.getValueFromIdByName(id, "batchEndpoints");
         if (endpointName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'batchEndpoints'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'batchEndpoints'.", id)));
         }
         return this.getWithResponse(resourceGroupName, workspaceName, endpointName, context);
     }
@@ -155,26 +132,18 @@ public final class BatchEndpointsImpl implements BatchEndpoints {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String endpointName = Utils.getValueFromIdByName(id, "batchEndpoints");
         if (endpointName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'batchEndpoints'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'batchEndpoints'.", id)));
         }
         this.delete(resourceGroupName, workspaceName, endpointName, Context.NONE);
     }
@@ -182,26 +151,18 @@ public final class BatchEndpointsImpl implements BatchEndpoints {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String endpointName = Utils.getValueFromIdByName(id, "batchEndpoints");
         if (endpointName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'batchEndpoints'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'batchEndpoints'.", id)));
         }
         this.delete(resourceGroupName, workspaceName, endpointName, context);
     }

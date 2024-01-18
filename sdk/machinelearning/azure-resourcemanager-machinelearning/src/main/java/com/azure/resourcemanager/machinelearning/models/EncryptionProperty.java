@@ -8,9 +8,37 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The EncryptionProperty model. */
+/**
+ * The EncryptionProperty model.
+ */
 @Fluent
 public final class EncryptionProperty {
+    /*
+     * The byok cosmosdb account that customer brings to store customer's data
+     * with encryption
+     */
+    @JsonProperty(value = "cosmosDbResourceId")
+    private String cosmosDbResourceId;
+
+    /*
+     * Identity to be used with the keyVault
+     */
+    @JsonProperty(value = "identity")
+    private IdentityForCmk identity;
+
+    /*
+     * KeyVault details to do the encryption
+     */
+    @JsonProperty(value = "keyVaultProperties", required = true)
+    private KeyVaultProperties keyVaultProperties;
+
+    /*
+     * The byok search account that customer brings to store customer's data
+     * with encryption
+     */
+    @JsonProperty(value = "searchAccountResourceId")
+    private String searchAccountResourceId;
+
     /*
      * Indicates whether or not the encryption is enabled for the workspace.
      */
@@ -18,44 +46,43 @@ public final class EncryptionProperty {
     private EncryptionStatus status;
 
     /*
-     * The identity that will be used to access the key vault for encryption at rest.
+     * The byok storage account that customer brings to store customer's data
+     * with encryption
      */
-    @JsonProperty(value = "identity")
-    private IdentityForCmk identity;
+    @JsonProperty(value = "storageAccountResourceId")
+    private String storageAccountResourceId;
 
-    /*
-     * Customer Key vault properties.
+    /**
+     * Creates an instance of EncryptionProperty class.
      */
-    @JsonProperty(value = "keyVaultProperties", required = true)
-    private EncryptionKeyVaultProperties keyVaultProperties;
-
-    /** Creates an instance of EncryptionProperty class. */
     public EncryptionProperty() {
     }
 
     /**
-     * Get the status property: Indicates whether or not the encryption is enabled for the workspace.
-     *
-     * @return the status value.
+     * Get the cosmosDbResourceId property: The byok cosmosdb account that customer brings to store customer's data
+     * with encryption.
+     * 
+     * @return the cosmosDbResourceId value.
      */
-    public EncryptionStatus status() {
-        return this.status;
+    public String cosmosDbResourceId() {
+        return this.cosmosDbResourceId;
     }
 
     /**
-     * Set the status property: Indicates whether or not the encryption is enabled for the workspace.
-     *
-     * @param status the status value to set.
+     * Set the cosmosDbResourceId property: The byok cosmosdb account that customer brings to store customer's data
+     * with encryption.
+     * 
+     * @param cosmosDbResourceId the cosmosDbResourceId value to set.
      * @return the EncryptionProperty object itself.
      */
-    public EncryptionProperty withStatus(EncryptionStatus status) {
-        this.status = status;
+    public EncryptionProperty withCosmosDbResourceId(String cosmosDbResourceId) {
+        this.cosmosDbResourceId = cosmosDbResourceId;
         return this;
     }
 
     /**
-     * Get the identity property: The identity that will be used to access the key vault for encryption at rest.
-     *
+     * Get the identity property: Identity to be used with the keyVault.
+     * 
      * @return the identity value.
      */
     public IdentityForCmk identity() {
@@ -63,8 +90,8 @@ public final class EncryptionProperty {
     }
 
     /**
-     * Set the identity property: The identity that will be used to access the key vault for encryption at rest.
-     *
+     * Set the identity property: Identity to be used with the keyVault.
+     * 
      * @param identity the identity value to set.
      * @return the EncryptionProperty object itself.
      */
@@ -74,46 +101,109 @@ public final class EncryptionProperty {
     }
 
     /**
-     * Get the keyVaultProperties property: Customer Key vault properties.
-     *
+     * Get the keyVaultProperties property: KeyVault details to do the encryption.
+     * 
      * @return the keyVaultProperties value.
      */
-    public EncryptionKeyVaultProperties keyVaultProperties() {
+    public KeyVaultProperties keyVaultProperties() {
         return this.keyVaultProperties;
     }
 
     /**
-     * Set the keyVaultProperties property: Customer Key vault properties.
-     *
+     * Set the keyVaultProperties property: KeyVault details to do the encryption.
+     * 
      * @param keyVaultProperties the keyVaultProperties value to set.
      * @return the EncryptionProperty object itself.
      */
-    public EncryptionProperty withKeyVaultProperties(EncryptionKeyVaultProperties keyVaultProperties) {
+    public EncryptionProperty withKeyVaultProperties(KeyVaultProperties keyVaultProperties) {
         this.keyVaultProperties = keyVaultProperties;
         return this;
     }
 
     /**
+     * Get the searchAccountResourceId property: The byok search account that customer brings to store customer's data
+     * with encryption.
+     * 
+     * @return the searchAccountResourceId value.
+     */
+    public String searchAccountResourceId() {
+        return this.searchAccountResourceId;
+    }
+
+    /**
+     * Set the searchAccountResourceId property: The byok search account that customer brings to store customer's data
+     * with encryption.
+     * 
+     * @param searchAccountResourceId the searchAccountResourceId value to set.
+     * @return the EncryptionProperty object itself.
+     */
+    public EncryptionProperty withSearchAccountResourceId(String searchAccountResourceId) {
+        this.searchAccountResourceId = searchAccountResourceId;
+        return this;
+    }
+
+    /**
+     * Get the status property: Indicates whether or not the encryption is enabled for the workspace.
+     * 
+     * @return the status value.
+     */
+    public EncryptionStatus status() {
+        return this.status;
+    }
+
+    /**
+     * Set the status property: Indicates whether or not the encryption is enabled for the workspace.
+     * 
+     * @param status the status value to set.
+     * @return the EncryptionProperty object itself.
+     */
+    public EncryptionProperty withStatus(EncryptionStatus status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * Get the storageAccountResourceId property: The byok storage account that customer brings to store customer's
+     * data
+     * with encryption.
+     * 
+     * @return the storageAccountResourceId value.
+     */
+    public String storageAccountResourceId() {
+        return this.storageAccountResourceId;
+    }
+
+    /**
+     * Set the storageAccountResourceId property: The byok storage account that customer brings to store customer's
+     * data
+     * with encryption.
+     * 
+     * @param storageAccountResourceId the storageAccountResourceId value to set.
+     * @return the EncryptionProperty object itself.
+     */
+    public EncryptionProperty withStorageAccountResourceId(String storageAccountResourceId) {
+        this.storageAccountResourceId = storageAccountResourceId;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (status() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property status in model EncryptionProperty"));
-        }
         if (identity() != null) {
             identity().validate();
         }
         if (keyVaultProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property keyVaultProperties in model EncryptionProperty"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property keyVaultProperties in model EncryptionProperty"));
         } else {
             keyVaultProperties().validate();
+        }
+        if (status() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property status in model EncryptionProperty"));
         }
     }
 

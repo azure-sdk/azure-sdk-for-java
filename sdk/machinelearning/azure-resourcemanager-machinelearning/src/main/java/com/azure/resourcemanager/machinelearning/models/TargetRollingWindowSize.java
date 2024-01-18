@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Forecasting target rolling window size. */
+/**
+ * Forecasting target rolling window size.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -18,17 +20,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("TargetRollingWindowSize")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Auto", value = AutoTargetRollingWindowSize.class),
-    @JsonSubTypes.Type(name = "Custom", value = CustomTargetRollingWindowSize.class)
-})
+    @JsonSubTypes.Type(name = "Custom", value = CustomTargetRollingWindowSize.class) })
 @Immutable
 public class TargetRollingWindowSize {
-    /** Creates an instance of TargetRollingWindowSize class. */
+    /**
+     * Creates an instance of TargetRollingWindowSize class.
+     */
     public TargetRollingWindowSize() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

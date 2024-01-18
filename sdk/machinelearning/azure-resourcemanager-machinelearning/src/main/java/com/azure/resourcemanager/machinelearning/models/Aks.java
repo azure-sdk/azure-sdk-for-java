@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** A Machine Learning compute based on AKS. */
+/**
+ * A Machine Learning compute based on AKS.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "computeType")
 @JsonTypeName("AKS")
 @Fluent
@@ -20,13 +22,15 @@ public final class Aks extends Compute {
     @JsonProperty(value = "properties")
     private AksSchemaProperties properties;
 
-    /** Creates an instance of Aks class. */
+    /**
+     * Creates an instance of Aks class.
+     */
     public Aks() {
     }
 
     /**
      * Get the properties property: AKS properties.
-     *
+     * 
      * @return the properties value.
      */
     public AksSchemaProperties properties() {
@@ -35,7 +39,7 @@ public final class Aks extends Compute {
 
     /**
      * Set the properties property: AKS properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the Aks object itself.
      */
@@ -44,28 +48,36 @@ public final class Aks extends Compute {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Aks withComputeLocation(String computeLocation) {
         super.withComputeLocation(computeLocation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Aks withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Aks withResourceId(String resourceId) {
         super.withResourceId(resourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Aks withDisableLocalAuth(Boolean disableLocalAuth) {
         super.withDisableLocalAuth(disableLocalAuth);
@@ -74,7 +86,7 @@ public final class Aks extends Compute {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

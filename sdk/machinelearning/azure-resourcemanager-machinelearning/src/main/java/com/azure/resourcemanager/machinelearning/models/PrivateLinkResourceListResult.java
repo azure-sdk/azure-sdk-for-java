@@ -4,22 +4,56 @@
 
 package com.azure.resourcemanager.machinelearning.models;
 
-import com.azure.resourcemanager.machinelearning.fluent.models.PrivateLinkResourceListResultInner;
+import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.machinelearning.fluent.models.PrivateLinkResourceInner;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** An immutable client-side representation of PrivateLinkResourceListResult. */
-public interface PrivateLinkResourceListResult {
-    /**
-     * Gets the value property: Array of private link resources.
-     *
-     * @return the value value.
+/**
+ * A list of private link resources.
+ */
+@Fluent
+public final class PrivateLinkResourceListResult {
+    /*
+     * The value property.
      */
-    List<PrivateLinkResource> value();
+    @JsonProperty(value = "value")
+    private List<PrivateLinkResourceInner> value;
 
     /**
-     * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.PrivateLinkResourceListResultInner object.
-     *
-     * @return the inner object.
+     * Creates an instance of PrivateLinkResourceListResult class.
      */
-    PrivateLinkResourceListResultInner innerModel();
+    public PrivateLinkResourceListResult() {
+    }
+
+    /**
+     * Get the value property: The value property.
+     * 
+     * @return the value value.
+     */
+    public List<PrivateLinkResourceInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: The value property.
+     * 
+     * @param value the value value to set.
+     * @return the PrivateLinkResourceListResult object itself.
+     */
+    public PrivateLinkResourceListResult withValue(List<PrivateLinkResourceInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
+     * Validates the instance.
+     * 
+     * @throws IllegalArgumentException thrown if the instance is not valid.
+     */
+    public void validate() {
+        if (value() != null) {
+            value().forEach(e -> e.validate());
+        }
+    }
 }

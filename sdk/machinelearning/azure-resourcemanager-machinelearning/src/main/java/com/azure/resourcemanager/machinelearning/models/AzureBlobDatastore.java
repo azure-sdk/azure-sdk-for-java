@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Azure Blob datastore configuration. */
+/**
+ * Azure Blob datastore configuration.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "datastoreType")
 @JsonTypeName("AzureBlob")
 @Fluent
@@ -45,13 +47,27 @@ public final class AzureBlobDatastore extends DatastoreProperties {
     @JsonProperty(value = "serviceDataAccessAuthIdentity")
     private ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity;
 
-    /** Creates an instance of AzureBlobDatastore class. */
+    /*
+     * Azure Resource Group name
+     */
+    @JsonProperty(value = "resourceGroup")
+    private String resourceGroup;
+
+    /*
+     * Azure Subscription Id
+     */
+    @JsonProperty(value = "subscriptionId")
+    private String subscriptionId;
+
+    /**
+     * Creates an instance of AzureBlobDatastore class.
+     */
     public AzureBlobDatastore() {
     }
 
     /**
      * Get the accountName property: Storage account name.
-     *
+     * 
      * @return the accountName value.
      */
     public String accountName() {
@@ -60,7 +76,7 @@ public final class AzureBlobDatastore extends DatastoreProperties {
 
     /**
      * Set the accountName property: Storage account name.
-     *
+     * 
      * @param accountName the accountName value to set.
      * @return the AzureBlobDatastore object itself.
      */
@@ -71,7 +87,7 @@ public final class AzureBlobDatastore extends DatastoreProperties {
 
     /**
      * Get the containerName property: Storage account container name.
-     *
+     * 
      * @return the containerName value.
      */
     public String containerName() {
@@ -80,7 +96,7 @@ public final class AzureBlobDatastore extends DatastoreProperties {
 
     /**
      * Set the containerName property: Storage account container name.
-     *
+     * 
      * @param containerName the containerName value to set.
      * @return the AzureBlobDatastore object itself.
      */
@@ -91,7 +107,7 @@ public final class AzureBlobDatastore extends DatastoreProperties {
 
     /**
      * Get the endpoint property: Azure cloud endpoint for the storage account.
-     *
+     * 
      * @return the endpoint value.
      */
     public String endpoint() {
@@ -100,7 +116,7 @@ public final class AzureBlobDatastore extends DatastoreProperties {
 
     /**
      * Set the endpoint property: Azure cloud endpoint for the storage account.
-     *
+     * 
      * @param endpoint the endpoint value to set.
      * @return the AzureBlobDatastore object itself.
      */
@@ -111,7 +127,7 @@ public final class AzureBlobDatastore extends DatastoreProperties {
 
     /**
      * Get the protocol property: Protocol used to communicate with the storage account.
-     *
+     * 
      * @return the protocol value.
      */
     public String protocol() {
@@ -120,7 +136,7 @@ public final class AzureBlobDatastore extends DatastoreProperties {
 
     /**
      * Set the protocol property: Protocol used to communicate with the storage account.
-     *
+     * 
      * @param protocol the protocol value to set.
      * @return the AzureBlobDatastore object itself.
      */
@@ -132,7 +148,7 @@ public final class AzureBlobDatastore extends DatastoreProperties {
     /**
      * Get the serviceDataAccessAuthIdentity property: Indicates which identity to use to authenticate service data
      * access to customer's storage.
-     *
+     * 
      * @return the serviceDataAccessAuthIdentity value.
      */
     public ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity() {
@@ -142,38 +158,95 @@ public final class AzureBlobDatastore extends DatastoreProperties {
     /**
      * Set the serviceDataAccessAuthIdentity property: Indicates which identity to use to authenticate service data
      * access to customer's storage.
-     *
+     * 
      * @param serviceDataAccessAuthIdentity the serviceDataAccessAuthIdentity value to set.
      * @return the AzureBlobDatastore object itself.
      */
-    public AzureBlobDatastore withServiceDataAccessAuthIdentity(
-        ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity) {
+    public AzureBlobDatastore
+        withServiceDataAccessAuthIdentity(ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity) {
         this.serviceDataAccessAuthIdentity = serviceDataAccessAuthIdentity;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the resourceGroup property: Azure Resource Group name.
+     * 
+     * @return the resourceGroup value.
+     */
+    public String resourceGroup() {
+        return this.resourceGroup;
+    }
+
+    /**
+     * Set the resourceGroup property: Azure Resource Group name.
+     * 
+     * @param resourceGroup the resourceGroup value to set.
+     * @return the AzureBlobDatastore object itself.
+     */
+    public AzureBlobDatastore withResourceGroup(String resourceGroup) {
+        this.resourceGroup = resourceGroup;
+        return this;
+    }
+
+    /**
+     * Get the subscriptionId property: Azure Subscription Id.
+     * 
+     * @return the subscriptionId value.
+     */
+    public String subscriptionId() {
+        return this.subscriptionId;
+    }
+
+    /**
+     * Set the subscriptionId property: Azure Subscription Id.
+     * 
+     * @param subscriptionId the subscriptionId value to set.
+     * @return the AzureBlobDatastore object itself.
+     */
+    public AzureBlobDatastore withSubscriptionId(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AzureBlobDatastore withCredentials(DatastoreCredentials credentials) {
         super.withCredentials(credentials);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AzureBlobDatastore withIntellectualProperty(IntellectualProperty intellectualProperty) {
+        super.withIntellectualProperty(intellectualProperty);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AzureBlobDatastore withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AzureBlobDatastore withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AzureBlobDatastore withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -182,7 +255,7 @@ public final class AzureBlobDatastore extends DatastoreProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
