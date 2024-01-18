@@ -8,17 +8,37 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Term. */
+/**
+ * Defines values for Term.
+ */
 public final class Term extends ExpandableStringEnum<Term> {
-    /** Static value P1Y for Term. */
+    /**
+     * Static value P1Y for Term.
+     */
     public static final Term P1Y = fromString("P1Y");
 
-    /** Static value P3Y for Term. */
+    /**
+     * Static value P3Y for Term.
+     */
     public static final Term P3Y = fromString("P3Y");
 
     /**
+     * Static value P1M for Term.
+     */
+    public static final Term P1M = fromString("P1M");
+
+    /**
+     * Creates a new instance of Term value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public Term() {
+    }
+
+    /**
      * Creates or finds a Term from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Term.
      */
@@ -27,7 +47,11 @@ public final class Term extends ExpandableStringEnum<Term> {
         return fromString(name, Term.class);
     }
 
-    /** @return known Term values. */
+    /**
+     * Gets known Term values.
+     * 
+     * @return known Term values.
+     */
     public static Collection<Term> values() {
         return values(Term.class);
     }

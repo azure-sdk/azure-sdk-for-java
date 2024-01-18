@@ -5,9 +5,7 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.models.MarketplaceInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -17,8 +15,6 @@ import java.util.List;
  */
 @Immutable
 public final class MarketplacesListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(MarketplacesListResult.class);
-
     /*
      * The list of marketplaces.
      */
@@ -32,8 +28,14 @@ public final class MarketplacesListResult {
     private String nextLink;
 
     /**
+     * Creates an instance of MarketplacesListResult class.
+     */
+    public MarketplacesListResult() {
+    }
+
+    /**
      * Get the value property: The list of marketplaces.
-     *
+     * 
      * @return the value value.
      */
     public List<MarketplaceInner> value() {
@@ -42,7 +44,7 @@ public final class MarketplacesListResult {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -51,7 +53,7 @@ public final class MarketplacesListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
