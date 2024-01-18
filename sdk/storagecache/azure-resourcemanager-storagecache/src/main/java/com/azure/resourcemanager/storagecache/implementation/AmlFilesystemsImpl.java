@@ -13,6 +13,7 @@ import com.azure.resourcemanager.storagecache.fluent.AmlFilesystemsClient;
 import com.azure.resourcemanager.storagecache.fluent.models.AmlFilesystemInner;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystem;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemArchiveInfo;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemImportInfo;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystems;
 
 public final class AmlFilesystemsImpl implements AmlFilesystems {
@@ -22,8 +23,8 @@ public final class AmlFilesystemsImpl implements AmlFilesystems {
 
     private final com.azure.resourcemanager.storagecache.StorageCacheManager serviceManager;
 
-    public AmlFilesystemsImpl(
-        AmlFilesystemsClient innerClient, com.azure.resourcemanager.storagecache.StorageCacheManager serviceManager) {
+    public AmlFilesystemsImpl(AmlFilesystemsClient innerClient,
+        com.azure.resourcemanager.storagecache.StorageCacheManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -56,15 +57,12 @@ public final class AmlFilesystemsImpl implements AmlFilesystems {
         this.serviceClient().delete(resourceGroupName, amlFilesystemName, context);
     }
 
-    public Response<AmlFilesystem> getByResourceGroupWithResponse(
-        String resourceGroupName, String amlFilesystemName, Context context) {
-        Response<AmlFilesystemInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, amlFilesystemName, context);
+    public Response<AmlFilesystem> getByResourceGroupWithResponse(String resourceGroupName, String amlFilesystemName,
+        Context context) {
+        Response<AmlFilesystemInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, amlFilesystemName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new AmlFilesystemImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -80,8 +78,8 @@ public final class AmlFilesystemsImpl implements AmlFilesystems {
         }
     }
 
-    public Response<Void> archiveWithResponse(
-        String resourceGroupName, String amlFilesystemName, AmlFilesystemArchiveInfo archiveInfo, Context context) {
+    public Response<Void> archiveWithResponse(String resourceGroupName, String amlFilesystemName,
+        AmlFilesystemArchiveInfo archiveInfo, Context context) {
         return this.serviceClient().archiveWithResponse(resourceGroupName, amlFilesystemName, archiveInfo, context);
     }
 
@@ -89,8 +87,8 @@ public final class AmlFilesystemsImpl implements AmlFilesystems {
         this.serviceClient().archive(resourceGroupName, amlFilesystemName);
     }
 
-    public Response<Void> cancelArchiveWithResponse(
-        String resourceGroupName, String amlFilesystemName, Context context) {
+    public Response<Void> cancelArchiveWithResponse(String resourceGroupName, String amlFilesystemName,
+        Context context) {
         return this.serviceClient().cancelArchiveWithResponse(resourceGroupName, amlFilesystemName, context);
     }
 
@@ -98,22 +96,34 @@ public final class AmlFilesystemsImpl implements AmlFilesystems {
         this.serviceClient().cancelArchive(resourceGroupName, amlFilesystemName);
     }
 
+    public Response<Void> importMethodWithResponse(String resourceGroupName, String amlFilesystemName,
+        AmlFilesystemImportInfo importInfo, Context context) {
+        return this.serviceClient().importMethodWithResponse(resourceGroupName, amlFilesystemName, importInfo, context);
+    }
+
+    public void importMethod(String resourceGroupName, String amlFilesystemName) {
+        this.serviceClient().importMethod(resourceGroupName, amlFilesystemName);
+    }
+
+    public Response<Void> cancelImportWithResponse(String resourceGroupName, String amlFilesystemName,
+        Context context) {
+        return this.serviceClient().cancelImportWithResponse(resourceGroupName, amlFilesystemName, context);
+    }
+
+    public void cancelImport(String resourceGroupName, String amlFilesystemName) {
+        this.serviceClient().cancelImport(resourceGroupName, amlFilesystemName);
+    }
+
     public AmlFilesystem getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String amlFilesystemName = Utils.getValueFromIdByName(id, "amlFilesystems");
         if (amlFilesystemName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'amlFilesystems'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'amlFilesystems'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, amlFilesystemName, Context.NONE).getValue();
     }
@@ -121,19 +131,13 @@ public final class AmlFilesystemsImpl implements AmlFilesystems {
     public Response<AmlFilesystem> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String amlFilesystemName = Utils.getValueFromIdByName(id, "amlFilesystems");
         if (amlFilesystemName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'amlFilesystems'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'amlFilesystems'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, amlFilesystemName, context);
     }
@@ -141,19 +145,13 @@ public final class AmlFilesystemsImpl implements AmlFilesystems {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String amlFilesystemName = Utils.getValueFromIdByName(id, "amlFilesystems");
         if (amlFilesystemName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'amlFilesystems'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'amlFilesystems'.", id)));
         }
         this.delete(resourceGroupName, amlFilesystemName, Context.NONE);
     }
@@ -161,19 +159,13 @@ public final class AmlFilesystemsImpl implements AmlFilesystems {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String amlFilesystemName = Utils.getValueFromIdByName(id, "amlFilesystems");
         if (amlFilesystemName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'amlFilesystems'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'amlFilesystems'.", id)));
         }
         this.delete(resourceGroupName, amlFilesystemName, context);
     }

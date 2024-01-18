@@ -13,13 +13,16 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.storagecache.fluent.models.AmlFilesystemInner;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemArchiveInfo;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemImportInfo;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemUpdate;
 
-/** An instance of this class provides access to all the operations defined in AmlFilesystemsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in AmlFilesystemsClient.
+ */
 public interface AmlFilesystemsClient {
     /**
      * Returns all AML file systems the user has access to under a subscription.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return result of the request to list AML file systems as paginated response with {@link PagedIterable}.
@@ -29,7 +32,7 @@ public interface AmlFilesystemsClient {
 
     /**
      * Returns all AML file systems the user has access to under a subscription.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -41,7 +44,7 @@ public interface AmlFilesystemsClient {
 
     /**
      * Returns all AML file systems the user has access to under a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -53,7 +56,7 @@ public interface AmlFilesystemsClient {
 
     /**
      * Returns all AML file systems the user has access to under a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -66,10 +69,10 @@ public interface AmlFilesystemsClient {
 
     /**
      * Schedules an AML file system for deletion.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
-     *     end with alphanumeric.
+     * end with alphanumeric.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -80,10 +83,10 @@ public interface AmlFilesystemsClient {
 
     /**
      * Schedules an AML file system for deletion.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
-     *     end with alphanumeric.
+     * end with alphanumeric.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -95,10 +98,10 @@ public interface AmlFilesystemsClient {
 
     /**
      * Schedules an AML file system for deletion.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
-     *     end with alphanumeric.
+     * end with alphanumeric.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -108,10 +111,10 @@ public interface AmlFilesystemsClient {
 
     /**
      * Schedules an AML file system for deletion.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
-     *     end with alphanumeric.
+     * end with alphanumeric.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -122,10 +125,10 @@ public interface AmlFilesystemsClient {
 
     /**
      * Returns an AML file system.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
-     *     end with alphanumeric.
+     * end with alphanumeric.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -133,15 +136,15 @@ public interface AmlFilesystemsClient {
      * @return an AML file system instance along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<AmlFilesystemInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String amlFilesystemName, Context context);
+    Response<AmlFilesystemInner> getByResourceGroupWithResponse(String resourceGroupName, String amlFilesystemName,
+        Context context);
 
     /**
      * Returns an AML file system.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
-     *     end with alphanumeric.
+     * end with alphanumeric.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -152,29 +155,29 @@ public interface AmlFilesystemsClient {
 
     /**
      * Create or update an AML file system.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
-     *     end with alphanumeric.
+     * end with alphanumeric.
      * @param amlFilesystem Object containing the user-selectable properties of the AML file system. If read-only
-     *     properties are included, they must match the existing values of those properties.
+     * properties are included, they must match the existing values of those properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of an AML file system instance.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<AmlFilesystemInner>, AmlFilesystemInner> beginCreateOrUpdate(
-        String resourceGroupName, String amlFilesystemName, AmlFilesystemInner amlFilesystem);
+    SyncPoller<PollResult<AmlFilesystemInner>, AmlFilesystemInner> beginCreateOrUpdate(String resourceGroupName,
+        String amlFilesystemName, AmlFilesystemInner amlFilesystem);
 
     /**
      * Create or update an AML file system.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
-     *     end with alphanumeric.
+     * end with alphanumeric.
      * @param amlFilesystem Object containing the user-selectable properties of the AML file system. If read-only
-     *     properties are included, they must match the existing values of those properties.
+     * properties are included, they must match the existing values of those properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -182,34 +185,34 @@ public interface AmlFilesystemsClient {
      * @return the {@link SyncPoller} for polling of an AML file system instance.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<AmlFilesystemInner>, AmlFilesystemInner> beginCreateOrUpdate(
-        String resourceGroupName, String amlFilesystemName, AmlFilesystemInner amlFilesystem, Context context);
+    SyncPoller<PollResult<AmlFilesystemInner>, AmlFilesystemInner> beginCreateOrUpdate(String resourceGroupName,
+        String amlFilesystemName, AmlFilesystemInner amlFilesystem, Context context);
 
     /**
      * Create or update an AML file system.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
-     *     end with alphanumeric.
+     * end with alphanumeric.
      * @param amlFilesystem Object containing the user-selectable properties of the AML file system. If read-only
-     *     properties are included, they must match the existing values of those properties.
+     * properties are included, they must match the existing values of those properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an AML file system instance.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    AmlFilesystemInner createOrUpdate(
-        String resourceGroupName, String amlFilesystemName, AmlFilesystemInner amlFilesystem);
+    AmlFilesystemInner createOrUpdate(String resourceGroupName, String amlFilesystemName,
+        AmlFilesystemInner amlFilesystem);
 
     /**
      * Create or update an AML file system.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
-     *     end with alphanumeric.
+     * end with alphanumeric.
      * @param amlFilesystem Object containing the user-selectable properties of the AML file system. If read-only
-     *     properties are included, they must match the existing values of those properties.
+     * properties are included, they must match the existing values of those properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -217,34 +220,34 @@ public interface AmlFilesystemsClient {
      * @return an AML file system instance.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    AmlFilesystemInner createOrUpdate(
-        String resourceGroupName, String amlFilesystemName, AmlFilesystemInner amlFilesystem, Context context);
+    AmlFilesystemInner createOrUpdate(String resourceGroupName, String amlFilesystemName,
+        AmlFilesystemInner amlFilesystem, Context context);
 
     /**
      * Update an AML file system instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
-     *     end with alphanumeric.
+     * end with alphanumeric.
      * @param amlFilesystem Object containing the user-selectable properties of the AML file system. If read-only
-     *     properties are included, they must match the existing values of those properties.
+     * properties are included, they must match the existing values of those properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of an AML file system instance.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<AmlFilesystemInner>, AmlFilesystemInner> beginUpdate(
-        String resourceGroupName, String amlFilesystemName, AmlFilesystemUpdate amlFilesystem);
+    SyncPoller<PollResult<AmlFilesystemInner>, AmlFilesystemInner> beginUpdate(String resourceGroupName,
+        String amlFilesystemName, AmlFilesystemUpdate amlFilesystem);
 
     /**
      * Update an AML file system instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
-     *     end with alphanumeric.
+     * end with alphanumeric.
      * @param amlFilesystem Object containing the user-selectable properties of the AML file system. If read-only
-     *     properties are included, they must match the existing values of those properties.
+     * properties are included, they must match the existing values of those properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -252,17 +255,17 @@ public interface AmlFilesystemsClient {
      * @return the {@link SyncPoller} for polling of an AML file system instance.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<AmlFilesystemInner>, AmlFilesystemInner> beginUpdate(
-        String resourceGroupName, String amlFilesystemName, AmlFilesystemUpdate amlFilesystem, Context context);
+    SyncPoller<PollResult<AmlFilesystemInner>, AmlFilesystemInner> beginUpdate(String resourceGroupName,
+        String amlFilesystemName, AmlFilesystemUpdate amlFilesystem, Context context);
 
     /**
      * Update an AML file system instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
-     *     end with alphanumeric.
+     * end with alphanumeric.
      * @param amlFilesystem Object containing the user-selectable properties of the AML file system. If read-only
-     *     properties are included, they must match the existing values of those properties.
+     * properties are included, they must match the existing values of those properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -273,12 +276,12 @@ public interface AmlFilesystemsClient {
 
     /**
      * Update an AML file system instance.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
-     *     end with alphanumeric.
+     * end with alphanumeric.
      * @param amlFilesystem Object containing the user-selectable properties of the AML file system. If read-only
-     *     properties are included, they must match the existing values of those properties.
+     * properties are included, they must match the existing values of those properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -286,15 +289,15 @@ public interface AmlFilesystemsClient {
      * @return an AML file system instance.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    AmlFilesystemInner update(
-        String resourceGroupName, String amlFilesystemName, AmlFilesystemUpdate amlFilesystem, Context context);
+    AmlFilesystemInner update(String resourceGroupName, String amlFilesystemName, AmlFilesystemUpdate amlFilesystem,
+        Context context);
 
     /**
      * Archive data from the AML file system.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
-     *     end with alphanumeric.
+     * end with alphanumeric.
      * @param archiveInfo Information about the archive operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -303,15 +306,15 @@ public interface AmlFilesystemsClient {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> archiveWithResponse(
-        String resourceGroupName, String amlFilesystemName, AmlFilesystemArchiveInfo archiveInfo, Context context);
+    Response<Void> archiveWithResponse(String resourceGroupName, String amlFilesystemName,
+        AmlFilesystemArchiveInfo archiveInfo, Context context);
 
     /**
      * Archive data from the AML file system.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
-     *     end with alphanumeric.
+     * end with alphanumeric.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -321,10 +324,10 @@ public interface AmlFilesystemsClient {
 
     /**
      * Cancel archiving data from the AML file system.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
-     *     end with alphanumeric.
+     * end with alphanumeric.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -336,14 +339,72 @@ public interface AmlFilesystemsClient {
 
     /**
      * Cancel archiving data from the AML file system.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
-     *     end with alphanumeric.
+     * end with alphanumeric.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void cancelArchive(String resourceGroupName, String amlFilesystemName);
+
+    /**
+     * Import data from the AML file system. This operation cannot start when an archive operation is in progress.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
+     * end with alphanumeric.
+     * @param importInfo Information about the import operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> importMethodWithResponse(String resourceGroupName, String amlFilesystemName,
+        AmlFilesystemImportInfo importInfo, Context context);
+
+    /**
+     * Import data from the AML file system. This operation cannot start when an archive operation is in progress.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
+     * end with alphanumeric.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void importMethod(String resourceGroupName, String amlFilesystemName);
+
+    /**
+     * Cancel importing data to the AML file system.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
+     * end with alphanumeric.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> cancelImportWithResponse(String resourceGroupName, String amlFilesystemName, Context context);
+
+    /**
+     * Cancel importing data to the AML file system.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param amlFilesystemName Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and
+     * end with alphanumeric.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void cancelImport(String resourceGroupName, String amlFilesystemName);
 }

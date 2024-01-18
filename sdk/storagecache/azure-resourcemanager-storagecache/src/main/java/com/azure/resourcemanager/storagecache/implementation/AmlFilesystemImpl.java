@@ -15,9 +15,11 @@ import com.azure.resourcemanager.storagecache.models.AmlFilesystemClientInfo;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemEncryptionSettings;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemHealth;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemIdentity;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemImportInfo;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemPropertiesHsm;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemPropertiesMaintenanceWindow;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemProvisioningStateType;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemRootSquashSettings;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemUpdate;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemUpdatePropertiesMaintenanceWindow;
 import com.azure.resourcemanager.storagecache.models.SkuName;
@@ -112,6 +114,10 @@ public final class AmlFilesystemImpl implements AmlFilesystem, AmlFilesystem.Def
         return this.innerModel().hsm();
     }
 
+    public AmlFilesystemRootSquashSettings rootSquashSettings() {
+        return this.innerModel().rootSquashSettings();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
@@ -144,20 +150,14 @@ public final class AmlFilesystemImpl implements AmlFilesystem, AmlFilesystem.Def
     }
 
     public AmlFilesystem create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAmlFilesystems()
-                .createOrUpdate(resourceGroupName, amlFilesystemName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getAmlFilesystems().createOrUpdate(resourceGroupName,
+            amlFilesystemName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public AmlFilesystem create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAmlFilesystems()
-                .createOrUpdate(resourceGroupName, amlFilesystemName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getAmlFilesystems().createOrUpdate(resourceGroupName,
+            amlFilesystemName, this.innerModel(), context);
         return this;
     }
 
@@ -173,25 +173,19 @@ public final class AmlFilesystemImpl implements AmlFilesystem, AmlFilesystem.Def
     }
 
     public AmlFilesystem apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAmlFilesystems()
-                .update(resourceGroupName, amlFilesystemName, updateAmlFilesystem, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getAmlFilesystems().update(resourceGroupName,
+            amlFilesystemName, updateAmlFilesystem, Context.NONE);
         return this;
     }
 
     public AmlFilesystem apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAmlFilesystems()
-                .update(resourceGroupName, amlFilesystemName, updateAmlFilesystem, context);
+        this.innerObject = serviceManager.serviceClient().getAmlFilesystems().update(resourceGroupName,
+            amlFilesystemName, updateAmlFilesystem, context);
         return this;
     }
 
-    AmlFilesystemImpl(
-        AmlFilesystemInner innerObject, com.azure.resourcemanager.storagecache.StorageCacheManager serviceManager) {
+    AmlFilesystemImpl(AmlFilesystemInner innerObject,
+        com.azure.resourcemanager.storagecache.StorageCacheManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
@@ -199,29 +193,20 @@ public final class AmlFilesystemImpl implements AmlFilesystem, AmlFilesystem.Def
     }
 
     public AmlFilesystem refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAmlFilesystems()
-                .getByResourceGroupWithResponse(resourceGroupName, amlFilesystemName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAmlFilesystems()
+            .getByResourceGroupWithResponse(resourceGroupName, amlFilesystemName, Context.NONE).getValue();
         return this;
     }
 
     public AmlFilesystem refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAmlFilesystems()
-                .getByResourceGroupWithResponse(resourceGroupName, amlFilesystemName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAmlFilesystems()
+            .getByResourceGroupWithResponse(resourceGroupName, amlFilesystemName, context).getValue();
         return this;
     }
 
     public Response<Void> archiveWithResponse(AmlFilesystemArchiveInfo archiveInfo, Context context) {
-        return serviceManager
-            .amlFilesystems()
-            .archiveWithResponse(resourceGroupName, amlFilesystemName, archiveInfo, context);
+        return serviceManager.amlFilesystems().archiveWithResponse(resourceGroupName, amlFilesystemName, archiveInfo,
+            context);
     }
 
     public void archive() {
@@ -234,6 +219,23 @@ public final class AmlFilesystemImpl implements AmlFilesystem, AmlFilesystem.Def
 
     public void cancelArchive() {
         serviceManager.amlFilesystems().cancelArchive(resourceGroupName, amlFilesystemName);
+    }
+
+    public Response<Void> importMethodWithResponse(AmlFilesystemImportInfo importInfo, Context context) {
+        return serviceManager.amlFilesystems().importMethodWithResponse(resourceGroupName, amlFilesystemName,
+            importInfo, context);
+    }
+
+    public void importMethod() {
+        serviceManager.amlFilesystems().importMethod(resourceGroupName, amlFilesystemName);
+    }
+
+    public Response<Void> cancelImportWithResponse(Context context) {
+        return serviceManager.amlFilesystems().cancelImportWithResponse(resourceGroupName, amlFilesystemName, context);
+    }
+
+    public void cancelImport() {
+        serviceManager.amlFilesystems().cancelImport(resourceGroupName, amlFilesystemName);
     }
 
     public AmlFilesystemImpl withRegion(Region location) {
@@ -299,6 +301,16 @@ public final class AmlFilesystemImpl implements AmlFilesystem, AmlFilesystem.Def
     public AmlFilesystemImpl withHsm(AmlFilesystemPropertiesHsm hsm) {
         this.innerModel().withHsm(hsm);
         return this;
+    }
+
+    public AmlFilesystemImpl withRootSquashSettings(AmlFilesystemRootSquashSettings rootSquashSettings) {
+        if (isInCreateMode()) {
+            this.innerModel().withRootSquashSettings(rootSquashSettings);
+            return this;
+        } else {
+            this.updateAmlFilesystem.withRootSquashSettings(rootSquashSettings);
+            return this;
+        }
     }
 
     public AmlFilesystemImpl withMaintenanceWindow(AmlFilesystemUpdatePropertiesMaintenanceWindow maintenanceWindow) {

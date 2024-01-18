@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Hydration and archive settings and status. */
+/**
+ * Hydration and archive settings and status.
+ */
 @Fluent
 public final class AmlFilesystemPropertiesHsm {
     /*
@@ -23,13 +25,21 @@ public final class AmlFilesystemPropertiesHsm {
     @JsonProperty(value = "archiveStatus", access = JsonProperty.Access.WRITE_ONLY)
     private List<AmlFilesystemArchive> archiveStatus;
 
-    /** Creates an instance of AmlFilesystemPropertiesHsm class. */
+    /*
+     * Import status
+     */
+    @JsonProperty(value = "importStatus", access = JsonProperty.Access.WRITE_ONLY)
+    private List<AmlFilesystemImport> importStatus;
+
+    /**
+     * Creates an instance of AmlFilesystemPropertiesHsm class.
+     */
     public AmlFilesystemPropertiesHsm() {
     }
 
     /**
      * Get the settings property: Specifies HSM settings of the AML file system.
-     *
+     * 
      * @return the settings value.
      */
     public AmlFilesystemHsmSettings settings() {
@@ -38,7 +48,7 @@ public final class AmlFilesystemPropertiesHsm {
 
     /**
      * Set the settings property: Specifies HSM settings of the AML file system.
-     *
+     * 
      * @param settings the settings value to set.
      * @return the AmlFilesystemPropertiesHsm object itself.
      */
@@ -49,7 +59,7 @@ public final class AmlFilesystemPropertiesHsm {
 
     /**
      * Get the archiveStatus property: Archive status.
-     *
+     * 
      * @return the archiveStatus value.
      */
     public List<AmlFilesystemArchive> archiveStatus() {
@@ -57,8 +67,17 @@ public final class AmlFilesystemPropertiesHsm {
     }
 
     /**
+     * Get the importStatus property: Import status.
+     * 
+     * @return the importStatus value.
+     */
+    public List<AmlFilesystemImport> importStatus() {
+        return this.importStatus;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -67,6 +86,9 @@ public final class AmlFilesystemPropertiesHsm {
         }
         if (archiveStatus() != null) {
             archiveStatus().forEach(e -> e.validate());
+        }
+        if (importStatus() != null) {
+            importStatus().forEach(e -> e.validate());
         }
     }
 }
