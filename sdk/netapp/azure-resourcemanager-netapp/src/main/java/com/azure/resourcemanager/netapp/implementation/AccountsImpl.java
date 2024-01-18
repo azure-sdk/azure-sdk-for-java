@@ -12,7 +12,6 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.netapp.fluent.AccountsClient;
 import com.azure.resourcemanager.netapp.fluent.models.NetAppAccountInner;
 import com.azure.resourcemanager.netapp.models.Accounts;
-import com.azure.resourcemanager.netapp.models.EncryptionMigrationRequest;
 import com.azure.resourcemanager.netapp.models.NetAppAccount;
 
 public final class AccountsImpl implements Accounts {
@@ -83,15 +82,6 @@ public final class AccountsImpl implements Accounts {
 
     public void renewCredentials(String resourceGroupName, String accountName, Context context) {
         this.serviceClient().renewCredentials(resourceGroupName, accountName, context);
-    }
-
-    public void migrateEncryptionKey(String resourceGroupName, String accountName) {
-        this.serviceClient().migrateEncryptionKey(resourceGroupName, accountName);
-    }
-
-    public void migrateEncryptionKey(String resourceGroupName, String accountName, EncryptionMigrationRequest body,
-        Context context) {
-        this.serviceClient().migrateEncryptionKey(resourceGroupName, accountName, body, context);
     }
 
     public NetAppAccount getById(String id) {

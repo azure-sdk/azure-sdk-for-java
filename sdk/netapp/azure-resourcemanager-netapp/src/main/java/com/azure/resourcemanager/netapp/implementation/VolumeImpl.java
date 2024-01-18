@@ -325,10 +325,6 @@ public final class VolumeImpl implements Volume, Volume.Definition, Volume.Updat
         return this.innerModel().originatingResourceId();
     }
 
-    public Long inheritedSizeInBytes() {
-        return this.innerModel().inheritedSizeInBytes();
-    }
-
     public Region region() {
         return Region.fromName(this.regionName());
     }
@@ -445,14 +441,6 @@ public final class VolumeImpl implements Volume, Volume.Definition, Volume.Updat
 
     public void resetCifsPassword(Context context) {
         serviceManager.volumes().resetCifsPassword(resourceGroupName, accountName, poolName, volumeName, context);
-    }
-
-    public void splitCloneFromParent() {
-        serviceManager.volumes().splitCloneFromParent(resourceGroupName, accountName, poolName, volumeName);
-    }
-
-    public void splitCloneFromParent(Context context) {
-        serviceManager.volumes().splitCloneFromParent(resourceGroupName, accountName, poolName, volumeName, context);
     }
 
     public void breakFileLocks() {
