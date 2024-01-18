@@ -11,6 +11,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.containerservicefleet.fluent.UpdateRunsClient;
 import com.azure.resourcemanager.containerservicefleet.fluent.models.UpdateRunInner;
+import com.azure.resourcemanager.containerservicefleet.models.SkipProperties;
 import com.azure.resourcemanager.containerservicefleet.models.UpdateRun;
 import com.azure.resourcemanager.containerservicefleet.models.UpdateRuns;
 
@@ -21,8 +22,7 @@ public final class UpdateRunsImpl implements UpdateRuns {
 
     private final com.azure.resourcemanager.containerservicefleet.ContainerServiceFleetManager serviceManager;
 
-    public UpdateRunsImpl(
-        UpdateRunsClient innerClient,
+    public UpdateRunsImpl(UpdateRunsClient innerClient,
         com.azure.resourcemanager.containerservicefleet.ContainerServiceFleetManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -38,15 +38,12 @@ public final class UpdateRunsImpl implements UpdateRuns {
         return Utils.mapPage(inner, inner1 -> new UpdateRunImpl(inner1, this.manager()));
     }
 
-    public Response<UpdateRun> getWithResponse(
-        String resourceGroupName, String fleetName, String updateRunName, Context context) {
-        Response<UpdateRunInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, fleetName, updateRunName, context);
+    public Response<UpdateRun> getWithResponse(String resourceGroupName, String fleetName, String updateRunName,
+        Context context) {
+        Response<UpdateRunInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, fleetName, updateRunName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new UpdateRunImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -66,9 +63,30 @@ public final class UpdateRunsImpl implements UpdateRuns {
         this.serviceClient().delete(resourceGroupName, fleetName, updateRunName);
     }
 
-    public void delete(
-        String resourceGroupName, String fleetName, String updateRunName, String ifMatch, Context context) {
+    public void delete(String resourceGroupName, String fleetName, String updateRunName, String ifMatch,
+        Context context) {
         this.serviceClient().delete(resourceGroupName, fleetName, updateRunName, ifMatch, context);
+    }
+
+    public Response<UpdateRun> skipWithResponse(String resourceGroupName, String fleetName, String updateRunName,
+        SkipProperties body, String ifMatch, Context context) {
+        Response<UpdateRunInner> inner = this.serviceClient().skipWithResponse(resourceGroupName, fleetName,
+            updateRunName, body, ifMatch, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new UpdateRunImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public UpdateRun skip(String resourceGroupName, String fleetName, String updateRunName, SkipProperties body) {
+        UpdateRunInner inner = this.serviceClient().skip(resourceGroupName, fleetName, updateRunName, body);
+        if (inner != null) {
+            return new UpdateRunImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public UpdateRun start(String resourceGroupName, String fleetName, String updateRunName) {
@@ -80,10 +98,10 @@ public final class UpdateRunsImpl implements UpdateRuns {
         }
     }
 
-    public UpdateRun start(
-        String resourceGroupName, String fleetName, String updateRunName, String ifMatch, Context context) {
-        UpdateRunInner inner =
-            this.serviceClient().start(resourceGroupName, fleetName, updateRunName, ifMatch, context);
+    public UpdateRun start(String resourceGroupName, String fleetName, String updateRunName, String ifMatch,
+        Context context) {
+        UpdateRunInner inner
+            = this.serviceClient().start(resourceGroupName, fleetName, updateRunName, ifMatch, context);
         if (inner != null) {
             return new UpdateRunImpl(inner, this.manager());
         } else {
@@ -100,8 +118,8 @@ public final class UpdateRunsImpl implements UpdateRuns {
         }
     }
 
-    public UpdateRun stop(
-        String resourceGroupName, String fleetName, String updateRunName, String ifMatch, Context context) {
+    public UpdateRun stop(String resourceGroupName, String fleetName, String updateRunName, String ifMatch,
+        Context context) {
         UpdateRunInner inner = this.serviceClient().stop(resourceGroupName, fleetName, updateRunName, ifMatch, context);
         if (inner != null) {
             return new UpdateRunImpl(inner, this.manager());
@@ -113,25 +131,18 @@ public final class UpdateRunsImpl implements UpdateRuns {
     public UpdateRun getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String fleetName = Utils.getValueFromIdByName(id, "fleets");
         if (fleetName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'fleets'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'fleets'.", id)));
         }
         String updateRunName = Utils.getValueFromIdByName(id, "updateRuns");
         if (updateRunName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'updateRuns'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'updateRuns'.", id)));
         }
         return this.getWithResponse(resourceGroupName, fleetName, updateRunName, Context.NONE).getValue();
     }
@@ -139,25 +150,18 @@ public final class UpdateRunsImpl implements UpdateRuns {
     public Response<UpdateRun> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String fleetName = Utils.getValueFromIdByName(id, "fleets");
         if (fleetName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'fleets'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'fleets'.", id)));
         }
         String updateRunName = Utils.getValueFromIdByName(id, "updateRuns");
         if (updateRunName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'updateRuns'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'updateRuns'.", id)));
         }
         return this.getWithResponse(resourceGroupName, fleetName, updateRunName, context);
     }
@@ -165,25 +169,18 @@ public final class UpdateRunsImpl implements UpdateRuns {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String fleetName = Utils.getValueFromIdByName(id, "fleets");
         if (fleetName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'fleets'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'fleets'.", id)));
         }
         String updateRunName = Utils.getValueFromIdByName(id, "updateRuns");
         if (updateRunName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'updateRuns'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'updateRuns'.", id)));
         }
         String localIfMatch = null;
         this.delete(resourceGroupName, fleetName, updateRunName, localIfMatch, Context.NONE);
@@ -192,25 +189,18 @@ public final class UpdateRunsImpl implements UpdateRuns {
     public void deleteByIdWithResponse(String id, String ifMatch, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String fleetName = Utils.getValueFromIdByName(id, "fleets");
         if (fleetName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'fleets'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'fleets'.", id)));
         }
         String updateRunName = Utils.getValueFromIdByName(id, "updateRuns");
         if (updateRunName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'updateRuns'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'updateRuns'.", id)));
         }
         this.delete(resourceGroupName, fleetName, updateRunName, ifMatch, context);
     }
