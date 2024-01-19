@@ -21,8 +21,8 @@ public final class IotSecuritySolutionsImpl implements IotSecuritySolutions {
 
     private final com.azure.resourcemanager.security.SecurityManager serviceManager;
 
-    public IotSecuritySolutionsImpl(
-        IotSecuritySolutionsClient innerClient, com.azure.resourcemanager.security.SecurityManager serviceManager) {
+    public IotSecuritySolutionsImpl(IotSecuritySolutionsClient innerClient,
+        com.azure.resourcemanager.security.SecurityManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -38,27 +38,24 @@ public final class IotSecuritySolutionsImpl implements IotSecuritySolutions {
     }
 
     public PagedIterable<IoTSecuritySolutionModel> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<IoTSecuritySolutionModelInner> inner =
-            this.serviceClient().listByResourceGroup(resourceGroupName);
+        PagedIterable<IoTSecuritySolutionModelInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName);
         return Utils.mapPage(inner, inner1 -> new IoTSecuritySolutionModelImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<IoTSecuritySolutionModel> listByResourceGroup(
-        String resourceGroupName, String filter, Context context) {
-        PagedIterable<IoTSecuritySolutionModelInner> inner =
-            this.serviceClient().listByResourceGroup(resourceGroupName, filter, context);
+    public PagedIterable<IoTSecuritySolutionModel> listByResourceGroup(String resourceGroupName, String filter,
+        Context context) {
+        PagedIterable<IoTSecuritySolutionModelInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, filter, context);
         return Utils.mapPage(inner, inner1 -> new IoTSecuritySolutionModelImpl(inner1, this.manager()));
     }
 
-    public Response<IoTSecuritySolutionModel> getByResourceGroupWithResponse(
-        String resourceGroupName, String solutionName, Context context) {
-        Response<IoTSecuritySolutionModelInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, solutionName, context);
+    public Response<IoTSecuritySolutionModel> getByResourceGroupWithResponse(String resourceGroupName,
+        String solutionName, Context context) {
+        Response<IoTSecuritySolutionModelInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, solutionName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new IoTSecuritySolutionModelImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -74,8 +71,8 @@ public final class IotSecuritySolutionsImpl implements IotSecuritySolutions {
         }
     }
 
-    public Response<Void> deleteByResourceGroupWithResponse(
-        String resourceGroupName, String solutionName, Context context) {
+    public Response<Void> deleteByResourceGroupWithResponse(String resourceGroupName, String solutionName,
+        Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, solutionName, context);
     }
 
@@ -86,21 +83,13 @@ public final class IotSecuritySolutionsImpl implements IotSecuritySolutions {
     public IoTSecuritySolutionModel getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String solutionName = Utils.getValueFromIdByName(id, "iotSecuritySolutions");
         if (solutionName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'iotSecuritySolutions'.",
-                                id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'iotSecuritySolutions'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, solutionName, Context.NONE).getValue();
     }
@@ -108,21 +97,13 @@ public final class IotSecuritySolutionsImpl implements IotSecuritySolutions {
     public Response<IoTSecuritySolutionModel> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String solutionName = Utils.getValueFromIdByName(id, "iotSecuritySolutions");
         if (solutionName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'iotSecuritySolutions'.",
-                                id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'iotSecuritySolutions'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, solutionName, context);
     }
@@ -130,21 +111,13 @@ public final class IotSecuritySolutionsImpl implements IotSecuritySolutions {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String solutionName = Utils.getValueFromIdByName(id, "iotSecuritySolutions");
         if (solutionName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'iotSecuritySolutions'.",
-                                id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'iotSecuritySolutions'.", id)));
         }
         this.deleteByResourceGroupWithResponse(resourceGroupName, solutionName, Context.NONE);
     }
@@ -152,21 +125,13 @@ public final class IotSecuritySolutionsImpl implements IotSecuritySolutions {
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String solutionName = Utils.getValueFromIdByName(id, "iotSecuritySolutions");
         if (solutionName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'iotSecuritySolutions'.",
-                                id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'iotSecuritySolutions'.", id)));
         }
         return this.deleteByResourceGroupWithResponse(resourceGroupName, solutionName, context);
     }

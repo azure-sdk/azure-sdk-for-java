@@ -19,8 +19,8 @@ public final class ApplicationsImpl implements Applications {
 
     private final com.azure.resourcemanager.security.SecurityManager serviceManager;
 
-    public ApplicationsImpl(
-        ApplicationsClient innerClient, com.azure.resourcemanager.security.SecurityManager serviceManager) {
+    public ApplicationsImpl(ApplicationsClient innerClient,
+        com.azure.resourcemanager.security.SecurityManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
