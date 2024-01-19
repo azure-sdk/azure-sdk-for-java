@@ -14,7 +14,10 @@ import com.azure.resourcemanager.confluent.fluent.models.AccessListInvitationsSu
 import com.azure.resourcemanager.confluent.fluent.models.AccessListRoleBindingsSuccessResponseInner;
 import com.azure.resourcemanager.confluent.fluent.models.AccessListServiceAccountsSuccessResponseInner;
 import com.azure.resourcemanager.confluent.fluent.models.AccessListUsersSuccessResponseInner;
+import com.azure.resourcemanager.confluent.fluent.models.AccessRoleBindingNameListSuccessResponseInner;
 import com.azure.resourcemanager.confluent.fluent.models.InvitationRecordInner;
+import com.azure.resourcemanager.confluent.fluent.models.RoleBindingRecordInner;
+import com.azure.resourcemanager.confluent.models.AccessCreateRoleBindingRequestModel;
 import com.azure.resourcemanager.confluent.models.AccessInviteUserAccountModel;
 import com.azure.resourcemanager.confluent.models.ListAccessRequestModel;
 
@@ -156,7 +159,7 @@ public interface AccessClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list environments success response along with {@link Response}.
+     * @return details of the environments returned on successful response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AccessListEnvironmentsSuccessResponseInner> listEnvironmentsWithResponse(String resourceGroupName,
@@ -171,7 +174,7 @@ public interface AccessClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list environments success response.
+     * @return details of the environments returned on successful response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     AccessListEnvironmentsSuccessResponseInner listEnvironments(String resourceGroupName, String organizationName,
@@ -187,7 +190,7 @@ public interface AccessClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list cluster success response along with {@link Response}.
+     * @return details of the clusters returned on successful response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AccessListClusterSuccessResponseInner> listClustersWithResponse(String resourceGroupName,
@@ -202,7 +205,7 @@ public interface AccessClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list cluster success response.
+     * @return details of the clusters returned on successful response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     AccessListClusterSuccessResponseInner listClusters(String resourceGroupName, String organizationName,
@@ -218,7 +221,7 @@ public interface AccessClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list cluster success response along with {@link Response}.
+     * @return details of the role bindings returned on successful response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AccessListRoleBindingsSuccessResponseInner> listRoleBindingsWithResponse(String resourceGroupName,
@@ -233,9 +236,100 @@ public interface AccessClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list cluster success response.
+     * @return details of the role bindings returned on successful response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     AccessListRoleBindingsSuccessResponseInner listRoleBindings(String resourceGroupName, String organizationName,
         ListAccessRequestModel body);
+
+    /**
+     * Create role binding for a user within in an environment or cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Organization resource name.
+     * @param body Create role binding Request Model.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details on principal, role name and crn pattern of a role binding along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<RoleBindingRecordInner> createRoleBindingWithResponse(String resourceGroupName, String organizationName,
+        AccessCreateRoleBindingRequestModel body, Context context);
+
+    /**
+     * Create role binding for a user within in an environment or cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Organization resource name.
+     * @param body Create role binding Request Model.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details on principal, role name and crn pattern of a role binding.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    RoleBindingRecordInner createRoleBinding(String resourceGroupName, String organizationName,
+        AccessCreateRoleBindingRequestModel body);
+
+    /**
+     * Delete the role binding of the user.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Organization resource name.
+     * @param roleBindingId Confluent Role binding id.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> deleteRoleBindingWithResponse(String resourceGroupName, String organizationName,
+        String roleBindingId, Context context);
+
+    /**
+     * Delete the role binding of the user.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Organization resource name.
+     * @param roleBindingId Confluent Role binding id.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void deleteRoleBinding(String resourceGroupName, String organizationName, String roleBindingId);
+
+    /**
+     * List of all the role bindings applicable to the user filtered by the environment and cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Organization resource name.
+     * @param body List Access Request Model.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details of the role binding names returned on successful response along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<AccessRoleBindingNameListSuccessResponseInner> listRoleBindingNameListWithResponse(
+        String resourceGroupName, String organizationName, ListAccessRequestModel body, Context context);
+
+    /**
+     * List of all the role bindings applicable to the user filtered by the environment and cluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Organization resource name.
+     * @param body List Access Request Model.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details of the role binding names returned on successful response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    AccessRoleBindingNameListSuccessResponseInner listRoleBindingNameList(String resourceGroupName,
+        String organizationName, ListAccessRequestModel body);
 }

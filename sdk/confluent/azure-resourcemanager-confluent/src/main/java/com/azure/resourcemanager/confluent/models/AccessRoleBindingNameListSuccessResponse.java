@@ -4,13 +4,13 @@
 
 package com.azure.resourcemanager.confluent.models;
 
-import com.azure.resourcemanager.confluent.fluent.models.AccessListClusterSuccessResponseInner;
+import com.azure.resourcemanager.confluent.fluent.models.AccessRoleBindingNameListSuccessResponseInner;
 import java.util.List;
 
 /**
- * An immutable client-side representation of AccessListClusterSuccessResponse.
+ * An immutable client-side representation of AccessRoleBindingNameListSuccessResponse.
  */
-public interface AccessListClusterSuccessResponse {
+public interface AccessRoleBindingNameListSuccessResponse {
     /**
      * Gets the kind property: Type of response.
      * 
@@ -26,16 +26,17 @@ public interface AccessListClusterSuccessResponse {
     ConfluentListMetadata metadata();
 
     /**
-     * Gets the data property: List of clusters.
+     * Gets the data property: List of role binding names.
      * 
      * @return the data value.
      */
-    List<ClusterRecord> data();
+    List<String> data();
 
     /**
-     * Gets the inner com.azure.resourcemanager.confluent.fluent.models.AccessListClusterSuccessResponseInner object.
+     * Gets the inner com.azure.resourcemanager.confluent.fluent.models.AccessRoleBindingNameListSuccessResponseInner
+     * object.
      * 
      * @return the inner object.
      */
-    AccessListClusterSuccessResponseInner innerModel();
+    AccessRoleBindingNameListSuccessResponseInner innerModel();
 }

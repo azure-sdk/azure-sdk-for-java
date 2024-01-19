@@ -14,7 +14,7 @@ import java.util.Map;
 public final class AccessListUsersSamples {
     /*
      * x-ms-original-file:
-     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2023-08-22/examples/Access_UsersList.json
+     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-01-19/examples/Access_UsersList.json
      */
     /**
      * Sample code: Access_UsersList.

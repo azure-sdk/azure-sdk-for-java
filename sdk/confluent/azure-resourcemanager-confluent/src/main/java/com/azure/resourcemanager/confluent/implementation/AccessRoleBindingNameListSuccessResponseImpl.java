@@ -4,21 +4,18 @@
 
 package com.azure.resourcemanager.confluent.implementation;
 
-import com.azure.resourcemanager.confluent.fluent.models.AccessListRoleBindingsSuccessResponseInner;
-import com.azure.resourcemanager.confluent.fluent.models.RoleBindingRecordInner;
-import com.azure.resourcemanager.confluent.models.AccessListRoleBindingsSuccessResponse;
+import com.azure.resourcemanager.confluent.fluent.models.AccessRoleBindingNameListSuccessResponseInner;
+import com.azure.resourcemanager.confluent.models.AccessRoleBindingNameListSuccessResponse;
 import com.azure.resourcemanager.confluent.models.ConfluentListMetadata;
-import com.azure.resourcemanager.confluent.models.RoleBindingRecord;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public final class AccessListRoleBindingsSuccessResponseImpl implements AccessListRoleBindingsSuccessResponse {
-    private AccessListRoleBindingsSuccessResponseInner innerObject;
+public final class AccessRoleBindingNameListSuccessResponseImpl implements AccessRoleBindingNameListSuccessResponse {
+    private AccessRoleBindingNameListSuccessResponseInner innerObject;
 
     private final com.azure.resourcemanager.confluent.ConfluentManager serviceManager;
 
-    AccessListRoleBindingsSuccessResponseImpl(AccessListRoleBindingsSuccessResponseInner innerObject,
+    AccessRoleBindingNameListSuccessResponseImpl(AccessRoleBindingNameListSuccessResponseInner innerObject,
         com.azure.resourcemanager.confluent.ConfluentManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -32,17 +29,16 @@ public final class AccessListRoleBindingsSuccessResponseImpl implements AccessLi
         return this.innerModel().metadata();
     }
 
-    public List<RoleBindingRecord> data() {
-        List<RoleBindingRecordInner> inner = this.innerModel().data();
+    public List<String> data() {
+        List<String> inner = this.innerModel().data();
         if (inner != null) {
-            return Collections.unmodifiableList(inner.stream()
-                .map(inner1 -> new RoleBindingRecordImpl(inner1, this.manager())).collect(Collectors.toList()));
+            return Collections.unmodifiableList(inner);
         } else {
             return Collections.emptyList();
         }
     }
 
-    public AccessListRoleBindingsSuccessResponseInner innerModel() {
+    public AccessRoleBindingNameListSuccessResponseInner innerModel() {
         return this.innerObject;
     }
 

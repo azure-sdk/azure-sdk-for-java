@@ -8,18 +8,18 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Record of the environment.
+ * Details of cluster record.
  */
 @Fluent
 public final class ClusterRecord {
     /*
-     * Type of environment
+     * Type of cluster
      */
     @JsonProperty(value = "kind")
     private String kind;
 
     /*
-     * Id of the environment
+     * Id of the cluster
      */
     @JsonProperty(value = "id")
     private String id;
@@ -55,7 +55,7 @@ public final class ClusterRecord {
     }
 
     /**
-     * Get the kind property: Type of environment.
+     * Get the kind property: Type of cluster.
      * 
      * @return the kind value.
      */
@@ -64,7 +64,7 @@ public final class ClusterRecord {
     }
 
     /**
-     * Set the kind property: Type of environment.
+     * Set the kind property: Type of cluster.
      * 
      * @param kind the kind value to set.
      * @return the ClusterRecord object itself.
@@ -75,7 +75,7 @@ public final class ClusterRecord {
     }
 
     /**
-     * Get the id property: Id of the environment.
+     * Get the id property: Id of the cluster.
      * 
      * @return the id value.
      */
@@ -84,7 +84,7 @@ public final class ClusterRecord {
     }
 
     /**
-     * Set the id property: Id of the environment.
+     * Set the id property: Id of the cluster.
      * 
      * @param id the id value to set.
      * @return the ClusterRecord object itself.

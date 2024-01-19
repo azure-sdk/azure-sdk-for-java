@@ -6,15 +6,14 @@ package com.azure.resourcemanager.confluent.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.confluent.models.ConfluentListMetadata;
-import com.azure.resourcemanager.confluent.models.EnvironmentRecord;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * Details of the environments returned on successful response.
+ * Details of the role binding names returned on successful response.
  */
 @Fluent
-public final class AccessListEnvironmentsSuccessResponseInner {
+public final class AccessRoleBindingNameListSuccessResponseInner {
     /*
      * Type of response
      */
@@ -22,21 +21,21 @@ public final class AccessListEnvironmentsSuccessResponseInner {
     private String kind;
 
     /*
-     * Metadata of the environment list
+     * Metadata of the list
      */
     @JsonProperty(value = "metadata")
     private ConfluentListMetadata metadata;
 
     /*
-     * Environment list data
+     * List of role binding names
      */
     @JsonProperty(value = "data")
-    private List<EnvironmentRecord> data;
+    private List<String> data;
 
     /**
-     * Creates an instance of AccessListEnvironmentsSuccessResponseInner class.
+     * Creates an instance of AccessRoleBindingNameListSuccessResponseInner class.
      */
-    public AccessListEnvironmentsSuccessResponseInner() {
+    public AccessRoleBindingNameListSuccessResponseInner() {
     }
 
     /**
@@ -52,15 +51,15 @@ public final class AccessListEnvironmentsSuccessResponseInner {
      * Set the kind property: Type of response.
      * 
      * @param kind the kind value to set.
-     * @return the AccessListEnvironmentsSuccessResponseInner object itself.
+     * @return the AccessRoleBindingNameListSuccessResponseInner object itself.
      */
-    public AccessListEnvironmentsSuccessResponseInner withKind(String kind) {
+    public AccessRoleBindingNameListSuccessResponseInner withKind(String kind) {
         this.kind = kind;
         return this;
     }
 
     /**
-     * Get the metadata property: Metadata of the environment list.
+     * Get the metadata property: Metadata of the list.
      * 
      * @return the metadata value.
      */
@@ -69,32 +68,32 @@ public final class AccessListEnvironmentsSuccessResponseInner {
     }
 
     /**
-     * Set the metadata property: Metadata of the environment list.
+     * Set the metadata property: Metadata of the list.
      * 
      * @param metadata the metadata value to set.
-     * @return the AccessListEnvironmentsSuccessResponseInner object itself.
+     * @return the AccessRoleBindingNameListSuccessResponseInner object itself.
      */
-    public AccessListEnvironmentsSuccessResponseInner withMetadata(ConfluentListMetadata metadata) {
+    public AccessRoleBindingNameListSuccessResponseInner withMetadata(ConfluentListMetadata metadata) {
         this.metadata = metadata;
         return this;
     }
 
     /**
-     * Get the data property: Environment list data.
+     * Get the data property: List of role binding names.
      * 
      * @return the data value.
      */
-    public List<EnvironmentRecord> data() {
+    public List<String> data() {
         return this.data;
     }
 
     /**
-     * Set the data property: Environment list data.
+     * Set the data property: List of role binding names.
      * 
      * @param data the data value to set.
-     * @return the AccessListEnvironmentsSuccessResponseInner object itself.
+     * @return the AccessRoleBindingNameListSuccessResponseInner object itself.
      */
-    public AccessListEnvironmentsSuccessResponseInner withData(List<EnvironmentRecord> data) {
+    public AccessRoleBindingNameListSuccessResponseInner withData(List<String> data) {
         this.data = data;
         return this;
     }
@@ -107,9 +106,6 @@ public final class AccessListEnvironmentsSuccessResponseInner {
     public void validate() {
         if (metadata() != null) {
             metadata().validate();
-        }
-        if (data() != null) {
-            data().forEach(e -> e.validate());
         }
     }
 }

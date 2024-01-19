@@ -9,23 +9,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Samples for Access ListInvitations.
+ * Samples for Access ListRoleBindingNameList.
  */
-public final class AccessListInvitationsSamples {
+public final class AccessListRoleBindingNameListSamples {
     /*
-     * x-ms-original-file:
-     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-01-19/examples/Access_InvitationsList.
-     * json
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-01-19/examples/
+     * Access_RoleBindingNameList.json
      */
     /**
-     * Sample code: Access_InvitationsList.
+     * Sample code: Access_RoleBindingNameList.
      * 
      * @param manager Entry point to ConfluentManager.
      */
-    public static void accessInvitationsList(com.azure.resourcemanager.confluent.ConfluentManager manager) {
-        manager.access().listInvitationsWithResponse("myResourceGroup", "myOrganization",
-            new ListAccessRequestModel().withSearchFilters(
-                mapOf("pageSize", "10", "pageToken", "fakeTokenPlaceholder", "status", "INVITE_STATUS_SENT")),
+    public static void accessRoleBindingNameList(com.azure.resourcemanager.confluent.ConfluentManager manager) {
+        manager.access().listRoleBindingNameListWithResponse("myResourceGroup", "myOrganization",
+            new ListAccessRequestModel().withSearchFilters(mapOf("crn_pattern",
+                "crn://confluent.cloud/organization=1aa7de07-298e-479c-8f2f-16ac91fd8e76", "namespace",
+                "public,dataplane,networking,identity,datagovernance,connect,streamcatalog,pipelines,ksql")),
             com.azure.core.util.Context.NONE);
     }
 

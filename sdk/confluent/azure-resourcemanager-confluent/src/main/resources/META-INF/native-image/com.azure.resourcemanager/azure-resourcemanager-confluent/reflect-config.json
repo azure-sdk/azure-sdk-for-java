@@ -179,7 +179,17 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.confluent.models.RoleBindingRecord",
+  "name" : "com.azure.resourcemanager.confluent.fluent.models.RoleBindingRecordInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.confluent.models.AccessCreateRoleBindingRequestModel",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.confluent.fluent.models.AccessRoleBindingNameListSuccessResponseInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
