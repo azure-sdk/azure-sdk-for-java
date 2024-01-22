@@ -5,31 +5,28 @@
 package com.azure.resourcemanager.scvmm.generated;
 
 import com.azure.resourcemanager.scvmm.models.ExtendedLocation;
+import com.azure.resourcemanager.scvmm.models.VirtualNetworkProperties;
 
-/** Samples for VirtualNetworks CreateOrUpdate. */
+/**
+ * Samples for VirtualNetworks CreateOrUpdate.
+ */
 public final class VirtualNetworksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/preview/2020-06-05-preview/examples/CreateVirtualNetwork.json
+     * x-ms-original-file:
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/CreateVirtualNetwork.json
      */
     /**
      * Sample code: CreateVirtualNetwork.
-     *
+     * 
      * @param manager Entry point to ScvmmManager.
      */
     public static void createVirtualNetwork(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager
-            .virtualNetworks()
-            .define("HRVirtualNetwork")
-            .withRegion("East US")
-            .withExistingResourceGroup("testrg")
-            .withExtendedLocation(
-                new ExtendedLocation()
-                    .withType("customLocation")
-                    .withName(
-                        "/subscriptions/a5015e1c-867f-4533-8541-85cd470d0cfb/resourceGroups/demoRG/providers/Microsoft.Arc/customLocations/contoso"))
-            .withUuid("aaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee")
-            .withVmmServerId(
-                "/subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.SCVMM/VMMServers/ContosoVMMServer")
+        manager.virtualNetworks().define("HRVirtualNetwork").withRegion("East US").withExistingResourceGroup("testrg")
+            .withProperties(
+                new VirtualNetworkProperties().withUuid("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee").withVmmServerId(
+                    "/subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.SCVMM/VMMServers/ContosoVMMServer"))
+            .withExtendedLocation(new ExtendedLocation().withType("customLocation").withName(
+                "/subscriptions/a5015e1c-867f-4533-8541-85cd470d0cfb/resourceGroups/demoRG/providers/Microsoft.Arc/customLocations/contoso"))
             .create();
     }
 }

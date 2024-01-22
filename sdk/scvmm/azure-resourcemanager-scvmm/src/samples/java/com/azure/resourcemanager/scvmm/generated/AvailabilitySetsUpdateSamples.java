@@ -4,30 +4,30 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.models.AvailabilitySet;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for AvailabilitySets Update. */
+/**
+ * Samples for AvailabilitySets Update.
+ */
 public final class AvailabilitySetsUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/preview/2020-06-05-preview/examples/UpdateAvailabilitySet.json
+     * x-ms-original-file:
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/UpdateAvailabilitySet.json
      */
     /**
      * Sample code: UpdateAvailabilitySet.
-     *
+     * 
      * @param manager Entry point to ScvmmManager.
      */
     public static void updateAvailabilitySet(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        AvailabilitySet resource =
-            manager
-                .availabilitySets()
-                .getByResourceGroupWithResponse("testrg", "HRAvailabilitySet", Context.NONE)
-                .getValue();
+        AvailabilitySet resource = manager.availabilitySets()
+            .getByResourceGroupWithResponse("testrg", "HRAvailabilitySet", com.azure.core.util.Context.NONE).getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

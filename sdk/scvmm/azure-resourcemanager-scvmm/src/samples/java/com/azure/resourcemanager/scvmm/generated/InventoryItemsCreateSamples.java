@@ -4,21 +4,23 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-/** Samples for InventoryItems Create. */
+import com.azure.resourcemanager.scvmm.models.CloudInventoryItem;
+
+/**
+ * Samples for InventoryItems Create.
+ */
 public final class InventoryItemsCreateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/preview/2020-06-05-preview/examples/CreateInventoryItem.json
+     * x-ms-original-file:
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/CreateInventoryItem.json
      */
     /**
      * Sample code: CreateInventoryItem.
-     *
+     * 
      * @param manager Entry point to ScvmmManager.
      */
     public static void createInventoryItem(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager
-            .inventoryItems()
-            .define("12345678-1234-1234-1234-123456789abc")
-            .withExistingVmmServer("testrg", "ContosoVMMServer")
-            .create();
+        manager.inventoryItems().define("12345678-1234-1234-1234-123456789abc")
+            .withExistingVmmServer("testrg", "ContosoVMMServer").withProperties(new CloudInventoryItem()).create();
     }
 }

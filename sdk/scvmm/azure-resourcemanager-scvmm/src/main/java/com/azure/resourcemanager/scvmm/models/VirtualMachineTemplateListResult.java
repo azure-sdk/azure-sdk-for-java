@@ -9,7 +9,9 @@ import com.azure.resourcemanager.scvmm.fluent.models.VirtualMachineTemplateInner
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of VirtualMachineTemplates. */
+/**
+ * List of VirtualMachineTemplates.
+ */
 @Fluent
 public final class VirtualMachineTemplateListResult {
     /*
@@ -21,12 +23,18 @@ public final class VirtualMachineTemplateListResult {
     /*
      * Url to follow for getting next page of resources.
      */
-    @JsonProperty(value = "nextLink")
+    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
     /**
+     * Creates an instance of VirtualMachineTemplateListResult class.
+     */
+    public VirtualMachineTemplateListResult() {
+    }
+
+    /**
      * Get the value property: List of VirtualMachineTemplates.
-     *
+     * 
      * @return the value value.
      */
     public List<VirtualMachineTemplateInner> value() {
@@ -35,7 +43,7 @@ public final class VirtualMachineTemplateListResult {
 
     /**
      * Set the value property: List of VirtualMachineTemplates.
-     *
+     * 
      * @param value the value value to set.
      * @return the VirtualMachineTemplateListResult object itself.
      */
@@ -46,7 +54,7 @@ public final class VirtualMachineTemplateListResult {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -54,19 +62,8 @@ public final class VirtualMachineTemplateListResult {
     }
 
     /**
-     * Set the nextLink property: Url to follow for getting next page of resources.
-     *
-     * @param nextLink the nextLink value to set.
-     * @return the VirtualMachineTemplateListResult object itself.
-     */
-    public VirtualMachineTemplateListResult withNextLink(String nextLink) {
-        this.nextLink = nextLink;
-        return this;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -4,20 +4,21 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
-
-/** Samples for VirtualMachineTemplates ListByResourceGroup. */
+/**
+ * Samples for VirtualMachineTemplates ListByResourceGroup.
+ */
 public final class VirtualMachineTemplatesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/preview/2020-06-05-preview/examples/ListVirtualMachineTemplatesByResourceGroup.json
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * ListVirtualMachineTemplatesByResourceGroup.json
      */
     /**
      * Sample code: ListVirtualMachineTemplatesByResourceGroup.
-     *
+     * 
      * @param manager Entry point to ScvmmManager.
      */
-    public static void listVirtualMachineTemplatesByResourceGroup(
-        com.azure.resourcemanager.scvmm.ScvmmManager manager) {
-        manager.virtualMachineTemplates().listByResourceGroup("testrg", Context.NONE);
+    public static void
+        listVirtualMachineTemplatesByResourceGroup(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
+        manager.virtualMachineTemplates().listByResourceGroup("testrg", com.azure.core.util.Context.NONE);
     }
 }

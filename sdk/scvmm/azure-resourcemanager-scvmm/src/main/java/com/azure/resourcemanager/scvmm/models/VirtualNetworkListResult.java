@@ -9,7 +9,9 @@ import com.azure.resourcemanager.scvmm.fluent.models.VirtualNetworkInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of VirtualNetworks. */
+/**
+ * List of VirtualNetworks.
+ */
 @Fluent
 public final class VirtualNetworkListResult {
     /*
@@ -21,12 +23,18 @@ public final class VirtualNetworkListResult {
     /*
      * Url to follow for getting next page of resources.
      */
-    @JsonProperty(value = "nextLink")
+    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
     /**
+     * Creates an instance of VirtualNetworkListResult class.
+     */
+    public VirtualNetworkListResult() {
+    }
+
+    /**
      * Get the value property: List of VirtualNetworks.
-     *
+     * 
      * @return the value value.
      */
     public List<VirtualNetworkInner> value() {
@@ -35,7 +43,7 @@ public final class VirtualNetworkListResult {
 
     /**
      * Set the value property: List of VirtualNetworks.
-     *
+     * 
      * @param value the value value to set.
      * @return the VirtualNetworkListResult object itself.
      */
@@ -46,7 +54,7 @@ public final class VirtualNetworkListResult {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -54,19 +62,8 @@ public final class VirtualNetworkListResult {
     }
 
     /**
-     * Set the nextLink property: Url to follow for getting next page of resources.
-     *
-     * @param nextLink the nextLink value to set.
-     * @return the VirtualNetworkListResult object itself.
-     */
-    public VirtualNetworkListResult withNextLink(String nextLink) {
-        this.nextLink = nextLink;
-        return this;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
