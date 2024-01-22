@@ -7,43 +7,43 @@ package com.azure.resourcemanager.elasticsan.generated;
 import com.azure.resourcemanager.elasticsan.models.ManagedByInfo;
 import com.azure.resourcemanager.elasticsan.models.SourceCreationData;
 import com.azure.resourcemanager.elasticsan.models.VolumeCreateOption;
+import com.azure.resourcemanager.elasticsan.models.VolumeProperties;
 
-/** Samples for Volumes Create. */
+/**
+ * Samples for Volumes Create.
+ */
 public final class VolumesCreateSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/Volumes_Create_MaximumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
+     * Volumes_Create_MaximumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Create_MaximumSet_Gen.
-     *
+     * 
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesCreateMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager
-            .volumes()
-            .define("volumename")
+        manager.volumes().define("volumename")
             .withExistingVolumegroup("resourcegroupname", "elasticsanname", "volumegroupname")
-            .withSizeGiB(9L)
-            .withCreationData(
-                new SourceCreationData().withCreateSource(VolumeCreateOption.NONE).withSourceId("ARM Id of Resource"))
-            .withManagedBy(new ManagedByInfo().withResourceId("mtkeip"))
+            .withProperties(new VolumeProperties()
+                .withCreationData(new SourceCreationData().withCreateSource(VolumeCreateOption.NONE)
+                    .withSourceId("ARM Id of Resource"))
+                .withSizeGiB(9L).withManagedBy(new ManagedByInfo().withResourceId("mtkeip")))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/Volumes_Create_MinimumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
+     * Volumes_Create_MinimumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Create_MinimumSet_Gen.
-     *
+     * 
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesCreateMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager
-            .volumes()
-            .define("volumename")
+        manager.volumes().define("volumename")
             .withExistingVolumegroup("resourcegroupname", "elasticsanname", "volumegroupname")
-            .withSizeGiB(9L)
-            .create();
+            .withProperties(new VolumeProperties().withSizeGiB(9L)).create();
     }
 }

@@ -8,20 +8,19 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.elasticsan.models.PrivateEndpoint;
-import com.azure.resourcemanager.elasticsan.models.PrivateLinkServiceConnectionState;
-import com.azure.resourcemanager.elasticsan.models.ProvisioningStates;
+import com.azure.resourcemanager.elasticsan.models.PrivateEndpointConnectionProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
-/** Response for PrivateEndpoint Connection object. */
+/**
+ * Response for PrivateEndpoint Connection object.
+ */
 @Fluent
 public final class PrivateEndpointConnectionInner extends ProxyResource {
     /*
      * Private Endpoint Connection Properties.
      */
     @JsonProperty(value = "properties", required = true)
-    private PrivateEndpointConnectionProperties innerProperties = new PrivateEndpointConnectionProperties();
+    private PrivateEndpointConnectionProperties properties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -29,22 +28,35 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of PrivateEndpointConnectionInner class. */
+    /**
+     * Creates an instance of PrivateEndpointConnectionInner class.
+     */
     public PrivateEndpointConnectionInner() {
     }
 
     /**
-     * Get the innerProperties property: Private Endpoint Connection Properties.
-     *
-     * @return the innerProperties value.
+     * Get the properties property: Private Endpoint Connection Properties.
+     * 
+     * @return the properties value.
      */
-    private PrivateEndpointConnectionProperties innerProperties() {
-        return this.innerProperties;
+    public PrivateEndpointConnectionProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Private Endpoint Connection Properties.
+     * 
+     * @param properties the properties value to set.
+     * @return the PrivateEndpointConnectionInner object itself.
+     */
+    public PrivateEndpointConnectionInner withProperties(PrivateEndpointConnectionProperties properties) {
+        this.properties = properties;
+        return this;
     }
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -52,97 +64,16 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     }
 
     /**
-     * Get the provisioningState property: Provisioning State of Private Endpoint connection resource.
-     *
-     * @return the provisioningState value.
-     */
-    public ProvisioningStates provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
-     * Get the privateEndpoint property: Private Endpoint resource.
-     *
-     * @return the privateEndpoint value.
-     */
-    public PrivateEndpoint privateEndpoint() {
-        return this.innerProperties() == null ? null : this.innerProperties().privateEndpoint();
-    }
-
-    /**
-     * Set the privateEndpoint property: Private Endpoint resource.
-     *
-     * @param privateEndpoint the privateEndpoint value to set.
-     * @return the PrivateEndpointConnectionInner object itself.
-     */
-    public PrivateEndpointConnectionInner withPrivateEndpoint(PrivateEndpoint privateEndpoint) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new PrivateEndpointConnectionProperties();
-        }
-        this.innerProperties().withPrivateEndpoint(privateEndpoint);
-        return this;
-    }
-
-    /**
-     * Get the privateLinkServiceConnectionState property: Private Link Service Connection State.
-     *
-     * @return the privateLinkServiceConnectionState value.
-     */
-    public PrivateLinkServiceConnectionState privateLinkServiceConnectionState() {
-        return this.innerProperties() == null ? null : this.innerProperties().privateLinkServiceConnectionState();
-    }
-
-    /**
-     * Set the privateLinkServiceConnectionState property: Private Link Service Connection State.
-     *
-     * @param privateLinkServiceConnectionState the privateLinkServiceConnectionState value to set.
-     * @return the PrivateEndpointConnectionInner object itself.
-     */
-    public PrivateEndpointConnectionInner withPrivateLinkServiceConnectionState(
-        PrivateLinkServiceConnectionState privateLinkServiceConnectionState) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new PrivateEndpointConnectionProperties();
-        }
-        this.innerProperties().withPrivateLinkServiceConnectionState(privateLinkServiceConnectionState);
-        return this;
-    }
-
-    /**
-     * Get the groupIds property: List of resources private endpoint is mapped.
-     *
-     * @return the groupIds value.
-     */
-    public List<String> groupIds() {
-        return this.innerProperties() == null ? null : this.innerProperties().groupIds();
-    }
-
-    /**
-     * Set the groupIds property: List of resources private endpoint is mapped.
-     *
-     * @param groupIds the groupIds value to set.
-     * @return the PrivateEndpointConnectionInner object itself.
-     */
-    public PrivateEndpointConnectionInner withGroupIds(List<String> groupIds) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new PrivateEndpointConnectionProperties();
-        }
-        this.innerProperties().withGroupIds(groupIds);
-        return this;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model PrivateEndpointConnectionInner"));
+        if (properties() == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property properties in model PrivateEndpointConnectionInner"));
         } else {
-            innerProperties().validate();
+            properties().validate();
         }
     }
 

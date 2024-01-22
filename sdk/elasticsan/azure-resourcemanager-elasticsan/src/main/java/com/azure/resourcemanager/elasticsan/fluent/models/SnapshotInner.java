@@ -8,18 +8,19 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.elasticsan.models.ProvisioningStates;
-import com.azure.resourcemanager.elasticsan.models.SnapshotCreationData;
+import com.azure.resourcemanager.elasticsan.models.SnapshotProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Response for Volume Snapshot request. */
+/**
+ * Response for Volume Snapshot request.
+ */
 @Fluent
 public final class SnapshotInner extends ProxyResource {
     /*
      * Properties of Volume Snapshot.
      */
     @JsonProperty(value = "properties", required = true)
-    private SnapshotProperties innerProperties = new SnapshotProperties();
+    private SnapshotProperties properties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -27,22 +28,35 @@ public final class SnapshotInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of SnapshotInner class. */
+    /**
+     * Creates an instance of SnapshotInner class.
+     */
     public SnapshotInner() {
     }
 
     /**
-     * Get the innerProperties property: Properties of Volume Snapshot.
-     *
-     * @return the innerProperties value.
+     * Get the properties property: Properties of Volume Snapshot.
+     * 
+     * @return the properties value.
      */
-    private SnapshotProperties innerProperties() {
-        return this.innerProperties;
+    public SnapshotProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Properties of Volume Snapshot.
+     * 
+     * @param properties the properties value to set.
+     * @return the SnapshotInner object itself.
+     */
+    public SnapshotInner withProperties(SnapshotProperties properties) {
+        this.properties = properties;
+        return this;
     }
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -50,67 +64,16 @@ public final class SnapshotInner extends ProxyResource {
     }
 
     /**
-     * Get the creationData property: Data used when creating a volume snapshot.
-     *
-     * @return the creationData value.
-     */
-    public SnapshotCreationData creationData() {
-        return this.innerProperties() == null ? null : this.innerProperties().creationData();
-    }
-
-    /**
-     * Set the creationData property: Data used when creating a volume snapshot.
-     *
-     * @param creationData the creationData value to set.
-     * @return the SnapshotInner object itself.
-     */
-    public SnapshotInner withCreationData(SnapshotCreationData creationData) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new SnapshotProperties();
-        }
-        this.innerProperties().withCreationData(creationData);
-        return this;
-    }
-
-    /**
-     * Get the provisioningState property: State of the operation on the resource.
-     *
-     * @return the provisioningState value.
-     */
-    public ProvisioningStates provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
-     * Get the sourceVolumeSizeGiB property: Size of Source Volume.
-     *
-     * @return the sourceVolumeSizeGiB value.
-     */
-    public Long sourceVolumeSizeGiB() {
-        return this.innerProperties() == null ? null : this.innerProperties().sourceVolumeSizeGiB();
-    }
-
-    /**
-     * Get the volumeName property: Source Volume Name of a snapshot.
-     *
-     * @return the volumeName value.
-     */
-    public String volumeName() {
-        return this.innerProperties() == null ? null : this.innerProperties().volumeName();
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model SnapshotInner"));
+        if (properties() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property properties in model SnapshotInner"));
         } else {
-            innerProperties().validate();
+            properties().validate();
         }
     }
 

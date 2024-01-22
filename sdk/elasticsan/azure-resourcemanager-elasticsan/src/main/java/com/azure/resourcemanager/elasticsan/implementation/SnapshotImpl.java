@@ -7,9 +7,8 @@ package com.azure.resourcemanager.elasticsan.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.elasticsan.fluent.models.SnapshotInner;
-import com.azure.resourcemanager.elasticsan.models.ProvisioningStates;
 import com.azure.resourcemanager.elasticsan.models.Snapshot;
-import com.azure.resourcemanager.elasticsan.models.SnapshotCreationData;
+import com.azure.resourcemanager.elasticsan.models.SnapshotProperties;
 
 public final class SnapshotImpl implements Snapshot, Snapshot.Definition {
     private SnapshotInner innerObject;
@@ -33,24 +32,12 @@ public final class SnapshotImpl implements Snapshot, Snapshot.Definition {
         return this.innerModel().type();
     }
 
+    public SnapshotProperties properties() {
+        return this.innerModel().properties();
+    }
+
     public SystemData systemData() {
         return this.innerModel().systemData();
-    }
-
-    public SnapshotCreationData creationData() {
-        return this.innerModel().creationData();
-    }
-
-    public ProvisioningStates provisioningState() {
-        return this.innerModel().provisioningState();
-    }
-
-    public Long sourceVolumeSizeGiB() {
-        return this.innerModel().sourceVolumeSizeGiB();
-    }
-
-    public String volumeName() {
-        return this.innerModel().volumeName();
     }
 
     public SnapshotInner innerModel() {
@@ -69,8 +56,8 @@ public final class SnapshotImpl implements Snapshot, Snapshot.Definition {
 
     private String snapshotName;
 
-    public SnapshotImpl withExistingVolumegroup(
-        String resourceGroupName, String elasticSanName, String volumeGroupName) {
+    public SnapshotImpl withExistingVolumegroup(String resourceGroupName, String elasticSanName,
+        String volumeGroupName) {
         this.resourceGroupName = resourceGroupName;
         this.elasticSanName = elasticSanName;
         this.volumeGroupName = volumeGroupName;
@@ -78,21 +65,14 @@ public final class SnapshotImpl implements Snapshot, Snapshot.Definition {
     }
 
     public Snapshot create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVolumeSnapshots()
-                .create(
-                    resourceGroupName, elasticSanName, volumeGroupName, snapshotName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getVolumeSnapshots().create(resourceGroupName, elasticSanName,
+            volumeGroupName, snapshotName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Snapshot create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVolumeSnapshots()
-                .create(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getVolumeSnapshots().create(resourceGroupName, elasticSanName,
+            volumeGroupName, snapshotName, this.innerModel(), context);
         return this;
     }
 
@@ -103,27 +83,19 @@ public final class SnapshotImpl implements Snapshot, Snapshot.Definition {
     }
 
     public Snapshot refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVolumeSnapshots()
-                .getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getVolumeSnapshots()
+            .getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, Context.NONE).getValue();
         return this;
     }
 
     public Snapshot refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVolumeSnapshots()
-                .getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getVolumeSnapshots()
+            .getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, context).getValue();
         return this;
     }
 
-    public SnapshotImpl withCreationData(SnapshotCreationData creationData) {
-        this.innerModel().withCreationData(creationData);
+    public SnapshotImpl withProperties(SnapshotProperties properties) {
+        this.innerModel().withProperties(properties);
         return this;
     }
 }

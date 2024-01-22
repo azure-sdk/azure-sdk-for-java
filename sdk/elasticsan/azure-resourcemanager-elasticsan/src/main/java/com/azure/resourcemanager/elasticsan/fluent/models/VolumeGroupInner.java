@@ -7,16 +7,13 @@ package com.azure.resourcemanager.elasticsan.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.elasticsan.models.EncryptionProperties;
-import com.azure.resourcemanager.elasticsan.models.EncryptionType;
 import com.azure.resourcemanager.elasticsan.models.Identity;
-import com.azure.resourcemanager.elasticsan.models.NetworkRuleSet;
-import com.azure.resourcemanager.elasticsan.models.ProvisioningStates;
-import com.azure.resourcemanager.elasticsan.models.StorageTargetType;
+import com.azure.resourcemanager.elasticsan.models.VolumeGroupProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
-/** Response for Volume Group request. */
+/**
+ * Response for Volume Group request.
+ */
 @Fluent
 public final class VolumeGroupInner extends ProxyResource {
     /*
@@ -29,7 +26,7 @@ public final class VolumeGroupInner extends ProxyResource {
      * Properties of VolumeGroup.
      */
     @JsonProperty(value = "properties")
-    private VolumeGroupProperties innerProperties;
+    private VolumeGroupProperties properties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -37,13 +34,15 @@ public final class VolumeGroupInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of VolumeGroupInner class. */
+    /**
+     * Creates an instance of VolumeGroupInner class.
+     */
     public VolumeGroupInner() {
     }
 
     /**
      * Get the identity property: The identity of the resource.
-     *
+     * 
      * @return the identity value.
      */
     public Identity identity() {
@@ -52,7 +51,7 @@ public final class VolumeGroupInner extends ProxyResource {
 
     /**
      * Set the identity property: The identity of the resource.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the VolumeGroupInner object itself.
      */
@@ -62,17 +61,28 @@ public final class VolumeGroupInner extends ProxyResource {
     }
 
     /**
-     * Get the innerProperties property: Properties of VolumeGroup.
-     *
-     * @return the innerProperties value.
+     * Get the properties property: Properties of VolumeGroup.
+     * 
+     * @return the properties value.
      */
-    private VolumeGroupProperties innerProperties() {
-        return this.innerProperties;
+    public VolumeGroupProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Properties of VolumeGroup.
+     * 
+     * @param properties the properties value to set.
+     * @return the VolumeGroupInner object itself.
+     */
+    public VolumeGroupInner withProperties(VolumeGroupProperties properties) {
+        this.properties = properties;
+        return this;
     }
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -80,126 +90,16 @@ public final class VolumeGroupInner extends ProxyResource {
     }
 
     /**
-     * Get the provisioningState property: State of the operation on the resource.
-     *
-     * @return the provisioningState value.
-     */
-    public ProvisioningStates provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
-     * Get the protocolType property: Type of storage target.
-     *
-     * @return the protocolType value.
-     */
-    public StorageTargetType protocolType() {
-        return this.innerProperties() == null ? null : this.innerProperties().protocolType();
-    }
-
-    /**
-     * Set the protocolType property: Type of storage target.
-     *
-     * @param protocolType the protocolType value to set.
-     * @return the VolumeGroupInner object itself.
-     */
-    public VolumeGroupInner withProtocolType(StorageTargetType protocolType) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new VolumeGroupProperties();
-        }
-        this.innerProperties().withProtocolType(protocolType);
-        return this;
-    }
-
-    /**
-     * Get the encryption property: Type of encryption.
-     *
-     * @return the encryption value.
-     */
-    public EncryptionType encryption() {
-        return this.innerProperties() == null ? null : this.innerProperties().encryption();
-    }
-
-    /**
-     * Set the encryption property: Type of encryption.
-     *
-     * @param encryption the encryption value to set.
-     * @return the VolumeGroupInner object itself.
-     */
-    public VolumeGroupInner withEncryption(EncryptionType encryption) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new VolumeGroupProperties();
-        }
-        this.innerProperties().withEncryption(encryption);
-        return this;
-    }
-
-    /**
-     * Get the encryptionProperties property: Encryption Properties describing Key Vault and Identity information.
-     *
-     * @return the encryptionProperties value.
-     */
-    public EncryptionProperties encryptionProperties() {
-        return this.innerProperties() == null ? null : this.innerProperties().encryptionProperties();
-    }
-
-    /**
-     * Set the encryptionProperties property: Encryption Properties describing Key Vault and Identity information.
-     *
-     * @param encryptionProperties the encryptionProperties value to set.
-     * @return the VolumeGroupInner object itself.
-     */
-    public VolumeGroupInner withEncryptionProperties(EncryptionProperties encryptionProperties) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new VolumeGroupProperties();
-        }
-        this.innerProperties().withEncryptionProperties(encryptionProperties);
-        return this;
-    }
-
-    /**
-     * Get the networkAcls property: A collection of rules governing the accessibility from specific network locations.
-     *
-     * @return the networkAcls value.
-     */
-    public NetworkRuleSet networkAcls() {
-        return this.innerProperties() == null ? null : this.innerProperties().networkAcls();
-    }
-
-    /**
-     * Set the networkAcls property: A collection of rules governing the accessibility from specific network locations.
-     *
-     * @param networkAcls the networkAcls value to set.
-     * @return the VolumeGroupInner object itself.
-     */
-    public VolumeGroupInner withNetworkAcls(NetworkRuleSet networkAcls) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new VolumeGroupProperties();
-        }
-        this.innerProperties().withNetworkAcls(networkAcls);
-        return this;
-    }
-
-    /**
-     * Get the privateEndpointConnections property: The list of Private Endpoint Connections.
-     *
-     * @return the privateEndpointConnections value.
-     */
-    public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
-        return this.innerProperties() == null ? null : this.innerProperties().privateEndpointConnections();
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (identity() != null) {
             identity().validate();
         }
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (properties() != null) {
+            properties().validate();
         }
     }
 }

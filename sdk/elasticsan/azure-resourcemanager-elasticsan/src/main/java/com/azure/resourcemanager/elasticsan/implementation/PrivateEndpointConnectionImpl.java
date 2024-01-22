@@ -7,12 +7,8 @@ package com.azure.resourcemanager.elasticsan.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.elasticsan.fluent.models.PrivateEndpointConnectionInner;
-import com.azure.resourcemanager.elasticsan.models.PrivateEndpoint;
 import com.azure.resourcemanager.elasticsan.models.PrivateEndpointConnection;
-import com.azure.resourcemanager.elasticsan.models.PrivateLinkServiceConnectionState;
-import com.azure.resourcemanager.elasticsan.models.ProvisioningStates;
-import java.util.Collections;
-import java.util.List;
+import com.azure.resourcemanager.elasticsan.models.PrivateEndpointConnectionProperties;
 
 public final class PrivateEndpointConnectionImpl
     implements PrivateEndpointConnection, PrivateEndpointConnection.Definition {
@@ -20,8 +16,7 @@ public final class PrivateEndpointConnectionImpl
 
     private final com.azure.resourcemanager.elasticsan.ElasticSanManager serviceManager;
 
-    PrivateEndpointConnectionImpl(
-        PrivateEndpointConnectionInner innerObject,
+    PrivateEndpointConnectionImpl(PrivateEndpointConnectionInner innerObject,
         com.azure.resourcemanager.elasticsan.ElasticSanManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -39,29 +34,12 @@ public final class PrivateEndpointConnectionImpl
         return this.innerModel().type();
     }
 
+    public PrivateEndpointConnectionProperties properties() {
+        return this.innerModel().properties();
+    }
+
     public SystemData systemData() {
         return this.innerModel().systemData();
-    }
-
-    public ProvisioningStates provisioningState() {
-        return this.innerModel().provisioningState();
-    }
-
-    public PrivateEndpoint privateEndpoint() {
-        return this.innerModel().privateEndpoint();
-    }
-
-    public PrivateLinkServiceConnectionState privateLinkServiceConnectionState() {
-        return this.innerModel().privateLinkServiceConnectionState();
-    }
-
-    public List<String> groupIds() {
-        List<String> inner = this.innerModel().groupIds();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
     }
 
     public PrivateEndpointConnectionInner innerModel() {
@@ -85,21 +63,14 @@ public final class PrivateEndpointConnectionImpl
     }
 
     public PrivateEndpointConnection create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPrivateEndpointConnections()
-                .create(
-                    resourceGroupName, elasticSanName, privateEndpointConnectionName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getPrivateEndpointConnections().create(resourceGroupName,
+            elasticSanName, privateEndpointConnectionName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public PrivateEndpointConnection create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPrivateEndpointConnections()
-                .create(resourceGroupName, elasticSanName, privateEndpointConnectionName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getPrivateEndpointConnections().create(resourceGroupName,
+            elasticSanName, privateEndpointConnectionName, this.innerModel(), context);
         return this;
     }
 
@@ -110,38 +81,19 @@ public final class PrivateEndpointConnectionImpl
     }
 
     public PrivateEndpointConnection refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPrivateEndpointConnections()
-                .getWithResponse(resourceGroupName, elasticSanName, privateEndpointConnectionName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getPrivateEndpointConnections()
+            .getWithResponse(resourceGroupName, elasticSanName, privateEndpointConnectionName, Context.NONE).getValue();
         return this;
     }
 
     public PrivateEndpointConnection refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPrivateEndpointConnections()
-                .getWithResponse(resourceGroupName, elasticSanName, privateEndpointConnectionName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getPrivateEndpointConnections()
+            .getWithResponse(resourceGroupName, elasticSanName, privateEndpointConnectionName, context).getValue();
         return this;
     }
 
-    public PrivateEndpointConnectionImpl withPrivateLinkServiceConnectionState(
-        PrivateLinkServiceConnectionState privateLinkServiceConnectionState) {
-        this.innerModel().withPrivateLinkServiceConnectionState(privateLinkServiceConnectionState);
-        return this;
-    }
-
-    public PrivateEndpointConnectionImpl withPrivateEndpoint(PrivateEndpoint privateEndpoint) {
-        this.innerModel().withPrivateEndpoint(privateEndpoint);
-        return this;
-    }
-
-    public PrivateEndpointConnectionImpl withGroupIds(List<String> groupIds) {
-        this.innerModel().withGroupIds(groupIds);
+    public PrivateEndpointConnectionImpl withProperties(PrivateEndpointConnectionProperties properties) {
+        this.innerModel().withProperties(properties);
         return this;
     }
 }
