@@ -4,49 +4,54 @@
 
 package com.azure.resourcemanager.apicenter.models;
 
-import com.azure.core.annotation.Immutable;
-import com.azure.resourcemanager.apicenter.fluent.models.ServiceProperties;
+import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The service properties to be updated. */
-@Immutable
+/**
+ * The service properties to be updated.
+ */
+@Fluent
 public final class ServiceUpdate {
     /*
      * The properties of the service.
      */
     @JsonProperty(value = "properties")
-    private ServiceProperties innerProperties;
+    private ServiceProperties properties;
 
-    /** Creates an instance of ServiceUpdate class. */
+    /**
+     * Creates an instance of ServiceUpdate class.
+     */
     public ServiceUpdate() {
     }
 
     /**
-     * Get the innerProperties property: The properties of the service.
-     *
-     * @return the innerProperties value.
+     * Get the properties property: The properties of the service.
+     * 
+     * @return the properties value.
      */
-    private ServiceProperties innerProperties() {
-        return this.innerProperties;
+    public ServiceProperties properties() {
+        return this.properties;
     }
 
     /**
-     * Get the provisioningState property: The status of the last operation.
-     *
-     * @return the provisioningState value.
+     * Set the properties property: The properties of the service.
+     * 
+     * @param properties the properties value to set.
+     * @return the ServiceUpdate object itself.
      */
-    public ProvisioningState provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    public ServiceUpdate withProperties(ServiceProperties properties) {
+        this.properties = properties;
+        return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (properties() != null) {
+            properties().validate();
         }
     }
 }
