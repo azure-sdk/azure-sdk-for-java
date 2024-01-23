@@ -14,6 +14,7 @@ import com.azure.resourcemanager.hdinsight.containers.models.ClusterPoolResource
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterPoolResourcePropertiesComputeProfile;
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterPoolResourcePropertiesLogAnalyticsProfile;
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterPoolResourcePropertiesNetworkProfile;
+import com.azure.resourcemanager.hdinsight.containers.models.ClusterPoolUpgrade;
 import com.azure.resourcemanager.hdinsight.containers.models.ProvisioningStatus;
 import com.azure.resourcemanager.hdinsight.containers.models.TagsObject;
 import java.util.Collections;
@@ -125,25 +126,19 @@ public final class ClusterPoolImpl implements ClusterPool, ClusterPool.Definitio
     }
 
     public ClusterPool create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getClusterPools()
-                .createOrUpdate(resourceGroupName, clusterPoolName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getClusterPools().createOrUpdate(resourceGroupName,
+            clusterPoolName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public ClusterPool create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getClusterPools()
-                .createOrUpdate(resourceGroupName, clusterPoolName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getClusterPools().createOrUpdate(resourceGroupName,
+            clusterPoolName, this.innerModel(), context);
         return this;
     }
 
-    ClusterPoolImpl(
-        String name, com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager) {
+    ClusterPoolImpl(String name,
+        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager) {
         this.innerObject = new ClusterPoolInner();
         this.serviceManager = serviceManager;
         this.clusterPoolName = name;
@@ -155,50 +150,44 @@ public final class ClusterPoolImpl implements ClusterPool, ClusterPool.Definitio
     }
 
     public ClusterPool apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getClusterPools()
-                .updateTags(resourceGroupName, clusterPoolName, updateClusterPoolTags, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getClusterPools().updateTags(resourceGroupName,
+            clusterPoolName, updateClusterPoolTags, Context.NONE);
         return this;
     }
 
     public ClusterPool apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getClusterPools()
-                .updateTags(resourceGroupName, clusterPoolName, updateClusterPoolTags, context);
+        this.innerObject = serviceManager.serviceClient().getClusterPools().updateTags(resourceGroupName,
+            clusterPoolName, updateClusterPoolTags, context);
         return this;
     }
 
-    ClusterPoolImpl(
-        ClusterPoolInner innerObject,
+    ClusterPoolImpl(ClusterPoolInner innerObject,
         com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.clusterPoolName = Utils.getValueFromIdByName(innerObject.id(), "clusterpools");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.clusterPoolName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "clusterpools");
     }
 
     public ClusterPool refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getClusterPools()
-                .getByResourceGroupWithResponse(resourceGroupName, clusterPoolName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getClusterPools()
+            .getByResourceGroupWithResponse(resourceGroupName, clusterPoolName, Context.NONE).getValue();
         return this;
     }
 
     public ClusterPool refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getClusterPools()
-                .getByResourceGroupWithResponse(resourceGroupName, clusterPoolName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getClusterPools()
+            .getByResourceGroupWithResponse(resourceGroupName, clusterPoolName, context).getValue();
         return this;
+    }
+
+    public ClusterPool upgrade(ClusterPoolUpgrade clusterPoolUpgradeRequest) {
+        return serviceManager.clusterPools().upgrade(resourceGroupName, clusterPoolName, clusterPoolUpgradeRequest);
+    }
+
+    public ClusterPool upgrade(ClusterPoolUpgrade clusterPoolUpgradeRequest, Context context) {
+        return serviceManager.clusterPools().upgrade(resourceGroupName, clusterPoolName, clusterPoolUpgradeRequest,
+            context);
     }
 
     public ClusterPoolImpl withRegion(Region location) {
@@ -241,8 +230,8 @@ public final class ClusterPoolImpl implements ClusterPool, ClusterPool.Definitio
         return this;
     }
 
-    public ClusterPoolImpl withLogAnalyticsProfile(
-        ClusterPoolResourcePropertiesLogAnalyticsProfile logAnalyticsProfile) {
+    public ClusterPoolImpl
+        withLogAnalyticsProfile(ClusterPoolResourcePropertiesLogAnalyticsProfile logAnalyticsProfile) {
         this.innerModel().withLogAnalyticsProfile(logAnalyticsProfile);
         return this;
     }

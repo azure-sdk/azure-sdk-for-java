@@ -16,8 +16,7 @@ public final class ClusterInstanceViewResultImpl implements ClusterInstanceViewR
 
     private final com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager;
 
-    ClusterInstanceViewResultImpl(
-        ClusterInstanceViewResultInner innerObject,
+    ClusterInstanceViewResultImpl(ClusterInstanceViewResultInner innerObject,
         com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;

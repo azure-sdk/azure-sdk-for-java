@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.hdinsight.containers.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.hdinsight.containers.fluent.models.ClusterVersionInner;
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterComponentsItem;
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterVersion;
@@ -15,8 +16,7 @@ public final class ClusterVersionImpl implements ClusterVersion {
 
     private final com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager;
 
-    ClusterVersionImpl(
-        ClusterVersionInner innerObject,
+    ClusterVersionImpl(ClusterVersionInner innerObject,
         com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -32,6 +32,10 @@ public final class ClusterVersionImpl implements ClusterVersion {
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String clusterType() {

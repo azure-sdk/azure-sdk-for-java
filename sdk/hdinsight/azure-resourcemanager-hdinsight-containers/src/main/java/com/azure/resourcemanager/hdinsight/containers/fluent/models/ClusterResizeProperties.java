@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.containers.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties for resizing a cluster. */
+/**
+ * The properties for resizing a cluster.
+ */
 @Fluent
 public final class ClusterResizeProperties {
     /*
@@ -16,13 +18,15 @@ public final class ClusterResizeProperties {
     @JsonProperty(value = "targetWorkerNodeCount", required = true)
     private int targetWorkerNodeCount;
 
-    /** Creates an instance of ClusterResizeProperties class. */
+    /**
+     * Creates an instance of ClusterResizeProperties class.
+     */
     public ClusterResizeProperties() {
     }
 
     /**
      * Get the targetWorkerNodeCount property: Target node count of worker node.
-     *
+     * 
      * @return the targetWorkerNodeCount value.
      */
     public int targetWorkerNodeCount() {
@@ -31,7 +35,7 @@ public final class ClusterResizeProperties {
 
     /**
      * Set the targetWorkerNodeCount property: Target node count of worker node.
-     *
+     * 
      * @param targetWorkerNodeCount the targetWorkerNodeCount value to set.
      * @return the ClusterResizeProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class ClusterResizeProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

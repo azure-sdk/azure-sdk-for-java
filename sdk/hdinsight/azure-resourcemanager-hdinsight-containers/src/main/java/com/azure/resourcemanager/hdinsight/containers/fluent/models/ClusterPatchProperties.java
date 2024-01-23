@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.hdinsight.containers.models.UpdatableClusterProfile;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Cluster resource patch data. */
+/**
+ * Cluster resource patch data.
+ */
 @Fluent
 public final class ClusterPatchProperties {
     /*
@@ -17,13 +19,15 @@ public final class ClusterPatchProperties {
     @JsonProperty(value = "clusterProfile")
     private UpdatableClusterProfile clusterProfile;
 
-    /** Creates an instance of ClusterPatchProperties class. */
+    /**
+     * Creates an instance of ClusterPatchProperties class.
+     */
     public ClusterPatchProperties() {
     }
 
     /**
      * Get the clusterProfile property: Cluster resource patch properties.
-     *
+     * 
      * @return the clusterProfile value.
      */
     public UpdatableClusterProfile clusterProfile() {
@@ -32,7 +36,7 @@ public final class ClusterPatchProperties {
 
     /**
      * Set the clusterProfile property: Cluster resource patch properties.
-     *
+     * 
      * @param clusterProfile the clusterProfile value to set.
      * @return the ClusterPatchProperties object itself.
      */
@@ -43,7 +47,7 @@ public final class ClusterPatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
