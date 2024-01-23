@@ -10,7 +10,7 @@ package com.azure.resourcemanager.nginx.generated;
 public final class ConfigurationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-04-01/examples/Configurations_Get.json
+     * specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-09-01/examples/Configurations_Get.json
      */
     /**
      * Sample code: Configurations_Get.

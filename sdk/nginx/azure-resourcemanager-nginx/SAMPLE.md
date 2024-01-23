@@ -10,6 +10,7 @@
 
 ## Configurations
 
+- [Analysis](#configurations_analysis)
 - [CreateOrUpdate](#configurations_createorupdate)
 - [Delete](#configurations_delete)
 - [Get](#configurations_get)
@@ -35,7 +36,7 @@
  */
 public final class CertificatesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-04-01/examples/Certificates_CreateOrUpdate.json
+     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-09-01/examples/Certificates_CreateOrUpdate.json
      */
     /**
      * Sample code: Certificates_CreateOrUpdate.
@@ -56,7 +57,7 @@ public final class CertificatesCreateOrUpdateSamples {
  */
 public final class CertificatesDeleteSamples {
     /*
-     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-04-01/examples/Certificates_Delete.json
+     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-09-01/examples/Certificates_Delete.json
      */
     /**
      * Sample code: Certificates_Delete.
@@ -77,7 +78,7 @@ public final class CertificatesDeleteSamples {
  */
 public final class CertificatesGetSamples {
     /*
-     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-04-01/examples/Certificates_Get.json
+     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-09-01/examples/Certificates_Get.json
      */
     /**
      * Sample code: Certificates_Get.
@@ -98,7 +99,7 @@ public final class CertificatesGetSamples {
  */
 public final class CertificatesListSamples {
     /*
-     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-04-01/examples/Certificates_List.json
+     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-09-01/examples/Certificates_List.json
      */
     /**
      * Sample code: Certificates_List.
@@ -111,6 +112,29 @@ public final class CertificatesListSamples {
 }
 ```
 
+### Configurations_Analysis
+
+```java
+import com.azure.resourcemanager.nginx.models.AnalysisCreate;
+
+/**
+ * Samples for Configurations Analysis.
+ */
+public final class ConfigurationsAnalysisSamples {
+    /*
+     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-09-01/examples/Configurations_Analysis.json
+     */
+    /**
+     * Sample code: Configurations_Analysis.
+     * 
+     * @param manager Entry point to NginxManager.
+     */
+    public static void configurationsAnalysis(com.azure.resourcemanager.nginx.NginxManager manager) {
+        manager.configurations().analysisWithResponse("myResourceGroup", "myDeployment", "default", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Configurations_CreateOrUpdate
 
 ```java
@@ -119,7 +143,7 @@ public final class CertificatesListSamples {
  */
 public final class ConfigurationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-04-01/examples/Configurations_CreateOrUpdate.json
+     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-09-01/examples/Configurations_CreateOrUpdate.json
      */
     /**
      * Sample code: Configurations_CreateOrUpdate.
@@ -140,7 +164,7 @@ public final class ConfigurationsCreateOrUpdateSamples {
  */
 public final class ConfigurationsDeleteSamples {
     /*
-     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-04-01/examples/Configurations_Delete.json
+     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-09-01/examples/Configurations_Delete.json
      */
     /**
      * Sample code: Configurations_Delete.
@@ -161,7 +185,7 @@ public final class ConfigurationsDeleteSamples {
  */
 public final class ConfigurationsGetSamples {
     /*
-     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-04-01/examples/Configurations_Get.json
+     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-09-01/examples/Configurations_Get.json
      */
     /**
      * Sample code: Configurations_Get.
@@ -182,7 +206,7 @@ public final class ConfigurationsGetSamples {
  */
 public final class ConfigurationsListSamples {
     /*
-     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-04-01/examples/Configurations_List.json
+     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-09-01/examples/Configurations_List.json
      */
     /**
      * Sample code: Configurations_List.
@@ -203,7 +227,7 @@ public final class ConfigurationsListSamples {
  */
 public final class DeploymentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-04-01/examples/Deployments_Create.json
+     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-09-01/examples/Deployments_Create.json
      */
     /**
      * Sample code: Deployments_Create.
@@ -224,7 +248,7 @@ public final class DeploymentsCreateOrUpdateSamples {
  */
 public final class DeploymentsDeleteSamples {
     /*
-     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-04-01/examples/Deployments_Delete.json
+     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-09-01/examples/Deployments_Delete.json
      */
     /**
      * Sample code: Deployments_Delete.
@@ -245,7 +269,7 @@ public final class DeploymentsDeleteSamples {
  */
 public final class DeploymentsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-04-01/examples/Deployments_Get.json
+     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-09-01/examples/Deployments_Get.json
      */
     /**
      * Sample code: Deployments_Get.
@@ -266,7 +290,7 @@ public final class DeploymentsGetByResourceGroupSamples {
  */
 public final class DeploymentsListSamples {
     /*
-     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-04-01/examples/Deployments_List.json
+     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-09-01/examples/Deployments_List.json
      */
     /**
      * Sample code: Deployments_List.
@@ -287,7 +311,7 @@ public final class DeploymentsListSamples {
  */
 public final class DeploymentsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-04-01/examples/Deployments_ListByResourceGroup.json
+     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-09-01/examples/Deployments_ListByResourceGroup.json
      */
     /**
      * Sample code: Deployments_ListByResourceGroup.
@@ -310,7 +334,7 @@ import com.azure.resourcemanager.nginx.models.NginxDeployment;
  */
 public final class DeploymentsUpdateSamples {
     /*
-     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-04-01/examples/Deployments_Update.json
+     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-09-01/examples/Deployments_Update.json
      */
     /**
      * Sample code: Deployments_Update.
@@ -332,7 +356,7 @@ public final class DeploymentsUpdateSamples {
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-04-01/examples/Operations_List.json
+     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-09-01/examples/Operations_List.json
      */
     /**
      * Sample code: Operations_List.

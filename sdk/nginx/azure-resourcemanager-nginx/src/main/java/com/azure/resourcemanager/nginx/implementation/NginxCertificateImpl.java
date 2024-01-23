@@ -111,9 +111,9 @@ public final class NginxCertificateImpl
         com.azure.resourcemanager.nginx.NginxManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.deploymentName = Utils.getValueFromIdByName(innerObject.id(), "nginxDeployments");
-        this.certificateName = Utils.getValueFromIdByName(innerObject.id(), "certificates");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.deploymentName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "nginxDeployments");
+        this.certificateName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "certificates");
     }
 
     public NginxCertificate refresh() {
