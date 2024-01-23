@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/offazurespringboot/ci.yml
+      - sdk/offazurespringboot/azure-resourcemanager-offazurespringboot/
+    exclude:
+      - sdk/offazurespringboot/pom.xml
+      - sdk/offazurespringboot/azure-resourcemanager-offazurespringboot/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/offazurespringboot/ci.yml
+      - sdk/offazurespringboot/azure-resourcemanager-offazurespringboot/
+    exclude:
+      - sdk/offazurespringboot/pom.xml
+      - sdk/offazurespringboot/azure-resourcemanager-offazurespringboot/pom.xml
+
+parameters:
+  - name: release_azureresourcemanageroffazurespringboot
+    displayName: azure-resourcemanager-offazurespringboot
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: offazurespringboot
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-offazurespringboot
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanageroffazurespringboot
+        releaseInBatch: ${{ parameters.release_azureresourcemanageroffazurespringboot }}
