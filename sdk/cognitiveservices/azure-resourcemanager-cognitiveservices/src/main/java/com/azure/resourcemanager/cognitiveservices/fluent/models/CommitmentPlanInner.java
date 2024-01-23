@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Cognitive Services account commitment plan. */
+/**
+ * Cognitive Services account commitment plan.
+ */
 @Fluent
 public final class CommitmentPlanInner extends ProxyResource {
     /*
@@ -59,13 +61,15 @@ public final class CommitmentPlanInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private CommitmentPlanProperties properties;
 
-    /** Creates an instance of CommitmentPlanInner class. */
+    /**
+     * Creates an instance of CommitmentPlanInner class.
+     */
     public CommitmentPlanInner() {
     }
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -74,7 +78,7 @@ public final class CommitmentPlanInner extends ProxyResource {
 
     /**
      * Get the etag property: Resource Etag.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -83,7 +87,7 @@ public final class CommitmentPlanInner extends ProxyResource {
 
     /**
      * Get the kind property: The Kind of the resource.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -92,7 +96,7 @@ public final class CommitmentPlanInner extends ProxyResource {
 
     /**
      * Set the kind property: The Kind of the resource.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the CommitmentPlanInner object itself.
      */
@@ -103,7 +107,7 @@ public final class CommitmentPlanInner extends ProxyResource {
 
     /**
      * Get the sku property: The resource model definition representing SKU.
-     *
+     * 
      * @return the sku value.
      */
     public Sku sku() {
@@ -112,7 +116,7 @@ public final class CommitmentPlanInner extends ProxyResource {
 
     /**
      * Set the sku property: The resource model definition representing SKU.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the CommitmentPlanInner object itself.
      */
@@ -123,7 +127,7 @@ public final class CommitmentPlanInner extends ProxyResource {
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -132,7 +136,7 @@ public final class CommitmentPlanInner extends ProxyResource {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the CommitmentPlanInner object itself.
      */
@@ -143,7 +147,7 @@ public final class CommitmentPlanInner extends ProxyResource {
 
     /**
      * Get the location property: The geo-location where the resource lives.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -152,7 +156,7 @@ public final class CommitmentPlanInner extends ProxyResource {
 
     /**
      * Set the location property: The geo-location where the resource lives.
-     *
+     * 
      * @param location the location value to set.
      * @return the CommitmentPlanInner object itself.
      */
@@ -163,7 +167,7 @@ public final class CommitmentPlanInner extends ProxyResource {
 
     /**
      * Get the properties property: Properties of Cognitive Services account commitment plan.
-     *
+     * 
      * @return the properties value.
      */
     public CommitmentPlanProperties properties() {
@@ -172,7 +176,7 @@ public final class CommitmentPlanInner extends ProxyResource {
 
     /**
      * Set the properties property: Properties of Cognitive Services account commitment plan.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the CommitmentPlanInner object itself.
      */
@@ -183,7 +187,7 @@ public final class CommitmentPlanInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

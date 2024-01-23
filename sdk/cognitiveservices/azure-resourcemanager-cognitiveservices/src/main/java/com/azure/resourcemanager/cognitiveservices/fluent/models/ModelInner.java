@@ -7,7 +7,9 @@ package com.azure.resourcemanager.cognitiveservices.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Cognitive Services Model. */
+/**
+ * Cognitive Services Model.
+ */
 @Fluent
 public final class ModelInner {
     /*
@@ -28,13 +30,15 @@ public final class ModelInner {
     @JsonProperty(value = "skuName")
     private String skuName;
 
-    /** Creates an instance of ModelInner class. */
+    /**
+     * Creates an instance of ModelInner class.
+     */
     public ModelInner() {
     }
 
     /**
      * Get the model property: Model Metadata.
-     *
+     * 
      * @return the model value.
      */
     public AccountModelInner model() {
@@ -43,7 +47,7 @@ public final class ModelInner {
 
     /**
      * Set the model property: Model Metadata.
-     *
+     * 
      * @param model the model value to set.
      * @return the ModelInner object itself.
      */
@@ -54,7 +58,7 @@ public final class ModelInner {
 
     /**
      * Get the kind property: The Kind of the Model.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -63,7 +67,7 @@ public final class ModelInner {
 
     /**
      * Set the kind property: The Kind of the Model.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the ModelInner object itself.
      */
@@ -74,7 +78,7 @@ public final class ModelInner {
 
     /**
      * Get the skuName property: The SKU of the Model.
-     *
+     * 
      * @return the skuName value.
      */
     public String skuName() {
@@ -83,7 +87,7 @@ public final class ModelInner {
 
     /**
      * Set the skuName property: The SKU of the Model.
-     *
+     * 
      * @param skuName the skuName value to set.
      * @return the ModelInner object itself.
      */
@@ -94,7 +98,7 @@ public final class ModelInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Describes an available Cognitive Services Model SKU. */
+/**
+ * Describes an available Cognitive Services Model SKU.
+ */
 @Fluent
 public final class ModelSku {
     /*
@@ -42,13 +44,15 @@ public final class ModelSku {
     @JsonProperty(value = "rateLimits")
     private List<CallRateLimit> rateLimits;
 
-    /** Creates an instance of ModelSku class. */
+    /**
+     * Creates an instance of ModelSku class.
+     */
     public ModelSku() {
     }
 
     /**
      * Get the name property: The name of the model SKU.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -57,7 +61,7 @@ public final class ModelSku {
 
     /**
      * Set the name property: The name of the model SKU.
-     *
+     * 
      * @param name the name value to set.
      * @return the ModelSku object itself.
      */
@@ -68,7 +72,7 @@ public final class ModelSku {
 
     /**
      * Get the usageName property: The usage name of the model SKU.
-     *
+     * 
      * @return the usageName value.
      */
     public String usageName() {
@@ -77,7 +81,7 @@ public final class ModelSku {
 
     /**
      * Set the usageName property: The usage name of the model SKU.
-     *
+     * 
      * @param usageName the usageName value to set.
      * @return the ModelSku object itself.
      */
@@ -88,7 +92,7 @@ public final class ModelSku {
 
     /**
      * Get the deprecationDate property: The datetime of deprecation of the model SKU.
-     *
+     * 
      * @return the deprecationDate value.
      */
     public OffsetDateTime deprecationDate() {
@@ -97,7 +101,7 @@ public final class ModelSku {
 
     /**
      * Set the deprecationDate property: The datetime of deprecation of the model SKU.
-     *
+     * 
      * @param deprecationDate the deprecationDate value to set.
      * @return the ModelSku object itself.
      */
@@ -108,7 +112,7 @@ public final class ModelSku {
 
     /**
      * Get the capacity property: The capacity configuration.
-     *
+     * 
      * @return the capacity value.
      */
     public CapacityConfig capacity() {
@@ -117,7 +121,7 @@ public final class ModelSku {
 
     /**
      * Set the capacity property: The capacity configuration.
-     *
+     * 
      * @param capacity the capacity value to set.
      * @return the ModelSku object itself.
      */
@@ -128,7 +132,7 @@ public final class ModelSku {
 
     /**
      * Get the rateLimits property: The list of rateLimit.
-     *
+     * 
      * @return the rateLimits value.
      */
     public List<CallRateLimit> rateLimits() {
@@ -137,7 +141,7 @@ public final class ModelSku {
 
     /**
      * Set the rateLimits property: The list of rateLimit.
-     *
+     * 
      * @param rateLimits the rateLimits value to set.
      * @return the ModelSku object itself.
      */
@@ -148,7 +152,7 @@ public final class ModelSku {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

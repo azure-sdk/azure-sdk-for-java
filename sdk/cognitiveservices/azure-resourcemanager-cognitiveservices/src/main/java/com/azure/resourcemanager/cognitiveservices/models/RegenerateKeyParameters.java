@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Regenerate key parameters. */
+/**
+ * Regenerate key parameters.
+ */
 @Fluent
 public final class RegenerateKeyParameters {
     /*
@@ -17,13 +19,15 @@ public final class RegenerateKeyParameters {
     @JsonProperty(value = "keyName", required = true)
     private KeyName keyName;
 
-    /** Creates an instance of RegenerateKeyParameters class. */
+    /**
+     * Creates an instance of RegenerateKeyParameters class.
+     */
     public RegenerateKeyParameters() {
     }
 
     /**
      * Get the keyName property: key name to generate (Key1|Key2).
-     *
+     * 
      * @return the keyName value.
      */
     public KeyName keyName() {
@@ -32,7 +36,7 @@ public final class RegenerateKeyParameters {
 
     /**
      * Set the keyName property: key name to generate (Key1|Key2).
-     *
+     * 
      * @param keyName the keyName value to set.
      * @return the RegenerateKeyParameters object itself.
      */
@@ -43,14 +47,13 @@ public final class RegenerateKeyParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (keyName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property keyName in model RegenerateKeyParameters"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property keyName in model RegenerateKeyParameters"));
         }
     }
 
