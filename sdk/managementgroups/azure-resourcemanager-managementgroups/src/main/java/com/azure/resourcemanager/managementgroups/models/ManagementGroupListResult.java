@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managementgroups.fluent.models.ManagementGroupI
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes the result of the request to list management groups. */
+/**
+ * Describes the result of the request to list management groups.
+ */
 @Fluent
 public final class ManagementGroupListResult {
     /*
@@ -24,13 +26,15 @@ public final class ManagementGroupListResult {
     @JsonProperty(value = "@nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ManagementGroupListResult class. */
+    /**
+     * Creates an instance of ManagementGroupListResult class.
+     */
     public ManagementGroupListResult() {
     }
 
     /**
      * Get the value property: The list of management groups.
-     *
+     * 
      * @return the value value.
      */
     public List<ManagementGroupInfoInner> value() {
@@ -39,7 +43,7 @@ public final class ManagementGroupListResult {
 
     /**
      * Set the value property: The list of management groups.
-     *
+     * 
      * @param value the value value to set.
      * @return the ManagementGroupListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class ManagementGroupListResult {
 
     /**
      * Get the nextLink property: The URL to use for getting the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class ManagementGroupListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,24 +7,28 @@ package com.azure.resourcemanager.managementgroups.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** (Optional) The ID of the parent management group. */
+/**
+ * (Optional) The ID of the parent management group.
+ */
 @Fluent
 public final class EntityParentGroupInfo {
     /*
-     * The fully qualified ID for the parent management group.  For example,
+     * The fully qualified ID for the parent management group. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000
      */
     @JsonProperty(value = "id")
     private String id;
 
-    /** Creates an instance of EntityParentGroupInfo class. */
+    /**
+     * Creates an instance of EntityParentGroupInfo class.
+     */
     public EntityParentGroupInfo() {
     }
 
     /**
      * Get the id property: The fully qualified ID for the parent management group. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -34,7 +38,7 @@ public final class EntityParentGroupInfo {
     /**
      * Set the id property: The fully qualified ID for the parent management group. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @param id the id value to set.
      * @return the EntityParentGroupInfo object itself.
      */
@@ -45,7 +49,7 @@ public final class EntityParentGroupInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managementgroups.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The generic properties of hierarchy settings. */
+/**
+ * The generic properties of hierarchy settings.
+ */
 @Fluent
 public final class HierarchySettingsProperties {
     /*
@@ -32,14 +34,16 @@ public final class HierarchySettingsProperties {
     @JsonProperty(value = "defaultManagementGroup")
     private String defaultManagementGroup;
 
-    /** Creates an instance of HierarchySettingsProperties class. */
+    /**
+     * Creates an instance of HierarchySettingsProperties class.
+     */
     public HierarchySettingsProperties() {
     }
 
     /**
      * Get the tenantId property: The AAD Tenant ID associated with the hierarchy settings. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -49,7 +53,7 @@ public final class HierarchySettingsProperties {
     /**
      * Set the tenantId property: The AAD Tenant ID associated with the hierarchy settings. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the HierarchySettingsProperties object itself.
      */
@@ -64,7 +68,7 @@ public final class HierarchySettingsProperties {
      * Microsoft.Management/managementGroups/write action on the root Management Group scope in order to create new
      * Groups directly under the root. This will prevent new users from creating new Management Groups, unless they are
      * given access.
-     *
+     * 
      * @return the requireAuthorizationForGroupCreation value.
      */
     public Boolean requireAuthorizationForGroupCreation() {
@@ -77,12 +81,12 @@ public final class HierarchySettingsProperties {
      * Microsoft.Management/managementGroups/write action on the root Management Group scope in order to create new
      * Groups directly under the root. This will prevent new users from creating new Management Groups, unless they are
      * given access.
-     *
+     * 
      * @param requireAuthorizationForGroupCreation the requireAuthorizationForGroupCreation value to set.
      * @return the HierarchySettingsProperties object itself.
      */
-    public HierarchySettingsProperties withRequireAuthorizationForGroupCreation(
-        Boolean requireAuthorizationForGroupCreation) {
+    public HierarchySettingsProperties
+        withRequireAuthorizationForGroupCreation(Boolean requireAuthorizationForGroupCreation) {
         this.requireAuthorizationForGroupCreation = requireAuthorizationForGroupCreation;
         return this;
     }
@@ -91,7 +95,7 @@ public final class HierarchySettingsProperties {
      * Get the defaultManagementGroup property: Settings that sets the default Management Group under which new
      * subscriptions get added in this tenant. For example,
      * /providers/Microsoft.Management/managementGroups/defaultGroup.
-     *
+     * 
      * @return the defaultManagementGroup value.
      */
     public String defaultManagementGroup() {
@@ -102,7 +106,7 @@ public final class HierarchySettingsProperties {
      * Set the defaultManagementGroup property: Settings that sets the default Management Group under which new
      * subscriptions get added in this tenant. For example,
      * /providers/Microsoft.Management/managementGroups/defaultGroup.
-     *
+     * 
      * @param defaultManagementGroup the defaultManagementGroup value to set.
      * @return the HierarchySettingsProperties object itself.
      */
@@ -113,7 +117,7 @@ public final class HierarchySettingsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

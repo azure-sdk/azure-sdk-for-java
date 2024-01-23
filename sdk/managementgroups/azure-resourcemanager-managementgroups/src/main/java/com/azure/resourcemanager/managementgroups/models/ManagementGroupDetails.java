@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** The details of a management group. */
+/**
+ * The details of a management group.
+ */
 @Fluent
 public final class ManagementGroupDetails {
     /*
@@ -54,13 +56,15 @@ public final class ManagementGroupDetails {
     @JsonProperty(value = "managementGroupAncestorsChain")
     private List<ManagementGroupPathElement> managementGroupAncestorsChain;
 
-    /** Creates an instance of ManagementGroupDetails class. */
+    /**
+     * Creates an instance of ManagementGroupDetails class.
+     */
     public ManagementGroupDetails() {
     }
 
     /**
      * Get the version property: The version number of the object.
-     *
+     * 
      * @return the version value.
      */
     public Integer version() {
@@ -69,7 +73,7 @@ public final class ManagementGroupDetails {
 
     /**
      * Set the version property: The version number of the object.
-     *
+     * 
      * @param version the version value to set.
      * @return the ManagementGroupDetails object itself.
      */
@@ -80,7 +84,7 @@ public final class ManagementGroupDetails {
 
     /**
      * Get the updatedTime property: The date and time when this object was last updated.
-     *
+     * 
      * @return the updatedTime value.
      */
     public OffsetDateTime updatedTime() {
@@ -89,7 +93,7 @@ public final class ManagementGroupDetails {
 
     /**
      * Set the updatedTime property: The date and time when this object was last updated.
-     *
+     * 
      * @param updatedTime the updatedTime value to set.
      * @return the ManagementGroupDetails object itself.
      */
@@ -100,7 +104,7 @@ public final class ManagementGroupDetails {
 
     /**
      * Get the updatedBy property: The identity of the principal or process that updated the object.
-     *
+     * 
      * @return the updatedBy value.
      */
     public String updatedBy() {
@@ -109,7 +113,7 @@ public final class ManagementGroupDetails {
 
     /**
      * Set the updatedBy property: The identity of the principal or process that updated the object.
-     *
+     * 
      * @param updatedBy the updatedBy value to set.
      * @return the ManagementGroupDetails object itself.
      */
@@ -120,7 +124,7 @@ public final class ManagementGroupDetails {
 
     /**
      * Get the parent property: (Optional) The ID of the parent management group.
-     *
+     * 
      * @return the parent value.
      */
     public ParentGroupInfo parent() {
@@ -129,7 +133,7 @@ public final class ManagementGroupDetails {
 
     /**
      * Set the parent property: (Optional) The ID of the parent management group.
-     *
+     * 
      * @param parent the parent value to set.
      * @return the ManagementGroupDetails object itself.
      */
@@ -140,7 +144,7 @@ public final class ManagementGroupDetails {
 
     /**
      * Get the path property: The path from the root to the current group.
-     *
+     * 
      * @return the path value.
      */
     public List<ManagementGroupPathElement> path() {
@@ -149,7 +153,7 @@ public final class ManagementGroupDetails {
 
     /**
      * Set the path property: The path from the root to the current group.
-     *
+     * 
      * @param path the path value to set.
      * @return the ManagementGroupDetails object itself.
      */
@@ -160,7 +164,7 @@ public final class ManagementGroupDetails {
 
     /**
      * Get the managementGroupAncestors property: The ancestors of the management group.
-     *
+     * 
      * @return the managementGroupAncestors value.
      */
     public List<String> managementGroupAncestors() {
@@ -169,7 +173,7 @@ public final class ManagementGroupDetails {
 
     /**
      * Set the managementGroupAncestors property: The ancestors of the management group.
-     *
+     * 
      * @param managementGroupAncestors the managementGroupAncestors value to set.
      * @return the ManagementGroupDetails object itself.
      */
@@ -181,7 +185,7 @@ public final class ManagementGroupDetails {
     /**
      * Get the managementGroupAncestorsChain property: The ancestors of the management group displayed in reversed
      * order, from immediate parent to the root.
-     *
+     * 
      * @return the managementGroupAncestorsChain value.
      */
     public List<ManagementGroupPathElement> managementGroupAncestorsChain() {
@@ -191,19 +195,19 @@ public final class ManagementGroupDetails {
     /**
      * Set the managementGroupAncestorsChain property: The ancestors of the management group displayed in reversed
      * order, from immediate parent to the root.
-     *
+     * 
      * @param managementGroupAncestorsChain the managementGroupAncestorsChain value to set.
      * @return the ManagementGroupDetails object itself.
      */
-    public ManagementGroupDetails withManagementGroupAncestorsChain(
-        List<ManagementGroupPathElement> managementGroupAncestorsChain) {
+    public ManagementGroupDetails
+        withManagementGroupAncestorsChain(List<ManagementGroupPathElement> managementGroupAncestorsChain) {
         this.managementGroupAncestorsChain = managementGroupAncestorsChain;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

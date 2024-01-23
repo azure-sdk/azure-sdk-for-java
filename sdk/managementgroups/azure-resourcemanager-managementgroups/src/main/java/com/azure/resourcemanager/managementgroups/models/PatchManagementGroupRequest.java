@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managementgroups.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Management group patch parameters. */
+/**
+ * Management group patch parameters.
+ */
 @Fluent
 public final class PatchManagementGroupRequest {
     /*
@@ -17,19 +19,21 @@ public final class PatchManagementGroupRequest {
     private String displayName;
 
     /*
-     * (Optional) The fully qualified ID for the parent management group.  For example,
+     * (Optional) The fully qualified ID for the parent management group. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000
      */
     @JsonProperty(value = "parentGroupId")
     private String parentGroupId;
 
-    /** Creates an instance of PatchManagementGroupRequest class. */
+    /**
+     * Creates an instance of PatchManagementGroupRequest class.
+     */
     public PatchManagementGroupRequest() {
     }
 
     /**
      * Get the displayName property: The friendly name of the management group.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -38,7 +42,7 @@ public final class PatchManagementGroupRequest {
 
     /**
      * Set the displayName property: The friendly name of the management group.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the PatchManagementGroupRequest object itself.
      */
@@ -50,7 +54,7 @@ public final class PatchManagementGroupRequest {
     /**
      * Get the parentGroupId property: (Optional) The fully qualified ID for the parent management group. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the parentGroupId value.
      */
     public String parentGroupId() {
@@ -60,7 +64,7 @@ public final class PatchManagementGroupRequest {
     /**
      * Set the parentGroupId property: (Optional) The fully qualified ID for the parent management group. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @param parentGroupId the parentGroupId value to set.
      * @return the PatchManagementGroupRequest object itself.
      */
@@ -71,7 +75,7 @@ public final class PatchManagementGroupRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

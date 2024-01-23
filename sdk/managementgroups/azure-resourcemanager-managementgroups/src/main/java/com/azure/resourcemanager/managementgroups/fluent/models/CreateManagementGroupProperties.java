@@ -10,7 +10,9 @@ import com.azure.resourcemanager.managementgroups.models.CreateManagementGroupDe
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The generic properties of a management group used during creation. */
+/**
+ * The generic properties of a management group used during creation.
+ */
 @Fluent
 public final class CreateManagementGroupProperties {
     /*
@@ -20,7 +22,7 @@ public final class CreateManagementGroupProperties {
     private String tenantId;
 
     /*
-     * The friendly name of the management group. If no value is passed then this  field will be set to the groupId.
+     * The friendly name of the management group. If no value is passed then this field will be set to the groupId.
      */
     @JsonProperty(value = "displayName")
     private String displayName;
@@ -37,14 +39,16 @@ public final class CreateManagementGroupProperties {
     @JsonProperty(value = "children", access = JsonProperty.Access.WRITE_ONLY)
     private List<CreateManagementGroupChildInfo> children;
 
-    /** Creates an instance of CreateManagementGroupProperties class. */
+    /**
+     * Creates an instance of CreateManagementGroupProperties class.
+     */
     public CreateManagementGroupProperties() {
     }
 
     /**
      * Get the tenantId property: The AAD Tenant ID associated with the management group. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -54,7 +58,7 @@ public final class CreateManagementGroupProperties {
     /**
      * Get the displayName property: The friendly name of the management group. If no value is passed then this field
      * will be set to the groupId.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -64,7 +68,7 @@ public final class CreateManagementGroupProperties {
     /**
      * Set the displayName property: The friendly name of the management group. If no value is passed then this field
      * will be set to the groupId.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the CreateManagementGroupProperties object itself.
      */
@@ -75,7 +79,7 @@ public final class CreateManagementGroupProperties {
 
     /**
      * Get the details property: The details of a management group used during creation.
-     *
+     * 
      * @return the details value.
      */
     public CreateManagementGroupDetails details() {
@@ -84,7 +88,7 @@ public final class CreateManagementGroupProperties {
 
     /**
      * Set the details property: The details of a management group used during creation.
-     *
+     * 
      * @param details the details value to set.
      * @return the CreateManagementGroupProperties object itself.
      */
@@ -95,7 +99,7 @@ public final class CreateManagementGroupProperties {
 
     /**
      * Get the children property: The list of children.
-     *
+     * 
      * @return the children value.
      */
     public List<CreateManagementGroupChildInfo> children() {
@@ -104,7 +108,7 @@ public final class CreateManagementGroupProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

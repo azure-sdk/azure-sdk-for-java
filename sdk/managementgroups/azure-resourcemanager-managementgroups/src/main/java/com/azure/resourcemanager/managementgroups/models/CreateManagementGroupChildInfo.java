@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The child information of a management group used during creation. */
+/**
+ * The child information of a management group used during creation.
+ */
 @Immutable
 public final class CreateManagementGroupChildInfo {
     /*
@@ -18,7 +20,7 @@ public final class CreateManagementGroupChildInfo {
     private ManagementGroupChildType type;
 
     /*
-     * The fully qualified ID for the child resource (management group or subscription).  For example,
+     * The fully qualified ID for the child resource (management group or subscription). For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000
      */
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
@@ -42,14 +44,16 @@ public final class CreateManagementGroupChildInfo {
     @JsonProperty(value = "children", access = JsonProperty.Access.WRITE_ONLY)
     private List<CreateManagementGroupChildInfo> children;
 
-    /** Creates an instance of CreateManagementGroupChildInfo class. */
+    /**
+     * Creates an instance of CreateManagementGroupChildInfo class.
+     */
     public CreateManagementGroupChildInfo() {
     }
 
     /**
      * Get the type property: The fully qualified resource type which includes provider namespace (e.g.
      * Microsoft.Management/managementGroups).
-     *
+     * 
      * @return the type value.
      */
     public ManagementGroupChildType type() {
@@ -59,7 +63,7 @@ public final class CreateManagementGroupChildInfo {
     /**
      * Get the id property: The fully qualified ID for the child resource (management group or subscription). For
      * example, /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -68,7 +72,7 @@ public final class CreateManagementGroupChildInfo {
 
     /**
      * Get the name property: The name of the child entity.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -77,7 +81,7 @@ public final class CreateManagementGroupChildInfo {
 
     /**
      * Get the displayName property: The friendly name of the child resource.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -86,7 +90,7 @@ public final class CreateManagementGroupChildInfo {
 
     /**
      * Get the children property: The list of children.
-     *
+     * 
      * @return the children value.
      */
     public List<CreateManagementGroupChildInfo> children() {
@@ -95,7 +99,7 @@ public final class CreateManagementGroupChildInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

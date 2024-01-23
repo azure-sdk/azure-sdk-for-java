@@ -7,11 +7,13 @@ package com.azure.resourcemanager.managementgroups.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The management group resource. */
+/**
+ * The management group resource.
+ */
 @Fluent
 public final class ManagementGroupInfoInner {
     /*
-     * The fully qualified ID for the management group.  For example,
+     * The fully qualified ID for the management group. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000
      */
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
@@ -35,14 +37,16 @@ public final class ManagementGroupInfoInner {
     @JsonProperty(value = "properties")
     private ManagementGroupInfoProperties innerProperties;
 
-    /** Creates an instance of ManagementGroupInfoInner class. */
+    /**
+     * Creates an instance of ManagementGroupInfoInner class.
+     */
     public ManagementGroupInfoInner() {
     }
 
     /**
      * Get the id property: The fully qualified ID for the management group. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -51,7 +55,7 @@ public final class ManagementGroupInfoInner {
 
     /**
      * Get the type property: The type of the resource. For example, Microsoft.Management/managementGroups.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -60,7 +64,7 @@ public final class ManagementGroupInfoInner {
 
     /**
      * Get the name property: The name of the management group. For example, 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -69,7 +73,7 @@ public final class ManagementGroupInfoInner {
 
     /**
      * Get the innerProperties property: The generic properties of a management group.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ManagementGroupInfoProperties innerProperties() {
@@ -79,7 +83,7 @@ public final class ManagementGroupInfoInner {
     /**
      * Get the tenantId property: The AAD Tenant ID associated with the management group. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -89,7 +93,7 @@ public final class ManagementGroupInfoInner {
     /**
      * Set the tenantId property: The AAD Tenant ID associated with the management group. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the ManagementGroupInfoInner object itself.
      */
@@ -103,7 +107,7 @@ public final class ManagementGroupInfoInner {
 
     /**
      * Get the displayName property: The friendly name of the management group.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -112,7 +116,7 @@ public final class ManagementGroupInfoInner {
 
     /**
      * Set the displayName property: The friendly name of the management group.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ManagementGroupInfoInner object itself.
      */
@@ -126,7 +130,7 @@ public final class ManagementGroupInfoInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

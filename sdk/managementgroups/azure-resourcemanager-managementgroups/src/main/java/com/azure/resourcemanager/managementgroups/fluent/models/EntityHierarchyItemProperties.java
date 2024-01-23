@@ -10,7 +10,9 @@ import com.azure.resourcemanager.managementgroups.models.Permissions;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The generic properties of a management group. */
+/**
+ * The generic properties of a management group.
+ */
 @Fluent
 public final class EntityHierarchyItemProperties {
     /*
@@ -31,13 +33,15 @@ public final class EntityHierarchyItemProperties {
     @JsonProperty(value = "children")
     private List<EntityHierarchyItem> children;
 
-    /** Creates an instance of EntityHierarchyItemProperties class. */
+    /**
+     * Creates an instance of EntityHierarchyItemProperties class.
+     */
     public EntityHierarchyItemProperties() {
     }
 
     /**
      * Get the displayName property: The friendly name of the management group.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -46,7 +50,7 @@ public final class EntityHierarchyItemProperties {
 
     /**
      * Set the displayName property: The friendly name of the management group.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the EntityHierarchyItemProperties object itself.
      */
@@ -57,7 +61,7 @@ public final class EntityHierarchyItemProperties {
 
     /**
      * Get the permissions property: The users specific permissions to this item.
-     *
+     * 
      * @return the permissions value.
      */
     public Permissions permissions() {
@@ -66,7 +70,7 @@ public final class EntityHierarchyItemProperties {
 
     /**
      * Set the permissions property: The users specific permissions to this item.
-     *
+     * 
      * @param permissions the permissions value to set.
      * @return the EntityHierarchyItemProperties object itself.
      */
@@ -77,7 +81,7 @@ public final class EntityHierarchyItemProperties {
 
     /**
      * Get the children property: The list of children.
-     *
+     * 
      * @return the children value.
      */
     public List<EntityHierarchyItem> children() {
@@ -86,7 +90,7 @@ public final class EntityHierarchyItemProperties {
 
     /**
      * Set the children property: The list of children.
-     *
+     * 
      * @param children the children value to set.
      * @return the EntityHierarchyItemProperties object itself.
      */
@@ -97,7 +101,7 @@ public final class EntityHierarchyItemProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

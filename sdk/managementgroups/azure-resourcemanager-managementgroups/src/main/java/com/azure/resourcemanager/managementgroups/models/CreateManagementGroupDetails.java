@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The details of a management group used during creation. */
+/**
+ * The details of a management group used during creation.
+ */
 @Fluent
 public final class CreateManagementGroupDetails {
     /*
@@ -35,13 +37,15 @@ public final class CreateManagementGroupDetails {
     @JsonProperty(value = "parent")
     private CreateParentGroupInfo parent;
 
-    /** Creates an instance of CreateManagementGroupDetails class. */
+    /**
+     * Creates an instance of CreateManagementGroupDetails class.
+     */
     public CreateManagementGroupDetails() {
     }
 
     /**
      * Get the version property: The version number of the object.
-     *
+     * 
      * @return the version value.
      */
     public Integer version() {
@@ -50,7 +54,7 @@ public final class CreateManagementGroupDetails {
 
     /**
      * Get the updatedTime property: The date and time when this object was last updated.
-     *
+     * 
      * @return the updatedTime value.
      */
     public OffsetDateTime updatedTime() {
@@ -59,7 +63,7 @@ public final class CreateManagementGroupDetails {
 
     /**
      * Get the updatedBy property: The identity of the principal or process that updated the object.
-     *
+     * 
      * @return the updatedBy value.
      */
     public String updatedBy() {
@@ -68,7 +72,7 @@ public final class CreateManagementGroupDetails {
 
     /**
      * Get the parent property: (Optional) The ID of the parent management group used during creation.
-     *
+     * 
      * @return the parent value.
      */
     public CreateParentGroupInfo parent() {
@@ -77,7 +81,7 @@ public final class CreateManagementGroupDetails {
 
     /**
      * Set the parent property: (Optional) The ID of the parent management group used during creation.
-     *
+     * 
      * @param parent the parent value to set.
      * @return the CreateManagementGroupDetails object itself.
      */
@@ -88,7 +92,7 @@ public final class CreateManagementGroupDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

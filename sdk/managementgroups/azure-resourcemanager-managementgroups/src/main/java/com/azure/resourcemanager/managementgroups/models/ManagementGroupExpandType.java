@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ManagementGroupExpandType. */
+/**
+ * Defines values for ManagementGroupExpandType.
+ */
 public final class ManagementGroupExpandType extends ExpandableStringEnum<ManagementGroupExpandType> {
-    /** Static value children for ManagementGroupExpandType. */
+    /**
+     * Static value children for ManagementGroupExpandType.
+     */
     public static final ManagementGroupExpandType CHILDREN = fromString("children");
 
-    /** Static value path for ManagementGroupExpandType. */
+    /**
+     * Static value path for ManagementGroupExpandType.
+     */
     public static final ManagementGroupExpandType PATH = fromString("path");
 
-    /** Static value ancestors for ManagementGroupExpandType. */
+    /**
+     * Static value ancestors for ManagementGroupExpandType.
+     */
     public static final ManagementGroupExpandType ANCESTORS = fromString("ancestors");
 
     /**
      * Creates a new instance of ManagementGroupExpandType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class ManagementGroupExpandType extends ExpandableStringEnum<Manage
 
     /**
      * Creates or finds a ManagementGroupExpandType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ManagementGroupExpandType.
      */
@@ -41,7 +49,7 @@ public final class ManagementGroupExpandType extends ExpandableStringEnum<Manage
 
     /**
      * Gets known ManagementGroupExpandType values.
-     *
+     * 
      * @return known ManagementGroupExpandType values.
      */
     public static Collection<ManagementGroupExpandType> values() {

@@ -10,7 +10,9 @@ import com.azure.resourcemanager.managementgroups.models.ManagementGroupDetails;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The generic properties of a management group. */
+/**
+ * The generic properties of a management group.
+ */
 @Fluent
 public final class ManagementGroupProperties {
     /*
@@ -37,14 +39,16 @@ public final class ManagementGroupProperties {
     @JsonProperty(value = "children")
     private List<ManagementGroupChildInfo> children;
 
-    /** Creates an instance of ManagementGroupProperties class. */
+    /**
+     * Creates an instance of ManagementGroupProperties class.
+     */
     public ManagementGroupProperties() {
     }
 
     /**
      * Get the tenantId property: The AAD Tenant ID associated with the management group. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -54,7 +58,7 @@ public final class ManagementGroupProperties {
     /**
      * Set the tenantId property: The AAD Tenant ID associated with the management group. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the ManagementGroupProperties object itself.
      */
@@ -65,7 +69,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Get the displayName property: The friendly name of the management group.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -74,7 +78,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Set the displayName property: The friendly name of the management group.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ManagementGroupProperties object itself.
      */
@@ -85,7 +89,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Get the details property: The details of a management group.
-     *
+     * 
      * @return the details value.
      */
     public ManagementGroupDetails details() {
@@ -94,7 +98,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Set the details property: The details of a management group.
-     *
+     * 
      * @param details the details value to set.
      * @return the ManagementGroupProperties object itself.
      */
@@ -105,7 +109,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Get the children property: The list of children.
-     *
+     * 
      * @return the children value.
      */
     public List<ManagementGroupChildInfo> children() {
@@ -114,7 +118,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Set the children property: The list of children.
-     *
+     * 
      * @param children the children value to set.
      * @return the ManagementGroupProperties object itself.
      */
@@ -125,7 +129,7 @@ public final class ManagementGroupProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

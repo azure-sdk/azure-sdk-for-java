@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.managementgroups.models.DescendantParentGroupInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The generic properties of an descendant. */
+/**
+ * The generic properties of an descendant.
+ */
 @Fluent
 public final class DescendantInfoProperties {
     /*
@@ -23,13 +25,15 @@ public final class DescendantInfoProperties {
     @JsonProperty(value = "parent")
     private DescendantParentGroupInfo parent;
 
-    /** Creates an instance of DescendantInfoProperties class. */
+    /**
+     * Creates an instance of DescendantInfoProperties class.
+     */
     public DescendantInfoProperties() {
     }
 
     /**
      * Get the displayName property: The friendly name of the management group.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -38,7 +42,7 @@ public final class DescendantInfoProperties {
 
     /**
      * Set the displayName property: The friendly name of the management group.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the DescendantInfoProperties object itself.
      */
@@ -49,7 +53,7 @@ public final class DescendantInfoProperties {
 
     /**
      * Get the parent property: The ID of the parent management group.
-     *
+     * 
      * @return the parent value.
      */
     public DescendantParentGroupInfo parent() {
@@ -58,7 +62,7 @@ public final class DescendantInfoProperties {
 
     /**
      * Set the parent property: The ID of the parent management group.
-     *
+     * 
      * @param parent the parent value to set.
      * @return the DescendantInfoProperties object itself.
      */
@@ -69,7 +73,7 @@ public final class DescendantInfoProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

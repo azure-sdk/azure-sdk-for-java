@@ -7,11 +7,13 @@ package com.azure.resourcemanager.managementgroups.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** (Optional) The ID of the parent management group used during creation. */
+/**
+ * (Optional) The ID of the parent management group used during creation.
+ */
 @Fluent
 public final class CreateParentGroupInfo {
     /*
-     * The fully qualified ID for the parent management group.  For example,
+     * The fully qualified ID for the parent management group. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000
      */
     @JsonProperty(value = "id")
@@ -29,14 +31,16 @@ public final class CreateParentGroupInfo {
     @JsonProperty(value = "displayName", access = JsonProperty.Access.WRITE_ONLY)
     private String displayName;
 
-    /** Creates an instance of CreateParentGroupInfo class. */
+    /**
+     * Creates an instance of CreateParentGroupInfo class.
+     */
     public CreateParentGroupInfo() {
     }
 
     /**
      * Get the id property: The fully qualified ID for the parent management group. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -46,7 +50,7 @@ public final class CreateParentGroupInfo {
     /**
      * Set the id property: The fully qualified ID for the parent management group. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @param id the id value to set.
      * @return the CreateParentGroupInfo object itself.
      */
@@ -57,7 +61,7 @@ public final class CreateParentGroupInfo {
 
     /**
      * Get the name property: The name of the parent management group.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -66,7 +70,7 @@ public final class CreateParentGroupInfo {
 
     /**
      * Get the displayName property: The friendly name of the parent management group.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -75,7 +79,7 @@ public final class CreateParentGroupInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

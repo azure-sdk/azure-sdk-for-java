@@ -7,27 +7,43 @@ package com.azure.resourcemanager.managementgroups.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** The status of the Tenant Backfill. */
+/**
+ * The status of the Tenant Backfill.
+ */
 public enum Status {
-    /** Enum value NotStarted. */
+    /**
+     * Enum value NotStarted.
+     */
     NOT_STARTED("NotStarted"),
 
-    /** Enum value NotStartedButGroupsExist. */
+    /**
+     * Enum value NotStartedButGroupsExist.
+     */
     NOT_STARTED_BUT_GROUPS_EXIST("NotStartedButGroupsExist"),
 
-    /** Enum value Started. */
+    /**
+     * Enum value Started.
+     */
     STARTED("Started"),
 
-    /** Enum value Failed. */
+    /**
+     * Enum value Failed.
+     */
     FAILED("Failed"),
 
-    /** Enum value Cancelled. */
+    /**
+     * Enum value Cancelled.
+     */
     CANCELLED("Cancelled"),
 
-    /** Enum value Completed. */
+    /**
+     * Enum value Completed.
+     */
     COMPLETED("Completed");
 
-    /** The actual serialized value for a Status instance. */
+    /**
+     * The actual serialized value for a Status instance.
+     */
     private final String value;
 
     Status(String value) {
@@ -36,7 +52,7 @@ public enum Status {
 
     /**
      * Parses a serialized value to a Status instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed Status object, or null if unable to parse.
      */
@@ -54,7 +70,9 @@ public enum Status {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managementgroups.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Management group name availability check parameters. */
+/**
+ * Management group name availability check parameters.
+ */
 @Fluent
 public final class CheckNameAvailabilityRequest {
     /*
@@ -22,13 +24,15 @@ public final class CheckNameAvailabilityRequest {
     @JsonProperty(value = "type")
     private Type type;
 
-    /** Creates an instance of CheckNameAvailabilityRequest class. */
+    /**
+     * Creates an instance of CheckNameAvailabilityRequest class.
+     */
     public CheckNameAvailabilityRequest() {
     }
 
     /**
      * Get the name property: the name to check for availability.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class CheckNameAvailabilityRequest {
 
     /**
      * Set the name property: the name to check for availability.
-     *
+     * 
      * @param name the name value to set.
      * @return the CheckNameAvailabilityRequest object itself.
      */
@@ -48,7 +52,7 @@ public final class CheckNameAvailabilityRequest {
 
     /**
      * Get the type property: fully qualified resource type which includes provider namespace.
-     *
+     * 
      * @return the type value.
      */
     public Type type() {
@@ -57,7 +61,7 @@ public final class CheckNameAvailabilityRequest {
 
     /**
      * Set the type property: fully qualified resource type which includes provider namespace.
-     *
+     * 
      * @param type the type value to set.
      * @return the CheckNameAvailabilityRequest object itself.
      */
@@ -68,7 +72,7 @@ public final class CheckNameAvailabilityRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

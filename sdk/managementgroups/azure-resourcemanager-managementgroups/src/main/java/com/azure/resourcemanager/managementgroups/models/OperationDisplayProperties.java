@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managementgroups.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The object that represents the operation. */
+/**
+ * The object that represents the operation.
+ */
 @Immutable
 public final class OperationDisplayProperties {
     /*
@@ -34,13 +36,15 @@ public final class OperationDisplayProperties {
     @JsonProperty(value = "description", access = JsonProperty.Access.WRITE_ONLY)
     private String description;
 
-    /** Creates an instance of OperationDisplayProperties class. */
+    /**
+     * Creates an instance of OperationDisplayProperties class.
+     */
     public OperationDisplayProperties() {
     }
 
     /**
      * Get the provider property: The name of the provider.
-     *
+     * 
      * @return the provider value.
      */
     public String provider() {
@@ -49,7 +53,7 @@ public final class OperationDisplayProperties {
 
     /**
      * Get the resource property: The resource on which the operation is performed.
-     *
+     * 
      * @return the resource value.
      */
     public String resource() {
@@ -58,7 +62,7 @@ public final class OperationDisplayProperties {
 
     /**
      * Get the operation property: The operation that can be performed.
-     *
+     * 
      * @return the operation value.
      */
     public String operation() {
@@ -67,7 +71,7 @@ public final class OperationDisplayProperties {
 
     /**
      * Get the description property: Operation description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -76,7 +80,7 @@ public final class OperationDisplayProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

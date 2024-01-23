@@ -7,18 +7,20 @@ package com.azure.resourcemanager.managementgroups.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The results of Azure-AsyncOperation. */
+/**
+ * The results of Azure-AsyncOperation.
+ */
 @Fluent
 public final class AzureAsyncOperationResultsInner {
     /*
-     * The fully qualified ID for the management group.  For example,
+     * The fully qualified ID for the management group. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000
      */
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
     /*
-     * The type of the resource.  For example, Microsoft.Management/managementGroups
+     * The type of the resource. For example, Microsoft.Management/managementGroups
      */
     @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
     private String type;
@@ -41,14 +43,16 @@ public final class AzureAsyncOperationResultsInner {
     @JsonProperty(value = "properties")
     private ManagementGroupInfoProperties innerProperties;
 
-    /** Creates an instance of AzureAsyncOperationResultsInner class. */
+    /**
+     * Creates an instance of AzureAsyncOperationResultsInner class.
+     */
     public AzureAsyncOperationResultsInner() {
     }
 
     /**
      * Get the id property: The fully qualified ID for the management group. For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -57,7 +61,7 @@ public final class AzureAsyncOperationResultsInner {
 
     /**
      * Get the type property: The type of the resource. For example, Microsoft.Management/managementGroups.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -66,7 +70,7 @@ public final class AzureAsyncOperationResultsInner {
 
     /**
      * Get the name property: The name of the management group. For example, 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -76,7 +80,7 @@ public final class AzureAsyncOperationResultsInner {
     /**
      * Get the status property: The current status of the asynchronous operation performed . For example, Running,
      * Succeeded, Failed.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -85,7 +89,7 @@ public final class AzureAsyncOperationResultsInner {
 
     /**
      * Get the innerProperties property: The generic properties of a management group.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ManagementGroupInfoProperties innerProperties() {
@@ -95,7 +99,7 @@ public final class AzureAsyncOperationResultsInner {
     /**
      * Get the tenantId property: The AAD Tenant ID associated with the management group. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -105,7 +109,7 @@ public final class AzureAsyncOperationResultsInner {
     /**
      * Set the tenantId property: The AAD Tenant ID associated with the management group. For example,
      * 00000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the AzureAsyncOperationResultsInner object itself.
      */
@@ -119,7 +123,7 @@ public final class AzureAsyncOperationResultsInner {
 
     /**
      * Get the displayName property: The friendly name of the management group.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -128,7 +132,7 @@ public final class AzureAsyncOperationResultsInner {
 
     /**
      * Set the displayName property: The friendly name of the management group.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the AzureAsyncOperationResultsInner object itself.
      */
@@ -142,7 +146,7 @@ public final class AzureAsyncOperationResultsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

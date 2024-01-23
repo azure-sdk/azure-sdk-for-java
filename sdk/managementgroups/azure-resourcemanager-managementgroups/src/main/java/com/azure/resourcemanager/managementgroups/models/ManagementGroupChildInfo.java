@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The child information of a management group. */
+/**
+ * The child information of a management group.
+ */
 @Fluent
 public final class ManagementGroupChildInfo {
     /*
@@ -18,7 +20,7 @@ public final class ManagementGroupChildInfo {
     private ManagementGroupChildType type;
 
     /*
-     * The fully qualified ID for the child resource (management group or subscription).  For example,
+     * The fully qualified ID for the child resource (management group or subscription). For example,
      * /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000
      */
     @JsonProperty(value = "id")
@@ -42,14 +44,16 @@ public final class ManagementGroupChildInfo {
     @JsonProperty(value = "children")
     private List<ManagementGroupChildInfo> children;
 
-    /** Creates an instance of ManagementGroupChildInfo class. */
+    /**
+     * Creates an instance of ManagementGroupChildInfo class.
+     */
     public ManagementGroupChildInfo() {
     }
 
     /**
      * Get the type property: The fully qualified resource type which includes provider namespace (e.g.
      * Microsoft.Management/managementGroups).
-     *
+     * 
      * @return the type value.
      */
     public ManagementGroupChildType type() {
@@ -59,7 +63,7 @@ public final class ManagementGroupChildInfo {
     /**
      * Set the type property: The fully qualified resource type which includes provider namespace (e.g.
      * Microsoft.Management/managementGroups).
-     *
+     * 
      * @param type the type value to set.
      * @return the ManagementGroupChildInfo object itself.
      */
@@ -71,7 +75,7 @@ public final class ManagementGroupChildInfo {
     /**
      * Get the id property: The fully qualified ID for the child resource (management group or subscription). For
      * example, /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -81,7 +85,7 @@ public final class ManagementGroupChildInfo {
     /**
      * Set the id property: The fully qualified ID for the child resource (management group or subscription). For
      * example, /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000.
-     *
+     * 
      * @param id the id value to set.
      * @return the ManagementGroupChildInfo object itself.
      */
@@ -92,7 +96,7 @@ public final class ManagementGroupChildInfo {
 
     /**
      * Get the name property: The name of the child entity.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -101,7 +105,7 @@ public final class ManagementGroupChildInfo {
 
     /**
      * Set the name property: The name of the child entity.
-     *
+     * 
      * @param name the name value to set.
      * @return the ManagementGroupChildInfo object itself.
      */
@@ -112,7 +116,7 @@ public final class ManagementGroupChildInfo {
 
     /**
      * Get the displayName property: The friendly name of the child resource.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -121,7 +125,7 @@ public final class ManagementGroupChildInfo {
 
     /**
      * Set the displayName property: The friendly name of the child resource.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ManagementGroupChildInfo object itself.
      */
@@ -132,7 +136,7 @@ public final class ManagementGroupChildInfo {
 
     /**
      * Get the children property: The list of children.
-     *
+     * 
      * @return the children value.
      */
     public List<ManagementGroupChildInfo> children() {
@@ -141,7 +145,7 @@ public final class ManagementGroupChildInfo {
 
     /**
      * Set the children property: The list of children.
-     *
+     * 
      * @param children the children value to set.
      * @return the ManagementGroupChildInfo object itself.
      */
@@ -152,7 +156,7 @@ public final class ManagementGroupChildInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

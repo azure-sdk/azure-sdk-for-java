@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managementgroups.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A path element of a management group ancestors. */
+/**
+ * A path element of a management group ancestors.
+ */
 @Fluent
 public final class ManagementGroupPathElement {
     /*
@@ -22,13 +24,15 @@ public final class ManagementGroupPathElement {
     @JsonProperty(value = "displayName")
     private String displayName;
 
-    /** Creates an instance of ManagementGroupPathElement class. */
+    /**
+     * Creates an instance of ManagementGroupPathElement class.
+     */
     public ManagementGroupPathElement() {
     }
 
     /**
      * Get the name property: The name of the group.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class ManagementGroupPathElement {
 
     /**
      * Set the name property: The name of the group.
-     *
+     * 
      * @param name the name value to set.
      * @return the ManagementGroupPathElement object itself.
      */
@@ -48,7 +52,7 @@ public final class ManagementGroupPathElement {
 
     /**
      * Get the displayName property: The friendly name of the group.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -57,7 +61,7 @@ public final class ManagementGroupPathElement {
 
     /**
      * Set the displayName property: The friendly name of the group.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ManagementGroupPathElement object itself.
      */
@@ -68,7 +72,7 @@ public final class ManagementGroupPathElement {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
