@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** package carrier info. */
+/**
+ * package carrier info.
+ */
 @Fluent
 public final class PackageCarrierInfo {
     /*
@@ -22,13 +24,15 @@ public final class PackageCarrierInfo {
     @JsonProperty(value = "trackingId")
     private String trackingId;
 
-    /** Creates an instance of PackageCarrierInfo class. */
+    /**
+     * Creates an instance of PackageCarrierInfo class.
+     */
     public PackageCarrierInfo() {
     }
 
     /**
      * Get the carrierName property: Name of the carrier.
-     *
+     * 
      * @return the carrierName value.
      */
     public String carrierName() {
@@ -37,7 +41,7 @@ public final class PackageCarrierInfo {
 
     /**
      * Set the carrierName property: Name of the carrier.
-     *
+     * 
      * @param carrierName the carrierName value to set.
      * @return the PackageCarrierInfo object itself.
      */
@@ -48,7 +52,7 @@ public final class PackageCarrierInfo {
 
     /**
      * Get the trackingId property: Tracking Id of shipment.
-     *
+     * 
      * @return the trackingId value.
      */
     public String trackingId() {
@@ -57,7 +61,7 @@ public final class PackageCarrierInfo {
 
     /**
      * Set the trackingId property: Tracking Id of shipment.
-     *
+     * 
      * @param trackingId the trackingId value to set.
      * @return the PackageCarrierInfo object itself.
      */
@@ -68,7 +72,7 @@ public final class PackageCarrierInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

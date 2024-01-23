@@ -7,27 +7,43 @@ package com.azure.resourcemanager.databox.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Type of the share. */
+/**
+ * Type of the share.
+ */
 public enum ShareDestinationFormatType {
-    /** Enum value UnknownType. */
+    /**
+     * Enum value UnknownType.
+     */
     UNKNOWN_TYPE("UnknownType"),
 
-    /** Enum value HCS. */
+    /**
+     * Enum value HCS.
+     */
     HCS("HCS"),
 
-    /** Enum value BlockBlob. */
+    /**
+     * Enum value BlockBlob.
+     */
     BLOCK_BLOB("BlockBlob"),
 
-    /** Enum value PageBlob. */
+    /**
+     * Enum value PageBlob.
+     */
     PAGE_BLOB("PageBlob"),
 
-    /** Enum value AzureFile. */
+    /**
+     * Enum value AzureFile.
+     */
     AZURE_FILE("AzureFile"),
 
-    /** Enum value ManagedDisk. */
+    /**
+     * Enum value ManagedDisk.
+     */
     MANAGED_DISK("ManagedDisk");
 
-    /** The actual serialized value for a ShareDestinationFormatType instance. */
+    /**
+     * The actual serialized value for a ShareDestinationFormatType instance.
+     */
     private final String value;
 
     ShareDestinationFormatType(String value) {
@@ -36,7 +52,7 @@ public enum ShareDestinationFormatType {
 
     /**
      * Parses a serialized value to a ShareDestinationFormatType instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed ShareDestinationFormatType object, or null if unable to parse.
      */
@@ -54,7 +70,9 @@ public enum ShareDestinationFormatType {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {

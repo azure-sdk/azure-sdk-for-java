@@ -106,6 +106,10 @@ public final class JobResourceImpl implements JobResource, JobResource.Definitio
         return this.innerModel().status();
     }
 
+    public StageName delayedStage() {
+        return this.innerModel().delayedStage();
+    }
+
     public OffsetDateTime startTime() {
         return this.innerModel().startTime();
     }
@@ -132,6 +136,10 @@ public final class JobResourceImpl implements JobResource, JobResource.Definitio
 
     public Boolean isCancellableWithoutFee() {
         return this.innerModel().isCancellableWithoutFee();
+    }
+
+    public Boolean allDevicesLost() {
+        return this.innerModel().allDevicesLost();
     }
 
     public Region region() {
@@ -168,17 +176,14 @@ public final class JobResourceImpl implements JobResource, JobResource.Definitio
     }
 
     public JobResource create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getJobs()
-                .create(resourceGroupName, jobName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getJobs().create(resourceGroupName, jobName,
+            this.innerModel(), Context.NONE);
         return this;
     }
 
     public JobResource create(Context context) {
-        this.innerObject =
-            serviceManager.serviceClient().getJobs().create(resourceGroupName, jobName, this.innerModel(), context);
+        this.innerObject
+            = serviceManager.serviceClient().getJobs().create(resourceGroupName, jobName, this.innerModel(), context);
         return this;
     }
 
@@ -195,68 +200,52 @@ public final class JobResourceImpl implements JobResource, JobResource.Definitio
     }
 
     public JobResource apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getJobs()
-                .update(resourceGroupName, jobName, updateJobResourceUpdateParameter, updateIfMatch, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getJobs().update(resourceGroupName, jobName,
+            updateJobResourceUpdateParameter, updateIfMatch, Context.NONE);
         return this;
     }
 
     public JobResource apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getJobs()
-                .update(resourceGroupName, jobName, updateJobResourceUpdateParameter, updateIfMatch, context);
+        this.innerObject = serviceManager.serviceClient().getJobs().update(resourceGroupName, jobName,
+            updateJobResourceUpdateParameter, updateIfMatch, context);
         return this;
     }
 
     JobResourceImpl(JobResourceInner innerObject, com.azure.resourcemanager.databox.DataBoxManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.jobName = Utils.getValueFromIdByName(innerObject.id(), "jobs");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.jobName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "jobs");
     }
 
     public JobResource refresh() {
         String localExpand = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getJobs()
-                .getByResourceGroupWithResponse(resourceGroupName, jobName, localExpand, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getJobs()
+            .getByResourceGroupWithResponse(resourceGroupName, jobName, localExpand, Context.NONE).getValue();
         return this;
     }
 
     public JobResource refresh(Context context) {
         String localExpand = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getJobs()
-                .getByResourceGroupWithResponse(resourceGroupName, jobName, localExpand, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getJobs()
+            .getByResourceGroupWithResponse(resourceGroupName, jobName, localExpand, context).getValue();
         return this;
     }
 
-    public Response<Void> markDevicesShippedWithResponse(
-        MarkDevicesShippedRequest markDevicesShippedRequest, Context context) {
-        return serviceManager
-            .jobs()
-            .markDevicesShippedWithResponse(jobName, resourceGroupName, markDevicesShippedRequest, context);
+    public Response<Void> markDevicesShippedWithResponse(MarkDevicesShippedRequest markDevicesShippedRequest,
+        Context context) {
+        return serviceManager.jobs().markDevicesShippedWithResponse(jobName, resourceGroupName,
+            markDevicesShippedRequest, context);
     }
 
     public void markDevicesShipped(MarkDevicesShippedRequest markDevicesShippedRequest) {
         serviceManager.jobs().markDevicesShipped(jobName, resourceGroupName, markDevicesShippedRequest);
     }
 
-    public Response<ShipmentPickUpResponse> bookShipmentPickUpWithResponse(
-        ShipmentPickUpRequest shipmentPickUpRequest, Context context) {
-        return serviceManager
-            .jobs()
-            .bookShipmentPickUpWithResponse(resourceGroupName, jobName, shipmentPickUpRequest, context);
+    public Response<ShipmentPickUpResponse> bookShipmentPickUpWithResponse(ShipmentPickUpRequest shipmentPickUpRequest,
+        Context context) {
+        return serviceManager.jobs().bookShipmentPickUpWithResponse(resourceGroupName, jobName, shipmentPickUpRequest,
+            context);
     }
 
     public ShipmentPickUpResponse bookShipmentPickUp(ShipmentPickUpRequest shipmentPickUpRequest) {

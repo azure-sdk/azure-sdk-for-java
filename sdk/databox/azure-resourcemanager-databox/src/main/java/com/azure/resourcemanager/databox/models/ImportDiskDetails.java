@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Import disk details. */
+/**
+ * Import disk details.
+ */
 @Fluent
 public final class ImportDiskDetails {
     /*
@@ -26,7 +28,7 @@ public final class ImportDiskDetails {
     /*
      * BitLocker key used to encrypt the disk.
      */
-    @JsonProperty(value = "bitLockerKey", required = true)
+    @JsonProperty(value = "bitLockerKey")
     private String bitLockerKey;
 
     /*
@@ -35,13 +37,15 @@ public final class ImportDiskDetails {
     @JsonProperty(value = "backupManifestCloudPath", access = JsonProperty.Access.WRITE_ONLY)
     private String backupManifestCloudPath;
 
-    /** Creates an instance of ImportDiskDetails class. */
+    /**
+     * Creates an instance of ImportDiskDetails class.
+     */
     public ImportDiskDetails() {
     }
 
     /**
      * Get the manifestFile property: The relative path of the manifest file on the disk.
-     *
+     * 
      * @return the manifestFile value.
      */
     public String manifestFile() {
@@ -50,7 +54,7 @@ public final class ImportDiskDetails {
 
     /**
      * Set the manifestFile property: The relative path of the manifest file on the disk.
-     *
+     * 
      * @param manifestFile the manifestFile value to set.
      * @return the ImportDiskDetails object itself.
      */
@@ -61,7 +65,7 @@ public final class ImportDiskDetails {
 
     /**
      * Get the manifestHash property: The Base16-encoded MD5 hash of the manifest file on the disk.
-     *
+     * 
      * @return the manifestHash value.
      */
     public String manifestHash() {
@@ -70,7 +74,7 @@ public final class ImportDiskDetails {
 
     /**
      * Set the manifestHash property: The Base16-encoded MD5 hash of the manifest file on the disk.
-     *
+     * 
      * @param manifestHash the manifestHash value to set.
      * @return the ImportDiskDetails object itself.
      */
@@ -81,7 +85,7 @@ public final class ImportDiskDetails {
 
     /**
      * Get the bitLockerKey property: BitLocker key used to encrypt the disk.
-     *
+     * 
      * @return the bitLockerKey value.
      */
     public String bitLockerKey() {
@@ -90,7 +94,7 @@ public final class ImportDiskDetails {
 
     /**
      * Set the bitLockerKey property: BitLocker key used to encrypt the disk.
-     *
+     * 
      * @param bitLockerKey the bitLockerKey value to set.
      * @return the ImportDiskDetails object itself.
      */
@@ -102,7 +106,7 @@ public final class ImportDiskDetails {
     /**
      * Get the backupManifestCloudPath property: Path to backed up manifest, only returned if enableManifestBackup is
      * true.
-     *
+     * 
      * @return the backupManifestCloudPath value.
      */
     public String backupManifestCloudPath() {
@@ -111,24 +115,21 @@ public final class ImportDiskDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (manifestFile() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property manifestFile in model ImportDiskDetails"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property manifestFile in model ImportDiskDetails"));
         }
         if (manifestHash() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property manifestHash in model ImportDiskDetails"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property manifestHash in model ImportDiskDetails"));
         }
         if (bitLockerKey() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property bitLockerKey in model ImportDiskDetails"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property bitLockerKey in model ImportDiskDetails"));
         }
     }
 

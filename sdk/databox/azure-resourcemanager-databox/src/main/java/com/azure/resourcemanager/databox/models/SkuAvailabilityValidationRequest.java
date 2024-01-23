@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Request to validate sku availability. */
+/**
+ * Request to validate sku availability.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationType")
 @JsonTypeName("ValidateSkuAvailability")
 @Fluent
@@ -41,13 +43,15 @@ public final class SkuAvailabilityValidationRequest extends ValidationInputReque
     @JsonProperty(value = "location", required = true)
     private String location;
 
-    /** Creates an instance of SkuAvailabilityValidationRequest class. */
+    /**
+     * Creates an instance of SkuAvailabilityValidationRequest class.
+     */
     public SkuAvailabilityValidationRequest() {
     }
 
     /**
      * Get the deviceType property: Device type to be used for the job.
-     *
+     * 
      * @return the deviceType value.
      */
     public SkuName deviceType() {
@@ -56,7 +60,7 @@ public final class SkuAvailabilityValidationRequest extends ValidationInputReque
 
     /**
      * Set the deviceType property: Device type to be used for the job.
-     *
+     * 
      * @param deviceType the deviceType value to set.
      * @return the SkuAvailabilityValidationRequest object itself.
      */
@@ -67,7 +71,7 @@ public final class SkuAvailabilityValidationRequest extends ValidationInputReque
 
     /**
      * Get the transferType property: Type of the transfer.
-     *
+     * 
      * @return the transferType value.
      */
     public TransferType transferType() {
@@ -76,7 +80,7 @@ public final class SkuAvailabilityValidationRequest extends ValidationInputReque
 
     /**
      * Set the transferType property: Type of the transfer.
-     *
+     * 
      * @param transferType the transferType value to set.
      * @return the SkuAvailabilityValidationRequest object itself.
      */
@@ -88,7 +92,7 @@ public final class SkuAvailabilityValidationRequest extends ValidationInputReque
     /**
      * Get the country property: ISO country code. Country for hardware shipment. For codes check:
      * https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements.
-     *
+     * 
      * @return the country value.
      */
     public String country() {
@@ -98,7 +102,7 @@ public final class SkuAvailabilityValidationRequest extends ValidationInputReque
     /**
      * Set the country property: ISO country code. Country for hardware shipment. For codes check:
      * https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements.
-     *
+     * 
      * @param country the country value to set.
      * @return the SkuAvailabilityValidationRequest object itself.
      */
@@ -110,7 +114,7 @@ public final class SkuAvailabilityValidationRequest extends ValidationInputReque
     /**
      * Get the location property: Location for data transfer. For locations check:
      * https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -120,7 +124,7 @@ public final class SkuAvailabilityValidationRequest extends ValidationInputReque
     /**
      * Set the location property: Location for data transfer. For locations check:
      * https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01.
-     *
+     * 
      * @param location the location value to set.
      * @return the SkuAvailabilityValidationRequest object itself.
      */
@@ -131,35 +135,27 @@ public final class SkuAvailabilityValidationRequest extends ValidationInputReque
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (deviceType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property deviceType in model SkuAvailabilityValidationRequest"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property deviceType in model SkuAvailabilityValidationRequest"));
         }
         if (transferType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property transferType in model SkuAvailabilityValidationRequest"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property transferType in model SkuAvailabilityValidationRequest"));
         }
         if (country() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property country in model SkuAvailabilityValidationRequest"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property country in model SkuAvailabilityValidationRequest"));
         }
         if (location() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property location in model SkuAvailabilityValidationRequest"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property location in model SkuAvailabilityValidationRequest"));
         }
     }
 

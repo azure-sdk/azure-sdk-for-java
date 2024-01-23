@@ -8,18 +8,22 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Request to validate subscription permission to create jobs. */
+/**
+ * Request to validate subscription permission to create jobs.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationType")
 @JsonTypeName("ValidateSubscriptionIsAllowedToCreateJob")
 @Immutable
 public final class SubscriptionIsAllowedToCreateJobValidationRequest extends ValidationInputRequest {
-    /** Creates an instance of SubscriptionIsAllowedToCreateJobValidationRequest class. */
+    /**
+     * Creates an instance of SubscriptionIsAllowedToCreateJobValidationRequest class.
+     */
     public SubscriptionIsAllowedToCreateJobValidationRequest() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -6,11 +6,14 @@ package com.azure.resourcemanager.databox.fluent.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.databox.models.DatacenterAddressResponse;
+import com.azure.resourcemanager.databox.models.DeviceCapabilityResponse;
 import com.azure.resourcemanager.databox.models.ScheduleAvailabilityResponse;
 import com.azure.resourcemanager.databox.models.TransportAvailabilityResponse;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Configuration response specific to a region. */
+/**
+ * Configuration response specific to a region.
+ */
 @Immutable
 public final class RegionConfigurationResponseInner {
     /*
@@ -31,13 +34,21 @@ public final class RegionConfigurationResponseInner {
     @JsonProperty(value = "datacenterAddressResponse", access = JsonProperty.Access.WRITE_ONLY)
     private DatacenterAddressResponse datacenterAddressResponse;
 
-    /** Creates an instance of RegionConfigurationResponseInner class. */
+    /*
+     * Device capabilities available for a given sku in a region.
+     */
+    @JsonProperty(value = "deviceCapabilityResponse", access = JsonProperty.Access.WRITE_ONLY)
+    private DeviceCapabilityResponse deviceCapabilityResponse;
+
+    /**
+     * Creates an instance of RegionConfigurationResponseInner class.
+     */
     public RegionConfigurationResponseInner() {
     }
 
     /**
      * Get the scheduleAvailabilityResponse property: Schedule availability for given sku in a region.
-     *
+     * 
      * @return the scheduleAvailabilityResponse value.
      */
     public ScheduleAvailabilityResponse scheduleAvailabilityResponse() {
@@ -46,7 +57,7 @@ public final class RegionConfigurationResponseInner {
 
     /**
      * Get the transportAvailabilityResponse property: Transport options available for given sku in a region.
-     *
+     * 
      * @return the transportAvailabilityResponse value.
      */
     public TransportAvailabilityResponse transportAvailabilityResponse() {
@@ -55,7 +66,7 @@ public final class RegionConfigurationResponseInner {
 
     /**
      * Get the datacenterAddressResponse property: Datacenter address for given sku in a region.
-     *
+     * 
      * @return the datacenterAddressResponse value.
      */
     public DatacenterAddressResponse datacenterAddressResponse() {
@@ -63,8 +74,17 @@ public final class RegionConfigurationResponseInner {
     }
 
     /**
+     * Get the deviceCapabilityResponse property: Device capabilities available for a given sku in a region.
+     * 
+     * @return the deviceCapabilityResponse value.
+     */
+    public DeviceCapabilityResponse deviceCapabilityResponse() {
+        return this.deviceCapabilityResponse;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -76,6 +96,9 @@ public final class RegionConfigurationResponseInner {
         }
         if (datacenterAddressResponse() != null) {
             datacenterAddressResponse().validate();
+        }
+        if (deviceCapabilityResponse() != null) {
+            deviceCapabilityResponse().validate();
         }
     }
 }

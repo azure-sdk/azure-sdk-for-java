@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Request to validate preference of transport and data center. */
+/**
+ * Request to validate preference of transport and data center.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationType")
 @JsonTypeName("ValidatePreferences")
 @Fluent
@@ -27,13 +29,15 @@ public final class PreferencesValidationRequest extends ValidationInputRequest {
     @JsonProperty(value = "deviceType", required = true)
     private SkuName deviceType;
 
-    /** Creates an instance of PreferencesValidationRequest class. */
+    /**
+     * Creates an instance of PreferencesValidationRequest class.
+     */
     public PreferencesValidationRequest() {
     }
 
     /**
      * Get the preference property: Preference of transport and data center.
-     *
+     * 
      * @return the preference value.
      */
     public Preferences preference() {
@@ -42,7 +46,7 @@ public final class PreferencesValidationRequest extends ValidationInputRequest {
 
     /**
      * Set the preference property: Preference of transport and data center.
-     *
+     * 
      * @param preference the preference value to set.
      * @return the PreferencesValidationRequest object itself.
      */
@@ -53,7 +57,7 @@ public final class PreferencesValidationRequest extends ValidationInputRequest {
 
     /**
      * Get the deviceType property: Device type to be used for the job.
-     *
+     * 
      * @return the deviceType value.
      */
     public SkuName deviceType() {
@@ -62,7 +66,7 @@ public final class PreferencesValidationRequest extends ValidationInputRequest {
 
     /**
      * Set the deviceType property: Device type to be used for the job.
-     *
+     * 
      * @param deviceType the deviceType value to set.
      * @return the PreferencesValidationRequest object itself.
      */
@@ -73,7 +77,7 @@ public final class PreferencesValidationRequest extends ValidationInputRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
@@ -83,10 +87,8 @@ public final class PreferencesValidationRequest extends ValidationInputRequest {
             preference().validate();
         }
         if (deviceType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property deviceType in model PreferencesValidationRequest"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property deviceType in model PreferencesValidationRequest"));
         }
     }
 

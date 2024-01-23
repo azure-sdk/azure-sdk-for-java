@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Reverse Shipping Address and contact details for a job. */
+/**
+ * Reverse Shipping Address and contact details for a job.
+ */
 @Fluent
 public final class ReverseShippingDetails {
     /*
@@ -29,13 +31,15 @@ public final class ReverseShippingDetails {
     @JsonProperty(value = "isUpdated", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isUpdated;
 
-    /** Creates an instance of ReverseShippingDetails class. */
+    /**
+     * Creates an instance of ReverseShippingDetails class.
+     */
     public ReverseShippingDetails() {
     }
 
     /**
      * Get the contactDetails property: Contact Info.
-     *
+     * 
      * @return the contactDetails value.
      */
     public ContactInfo contactDetails() {
@@ -44,7 +48,7 @@ public final class ReverseShippingDetails {
 
     /**
      * Set the contactDetails property: Contact Info.
-     *
+     * 
      * @param contactDetails the contactDetails value to set.
      * @return the ReverseShippingDetails object itself.
      */
@@ -55,7 +59,7 @@ public final class ReverseShippingDetails {
 
     /**
      * Get the shippingAddress property: Shipping address where customer wishes to receive the device.
-     *
+     * 
      * @return the shippingAddress value.
      */
     public ShippingAddress shippingAddress() {
@@ -64,7 +68,7 @@ public final class ReverseShippingDetails {
 
     /**
      * Set the shippingAddress property: Shipping address where customer wishes to receive the device.
-     *
+     * 
      * @param shippingAddress the shippingAddress value to set.
      * @return the ReverseShippingDetails object itself.
      */
@@ -75,8 +79,9 @@ public final class ReverseShippingDetails {
 
     /**
      * Get the isUpdated property: A flag to indicate whether Reverse Shipping details are updated or not after device
-     * has been prepared. Read only field.
-     *
+     * has been prepared.
+     * Read only field.
+     * 
      * @return the isUpdated value.
      */
     public Boolean isUpdated() {
@@ -85,7 +90,7 @@ public final class ReverseShippingDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

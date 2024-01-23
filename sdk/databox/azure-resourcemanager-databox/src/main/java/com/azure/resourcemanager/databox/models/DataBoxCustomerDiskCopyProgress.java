@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** DataBox CustomerDisk Copy Progress. */
+/**
+ * DataBox CustomerDisk Copy Progress.
+ */
 @Immutable
 public final class DataBoxCustomerDiskCopyProgress extends CopyProgress {
     /*
@@ -22,13 +24,15 @@ public final class DataBoxCustomerDiskCopyProgress extends CopyProgress {
     @JsonProperty(value = "copyStatus", access = JsonProperty.Access.WRITE_ONLY)
     private CopyStatus copyStatus;
 
-    /** Creates an instance of DataBoxCustomerDiskCopyProgress class. */
+    /**
+     * Creates an instance of DataBoxCustomerDiskCopyProgress class.
+     */
     public DataBoxCustomerDiskCopyProgress() {
     }
 
     /**
      * Get the serialNumber property: Disk Serial Number.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -37,7 +41,7 @@ public final class DataBoxCustomerDiskCopyProgress extends CopyProgress {
 
     /**
      * Get the copyStatus property: The Status of the copy.
-     *
+     * 
      * @return the copyStatus value.
      */
     public CopyStatus copyStatus() {
@@ -46,7 +50,7 @@ public final class DataBoxCustomerDiskCopyProgress extends CopyProgress {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

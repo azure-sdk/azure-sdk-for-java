@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Granular Copy Log Details for customer disk. */
+/**
+ * Granular Copy Log Details for customer disk.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "copyLogDetailsType")
 @JsonTypeName("DataBoxCustomerDisk")
 @Immutable
@@ -38,13 +40,15 @@ public final class DataBoxDiskGranularCopyLogDetails extends GranularCopyLogDeta
     @JsonProperty(value = "verboseLogLink", access = JsonProperty.Access.WRITE_ONLY)
     private String verboseLogLink;
 
-    /** Creates an instance of DataBoxDiskGranularCopyLogDetails class. */
+    /**
+     * Creates an instance of DataBoxDiskGranularCopyLogDetails class.
+     */
     public DataBoxDiskGranularCopyLogDetails() {
     }
 
     /**
      * Get the serialNumber property: Disk Serial Number.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -53,7 +57,7 @@ public final class DataBoxDiskGranularCopyLogDetails extends GranularCopyLogDeta
 
     /**
      * Get the accountId property: Account id.
-     *
+     * 
      * @return the accountId value.
      */
     public String accountId() {
@@ -62,7 +66,7 @@ public final class DataBoxDiskGranularCopyLogDetails extends GranularCopyLogDeta
 
     /**
      * Get the errorLogLink property: Link for copy error logs.
-     *
+     * 
      * @return the errorLogLink value.
      */
     public String errorLogLink() {
@@ -71,7 +75,7 @@ public final class DataBoxDiskGranularCopyLogDetails extends GranularCopyLogDeta
 
     /**
      * Get the verboseLogLink property: Link for copy verbose logs.
-     *
+     * 
      * @return the verboseLogLink value.
      */
     public String verboseLogLink() {
@@ -80,7 +84,7 @@ public final class DataBoxDiskGranularCopyLogDetails extends GranularCopyLogDeta
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
