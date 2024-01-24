@@ -12,7 +12,9 @@ import com.azure.resourcemanager.securityinsights.models.TiTaxiiDataConnectorDat
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Threat Intelligence TAXII data connector properties. */
+/**
+ * Threat Intelligence TAXII data connector properties.
+ */
 @Fluent
 public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId {
     /*
@@ -70,8 +72,14 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
     private TiTaxiiDataConnectorDataTypes dataTypes;
 
     /**
+     * Creates an instance of TiTaxiiDataConnectorProperties class.
+     */
+    public TiTaxiiDataConnectorProperties() {
+    }
+
+    /**
      * Get the workspaceId property: The workspace id.
-     *
+     * 
      * @return the workspaceId value.
      */
     public String workspaceId() {
@@ -80,7 +88,7 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
 
     /**
      * Set the workspaceId property: The workspace id.
-     *
+     * 
      * @param workspaceId the workspaceId value to set.
      * @return the TiTaxiiDataConnectorProperties object itself.
      */
@@ -91,7 +99,7 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
 
     /**
      * Get the friendlyName property: The friendly name for the TAXII server.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -100,7 +108,7 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
 
     /**
      * Set the friendlyName property: The friendly name for the TAXII server.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the TiTaxiiDataConnectorProperties object itself.
      */
@@ -111,7 +119,7 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
 
     /**
      * Get the taxiiServer property: The API root for the TAXII server.
-     *
+     * 
      * @return the taxiiServer value.
      */
     public String taxiiServer() {
@@ -120,7 +128,7 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
 
     /**
      * Set the taxiiServer property: The API root for the TAXII server.
-     *
+     * 
      * @param taxiiServer the taxiiServer value to set.
      * @return the TiTaxiiDataConnectorProperties object itself.
      */
@@ -131,7 +139,7 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
 
     /**
      * Get the collectionId property: The collection id of the TAXII server.
-     *
+     * 
      * @return the collectionId value.
      */
     public String collectionId() {
@@ -140,7 +148,7 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
 
     /**
      * Set the collectionId property: The collection id of the TAXII server.
-     *
+     * 
      * @param collectionId the collectionId value to set.
      * @return the TiTaxiiDataConnectorProperties object itself.
      */
@@ -151,7 +159,7 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
 
     /**
      * Get the username property: The userName for the TAXII server.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -160,7 +168,7 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
 
     /**
      * Set the username property: The userName for the TAXII server.
-     *
+     * 
      * @param username the username value to set.
      * @return the TiTaxiiDataConnectorProperties object itself.
      */
@@ -171,7 +179,7 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
 
     /**
      * Get the password property: The password for the TAXII server.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -180,7 +188,7 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
 
     /**
      * Set the password property: The password for the TAXII server.
-     *
+     * 
      * @param password the password value to set.
      * @return the TiTaxiiDataConnectorProperties object itself.
      */
@@ -191,7 +199,7 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
 
     /**
      * Get the taxiiLookbackPeriod property: The lookback period for the TAXII server.
-     *
+     * 
      * @return the taxiiLookbackPeriod value.
      */
     public OffsetDateTime taxiiLookbackPeriod() {
@@ -200,7 +208,7 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
 
     /**
      * Set the taxiiLookbackPeriod property: The lookback period for the TAXII server.
-     *
+     * 
      * @param taxiiLookbackPeriod the taxiiLookbackPeriod value to set.
      * @return the TiTaxiiDataConnectorProperties object itself.
      */
@@ -211,7 +219,7 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
 
     /**
      * Get the pollingFrequency property: The polling frequency for the TAXII server.
-     *
+     * 
      * @return the pollingFrequency value.
      */
     public PollingFrequency pollingFrequency() {
@@ -220,7 +228,7 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
 
     /**
      * Set the pollingFrequency property: The polling frequency for the TAXII server.
-     *
+     * 
      * @param pollingFrequency the pollingFrequency value to set.
      * @return the TiTaxiiDataConnectorProperties object itself.
      */
@@ -231,7 +239,7 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
 
     /**
      * Get the dataTypes property: The available data types for Threat Intelligence TAXII data connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public TiTaxiiDataConnectorDataTypes dataTypes() {
@@ -240,7 +248,7 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
 
     /**
      * Set the dataTypes property: The available data types for Threat Intelligence TAXII data connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the TiTaxiiDataConnectorProperties object itself.
      */
@@ -249,7 +257,9 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TiTaxiiDataConnectorProperties withTenantId(String tenantId) {
         super.withTenantId(tenantId);
@@ -258,23 +268,19 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (pollingFrequency() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property pollingFrequency in model TiTaxiiDataConnectorProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property pollingFrequency in model TiTaxiiDataConnectorProperties"));
         }
         if (dataTypes() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dataTypes in model TiTaxiiDataConnectorProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property dataTypes in model TiTaxiiDataConnectorProperties"));
         } else {
             dataTypes().validate();
         }

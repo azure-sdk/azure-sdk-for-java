@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An azure resource object with an Etag property. */
+/**
+ * An azure resource object with an Etag property.
+ */
 @Fluent
 public class ResourceWithEtag extends ProxyResource {
     /*
@@ -25,8 +27,14 @@ public class ResourceWithEtag extends ProxyResource {
     private SystemData systemData;
 
     /**
+     * Creates an instance of ResourceWithEtag class.
+     */
+    public ResourceWithEtag() {
+    }
+
+    /**
      * Get the etag property: Etag of the azure resource.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -35,7 +43,7 @@ public class ResourceWithEtag extends ProxyResource {
 
     /**
      * Set the etag property: Etag of the azure resource.
-     *
+     * 
      * @param etag the etag value to set.
      * @return the ResourceWithEtag object itself.
      */
@@ -46,7 +54,7 @@ public class ResourceWithEtag extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -55,7 +63,7 @@ public class ResourceWithEtag extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

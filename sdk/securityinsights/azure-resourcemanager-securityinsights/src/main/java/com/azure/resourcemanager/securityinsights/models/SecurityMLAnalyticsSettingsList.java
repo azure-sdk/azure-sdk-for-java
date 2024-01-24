@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.SecurityMLAnalyt
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List all the SecurityMLAnalyticsSettings. */
+/**
+ * List all the SecurityMLAnalyticsSettings.
+ */
 @Fluent
 public final class SecurityMLAnalyticsSettingsList {
     /*
@@ -26,8 +28,14 @@ public final class SecurityMLAnalyticsSettingsList {
     private List<SecurityMLAnalyticsSettingInner> value;
 
     /**
+     * Creates an instance of SecurityMLAnalyticsSettingsList class.
+     */
+    public SecurityMLAnalyticsSettingsList() {
+    }
+
+    /**
      * Get the nextLink property: URL to fetch the next set of SecurityMLAnalyticsSettings.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -36,7 +44,7 @@ public final class SecurityMLAnalyticsSettingsList {
 
     /**
      * Get the value property: Array of SecurityMLAnalyticsSettings.
-     *
+     * 
      * @return the value value.
      */
     public List<SecurityMLAnalyticsSettingInner> value() {
@@ -45,7 +53,7 @@ public final class SecurityMLAnalyticsSettingsList {
 
     /**
      * Set the value property: Array of SecurityMLAnalyticsSettings.
-     *
+     * 
      * @param value the value value to set.
      * @return the SecurityMLAnalyticsSettingsList object itself.
      */
@@ -56,15 +64,13 @@ public final class SecurityMLAnalyticsSettingsList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model SecurityMLAnalyticsSettingsList"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property value in model SecurityMLAnalyticsSettingsList"));
         } else {
             value().forEach(e -> e.validate());
         }

@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceMetri
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of all the threat intelligence metric fields (type/threat type/source). */
+/**
+ * List of all the threat intelligence metric fields (type/threat type/source).
+ */
 @Fluent
 public final class ThreatIntelligenceMetricsListInner {
     /*
@@ -20,8 +22,14 @@ public final class ThreatIntelligenceMetricsListInner {
     private List<ThreatIntelligenceMetrics> value;
 
     /**
+     * Creates an instance of ThreatIntelligenceMetricsListInner class.
+     */
+    public ThreatIntelligenceMetricsListInner() {
+    }
+
+    /**
      * Get the value property: Array of threat intelligence metric fields (type/threat type/source).
-     *
+     * 
      * @return the value value.
      */
     public List<ThreatIntelligenceMetrics> value() {
@@ -30,7 +38,7 @@ public final class ThreatIntelligenceMetricsListInner {
 
     /**
      * Set the value property: Array of threat intelligence metric fields (type/threat type/source).
-     *
+     * 
      * @param value the value value to set.
      * @return the ThreatIntelligenceMetricsListInner object itself.
      */
@@ -41,15 +49,13 @@ public final class ThreatIntelligenceMetricsListInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model ThreatIntelligenceMetricsListInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property value in model ThreatIntelligenceMetricsListInner"));
         } else {
             value().forEach(e -> e.validate());
         }

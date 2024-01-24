@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Describes an automation rule action. */
+/**
+ * Describes an automation rule action.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -18,9 +20,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     defaultImpl = AutomationRuleAction.class)
 @JsonTypeName("AutomationRuleAction")
 @JsonSubTypes({
+    @JsonSubTypes.Type(name = "AddIncidentTask", value = AutomationRuleAddIncidentTaskAction.class),
     @JsonSubTypes.Type(name = "ModifyProperties", value = AutomationRuleModifyPropertiesAction.class),
-    @JsonSubTypes.Type(name = "RunPlaybook", value = AutomationRuleRunPlaybookAction.class)
-})
+    @JsonSubTypes.Type(name = "RunPlaybook", value = AutomationRuleRunPlaybookAction.class) })
 @Fluent
 public class AutomationRuleAction {
     /*
@@ -30,8 +32,14 @@ public class AutomationRuleAction {
     private int order;
 
     /**
+     * Creates an instance of AutomationRuleAction class.
+     */
+    public AutomationRuleAction() {
+    }
+
+    /**
      * Get the order property: The order property.
-     *
+     * 
      * @return the order value.
      */
     public int order() {
@@ -40,7 +48,7 @@ public class AutomationRuleAction {
 
     /**
      * Set the order property: The order property.
-     *
+     * 
      * @param order the order value to set.
      * @return the AutomationRuleAction object itself.
      */
@@ -51,7 +59,7 @@ public class AutomationRuleAction {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

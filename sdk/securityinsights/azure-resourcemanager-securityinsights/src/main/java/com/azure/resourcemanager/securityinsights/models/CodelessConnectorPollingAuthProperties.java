@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describe the authentication properties needed to successfully authenticate with the server. */
+/**
+ * Describe the authentication properties needed to successfully authenticate with the server.
+ */
 @Fluent
 public final class CodelessConnectorPollingAuthProperties {
     /*
@@ -90,8 +92,14 @@ public final class CodelessConnectorPollingAuthProperties {
     private String scope;
 
     /**
+     * Creates an instance of CodelessConnectorPollingAuthProperties class.
+     */
+    public CodelessConnectorPollingAuthProperties() {
+    }
+
+    /**
      * Get the authType property: The authentication type.
-     *
+     * 
      * @return the authType value.
      */
     public String authType() {
@@ -100,7 +108,7 @@ public final class CodelessConnectorPollingAuthProperties {
 
     /**
      * Set the authType property: The authentication type.
-     *
+     * 
      * @param authType the authType value to set.
      * @return the CodelessConnectorPollingAuthProperties object itself.
      */
@@ -111,7 +119,7 @@ public final class CodelessConnectorPollingAuthProperties {
 
     /**
      * Get the apiKeyName property: The header name which the token is sent with.
-     *
+     * 
      * @return the apiKeyName value.
      */
     public String apiKeyName() {
@@ -120,7 +128,7 @@ public final class CodelessConnectorPollingAuthProperties {
 
     /**
      * Set the apiKeyName property: The header name which the token is sent with.
-     *
+     * 
      * @param apiKeyName the apiKeyName value to set.
      * @return the CodelessConnectorPollingAuthProperties object itself.
      */
@@ -131,7 +139,7 @@ public final class CodelessConnectorPollingAuthProperties {
 
     /**
      * Get the apiKeyIdentifier property: A prefix send in the header before the actual token.
-     *
+     * 
      * @return the apiKeyIdentifier value.
      */
     public String apiKeyIdentifier() {
@@ -140,7 +148,7 @@ public final class CodelessConnectorPollingAuthProperties {
 
     /**
      * Set the apiKeyIdentifier property: A prefix send in the header before the actual token.
-     *
+     * 
      * @param apiKeyIdentifier the apiKeyIdentifier value to set.
      * @return the CodelessConnectorPollingAuthProperties object itself.
      */
@@ -151,7 +159,7 @@ public final class CodelessConnectorPollingAuthProperties {
 
     /**
      * Get the isApiKeyInPostPayload property: Marks if the key should sent in header.
-     *
+     * 
      * @return the isApiKeyInPostPayload value.
      */
     public String isApiKeyInPostPayload() {
@@ -160,7 +168,7 @@ public final class CodelessConnectorPollingAuthProperties {
 
     /**
      * Set the isApiKeyInPostPayload property: Marks if the key should sent in header.
-     *
+     * 
      * @param isApiKeyInPostPayload the isApiKeyInPostPayload value to set.
      * @return the CodelessConnectorPollingAuthProperties object itself.
      */
@@ -171,7 +179,7 @@ public final class CodelessConnectorPollingAuthProperties {
 
     /**
      * Get the flowName property: Describes the flow name, for example 'AuthCode' for Oauth 2.0.
-     *
+     * 
      * @return the flowName value.
      */
     public String flowName() {
@@ -180,7 +188,7 @@ public final class CodelessConnectorPollingAuthProperties {
 
     /**
      * Set the flowName property: Describes the flow name, for example 'AuthCode' for Oauth 2.0.
-     *
+     * 
      * @param flowName the flowName value to set.
      * @return the CodelessConnectorPollingAuthProperties object itself.
      */
@@ -191,7 +199,7 @@ public final class CodelessConnectorPollingAuthProperties {
 
     /**
      * Get the tokenEndpoint property: The endpoint used to issue a token, used in Oauth 2.0 flow.
-     *
+     * 
      * @return the tokenEndpoint value.
      */
     public String tokenEndpoint() {
@@ -200,7 +208,7 @@ public final class CodelessConnectorPollingAuthProperties {
 
     /**
      * Set the tokenEndpoint property: The endpoint used to issue a token, used in Oauth 2.0 flow.
-     *
+     * 
      * @param tokenEndpoint the tokenEndpoint value to set.
      * @return the CodelessConnectorPollingAuthProperties object itself.
      */
@@ -211,7 +219,7 @@ public final class CodelessConnectorPollingAuthProperties {
 
     /**
      * Get the authorizationEndpoint property: The endpoint used to authorize the user, used in Oauth 2.0 flow.
-     *
+     * 
      * @return the authorizationEndpoint value.
      */
     public String authorizationEndpoint() {
@@ -220,7 +228,7 @@ public final class CodelessConnectorPollingAuthProperties {
 
     /**
      * Set the authorizationEndpoint property: The endpoint used to authorize the user, used in Oauth 2.0 flow.
-     *
+     * 
      * @param authorizationEndpoint the authorizationEndpoint value to set.
      * @return the CodelessConnectorPollingAuthProperties object itself.
      */
@@ -232,7 +240,7 @@ public final class CodelessConnectorPollingAuthProperties {
     /**
      * Get the authorizationEndpointQueryParameters property: The query parameters used in authorization request, used
      * in Oauth 2.0 flow.
-     *
+     * 
      * @return the authorizationEndpointQueryParameters value.
      */
     public Object authorizationEndpointQueryParameters() {
@@ -242,12 +250,12 @@ public final class CodelessConnectorPollingAuthProperties {
     /**
      * Set the authorizationEndpointQueryParameters property: The query parameters used in authorization request, used
      * in Oauth 2.0 flow.
-     *
+     * 
      * @param authorizationEndpointQueryParameters the authorizationEndpointQueryParameters value to set.
      * @return the CodelessConnectorPollingAuthProperties object itself.
      */
-    public CodelessConnectorPollingAuthProperties withAuthorizationEndpointQueryParameters(
-        Object authorizationEndpointQueryParameters) {
+    public CodelessConnectorPollingAuthProperties
+        withAuthorizationEndpointQueryParameters(Object authorizationEndpointQueryParameters) {
         this.authorizationEndpointQueryParameters = authorizationEndpointQueryParameters;
         return this;
     }
@@ -255,7 +263,7 @@ public final class CodelessConnectorPollingAuthProperties {
     /**
      * Get the redirectionEndpoint property: The redirect endpoint where we will get the authorization code, used in
      * Oauth 2.0 flow.
-     *
+     * 
      * @return the redirectionEndpoint value.
      */
     public String redirectionEndpoint() {
@@ -265,7 +273,7 @@ public final class CodelessConnectorPollingAuthProperties {
     /**
      * Set the redirectionEndpoint property: The redirect endpoint where we will get the authorization code, used in
      * Oauth 2.0 flow.
-     *
+     * 
      * @param redirectionEndpoint the redirectionEndpoint value to set.
      * @return the CodelessConnectorPollingAuthProperties object itself.
      */
@@ -276,7 +284,7 @@ public final class CodelessConnectorPollingAuthProperties {
 
     /**
      * Get the tokenEndpointHeaders property: The query headers used in token request, used in Oauth 2.0 flow.
-     *
+     * 
      * @return the tokenEndpointHeaders value.
      */
     public Object tokenEndpointHeaders() {
@@ -285,7 +293,7 @@ public final class CodelessConnectorPollingAuthProperties {
 
     /**
      * Set the tokenEndpointHeaders property: The query headers used in token request, used in Oauth 2.0 flow.
-     *
+     * 
      * @param tokenEndpointHeaders the tokenEndpointHeaders value to set.
      * @return the CodelessConnectorPollingAuthProperties object itself.
      */
@@ -297,7 +305,7 @@ public final class CodelessConnectorPollingAuthProperties {
     /**
      * Get the tokenEndpointQueryParameters property: The query parameters used in token request, used in Oauth 2.0
      * flow.
-     *
+     * 
      * @return the tokenEndpointQueryParameters value.
      */
     public Object tokenEndpointQueryParameters() {
@@ -307,12 +315,12 @@ public final class CodelessConnectorPollingAuthProperties {
     /**
      * Set the tokenEndpointQueryParameters property: The query parameters used in token request, used in Oauth 2.0
      * flow.
-     *
+     * 
      * @param tokenEndpointQueryParameters the tokenEndpointQueryParameters value to set.
      * @return the CodelessConnectorPollingAuthProperties object itself.
      */
-    public CodelessConnectorPollingAuthProperties withTokenEndpointQueryParameters(
-        Object tokenEndpointQueryParameters) {
+    public CodelessConnectorPollingAuthProperties
+        withTokenEndpointQueryParameters(Object tokenEndpointQueryParameters) {
         this.tokenEndpointQueryParameters = tokenEndpointQueryParameters;
         return this;
     }
@@ -320,7 +328,7 @@ public final class CodelessConnectorPollingAuthProperties {
     /**
      * Get the isClientSecretInHeader property: Marks if we should send the client secret in header or payload, used in
      * Oauth 2.0 flow.
-     *
+     * 
      * @return the isClientSecretInHeader value.
      */
     public Boolean isClientSecretInHeader() {
@@ -330,7 +338,7 @@ public final class CodelessConnectorPollingAuthProperties {
     /**
      * Set the isClientSecretInHeader property: Marks if we should send the client secret in header or payload, used in
      * Oauth 2.0 flow.
-     *
+     * 
      * @param isClientSecretInHeader the isClientSecretInHeader value to set.
      * @return the CodelessConnectorPollingAuthProperties object itself.
      */
@@ -341,7 +349,7 @@ public final class CodelessConnectorPollingAuthProperties {
 
     /**
      * Get the scope property: The OAuth token scope.
-     *
+     * 
      * @return the scope value.
      */
     public String scope() {
@@ -350,7 +358,7 @@ public final class CodelessConnectorPollingAuthProperties {
 
     /**
      * Set the scope property: The OAuth token scope.
-     *
+     * 
      * @param scope the scope value to set.
      * @return the CodelessConnectorPollingAuthProperties object itself.
      */
@@ -361,15 +369,13 @@ public final class CodelessConnectorPollingAuthProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (authType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property authType in model CodelessConnectorPollingAuthProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property authType in model CodelessConnectorPollingAuthProperties"));
         }
     }
 

@@ -12,6 +12,7 @@ import com.azure.resourcemanager.securityinsights.models.AttackTactic;
 import com.azure.resourcemanager.securityinsights.models.EntityMapping;
 import com.azure.resourcemanager.securityinsights.models.EventGroupingSettings;
 import com.azure.resourcemanager.securityinsights.models.IncidentConfiguration;
+import com.azure.resourcemanager.securityinsights.models.SentinelEntityMapping;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
@@ -19,7 +20,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** Nrt alert rule base property bag. */
+/**
+ * Nrt alert rule base property bag.
+ */
 @Fluent
 public final class NrtAlertRuleProperties {
     /*
@@ -126,9 +129,21 @@ public final class NrtAlertRuleProperties {
     @JsonProperty(value = "eventGroupingSettings")
     private EventGroupingSettings eventGroupingSettings;
 
+    /*
+     * Array of the sentinel entity mappings of the alert rule
+     */
+    @JsonProperty(value = "sentinelEntitiesMappings")
+    private List<SentinelEntityMapping> sentinelEntitiesMappings;
+
+    /**
+     * Creates an instance of NrtAlertRuleProperties class.
+     */
+    public NrtAlertRuleProperties() {
+    }
+
     /**
      * Get the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
-     *
+     * 
      * @return the alertRuleTemplateName value.
      */
     public String alertRuleTemplateName() {
@@ -137,7 +152,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Set the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
-     *
+     * 
      * @param alertRuleTemplateName the alertRuleTemplateName value to set.
      * @return the NrtAlertRuleProperties object itself.
      */
@@ -149,7 +164,7 @@ public final class NrtAlertRuleProperties {
     /**
      * Get the templateVersion property: The version of the alert rule template used to create this rule - in format
      * &lt;a.b.c&gt;, where all are numbers, for example 0 &lt;1.0.2&gt;.
-     *
+     * 
      * @return the templateVersion value.
      */
     public String templateVersion() {
@@ -159,7 +174,7 @@ public final class NrtAlertRuleProperties {
     /**
      * Set the templateVersion property: The version of the alert rule template used to create this rule - in format
      * &lt;a.b.c&gt;, where all are numbers, for example 0 &lt;1.0.2&gt;.
-     *
+     * 
      * @param templateVersion the templateVersion value to set.
      * @return the NrtAlertRuleProperties object itself.
      */
@@ -170,7 +185,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Get the description property: The description of the alert rule.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -179,7 +194,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Set the description property: The description of the alert rule.
-     *
+     * 
      * @param description the description value to set.
      * @return the NrtAlertRuleProperties object itself.
      */
@@ -190,7 +205,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Get the query property: The query that creates alerts for this rule.
-     *
+     * 
      * @return the query value.
      */
     public String query() {
@@ -199,7 +214,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Set the query property: The query that creates alerts for this rule.
-     *
+     * 
      * @param query the query value to set.
      * @return the NrtAlertRuleProperties object itself.
      */
@@ -210,7 +225,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Get the tactics property: The tactics of the alert rule.
-     *
+     * 
      * @return the tactics value.
      */
     public List<AttackTactic> tactics() {
@@ -219,7 +234,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Set the tactics property: The tactics of the alert rule.
-     *
+     * 
      * @param tactics the tactics value to set.
      * @return the NrtAlertRuleProperties object itself.
      */
@@ -230,7 +245,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Get the techniques property: The techniques of the alert rule.
-     *
+     * 
      * @return the techniques value.
      */
     public List<String> techniques() {
@@ -239,7 +254,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Set the techniques property: The techniques of the alert rule.
-     *
+     * 
      * @param techniques the techniques value to set.
      * @return the NrtAlertRuleProperties object itself.
      */
@@ -250,7 +265,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Get the displayName property: The display name for alerts created by this alert rule.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -259,7 +274,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Set the displayName property: The display name for alerts created by this alert rule.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the NrtAlertRuleProperties object itself.
      */
@@ -270,7 +285,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Get the enabled property: Determines whether this alert rule is enabled or disabled.
-     *
+     * 
      * @return the enabled value.
      */
     public boolean enabled() {
@@ -279,7 +294,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Set the enabled property: Determines whether this alert rule is enabled or disabled.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the NrtAlertRuleProperties object itself.
      */
@@ -290,7 +305,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Get the lastModifiedUtc property: The last time that this alert rule has been modified.
-     *
+     * 
      * @return the lastModifiedUtc value.
      */
     public OffsetDateTime lastModifiedUtc() {
@@ -300,7 +315,7 @@ public final class NrtAlertRuleProperties {
     /**
      * Get the suppressionDuration property: The suppression (in ISO 8601 duration format) to wait since last time this
      * alert rule been triggered.
-     *
+     * 
      * @return the suppressionDuration value.
      */
     public Duration suppressionDuration() {
@@ -310,7 +325,7 @@ public final class NrtAlertRuleProperties {
     /**
      * Set the suppressionDuration property: The suppression (in ISO 8601 duration format) to wait since last time this
      * alert rule been triggered.
-     *
+     * 
      * @param suppressionDuration the suppressionDuration value to set.
      * @return the NrtAlertRuleProperties object itself.
      */
@@ -322,7 +337,7 @@ public final class NrtAlertRuleProperties {
     /**
      * Get the suppressionEnabled property: Determines whether the suppression for this alert rule is enabled or
      * disabled.
-     *
+     * 
      * @return the suppressionEnabled value.
      */
     public boolean suppressionEnabled() {
@@ -332,7 +347,7 @@ public final class NrtAlertRuleProperties {
     /**
      * Set the suppressionEnabled property: Determines whether the suppression for this alert rule is enabled or
      * disabled.
-     *
+     * 
      * @param suppressionEnabled the suppressionEnabled value to set.
      * @return the NrtAlertRuleProperties object itself.
      */
@@ -343,7 +358,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Get the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @return the severity value.
      */
     public AlertSeverity severity() {
@@ -352,7 +367,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Set the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @param severity the severity value to set.
      * @return the NrtAlertRuleProperties object itself.
      */
@@ -364,7 +379,7 @@ public final class NrtAlertRuleProperties {
     /**
      * Get the incidentConfiguration property: The settings of the incidents that created from alerts triggered by this
      * analytics rule.
-     *
+     * 
      * @return the incidentConfiguration value.
      */
     public IncidentConfiguration incidentConfiguration() {
@@ -374,7 +389,7 @@ public final class NrtAlertRuleProperties {
     /**
      * Set the incidentConfiguration property: The settings of the incidents that created from alerts triggered by this
      * analytics rule.
-     *
+     * 
      * @param incidentConfiguration the incidentConfiguration value to set.
      * @return the NrtAlertRuleProperties object itself.
      */
@@ -385,7 +400,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Get the customDetails property: Dictionary of string key-value pairs of columns to be attached to the alert.
-     *
+     * 
      * @return the customDetails value.
      */
     public Map<String, String> customDetails() {
@@ -394,7 +409,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Set the customDetails property: Dictionary of string key-value pairs of columns to be attached to the alert.
-     *
+     * 
      * @param customDetails the customDetails value to set.
      * @return the NrtAlertRuleProperties object itself.
      */
@@ -405,7 +420,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Get the entityMappings property: Array of the entity mappings of the alert rule.
-     *
+     * 
      * @return the entityMappings value.
      */
     public List<EntityMapping> entityMappings() {
@@ -414,7 +429,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Set the entityMappings property: Array of the entity mappings of the alert rule.
-     *
+     * 
      * @param entityMappings the entityMappings value to set.
      * @return the NrtAlertRuleProperties object itself.
      */
@@ -425,7 +440,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Get the alertDetailsOverride property: The alert details override settings.
-     *
+     * 
      * @return the alertDetailsOverride value.
      */
     public AlertDetailsOverride alertDetailsOverride() {
@@ -434,7 +449,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Set the alertDetailsOverride property: The alert details override settings.
-     *
+     * 
      * @param alertDetailsOverride the alertDetailsOverride value to set.
      * @return the NrtAlertRuleProperties object itself.
      */
@@ -445,7 +460,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Get the eventGroupingSettings property: The event grouping settings.
-     *
+     * 
      * @return the eventGroupingSettings value.
      */
     public EventGroupingSettings eventGroupingSettings() {
@@ -454,7 +469,7 @@ public final class NrtAlertRuleProperties {
 
     /**
      * Set the eventGroupingSettings property: The event grouping settings.
-     *
+     * 
      * @param eventGroupingSettings the eventGroupingSettings value to set.
      * @return the NrtAlertRuleProperties object itself.
      */
@@ -464,32 +479,46 @@ public final class NrtAlertRuleProperties {
     }
 
     /**
+     * Get the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @return the sentinelEntitiesMappings value.
+     */
+    public List<SentinelEntityMapping> sentinelEntitiesMappings() {
+        return this.sentinelEntitiesMappings;
+    }
+
+    /**
+     * Set the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @param sentinelEntitiesMappings the sentinelEntitiesMappings value to set.
+     * @return the NrtAlertRuleProperties object itself.
+     */
+    public NrtAlertRuleProperties withSentinelEntitiesMappings(List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        this.sentinelEntitiesMappings = sentinelEntitiesMappings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (query() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property query in model NrtAlertRuleProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property query in model NrtAlertRuleProperties"));
         }
         if (displayName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property displayName in model NrtAlertRuleProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property displayName in model NrtAlertRuleProperties"));
         }
         if (suppressionDuration() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property suppressionDuration in model NrtAlertRuleProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property suppressionDuration in model NrtAlertRuleProperties"));
         }
         if (severity() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property severity in model NrtAlertRuleProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property severity in model NrtAlertRuleProperties"));
         }
         if (incidentConfiguration() != null) {
             incidentConfiguration().validate();
@@ -502,6 +531,9 @@ public final class NrtAlertRuleProperties {
         }
         if (eventGroupingSettings() != null) {
             eventGroupingSettings().validate();
+        }
+        if (sentinelEntitiesMappings() != null) {
+            sentinelEntitiesMappings().forEach(e -> e.validate());
         }
     }
 

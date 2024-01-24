@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.DnsEntityProperties;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,10 +13,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 import java.util.Map;
 
-/** Represents a dns entity. */
+/**
+ * Represents a dns entity.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("DnsResolution")
-@Fluent
+@Immutable
 public final class DnsEntity extends EntityInner {
     /*
      * Dns entity properties
@@ -25,8 +27,14 @@ public final class DnsEntity extends EntityInner {
     private DnsEntityProperties innerProperties;
 
     /**
+     * Creates an instance of DnsEntity class.
+     */
+    public DnsEntity() {
+    }
+
+    /**
      * Get the innerProperties property: Dns entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private DnsEntityProperties innerProperties() {
@@ -35,7 +43,7 @@ public final class DnsEntity extends EntityInner {
 
     /**
      * Get the dnsServerIpEntityId property: An ip entity id for the dns server resolving the request.
-     *
+     * 
      * @return the dnsServerIpEntityId value.
      */
     public String dnsServerIpEntityId() {
@@ -44,7 +52,7 @@ public final class DnsEntity extends EntityInner {
 
     /**
      * Get the domainName property: The name of the dns record associated with the alert.
-     *
+     * 
      * @return the domainName value.
      */
     public String domainName() {
@@ -53,7 +61,7 @@ public final class DnsEntity extends EntityInner {
 
     /**
      * Get the hostIpAddressEntityId property: An ip entity id for the dns request client.
-     *
+     * 
      * @return the hostIpAddressEntityId value.
      */
     public String hostIpAddressEntityId() {
@@ -62,7 +70,7 @@ public final class DnsEntity extends EntityInner {
 
     /**
      * Get the ipAddressEntityIds property: Ip entity identifiers for the resolved ip address.
-     *
+     * 
      * @return the ipAddressEntityIds value.
      */
     public List<String> ipAddressEntityIds() {
@@ -72,7 +80,7 @@ public final class DnsEntity extends EntityInner {
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -82,7 +90,7 @@ public final class DnsEntity extends EntityInner {
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -91,7 +99,7 @@ public final class DnsEntity extends EntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

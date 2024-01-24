@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Consent for Office365 tenant that already made. */
+/**
+ * Consent for Office365 tenant that already made.
+ */
 @Fluent
 public final class OfficeConsentInner extends ProxyResource {
     /*
@@ -25,8 +27,14 @@ public final class OfficeConsentInner extends ProxyResource {
     private SystemData systemData;
 
     /**
+     * Creates an instance of OfficeConsentInner class.
+     */
+    public OfficeConsentInner() {
+    }
+
+    /**
      * Get the innerProperties property: Office consent properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private OfficeConsentProperties innerProperties() {
@@ -35,7 +43,7 @@ public final class OfficeConsentInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -44,7 +52,7 @@ public final class OfficeConsentInner extends ProxyResource {
 
     /**
      * Get the tenantId property: The tenantId of the Office365 with the consent.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -53,7 +61,7 @@ public final class OfficeConsentInner extends ProxyResource {
 
     /**
      * Set the tenantId property: The tenantId of the Office365 with the consent.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the OfficeConsentInner object itself.
      */
@@ -67,7 +75,7 @@ public final class OfficeConsentInner extends ProxyResource {
 
     /**
      * Get the consentId property: Help to easily cascade among the data layers.
-     *
+     * 
      * @return the consentId value.
      */
     public String consentId() {
@@ -76,7 +84,7 @@ public final class OfficeConsentInner extends ProxyResource {
 
     /**
      * Set the consentId property: Help to easily cascade among the data layers.
-     *
+     * 
      * @param consentId the consentId value to set.
      * @return the OfficeConsentInner object itself.
      */
@@ -90,7 +98,7 @@ public final class OfficeConsentInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

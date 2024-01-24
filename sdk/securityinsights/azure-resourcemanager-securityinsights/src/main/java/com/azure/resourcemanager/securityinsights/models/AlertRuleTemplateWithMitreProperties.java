@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Alert rule template with MITRE property bag. */
+/**
+ * Alert rule template with MITRE property bag.
+ */
 @Fluent
 public class AlertRuleTemplateWithMitreProperties extends AlertRuleTemplatePropertiesBase {
     /*
@@ -24,8 +26,14 @@ public class AlertRuleTemplateWithMitreProperties extends AlertRuleTemplatePrope
     private List<String> techniques;
 
     /**
+     * Creates an instance of AlertRuleTemplateWithMitreProperties class.
+     */
+    public AlertRuleTemplateWithMitreProperties() {
+    }
+
+    /**
      * Get the tactics property: The tactics of the alert rule.
-     *
+     * 
      * @return the tactics value.
      */
     public List<AttackTactic> tactics() {
@@ -34,7 +42,7 @@ public class AlertRuleTemplateWithMitreProperties extends AlertRuleTemplatePrope
 
     /**
      * Set the tactics property: The tactics of the alert rule.
-     *
+     * 
      * @param tactics the tactics value to set.
      * @return the AlertRuleTemplateWithMitreProperties object itself.
      */
@@ -45,7 +53,7 @@ public class AlertRuleTemplateWithMitreProperties extends AlertRuleTemplatePrope
 
     /**
      * Get the techniques property: The techniques of the alert rule.
-     *
+     * 
      * @return the techniques value.
      */
     public List<String> techniques() {
@@ -54,7 +62,7 @@ public class AlertRuleTemplateWithMitreProperties extends AlertRuleTemplatePrope
 
     /**
      * Set the techniques property: The techniques of the alert rule.
-     *
+     * 
      * @param techniques the techniques value to set.
      * @return the AlertRuleTemplateWithMitreProperties object itself.
      */
@@ -63,37 +71,47 @@ public class AlertRuleTemplateWithMitreProperties extends AlertRuleTemplatePrope
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public AlertRuleTemplateWithMitreProperties withAlertRulesCreatedByTemplateCount(
-        Integer alertRulesCreatedByTemplateCount) {
+    public AlertRuleTemplateWithMitreProperties
+        withAlertRulesCreatedByTemplateCount(Integer alertRulesCreatedByTemplateCount) {
         super.withAlertRulesCreatedByTemplateCount(alertRulesCreatedByTemplateCount);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AlertRuleTemplateWithMitreProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AlertRuleTemplateWithMitreProperties withDisplayName(String displayName) {
         super.withDisplayName(displayName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public AlertRuleTemplateWithMitreProperties withRequiredDataConnectors(
-        List<AlertRuleTemplateDataSource> requiredDataConnectors) {
+    public AlertRuleTemplateWithMitreProperties
+        withRequiredDataConnectors(List<AlertRuleTemplateDataSource> requiredDataConnectors) {
         super.withRequiredDataConnectors(requiredDataConnectors);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AlertRuleTemplateWithMitreProperties withStatus(TemplateStatus status) {
         super.withStatus(status);
@@ -102,7 +120,7 @@ public class AlertRuleTemplateWithMitreProperties extends AlertRuleTemplatePrope
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
