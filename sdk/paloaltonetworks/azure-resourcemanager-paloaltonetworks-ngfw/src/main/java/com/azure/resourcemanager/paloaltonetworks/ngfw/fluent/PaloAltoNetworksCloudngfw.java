@@ -103,6 +103,13 @@ public interface PaloAltoNetworksCloudngfw {
     FirewallsClient getFirewalls();
 
     /**
+     * Gets the PaloAltoNetworksCloudngfwsClient object to access its operations.
+     * 
+     * @return the PaloAltoNetworksCloudngfwsClient object.
+     */
+    PaloAltoNetworksCloudngfwsClient getPaloAltoNetworksCloudngfws();
+
+    /**
      * Gets the LocalRulestacksClient object to access its operations.
      * 
      * @return the LocalRulestacksClient object.

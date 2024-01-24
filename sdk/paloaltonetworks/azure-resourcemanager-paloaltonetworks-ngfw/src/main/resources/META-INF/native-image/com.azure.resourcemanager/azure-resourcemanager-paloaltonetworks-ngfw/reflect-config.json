@@ -99,7 +99,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.paloaltonetworks.ngfw.models.Country",
+  "name" : "com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.CountryInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -114,7 +114,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.paloaltonetworks.ngfw.models.PredefinedUrlCategory",
+  "name" : "com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.PredefinedUrlCategoryInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -269,6 +269,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.paloaltonetworks.ngfw.models.StrataCloudManagerConfig",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.paloaltonetworks.ngfw.models.RulestackDetails",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -295,6 +300,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.paloaltonetworks.ngfw.models.MarketplaceDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.SupportInfoModelInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -375,6 +385,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.paloaltonetworks.ngfw.models.PanoramaStatus",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.paloaltonetworks.ngfw.models.StrataCloudManagerInfo",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -525,6 +540,16 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.paloaltonetworks.ngfw.models.MarketplaceSubscriptionStatus",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.paloaltonetworks.ngfw.models.RegistrationStatus",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.paloaltonetworks.ngfw.models.EnableStatus",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

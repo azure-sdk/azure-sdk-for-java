@@ -56,6 +56,12 @@ public final class NetworkProfile {
     @JsonProperty(value = "trustedRanges")
     private List<String> trustedRanges;
 
+    /*
+     * Array of ipv4 destination address for which source NAT is to be performed
+     */
+    @JsonProperty(value = "privateSourceNatRulesDestination")
+    private List<String> privateSourceNatRulesDestination;
+
     /**
      * Creates an instance of NetworkProfile class.
      */
@@ -199,6 +205,28 @@ public final class NetworkProfile {
      */
     public NetworkProfile withTrustedRanges(List<String> trustedRanges) {
         this.trustedRanges = trustedRanges;
+        return this;
+    }
+
+    /**
+     * Get the privateSourceNatRulesDestination property: Array of ipv4 destination address for which source NAT is to
+     * be performed.
+     * 
+     * @return the privateSourceNatRulesDestination value.
+     */
+    public List<String> privateSourceNatRulesDestination() {
+        return this.privateSourceNatRulesDestination;
+    }
+
+    /**
+     * Set the privateSourceNatRulesDestination property: Array of ipv4 destination address for which source NAT is to
+     * be performed.
+     * 
+     * @param privateSourceNatRulesDestination the privateSourceNatRulesDestination value to set.
+     * @return the NetworkProfile object itself.
+     */
+    public NetworkProfile withPrivateSourceNatRulesDestination(List<String> privateSourceNatRulesDestination) {
+        this.privateSourceNatRulesDestination = privateSourceNatRulesDestination;
         return this;
     }
 

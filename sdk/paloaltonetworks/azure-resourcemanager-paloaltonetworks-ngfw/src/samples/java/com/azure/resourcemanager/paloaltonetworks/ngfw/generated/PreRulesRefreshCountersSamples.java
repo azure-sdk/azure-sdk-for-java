@@ -10,7 +10,7 @@ package com.azure.resourcemanager.paloaltonetworks.ngfw.generated;
 public final class PreRulesRefreshCountersSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-01-19-preview/examples/
      * PreRules_refreshCounters_MaximumSet_Gen.json
      */
     /**
@@ -25,7 +25,7 @@ public final class PreRulesRefreshCountersSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-01-19-preview/examples/
      * PreRules_refreshCounters_MinimumSet_Gen.json
      */
     /**
