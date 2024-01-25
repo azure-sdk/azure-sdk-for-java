@@ -10,7 +10,9 @@ import com.azure.resourcemanager.sphere.fluent.models.DeviceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response of a Device list operation. */
+/**
+ * The response of a Device list operation.
+ */
 @Fluent
 public final class DeviceListResult {
     /*
@@ -25,13 +27,15 @@ public final class DeviceListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of DeviceListResult class. */
+    /**
+     * Creates an instance of DeviceListResult class.
+     */
     public DeviceListResult() {
     }
 
     /**
      * Get the value property: The Device items on this page.
-     *
+     * 
      * @return the value value.
      */
     public List<DeviceInner> value() {
@@ -40,7 +44,7 @@ public final class DeviceListResult {
 
     /**
      * Set the value property: The Device items on this page.
-     *
+     * 
      * @param value the value value to set.
      * @return the DeviceListResult object itself.
      */
@@ -51,7 +55,7 @@ public final class DeviceListResult {
 
     /**
      * Get the nextLink property: The link to the next page of items.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -60,7 +64,7 @@ public final class DeviceListResult {
 
     /**
      * Set the nextLink property: The link to the next page of items.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the DeviceListResult object itself.
      */
@@ -71,14 +75,13 @@ public final class DeviceListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model DeviceListResult"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model DeviceListResult"));
         } else {
             value().forEach(e -> e.validate());
         }
