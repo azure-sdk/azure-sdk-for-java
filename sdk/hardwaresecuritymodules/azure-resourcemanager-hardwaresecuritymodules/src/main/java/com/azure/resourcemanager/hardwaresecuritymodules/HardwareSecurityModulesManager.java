@@ -222,7 +222,7 @@ public final class HardwareSecurityModulesManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-")
-                .append("com.azure.resourcemanager.hardwaresecuritymodules").append("/").append("1.0.0-beta.2");
+                .append("com.azure.resourcemanager.hardwaresecuritymodules").append("/").append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
