@@ -6,12 +6,20 @@ package com.azure.resourcemanager.hybridkubernetes.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.hybridkubernetes.models.AadProfile;
+import com.azure.resourcemanager.hybridkubernetes.models.ArcAgentProfile;
+import com.azure.resourcemanager.hybridkubernetes.models.AzureHybridBenefit;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectivityStatus;
+import com.azure.resourcemanager.hybridkubernetes.models.PrivateLinkState;
 import com.azure.resourcemanager.hybridkubernetes.models.ProvisioningState;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
+import java.util.Map;
 
-/** Properties of the connected cluster. */
+/**
+ * Properties of the connected cluster.
+ */
 @Fluent
 public final class ConnectedClusterProperties {
     /*
@@ -58,6 +66,12 @@ public final class ConnectedClusterProperties {
     private String distribution;
 
     /*
+     * The Kubernetes distribution version on this connected cluster.
+     */
+    @JsonProperty(value = "distributionVersion")
+    private String distributionVersion;
+
+    /*
      * The infrastructure on which the Kubernetes cluster represented by this connected cluster is running on.
      */
     @JsonProperty(value = "infrastructure")
@@ -87,14 +101,53 @@ public final class ConnectedClusterProperties {
     @JsonProperty(value = "connectivityStatus", access = JsonProperty.Access.WRITE_ONLY)
     private ConnectivityStatus connectivityStatus;
 
-    /** Creates an instance of ConnectedClusterProperties class. */
+    /*
+     * Property which describes the state of private link on a connected cluster resource.
+     */
+    @JsonProperty(value = "privateLinkState")
+    private PrivateLinkState privateLinkState;
+
+    /*
+     * The resource id of the private link scope this connected cluster is assigned to, if any.
+     */
+    @JsonProperty(value = "privateLinkScopeResourceId")
+    private String privateLinkScopeResourceId;
+
+    /*
+     * Indicates whether Azure Hybrid Benefit is opted in
+     */
+    @JsonProperty(value = "azureHybridBenefit")
+    private AzureHybridBenefit azureHybridBenefit;
+
+    /*
+     * AAD profile for the connected cluster.
+     */
+    @JsonProperty(value = "aadProfile")
+    private AadProfile aadProfile;
+
+    /*
+     * Arc agentry configuration for the provisioned cluster.
+     */
+    @JsonProperty(value = "arcAgentProfile")
+    private ArcAgentProfile arcAgentProfile;
+
+    /*
+     * More properties related to the Connected Cluster
+     */
+    @JsonProperty(value = "miscellaneousProperties", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> miscellaneousProperties;
+
+    /**
+     * Creates an instance of ConnectedClusterProperties class.
+     */
     public ConnectedClusterProperties() {
     }
 
     /**
-     * Get the agentPublicKeyCertificate property: Base64 encoded public certificate used by the agent to do the initial
-     * handshake to the backend services in Azure.
-     *
+     * Get the agentPublicKeyCertificate property: Base64 encoded public certificate used by the agent to do the
+     * initial handshake to the backend services in Azure.
+     * 
      * @return the agentPublicKeyCertificate value.
      */
     public String agentPublicKeyCertificate() {
@@ -102,9 +155,9 @@ public final class ConnectedClusterProperties {
     }
 
     /**
-     * Set the agentPublicKeyCertificate property: Base64 encoded public certificate used by the agent to do the initial
-     * handshake to the backend services in Azure.
-     *
+     * Set the agentPublicKeyCertificate property: Base64 encoded public certificate used by the agent to do the
+     * initial handshake to the backend services in Azure.
+     * 
      * @param agentPublicKeyCertificate the agentPublicKeyCertificate value to set.
      * @return the ConnectedClusterProperties object itself.
      */
@@ -115,7 +168,7 @@ public final class ConnectedClusterProperties {
 
     /**
      * Get the kubernetesVersion property: The Kubernetes version of the connected cluster resource.
-     *
+     * 
      * @return the kubernetesVersion value.
      */
     public String kubernetesVersion() {
@@ -124,7 +177,7 @@ public final class ConnectedClusterProperties {
 
     /**
      * Get the totalNodeCount property: Number of nodes present in the connected cluster resource.
-     *
+     * 
      * @return the totalNodeCount value.
      */
     public Integer totalNodeCount() {
@@ -133,7 +186,7 @@ public final class ConnectedClusterProperties {
 
     /**
      * Get the totalCoreCount property: Number of CPU cores present in the connected cluster resource.
-     *
+     * 
      * @return the totalCoreCount value.
      */
     public Integer totalCoreCount() {
@@ -142,7 +195,7 @@ public final class ConnectedClusterProperties {
 
     /**
      * Get the agentVersion property: Version of the agent running on the connected cluster resource.
-     *
+     * 
      * @return the agentVersion value.
      */
     public String agentVersion() {
@@ -151,7 +204,7 @@ public final class ConnectedClusterProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the connected cluster resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -160,7 +213,7 @@ public final class ConnectedClusterProperties {
 
     /**
      * Set the provisioningState property: Provisioning state of the connected cluster resource.
-     *
+     * 
      * @param provisioningState the provisioningState value to set.
      * @return the ConnectedClusterProperties object itself.
      */
@@ -171,7 +224,7 @@ public final class ConnectedClusterProperties {
 
     /**
      * Get the distribution property: The Kubernetes distribution running on this connected cluster.
-     *
+     * 
      * @return the distribution value.
      */
     public String distribution() {
@@ -180,7 +233,7 @@ public final class ConnectedClusterProperties {
 
     /**
      * Set the distribution property: The Kubernetes distribution running on this connected cluster.
-     *
+     * 
      * @param distribution the distribution value to set.
      * @return the ConnectedClusterProperties object itself.
      */
@@ -190,9 +243,29 @@ public final class ConnectedClusterProperties {
     }
 
     /**
-     * Get the infrastructure property: The infrastructure on which the Kubernetes cluster represented by this connected
-     * cluster is running on.
-     *
+     * Get the distributionVersion property: The Kubernetes distribution version on this connected cluster.
+     * 
+     * @return the distributionVersion value.
+     */
+    public String distributionVersion() {
+        return this.distributionVersion;
+    }
+
+    /**
+     * Set the distributionVersion property: The Kubernetes distribution version on this connected cluster.
+     * 
+     * @param distributionVersion the distributionVersion value to set.
+     * @return the ConnectedClusterProperties object itself.
+     */
+    public ConnectedClusterProperties withDistributionVersion(String distributionVersion) {
+        this.distributionVersion = distributionVersion;
+        return this;
+    }
+
+    /**
+     * Get the infrastructure property: The infrastructure on which the Kubernetes cluster represented by this
+     * connected cluster is running on.
+     * 
      * @return the infrastructure value.
      */
     public String infrastructure() {
@@ -200,9 +273,9 @@ public final class ConnectedClusterProperties {
     }
 
     /**
-     * Set the infrastructure property: The infrastructure on which the Kubernetes cluster represented by this connected
-     * cluster is running on.
-     *
+     * Set the infrastructure property: The infrastructure on which the Kubernetes cluster represented by this
+     * connected cluster is running on.
+     * 
      * @param infrastructure the infrastructure value to set.
      * @return the ConnectedClusterProperties object itself.
      */
@@ -213,7 +286,7 @@ public final class ConnectedClusterProperties {
 
     /**
      * Get the offering property: Connected cluster offering.
-     *
+     * 
      * @return the offering value.
      */
     public String offering() {
@@ -222,7 +295,7 @@ public final class ConnectedClusterProperties {
 
     /**
      * Get the managedIdentityCertificateExpirationTime property: Expiration time of the managed identity certificate.
-     *
+     * 
      * @return the managedIdentityCertificateExpirationTime value.
      */
     public OffsetDateTime managedIdentityCertificateExpirationTime() {
@@ -232,7 +305,7 @@ public final class ConnectedClusterProperties {
     /**
      * Get the lastConnectivityTime property: Time representing the last instance when heart beat was received from the
      * cluster.
-     *
+     * 
      * @return the lastConnectivityTime value.
      */
     public OffsetDateTime lastConnectivityTime() {
@@ -241,7 +314,7 @@ public final class ConnectedClusterProperties {
 
     /**
      * Get the connectivityStatus property: Represents the connectivity status of the connected cluster.
-     *
+     * 
      * @return the connectivityStatus value.
      */
     public ConnectivityStatus connectivityStatus() {
@@ -249,16 +322,133 @@ public final class ConnectedClusterProperties {
     }
 
     /**
+     * Get the privateLinkState property: Property which describes the state of private link on a connected cluster
+     * resource.
+     * 
+     * @return the privateLinkState value.
+     */
+    public PrivateLinkState privateLinkState() {
+        return this.privateLinkState;
+    }
+
+    /**
+     * Set the privateLinkState property: Property which describes the state of private link on a connected cluster
+     * resource.
+     * 
+     * @param privateLinkState the privateLinkState value to set.
+     * @return the ConnectedClusterProperties object itself.
+     */
+    public ConnectedClusterProperties withPrivateLinkState(PrivateLinkState privateLinkState) {
+        this.privateLinkState = privateLinkState;
+        return this;
+    }
+
+    /**
+     * Get the privateLinkScopeResourceId property: The resource id of the private link scope this connected cluster is
+     * assigned to, if any.
+     * 
+     * @return the privateLinkScopeResourceId value.
+     */
+    public String privateLinkScopeResourceId() {
+        return this.privateLinkScopeResourceId;
+    }
+
+    /**
+     * Set the privateLinkScopeResourceId property: The resource id of the private link scope this connected cluster is
+     * assigned to, if any.
+     * 
+     * @param privateLinkScopeResourceId the privateLinkScopeResourceId value to set.
+     * @return the ConnectedClusterProperties object itself.
+     */
+    public ConnectedClusterProperties withPrivateLinkScopeResourceId(String privateLinkScopeResourceId) {
+        this.privateLinkScopeResourceId = privateLinkScopeResourceId;
+        return this;
+    }
+
+    /**
+     * Get the azureHybridBenefit property: Indicates whether Azure Hybrid Benefit is opted in.
+     * 
+     * @return the azureHybridBenefit value.
+     */
+    public AzureHybridBenefit azureHybridBenefit() {
+        return this.azureHybridBenefit;
+    }
+
+    /**
+     * Set the azureHybridBenefit property: Indicates whether Azure Hybrid Benefit is opted in.
+     * 
+     * @param azureHybridBenefit the azureHybridBenefit value to set.
+     * @return the ConnectedClusterProperties object itself.
+     */
+    public ConnectedClusterProperties withAzureHybridBenefit(AzureHybridBenefit azureHybridBenefit) {
+        this.azureHybridBenefit = azureHybridBenefit;
+        return this;
+    }
+
+    /**
+     * Get the aadProfile property: AAD profile for the connected cluster.
+     * 
+     * @return the aadProfile value.
+     */
+    public AadProfile aadProfile() {
+        return this.aadProfile;
+    }
+
+    /**
+     * Set the aadProfile property: AAD profile for the connected cluster.
+     * 
+     * @param aadProfile the aadProfile value to set.
+     * @return the ConnectedClusterProperties object itself.
+     */
+    public ConnectedClusterProperties withAadProfile(AadProfile aadProfile) {
+        this.aadProfile = aadProfile;
+        return this;
+    }
+
+    /**
+     * Get the arcAgentProfile property: Arc agentry configuration for the provisioned cluster.
+     * 
+     * @return the arcAgentProfile value.
+     */
+    public ArcAgentProfile arcAgentProfile() {
+        return this.arcAgentProfile;
+    }
+
+    /**
+     * Set the arcAgentProfile property: Arc agentry configuration for the provisioned cluster.
+     * 
+     * @param arcAgentProfile the arcAgentProfile value to set.
+     * @return the ConnectedClusterProperties object itself.
+     */
+    public ConnectedClusterProperties withArcAgentProfile(ArcAgentProfile arcAgentProfile) {
+        this.arcAgentProfile = arcAgentProfile;
+        return this;
+    }
+
+    /**
+     * Get the miscellaneousProperties property: More properties related to the Connected Cluster.
+     * 
+     * @return the miscellaneousProperties value.
+     */
+    public Map<String, String> miscellaneousProperties() {
+        return this.miscellaneousProperties;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (agentPublicKeyCertificate() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property agentPublicKeyCertificate in model ConnectedClusterProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property agentPublicKeyCertificate in model ConnectedClusterProperties"));
+        }
+        if (aadProfile() != null) {
+            aadProfile().validate();
+        }
+        if (arcAgentProfile() != null) {
+            arcAgentProfile().validate();
         }
     }
 

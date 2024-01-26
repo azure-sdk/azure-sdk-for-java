@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ListClusterUserCredentialProperties model. */
+/**
+ * The ListClusterUserCredentialProperties model.
+ */
 @Fluent
 public final class ListClusterUserCredentialProperties {
     /*
@@ -23,13 +25,15 @@ public final class ListClusterUserCredentialProperties {
     @JsonProperty(value = "clientProxy", required = true)
     private boolean clientProxy;
 
-    /** Creates an instance of ListClusterUserCredentialProperties class. */
+    /**
+     * Creates an instance of ListClusterUserCredentialProperties class.
+     */
     public ListClusterUserCredentialProperties() {
     }
 
     /**
      * Get the authenticationMethod property: The mode of client authentication.
-     *
+     * 
      * @return the authenticationMethod value.
      */
     public AuthenticationMethod authenticationMethod() {
@@ -38,7 +42,7 @@ public final class ListClusterUserCredentialProperties {
 
     /**
      * Set the authenticationMethod property: The mode of client authentication.
-     *
+     * 
      * @param authenticationMethod the authenticationMethod value to set.
      * @return the ListClusterUserCredentialProperties object itself.
      */
@@ -49,7 +53,7 @@ public final class ListClusterUserCredentialProperties {
 
     /**
      * Get the clientProxy property: Boolean value to indicate whether the request is for client side proxy or not.
-     *
+     * 
      * @return the clientProxy value.
      */
     public boolean clientProxy() {
@@ -58,7 +62,7 @@ public final class ListClusterUserCredentialProperties {
 
     /**
      * Set the clientProxy property: Boolean value to indicate whether the request is for client side proxy or not.
-     *
+     * 
      * @param clientProxy the clientProxy value to set.
      * @return the ListClusterUserCredentialProperties object itself.
      */
@@ -69,15 +73,13 @@ public final class ListClusterUserCredentialProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (authenticationMethod() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property authenticationMethod in model ListClusterUserCredentialProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property authenticationMethod in model ListClusterUserCredentialProperties"));
         }
     }
 

@@ -8,9 +8,11 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Identity for the connected cluster. */
+/**
+ * Identity for the connected cluster.
+ */
 @Fluent
-public class ConnectedClusterIdentity {
+public final class ConnectedClusterIdentity {
     /*
      * The principal id of connected cluster identity. This property will only be provided for a system assigned
      * identity.
@@ -32,14 +34,16 @@ public class ConnectedClusterIdentity {
     @JsonProperty(value = "type", required = true)
     private ResourceIdentityType type;
 
-    /** Creates an instance of ConnectedClusterIdentity class. */
+    /**
+     * Creates an instance of ConnectedClusterIdentity class.
+     */
     public ConnectedClusterIdentity() {
     }
 
     /**
-     * Get the principalId property: The principal id of connected cluster identity. This property will only be provided
-     * for a system assigned identity.
-     *
+     * Get the principalId property: The principal id of connected cluster identity. This property will only be
+     * provided for a system assigned identity.
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -49,7 +53,7 @@ public class ConnectedClusterIdentity {
     /**
      * Get the tenantId property: The tenant id associated with the connected cluster. This property will only be
      * provided for a system assigned identity.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -59,7 +63,7 @@ public class ConnectedClusterIdentity {
     /**
      * Get the type property: The type of identity used for the connected cluster. The type 'SystemAssigned, includes a
      * system created identity. The type 'None' means no identity is assigned to the connected cluster.
-     *
+     * 
      * @return the type value.
      */
     public ResourceIdentityType type() {
@@ -69,7 +73,7 @@ public class ConnectedClusterIdentity {
     /**
      * Set the type property: The type of identity used for the connected cluster. The type 'SystemAssigned, includes a
      * system created identity. The type 'None' means no identity is assigned to the connected cluster.
-     *
+     * 
      * @param type the type value to set.
      * @return the ConnectedClusterIdentity object itself.
      */
@@ -80,14 +84,13 @@ public class ConnectedClusterIdentity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property type in model ConnectedClusterIdentity"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model ConnectedClusterIdentity"));
         }
     }
 
