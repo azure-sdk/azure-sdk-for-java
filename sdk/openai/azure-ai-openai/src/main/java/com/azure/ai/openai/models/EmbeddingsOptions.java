@@ -119,4 +119,33 @@ public final class EmbeddingsOptions {
     public List<String> getInput() {
         return this.input;
     }
+
+    /*
+     * The format in which the embeddings should be returned.
+     */
+    @Generated
+    @JsonProperty(value = "encoding_format")
+    private EmbeddingsEncodingFormat encodingFormat;
+
+    /**
+     * Get the encodingFormat property: The format in which the embeddings should be returned.
+     *
+     * @return the encodingFormat value.
+     */
+    @Generated
+    public EmbeddingsEncodingFormat getEncodingFormat() {
+        return this.encodingFormat;
+    }
+
+    /**
+     * Set the encodingFormat property: The format in which the embeddings should be returned.
+     *
+     * @param encodingFormat the encodingFormat value to set.
+     * @return the EmbeddingsOptions object itself.
+     */
+    @Generated
+    public EmbeddingsOptions setEncodingFormat(EmbeddingsEncodingFormat encodingFormat) {
+        this.encodingFormat = encodingFormat;
+        return this;
+    }
 }
