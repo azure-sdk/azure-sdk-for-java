@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.containers.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Cluster pool version properties. */
+/**
+ * Cluster pool version properties.
+ */
 @Fluent
 public final class ClusterPoolVersionProperties {
     /*
@@ -28,13 +30,15 @@ public final class ClusterPoolVersionProperties {
     @JsonProperty(value = "isPreview")
     private Boolean isPreview;
 
-    /** Creates an instance of ClusterPoolVersionProperties class. */
+    /**
+     * Creates an instance of ClusterPoolVersionProperties class.
+     */
     public ClusterPoolVersionProperties() {
     }
 
     /**
      * Get the clusterPoolVersion property: Cluster pool version is a 2-part version.
-     *
+     * 
      * @return the clusterPoolVersion value.
      */
     public String clusterPoolVersion() {
@@ -43,7 +47,7 @@ public final class ClusterPoolVersionProperties {
 
     /**
      * Set the clusterPoolVersion property: Cluster pool version is a 2-part version.
-     *
+     * 
      * @param clusterPoolVersion the clusterPoolVersion value to set.
      * @return the ClusterPoolVersionProperties object itself.
      */
@@ -54,7 +58,7 @@ public final class ClusterPoolVersionProperties {
 
     /**
      * Get the aksVersion property: AKS version.
-     *
+     * 
      * @return the aksVersion value.
      */
     public String aksVersion() {
@@ -63,7 +67,7 @@ public final class ClusterPoolVersionProperties {
 
     /**
      * Set the aksVersion property: AKS version.
-     *
+     * 
      * @param aksVersion the aksVersion value to set.
      * @return the ClusterPoolVersionProperties object itself.
      */
@@ -74,7 +78,7 @@ public final class ClusterPoolVersionProperties {
 
     /**
      * Get the isPreview property: Indicate if this version is in preview or not.
-     *
+     * 
      * @return the isPreview value.
      */
     public Boolean isPreview() {
@@ -83,7 +87,7 @@ public final class ClusterPoolVersionProperties {
 
     /**
      * Set the isPreview property: Indicate if this version is in preview or not.
-     *
+     * 
      * @param isPreview the isPreview value to set.
      * @return the ClusterPoolVersionProperties object itself.
      */
@@ -94,7 +98,7 @@ public final class ClusterPoolVersionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

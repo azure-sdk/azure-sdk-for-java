@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.containers.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Trino debug configuration. */
+/**
+ * Trino debug configuration.
+ */
 @Fluent
 public final class TrinoDebugConfig {
     /*
@@ -28,13 +30,15 @@ public final class TrinoDebugConfig {
     @JsonProperty(value = "suspend")
     private Boolean suspend;
 
-    /** Creates an instance of TrinoDebugConfig class. */
+    /**
+     * Creates an instance of TrinoDebugConfig class.
+     */
     public TrinoDebugConfig() {
     }
 
     /**
      * Get the enable property: The flag that if enable debug or not.
-     *
+     * 
      * @return the enable value.
      */
     public Boolean enable() {
@@ -43,7 +47,7 @@ public final class TrinoDebugConfig {
 
     /**
      * Set the enable property: The flag that if enable debug or not.
-     *
+     * 
      * @param enable the enable value to set.
      * @return the TrinoDebugConfig object itself.
      */
@@ -54,7 +58,7 @@ public final class TrinoDebugConfig {
 
     /**
      * Get the port property: The debug port.
-     *
+     * 
      * @return the port value.
      */
     public Integer port() {
@@ -63,7 +67,7 @@ public final class TrinoDebugConfig {
 
     /**
      * Set the port property: The debug port.
-     *
+     * 
      * @param port the port value to set.
      * @return the TrinoDebugConfig object itself.
      */
@@ -74,7 +78,7 @@ public final class TrinoDebugConfig {
 
     /**
      * Get the suspend property: The flag that if suspend debug or not.
-     *
+     * 
      * @return the suspend value.
      */
     public Boolean suspend() {
@@ -83,7 +87,7 @@ public final class TrinoDebugConfig {
 
     /**
      * Set the suspend property: The flag that if suspend debug or not.
-     *
+     * 
      * @param suspend the suspend value to set.
      * @return the TrinoDebugConfig object itself.
      */
@@ -94,7 +98,7 @@ public final class TrinoDebugConfig {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
