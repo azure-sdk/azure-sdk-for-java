@@ -9,9 +9,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Managed service identity (system assigned and/or user assigned identities). */
+/**
+ * Managed service identity (system assigned and/or user assigned identities).
+ */
 @Fluent
-public class PartialManagedServiceIdentity {
+public final class PartialManagedServiceIdentity {
     /*
      * Managed service identity (system assigned and/or user assigned identities)
      */
@@ -21,20 +23,23 @@ public class PartialManagedServiceIdentity {
     /*
      * The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys
      * will be ARM resource ids in the form:
-     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}.
+     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/
+     * userAssignedIdentities/{identityName}.
      * The dictionary values can be empty objects ({}) in requests.
      */
     @JsonProperty(value = "userAssignedIdentities")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, Object> userAssignedIdentities;
 
-    /** Creates an instance of PartialManagedServiceIdentity class. */
+    /**
+     * Creates an instance of PartialManagedServiceIdentity class.
+     */
     public PartialManagedServiceIdentity() {
     }
 
     /**
      * Get the type property: Managed service identity (system assigned and/or user assigned identities).
-     *
+     * 
      * @return the type value.
      */
     public ManagedServiceIdentityType type() {
@@ -43,7 +48,7 @@ public class PartialManagedServiceIdentity {
 
     /**
      * Set the type property: Managed service identity (system assigned and/or user assigned identities).
-     *
+     * 
      * @param type the type value to set.
      * @return the PartialManagedServiceIdentity object itself.
      */
@@ -57,7 +62,7 @@ public class PartialManagedServiceIdentity {
      * userAssignedIdentities dictionary keys will be ARM resource ids in the form:
      * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}.
      * The dictionary values can be empty objects ({}) in requests.
-     *
+     * 
      * @return the userAssignedIdentities value.
      */
     public Map<String, Object> userAssignedIdentities() {
@@ -69,7 +74,7 @@ public class PartialManagedServiceIdentity {
      * userAssignedIdentities dictionary keys will be ARM resource ids in the form:
      * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}.
      * The dictionary values can be empty objects ({}) in requests.
-     *
+     * 
      * @param userAssignedIdentities the userAssignedIdentities value to set.
      * @return the PartialManagedServiceIdentity object itself.
      */
@@ -80,7 +85,7 @@ public class PartialManagedServiceIdentity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

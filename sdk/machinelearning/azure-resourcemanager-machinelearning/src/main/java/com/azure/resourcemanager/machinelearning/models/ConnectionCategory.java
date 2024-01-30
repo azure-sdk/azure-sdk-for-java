@@ -8,20 +8,93 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Category of the connection. */
+/**
+ * Category of the connection.
+ */
 public final class ConnectionCategory extends ExpandableStringEnum<ConnectionCategory> {
-    /** Static value PythonFeed for ConnectionCategory. */
+    /**
+     * Static value PythonFeed for ConnectionCategory.
+     */
     public static final ConnectionCategory PYTHON_FEED = fromString("PythonFeed");
 
-    /** Static value ContainerRegistry for ConnectionCategory. */
+    /**
+     * Static value ContainerRegistry for ConnectionCategory.
+     */
     public static final ConnectionCategory CONTAINER_REGISTRY = fromString("ContainerRegistry");
 
-    /** Static value Git for ConnectionCategory. */
+    /**
+     * Static value Git for ConnectionCategory.
+     */
     public static final ConnectionCategory GIT = fromString("Git");
 
     /**
+     * Static value S3 for ConnectionCategory.
+     */
+    public static final ConnectionCategory S3 = fromString("S3");
+
+    /**
+     * Static value Snowflake for ConnectionCategory.
+     */
+    public static final ConnectionCategory SNOWFLAKE = fromString("Snowflake");
+
+    /**
+     * Static value AzureSqlDb for ConnectionCategory.
+     */
+    public static final ConnectionCategory AZURE_SQL_DB = fromString("AzureSqlDb");
+
+    /**
+     * Static value AzureSynapseAnalytics for ConnectionCategory.
+     */
+    public static final ConnectionCategory AZURE_SYNAPSE_ANALYTICS = fromString("AzureSynapseAnalytics");
+
+    /**
+     * Static value AzureMySqlDb for ConnectionCategory.
+     */
+    public static final ConnectionCategory AZURE_MY_SQL_DB = fromString("AzureMySqlDb");
+
+    /**
+     * Static value AzurePostgresDb for ConnectionCategory.
+     */
+    public static final ConnectionCategory AZURE_POSTGRES_DB = fromString("AzurePostgresDb");
+
+    /**
+     * Static value ADLSGen2 for ConnectionCategory.
+     */
+    public static final ConnectionCategory ADLSGEN2 = fromString("ADLSGen2");
+
+    /**
+     * Static value Redis for ConnectionCategory.
+     */
+    public static final ConnectionCategory REDIS = fromString("Redis");
+
+    /**
+     * Static value ApiKey for ConnectionCategory.
+     */
+    public static final ConnectionCategory API_KEY = fromString("ApiKey");
+
+    /**
+     * Static value AzureOpenAI for ConnectionCategory.
+     */
+    public static final ConnectionCategory AZURE_OPEN_AI = fromString("AzureOpenAI");
+
+    /**
+     * Static value CognitiveSearch for ConnectionCategory.
+     */
+    public static final ConnectionCategory COGNITIVE_SEARCH = fromString("CognitiveSearch");
+
+    /**
+     * Static value CognitiveService for ConnectionCategory.
+     */
+    public static final ConnectionCategory COGNITIVE_SERVICE = fromString("CognitiveService");
+
+    /**
+     * Static value CustomKeys for ConnectionCategory.
+     */
+    public static final ConnectionCategory CUSTOM_KEYS = fromString("CustomKeys");
+
+    /**
      * Creates a new instance of ConnectionCategory value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +103,7 @@ public final class ConnectionCategory extends ExpandableStringEnum<ConnectionCat
 
     /**
      * Creates or finds a ConnectionCategory from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ConnectionCategory.
      */
@@ -41,7 +114,7 @@ public final class ConnectionCategory extends ExpandableStringEnum<ConnectionCat
 
     /**
      * Gets known ConnectionCategory values.
-     *
+     * 
      * @return known ConnectionCategory values.
      */
     public static Collection<ConnectionCategory> values() {

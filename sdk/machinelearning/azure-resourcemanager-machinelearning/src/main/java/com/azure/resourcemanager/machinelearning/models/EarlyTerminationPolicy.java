@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Early termination policies enable canceling poor-performing runs before they complete. */
+/**
+ * Early termination policies enable canceling poor-performing runs before they complete.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -20,8 +22,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Bandit", value = BanditPolicy.class),
     @JsonSubTypes.Type(name = "MedianStopping", value = MedianStoppingPolicy.class),
-    @JsonSubTypes.Type(name = "TruncationSelection", value = TruncationSelectionPolicy.class)
-})
+    @JsonSubTypes.Type(name = "TruncationSelection", value = TruncationSelectionPolicy.class) })
 @Fluent
 public class EarlyTerminationPolicy {
     /*
@@ -36,13 +37,15 @@ public class EarlyTerminationPolicy {
     @JsonProperty(value = "evaluationInterval")
     private Integer evaluationInterval;
 
-    /** Creates an instance of EarlyTerminationPolicy class. */
+    /**
+     * Creates an instance of EarlyTerminationPolicy class.
+     */
     public EarlyTerminationPolicy() {
     }
 
     /**
      * Get the delayEvaluation property: Number of intervals by which to delay the first evaluation.
-     *
+     * 
      * @return the delayEvaluation value.
      */
     public Integer delayEvaluation() {
@@ -51,7 +54,7 @@ public class EarlyTerminationPolicy {
 
     /**
      * Set the delayEvaluation property: Number of intervals by which to delay the first evaluation.
-     *
+     * 
      * @param delayEvaluation the delayEvaluation value to set.
      * @return the EarlyTerminationPolicy object itself.
      */
@@ -62,7 +65,7 @@ public class EarlyTerminationPolicy {
 
     /**
      * Get the evaluationInterval property: Interval (number of runs) between policy evaluations.
-     *
+     * 
      * @return the evaluationInterval value.
      */
     public Integer evaluationInterval() {
@@ -71,7 +74,7 @@ public class EarlyTerminationPolicy {
 
     /**
      * Set the evaluationInterval property: Interval (number of runs) between policy evaluations.
-     *
+     * 
      * @param evaluationInterval the evaluationInterval value to set.
      * @return the EarlyTerminationPolicy object itself.
      */
@@ -82,7 +85,7 @@ public class EarlyTerminationPolicy {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
