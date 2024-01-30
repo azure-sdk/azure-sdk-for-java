@@ -9,6 +9,8 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.JobBaseInner;
 import com.azure.resourcemanager.machinelearning.models.JobBase;
 import com.azure.resourcemanager.machinelearning.models.JobBaseProperties;
+import com.azure.resourcemanager.machinelearning.models.PartialJobBase;
+import com.azure.resourcemanager.machinelearning.models.PartialJobBasePartialResource;
 
 public final class JobBaseImpl implements JobBase, JobBase.Definition, JobBase.Update {
     private JobBaseInner innerObject;
@@ -53,6 +55,8 @@ public final class JobBaseImpl implements JobBase, JobBase.Definition, JobBase.U
 
     private String id;
 
+    private PartialJobBasePartialResource updateBody;
+
     public JobBaseImpl withExistingWorkspace(String resourceGroupName, String workspaceName) {
         this.resourceGroupName = resourceGroupName;
         this.workspaceName = workspaceName;
@@ -60,22 +64,15 @@ public final class JobBaseImpl implements JobBase, JobBase.Definition, JobBase.U
     }
 
     public JobBase create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getJobs()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, id, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getJobs()
+            .createOrUpdateWithResponse(resourceGroupName, workspaceName, id, this.innerModel(), Context.NONE)
+            .getValue();
         return this;
     }
 
     public JobBase create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getJobs()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, id, this.innerModel(), context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getJobs()
+            .createOrUpdateWithResponse(resourceGroupName, workspaceName, id, this.innerModel(), context).getValue();
         return this;
     }
 
@@ -86,55 +83,40 @@ public final class JobBaseImpl implements JobBase, JobBase.Definition, JobBase.U
     }
 
     public JobBaseImpl update() {
+        this.updateBody = new PartialJobBasePartialResource();
         return this;
     }
 
     public JobBase apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getJobs()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, id, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getJobs()
+            .updateWithResponse(resourceGroupName, workspaceName, id, updateBody, Context.NONE).getValue();
         return this;
     }
 
     public JobBase apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getJobs()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, id, this.innerModel(), context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getJobs()
+            .updateWithResponse(resourceGroupName, workspaceName, id, updateBody, context).getValue();
         return this;
     }
 
-    JobBaseImpl(
-        JobBaseInner innerObject, com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
+    JobBaseImpl(JobBaseInner innerObject,
+        com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.workspaceName = Utils.getValueFromIdByName(innerObject.id(), "workspaces");
-        this.id = Utils.getValueFromIdByName(innerObject.id(), "jobs");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.workspaceName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "workspaces");
+        this.id = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "jobs");
     }
 
     public JobBase refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getJobs()
-                .getWithResponse(resourceGroupName, workspaceName, id, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getJobs()
+            .getWithResponse(resourceGroupName, workspaceName, id, Context.NONE).getValue();
         return this;
     }
 
     public JobBase refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getJobs()
-                .getWithResponse(resourceGroupName, workspaceName, id, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getJobs()
+            .getWithResponse(resourceGroupName, workspaceName, id, context).getValue();
         return this;
     }
 
@@ -148,6 +130,11 @@ public final class JobBaseImpl implements JobBase, JobBase.Definition, JobBase.U
 
     public JobBaseImpl withProperties(JobBaseProperties properties) {
         this.innerModel().withProperties(properties);
+        return this;
+    }
+
+    public JobBaseImpl withProperties(PartialJobBase properties) {
+        this.updateBody.withProperties(properties);
         return this;
     }
 }

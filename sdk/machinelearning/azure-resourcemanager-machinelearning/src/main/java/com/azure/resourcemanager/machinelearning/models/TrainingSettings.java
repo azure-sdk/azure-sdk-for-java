@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 
-/** Training related configuration. */
+/**
+ * Training related configuration.
+ */
 @Fluent
 public class TrainingSettings {
     /*
@@ -55,13 +57,24 @@ public class TrainingSettings {
     @JsonProperty(value = "stackEnsembleSettings")
     private StackEnsembleSettings stackEnsembleSettings;
 
-    /** Creates an instance of TrainingSettings class. */
+    /*
+     * TrainingMode mode - Setting to 'auto' is same as setting it to 'non-distributed' for now, however in the future
+     * may result in mixed mode or heuristics based mode selection. Default is 'auto'.
+     * If 'Distributed' then only distributed featurization is used and distributed algorithms are chosen.
+     * If 'NonDistributed' then only non distributed algorithms are chosen.
+     */
+    @JsonProperty(value = "trainingMode")
+    private TrainingMode trainingMode;
+
+    /**
+     * Creates an instance of TrainingSettings class.
+     */
     public TrainingSettings() {
     }
 
     /**
      * Get the enableDnnTraining property: Enable recommendation of DNN models.
-     *
+     * 
      * @return the enableDnnTraining value.
      */
     public Boolean enableDnnTraining() {
@@ -70,7 +83,7 @@ public class TrainingSettings {
 
     /**
      * Set the enableDnnTraining property: Enable recommendation of DNN models.
-     *
+     * 
      * @param enableDnnTraining the enableDnnTraining value to set.
      * @return the TrainingSettings object itself.
      */
@@ -81,7 +94,7 @@ public class TrainingSettings {
 
     /**
      * Get the enableModelExplainability property: Flag to turn on explainability on best model.
-     *
+     * 
      * @return the enableModelExplainability value.
      */
     public Boolean enableModelExplainability() {
@@ -90,7 +103,7 @@ public class TrainingSettings {
 
     /**
      * Set the enableModelExplainability property: Flag to turn on explainability on best model.
-     *
+     * 
      * @param enableModelExplainability the enableModelExplainability value to set.
      * @return the TrainingSettings object itself.
      */
@@ -101,7 +114,7 @@ public class TrainingSettings {
 
     /**
      * Get the enableOnnxCompatibleModels property: Flag for enabling onnx compatible models.
-     *
+     * 
      * @return the enableOnnxCompatibleModels value.
      */
     public Boolean enableOnnxCompatibleModels() {
@@ -110,7 +123,7 @@ public class TrainingSettings {
 
     /**
      * Set the enableOnnxCompatibleModels property: Flag for enabling onnx compatible models.
-     *
+     * 
      * @param enableOnnxCompatibleModels the enableOnnxCompatibleModels value to set.
      * @return the TrainingSettings object itself.
      */
@@ -121,7 +134,7 @@ public class TrainingSettings {
 
     /**
      * Get the enableStackEnsemble property: Enable stack ensemble run.
-     *
+     * 
      * @return the enableStackEnsemble value.
      */
     public Boolean enableStackEnsemble() {
@@ -130,7 +143,7 @@ public class TrainingSettings {
 
     /**
      * Set the enableStackEnsemble property: Enable stack ensemble run.
-     *
+     * 
      * @param enableStackEnsemble the enableStackEnsemble value to set.
      * @return the TrainingSettings object itself.
      */
@@ -141,7 +154,7 @@ public class TrainingSettings {
 
     /**
      * Get the enableVoteEnsemble property: Enable voting ensemble run.
-     *
+     * 
      * @return the enableVoteEnsemble value.
      */
     public Boolean enableVoteEnsemble() {
@@ -150,7 +163,7 @@ public class TrainingSettings {
 
     /**
      * Set the enableVoteEnsemble property: Enable voting ensemble run.
-     *
+     * 
      * @param enableVoteEnsemble the enableVoteEnsemble value to set.
      * @return the TrainingSettings object itself.
      */
@@ -160,10 +173,10 @@ public class TrainingSettings {
     }
 
     /**
-     * Get the ensembleModelDownloadTimeout property: During VotingEnsemble and StackEnsemble model generation, multiple
-     * fitted models from the previous child runs are downloaded. Configure this parameter with a higher value than 300
-     * secs, if more time is needed.
-     *
+     * Get the ensembleModelDownloadTimeout property: During VotingEnsemble and StackEnsemble model generation,
+     * multiple fitted models from the previous child runs are downloaded.
+     * Configure this parameter with a higher value than 300 secs, if more time is needed.
+     * 
      * @return the ensembleModelDownloadTimeout value.
      */
     public Duration ensembleModelDownloadTimeout() {
@@ -171,10 +184,10 @@ public class TrainingSettings {
     }
 
     /**
-     * Set the ensembleModelDownloadTimeout property: During VotingEnsemble and StackEnsemble model generation, multiple
-     * fitted models from the previous child runs are downloaded. Configure this parameter with a higher value than 300
-     * secs, if more time is needed.
-     *
+     * Set the ensembleModelDownloadTimeout property: During VotingEnsemble and StackEnsemble model generation,
+     * multiple fitted models from the previous child runs are downloaded.
+     * Configure this parameter with a higher value than 300 secs, if more time is needed.
+     * 
      * @param ensembleModelDownloadTimeout the ensembleModelDownloadTimeout value to set.
      * @return the TrainingSettings object itself.
      */
@@ -185,7 +198,7 @@ public class TrainingSettings {
 
     /**
      * Get the stackEnsembleSettings property: Stack ensemble settings for stack ensemble run.
-     *
+     * 
      * @return the stackEnsembleSettings value.
      */
     public StackEnsembleSettings stackEnsembleSettings() {
@@ -194,7 +207,7 @@ public class TrainingSettings {
 
     /**
      * Set the stackEnsembleSettings property: Stack ensemble settings for stack ensemble run.
-     *
+     * 
      * @param stackEnsembleSettings the stackEnsembleSettings value to set.
      * @return the TrainingSettings object itself.
      */
@@ -204,8 +217,34 @@ public class TrainingSettings {
     }
 
     /**
+     * Get the trainingMode property: TrainingMode mode - Setting to 'auto' is same as setting it to 'non-distributed'
+     * for now, however in the future may result in mixed mode or heuristics based mode selection. Default is 'auto'.
+     * If 'Distributed' then only distributed featurization is used and distributed algorithms are chosen.
+     * If 'NonDistributed' then only non distributed algorithms are chosen.
+     * 
+     * @return the trainingMode value.
+     */
+    public TrainingMode trainingMode() {
+        return this.trainingMode;
+    }
+
+    /**
+     * Set the trainingMode property: TrainingMode mode - Setting to 'auto' is same as setting it to 'non-distributed'
+     * for now, however in the future may result in mixed mode or heuristics based mode selection. Default is 'auto'.
+     * If 'Distributed' then only distributed featurization is used and distributed algorithms are chosen.
+     * If 'NonDistributed' then only non distributed algorithms are chosen.
+     * 
+     * @param trainingMode the trainingMode value to set.
+     * @return the TrainingSettings object itself.
+     */
+    public TrainingSettings withTrainingMode(TrainingMode trainingMode) {
+        this.trainingMode = trainingMode;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

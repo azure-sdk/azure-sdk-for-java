@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Configuration for a scoring code asset. */
+/**
+ * Configuration for a scoring code asset.
+ */
 @Fluent
 public final class CodeConfiguration {
     /*
@@ -23,13 +25,15 @@ public final class CodeConfiguration {
     @JsonProperty(value = "scoringScript", required = true)
     private String scoringScript;
 
-    /** Creates an instance of CodeConfiguration class. */
+    /**
+     * Creates an instance of CodeConfiguration class.
+     */
     public CodeConfiguration() {
     }
 
     /**
      * Get the codeId property: ARM resource ID of the code asset.
-     *
+     * 
      * @return the codeId value.
      */
     public String codeId() {
@@ -38,7 +42,7 @@ public final class CodeConfiguration {
 
     /**
      * Set the codeId property: ARM resource ID of the code asset.
-     *
+     * 
      * @param codeId the codeId value to set.
      * @return the CodeConfiguration object itself.
      */
@@ -49,7 +53,7 @@ public final class CodeConfiguration {
 
     /**
      * Get the scoringScript property: [Required] The script to execute on startup. eg. "score.py".
-     *
+     * 
      * @return the scoringScript value.
      */
     public String scoringScript() {
@@ -58,7 +62,7 @@ public final class CodeConfiguration {
 
     /**
      * Set the scoringScript property: [Required] The script to execute on startup. eg. "score.py".
-     *
+     * 
      * @param scoringScript the scoringScript value to set.
      * @return the CodeConfiguration object itself.
      */
@@ -69,14 +73,13 @@ public final class CodeConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (scoringScript() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property scoringScript in model CodeConfiguration"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property scoringScript in model CodeConfiguration"));
         }
     }
 
