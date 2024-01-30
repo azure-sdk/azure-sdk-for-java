@@ -6,47 +6,17 @@ package com.azure.resourcemanager.playwrighttesting.models;
 
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.math.BigDecimal;
-import java.time.OffsetDateTime;
 
-/** The free-trial properties. */
+/**
+ * The subscription quota resource free-trial properties.
+ */
 @Immutable
 public final class FreeTrialProperties {
     /*
-     * The playwright account id.
+     * The Playwright service account id.
      */
     @JsonProperty(value = "accountId", required = true, access = JsonProperty.Access.WRITE_ONLY)
     private String accountId;
-
-    /*
-     * The free-trial createdAt utcDateTime.
-     */
-    @JsonProperty(value = "createdAt", required = true, access = JsonProperty.Access.WRITE_ONLY)
-    private OffsetDateTime createdAt;
-
-    /*
-     * The free-trial expiryAt utcDateTime.
-     */
-    @JsonProperty(value = "expiryAt", required = true, access = JsonProperty.Access.WRITE_ONLY)
-    private OffsetDateTime expiryAt;
-
-    /*
-     * The free-trial allocated limit value eg. allocated free minutes.
-     */
-    @JsonProperty(value = "allocatedValue", required = true, access = JsonProperty.Access.WRITE_ONLY)
-    private int allocatedValue;
-
-    /*
-     * The free-trial used value eg. used free minutes.
-     */
-    @JsonProperty(value = "usedValue", required = true, access = JsonProperty.Access.WRITE_ONLY)
-    private int usedValue;
-
-    /*
-     * The free-trial percentage used.
-     */
-    @JsonProperty(value = "percentageUsed", required = true, access = JsonProperty.Access.WRITE_ONLY)
-    private BigDecimal percentageUsed;
 
     /*
      * The free-trial state.
@@ -54,13 +24,15 @@ public final class FreeTrialProperties {
     @JsonProperty(value = "state", required = true, access = JsonProperty.Access.WRITE_ONLY)
     private FreeTrialState state;
 
-    /** Creates an instance of FreeTrialProperties class. */
+    /**
+     * Creates an instance of FreeTrialProperties class.
+     */
     public FreeTrialProperties() {
     }
 
     /**
-     * Get the accountId property: The playwright account id.
-     *
+     * Get the accountId property: The Playwright service account id.
+     * 
      * @return the accountId value.
      */
     public String accountId() {
@@ -68,53 +40,8 @@ public final class FreeTrialProperties {
     }
 
     /**
-     * Get the createdAt property: The free-trial createdAt utcDateTime.
-     *
-     * @return the createdAt value.
-     */
-    public OffsetDateTime createdAt() {
-        return this.createdAt;
-    }
-
-    /**
-     * Get the expiryAt property: The free-trial expiryAt utcDateTime.
-     *
-     * @return the expiryAt value.
-     */
-    public OffsetDateTime expiryAt() {
-        return this.expiryAt;
-    }
-
-    /**
-     * Get the allocatedValue property: The free-trial allocated limit value eg. allocated free minutes.
-     *
-     * @return the allocatedValue value.
-     */
-    public int allocatedValue() {
-        return this.allocatedValue;
-    }
-
-    /**
-     * Get the usedValue property: The free-trial used value eg. used free minutes.
-     *
-     * @return the usedValue value.
-     */
-    public int usedValue() {
-        return this.usedValue;
-    }
-
-    /**
-     * Get the percentageUsed property: The free-trial percentage used.
-     *
-     * @return the percentageUsed value.
-     */
-    public BigDecimal percentageUsed() {
-        return this.percentageUsed;
-    }
-
-    /**
      * Get the state property: The free-trial state.
-     *
+     * 
      * @return the state value.
      */
     public FreeTrialState state() {
@@ -123,7 +50,7 @@ public final class FreeTrialProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
