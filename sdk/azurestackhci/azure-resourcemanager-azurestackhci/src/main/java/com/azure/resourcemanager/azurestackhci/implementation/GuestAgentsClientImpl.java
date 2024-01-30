@@ -33,22 +33,28 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in GuestAgentsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in GuestAgentsClient.
+ */
 public final class GuestAgentsClientImpl implements GuestAgentsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final GuestAgentsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final AzureStackHciClientImpl client;
 
     /**
      * Initializes an instance of GuestAgentsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     GuestAgentsClientImpl(AzureStackHciClientImpl client) {
-        this.service =
-            RestProxy.create(GuestAgentsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(GuestAgentsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -59,48 +65,39 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
     @Host("{$host}")
     @ServiceInterface(name = "AzureStackHciClientG")
     public interface GuestAgentsService {
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Put("/{resourceUri}/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default/guestAgents/default")
-        @ExpectedResponses({200, 201})
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> create(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> create(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceUri", encoded = true) String resourceUri,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") GuestAgentInner body,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") GuestAgentInner body,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/{resourceUri}/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default/guestAgents/default")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<GuestAgentInner>> get(
-            @HostParam("$host") String endpoint,
+        Mono<Response<GuestAgentInner>> get(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceUri", encoded = true) String resourceUri,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Delete("/{resourceUri}/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default/guestAgents/default")
-        @ExpectedResponses({202, 204})
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceUri", encoded = true) String resourceUri,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Implements GuestAgent PUT method.
-     *
-     * <p>Create Or Update GuestAgent.
-     *
+     * 
+     * Create Or Update GuestAgent.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -110,10 +107,8 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(String resourceUri, GuestAgentInner body) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
@@ -121,23 +116,21 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
         if (body != null) {
             body.validate();
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .create(
-                            this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), body, accept, context))
+                context -> service.create(this.client.getEndpoint(), resourceUri, apiVersion, body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Implements GuestAgent PUT method.
-     *
-     * <p>Create Or Update GuestAgent.
-     *
+     * 
+     * Create Or Update GuestAgent.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param body Request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -146,13 +139,11 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      * @return defines the GuestAgent along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
-        String resourceUri, GuestAgentInner body, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(String resourceUri, GuestAgentInner body,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
@@ -160,19 +151,19 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
         if (body != null) {
             body.validate();
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .create(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), body, accept, context);
+        return service.create(this.client.getEndpoint(), resourceUri, apiVersion, body, accept, context);
     }
 
     /**
      * Implements GuestAgent PUT method.
-     *
-     * <p>Create Or Update GuestAgent.
-     *
+     * 
+     * Create Or Update GuestAgent.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -180,26 +171,20 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      * @return the {@link PollerFlux} for polling of defines the GuestAgent.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<GuestAgentInner>, GuestAgentInner> beginCreateAsync(
-        String resourceUri, GuestAgentInner body) {
+    private PollerFlux<PollResult<GuestAgentInner>, GuestAgentInner> beginCreateAsync(String resourceUri,
+        GuestAgentInner body) {
         Mono<Response<Flux<ByteBuffer>>> mono = createWithResponseAsync(resourceUri, body);
-        return this
-            .client
-            .<GuestAgentInner, GuestAgentInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                GuestAgentInner.class,
-                GuestAgentInner.class,
-                this.client.getContext());
+        return this.client.<GuestAgentInner, GuestAgentInner>getLroResult(mono, this.client.getHttpPipeline(),
+            GuestAgentInner.class, GuestAgentInner.class, this.client.getContext());
     }
 
     /**
      * Implements GuestAgent PUT method.
-     *
-     * <p>Create Or Update GuestAgent.
-     *
+     * 
+     * Create Or Update GuestAgent.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -209,23 +194,17 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
     private PollerFlux<PollResult<GuestAgentInner>, GuestAgentInner> beginCreateAsync(String resourceUri) {
         final GuestAgentInner body = null;
         Mono<Response<Flux<ByteBuffer>>> mono = createWithResponseAsync(resourceUri, body);
-        return this
-            .client
-            .<GuestAgentInner, GuestAgentInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                GuestAgentInner.class,
-                GuestAgentInner.class,
-                this.client.getContext());
+        return this.client.<GuestAgentInner, GuestAgentInner>getLroResult(mono, this.client.getHttpPipeline(),
+            GuestAgentInner.class, GuestAgentInner.class, this.client.getContext());
     }
 
     /**
      * Implements GuestAgent PUT method.
-     *
-     * <p>Create Or Update GuestAgent.
-     *
+     * 
+     * Create Or Update GuestAgent.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param body Request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -234,23 +213,21 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      * @return the {@link PollerFlux} for polling of defines the GuestAgent.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<GuestAgentInner>, GuestAgentInner> beginCreateAsync(
-        String resourceUri, GuestAgentInner body, Context context) {
+    private PollerFlux<PollResult<GuestAgentInner>, GuestAgentInner> beginCreateAsync(String resourceUri,
+        GuestAgentInner body, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = createWithResponseAsync(resourceUri, body, context);
-        return this
-            .client
-            .<GuestAgentInner, GuestAgentInner>getLroResult(
-                mono, this.client.getHttpPipeline(), GuestAgentInner.class, GuestAgentInner.class, context);
+        return this.client.<GuestAgentInner, GuestAgentInner>getLroResult(mono, this.client.getHttpPipeline(),
+            GuestAgentInner.class, GuestAgentInner.class, context);
     }
 
     /**
      * Implements GuestAgent PUT method.
-     *
-     * <p>Create Or Update GuestAgent.
-     *
+     * 
+     * Create Or Update GuestAgent.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -264,11 +241,11 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
 
     /**
      * Implements GuestAgent PUT method.
-     *
-     * <p>Create Or Update GuestAgent.
-     *
+     * 
+     * Create Or Update GuestAgent.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param body Request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -277,18 +254,18 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      * @return the {@link SyncPoller} for polling of defines the GuestAgent.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<GuestAgentInner>, GuestAgentInner> beginCreate(
-        String resourceUri, GuestAgentInner body, Context context) {
+    public SyncPoller<PollResult<GuestAgentInner>, GuestAgentInner> beginCreate(String resourceUri,
+        GuestAgentInner body, Context context) {
         return this.beginCreateAsync(resourceUri, body, context).getSyncPoller();
     }
 
     /**
      * Implements GuestAgent PUT method.
-     *
-     * <p>Create Or Update GuestAgent.
-     *
+     * 
+     * Create Or Update GuestAgent.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -302,11 +279,11 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
 
     /**
      * Implements GuestAgent PUT method.
-     *
-     * <p>Create Or Update GuestAgent.
-     *
+     * 
+     * Create Or Update GuestAgent.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -320,11 +297,11 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
 
     /**
      * Implements GuestAgent PUT method.
-     *
-     * <p>Create Or Update GuestAgent.
-     *
+     * 
+     * Create Or Update GuestAgent.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param body Request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -339,11 +316,11 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
 
     /**
      * Implements GuestAgent PUT method.
-     *
-     * <p>Create Or Update GuestAgent.
-     *
+     * 
+     * Create Or Update GuestAgent.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -357,11 +334,11 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
 
     /**
      * Implements GuestAgent PUT method.
-     *
-     * <p>Create Or Update GuestAgent.
-     *
+     * 
+     * Create Or Update GuestAgent.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param body Request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -376,11 +353,11 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
 
     /**
      * Gets GuestAgent.
-     *
-     * <p>Implements GuestAgent GET method.
-     *
+     * 
+     * Implements GuestAgent GET method.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -389,29 +366,26 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<GuestAgentInner>> getWithResponseAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service.get(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), resourceUri, apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets GuestAgent.
-     *
-     * <p>Implements GuestAgent GET method.
-     *
+     * 
+     * Implements GuestAgent GET method.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -421,26 +395,25 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<GuestAgentInner>> getWithResponseAsync(String resourceUri, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), resourceUri, apiVersion, accept, context);
     }
 
     /**
      * Gets GuestAgent.
-     *
-     * <p>Implements GuestAgent GET method.
-     *
+     * 
+     * Implements GuestAgent GET method.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -453,11 +426,11 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
 
     /**
      * Gets GuestAgent.
-     *
-     * <p>Implements GuestAgent GET method.
-     *
+     * 
+     * Implements GuestAgent GET method.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -471,11 +444,11 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
 
     /**
      * Gets GuestAgent.
-     *
-     * <p>Implements GuestAgent GET method.
-     *
+     * 
+     * Implements GuestAgent GET method.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -488,11 +461,11 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
 
     /**
      * Deleted an GuestAgent.
-     *
-     * <p>Implements GuestAgent DELETE method.
-     *
+     * 
+     * Implements GuestAgent DELETE method.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -501,30 +474,26 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), resourceUri, apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Deleted an GuestAgent.
-     *
-     * <p>Implements GuestAgent DELETE method.
-     *
+     * 
+     * Implements GuestAgent DELETE method.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -534,26 +503,25 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceUri, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), accept, context);
+        return service.delete(this.client.getEndpoint(), resourceUri, apiVersion, accept, context);
     }
 
     /**
      * Deleted an GuestAgent.
-     *
-     * <p>Implements GuestAgent DELETE method.
-     *
+     * 
+     * Implements GuestAgent DELETE method.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -562,19 +530,17 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceUri) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceUri);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Deleted an GuestAgent.
-     *
-     * <p>Implements GuestAgent DELETE method.
-     *
+     * 
+     * Implements GuestAgent DELETE method.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -585,18 +551,17 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceUri, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceUri, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Deleted an GuestAgent.
-     *
-     * <p>Implements GuestAgent DELETE method.
-     *
+     * 
+     * Implements GuestAgent DELETE method.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -609,11 +574,11 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
 
     /**
      * Deleted an GuestAgent.
-     *
-     * <p>Implements GuestAgent DELETE method.
-     *
+     * 
+     * Implements GuestAgent DELETE method.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -627,11 +592,11 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
 
     /**
      * Deleted an GuestAgent.
-     *
-     * <p>Implements GuestAgent DELETE method.
-     *
+     * 
+     * Implements GuestAgent DELETE method.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -644,11 +609,11 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
 
     /**
      * Deleted an GuestAgent.
-     *
-     * <p>Implements GuestAgent DELETE method.
-     *
+     * 
+     * Implements GuestAgent DELETE method.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -662,11 +627,11 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
 
     /**
      * Deleted an GuestAgent.
-     *
-     * <p>Implements GuestAgent DELETE method.
-     *
+     * 
+     * Implements GuestAgent DELETE method.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -678,11 +643,11 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
 
     /**
      * Deleted an GuestAgent.
-     *
-     * <p>Implements GuestAgent DELETE method.
-     *
+     * 
+     * Implements GuestAgent DELETE method.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

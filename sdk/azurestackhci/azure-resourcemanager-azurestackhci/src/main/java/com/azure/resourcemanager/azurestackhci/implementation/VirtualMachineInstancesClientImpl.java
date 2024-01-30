@@ -41,23 +41,28 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in VirtualMachineInstancesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in VirtualMachineInstancesClient.
+ */
 public final class VirtualMachineInstancesClientImpl implements VirtualMachineInstancesClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final VirtualMachineInstancesService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final AzureStackHciClientImpl client;
 
     /**
      * Initializes an instance of VirtualMachineInstancesClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     VirtualMachineInstancesClientImpl(AzureStackHciClientImpl client) {
-        this.service =
-            RestProxy
-                .create(VirtualMachineInstancesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service = RestProxy.create(VirtualMachineInstancesService.class, client.getHttpPipeline(),
+            client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -68,112 +73,88 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
     @Host("{$host}")
     @ServiceInterface(name = "AzureStackHciClientV")
     public interface VirtualMachineInstancesService {
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/{resourceUri}/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualMachineInstanceInner>> get(
-            @HostParam("$host") String endpoint,
+        Mono<Response<VirtualMachineInstanceInner>> get(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceUri", encoded = true) String resourceUri,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Put("/{resourceUri}/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default")
-        @ExpectedResponses({200, 201})
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceUri", encoded = true) String resourceUri,
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") VirtualMachineInstanceInner virtualMachineInstance,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Delete("/{resourceUri}/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default")
-        @ExpectedResponses({202, 204})
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceUri", encoded = true) String resourceUri,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Patch("/{resourceUri}/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default")
-        @ExpectedResponses({200, 202})
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceUri", encoded = true) String resourceUri,
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") VirtualMachineInstanceUpdateRequest virtualMachineInstance,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Post("/{resourceUri}/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default/start")
-        @ExpectedResponses({200, 202})
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> start(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> start(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceUri", encoded = true) String resourceUri,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Post("/{resourceUri}/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default/stop")
-        @ExpectedResponses({200, 202})
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> stop(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> stop(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceUri", encoded = true) String resourceUri,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Post("/{resourceUri}/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default/restart")
-        @ExpectedResponses({200, 202})
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> restart(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> restart(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceUri", encoded = true) String resourceUri,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/{resourceUri}/providers/Microsoft.AzureStackHCI/virtualMachineInstances")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualMachineInstanceListResult>> list(
-            @HostParam("$host") String endpoint,
+        Mono<Response<VirtualMachineInstanceListResult>> list(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceUri", encoded = true) String resourceUri,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<VirtualMachineInstanceListResult>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Gets a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -182,27 +163,24 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<VirtualMachineInstanceInner>> getWithResponseAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service.get(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), resourceUri, apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -212,24 +190,23 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<VirtualMachineInstanceInner>> getWithResponseAsync(String resourceUri, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), resourceUri, apiVersion, accept, context);
     }
 
     /**
      * Gets a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -242,9 +219,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * Gets a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -258,9 +235,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * Gets a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -274,101 +251,83 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
     /**
      * The operation to create or update a virtual machine instance. Please note some properties can be set only during
      * virtual machine instance creation.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the virtual machine instance resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceUri, VirtualMachineInstanceInner virtualMachineInstance) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceUri,
+        VirtualMachineInstanceInner virtualMachineInstance) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         if (virtualMachineInstance == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter virtualMachineInstance is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter virtualMachineInstance is required and cannot be null."));
         } else {
             virtualMachineInstance.validate();
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            resourceUri,
-                            this.client.getApiVersion(),
-                            virtualMachineInstance,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), resourceUri, apiVersion,
+                virtualMachineInstance, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to create or update a virtual machine instance. Please note some properties can be set only during
      * virtual machine instance creation.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource definition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the virtual machine instance resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceUri, VirtualMachineInstanceInner virtualMachineInstance, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceUri,
+        VirtualMachineInstanceInner virtualMachineInstance, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         if (virtualMachineInstance == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter virtualMachineInstance is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter virtualMachineInstance is required and cannot be null."));
         } else {
             virtualMachineInstance.validate();
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                resourceUri,
-                this.client.getApiVersion(),
-                virtualMachineInstance,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), resourceUri, apiVersion, virtualMachineInstance,
+            accept, context);
     }
 
     /**
      * The operation to create or update a virtual machine instance. Please note some properties can be set only during
      * virtual machine instance creation.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -376,25 +335,20 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the {@link PollerFlux} for polling of the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginCreateOrUpdateAsync(
-        String resourceUri, VirtualMachineInstanceInner virtualMachineInstance) {
+    private PollerFlux<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner>
+        beginCreateOrUpdateAsync(String resourceUri, VirtualMachineInstanceInner virtualMachineInstance) {
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceUri, virtualMachineInstance);
-        return this
-            .client
-            .<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                VirtualMachineInstanceInner.class,
-                VirtualMachineInstanceInner.class,
-                this.client.getContext());
+        return this.client.<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), VirtualMachineInstanceInner.class, VirtualMachineInstanceInner.class,
+            this.client.getContext());
     }
 
     /**
      * The operation to create or update a virtual machine instance. Please note some properties can be set only during
      * virtual machine instance creation.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource definition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -406,24 +360,19 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
     private PollerFlux<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginCreateOrUpdateAsync(
         String resourceUri, VirtualMachineInstanceInner virtualMachineInstance, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceUri, virtualMachineInstance, context);
-        return this
-            .client
-            .<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                VirtualMachineInstanceInner.class,
-                VirtualMachineInstanceInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceUri, virtualMachineInstance, context);
+        return this.client.<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), VirtualMachineInstanceInner.class, VirtualMachineInstanceInner.class,
+            context);
     }
 
     /**
      * The operation to create or update a virtual machine instance. Please note some properties can be set only during
      * virtual machine instance creation.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -431,17 +380,17 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the {@link SyncPoller} for polling of the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginCreateOrUpdate(
-        String resourceUri, VirtualMachineInstanceInner virtualMachineInstance) {
+    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner>
+        beginCreateOrUpdate(String resourceUri, VirtualMachineInstanceInner virtualMachineInstance) {
         return this.beginCreateOrUpdateAsync(resourceUri, virtualMachineInstance).getSyncPoller();
     }
 
     /**
      * The operation to create or update a virtual machine instance. Please note some properties can be set only during
      * virtual machine instance creation.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource definition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -450,17 +399,17 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the {@link SyncPoller} for polling of the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginCreateOrUpdate(
-        String resourceUri, VirtualMachineInstanceInner virtualMachineInstance, Context context) {
+    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner>
+        beginCreateOrUpdate(String resourceUri, VirtualMachineInstanceInner virtualMachineInstance, Context context) {
         return this.beginCreateOrUpdateAsync(resourceUri, virtualMachineInstance, context).getSyncPoller();
     }
 
     /**
      * The operation to create or update a virtual machine instance. Please note some properties can be set only during
      * virtual machine instance creation.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -468,19 +417,18 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the virtual machine instance resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualMachineInstanceInner> createOrUpdateAsync(
-        String resourceUri, VirtualMachineInstanceInner virtualMachineInstance) {
-        return beginCreateOrUpdateAsync(resourceUri, virtualMachineInstance)
-            .last()
+    private Mono<VirtualMachineInstanceInner> createOrUpdateAsync(String resourceUri,
+        VirtualMachineInstanceInner virtualMachineInstance) {
+        return beginCreateOrUpdateAsync(resourceUri, virtualMachineInstance).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to create or update a virtual machine instance. Please note some properties can be set only during
      * virtual machine instance creation.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource definition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -489,19 +437,18 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the virtual machine instance resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualMachineInstanceInner> createOrUpdateAsync(
-        String resourceUri, VirtualMachineInstanceInner virtualMachineInstance, Context context) {
-        return beginCreateOrUpdateAsync(resourceUri, virtualMachineInstance, context)
-            .last()
+    private Mono<VirtualMachineInstanceInner> createOrUpdateAsync(String resourceUri,
+        VirtualMachineInstanceInner virtualMachineInstance, Context context) {
+        return beginCreateOrUpdateAsync(resourceUri, virtualMachineInstance, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to create or update a virtual machine instance. Please note some properties can be set only during
      * virtual machine instance creation.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -509,17 +456,17 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineInstanceInner createOrUpdate(
-        String resourceUri, VirtualMachineInstanceInner virtualMachineInstance) {
+    public VirtualMachineInstanceInner createOrUpdate(String resourceUri,
+        VirtualMachineInstanceInner virtualMachineInstance) {
         return createOrUpdateAsync(resourceUri, virtualMachineInstance).block();
     }
 
     /**
      * The operation to create or update a virtual machine instance. Please note some properties can be set only during
      * virtual machine instance creation.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource definition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -528,16 +475,16 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineInstanceInner createOrUpdate(
-        String resourceUri, VirtualMachineInstanceInner virtualMachineInstance, Context context) {
+    public VirtualMachineInstanceInner createOrUpdate(String resourceUri,
+        VirtualMachineInstanceInner virtualMachineInstance, Context context) {
         return createOrUpdateAsync(resourceUri, virtualMachineInstance, context).block();
     }
 
     /**
      * The operation to delete a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -546,28 +493,24 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), resourceUri, apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to delete a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -577,24 +520,23 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceUri, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), accept, context);
+        return service.delete(this.client.getEndpoint(), resourceUri, apiVersion, accept, context);
     }
 
     /**
      * The operation to delete a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -603,17 +545,15 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceUri) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceUri);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * The operation to delete a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -624,16 +564,15 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceUri, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceUri, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * The operation to delete a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -646,9 +585,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * The operation to delete a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -662,9 +601,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * The operation to delete a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -677,9 +616,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * The operation to delete a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -693,9 +632,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * The operation to delete a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -707,9 +646,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * The operation to delete a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -722,99 +661,81 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * The operation to update a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource patch definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the virtual machine instance resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceUri, VirtualMachineInstanceUpdateRequest virtualMachineInstance) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceUri,
+        VirtualMachineInstanceUpdateRequest virtualMachineInstance) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         if (virtualMachineInstance == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter virtualMachineInstance is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter virtualMachineInstance is required and cannot be null."));
         } else {
             virtualMachineInstance.validate();
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            resourceUri,
-                            this.client.getApiVersion(),
-                            virtualMachineInstance,
-                            accept,
-                            context))
+            .withContext(context -> service.update(this.client.getEndpoint(), resourceUri, apiVersion,
+                virtualMachineInstance, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to update a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource patch definition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the virtual machine instance resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceUri, VirtualMachineInstanceUpdateRequest virtualMachineInstance, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceUri,
+        VirtualMachineInstanceUpdateRequest virtualMachineInstance, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         if (virtualMachineInstance == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter virtualMachineInstance is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter virtualMachineInstance is required and cannot be null."));
         } else {
             virtualMachineInstance.validate();
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                resourceUri,
-                this.client.getApiVersion(),
-                virtualMachineInstance,
-                accept,
-                context);
+        return service.update(this.client.getEndpoint(), resourceUri, apiVersion, virtualMachineInstance, accept,
+            context);
     }
 
     /**
      * The operation to update a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource patch definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -822,24 +743,19 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the {@link PollerFlux} for polling of the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginUpdateAsync(
-        String resourceUri, VirtualMachineInstanceUpdateRequest virtualMachineInstance) {
+    private PollerFlux<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner>
+        beginUpdateAsync(String resourceUri, VirtualMachineInstanceUpdateRequest virtualMachineInstance) {
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceUri, virtualMachineInstance);
-        return this
-            .client
-            .<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                VirtualMachineInstanceInner.class,
-                VirtualMachineInstanceInner.class,
-                this.client.getContext());
+        return this.client.<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), VirtualMachineInstanceInner.class, VirtualMachineInstanceInner.class,
+            this.client.getContext());
     }
 
     /**
      * The operation to update a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource patch definition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -852,21 +768,16 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
         String resourceUri, VirtualMachineInstanceUpdateRequest virtualMachineInstance, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceUri, virtualMachineInstance, context);
-        return this
-            .client
-            .<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                VirtualMachineInstanceInner.class,
-                VirtualMachineInstanceInner.class,
-                context);
+        return this.client.<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), VirtualMachineInstanceInner.class, VirtualMachineInstanceInner.class,
+            context);
     }
 
     /**
      * The operation to update a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource patch definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -874,16 +785,16 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the {@link SyncPoller} for polling of the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginUpdate(
-        String resourceUri, VirtualMachineInstanceUpdateRequest virtualMachineInstance) {
+    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner>
+        beginUpdate(String resourceUri, VirtualMachineInstanceUpdateRequest virtualMachineInstance) {
         return this.beginUpdateAsync(resourceUri, virtualMachineInstance).getSyncPoller();
     }
 
     /**
      * The operation to update a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource patch definition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -892,16 +803,16 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the {@link SyncPoller} for polling of the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginUpdate(
-        String resourceUri, VirtualMachineInstanceUpdateRequest virtualMachineInstance, Context context) {
+    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner>
+        beginUpdate(String resourceUri, VirtualMachineInstanceUpdateRequest virtualMachineInstance, Context context) {
         return this.beginUpdateAsync(resourceUri, virtualMachineInstance, context).getSyncPoller();
     }
 
     /**
      * The operation to update a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource patch definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -909,18 +820,17 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the virtual machine instance resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualMachineInstanceInner> updateAsync(
-        String resourceUri, VirtualMachineInstanceUpdateRequest virtualMachineInstance) {
-        return beginUpdateAsync(resourceUri, virtualMachineInstance)
-            .last()
+    private Mono<VirtualMachineInstanceInner> updateAsync(String resourceUri,
+        VirtualMachineInstanceUpdateRequest virtualMachineInstance) {
+        return beginUpdateAsync(resourceUri, virtualMachineInstance).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to update a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource patch definition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -929,18 +839,17 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the virtual machine instance resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualMachineInstanceInner> updateAsync(
-        String resourceUri, VirtualMachineInstanceUpdateRequest virtualMachineInstance, Context context) {
-        return beginUpdateAsync(resourceUri, virtualMachineInstance, context)
-            .last()
+    private Mono<VirtualMachineInstanceInner> updateAsync(String resourceUri,
+        VirtualMachineInstanceUpdateRequest virtualMachineInstance, Context context) {
+        return beginUpdateAsync(resourceUri, virtualMachineInstance, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to update a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource patch definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -948,16 +857,16 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineInstanceInner update(
-        String resourceUri, VirtualMachineInstanceUpdateRequest virtualMachineInstance) {
+    public VirtualMachineInstanceInner update(String resourceUri,
+        VirtualMachineInstanceUpdateRequest virtualMachineInstance) {
         return updateAsync(resourceUri, virtualMachineInstance).block();
     }
 
     /**
      * The operation to update a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param virtualMachineInstance The virtual machine instance resource patch definition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -966,98 +875,89 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineInstanceInner update(
-        String resourceUri, VirtualMachineInstanceUpdateRequest virtualMachineInstance, Context context) {
+    public VirtualMachineInstanceInner update(String resourceUri,
+        VirtualMachineInstanceUpdateRequest virtualMachineInstance, Context context) {
         return updateAsync(resourceUri, virtualMachineInstance, context).block();
     }
 
     /**
      * The operation to start a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the virtual machine instance resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> startWithResponseAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service.start(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.start(this.client.getEndpoint(), resourceUri, apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to start a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the virtual machine instance resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> startWithResponseAsync(String resourceUri, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.start(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), accept, context);
+        return service.start(this.client.getEndpoint(), resourceUri, apiVersion, accept, context);
     }
 
     /**
      * The operation to start a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginStartAsync(
-        String resourceUri) {
+    private PollerFlux<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner>
+        beginStartAsync(String resourceUri) {
         Mono<Response<Flux<ByteBuffer>>> mono = startWithResponseAsync(resourceUri);
-        return this
-            .client
-            .<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                VirtualMachineInstanceInner.class,
-                VirtualMachineInstanceInner.class,
-                this.client.getContext());
+        return this.client.<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), VirtualMachineInstanceInner.class, VirtualMachineInstanceInner.class,
+            this.client.getContext());
     }
 
     /**
      * The operation to start a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1065,41 +965,36 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the {@link PollerFlux} for polling of the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginStartAsync(
-        String resourceUri, Context context) {
+    private PollerFlux<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner>
+        beginStartAsync(String resourceUri, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = startWithResponseAsync(resourceUri, context);
-        return this
-            .client
-            .<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                VirtualMachineInstanceInner.class,
-                VirtualMachineInstanceInner.class,
-                context);
+        return this.client.<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), VirtualMachineInstanceInner.class, VirtualMachineInstanceInner.class,
+            context);
     }
 
     /**
      * The operation to start a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginStart(
-        String resourceUri) {
+    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner>
+        beginStart(String resourceUri) {
         return this.beginStartAsync(resourceUri).getSyncPoller();
     }
 
     /**
      * The operation to start a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1107,16 +1002,16 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the {@link SyncPoller} for polling of the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginStart(
-        String resourceUri, Context context) {
+    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner>
+        beginStart(String resourceUri, Context context) {
         return this.beginStartAsync(resourceUri, context).getSyncPoller();
     }
 
     /**
      * The operation to start a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1129,9 +1024,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * The operation to start a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1145,9 +1040,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * The operation to start a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1160,9 +1055,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * The operation to start a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1176,91 +1071,82 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * The operation to stop a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the virtual machine instance resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> stopWithResponseAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service.stop(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.stop(this.client.getEndpoint(), resourceUri, apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to stop a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the virtual machine instance resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> stopWithResponseAsync(String resourceUri, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.stop(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), accept, context);
+        return service.stop(this.client.getEndpoint(), resourceUri, apiVersion, accept, context);
     }
 
     /**
      * The operation to stop a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginStopAsync(
-        String resourceUri) {
+    private PollerFlux<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner>
+        beginStopAsync(String resourceUri) {
         Mono<Response<Flux<ByteBuffer>>> mono = stopWithResponseAsync(resourceUri);
-        return this
-            .client
-            .<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                VirtualMachineInstanceInner.class,
-                VirtualMachineInstanceInner.class,
-                this.client.getContext());
+        return this.client.<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), VirtualMachineInstanceInner.class, VirtualMachineInstanceInner.class,
+            this.client.getContext());
     }
 
     /**
      * The operation to stop a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1268,41 +1154,36 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the {@link PollerFlux} for polling of the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginStopAsync(
-        String resourceUri, Context context) {
+    private PollerFlux<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner>
+        beginStopAsync(String resourceUri, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = stopWithResponseAsync(resourceUri, context);
-        return this
-            .client
-            .<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                VirtualMachineInstanceInner.class,
-                VirtualMachineInstanceInner.class,
-                context);
+        return this.client.<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), VirtualMachineInstanceInner.class, VirtualMachineInstanceInner.class,
+            context);
     }
 
     /**
      * The operation to stop a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginStop(
-        String resourceUri) {
+    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner>
+        beginStop(String resourceUri) {
         return this.beginStopAsync(resourceUri).getSyncPoller();
     }
 
     /**
      * The operation to stop a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1310,16 +1191,16 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the {@link SyncPoller} for polling of the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginStop(
-        String resourceUri, Context context) {
+    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner>
+        beginStop(String resourceUri, Context context) {
         return this.beginStopAsync(resourceUri, context).getSyncPoller();
     }
 
     /**
      * The operation to stop a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1332,9 +1213,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * The operation to stop a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1348,9 +1229,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * The operation to stop a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1363,9 +1244,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * The operation to stop a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1379,92 +1260,83 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * The operation to restart a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the virtual machine instance resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> restartWithResponseAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .restart(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), accept, context))
+                context -> service.restart(this.client.getEndpoint(), resourceUri, apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to restart a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the virtual machine instance resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> restartWithResponseAsync(String resourceUri, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.restart(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), accept, context);
+        return service.restart(this.client.getEndpoint(), resourceUri, apiVersion, accept, context);
     }
 
     /**
      * The operation to restart a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginRestartAsync(
-        String resourceUri) {
+    private PollerFlux<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner>
+        beginRestartAsync(String resourceUri) {
         Mono<Response<Flux<ByteBuffer>>> mono = restartWithResponseAsync(resourceUri);
-        return this
-            .client
-            .<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                VirtualMachineInstanceInner.class,
-                VirtualMachineInstanceInner.class,
-                this.client.getContext());
+        return this.client.<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), VirtualMachineInstanceInner.class, VirtualMachineInstanceInner.class,
+            this.client.getContext());
     }
 
     /**
      * The operation to restart a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1472,41 +1344,36 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the {@link PollerFlux} for polling of the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginRestartAsync(
-        String resourceUri, Context context) {
+    private PollerFlux<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner>
+        beginRestartAsync(String resourceUri, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = restartWithResponseAsync(resourceUri, context);
-        return this
-            .client
-            .<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                VirtualMachineInstanceInner.class,
-                VirtualMachineInstanceInner.class,
-                context);
+        return this.client.<VirtualMachineInstanceInner, VirtualMachineInstanceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), VirtualMachineInstanceInner.class, VirtualMachineInstanceInner.class,
+            context);
     }
 
     /**
      * The operation to restart a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginRestart(
-        String resourceUri) {
+    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner>
+        beginRestart(String resourceUri) {
         return this.beginRestartAsync(resourceUri).getSyncPoller();
     }
 
     /**
      * The operation to restart a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1514,16 +1381,16 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      * @return the {@link SyncPoller} for polling of the virtual machine instance resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner> beginRestart(
-        String resourceUri, Context context) {
+    public SyncPoller<PollResult<VirtualMachineInstanceInner>, VirtualMachineInstanceInner>
+        beginRestart(String resourceUri, Context context) {
         return this.beginRestartAsync(resourceUri, context).getSyncPoller();
     }
 
     /**
      * The operation to restart a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1536,9 +1403,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * The operation to restart a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1552,9 +1419,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * The operation to restart a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1567,9 +1434,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * The operation to restart a virtual machine instance.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1583,9 +1450,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * Lists all of the virtual machine instances within the specified parent resource.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1594,36 +1461,26 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualMachineInstanceInner>> listSinglePageAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service.list(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<VirtualMachineInstanceInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), resourceUri, apiVersion, accept, context))
+            .<PagedResponse<VirtualMachineInstanceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists all of the virtual machine instances within the specified parent resource.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1633,34 +1490,25 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualMachineInstanceInner>> listSinglePageAsync(String resourceUri, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.list(this.client.getEndpoint(), resourceUri, apiVersion, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Lists all of the virtual machine instances within the specified parent resource.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1673,9 +1521,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * Lists all of the virtual machine instances within the specified parent resource.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1684,15 +1532,15 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<VirtualMachineInstanceInner> listAsync(String resourceUri, Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceUri, context), nextLink -> listNextSinglePageAsync(nextLink, context));
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceUri, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Lists all of the virtual machine instances within the specified parent resource.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1705,9 +1553,9 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * Lists all of the virtual machine instances within the specified parent resource.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource
-     *     to be extended.
+     * to be extended.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1721,9 +1569,10 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1735,31 +1584,22 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<VirtualMachineInstanceInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<VirtualMachineInstanceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1772,23 +1612,13 @@ public final class VirtualMachineInstancesClientImpl implements VirtualMachineIn
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

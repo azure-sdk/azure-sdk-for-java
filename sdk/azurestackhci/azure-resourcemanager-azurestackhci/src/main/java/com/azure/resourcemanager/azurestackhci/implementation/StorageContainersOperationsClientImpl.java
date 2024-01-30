@@ -40,24 +40,28 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in StorageContainersOperationsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in StorageContainersOperationsClient.
+ */
 public final class StorageContainersOperationsClientImpl implements StorageContainersOperationsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final StorageContainersOperationsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final AzureStackHciClientImpl client;
 
     /**
      * Initializes an instance of StorageContainersOperationsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     StorageContainersOperationsClientImpl(AzureStackHciClientImpl client) {
-        this.service =
-            RestProxy
-                .create(
-                    StorageContainersOperationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service = RestProxy.create(StorageContainersOperationsService.class, client.getHttpPipeline(),
+            client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -68,112 +72,87 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
     @Host("{$host}")
     @ServiceInterface(name = "AzureStackHciClientS")
     public interface StorageContainersOperationsService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/storageContainers/{storageContainerName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/storageContainers/{storageContainerName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<StorageContainersInner>> getByResourceGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<StorageContainersInner>> getByResourceGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("storageContainerName") String storageContainerName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/storageContainers/{storageContainerName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/storageContainers/{storageContainerName}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("storageContainerName") String storageContainerName,
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") StorageContainersInner storageContainers,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/storageContainers/{storageContainerName}")
-        @ExpectedResponses({202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/storageContainers/{storageContainerName}")
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("storageContainerName") String storageContainerName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/storageContainers/{storageContainerName}")
-        @ExpectedResponses({200, 202})
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/storageContainers/{storageContainerName}")
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("storageContainerName") String storageContainerName,
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") StorageContainersUpdateRequest storageContainers,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/storageContainers")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/storageContainers")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<StorageContainersListResult>> listByResourceGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<StorageContainersListResult>> listByResourceGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.AzureStackHCI/storageContainers")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<StorageContainersListResult>> list(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<StorageContainersListResult>> list(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<StorageContainersListResult>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<StorageContainersListResult>> listAllNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Gets a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -182,19 +161,15 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return a storage container along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<StorageContainersInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String storageContainerName) {
+    private Mono<Response<StorageContainersInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String storageContainerName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -204,25 +179,17 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
             return Mono
                 .error(new IllegalArgumentException("Parameter storageContainerName is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            storageContainerName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), resourceGroupName, storageContainerName, apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param context The context to associate with this operation.
@@ -232,19 +199,15 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return a storage container along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<StorageContainersInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String storageContainerName, Context context) {
+    private Mono<Response<StorageContainersInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String storageContainerName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -254,22 +217,16 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
             return Mono
                 .error(new IllegalArgumentException("Parameter storageContainerName is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                storageContainerName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            storageContainerName, apiVersion, accept, context);
     }
 
     /**
      * Gets a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -278,15 +235,15 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return a storage container on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<StorageContainersInner> getByResourceGroupAsync(
-        String resourceGroupName, String storageContainerName) {
+    private Mono<StorageContainersInner> getByResourceGroupAsync(String resourceGroupName,
+        String storageContainerName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, storageContainerName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Gets a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param context The context to associate with this operation.
@@ -296,14 +253,14 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return a storage container along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<StorageContainersInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String storageContainerName, Context context) {
+    public Response<StorageContainersInner> getByResourceGroupWithResponse(String resourceGroupName,
+        String storageContainerName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, storageContainerName, context).block();
     }
 
     /**
      * Gets a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -319,30 +276,26 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
     /**
      * The operation to create or update a storage container. Please note some properties can be set only during storage
      * container creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the storage container resource definition along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the storage container resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String storageContainerName, StorageContainersInner storageContainers) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String storageContainerName, StorageContainersInner storageContainers) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -358,27 +311,18 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
         } else {
             storageContainers.validate();
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            storageContainerName,
-                            this.client.getApiVersion(),
-                            storageContainers,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, storageContainerName, apiVersion, storageContainers, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to create or update a storage container. Please note some properties can be set only during storage
      * container creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource definition.
@@ -386,26 +330,19 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the storage container resource definition along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the storage container resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName,
-        String storageContainerName,
-        StorageContainersInner storageContainers,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String storageContainerName, StorageContainersInner storageContainers, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -421,24 +358,17 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
         } else {
             storageContainers.validate();
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                storageContainerName,
-                this.client.getApiVersion(),
-                storageContainers,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            storageContainerName, apiVersion, storageContainers, accept, context);
     }
 
     /**
      * The operation to create or update a storage container. Please note some properties can be set only during storage
      * container creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource definition.
@@ -450,22 +380,17 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<StorageContainersInner>, StorageContainersInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String storageContainerName, StorageContainersInner storageContainers) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, storageContainerName, storageContainers);
-        return this
-            .client
-            .<StorageContainersInner, StorageContainersInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                StorageContainersInner.class,
-                StorageContainersInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, storageContainerName, storageContainers);
+        return this.client.<StorageContainersInner, StorageContainersInner>getLroResult(mono,
+            this.client.getHttpPipeline(), StorageContainersInner.class, StorageContainersInner.class,
+            this.client.getContext());
     }
 
     /**
      * The operation to create or update a storage container. Please note some properties can be set only during storage
      * container creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource definition.
@@ -477,27 +402,19 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<StorageContainersInner>, StorageContainersInner> beginCreateOrUpdateAsync(
-        String resourceGroupName,
-        String storageContainerName,
-        StorageContainersInner storageContainers,
+        String resourceGroupName, String storageContainerName, StorageContainersInner storageContainers,
         Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, storageContainerName, storageContainers, context);
-        return this
-            .client
-            .<StorageContainersInner, StorageContainersInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                StorageContainersInner.class,
-                StorageContainersInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, storageContainerName, storageContainers, context);
+        return this.client.<StorageContainersInner, StorageContainersInner>getLroResult(mono,
+            this.client.getHttpPipeline(), StorageContainersInner.class, StorageContainersInner.class, context);
     }
 
     /**
      * The operation to create or update a storage container. Please note some properties can be set only during storage
      * container creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource definition.
@@ -509,15 +426,14 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<StorageContainersInner>, StorageContainersInner> beginCreateOrUpdate(
         String resourceGroupName, String storageContainerName, StorageContainersInner storageContainers) {
-        return this
-            .beginCreateOrUpdateAsync(resourceGroupName, storageContainerName, storageContainers)
+        return this.beginCreateOrUpdateAsync(resourceGroupName, storageContainerName, storageContainers)
             .getSyncPoller();
     }
 
     /**
      * The operation to create or update a storage container. Please note some properties can be set only during storage
      * container creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource definition.
@@ -529,19 +445,16 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<StorageContainersInner>, StorageContainersInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String storageContainerName,
-        StorageContainersInner storageContainers,
+        String resourceGroupName, String storageContainerName, StorageContainersInner storageContainers,
         Context context) {
-        return this
-            .beginCreateOrUpdateAsync(resourceGroupName, storageContainerName, storageContainers, context)
+        return this.beginCreateOrUpdateAsync(resourceGroupName, storageContainerName, storageContainers, context)
             .getSyncPoller();
     }
 
     /**
      * The operation to create or update a storage container. Please note some properties can be set only during storage
      * container creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource definition.
@@ -551,17 +464,16 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return the storage container resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<StorageContainersInner> createOrUpdateAsync(
-        String resourceGroupName, String storageContainerName, StorageContainersInner storageContainers) {
-        return beginCreateOrUpdateAsync(resourceGroupName, storageContainerName, storageContainers)
-            .last()
+    private Mono<StorageContainersInner> createOrUpdateAsync(String resourceGroupName, String storageContainerName,
+        StorageContainersInner storageContainers) {
+        return beginCreateOrUpdateAsync(resourceGroupName, storageContainerName, storageContainers).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to create or update a storage container. Please note some properties can be set only during storage
      * container creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource definition.
@@ -572,20 +484,16 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return the storage container resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<StorageContainersInner> createOrUpdateAsync(
-        String resourceGroupName,
-        String storageContainerName,
-        StorageContainersInner storageContainers,
-        Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, storageContainerName, storageContainers, context)
-            .last()
+    private Mono<StorageContainersInner> createOrUpdateAsync(String resourceGroupName, String storageContainerName,
+        StorageContainersInner storageContainers, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, storageContainerName, storageContainers, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to create or update a storage container. Please note some properties can be set only during storage
      * container creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource definition.
@@ -595,15 +503,15 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return the storage container resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public StorageContainersInner createOrUpdate(
-        String resourceGroupName, String storageContainerName, StorageContainersInner storageContainers) {
+    public StorageContainersInner createOrUpdate(String resourceGroupName, String storageContainerName,
+        StorageContainersInner storageContainers) {
         return createOrUpdateAsync(resourceGroupName, storageContainerName, storageContainers).block();
     }
 
     /**
      * The operation to create or update a storage container. Please note some properties can be set only during storage
      * container creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource definition.
@@ -614,17 +522,14 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return the storage container resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public StorageContainersInner createOrUpdate(
-        String resourceGroupName,
-        String storageContainerName,
-        StorageContainersInner storageContainers,
-        Context context) {
+    public StorageContainersInner createOrUpdate(String resourceGroupName, String storageContainerName,
+        StorageContainersInner storageContainers, Context context) {
         return createOrUpdateAsync(resourceGroupName, storageContainerName, storageContainers, context).block();
     }
 
     /**
      * The operation to delete a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -633,19 +538,15 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String storageContainerName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
+        String storageContainerName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -655,25 +556,17 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
             return Mono
                 .error(new IllegalArgumentException("Parameter storageContainerName is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            storageContainerName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, storageContainerName, apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to delete a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param context The context to associate with this operation.
@@ -683,19 +576,15 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String storageContainerName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
+        String storageContainerName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -705,22 +594,16 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
             return Mono
                 .error(new IllegalArgumentException("Parameter storageContainerName is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                storageContainerName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            storageContainerName, apiVersion, accept, context);
     }
 
     /**
      * The operation to delete a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -731,15 +614,13 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String storageContainerName) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, storageContainerName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * The operation to delete a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param context The context to associate with this operation.
@@ -749,19 +630,18 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String storageContainerName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String storageContainerName,
+        Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, storageContainerName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, storageContainerName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * The operation to delete a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -776,7 +656,7 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
 
     /**
      * The operation to delete a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param context The context to associate with this operation.
@@ -786,14 +666,14 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String storageContainerName, Context context) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String storageContainerName,
+        Context context) {
         return this.beginDeleteAsync(resourceGroupName, storageContainerName, context).getSyncPoller();
     }
 
     /**
      * The operation to delete a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -803,14 +683,13 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String storageContainerName) {
-        return beginDeleteAsync(resourceGroupName, storageContainerName)
-            .last()
+        return beginDeleteAsync(resourceGroupName, storageContainerName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to delete a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param context The context to associate with this operation.
@@ -821,14 +700,13 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String storageContainerName, Context context) {
-        return beginDeleteAsync(resourceGroupName, storageContainerName, context)
-            .last()
+        return beginDeleteAsync(resourceGroupName, storageContainerName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to delete a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -842,7 +720,7 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
 
     /**
      * The operation to delete a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param context The context to associate with this operation.
@@ -857,30 +735,26 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
 
     /**
      * The operation to update a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource patch definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the storage container resource definition along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the storage container resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName, String storageContainerName, StorageContainersUpdateRequest storageContainers) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
+        String storageContainerName, StorageContainersUpdateRequest storageContainers) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -896,26 +770,17 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
         } else {
             storageContainers.validate();
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            storageContainerName,
-                            this.client.getApiVersion(),
-                            storageContainers,
-                            accept,
-                            context))
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, storageContainerName, apiVersion, storageContainers, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to update a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource patch definition.
@@ -923,26 +788,19 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the storage container resource definition along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the storage container resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName,
-        String storageContainerName,
-        StorageContainersUpdateRequest storageContainers,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
+        String storageContainerName, StorageContainersUpdateRequest storageContainers, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -958,23 +816,16 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
         } else {
             storageContainers.validate();
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                storageContainerName,
-                this.client.getApiVersion(),
-                storageContainers,
-                accept,
-                context);
+        return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            storageContainerName, apiVersion, storageContainers, accept, context);
     }
 
     /**
      * The operation to update a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource patch definition.
@@ -986,21 +837,16 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<StorageContainersInner>, StorageContainersInner> beginUpdateAsync(
         String resourceGroupName, String storageContainerName, StorageContainersUpdateRequest storageContainers) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, storageContainerName, storageContainers);
-        return this
-            .client
-            .<StorageContainersInner, StorageContainersInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                StorageContainersInner.class,
-                StorageContainersInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, storageContainerName, storageContainers);
+        return this.client.<StorageContainersInner, StorageContainersInner>getLroResult(mono,
+            this.client.getHttpPipeline(), StorageContainersInner.class, StorageContainersInner.class,
+            this.client.getContext());
     }
 
     /**
      * The operation to update a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource patch definition.
@@ -1012,26 +858,18 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<StorageContainersInner>, StorageContainersInner> beginUpdateAsync(
-        String resourceGroupName,
-        String storageContainerName,
-        StorageContainersUpdateRequest storageContainers,
+        String resourceGroupName, String storageContainerName, StorageContainersUpdateRequest storageContainers,
         Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, storageContainerName, storageContainers, context);
-        return this
-            .client
-            .<StorageContainersInner, StorageContainersInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                StorageContainersInner.class,
-                StorageContainersInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, storageContainerName, storageContainers, context);
+        return this.client.<StorageContainersInner, StorageContainersInner>getLroResult(mono,
+            this.client.getHttpPipeline(), StorageContainersInner.class, StorageContainersInner.class, context);
     }
 
     /**
      * The operation to update a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource patch definition.
@@ -1041,14 +879,14 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return the {@link SyncPoller} for polling of the storage container resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<StorageContainersInner>, StorageContainersInner> beginUpdate(
-        String resourceGroupName, String storageContainerName, StorageContainersUpdateRequest storageContainers) {
+    public SyncPoller<PollResult<StorageContainersInner>, StorageContainersInner> beginUpdate(String resourceGroupName,
+        String storageContainerName, StorageContainersUpdateRequest storageContainers) {
         return this.beginUpdateAsync(resourceGroupName, storageContainerName, storageContainers).getSyncPoller();
     }
 
     /**
      * The operation to update a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource patch definition.
@@ -1059,19 +897,15 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return the {@link SyncPoller} for polling of the storage container resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<StorageContainersInner>, StorageContainersInner> beginUpdate(
-        String resourceGroupName,
-        String storageContainerName,
-        StorageContainersUpdateRequest storageContainers,
-        Context context) {
-        return this
-            .beginUpdateAsync(resourceGroupName, storageContainerName, storageContainers, context)
+    public SyncPoller<PollResult<StorageContainersInner>, StorageContainersInner> beginUpdate(String resourceGroupName,
+        String storageContainerName, StorageContainersUpdateRequest storageContainers, Context context) {
+        return this.beginUpdateAsync(resourceGroupName, storageContainerName, storageContainers, context)
             .getSyncPoller();
     }
 
     /**
      * The operation to update a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource patch definition.
@@ -1081,16 +915,15 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return the storage container resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<StorageContainersInner> updateAsync(
-        String resourceGroupName, String storageContainerName, StorageContainersUpdateRequest storageContainers) {
-        return beginUpdateAsync(resourceGroupName, storageContainerName, storageContainers)
-            .last()
+    private Mono<StorageContainersInner> updateAsync(String resourceGroupName, String storageContainerName,
+        StorageContainersUpdateRequest storageContainers) {
+        return beginUpdateAsync(resourceGroupName, storageContainerName, storageContainers).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to update a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource patch definition.
@@ -1101,19 +934,15 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return the storage container resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<StorageContainersInner> updateAsync(
-        String resourceGroupName,
-        String storageContainerName,
-        StorageContainersUpdateRequest storageContainers,
-        Context context) {
-        return beginUpdateAsync(resourceGroupName, storageContainerName, storageContainers, context)
-            .last()
+    private Mono<StorageContainersInner> updateAsync(String resourceGroupName, String storageContainerName,
+        StorageContainersUpdateRequest storageContainers, Context context) {
+        return beginUpdateAsync(resourceGroupName, storageContainerName, storageContainers, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to update a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource patch definition.
@@ -1123,14 +952,14 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return the storage container resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public StorageContainersInner update(
-        String resourceGroupName, String storageContainerName, StorageContainersUpdateRequest storageContainers) {
+    public StorageContainersInner update(String resourceGroupName, String storageContainerName,
+        StorageContainersUpdateRequest storageContainers) {
         return updateAsync(resourceGroupName, storageContainerName, storageContainers).block();
     }
 
     /**
      * The operation to update a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource patch definition.
@@ -1141,18 +970,15 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return the storage container resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public StorageContainersInner update(
-        String resourceGroupName,
-        String storageContainerName,
-        StorageContainersUpdateRequest storageContainers,
-        Context context) {
+    public StorageContainersInner update(String resourceGroupName, String storageContainerName,
+        StorageContainersUpdateRequest storageContainers, Context context) {
         return updateAsync(resourceGroupName, storageContainerName, storageContainers, context).block();
     }
 
     /**
      * Lists all of the storage containers in the specified resource group. Use the nextLink property in the response to
      * get the next page of storage containers.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1162,49 +988,31 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<StorageContainersInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<StorageContainersInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), resourceGroupName, apiVersion, accept, context))
+            .<PagedResponse<StorageContainersInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists all of the storage containers in the specified resource group. Use the nextLink property in the response to
      * get the next page of storage containers.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1213,49 +1021,34 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<StorageContainersInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, Context context) {
+    private Mono<PagedResponse<StorageContainersInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                apiVersion, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Lists all of the storage containers in the specified resource group. Use the nextLink property in the response to
      * get the next page of storage containers.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1264,14 +1057,14 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<StorageContainersInner> listByResourceGroupAsync(String resourceGroupName) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName), nextLink -> listNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * Lists all of the storage containers in the specified resource group. Use the nextLink property in the response to
      * get the next page of storage containers.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1281,15 +1074,14 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<StorageContainersInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Lists all of the storage containers in the specified resource group. Use the nextLink property in the response to
      * get the next page of storage containers.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1304,7 +1096,7 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
     /**
      * Lists all of the storage containers in the specified resource group. Use the nextLink property in the response to
      * get the next page of storage containers.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1320,7 +1112,7 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
     /**
      * Lists all of the storage containers in the specified subscription. Use the nextLink property in the response to
      * get the next page of storage containers.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
@@ -1328,44 +1120,27 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<StorageContainersInner>> listSinglePageAsync() {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<StorageContainersInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion,
+                accept, context))
+            .<PagedResponse<StorageContainersInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists all of the storage containers in the specified subscription. Use the nextLink property in the response to
      * get the next page of storage containers.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1375,41 +1150,25 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<StorageContainersInner>> listSinglePageAsync(Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                this.client.getApiVersion(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Lists all of the storage containers in the specified subscription. Use the nextLink property in the response to
      * get the next page of storage containers.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the paginated response with {@link PagedFlux}.
@@ -1422,7 +1181,7 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
     /**
      * Lists all of the storage containers in the specified subscription. Use the nextLink property in the response to
      * get the next page of storage containers.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1431,14 +1190,14 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<StorageContainersInner> listAsync(Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(context), nextLink -> listAllNextSinglePageAsync(nextLink, context));
+        return new PagedFlux<>(() -> listSinglePageAsync(context),
+            nextLink -> listAllNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Lists all of the storage containers in the specified subscription. Use the nextLink property in the response to
      * get the next page of storage containers.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the paginated response with {@link PagedIterable}.
@@ -1451,7 +1210,7 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
     /**
      * Lists all of the storage containers in the specified subscription. Use the nextLink property in the response to
      * get the next page of storage containers.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1465,9 +1224,10 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1479,31 +1239,22 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<StorageContainersInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<StorageContainersInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1516,31 +1267,22 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1552,31 +1294,23 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listAllNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<StorageContainersInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<StorageContainersInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1589,23 +1323,13 @@ public final class StorageContainersOperationsClientImpl implements StorageConta
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listAllNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listAllNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

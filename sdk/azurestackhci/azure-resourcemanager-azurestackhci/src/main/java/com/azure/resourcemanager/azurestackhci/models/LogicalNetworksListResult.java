@@ -9,7 +9,9 @@ import com.azure.resourcemanager.azurestackhci.fluent.models.LogicalNetworksInne
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The LogicalNetworksListResult model. */
+/**
+ * The LogicalNetworksListResult model.
+ */
 @Fluent
 public final class LogicalNetworksListResult {
     /*
@@ -24,13 +26,15 @@ public final class LogicalNetworksListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of LogicalNetworksListResult class. */
+    /**
+     * Creates an instance of LogicalNetworksListResult class.
+     */
     public LogicalNetworksListResult() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<LogicalNetworksInner> value() {
@@ -39,7 +43,7 @@ public final class LogicalNetworksListResult {
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the LogicalNetworksListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class LogicalNetworksListResult {
 
     /**
      * Get the nextLink property: The nextLink property.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class LogicalNetworksListResult {
 
     /**
      * Set the nextLink property: The nextLink property.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the LogicalNetworksListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class LogicalNetworksListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

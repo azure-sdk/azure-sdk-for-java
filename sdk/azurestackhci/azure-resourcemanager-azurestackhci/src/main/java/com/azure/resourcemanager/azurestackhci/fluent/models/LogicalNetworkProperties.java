@@ -12,7 +12,9 @@ import com.azure.resourcemanager.azurestackhci.models.Subnet;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Properties under the logical network resource. */
+/**
+ * Properties under the logical network resource.
+ */
 @Fluent
 public final class LogicalNetworkProperties {
     /*
@@ -46,14 +48,16 @@ public final class LogicalNetworkProperties {
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private LogicalNetworkStatus status;
 
-    /** Creates an instance of LogicalNetworkProperties class. */
+    /**
+     * Creates an instance of LogicalNetworkProperties class.
+     */
     public LogicalNetworkProperties() {
     }
 
     /**
      * Get the dhcpOptions property: DhcpOptions contains an array of DNS servers available to VMs deployed in the
      * logical network. Standard DHCP option for a subnet overrides logical network DHCP options.
-     *
+     * 
      * @return the dhcpOptions value.
      */
     public LogicalNetworkPropertiesDhcpOptions dhcpOptions() {
@@ -63,7 +67,7 @@ public final class LogicalNetworkProperties {
     /**
      * Set the dhcpOptions property: DhcpOptions contains an array of DNS servers available to VMs deployed in the
      * logical network. Standard DHCP option for a subnet overrides logical network DHCP options.
-     *
+     * 
      * @param dhcpOptions the dhcpOptions value to set.
      * @return the LogicalNetworkProperties object itself.
      */
@@ -74,7 +78,7 @@ public final class LogicalNetworkProperties {
 
     /**
      * Get the subnets property: Subnet - list of subnets under the logical network.
-     *
+     * 
      * @return the subnets value.
      */
     public List<Subnet> subnets() {
@@ -83,7 +87,7 @@ public final class LogicalNetworkProperties {
 
     /**
      * Set the subnets property: Subnet - list of subnets under the logical network.
-     *
+     * 
      * @param subnets the subnets value to set.
      * @return the LogicalNetworkProperties object itself.
      */
@@ -94,7 +98,7 @@ public final class LogicalNetworkProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the logical network.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -103,7 +107,7 @@ public final class LogicalNetworkProperties {
 
     /**
      * Get the vmSwitchName property: name of the network switch to be used for VMs.
-     *
+     * 
      * @return the vmSwitchName value.
      */
     public String vmSwitchName() {
@@ -112,7 +116,7 @@ public final class LogicalNetworkProperties {
 
     /**
      * Set the vmSwitchName property: name of the network switch to be used for VMs.
-     *
+     * 
      * @param vmSwitchName the vmSwitchName value to set.
      * @return the LogicalNetworkProperties object itself.
      */
@@ -123,7 +127,7 @@ public final class LogicalNetworkProperties {
 
     /**
      * Get the status property: The observed state of logical networks.
-     *
+     * 
      * @return the status value.
      */
     public LogicalNetworkStatus status() {
@@ -132,7 +136,7 @@ public final class LogicalNetworkProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

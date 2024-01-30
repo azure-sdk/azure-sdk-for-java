@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** IPConfigurationReference - Describes a IPConfiguration under the virtual network. */
+/**
+ * IPConfigurationReference - Describes a IPConfiguration under the virtual network.
+ */
 @Fluent
 public final class SubnetPropertiesFormatIpConfigurationReferencesItem {
     /*
@@ -16,13 +18,15 @@ public final class SubnetPropertiesFormatIpConfigurationReferencesItem {
     @JsonProperty(value = "ID")
     private String id;
 
-    /** Creates an instance of SubnetPropertiesFormatIpConfigurationReferencesItem class. */
+    /**
+     * Creates an instance of SubnetPropertiesFormatIpConfigurationReferencesItem class.
+     */
     public SubnetPropertiesFormatIpConfigurationReferencesItem() {
     }
 
     /**
      * Get the id property: IPConfigurationID.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -31,7 +35,7 @@ public final class SubnetPropertiesFormatIpConfigurationReferencesItem {
 
     /**
      * Set the id property: IPConfigurationID.
-     *
+     * 
      * @param id the id value to set.
      * @return the SubnetPropertiesFormatIpConfigurationReferencesItem object itself.
      */
@@ -42,7 +46,7 @@ public final class SubnetPropertiesFormatIpConfigurationReferencesItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

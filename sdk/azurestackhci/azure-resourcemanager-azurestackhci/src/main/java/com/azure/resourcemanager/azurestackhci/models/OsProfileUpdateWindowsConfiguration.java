@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The OsProfileUpdateWindowsConfiguration model. */
+/**
+ * The OsProfileUpdateWindowsConfiguration model.
+ */
 @Fluent
 public final class OsProfileUpdateWindowsConfiguration {
     /*
@@ -23,14 +25,16 @@ public final class OsProfileUpdateWindowsConfiguration {
     @JsonProperty(value = "provisionVMConfigAgent")
     private Boolean provisionVMConfigAgent;
 
-    /** Creates an instance of OsProfileUpdateWindowsConfiguration class. */
+    /**
+     * Creates an instance of OsProfileUpdateWindowsConfiguration class.
+     */
     public OsProfileUpdateWindowsConfiguration() {
     }
 
     /**
      * Get the provisionVMAgent property: Used to indicate whether Arc for Servers agent onboarding should be triggered
      * during the virtual machine instance creation process.
-     *
+     * 
      * @return the provisionVMAgent value.
      */
     public Boolean provisionVMAgent() {
@@ -40,7 +44,7 @@ public final class OsProfileUpdateWindowsConfiguration {
     /**
      * Set the provisionVMAgent property: Used to indicate whether Arc for Servers agent onboarding should be triggered
      * during the virtual machine instance creation process.
-     *
+     * 
      * @param provisionVMAgent the provisionVMAgent value to set.
      * @return the OsProfileUpdateWindowsConfiguration object itself.
      */
@@ -52,7 +56,7 @@ public final class OsProfileUpdateWindowsConfiguration {
     /**
      * Get the provisionVMConfigAgent property: Used to indicate whether the VM Config Agent should be installed during
      * the virtual machine creation process.
-     *
+     * 
      * @return the provisionVMConfigAgent value.
      */
     public Boolean provisionVMConfigAgent() {
@@ -62,7 +66,7 @@ public final class OsProfileUpdateWindowsConfiguration {
     /**
      * Set the provisionVMConfigAgent property: Used to indicate whether the VM Config Agent should be installed during
      * the virtual machine creation process.
-     *
+     * 
      * @param provisionVMConfigAgent the provisionVMConfigAgent value to set.
      * @return the OsProfileUpdateWindowsConfiguration object itself.
      */
@@ -73,7 +77,7 @@ public final class OsProfileUpdateWindowsConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

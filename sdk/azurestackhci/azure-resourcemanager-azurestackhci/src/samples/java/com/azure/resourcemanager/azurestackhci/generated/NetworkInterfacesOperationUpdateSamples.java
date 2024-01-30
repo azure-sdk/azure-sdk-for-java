@@ -8,22 +8,23 @@ import com.azure.resourcemanager.azurestackhci.models.NetworkInterfaces;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for NetworkInterfacesOperation Update. */
+/**
+ * Samples for NetworkInterfacesOperation Update.
+ */
 public final class NetworkInterfacesOperationUpdateSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/UpdateNetworkInterface.json
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/
+     * UpdateNetworkInterface.json
      */
     /**
      * Sample code: UpdateNetworkInterface.
-     *
+     * 
      * @param manager Entry point to AzureStackHciManager.
      */
     public static void updateNetworkInterface(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
-        NetworkInterfaces resource =
-            manager
-                .networkInterfacesOperations()
-                .getByResourceGroupWithResponse("test-rg", "test-nic", com.azure.core.util.Context.NONE)
-                .getValue();
+        NetworkInterfaces resource = manager.networkInterfacesOperations()
+            .getByResourceGroupWithResponse("test-rg", "test-nic", com.azure.core.util.Context.NONE).getValue();
         resource.update().withTags(mapOf("additionalProperties", "sample")).apply();
     }
 

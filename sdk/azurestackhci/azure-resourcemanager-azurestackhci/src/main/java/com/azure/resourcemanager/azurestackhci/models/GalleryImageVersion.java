@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.azurestackhci.fluent.models.GalleryImageVersionProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Specifies information about the gallery image version that you want to create or update. */
+/**
+ * Specifies information about the gallery image version that you want to create or update.
+ */
 @Fluent
 public final class GalleryImageVersion {
     /*
@@ -23,13 +25,15 @@ public final class GalleryImageVersion {
     @JsonProperty(value = "properties")
     private GalleryImageVersionProperties innerProperties;
 
-    /** Creates an instance of GalleryImageVersion class. */
+    /**
+     * Creates an instance of GalleryImageVersion class.
+     */
     public GalleryImageVersion() {
     }
 
     /**
      * Get the name property: This is the version of the gallery image.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -38,7 +42,7 @@ public final class GalleryImageVersion {
 
     /**
      * Set the name property: This is the version of the gallery image.
-     *
+     * 
      * @param name the name value to set.
      * @return the GalleryImageVersion object itself.
      */
@@ -49,7 +53,7 @@ public final class GalleryImageVersion {
 
     /**
      * Get the innerProperties property: Describes the properties of a gallery image version.
-     *
+     * 
      * @return the innerProperties value.
      */
     private GalleryImageVersionProperties innerProperties() {
@@ -58,7 +62,7 @@ public final class GalleryImageVersion {
 
     /**
      * Get the storageProfile property: This is the storage profile of a Gallery Image Version.
-     *
+     * 
      * @return the storageProfile value.
      */
     public GalleryImageVersionStorageProfile storageProfile() {
@@ -67,7 +71,7 @@ public final class GalleryImageVersion {
 
     /**
      * Set the storageProfile property: This is the storage profile of a Gallery Image Version.
-     *
+     * 
      * @param storageProfile the storageProfile value to set.
      * @return the GalleryImageVersion object itself.
      */
@@ -81,7 +85,7 @@ public final class GalleryImageVersion {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
