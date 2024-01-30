@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Base definition of a schedule. */
+/**
+ * Base definition of a schedule.
+ */
 @Fluent
 public final class ScheduleProperties extends ResourceBase {
     /*
@@ -42,13 +44,15 @@ public final class ScheduleProperties extends ResourceBase {
     @JsonProperty(value = "trigger", required = true)
     private TriggerBase trigger;
 
-    /** Creates an instance of ScheduleProperties class. */
+    /**
+     * Creates an instance of ScheduleProperties class.
+     */
     public ScheduleProperties() {
     }
 
     /**
      * Get the action property: [Required] Specifies the action of the schedule.
-     *
+     * 
      * @return the action value.
      */
     public ScheduleActionBase action() {
@@ -57,7 +61,7 @@ public final class ScheduleProperties extends ResourceBase {
 
     /**
      * Set the action property: [Required] Specifies the action of the schedule.
-     *
+     * 
      * @param action the action value to set.
      * @return the ScheduleProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class ScheduleProperties extends ResourceBase {
 
     /**
      * Get the displayName property: Display name of schedule.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -77,7 +81,7 @@ public final class ScheduleProperties extends ResourceBase {
 
     /**
      * Set the displayName property: Display name of schedule.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ScheduleProperties object itself.
      */
@@ -88,7 +92,7 @@ public final class ScheduleProperties extends ResourceBase {
 
     /**
      * Get the isEnabled property: Is the schedule enabled?.
-     *
+     * 
      * @return the isEnabled value.
      */
     public Boolean isEnabled() {
@@ -97,7 +101,7 @@ public final class ScheduleProperties extends ResourceBase {
 
     /**
      * Set the isEnabled property: Is the schedule enabled?.
-     *
+     * 
      * @param isEnabled the isEnabled value to set.
      * @return the ScheduleProperties object itself.
      */
@@ -108,7 +112,7 @@ public final class ScheduleProperties extends ResourceBase {
 
     /**
      * Get the provisioningState property: Provisioning state for the schedule.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ScheduleProvisioningStatus provisioningState() {
@@ -117,7 +121,7 @@ public final class ScheduleProperties extends ResourceBase {
 
     /**
      * Get the trigger property: [Required] Specifies the trigger details.
-     *
+     * 
      * @return the trigger value.
      */
     public TriggerBase trigger() {
@@ -126,7 +130,7 @@ public final class ScheduleProperties extends ResourceBase {
 
     /**
      * Set the trigger property: [Required] Specifies the trigger details.
-     *
+     * 
      * @param trigger the trigger value to set.
      * @return the ScheduleProperties object itself.
      */
@@ -135,21 +139,27 @@ public final class ScheduleProperties extends ResourceBase {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduleProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduleProperties withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduleProperties withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -158,23 +168,21 @@ public final class ScheduleProperties extends ResourceBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (action() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property action in model ScheduleProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property action in model ScheduleProperties"));
         } else {
             action().validate();
         }
         if (trigger() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property trigger in model ScheduleProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property trigger in model ScheduleProperties"));
         } else {
             trigger().validate();
         }

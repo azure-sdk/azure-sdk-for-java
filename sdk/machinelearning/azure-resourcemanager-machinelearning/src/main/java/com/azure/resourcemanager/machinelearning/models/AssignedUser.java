@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A user that can be assigned to a compute instance. */
+/**
+ * A user that can be assigned to a compute instance.
+ */
 @Fluent
 public final class AssignedUser {
     /*
@@ -23,13 +25,15 @@ public final class AssignedUser {
     @JsonProperty(value = "tenantId", required = true)
     private String tenantId;
 
-    /** Creates an instance of AssignedUser class. */
+    /**
+     * Creates an instance of AssignedUser class.
+     */
     public AssignedUser() {
     }
 
     /**
      * Get the objectId property: User’s AAD Object Id.
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -38,7 +42,7 @@ public final class AssignedUser {
 
     /**
      * Set the objectId property: User’s AAD Object Id.
-     *
+     * 
      * @param objectId the objectId value to set.
      * @return the AssignedUser object itself.
      */
@@ -49,7 +53,7 @@ public final class AssignedUser {
 
     /**
      * Get the tenantId property: User’s AAD Tenant Id.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -58,7 +62,7 @@ public final class AssignedUser {
 
     /**
      * Set the tenantId property: User’s AAD Tenant Id.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the AssignedUser object itself.
      */
@@ -69,19 +73,17 @@ public final class AssignedUser {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (objectId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property objectId in model AssignedUser"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property objectId in model AssignedUser"));
         }
         if (tenantId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property tenantId in model AssignedUser"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property tenantId in model AssignedUser"));
         }
     }
 

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.AmlUserFeatureInn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The List Aml user feature operation response. */
+/**
+ * The List Aml user feature operation response.
+ */
 @Immutable
 public final class ListAmlUserFeatureResult {
     /*
@@ -25,13 +27,15 @@ public final class ListAmlUserFeatureResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ListAmlUserFeatureResult class. */
+    /**
+     * Creates an instance of ListAmlUserFeatureResult class.
+     */
     public ListAmlUserFeatureResult() {
     }
 
     /**
      * Get the value property: The list of AML user facing features.
-     *
+     * 
      * @return the value value.
      */
     public List<AmlUserFeatureInner> value() {
@@ -41,7 +45,7 @@ public final class ListAmlUserFeatureResult {
     /**
      * Get the nextLink property: The URI to fetch the next page of AML user features information. Call ListNext() with
      * this to fetch the next page of AML user features information.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -50,7 +54,7 @@ public final class ListAmlUserFeatureResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

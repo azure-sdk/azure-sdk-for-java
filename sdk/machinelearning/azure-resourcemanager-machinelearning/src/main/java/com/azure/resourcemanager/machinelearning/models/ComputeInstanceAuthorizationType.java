@@ -10,16 +10,18 @@ import java.util.Collection;
 
 /**
  * Compute Instance Authorization type.
- *
- * <p>The Compute Instance Authorization type. Available values are personal (default).
+ * 
+ * The Compute Instance Authorization type. Available values are personal (default).
  */
 public final class ComputeInstanceAuthorizationType extends ExpandableStringEnum<ComputeInstanceAuthorizationType> {
-    /** Static value personal for ComputeInstanceAuthorizationType. */
+    /**
+     * Static value personal for ComputeInstanceAuthorizationType.
+     */
     public static final ComputeInstanceAuthorizationType PERSONAL = fromString("personal");
 
     /**
      * Creates a new instance of ComputeInstanceAuthorizationType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -28,7 +30,7 @@ public final class ComputeInstanceAuthorizationType extends ExpandableStringEnum
 
     /**
      * Creates or finds a ComputeInstanceAuthorizationType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ComputeInstanceAuthorizationType.
      */
@@ -39,7 +41,7 @@ public final class ComputeInstanceAuthorizationType extends ExpandableStringEnum
 
     /**
      * Gets known ComputeInstanceAuthorizationType values.
-     *
+     * 
      * @return known ComputeInstanceAuthorizationType values.
      */
     public static Collection<ComputeInstanceAuthorizationType> values() {
