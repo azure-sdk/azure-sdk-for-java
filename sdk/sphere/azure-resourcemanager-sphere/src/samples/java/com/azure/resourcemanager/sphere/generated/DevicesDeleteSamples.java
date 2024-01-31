@@ -4,25 +4,23 @@
 
 package com.azure.resourcemanager.sphere.generated;
 
-/** Samples for Devices Delete. */
+/**
+ * Samples for Devices Delete.
+ */
 public final class DevicesDeleteSamples {
     /*
-     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/preview/2022-09-01-preview/examples/DeleteDevice.json
+     * x-ms-original-file:
+     * specification/sphere/resource-manager/Microsoft.AzureSphere/preview/2022-09-01-preview/examples/Devices_Delete.
+     * json
      */
     /**
      * Sample code: Devices_Delete.
-     *
+     * 
      * @param manager Entry point to AzureSphereManager.
      */
     public static void devicesDelete(com.azure.resourcemanager.sphere.AzureSphereManager manager) {
-        manager
-            .devices()
-            .delete(
-                "MyResourceGroup1",
-                "MyCatalog1",
-                "MyProductName1",
-                "DeviceGroupName1",
-                "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-                com.azure.core.util.Context.NONE);
+        manager.devices().delete("MyResourceGroup1", "MyCatalog1", "MyProductName1", "DeviceGroupName1",
+            "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            com.azure.core.util.Context.NONE);
     }
 }

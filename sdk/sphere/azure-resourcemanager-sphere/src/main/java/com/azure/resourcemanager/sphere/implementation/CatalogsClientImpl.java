@@ -51,17 +51,23 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in CatalogsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in CatalogsClient.
+ */
 public final class CatalogsClientImpl implements CatalogsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final CatalogsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final AzureSphereManagementClientImpl client;
 
     /**
      * Initializes an instance of CatalogsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     CatalogsClientImpl(AzureSphereManagementClientImpl client) {
@@ -76,341 +82,235 @@ public final class CatalogsClientImpl implements CatalogsClient {
     @Host("{$host}")
     @ServiceInterface(name = "AzureSphereManagemen")
     public interface CatalogsService {
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.AzureSphere/catalogs")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CatalogListResult>> list(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @HeaderParam("Accept") String accept,
+        Mono<Response<CatalogListResult>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<CatalogListResult>> listByResourceGroup(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CatalogListResult>> listByResourceGroup(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @HeaderParam("Accept") String accept,
+        Mono<Response<CatalogInner>> getByResourceGroup(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("catalogName") String catalogName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("catalogName") String catalogName,
+            @BodyParam("application/json") CatalogInner resource, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CatalogInner>> getByResourceGroup(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("catalogName") String catalogName,
-            @HeaderParam("Accept") String accept,
+        Mono<Response<CatalogInner>> update(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("catalogName") String catalogName,
+            @BodyParam("application/json") CatalogUpdate properties, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}")
+        @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("catalogName") String catalogName,
-            @BodyParam("application/json") CatalogInner resource,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("catalogName") String catalogName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/countDevices")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CatalogInner>> update(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("catalogName") String catalogName,
-            @BodyParam("application/json") CatalogUpdate properties,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<CountDeviceResponseInner>> countDevices(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("catalogName") String catalogName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}")
-        @ExpectedResponses({200, 202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeployments")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("catalogName") String catalogName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<DeploymentListResult>> listDeployments(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("$filter") String filter,
+            @QueryParam("$top") Integer top, @QueryParam("$skip") Integer skip,
+            @QueryParam("$maxpagesize") Integer maxpagesize, @PathParam("catalogName") String catalogName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/countDevices")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeviceGroups")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CountDeviceResponseInner>> countDevices(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("catalogName") String catalogName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeployments")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DeploymentListResult>> listDeployments(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("catalogName") String catalogName,
-            @QueryParam("$filter") String filter,
-            @QueryParam("$top") Integer top,
-            @QueryParam("$skip") Integer skip,
-            @QueryParam("$maxpagesize") Integer maxpagesize,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeviceGroups")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DeviceGroupListResult>> listDeviceGroups(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("catalogName") String catalogName,
-            @QueryParam("$filter") String filter,
-            @QueryParam("$top") Integer top,
-            @QueryParam("$skip") Integer skip,
-            @QueryParam("$maxpagesize") Integer maxpagesize,
+        Mono<Response<DeviceGroupListResult>> listDeviceGroups(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("$filter") String filter,
+            @QueryParam("$top") Integer top, @QueryParam("$skip") Integer skip,
+            @QueryParam("$maxpagesize") Integer maxpagesize, @PathParam("catalogName") String catalogName,
             @BodyParam("application/json") ListDeviceGroupsRequest listDeviceGroupsRequest,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeviceInsights")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeviceInsights")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<PagedDeviceInsight>> listDeviceInsights(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("catalogName") String catalogName,
-            @QueryParam("$filter") String filter,
-            @QueryParam("$top") Integer top,
-            @QueryParam("$skip") Integer skip,
-            @QueryParam("$maxpagesize") Integer maxpagesize,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<PagedDeviceInsight>> listDeviceInsights(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("$filter") String filter,
+            @QueryParam("$top") Integer top, @QueryParam("$skip") Integer skip,
+            @QueryParam("$maxpagesize") Integer maxpagesize, @PathParam("catalogName") String catalogName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDevices")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDevices")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DeviceListResult>> listDevices(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("catalogName") String catalogName,
-            @QueryParam("$filter") String filter,
-            @QueryParam("$top") Integer top,
-            @QueryParam("$skip") Integer skip,
-            @QueryParam("$maxpagesize") Integer maxpagesize,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<DeviceListResult>> listDevices(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("$filter") String filter,
+            @QueryParam("$top") Integer top, @QueryParam("$skip") Integer skip,
+            @QueryParam("$maxpagesize") Integer maxpagesize, @PathParam("catalogName") String catalogName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CatalogListResult>> listBySubscriptionNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CatalogListResult>> listByResourceGroupNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DeploymentListResult>> listDeploymentsNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DeviceGroupListResult>> listDeviceGroupsNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PagedDeviceInsight>> listDeviceInsightsNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DeviceListResult>> listDevicesNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<DeviceListResult>> listDevicesNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * List Catalog resources by subscription ID.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Catalog list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CatalogInner>> listSinglePageAsync() {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            accept,
-                            context))
-            .<PagedResponse<CatalogInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
+            .<PagedResponse<CatalogInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List Catalog resources by subscription ID.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Catalog list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CatalogInner>> listSinglePageAsync(Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                accept,
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
                 context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List Catalog resources by subscription ID.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Catalog list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CatalogInner> listAsync() {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listSinglePageAsync(),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
     }
 
     /**
      * List Catalog resources by subscription ID.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -419,13 +319,13 @@ public final class CatalogsClientImpl implements CatalogsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CatalogInner> listAsync(Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(context), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
+        return new PagedFlux<>(() -> listSinglePageAsync(context),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List Catalog resources by subscription ID.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Catalog list operation as paginated response with {@link PagedIterable}.
@@ -437,7 +337,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * List Catalog resources by subscription ID.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -451,27 +351,23 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * List Catalog resources by resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Catalog list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CatalogInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -479,53 +375,34 @@ public final class CatalogsClientImpl implements CatalogsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            accept,
-                            context))
-            .<PagedResponse<CatalogInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, accept, context))
+            .<PagedResponse<CatalogInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List Catalog resources by resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Catalog list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<CatalogInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, Context context) {
+    private Mono<PagedResponse<CatalogInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -534,27 +411,15 @@ public final class CatalogsClientImpl implements CatalogsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List Catalog resources by resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -563,14 +428,13 @@ public final class CatalogsClientImpl implements CatalogsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CatalogInner> listByResourceGroupAsync(String resourceGroupName) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName),
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
     }
 
     /**
      * List Catalog resources by resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -580,14 +444,13 @@ public final class CatalogsClientImpl implements CatalogsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CatalogInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List Catalog resources by resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -601,7 +464,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * List Catalog resources by resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -616,7 +479,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Get a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -625,19 +488,15 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return a Catalog along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CatalogInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String catalogName) {
+    private Mono<Response<CatalogInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String catalogName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -648,23 +507,14 @@ public final class CatalogsClientImpl implements CatalogsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            catalogName,
-                            accept,
-                            context))
+            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, catalogName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param context The context to associate with this operation.
@@ -674,19 +524,15 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return a Catalog along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CatalogInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String catalogName, Context context) {
+    private Mono<Response<CatalogInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String catalogName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -697,20 +543,13 @@ public final class CatalogsClientImpl implements CatalogsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                catalogName,
-                accept,
-                context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, catalogName, accept, context);
     }
 
     /**
      * Get a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -726,7 +565,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Get a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param context The context to associate with this operation.
@@ -736,14 +575,14 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return a Catalog along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<CatalogInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String catalogName, Context context) {
+    public Response<CatalogInner> getByResourceGroupWithResponse(String resourceGroupName, String catalogName,
+        Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, catalogName, context).block();
     }
 
     /**
      * Get a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -758,7 +597,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Create a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param resource Resource create parameters.
@@ -768,19 +607,15 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return an Azure Sphere catalog along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String catalogName, CatalogInner resource) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String catalogName, CatalogInner resource) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -796,24 +631,14 @@ public final class CatalogsClientImpl implements CatalogsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            catalogName,
-                            resource,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, catalogName, resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param resource Resource create parameters.
@@ -824,19 +649,15 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return an Azure Sphere catalog along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String catalogName, CatalogInner resource, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String catalogName, CatalogInner resource, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -852,21 +673,13 @@ public final class CatalogsClientImpl implements CatalogsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                catalogName,
-                resource,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, catalogName, resource, accept, context);
     }
 
     /**
      * Create a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param resource Resource create parameters.
@@ -876,19 +689,17 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return the {@link PollerFlux} for polling of an Azure Sphere catalog.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<CatalogInner>, CatalogInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String catalogName, CatalogInner resource) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, catalogName, resource);
-        return this
-            .client
-            .<CatalogInner, CatalogInner>getLroResult(
-                mono, this.client.getHttpPipeline(), CatalogInner.class, CatalogInner.class, this.client.getContext());
+    private PollerFlux<PollResult<CatalogInner>, CatalogInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String catalogName, CatalogInner resource) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, catalogName, resource);
+        return this.client.<CatalogInner, CatalogInner>getLroResult(mono, this.client.getHttpPipeline(),
+            CatalogInner.class, CatalogInner.class, this.client.getContext());
     }
 
     /**
      * Create a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param resource Resource create parameters.
@@ -899,20 +710,18 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return the {@link PollerFlux} for polling of an Azure Sphere catalog.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<CatalogInner>, CatalogInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String catalogName, CatalogInner resource, Context context) {
+    private PollerFlux<PollResult<CatalogInner>, CatalogInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String catalogName, CatalogInner resource, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, catalogName, resource, context);
-        return this
-            .client
-            .<CatalogInner, CatalogInner>getLroResult(
-                mono, this.client.getHttpPipeline(), CatalogInner.class, CatalogInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, catalogName, resource, context);
+        return this.client.<CatalogInner, CatalogInner>getLroResult(mono, this.client.getHttpPipeline(),
+            CatalogInner.class, CatalogInner.class, context);
     }
 
     /**
      * Create a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param resource Resource create parameters.
@@ -922,14 +731,14 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return the {@link SyncPoller} for polling of an Azure Sphere catalog.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<CatalogInner>, CatalogInner> beginCreateOrUpdate(
-        String resourceGroupName, String catalogName, CatalogInner resource) {
+    public SyncPoller<PollResult<CatalogInner>, CatalogInner> beginCreateOrUpdate(String resourceGroupName,
+        String catalogName, CatalogInner resource) {
         return this.beginCreateOrUpdateAsync(resourceGroupName, catalogName, resource).getSyncPoller();
     }
 
     /**
      * Create a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param resource Resource create parameters.
@@ -940,14 +749,14 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return the {@link SyncPoller} for polling of an Azure Sphere catalog.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<CatalogInner>, CatalogInner> beginCreateOrUpdate(
-        String resourceGroupName, String catalogName, CatalogInner resource, Context context) {
+    public SyncPoller<PollResult<CatalogInner>, CatalogInner> beginCreateOrUpdate(String resourceGroupName,
+        String catalogName, CatalogInner resource, Context context) {
         return this.beginCreateOrUpdateAsync(resourceGroupName, catalogName, resource, context).getSyncPoller();
     }
 
     /**
      * Create a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param resource Resource create parameters.
@@ -957,16 +766,15 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return an Azure Sphere catalog on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CatalogInner> createOrUpdateAsync(
-        String resourceGroupName, String catalogName, CatalogInner resource) {
-        return beginCreateOrUpdateAsync(resourceGroupName, catalogName, resource)
-            .last()
+    private Mono<CatalogInner> createOrUpdateAsync(String resourceGroupName, String catalogName,
+        CatalogInner resource) {
+        return beginCreateOrUpdateAsync(resourceGroupName, catalogName, resource).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param resource Resource create parameters.
@@ -977,16 +785,15 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return an Azure Sphere catalog on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CatalogInner> createOrUpdateAsync(
-        String resourceGroupName, String catalogName, CatalogInner resource, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, catalogName, resource, context)
-            .last()
+    private Mono<CatalogInner> createOrUpdateAsync(String resourceGroupName, String catalogName, CatalogInner resource,
+        Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, catalogName, resource, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param resource Resource create parameters.
@@ -1002,7 +809,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Create a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param resource Resource create parameters.
@@ -1013,14 +820,14 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return an Azure Sphere catalog.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CatalogInner createOrUpdate(
-        String resourceGroupName, String catalogName, CatalogInner resource, Context context) {
+    public CatalogInner createOrUpdate(String resourceGroupName, String catalogName, CatalogInner resource,
+        Context context) {
         return createOrUpdateAsync(resourceGroupName, catalogName, resource, context).block();
     }
 
     /**
      * Update a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param properties The resource properties to be updated.
@@ -1030,19 +837,15 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return an Azure Sphere catalog along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CatalogInner>> updateWithResponseAsync(
-        String resourceGroupName, String catalogName, CatalogUpdate properties) {
+    private Mono<Response<CatalogInner>> updateWithResponseAsync(String resourceGroupName, String catalogName,
+        CatalogUpdate properties) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1058,24 +861,14 @@ public final class CatalogsClientImpl implements CatalogsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            catalogName,
-                            properties,
-                            accept,
-                            context))
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, catalogName, properties, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Update a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param properties The resource properties to be updated.
@@ -1086,19 +879,15 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return an Azure Sphere catalog along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CatalogInner>> updateWithResponseAsync(
-        String resourceGroupName, String catalogName, CatalogUpdate properties, Context context) {
+    private Mono<Response<CatalogInner>> updateWithResponseAsync(String resourceGroupName, String catalogName,
+        CatalogUpdate properties, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1114,21 +903,13 @@ public final class CatalogsClientImpl implements CatalogsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                catalogName,
-                properties,
-                accept,
-                context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, catalogName, properties, accept, context);
     }
 
     /**
      * Update a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param properties The resource properties to be updated.
@@ -1145,7 +926,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Update a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param properties The resource properties to be updated.
@@ -1156,14 +937,14 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return an Azure Sphere catalog along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<CatalogInner> updateWithResponse(
-        String resourceGroupName, String catalogName, CatalogUpdate properties, Context context) {
+    public Response<CatalogInner> updateWithResponse(String resourceGroupName, String catalogName,
+        CatalogUpdate properties, Context context) {
         return updateWithResponseAsync(resourceGroupName, catalogName, properties, context).block();
     }
 
     /**
      * Update a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param properties The resource properties to be updated.
@@ -1179,7 +960,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Delete a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1190,16 +971,12 @@ public final class CatalogsClientImpl implements CatalogsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String catalogName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1210,23 +987,14 @@ public final class CatalogsClientImpl implements CatalogsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            catalogName,
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, catalogName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param context The context to associate with this operation.
@@ -1236,19 +1004,15 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String catalogName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String catalogName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1259,20 +1023,13 @@ public final class CatalogsClientImpl implements CatalogsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                catalogName,
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, catalogName, accept, context);
     }
 
     /**
      * Delete a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1283,15 +1040,13 @@ public final class CatalogsClientImpl implements CatalogsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String catalogName) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, catalogName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Delete a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param context The context to associate with this operation.
@@ -1301,18 +1056,17 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String catalogName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String catalogName,
+        Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, catalogName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Delete a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1327,7 +1081,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Delete a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param context The context to associate with this operation.
@@ -1337,14 +1091,14 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String catalogName, Context context) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String catalogName,
+        Context context) {
         return this.beginDeleteAsync(resourceGroupName, catalogName, context).getSyncPoller();
     }
 
     /**
      * Delete a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1359,7 +1113,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Delete a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param context The context to associate with this operation.
@@ -1370,14 +1124,13 @@ public final class CatalogsClientImpl implements CatalogsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String catalogName, Context context) {
-        return beginDeleteAsync(resourceGroupName, catalogName, context)
-            .last()
+        return beginDeleteAsync(resourceGroupName, catalogName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1391,7 +1144,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Delete a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param context The context to associate with this operation.
@@ -1406,29 +1159,25 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Counts devices in catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return response to the action call for count devices in a catalog along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CountDeviceResponseInner>> countDevicesWithResponseAsync(
-        String resourceGroupName, String catalogName) {
+    private Mono<Response<CountDeviceResponseInner>> countDevicesWithResponseAsync(String resourceGroupName,
+        String catalogName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1439,23 +1188,14 @@ public final class CatalogsClientImpl implements CatalogsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .countDevices(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            catalogName,
-                            accept,
-                            context))
+            .withContext(context -> service.countDevices(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, catalogName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Counts devices in catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param context The context to associate with this operation.
@@ -1463,22 +1203,18 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return response to the action call for count devices in a catalog along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CountDeviceResponseInner>> countDevicesWithResponseAsync(
-        String resourceGroupName, String catalogName, Context context) {
+    private Mono<Response<CountDeviceResponseInner>> countDevicesWithResponseAsync(String resourceGroupName,
+        String catalogName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1489,20 +1225,13 @@ public final class CatalogsClientImpl implements CatalogsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .countDevices(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                catalogName,
-                accept,
-                context);
+        return service.countDevices(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, catalogName, accept, context);
     }
 
     /**
      * Counts devices in catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1518,7 +1247,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Counts devices in catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param context The context to associate with this operation.
@@ -1528,14 +1257,14 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return response to the action call for count devices in a catalog along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<CountDeviceResponseInner> countDevicesWithResponse(
-        String resourceGroupName, String catalogName, Context context) {
+    public Response<CountDeviceResponseInner> countDevicesWithResponse(String resourceGroupName, String catalogName,
+        Context context) {
         return countDevicesWithResponseAsync(resourceGroupName, catalogName, context).block();
     }
 
     /**
      * Counts devices in catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1550,7 +1279,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Lists deployments for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -1561,22 +1290,18 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Deployment list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeploymentInner>> listDeploymentsSinglePageAsync(
-        String resourceGroupName, String catalogName, String filter, Integer top, Integer skip, Integer maxpagesize) {
+    private Mono<PagedResponse<DeploymentInner>> listDeploymentsSinglePageAsync(String resourceGroupName,
+        String catalogName, String filter, Integer top, Integer skip, Integer maxpagesize) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1587,36 +1312,17 @@ public final class CatalogsClientImpl implements CatalogsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listDeployments(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            catalogName,
-                            filter,
-                            top,
-                            skip,
-                            maxpagesize,
-                            accept,
-                            context))
-            .<PagedResponse<DeploymentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listDeployments(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, filter, top, skip, maxpagesize, catalogName, accept,
+                context))
+            .<PagedResponse<DeploymentInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists deployments for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -1628,28 +1334,18 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Deployment list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeploymentInner>> listDeploymentsSinglePageAsync(
-        String resourceGroupName,
-        String catalogName,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context) {
+    private Mono<PagedResponse<DeploymentInner>> listDeploymentsSinglePageAsync(String resourceGroupName,
+        String catalogName, String filter, Integer top, Integer skip, Integer maxpagesize, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1661,32 +1357,15 @@ public final class CatalogsClientImpl implements CatalogsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listDeployments(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                catalogName,
-                filter,
-                top,
-                skip,
-                maxpagesize,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listDeployments(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, filter, top, skip, maxpagesize, catalogName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Lists deployments for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -1699,8 +1378,8 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return the response of a Deployment list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DeploymentInner> listDeploymentsAsync(
-        String resourceGroupName, String catalogName, String filter, Integer top, Integer skip, Integer maxpagesize) {
+    private PagedFlux<DeploymentInner> listDeploymentsAsync(String resourceGroupName, String catalogName, String filter,
+        Integer top, Integer skip, Integer maxpagesize) {
         return new PagedFlux<>(
             () -> listDeploymentsSinglePageAsync(resourceGroupName, catalogName, filter, top, skip, maxpagesize),
             nextLink -> listDeploymentsNextSinglePageAsync(nextLink));
@@ -1708,7 +1387,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Lists deployments for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1729,7 +1408,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Lists deployments for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -1743,23 +1422,15 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return the response of a Deployment list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DeploymentInner> listDeploymentsAsync(
-        String resourceGroupName,
-        String catalogName,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context) {
-        return new PagedFlux<>(
-            () ->
-                listDeploymentsSinglePageAsync(resourceGroupName, catalogName, filter, top, skip, maxpagesize, context),
-            nextLink -> listDeploymentsNextSinglePageAsync(nextLink, context));
+    private PagedFlux<DeploymentInner> listDeploymentsAsync(String resourceGroupName, String catalogName, String filter,
+        Integer top, Integer skip, Integer maxpagesize, Context context) {
+        return new PagedFlux<>(() -> listDeploymentsSinglePageAsync(resourceGroupName, catalogName, filter, top, skip,
+            maxpagesize, context), nextLink -> listDeploymentsNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Lists deployments for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1779,7 +1450,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Lists deployments for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -1793,21 +1464,15 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return the response of a Deployment list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DeploymentInner> listDeployments(
-        String resourceGroupName,
-        String catalogName,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context) {
+    public PagedIterable<DeploymentInner> listDeployments(String resourceGroupName, String catalogName, String filter,
+        Integer top, Integer skip, Integer maxpagesize, Context context) {
         return new PagedIterable<>(
             listDeploymentsAsync(resourceGroupName, catalogName, filter, top, skip, maxpagesize, context));
     }
 
     /**
      * List the device groups for the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param listDeviceGroupsRequest List device groups for catalog.
@@ -1819,28 +1484,19 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a DeviceGroup list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeviceGroupInner>> listDeviceGroupsSinglePageAsync(
-        String resourceGroupName,
-        String catalogName,
-        ListDeviceGroupsRequest listDeviceGroupsRequest,
-        String filter,
-        Integer top,
-        Integer skip,
+    private Mono<PagedResponse<DeviceGroupInner>> listDeviceGroupsSinglePageAsync(String resourceGroupName,
+        String catalogName, ListDeviceGroupsRequest listDeviceGroupsRequest, String filter, Integer top, Integer skip,
         Integer maxpagesize) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1850,45 +1506,24 @@ public final class CatalogsClientImpl implements CatalogsClient {
             return Mono.error(new IllegalArgumentException("Parameter catalogName is required and cannot be null."));
         }
         if (listDeviceGroupsRequest == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter listDeviceGroupsRequest is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter listDeviceGroupsRequest is required and cannot be null."));
         } else {
             listDeviceGroupsRequest.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listDeviceGroups(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            catalogName,
-                            filter,
-                            top,
-                            skip,
-                            maxpagesize,
-                            listDeviceGroupsRequest,
-                            accept,
-                            context))
-            .<PagedResponse<DeviceGroupInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listDeviceGroups(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, filter, top, skip, maxpagesize, catalogName,
+                listDeviceGroupsRequest, accept, context))
+            .<PagedResponse<DeviceGroupInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List the device groups for the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param listDeviceGroupsRequest List device groups for catalog.
@@ -1901,29 +1536,19 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a DeviceGroup list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeviceGroupInner>> listDeviceGroupsSinglePageAsync(
-        String resourceGroupName,
-        String catalogName,
-        ListDeviceGroupsRequest listDeviceGroupsRequest,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context) {
+    private Mono<PagedResponse<DeviceGroupInner>> listDeviceGroupsSinglePageAsync(String resourceGroupName,
+        String catalogName, ListDeviceGroupsRequest listDeviceGroupsRequest, String filter, Integer top, Integer skip,
+        Integer maxpagesize, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1933,42 +1558,24 @@ public final class CatalogsClientImpl implements CatalogsClient {
             return Mono.error(new IllegalArgumentException("Parameter catalogName is required and cannot be null."));
         }
         if (listDeviceGroupsRequest == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter listDeviceGroupsRequest is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter listDeviceGroupsRequest is required and cannot be null."));
         } else {
             listDeviceGroupsRequest.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listDeviceGroups(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                catalogName,
-                filter,
-                top,
-                skip,
-                maxpagesize,
-                listDeviceGroupsRequest,
-                accept,
+            .listDeviceGroups(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, filter, top, skip, maxpagesize, catalogName, listDeviceGroupsRequest, accept,
                 context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List the device groups for the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param listDeviceGroupsRequest List device groups for catalog.
@@ -1982,24 +1589,17 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return the response of a DeviceGroup list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DeviceGroupInner> listDeviceGroupsAsync(
-        String resourceGroupName,
-        String catalogName,
-        ListDeviceGroupsRequest listDeviceGroupsRequest,
-        String filter,
-        Integer top,
-        Integer skip,
+    private PagedFlux<DeviceGroupInner> listDeviceGroupsAsync(String resourceGroupName, String catalogName,
+        ListDeviceGroupsRequest listDeviceGroupsRequest, String filter, Integer top, Integer skip,
         Integer maxpagesize) {
-        return new PagedFlux<>(
-            () ->
-                listDeviceGroupsSinglePageAsync(
-                    resourceGroupName, catalogName, listDeviceGroupsRequest, filter, top, skip, maxpagesize),
+        return new PagedFlux<>(() -> listDeviceGroupsSinglePageAsync(resourceGroupName, catalogName,
+            listDeviceGroupsRequest, filter, top, skip, maxpagesize),
             nextLink -> listDeviceGroupsNextSinglePageAsync(nextLink));
     }
 
     /**
      * List the device groups for the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param listDeviceGroupsRequest List device groups for catalog.
@@ -2009,22 +1609,20 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return the response of a DeviceGroup list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DeviceGroupInner> listDeviceGroupsAsync(
-        String resourceGroupName, String catalogName, ListDeviceGroupsRequest listDeviceGroupsRequest) {
+    private PagedFlux<DeviceGroupInner> listDeviceGroupsAsync(String resourceGroupName, String catalogName,
+        ListDeviceGroupsRequest listDeviceGroupsRequest) {
         final String filter = null;
         final Integer top = null;
         final Integer skip = null;
         final Integer maxpagesize = null;
-        return new PagedFlux<>(
-            () ->
-                listDeviceGroupsSinglePageAsync(
-                    resourceGroupName, catalogName, listDeviceGroupsRequest, filter, top, skip, maxpagesize),
+        return new PagedFlux<>(() -> listDeviceGroupsSinglePageAsync(resourceGroupName, catalogName,
+            listDeviceGroupsRequest, filter, top, skip, maxpagesize),
             nextLink -> listDeviceGroupsNextSinglePageAsync(nextLink));
     }
 
     /**
      * List the device groups for the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param listDeviceGroupsRequest List device groups for catalog.
@@ -2039,25 +1637,17 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return the response of a DeviceGroup list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DeviceGroupInner> listDeviceGroupsAsync(
-        String resourceGroupName,
-        String catalogName,
-        ListDeviceGroupsRequest listDeviceGroupsRequest,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
+    private PagedFlux<DeviceGroupInner> listDeviceGroupsAsync(String resourceGroupName, String catalogName,
+        ListDeviceGroupsRequest listDeviceGroupsRequest, String filter, Integer top, Integer skip, Integer maxpagesize,
         Context context) {
-        return new PagedFlux<>(
-            () ->
-                listDeviceGroupsSinglePageAsync(
-                    resourceGroupName, catalogName, listDeviceGroupsRequest, filter, top, skip, maxpagesize, context),
+        return new PagedFlux<>(() -> listDeviceGroupsSinglePageAsync(resourceGroupName, catalogName,
+            listDeviceGroupsRequest, filter, top, skip, maxpagesize, context),
             nextLink -> listDeviceGroupsNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List the device groups for the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param listDeviceGroupsRequest List device groups for catalog.
@@ -2067,20 +1657,19 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return the response of a DeviceGroup list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DeviceGroupInner> listDeviceGroups(
-        String resourceGroupName, String catalogName, ListDeviceGroupsRequest listDeviceGroupsRequest) {
+    public PagedIterable<DeviceGroupInner> listDeviceGroups(String resourceGroupName, String catalogName,
+        ListDeviceGroupsRequest listDeviceGroupsRequest) {
         final String filter = null;
         final Integer top = null;
         final Integer skip = null;
         final Integer maxpagesize = null;
-        return new PagedIterable<>(
-            listDeviceGroupsAsync(
-                resourceGroupName, catalogName, listDeviceGroupsRequest, filter, top, skip, maxpagesize));
+        return new PagedIterable<>(listDeviceGroupsAsync(resourceGroupName, catalogName, listDeviceGroupsRequest,
+            filter, top, skip, maxpagesize));
     }
 
     /**
      * List the device groups for the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param listDeviceGroupsRequest List device groups for catalog.
@@ -2095,23 +1684,16 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return the response of a DeviceGroup list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DeviceGroupInner> listDeviceGroups(
-        String resourceGroupName,
-        String catalogName,
-        ListDeviceGroupsRequest listDeviceGroupsRequest,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
+    public PagedIterable<DeviceGroupInner> listDeviceGroups(String resourceGroupName, String catalogName,
+        ListDeviceGroupsRequest listDeviceGroupsRequest, String filter, Integer top, Integer skip, Integer maxpagesize,
         Context context) {
-        return new PagedIterable<>(
-            listDeviceGroupsAsync(
-                resourceGroupName, catalogName, listDeviceGroupsRequest, filter, top, skip, maxpagesize, context));
+        return new PagedIterable<>(listDeviceGroupsAsync(resourceGroupName, catalogName, listDeviceGroupsRequest,
+            filter, top, skip, maxpagesize, context));
     }
 
     /**
      * Lists device insights for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -2122,22 +1704,18 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return paged collection of DeviceInsight items along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeviceInsightInner>> listDeviceInsightsSinglePageAsync(
-        String resourceGroupName, String catalogName, String filter, Integer top, Integer skip, Integer maxpagesize) {
+    private Mono<PagedResponse<DeviceInsightInner>> listDeviceInsightsSinglePageAsync(String resourceGroupName,
+        String catalogName, String filter, Integer top, Integer skip, Integer maxpagesize) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -2148,36 +1726,17 @@ public final class CatalogsClientImpl implements CatalogsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listDeviceInsights(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            catalogName,
-                            filter,
-                            top,
-                            skip,
-                            maxpagesize,
-                            accept,
-                            context))
-            .<PagedResponse<DeviceInsightInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listDeviceInsights(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, filter, top, skip, maxpagesize, catalogName, accept,
+                context))
+            .<PagedResponse<DeviceInsightInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists device insights for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -2189,28 +1748,18 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return paged collection of DeviceInsight items along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeviceInsightInner>> listDeviceInsightsSinglePageAsync(
-        String resourceGroupName,
-        String catalogName,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context) {
+    private Mono<PagedResponse<DeviceInsightInner>> listDeviceInsightsSinglePageAsync(String resourceGroupName,
+        String catalogName, String filter, Integer top, Integer skip, Integer maxpagesize, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -2222,32 +1771,15 @@ public final class CatalogsClientImpl implements CatalogsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listDeviceInsights(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                catalogName,
-                filter,
-                top,
-                skip,
-                maxpagesize,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listDeviceInsights(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, filter, top, skip, maxpagesize, catalogName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Lists device insights for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -2260,8 +1792,8 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return paged collection of DeviceInsight items as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DeviceInsightInner> listDeviceInsightsAsync(
-        String resourceGroupName, String catalogName, String filter, Integer top, Integer skip, Integer maxpagesize) {
+    private PagedFlux<DeviceInsightInner> listDeviceInsightsAsync(String resourceGroupName, String catalogName,
+        String filter, Integer top, Integer skip, Integer maxpagesize) {
         return new PagedFlux<>(
             () -> listDeviceInsightsSinglePageAsync(resourceGroupName, catalogName, filter, top, skip, maxpagesize),
             nextLink -> listDeviceInsightsNextSinglePageAsync(nextLink));
@@ -2269,7 +1801,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Lists device insights for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2290,7 +1822,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Lists device insights for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -2304,24 +1836,15 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return paged collection of DeviceInsight items as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DeviceInsightInner> listDeviceInsightsAsync(
-        String resourceGroupName,
-        String catalogName,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context) {
-        return new PagedFlux<>(
-            () ->
-                listDeviceInsightsSinglePageAsync(
-                    resourceGroupName, catalogName, filter, top, skip, maxpagesize, context),
-            nextLink -> listDeviceInsightsNextSinglePageAsync(nextLink, context));
+    private PagedFlux<DeviceInsightInner> listDeviceInsightsAsync(String resourceGroupName, String catalogName,
+        String filter, Integer top, Integer skip, Integer maxpagesize, Context context) {
+        return new PagedFlux<>(() -> listDeviceInsightsSinglePageAsync(resourceGroupName, catalogName, filter, top,
+            skip, maxpagesize, context), nextLink -> listDeviceInsightsNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Lists device insights for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2341,7 +1864,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Lists device insights for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -2355,21 +1878,15 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return paged collection of DeviceInsight items as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DeviceInsightInner> listDeviceInsights(
-        String resourceGroupName,
-        String catalogName,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context) {
+    public PagedIterable<DeviceInsightInner> listDeviceInsights(String resourceGroupName, String catalogName,
+        String filter, Integer top, Integer skip, Integer maxpagesize, Context context) {
         return new PagedIterable<>(
             listDeviceInsightsAsync(resourceGroupName, catalogName, filter, top, skip, maxpagesize, context));
     }
 
     /**
      * Lists devices for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -2380,22 +1897,18 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Device list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeviceInner>> listDevicesSinglePageAsync(
-        String resourceGroupName, String catalogName, String filter, Integer top, Integer skip, Integer maxpagesize) {
+    private Mono<PagedResponse<DeviceInner>> listDevicesSinglePageAsync(String resourceGroupName, String catalogName,
+        String filter, Integer top, Integer skip, Integer maxpagesize) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -2406,36 +1919,17 @@ public final class CatalogsClientImpl implements CatalogsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listDevices(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            catalogName,
-                            filter,
-                            top,
-                            skip,
-                            maxpagesize,
-                            accept,
-                            context))
-            .<PagedResponse<DeviceInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listDevices(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, filter, top, skip, maxpagesize, catalogName, accept,
+                context))
+            .<PagedResponse<DeviceInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists devices for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -2447,28 +1941,18 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Device list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeviceInner>> listDevicesSinglePageAsync(
-        String resourceGroupName,
-        String catalogName,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context) {
+    private Mono<PagedResponse<DeviceInner>> listDevicesSinglePageAsync(String resourceGroupName, String catalogName,
+        String filter, Integer top, Integer skip, Integer maxpagesize, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -2480,32 +1964,15 @@ public final class CatalogsClientImpl implements CatalogsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listDevices(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                catalogName,
-                filter,
-                top,
-                skip,
-                maxpagesize,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listDevices(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, filter, top, skip, maxpagesize, catalogName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Lists devices for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -2518,8 +1985,8 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return the response of a Device list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DeviceInner> listDevicesAsync(
-        String resourceGroupName, String catalogName, String filter, Integer top, Integer skip, Integer maxpagesize) {
+    private PagedFlux<DeviceInner> listDevicesAsync(String resourceGroupName, String catalogName, String filter,
+        Integer top, Integer skip, Integer maxpagesize) {
         return new PagedFlux<>(
             () -> listDevicesSinglePageAsync(resourceGroupName, catalogName, filter, top, skip, maxpagesize),
             nextLink -> listDevicesNextSinglePageAsync(nextLink));
@@ -2527,7 +1994,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Lists devices for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2548,7 +2015,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Lists devices for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -2562,14 +2029,8 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return the response of a Device list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DeviceInner> listDevicesAsync(
-        String resourceGroupName,
-        String catalogName,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context) {
+    private PagedFlux<DeviceInner> listDevicesAsync(String resourceGroupName, String catalogName, String filter,
+        Integer top, Integer skip, Integer maxpagesize, Context context) {
         return new PagedFlux<>(
             () -> listDevicesSinglePageAsync(resourceGroupName, catalogName, filter, top, skip, maxpagesize, context),
             nextLink -> listDevicesNextSinglePageAsync(nextLink, context));
@@ -2577,7 +2038,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Lists devices for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2596,7 +2057,7 @@ public final class CatalogsClientImpl implements CatalogsClient {
 
     /**
      * Lists devices for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -2610,28 +2071,23 @@ public final class CatalogsClientImpl implements CatalogsClient {
      * @return the response of a Device list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DeviceInner> listDevices(
-        String resourceGroupName,
-        String catalogName,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context) {
+    public PagedIterable<DeviceInner> listDevices(String resourceGroupName, String catalogName, String filter,
+        Integer top, Integer skip, Integer maxpagesize, Context context) {
         return new PagedIterable<>(
             listDevicesAsync(resourceGroupName, catalogName, filter, top, skip, maxpagesize, context));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Catalog list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CatalogInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
@@ -2639,38 +2095,30 @@ public final class CatalogsClientImpl implements CatalogsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<CatalogInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<CatalogInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Catalog list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CatalogInner>> listBySubscriptionNextSinglePageAsync(String nextLink, Context context) {
@@ -2678,36 +2126,27 @@ public final class CatalogsClientImpl implements CatalogsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Catalog list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CatalogInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -2715,38 +2154,30 @@ public final class CatalogsClientImpl implements CatalogsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<CatalogInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<CatalogInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Catalog list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CatalogInner>> listByResourceGroupNextSinglePageAsync(String nextLink, Context context) {
@@ -2754,36 +2185,27 @@ public final class CatalogsClientImpl implements CatalogsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Deployment list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DeploymentInner>> listDeploymentsNextSinglePageAsync(String nextLink) {
@@ -2791,37 +2213,29 @@ public final class CatalogsClientImpl implements CatalogsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listDeploymentsNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<DeploymentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<DeploymentInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Deployment list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DeploymentInner>> listDeploymentsNextSinglePageAsync(String nextLink, Context context) {
@@ -2829,36 +2243,27 @@ public final class CatalogsClientImpl implements CatalogsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listDeploymentsNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listDeploymentsNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a DeviceGroup list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DeviceGroupInner>> listDeviceGroupsNextSinglePageAsync(String nextLink) {
@@ -2866,75 +2271,58 @@ public final class CatalogsClientImpl implements CatalogsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listDeviceGroupsNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<DeviceGroupInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<DeviceGroupInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a DeviceGroup list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeviceGroupInner>> listDeviceGroupsNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<DeviceGroupInner>> listDeviceGroupsNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listDeviceGroupsNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listDeviceGroupsNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return paged collection of DeviceInsight items along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DeviceInsightInner>> listDeviceInsightsNextSinglePageAsync(String nextLink) {
@@ -2942,76 +2330,59 @@ public final class CatalogsClientImpl implements CatalogsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listDeviceInsightsNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<DeviceInsightInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<DeviceInsightInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return paged collection of DeviceInsight items along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeviceInsightInner>> listDeviceInsightsNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<DeviceInsightInner>> listDeviceInsightsNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listDeviceInsightsNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listDeviceInsightsNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Device list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DeviceInner>> listDevicesNextSinglePageAsync(String nextLink) {
@@ -3019,37 +2390,29 @@ public final class CatalogsClientImpl implements CatalogsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listDevicesNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<DeviceInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<DeviceInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Device list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DeviceInner>> listDevicesNextSinglePageAsync(String nextLink, Context context) {
@@ -3057,23 +2420,13 @@ public final class CatalogsClientImpl implements CatalogsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listDevicesNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listDevicesNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

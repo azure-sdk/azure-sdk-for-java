@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.sphere.generated;
 
-/** Samples for Images Delete. */
+/**
+ * Samples for Images Delete.
+ */
 public final class ImagesDeleteSamples {
     /*
-     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/preview/2022-09-01-preview/examples/DeleteImage.json
+     * x-ms-original-file:
+     * specification/sphere/resource-manager/Microsoft.AzureSphere/preview/2022-09-01-preview/examples/Images_Delete.
+     * json
      */
     /**
      * Sample code: Images_Delete.
-     *
+     * 
      * @param manager Entry point to AzureSphereManager.
      */
     public static void imagesDelete(com.azure.resourcemanager.sphere.AzureSphereManager manager) {

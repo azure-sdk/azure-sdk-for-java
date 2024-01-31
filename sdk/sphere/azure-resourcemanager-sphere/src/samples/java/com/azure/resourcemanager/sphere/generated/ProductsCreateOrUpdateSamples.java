@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.sphere.generated;
 
-/** Samples for Products CreateOrUpdate. */
+/**
+ * Samples for Products CreateOrUpdate.
+ */
 public final class ProductsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/preview/2022-09-01-preview/examples/PutProduct.json
+     * x-ms-original-file:
+     * specification/sphere/resource-manager/Microsoft.AzureSphere/preview/2022-09-01-preview/examples/
+     * Products_CreateOrUpdate.json
      */
     /**
      * Sample code: Products_CreateOrUpdate.
-     *
+     * 
      * @param manager Entry point to AzureSphereManager.
      */
     public static void productsCreateOrUpdate(com.azure.resourcemanager.sphere.AzureSphereManager manager) {
