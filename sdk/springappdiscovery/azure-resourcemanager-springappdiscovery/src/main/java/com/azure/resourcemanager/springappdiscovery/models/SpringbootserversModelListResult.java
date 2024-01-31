@@ -5,35 +5,36 @@
 package com.azure.resourcemanager.springappdiscovery.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.springappdiscovery.fluent.models.SpringbootserversModelInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * The springbootservers list resource definition.
+ * The response of a SpringbootserversModel list operation.
  */
 @Fluent
-public final class SpringbootserversListResult {
+public final class SpringbootserversModelListResult {
     /*
-     * The springbootsites list.
+     * The SpringbootserversModel items on this page
      */
-    @JsonProperty(value = "value")
+    @JsonProperty(value = "value", required = true)
     private List<SpringbootserversModelInner> value;
 
     /*
-     * The link used to get the next page of springbootservers resources list.
+     * The link to the next page of items
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
     /**
-     * Creates an instance of SpringbootserversListResult class.
+     * Creates an instance of SpringbootserversModelListResult class.
      */
-    public SpringbootserversListResult() {
+    public SpringbootserversModelListResult() {
     }
 
     /**
-     * Get the value property: The springbootsites list.
+     * Get the value property: The SpringbootserversModel items on this page.
      * 
      * @return the value value.
      */
@@ -42,18 +43,18 @@ public final class SpringbootserversListResult {
     }
 
     /**
-     * Set the value property: The springbootsites list.
+     * Set the value property: The SpringbootserversModel items on this page.
      * 
      * @param value the value value to set.
-     * @return the SpringbootserversListResult object itself.
+     * @return the SpringbootserversModelListResult object itself.
      */
-    public SpringbootserversListResult withValue(List<SpringbootserversModelInner> value) {
+    public SpringbootserversModelListResult withValue(List<SpringbootserversModelInner> value) {
         this.value = value;
         return this;
     }
 
     /**
-     * Get the nextLink property: The link used to get the next page of springbootservers resources list.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -62,12 +63,12 @@ public final class SpringbootserversListResult {
     }
 
     /**
-     * Set the nextLink property: The link used to get the next page of springbootservers resources list.
+     * Set the nextLink property: The link to the next page of items.
      * 
      * @param nextLink the nextLink value to set.
-     * @return the SpringbootserversListResult object itself.
+     * @return the SpringbootserversModelListResult object itself.
      */
-    public SpringbootserversListResult withNextLink(String nextLink) {
+    public SpringbootserversModelListResult withNextLink(String nextLink) {
         this.nextLink = nextLink;
         return this;
     }
@@ -78,8 +79,13 @@ public final class SpringbootserversListResult {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property value in model SpringbootserversModelListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(SpringbootserversModelListResult.class);
 }

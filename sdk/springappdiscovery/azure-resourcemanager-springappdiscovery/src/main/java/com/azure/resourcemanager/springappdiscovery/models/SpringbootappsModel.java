@@ -6,7 +6,6 @@ package com.azure.resourcemanager.springappdiscovery.models;
 
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.springappdiscovery.fluent.models.SpringbootappsModelInner;
-import java.util.Map;
 
 /**
  * An immutable client-side representation of SpringbootappsModel.
@@ -34,18 +33,11 @@ public interface SpringbootappsModel {
     String type();
 
     /**
-     * Gets the properties property: The springbootapps resource definition.
+     * Gets the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
     SpringbootappsProperties properties();
-
-    /**
-     * Gets the tags property: Resource tags.
-     * 
-     * @return the tags value.
-     */
-    Map<String, String> tags();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.

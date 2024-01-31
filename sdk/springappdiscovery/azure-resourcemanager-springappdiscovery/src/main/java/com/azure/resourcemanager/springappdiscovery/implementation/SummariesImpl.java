@@ -27,6 +27,16 @@ public final class SummariesImpl implements Summaries {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<Summary> listBySite(String resourceGroupName, String siteName) {
+        PagedIterable<SummaryInner> inner = this.serviceClient().listBySite(resourceGroupName, siteName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SummaryImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Summary> listBySite(String resourceGroupName, String siteName, Context context) {
+        PagedIterable<SummaryInner> inner = this.serviceClient().listBySite(resourceGroupName, siteName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SummaryImpl(inner1, this.manager()));
+    }
+
     public Response<Summary> getWithResponse(String resourceGroupName, String siteName, String summaryName,
         Context context) {
         Response<SummaryInner> inner
@@ -46,16 +56,6 @@ public final class SummariesImpl implements Summaries {
         } else {
             return null;
         }
-    }
-
-    public PagedIterable<Summary> listBySite(String resourceGroupName, String siteName) {
-        PagedIterable<SummaryInner> inner = this.serviceClient().listBySite(resourceGroupName, siteName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SummaryImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<Summary> listBySite(String resourceGroupName, String siteName, Context context) {
-        PagedIterable<SummaryInner> inner = this.serviceClient().listBySite(resourceGroupName, siteName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SummaryImpl(inner1, this.manager()));
     }
 
     private SummariesClient serviceClient() {

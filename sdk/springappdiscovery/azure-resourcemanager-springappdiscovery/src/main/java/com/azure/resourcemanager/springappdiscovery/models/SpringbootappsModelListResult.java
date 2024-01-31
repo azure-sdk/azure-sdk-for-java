@@ -5,35 +5,36 @@
 package com.azure.resourcemanager.springappdiscovery.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.springappdiscovery.fluent.models.SpringbootappsModelInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * The springbootapps list resource definition.
+ * The response of a SpringbootappsModel list operation.
  */
 @Fluent
-public final class SpringbootappsListResult {
+public final class SpringbootappsModelListResult {
     /*
-     * The springbootsites list.
+     * The SpringbootappsModel items on this page
      */
-    @JsonProperty(value = "value")
+    @JsonProperty(value = "value", required = true)
     private List<SpringbootappsModelInner> value;
 
     /*
-     * The link used to get the next page of springbootapps resources list.
+     * The link to the next page of items
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
     /**
-     * Creates an instance of SpringbootappsListResult class.
+     * Creates an instance of SpringbootappsModelListResult class.
      */
-    public SpringbootappsListResult() {
+    public SpringbootappsModelListResult() {
     }
 
     /**
-     * Get the value property: The springbootsites list.
+     * Get the value property: The SpringbootappsModel items on this page.
      * 
      * @return the value value.
      */
@@ -42,18 +43,18 @@ public final class SpringbootappsListResult {
     }
 
     /**
-     * Set the value property: The springbootsites list.
+     * Set the value property: The SpringbootappsModel items on this page.
      * 
      * @param value the value value to set.
-     * @return the SpringbootappsListResult object itself.
+     * @return the SpringbootappsModelListResult object itself.
      */
-    public SpringbootappsListResult withValue(List<SpringbootappsModelInner> value) {
+    public SpringbootappsModelListResult withValue(List<SpringbootappsModelInner> value) {
         this.value = value;
         return this;
     }
 
     /**
-     * Get the nextLink property: The link used to get the next page of springbootapps resources list.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -62,12 +63,12 @@ public final class SpringbootappsListResult {
     }
 
     /**
-     * Set the nextLink property: The link used to get the next page of springbootapps resources list.
+     * Set the nextLink property: The link to the next page of items.
      * 
      * @param nextLink the nextLink value to set.
-     * @return the SpringbootappsListResult object itself.
+     * @return the SpringbootappsModelListResult object itself.
      */
-    public SpringbootappsListResult withNextLink(String nextLink) {
+    public SpringbootappsModelListResult withNextLink(String nextLink) {
         this.nextLink = nextLink;
         return this;
     }
@@ -78,8 +79,13 @@ public final class SpringbootappsListResult {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model SpringbootappsModelListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(SpringbootappsModelListResult.class);
 }

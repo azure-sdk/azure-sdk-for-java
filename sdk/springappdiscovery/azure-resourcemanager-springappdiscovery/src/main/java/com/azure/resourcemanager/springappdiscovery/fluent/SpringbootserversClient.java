@@ -19,6 +19,59 @@ import com.azure.resourcemanager.springappdiscovery.models.SpringbootserversPatc
  */
 public interface SpringbootserversClient {
     /**
+     * List springbootservers resource by subscription.
+     * 
+     * @param siteName The springbootsites name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootserversModel list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<SpringbootserversModelInner> listBySubscription(String siteName);
+
+    /**
+     * List springbootservers resource by subscription.
+     * 
+     * @param siteName The springbootsites name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootserversModel list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<SpringbootserversModelInner> listBySubscription(String siteName, Context context);
+
+    /**
+     * List springbootservers resource by resourceGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootserversModel list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<SpringbootserversModelInner> listByResourceGroup(String resourceGroupName, String siteName);
+
+    /**
+     * List springbootservers resource by resourceGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootserversModel list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<SpringbootserversModelInner> listByResourceGroup(String resourceGroupName, String siteName,
+        Context context);
+
+    /**
      * List springbootservers resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -82,6 +135,74 @@ public interface SpringbootserversClient {
         SpringbootserversModelInner springbootservers);
 
     /**
+     * Update springbootservers resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootserversName The springbootservers name.
+     * @param springbootservers Update a springbootservers payload.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the springbootservers envelope resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<SpringbootserversModelInner>, SpringbootserversModelInner> beginUpdate(
+        String resourceGroupName, String siteName, String springbootserversName,
+        SpringbootserversPatch springbootservers);
+
+    /**
+     * Update springbootservers resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootserversName The springbootservers name.
+     * @param springbootservers Update a springbootservers payload.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the springbootservers envelope resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<SpringbootserversModelInner>, SpringbootserversModelInner> beginUpdate(
+        String resourceGroupName, String siteName, String springbootserversName,
+        SpringbootserversPatch springbootservers, Context context);
+
+    /**
+     * Update springbootservers resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootserversName The springbootservers name.
+     * @param springbootservers Update a springbootservers payload.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the springbootservers envelope resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SpringbootserversModelInner update(String resourceGroupName, String siteName, String springbootserversName,
+        SpringbootserversPatch springbootservers);
+
+    /**
+     * Update springbootservers resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootserversName The springbootservers name.
+     * @param springbootservers Update a springbootservers payload.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the springbootservers envelope resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SpringbootserversModelInner update(String resourceGroupName, String siteName, String springbootserversName,
+        SpringbootserversPatch springbootservers, Context context);
+
+    /**
      * Delete springbootservers resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -138,125 +259,4 @@ public interface SpringbootserversClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(String resourceGroupName, String siteName, String springbootserversName, Context context);
-
-    /**
-     * Update springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @param springbootservers Update a springbootservers payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the springbootservers envelope resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<SpringbootserversModelInner>, SpringbootserversModelInner> beginUpdate(
-        String resourceGroupName, String siteName, String springbootserversName,
-        SpringbootserversPatch springbootservers);
-
-    /**
-     * Update springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @param springbootservers Update a springbootservers payload.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the springbootservers envelope resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<SpringbootserversModelInner>, SpringbootserversModelInner> beginUpdate(
-        String resourceGroupName, String siteName, String springbootserversName,
-        SpringbootserversPatch springbootservers, Context context);
-
-    /**
-     * Update springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @param springbootservers Update a springbootservers payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers envelope resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    SpringbootserversModelInner update(String resourceGroupName, String siteName, String springbootserversName,
-        SpringbootserversPatch springbootservers);
-
-    /**
-     * Update springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @param springbootservers Update a springbootservers payload.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers envelope resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    SpringbootserversModelInner update(String resourceGroupName, String siteName, String springbootserversName,
-        SpringbootserversPatch springbootservers, Context context);
-
-    /**
-     * List springbootservers resource by resourceGroup.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<SpringbootserversModelInner> listByResourceGroup(String resourceGroupName, String siteName);
-
-    /**
-     * List springbootservers resource by resourceGroup.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<SpringbootserversModelInner> listByResourceGroup(String resourceGroupName, String siteName,
-        Context context);
-
-    /**
-     * List springbootservers resource by subscription.
-     * 
-     * @param siteName The springbootsites name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<SpringbootserversModelInner> listBySubscription(String siteName);
-
-    /**
-     * List springbootservers resource by subscription.
-     * 
-     * @param siteName The springbootsites name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<SpringbootserversModelInner> listBySubscription(String siteName, Context context);
 }

@@ -8,8 +8,6 @@ import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.springappdiscovery.fluent.models.SummaryInner;
 import com.azure.resourcemanager.springappdiscovery.models.SummariesProperties;
 import com.azure.resourcemanager.springappdiscovery.models.Summary;
-import java.util.Collections;
-import java.util.Map;
 
 public final class SummaryImpl implements Summary {
     private SummaryInner innerObject;
@@ -36,15 +34,6 @@ public final class SummaryImpl implements Summary {
 
     public SummariesProperties properties() {
         return this.innerModel().properties();
-    }
-
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
     }
 
     public SystemData systemData() {

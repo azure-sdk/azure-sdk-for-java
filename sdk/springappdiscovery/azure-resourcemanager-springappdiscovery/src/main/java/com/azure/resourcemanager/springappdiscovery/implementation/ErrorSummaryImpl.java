@@ -8,8 +8,6 @@ import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.springappdiscovery.fluent.models.ErrorSummaryInner;
 import com.azure.resourcemanager.springappdiscovery.models.ErrorSummariesProperties;
 import com.azure.resourcemanager.springappdiscovery.models.ErrorSummary;
-import java.util.Collections;
-import java.util.Map;
 
 public final class ErrorSummaryImpl implements ErrorSummary {
     private ErrorSummaryInner innerObject;
@@ -36,15 +34,6 @@ public final class ErrorSummaryImpl implements ErrorSummary {
 
     public ErrorSummariesProperties properties() {
         return this.innerModel().properties();
-    }
-
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
     }
 
     public SystemData systemData() {

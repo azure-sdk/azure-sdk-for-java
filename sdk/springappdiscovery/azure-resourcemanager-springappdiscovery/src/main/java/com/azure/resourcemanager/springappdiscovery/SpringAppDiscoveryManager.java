@@ -49,17 +49,17 @@ import java.util.stream.Collectors;
  * Spring App Discovery Client.
  */
 public final class SpringAppDiscoveryManager {
-    private Springbootsites springbootsites;
-
     private Operations operations;
 
-    private Springbootservers springbootservers;
+    private Springbootsites springbootsites;
 
     private Springbootapps springbootapps;
 
-    private Summaries summaries;
+    private Springbootservers springbootservers;
 
     private ErrorSummaries errorSummaries;
+
+    private Summaries summaries;
 
     private final SpringAppDiscoveryMgmtClient clientObject;
 
@@ -260,18 +260,6 @@ public final class SpringAppDiscoveryManager {
     }
 
     /**
-     * Gets the resource collection API of Springbootsites. It manages SpringbootsitesModel.
-     * 
-     * @return Resource collection API of Springbootsites.
-     */
-    public Springbootsites springbootsites() {
-        if (this.springbootsites == null) {
-            this.springbootsites = new SpringbootsitesImpl(clientObject.getSpringbootsites(), this);
-        }
-        return springbootsites;
-    }
-
-    /**
      * Gets the resource collection API of Operations.
      * 
      * @return Resource collection API of Operations.
@@ -284,15 +272,15 @@ public final class SpringAppDiscoveryManager {
     }
 
     /**
-     * Gets the resource collection API of Springbootservers. It manages SpringbootserversModel.
+     * Gets the resource collection API of Springbootsites. It manages SpringbootsitesModel.
      * 
-     * @return Resource collection API of Springbootservers.
+     * @return Resource collection API of Springbootsites.
      */
-    public Springbootservers springbootservers() {
-        if (this.springbootservers == null) {
-            this.springbootservers = new SpringbootserversImpl(clientObject.getSpringbootservers(), this);
+    public Springbootsites springbootsites() {
+        if (this.springbootsites == null) {
+            this.springbootsites = new SpringbootsitesImpl(clientObject.getSpringbootsites(), this);
         }
-        return springbootservers;
+        return springbootsites;
     }
 
     /**
@@ -308,15 +296,15 @@ public final class SpringAppDiscoveryManager {
     }
 
     /**
-     * Gets the resource collection API of Summaries.
+     * Gets the resource collection API of Springbootservers. It manages SpringbootserversModel.
      * 
-     * @return Resource collection API of Summaries.
+     * @return Resource collection API of Springbootservers.
      */
-    public Summaries summaries() {
-        if (this.summaries == null) {
-            this.summaries = new SummariesImpl(clientObject.getSummaries(), this);
+    public Springbootservers springbootservers() {
+        if (this.springbootservers == null) {
+            this.springbootservers = new SpringbootserversImpl(clientObject.getSpringbootservers(), this);
         }
-        return summaries;
+        return springbootservers;
     }
 
     /**
@@ -329,6 +317,18 @@ public final class SpringAppDiscoveryManager {
             this.errorSummaries = new ErrorSummariesImpl(clientObject.getErrorSummaries(), this);
         }
         return errorSummaries;
+    }
+
+    /**
+     * Gets the resource collection API of Summaries.
+     * 
+     * @return Resource collection API of Summaries.
+     */
+    public Summaries summaries() {
+        if (this.summaries == null) {
+            this.summaries = new SummariesImpl(clientObject.getSummaries(), this);
+        }
+        return summaries;
     }
 
     /**

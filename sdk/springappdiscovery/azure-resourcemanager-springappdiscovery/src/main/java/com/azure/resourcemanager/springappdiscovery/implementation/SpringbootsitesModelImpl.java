@@ -175,13 +175,8 @@ public final class SpringbootsitesModelImpl
     }
 
     public SpringbootsitesModelImpl withProperties(SpringbootsitesProperties properties) {
-        if (isInCreateMode()) {
-            this.innerModel().withProperties(properties);
-            return this;
-        } else {
-            this.updateSpringbootsites.withProperties(properties);
-            return this;
-        }
+        this.innerModel().withProperties(properties);
+        return this;
     }
 
     public SpringbootsitesModelImpl withExtendedLocation(SpringbootsitesModelExtendedLocation extendedLocation) {

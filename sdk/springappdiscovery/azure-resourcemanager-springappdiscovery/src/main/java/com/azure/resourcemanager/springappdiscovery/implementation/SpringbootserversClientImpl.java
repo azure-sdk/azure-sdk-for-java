@@ -34,7 +34,7 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.springappdiscovery.fluent.SpringbootserversClient;
 import com.azure.resourcemanager.springappdiscovery.fluent.models.SpringbootserversModelInner;
-import com.azure.resourcemanager.springappdiscovery.models.SpringbootserversListResult;
+import com.azure.resourcemanager.springappdiscovery.models.SpringbootserversModelListResult;
 import com.azure.resourcemanager.springappdiscovery.models.SpringbootserversPatch;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
@@ -73,25 +73,52 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
     @ServiceInterface(name = "SpringAppDiscoveryMg")
     public interface SpringbootserversService {
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.OffAzureSpringBoot/springbootsites/{siteName}/springbootservers")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<SpringbootserversModelListResult>> listBySubscription(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("siteName") String siteName, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzureSpringBoot/springbootsites/{siteName}/springbootservers")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<SpringbootserversModelListResult>> listByResourceGroup(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("siteName") String siteName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzureSpringBoot/springbootsites/{siteName}/springbootservers/{springbootserversName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SpringbootserversModelInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("siteName") String siteName,
-            @PathParam("springbootserversName") String springbootserversName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("springbootserversName") String springbootserversName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzureSpringBoot/springbootsites/{siteName}/springbootservers/{springbootserversName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SpringbootserversModelInner>> createOrUpdate(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("siteName") String siteName,
             @PathParam("springbootserversName") String springbootserversName,
-            @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") SpringbootserversModelInner springbootservers,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzureSpringBoot/springbootsites/{siteName}/springbootservers/{springbootserversName}")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("siteName") String siteName,
+            @PathParam("springbootserversName") String springbootserversName,
+            @BodyParam("application/json") SpringbootserversPatch springbootservers,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -99,45 +126,16 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
         @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("siteName") String siteName,
-            @PathParam("springbootserversName") String springbootserversName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzureSpringBoot/springbootsites/{siteName}/springbootservers/{springbootserversName}")
-        @ExpectedResponses({ 200, 202 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("siteName") String siteName,
-            @PathParam("springbootserversName") String springbootserversName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") SpringbootserversPatch springbootservers,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzureSpringBoot/springbootsites/{siteName}/springbootservers")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<SpringbootserversListResult>> listByResourceGroup(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("siteName") String siteName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.OffAzureSpringBoot/springbootsites/{siteName}/springbootservers")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<SpringbootserversListResult>> listBySubscription(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId, @PathParam("siteName") String siteName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("springbootserversName") String springbootserversName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<SpringbootserversListResult>> listByResourceGroupNext(
+        Mono<Response<SpringbootserversModelListResult>> listBySubscriptionNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -145,9 +143,278 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<SpringbootserversListResult>> listBySubscriptionNext(
+        Mono<Response<SpringbootserversModelListResult>> listByResourceGroupNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
+    }
+
+    /**
+     * List springbootservers resource by subscription.
+     * 
+     * @param siteName The springbootsites name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootserversModel list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SpringbootserversModelInner>> listBySubscriptionSinglePageAsync(String siteName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (siteName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter siteName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listBySubscription(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), siteName, accept, context))
+            .<PagedResponse<SpringbootserversModelInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * List springbootservers resource by subscription.
+     * 
+     * @param siteName The springbootsites name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootserversModel list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SpringbootserversModelInner>> listBySubscriptionSinglePageAsync(String siteName,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (siteName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter siteName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listBySubscription(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                siteName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * List springbootservers resource by subscription.
+     * 
+     * @param siteName The springbootsites name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootserversModel list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<SpringbootserversModelInner> listBySubscriptionAsync(String siteName) {
+        return new PagedFlux<>(() -> listBySubscriptionSinglePageAsync(siteName),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List springbootservers resource by subscription.
+     * 
+     * @param siteName The springbootsites name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootserversModel list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<SpringbootserversModelInner> listBySubscriptionAsync(String siteName, Context context) {
+        return new PagedFlux<>(() -> listBySubscriptionSinglePageAsync(siteName, context),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * List springbootservers resource by subscription.
+     * 
+     * @param siteName The springbootsites name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootserversModel list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<SpringbootserversModelInner> listBySubscription(String siteName) {
+        return new PagedIterable<>(listBySubscriptionAsync(siteName));
+    }
+
+    /**
+     * List springbootservers resource by subscription.
+     * 
+     * @param siteName The springbootsites name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootserversModel list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<SpringbootserversModelInner> listBySubscription(String siteName, Context context) {
+        return new PagedIterable<>(listBySubscriptionAsync(siteName, context));
+    }
+
+    /**
+     * List springbootservers resource by resourceGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootserversModel list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SpringbootserversModelInner>>
+        listByResourceGroupSinglePageAsync(String resourceGroupName, String siteName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (siteName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter siteName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, siteName, accept, context))
+            .<PagedResponse<SpringbootserversModelInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * List springbootservers resource by resourceGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootserversModel list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SpringbootserversModelInner>>
+        listByResourceGroupSinglePageAsync(String resourceGroupName, String siteName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (siteName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter siteName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, siteName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * List springbootservers resource by resourceGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootserversModel list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<SpringbootserversModelInner> listByResourceGroupAsync(String resourceGroupName, String siteName) {
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, siteName),
+            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List springbootservers resource by resourceGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootserversModel list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<SpringbootserversModelInner> listByResourceGroupAsync(String resourceGroupName, String siteName,
+        Context context) {
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, siteName, context),
+            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * List springbootservers resource by resourceGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootserversModel list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<SpringbootserversModelInner> listByResourceGroup(String resourceGroupName, String siteName) {
+        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, siteName));
+    }
+
+    /**
+     * List springbootservers resource by resourceGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootserversModel list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<SpringbootserversModelInner> listByResourceGroup(String resourceGroupName, String siteName,
+        Context context) {
+        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, siteName, context));
     }
 
     /**
@@ -186,8 +453,8 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, siteName, springbootserversName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, siteName, springbootserversName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -228,8 +495,8 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, siteName,
-            springbootserversName, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, siteName, springbootserversName, accept, context);
     }
 
     /**
@@ -327,8 +594,8 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, siteName, springbootserversName, this.client.getApiVersion(), springbootservers,
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, siteName, springbootserversName, springbootservers,
                 accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -377,8 +644,9 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            siteName, springbootserversName, this.client.getApiVersion(), springbootservers, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, siteName, springbootserversName, springbootservers,
+            accept, context);
     }
 
     /**
@@ -440,230 +708,6 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
     }
 
     /**
-     * Delete springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String siteName,
-        String springbootserversName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (siteName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter siteName is required and cannot be null."));
-        }
-        if (springbootserversName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter springbootserversName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, siteName, springbootserversName, this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Delete springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String siteName,
-        String springbootserversName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (siteName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter siteName is required and cannot be null."));
-        }
-        if (springbootserversName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter springbootserversName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, siteName,
-            springbootserversName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Delete springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String siteName,
-        String springbootserversName) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = deleteWithResponseAsync(resourceGroupName, siteName, springbootserversName);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Delete springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String siteName,
-        String springbootserversName, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = deleteWithResponseAsync(resourceGroupName, siteName, springbootserversName, context);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            context);
-    }
-
-    /**
-     * Delete springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String siteName,
-        String springbootserversName) {
-        return this.beginDeleteAsync(resourceGroupName, siteName, springbootserversName).getSyncPoller();
-    }
-
-    /**
-     * Delete springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String siteName,
-        String springbootserversName, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, siteName, springbootserversName, context).getSyncPoller();
-    }
-
-    /**
-     * Delete springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String siteName, String springbootserversName) {
-        return beginDeleteAsync(resourceGroupName, siteName, springbootserversName).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Delete springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String siteName, String springbootserversName,
-        Context context) {
-        return beginDeleteAsync(resourceGroupName, siteName, springbootserversName, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Delete springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String siteName, String springbootserversName) {
-        deleteAsync(resourceGroupName, siteName, springbootserversName).block();
-    }
-
-    /**
-     * Delete springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String siteName, String springbootserversName, Context context) {
-        deleteAsync(resourceGroupName, siteName, springbootserversName, context).block();
-    }
-
-    /**
      * Update springbootservers resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -706,9 +750,9 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    siteName, springbootserversName, this.client.getApiVersion(), springbootservers, accept, context))
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, siteName, springbootserversName, springbootservers,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -756,8 +800,8 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, siteName,
-            springbootserversName, this.client.getApiVersion(), springbootservers, accept, context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, siteName, springbootserversName, springbootservers, accept, context);
     }
 
     /**
@@ -926,19 +970,19 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
     }
 
     /**
-     * List springbootservers resource by resourceGroup.
+     * Delete springbootservers resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param siteName The springbootsites name.
+     * @param springbootserversName The springbootservers name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SpringbootserversModelInner>>
-        listByResourceGroupSinglePageAsync(String resourceGroupName, String siteName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String siteName,
+        String springbootserversName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -954,31 +998,32 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
         if (siteName == null) {
             return Mono.error(new IllegalArgumentException("Parameter siteName is required and cannot be null."));
         }
+        if (springbootserversName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter springbootserversName is required and cannot be null."));
+        }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                    resourceGroupName, siteName, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<SpringbootserversModelInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, siteName, springbootserversName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * List springbootservers resource by resourceGroup.
+     * Delete springbootservers resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param siteName The springbootsites name.
+     * @param springbootserversName The springbootservers name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SpringbootserversModelInner>>
-        listByResourceGroupSinglePageAsync(String resourceGroupName, String siteName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String siteName,
+        String springbootserversName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -994,205 +1039,158 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
         if (siteName == null) {
             return Mono.error(new IllegalArgumentException("Parameter siteName is required and cannot be null."));
         }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                siteName, this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * List springbootservers resource by resourceGroup.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SpringbootserversModelInner> listByResourceGroupAsync(String resourceGroupName, String siteName) {
-        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, siteName),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * List springbootservers resource by resourceGroup.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SpringbootserversModelInner> listByResourceGroupAsync(String resourceGroupName, String siteName,
-        Context context) {
-        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, siteName, context),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * List springbootservers resource by resourceGroup.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<SpringbootserversModelInner> listByResourceGroup(String resourceGroupName, String siteName) {
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, siteName));
-    }
-
-    /**
-     * List springbootservers resource by resourceGroup.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<SpringbootserversModelInner> listByResourceGroup(String resourceGroupName, String siteName,
-        Context context) {
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, siteName, context));
-    }
-
-    /**
-     * List springbootservers resource by subscription.
-     * 
-     * @param siteName The springbootsites name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SpringbootserversModelInner>> listBySubscriptionSinglePageAsync(String siteName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (siteName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter siteName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listBySubscription(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), siteName, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<SpringbootserversModelInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * List springbootservers resource by subscription.
-     * 
-     * @param siteName The springbootsites name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SpringbootserversModelInner>> listBySubscriptionSinglePageAsync(String siteName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (siteName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter siteName is required and cannot be null."));
+        if (springbootserversName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter springbootserversName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listBySubscription(this.client.getEndpoint(), this.client.getSubscriptionId(), siteName,
-                this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, siteName, springbootserversName, accept, context);
     }
 
     /**
-     * List springbootservers resource by subscription.
+     * Delete springbootservers resource.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param siteName The springbootsites name.
+     * @param springbootserversName The springbootservers name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition as paginated response with {@link PagedFlux}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SpringbootserversModelInner> listBySubscriptionAsync(String siteName) {
-        return new PagedFlux<>(() -> listBySubscriptionSinglePageAsync(siteName),
-            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String siteName,
+        String springbootserversName) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, siteName, springbootserversName);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
-     * List springbootservers resource by subscription.
+     * Delete springbootservers resource.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param siteName The springbootsites name.
+     * @param springbootserversName The springbootservers name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition as paginated response with {@link PagedFlux}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SpringbootserversModelInner> listBySubscriptionAsync(String siteName, Context context) {
-        return new PagedFlux<>(() -> listBySubscriptionSinglePageAsync(siteName, context),
-            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String siteName,
+        String springbootserversName, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, siteName, springbootserversName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
-     * List springbootservers resource by subscription.
+     * Delete springbootservers resource.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param siteName The springbootsites name.
+     * @param springbootserversName The springbootservers name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition as paginated response with {@link PagedIterable}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<SpringbootserversModelInner> listBySubscription(String siteName) {
-        return new PagedIterable<>(listBySubscriptionAsync(siteName));
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String siteName,
+        String springbootserversName) {
+        return this.beginDeleteAsync(resourceGroupName, siteName, springbootserversName).getSyncPoller();
     }
 
     /**
-     * List springbootservers resource by subscription.
+     * Delete springbootservers resource.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param siteName The springbootsites name.
+     * @param springbootserversName The springbootservers name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition as paginated response with {@link PagedIterable}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<SpringbootserversModelInner> listBySubscription(String siteName, Context context) {
-        return new PagedIterable<>(listBySubscriptionAsync(siteName, context));
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String siteName,
+        String springbootserversName, Context context) {
+        return this.beginDeleteAsync(resourceGroupName, siteName, springbootserversName, context).getSyncPoller();
+    }
+
+    /**
+     * Delete springbootservers resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootserversName The springbootservers name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceGroupName, String siteName, String springbootserversName) {
+        return beginDeleteAsync(resourceGroupName, siteName, springbootserversName).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Delete springbootservers resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootserversName The springbootservers name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceGroupName, String siteName, String springbootserversName,
+        Context context) {
+        return beginDeleteAsync(resourceGroupName, siteName, springbootserversName, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Delete springbootservers resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootserversName The springbootservers name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String siteName, String springbootserversName) {
+        deleteAsync(resourceGroupName, siteName, springbootserversName).block();
+    }
+
+    /**
+     * Delete springbootservers resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootserversName The springbootservers name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String siteName, String springbootserversName, Context context) {
+        deleteAsync(resourceGroupName, siteName, springbootserversName, context).block();
     }
 
     /**
@@ -1204,68 +1202,8 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SpringbootserversModelInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<SpringbootserversModelInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the next page of items.
-     * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SpringbootserversModelInner>> listByResourceGroupNextSinglePageAsync(String nextLink,
-        Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Get the next page of items.
-     * 
-     * @param nextLink The URL to get the next list of items
-     * 
-     * The nextLink parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return the response of a SpringbootserversModel list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SpringbootserversModelInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
@@ -1295,8 +1233,8 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers list resource definition along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return the response of a SpringbootserversModel list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SpringbootserversModelInner>> listBySubscriptionNextSinglePageAsync(String nextLink,
@@ -1311,6 +1249,66 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootserversModel list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SpringbootserversModelInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<SpringbootserversModelInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootserversModel list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SpringbootserversModelInner>> listByResourceGroupNextSinglePageAsync(String nextLink,
+        Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

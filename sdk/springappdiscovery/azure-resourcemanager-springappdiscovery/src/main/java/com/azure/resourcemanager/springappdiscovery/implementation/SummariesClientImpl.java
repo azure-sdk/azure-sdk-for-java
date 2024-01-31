@@ -27,7 +27,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.springappdiscovery.fluent.SummariesClient;
 import com.azure.resourcemanager.springappdiscovery.fluent.models.SummaryInner;
-import com.azure.resourcemanager.springappdiscovery.models.SummaryList;
+import com.azure.resourcemanager.springappdiscovery.models.SummaryListResult;
 import reactor.core.publisher.Mono;
 
 /**
@@ -63,30 +63,181 @@ public final class SummariesClientImpl implements SummariesClient {
     @ServiceInterface(name = "SpringAppDiscoveryMg")
     public interface SummariesService {
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzureSpringBoot/springbootsites/{siteName}/summaries")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<SummaryListResult>> listBySite(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("siteName") String siteName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzureSpringBoot/springbootsites/{siteName}/summaries/{summaryName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SummaryInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("siteName") String siteName,
-            @PathParam("summaryName") String summaryName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzureSpringBoot/springbootsites/{siteName}/summaries")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<SummaryList>> listBySite(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("siteName") String siteName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("summaryName") String summaryName, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<SummaryList>> listBySiteNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+        Mono<Response<SummaryListResult>> listBySiteNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
+    }
+
+    /**
+     * Implements Summaries GET method.
+     * 
+     * Lists the Summaries resource in springbootsites.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a Summary list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SummaryInner>> listBySiteSinglePageAsync(String resourceGroupName, String siteName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (siteName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter siteName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listBySite(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, siteName, accept, context))
+            .<PagedResponse<SummaryInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Implements Summaries GET method.
+     * 
+     * Lists the Summaries resource in springbootsites.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a Summary list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SummaryInner>> listBySiteSinglePageAsync(String resourceGroupName, String siteName,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (siteName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter siteName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listBySite(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, siteName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Implements Summaries GET method.
+     * 
+     * Lists the Summaries resource in springbootsites.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a Summary list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<SummaryInner> listBySiteAsync(String resourceGroupName, String siteName) {
+        return new PagedFlux<>(() -> listBySiteSinglePageAsync(resourceGroupName, siteName),
+            nextLink -> listBySiteNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Implements Summaries GET method.
+     * 
+     * Lists the Summaries resource in springbootsites.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a Summary list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<SummaryInner> listBySiteAsync(String resourceGroupName, String siteName, Context context) {
+        return new PagedFlux<>(() -> listBySiteSinglePageAsync(resourceGroupName, siteName, context),
+            nextLink -> listBySiteNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Implements Summaries GET method.
+     * 
+     * Lists the Summaries resource in springbootsites.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a Summary list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<SummaryInner> listBySite(String resourceGroupName, String siteName) {
+        return new PagedIterable<>(listBySiteAsync(resourceGroupName, siteName));
+    }
+
+    /**
+     * Implements Summaries GET method.
+     * 
+     * Lists the Summaries resource in springbootsites.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a Summary list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<SummaryInner> listBySite(String resourceGroupName, String siteName, Context context) {
+        return new PagedIterable<>(listBySiteAsync(resourceGroupName, siteName, context));
     }
 
     /**
@@ -125,8 +276,8 @@ public final class SummariesClientImpl implements SummariesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, siteName, summaryName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, siteName, summaryName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -167,8 +318,8 @@ public final class SummariesClientImpl implements SummariesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, siteName,
-            summaryName, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, siteName, summaryName, accept, context);
     }
 
     /**
@@ -229,156 +380,6 @@ public final class SummariesClientImpl implements SummariesClient {
     }
 
     /**
-     * Implements Summaries GET method.
-     * 
-     * Lists the Summaries resource in springbootsites.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Sites along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SummaryInner>> listBySiteSinglePageAsync(String resourceGroupName, String siteName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (siteName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter siteName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listBySite(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, siteName, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<SummaryInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
-                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Implements Summaries GET method.
-     * 
-     * Lists the Summaries resource in springbootsites.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Sites along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SummaryInner>> listBySiteSinglePageAsync(String resourceGroupName, String siteName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (siteName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter siteName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listBySite(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, siteName,
-                this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Implements Summaries GET method.
-     * 
-     * Lists the Summaries resource in springbootsites.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Sites as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SummaryInner> listBySiteAsync(String resourceGroupName, String siteName) {
-        return new PagedFlux<>(() -> listBySiteSinglePageAsync(resourceGroupName, siteName),
-            nextLink -> listBySiteNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Implements Summaries GET method.
-     * 
-     * Lists the Summaries resource in springbootsites.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Sites as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SummaryInner> listBySiteAsync(String resourceGroupName, String siteName, Context context) {
-        return new PagedFlux<>(() -> listBySiteSinglePageAsync(resourceGroupName, siteName, context),
-            nextLink -> listBySiteNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Implements Summaries GET method.
-     * 
-     * Lists the Summaries resource in springbootsites.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Sites as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<SummaryInner> listBySite(String resourceGroupName, String siteName) {
-        return new PagedIterable<>(listBySiteAsync(resourceGroupName, siteName));
-    }
-
-    /**
-     * Implements Summaries GET method.
-     * 
-     * Lists the Summaries resource in springbootsites.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Sites as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<SummaryInner> listBySite(String resourceGroupName, String siteName, Context context) {
-        return new PagedIterable<>(listBySiteAsync(resourceGroupName, siteName, context));
-    }
-
-    /**
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items
@@ -387,7 +388,8 @@ public final class SummariesClientImpl implements SummariesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Sites along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a Summary list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SummaryInner>> listBySiteNextSinglePageAsync(String nextLink) {
@@ -416,7 +418,8 @@ public final class SummariesClientImpl implements SummariesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Sites along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a Summary list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SummaryInner>> listBySiteNextSinglePageAsync(String nextLink, Context context) {

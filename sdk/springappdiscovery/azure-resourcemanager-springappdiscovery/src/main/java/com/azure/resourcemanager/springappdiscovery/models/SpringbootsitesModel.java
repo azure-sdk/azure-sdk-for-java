@@ -50,7 +50,7 @@ public interface SpringbootsitesModel {
     Map<String, String> tags();
 
     /**
-     * Gets the properties property: The springbootsites resource definition.
+     * Gets the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
@@ -189,9 +189,9 @@ public interface SpringbootsitesModel {
          */
         interface WithProperties {
             /**
-             * Specifies the properties property: The springbootsites resource definition..
+             * Specifies the properties property: The resource-specific properties for this resource..
              * 
-             * @param properties The springbootsites resource definition.
+             * @param properties The resource-specific properties for this resource.
              * @return the next definition stage.
              */
             WithCreate withProperties(SpringbootsitesProperties properties);
@@ -221,7 +221,7 @@ public interface SpringbootsitesModel {
     /**
      * The template for SpringbootsitesModel update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
+    interface Update extends UpdateStages.WithTags {
         /**
          * Executes the update request.
          * 
@@ -253,19 +253,6 @@ public interface SpringbootsitesModel {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
-        }
-
-        /**
-         * The stage of the SpringbootsitesModel update allowing to specify properties.
-         */
-        interface WithProperties {
-            /**
-             * Specifies the properties property: The springbootsites resource definition..
-             * 
-             * @param properties The springbootsites resource definition.
-             * @return the next definition stage.
-             */
-            Update withProperties(SpringbootsitesProperties properties);
         }
     }
 

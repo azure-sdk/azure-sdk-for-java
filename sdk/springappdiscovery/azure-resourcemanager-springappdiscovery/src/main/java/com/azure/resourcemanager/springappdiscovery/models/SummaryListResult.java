@@ -5,35 +5,36 @@
 package com.azure.resourcemanager.springappdiscovery.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.springappdiscovery.fluent.models.SummaryInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * List of Sites.
+ * The response of a Summary list operation.
  */
 @Fluent
-public final class SummaryList {
+public final class SummaryListResult {
     /*
-     * List of Sites.
+     * The Summary items on this page
      */
-    @JsonProperty(value = "value")
+    @JsonProperty(value = "value", required = true)
     private List<SummaryInner> value;
 
     /*
-     * Url to follow for getting next page of resources.
+     * The link to the next page of items
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
     /**
-     * Creates an instance of SummaryList class.
+     * Creates an instance of SummaryListResult class.
      */
-    public SummaryList() {
+    public SummaryListResult() {
     }
 
     /**
-     * Get the value property: List of Sites.
+     * Get the value property: The Summary items on this page.
      * 
      * @return the value value.
      */
@@ -42,18 +43,18 @@ public final class SummaryList {
     }
 
     /**
-     * Set the value property: List of Sites.
+     * Set the value property: The Summary items on this page.
      * 
      * @param value the value value to set.
-     * @return the SummaryList object itself.
+     * @return the SummaryListResult object itself.
      */
-    public SummaryList withValue(List<SummaryInner> value) {
+    public SummaryListResult withValue(List<SummaryInner> value) {
         this.value = value;
         return this;
     }
 
     /**
-     * Get the nextLink property: Url to follow for getting next page of resources.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -62,12 +63,12 @@ public final class SummaryList {
     }
 
     /**
-     * Set the nextLink property: Url to follow for getting next page of resources.
+     * Set the nextLink property: The link to the next page of items.
      * 
      * @param nextLink the nextLink value to set.
-     * @return the SummaryList object itself.
+     * @return the SummaryListResult object itself.
      */
-    public SummaryList withNextLink(String nextLink) {
+    public SummaryListResult withNextLink(String nextLink) {
         this.nextLink = nextLink;
         return this;
     }
@@ -78,8 +79,13 @@ public final class SummaryList {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model SummaryListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(SummaryListResult.class);
 }

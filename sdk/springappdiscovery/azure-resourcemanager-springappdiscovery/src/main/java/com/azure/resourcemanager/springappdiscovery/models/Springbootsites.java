@@ -13,6 +13,49 @@ import com.azure.core.util.Context;
  */
 public interface Springbootsites {
     /**
+     * List springbootsites resource by subscription.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootsitesModel list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SpringbootsitesModel> list();
+
+    /**
+     * List springbootsites resource by subscription.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootsitesModel list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SpringbootsitesModel> list(Context context);
+
+    /**
+     * List springbootsites resource by resourceGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootsitesModel list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SpringbootsitesModel> listByResourceGroup(String resourceGroupName);
+
+    /**
+     * List springbootsites resource by resourceGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootsitesModel list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SpringbootsitesModel> listByResourceGroup(String resourceGroupName, Context context);
+
+    /**
      * Get a springbootsites resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -83,49 +126,6 @@ public interface Springbootsites {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void triggerRefreshSite(String resourceGroupName, String springbootsitesName, Context context);
-
-    /**
-     * List springbootsites resource by resourceGroup.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootsites list resource definition as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<SpringbootsitesModel> listByResourceGroup(String resourceGroupName);
-
-    /**
-     * List springbootsites resource by resourceGroup.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootsites list resource definition as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<SpringbootsitesModel> listByResourceGroup(String resourceGroupName, Context context);
-
-    /**
-     * List springbootsites resource by subscription.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootsites list resource definition as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<SpringbootsitesModel> list();
-
-    /**
-     * List springbootsites resource by subscription.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootsites list resource definition as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<SpringbootsitesModel> list(Context context);
 
     /**
      * Get a springbootsites resource.

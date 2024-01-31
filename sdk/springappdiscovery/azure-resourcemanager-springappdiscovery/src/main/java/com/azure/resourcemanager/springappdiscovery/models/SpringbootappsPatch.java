@@ -7,9 +7,7 @@ package com.azure.resourcemanager.springappdiscovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
 
 /**
  * The springbootapps resource patch definition.
@@ -17,17 +15,10 @@ import java.util.Map;
 @Fluent
 public final class SpringbootappsPatch extends ProxyResource {
     /*
-     * The springbootapps resource definition.
+     * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
     private SpringbootappsProperties properties;
-
-    /*
-     * Resource tags
-     */
-    @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, String> tags;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -42,7 +33,7 @@ public final class SpringbootappsPatch extends ProxyResource {
     }
 
     /**
-     * Get the properties property: The springbootapps resource definition.
+     * Get the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
@@ -51,33 +42,13 @@ public final class SpringbootappsPatch extends ProxyResource {
     }
 
     /**
-     * Set the properties property: The springbootapps resource definition.
+     * Set the properties property: The resource-specific properties for this resource.
      * 
      * @param properties the properties value to set.
      * @return the SpringbootappsPatch object itself.
      */
     public SpringbootappsPatch withProperties(SpringbootappsProperties properties) {
         this.properties = properties;
-        return this;
-    }
-
-    /**
-     * Get the tags property: Resource tags.
-     * 
-     * @return the tags value.
-     */
-    public Map<String, String> tags() {
-        return this.tags;
-    }
-
-    /**
-     * Set the tags property: Resource tags.
-     * 
-     * @param tags the tags value to set.
-     * @return the SpringbootappsPatch object itself.
-     */
-    public SpringbootappsPatch withTags(Map<String, String> tags) {
-        this.tags = tags;
         return this;
     }
 

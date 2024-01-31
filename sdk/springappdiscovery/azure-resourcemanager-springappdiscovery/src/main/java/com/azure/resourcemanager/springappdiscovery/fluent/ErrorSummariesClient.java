@@ -18,6 +18,37 @@ public interface ErrorSummariesClient {
     /**
      * Implements ErrorSummaries GET method.
      * 
+     * Lists the ErrorSummaries resource in springbootsites.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ErrorSummary list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ErrorSummaryInner> listBySite(String resourceGroupName, String siteName);
+
+    /**
+     * Implements ErrorSummaries GET method.
+     * 
+     * Lists the ErrorSummaries resource in springbootsites.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ErrorSummary list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ErrorSummaryInner> listBySite(String resourceGroupName, String siteName, Context context);
+
+    /**
+     * Implements ErrorSummaries GET method.
+     * 
      * Gets the ErrorSummaries resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -48,35 +79,4 @@ public interface ErrorSummariesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ErrorSummaryInner get(String resourceGroupName, String siteName, String errorSummaryName);
-
-    /**
-     * Implements ErrorSummaries GET method.
-     * 
-     * Lists the ErrorSummaries resource in springbootsites.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of ErrorSummary as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ErrorSummaryInner> listBySite(String resourceGroupName, String siteName);
-
-    /**
-     * Implements ErrorSummaries GET method.
-     * 
-     * Lists the ErrorSummaries resource in springbootsites.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of ErrorSummary as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ErrorSummaryInner> listBySite(String resourceGroupName, String siteName, Context context);
 }

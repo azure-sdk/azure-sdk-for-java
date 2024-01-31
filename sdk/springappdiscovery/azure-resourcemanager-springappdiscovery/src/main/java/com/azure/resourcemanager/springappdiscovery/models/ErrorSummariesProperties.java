@@ -28,7 +28,7 @@ public final class ErrorSummariesProperties {
     /*
      * The resource provisioning state.
      */
-    @JsonProperty(value = "provisioningState")
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /**
@@ -85,17 +85,6 @@ public final class ErrorSummariesProperties {
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
-    }
-
-    /**
-     * Set the provisioningState property: The resource provisioning state.
-     * 
-     * @param provisioningState the provisioningState value to set.
-     * @return the ErrorSummariesProperties object itself.
-     */
-    public ErrorSummariesProperties withProvisioningState(ProvisioningState provisioningState) {
-        this.provisioningState = provisioningState;
-        return this;
     }
 
     /**

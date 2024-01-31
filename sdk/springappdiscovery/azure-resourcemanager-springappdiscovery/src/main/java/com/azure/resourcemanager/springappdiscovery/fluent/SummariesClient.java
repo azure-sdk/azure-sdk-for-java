@@ -18,6 +18,37 @@ public interface SummariesClient {
     /**
      * Implements Summaries GET method.
      * 
+     * Lists the Summaries resource in springbootsites.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a Summary list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<SummaryInner> listBySite(String resourceGroupName, String siteName);
+
+    /**
+     * Implements Summaries GET method.
+     * 
+     * Lists the Summaries resource in springbootsites.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a Summary list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<SummaryInner> listBySite(String resourceGroupName, String siteName, Context context);
+
+    /**
+     * Implements Summaries GET method.
+     * 
      * Gets the Summaries resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -48,35 +79,4 @@ public interface SummariesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     SummaryInner get(String resourceGroupName, String siteName, String summaryName);
-
-    /**
-     * Implements Summaries GET method.
-     * 
-     * Lists the Summaries resource in springbootsites.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Sites as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<SummaryInner> listBySite(String resourceGroupName, String siteName);
-
-    /**
-     * Implements Summaries GET method.
-     * 
-     * Lists the Summaries resource in springbootsites.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Sites as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<SummaryInner> listBySite(String resourceGroupName, String siteName, Context context);
 }

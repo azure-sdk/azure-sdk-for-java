@@ -8,8 +8,6 @@ import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.springappdiscovery.fluent.models.SpringbootappsModelInner;
 import com.azure.resourcemanager.springappdiscovery.models.SpringbootappsModel;
 import com.azure.resourcemanager.springappdiscovery.models.SpringbootappsProperties;
-import java.util.Collections;
-import java.util.Map;
 
 public final class SpringbootappsModelImpl implements SpringbootappsModel {
     private SpringbootappsModelInner innerObject;
@@ -36,15 +34,6 @@ public final class SpringbootappsModelImpl implements SpringbootappsModel {
 
     public SpringbootappsProperties properties() {
         return this.innerModel().properties();
-    }
-
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
     }
 
     public SystemData systemData() {

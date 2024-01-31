@@ -34,7 +34,7 @@ public final class SummariesProperties {
     /*
      * The resource provisioning state.
      */
-    @JsonProperty(value = "provisioningState")
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /**
@@ -110,17 +110,6 @@ public final class SummariesProperties {
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
-    }
-
-    /**
-     * Set the provisioningState property: The resource provisioning state.
-     * 
-     * @param provisioningState the provisioningState value to set.
-     * @return the SummariesProperties object itself.
-     */
-    public SummariesProperties withProvisioningState(ProvisioningState provisioningState) {
-        this.provisioningState = provisioningState;
-        return this;
     }
 
     /**

@@ -8,9 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.springappdiscovery.models.SummariesProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
 
 /**
  * The summary resource definition.
@@ -18,17 +16,10 @@ import java.util.Map;
 @Fluent
 public final class SummaryInner extends ProxyResource {
     /*
-     * Resource properties.
+     * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
     private SummariesProperties properties;
-
-    /*
-     * Resource tags
-     */
-    @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, String> tags;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -43,7 +34,7 @@ public final class SummaryInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: Resource properties.
+     * Get the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
@@ -52,33 +43,13 @@ public final class SummaryInner extends ProxyResource {
     }
 
     /**
-     * Set the properties property: Resource properties.
+     * Set the properties property: The resource-specific properties for this resource.
      * 
      * @param properties the properties value to set.
      * @return the SummaryInner object itself.
      */
     public SummaryInner withProperties(SummariesProperties properties) {
         this.properties = properties;
-        return this;
-    }
-
-    /**
-     * Get the tags property: Resource tags.
-     * 
-     * @return the tags value.
-     */
-    public Map<String, String> tags() {
-        return this.tags;
-    }
-
-    /**
-     * Set the tags property: Resource tags.
-     * 
-     * @param tags the tags value to set.
-     * @return the SummaryInner object itself.
-     */
-    public SummaryInner withTags(Map<String, String> tags) {
-        this.tags = tags;
         return this;
     }
 

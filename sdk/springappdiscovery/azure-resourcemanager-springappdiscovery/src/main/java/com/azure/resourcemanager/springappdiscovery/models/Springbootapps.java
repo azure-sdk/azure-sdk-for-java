@@ -13,6 +13,54 @@ import com.azure.core.util.Context;
  */
 public interface Springbootapps {
     /**
+     * List springbootapps resource by subscription.
+     * 
+     * @param siteName The springbootsites name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootappsModel list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SpringbootappsModel> listBySubscription(String siteName);
+
+    /**
+     * List springbootapps resource by subscription.
+     * 
+     * @param siteName The springbootsites name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootappsModel list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SpringbootappsModel> listBySubscription(String siteName, Context context);
+
+    /**
+     * List springbootapps resource by resourceGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootappsModel list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SpringbootappsModel> listByResourceGroup(String resourceGroupName, String siteName);
+
+    /**
+     * List springbootapps resource by resourceGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SpringbootappsModel list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SpringbootappsModel> listByResourceGroup(String resourceGroupName, String siteName, Context context);
+
+    /**
      * Get a springbootapps resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -70,52 +118,4 @@ public interface Springbootapps {
      */
     SpringbootappsModel update(String resourceGroupName, String siteName, String springbootappsName,
         SpringbootappsPatch springbootapps, Context context);
-
-    /**
-     * List springbootapps resource by resourceGroup.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootapps list resource definition as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<SpringbootappsModel> listByResourceGroup(String resourceGroupName, String siteName);
-
-    /**
-     * List springbootapps resource by resourceGroup.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootapps list resource definition as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<SpringbootappsModel> listByResourceGroup(String resourceGroupName, String siteName, Context context);
-
-    /**
-     * List springbootapps resource by subscription.
-     * 
-     * @param siteName The springbootsites name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootapps list resource definition as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<SpringbootappsModel> listBySubscription(String siteName);
-
-    /**
-     * List springbootapps resource by subscription.
-     * 
-     * @param siteName The springbootsites name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootapps list resource definition as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<SpringbootappsModel> listBySubscription(String siteName, Context context);
 }

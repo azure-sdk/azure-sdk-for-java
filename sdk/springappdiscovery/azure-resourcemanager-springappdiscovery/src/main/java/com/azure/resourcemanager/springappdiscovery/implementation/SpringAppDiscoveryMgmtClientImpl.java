@@ -128,20 +128,6 @@ public final class SpringAppDiscoveryMgmtClientImpl implements SpringAppDiscover
     }
 
     /**
-     * The SpringbootsitesClient object to access its operations.
-     */
-    private final SpringbootsitesClient springbootsites;
-
-    /**
-     * Gets the SpringbootsitesClient object to access its operations.
-     * 
-     * @return the SpringbootsitesClient object.
-     */
-    public SpringbootsitesClient getSpringbootsites() {
-        return this.springbootsites;
-    }
-
-    /**
      * The OperationsClient object to access its operations.
      */
     private final OperationsClient operations;
@@ -156,17 +142,17 @@ public final class SpringAppDiscoveryMgmtClientImpl implements SpringAppDiscover
     }
 
     /**
-     * The SpringbootserversClient object to access its operations.
+     * The SpringbootsitesClient object to access its operations.
      */
-    private final SpringbootserversClient springbootservers;
+    private final SpringbootsitesClient springbootsites;
 
     /**
-     * Gets the SpringbootserversClient object to access its operations.
+     * Gets the SpringbootsitesClient object to access its operations.
      * 
-     * @return the SpringbootserversClient object.
+     * @return the SpringbootsitesClient object.
      */
-    public SpringbootserversClient getSpringbootservers() {
-        return this.springbootservers;
+    public SpringbootsitesClient getSpringbootsites() {
+        return this.springbootsites;
     }
 
     /**
@@ -184,17 +170,17 @@ public final class SpringAppDiscoveryMgmtClientImpl implements SpringAppDiscover
     }
 
     /**
-     * The SummariesClient object to access its operations.
+     * The SpringbootserversClient object to access its operations.
      */
-    private final SummariesClient summaries;
+    private final SpringbootserversClient springbootservers;
 
     /**
-     * Gets the SummariesClient object to access its operations.
+     * Gets the SpringbootserversClient object to access its operations.
      * 
-     * @return the SummariesClient object.
+     * @return the SpringbootserversClient object.
      */
-    public SummariesClient getSummaries() {
-        return this.summaries;
+    public SpringbootserversClient getSpringbootservers() {
+        return this.springbootservers;
     }
 
     /**
@@ -209,6 +195,20 @@ public final class SpringAppDiscoveryMgmtClientImpl implements SpringAppDiscover
      */
     public ErrorSummariesClient getErrorSummaries() {
         return this.errorSummaries;
+    }
+
+    /**
+     * The SummariesClient object to access its operations.
+     */
+    private final SummariesClient summaries;
+
+    /**
+     * Gets the SummariesClient object to access its operations.
+     * 
+     * @return the SummariesClient object.
+     */
+    public SummariesClient getSummaries() {
+        return this.summaries;
     }
 
     /**
@@ -229,12 +229,12 @@ public final class SpringAppDiscoveryMgmtClientImpl implements SpringAppDiscover
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
         this.apiVersion = "2023-01-01-preview";
-        this.springbootsites = new SpringbootsitesClientImpl(this);
         this.operations = new OperationsClientImpl(this);
-        this.springbootservers = new SpringbootserversClientImpl(this);
+        this.springbootsites = new SpringbootsitesClientImpl(this);
         this.springbootapps = new SpringbootappsClientImpl(this);
-        this.summaries = new SummariesClientImpl(this);
+        this.springbootservers = new SpringbootserversClientImpl(this);
         this.errorSummaries = new ErrorSummariesClientImpl(this);
+        this.summaries = new SummariesClientImpl(this);
     }
 
     /**

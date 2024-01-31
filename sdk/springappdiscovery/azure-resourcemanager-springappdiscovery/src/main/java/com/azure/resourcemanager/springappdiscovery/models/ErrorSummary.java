@@ -6,7 +6,6 @@ package com.azure.resourcemanager.springappdiscovery.models;
 
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.springappdiscovery.fluent.models.ErrorSummaryInner;
-import java.util.Map;
 
 /**
  * An immutable client-side representation of ErrorSummary.
@@ -34,18 +33,11 @@ public interface ErrorSummary {
     String type();
 
     /**
-     * Gets the properties property: Resource properties.
+     * Gets the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
     ErrorSummariesProperties properties();
-
-    /**
-     * Gets the tags property: Resource tags.
-     * 
-     * @return the tags value.
-     */
-    Map<String, String> tags();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.

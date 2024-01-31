@@ -27,6 +27,27 @@ public final class SpringbootsitesImpl implements Springbootsites {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<SpringbootsitesModel> list() {
+        PagedIterable<SpringbootsitesModelInner> inner = this.serviceClient().list();
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SpringbootsitesModelImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<SpringbootsitesModel> list(Context context) {
+        PagedIterable<SpringbootsitesModelInner> inner = this.serviceClient().list(context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SpringbootsitesModelImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<SpringbootsitesModel> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<SpringbootsitesModelInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SpringbootsitesModelImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<SpringbootsitesModel> listByResourceGroup(String resourceGroupName, Context context) {
+        PagedIterable<SpringbootsitesModelInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SpringbootsitesModelImpl(inner1, this.manager()));
+    }
+
     public Response<SpringbootsitesModel> getByResourceGroupWithResponse(String resourceGroupName,
         String springbootsitesName, Context context) {
         Response<SpringbootsitesModelInner> inner
@@ -63,27 +84,6 @@ public final class SpringbootsitesImpl implements Springbootsites {
 
     public void triggerRefreshSite(String resourceGroupName, String springbootsitesName, Context context) {
         this.serviceClient().triggerRefreshSite(resourceGroupName, springbootsitesName, context);
-    }
-
-    public PagedIterable<SpringbootsitesModel> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<SpringbootsitesModelInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SpringbootsitesModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<SpringbootsitesModel> listByResourceGroup(String resourceGroupName, Context context) {
-        PagedIterable<SpringbootsitesModelInner> inner
-            = this.serviceClient().listByResourceGroup(resourceGroupName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SpringbootsitesModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<SpringbootsitesModel> list() {
-        PagedIterable<SpringbootsitesModelInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SpringbootsitesModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<SpringbootsitesModel> list(Context context) {
-        PagedIterable<SpringbootsitesModelInner> inner = this.serviceClient().list(context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SpringbootsitesModelImpl(inner1, this.manager()));
     }
 
     public SpringbootsitesModel getById(String id) {

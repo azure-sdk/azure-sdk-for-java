@@ -27,6 +27,16 @@ public final class ErrorSummariesImpl implements ErrorSummaries {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<ErrorSummary> listBySite(String resourceGroupName, String siteName) {
+        PagedIterable<ErrorSummaryInner> inner = this.serviceClient().listBySite(resourceGroupName, siteName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ErrorSummaryImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ErrorSummary> listBySite(String resourceGroupName, String siteName, Context context) {
+        PagedIterable<ErrorSummaryInner> inner = this.serviceClient().listBySite(resourceGroupName, siteName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ErrorSummaryImpl(inner1, this.manager()));
+    }
+
     public Response<ErrorSummary> getWithResponse(String resourceGroupName, String siteName, String errorSummaryName,
         Context context) {
         Response<ErrorSummaryInner> inner
@@ -46,16 +56,6 @@ public final class ErrorSummariesImpl implements ErrorSummaries {
         } else {
             return null;
         }
-    }
-
-    public PagedIterable<ErrorSummary> listBySite(String resourceGroupName, String siteName) {
-        PagedIterable<ErrorSummaryInner> inner = this.serviceClient().listBySite(resourceGroupName, siteName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ErrorSummaryImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<ErrorSummary> listBySite(String resourceGroupName, String siteName, Context context) {
-        PagedIterable<ErrorSummaryInner> inner = this.serviceClient().listBySite(resourceGroupName, siteName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ErrorSummaryImpl(inner1, this.manager()));
     }
 
     private ErrorSummariesClient serviceClient() {

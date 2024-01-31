@@ -1,29 +1,4 @@
 [ {
-  "name" : "com.azure.resourcemanager.springappdiscovery.fluent.models.SpringbootsitesModelInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.springappdiscovery.models.SpringbootsitesProperties",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.springappdiscovery.models.SpringbootsitesModelExtendedLocation",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.springappdiscovery.models.SpringbootsitesPatch",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.springappdiscovery.models.SpringbootsitesListResult",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
   "name" : "com.azure.resourcemanager.springappdiscovery.models.OperationListResult",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -39,27 +14,27 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.springappdiscovery.fluent.models.SpringbootserversModelInner",
+  "name" : "com.azure.resourcemanager.springappdiscovery.models.SpringbootsitesModelListResult",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.springappdiscovery.models.SpringbootserversProperties",
+  "name" : "com.azure.resourcemanager.springappdiscovery.fluent.models.SpringbootsitesModelInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.springappdiscovery.models.Error",
+  "name" : "com.azure.resourcemanager.springappdiscovery.models.SpringbootsitesProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.springappdiscovery.models.SpringbootserversPatch",
+  "name" : "com.azure.resourcemanager.springappdiscovery.models.SpringbootsitesModelExtendedLocation",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.springappdiscovery.models.SpringbootserversListResult",
+  "name" : "com.azure.resourcemanager.springappdiscovery.models.SpringbootappsModelListResult",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -89,27 +64,32 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.springappdiscovery.models.SpringbootappsPatch",
+  "name" : "com.azure.resourcemanager.springappdiscovery.models.Error",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.springappdiscovery.models.SpringbootappsListResult",
+  "name" : "com.azure.resourcemanager.springappdiscovery.models.SpringbootserversModelListResult",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.springappdiscovery.fluent.models.SummaryInner",
+  "name" : "com.azure.resourcemanager.springappdiscovery.fluent.models.SpringbootserversModelInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.springappdiscovery.models.SummariesProperties",
+  "name" : "com.azure.resourcemanager.springappdiscovery.models.SpringbootserversProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.springappdiscovery.models.SummaryList",
+  "name" : "com.azure.resourcemanager.springappdiscovery.models.SpringbootsitesPatch",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.springappdiscovery.models.ErrorSummaryListResult",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -129,12 +109,27 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.springappdiscovery.models.ErrorSummaryList",
+  "name" : "com.azure.resourcemanager.springappdiscovery.models.SpringbootappsPatch",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.springappdiscovery.models.ProvisioningState",
+  "name" : "com.azure.resourcemanager.springappdiscovery.models.SpringbootserversPatch",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.springappdiscovery.models.SummaryListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.springappdiscovery.fluent.models.SummaryInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.springappdiscovery.models.SummariesProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -145,6 +140,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.springappdiscovery.models.ActionType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.springappdiscovery.models.ProvisioningState",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

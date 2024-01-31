@@ -8,9 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.springappdiscovery.models.SpringbootserversProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
 
 /**
  * The springbootservers envelope resource definition.
@@ -18,14 +16,7 @@ import java.util.Map;
 @Fluent
 public final class SpringbootserversModelInner extends ProxyResource {
     /*
-     * Resource tags
-     */
-    @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, String> tags;
-
-    /*
-     * The springbootservers resource definition.
+     * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
     private SpringbootserversProperties properties;
@@ -43,27 +34,7 @@ public final class SpringbootserversModelInner extends ProxyResource {
     }
 
     /**
-     * Get the tags property: Resource tags.
-     * 
-     * @return the tags value.
-     */
-    public Map<String, String> tags() {
-        return this.tags;
-    }
-
-    /**
-     * Set the tags property: Resource tags.
-     * 
-     * @param tags the tags value to set.
-     * @return the SpringbootserversModelInner object itself.
-     */
-    public SpringbootserversModelInner withTags(Map<String, String> tags) {
-        this.tags = tags;
-        return this;
-    }
-
-    /**
-     * Get the properties property: The springbootservers resource definition.
+     * Get the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
@@ -72,7 +43,7 @@ public final class SpringbootserversModelInner extends ProxyResource {
     }
 
     /**
-     * Set the properties property: The springbootservers resource definition.
+     * Set the properties property: The resource-specific properties for this resource.
      * 
      * @param properties the properties value to set.
      * @return the SpringbootserversModelInner object itself.

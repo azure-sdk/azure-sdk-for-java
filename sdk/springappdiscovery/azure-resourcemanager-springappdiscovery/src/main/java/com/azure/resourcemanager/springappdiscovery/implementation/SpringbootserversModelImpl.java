@@ -10,8 +10,6 @@ import com.azure.resourcemanager.springappdiscovery.fluent.models.Springbootserv
 import com.azure.resourcemanager.springappdiscovery.models.SpringbootserversModel;
 import com.azure.resourcemanager.springappdiscovery.models.SpringbootserversPatch;
 import com.azure.resourcemanager.springappdiscovery.models.SpringbootserversProperties;
-import java.util.Collections;
-import java.util.Map;
 
 public final class SpringbootserversModelImpl
     implements SpringbootserversModel, SpringbootserversModel.Definition, SpringbootserversModel.Update {
@@ -29,15 +27,6 @@ public final class SpringbootserversModelImpl
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
     }
 
     public SpringbootserversProperties properties() {
@@ -133,27 +122,8 @@ public final class SpringbootserversModelImpl
         return this;
     }
 
-    public SpringbootserversModelImpl withTags(Map<String, String> tags) {
-        if (isInCreateMode()) {
-            this.innerModel().withTags(tags);
-            return this;
-        } else {
-            this.updateSpringbootservers.withTags(tags);
-            return this;
-        }
-    }
-
     public SpringbootserversModelImpl withProperties(SpringbootserversProperties properties) {
-        if (isInCreateMode()) {
-            this.innerModel().withProperties(properties);
-            return this;
-        } else {
-            this.updateSpringbootservers.withProperties(properties);
-            return this;
-        }
-    }
-
-    private boolean isInCreateMode() {
-        return this.innerModel().id() == null;
+        this.innerModel().withProperties(properties);
+        return this;
     }
 }

@@ -27,6 +27,29 @@ public final class SpringbootserversImpl implements Springbootservers {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<SpringbootserversModel> listBySubscription(String siteName) {
+        PagedIterable<SpringbootserversModelInner> inner = this.serviceClient().listBySubscription(siteName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SpringbootserversModelImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<SpringbootserversModel> listBySubscription(String siteName, Context context) {
+        PagedIterable<SpringbootserversModelInner> inner = this.serviceClient().listBySubscription(siteName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SpringbootserversModelImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<SpringbootserversModel> listByResourceGroup(String resourceGroupName, String siteName) {
+        PagedIterable<SpringbootserversModelInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, siteName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SpringbootserversModelImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<SpringbootserversModel> listByResourceGroup(String resourceGroupName, String siteName,
+        Context context) {
+        PagedIterable<SpringbootserversModelInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, siteName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SpringbootserversModelImpl(inner1, this.manager()));
+    }
+
     public Response<SpringbootserversModel> getWithResponse(String resourceGroupName, String siteName,
         String springbootserversName, Context context) {
         Response<SpringbootserversModelInner> inner
@@ -55,29 +78,6 @@ public final class SpringbootserversImpl implements Springbootservers {
 
     public void delete(String resourceGroupName, String siteName, String springbootserversName, Context context) {
         this.serviceClient().delete(resourceGroupName, siteName, springbootserversName, context);
-    }
-
-    public PagedIterable<SpringbootserversModel> listByResourceGroup(String resourceGroupName, String siteName) {
-        PagedIterable<SpringbootserversModelInner> inner
-            = this.serviceClient().listByResourceGroup(resourceGroupName, siteName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SpringbootserversModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<SpringbootserversModel> listByResourceGroup(String resourceGroupName, String siteName,
-        Context context) {
-        PagedIterable<SpringbootserversModelInner> inner
-            = this.serviceClient().listByResourceGroup(resourceGroupName, siteName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SpringbootserversModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<SpringbootserversModel> listBySubscription(String siteName) {
-        PagedIterable<SpringbootserversModelInner> inner = this.serviceClient().listBySubscription(siteName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SpringbootserversModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<SpringbootserversModel> listBySubscription(String siteName, Context context) {
-        PagedIterable<SpringbootserversModelInner> inner = this.serviceClient().listBySubscription(siteName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SpringbootserversModelImpl(inner1, this.manager()));
     }
 
     public SpringbootserversModel getById(String id) {

@@ -16,7 +16,7 @@ import java.util.Map;
 @Fluent
 public final class SpringbootsitesPatch extends Resource {
     /*
-     * The springbootsites resource definition.
+     * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
     private SpringbootsitesProperties properties;
@@ -34,7 +34,7 @@ public final class SpringbootsitesPatch extends Resource {
     }
 
     /**
-     * Get the properties property: The springbootsites resource definition.
+     * Get the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
@@ -43,7 +43,7 @@ public final class SpringbootsitesPatch extends Resource {
     }
 
     /**
-     * Set the properties property: The springbootsites resource definition.
+     * Set the properties property: The resource-specific properties for this resource.
      * 
      * @param properties the properties value to set.
      * @return the SpringbootsitesPatch object itself.

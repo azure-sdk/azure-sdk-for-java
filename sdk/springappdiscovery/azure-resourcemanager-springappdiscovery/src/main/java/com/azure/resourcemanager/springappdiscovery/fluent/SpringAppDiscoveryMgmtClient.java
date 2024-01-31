@@ -47,13 +47,6 @@ public interface SpringAppDiscoveryMgmtClient {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the SpringbootsitesClient object to access its operations.
-     * 
-     * @return the SpringbootsitesClient object.
-     */
-    SpringbootsitesClient getSpringbootsites();
-
-    /**
      * Gets the OperationsClient object to access its operations.
      * 
      * @return the OperationsClient object.
@@ -61,11 +54,11 @@ public interface SpringAppDiscoveryMgmtClient {
     OperationsClient getOperations();
 
     /**
-     * Gets the SpringbootserversClient object to access its operations.
+     * Gets the SpringbootsitesClient object to access its operations.
      * 
-     * @return the SpringbootserversClient object.
+     * @return the SpringbootsitesClient object.
      */
-    SpringbootserversClient getSpringbootservers();
+    SpringbootsitesClient getSpringbootsites();
 
     /**
      * Gets the SpringbootappsClient object to access its operations.
@@ -75,11 +68,11 @@ public interface SpringAppDiscoveryMgmtClient {
     SpringbootappsClient getSpringbootapps();
 
     /**
-     * Gets the SummariesClient object to access its operations.
+     * Gets the SpringbootserversClient object to access its operations.
      * 
-     * @return the SummariesClient object.
+     * @return the SpringbootserversClient object.
      */
-    SummariesClient getSummaries();
+    SpringbootserversClient getSpringbootservers();
 
     /**
      * Gets the ErrorSummariesClient object to access its operations.
@@ -87,4 +80,11 @@ public interface SpringAppDiscoveryMgmtClient {
      * @return the ErrorSummariesClient object.
      */
     ErrorSummariesClient getErrorSummaries();
+
+    /**
+     * Gets the SummariesClient object to access its operations.
+     * 
+     * @return the SummariesClient object.
+     */
+    SummariesClient getSummaries();
 }

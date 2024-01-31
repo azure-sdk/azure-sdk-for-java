@@ -27,7 +27,7 @@ public final class SpringbootsitesProperties {
     /*
      * The resource provisioning state.
      */
-    @JsonProperty(value = "provisioningState")
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /**
@@ -83,17 +83,6 @@ public final class SpringbootsitesProperties {
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
-    }
-
-    /**
-     * Set the provisioningState property: The resource provisioning state.
-     * 
-     * @param provisioningState the provisioningState value to set.
-     * @return the SpringbootsitesProperties object itself.
-     */
-    public SpringbootsitesProperties withProvisioningState(ProvisioningState provisioningState) {
-        this.provisioningState = provisioningState;
-        return this;
     }
 
     /**
