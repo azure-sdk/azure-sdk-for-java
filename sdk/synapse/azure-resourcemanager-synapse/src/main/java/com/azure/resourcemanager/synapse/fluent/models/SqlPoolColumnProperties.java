@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.synapse.models.ColumnDataType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Sql pool column properties. */
+/**
+ * Sql pool column properties.
+ */
 @Fluent
 public final class SqlPoolColumnProperties {
     /*
@@ -23,13 +25,15 @@ public final class SqlPoolColumnProperties {
     @JsonProperty(value = "isComputed", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isComputed;
 
-    /** Creates an instance of SqlPoolColumnProperties class. */
+    /**
+     * Creates an instance of SqlPoolColumnProperties class.
+     */
     public SqlPoolColumnProperties() {
     }
 
     /**
      * Get the columnType property: The column data type.
-     *
+     * 
      * @return the columnType value.
      */
     public ColumnDataType columnType() {
@@ -38,7 +42,7 @@ public final class SqlPoolColumnProperties {
 
     /**
      * Set the columnType property: The column data type.
-     *
+     * 
      * @param columnType the columnType value to set.
      * @return the SqlPoolColumnProperties object itself.
      */
@@ -49,7 +53,7 @@ public final class SqlPoolColumnProperties {
 
     /**
      * Get the isComputed property: Indicates whether column value is computed or not.
-     *
+     * 
      * @return the isComputed value.
      */
     public Boolean isComputed() {
@@ -58,7 +62,7 @@ public final class SqlPoolColumnProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.fluent.models.SqlPoolTableInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of Sql pool tables. */
+/**
+ * A list of Sql pool tables.
+ */
 @Immutable
 public final class SqlPoolTableListResult {
     /*
@@ -24,13 +26,15 @@ public final class SqlPoolTableListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of SqlPoolTableListResult class. */
+    /**
+     * Creates an instance of SqlPoolTableListResult class.
+     */
     public SqlPoolTableListResult() {
     }
 
     /**
      * Get the value property: Array of results.
-     *
+     * 
      * @return the value value.
      */
     public List<SqlPoolTableInner> value() {
@@ -39,7 +43,7 @@ public final class SqlPoolTableListResult {
 
     /**
      * Get the nextLink property: Link to retrieve next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class SqlPoolTableListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

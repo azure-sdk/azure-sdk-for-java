@@ -7,7 +7,9 @@ package com.azure.resourcemanager.synapse.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Metadata Sync Config properties. */
+/**
+ * Metadata Sync Config properties.
+ */
 @Fluent
 public final class MetadataSyncConfigProperties {
     /*
@@ -22,13 +24,15 @@ public final class MetadataSyncConfigProperties {
     @JsonProperty(value = "syncIntervalInMinutes")
     private Integer syncIntervalInMinutes;
 
-    /** Creates an instance of MetadataSyncConfigProperties class. */
+    /**
+     * Creates an instance of MetadataSyncConfigProperties class.
+     */
     public MetadataSyncConfigProperties() {
     }
 
     /**
      * Get the enabled property: Indicates whether the metadata sync is enabled or disabled.
-     *
+     * 
      * @return the enabled value.
      */
     public Boolean enabled() {
@@ -37,7 +41,7 @@ public final class MetadataSyncConfigProperties {
 
     /**
      * Set the enabled property: Indicates whether the metadata sync is enabled or disabled.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the MetadataSyncConfigProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class MetadataSyncConfigProperties {
 
     /**
      * Get the syncIntervalInMinutes property: The Sync Interval in minutes.
-     *
+     * 
      * @return the syncIntervalInMinutes value.
      */
     public Integer syncIntervalInMinutes() {
@@ -57,7 +61,7 @@ public final class MetadataSyncConfigProperties {
 
     /**
      * Set the syncIntervalInMinutes property: The Sync Interval in minutes.
-     *
+     * 
      * @param syncIntervalInMinutes the syncIntervalInMinutes value to set.
      * @return the MetadataSyncConfigProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class MetadataSyncConfigProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

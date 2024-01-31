@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.models.PrivateEndpointConnectionForPriv
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** PrivateLinkHub properties. */
+/**
+ * PrivateLinkHub properties.
+ */
 @Fluent
 public final class PrivateLinkHubProperties {
     /*
@@ -24,13 +26,15 @@ public final class PrivateLinkHubProperties {
     @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
     private List<PrivateEndpointConnectionForPrivateLinkHubBasic> privateEndpointConnections;
 
-    /** Creates an instance of PrivateLinkHubProperties class. */
+    /**
+     * Creates an instance of PrivateLinkHubProperties class.
+     */
     public PrivateLinkHubProperties() {
     }
 
     /**
      * Get the provisioningState property: PrivateLinkHub provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -39,7 +43,7 @@ public final class PrivateLinkHubProperties {
 
     /**
      * Set the provisioningState property: PrivateLinkHub provisioning state.
-     *
+     * 
      * @param provisioningState the provisioningState value to set.
      * @return the PrivateLinkHubProperties object itself.
      */
@@ -50,7 +54,7 @@ public final class PrivateLinkHubProperties {
 
     /**
      * Get the privateEndpointConnections property: List of private endpoint connections.
-     *
+     * 
      * @return the privateEndpointConnections value.
      */
     public List<PrivateEndpointConnectionForPrivateLinkHubBasic> privateEndpointConnections() {
@@ -59,7 +63,7 @@ public final class PrivateLinkHubProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

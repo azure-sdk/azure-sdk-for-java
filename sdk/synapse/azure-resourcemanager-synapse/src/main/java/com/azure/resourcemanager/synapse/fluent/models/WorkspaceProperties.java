@@ -19,7 +19,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-/** Workspace properties. */
+/**
+ * Workspace properties.
+ */
 @Fluent
 public final class WorkspaceProperties {
     /*
@@ -153,13 +155,15 @@ public final class WorkspaceProperties {
     @JsonProperty(value = "trustedServiceBypassEnabled")
     private Boolean trustedServiceBypassEnabled;
 
-    /** Creates an instance of WorkspaceProperties class. */
+    /**
+     * Creates an instance of WorkspaceProperties class.
+     */
     public WorkspaceProperties() {
     }
 
     /**
      * Get the defaultDataLakeStorage property: Workspace default data lake storage account details.
-     *
+     * 
      * @return the defaultDataLakeStorage value.
      */
     public DataLakeStorageAccountDetails defaultDataLakeStorage() {
@@ -168,7 +172,7 @@ public final class WorkspaceProperties {
 
     /**
      * Set the defaultDataLakeStorage property: Workspace default data lake storage account details.
-     *
+     * 
      * @param defaultDataLakeStorage the defaultDataLakeStorage value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -179,7 +183,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the sqlAdministratorLoginPassword property: SQL administrator login password.
-     *
+     * 
      * @return the sqlAdministratorLoginPassword value.
      */
     public String sqlAdministratorLoginPassword() {
@@ -188,7 +192,7 @@ public final class WorkspaceProperties {
 
     /**
      * Set the sqlAdministratorLoginPassword property: SQL administrator login password.
-     *
+     * 
      * @param sqlAdministratorLoginPassword the sqlAdministratorLoginPassword value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -200,9 +204,9 @@ public final class WorkspaceProperties {
     /**
      * Get the managedResourceGroupName property: Workspace managed resource group. The resource group name uniquely
      * identifies the resource group within the user subscriptionId. The resource group name must be no longer than 90
-     * characters long, and must be alphanumeric characters (Char.IsLetterOrDigit()) and '-', '_', '(', ')' and'.'. Note
-     * that the name cannot end with '.'.
-     *
+     * characters long, and must be alphanumeric characters (Char.IsLetterOrDigit()) and '-', '_', '(', ')' and'.'.
+     * Note that the name cannot end with '.'.
+     * 
      * @return the managedResourceGroupName value.
      */
     public String managedResourceGroupName() {
@@ -212,9 +216,9 @@ public final class WorkspaceProperties {
     /**
      * Set the managedResourceGroupName property: Workspace managed resource group. The resource group name uniquely
      * identifies the resource group within the user subscriptionId. The resource group name must be no longer than 90
-     * characters long, and must be alphanumeric characters (Char.IsLetterOrDigit()) and '-', '_', '(', ')' and'.'. Note
-     * that the name cannot end with '.'.
-     *
+     * characters long, and must be alphanumeric characters (Char.IsLetterOrDigit()) and '-', '_', '(', ')' and'.'.
+     * Note that the name cannot end with '.'.
+     * 
      * @param managedResourceGroupName the managedResourceGroupName value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -225,7 +229,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the provisioningState property: Resource provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -234,7 +238,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the sqlAdministratorLogin property: Login for workspace SQL active directory administrator.
-     *
+     * 
      * @return the sqlAdministratorLogin value.
      */
     public String sqlAdministratorLogin() {
@@ -243,7 +247,7 @@ public final class WorkspaceProperties {
 
     /**
      * Set the sqlAdministratorLogin property: Login for workspace SQL active directory administrator.
-     *
+     * 
      * @param sqlAdministratorLogin the sqlAdministratorLogin value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -254,7 +258,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the virtualNetworkProfile property: Virtual Network profile.
-     *
+     * 
      * @return the virtualNetworkProfile value.
      */
     public VirtualNetworkProfile virtualNetworkProfile() {
@@ -263,7 +267,7 @@ public final class WorkspaceProperties {
 
     /**
      * Set the virtualNetworkProfile property: Virtual Network profile.
-     *
+     * 
      * @param virtualNetworkProfile the virtualNetworkProfile value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -274,7 +278,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the connectivityEndpoints property: Connectivity endpoints.
-     *
+     * 
      * @return the connectivityEndpoints value.
      */
     public Map<String, String> connectivityEndpoints() {
@@ -282,9 +286,9 @@ public final class WorkspaceProperties {
     }
 
     /**
-     * Get the managedVirtualNetwork property: Setting this to 'default' will ensure that all compute for this workspace
-     * is in a virtual network managed on behalf of the user.
-     *
+     * Get the managedVirtualNetwork property: Setting this to 'default' will ensure that all compute for this
+     * workspace is in a virtual network managed on behalf of the user.
+     * 
      * @return the managedVirtualNetwork value.
      */
     public String managedVirtualNetwork() {
@@ -292,9 +296,9 @@ public final class WorkspaceProperties {
     }
 
     /**
-     * Set the managedVirtualNetwork property: Setting this to 'default' will ensure that all compute for this workspace
-     * is in a virtual network managed on behalf of the user.
-     *
+     * Set the managedVirtualNetwork property: Setting this to 'default' will ensure that all compute for this
+     * workspace is in a virtual network managed on behalf of the user.
+     * 
      * @param managedVirtualNetwork the managedVirtualNetwork value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -305,7 +309,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the privateEndpointConnections property: Private endpoint connections to the workspace.
-     *
+     * 
      * @return the privateEndpointConnections value.
      */
     public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
@@ -314,19 +318,19 @@ public final class WorkspaceProperties {
 
     /**
      * Set the privateEndpointConnections property: Private endpoint connections to the workspace.
-     *
+     * 
      * @param privateEndpointConnections the privateEndpointConnections value to set.
      * @return the WorkspaceProperties object itself.
      */
-    public WorkspaceProperties withPrivateEndpointConnections(
-        List<PrivateEndpointConnectionInner> privateEndpointConnections) {
+    public WorkspaceProperties
+        withPrivateEndpointConnections(List<PrivateEndpointConnectionInner> privateEndpointConnections) {
         this.privateEndpointConnections = privateEndpointConnections;
         return this;
     }
 
     /**
      * Get the encryption property: The encryption details of the workspace.
-     *
+     * 
      * @return the encryption value.
      */
     public EncryptionDetails encryption() {
@@ -335,7 +339,7 @@ public final class WorkspaceProperties {
 
     /**
      * Set the encryption property: The encryption details of the workspace.
-     *
+     * 
      * @param encryption the encryption value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -346,7 +350,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the workspaceUid property: The workspace unique identifier.
-     *
+     * 
      * @return the workspaceUid value.
      */
     public UUID workspaceUid() {
@@ -355,7 +359,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the extraProperties property: Workspace level configs and feature flags.
-     *
+     * 
      * @return the extraProperties value.
      */
     public Object extraProperties() {
@@ -364,7 +368,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the managedVirtualNetworkSettings property: Managed Virtual Network Settings.
-     *
+     * 
      * @return the managedVirtualNetworkSettings value.
      */
     public ManagedVirtualNetworkSettings managedVirtualNetworkSettings() {
@@ -373,19 +377,19 @@ public final class WorkspaceProperties {
 
     /**
      * Set the managedVirtualNetworkSettings property: Managed Virtual Network Settings.
-     *
+     * 
      * @param managedVirtualNetworkSettings the managedVirtualNetworkSettings value to set.
      * @return the WorkspaceProperties object itself.
      */
-    public WorkspaceProperties withManagedVirtualNetworkSettings(
-        ManagedVirtualNetworkSettings managedVirtualNetworkSettings) {
+    public WorkspaceProperties
+        withManagedVirtualNetworkSettings(ManagedVirtualNetworkSettings managedVirtualNetworkSettings) {
         this.managedVirtualNetworkSettings = managedVirtualNetworkSettings;
         return this;
     }
 
     /**
      * Get the workspaceRepositoryConfiguration property: Git integration settings.
-     *
+     * 
      * @return the workspaceRepositoryConfiguration value.
      */
     public WorkspaceRepositoryConfiguration workspaceRepositoryConfiguration() {
@@ -394,19 +398,19 @@ public final class WorkspaceProperties {
 
     /**
      * Set the workspaceRepositoryConfiguration property: Git integration settings.
-     *
+     * 
      * @param workspaceRepositoryConfiguration the workspaceRepositoryConfiguration value to set.
      * @return the WorkspaceProperties object itself.
      */
-    public WorkspaceProperties withWorkspaceRepositoryConfiguration(
-        WorkspaceRepositoryConfiguration workspaceRepositoryConfiguration) {
+    public WorkspaceProperties
+        withWorkspaceRepositoryConfiguration(WorkspaceRepositoryConfiguration workspaceRepositoryConfiguration) {
         this.workspaceRepositoryConfiguration = workspaceRepositoryConfiguration;
         return this;
     }
 
     /**
      * Get the purviewConfiguration property: Purview Configuration.
-     *
+     * 
      * @return the purviewConfiguration value.
      */
     public PurviewConfiguration purviewConfiguration() {
@@ -415,7 +419,7 @@ public final class WorkspaceProperties {
 
     /**
      * Set the purviewConfiguration property: Purview Configuration.
-     *
+     * 
      * @param purviewConfiguration the purviewConfiguration value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -426,7 +430,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the adlaResourceId property: The ADLA resource ID.
-     *
+     * 
      * @return the adlaResourceId value.
      */
     public String adlaResourceId() {
@@ -435,7 +439,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the publicNetworkAccess property: Enable or Disable public network access to workspace.
-     *
+     * 
      * @return the publicNetworkAccess value.
      */
     public WorkspacePublicNetworkAccess publicNetworkAccess() {
@@ -444,7 +448,7 @@ public final class WorkspaceProperties {
 
     /**
      * Set the publicNetworkAccess property: Enable or Disable public network access to workspace.
-     *
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -455,7 +459,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the cspWorkspaceAdminProperties property: Initial workspace AAD admin properties for a CSP subscription.
-     *
+     * 
      * @return the cspWorkspaceAdminProperties value.
      */
     public CspWorkspaceAdminProperties cspWorkspaceAdminProperties() {
@@ -464,19 +468,19 @@ public final class WorkspaceProperties {
 
     /**
      * Set the cspWorkspaceAdminProperties property: Initial workspace AAD admin properties for a CSP subscription.
-     *
+     * 
      * @param cspWorkspaceAdminProperties the cspWorkspaceAdminProperties value to set.
      * @return the WorkspaceProperties object itself.
      */
-    public WorkspaceProperties withCspWorkspaceAdminProperties(
-        CspWorkspaceAdminProperties cspWorkspaceAdminProperties) {
+    public WorkspaceProperties
+        withCspWorkspaceAdminProperties(CspWorkspaceAdminProperties cspWorkspaceAdminProperties) {
         this.cspWorkspaceAdminProperties = cspWorkspaceAdminProperties;
         return this;
     }
 
     /**
      * Get the settings property: Workspace settings.
-     *
+     * 
      * @return the settings value.
      */
     public Map<String, Object> settings() {
@@ -486,7 +490,7 @@ public final class WorkspaceProperties {
     /**
      * Get the azureADOnlyAuthentication property: Enable or Disable AzureADOnlyAuthentication on All Workspace
      * subresource.
-     *
+     * 
      * @return the azureADOnlyAuthentication value.
      */
     public Boolean azureADOnlyAuthentication() {
@@ -496,7 +500,7 @@ public final class WorkspaceProperties {
     /**
      * Set the azureADOnlyAuthentication property: Enable or Disable AzureADOnlyAuthentication on All Workspace
      * subresource.
-     *
+     * 
      * @param azureADOnlyAuthentication the azureADOnlyAuthentication value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -507,7 +511,7 @@ public final class WorkspaceProperties {
 
     /**
      * Get the trustedServiceBypassEnabled property: Is trustedServiceBypassEnabled for the workspace.
-     *
+     * 
      * @return the trustedServiceBypassEnabled value.
      */
     public Boolean trustedServiceBypassEnabled() {
@@ -516,7 +520,7 @@ public final class WorkspaceProperties {
 
     /**
      * Set the trustedServiceBypassEnabled property: Is trustedServiceBypassEnabled for the workspace.
-     *
+     * 
      * @param trustedServiceBypassEnabled the trustedServiceBypassEnabled value to set.
      * @return the WorkspaceProperties object itself.
      */
@@ -527,7 +531,7 @@ public final class WorkspaceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

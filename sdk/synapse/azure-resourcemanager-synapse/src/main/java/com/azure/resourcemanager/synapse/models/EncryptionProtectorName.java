@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for EncryptionProtectorName. */
+/**
+ * Defines values for EncryptionProtectorName.
+ */
 public final class EncryptionProtectorName extends ExpandableStringEnum<EncryptionProtectorName> {
-    /** Static value current for EncryptionProtectorName. */
+    /**
+     * Static value current for EncryptionProtectorName.
+     */
     public static final EncryptionProtectorName CURRENT = fromString("current");
 
     /**
      * Creates a new instance of EncryptionProtectorName value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class EncryptionProtectorName extends ExpandableStringEnum<Encrypti
 
     /**
      * Creates or finds a EncryptionProtectorName from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding EncryptionProtectorName.
      */
@@ -35,7 +39,7 @@ public final class EncryptionProtectorName extends ExpandableStringEnum<Encrypti
 
     /**
      * Gets known EncryptionProtectorName values.
-     *
+     * 
      * @return known EncryptionProtectorName values.
      */
     public static Collection<EncryptionProtectorName> values() {

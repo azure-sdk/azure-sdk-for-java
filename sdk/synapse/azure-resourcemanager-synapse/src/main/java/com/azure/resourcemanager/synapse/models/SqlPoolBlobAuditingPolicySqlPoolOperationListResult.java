@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.fluent.models.SqlPoolOperationInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response to a list Sql pool operations request. */
+/**
+ * The response to a list Sql pool operations request.
+ */
 @Immutable
 public final class SqlPoolBlobAuditingPolicySqlPoolOperationListResult {
     /*
@@ -24,13 +26,15 @@ public final class SqlPoolBlobAuditingPolicySqlPoolOperationListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of SqlPoolBlobAuditingPolicySqlPoolOperationListResult class. */
+    /**
+     * Creates an instance of SqlPoolBlobAuditingPolicySqlPoolOperationListResult class.
+     */
     public SqlPoolBlobAuditingPolicySqlPoolOperationListResult() {
     }
 
     /**
      * Get the value property: Array of results.
-     *
+     * 
      * @return the value value.
      */
     public List<SqlPoolOperationInner> value() {
@@ -39,7 +43,7 @@ public final class SqlPoolBlobAuditingPolicySqlPoolOperationListResult {
 
     /**
      * Get the nextLink property: Link to retrieve next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class SqlPoolBlobAuditingPolicySqlPoolOperationListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

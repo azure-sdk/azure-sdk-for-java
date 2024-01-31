@@ -7,7 +7,9 @@ package com.azure.resourcemanager.synapse.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** What is this?. */
+/**
+ * What is this?.
+ */
 @Fluent
 public final class OperationMetaMetricDimensionSpecification {
     /*
@@ -28,13 +30,15 @@ public final class OperationMetaMetricDimensionSpecification {
     @JsonProperty(value = "toBeExportedForShoebox")
     private Boolean toBeExportedForShoebox;
 
-    /** Creates an instance of OperationMetaMetricDimensionSpecification class. */
+    /**
+     * Creates an instance of OperationMetaMetricDimensionSpecification class.
+     */
     public OperationMetaMetricDimensionSpecification() {
     }
 
     /**
      * Get the displayName property: Dimension display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -43,7 +47,7 @@ public final class OperationMetaMetricDimensionSpecification {
 
     /**
      * Set the displayName property: Dimension display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the OperationMetaMetricDimensionSpecification object itself.
      */
@@ -54,7 +58,7 @@ public final class OperationMetaMetricDimensionSpecification {
 
     /**
      * Get the name property: Dimension unique name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -63,7 +67,7 @@ public final class OperationMetaMetricDimensionSpecification {
 
     /**
      * Set the name property: Dimension unique name.
-     *
+     * 
      * @param name the name value to set.
      * @return the OperationMetaMetricDimensionSpecification object itself.
      */
@@ -74,7 +78,7 @@ public final class OperationMetaMetricDimensionSpecification {
 
     /**
      * Get the toBeExportedForShoebox property: Whether this metric should be exported for Shoebox.
-     *
+     * 
      * @return the toBeExportedForShoebox value.
      */
     public Boolean toBeExportedForShoebox() {
@@ -83,7 +87,7 @@ public final class OperationMetaMetricDimensionSpecification {
 
     /**
      * Set the toBeExportedForShoebox property: Whether this metric should be exported for Shoebox.
-     *
+     * 
      * @param toBeExportedForShoebox the toBeExportedForShoebox value to set.
      * @return the OperationMetaMetricDimensionSpecification object itself.
      */
@@ -94,7 +98,7 @@ public final class OperationMetaMetricDimensionSpecification {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

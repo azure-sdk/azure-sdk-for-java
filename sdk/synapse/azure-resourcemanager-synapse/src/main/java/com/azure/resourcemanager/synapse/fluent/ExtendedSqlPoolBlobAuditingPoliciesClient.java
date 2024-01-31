@@ -12,12 +12,13 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.synapse.fluent.models.ExtendedSqlPoolBlobAuditingPolicyInner;
 
 /**
- * An instance of this class provides access to all the operations defined in ExtendedSqlPoolBlobAuditingPoliciesClient.
+ * An instance of this class provides access to all the operations defined in
+ * ExtendedSqlPoolBlobAuditingPoliciesClient.
  */
 public interface ExtendedSqlPoolBlobAuditingPoliciesClient {
     /**
      * Gets an extended Sql pool's blob auditing policy.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sqlPoolName SQL pool name.
@@ -28,12 +29,12 @@ public interface ExtendedSqlPoolBlobAuditingPoliciesClient {
      * @return an extended Sql pool's blob auditing policy along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ExtendedSqlPoolBlobAuditingPolicyInner> getWithResponse(
-        String resourceGroupName, String workspaceName, String sqlPoolName, Context context);
+    Response<ExtendedSqlPoolBlobAuditingPolicyInner> getWithResponse(String resourceGroupName, String workspaceName,
+        String sqlPoolName, Context context);
 
     /**
      * Gets an extended Sql pool's blob auditing policy.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sqlPoolName SQL pool name.
@@ -47,7 +48,7 @@ public interface ExtendedSqlPoolBlobAuditingPoliciesClient {
 
     /**
      * Creates or updates an extended Sql pool's blob auditing policy.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sqlPoolName SQL pool name.
@@ -59,16 +60,12 @@ public interface ExtendedSqlPoolBlobAuditingPoliciesClient {
      * @return an extended Sql pool blob auditing policy along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ExtendedSqlPoolBlobAuditingPolicyInner> createOrUpdateWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String sqlPoolName,
-        ExtendedSqlPoolBlobAuditingPolicyInner parameters,
-        Context context);
+    Response<ExtendedSqlPoolBlobAuditingPolicyInner> createOrUpdateWithResponse(String resourceGroupName,
+        String workspaceName, String sqlPoolName, ExtendedSqlPoolBlobAuditingPolicyInner parameters, Context context);
 
     /**
      * Creates or updates an extended Sql pool's blob auditing policy.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sqlPoolName SQL pool name.
@@ -79,15 +76,12 @@ public interface ExtendedSqlPoolBlobAuditingPoliciesClient {
      * @return an extended Sql pool blob auditing policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ExtendedSqlPoolBlobAuditingPolicyInner createOrUpdate(
-        String resourceGroupName,
-        String workspaceName,
-        String sqlPoolName,
-        ExtendedSqlPoolBlobAuditingPolicyInner parameters);
+    ExtendedSqlPoolBlobAuditingPolicyInner createOrUpdate(String resourceGroupName, String workspaceName,
+        String sqlPoolName, ExtendedSqlPoolBlobAuditingPolicyInner parameters);
 
     /**
      * Lists extended auditing settings of a Sql pool.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sqlPoolName SQL pool name.
@@ -97,12 +91,12 @@ public interface ExtendedSqlPoolBlobAuditingPoliciesClient {
      * @return a list of sql pool extended auditing settings as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ExtendedSqlPoolBlobAuditingPolicyInner> listBySqlPool(
-        String resourceGroupName, String workspaceName, String sqlPoolName);
+    PagedIterable<ExtendedSqlPoolBlobAuditingPolicyInner> listBySqlPool(String resourceGroupName, String workspaceName,
+        String sqlPoolName);
 
     /**
      * Lists extended auditing settings of a Sql pool.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sqlPoolName SQL pool name.
@@ -113,6 +107,6 @@ public interface ExtendedSqlPoolBlobAuditingPoliciesClient {
      * @return a list of sql pool extended auditing settings as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ExtendedSqlPoolBlobAuditingPolicyInner> listBySqlPool(
-        String resourceGroupName, String workspaceName, String sqlPoolName, Context context);
+    PagedIterable<ExtendedSqlPoolBlobAuditingPolicyInner> listBySqlPool(String resourceGroupName, String workspaceName,
+        String sqlPoolName, Context context);
 }

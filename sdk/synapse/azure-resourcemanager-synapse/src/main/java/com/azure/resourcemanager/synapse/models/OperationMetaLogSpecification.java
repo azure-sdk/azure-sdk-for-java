@@ -7,7 +7,9 @@ package com.azure.resourcemanager.synapse.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** What is this?. */
+/**
+ * What is this?.
+ */
 @Fluent
 public final class OperationMetaLogSpecification {
     /*
@@ -28,13 +30,15 @@ public final class OperationMetaLogSpecification {
     @JsonProperty(value = "name")
     private String name;
 
-    /** Creates an instance of OperationMetaLogSpecification class. */
+    /**
+     * Creates an instance of OperationMetaLogSpecification class.
+     */
     public OperationMetaLogSpecification() {
     }
 
     /**
      * Get the displayName property: Log display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -43,7 +47,7 @@ public final class OperationMetaLogSpecification {
 
     /**
      * Set the displayName property: Log display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the OperationMetaLogSpecification object itself.
      */
@@ -54,7 +58,7 @@ public final class OperationMetaLogSpecification {
 
     /**
      * Get the blobDuration property: Time range the log covers.
-     *
+     * 
      * @return the blobDuration value.
      */
     public String blobDuration() {
@@ -63,7 +67,7 @@ public final class OperationMetaLogSpecification {
 
     /**
      * Set the blobDuration property: Time range the log covers.
-     *
+     * 
      * @param blobDuration the blobDuration value to set.
      * @return the OperationMetaLogSpecification object itself.
      */
@@ -74,7 +78,7 @@ public final class OperationMetaLogSpecification {
 
     /**
      * Get the name property: Log unique name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -83,7 +87,7 @@ public final class OperationMetaLogSpecification {
 
     /**
      * Set the name property: Log unique name.
-     *
+     * 
      * @param name the name value to set.
      * @return the OperationMetaLogSpecification object itself.
      */
@@ -94,7 +98,7 @@ public final class OperationMetaLogSpecification {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

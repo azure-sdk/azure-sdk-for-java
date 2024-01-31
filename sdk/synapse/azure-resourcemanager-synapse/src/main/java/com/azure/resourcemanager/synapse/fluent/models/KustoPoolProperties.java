@@ -11,7 +11,9 @@ import com.azure.resourcemanager.synapse.models.ResourceProvisioningState;
 import com.azure.resourcemanager.synapse.models.State;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Class representing the Kusto pool properties. */
+/**
+ * Class representing the Kusto pool properties.
+ */
 @Fluent
 public final class KustoPoolProperties {
     /*
@@ -74,13 +76,15 @@ public final class KustoPoolProperties {
     @JsonProperty(value = "workspaceUID")
     private String workspaceUid;
 
-    /** Creates an instance of KustoPoolProperties class. */
+    /**
+     * Creates an instance of KustoPoolProperties class.
+     */
     public KustoPoolProperties() {
     }
 
     /**
      * Get the state property: The state of the resource.
-     *
+     * 
      * @return the state value.
      */
     public State state() {
@@ -89,7 +93,7 @@ public final class KustoPoolProperties {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ResourceProvisioningState provisioningState() {
@@ -98,7 +102,7 @@ public final class KustoPoolProperties {
 
     /**
      * Get the uri property: The Kusto Pool URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -107,7 +111,7 @@ public final class KustoPoolProperties {
 
     /**
      * Get the dataIngestionUri property: The Kusto Pool data ingestion URI.
-     *
+     * 
      * @return the dataIngestionUri value.
      */
     public String dataIngestionUri() {
@@ -116,7 +120,7 @@ public final class KustoPoolProperties {
 
     /**
      * Get the stateReason property: The reason for the Kusto Pool's current state.
-     *
+     * 
      * @return the stateReason value.
      */
     public String stateReason() {
@@ -125,7 +129,7 @@ public final class KustoPoolProperties {
 
     /**
      * Get the optimizedAutoscale property: Optimized auto scale definition.
-     *
+     * 
      * @return the optimizedAutoscale value.
      */
     public OptimizedAutoscale optimizedAutoscale() {
@@ -134,7 +138,7 @@ public final class KustoPoolProperties {
 
     /**
      * Set the optimizedAutoscale property: Optimized auto scale definition.
-     *
+     * 
      * @param optimizedAutoscale the optimizedAutoscale value to set.
      * @return the KustoPoolProperties object itself.
      */
@@ -145,7 +149,7 @@ public final class KustoPoolProperties {
 
     /**
      * Get the enableStreamingIngest property: A boolean value that indicates if the streaming ingest is enabled.
-     *
+     * 
      * @return the enableStreamingIngest value.
      */
     public Boolean enableStreamingIngest() {
@@ -154,7 +158,7 @@ public final class KustoPoolProperties {
 
     /**
      * Set the enableStreamingIngest property: A boolean value that indicates if the streaming ingest is enabled.
-     *
+     * 
      * @param enableStreamingIngest the enableStreamingIngest value to set.
      * @return the KustoPoolProperties object itself.
      */
@@ -165,7 +169,7 @@ public final class KustoPoolProperties {
 
     /**
      * Get the enablePurge property: A boolean value that indicates if the purge operations are enabled.
-     *
+     * 
      * @return the enablePurge value.
      */
     public Boolean enablePurge() {
@@ -174,7 +178,7 @@ public final class KustoPoolProperties {
 
     /**
      * Set the enablePurge property: A boolean value that indicates if the purge operations are enabled.
-     *
+     * 
      * @param enablePurge the enablePurge value to set.
      * @return the KustoPoolProperties object itself.
      */
@@ -185,7 +189,7 @@ public final class KustoPoolProperties {
 
     /**
      * Get the languageExtensions property: List of the Kusto Pool's language extensions.
-     *
+     * 
      * @return the languageExtensions value.
      */
     public LanguageExtensionsList languageExtensions() {
@@ -194,7 +198,7 @@ public final class KustoPoolProperties {
 
     /**
      * Get the workspaceUid property: The workspace unique identifier.
-     *
+     * 
      * @return the workspaceUid value.
      */
     public String workspaceUid() {
@@ -203,7 +207,7 @@ public final class KustoPoolProperties {
 
     /**
      * Set the workspaceUid property: The workspace unique identifier.
-     *
+     * 
      * @param workspaceUid the workspaceUid value to set.
      * @return the KustoPoolProperties object itself.
      */
@@ -214,7 +218,7 @@ public final class KustoPoolProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

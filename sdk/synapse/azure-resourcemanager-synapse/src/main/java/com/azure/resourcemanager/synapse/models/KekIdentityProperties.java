@@ -7,7 +7,9 @@ package com.azure.resourcemanager.synapse.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Key encryption key properties. */
+/**
+ * Key encryption key properties.
+ */
 @Fluent
 public final class KekIdentityProperties {
     /*
@@ -22,13 +24,15 @@ public final class KekIdentityProperties {
     @JsonProperty(value = "useSystemAssignedIdentity")
     private Object useSystemAssignedIdentity;
 
-    /** Creates an instance of KekIdentityProperties class. */
+    /**
+     * Creates an instance of KekIdentityProperties class.
+     */
     public KekIdentityProperties() {
     }
 
     /**
      * Get the userAssignedIdentity property: User assigned identity resource Id.
-     *
+     * 
      * @return the userAssignedIdentity value.
      */
     public String userAssignedIdentity() {
@@ -37,7 +41,7 @@ public final class KekIdentityProperties {
 
     /**
      * Set the userAssignedIdentity property: User assigned identity resource Id.
-     *
+     * 
      * @param userAssignedIdentity the userAssignedIdentity value to set.
      * @return the KekIdentityProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class KekIdentityProperties {
 
     /**
      * Get the useSystemAssignedIdentity property: Boolean specifying whether to use system assigned identity or not.
-     *
+     * 
      * @return the useSystemAssignedIdentity value.
      */
     public Object useSystemAssignedIdentity() {
@@ -57,7 +61,7 @@ public final class KekIdentityProperties {
 
     /**
      * Set the useSystemAssignedIdentity property: Boolean specifying whether to use system assigned identity or not.
-     *
+     * 
      * @param useSystemAssignedIdentity the useSystemAssignedIdentity value to set.
      * @return the KekIdentityProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class KekIdentityProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

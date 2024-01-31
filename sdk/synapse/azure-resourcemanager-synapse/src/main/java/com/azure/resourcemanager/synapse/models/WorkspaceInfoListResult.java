@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.fluent.models.WorkspaceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of workspaces. */
+/**
+ * List of workspaces.
+ */
 @Fluent
 public final class WorkspaceInfoListResult {
     /*
@@ -24,13 +26,15 @@ public final class WorkspaceInfoListResult {
     @JsonProperty(value = "value")
     private List<WorkspaceInner> value;
 
-    /** Creates an instance of WorkspaceInfoListResult class. */
+    /**
+     * Creates an instance of WorkspaceInfoListResult class.
+     */
     public WorkspaceInfoListResult() {
     }
 
     /**
      * Get the nextLink property: Link to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class WorkspaceInfoListResult {
 
     /**
      * Set the nextLink property: Link to the next page of results.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the WorkspaceInfoListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class WorkspaceInfoListResult {
 
     /**
      * Get the value property: List of workspaces.
-     *
+     * 
      * @return the value value.
      */
     public List<WorkspaceInner> value() {
@@ -59,7 +63,7 @@ public final class WorkspaceInfoListResult {
 
     /**
      * Set the value property: List of workspaces.
-     *
+     * 
      * @param value the value value to set.
      * @return the WorkspaceInfoListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class WorkspaceInfoListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

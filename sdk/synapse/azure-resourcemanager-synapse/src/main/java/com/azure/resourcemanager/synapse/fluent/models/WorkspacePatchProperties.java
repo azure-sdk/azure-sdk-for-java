@@ -12,7 +12,9 @@ import com.azure.resourcemanager.synapse.models.WorkspacePublicNetworkAccess;
 import com.azure.resourcemanager.synapse.models.WorkspaceRepositoryConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Workspace patch properties. */
+/**
+ * Workspace patch properties.
+ */
 @Fluent
 public final class WorkspacePatchProperties {
     /*
@@ -57,13 +59,15 @@ public final class WorkspacePatchProperties {
     @JsonProperty(value = "publicNetworkAccess")
     private WorkspacePublicNetworkAccess publicNetworkAccess;
 
-    /** Creates an instance of WorkspacePatchProperties class. */
+    /**
+     * Creates an instance of WorkspacePatchProperties class.
+     */
     public WorkspacePatchProperties() {
     }
 
     /**
      * Get the sqlAdministratorLoginPassword property: SQL administrator login password.
-     *
+     * 
      * @return the sqlAdministratorLoginPassword value.
      */
     public String sqlAdministratorLoginPassword() {
@@ -72,7 +76,7 @@ public final class WorkspacePatchProperties {
 
     /**
      * Set the sqlAdministratorLoginPassword property: SQL administrator login password.
-     *
+     * 
      * @param sqlAdministratorLoginPassword the sqlAdministratorLoginPassword value to set.
      * @return the WorkspacePatchProperties object itself.
      */
@@ -83,7 +87,7 @@ public final class WorkspacePatchProperties {
 
     /**
      * Get the managedVirtualNetworkSettings property: Managed Virtual Network Settings.
-     *
+     * 
      * @return the managedVirtualNetworkSettings value.
      */
     public ManagedVirtualNetworkSettings managedVirtualNetworkSettings() {
@@ -92,19 +96,19 @@ public final class WorkspacePatchProperties {
 
     /**
      * Set the managedVirtualNetworkSettings property: Managed Virtual Network Settings.
-     *
+     * 
      * @param managedVirtualNetworkSettings the managedVirtualNetworkSettings value to set.
      * @return the WorkspacePatchProperties object itself.
      */
-    public WorkspacePatchProperties withManagedVirtualNetworkSettings(
-        ManagedVirtualNetworkSettings managedVirtualNetworkSettings) {
+    public WorkspacePatchProperties
+        withManagedVirtualNetworkSettings(ManagedVirtualNetworkSettings managedVirtualNetworkSettings) {
         this.managedVirtualNetworkSettings = managedVirtualNetworkSettings;
         return this;
     }
 
     /**
      * Get the workspaceRepositoryConfiguration property: Git integration settings.
-     *
+     * 
      * @return the workspaceRepositoryConfiguration value.
      */
     public WorkspaceRepositoryConfiguration workspaceRepositoryConfiguration() {
@@ -113,19 +117,19 @@ public final class WorkspacePatchProperties {
 
     /**
      * Set the workspaceRepositoryConfiguration property: Git integration settings.
-     *
+     * 
      * @param workspaceRepositoryConfiguration the workspaceRepositoryConfiguration value to set.
      * @return the WorkspacePatchProperties object itself.
      */
-    public WorkspacePatchProperties withWorkspaceRepositoryConfiguration(
-        WorkspaceRepositoryConfiguration workspaceRepositoryConfiguration) {
+    public WorkspacePatchProperties
+        withWorkspaceRepositoryConfiguration(WorkspaceRepositoryConfiguration workspaceRepositoryConfiguration) {
         this.workspaceRepositoryConfiguration = workspaceRepositoryConfiguration;
         return this;
     }
 
     /**
      * Get the purviewConfiguration property: Purview Configuration.
-     *
+     * 
      * @return the purviewConfiguration value.
      */
     public PurviewConfiguration purviewConfiguration() {
@@ -134,7 +138,7 @@ public final class WorkspacePatchProperties {
 
     /**
      * Set the purviewConfiguration property: Purview Configuration.
-     *
+     * 
      * @param purviewConfiguration the purviewConfiguration value to set.
      * @return the WorkspacePatchProperties object itself.
      */
@@ -145,7 +149,7 @@ public final class WorkspacePatchProperties {
 
     /**
      * Get the provisioningState property: Resource provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -154,7 +158,7 @@ public final class WorkspacePatchProperties {
 
     /**
      * Get the encryption property: The encryption details of the workspace.
-     *
+     * 
      * @return the encryption value.
      */
     public EncryptionDetails encryption() {
@@ -163,7 +167,7 @@ public final class WorkspacePatchProperties {
 
     /**
      * Set the encryption property: The encryption details of the workspace.
-     *
+     * 
      * @param encryption the encryption value to set.
      * @return the WorkspacePatchProperties object itself.
      */
@@ -174,7 +178,7 @@ public final class WorkspacePatchProperties {
 
     /**
      * Get the publicNetworkAccess property: Enable or Disable public network access to workspace.
-     *
+     * 
      * @return the publicNetworkAccess value.
      */
     public WorkspacePublicNetworkAccess publicNetworkAccess() {
@@ -183,7 +187,7 @@ public final class WorkspacePatchProperties {
 
     /**
      * Set the publicNetworkAccess property: Enable or Disable public network access to workspace.
-     *
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the WorkspacePatchProperties object itself.
      */
@@ -194,7 +198,7 @@ public final class WorkspacePatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

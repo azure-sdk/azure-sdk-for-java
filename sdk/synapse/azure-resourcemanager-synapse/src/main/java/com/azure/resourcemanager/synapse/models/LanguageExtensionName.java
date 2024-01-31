@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Language extension that can run within KQL query. */
+/**
+ * Language extension that can run within KQL query.
+ */
 public final class LanguageExtensionName extends ExpandableStringEnum<LanguageExtensionName> {
-    /** Static value PYTHON for LanguageExtensionName. */
+    /**
+     * Static value PYTHON for LanguageExtensionName.
+     */
     public static final LanguageExtensionName PYTHON = fromString("PYTHON");
 
-    /** Static value R for LanguageExtensionName. */
+    /**
+     * Static value R for LanguageExtensionName.
+     */
     public static final LanguageExtensionName R = fromString("R");
 
     /**
      * Creates a new instance of LanguageExtensionName value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class LanguageExtensionName extends ExpandableStringEnum<LanguageEx
 
     /**
      * Creates or finds a LanguageExtensionName from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding LanguageExtensionName.
      */
@@ -38,7 +44,7 @@ public final class LanguageExtensionName extends ExpandableStringEnum<LanguageEx
 
     /**
      * Gets known LanguageExtensionName values.
-     *
+     * 
      * @return known LanguageExtensionName values.
      */
     public static Collection<LanguageExtensionName> values() {

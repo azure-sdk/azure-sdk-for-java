@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The result returned from a database check name availability request. */
+/**
+ * The result returned from a database check name availability request.
+ */
 @Fluent
 public final class DatabaseCheckNameRequest {
     /*
@@ -23,13 +25,15 @@ public final class DatabaseCheckNameRequest {
     @JsonProperty(value = "type", required = true)
     private Type type;
 
-    /** Creates an instance of DatabaseCheckNameRequest class. */
+    /**
+     * Creates an instance of DatabaseCheckNameRequest class.
+     */
     public DatabaseCheckNameRequest() {
     }
 
     /**
      * Get the name property: Resource name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -38,7 +42,7 @@ public final class DatabaseCheckNameRequest {
 
     /**
      * Set the name property: Resource name.
-     *
+     * 
      * @param name the name value to set.
      * @return the DatabaseCheckNameRequest object itself.
      */
@@ -49,7 +53,7 @@ public final class DatabaseCheckNameRequest {
 
     /**
      * Get the type property: The type of resource, for instance Microsoft.Synapse/workspaces/kustoPools/databases.
-     *
+     * 
      * @return the type value.
      */
     public Type type() {
@@ -58,7 +62,7 @@ public final class DatabaseCheckNameRequest {
 
     /**
      * Set the type property: The type of resource, for instance Microsoft.Synapse/workspaces/kustoPools/databases.
-     *
+     * 
      * @param type the type value to set.
      * @return the DatabaseCheckNameRequest object itself.
      */
@@ -69,19 +73,17 @@ public final class DatabaseCheckNameRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model DatabaseCheckNameRequest"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model DatabaseCheckNameRequest"));
         }
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property type in model DatabaseCheckNameRequest"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model DatabaseCheckNameRequest"));
         }
     }
 

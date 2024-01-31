@@ -10,7 +10,9 @@ import com.azure.resourcemanager.synapse.models.ResourceProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 
-/** Class representing the Kusto database properties. */
+/**
+ * Class representing the Kusto database properties.
+ */
 @Fluent
 public final class ReadWriteDatabaseProperties {
     /*
@@ -43,13 +45,15 @@ public final class ReadWriteDatabaseProperties {
     @JsonProperty(value = "isFollowed", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isFollowed;
 
-    /** Creates an instance of ReadWriteDatabaseProperties class. */
+    /**
+     * Creates an instance of ReadWriteDatabaseProperties class.
+     */
     public ReadWriteDatabaseProperties() {
     }
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ResourceProvisioningState provisioningState() {
@@ -59,7 +63,7 @@ public final class ReadWriteDatabaseProperties {
     /**
      * Get the softDeletePeriod property: The time the data should be kept before it stops being accessible to queries
      * in TimeSpan.
-     *
+     * 
      * @return the softDeletePeriod value.
      */
     public Duration softDeletePeriod() {
@@ -69,7 +73,7 @@ public final class ReadWriteDatabaseProperties {
     /**
      * Set the softDeletePeriod property: The time the data should be kept before it stops being accessible to queries
      * in TimeSpan.
-     *
+     * 
      * @param softDeletePeriod the softDeletePeriod value to set.
      * @return the ReadWriteDatabaseProperties object itself.
      */
@@ -80,7 +84,7 @@ public final class ReadWriteDatabaseProperties {
 
     /**
      * Get the hotCachePeriod property: The time the data should be kept in cache for fast queries in TimeSpan.
-     *
+     * 
      * @return the hotCachePeriod value.
      */
     public Duration hotCachePeriod() {
@@ -89,7 +93,7 @@ public final class ReadWriteDatabaseProperties {
 
     /**
      * Set the hotCachePeriod property: The time the data should be kept in cache for fast queries in TimeSpan.
-     *
+     * 
      * @param hotCachePeriod the hotCachePeriod value to set.
      * @return the ReadWriteDatabaseProperties object itself.
      */
@@ -100,7 +104,7 @@ public final class ReadWriteDatabaseProperties {
 
     /**
      * Get the statistics property: The statistics of the database.
-     *
+     * 
      * @return the statistics value.
      */
     public DatabaseStatistics statistics() {
@@ -109,7 +113,7 @@ public final class ReadWriteDatabaseProperties {
 
     /**
      * Get the isFollowed property: Indicates whether the database is followed.
-     *
+     * 
      * @return the isFollowed value.
      */
     public Boolean isFollowed() {
@@ -118,7 +122,7 @@ public final class ReadWriteDatabaseProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

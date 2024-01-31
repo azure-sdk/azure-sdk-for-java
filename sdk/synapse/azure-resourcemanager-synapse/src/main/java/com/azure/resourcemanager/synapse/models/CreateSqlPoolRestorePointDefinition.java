@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Contains the information necessary to perform a create Sql pool restore point operation. */
+/**
+ * Contains the information necessary to perform a create Sql pool restore point operation.
+ */
 @Fluent
 public final class CreateSqlPoolRestorePointDefinition {
     /*
@@ -17,13 +19,15 @@ public final class CreateSqlPoolRestorePointDefinition {
     @JsonProperty(value = "restorePointLabel", required = true)
     private String restorePointLabel;
 
-    /** Creates an instance of CreateSqlPoolRestorePointDefinition class. */
+    /**
+     * Creates an instance of CreateSqlPoolRestorePointDefinition class.
+     */
     public CreateSqlPoolRestorePointDefinition() {
     }
 
     /**
      * Get the restorePointLabel property: The restore point label to apply.
-     *
+     * 
      * @return the restorePointLabel value.
      */
     public String restorePointLabel() {
@@ -32,7 +36,7 @@ public final class CreateSqlPoolRestorePointDefinition {
 
     /**
      * Set the restorePointLabel property: The restore point label to apply.
-     *
+     * 
      * @param restorePointLabel the restorePointLabel value to set.
      * @return the CreateSqlPoolRestorePointDefinition object itself.
      */
@@ -43,15 +47,13 @@ public final class CreateSqlPoolRestorePointDefinition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (restorePointLabel() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property restorePointLabel in model CreateSqlPoolRestorePointDefinition"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property restorePointLabel in model CreateSqlPoolRestorePointDefinition"));
         }
     }
 

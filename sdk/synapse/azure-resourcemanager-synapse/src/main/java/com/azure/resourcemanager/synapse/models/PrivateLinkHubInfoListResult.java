@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.fluent.models.PrivateLinkHubInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of privateLinkHubs. */
+/**
+ * List of privateLinkHubs.
+ */
 @Fluent
 public final class PrivateLinkHubInfoListResult {
     /*
@@ -24,13 +26,15 @@ public final class PrivateLinkHubInfoListResult {
     @JsonProperty(value = "value")
     private List<PrivateLinkHubInner> value;
 
-    /** Creates an instance of PrivateLinkHubInfoListResult class. */
+    /**
+     * Creates an instance of PrivateLinkHubInfoListResult class.
+     */
     public PrivateLinkHubInfoListResult() {
     }
 
     /**
      * Get the nextLink property: Link to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class PrivateLinkHubInfoListResult {
 
     /**
      * Set the nextLink property: Link to the next page of results.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the PrivateLinkHubInfoListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class PrivateLinkHubInfoListResult {
 
     /**
      * Get the value property: List of privateLinkHubs.
-     *
+     * 
      * @return the value value.
      */
     public List<PrivateLinkHubInner> value() {
@@ -59,7 +63,7 @@ public final class PrivateLinkHubInfoListResult {
 
     /**
      * Set the value property: List of privateLinkHubs.
-     *
+     * 
      * @param value the value value to set.
      * @return the PrivateLinkHubInfoListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class PrivateLinkHubInfoListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,7 +10,9 @@ import com.azure.resourcemanager.synapse.fluent.models.ServerUsageInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Represents the response to a list server metrics request. */
+/**
+ * Represents the response to a list server metrics request.
+ */
 @Fluent
 public final class ServerUsageListResult {
     /*
@@ -25,13 +27,15 @@ public final class ServerUsageListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ServerUsageListResult class. */
+    /**
+     * Creates an instance of ServerUsageListResult class.
+     */
     public ServerUsageListResult() {
     }
 
     /**
      * Get the value property: The list of server metrics for the server.
-     *
+     * 
      * @return the value value.
      */
     public List<ServerUsageInner> value() {
@@ -40,7 +44,7 @@ public final class ServerUsageListResult {
 
     /**
      * Set the value property: The list of server metrics for the server.
-     *
+     * 
      * @param value the value value to set.
      * @return the ServerUsageListResult object itself.
      */
@@ -51,7 +55,7 @@ public final class ServerUsageListResult {
 
     /**
      * Get the nextLink property: Link to retrieve next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -60,14 +64,13 @@ public final class ServerUsageListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model ServerUsageListResult"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model ServerUsageListResult"));
         } else {
             value().forEach(e -> e.validate());
         }

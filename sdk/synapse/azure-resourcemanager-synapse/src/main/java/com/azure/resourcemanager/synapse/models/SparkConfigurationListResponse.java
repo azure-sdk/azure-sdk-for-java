@@ -10,7 +10,9 @@ import com.azure.resourcemanager.synapse.fluent.models.SparkConfigurationResourc
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of SparkConfiguration resources. */
+/**
+ * A list of SparkConfiguration resources.
+ */
 @Fluent
 public final class SparkConfigurationListResponse {
     /*
@@ -25,13 +27,15 @@ public final class SparkConfigurationListResponse {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of SparkConfigurationListResponse class. */
+    /**
+     * Creates an instance of SparkConfigurationListResponse class.
+     */
     public SparkConfigurationListResponse() {
     }
 
     /**
      * Get the value property: List of SparkConfiguration.
-     *
+     * 
      * @return the value value.
      */
     public List<SparkConfigurationResourceInner> value() {
@@ -40,7 +44,7 @@ public final class SparkConfigurationListResponse {
 
     /**
      * Set the value property: List of SparkConfiguration.
-     *
+     * 
      * @param value the value value to set.
      * @return the SparkConfigurationListResponse object itself.
      */
@@ -51,7 +55,7 @@ public final class SparkConfigurationListResponse {
 
     /**
      * Get the nextLink property: The link to the next page of results, if any remaining results exist.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -60,7 +64,7 @@ public final class SparkConfigurationListResponse {
 
     /**
      * Set the nextLink property: The link to the next page of results, if any remaining results exist.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the SparkConfigurationListResponse object itself.
      */
@@ -71,15 +75,13 @@ public final class SparkConfigurationListResponse {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model SparkConfigurationListResponse"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property value in model SparkConfigurationListResponse"));
         } else {
             value().forEach(e -> e.validate());
         }

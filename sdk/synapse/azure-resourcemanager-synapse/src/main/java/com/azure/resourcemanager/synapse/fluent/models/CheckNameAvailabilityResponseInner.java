@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Check name availability response
- *
- * <p>A response saying whether the workspace name is available.
+ * 
+ * A response saying whether the workspace name is available.
  */
 @Fluent
 public final class CheckNameAvailabilityResponseInner {
@@ -38,13 +38,15 @@ public final class CheckNameAvailabilityResponseInner {
     @JsonProperty(value = "name")
     private String name;
 
-    /** Creates an instance of CheckNameAvailabilityResponseInner class. */
+    /**
+     * Creates an instance of CheckNameAvailabilityResponseInner class.
+     */
     public CheckNameAvailabilityResponseInner() {
     }
 
     /**
      * Get the message property: Validation message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -53,7 +55,7 @@ public final class CheckNameAvailabilityResponseInner {
 
     /**
      * Set the message property: Validation message.
-     *
+     * 
      * @param message the message value to set.
      * @return the CheckNameAvailabilityResponseInner object itself.
      */
@@ -64,7 +66,7 @@ public final class CheckNameAvailabilityResponseInner {
 
     /**
      * Get the available property: Whether the workspace name is available.
-     *
+     * 
      * @return the available value.
      */
     public Boolean available() {
@@ -73,7 +75,7 @@ public final class CheckNameAvailabilityResponseInner {
 
     /**
      * Set the available property: Whether the workspace name is available.
-     *
+     * 
      * @param available the available value to set.
      * @return the CheckNameAvailabilityResponseInner object itself.
      */
@@ -84,7 +86,7 @@ public final class CheckNameAvailabilityResponseInner {
 
     /**
      * Get the reason property: Reason the workspace name is or is not available.
-     *
+     * 
      * @return the reason value.
      */
     public String reason() {
@@ -93,7 +95,7 @@ public final class CheckNameAvailabilityResponseInner {
 
     /**
      * Set the reason property: Reason the workspace name is or is not available.
-     *
+     * 
      * @param reason the reason value to set.
      * @return the CheckNameAvailabilityResponseInner object itself.
      */
@@ -104,7 +106,7 @@ public final class CheckNameAvailabilityResponseInner {
 
     /**
      * Get the name property: Workspace name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -113,7 +115,7 @@ public final class CheckNameAvailabilityResponseInner {
 
     /**
      * Set the name property: Workspace name.
-     *
+     * 
      * @param name the name value to set.
      * @return the CheckNameAvailabilityResponseInner object itself.
      */
@@ -124,7 +126,7 @@ public final class CheckNameAvailabilityResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

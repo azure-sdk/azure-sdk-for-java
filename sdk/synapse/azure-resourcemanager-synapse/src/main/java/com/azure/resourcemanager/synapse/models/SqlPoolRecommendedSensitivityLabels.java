@@ -7,11 +7,13 @@ package com.azure.resourcemanager.synapse.models;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of SqlPoolRecommendedSensitivityLabels. */
+/**
+ * Resource collection API of SqlPoolRecommendedSensitivityLabels.
+ */
 public interface SqlPoolRecommendedSensitivityLabels {
     /**
      * Update recommended sensitivity labels states of a given SQL Pool using an operations batch.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sqlPoolName SQL pool name.
@@ -22,16 +24,12 @@ public interface SqlPoolRecommendedSensitivityLabels {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response}.
      */
-    Response<Void> updateWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String sqlPoolName,
-        RecommendedSensitivityLabelUpdateList parameters,
-        Context context);
+    Response<Void> updateWithResponse(String resourceGroupName, String workspaceName, String sqlPoolName,
+        RecommendedSensitivityLabelUpdateList parameters, Context context);
 
     /**
      * Update recommended sensitivity labels states of a given SQL Pool using an operations batch.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sqlPoolName SQL pool name.
@@ -40,9 +38,6 @@ public interface SqlPoolRecommendedSensitivityLabels {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void update(
-        String resourceGroupName,
-        String workspaceName,
-        String sqlPoolName,
+    void update(String resourceGroupName, String workspaceName, String sqlPoolName,
         RecommendedSensitivityLabelUpdateList parameters);
 }

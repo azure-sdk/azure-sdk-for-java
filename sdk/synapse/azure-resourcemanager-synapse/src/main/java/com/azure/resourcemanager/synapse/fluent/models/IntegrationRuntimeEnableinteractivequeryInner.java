@@ -8,11 +8,13 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.synapse.models.WorkspaceStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Integration Runtime Operation Status Properties. */
+/**
+ * Integration Runtime Operation Status Properties.
+ */
 @Fluent
 public final class IntegrationRuntimeEnableinteractivequeryInner {
     /*
-     * EnableInteractivequery status of  Integrationruntimes.
+     * EnableInteractivequery status of Integrationruntimes.
      */
     @JsonProperty(value = "status")
     private WorkspaceStatus status;
@@ -35,13 +37,15 @@ public final class IntegrationRuntimeEnableinteractivequeryInner {
     @JsonProperty(value = "error")
     private String error;
 
-    /** Creates an instance of IntegrationRuntimeEnableinteractivequeryInner class. */
+    /**
+     * Creates an instance of IntegrationRuntimeEnableinteractivequeryInner class.
+     */
     public IntegrationRuntimeEnableinteractivequeryInner() {
     }
 
     /**
      * Get the status property: EnableInteractivequery status of Integrationruntimes.
-     *
+     * 
      * @return the status value.
      */
     public WorkspaceStatus status() {
@@ -50,7 +54,7 @@ public final class IntegrationRuntimeEnableinteractivequeryInner {
 
     /**
      * Set the status property: EnableInteractivequery status of Integrationruntimes.
-     *
+     * 
      * @param status the status value to set.
      * @return the IntegrationRuntimeEnableinteractivequeryInner object itself.
      */
@@ -61,7 +65,7 @@ public final class IntegrationRuntimeEnableinteractivequeryInner {
 
     /**
      * Get the name property: The operation name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -70,7 +74,7 @@ public final class IntegrationRuntimeEnableinteractivequeryInner {
 
     /**
      * Set the name property: The operation name.
-     *
+     * 
      * @param name the name value to set.
      * @return the IntegrationRuntimeEnableinteractivequeryInner object itself.
      */
@@ -81,7 +85,7 @@ public final class IntegrationRuntimeEnableinteractivequeryInner {
 
     /**
      * Get the properties property: The operation properties.
-     *
+     * 
      * @return the properties value.
      */
     public Object properties() {
@@ -90,7 +94,7 @@ public final class IntegrationRuntimeEnableinteractivequeryInner {
 
     /**
      * Set the properties property: The operation properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the IntegrationRuntimeEnableinteractivequeryInner object itself.
      */
@@ -101,7 +105,7 @@ public final class IntegrationRuntimeEnableinteractivequeryInner {
 
     /**
      * Get the error property: The operation error message.
-     *
+     * 
      * @return the error value.
      */
     public String error() {
@@ -110,7 +114,7 @@ public final class IntegrationRuntimeEnableinteractivequeryInner {
 
     /**
      * Set the error property: The operation error message.
-     *
+     * 
      * @param error the error value to set.
      * @return the IntegrationRuntimeEnableinteractivequeryInner object itself.
      */
@@ -121,7 +125,7 @@ public final class IntegrationRuntimeEnableinteractivequeryInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

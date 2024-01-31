@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.models.AzureCapacity;
 import com.azure.resourcemanager.synapse.models.AzureSku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Azure resource SKU definition. */
+/**
+ * Azure resource SKU definition.
+ */
 @Fluent
 public final class AzureResourceSkuInner {
     /*
@@ -30,13 +32,15 @@ public final class AzureResourceSkuInner {
     @JsonProperty(value = "capacity")
     private AzureCapacity capacity;
 
-    /** Creates an instance of AzureResourceSkuInner class. */
+    /**
+     * Creates an instance of AzureResourceSkuInner class.
+     */
     public AzureResourceSkuInner() {
     }
 
     /**
      * Get the resourceType property: Resource Namespace and Type.
-     *
+     * 
      * @return the resourceType value.
      */
     public String resourceType() {
@@ -45,7 +49,7 @@ public final class AzureResourceSkuInner {
 
     /**
      * Set the resourceType property: Resource Namespace and Type.
-     *
+     * 
      * @param resourceType the resourceType value to set.
      * @return the AzureResourceSkuInner object itself.
      */
@@ -56,7 +60,7 @@ public final class AzureResourceSkuInner {
 
     /**
      * Get the sku property: The SKU details.
-     *
+     * 
      * @return the sku value.
      */
     public AzureSku sku() {
@@ -65,7 +69,7 @@ public final class AzureResourceSkuInner {
 
     /**
      * Set the sku property: The SKU details.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the AzureResourceSkuInner object itself.
      */
@@ -76,7 +80,7 @@ public final class AzureResourceSkuInner {
 
     /**
      * Get the capacity property: The number of instances of the cluster.
-     *
+     * 
      * @return the capacity value.
      */
     public AzureCapacity capacity() {
@@ -85,7 +89,7 @@ public final class AzureResourceSkuInner {
 
     /**
      * Set the capacity property: The number of instances of the cluster.
-     *
+     * 
      * @param capacity the capacity value to set.
      * @return the AzureResourceSkuInner object itself.
      */
@@ -96,7 +100,7 @@ public final class AzureResourceSkuInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

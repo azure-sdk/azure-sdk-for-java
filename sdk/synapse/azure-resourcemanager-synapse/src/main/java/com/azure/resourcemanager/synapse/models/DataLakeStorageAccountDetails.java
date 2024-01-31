@@ -7,7 +7,9 @@ package com.azure.resourcemanager.synapse.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Details of the data lake storage account associated with the workspace. */
+/**
+ * Details of the data lake storage account associated with the workspace.
+ */
 @Fluent
 public final class DataLakeStorageAccountDetails {
     /*
@@ -34,13 +36,15 @@ public final class DataLakeStorageAccountDetails {
     @JsonProperty(value = "createManagedPrivateEndpoint")
     private Boolean createManagedPrivateEndpoint;
 
-    /** Creates an instance of DataLakeStorageAccountDetails class. */
+    /**
+     * Creates an instance of DataLakeStorageAccountDetails class.
+     */
     public DataLakeStorageAccountDetails() {
     }
 
     /**
      * Get the accountUrl property: Account URL.
-     *
+     * 
      * @return the accountUrl value.
      */
     public String accountUrl() {
@@ -49,7 +53,7 @@ public final class DataLakeStorageAccountDetails {
 
     /**
      * Set the accountUrl property: Account URL.
-     *
+     * 
      * @param accountUrl the accountUrl value to set.
      * @return the DataLakeStorageAccountDetails object itself.
      */
@@ -60,7 +64,7 @@ public final class DataLakeStorageAccountDetails {
 
     /**
      * Get the filesystem property: Filesystem name.
-     *
+     * 
      * @return the filesystem value.
      */
     public String filesystem() {
@@ -69,7 +73,7 @@ public final class DataLakeStorageAccountDetails {
 
     /**
      * Set the filesystem property: Filesystem name.
-     *
+     * 
      * @param filesystem the filesystem value to set.
      * @return the DataLakeStorageAccountDetails object itself.
      */
@@ -80,7 +84,7 @@ public final class DataLakeStorageAccountDetails {
 
     /**
      * Get the resourceId property: ARM resource Id of this storage account.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -89,7 +93,7 @@ public final class DataLakeStorageAccountDetails {
 
     /**
      * Set the resourceId property: ARM resource Id of this storage account.
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the DataLakeStorageAccountDetails object itself.
      */
@@ -100,7 +104,7 @@ public final class DataLakeStorageAccountDetails {
 
     /**
      * Get the createManagedPrivateEndpoint property: Create managed private endpoint to this storage account or not.
-     *
+     * 
      * @return the createManagedPrivateEndpoint value.
      */
     public Boolean createManagedPrivateEndpoint() {
@@ -109,7 +113,7 @@ public final class DataLakeStorageAccountDetails {
 
     /**
      * Set the createManagedPrivateEndpoint property: Create managed private endpoint to this storage account or not.
-     *
+     * 
      * @param createManagedPrivateEndpoint the createManagedPrivateEndpoint value to set.
      * @return the DataLakeStorageAccountDetails object itself.
      */
@@ -120,7 +124,7 @@ public final class DataLakeStorageAccountDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
