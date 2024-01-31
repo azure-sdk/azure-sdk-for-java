@@ -45,6 +45,8 @@ import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.TypeReference;
 import com.azure.developer.devcenter.DevCenterServiceVersion;
+import com.azure.developer.devcenter.models.DevCenterEnvironment;
+import com.azure.developer.devcenter.models.DevCenterOperationDetails;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
@@ -547,11 +549,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -616,11 +618,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -682,11 +684,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -748,11 +750,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -814,11 +816,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -885,11 +887,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -954,11 +956,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -1023,11 +1025,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -1073,11 +1075,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -1123,11 +1125,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -1172,11 +1174,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -1199,11 +1201,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -1250,11 +1252,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -1277,11 +1279,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -1327,11 +1329,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -1354,11 +1356,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -1410,11 +1412,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -1437,11 +1439,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -1487,6 +1489,174 @@ public final class DeploymentEnvironmentsClientImpl {
     }
 
     /**
+     * Creates or updates an environment.
+     * <p>
+     * <strong>Request Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     parameters: byte[] (Optional)
+     *     name: String (Optional)
+     *     environmentType: String (Required)
+     *     user: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
+     *     resourceGroupId: String (Optional)
+     *     catalogName: String (Required)
+     *     environmentDefinitionName: String (Required)
+     *     error (Optional): {
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
+     *     }
+     * }
+     * }</pre>
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     parameters: byte[] (Optional)
+     *     name: String (Optional)
+     *     environmentType: String (Required)
+     *     user: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
+     *     resourceGroupId: String (Optional)
+     *     catalogName: String (Required)
+     *     environmentDefinitionName: String (Required)
+     *     error (Optional): {
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param environmentName The name of the environment.
+     * @param body Represents an environment.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link PollerFlux} for polling of properties of an environment.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public PollerFlux<DevCenterOperationDetails, DevCenterEnvironment> beginCreateOrUpdateEnvironmentWithModelAsync(
+        String projectName, String userId, String environmentName, BinaryData body, RequestOptions requestOptions) {
+        return PollerFlux.create(Duration.ofSeconds(1),
+            () -> this.createOrUpdateEnvironmentWithResponseAsync(projectName, userId, environmentName, body,
+                requestOptions),
+            new DefaultPollingStrategy<>(new PollingStrategyOptions(this.getHttpPipeline())
+                .setEndpoint("{endpoint}".replace("{endpoint}", this.getEndpoint()))
+                .setContext(requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext()
+                    : Context.NONE)
+                .setServiceVersion(this.getServiceVersion().getVersion())),
+            TypeReference.createInstance(DevCenterOperationDetails.class),
+            TypeReference.createInstance(DevCenterEnvironment.class));
+    }
+
+    /**
+     * Creates or updates an environment.
+     * <p>
+     * <strong>Request Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     parameters: byte[] (Optional)
+     *     name: String (Optional)
+     *     environmentType: String (Required)
+     *     user: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
+     *     resourceGroupId: String (Optional)
+     *     catalogName: String (Required)
+     *     environmentDefinitionName: String (Required)
+     *     error (Optional): {
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
+     *     }
+     * }
+     * }</pre>
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     parameters: byte[] (Optional)
+     *     name: String (Optional)
+     *     environmentType: String (Required)
+     *     user: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
+     *     resourceGroupId: String (Optional)
+     *     catalogName: String (Required)
+     *     environmentDefinitionName: String (Required)
+     *     error (Optional): {
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param environmentName The name of the environment.
+     * @param body Represents an environment.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link SyncPoller} for polling of properties of an environment.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<DevCenterOperationDetails, DevCenterEnvironment> beginCreateOrUpdateEnvironmentWithModel(
+        String projectName, String userId, String environmentName, BinaryData body, RequestOptions requestOptions) {
+        return SyncPoller.createPoller(Duration.ofSeconds(1),
+            () -> this.createOrUpdateEnvironmentWithResponse(projectName, userId, environmentName, body,
+                requestOptions),
+            new SyncDefaultPollingStrategy<>(new PollingStrategyOptions(this.getHttpPipeline())
+                .setEndpoint("{endpoint}".replace("{endpoint}", this.getEndpoint()))
+                .setContext(requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext()
+                    : Context.NONE)
+                .setServiceVersion(this.getServiceVersion().getVersion())),
+            TypeReference.createInstance(DevCenterOperationDetails.class),
+            TypeReference.createInstance(DevCenterEnvironment.class));
+    }
+
+    /**
      * Deletes an environment and all its associated resources.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -1500,10 +1670,18 @@ public final class DeploymentEnvironmentsClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -1543,10 +1721,18 @@ public final class DeploymentEnvironmentsClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -1584,10 +1770,18 @@ public final class DeploymentEnvironmentsClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -1630,10 +1824,18 @@ public final class DeploymentEnvironmentsClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -1660,6 +1862,114 @@ public final class DeploymentEnvironmentsClientImpl {
                     : Context.NONE)
                 .setServiceVersion(this.getServiceVersion().getVersion())),
             TypeReference.createInstance(BinaryData.class), TypeReference.createInstance(Void.class));
+    }
+
+    /**
+     * Deletes an environment and all its associated resources.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     id: String (Optional)
+     *     name: String (Optional)
+     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     resourceId: String (Optional)
+     *     startTime: OffsetDateTime (Optional)
+     *     endTime: OffsetDateTime (Optional)
+     *     percentComplete: Double (Optional)
+     *     properties: byte[] (Optional)
+     *     error (Optional): {
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param environmentName The name of the environment.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public PollerFlux<DevCenterOperationDetails, Void> beginDeleteEnvironmentWithModelAsync(String projectName,
+        String userId, String environmentName, RequestOptions requestOptions) {
+        return PollerFlux.create(Duration.ofSeconds(1),
+            () -> this.deleteEnvironmentWithResponseAsync(projectName, userId, environmentName, requestOptions),
+            new DefaultPollingStrategy<>(new PollingStrategyOptions(this.getHttpPipeline())
+                .setEndpoint("{endpoint}".replace("{endpoint}", this.getEndpoint()))
+                .setContext(requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext()
+                    : Context.NONE)
+                .setServiceVersion(this.getServiceVersion().getVersion())),
+            TypeReference.createInstance(DevCenterOperationDetails.class), TypeReference.createInstance(Void.class));
+    }
+
+    /**
+     * Deletes an environment and all its associated resources.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     id: String (Optional)
+     *     name: String (Optional)
+     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     resourceId: String (Optional)
+     *     startTime: OffsetDateTime (Optional)
+     *     endTime: OffsetDateTime (Optional)
+     *     percentComplete: Double (Optional)
+     *     properties: byte[] (Optional)
+     *     error (Optional): {
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param environmentName The name of the environment.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link SyncPoller} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<DevCenterOperationDetails, Void> beginDeleteEnvironmentWithModel(String projectName,
+        String userId, String environmentName, RequestOptions requestOptions) {
+        return SyncPoller.createPoller(Duration.ofSeconds(1),
+            () -> this.deleteEnvironmentWithResponse(projectName, userId, environmentName, requestOptions),
+            new SyncDefaultPollingStrategy<>(new PollingStrategyOptions(this.getHttpPipeline())
+                .setEndpoint("{endpoint}".replace("{endpoint}", this.getEndpoint()))
+                .setContext(requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext()
+                    : Context.NONE)
+                .setServiceVersion(this.getServiceVersion().getVersion())),
+            TypeReference.createInstance(DevCenterOperationDetails.class), TypeReference.createInstance(Void.class));
     }
 
     /**
@@ -1945,7 +2255,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             id: String (Required)
      *             name: String (Optional)
      *             description: String (Optional)
-     *             default: String (Optional)
+     *             default: byte[] (Optional)
      *             type: String(array/boolean/integer/number/object/string) (Required)
      *             readOnly: Boolean (Optional)
      *             required: boolean (Required)
@@ -1954,7 +2264,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             ]
      *         }
      *     ]
-     *     parametersSchema: String (Optional)
+     *     parametersSchema: byte[] (Optional)
      *     templatePath: String (Optional)
      * }
      * }</pre>
@@ -2014,7 +2324,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             id: String (Required)
      *             name: String (Optional)
      *             description: String (Optional)
-     *             default: String (Optional)
+     *             default: byte[] (Optional)
      *             type: String(array/boolean/integer/number/object/string) (Required)
      *             readOnly: Boolean (Optional)
      *             required: boolean (Required)
@@ -2023,7 +2333,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             ]
      *         }
      *     ]
-     *     parametersSchema: String (Optional)
+     *     parametersSchema: byte[] (Optional)
      *     templatePath: String (Optional)
      * }
      * }</pre>
@@ -2080,7 +2390,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             id: String (Required)
      *             name: String (Optional)
      *             description: String (Optional)
-     *             default: String (Optional)
+     *             default: byte[] (Optional)
      *             type: String(array/boolean/integer/number/object/string) (Required)
      *             readOnly: Boolean (Optional)
      *             required: boolean (Required)
@@ -2089,7 +2399,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             ]
      *         }
      *     ]
-     *     parametersSchema: String (Optional)
+     *     parametersSchema: byte[] (Optional)
      *     templatePath: String (Optional)
      * }
      * }</pre>
@@ -2147,7 +2457,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             id: String (Required)
      *             name: String (Optional)
      *             description: String (Optional)
-     *             default: String (Optional)
+     *             default: byte[] (Optional)
      *             type: String(array/boolean/integer/number/object/string) (Required)
      *             readOnly: Boolean (Optional)
      *             required: boolean (Required)
@@ -2156,7 +2466,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             ]
      *         }
      *     ]
-     *     parametersSchema: String (Optional)
+     *     parametersSchema: byte[] (Optional)
      *     templatePath: String (Optional)
      * }
      * }</pre>
@@ -2213,7 +2523,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             id: String (Required)
      *             name: String (Optional)
      *             description: String (Optional)
-     *             default: String (Optional)
+     *             default: byte[] (Optional)
      *             type: String(array/boolean/integer/number/object/string) (Required)
      *             readOnly: Boolean (Optional)
      *             required: boolean (Required)
@@ -2222,7 +2532,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             ]
      *         }
      *     ]
-     *     parametersSchema: String (Optional)
+     *     parametersSchema: byte[] (Optional)
      *     templatePath: String (Optional)
      * }
      * }</pre>
@@ -2283,7 +2593,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             id: String (Required)
      *             name: String (Optional)
      *             description: String (Optional)
-     *             default: String (Optional)
+     *             default: byte[] (Optional)
      *             type: String(array/boolean/integer/number/object/string) (Required)
      *             readOnly: Boolean (Optional)
      *             required: boolean (Required)
@@ -2292,7 +2602,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             ]
      *         }
      *     ]
-     *     parametersSchema: String (Optional)
+     *     parametersSchema: byte[] (Optional)
      *     templatePath: String (Optional)
      * }
      * }</pre>
@@ -2352,7 +2662,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             id: String (Required)
      *             name: String (Optional)
      *             description: String (Optional)
-     *             default: String (Optional)
+     *             default: byte[] (Optional)
      *             type: String(array/boolean/integer/number/object/string) (Required)
      *             readOnly: Boolean (Optional)
      *             required: boolean (Required)
@@ -2361,7 +2671,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             ]
      *         }
      *     ]
-     *     parametersSchema: String (Optional)
+     *     parametersSchema: byte[] (Optional)
      *     templatePath: String (Optional)
      * }
      * }</pre>
@@ -2420,7 +2730,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             id: String (Required)
      *             name: String (Optional)
      *             description: String (Optional)
-     *             default: String (Optional)
+     *             default: byte[] (Optional)
      *             type: String(array/boolean/integer/number/object/string) (Required)
      *             readOnly: Boolean (Optional)
      *             required: boolean (Required)
@@ -2429,7 +2739,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             ]
      *         }
      *     ]
-     *     parametersSchema: String (Optional)
+     *     parametersSchema: byte[] (Optional)
      *     templatePath: String (Optional)
      * }
      * }</pre>
@@ -2470,7 +2780,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             id: String (Required)
      *             name: String (Optional)
      *             description: String (Optional)
-     *             default: String (Optional)
+     *             default: byte[] (Optional)
      *             type: String(array/boolean/integer/number/object/string) (Required)
      *             readOnly: Boolean (Optional)
      *             required: boolean (Required)
@@ -2479,7 +2789,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             ]
      *         }
      *     ]
-     *     parametersSchema: String (Optional)
+     *     parametersSchema: byte[] (Optional)
      *     templatePath: String (Optional)
      * }
      * }</pre>
@@ -2520,7 +2830,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             id: String (Required)
      *             name: String (Optional)
      *             description: String (Optional)
-     *             default: String (Optional)
+     *             default: byte[] (Optional)
      *             type: String(array/boolean/integer/number/object/string) (Required)
      *             readOnly: Boolean (Optional)
      *             required: boolean (Required)
@@ -2529,7 +2839,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             ]
      *         }
      *     ]
-     *     parametersSchema: String (Optional)
+     *     parametersSchema: byte[] (Optional)
      *     templatePath: String (Optional)
      * }
      * }</pre>
@@ -2753,17 +3063,19 @@ public final class DeploymentEnvironmentsClientImpl {
     }
 
     /**
+     * Lists the environments for a project.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -2804,17 +3116,19 @@ public final class DeploymentEnvironmentsClientImpl {
     }
 
     /**
+     * Lists the environments for a project.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -2854,17 +3168,19 @@ public final class DeploymentEnvironmentsClientImpl {
     }
 
     /**
+     * Lists the environments for a project and user.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -2906,17 +3222,19 @@ public final class DeploymentEnvironmentsClientImpl {
     }
 
     /**
+     * Lists the environments for a project and user.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
      * </p>
      * <pre>{@code
      * {
-     *     parameters: Object (Optional)
+     *     parameters: byte[] (Optional)
      *     name: String (Optional)
      *     environmentType: String (Required)
      *     user: String (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Accepted/Deleting/Updating/Preparing/Running/Syncing/MovingResources/TransientFailure/StorageProvisioningFailed) (Optional)
      *     resourceGroupId: String (Optional)
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
@@ -2955,6 +3273,8 @@ public final class DeploymentEnvironmentsClientImpl {
     }
 
     /**
+     * Lists all of the catalogs available for a project.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -2988,6 +3308,8 @@ public final class DeploymentEnvironmentsClientImpl {
     }
 
     /**
+     * Lists all of the catalogs available for a project.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -3018,6 +3340,8 @@ public final class DeploymentEnvironmentsClientImpl {
     }
 
     /**
+     * Lists all environment definitions available for a project.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -3033,7 +3357,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             id: String (Required)
      *             name: String (Optional)
      *             description: String (Optional)
-     *             default: String (Optional)
+     *             default: byte[] (Optional)
      *             type: String(array/boolean/integer/number/object/string) (Required)
      *             readOnly: Boolean (Optional)
      *             required: boolean (Required)
@@ -3042,7 +3366,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             ]
      *         }
      *     ]
-     *     parametersSchema: String (Optional)
+     *     parametersSchema: byte[] (Optional)
      *     templatePath: String (Optional)
      * }
      * }</pre>
@@ -3070,6 +3394,8 @@ public final class DeploymentEnvironmentsClientImpl {
     }
 
     /**
+     * Lists all environment definitions available for a project.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -3085,7 +3411,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             id: String (Required)
      *             name: String (Optional)
      *             description: String (Optional)
-     *             default: String (Optional)
+     *             default: byte[] (Optional)
      *             type: String(array/boolean/integer/number/object/string) (Required)
      *             readOnly: Boolean (Optional)
      *             required: boolean (Required)
@@ -3094,7 +3420,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             ]
      *         }
      *     ]
-     *     parametersSchema: String (Optional)
+     *     parametersSchema: byte[] (Optional)
      *     templatePath: String (Optional)
      * }
      * }</pre>
@@ -3120,6 +3446,8 @@ public final class DeploymentEnvironmentsClientImpl {
     }
 
     /**
+     * Lists all environment definitions available within a catalog.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -3135,7 +3463,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             id: String (Required)
      *             name: String (Optional)
      *             description: String (Optional)
-     *             default: String (Optional)
+     *             default: byte[] (Optional)
      *             type: String(array/boolean/integer/number/object/string) (Required)
      *             readOnly: Boolean (Optional)
      *             required: boolean (Required)
@@ -3144,7 +3472,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             ]
      *         }
      *     ]
-     *     parametersSchema: String (Optional)
+     *     parametersSchema: byte[] (Optional)
      *     templatePath: String (Optional)
      * }
      * }</pre>
@@ -3172,6 +3500,8 @@ public final class DeploymentEnvironmentsClientImpl {
     }
 
     /**
+     * Lists all environment definitions available within a catalog.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -3187,7 +3517,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             id: String (Required)
      *             name: String (Optional)
      *             description: String (Optional)
-     *             default: String (Optional)
+     *             default: byte[] (Optional)
      *             type: String(array/boolean/integer/number/object/string) (Required)
      *             readOnly: Boolean (Optional)
      *             required: boolean (Required)
@@ -3196,7 +3526,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *             ]
      *         }
      *     ]
-     *     parametersSchema: String (Optional)
+     *     parametersSchema: byte[] (Optional)
      *     templatePath: String (Optional)
      * }
      * }</pre>
@@ -3222,6 +3552,8 @@ public final class DeploymentEnvironmentsClientImpl {
     }
 
     /**
+     * Lists all environment types configured for a project.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -3256,6 +3588,8 @@ public final class DeploymentEnvironmentsClientImpl {
     }
 
     /**
+     * Lists all environment types configured for a project.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>

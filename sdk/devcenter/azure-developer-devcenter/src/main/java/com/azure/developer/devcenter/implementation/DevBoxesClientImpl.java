@@ -46,6 +46,7 @@ import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.TypeReference;
 import com.azure.developer.devcenter.DevCenterServiceVersion;
+import com.azure.developer.devcenter.models.DevCenterOperationDetails;
 import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -343,7 +344,7 @@ public final class DevBoxesClientImpl {
         Mono<Response<BinaryData>> createDevBox(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("projectName") String projectName,
             @PathParam("userId") String userId, @PathParam("devBoxName") String devBoxName,
-            @HeaderParam("accept") String accept, @BodyParam("application/json") BinaryData body,
+            @HeaderParam("accept") String accept, @BodyParam("application/json") BinaryData devBox,
             RequestOptions requestOptions, Context context);
 
         @Put("/projects/{projectName}/users/{userId}/devboxes/{devBoxName}")
@@ -355,7 +356,7 @@ public final class DevBoxesClientImpl {
         Response<BinaryData> createDevBoxSync(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("projectName") String projectName,
             @PathParam("userId") String userId, @PathParam("devBoxName") String devBoxName,
-            @HeaderParam("accept") String accept, @BodyParam("application/json") BinaryData body,
+            @HeaderParam("accept") String accept, @BodyParam("application/json") BinaryData devBox,
             RequestOptions requestOptions, Context context);
 
         @Delete("/projects/{projectName}/users/{userId}/devboxes/{devBoxName}")
@@ -763,7 +764,7 @@ public final class DevBoxesClientImpl {
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -844,7 +845,7 @@ public final class DevBoxesClientImpl {
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -923,7 +924,7 @@ public final class DevBoxesClientImpl {
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -1002,7 +1003,7 @@ public final class DevBoxesClientImpl {
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -1056,7 +1057,7 @@ public final class DevBoxesClientImpl {
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -1082,8 +1083,8 @@ public final class DevBoxesClientImpl {
      * }
      * }</pre>
      * 
-     * @param projectName The DevCenter Project upon which to execute operations.
-     * @param poolName The name of a pool of Dev Boxes.
+     * @param projectName Name of the project.
+     * @param poolName Pool name.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1110,7 +1111,7 @@ public final class DevBoxesClientImpl {
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -1136,8 +1137,8 @@ public final class DevBoxesClientImpl {
      * }
      * }</pre>
      * 
-     * @param projectName The DevCenter Project upon which to execute operations.
-     * @param poolName The name of a pool of Dev Boxes.
+     * @param projectName Name of the project.
+     * @param poolName Pool name.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1492,9 +1493,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -1512,7 +1513,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -1586,9 +1587,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -1606,7 +1607,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -1679,9 +1680,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -1699,7 +1700,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -1772,9 +1773,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -1792,7 +1793,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -1865,9 +1866,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -1885,7 +1886,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -1962,9 +1963,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -1982,7 +1983,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -2057,9 +2058,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -2077,7 +2078,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -2152,9 +2153,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -2172,7 +2173,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -2247,9 +2248,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -2267,7 +2268,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -2345,9 +2346,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -2365,7 +2366,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -2441,9 +2442,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -2461,7 +2462,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -2538,9 +2539,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -2558,7 +2559,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -2609,9 +2610,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -2629,7 +2630,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -2650,10 +2651,9 @@ public final class DevBoxesClientImpl {
      * }
      * }</pre>
      * 
-     * @param projectName The DevCenter Project upon which to execute operations.
-     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
-     * context.
-     * @param devBoxName The name of a Dev Box.
+     * @param projectName Name of the project.
+     * @param userId The AAD object id of the user.
+     * @param devBoxName Display name for the Dev Box.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -2680,9 +2680,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -2700,7 +2700,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -2721,10 +2721,9 @@ public final class DevBoxesClientImpl {
      * }
      * }</pre>
      * 
-     * @param projectName The DevCenter Project upon which to execute operations.
-     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
-     * context.
-     * @param devBoxName The name of a Dev Box.
+     * @param projectName Name of the project.
+     * @param userId The AAD object id of the user.
+     * @param devBoxName Display name for the Dev Box.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -2751,9 +2750,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -2771,7 +2770,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -2800,9 +2799,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -2820,7 +2819,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -2841,11 +2840,12 @@ public final class DevBoxesClientImpl {
      * }
      * }</pre>
      * 
-     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param projectName The DevCenter Project upon which to execute the operation.
      * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
      * context.
      * @param devBoxName The name of a Dev Box.
-     * @param body Represents a environment.
+     * @param devBox Represents the body request of a Dev Box creation. Dev Box Pool name is required. Optionally set
+     * the owner of the Dev Box as local administrator.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -2855,11 +2855,11 @@ public final class DevBoxesClientImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BinaryData>> createDevBoxWithResponseAsync(String projectName, String userId,
-        String devBoxName, BinaryData body, RequestOptions requestOptions) {
+        String devBoxName, BinaryData devBox, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createDevBox(this.getEndpoint(), this.getServiceVersion().getVersion(),
-                projectName, userId, devBoxName, accept, body, requestOptions, context));
+                projectName, userId, devBoxName, accept, devBox, requestOptions, context));
     }
 
     /**
@@ -2873,9 +2873,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -2893,7 +2893,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -2922,9 +2922,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -2942,7 +2942,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -2963,11 +2963,12 @@ public final class DevBoxesClientImpl {
      * }
      * }</pre>
      * 
-     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param projectName The DevCenter Project upon which to execute the operation.
      * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
      * context.
      * @param devBoxName The name of a Dev Box.
-     * @param body Represents a environment.
+     * @param devBox Represents the body request of a Dev Box creation. Dev Box Pool name is required. Optionally set
+     * the owner of the Dev Box as local administrator.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -2977,10 +2978,10 @@ public final class DevBoxesClientImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Response<BinaryData> createDevBoxWithResponse(String projectName, String userId, String devBoxName,
-        BinaryData body, RequestOptions requestOptions) {
+        BinaryData devBox, RequestOptions requestOptions) {
         final String accept = "application/json";
         return service.createDevBoxSync(this.getEndpoint(), this.getServiceVersion().getVersion(), projectName, userId,
-            devBoxName, accept, body, requestOptions, Context.NONE);
+            devBoxName, accept, devBox, requestOptions, Context.NONE);
     }
 
     /**
@@ -2994,9 +2995,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -3014,7 +3015,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -3043,9 +3044,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -3063,7 +3064,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -3084,11 +3085,12 @@ public final class DevBoxesClientImpl {
      * }
      * }</pre>
      * 
-     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param projectName The DevCenter Project upon which to execute the operation.
      * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
      * context.
      * @param devBoxName The name of a Dev Box.
-     * @param body Represents a environment.
+     * @param devBox Represents the body request of a Dev Box creation. Dev Box Pool name is required. Optionally set
+     * the owner of the Dev Box as local administrator.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -3098,9 +3100,9 @@ public final class DevBoxesClientImpl {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public PollerFlux<BinaryData, BinaryData> beginCreateDevBoxAsync(String projectName, String userId,
-        String devBoxName, BinaryData body, RequestOptions requestOptions) {
+        String devBoxName, BinaryData devBox, RequestOptions requestOptions) {
         return PollerFlux.create(Duration.ofSeconds(1),
-            () -> this.createDevBoxWithResponseAsync(projectName, userId, devBoxName, body, requestOptions),
+            () -> this.createDevBoxWithResponseAsync(projectName, userId, devBoxName, devBox, requestOptions),
             new DefaultPollingStrategy<>(new PollingStrategyOptions(this.getHttpPipeline())
                 .setEndpoint("{endpoint}".replace("{endpoint}", this.getEndpoint()))
                 .setContext(requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext()
@@ -3120,9 +3122,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -3140,7 +3142,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -3169,9 +3171,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -3189,7 +3191,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -3210,11 +3212,12 @@ public final class DevBoxesClientImpl {
      * }
      * }</pre>
      * 
-     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param projectName The DevCenter Project upon which to execute the operation.
      * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
      * context.
      * @param devBoxName The name of a Dev Box.
-     * @param body Represents a environment.
+     * @param devBox Represents the body request of a Dev Box creation. Dev Box Pool name is required. Optionally set
+     * the owner of the Dev Box as local administrator.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -3224,9 +3227,9 @@ public final class DevBoxesClientImpl {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<BinaryData, BinaryData> beginCreateDevBox(String projectName, String userId, String devBoxName,
-        BinaryData body, RequestOptions requestOptions) {
+        BinaryData devBox, RequestOptions requestOptions) {
         return SyncPoller.createPoller(Duration.ofSeconds(1),
-            () -> this.createDevBoxWithResponse(projectName, userId, devBoxName, body, requestOptions),
+            () -> this.createDevBoxWithResponse(projectName, userId, devBoxName, devBox, requestOptions),
             new SyncDefaultPollingStrategy<>(new PollingStrategyOptions(this.getHttpPipeline())
                 .setEndpoint("{endpoint}".replace("{endpoint}", this.getEndpoint()))
                 .setContext(requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext()
@@ -3249,10 +3252,18 @@ public final class DevBoxesClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -3291,10 +3302,18 @@ public final class DevBoxesClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -3332,10 +3351,18 @@ public final class DevBoxesClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -3378,10 +3405,18 @@ public final class DevBoxesClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -3411,6 +3446,114 @@ public final class DevBoxesClientImpl {
     }
 
     /**
+     * Deletes a Dev Box.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     id: String (Optional)
+     *     name: String (Optional)
+     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     resourceId: String (Optional)
+     *     startTime: OffsetDateTime (Optional)
+     *     endTime: OffsetDateTime (Optional)
+     *     percentComplete: Double (Optional)
+     *     properties: byte[] (Optional)
+     *     error (Optional): {
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public PollerFlux<DevCenterOperationDetails, Void> beginDeleteDevBoxWithModelAsync(String projectName,
+        String userId, String devBoxName, RequestOptions requestOptions) {
+        return PollerFlux.create(Duration.ofSeconds(1),
+            () -> this.deleteDevBoxWithResponseAsync(projectName, userId, devBoxName, requestOptions),
+            new DefaultPollingStrategy<>(new PollingStrategyOptions(this.getHttpPipeline())
+                .setEndpoint("{endpoint}".replace("{endpoint}", this.getEndpoint()))
+                .setContext(requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext()
+                    : Context.NONE)
+                .setServiceVersion(this.getServiceVersion().getVersion())),
+            TypeReference.createInstance(DevCenterOperationDetails.class), TypeReference.createInstance(Void.class));
+    }
+
+    /**
+     * Deletes a Dev Box.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     id: String (Optional)
+     *     name: String (Optional)
+     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     resourceId: String (Optional)
+     *     startTime: OffsetDateTime (Optional)
+     *     endTime: OffsetDateTime (Optional)
+     *     percentComplete: Double (Optional)
+     *     properties: byte[] (Optional)
+     *     error (Optional): {
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link SyncPoller} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<DevCenterOperationDetails, Void> beginDeleteDevBoxWithModel(String projectName, String userId,
+        String devBoxName, RequestOptions requestOptions) {
+        return SyncPoller.createPoller(Duration.ofSeconds(1),
+            () -> this.deleteDevBoxWithResponse(projectName, userId, devBoxName, requestOptions),
+            new SyncDefaultPollingStrategy<>(new PollingStrategyOptions(this.getHttpPipeline())
+                .setEndpoint("{endpoint}".replace("{endpoint}", this.getEndpoint()))
+                .setContext(requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext()
+                    : Context.NONE)
+                .setServiceVersion(this.getServiceVersion().getVersion())),
+            TypeReference.createInstance(DevCenterOperationDetails.class), TypeReference.createInstance(Void.class));
+    }
+
+    /**
      * Starts a Dev Box.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -3424,10 +3567,18 @@ public final class DevBoxesClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -3466,10 +3617,18 @@ public final class DevBoxesClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -3507,10 +3666,18 @@ public final class DevBoxesClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -3553,10 +3720,18 @@ public final class DevBoxesClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -3583,6 +3758,114 @@ public final class DevBoxesClientImpl {
                     : Context.NONE)
                 .setServiceVersion(this.getServiceVersion().getVersion())),
             TypeReference.createInstance(BinaryData.class), TypeReference.createInstance(BinaryData.class));
+    }
+
+    /**
+     * Starts a Dev Box.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     id: String (Optional)
+     *     name: String (Optional)
+     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     resourceId: String (Optional)
+     *     startTime: OffsetDateTime (Optional)
+     *     endTime: OffsetDateTime (Optional)
+     *     percentComplete: Double (Optional)
+     *     properties: byte[] (Optional)
+     *     error (Optional): {
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public PollerFlux<DevCenterOperationDetails, Void> beginStartDevBoxWithModelAsync(String projectName, String userId,
+        String devBoxName, RequestOptions requestOptions) {
+        return PollerFlux.create(Duration.ofSeconds(1),
+            () -> this.startDevBoxWithResponseAsync(projectName, userId, devBoxName, requestOptions),
+            new DefaultPollingStrategy<>(new PollingStrategyOptions(this.getHttpPipeline())
+                .setEndpoint("{endpoint}".replace("{endpoint}", this.getEndpoint()))
+                .setContext(requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext()
+                    : Context.NONE)
+                .setServiceVersion(this.getServiceVersion().getVersion())),
+            TypeReference.createInstance(DevCenterOperationDetails.class), TypeReference.createInstance(Void.class));
+    }
+
+    /**
+     * Starts a Dev Box.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     id: String (Optional)
+     *     name: String (Optional)
+     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     resourceId: String (Optional)
+     *     startTime: OffsetDateTime (Optional)
+     *     endTime: OffsetDateTime (Optional)
+     *     percentComplete: Double (Optional)
+     *     properties: byte[] (Optional)
+     *     error (Optional): {
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link SyncPoller} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<DevCenterOperationDetails, Void> beginStartDevBoxWithModel(String projectName, String userId,
+        String devBoxName, RequestOptions requestOptions) {
+        return SyncPoller.createPoller(Duration.ofSeconds(1),
+            () -> this.startDevBoxWithResponse(projectName, userId, devBoxName, requestOptions),
+            new SyncDefaultPollingStrategy<>(new PollingStrategyOptions(this.getHttpPipeline())
+                .setEndpoint("{endpoint}".replace("{endpoint}", this.getEndpoint()))
+                .setContext(requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext()
+                    : Context.NONE)
+                .setServiceVersion(this.getServiceVersion().getVersion())),
+            TypeReference.createInstance(DevCenterOperationDetails.class), TypeReference.createInstance(Void.class));
     }
 
     /**
@@ -3618,10 +3901,18 @@ public final class DevBoxesClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -3679,10 +3970,18 @@ public final class DevBoxesClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -3739,10 +4038,18 @@ public final class DevBoxesClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -3804,10 +4111,18 @@ public final class DevBoxesClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -3837,6 +4152,152 @@ public final class DevBoxesClientImpl {
     }
 
     /**
+     * Stops a Dev Box.
+     * <p>
+     * <strong>Query Parameters</strong>
+     * </p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr>
+     * <th>Name</th>
+     * <th>Type</th>
+     * <th>Required</th>
+     * <th>Description</th>
+     * </tr>
+     * <tr>
+     * <td>hibernate</td>
+     * <td>Boolean</td>
+     * <td>No</td>
+     * <td>Optional parameter to hibernate the dev box.</td>
+     * </tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     id: String (Optional)
+     *     name: String (Optional)
+     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     resourceId: String (Optional)
+     *     startTime: OffsetDateTime (Optional)
+     *     endTime: OffsetDateTime (Optional)
+     *     percentComplete: Double (Optional)
+     *     properties: byte[] (Optional)
+     *     error (Optional): {
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public PollerFlux<DevCenterOperationDetails, Void> beginStopDevBoxWithModelAsync(String projectName, String userId,
+        String devBoxName, RequestOptions requestOptions) {
+        return PollerFlux.create(Duration.ofSeconds(1),
+            () -> this.stopDevBoxWithResponseAsync(projectName, userId, devBoxName, requestOptions),
+            new DefaultPollingStrategy<>(new PollingStrategyOptions(this.getHttpPipeline())
+                .setEndpoint("{endpoint}".replace("{endpoint}", this.getEndpoint()))
+                .setContext(requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext()
+                    : Context.NONE)
+                .setServiceVersion(this.getServiceVersion().getVersion())),
+            TypeReference.createInstance(DevCenterOperationDetails.class), TypeReference.createInstance(Void.class));
+    }
+
+    /**
+     * Stops a Dev Box.
+     * <p>
+     * <strong>Query Parameters</strong>
+     * </p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr>
+     * <th>Name</th>
+     * <th>Type</th>
+     * <th>Required</th>
+     * <th>Description</th>
+     * </tr>
+     * <tr>
+     * <td>hibernate</td>
+     * <td>Boolean</td>
+     * <td>No</td>
+     * <td>Optional parameter to hibernate the dev box.</td>
+     * </tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     id: String (Optional)
+     *     name: String (Optional)
+     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     resourceId: String (Optional)
+     *     startTime: OffsetDateTime (Optional)
+     *     endTime: OffsetDateTime (Optional)
+     *     percentComplete: Double (Optional)
+     *     properties: byte[] (Optional)
+     *     error (Optional): {
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link SyncPoller} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<DevCenterOperationDetails, Void> beginStopDevBoxWithModel(String projectName, String userId,
+        String devBoxName, RequestOptions requestOptions) {
+        return SyncPoller.createPoller(Duration.ofSeconds(1),
+            () -> this.stopDevBoxWithResponse(projectName, userId, devBoxName, requestOptions),
+            new SyncDefaultPollingStrategy<>(new PollingStrategyOptions(this.getHttpPipeline())
+                .setEndpoint("{endpoint}".replace("{endpoint}", this.getEndpoint()))
+                .setContext(requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext()
+                    : Context.NONE)
+                .setServiceVersion(this.getServiceVersion().getVersion())),
+            TypeReference.createInstance(DevCenterOperationDetails.class), TypeReference.createInstance(Void.class));
+    }
+
+    /**
      * Restarts a Dev Box.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -3850,10 +4311,18 @@ public final class DevBoxesClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -3892,10 +4361,18 @@ public final class DevBoxesClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -3933,10 +4410,18 @@ public final class DevBoxesClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -3979,10 +4464,18 @@ public final class DevBoxesClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -4009,6 +4502,114 @@ public final class DevBoxesClientImpl {
                     : Context.NONE)
                 .setServiceVersion(this.getServiceVersion().getVersion())),
             TypeReference.createInstance(BinaryData.class), TypeReference.createInstance(BinaryData.class));
+    }
+
+    /**
+     * Restarts a Dev Box.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     id: String (Optional)
+     *     name: String (Optional)
+     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     resourceId: String (Optional)
+     *     startTime: OffsetDateTime (Optional)
+     *     endTime: OffsetDateTime (Optional)
+     *     percentComplete: Double (Optional)
+     *     properties: byte[] (Optional)
+     *     error (Optional): {
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public PollerFlux<DevCenterOperationDetails, Void> beginRestartDevBoxWithModelAsync(String projectName,
+        String userId, String devBoxName, RequestOptions requestOptions) {
+        return PollerFlux.create(Duration.ofSeconds(1),
+            () -> this.restartDevBoxWithResponseAsync(projectName, userId, devBoxName, requestOptions),
+            new DefaultPollingStrategy<>(new PollingStrategyOptions(this.getHttpPipeline())
+                .setEndpoint("{endpoint}".replace("{endpoint}", this.getEndpoint()))
+                .setContext(requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext()
+                    : Context.NONE)
+                .setServiceVersion(this.getServiceVersion().getVersion())),
+            TypeReference.createInstance(DevCenterOperationDetails.class), TypeReference.createInstance(Void.class));
+    }
+
+    /**
+     * Restarts a Dev Box.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     id: String (Optional)
+     *     name: String (Optional)
+     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     resourceId: String (Optional)
+     *     startTime: OffsetDateTime (Optional)
+     *     endTime: OffsetDateTime (Optional)
+     *     percentComplete: Double (Optional)
+     *     properties: byte[] (Optional)
+     *     error (Optional): {
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link SyncPoller} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<DevCenterOperationDetails, Void> beginRestartDevBoxWithModel(String projectName, String userId,
+        String devBoxName, RequestOptions requestOptions) {
+        return SyncPoller.createPoller(Duration.ofSeconds(1),
+            () -> this.restartDevBoxWithResponse(projectName, userId, devBoxName, requestOptions),
+            new SyncDefaultPollingStrategy<>(new PollingStrategyOptions(this.getHttpPipeline())
+                .setEndpoint("{endpoint}".replace("{endpoint}", this.getEndpoint()))
+                .setContext(requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext()
+                    : Context.NONE)
+                .setServiceVersion(this.getServiceVersion().getVersion())),
+            TypeReference.createInstance(DevCenterOperationDetails.class), TypeReference.createInstance(Void.class));
     }
 
     /**
@@ -4652,6 +5253,8 @@ public final class DevBoxesClientImpl {
     }
 
     /**
+     * Lists available pools
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -4662,7 +5265,7 @@ public final class DevBoxesClientImpl {
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -4710,6 +5313,8 @@ public final class DevBoxesClientImpl {
     }
 
     /**
+     * Lists available pools
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -4720,7 +5325,7 @@ public final class DevBoxesClientImpl {
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -4766,6 +5371,8 @@ public final class DevBoxesClientImpl {
     }
 
     /**
+     * Lists available schedules for a pool.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -4802,6 +5409,8 @@ public final class DevBoxesClientImpl {
     }
 
     /**
+     * Lists available schedules for a pool.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -4836,6 +5445,8 @@ public final class DevBoxesClientImpl {
     }
 
     /**
+     * Lists Dev Boxes that the caller has access to in the DevCenter.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -4846,9 +5457,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -4866,7 +5477,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -4909,6 +5520,8 @@ public final class DevBoxesClientImpl {
     }
 
     /**
+     * Lists Dev Boxes that the caller has access to in the DevCenter.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -4919,9 +5532,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -4939,7 +5552,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -4980,6 +5593,8 @@ public final class DevBoxesClientImpl {
     }
 
     /**
+     * Lists Dev Boxes in the Dev Center for a particular user.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -4990,9 +5605,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -5010,7 +5625,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -5052,6 +5667,8 @@ public final class DevBoxesClientImpl {
     }
 
     /**
+     * Lists Dev Boxes in the Dev Center for a particular user.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -5062,9 +5679,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -5082,7 +5699,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -5124,6 +5741,8 @@ public final class DevBoxesClientImpl {
     }
 
     /**
+     * Lists Dev Boxes in the project for a particular user.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -5134,9 +5753,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -5154,7 +5773,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -5197,6 +5816,8 @@ public final class DevBoxesClientImpl {
     }
 
     /**
+     * Lists Dev Boxes in the project for a particular user.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -5207,9 +5828,9 @@ public final class DevBoxesClientImpl {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -5227,7 +5848,7 @@ public final class DevBoxesClientImpl {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -5268,6 +5889,8 @@ public final class DevBoxesClientImpl {
     }
 
     /**
+     * Lists actions on a Dev Box.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -5306,6 +5929,8 @@ public final class DevBoxesClientImpl {
     }
 
     /**
+     * Lists actions on a Dev Box.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -5342,6 +5967,8 @@ public final class DevBoxesClientImpl {
     }
 
     /**
+     * Delays all actions.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>
@@ -5396,6 +6023,8 @@ public final class DevBoxesClientImpl {
     }
 
     /**
+     * Delays all actions.
+     * 
      * Get the next page of items.
      * <p>
      * <strong>Response Body Schema</strong>

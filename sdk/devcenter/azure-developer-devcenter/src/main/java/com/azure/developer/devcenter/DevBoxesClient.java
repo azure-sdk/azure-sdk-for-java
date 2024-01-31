@@ -18,6 +18,13 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.BinaryData;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.developer.devcenter.implementation.DevBoxesClientImpl;
+import com.azure.developer.devcenter.models.DevBox;
+import com.azure.developer.devcenter.models.DevBoxAction;
+import com.azure.developer.devcenter.models.DevBoxActionDelayResult;
+import com.azure.developer.devcenter.models.DevBoxPool;
+import com.azure.developer.devcenter.models.DevBoxSchedule;
+import com.azure.developer.devcenter.models.DevCenterOperationDetails;
+import com.azure.developer.devcenter.models.RemoteConnection;
 import java.time.OffsetDateTime;
 
 /**
@@ -74,7 +81,7 @@ public final class DevBoxesClient {
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -125,7 +132,7 @@ public final class DevBoxesClient {
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -151,8 +158,8 @@ public final class DevBoxesClient {
      * }
      * }</pre>
      * 
-     * @param projectName The DevCenter Project upon which to execute operations.
-     * @param poolName The name of a pool of Dev Boxes.
+     * @param projectName Name of the project.
+     * @param poolName Pool name.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -290,9 +297,9 @@ public final class DevBoxesClient {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -310,7 +317,7 @@ public final class DevBoxesClient {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -380,9 +387,9 @@ public final class DevBoxesClient {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -400,7 +407,7 @@ public final class DevBoxesClient {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -472,9 +479,9 @@ public final class DevBoxesClient {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -492,7 +499,7 @@ public final class DevBoxesClient {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -540,9 +547,9 @@ public final class DevBoxesClient {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -560,7 +567,7 @@ public final class DevBoxesClient {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -581,10 +588,9 @@ public final class DevBoxesClient {
      * }
      * }</pre>
      * 
-     * @param projectName The DevCenter Project upon which to execute operations.
-     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
-     * context.
-     * @param devBoxName The name of a Dev Box.
+     * @param projectName Name of the project.
+     * @param userId The AAD object id of the user.
+     * @param devBoxName Display name for the Dev Box.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -610,9 +616,9 @@ public final class DevBoxesClient {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -630,7 +636,7 @@ public final class DevBoxesClient {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -659,9 +665,9 @@ public final class DevBoxesClient {
      *     projectName: String (Optional)
      *     poolName: String (Required)
      *     hibernateSupport: String(Enabled/Disabled/OsUnsupported) (Optional)
-     *     provisioningState: String (Optional)
+     *     provisioningState: String(Succeeded/Failed/Canceled/Creating/Deleting/Updating/Starting/Stopping/Provisioning/ProvisionedWithWarning/InGracePeriod/NotProvisioned) (Optional)
      *     actionState: String (Optional)
-     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Optional)
+     *     powerState: String(Unknown/Running/Deallocated/PoweredOff/Hibernated) (Required)
      *     uniqueId: String (Optional)
      *     error (Optional): {
      *         code: String (Required)
@@ -679,7 +685,7 @@ public final class DevBoxesClient {
      *     osType: String(Windows) (Optional)
      *     user: String (Optional)
      *     hardwareProfile (Optional): {
-     *         skuName: String (Optional)
+     *         skuName: String(general_i_8c32gb256ssd_v2/general_i_8c32gb512ssd_v2/general_i_8c32gb1024ssd_v2/general_i_8c32gb2048ssd_v2/general_i_16c64gb256ssd_v2/general_i_16c64gb512ssd_v2/general_i_16c64gb1024ssd_v2/general_i_16c64gb2048ssd_v2/general_i_32c128gb512ssd_v2/general_i_32c128gb1024ssd_v2/general_i_32c128gb2048ssd_v2/general_a_8c32gb256ssd_v2/general_a_8c32gb512ssd_v2/general_a_8c32gb1024ssd_v2/general_a_8c32gb2048ssd_v2/general_a_16c64gb256ssd_v2/general_a_16c64gb512ssd_v2/general_a_16c64gb1024ssd_v2/general_a_16c64gb2048ssd_v2/general_a_32c128gb512ssd_v2/general_a_32c128gb1024ssd_v2/general_a_32c128gb2048ssd_v2) (Optional)
      *         vCPUs: Integer (Optional)
      *         memoryGB: Integer (Optional)
      *     }
@@ -700,11 +706,12 @@ public final class DevBoxesClient {
      * }
      * }</pre>
      * 
-     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param projectName The DevCenter Project upon which to execute the operation.
      * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
      * context.
      * @param devBoxName The name of a Dev Box.
-     * @param body Represents a environment.
+     * @param devBox Represents the body request of a Dev Box creation. Dev Box Pool name is required. Optionally set
+     * the owner of the Dev Box as local administrator.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -715,8 +722,8 @@ public final class DevBoxesClient {
     @Generated
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<BinaryData, BinaryData> beginCreateDevBox(String projectName, String userId, String devBoxName,
-        BinaryData body, RequestOptions requestOptions) {
-        return this.serviceClient.beginCreateDevBox(projectName, userId, devBoxName, body, requestOptions);
+        BinaryData devBox, RequestOptions requestOptions) {
+        return this.serviceClient.beginCreateDevBox(projectName, userId, devBoxName, devBox, requestOptions);
     }
 
     /**
@@ -733,10 +740,18 @@ public final class DevBoxesClient {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -773,10 +788,18 @@ public final class DevBoxesClient {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -832,10 +855,18 @@ public final class DevBoxesClient {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -872,10 +903,18 @@ public final class DevBoxesClient {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties: byte[] (Optional)
      *     error (Optional): {
-     *         code: String (Optional)
-     *         message: String (Optional)
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
      *     }
      * }
      * }</pre>
@@ -1110,5 +1149,600 @@ public final class DevBoxesClient {
     public PagedIterable<BinaryData> delayAllActions(String projectName, String userId, String devBoxName,
         OffsetDateTime delayUntil, RequestOptions requestOptions) {
         return this.serviceClient.delayAllActions(projectName, userId, devBoxName, delayUntil, requestOptions);
+    }
+
+    /**
+     * Lists available pools.
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param filter An OData filter clause to apply to the operation.
+     * @param top The maximum number of resources to return from the operation. Example: 'top=10'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Pool list result as paginated response with {@link PagedIterable}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<DevBoxPool> listPools(String projectName, String filter, Integer top) {
+        // Generated convenience method for listPools
+        RequestOptions requestOptions = new RequestOptions();
+        if (filter != null) {
+            requestOptions.addQueryParam("filter", filter, false);
+        }
+        if (top != null) {
+            requestOptions.addQueryParam("top", String.valueOf(top), false);
+        }
+        return serviceClient.listPools(projectName, requestOptions)
+            .mapPage(bodyItemValue -> bodyItemValue.toObject(DevBoxPool.class));
+    }
+
+    /**
+     * Lists available pools.
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Pool list result as paginated response with {@link PagedIterable}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<DevBoxPool> listPools(String projectName) {
+        // Generated convenience method for listPools
+        RequestOptions requestOptions = new RequestOptions();
+        return serviceClient.listPools(projectName, requestOptions)
+            .mapPage(bodyItemValue -> bodyItemValue.toObject(DevBoxPool.class));
+    }
+
+    /**
+     * Gets a pool.
+     * 
+     * @param projectName Name of the project.
+     * @param poolName Pool name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a pool.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DevBoxPool getPool(String projectName, String poolName) {
+        // Generated convenience method for getPoolWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return getPoolWithResponse(projectName, poolName, requestOptions).getValue().toObject(DevBoxPool.class);
+    }
+
+    /**
+     * Lists available schedules for a pool.
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param poolName The name of a pool of Dev Boxes.
+     * @param filter An OData filter clause to apply to the operation.
+     * @param top The maximum number of resources to return from the operation. Example: 'top=10'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Schedule list result as paginated response with {@link PagedIterable}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<DevBoxSchedule> listSchedules(String projectName, String poolName, String filter,
+        Integer top) {
+        // Generated convenience method for listSchedules
+        RequestOptions requestOptions = new RequestOptions();
+        if (filter != null) {
+            requestOptions.addQueryParam("filter", filter, false);
+        }
+        if (top != null) {
+            requestOptions.addQueryParam("top", String.valueOf(top), false);
+        }
+        return serviceClient.listSchedules(projectName, poolName, requestOptions)
+            .mapPage(bodyItemValue -> bodyItemValue.toObject(DevBoxSchedule.class));
+    }
+
+    /**
+     * Lists available schedules for a pool.
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param poolName The name of a pool of Dev Boxes.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Schedule list result as paginated response with {@link PagedIterable}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<DevBoxSchedule> listSchedules(String projectName, String poolName) {
+        // Generated convenience method for listSchedules
+        RequestOptions requestOptions = new RequestOptions();
+        return serviceClient.listSchedules(projectName, poolName, requestOptions)
+            .mapPage(bodyItemValue -> bodyItemValue.toObject(DevBoxSchedule.class));
+    }
+
+    /**
+     * Gets a schedule.
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param poolName The name of a pool of Dev Boxes.
+     * @param scheduleName The name of a schedule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a schedule.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DevBoxSchedule getSchedule(String projectName, String poolName, String scheduleName) {
+        // Generated convenience method for getScheduleWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return getScheduleWithResponse(projectName, poolName, scheduleName, requestOptions).getValue()
+            .toObject(DevBoxSchedule.class);
+    }
+
+    /**
+     * Lists Dev Boxes that the caller has access to in the DevCenter.
+     * 
+     * @param filter An OData filter clause to apply to the operation.
+     * @param top The maximum number of resources to return from the operation. Example: 'top=10'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Dev Box list result as paginated response with {@link PagedIterable}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<DevBox> listAllDevBoxes(String filter, Integer top) {
+        // Generated convenience method for listAllDevBoxes
+        RequestOptions requestOptions = new RequestOptions();
+        if (filter != null) {
+            requestOptions.addQueryParam("filter", filter, false);
+        }
+        if (top != null) {
+            requestOptions.addQueryParam("top", String.valueOf(top), false);
+        }
+        return serviceClient.listAllDevBoxes(requestOptions)
+            .mapPage(bodyItemValue -> bodyItemValue.toObject(DevBox.class));
+    }
+
+    /**
+     * Lists Dev Boxes that the caller has access to in the DevCenter.
+     * 
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Dev Box list result as paginated response with {@link PagedIterable}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<DevBox> listAllDevBoxes() {
+        // Generated convenience method for listAllDevBoxes
+        RequestOptions requestOptions = new RequestOptions();
+        return serviceClient.listAllDevBoxes(requestOptions)
+            .mapPage(bodyItemValue -> bodyItemValue.toObject(DevBox.class));
+    }
+
+    /**
+     * Lists Dev Boxes in the Dev Center for a particular user.
+     * 
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param filter An OData filter clause to apply to the operation.
+     * @param top The maximum number of resources to return from the operation. Example: 'top=10'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Dev Box list result as paginated response with {@link PagedIterable}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<DevBox> listAllDevBoxesByUser(String userId, String filter, Integer top) {
+        // Generated convenience method for listAllDevBoxesByUser
+        RequestOptions requestOptions = new RequestOptions();
+        if (filter != null) {
+            requestOptions.addQueryParam("filter", filter, false);
+        }
+        if (top != null) {
+            requestOptions.addQueryParam("top", String.valueOf(top), false);
+        }
+        return serviceClient.listAllDevBoxesByUser(userId, requestOptions)
+            .mapPage(bodyItemValue -> bodyItemValue.toObject(DevBox.class));
+    }
+
+    /**
+     * Lists Dev Boxes in the Dev Center for a particular user.
+     * 
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Dev Box list result as paginated response with {@link PagedIterable}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<DevBox> listAllDevBoxesByUser(String userId) {
+        // Generated convenience method for listAllDevBoxesByUser
+        RequestOptions requestOptions = new RequestOptions();
+        return serviceClient.listAllDevBoxesByUser(userId, requestOptions)
+            .mapPage(bodyItemValue -> bodyItemValue.toObject(DevBox.class));
+    }
+
+    /**
+     * Lists Dev Boxes in the project for a particular user.
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param filter An OData filter clause to apply to the operation.
+     * @param top The maximum number of resources to return from the operation. Example: 'top=10'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Dev Box list result as paginated response with {@link PagedIterable}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<DevBox> listDevBoxes(String projectName, String userId, String filter, Integer top) {
+        // Generated convenience method for listDevBoxes
+        RequestOptions requestOptions = new RequestOptions();
+        if (filter != null) {
+            requestOptions.addQueryParam("filter", filter, false);
+        }
+        if (top != null) {
+            requestOptions.addQueryParam("top", String.valueOf(top), false);
+        }
+        return serviceClient.listDevBoxes(projectName, userId, requestOptions)
+            .mapPage(bodyItemValue -> bodyItemValue.toObject(DevBox.class));
+    }
+
+    /**
+     * Lists Dev Boxes in the project for a particular user.
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Dev Box list result as paginated response with {@link PagedIterable}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<DevBox> listDevBoxes(String projectName, String userId) {
+        // Generated convenience method for listDevBoxes
+        RequestOptions requestOptions = new RequestOptions();
+        return serviceClient.listDevBoxes(projectName, userId, requestOptions)
+            .mapPage(bodyItemValue -> bodyItemValue.toObject(DevBox.class));
+    }
+
+    /**
+     * Gets a Dev Box.
+     * 
+     * @param projectName Name of the project.
+     * @param userId The AAD object id of the user.
+     * @param devBoxName Display name for the Dev Box.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Dev Box.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DevBox getDevBox(String projectName, String userId, String devBoxName) {
+        // Generated convenience method for getDevBoxWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return getDevBoxWithResponse(projectName, userId, devBoxName, requestOptions).getValue().toObject(DevBox.class);
+    }
+
+    /**
+     * Deletes a Dev Box.
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the current status of an async operation.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<DevCenterOperationDetails, Void> beginDeleteDevBox(String projectName, String userId,
+        String devBoxName) {
+        // Generated convenience method for beginDeleteDevBoxWithModel
+        RequestOptions requestOptions = new RequestOptions();
+        return serviceClient.beginDeleteDevBoxWithModel(projectName, userId, devBoxName, requestOptions);
+    }
+
+    /**
+     * Starts a Dev Box.
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the current status of an async operation.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<DevCenterOperationDetails, Void> beginStartDevBox(String projectName, String userId,
+        String devBoxName) {
+        // Generated convenience method for beginStartDevBoxWithModel
+        RequestOptions requestOptions = new RequestOptions();
+        return serviceClient.beginStartDevBoxWithModel(projectName, userId, devBoxName, requestOptions);
+    }
+
+    /**
+     * Stops a Dev Box.
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @param hibernate Optional parameter to hibernate the dev box.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the current status of an async operation.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<DevCenterOperationDetails, Void> beginStopDevBox(String projectName, String userId,
+        String devBoxName, Boolean hibernate) {
+        // Generated convenience method for beginStopDevBoxWithModel
+        RequestOptions requestOptions = new RequestOptions();
+        if (hibernate != null) {
+            requestOptions.addQueryParam("hibernate", String.valueOf(hibernate), false);
+        }
+        return serviceClient.beginStopDevBoxWithModel(projectName, userId, devBoxName, requestOptions);
+    }
+
+    /**
+     * Stops a Dev Box.
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the current status of an async operation.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<DevCenterOperationDetails, Void> beginStopDevBox(String projectName, String userId,
+        String devBoxName) {
+        // Generated convenience method for beginStopDevBoxWithModel
+        RequestOptions requestOptions = new RequestOptions();
+        return serviceClient.beginStopDevBoxWithModel(projectName, userId, devBoxName, requestOptions);
+    }
+
+    /**
+     * Restarts a Dev Box.
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the current status of an async operation.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<DevCenterOperationDetails, Void> beginRestartDevBox(String projectName, String userId,
+        String devBoxName) {
+        // Generated convenience method for beginRestartDevBoxWithModel
+        RequestOptions requestOptions = new RequestOptions();
+        return serviceClient.beginRestartDevBoxWithModel(projectName, userId, devBoxName, requestOptions);
+    }
+
+    /**
+     * Gets RDP Connection info.
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return rDP Connection info.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public RemoteConnection getRemoteConnection(String projectName, String userId, String devBoxName) {
+        // Generated convenience method for getRemoteConnectionWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return getRemoteConnectionWithResponse(projectName, userId, devBoxName, requestOptions).getValue()
+            .toObject(RemoteConnection.class);
+    }
+
+    /**
+     * Lists actions on a Dev Box.
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the actions list result as paginated response with {@link PagedIterable}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<DevBoxAction> listDevBoxActions(String projectName, String userId, String devBoxName) {
+        // Generated convenience method for listDevBoxActions
+        RequestOptions requestOptions = new RequestOptions();
+        return serviceClient.listDevBoxActions(projectName, userId, devBoxName, requestOptions)
+            .mapPage(bodyItemValue -> bodyItemValue.toObject(DevBoxAction.class));
+    }
+
+    /**
+     * Gets an action.
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @param actionName The name of an action that will take place on a Dev Box.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an action.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DevBoxAction getDevBoxAction(String projectName, String userId, String devBoxName, String actionName) {
+        // Generated convenience method for getDevBoxActionWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return getDevBoxActionWithResponse(projectName, userId, devBoxName, actionName, requestOptions).getValue()
+            .toObject(DevBoxAction.class);
+    }
+
+    /**
+     * Skips an occurrence of an action.
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @param actionName The name of an action that will take place on a Dev Box.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void skipAction(String projectName, String userId, String devBoxName, String actionName) {
+        // Generated convenience method for skipActionWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        skipActionWithResponse(projectName, userId, devBoxName, actionName, requestOptions).getValue();
+    }
+
+    /**
+     * Delays the occurrence of an action.
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @param actionName The name of an action that will take place on a Dev Box.
+     * @param delayUntil The time to delay the Dev Box action or actions until.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an action which will take place on a Dev Box.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DevBoxAction delayAction(String projectName, String userId, String devBoxName, String actionName,
+        OffsetDateTime delayUntil) {
+        // Generated convenience method for delayActionWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return delayActionWithResponse(projectName, userId, devBoxName, actionName, delayUntil, requestOptions)
+            .getValue().toObject(DevBoxAction.class);
+    }
+
+    /**
+     * Delays all actions.
+     * 
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param userId The AAD object id of the user. If value is 'me', the identity is taken from the authentication
+     * context.
+     * @param devBoxName The name of a Dev Box.
+     * @param delayUntil The time to delay the Dev Box action or actions until.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the actions list result as paginated response with {@link PagedIterable}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<DevBoxActionDelayResult> delayAllActions(String projectName, String userId, String devBoxName,
+        OffsetDateTime delayUntil) {
+        // Generated convenience method for delayAllActions
+        RequestOptions requestOptions = new RequestOptions();
+        return serviceClient.delayAllActions(projectName, userId, devBoxName, delayUntil, requestOptions)
+            .mapPage(bodyItemValue -> bodyItemValue.toObject(DevBoxActionDelayResult.class));
     }
 }
