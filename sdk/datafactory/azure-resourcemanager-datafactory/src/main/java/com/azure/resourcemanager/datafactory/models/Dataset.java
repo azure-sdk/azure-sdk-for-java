@@ -129,7 +129,8 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "LakeHouseTable", value = LakeHouseTableDataset.class),
     @JsonSubTypes.Type(name = "SalesforceV2Object", value = SalesforceV2ObjectDataset.class),
     @JsonSubTypes.Type(name = "SalesforceServiceCloudV2Object", value = SalesforceServiceCloudV2ObjectDataset.class),
-    @JsonSubTypes.Type(name = "WarehouseTable", value = WarehouseTableDataset.class) })
+    @JsonSubTypes.Type(name = "WarehouseTable", value = WarehouseTableDataset.class),
+    @JsonSubTypes.Type(name = "ServiceNowV2Object", value = ServiceNowV2ObjectDataset.class) })
 @Fluent
 public class Dataset {
     /*
