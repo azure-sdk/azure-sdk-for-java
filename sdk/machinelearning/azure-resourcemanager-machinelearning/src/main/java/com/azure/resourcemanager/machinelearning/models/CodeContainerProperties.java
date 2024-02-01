@@ -5,37 +5,65 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Container for code asset versions. */
+/**
+ * Container for code asset versions.
+ */
 @Fluent
 public final class CodeContainerProperties extends AssetContainer {
-    /** Creates an instance of CodeContainerProperties class. */
+    /*
+     * Provisioning state for the code container.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AssetProvisioningState provisioningState;
+
+    /**
+     * Creates an instance of CodeContainerProperties class.
+     */
     public CodeContainerProperties() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the provisioningState property: Provisioning state for the code container.
+     * 
+     * @return the provisioningState value.
+     */
+    public AssetProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodeContainerProperties withIsArchived(Boolean isArchived) {
         super.withIsArchived(isArchived);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodeContainerProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodeContainerProperties withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodeContainerProperties withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -44,7 +72,7 @@ public final class CodeContainerProperties extends AssetContainer {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

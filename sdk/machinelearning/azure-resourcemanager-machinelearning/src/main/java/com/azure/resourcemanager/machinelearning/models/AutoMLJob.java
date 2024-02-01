@@ -13,8 +13,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
 /**
- * AutoMLJob class. Use this class for executing AutoML tasks like Classification/Regression etc. See TaskType enum for
- * all the tasks supported.
+ * AutoMLJob class.
+ * Use this class for executing AutoML tasks like Classification/Regression etc.
+ * See TaskType enum for all the tasks supported.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobType")
 @JsonTypeName("AutoML")
@@ -43,6 +44,12 @@ public final class AutoMLJob extends JobBaseProperties {
     private Map<String, JobOutput> outputs;
 
     /*
+     * Queue settings for the job
+     */
+    @JsonProperty(value = "queueSettings")
+    private QueueSettings queueSettings;
+
+    /*
      * Compute Resource configuration for the job.
      */
     @JsonProperty(value = "resources")
@@ -54,15 +61,17 @@ public final class AutoMLJob extends JobBaseProperties {
     @JsonProperty(value = "taskDetails", required = true)
     private AutoMLVertical taskDetails;
 
-    /** Creates an instance of AutoMLJob class. */
+    /**
+     * Creates an instance of AutoMLJob class.
+     */
     public AutoMLJob() {
     }
 
     /**
-     * Get the environmentId property: The ARM resource ID of the Environment specification for the job. This is
-     * optional value to provide, if not provided, AutoML will default this to Production AutoML curated environment
-     * version when running the job.
-     *
+     * Get the environmentId property: The ARM resource ID of the Environment specification for the job.
+     * This is optional value to provide, if not provided, AutoML will default this to Production AutoML curated
+     * environment version when running the job.
+     * 
      * @return the environmentId value.
      */
     public String environmentId() {
@@ -70,10 +79,10 @@ public final class AutoMLJob extends JobBaseProperties {
     }
 
     /**
-     * Set the environmentId property: The ARM resource ID of the Environment specification for the job. This is
-     * optional value to provide, if not provided, AutoML will default this to Production AutoML curated environment
-     * version when running the job.
-     *
+     * Set the environmentId property: The ARM resource ID of the Environment specification for the job.
+     * This is optional value to provide, if not provided, AutoML will default this to Production AutoML curated
+     * environment version when running the job.
+     * 
      * @param environmentId the environmentId value to set.
      * @return the AutoMLJob object itself.
      */
@@ -84,7 +93,7 @@ public final class AutoMLJob extends JobBaseProperties {
 
     /**
      * Get the environmentVariables property: Environment variables included in the job.
-     *
+     * 
      * @return the environmentVariables value.
      */
     public Map<String, String> environmentVariables() {
@@ -93,7 +102,7 @@ public final class AutoMLJob extends JobBaseProperties {
 
     /**
      * Set the environmentVariables property: Environment variables included in the job.
-     *
+     * 
      * @param environmentVariables the environmentVariables value to set.
      * @return the AutoMLJob object itself.
      */
@@ -104,7 +113,7 @@ public final class AutoMLJob extends JobBaseProperties {
 
     /**
      * Get the outputs property: Mapping of output data bindings used in the job.
-     *
+     * 
      * @return the outputs value.
      */
     public Map<String, JobOutput> outputs() {
@@ -113,7 +122,7 @@ public final class AutoMLJob extends JobBaseProperties {
 
     /**
      * Set the outputs property: Mapping of output data bindings used in the job.
-     *
+     * 
      * @param outputs the outputs value to set.
      * @return the AutoMLJob object itself.
      */
@@ -123,8 +132,28 @@ public final class AutoMLJob extends JobBaseProperties {
     }
 
     /**
+     * Get the queueSettings property: Queue settings for the job.
+     * 
+     * @return the queueSettings value.
+     */
+    public QueueSettings queueSettings() {
+        return this.queueSettings;
+    }
+
+    /**
+     * Set the queueSettings property: Queue settings for the job.
+     * 
+     * @param queueSettings the queueSettings value to set.
+     * @return the AutoMLJob object itself.
+     */
+    public AutoMLJob withQueueSettings(QueueSettings queueSettings) {
+        this.queueSettings = queueSettings;
+        return this;
+    }
+
+    /**
      * Get the resources property: Compute Resource configuration for the job.
-     *
+     * 
      * @return the resources value.
      */
     public JobResourceConfiguration resources() {
@@ -133,7 +162,7 @@ public final class AutoMLJob extends JobBaseProperties {
 
     /**
      * Set the resources property: Compute Resource configuration for the job.
-     *
+     * 
      * @param resources the resources value to set.
      * @return the AutoMLJob object itself.
      */
@@ -144,7 +173,7 @@ public final class AutoMLJob extends JobBaseProperties {
 
     /**
      * Get the taskDetails property: [Required] This represents scenario which can be one of Tables/NLP/Image.
-     *
+     * 
      * @return the taskDetails value.
      */
     public AutoMLVertical taskDetails() {
@@ -153,7 +182,7 @@ public final class AutoMLJob extends JobBaseProperties {
 
     /**
      * Set the taskDetails property: [Required] This represents scenario which can be one of Tables/NLP/Image.
-     *
+     * 
      * @param taskDetails the taskDetails value to set.
      * @return the AutoMLJob object itself.
      */
@@ -162,70 +191,108 @@ public final class AutoMLJob extends JobBaseProperties {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AutoMLJob withComponentId(String componentId) {
         super.withComponentId(componentId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AutoMLJob withComputeId(String computeId) {
         super.withComputeId(computeId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AutoMLJob withDisplayName(String displayName) {
         super.withDisplayName(displayName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AutoMLJob withExperimentName(String experimentName) {
         super.withExperimentName(experimentName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AutoMLJob withIdentity(IdentityConfiguration identity) {
         super.withIdentity(identity);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AutoMLJob withIsArchived(Boolean isArchived) {
         super.withIsArchived(isArchived);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AutoMLJob withNotificationSetting(NotificationSetting notificationSetting) {
+        super.withNotificationSetting(notificationSetting);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AutoMLJob withSecretsConfiguration(Map<String, SecretConfiguration> secretsConfiguration) {
+        super.withSecretsConfiguration(secretsConfiguration);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AutoMLJob withServices(Map<String, JobService> services) {
         super.withServices(services);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AutoMLJob withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AutoMLJob withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AutoMLJob withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -234,29 +301,28 @@ public final class AutoMLJob extends JobBaseProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (outputs() != null) {
-            outputs()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            outputs().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
+        }
+        if (queueSettings() != null) {
+            queueSettings().validate();
         }
         if (resources() != null) {
             resources().validate();
         }
         if (taskDetails() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property taskDetails in model AutoMLJob"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property taskDetails in model AutoMLJob"));
         } else {
             taskDetails().validate();
         }
