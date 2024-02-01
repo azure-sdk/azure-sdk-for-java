@@ -33,7 +33,7 @@ public interface ProvisionedClusterUpgradeProfile {
     String type();
 
     /**
-     * Gets the properties property: The properties of the upgrade profile.
+     * Gets the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */

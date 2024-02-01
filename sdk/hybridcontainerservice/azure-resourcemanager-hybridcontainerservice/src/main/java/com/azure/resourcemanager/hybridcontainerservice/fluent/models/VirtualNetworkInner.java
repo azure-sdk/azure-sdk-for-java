@@ -18,7 +18,7 @@ import java.util.Map;
 @Fluent
 public final class VirtualNetworkInner extends Resource {
     /*
-     * Properties of the virtual network resource
+     * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
     private VirtualNetworkProperties properties;
@@ -42,7 +42,7 @@ public final class VirtualNetworkInner extends Resource {
     }
 
     /**
-     * Get the properties property: Properties of the virtual network resource.
+     * Get the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
@@ -51,7 +51,7 @@ public final class VirtualNetworkInner extends Resource {
     }
 
     /**
-     * Set the properties property: Properties of the virtual network resource.
+     * Set the properties property: The resource-specific properties for this resource.
      * 
      * @param properties the properties value to set.
      * @return the VirtualNetworkInner object itself.

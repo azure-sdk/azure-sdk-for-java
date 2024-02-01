@@ -13,10 +13,34 @@ import com.azure.core.util.Context;
  */
 public interface AgentPools {
     /**
+     * Gets the list of agent pools in the specified provisioned cluster.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of agent pools in the specified provisioned cluster as paginated response with
+     * {@link PagedIterable}.
+     */
+    PagedIterable<AgentPool> listByProvisionedCluster(String resourceUri);
+
+    /**
+     * Gets the list of agent pools in the specified provisioned cluster.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of agent pools in the specified provisioned cluster as paginated response with
+     * {@link PagedIterable}.
+     */
+    PagedIterable<AgentPool> listByProvisionedCluster(String resourceUri, Context context);
+
+    /**
      * Gets the specified agent pool in the provisioned cluster.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -24,72 +48,42 @@ public interface AgentPools {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the specified agent pool in the provisioned cluster along with {@link Response}.
      */
-    Response<AgentPool> getWithResponse(String connectedClusterResourceUri, String agentPoolName, Context context);
+    Response<AgentPool> getWithResponse(String resourceUri, String agentPoolName, Context context);
 
     /**
      * Gets the specified agent pool in the provisioned cluster.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the specified agent pool in the provisioned cluster.
      */
-    AgentPool get(String connectedClusterResourceUri, String agentPoolName);
+    AgentPool get(String resourceUri, String agentPoolName);
 
     /**
      * Deletes the specified agent pool in the provisioned cluster.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void deleteByResourceGroup(String connectedClusterResourceUri, String agentPoolName);
+    void deleteByResourceGroup(String resourceUri, String agentPoolName);
 
     /**
      * Deletes the specified agent pool in the provisioned cluster.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param agentPoolName Parameter for the name of the agent pool in the provisioned cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void delete(String connectedClusterResourceUri, String agentPoolName, Context context);
-
-    /**
-     * Gets the list of agent pools in the specified provisioned cluster.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of agent pools in the specified provisioned cluster as paginated response with
-     * {@link PagedIterable}.
-     */
-    PagedIterable<AgentPool> listByProvisionedCluster(String connectedClusterResourceUri);
-
-    /**
-     * Gets the list of agent pools in the specified provisioned cluster.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of agent pools in the specified provisioned cluster as paginated response with
-     * {@link PagedIterable}.
-     */
-    PagedIterable<AgentPool> listByProvisionedCluster(String connectedClusterResourceUri, Context context);
+    void delete(String resourceUri, String agentPoolName, Context context);
 
     /**
      * Gets the specified agent pool in the provisioned cluster.

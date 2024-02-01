@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.hybridcontainerservice.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,57 @@ import java.util.Map;
  * Properties of the agent pool resource.
  */
 @Fluent
-public final class AgentPoolProperties extends AgentPoolProfile {
+public final class AgentPoolProperties {
+    /*
+     * The particular KubernetesVersion Image OS Type (Linux, Windows)
+     */
+    @JsonProperty(value = "osType")
+    private OsType osType;
+
+    /*
+     * Specifies the OS SKU used by the agent pool. The default is CBLMariner if OSType is Linux. The default is
+     * Windows2019 when OSType is Windows.
+     */
+    @JsonProperty(value = "osSKU")
+    private Ossku osSku;
+
+    /*
+     * The node labels to be persisted across all nodes in agent pool.
+     */
+    @JsonProperty(value = "nodeLabels")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> nodeLabels;
+
+    /*
+     * Taints added to new nodes during node pool create and scale. For example, key=value:NoSchedule.
+     */
+    @JsonProperty(value = "nodeTaints")
+    private List<String> nodeTaints;
+
+    /*
+     * The maximum number of nodes for auto-scaling
+     */
+    @JsonProperty(value = "maxCount")
+    private Integer maxCount;
+
+    /*
+     * The minimum number of nodes for auto-scaling
+     */
+    @JsonProperty(value = "minCount")
+    private Integer minCount;
+
+    /*
+     * Whether to enable auto-scaler. Default value is false
+     */
+    @JsonProperty(value = "enableAutoScaling")
+    private Boolean enableAutoScaling;
+
+    /*
+     * The maximum number of pods that can run on a node.
+     */
+    @JsonProperty(value = "maxPods")
+    private Integer maxPods;
+
     /*
      * Number of nodes in the agent pool. The default value is 1.
      */
@@ -49,6 +100,170 @@ public final class AgentPoolProperties extends AgentPoolProfile {
      * Creates an instance of AgentPoolProperties class.
      */
     public AgentPoolProperties() {
+    }
+
+    /**
+     * Get the osType property: The particular KubernetesVersion Image OS Type (Linux, Windows).
+     * 
+     * @return the osType value.
+     */
+    public OsType osType() {
+        return this.osType;
+    }
+
+    /**
+     * Set the osType property: The particular KubernetesVersion Image OS Type (Linux, Windows).
+     * 
+     * @param osType the osType value to set.
+     * @return the AgentPoolProperties object itself.
+     */
+    public AgentPoolProperties withOsType(OsType osType) {
+        this.osType = osType;
+        return this;
+    }
+
+    /**
+     * Get the osSku property: Specifies the OS SKU used by the agent pool. The default is CBLMariner if OSType is
+     * Linux. The default is Windows2019 when OSType is Windows.
+     * 
+     * @return the osSku value.
+     */
+    public Ossku osSku() {
+        return this.osSku;
+    }
+
+    /**
+     * Set the osSku property: Specifies the OS SKU used by the agent pool. The default is CBLMariner if OSType is
+     * Linux. The default is Windows2019 when OSType is Windows.
+     * 
+     * @param osSku the osSku value to set.
+     * @return the AgentPoolProperties object itself.
+     */
+    public AgentPoolProperties withOsSku(Ossku osSku) {
+        this.osSku = osSku;
+        return this;
+    }
+
+    /**
+     * Get the nodeLabels property: The node labels to be persisted across all nodes in agent pool.
+     * 
+     * @return the nodeLabels value.
+     */
+    public Map<String, String> nodeLabels() {
+        return this.nodeLabels;
+    }
+
+    /**
+     * Set the nodeLabels property: The node labels to be persisted across all nodes in agent pool.
+     * 
+     * @param nodeLabels the nodeLabels value to set.
+     * @return the AgentPoolProperties object itself.
+     */
+    public AgentPoolProperties withNodeLabels(Map<String, String> nodeLabels) {
+        this.nodeLabels = nodeLabels;
+        return this;
+    }
+
+    /**
+     * Get the nodeTaints property: Taints added to new nodes during node pool create and scale. For example,
+     * key=value:NoSchedule.
+     * 
+     * @return the nodeTaints value.
+     */
+    public List<String> nodeTaints() {
+        return this.nodeTaints;
+    }
+
+    /**
+     * Set the nodeTaints property: Taints added to new nodes during node pool create and scale. For example,
+     * key=value:NoSchedule.
+     * 
+     * @param nodeTaints the nodeTaints value to set.
+     * @return the AgentPoolProperties object itself.
+     */
+    public AgentPoolProperties withNodeTaints(List<String> nodeTaints) {
+        this.nodeTaints = nodeTaints;
+        return this;
+    }
+
+    /**
+     * Get the maxCount property: The maximum number of nodes for auto-scaling.
+     * 
+     * @return the maxCount value.
+     */
+    public Integer maxCount() {
+        return this.maxCount;
+    }
+
+    /**
+     * Set the maxCount property: The maximum number of nodes for auto-scaling.
+     * 
+     * @param maxCount the maxCount value to set.
+     * @return the AgentPoolProperties object itself.
+     */
+    public AgentPoolProperties withMaxCount(Integer maxCount) {
+        this.maxCount = maxCount;
+        return this;
+    }
+
+    /**
+     * Get the minCount property: The minimum number of nodes for auto-scaling.
+     * 
+     * @return the minCount value.
+     */
+    public Integer minCount() {
+        return this.minCount;
+    }
+
+    /**
+     * Set the minCount property: The minimum number of nodes for auto-scaling.
+     * 
+     * @param minCount the minCount value to set.
+     * @return the AgentPoolProperties object itself.
+     */
+    public AgentPoolProperties withMinCount(Integer minCount) {
+        this.minCount = minCount;
+        return this;
+    }
+
+    /**
+     * Get the enableAutoScaling property: Whether to enable auto-scaler. Default value is false.
+     * 
+     * @return the enableAutoScaling value.
+     */
+    public Boolean enableAutoScaling() {
+        return this.enableAutoScaling;
+    }
+
+    /**
+     * Set the enableAutoScaling property: Whether to enable auto-scaler. Default value is false.
+     * 
+     * @param enableAutoScaling the enableAutoScaling value to set.
+     * @return the AgentPoolProperties object itself.
+     */
+    public AgentPoolProperties withEnableAutoScaling(Boolean enableAutoScaling) {
+        this.enableAutoScaling = enableAutoScaling;
+        return this;
+    }
+
+    /**
+     * Get the maxPods property: The maximum number of pods that can run on a node.
+     * 
+     * @return the maxPods value.
+     */
+    public Integer maxPods() {
+        return this.maxPods;
+    }
+
+    /**
+     * Set the maxPods property: The maximum number of pods that can run on a node.
+     * 
+     * @param maxPods the maxPods value to set.
+     * @return the AgentPoolProperties object itself.
+     */
+    public AgentPoolProperties withMaxPods(Integer maxPods) {
+        this.maxPods = maxPods;
+        return this;
     }
 
     /**
@@ -131,85 +346,11 @@ public final class AgentPoolProperties extends AgentPoolProfile {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AgentPoolProperties withOsType(OsType osType) {
-        super.withOsType(osType);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AgentPoolProperties withOsSku(Ossku osSku) {
-        super.withOsSku(osSku);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AgentPoolProperties withNodeLabels(Map<String, String> nodeLabels) {
-        super.withNodeLabels(nodeLabels);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AgentPoolProperties withNodeTaints(List<String> nodeTaints) {
-        super.withNodeTaints(nodeTaints);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AgentPoolProperties withMaxCount(Integer maxCount) {
-        super.withMaxCount(maxCount);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AgentPoolProperties withMinCount(Integer minCount) {
-        super.withMinCount(minCount);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AgentPoolProperties withEnableAutoScaling(Boolean enableAutoScaling) {
-        super.withEnableAutoScaling(enableAutoScaling);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AgentPoolProperties withMaxPods(Integer maxPods) {
-        super.withMaxPods(maxPods);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    @Override
     public void validate() {
-        super.validate();
         if (status() != null) {
             status().validate();
         }

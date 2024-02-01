@@ -10,7 +10,7 @@ package com.azure.resourcemanager.hybridcontainerservice.generated;
 public final class VMSkusListSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/ListVmSkus.
+     * specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/VMSkus_List.
      * json
      */
     /**
@@ -20,8 +20,6 @@ public final class VMSkusListSamples {
      */
     public static void
         listVmSkus(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.vMSkus().list(
-            "subscriptions/a3e42606-29b1-4d7d-b1d9-9ff6b9d3c71b/resourceGroups/test-arcappliance-resgrp/providers/Microsoft.ExtendedLocation/customLocations/testcustomlocation",
-            com.azure.core.util.Context.NONE);
+        manager.vMSkus().list(null, com.azure.core.util.Context.NONE);
     }
 }

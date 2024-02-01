@@ -13,16 +13,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ProvisionedClusterPropertiesAutoScalerProfile {
     /*
-     * Detects similar node pools and balances the number of nodes between them.
-     * 
      * Valid values are 'true' and 'false'
      */
     @JsonProperty(value = "balance-similar-node-groups")
     private String balanceSimilarNodeGroups;
 
     /*
-     * The expander to use when scaling up
-     * 
      * If not specified, the default is 'random'. See
      * [expanders](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#what-are-expanders)
      * for more information.
@@ -31,24 +27,18 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     private Expander expander;
 
     /*
-     * The maximum number of empty nodes that can be deleted at the same time. This must be a positive integer.
-     * 
      * The default is 10.
      */
     @JsonProperty(value = "max-empty-bulk-delete")
     private String maxEmptyBulkDelete;
 
     /*
-     * The maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node.
-     * 
      * The default is 600.
      */
     @JsonProperty(value = "max-graceful-termination-sec")
     private String maxGracefulTerminationSec;
 
     /*
-     * The maximum time the autoscaler waits for a node to be provisioned.
-     * 
      * The default is '15m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is
      * supported.
      */
@@ -56,17 +46,12 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     private String maxNodeProvisionTime;
 
     /*
-     * The maximum percentage of unready nodes in the cluster. After this percentage is exceeded, cluster autoscaler
-     * halts operations.
-     * 
      * The default is 45. The maximum is 100 and the minimum is 0.
      */
     @JsonProperty(value = "max-total-unready-percentage")
     private String maxTotalUnreadyPercentage;
 
     /*
-     * Ignore unscheduled pods before they're a certain age.
-     * 
      * For scenarios like burst/batch scale where you don't want CA to act before the kubernetes scheduler could
      * schedule all the pods, you can tell CA to ignore unscheduled pods before they're a certain age. The default is
      * '0s'. Values must be an integer followed by a unit ('s' for seconds, 'm' for minutes, 'h' for hours, etc).
@@ -75,24 +60,18 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     private String newPodScaleUpDelay;
 
     /*
-     * The number of allowed unready nodes, irrespective of max-total-unready-percentage.
-     * 
      * This must be an integer. The default is 3.
      */
     @JsonProperty(value = "ok-total-unready-count")
     private String okTotalUnreadyCount;
 
     /*
-     * How often cluster is reevaluated for scale up or down.
-     * 
      * The default is '10'. Values must be an integer number of seconds.
      */
     @JsonProperty(value = "scan-interval")
     private String scanInterval;
 
     /*
-     * How long after scale up that scale down evaluation resumes
-     * 
      * The default is '10m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is
      * supported.
      */
@@ -100,8 +79,6 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     private String scaleDownDelayAfterAdd;
 
     /*
-     * How long after node deletion that scale down evaluation resumes.
-     * 
      * The default is the scan-interval. Values must be an integer followed by an 'm'. No unit of time other than
      * minutes (m) is supported.
      */
@@ -109,8 +86,6 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     private String scaleDownDelayAfterDelete;
 
     /*
-     * How long after scale down failure that scale down evaluation resumes.
-     * 
      * The default is '3m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is
      * supported.
      */
@@ -118,8 +93,6 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     private String scaleDownDelayAfterFailure;
 
     /*
-     * How long a node should be unneeded before it is eligible for scale down.
-     * 
      * The default is '10m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is
      * supported.
      */
@@ -127,8 +100,6 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     private String scaleDownUnneededTime;
 
     /*
-     * How long an unready node should be unneeded before it is eligible for scale down
-     * 
      * The default is '20m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is
      * supported.
      */
@@ -136,25 +107,18 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     private String scaleDownUnreadyTime;
 
     /*
-     * Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be
-     * considered for scale down.
-     * 
      * The default is '0.5'.
      */
     @JsonProperty(value = "scale-down-utilization-threshold")
     private String scaleDownUtilizationThreshold;
 
     /*
-     * If cluster autoscaler will skip deleting nodes with pods with local storage, for example, EmptyDir or HostPath.
-     * 
      * The default is true.
      */
     @JsonProperty(value = "skip-nodes-with-local-storage")
     private String skipNodesWithLocalStorage;
 
     /*
-     * If cluster autoscaler will skip deleting nodes with pods from kube-system (except for DaemonSet or mirror pods)
-     * 
      * The default is true.
      */
     @JsonProperty(value = "skip-nodes-with-system-pods")
@@ -167,10 +131,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Get the balanceSimilarNodeGroups property: Detects similar node pools and balances the number of nodes between
-     * them.
-     * 
-     * Valid values are 'true' and 'false'.
+     * Get the balanceSimilarNodeGroups property: Valid values are 'true' and 'false'.
      * 
      * @return the balanceSimilarNodeGroups value.
      */
@@ -179,10 +140,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Set the balanceSimilarNodeGroups property: Detects similar node pools and balances the number of nodes between
-     * them.
-     * 
-     * Valid values are 'true' and 'false'.
+     * Set the balanceSimilarNodeGroups property: Valid values are 'true' and 'false'.
      * 
      * @param balanceSimilarNodeGroups the balanceSimilarNodeGroups value to set.
      * @return the ProvisionedClusterPropertiesAutoScalerProfile object itself.
@@ -193,9 +151,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Get the expander property: The expander to use when scaling up
-     * 
-     * If not specified, the default is 'random'. See
+     * Get the expander property: If not specified, the default is 'random'. See
      * [expanders](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#what-are-expanders)
      * for more information.
      * 
@@ -206,9 +162,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Set the expander property: The expander to use when scaling up
-     * 
-     * If not specified, the default is 'random'. See
+     * Set the expander property: If not specified, the default is 'random'. See
      * [expanders](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#what-are-expanders)
      * for more information.
      * 
@@ -221,10 +175,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Get the maxEmptyBulkDelete property: The maximum number of empty nodes that can be deleted at the same time.
-     * This must be a positive integer.
-     * 
-     * The default is 10.
+     * Get the maxEmptyBulkDelete property: The default is 10.
      * 
      * @return the maxEmptyBulkDelete value.
      */
@@ -233,10 +184,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Set the maxEmptyBulkDelete property: The maximum number of empty nodes that can be deleted at the same time.
-     * This must be a positive integer.
-     * 
-     * The default is 10.
+     * Set the maxEmptyBulkDelete property: The default is 10.
      * 
      * @param maxEmptyBulkDelete the maxEmptyBulkDelete value to set.
      * @return the ProvisionedClusterPropertiesAutoScalerProfile object itself.
@@ -247,10 +195,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Get the maxGracefulTerminationSec property: The maximum number of seconds the cluster autoscaler waits for pod
-     * termination when trying to scale down a node.
-     * 
-     * The default is 600.
+     * Get the maxGracefulTerminationSec property: The default is 600.
      * 
      * @return the maxGracefulTerminationSec value.
      */
@@ -259,10 +204,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Set the maxGracefulTerminationSec property: The maximum number of seconds the cluster autoscaler waits for pod
-     * termination when trying to scale down a node.
-     * 
-     * The default is 600.
+     * Set the maxGracefulTerminationSec property: The default is 600.
      * 
      * @param maxGracefulTerminationSec the maxGracefulTerminationSec value to set.
      * @return the ProvisionedClusterPropertiesAutoScalerProfile object itself.
@@ -274,10 +216,8 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Get the maxNodeProvisionTime property: The maximum time the autoscaler waits for a node to be provisioned.
-     * 
-     * The default is '15m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is
-     * supported.
+     * Get the maxNodeProvisionTime property: The default is '15m'. Values must be an integer followed by an 'm'. No
+     * unit of time other than minutes (m) is supported.
      * 
      * @return the maxNodeProvisionTime value.
      */
@@ -286,10 +226,8 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Set the maxNodeProvisionTime property: The maximum time the autoscaler waits for a node to be provisioned.
-     * 
-     * The default is '15m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is
-     * supported.
+     * Set the maxNodeProvisionTime property: The default is '15m'. Values must be an integer followed by an 'm'. No
+     * unit of time other than minutes (m) is supported.
      * 
      * @param maxNodeProvisionTime the maxNodeProvisionTime value to set.
      * @return the ProvisionedClusterPropertiesAutoScalerProfile object itself.
@@ -300,10 +238,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Get the maxTotalUnreadyPercentage property: The maximum percentage of unready nodes in the cluster. After this
-     * percentage is exceeded, cluster autoscaler halts operations.
-     * 
-     * The default is 45. The maximum is 100 and the minimum is 0.
+     * Get the maxTotalUnreadyPercentage property: The default is 45. The maximum is 100 and the minimum is 0.
      * 
      * @return the maxTotalUnreadyPercentage value.
      */
@@ -312,10 +247,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Set the maxTotalUnreadyPercentage property: The maximum percentage of unready nodes in the cluster. After this
-     * percentage is exceeded, cluster autoscaler halts operations.
-     * 
-     * The default is 45. The maximum is 100 and the minimum is 0.
+     * Set the maxTotalUnreadyPercentage property: The default is 45. The maximum is 100 and the minimum is 0.
      * 
      * @param maxTotalUnreadyPercentage the maxTotalUnreadyPercentage value to set.
      * @return the ProvisionedClusterPropertiesAutoScalerProfile object itself.
@@ -327,11 +259,10 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Get the newPodScaleUpDelay property: Ignore unscheduled pods before they're a certain age.
-     * 
-     * For scenarios like burst/batch scale where you don't want CA to act before the kubernetes scheduler could
-     * schedule all the pods, you can tell CA to ignore unscheduled pods before they're a certain age. The default is
-     * '0s'. Values must be an integer followed by a unit ('s' for seconds, 'm' for minutes, 'h' for hours, etc).
+     * Get the newPodScaleUpDelay property: For scenarios like burst/batch scale where you don't want CA to act before
+     * the kubernetes scheduler could schedule all the pods, you can tell CA to ignore unscheduled pods before they're
+     * a certain age. The default is '0s'. Values must be an integer followed by a unit ('s' for seconds, 'm' for
+     * minutes, 'h' for hours, etc).
      * 
      * @return the newPodScaleUpDelay value.
      */
@@ -340,11 +271,10 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Set the newPodScaleUpDelay property: Ignore unscheduled pods before they're a certain age.
-     * 
-     * For scenarios like burst/batch scale where you don't want CA to act before the kubernetes scheduler could
-     * schedule all the pods, you can tell CA to ignore unscheduled pods before they're a certain age. The default is
-     * '0s'. Values must be an integer followed by a unit ('s' for seconds, 'm' for minutes, 'h' for hours, etc).
+     * Set the newPodScaleUpDelay property: For scenarios like burst/batch scale where you don't want CA to act before
+     * the kubernetes scheduler could schedule all the pods, you can tell CA to ignore unscheduled pods before they're
+     * a certain age. The default is '0s'. Values must be an integer followed by a unit ('s' for seconds, 'm' for
+     * minutes, 'h' for hours, etc).
      * 
      * @param newPodScaleUpDelay the newPodScaleUpDelay value to set.
      * @return the ProvisionedClusterPropertiesAutoScalerProfile object itself.
@@ -355,10 +285,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Get the okTotalUnreadyCount property: The number of allowed unready nodes, irrespective of
-     * max-total-unready-percentage.
-     * 
-     * This must be an integer. The default is 3.
+     * Get the okTotalUnreadyCount property: This must be an integer. The default is 3.
      * 
      * @return the okTotalUnreadyCount value.
      */
@@ -367,10 +294,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Set the okTotalUnreadyCount property: The number of allowed unready nodes, irrespective of
-     * max-total-unready-percentage.
-     * 
-     * This must be an integer. The default is 3.
+     * Set the okTotalUnreadyCount property: This must be an integer. The default is 3.
      * 
      * @param okTotalUnreadyCount the okTotalUnreadyCount value to set.
      * @return the ProvisionedClusterPropertiesAutoScalerProfile object itself.
@@ -381,9 +305,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Get the scanInterval property: How often cluster is reevaluated for scale up or down.
-     * 
-     * The default is '10'. Values must be an integer number of seconds.
+     * Get the scanInterval property: The default is '10'. Values must be an integer number of seconds.
      * 
      * @return the scanInterval value.
      */
@@ -392,9 +314,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Set the scanInterval property: How often cluster is reevaluated for scale up or down.
-     * 
-     * The default is '10'. Values must be an integer number of seconds.
+     * Set the scanInterval property: The default is '10'. Values must be an integer number of seconds.
      * 
      * @param scanInterval the scanInterval value to set.
      * @return the ProvisionedClusterPropertiesAutoScalerProfile object itself.
@@ -405,10 +325,8 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Get the scaleDownDelayAfterAdd property: How long after scale up that scale down evaluation resumes
-     * 
-     * The default is '10m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is
-     * supported.
+     * Get the scaleDownDelayAfterAdd property: The default is '10m'. Values must be an integer followed by an 'm'. No
+     * unit of time other than minutes (m) is supported.
      * 
      * @return the scaleDownDelayAfterAdd value.
      */
@@ -417,10 +335,8 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Set the scaleDownDelayAfterAdd property: How long after scale up that scale down evaluation resumes
-     * 
-     * The default is '10m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is
-     * supported.
+     * Set the scaleDownDelayAfterAdd property: The default is '10m'. Values must be an integer followed by an 'm'. No
+     * unit of time other than minutes (m) is supported.
      * 
      * @param scaleDownDelayAfterAdd the scaleDownDelayAfterAdd value to set.
      * @return the ProvisionedClusterPropertiesAutoScalerProfile object itself.
@@ -431,10 +347,8 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Get the scaleDownDelayAfterDelete property: How long after node deletion that scale down evaluation resumes.
-     * 
-     * The default is the scan-interval. Values must be an integer followed by an 'm'. No unit of time other than
-     * minutes (m) is supported.
+     * Get the scaleDownDelayAfterDelete property: The default is the scan-interval. Values must be an integer followed
+     * by an 'm'. No unit of time other than minutes (m) is supported.
      * 
      * @return the scaleDownDelayAfterDelete value.
      */
@@ -443,10 +357,8 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Set the scaleDownDelayAfterDelete property: How long after node deletion that scale down evaluation resumes.
-     * 
-     * The default is the scan-interval. Values must be an integer followed by an 'm'. No unit of time other than
-     * minutes (m) is supported.
+     * Set the scaleDownDelayAfterDelete property: The default is the scan-interval. Values must be an integer followed
+     * by an 'm'. No unit of time other than minutes (m) is supported.
      * 
      * @param scaleDownDelayAfterDelete the scaleDownDelayAfterDelete value to set.
      * @return the ProvisionedClusterPropertiesAutoScalerProfile object itself.
@@ -458,11 +370,8 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Get the scaleDownDelayAfterFailure property: How long after scale down failure that scale down evaluation
-     * resumes.
-     * 
-     * The default is '3m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is
-     * supported.
+     * Get the scaleDownDelayAfterFailure property: The default is '3m'. Values must be an integer followed by an 'm'.
+     * No unit of time other than minutes (m) is supported.
      * 
      * @return the scaleDownDelayAfterFailure value.
      */
@@ -471,11 +380,8 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Set the scaleDownDelayAfterFailure property: How long after scale down failure that scale down evaluation
-     * resumes.
-     * 
-     * The default is '3m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is
-     * supported.
+     * Set the scaleDownDelayAfterFailure property: The default is '3m'. Values must be an integer followed by an 'm'.
+     * No unit of time other than minutes (m) is supported.
      * 
      * @param scaleDownDelayAfterFailure the scaleDownDelayAfterFailure value to set.
      * @return the ProvisionedClusterPropertiesAutoScalerProfile object itself.
@@ -487,10 +393,8 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Get the scaleDownUnneededTime property: How long a node should be unneeded before it is eligible for scale down.
-     * 
-     * The default is '10m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is
-     * supported.
+     * Get the scaleDownUnneededTime property: The default is '10m'. Values must be an integer followed by an 'm'. No
+     * unit of time other than minutes (m) is supported.
      * 
      * @return the scaleDownUnneededTime value.
      */
@@ -499,10 +403,8 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Set the scaleDownUnneededTime property: How long a node should be unneeded before it is eligible for scale down.
-     * 
-     * The default is '10m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is
-     * supported.
+     * Set the scaleDownUnneededTime property: The default is '10m'. Values must be an integer followed by an 'm'. No
+     * unit of time other than minutes (m) is supported.
      * 
      * @param scaleDownUnneededTime the scaleDownUnneededTime value to set.
      * @return the ProvisionedClusterPropertiesAutoScalerProfile object itself.
@@ -513,11 +415,8 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Get the scaleDownUnreadyTime property: How long an unready node should be unneeded before it is eligible for
-     * scale down
-     * 
-     * The default is '20m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is
-     * supported.
+     * Get the scaleDownUnreadyTime property: The default is '20m'. Values must be an integer followed by an 'm'. No
+     * unit of time other than minutes (m) is supported.
      * 
      * @return the scaleDownUnreadyTime value.
      */
@@ -526,11 +425,8 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Set the scaleDownUnreadyTime property: How long an unready node should be unneeded before it is eligible for
-     * scale down
-     * 
-     * The default is '20m'. Values must be an integer followed by an 'm'. No unit of time other than minutes (m) is
-     * supported.
+     * Set the scaleDownUnreadyTime property: The default is '20m'. Values must be an integer followed by an 'm'. No
+     * unit of time other than minutes (m) is supported.
      * 
      * @param scaleDownUnreadyTime the scaleDownUnreadyTime value to set.
      * @return the ProvisionedClusterPropertiesAutoScalerProfile object itself.
@@ -541,10 +437,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Get the scaleDownUtilizationThreshold property: Node utilization level, defined as sum of requested resources
-     * divided by capacity, below which a node can be considered for scale down.
-     * 
-     * The default is '0.5'.
+     * Get the scaleDownUtilizationThreshold property: The default is '0.5'.
      * 
      * @return the scaleDownUtilizationThreshold value.
      */
@@ -553,10 +446,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Set the scaleDownUtilizationThreshold property: Node utilization level, defined as sum of requested resources
-     * divided by capacity, below which a node can be considered for scale down.
-     * 
-     * The default is '0.5'.
+     * Set the scaleDownUtilizationThreshold property: The default is '0.5'.
      * 
      * @param scaleDownUtilizationThreshold the scaleDownUtilizationThreshold value to set.
      * @return the ProvisionedClusterPropertiesAutoScalerProfile object itself.
@@ -568,10 +458,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Get the skipNodesWithLocalStorage property: If cluster autoscaler will skip deleting nodes with pods with local
-     * storage, for example, EmptyDir or HostPath.
-     * 
-     * The default is true.
+     * Get the skipNodesWithLocalStorage property: The default is true.
      * 
      * @return the skipNodesWithLocalStorage value.
      */
@@ -580,10 +467,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Set the skipNodesWithLocalStorage property: If cluster autoscaler will skip deleting nodes with pods with local
-     * storage, for example, EmptyDir or HostPath.
-     * 
-     * The default is true.
+     * Set the skipNodesWithLocalStorage property: The default is true.
      * 
      * @param skipNodesWithLocalStorage the skipNodesWithLocalStorage value to set.
      * @return the ProvisionedClusterPropertiesAutoScalerProfile object itself.
@@ -595,10 +479,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Get the skipNodesWithSystemPods property: If cluster autoscaler will skip deleting nodes with pods from
-     * kube-system (except for DaemonSet or mirror pods)
-     * 
-     * The default is true.
+     * Get the skipNodesWithSystemPods property: The default is true.
      * 
      * @return the skipNodesWithSystemPods value.
      */
@@ -607,10 +488,7 @@ public final class ProvisionedClusterPropertiesAutoScalerProfile {
     }
 
     /**
-     * Set the skipNodesWithSystemPods property: If cluster autoscaler will skip deleting nodes with pods from
-     * kube-system (except for DaemonSet or mirror pods)
-     * 
-     * The default is true.
+     * Set the skipNodesWithSystemPods property: The default is true.
      * 
      * @param skipNodesWithSystemPods the skipNodesWithSystemPods value to set.
      * @return the ProvisionedClusterPropertiesAutoScalerProfile object itself.

@@ -5,23 +5,24 @@
 package com.azure.resourcemanager.hybridcontainerservice.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.AgentPoolInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * List of all agent pool resources associated with the provisioned cluster.
+ * The response of a AgentPool list operation.
  */
 @Fluent
 public final class AgentPoolListResult {
     /*
-     * The value property.
+     * The AgentPool items on this page
      */
-    @JsonProperty(value = "value")
+    @JsonProperty(value = "value", required = true)
     private List<AgentPoolInner> value;
 
     /*
-     * The nextLink property.
+     * The link to the next page of items
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
@@ -33,7 +34,7 @@ public final class AgentPoolListResult {
     }
 
     /**
-     * Get the value property: The value property.
+     * Get the value property: The AgentPool items on this page.
      * 
      * @return the value value.
      */
@@ -42,7 +43,7 @@ public final class AgentPoolListResult {
     }
 
     /**
-     * Set the value property: The value property.
+     * Set the value property: The AgentPool items on this page.
      * 
      * @param value the value value to set.
      * @return the AgentPoolListResult object itself.
@@ -53,7 +54,7 @@ public final class AgentPoolListResult {
     }
 
     /**
-     * Get the nextLink property: The nextLink property.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -62,7 +63,7 @@ public final class AgentPoolListResult {
     }
 
     /**
-     * Set the nextLink property: The nextLink property.
+     * Set the nextLink property: The link to the next page of items.
      * 
      * @param nextLink the nextLink value to set.
      * @return the AgentPoolListResult object itself.
@@ -78,8 +79,13 @@ public final class AgentPoolListResult {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model AgentPoolListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AgentPoolListResult.class);
 }

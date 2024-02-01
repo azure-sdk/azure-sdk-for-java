@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ProvisionedClusterInner extends ProxyResource {
     /*
-     * Properties of the provisioned cluster.
+     * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
     private ProvisionedClusterProperties properties;
@@ -41,7 +41,7 @@ public final class ProvisionedClusterInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: Properties of the provisioned cluster.
+     * Get the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
@@ -50,7 +50,7 @@ public final class ProvisionedClusterInner extends ProxyResource {
     }
 
     /**
-     * Set the properties property: Properties of the provisioned cluster.
+     * Set the properties property: The resource-specific properties for this resource.
      * 
      * @param properties the properties value to set.
      * @return the ProvisionedClusterInner object itself.

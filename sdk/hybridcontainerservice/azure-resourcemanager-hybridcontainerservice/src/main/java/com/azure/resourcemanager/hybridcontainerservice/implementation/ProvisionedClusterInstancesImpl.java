@@ -31,9 +31,18 @@ public final class ProvisionedClusterInstancesImpl implements ProvisionedCluster
         this.serviceManager = serviceManager;
     }
 
-    public Response<ProvisionedCluster> getWithResponse(String connectedClusterResourceUri, Context context) {
-        Response<ProvisionedClusterInner> inner
-            = this.serviceClient().getWithResponse(connectedClusterResourceUri, context);
+    public PagedIterable<ProvisionedCluster> list(String resourceUri) {
+        PagedIterable<ProvisionedClusterInner> inner = this.serviceClient().list(resourceUri);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ProvisionedClusterImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ProvisionedCluster> list(String resourceUri, Context context) {
+        PagedIterable<ProvisionedClusterInner> inner = this.serviceClient().list(resourceUri, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ProvisionedClusterImpl(inner1, this.manager()));
+    }
+
+    public Response<ProvisionedCluster> getWithResponse(String resourceUri, Context context) {
+        Response<ProvisionedClusterInner> inner = this.serviceClient().getWithResponse(resourceUri, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ProvisionedClusterImpl(inner.getValue(), this.manager()));
@@ -42,8 +51,8 @@ public final class ProvisionedClusterInstancesImpl implements ProvisionedCluster
         }
     }
 
-    public ProvisionedCluster get(String connectedClusterResourceUri) {
-        ProvisionedClusterInner inner = this.serviceClient().get(connectedClusterResourceUri);
+    public ProvisionedCluster get(String resourceUri) {
+        ProvisionedClusterInner inner = this.serviceClient().get(resourceUri);
         if (inner != null) {
             return new ProvisionedClusterImpl(inner, this.manager());
         } else {
@@ -51,10 +60,8 @@ public final class ProvisionedClusterInstancesImpl implements ProvisionedCluster
         }
     }
 
-    public ProvisionedCluster createOrUpdate(String connectedClusterResourceUri,
-        ProvisionedClusterInner provisionedClusterInstance) {
-        ProvisionedClusterInner inner
-            = this.serviceClient().createOrUpdate(connectedClusterResourceUri, provisionedClusterInstance);
+    public ProvisionedCluster createOrUpdate(String resourceUri, ProvisionedClusterInner resource) {
+        ProvisionedClusterInner inner = this.serviceClient().createOrUpdate(resourceUri, resource);
         if (inner != null) {
             return new ProvisionedClusterImpl(inner, this.manager());
         } else {
@@ -62,10 +69,8 @@ public final class ProvisionedClusterInstancesImpl implements ProvisionedCluster
         }
     }
 
-    public ProvisionedCluster createOrUpdate(String connectedClusterResourceUri,
-        ProvisionedClusterInner provisionedClusterInstance, Context context) {
-        ProvisionedClusterInner inner
-            = this.serviceClient().createOrUpdate(connectedClusterResourceUri, provisionedClusterInstance, context);
+    public ProvisionedCluster createOrUpdate(String resourceUri, ProvisionedClusterInner resource, Context context) {
+        ProvisionedClusterInner inner = this.serviceClient().createOrUpdate(resourceUri, resource, context);
         if (inner != null) {
             return new ProvisionedClusterImpl(inner, this.manager());
         } else {
@@ -73,28 +78,54 @@ public final class ProvisionedClusterInstancesImpl implements ProvisionedCluster
         }
     }
 
-    public void delete(String connectedClusterResourceUri) {
-        this.serviceClient().delete(connectedClusterResourceUri);
+    public void delete(String resourceUri) {
+        this.serviceClient().delete(resourceUri);
     }
 
-    public void delete(String connectedClusterResourceUri, Context context) {
-        this.serviceClient().delete(connectedClusterResourceUri, context);
+    public void delete(String resourceUri, Context context) {
+        this.serviceClient().delete(resourceUri, context);
     }
 
-    public PagedIterable<ProvisionedCluster> list(String connectedClusterResourceUri) {
-        PagedIterable<ProvisionedClusterInner> inner = this.serviceClient().list(connectedClusterResourceUri);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ProvisionedClusterImpl(inner1, this.manager()));
+    public ListCredentialResponse listAdminKubeconfig(String resourceUri) {
+        ListCredentialResponseInner inner = this.serviceClient().listAdminKubeconfig(resourceUri);
+        if (inner != null) {
+            return new ListCredentialResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public PagedIterable<ProvisionedCluster> list(String connectedClusterResourceUri, Context context) {
-        PagedIterable<ProvisionedClusterInner> inner = this.serviceClient().list(connectedClusterResourceUri, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ProvisionedClusterImpl(inner1, this.manager()));
+    public ListCredentialResponse listAdminKubeconfig(String resourceUri, Context context) {
+        ListCredentialResponseInner inner = this.serviceClient().listAdminKubeconfig(resourceUri, context);
+        if (inner != null) {
+            return new ListCredentialResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public Response<ProvisionedClusterUpgradeProfile> getUpgradeProfileWithResponse(String connectedClusterResourceUri,
+    public ListCredentialResponse listUserKubeconfig(String resourceUri) {
+        ListCredentialResponseInner inner = this.serviceClient().listUserKubeconfig(resourceUri);
+        if (inner != null) {
+            return new ListCredentialResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public ListCredentialResponse listUserKubeconfig(String resourceUri, Context context) {
+        ListCredentialResponseInner inner = this.serviceClient().listUserKubeconfig(resourceUri, context);
+        if (inner != null) {
+            return new ListCredentialResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<ProvisionedClusterUpgradeProfile> getUpgradeProfileWithResponse(String resourceUri,
         Context context) {
         Response<ProvisionedClusterUpgradeProfileInner> inner
-            = this.serviceClient().getUpgradeProfileWithResponse(connectedClusterResourceUri, context);
+            = this.serviceClient().getUpgradeProfileWithResponse(resourceUri, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ProvisionedClusterUpgradeProfileImpl(inner.getValue(), this.manager()));
@@ -103,49 +134,10 @@ public final class ProvisionedClusterInstancesImpl implements ProvisionedCluster
         }
     }
 
-    public ProvisionedClusterUpgradeProfile getUpgradeProfile(String connectedClusterResourceUri) {
-        ProvisionedClusterUpgradeProfileInner inner
-            = this.serviceClient().getUpgradeProfile(connectedClusterResourceUri);
+    public ProvisionedClusterUpgradeProfile getUpgradeProfile(String resourceUri) {
+        ProvisionedClusterUpgradeProfileInner inner = this.serviceClient().getUpgradeProfile(resourceUri);
         if (inner != null) {
             return new ProvisionedClusterUpgradeProfileImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public ListCredentialResponse listUserKubeconfig(String connectedClusterResourceUri) {
-        ListCredentialResponseInner inner = this.serviceClient().listUserKubeconfig(connectedClusterResourceUri);
-        if (inner != null) {
-            return new ListCredentialResponseImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public ListCredentialResponse listUserKubeconfig(String connectedClusterResourceUri, Context context) {
-        ListCredentialResponseInner inner
-            = this.serviceClient().listUserKubeconfig(connectedClusterResourceUri, context);
-        if (inner != null) {
-            return new ListCredentialResponseImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public ListCredentialResponse listAdminKubeconfig(String connectedClusterResourceUri) {
-        ListCredentialResponseInner inner = this.serviceClient().listAdminKubeconfig(connectedClusterResourceUri);
-        if (inner != null) {
-            return new ListCredentialResponseImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public ListCredentialResponse listAdminKubeconfig(String connectedClusterResourceUri, Context context) {
-        ListCredentialResponseInner inner
-            = this.serviceClient().listAdminKubeconfig(connectedClusterResourceUri, context);
-        if (inner != null) {
-            return new ListCredentialResponseImpl(inner, this.manager());
         } else {
             return null;
         }

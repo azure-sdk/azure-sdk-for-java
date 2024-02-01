@@ -17,16 +17,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class VmSkuProfileInner extends ProxyResource {
     /*
+     * The resource-specific properties for this resource.
+     */
+    @JsonProperty(value = "properties")
+    private VmSkuProfileProperties properties;
+
+    /*
      * Extended location pointing to the underlying infrastructure
      */
     @JsonProperty(value = "extendedLocation")
     private ExtendedLocation extendedLocation;
-
-    /*
-     * The properties property.
-     */
-    @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
-    private VmSkuProfileProperties properties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -38,6 +38,26 @@ public final class VmSkuProfileInner extends ProxyResource {
      * Creates an instance of VmSkuProfileInner class.
      */
     public VmSkuProfileInner() {
+    }
+
+    /**
+     * Get the properties property: The resource-specific properties for this resource.
+     * 
+     * @return the properties value.
+     */
+    public VmSkuProfileProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: The resource-specific properties for this resource.
+     * 
+     * @param properties the properties value to set.
+     * @return the VmSkuProfileInner object itself.
+     */
+    public VmSkuProfileInner withProperties(VmSkuProfileProperties properties) {
+        this.properties = properties;
+        return this;
     }
 
     /**
@@ -61,15 +81,6 @@ public final class VmSkuProfileInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: The properties property.
-     * 
-     * @return the properties value.
-     */
-    public VmSkuProfileProperties properties() {
-        return this.properties;
-    }
-
-    /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
@@ -84,11 +95,11 @@ public final class VmSkuProfileInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (extendedLocation() != null) {
-            extendedLocation().validate();
-        }
         if (properties() != null) {
             properties().validate();
+        }
+        if (extendedLocation() != null) {
+            extendedLocation().validate();
         }
     }
 }

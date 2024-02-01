@@ -5,35 +5,36 @@
 package com.azure.resourcemanager.hybridcontainerservice.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.VirtualNetworkInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * A list of virtual network resources.
+ * The response of a VirtualNetwork list operation.
  */
 @Fluent
-public final class VirtualNetworksListResult {
+public final class VirtualNetworkListResult {
     /*
-     * The value property.
+     * The VirtualNetwork items on this page
      */
-    @JsonProperty(value = "value")
+    @JsonProperty(value = "value", required = true)
     private List<VirtualNetworkInner> value;
 
     /*
-     * The nextLink property.
+     * The link to the next page of items
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
     /**
-     * Creates an instance of VirtualNetworksListResult class.
+     * Creates an instance of VirtualNetworkListResult class.
      */
-    public VirtualNetworksListResult() {
+    public VirtualNetworkListResult() {
     }
 
     /**
-     * Get the value property: The value property.
+     * Get the value property: The VirtualNetwork items on this page.
      * 
      * @return the value value.
      */
@@ -42,18 +43,18 @@ public final class VirtualNetworksListResult {
     }
 
     /**
-     * Set the value property: The value property.
+     * Set the value property: The VirtualNetwork items on this page.
      * 
      * @param value the value value to set.
-     * @return the VirtualNetworksListResult object itself.
+     * @return the VirtualNetworkListResult object itself.
      */
-    public VirtualNetworksListResult withValue(List<VirtualNetworkInner> value) {
+    public VirtualNetworkListResult withValue(List<VirtualNetworkInner> value) {
         this.value = value;
         return this;
     }
 
     /**
-     * Get the nextLink property: The nextLink property.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -62,12 +63,12 @@ public final class VirtualNetworksListResult {
     }
 
     /**
-     * Set the nextLink property: The nextLink property.
+     * Set the nextLink property: The link to the next page of items.
      * 
      * @param nextLink the nextLink value to set.
-     * @return the VirtualNetworksListResult object itself.
+     * @return the VirtualNetworkListResult object itself.
      */
-    public VirtualNetworksListResult withNextLink(String nextLink) {
+    public VirtualNetworkListResult withNextLink(String nextLink) {
         this.nextLink = nextLink;
         return this;
     }
@@ -78,8 +79,13 @@ public final class VirtualNetworksListResult {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model VirtualNetworkListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(VirtualNetworkListResult.class);
 }

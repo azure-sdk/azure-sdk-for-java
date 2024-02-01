@@ -7,7 +7,6 @@ package com.azure.resourcemanager.hybridcontainerservice.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridcontainerservice.models.HybridIdentityMetadataProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -17,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class HybridIdentityMetadataInner extends ProxyResource {
     /*
-     * Resource properties.
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties", required = true)
+    @JsonProperty(value = "properties")
     private HybridIdentityMetadataProperties properties;
 
     /*
@@ -35,7 +34,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: Resource properties.
+     * Get the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
@@ -44,7 +43,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
     }
 
     /**
-     * Set the properties property: Resource properties.
+     * Set the properties property: The resource-specific properties for this resource.
      * 
      * @param properties the properties value to set.
      * @return the HybridIdentityMetadataInner object itself.
@@ -69,13 +68,8 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property properties in model HybridIdentityMetadataInner"));
-        } else {
+        if (properties() != null) {
             properties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(HybridIdentityMetadataInner.class);
 }

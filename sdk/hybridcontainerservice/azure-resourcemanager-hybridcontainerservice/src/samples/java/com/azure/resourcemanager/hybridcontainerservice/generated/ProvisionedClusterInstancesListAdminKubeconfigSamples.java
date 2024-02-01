@@ -11,7 +11,7 @@ public final class ProvisionedClusterInstancesListAdminKubeconfigSamples {
     /*
      * x-ms-original-file:
      * specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/
-     * ProvisionedClusterInstanceListAdminKubeconfig.json
+     * provisionedClusterInstances_ListAdminKubeconfig.json
      */
     /**
      * Sample code: ListClusterAdminCredentials.
@@ -20,8 +20,6 @@ public final class ProvisionedClusterInstancesListAdminKubeconfigSamples {
      */
     public static void listClusterAdminCredentials(
         com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.provisionedClusterInstances().listAdminKubeconfig(
-            "subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/test-hybridakscluster",
-            com.azure.core.util.Context.NONE);
+        manager.provisionedClusterInstances().listAdminKubeconfig(null, com.azure.core.util.Context.NONE);
     }
 }

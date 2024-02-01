@@ -74,64 +74,68 @@ public final class ProvisionedClusterInstancesClientImpl implements ProvisionedC
     @ServiceInterface(name = "HybridContainerServi")
     public interface ProvisionedClusterInstancesService {
         @Headers({ "Content-Type: application/json" })
-        @Get("/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ProvisionedClusterInner>> get(@HostParam("$host") String endpoint,
-            @PathParam(value = "connectedClusterResourceUri", encoded = true) String connectedClusterResourceUri,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Put("/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default")
-        @ExpectedResponses({ 200, 201 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
-            @PathParam(value = "connectedClusterResourceUri", encoded = true) String connectedClusterResourceUri,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") ProvisionedClusterInner provisionedClusterInstance,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Delete("/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default")
-        @ExpectedResponses({ 202, 204 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
-            @PathParam(value = "connectedClusterResourceUri", encoded = true) String connectedClusterResourceUri,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances")
+        @Get("/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ProvisionedClusterListResult>> list(@HostParam("$host") String endpoint,
-            @PathParam(value = "connectedClusterResourceUri", encoded = true) String connectedClusterResourceUri,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/upgradeProfiles/default")
+        @Get("/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ProvisionedClusterUpgradeProfileInner>> getUpgradeProfile(@HostParam("$host") String endpoint,
-            @PathParam(value = "connectedClusterResourceUri", encoded = true) String connectedClusterResourceUri,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Post("/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/listUserKubeconfig")
-        @ExpectedResponses({ 200, 202 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> listUserKubeconfig(@HostParam("$host") String endpoint,
+        Mono<Response<ProvisionedClusterInner>> get(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam(value = "connectedClusterResourceUri", encoded = true) String connectedClusterResourceUri,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Post("/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/listAdminKubeconfig")
+        @Put("/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri,
+            @BodyParam("application/json") ProvisionedClusterInner resource, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default")
+        @ExpectedResponses({ 202, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/listAdminKubeconfig")
         @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> listAdminKubeconfig(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam(value = "connectedClusterResourceUri", encoded = true) String connectedClusterResourceUri,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/listUserKubeconfig")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> listUserKubeconfig(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/upgradeProfiles/default")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ProvisionedClusterUpgradeProfileInner>> getUpgradeProfile(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -143,537 +147,28 @@ public final class ProvisionedClusterInstancesClientImpl implements ProvisionedC
     }
 
     /**
-     * Gets the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the provisioned cluster instance along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ProvisionedClusterInner>> getWithResponseAsync(String connectedClusterResourceUri) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), connectedClusterResourceUri,
-                this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the provisioned cluster instance along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ProvisionedClusterInner>> getWithResponseAsync(String connectedClusterResourceUri,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), connectedClusterResourceUri, this.client.getApiVersion(), accept,
-            context);
-    }
-
-    /**
-     * Gets the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the provisioned cluster instance on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ProvisionedClusterInner> getAsync(String connectedClusterResourceUri) {
-        return getWithResponseAsync(connectedClusterResourceUri).flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Gets the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the provisioned cluster instance along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ProvisionedClusterInner> getWithResponse(String connectedClusterResourceUri, Context context) {
-        return getWithResponseAsync(connectedClusterResourceUri, context).block();
-    }
-
-    /**
-     * Gets the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the provisioned cluster instance.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ProvisionedClusterInner get(String connectedClusterResourceUri) {
-        return getWithResponse(connectedClusterResourceUri, Context.NONE).getValue();
-    }
-
-    /**
-     * Creates or updates the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param provisionedClusterInstance Provisioned Cluster resource definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the provisioned cluster resource definition along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String connectedClusterResourceUri,
-        ProvisionedClusterInner provisionedClusterInstance) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        if (provisionedClusterInstance == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisionedClusterInstance is required and cannot be null."));
-        } else {
-            provisionedClusterInstance.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), connectedClusterResourceUri,
-                this.client.getApiVersion(), provisionedClusterInstance, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Creates or updates the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param provisionedClusterInstance Provisioned Cluster resource definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the provisioned cluster resource definition along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String connectedClusterResourceUri,
-        ProvisionedClusterInner provisionedClusterInstance, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        if (provisionedClusterInstance == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisionedClusterInstance is required and cannot be null."));
-        } else {
-            provisionedClusterInstance.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), connectedClusterResourceUri,
-            this.client.getApiVersion(), provisionedClusterInstance, accept, context);
-    }
-
-    /**
-     * Creates or updates the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param provisionedClusterInstance Provisioned Cluster resource definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the provisioned cluster resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ProvisionedClusterInner>, ProvisionedClusterInner> beginCreateOrUpdateAsync(
-        String connectedClusterResourceUri, ProvisionedClusterInner provisionedClusterInstance) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(connectedClusterResourceUri, provisionedClusterInstance);
-        return this.client.<ProvisionedClusterInner, ProvisionedClusterInner>getLroResult(mono,
-            this.client.getHttpPipeline(), ProvisionedClusterInner.class, ProvisionedClusterInner.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Creates or updates the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param provisionedClusterInstance Provisioned Cluster resource definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the provisioned cluster resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ProvisionedClusterInner>, ProvisionedClusterInner> beginCreateOrUpdateAsync(
-        String connectedClusterResourceUri, ProvisionedClusterInner provisionedClusterInstance, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(connectedClusterResourceUri, provisionedClusterInstance, context);
-        return this.client.<ProvisionedClusterInner, ProvisionedClusterInner>getLroResult(mono,
-            this.client.getHttpPipeline(), ProvisionedClusterInner.class, ProvisionedClusterInner.class, context);
-    }
-
-    /**
-     * Creates or updates the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param provisionedClusterInstance Provisioned Cluster resource definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the provisioned cluster resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ProvisionedClusterInner>, ProvisionedClusterInner>
-        beginCreateOrUpdate(String connectedClusterResourceUri, ProvisionedClusterInner provisionedClusterInstance) {
-        return this.beginCreateOrUpdateAsync(connectedClusterResourceUri, provisionedClusterInstance).getSyncPoller();
-    }
-
-    /**
-     * Creates or updates the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param provisionedClusterInstance Provisioned Cluster resource definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the provisioned cluster resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ProvisionedClusterInner>, ProvisionedClusterInner> beginCreateOrUpdate(
-        String connectedClusterResourceUri, ProvisionedClusterInner provisionedClusterInstance, Context context) {
-        return this.beginCreateOrUpdateAsync(connectedClusterResourceUri, provisionedClusterInstance, context)
-            .getSyncPoller();
-    }
-
-    /**
-     * Creates or updates the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param provisionedClusterInstance Provisioned Cluster resource definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the provisioned cluster resource definition on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ProvisionedClusterInner> createOrUpdateAsync(String connectedClusterResourceUri,
-        ProvisionedClusterInner provisionedClusterInstance) {
-        return beginCreateOrUpdateAsync(connectedClusterResourceUri, provisionedClusterInstance).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Creates or updates the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param provisionedClusterInstance Provisioned Cluster resource definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the provisioned cluster resource definition on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ProvisionedClusterInner> createOrUpdateAsync(String connectedClusterResourceUri,
-        ProvisionedClusterInner provisionedClusterInstance, Context context) {
-        return beginCreateOrUpdateAsync(connectedClusterResourceUri, provisionedClusterInstance, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Creates or updates the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param provisionedClusterInstance Provisioned Cluster resource definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the provisioned cluster resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ProvisionedClusterInner createOrUpdate(String connectedClusterResourceUri,
-        ProvisionedClusterInner provisionedClusterInstance) {
-        return createOrUpdateAsync(connectedClusterResourceUri, provisionedClusterInstance).block();
-    }
-
-    /**
-     * Creates or updates the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param provisionedClusterInstance Provisioned Cluster resource definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the provisioned cluster resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ProvisionedClusterInner createOrUpdate(String connectedClusterResourceUri,
-        ProvisionedClusterInner provisionedClusterInstance, Context context) {
-        return createOrUpdateAsync(connectedClusterResourceUri, provisionedClusterInstance, context).block();
-    }
-
-    /**
-     * Deletes the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String connectedClusterResourceUri) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), connectedClusterResourceUri,
-                this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Deletes the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String connectedClusterResourceUri,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), connectedClusterResourceUri, this.client.getApiVersion(),
-            accept, context);
-    }
-
-    /**
-     * Deletes the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String connectedClusterResourceUri) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(connectedClusterResourceUri);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Deletes the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String connectedClusterResourceUri, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(connectedClusterResourceUri, context);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            context);
-    }
-
-    /**
-     * Deletes the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String connectedClusterResourceUri) {
-        return this.beginDeleteAsync(connectedClusterResourceUri).getSyncPoller();
-    }
-
-    /**
-     * Deletes the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String connectedClusterResourceUri, Context context) {
-        return this.beginDeleteAsync(connectedClusterResourceUri, context).getSyncPoller();
-    }
-
-    /**
-     * Deletes the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String connectedClusterResourceUri) {
-        return beginDeleteAsync(connectedClusterResourceUri).last().flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Deletes the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String connectedClusterResourceUri, Context context) {
-        return beginDeleteAsync(connectedClusterResourceUri, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Deletes the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String connectedClusterResourceUri) {
-        deleteAsync(connectedClusterResourceUri).block();
-    }
-
-    /**
-     * Deletes the provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String connectedClusterResourceUri, Context context) {
-        deleteAsync(connectedClusterResourceUri, context).block();
-    }
-
-    /**
      * Lists the ProvisionedClusterInstance resource associated with the ConnectedCluster.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists the ProvisionedClusterInstance resource associated with the ConnectedCluster along with
-     * {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a ProvisionedCluster list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProvisionedClusterInner>> listSinglePageAsync(String connectedClusterResourceUri) {
+    private Mono<PagedResponse<ProvisionedClusterInner>> listSinglePageAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), connectedClusterResourceUri,
-                this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
+                accept, context))
             .<PagedResponse<ProvisionedClusterInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -682,30 +177,26 @@ public final class ProvisionedClusterInstancesClientImpl implements ProvisionedC
     /**
      * Lists the ProvisionedClusterInstance resource associated with the ConnectedCluster.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists the ProvisionedClusterInstance resource associated with the ConnectedCluster along with
-     * {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a ProvisionedCluster list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProvisionedClusterInner>> listSinglePageAsync(String connectedClusterResourceUri,
-        Context context) {
+    private Mono<PagedResponse<ProvisionedClusterInner>> listSinglePageAsync(String resourceUri, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), connectedClusterResourceUri, this.client.getApiVersion(), accept, context)
+        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -713,76 +204,884 @@ public final class ProvisionedClusterInstancesClientImpl implements ProvisionedC
     /**
      * Lists the ProvisionedClusterInstance resource associated with the ConnectedCluster.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists the ProvisionedClusterInstance resource associated with the ConnectedCluster as paginated response
-     * with {@link PagedFlux}.
+     * @return the response of a ProvisionedCluster list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ProvisionedClusterInner> listAsync(String connectedClusterResourceUri) {
-        return new PagedFlux<>(() -> listSinglePageAsync(connectedClusterResourceUri),
-            nextLink -> listNextSinglePageAsync(nextLink));
+    private PagedFlux<ProvisionedClusterInner> listAsync(String resourceUri) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceUri), nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * Lists the ProvisionedClusterInstance resource associated with the ConnectedCluster.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists the ProvisionedClusterInstance resource associated with the ConnectedCluster as paginated response
-     * with {@link PagedFlux}.
+     * @return the response of a ProvisionedCluster list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ProvisionedClusterInner> listAsync(String connectedClusterResourceUri, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(connectedClusterResourceUri, context),
+    private PagedFlux<ProvisionedClusterInner> listAsync(String resourceUri, Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceUri, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Lists the ProvisionedClusterInstance resource associated with the ConnectedCluster.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists the ProvisionedClusterInstance resource associated with the ConnectedCluster as paginated response
-     * with {@link PagedIterable}.
+     * @return the response of a ProvisionedCluster list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ProvisionedClusterInner> list(String connectedClusterResourceUri) {
-        return new PagedIterable<>(listAsync(connectedClusterResourceUri));
+    public PagedIterable<ProvisionedClusterInner> list(String resourceUri) {
+        return new PagedIterable<>(listAsync(resourceUri));
     }
 
     /**
      * Lists the ProvisionedClusterInstance resource associated with the ConnectedCluster.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists the ProvisionedClusterInstance resource associated with the ConnectedCluster as paginated response
-     * with {@link PagedIterable}.
+     * @return the response of a ProvisionedCluster list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ProvisionedClusterInner> list(String connectedClusterResourceUri, Context context) {
-        return new PagedIterable<>(listAsync(connectedClusterResourceUri, context));
+    public PagedIterable<ProvisionedClusterInner> list(String resourceUri, Context context) {
+        return new PagedIterable<>(listAsync(resourceUri, context));
+    }
+
+    /**
+     * Gets the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the provisioned cluster instance along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ProvisionedClusterInner>> getWithResponseAsync(String resourceUri) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
+                accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the provisioned cluster instance along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ProvisionedClusterInner>> getWithResponseAsync(String resourceUri, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, accept, context);
+    }
+
+    /**
+     * Gets the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the provisioned cluster instance on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ProvisionedClusterInner> getAsync(String resourceUri) {
+        return getWithResponseAsync(resourceUri).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the provisioned cluster instance along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ProvisionedClusterInner> getWithResponse(String resourceUri, Context context) {
+        return getWithResponseAsync(resourceUri, context).block();
+    }
+
+    /**
+     * Gets the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the provisioned cluster instance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ProvisionedClusterInner get(String resourceUri) {
+        return getWithResponse(resourceUri, Context.NONE).getValue();
+    }
+
+    /**
+     * Creates or updates the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the provisioned cluster resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceUri,
+        ProvisionedClusterInner resource) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                resourceUri, resource, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Creates or updates the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the provisioned cluster resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceUri,
+        ProvisionedClusterInner resource, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, resource,
+            accept, context);
+    }
+
+    /**
+     * Creates or updates the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the provisioned cluster resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ProvisionedClusterInner>, ProvisionedClusterInner>
+        beginCreateOrUpdateAsync(String resourceUri, ProvisionedClusterInner resource) {
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceUri, resource);
+        return this.client.<ProvisionedClusterInner, ProvisionedClusterInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ProvisionedClusterInner.class, ProvisionedClusterInner.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Creates or updates the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the provisioned cluster resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ProvisionedClusterInner>, ProvisionedClusterInner>
+        beginCreateOrUpdateAsync(String resourceUri, ProvisionedClusterInner resource, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceUri, resource, context);
+        return this.client.<ProvisionedClusterInner, ProvisionedClusterInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ProvisionedClusterInner.class, ProvisionedClusterInner.class, context);
+    }
+
+    /**
+     * Creates or updates the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the provisioned cluster resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ProvisionedClusterInner>, ProvisionedClusterInner>
+        beginCreateOrUpdate(String resourceUri, ProvisionedClusterInner resource) {
+        return this.beginCreateOrUpdateAsync(resourceUri, resource).getSyncPoller();
+    }
+
+    /**
+     * Creates or updates the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the provisioned cluster resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ProvisionedClusterInner>, ProvisionedClusterInner>
+        beginCreateOrUpdate(String resourceUri, ProvisionedClusterInner resource, Context context) {
+        return this.beginCreateOrUpdateAsync(resourceUri, resource, context).getSyncPoller();
+    }
+
+    /**
+     * Creates or updates the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the provisioned cluster resource definition on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ProvisionedClusterInner> createOrUpdateAsync(String resourceUri, ProvisionedClusterInner resource) {
+        return beginCreateOrUpdateAsync(resourceUri, resource).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Creates or updates the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the provisioned cluster resource definition on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ProvisionedClusterInner> createOrUpdateAsync(String resourceUri, ProvisionedClusterInner resource,
+        Context context) {
+        return beginCreateOrUpdateAsync(resourceUri, resource, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Creates or updates the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the provisioned cluster resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ProvisionedClusterInner createOrUpdate(String resourceUri, ProvisionedClusterInner resource) {
+        return createOrUpdateAsync(resourceUri, resource).block();
+    }
+
+    /**
+     * Creates or updates the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the provisioned cluster resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ProvisionedClusterInner createOrUpdate(String resourceUri, ProvisionedClusterInner resource,
+        Context context) {
+        return createOrUpdateAsync(resourceUri, resource, context).block();
+    }
+
+    /**
+     * Deletes the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceUri) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
+                accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Deletes the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceUri, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, accept, context);
+    }
+
+    /**
+     * Deletes the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceUri) {
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceUri);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Deletes the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceUri, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceUri, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
+    }
+
+    /**
+     * Deletes the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceUri) {
+        return this.beginDeleteAsync(resourceUri).getSyncPoller();
+    }
+
+    /**
+     * Deletes the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceUri, Context context) {
+        return this.beginDeleteAsync(resourceUri, context).getSyncPoller();
+    }
+
+    /**
+     * Deletes the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceUri) {
+        return beginDeleteAsync(resourceUri).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Deletes the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceUri, Context context) {
+        return beginDeleteAsync(resourceUri, context).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Deletes the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceUri) {
+        deleteAsync(resourceUri).block();
+    }
+
+    /**
+     * Deletes the provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceUri, Context context) {
+        deleteAsync(resourceUri, context).block();
+    }
+
+    /**
+     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list kubeconfig result response along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> listAdminKubeconfigWithResponseAsync(String resourceUri) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listAdminKubeconfig(this.client.getEndpoint(), this.client.getApiVersion(),
+                resourceUri, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list kubeconfig result response along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> listAdminKubeconfigWithResponseAsync(String resourceUri, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.listAdminKubeconfig(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, accept,
+            context);
+    }
+
+    /**
+     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the list kubeconfig result response.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ListCredentialResponseInner>, ListCredentialResponseInner>
+        beginListAdminKubeconfigAsync(String resourceUri) {
+        Mono<Response<Flux<ByteBuffer>>> mono = listAdminKubeconfigWithResponseAsync(resourceUri);
+        return this.client.<ListCredentialResponseInner, ListCredentialResponseInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ListCredentialResponseInner.class, ListCredentialResponseInner.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the list kubeconfig result response.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ListCredentialResponseInner>, ListCredentialResponseInner>
+        beginListAdminKubeconfigAsync(String resourceUri, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = listAdminKubeconfigWithResponseAsync(resourceUri, context);
+        return this.client.<ListCredentialResponseInner, ListCredentialResponseInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ListCredentialResponseInner.class, ListCredentialResponseInner.class,
+            context);
+    }
+
+    /**
+     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the list kubeconfig result response.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ListCredentialResponseInner>, ListCredentialResponseInner>
+        beginListAdminKubeconfig(String resourceUri) {
+        return this.beginListAdminKubeconfigAsync(resourceUri).getSyncPoller();
+    }
+
+    /**
+     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the list kubeconfig result response.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ListCredentialResponseInner>, ListCredentialResponseInner>
+        beginListAdminKubeconfig(String resourceUri, Context context) {
+        return this.beginListAdminKubeconfigAsync(resourceUri, context).getSyncPoller();
+    }
+
+    /**
+     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list kubeconfig result response on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ListCredentialResponseInner> listAdminKubeconfigAsync(String resourceUri) {
+        return beginListAdminKubeconfigAsync(resourceUri).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list kubeconfig result response on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ListCredentialResponseInner> listAdminKubeconfigAsync(String resourceUri, Context context) {
+        return beginListAdminKubeconfigAsync(resourceUri, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list kubeconfig result response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ListCredentialResponseInner listAdminKubeconfig(String resourceUri) {
+        return listAdminKubeconfigAsync(resourceUri).block();
+    }
+
+    /**
+     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list kubeconfig result response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ListCredentialResponseInner listAdminKubeconfig(String resourceUri, Context context) {
+        return listAdminKubeconfigAsync(resourceUri, context).block();
+    }
+
+    /**
+     * Lists the user credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list kubeconfig result response along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> listUserKubeconfigWithResponseAsync(String resourceUri) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listUserKubeconfig(this.client.getEndpoint(), this.client.getApiVersion(),
+                resourceUri, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Lists the user credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list kubeconfig result response along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> listUserKubeconfigWithResponseAsync(String resourceUri, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.listUserKubeconfig(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, accept,
+            context);
+    }
+
+    /**
+     * Lists the user credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the list kubeconfig result response.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ListCredentialResponseInner>, ListCredentialResponseInner>
+        beginListUserKubeconfigAsync(String resourceUri) {
+        Mono<Response<Flux<ByteBuffer>>> mono = listUserKubeconfigWithResponseAsync(resourceUri);
+        return this.client.<ListCredentialResponseInner, ListCredentialResponseInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ListCredentialResponseInner.class, ListCredentialResponseInner.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Lists the user credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the list kubeconfig result response.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ListCredentialResponseInner>, ListCredentialResponseInner>
+        beginListUserKubeconfigAsync(String resourceUri, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = listUserKubeconfigWithResponseAsync(resourceUri, context);
+        return this.client.<ListCredentialResponseInner, ListCredentialResponseInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ListCredentialResponseInner.class, ListCredentialResponseInner.class,
+            context);
+    }
+
+    /**
+     * Lists the user credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the list kubeconfig result response.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ListCredentialResponseInner>, ListCredentialResponseInner>
+        beginListUserKubeconfig(String resourceUri) {
+        return this.beginListUserKubeconfigAsync(resourceUri).getSyncPoller();
+    }
+
+    /**
+     * Lists the user credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the list kubeconfig result response.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ListCredentialResponseInner>, ListCredentialResponseInner>
+        beginListUserKubeconfig(String resourceUri, Context context) {
+        return this.beginListUserKubeconfigAsync(resourceUri, context).getSyncPoller();
+    }
+
+    /**
+     * Lists the user credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list kubeconfig result response on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ListCredentialResponseInner> listUserKubeconfigAsync(String resourceUri) {
+        return beginListUserKubeconfigAsync(resourceUri).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Lists the user credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list kubeconfig result response on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ListCredentialResponseInner> listUserKubeconfigAsync(String resourceUri, Context context) {
+        return beginListUserKubeconfigAsync(resourceUri, context).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Lists the user credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list kubeconfig result response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ListCredentialResponseInner listUserKubeconfig(String resourceUri) {
+        return listUserKubeconfigAsync(resourceUri).block();
+    }
+
+    /**
+     * Lists the user credentials of the provisioned cluster (can only be used within private network).
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list kubeconfig result response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ListCredentialResponseInner listUserKubeconfig(String resourceUri, Context context) {
+        return listUserKubeconfigAsync(resourceUri, context).block();
     }
 
     /**
      * Gets the upgrade profile of a provisioned cluster.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -791,27 +1090,25 @@ public final class ProvisionedClusterInstancesClientImpl implements ProvisionedC
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ProvisionedClusterUpgradeProfileInner>>
-        getUpgradeProfileWithResponseAsync(String connectedClusterResourceUri) {
+        getUpgradeProfileWithResponseAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getUpgradeProfile(this.client.getEndpoint(), connectedClusterResourceUri,
-                this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.getUpgradeProfile(this.client.getEndpoint(), this.client.getApiVersion(),
+                resourceUri, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets the upgrade profile of a provisioned cluster.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -820,43 +1117,39 @@ public final class ProvisionedClusterInstancesClientImpl implements ProvisionedC
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ProvisionedClusterUpgradeProfileInner>>
-        getUpgradeProfileWithResponseAsync(String connectedClusterResourceUri, Context context) {
+    private Mono<Response<ProvisionedClusterUpgradeProfileInner>> getUpgradeProfileWithResponseAsync(String resourceUri,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getUpgradeProfile(this.client.getEndpoint(), connectedClusterResourceUri,
-            this.client.getApiVersion(), accept, context);
+        return service.getUpgradeProfile(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, accept,
+            context);
     }
 
     /**
      * Gets the upgrade profile of a provisioned cluster.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the upgrade profile of a provisioned cluster on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ProvisionedClusterUpgradeProfileInner> getUpgradeProfileAsync(String connectedClusterResourceUri) {
-        return getUpgradeProfileWithResponseAsync(connectedClusterResourceUri)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<ProvisionedClusterUpgradeProfileInner> getUpgradeProfileAsync(String resourceUri) {
+        return getUpgradeProfileWithResponseAsync(resourceUri).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Gets the upgrade profile of a provisioned cluster.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -864,412 +1157,23 @@ public final class ProvisionedClusterInstancesClientImpl implements ProvisionedC
      * @return the upgrade profile of a provisioned cluster along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ProvisionedClusterUpgradeProfileInner>
-        getUpgradeProfileWithResponse(String connectedClusterResourceUri, Context context) {
-        return getUpgradeProfileWithResponseAsync(connectedClusterResourceUri, context).block();
+    public Response<ProvisionedClusterUpgradeProfileInner> getUpgradeProfileWithResponse(String resourceUri,
+        Context context) {
+        return getUpgradeProfileWithResponseAsync(resourceUri, context).block();
     }
 
     /**
      * Gets the upgrade profile of a provisioned cluster.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the upgrade profile of a provisioned cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ProvisionedClusterUpgradeProfileInner getUpgradeProfile(String connectedClusterResourceUri) {
-        return getUpgradeProfileWithResponse(connectedClusterResourceUri, Context.NONE).getValue();
-    }
-
-    /**
-     * Lists the user credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list kubeconfig result response along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> listUserKubeconfigWithResponseAsync(String connectedClusterResourceUri) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listUserKubeconfig(this.client.getEndpoint(), this.client.getApiVersion(),
-                connectedClusterResourceUri, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the user credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list kubeconfig result response along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> listUserKubeconfigWithResponseAsync(String connectedClusterResourceUri,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listUserKubeconfig(this.client.getEndpoint(), this.client.getApiVersion(),
-            connectedClusterResourceUri, accept, context);
-    }
-
-    /**
-     * Lists the user credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the list kubeconfig result response.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ListCredentialResponseInner>, ListCredentialResponseInner>
-        beginListUserKubeconfigAsync(String connectedClusterResourceUri) {
-        Mono<Response<Flux<ByteBuffer>>> mono = listUserKubeconfigWithResponseAsync(connectedClusterResourceUri);
-        return this.client.<ListCredentialResponseInner, ListCredentialResponseInner>getLroResult(mono,
-            this.client.getHttpPipeline(), ListCredentialResponseInner.class, ListCredentialResponseInner.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Lists the user credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the list kubeconfig result response.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ListCredentialResponseInner>, ListCredentialResponseInner>
-        beginListUserKubeconfigAsync(String connectedClusterResourceUri, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = listUserKubeconfigWithResponseAsync(connectedClusterResourceUri, context);
-        return this.client.<ListCredentialResponseInner, ListCredentialResponseInner>getLroResult(mono,
-            this.client.getHttpPipeline(), ListCredentialResponseInner.class, ListCredentialResponseInner.class,
-            context);
-    }
-
-    /**
-     * Lists the user credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the list kubeconfig result response.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ListCredentialResponseInner>, ListCredentialResponseInner>
-        beginListUserKubeconfig(String connectedClusterResourceUri) {
-        return this.beginListUserKubeconfigAsync(connectedClusterResourceUri).getSyncPoller();
-    }
-
-    /**
-     * Lists the user credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the list kubeconfig result response.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ListCredentialResponseInner>, ListCredentialResponseInner>
-        beginListUserKubeconfig(String connectedClusterResourceUri, Context context) {
-        return this.beginListUserKubeconfigAsync(connectedClusterResourceUri, context).getSyncPoller();
-    }
-
-    /**
-     * Lists the user credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list kubeconfig result response on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ListCredentialResponseInner> listUserKubeconfigAsync(String connectedClusterResourceUri) {
-        return beginListUserKubeconfigAsync(connectedClusterResourceUri).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Lists the user credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list kubeconfig result response on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ListCredentialResponseInner> listUserKubeconfigAsync(String connectedClusterResourceUri,
-        Context context) {
-        return beginListUserKubeconfigAsync(connectedClusterResourceUri, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Lists the user credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list kubeconfig result response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ListCredentialResponseInner listUserKubeconfig(String connectedClusterResourceUri) {
-        return listUserKubeconfigAsync(connectedClusterResourceUri).block();
-    }
-
-    /**
-     * Lists the user credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list kubeconfig result response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ListCredentialResponseInner listUserKubeconfig(String connectedClusterResourceUri, Context context) {
-        return listUserKubeconfigAsync(connectedClusterResourceUri, context).block();
-    }
-
-    /**
-     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list kubeconfig result response along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> listAdminKubeconfigWithResponseAsync(String connectedClusterResourceUri) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listAdminKubeconfig(this.client.getEndpoint(), this.client.getApiVersion(),
-                connectedClusterResourceUri, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list kubeconfig result response along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> listAdminKubeconfigWithResponseAsync(String connectedClusterResourceUri,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listAdminKubeconfig(this.client.getEndpoint(), this.client.getApiVersion(),
-            connectedClusterResourceUri, accept, context);
-    }
-
-    /**
-     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the list kubeconfig result response.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ListCredentialResponseInner>, ListCredentialResponseInner>
-        beginListAdminKubeconfigAsync(String connectedClusterResourceUri) {
-        Mono<Response<Flux<ByteBuffer>>> mono = listAdminKubeconfigWithResponseAsync(connectedClusterResourceUri);
-        return this.client.<ListCredentialResponseInner, ListCredentialResponseInner>getLroResult(mono,
-            this.client.getHttpPipeline(), ListCredentialResponseInner.class, ListCredentialResponseInner.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the list kubeconfig result response.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ListCredentialResponseInner>, ListCredentialResponseInner>
-        beginListAdminKubeconfigAsync(String connectedClusterResourceUri, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = listAdminKubeconfigWithResponseAsync(connectedClusterResourceUri, context);
-        return this.client.<ListCredentialResponseInner, ListCredentialResponseInner>getLroResult(mono,
-            this.client.getHttpPipeline(), ListCredentialResponseInner.class, ListCredentialResponseInner.class,
-            context);
-    }
-
-    /**
-     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the list kubeconfig result response.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ListCredentialResponseInner>, ListCredentialResponseInner>
-        beginListAdminKubeconfig(String connectedClusterResourceUri) {
-        return this.beginListAdminKubeconfigAsync(connectedClusterResourceUri).getSyncPoller();
-    }
-
-    /**
-     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the list kubeconfig result response.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ListCredentialResponseInner>, ListCredentialResponseInner>
-        beginListAdminKubeconfig(String connectedClusterResourceUri, Context context) {
-        return this.beginListAdminKubeconfigAsync(connectedClusterResourceUri, context).getSyncPoller();
-    }
-
-    /**
-     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list kubeconfig result response on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ListCredentialResponseInner> listAdminKubeconfigAsync(String connectedClusterResourceUri) {
-        return beginListAdminKubeconfigAsync(connectedClusterResourceUri).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list kubeconfig result response on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ListCredentialResponseInner> listAdminKubeconfigAsync(String connectedClusterResourceUri,
-        Context context) {
-        return beginListAdminKubeconfigAsync(connectedClusterResourceUri, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list kubeconfig result response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ListCredentialResponseInner listAdminKubeconfig(String connectedClusterResourceUri) {
-        return listAdminKubeconfigAsync(connectedClusterResourceUri).block();
-    }
-
-    /**
-     * Lists the admin credentials of the provisioned cluster (can only be used within private network).
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list kubeconfig result response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ListCredentialResponseInner listAdminKubeconfig(String connectedClusterResourceUri, Context context) {
-        return listAdminKubeconfigAsync(connectedClusterResourceUri, context).block();
+    public ProvisionedClusterUpgradeProfileInner getUpgradeProfile(String resourceUri) {
+        return getUpgradeProfileWithResponse(resourceUri, Context.NONE).getValue();
     }
 
     /**
@@ -1281,8 +1185,8 @@ public final class ProvisionedClusterInstancesClientImpl implements ProvisionedC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists the ProvisionedClusterInstance resource associated with the ConnectedCluster along with
-     * {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a ProvisionedCluster list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProvisionedClusterInner>> listNextSinglePageAsync(String nextLink) {
@@ -1310,8 +1214,8 @@ public final class ProvisionedClusterInstancesClientImpl implements ProvisionedC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists the ProvisionedClusterInstance resource associated with the ConnectedCluster along with
-     * {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a ProvisionedCluster list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProvisionedClusterInner>> listNextSinglePageAsync(String nextLink, Context context) {

@@ -7,7 +7,6 @@ package com.azure.resourcemanager.hybridcontainerservice.models;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.AgentPoolInner;
-import java.util.Map;
 
 /**
  * An immutable client-side representation of AgentPool.
@@ -35,18 +34,11 @@ public interface AgentPool {
     String type();
 
     /**
-     * Gets the properties property: Properties of the agent pool resource.
+     * Gets the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
     AgentPoolProperties properties();
-
-    /**
-     * Gets the tags property: Resource tags.
-     * 
-     * @return the tags value.
-     */
-    Map<String, String> tags();
 
     /**
      * Gets the extendedLocation property: Extended location pointing to the underlying infrastructure.
@@ -90,21 +82,19 @@ public interface AgentPool {
          */
         interface WithScope {
             /**
-             * Specifies connectedClusterResourceUri.
+             * Specifies resourceUri.
              * 
-             * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected
-             * cluster resource.
+             * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
              * @return the next definition stage.
              */
-            WithCreate withExistingConnectedClusterResourceUri(String connectedClusterResourceUri);
+            WithCreate withExistingResourceUri(String resourceUri);
         }
 
         /**
          * The stage of the AgentPool definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithTags, DefinitionStages.WithProperties, DefinitionStages.WithExtendedLocation {
+        interface WithCreate extends DefinitionStages.WithProperties, DefinitionStages.WithExtendedLocation {
             /**
              * Executes the create request.
              * 
@@ -122,26 +112,13 @@ public interface AgentPool {
         }
 
         /**
-         * The stage of the AgentPool definition allowing to specify tags.
-         */
-        interface WithTags {
-            /**
-             * Specifies the tags property: Resource tags.
-             * 
-             * @param tags Resource tags.
-             * @return the next definition stage.
-             */
-            WithCreate withTags(Map<String, String> tags);
-        }
-
-        /**
          * The stage of the AgentPool definition allowing to specify properties.
          */
         interface WithProperties {
             /**
-             * Specifies the properties property: Properties of the agent pool resource.
+             * Specifies the properties property: The resource-specific properties for this resource..
              * 
-             * @param properties Properties of the agent pool resource.
+             * @param properties The resource-specific properties for this resource.
              * @return the next definition stage.
              */
             WithCreate withProperties(AgentPoolProperties properties);
@@ -171,7 +148,7 @@ public interface AgentPool {
     /**
      * The template for AgentPool update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties, UpdateStages.WithExtendedLocation {
+    interface Update extends UpdateStages.WithExtendedLocation {
         /**
          * Executes the update request.
          * 
@@ -192,32 +169,6 @@ public interface AgentPool {
      * The AgentPool update stages.
      */
     interface UpdateStages {
-        /**
-         * The stage of the AgentPool update allowing to specify tags.
-         */
-        interface WithTags {
-            /**
-             * Specifies the tags property: Resource tags.
-             * 
-             * @param tags Resource tags.
-             * @return the next definition stage.
-             */
-            Update withTags(Map<String, String> tags);
-        }
-
-        /**
-         * The stage of the AgentPool update allowing to specify properties.
-         */
-        interface WithProperties {
-            /**
-             * Specifies the properties property: Properties of the agent pool resource.
-             * 
-             * @param properties Properties of the agent pool resource.
-             * @return the next definition stage.
-             */
-            Update withProperties(AgentPoolProperties properties);
-        }
-
         /**
          * The stage of the AgentPool update allowing to specify extendedLocation.
          */

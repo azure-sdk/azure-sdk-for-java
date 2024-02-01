@@ -50,7 +50,7 @@ public interface VirtualNetwork {
     Map<String, String> tags();
 
     /**
-     * Gets the properties property: Properties of the virtual network resource.
+     * Gets the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
@@ -189,9 +189,9 @@ public interface VirtualNetwork {
          */
         interface WithProperties {
             /**
-             * Specifies the properties property: Properties of the virtual network resource.
+             * Specifies the properties property: The resource-specific properties for this resource..
              * 
-             * @param properties Properties of the virtual network resource.
+             * @param properties The resource-specific properties for this resource.
              * @return the next definition stage.
              */
             WithCreate withProperties(VirtualNetworkProperties properties);

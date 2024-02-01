@@ -9,9 +9,7 @@ import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.hybridcontainerservice.models.AgentPoolProperties;
 import com.azure.resourcemanager.hybridcontainerservice.models.ExtendedLocation;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
 
 /**
  * The agentPool resource definition.
@@ -19,17 +17,10 @@ import java.util.Map;
 @Fluent
 public final class AgentPoolInner extends ProxyResource {
     /*
-     * Properties of the agent pool resource
+     * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
     private AgentPoolProperties properties;
-
-    /*
-     * Resource tags
-     */
-    @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, String> tags;
 
     /*
      * Extended location pointing to the underlying infrastructure
@@ -50,7 +41,7 @@ public final class AgentPoolInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: Properties of the agent pool resource.
+     * Get the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
@@ -59,33 +50,13 @@ public final class AgentPoolInner extends ProxyResource {
     }
 
     /**
-     * Set the properties property: Properties of the agent pool resource.
+     * Set the properties property: The resource-specific properties for this resource.
      * 
      * @param properties the properties value to set.
      * @return the AgentPoolInner object itself.
      */
     public AgentPoolInner withProperties(AgentPoolProperties properties) {
         this.properties = properties;
-        return this;
-    }
-
-    /**
-     * Get the tags property: Resource tags.
-     * 
-     * @return the tags value.
-     */
-    public Map<String, String> tags() {
-        return this.tags;
-    }
-
-    /**
-     * Set the tags property: Resource tags.
-     * 
-     * @param tags the tags value to set.
-     * @return the AgentPoolInner object itself.
-     */
-    public AgentPoolInner withTags(Map<String, String> tags) {
-        this.tags = tags;
         return this;
     }
 

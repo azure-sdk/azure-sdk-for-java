@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Profile for agent pool properties that can be updated.
  */
 @Fluent
-public class AgentPoolUpdateProfile {
+public final class AgentPoolUpdateProfile {
     /*
      * Number of nodes in the agent pool. The default value is 1.
      */

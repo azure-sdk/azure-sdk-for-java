@@ -9,11 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * The expander to use when scaling up
- * 
- * If not specified, the default is 'random'. See
- * [expanders](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#what-are-expanders) for
- * more information.
+ * Defines values for Expander.
  */
 public final class Expander extends ExpandableStringEnum<Expander> {
     /**

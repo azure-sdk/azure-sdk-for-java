@@ -28,10 +28,9 @@ public final class ResourceProvidersImpl implements ResourceProviders {
         this.serviceManager = serviceManager;
     }
 
-    public Response<KubernetesVersionProfile> getKubernetesVersionsWithResponse(String customLocationResourceUri,
-        Context context) {
+    public Response<KubernetesVersionProfile> getKubernetesVersionsWithResponse(String resourceUri, Context context) {
         Response<KubernetesVersionProfileInner> inner
-            = this.serviceClient().getKubernetesVersionsWithResponse(customLocationResourceUri, context);
+            = this.serviceClient().getKubernetesVersionsWithResponse(resourceUri, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new KubernetesVersionProfileImpl(inner.getValue(), this.manager()));
@@ -40,8 +39,8 @@ public final class ResourceProvidersImpl implements ResourceProviders {
         }
     }
 
-    public KubernetesVersionProfile getKubernetesVersions(String customLocationResourceUri) {
-        KubernetesVersionProfileInner inner = this.serviceClient().getKubernetesVersions(customLocationResourceUri);
+    public KubernetesVersionProfile getKubernetesVersions(String resourceUri) {
+        KubernetesVersionProfileInner inner = this.serviceClient().getKubernetesVersions(resourceUri);
         if (inner != null) {
             return new KubernetesVersionProfileImpl(inner, this.manager());
         } else {
@@ -49,10 +48,19 @@ public final class ResourceProvidersImpl implements ResourceProviders {
         }
     }
 
-    public KubernetesVersionProfile putKubernetesVersions(String customLocationResourceUri,
-        KubernetesVersionProfileInner kubernetesVersions) {
+    public KubernetesVersionProfile putKubernetesVersions(String resourceUri, KubernetesVersionProfileInner resource) {
+        KubernetesVersionProfileInner inner = this.serviceClient().putKubernetesVersions(resourceUri, resource);
+        if (inner != null) {
+            return new KubernetesVersionProfileImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public KubernetesVersionProfile putKubernetesVersions(String resourceUri, KubernetesVersionProfileInner resource,
+        Context context) {
         KubernetesVersionProfileInner inner
-            = this.serviceClient().putKubernetesVersions(customLocationResourceUri, kubernetesVersions);
+            = this.serviceClient().putKubernetesVersions(resourceUri, resource, context);
         if (inner != null) {
             return new KubernetesVersionProfileImpl(inner, this.manager());
         } else {
@@ -60,28 +68,16 @@ public final class ResourceProvidersImpl implements ResourceProviders {
         }
     }
 
-    public KubernetesVersionProfile putKubernetesVersions(String customLocationResourceUri,
-        KubernetesVersionProfileInner kubernetesVersions, Context context) {
-        KubernetesVersionProfileInner inner
-            = this.serviceClient().putKubernetesVersions(customLocationResourceUri, kubernetesVersions, context);
-        if (inner != null) {
-            return new KubernetesVersionProfileImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void deleteKubernetesVersions(String resourceUri) {
+        this.serviceClient().deleteKubernetesVersions(resourceUri);
     }
 
-    public void deleteKubernetesVersions(String customLocationResourceUri) {
-        this.serviceClient().deleteKubernetesVersions(customLocationResourceUri);
+    public void deleteKubernetesVersions(String resourceUri, Context context) {
+        this.serviceClient().deleteKubernetesVersions(resourceUri, context);
     }
 
-    public void deleteKubernetesVersions(String customLocationResourceUri, Context context) {
-        this.serviceClient().deleteKubernetesVersions(customLocationResourceUri, context);
-    }
-
-    public Response<VmSkuProfile> getVMSkusWithResponse(String customLocationResourceUri, Context context) {
-        Response<VmSkuProfileInner> inner
-            = this.serviceClient().getVMSkusWithResponse(customLocationResourceUri, context);
+    public Response<VmSkuProfile> getVMSkusWithResponse(String resourceUri, Context context) {
+        Response<VmSkuProfileInner> inner = this.serviceClient().getVMSkusWithResponse(resourceUri, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new VmSkuProfileImpl(inner.getValue(), this.manager()));
@@ -90,8 +86,8 @@ public final class ResourceProvidersImpl implements ResourceProviders {
         }
     }
 
-    public VmSkuProfile getVMSkus(String customLocationResourceUri) {
-        VmSkuProfileInner inner = this.serviceClient().getVMSkus(customLocationResourceUri);
+    public VmSkuProfile getVMSkus(String resourceUri) {
+        VmSkuProfileInner inner = this.serviceClient().getVMSkus(resourceUri);
         if (inner != null) {
             return new VmSkuProfileImpl(inner, this.manager());
         } else {
@@ -99,8 +95,8 @@ public final class ResourceProvidersImpl implements ResourceProviders {
         }
     }
 
-    public VmSkuProfile putVMSkus(String customLocationResourceUri, VmSkuProfileInner skus) {
-        VmSkuProfileInner inner = this.serviceClient().putVMSkus(customLocationResourceUri, skus);
+    public VmSkuProfile putVMSkus(String resourceUri, VmSkuProfileInner resource) {
+        VmSkuProfileInner inner = this.serviceClient().putVMSkus(resourceUri, resource);
         if (inner != null) {
             return new VmSkuProfileImpl(inner, this.manager());
         } else {
@@ -108,8 +104,8 @@ public final class ResourceProvidersImpl implements ResourceProviders {
         }
     }
 
-    public VmSkuProfile putVMSkus(String customLocationResourceUri, VmSkuProfileInner skus, Context context) {
-        VmSkuProfileInner inner = this.serviceClient().putVMSkus(customLocationResourceUri, skus, context);
+    public VmSkuProfile putVMSkus(String resourceUri, VmSkuProfileInner resource, Context context) {
+        VmSkuProfileInner inner = this.serviceClient().putVMSkus(resourceUri, resource, context);
         if (inner != null) {
             return new VmSkuProfileImpl(inner, this.manager());
         } else {
@@ -117,12 +113,12 @@ public final class ResourceProvidersImpl implements ResourceProviders {
         }
     }
 
-    public void deleteVMSkus(String customLocationResourceUri) {
-        this.serviceClient().deleteVMSkus(customLocationResourceUri);
+    public void deleteVMSkus(String resourceUri) {
+        this.serviceClient().deleteVMSkus(resourceUri);
     }
 
-    public void deleteVMSkus(String customLocationResourceUri, Context context) {
-        this.serviceClient().deleteVMSkus(customLocationResourceUri, context);
+    public void deleteVMSkus(String resourceUri, Context context) {
+        this.serviceClient().deleteVMSkus(resourceUri, context);
     }
 
     private ResourceProvidersClient serviceClient() {

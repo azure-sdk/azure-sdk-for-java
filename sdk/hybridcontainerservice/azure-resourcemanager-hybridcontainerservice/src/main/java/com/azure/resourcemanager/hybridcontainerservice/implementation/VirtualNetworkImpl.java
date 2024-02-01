@@ -81,7 +81,7 @@ public final class VirtualNetworkImpl implements VirtualNetwork, VirtualNetwork.
 
     private String virtualNetworkName;
 
-    private VirtualNetworksPatch updateVirtualNetworks;
+    private VirtualNetworksPatch updateProperties;
 
     public VirtualNetworkImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -108,19 +108,19 @@ public final class VirtualNetworkImpl implements VirtualNetwork, VirtualNetwork.
     }
 
     public VirtualNetworkImpl update() {
-        this.updateVirtualNetworks = new VirtualNetworksPatch();
+        this.updateProperties = new VirtualNetworksPatch();
         return this;
     }
 
     public VirtualNetwork apply() {
         this.innerObject = serviceManager.serviceClient().getVirtualNetworks().update(resourceGroupName,
-            virtualNetworkName, updateVirtualNetworks, Context.NONE);
+            virtualNetworkName, updateProperties, Context.NONE);
         return this;
     }
 
     public VirtualNetwork apply(Context context) {
         this.innerObject = serviceManager.serviceClient().getVirtualNetworks().update(resourceGroupName,
-            virtualNetworkName, updateVirtualNetworks, context);
+            virtualNetworkName, updateProperties, context);
         return this;
     }
 
@@ -159,7 +159,7 @@ public final class VirtualNetworkImpl implements VirtualNetwork, VirtualNetwork.
             this.innerModel().withTags(tags);
             return this;
         } else {
-            this.updateVirtualNetworks.withTags(tags);
+            this.updateProperties.withTags(tags);
             return this;
         }
     }

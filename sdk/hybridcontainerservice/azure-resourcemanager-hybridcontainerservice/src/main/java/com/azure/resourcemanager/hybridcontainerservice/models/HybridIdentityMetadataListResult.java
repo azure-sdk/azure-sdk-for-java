@@ -6,20 +6,20 @@ package com.azure.resourcemanager.hybridcontainerservice.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.hybridcontainerservice.fluent.models.ProvisionedClusterInner;
+import com.azure.resourcemanager.hybridcontainerservice.fluent.models.HybridIdentityMetadataInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * The response of a ProvisionedCluster list operation.
+ * The response of a HybridIdentityMetadata list operation.
  */
 @Fluent
-public final class ProvisionedClusterListResult {
+public final class HybridIdentityMetadataListResult {
     /*
-     * The ProvisionedCluster items on this page
+     * The HybridIdentityMetadata items on this page
      */
     @JsonProperty(value = "value", required = true)
-    private List<ProvisionedClusterInner> value;
+    private List<HybridIdentityMetadataInner> value;
 
     /*
      * The link to the next page of items
@@ -28,27 +28,27 @@ public final class ProvisionedClusterListResult {
     private String nextLink;
 
     /**
-     * Creates an instance of ProvisionedClusterListResult class.
+     * Creates an instance of HybridIdentityMetadataListResult class.
      */
-    public ProvisionedClusterListResult() {
+    public HybridIdentityMetadataListResult() {
     }
 
     /**
-     * Get the value property: The ProvisionedCluster items on this page.
+     * Get the value property: The HybridIdentityMetadata items on this page.
      * 
      * @return the value value.
      */
-    public List<ProvisionedClusterInner> value() {
+    public List<HybridIdentityMetadataInner> value() {
         return this.value;
     }
 
     /**
-     * Set the value property: The ProvisionedCluster items on this page.
+     * Set the value property: The HybridIdentityMetadata items on this page.
      * 
      * @param value the value value to set.
-     * @return the ProvisionedClusterListResult object itself.
+     * @return the HybridIdentityMetadataListResult object itself.
      */
-    public ProvisionedClusterListResult withValue(List<ProvisionedClusterInner> value) {
+    public HybridIdentityMetadataListResult withValue(List<HybridIdentityMetadataInner> value) {
         this.value = value;
         return this;
     }
@@ -66,9 +66,9 @@ public final class ProvisionedClusterListResult {
      * Set the nextLink property: The link to the next page of items.
      * 
      * @param nextLink the nextLink value to set.
-     * @return the ProvisionedClusterListResult object itself.
+     * @return the HybridIdentityMetadataListResult object itself.
      */
-    public ProvisionedClusterListResult withNextLink(String nextLink) {
+    public HybridIdentityMetadataListResult withNextLink(String nextLink) {
         this.nextLink = nextLink;
         return this;
     }
@@ -80,12 +80,12 @@ public final class ProvisionedClusterListResult {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property value in model ProvisionedClusterListResult"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property value in model HybridIdentityMetadataListResult"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(ProvisionedClusterListResult.class);
+    private static final ClientLogger LOGGER = new ClientLogger(HybridIdentityMetadataListResult.class);
 }

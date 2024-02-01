@@ -12,16 +12,11 @@
 
 - [Delete](#hybrididentitymetadata_delete)
 - [Get](#hybrididentitymetadata_get)
-- [ListByCluster](#hybrididentitymetadata_listbycluster)
 - [Put](#hybrididentitymetadata_put)
 
 ## KubernetesVersions
 
 - [List](#kubernetesversions_list)
-
-## Operations
-
-- [List](#operations_list)
 
 ## ProvisionedClusterInstances
 
@@ -57,19 +52,12 @@
 ### AgentPool_CreateOrUpdate
 
 ```java
-import com.azure.resourcemanager.hybridcontainerservice.models.AgentPoolProperties;
-import com.azure.resourcemanager.hybridcontainerservice.models.OsType;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 /**
  * Samples for AgentPool CreateOrUpdate.
  */
 public final class AgentPoolCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/PutAgentPool.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/agentPool_CreateOrUpdate.json
      */
     /**
      * Sample code: PutAgentPool.
@@ -77,19 +65,7 @@ public final class AgentPoolCreateOrUpdateSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void putAgentPool(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.agentPools().define("testnodepool").withExistingConnectedClusterResourceUri("subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/test-hybridakscluster").withProperties(new AgentPoolProperties().withOsType(OsType.LINUX).withNodeLabels(mapOf("env", "dev", "goal", "test")).withNodeTaints(Arrays.asList("env=prod:NoSchedule", "sku=gpu:NoSchedule")).withCount(1).withVmSize("Standard_A4_v2")).create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
+        manager.agentPools().define("testnodepool").withExistingResourceUri((String) null).create();
     }
 }
 ```
@@ -102,7 +78,7 @@ public final class AgentPoolCreateOrUpdateSamples {
  */
 public final class AgentPoolDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/DeleteAgentPool.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/agentPool_Delete.json
      */
     /**
      * Sample code: DeleteAgentPool.
@@ -110,7 +86,7 @@ public final class AgentPoolDeleteSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void deleteAgentPool(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.agentPools().delete("subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/test-hybridakscluster", "testnodepool", com.azure.core.util.Context.NONE);
+        manager.agentPools().delete(null, "testnodepool", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -123,7 +99,7 @@ public final class AgentPoolDeleteSamples {
  */
 public final class AgentPoolGetSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/GetAgentPool.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/agentPool_Get.json
      */
     /**
      * Sample code: GetAgentPool.
@@ -131,7 +107,7 @@ public final class AgentPoolGetSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void getAgentPool(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.agentPools().getWithResponse("subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/test-hybridakscluster", "testnodepool", com.azure.core.util.Context.NONE);
+        manager.agentPools().getWithResponse(null, "testnodepool", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -144,7 +120,7 @@ public final class AgentPoolGetSamples {
  */
 public final class AgentPoolListByProvisionedClusterSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/ListAgentPoolByProvisionedClusterInstance.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/agentPool_ListByProvisionedCluster.json
      */
     /**
      * Sample code: ListAgentPoolByProvisionedClusterInstance.
@@ -152,7 +128,7 @@ public final class AgentPoolListByProvisionedClusterSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void listAgentPoolByProvisionedClusterInstance(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.agentPools().listByProvisionedCluster("subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/test-hybridakscluster", com.azure.core.util.Context.NONE);
+        manager.agentPools().listByProvisionedCluster(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -165,7 +141,7 @@ public final class AgentPoolListByProvisionedClusterSamples {
  */
 public final class HybridIdentityMetadataDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/DeleteHybridIdentityMetadata.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/HybridIdentityMetadata_Delete.json
      */
     /**
      * Sample code: DeleteHybridIdentityMetadata.
@@ -173,7 +149,7 @@ public final class HybridIdentityMetadataDeleteSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void deleteHybridIdentityMetadata(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.hybridIdentityMetadatas().delete("subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/test-hybridakscluster", com.azure.core.util.Context.NONE);
+        manager.hybridIdentityMetadatas().delete(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -186,7 +162,7 @@ public final class HybridIdentityMetadataDeleteSamples {
  */
 public final class HybridIdentityMetadataGetSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/GetHybridIdentityMetadata.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/HybridIdentityMetadata_Get.json
      */
     /**
      * Sample code: GetHybridIdentityMetadata.
@@ -194,28 +170,7 @@ public final class HybridIdentityMetadataGetSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void getHybridIdentityMetadata(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.hybridIdentityMetadatas().getWithResponse("subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/test-hybridakscluster", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### HybridIdentityMetadata_ListByCluster
-
-```java
-/**
- * Samples for HybridIdentityMetadata ListByCluster.
- */
-public final class HybridIdentityMetadataListByClusterSamples {
-    /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/HybridIdentityMetadataListByCluster.json
-     */
-    /**
-     * Sample code: HybridIdentityMetadataListByCluster.
-     * 
-     * @param manager Entry point to HybridContainerServiceManager.
-     */
-    public static void hybridIdentityMetadataListByCluster(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.hybridIdentityMetadatas().listByCluster("subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/test-hybridakscluster", com.azure.core.util.Context.NONE);
+        manager.hybridIdentityMetadatas().getWithResponse(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -231,7 +186,7 @@ import com.azure.resourcemanager.hybridcontainerservice.models.HybridIdentityMet
  */
 public final class HybridIdentityMetadataPutSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/CreateHybridIdentityMetadata.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/HybridIdentityMetadata_Put.json
      */
     /**
      * Sample code: CreateHybridIdentityMetadata.
@@ -239,7 +194,7 @@ public final class HybridIdentityMetadataPutSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void createHybridIdentityMetadata(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.hybridIdentityMetadatas().putWithResponse("subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/test-hybridakscluster", new HybridIdentityMetadataInner().withProperties(new HybridIdentityMetadataProperties().withResourceUid("f8b82dff-38ef-4220-99ef-d3a3f86ddc6c").withPublicKey("fakeTokenPlaceholder")), com.azure.core.util.Context.NONE);
+        manager.hybridIdentityMetadatas().putWithResponse(null, new HybridIdentityMetadataInner().withProperties(new HybridIdentityMetadataProperties().withResourceUid("f8b82dff-38ef-4220-99ef-d3a3f86ddc6c").withPublicKey("fakeTokenPlaceholder")), com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -252,7 +207,7 @@ public final class HybridIdentityMetadataPutSamples {
  */
 public final class KubernetesVersionsListSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/ListKubernetesVersions.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/KubernetesVersions_List.json
      */
     /**
      * Sample code: ListKubernetesVersions.
@@ -260,28 +215,7 @@ public final class KubernetesVersionsListSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void listKubernetesVersions(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.kubernetesVersions().list("subscriptions/a3e42606-29b1-4d7d-b1d9-9ff6b9d3c71b/resourceGroups/test-arcappliance-resgrp/providers/Microsoft.ExtendedLocation/customLocations/testcustomlocation", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/ListOperations.json
-     */
-    /**
-     * Sample code: ListOperations.
-     * 
-     * @param manager Entry point to HybridContainerServiceManager.
-     */
-    public static void listOperations(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
+        manager.kubernetesVersions().list(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -290,33 +224,13 @@ public final class OperationsListSamples {
 
 ```java
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.ProvisionedClusterInner;
-import com.azure.resourcemanager.hybridcontainerservice.models.AzureHybridBenefit;
-import com.azure.resourcemanager.hybridcontainerservice.models.CloudProviderProfile;
-import com.azure.resourcemanager.hybridcontainerservice.models.CloudProviderProfileInfraNetworkProfile;
-import com.azure.resourcemanager.hybridcontainerservice.models.ClusterVMAccessProfile;
-import com.azure.resourcemanager.hybridcontainerservice.models.ControlPlaneProfile;
-import com.azure.resourcemanager.hybridcontainerservice.models.ExtendedLocation;
-import com.azure.resourcemanager.hybridcontainerservice.models.ExtendedLocationTypes;
-import com.azure.resourcemanager.hybridcontainerservice.models.LinuxProfileProperties;
-import com.azure.resourcemanager.hybridcontainerservice.models.LinuxProfilePropertiesSsh;
-import com.azure.resourcemanager.hybridcontainerservice.models.LinuxProfilePropertiesSshPublicKeysItem;
-import com.azure.resourcemanager.hybridcontainerservice.models.NamedAgentPoolProfile;
-import com.azure.resourcemanager.hybridcontainerservice.models.NetworkPolicy;
-import com.azure.resourcemanager.hybridcontainerservice.models.NetworkProfile;
-import com.azure.resourcemanager.hybridcontainerservice.models.OsType;
-import com.azure.resourcemanager.hybridcontainerservice.models.ProvisionedClusterLicenseProfile;
-import com.azure.resourcemanager.hybridcontainerservice.models.ProvisionedClusterProperties;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Samples for ProvisionedClusterInstances CreateOrUpdate.
  */
 public final class ProvisionedClusterInstancesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/PutProvisionedClusterInstance.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/provisionedClusterInstances_CreateOrUpdate.json
      */
     /**
      * Sample code: PutProvisionedClusterInstance.
@@ -324,19 +238,7 @@ public final class ProvisionedClusterInstancesCreateOrUpdateSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void putProvisionedClusterInstance(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.provisionedClusterInstances().createOrUpdate("subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/test-hybridakscluster", new ProvisionedClusterInner().withProperties(new ProvisionedClusterProperties().withLinuxProfile(new LinuxProfileProperties().withSsh(new LinuxProfilePropertiesSsh().withPublicKeys(Arrays.asList(new LinuxProfilePropertiesSshPublicKeysItem().withKeyData("fakeTokenPlaceholder"))))).withControlPlane(new ControlPlaneProfile().withCount(1).withVmSize("Standard_A4_v2")).withKubernetesVersion("v1.20.5").withNetworkProfile(new NetworkProfile().withNetworkPolicy(NetworkPolicy.CALICO).withPodCidr("10.244.0.0/16")).withClusterVMAccessProfile(new ClusterVMAccessProfile().withAuthorizedIpRanges("127.0.0.1,127.0.0.2")).withAgentPoolProfiles(Arrays.asList(new NamedAgentPoolProfile().withOsType(OsType.LINUX).withNodeLabels(mapOf("env", "dev", "goal", "test")).withNodeTaints(Arrays.asList("env=prod:NoSchedule", "sku=gpu:NoSchedule")).withCount(1).withVmSize("Standard_A4_v2").withName("default-nodepool-1"))).withCloudProviderProfile(new CloudProviderProfile().withInfraNetworkProfile(new CloudProviderProfileInfraNetworkProfile().withVnetSubnetIds(Arrays.asList("/subscriptions/a3e42606-29b1-4d7d-b1d9-9ff6b9d3c71b/resourceGroups/test-arcappliance-resgrp/providers/Microsoft.AzureStackHCI/logicalNetworks/test-vnet-static")))).withLicenseProfile(new ProvisionedClusterLicenseProfile().withAzureHybridBenefit(AzureHybridBenefit.NOT_APPLICABLE))).withExtendedLocation(new ExtendedLocation().withType(ExtendedLocationTypes.CUSTOM_LOCATION).withName("/subscriptions/a3e42606-29b1-4d7d-b1d9-9ff6b9d3c71b/resourcegroups/test-arcappliance-resgrp/providers/microsoft.extendedlocation/customlocations/testcustomlocation")), com.azure.core.util.Context.NONE);
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
+        manager.provisionedClusterInstances().createOrUpdate(null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -349,7 +251,7 @@ public final class ProvisionedClusterInstancesCreateOrUpdateSamples {
  */
 public final class ProvisionedClusterInstancesDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/DeleteProvisionedClusterInstance.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/provisionedClusterInstances_Delete.json
      */
     /**
      * Sample code: DeleteProvisionedClusterInstance.
@@ -357,7 +259,7 @@ public final class ProvisionedClusterInstancesDeleteSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void deleteProvisionedClusterInstance(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.provisionedClusterInstances().delete("subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/test-hybridakscluster", com.azure.core.util.Context.NONE);
+        manager.provisionedClusterInstances().delete(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -370,7 +272,7 @@ public final class ProvisionedClusterInstancesDeleteSamples {
  */
 public final class ProvisionedClusterInstancesGetSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/GetProvisionedClusterInstance.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/provisionedClusterInstances_Get.json
      */
     /**
      * Sample code: GetProvisionedClusterInstance.
@@ -378,7 +280,7 @@ public final class ProvisionedClusterInstancesGetSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void getProvisionedClusterInstance(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.provisionedClusterInstances().getWithResponse("subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/test-hybridakscluster", com.azure.core.util.Context.NONE);
+        manager.provisionedClusterInstances().getWithResponse(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -391,7 +293,7 @@ public final class ProvisionedClusterInstancesGetSamples {
  */
 public final class ProvisionedClusterInstancesGetUpgradeProfileSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/ProvisionedClusterInstanceGetUpgradeProfile.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/provisionedClusterInstances_GetUpgradeProfile.json
      */
     /**
      * Sample code: GetUpgradeProfileForProvisionedClusterInstance.
@@ -399,7 +301,7 @@ public final class ProvisionedClusterInstancesGetUpgradeProfileSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void getUpgradeProfileForProvisionedClusterInstance(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.provisionedClusterInstances().getUpgradeProfileWithResponse("subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/test-hybridakscluster", com.azure.core.util.Context.NONE);
+        manager.provisionedClusterInstances().getUpgradeProfileWithResponse(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -412,7 +314,7 @@ public final class ProvisionedClusterInstancesGetUpgradeProfileSamples {
  */
 public final class ProvisionedClusterInstancesListSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/ListProvisionedClusterInstances.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/provisionedClusterInstances_List.json
      */
     /**
      * Sample code: ListProvisionedClusterInstances.
@@ -420,7 +322,7 @@ public final class ProvisionedClusterInstancesListSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void listProvisionedClusterInstances(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.provisionedClusterInstances().list("subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/test-hybridakscluster", com.azure.core.util.Context.NONE);
+        manager.provisionedClusterInstances().list(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -433,7 +335,7 @@ public final class ProvisionedClusterInstancesListSamples {
  */
 public final class ProvisionedClusterInstancesListAdminKubeconfigSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/ProvisionedClusterInstanceListAdminKubeconfig.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/provisionedClusterInstances_ListAdminKubeconfig.json
      */
     /**
      * Sample code: ListClusterAdminCredentials.
@@ -441,7 +343,7 @@ public final class ProvisionedClusterInstancesListAdminKubeconfigSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void listClusterAdminCredentials(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.provisionedClusterInstances().listAdminKubeconfig("subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/test-hybridakscluster", com.azure.core.util.Context.NONE);
+        manager.provisionedClusterInstances().listAdminKubeconfig(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -454,7 +356,7 @@ public final class ProvisionedClusterInstancesListAdminKubeconfigSamples {
  */
 public final class ProvisionedClusterInstancesListUserKubeconfigSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/ProvisionedClusterInstanceListUserKubeconfig.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/provisionedClusterInstances_ListUserKubeconfig.json
      */
     /**
      * Sample code: ListClusterUserCredentials.
@@ -462,7 +364,7 @@ public final class ProvisionedClusterInstancesListUserKubeconfigSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void listClusterUserCredentials(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.provisionedClusterInstances().listUserKubeconfig("subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/test-hybridakscluster", com.azure.core.util.Context.NONE);
+        manager.provisionedClusterInstances().listUserKubeconfig(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -483,7 +385,7 @@ public final class ResourceProviderDeleteKubernetesVersionsSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void deleteKubernetesVersions(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.resourceProviders().deleteKubernetesVersions("subscriptions/a3e42606-29b1-4d7d-b1d9-9ff6b9d3c71b/resourceGroups/test-arcappliance-resgrp/providers/Microsoft.ExtendedLocation/customLocations/testcustomlocation", com.azure.core.util.Context.NONE);
+        manager.resourceProviders().deleteKubernetesVersions(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -504,7 +406,7 @@ public final class ResourceProviderDeleteVMSkusSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void deleteVMSkus(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.resourceProviders().deleteVMSkus("subscriptions/a3e42606-29b1-4d7d-b1d9-9ff6b9d3c71b/resourceGroups/test-arcappliance-resgrp/providers/Microsoft.ExtendedLocation/customLocations/testcustomlocation", com.azure.core.util.Context.NONE);
+        manager.resourceProviders().deleteVMSkus(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -525,7 +427,7 @@ public final class ResourceProviderGetKubernetesVersionsSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void getKubernetesVersions(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.resourceProviders().getKubernetesVersionsWithResponse("subscriptions/a3e42606-29b1-4d7d-b1d9-9ff6b9d3c71b/resourceGroups/test-arcappliance-resgrp/providers/Microsoft.ExtendedLocation/customLocations/testcustomlocation", com.azure.core.util.Context.NONE);
+        manager.resourceProviders().getKubernetesVersionsWithResponse(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -546,7 +448,7 @@ public final class ResourceProviderGetVMSkusSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void getVMSkus(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.resourceProviders().getVMSkusWithResponse("subscriptions/a3e42606-29b1-4d7d-b1d9-9ff6b9d3c71b/resourceGroups/test-arcappliance-resgrp/providers/Microsoft.ExtendedLocation/customLocations/testcustomlocation", com.azure.core.util.Context.NONE);
+        manager.resourceProviders().getVMSkusWithResponse(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -555,9 +457,6 @@ public final class ResourceProviderGetVMSkusSamples {
 
 ```java
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.KubernetesVersionProfileInner;
-import com.azure.resourcemanager.hybridcontainerservice.models.ExtendedLocation;
-import com.azure.resourcemanager.hybridcontainerservice.models.ExtendedLocationTypes;
-import java.util.stream.Collectors;
 
 /**
  * Samples for ResourceProvider PutKubernetesVersions.
@@ -572,7 +471,7 @@ public final class ResourceProviderPutKubernetesVersionsSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void putKubernetesVersions(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.resourceProviders().putKubernetesVersions("subscriptions/a3e42606-29b1-4d7d-b1d9-9ff6b9d3c71b/resourceGroups/test-arcappliance-resgrp/providers/Microsoft.ExtendedLocation/customLocations/testcustomlocation", new KubernetesVersionProfileInner().withExtendedLocation(new ExtendedLocation().withType(ExtendedLocationTypes.CUSTOM_LOCATION).withName("/subscriptions/a3e42606-29b1-4d7d-b1d9-9ff6b9d3c71b/resourcegroups/test-arcappliance-resgrp/providers/microsoft.extendedlocation/customlocations/testcustomlocation")), com.azure.core.util.Context.NONE);
+        manager.resourceProviders().putKubernetesVersions(null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -581,9 +480,6 @@ public final class ResourceProviderPutKubernetesVersionsSamples {
 
 ```java
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.VmSkuProfileInner;
-import com.azure.resourcemanager.hybridcontainerservice.models.ExtendedLocation;
-import com.azure.resourcemanager.hybridcontainerservice.models.ExtendedLocationTypes;
-import java.util.stream.Collectors;
 
 /**
  * Samples for ResourceProvider PutVMSkus.
@@ -598,7 +494,7 @@ public final class ResourceProviderPutVMSkusSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void putVMSkus(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.resourceProviders().putVMSkus("subscriptions/a3e42606-29b1-4d7d-b1d9-9ff6b9d3c71b/resourceGroups/test-arcappliance-resgrp/providers/Microsoft.ExtendedLocation/customLocations/testcustomlocation", new VmSkuProfileInner().withExtendedLocation(new ExtendedLocation().withType(ExtendedLocationTypes.CUSTOM_LOCATION).withName("/subscriptions/a3e42606-29b1-4d7d-b1d9-9ff6b9d3c71b/resourcegroups/test-arcappliance-resgrp/providers/microsoft.extendedlocation/customlocations/testcustomlocation")), com.azure.core.util.Context.NONE);
+        manager.resourceProviders().putVMSkus(null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -611,7 +507,7 @@ public final class ResourceProviderPutVMSkusSamples {
  */
 public final class VMSkusListSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/ListVmSkus.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/VMSkus_List.json
      */
     /**
      * Sample code: ListVmSkus.
@@ -619,7 +515,7 @@ public final class VMSkusListSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void listVmSkus(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.vMSkus().list("subscriptions/a3e42606-29b1-4d7d-b1d9-9ff6b9d3c71b/resourceGroups/test-arcappliance-resgrp/providers/Microsoft.ExtendedLocation/customLocations/testcustomlocation", com.azure.core.util.Context.NONE);
+        manager.vMSkus().list(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -627,22 +523,12 @@ public final class VMSkusListSamples {
 ### VirtualNetworks_CreateOrUpdate
 
 ```java
-import com.azure.resourcemanager.hybridcontainerservice.models.ExtendedLocationTypes;
-import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkExtendedLocation;
-import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkProperties;
-import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkPropertiesInfraVnetProfile;
-import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkPropertiesInfraVnetProfileHci;
-import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkPropertiesVipPoolItem;
-import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetworkPropertiesVmipPoolItem;
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 /**
  * Samples for VirtualNetworks CreateOrUpdate.
  */
 public final class VirtualNetworksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/PutVirtualNetwork.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/virtualNetworks_CreateOrUpdate.json
      */
     /**
      * Sample code: PutVirtualNetwork.
@@ -650,7 +536,7 @@ public final class VirtualNetworksCreateOrUpdateSamples {
      * @param manager Entry point to HybridContainerServiceManager.
      */
     public static void putVirtualNetwork(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
-        manager.virtualNetworks().define("test-vnet-static").withRegion("westus").withExistingResourceGroup("test-arcappliance-resgrp").withProperties(new VirtualNetworkProperties().withInfraVnetProfile(new VirtualNetworkPropertiesInfraVnetProfile().withHci(new VirtualNetworkPropertiesInfraVnetProfileHci().withMocGroup("target-group").withMocLocation("MocLocation").withMocVnetName("vnet1"))).withVipPool(Arrays.asList(new VirtualNetworkPropertiesVipPoolItem().withEndIp("192.168.0.50").withStartIp("192.168.0.10"))).withVmipPool(Arrays.asList(new VirtualNetworkPropertiesVmipPoolItem().withEndIp("192.168.0.130").withStartIp("192.168.0.110"))).withDnsServers(Arrays.asList("192.168.0.1")).withGateway("192.168.0.1").withIpAddressPrefix("192.168.0.0/16").withVlanId(10)).withExtendedLocation(new VirtualNetworkExtendedLocation().withType(ExtendedLocationTypes.CUSTOM_LOCATION).withName("/subscriptions/a3e42606-29b1-4d7d-b1d9-9ff6b9d3c71b/resourcegroups/test-arcappliance-resgrp/providers/microsoft.extendedlocation/customlocations/testcustomlocation")).create();
+        manager.virtualNetworks().define("test-vnet-static").withRegion((String) null).withExistingResourceGroup("test-arcappliance-resgrp").create();
     }
 }
 ```
@@ -663,7 +549,7 @@ public final class VirtualNetworksCreateOrUpdateSamples {
  */
 public final class VirtualNetworksDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/DeleteVirtualNetwork.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/virtualNetworks_Delete.json
      */
     /**
      * Sample code: DeleteVirtualNetwork.
@@ -684,7 +570,7 @@ public final class VirtualNetworksDeleteSamples {
  */
 public final class VirtualNetworksGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/GetVirtualNetwork.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/virtualNetworks_Retrieve.json
      */
     /**
      * Sample code: GetVirtualNetwork.
@@ -705,7 +591,7 @@ public final class VirtualNetworksGetByResourceGroupSamples {
  */
 public final class VirtualNetworksListSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/ListVirtualNetworkBySubscription.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/virtualNetworks_ListBySubscription.json
      */
     /**
      * Sample code: ListVirtualNetworkBySubscription.
@@ -726,7 +612,7 @@ public final class VirtualNetworksListSamples {
  */
 public final class VirtualNetworksListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/ListVirtualNetworkByResourceGroup.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/virtualNetworks_ListByResourceGroup.json
      */
     /**
      * Sample code: ListVirtualNetworkByResourceGroup.
@@ -743,15 +629,13 @@ public final class VirtualNetworksListByResourceGroupSamples {
 
 ```java
 import com.azure.resourcemanager.hybridcontainerservice.models.VirtualNetwork;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Samples for VirtualNetworks Update.
  */
 public final class VirtualNetworksUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/UpdateVirtualNetwork.json
+     * x-ms-original-file: specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/virtualNetworks_Update.json
      */
     /**
      * Sample code: UpdateVirtualNetwork.
@@ -760,19 +644,7 @@ public final class VirtualNetworksUpdateSamples {
      */
     public static void updateVirtualNetwork(com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager manager) {
         VirtualNetwork resource = manager.virtualNetworks().getByResourceGroupWithResponse("test-arcappliance-resgrp", "test-vnet-static", com.azure.core.util.Context.NONE).getValue();
-        resource.update().withTags(mapOf("additionalProperties", "sample")).apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
+        resource.update().apply();
     }
 }
 ```

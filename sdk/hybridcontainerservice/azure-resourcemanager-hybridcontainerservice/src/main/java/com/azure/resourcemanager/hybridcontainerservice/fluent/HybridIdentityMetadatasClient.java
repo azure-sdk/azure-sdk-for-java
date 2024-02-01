@@ -18,46 +18,34 @@ import com.azure.resourcemanager.hybridcontainerservice.fluent.models.HybridIden
  */
 public interface HybridIdentityMetadatasClient {
     /**
-     * Creates the hybrid identity metadata resource
+     * Lists the hybrid identity metadata proxy resource in a provisioned cluster instance.
      * 
-     * Creates the hybrid identity metadata proxy resource that facilitates the managed identity provisioning.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a HybridIdentityMetadata list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<HybridIdentityMetadataInner> listByProvisionedCluster(String resourceUri);
+
+    /**
+     * Lists the hybrid identity metadata proxy resource in a provisioned cluster instance.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param body Hybrid Identity Metadata resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the hybridIdentityMetadata along with {@link Response}.
+     * @return the response of a HybridIdentityMetadata list operation as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<HybridIdentityMetadataInner> putWithResponse(String connectedClusterResourceUri,
-        HybridIdentityMetadataInner body, Context context);
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<HybridIdentityMetadataInner> listByProvisionedCluster(String resourceUri, Context context);
 
     /**
-     * Creates the hybrid identity metadata resource
-     * 
-     * Creates the hybrid identity metadata proxy resource that facilitates the managed identity provisioning.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param body Hybrid Identity Metadata resource definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the hybridIdentityMetadata.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    HybridIdentityMetadataInner put(String connectedClusterResourceUri, HybridIdentityMetadataInner body);
-
-    /**
-     * Get the hybrid identity metadata resource
-     * 
      * Get the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -65,45 +53,64 @@ public interface HybridIdentityMetadatasClient {
      * @return the hybrid identity metadata proxy resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<HybridIdentityMetadataInner> getWithResponse(String connectedClusterResourceUri, Context context);
+    Response<HybridIdentityMetadataInner> getWithResponse(String resourceUri, Context context);
 
     /**
-     * Get the hybrid identity metadata resource
-     * 
      * Get the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the hybrid identity metadata proxy resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    HybridIdentityMetadataInner get(String connectedClusterResourceUri);
+    HybridIdentityMetadataInner get(String resourceUri);
 
     /**
-     * Deletes the hybrid identity metadata resource
+     * Creates the hybrid identity metadata proxy resource that facilitates the managed identity provisioning.
      * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the hybridIdentityMetadata along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<HybridIdentityMetadataInner> putWithResponse(String resourceUri, HybridIdentityMetadataInner resource,
+        Context context);
+
+    /**
+     * Creates the hybrid identity metadata proxy resource that facilitates the managed identity provisioning.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the hybridIdentityMetadata.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    HybridIdentityMetadataInner put(String resourceUri, HybridIdentityMetadataInner resource);
+
+    /**
      * Deletes the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(String connectedClusterResourceUri);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceUri);
 
     /**
-     * Deletes the hybrid identity metadata resource
-     * 
      * Deletes the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -111,65 +118,28 @@ public interface HybridIdentityMetadatasClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(String connectedClusterResourceUri, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceUri, Context context);
 
     /**
-     * Deletes the hybrid identity metadata resource
-     * 
      * Deletes the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String connectedClusterResourceUri);
+    void delete(String resourceUri);
 
     /**
-     * Deletes the hybrid identity metadata resource
-     * 
      * Deletes the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String connectedClusterResourceUri, Context context);
-
-    /**
-     * Lists the hybrid identity metadata resources in a provisioned cluster instance
-     * 
-     * Lists the hybrid identity metadata proxy resource in a provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of hybridIdentityMetadata as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<HybridIdentityMetadataInner> listByCluster(String connectedClusterResourceUri);
-
-    /**
-     * Lists the hybrid identity metadata resources in a provisioned cluster instance
-     * 
-     * Lists the hybrid identity metadata proxy resource in a provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of hybridIdentityMetadata as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<HybridIdentityMetadataInner> listByCluster(String connectedClusterResourceUri, Context context);
+    void delete(String resourceUri, Context context);
 }

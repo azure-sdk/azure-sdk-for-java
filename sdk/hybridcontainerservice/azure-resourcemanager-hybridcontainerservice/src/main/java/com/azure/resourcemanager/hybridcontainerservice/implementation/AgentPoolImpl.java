@@ -10,8 +10,6 @@ import com.azure.resourcemanager.hybridcontainerservice.fluent.models.AgentPoolI
 import com.azure.resourcemanager.hybridcontainerservice.models.AgentPool;
 import com.azure.resourcemanager.hybridcontainerservice.models.AgentPoolProperties;
 import com.azure.resourcemanager.hybridcontainerservice.models.ExtendedLocation;
-import java.util.Collections;
-import java.util.Map;
 
 public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, AgentPool.Update {
     private AgentPoolInner innerObject;
@@ -34,15 +32,6 @@ public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, Age
         return this.innerModel().properties();
     }
 
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
-    }
-
     public ExtendedLocation extendedLocation() {
         return this.innerModel().extendedLocation();
     }
@@ -59,24 +48,24 @@ public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, Age
         return this.serviceManager;
     }
 
-    private String connectedClusterResourceUri;
+    private String resourceUri;
 
     private String agentPoolName;
 
-    public AgentPoolImpl withExistingConnectedClusterResourceUri(String connectedClusterResourceUri) {
-        this.connectedClusterResourceUri = connectedClusterResourceUri;
+    public AgentPoolImpl withExistingResourceUri(String resourceUri) {
+        this.resourceUri = resourceUri;
         return this;
     }
 
     public AgentPool create() {
-        this.innerObject = serviceManager.serviceClient().getAgentPools().createOrUpdate(connectedClusterResourceUri,
-            agentPoolName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getAgentPools().createOrUpdate(resourceUri, agentPoolName,
+            this.innerModel(), Context.NONE);
         return this;
     }
 
     public AgentPool create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getAgentPools().createOrUpdate(connectedClusterResourceUri,
-            agentPoolName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getAgentPools().createOrUpdate(resourceUri, agentPoolName,
+            this.innerModel(), context);
         return this;
     }
 
@@ -92,14 +81,14 @@ public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, Age
     }
 
     public AgentPool apply() {
-        this.innerObject = serviceManager.serviceClient().getAgentPools().createOrUpdate(connectedClusterResourceUri,
-            agentPoolName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getAgentPools().createOrUpdate(resourceUri, agentPoolName,
+            this.innerModel(), Context.NONE);
         return this;
     }
 
     public AgentPool apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getAgentPools().createOrUpdate(connectedClusterResourceUri,
-            agentPoolName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getAgentPools().createOrUpdate(resourceUri, agentPoolName,
+            this.innerModel(), context);
         return this;
     }
 
@@ -107,28 +96,23 @@ public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, Age
         com.azure.resourcemanager.hybridcontainerservice.HybridContainerServiceManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.connectedClusterResourceUri = ResourceManagerUtils.getValueFromIdByParameterName(innerObject.id(),
-            "/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
-            "connectedClusterResourceUri");
+        this.resourceUri = ResourceManagerUtils.getValueFromIdByParameterName(innerObject.id(),
+            "/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
+            "resourceUri");
         this.agentPoolName = ResourceManagerUtils.getValueFromIdByParameterName(innerObject.id(),
-            "/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
+            "/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
             "agentPoolName");
     }
 
     public AgentPool refresh() {
         this.innerObject = serviceManager.serviceClient().getAgentPools()
-            .getWithResponse(connectedClusterResourceUri, agentPoolName, Context.NONE).getValue();
+            .getWithResponse(resourceUri, agentPoolName, Context.NONE).getValue();
         return this;
     }
 
     public AgentPool refresh(Context context) {
         this.innerObject = serviceManager.serviceClient().getAgentPools()
-            .getWithResponse(connectedClusterResourceUri, agentPoolName, context).getValue();
-        return this;
-    }
-
-    public AgentPoolImpl withTags(Map<String, String> tags) {
-        this.innerModel().withTags(tags);
+            .getWithResponse(resourceUri, agentPoolName, context).getValue();
         return this;
     }
 

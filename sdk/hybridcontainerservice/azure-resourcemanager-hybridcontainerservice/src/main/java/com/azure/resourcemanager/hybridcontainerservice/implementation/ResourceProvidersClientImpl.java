@@ -67,94 +67,91 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     @ServiceInterface(name = "HybridContainerServi")
     public interface ResourceProvidersService {
         @Headers({ "Content-Type: application/json" })
-        @Get("/{customLocationResourceUri}/providers/Microsoft.HybridContainerService/kubernetesVersions/default")
+        @Get("/{resourceUri}/providers/Microsoft.HybridContainerService/kubernetesVersions/default")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<KubernetesVersionProfileInner>> getKubernetesVersions(@HostParam("$host") String endpoint,
-            @PathParam(value = "customLocationResourceUri", encoded = true) String customLocationResourceUri,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Put("/{customLocationResourceUri}/providers/Microsoft.HybridContainerService/kubernetesVersions/default")
+        @Put("/{resourceUri}/providers/Microsoft.HybridContainerService/kubernetesVersions/default")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> putKubernetesVersions(@HostParam("$host") String endpoint,
-            @PathParam(value = "customLocationResourceUri", encoded = true) String customLocationResourceUri,
             @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") KubernetesVersionProfileInner kubernetesVersions,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri,
+            @BodyParam("application/json") KubernetesVersionProfileInner resource, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Delete("/{customLocationResourceUri}/providers/Microsoft.HybridContainerService/kubernetesVersions/default")
+        @Delete("/{resourceUri}/providers/Microsoft.HybridContainerService/kubernetesVersions/default")
         @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> deleteKubernetesVersions(@HostParam("$host") String endpoint,
-            @PathParam(value = "customLocationResourceUri", encoded = true) String customLocationResourceUri,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/{customLocationResourceUri}/providers/Microsoft.HybridContainerService/skus/default")
+        @Get("/{resourceUri}/providers/Microsoft.HybridContainerService/skus/default")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<VmSkuProfileInner>> getVMSkus(@HostParam("$host") String endpoint,
-            @PathParam(value = "customLocationResourceUri", encoded = true) String customLocationResourceUri,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Put("/{customLocationResourceUri}/providers/Microsoft.HybridContainerService/skus/default")
+        @Put("/{resourceUri}/providers/Microsoft.HybridContainerService/skus/default")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> putVMSkus(@HostParam("$host") String endpoint,
-            @PathParam(value = "customLocationResourceUri", encoded = true) String customLocationResourceUri,
-            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") VmSkuProfileInner skus,
-            @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri,
+            @BodyParam("application/json") VmSkuProfileInner resource, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Delete("/{customLocationResourceUri}/providers/Microsoft.HybridContainerService/skus/default")
+        @Delete("/{resourceUri}/providers/Microsoft.HybridContainerService/skus/default")
         @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> deleteVMSkus(@HostParam("$host") String endpoint,
-            @PathParam(value = "customLocationResourceUri", encoded = true) String customLocationResourceUri,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri, @HeaderParam("Accept") String accept,
+            Context context);
     }
 
     /**
-     * Lists the supported kubernetes versions
-     * 
      * Lists the supported kubernetes versions for the specified custom location.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the supported kubernetes versions along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<KubernetesVersionProfileInner>>
-        getKubernetesVersionsWithResponseAsync(String customLocationResourceUri) {
+    private Mono<Response<KubernetesVersionProfileInner>> getKubernetesVersionsWithResponseAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (customLocationResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter customLocationResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getKubernetesVersions(this.client.getEndpoint(), customLocationResourceUri,
-                this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.getKubernetesVersions(this.client.getEndpoint(),
+                this.client.getApiVersion(), resourceUri, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Lists the supported kubernetes versions
-     * 
      * Lists the supported kubernetes versions for the specified custom location.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -162,47 +159,39 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return the supported kubernetes versions along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<KubernetesVersionProfileInner>>
-        getKubernetesVersionsWithResponseAsync(String customLocationResourceUri, Context context) {
+    private Mono<Response<KubernetesVersionProfileInner>> getKubernetesVersionsWithResponseAsync(String resourceUri,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (customLocationResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter customLocationResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getKubernetesVersions(this.client.getEndpoint(), customLocationResourceUri,
-            this.client.getApiVersion(), accept, context);
+        return service.getKubernetesVersions(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
+            accept, context);
     }
 
     /**
-     * Lists the supported kubernetes versions
-     * 
      * Lists the supported kubernetes versions for the specified custom location.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the supported kubernetes versions on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<KubernetesVersionProfileInner> getKubernetesVersionsAsync(String customLocationResourceUri) {
-        return getKubernetesVersionsWithResponseAsync(customLocationResourceUri)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<KubernetesVersionProfileInner> getKubernetesVersionsAsync(String resourceUri) {
+        return getKubernetesVersionsWithResponseAsync(resourceUri).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Lists the supported kubernetes versions
-     * 
      * Lists the supported kubernetes versions for the specified custom location.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -210,69 +199,62 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return the supported kubernetes versions along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<KubernetesVersionProfileInner> getKubernetesVersionsWithResponse(String customLocationResourceUri,
+    public Response<KubernetesVersionProfileInner> getKubernetesVersionsWithResponse(String resourceUri,
         Context context) {
-        return getKubernetesVersionsWithResponseAsync(customLocationResourceUri, context).block();
+        return getKubernetesVersionsWithResponseAsync(resourceUri, context).block();
     }
 
     /**
-     * Lists the supported kubernetes versions
-     * 
      * Lists the supported kubernetes versions for the specified custom location.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the supported kubernetes versions.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public KubernetesVersionProfileInner getKubernetesVersions(String customLocationResourceUri) {
-        return getKubernetesVersionsWithResponse(customLocationResourceUri, Context.NONE).getValue();
+    public KubernetesVersionProfileInner getKubernetesVersions(String resourceUri) {
+        return getKubernetesVersionsWithResponse(resourceUri, Context.NONE).getValue();
     }
 
     /**
      * Puts the default kubernetes version resource type (one time operation, before listing the kubernetes versions).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param kubernetesVersions Kubernetes Versions resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the supported kubernetes versions along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> putKubernetesVersionsWithResponseAsync(String customLocationResourceUri,
-        KubernetesVersionProfileInner kubernetesVersions) {
+    private Mono<Response<Flux<ByteBuffer>>> putKubernetesVersionsWithResponseAsync(String resourceUri,
+        KubernetesVersionProfileInner resource) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (customLocationResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter customLocationResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
-        if (kubernetesVersions == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter kubernetesVersions is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            kubernetesVersions.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.putKubernetesVersions(this.client.getEndpoint(), customLocationResourceUri,
-                this.client.getApiVersion(), kubernetesVersions, accept, context))
+            .withContext(context -> service.putKubernetesVersions(this.client.getEndpoint(),
+                this.client.getApiVersion(), resourceUri, resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Puts the default kubernetes version resource type (one time operation, before listing the kubernetes versions).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param kubernetesVersions Kubernetes Versions resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -280,34 +262,31 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return the supported kubernetes versions along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> putKubernetesVersionsWithResponseAsync(String customLocationResourceUri,
-        KubernetesVersionProfileInner kubernetesVersions, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> putKubernetesVersionsWithResponseAsync(String resourceUri,
+        KubernetesVersionProfileInner resource, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (customLocationResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter customLocationResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
-        if (kubernetesVersions == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter kubernetesVersions is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            kubernetesVersions.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.putKubernetesVersions(this.client.getEndpoint(), customLocationResourceUri,
-            this.client.getApiVersion(), kubernetesVersions, accept, context);
+        return service.putKubernetesVersions(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
+            resource, accept, context);
     }
 
     /**
      * Puts the default kubernetes version resource type (one time operation, before listing the kubernetes versions).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param kubernetesVersions Kubernetes Versions resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -315,10 +294,8 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<KubernetesVersionProfileInner>, KubernetesVersionProfileInner>
-        beginPutKubernetesVersionsAsync(String customLocationResourceUri,
-            KubernetesVersionProfileInner kubernetesVersions) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = putKubernetesVersionsWithResponseAsync(customLocationResourceUri, kubernetesVersions);
+        beginPutKubernetesVersionsAsync(String resourceUri, KubernetesVersionProfileInner resource) {
+        Mono<Response<Flux<ByteBuffer>>> mono = putKubernetesVersionsWithResponseAsync(resourceUri, resource);
         return this.client.<KubernetesVersionProfileInner, KubernetesVersionProfileInner>getLroResult(mono,
             this.client.getHttpPipeline(), KubernetesVersionProfileInner.class, KubernetesVersionProfileInner.class,
             this.client.getContext());
@@ -327,9 +304,8 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Puts the default kubernetes version resource type (one time operation, before listing the kubernetes versions).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param kubernetesVersions Kubernetes Versions resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -338,11 +314,9 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<KubernetesVersionProfileInner>, KubernetesVersionProfileInner>
-        beginPutKubernetesVersionsAsync(String customLocationResourceUri,
-            KubernetesVersionProfileInner kubernetesVersions, Context context) {
+        beginPutKubernetesVersionsAsync(String resourceUri, KubernetesVersionProfileInner resource, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = putKubernetesVersionsWithResponseAsync(customLocationResourceUri, kubernetesVersions, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = putKubernetesVersionsWithResponseAsync(resourceUri, resource, context);
         return this.client.<KubernetesVersionProfileInner, KubernetesVersionProfileInner>getLroResult(mono,
             this.client.getHttpPipeline(), KubernetesVersionProfileInner.class, KubernetesVersionProfileInner.class,
             context);
@@ -351,9 +325,8 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Puts the default kubernetes version resource type (one time operation, before listing the kubernetes versions).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param kubernetesVersions Kubernetes Versions resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -361,16 +334,15 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<KubernetesVersionProfileInner>, KubernetesVersionProfileInner>
-        beginPutKubernetesVersions(String customLocationResourceUri, KubernetesVersionProfileInner kubernetesVersions) {
-        return this.beginPutKubernetesVersionsAsync(customLocationResourceUri, kubernetesVersions).getSyncPoller();
+        beginPutKubernetesVersions(String resourceUri, KubernetesVersionProfileInner resource) {
+        return this.beginPutKubernetesVersionsAsync(resourceUri, resource).getSyncPoller();
     }
 
     /**
      * Puts the default kubernetes version resource type (one time operation, before listing the kubernetes versions).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param kubernetesVersions Kubernetes Versions resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -379,36 +351,32 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<KubernetesVersionProfileInner>, KubernetesVersionProfileInner>
-        beginPutKubernetesVersions(String customLocationResourceUri, KubernetesVersionProfileInner kubernetesVersions,
-            Context context) {
-        return this.beginPutKubernetesVersionsAsync(customLocationResourceUri, kubernetesVersions, context)
-            .getSyncPoller();
+        beginPutKubernetesVersions(String resourceUri, KubernetesVersionProfileInner resource, Context context) {
+        return this.beginPutKubernetesVersionsAsync(resourceUri, resource, context).getSyncPoller();
     }
 
     /**
      * Puts the default kubernetes version resource type (one time operation, before listing the kubernetes versions).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param kubernetesVersions Kubernetes Versions resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the supported kubernetes versions on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<KubernetesVersionProfileInner> putKubernetesVersionsAsync(String customLocationResourceUri,
-        KubernetesVersionProfileInner kubernetesVersions) {
-        return beginPutKubernetesVersionsAsync(customLocationResourceUri, kubernetesVersions).last()
+    private Mono<KubernetesVersionProfileInner> putKubernetesVersionsAsync(String resourceUri,
+        KubernetesVersionProfileInner resource) {
+        return beginPutKubernetesVersionsAsync(resourceUri, resource).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Puts the default kubernetes version resource type (one time operation, before listing the kubernetes versions).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param kubernetesVersions Kubernetes Versions resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -416,35 +384,33 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return the supported kubernetes versions on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<KubernetesVersionProfileInner> putKubernetesVersionsAsync(String customLocationResourceUri,
-        KubernetesVersionProfileInner kubernetesVersions, Context context) {
-        return beginPutKubernetesVersionsAsync(customLocationResourceUri, kubernetesVersions, context).last()
+    private Mono<KubernetesVersionProfileInner> putKubernetesVersionsAsync(String resourceUri,
+        KubernetesVersionProfileInner resource, Context context) {
+        return beginPutKubernetesVersionsAsync(resourceUri, resource, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Puts the default kubernetes version resource type (one time operation, before listing the kubernetes versions).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param kubernetesVersions Kubernetes Versions resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the supported kubernetes versions.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public KubernetesVersionProfileInner putKubernetesVersions(String customLocationResourceUri,
-        KubernetesVersionProfileInner kubernetesVersions) {
-        return putKubernetesVersionsAsync(customLocationResourceUri, kubernetesVersions).block();
+    public KubernetesVersionProfileInner putKubernetesVersions(String resourceUri,
+        KubernetesVersionProfileInner resource) {
+        return putKubernetesVersionsAsync(resourceUri, resource).block();
     }
 
     /**
      * Puts the default kubernetes version resource type (one time operation, before listing the kubernetes versions).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param kubernetesVersions Kubernetes Versions resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -452,48 +418,40 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return the supported kubernetes versions.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public KubernetesVersionProfileInner putKubernetesVersions(String customLocationResourceUri,
-        KubernetesVersionProfileInner kubernetesVersions, Context context) {
-        return putKubernetesVersionsAsync(customLocationResourceUri, kubernetesVersions, context).block();
+    public KubernetesVersionProfileInner putKubernetesVersions(String resourceUri,
+        KubernetesVersionProfileInner resource, Context context) {
+        return putKubernetesVersionsAsync(resourceUri, resource, context).block();
     }
 
     /**
-     * Deletes the default kubernetes version resource type
-     * 
      * Delete the default kubernetes versions resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>>
-        deleteKubernetesVersionsWithResponseAsync(String customLocationResourceUri) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteKubernetesVersionsWithResponseAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (customLocationResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter customLocationResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteKubernetesVersions(this.client.getEndpoint(),
-                customLocationResourceUri, this.client.getApiVersion(), accept, context))
+                this.client.getApiVersion(), resourceUri, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Deletes the default kubernetes version resource type
-     * 
      * Delete the default kubernetes versions resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -501,48 +459,41 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteKubernetesVersionsWithResponseAsync(String customLocationResourceUri,
+    private Mono<Response<Flux<ByteBuffer>>> deleteKubernetesVersionsWithResponseAsync(String resourceUri,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (customLocationResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter customLocationResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.deleteKubernetesVersions(this.client.getEndpoint(), customLocationResourceUri,
-            this.client.getApiVersion(), accept, context);
+        return service.deleteKubernetesVersions(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
+            accept, context);
     }
 
     /**
-     * Deletes the default kubernetes version resource type
-     * 
      * Delete the default kubernetes versions resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteKubernetesVersionsAsync(String customLocationResourceUri) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteKubernetesVersionsWithResponseAsync(customLocationResourceUri);
+    private PollerFlux<PollResult<Void>, Void> beginDeleteKubernetesVersionsAsync(String resourceUri) {
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteKubernetesVersionsWithResponseAsync(resourceUri);
         return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
             this.client.getContext());
     }
 
     /**
-     * Deletes the default kubernetes version resource type
-     * 
      * Delete the default kubernetes versions resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -550,39 +501,31 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteKubernetesVersionsAsync(String customLocationResourceUri,
-        Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteKubernetesVersionsAsync(String resourceUri, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = deleteKubernetesVersionsWithResponseAsync(customLocationResourceUri, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteKubernetesVersionsWithResponseAsync(resourceUri, context);
         return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
             context);
     }
 
     /**
-     * Deletes the default kubernetes version resource type
-     * 
      * Delete the default kubernetes versions resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDeleteKubernetesVersions(String customLocationResourceUri) {
-        return this.beginDeleteKubernetesVersionsAsync(customLocationResourceUri).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDeleteKubernetesVersions(String resourceUri) {
+        return this.beginDeleteKubernetesVersionsAsync(resourceUri).getSyncPoller();
     }
 
     /**
-     * Deletes the default kubernetes version resource type
-     * 
      * Delete the default kubernetes versions resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -590,36 +533,28 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDeleteKubernetesVersions(String customLocationResourceUri,
-        Context context) {
-        return this.beginDeleteKubernetesVersionsAsync(customLocationResourceUri, context).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDeleteKubernetesVersions(String resourceUri, Context context) {
+        return this.beginDeleteKubernetesVersionsAsync(resourceUri, context).getSyncPoller();
     }
 
     /**
-     * Deletes the default kubernetes version resource type
-     * 
      * Delete the default kubernetes versions resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteKubernetesVersionsAsync(String customLocationResourceUri) {
-        return beginDeleteKubernetesVersionsAsync(customLocationResourceUri).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+    private Mono<Void> deleteKubernetesVersionsAsync(String resourceUri) {
+        return beginDeleteKubernetesVersionsAsync(resourceUri).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Deletes the default kubernetes version resource type
-     * 
      * Delete the default kubernetes versions resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -627,80 +562,67 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteKubernetesVersionsAsync(String customLocationResourceUri, Context context) {
-        return beginDeleteKubernetesVersionsAsync(customLocationResourceUri, context).last()
+    private Mono<Void> deleteKubernetesVersionsAsync(String resourceUri, Context context) {
+        return beginDeleteKubernetesVersionsAsync(resourceUri, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Deletes the default kubernetes version resource type
-     * 
      * Delete the default kubernetes versions resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteKubernetesVersions(String customLocationResourceUri) {
-        deleteKubernetesVersionsAsync(customLocationResourceUri).block();
+    public void deleteKubernetesVersions(String resourceUri) {
+        deleteKubernetesVersionsAsync(resourceUri).block();
     }
 
     /**
-     * Deletes the default kubernetes version resource type
-     * 
      * Delete the default kubernetes versions resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteKubernetesVersions(String customLocationResourceUri, Context context) {
-        deleteKubernetesVersionsAsync(customLocationResourceUri, context).block();
+    public void deleteKubernetesVersions(String resourceUri, Context context) {
+        deleteKubernetesVersionsAsync(resourceUri, context).block();
     }
 
     /**
-     * Lists the supported VM skus
-     * 
      * Lists the supported VM skus for the specified custom location.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of supported VM SKUs along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<VmSkuProfileInner>> getVMSkusWithResponseAsync(String customLocationResourceUri) {
+    private Mono<Response<VmSkuProfileInner>> getVMSkusWithResponseAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (customLocationResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter customLocationResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getVMSkus(this.client.getEndpoint(), customLocationResourceUri,
-                this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.getVMSkus(this.client.getEndpoint(), this.client.getApiVersion(),
+                resourceUri, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Lists the supported VM skus
-     * 
      * Lists the supported VM skus for the specified custom location.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -708,46 +630,37 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return the list of supported VM SKUs along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<VmSkuProfileInner>> getVMSkusWithResponseAsync(String customLocationResourceUri,
-        Context context) {
+    private Mono<Response<VmSkuProfileInner>> getVMSkusWithResponseAsync(String resourceUri, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (customLocationResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter customLocationResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getVMSkus(this.client.getEndpoint(), customLocationResourceUri, this.client.getApiVersion(),
-            accept, context);
+        return service.getVMSkus(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, accept, context);
     }
 
     /**
-     * Lists the supported VM skus
-     * 
      * Lists the supported VM skus for the specified custom location.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of supported VM SKUs on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VmSkuProfileInner> getVMSkusAsync(String customLocationResourceUri) {
-        return getVMSkusWithResponseAsync(customLocationResourceUri).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<VmSkuProfileInner> getVMSkusAsync(String resourceUri) {
+        return getVMSkusWithResponseAsync(resourceUri).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Lists the supported VM skus
-     * 
      * Lists the supported VM skus for the specified custom location.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -755,67 +668,61 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return the list of supported VM SKUs along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<VmSkuProfileInner> getVMSkusWithResponse(String customLocationResourceUri, Context context) {
-        return getVMSkusWithResponseAsync(customLocationResourceUri, context).block();
+    public Response<VmSkuProfileInner> getVMSkusWithResponse(String resourceUri, Context context) {
+        return getVMSkusWithResponseAsync(resourceUri, context).block();
     }
 
     /**
-     * Lists the supported VM skus
-     * 
      * Lists the supported VM skus for the specified custom location.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of supported VM SKUs.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VmSkuProfileInner getVMSkus(String customLocationResourceUri) {
-        return getVMSkusWithResponse(customLocationResourceUri, Context.NONE).getValue();
+    public VmSkuProfileInner getVMSkus(String resourceUri) {
+        return getVMSkusWithResponse(resourceUri, Context.NONE).getValue();
     }
 
     /**
      * Puts the default VM skus resource type (one time operation, before listing the VM skus).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param skus VM SKUs resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of supported VM SKUs along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> putVMSkusWithResponseAsync(String customLocationResourceUri,
-        VmSkuProfileInner skus) {
+    private Mono<Response<Flux<ByteBuffer>>> putVMSkusWithResponseAsync(String resourceUri,
+        VmSkuProfileInner resource) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (customLocationResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter customLocationResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
-        if (skus == null) {
-            return Mono.error(new IllegalArgumentException("Parameter skus is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            skus.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.putVMSkus(this.client.getEndpoint(), customLocationResourceUri,
-                this.client.getApiVersion(), skus, accept, context))
+            .withContext(context -> service.putVMSkus(this.client.getEndpoint(), this.client.getApiVersion(),
+                resourceUri, resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Puts the default VM skus resource type (one time operation, before listing the VM skus).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param skus VM SKUs resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -823,42 +730,40 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return the list of supported VM SKUs along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> putVMSkusWithResponseAsync(String customLocationResourceUri,
-        VmSkuProfileInner skus, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> putVMSkusWithResponseAsync(String resourceUri, VmSkuProfileInner resource,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (customLocationResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter customLocationResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
-        if (skus == null) {
-            return Mono.error(new IllegalArgumentException("Parameter skus is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            skus.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.putVMSkus(this.client.getEndpoint(), customLocationResourceUri, this.client.getApiVersion(),
-            skus, accept, context);
+        return service.putVMSkus(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, resource, accept,
+            context);
     }
 
     /**
      * Puts the default VM skus resource type (one time operation, before listing the VM skus).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param skus VM SKUs resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of the list of supported VM SKUs.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<VmSkuProfileInner>, VmSkuProfileInner>
-        beginPutVMSkusAsync(String customLocationResourceUri, VmSkuProfileInner skus) {
-        Mono<Response<Flux<ByteBuffer>>> mono = putVMSkusWithResponseAsync(customLocationResourceUri, skus);
+    private PollerFlux<PollResult<VmSkuProfileInner>, VmSkuProfileInner> beginPutVMSkusAsync(String resourceUri,
+        VmSkuProfileInner resource) {
+        Mono<Response<Flux<ByteBuffer>>> mono = putVMSkusWithResponseAsync(resourceUri, resource);
         return this.client.<VmSkuProfileInner, VmSkuProfileInner>getLroResult(mono, this.client.getHttpPipeline(),
             VmSkuProfileInner.class, VmSkuProfileInner.class, this.client.getContext());
     }
@@ -866,9 +771,8 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Puts the default VM skus resource type (one time operation, before listing the VM skus).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param skus VM SKUs resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -876,10 +780,10 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return the {@link PollerFlux} for polling of the list of supported VM SKUs.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<VmSkuProfileInner>, VmSkuProfileInner>
-        beginPutVMSkusAsync(String customLocationResourceUri, VmSkuProfileInner skus, Context context) {
+    private PollerFlux<PollResult<VmSkuProfileInner>, VmSkuProfileInner> beginPutVMSkusAsync(String resourceUri,
+        VmSkuProfileInner resource, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = putVMSkusWithResponseAsync(customLocationResourceUri, skus, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = putVMSkusWithResponseAsync(resourceUri, resource, context);
         return this.client.<VmSkuProfileInner, VmSkuProfileInner>getLroResult(mono, this.client.getHttpPipeline(),
             VmSkuProfileInner.class, VmSkuProfileInner.class, context);
     }
@@ -887,26 +791,24 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Puts the default VM skus resource type (one time operation, before listing the VM skus).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param skus VM SKUs resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of the list of supported VM SKUs.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VmSkuProfileInner>, VmSkuProfileInner> beginPutVMSkus(String customLocationResourceUri,
-        VmSkuProfileInner skus) {
-        return this.beginPutVMSkusAsync(customLocationResourceUri, skus).getSyncPoller();
+    public SyncPoller<PollResult<VmSkuProfileInner>, VmSkuProfileInner> beginPutVMSkus(String resourceUri,
+        VmSkuProfileInner resource) {
+        return this.beginPutVMSkusAsync(resourceUri, resource).getSyncPoller();
     }
 
     /**
      * Puts the default VM skus resource type (one time operation, before listing the VM skus).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param skus VM SKUs resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -914,34 +816,31 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return the {@link SyncPoller} for polling of the list of supported VM SKUs.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VmSkuProfileInner>, VmSkuProfileInner> beginPutVMSkus(String customLocationResourceUri,
-        VmSkuProfileInner skus, Context context) {
-        return this.beginPutVMSkusAsync(customLocationResourceUri, skus, context).getSyncPoller();
+    public SyncPoller<PollResult<VmSkuProfileInner>, VmSkuProfileInner> beginPutVMSkus(String resourceUri,
+        VmSkuProfileInner resource, Context context) {
+        return this.beginPutVMSkusAsync(resourceUri, resource, context).getSyncPoller();
     }
 
     /**
      * Puts the default VM skus resource type (one time operation, before listing the VM skus).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param skus VM SKUs resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of supported VM SKUs on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VmSkuProfileInner> putVMSkusAsync(String customLocationResourceUri, VmSkuProfileInner skus) {
-        return beginPutVMSkusAsync(customLocationResourceUri, skus).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+    private Mono<VmSkuProfileInner> putVMSkusAsync(String resourceUri, VmSkuProfileInner resource) {
+        return beginPutVMSkusAsync(resourceUri, resource).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Puts the default VM skus resource type (one time operation, before listing the VM skus).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param skus VM SKUs resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -949,34 +848,31 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return the list of supported VM SKUs on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VmSkuProfileInner> putVMSkusAsync(String customLocationResourceUri, VmSkuProfileInner skus,
-        Context context) {
-        return beginPutVMSkusAsync(customLocationResourceUri, skus, context).last()
+    private Mono<VmSkuProfileInner> putVMSkusAsync(String resourceUri, VmSkuProfileInner resource, Context context) {
+        return beginPutVMSkusAsync(resourceUri, resource, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Puts the default VM skus resource type (one time operation, before listing the VM skus).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param skus VM SKUs resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of supported VM SKUs.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VmSkuProfileInner putVMSkus(String customLocationResourceUri, VmSkuProfileInner skus) {
-        return putVMSkusAsync(customLocationResourceUri, skus).block();
+    public VmSkuProfileInner putVMSkus(String resourceUri, VmSkuProfileInner resource) {
+        return putVMSkusAsync(resourceUri, resource).block();
     }
 
     /**
      * Puts the default VM skus resource type (one time operation, before listing the VM skus).
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
-     * @param skus VM SKUs resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -984,42 +880,39 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return the list of supported VM SKUs.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VmSkuProfileInner putVMSkus(String customLocationResourceUri, VmSkuProfileInner skus, Context context) {
-        return putVMSkusAsync(customLocationResourceUri, skus, context).block();
+    public VmSkuProfileInner putVMSkus(String resourceUri, VmSkuProfileInner resource, Context context) {
+        return putVMSkusAsync(resourceUri, resource, context).block();
     }
 
     /**
      * Deletes the default VM skus resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteVMSkusWithResponseAsync(String customLocationResourceUri) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteVMSkusWithResponseAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (customLocationResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter customLocationResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.deleteVMSkus(this.client.getEndpoint(), customLocationResourceUri,
-                this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.deleteVMSkus(this.client.getEndpoint(), this.client.getApiVersion(),
+                resourceUri, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Deletes the default VM skus resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1027,35 +920,32 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteVMSkusWithResponseAsync(String customLocationResourceUri,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteVMSkusWithResponseAsync(String resourceUri, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (customLocationResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter customLocationResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.deleteVMSkus(this.client.getEndpoint(), customLocationResourceUri, this.client.getApiVersion(),
-            accept, context);
+        return service.deleteVMSkus(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, accept,
+            context);
     }
 
     /**
      * Deletes the default VM skus resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteVMSkusAsync(String customLocationResourceUri) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteVMSkusWithResponseAsync(customLocationResourceUri);
+    private PollerFlux<PollResult<Void>, Void> beginDeleteVMSkusAsync(String resourceUri) {
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteVMSkusWithResponseAsync(resourceUri);
         return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
             this.client.getContext());
     }
@@ -1063,8 +953,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Deletes the default VM skus resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1072,10 +961,9 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteVMSkusAsync(String customLocationResourceUri,
-        Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteVMSkusAsync(String resourceUri, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteVMSkusWithResponseAsync(customLocationResourceUri, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteVMSkusWithResponseAsync(resourceUri, context);
         return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
             context);
     }
@@ -1083,23 +971,21 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     /**
      * Deletes the default VM skus resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDeleteVMSkus(String customLocationResourceUri) {
-        return this.beginDeleteVMSkusAsync(customLocationResourceUri).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDeleteVMSkus(String resourceUri) {
+        return this.beginDeleteVMSkusAsync(resourceUri).getSyncPoller();
     }
 
     /**
      * Deletes the default VM skus resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1107,30 +993,28 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDeleteVMSkus(String customLocationResourceUri, Context context) {
-        return this.beginDeleteVMSkusAsync(customLocationResourceUri, context).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDeleteVMSkus(String resourceUri, Context context) {
+        return this.beginDeleteVMSkusAsync(resourceUri, context).getSyncPoller();
     }
 
     /**
      * Deletes the default VM skus resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteVMSkusAsync(String customLocationResourceUri) {
-        return beginDeleteVMSkusAsync(customLocationResourceUri).last().flatMap(this.client::getLroFinalResultOrError);
+    private Mono<Void> deleteVMSkusAsync(String resourceUri) {
+        return beginDeleteVMSkusAsync(resourceUri).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Deletes the default VM skus resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1138,37 +1022,34 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteVMSkusAsync(String customLocationResourceUri, Context context) {
-        return beginDeleteVMSkusAsync(customLocationResourceUri, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+    private Mono<Void> deleteVMSkusAsync(String resourceUri, Context context) {
+        return beginDeleteVMSkusAsync(resourceUri, context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Deletes the default VM skus resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteVMSkus(String customLocationResourceUri) {
-        deleteVMSkusAsync(customLocationResourceUri).block();
+    public void deleteVMSkus(String resourceUri) {
+        deleteVMSkusAsync(resourceUri).block();
     }
 
     /**
      * Deletes the default VM skus resource type.
      * 
-     * @param customLocationResourceUri The fully qualified Azure Resource Manager identifier of the custom location
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteVMSkus(String customLocationResourceUri, Context context) {
-        deleteVMSkusAsync(customLocationResourceUri, context).block();
+    public void deleteVMSkus(String resourceUri, Context context) {
+        deleteVMSkusAsync(resourceUri, context).block();
     }
 }

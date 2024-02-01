@@ -33,12 +33,12 @@ public final class KubernetesVersionProfileImpl implements KubernetesVersionProf
         return this.innerModel().type();
     }
 
-    public ExtendedLocation extendedLocation() {
-        return this.innerModel().extendedLocation();
-    }
-
     public KubernetesVersionProfileProperties properties() {
         return this.innerModel().properties();
+    }
+
+    public ExtendedLocation extendedLocation() {
+        return this.innerModel().extendedLocation();
     }
 
     public SystemData systemData() {

@@ -5,35 +5,36 @@
 package com.azure.resourcemanager.hybridcontainerservice.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.VmSkuProfileInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * The list of supported VM SKUs.
+ * The response of a VmSkuProfile list operation.
  */
 @Fluent
-public final class VmSkuProfileList {
+public final class VmSkuProfileListResult {
     /*
-     * The value property.
+     * The VmSkuProfile items on this page
      */
-    @JsonProperty(value = "value")
+    @JsonProperty(value = "value", required = true)
     private List<VmSkuProfileInner> value;
 
     /*
-     * The nextLink property.
+     * The link to the next page of items
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
     /**
-     * Creates an instance of VmSkuProfileList class.
+     * Creates an instance of VmSkuProfileListResult class.
      */
-    public VmSkuProfileList() {
+    public VmSkuProfileListResult() {
     }
 
     /**
-     * Get the value property: The value property.
+     * Get the value property: The VmSkuProfile items on this page.
      * 
      * @return the value value.
      */
@@ -42,18 +43,18 @@ public final class VmSkuProfileList {
     }
 
     /**
-     * Set the value property: The value property.
+     * Set the value property: The VmSkuProfile items on this page.
      * 
      * @param value the value value to set.
-     * @return the VmSkuProfileList object itself.
+     * @return the VmSkuProfileListResult object itself.
      */
-    public VmSkuProfileList withValue(List<VmSkuProfileInner> value) {
+    public VmSkuProfileListResult withValue(List<VmSkuProfileInner> value) {
         this.value = value;
         return this;
     }
 
     /**
-     * Get the nextLink property: The nextLink property.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -62,12 +63,12 @@ public final class VmSkuProfileList {
     }
 
     /**
-     * Set the nextLink property: The nextLink property.
+     * Set the nextLink property: The link to the next page of items.
      * 
      * @param nextLink the nextLink value to set.
-     * @return the VmSkuProfileList object itself.
+     * @return the VmSkuProfileListResult object itself.
      */
-    public VmSkuProfileList withNextLink(String nextLink) {
+    public VmSkuProfileListResult withNextLink(String nextLink) {
         this.nextLink = nextLink;
         return this;
     }
@@ -78,8 +79,13 @@ public final class VmSkuProfileList {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model VmSkuProfileListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(VmSkuProfileListResult.class);
 }

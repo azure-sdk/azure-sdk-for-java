@@ -33,18 +33,18 @@ public interface KubernetesVersionProfile {
     String type();
 
     /**
+     * Gets the properties property: The resource-specific properties for this resource.
+     * 
+     * @return the properties value.
+     */
+    KubernetesVersionProfileProperties properties();
+
+    /**
      * Gets the extendedLocation property: Extended location pointing to the underlying infrastructure.
      * 
      * @return the extendedLocation value.
      */
     ExtendedLocation extendedLocation();
-
-    /**
-     * Gets the properties property: The properties property.
-     * 
-     * @return the properties value.
-     */
-    KubernetesVersionProfileProperties properties();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.

@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * Indicates whether Azure Hybrid Benefit is opted in. Default value is false.
+ * Defines values for AzureHybridBenefit.
  */
 public final class AzureHybridBenefit extends ExpandableStringEnum<AzureHybridBenefit> {
     /**

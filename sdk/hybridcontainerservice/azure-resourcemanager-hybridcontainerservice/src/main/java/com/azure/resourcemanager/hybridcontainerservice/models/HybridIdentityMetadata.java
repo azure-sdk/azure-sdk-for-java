@@ -33,7 +33,7 @@ public interface HybridIdentityMetadata {
     String type();
 
     /**
-     * Gets the properties property: Resource properties.
+     * Gets the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */

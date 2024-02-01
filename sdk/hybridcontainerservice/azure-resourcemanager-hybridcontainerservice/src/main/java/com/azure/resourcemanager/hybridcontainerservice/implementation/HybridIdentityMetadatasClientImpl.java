@@ -33,7 +33,7 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.HybridIdentityMetadatasClient;
 import com.azure.resourcemanager.hybridcontainerservice.fluent.models.HybridIdentityMetadataInner;
-import com.azure.resourcemanager.hybridcontainerservice.models.HybridIdentityMetadataList;
+import com.azure.resourcemanager.hybridcontainerservice.models.HybridIdentityMetadataListResult;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -71,262 +71,239 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
     @ServiceInterface(name = "HybridContainerServi")
     public interface HybridIdentityMetadatasService {
         @Headers({ "Content-Type: application/json" })
-        @Put("/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/hybridIdentityMetadata/default")
-        @ExpectedResponses({ 200, 201 })
+        @Get("/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/hybridIdentityMetadata")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<HybridIdentityMetadataInner>> put(@HostParam("$host") String endpoint,
-            @PathParam(value = "connectedClusterResourceUri", encoded = true) String connectedClusterResourceUri,
+        Mono<Response<HybridIdentityMetadataListResult>> listByProvisionedCluster(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") HybridIdentityMetadataInner body, @HeaderParam("Accept") String accept,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri, @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/hybridIdentityMetadata/default")
+        @Get("/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/hybridIdentityMetadata/default")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<HybridIdentityMetadataInner>> get(@HostParam("$host") String endpoint,
-            @PathParam(value = "connectedClusterResourceUri", encoded = true) String connectedClusterResourceUri,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Delete("/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/hybridIdentityMetadata/default")
+        @Put("/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/hybridIdentityMetadata/default")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<HybridIdentityMetadataInner>> put(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri,
+            @BodyParam("application/json") HybridIdentityMetadataInner resource, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/hybridIdentityMetadata/default")
         @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
-            @PathParam(value = "connectedClusterResourceUri", encoded = true) String connectedClusterResourceUri,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/hybridIdentityMetadata")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<HybridIdentityMetadataList>> listByCluster(@HostParam("$host") String endpoint,
-            @PathParam(value = "connectedClusterResourceUri", encoded = true) String connectedClusterResourceUri,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<HybridIdentityMetadataList>> listByClusterNext(
+        Mono<Response<HybridIdentityMetadataListResult>> listByProvisionedClusterNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * Creates the hybrid identity metadata resource
+     * Lists the hybrid identity metadata proxy resource in a provisioned cluster instance.
      * 
-     * Creates the hybrid identity metadata proxy resource that facilitates the managed identity provisioning.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param body Hybrid Identity Metadata resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the hybridIdentityMetadata along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response of a HybridIdentityMetadata list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<HybridIdentityMetadataInner>> putWithResponseAsync(String connectedClusterResourceUri,
-        HybridIdentityMetadataInner body) {
+    private Mono<PagedResponse<HybridIdentityMetadataInner>>
+        listByProvisionedClusterSinglePageAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
-        } else {
-            body.validate();
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.put(this.client.getEndpoint(), connectedClusterResourceUri,
-                this.client.getApiVersion(), body, accept, context))
+            .withContext(context -> service.listByProvisionedCluster(this.client.getEndpoint(),
+                this.client.getApiVersion(), resourceUri, accept, context))
+            .<PagedResponse<HybridIdentityMetadataInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Creates the hybrid identity metadata resource
+     * Lists the hybrid identity metadata proxy resource in a provisioned cluster instance.
      * 
-     * Creates the hybrid identity metadata proxy resource that facilitates the managed identity provisioning.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param body Hybrid Identity Metadata resource definition.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the hybridIdentityMetadata along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response of a HybridIdentityMetadata list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<HybridIdentityMetadataInner>> putWithResponseAsync(String connectedClusterResourceUri,
-        HybridIdentityMetadataInner body, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
-        } else {
-            body.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.put(this.client.getEndpoint(), connectedClusterResourceUri, this.client.getApiVersion(), body,
-            accept, context);
-    }
-
-    /**
-     * Creates the hybrid identity metadata resource
-     * 
-     * Creates the hybrid identity metadata proxy resource that facilitates the managed identity provisioning.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param body Hybrid Identity Metadata resource definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the hybridIdentityMetadata on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<HybridIdentityMetadataInner> putAsync(String connectedClusterResourceUri,
-        HybridIdentityMetadataInner body) {
-        return putWithResponseAsync(connectedClusterResourceUri, body).flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Creates the hybrid identity metadata resource
-     * 
-     * Creates the hybrid identity metadata proxy resource that facilitates the managed identity provisioning.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param body Hybrid Identity Metadata resource definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the hybridIdentityMetadata along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<HybridIdentityMetadataInner> putWithResponse(String connectedClusterResourceUri,
-        HybridIdentityMetadataInner body, Context context) {
-        return putWithResponseAsync(connectedClusterResourceUri, body, context).block();
-    }
-
-    /**
-     * Creates the hybrid identity metadata resource
-     * 
-     * Creates the hybrid identity metadata proxy resource that facilitates the managed identity provisioning.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param body Hybrid Identity Metadata resource definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the hybridIdentityMetadata.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public HybridIdentityMetadataInner put(String connectedClusterResourceUri, HybridIdentityMetadataInner body) {
-        return putWithResponse(connectedClusterResourceUri, body, Context.NONE).getValue();
-    }
-
-    /**
-     * Get the hybrid identity metadata resource
-     * 
-     * Get the hybrid identity metadata proxy resource.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the hybrid identity metadata proxy resource along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<HybridIdentityMetadataInner>> getWithResponseAsync(String connectedClusterResourceUri) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), connectedClusterResourceUri,
-                this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the hybrid identity metadata resource
-     * 
-     * Get the hybrid identity metadata proxy resource.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the hybrid identity metadata proxy resource along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<HybridIdentityMetadataInner>> getWithResponseAsync(String connectedClusterResourceUri,
+    private Mono<PagedResponse<HybridIdentityMetadataInner>> listByProvisionedClusterSinglePageAsync(String resourceUri,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), connectedClusterResourceUri, this.client.getApiVersion(), accept,
-            context);
+        return service
+            .listByProvisionedCluster(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, accept,
+                context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
-     * Get the hybrid identity metadata resource
+     * Lists the hybrid identity metadata proxy resource in a provisioned cluster instance.
      * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a HybridIdentityMetadata list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<HybridIdentityMetadataInner> listByProvisionedClusterAsync(String resourceUri) {
+        return new PagedFlux<>(() -> listByProvisionedClusterSinglePageAsync(resourceUri),
+            nextLink -> listByProvisionedClusterNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists the hybrid identity metadata proxy resource in a provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a HybridIdentityMetadata list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<HybridIdentityMetadataInner> listByProvisionedClusterAsync(String resourceUri, Context context) {
+        return new PagedFlux<>(() -> listByProvisionedClusterSinglePageAsync(resourceUri, context),
+            nextLink -> listByProvisionedClusterNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Lists the hybrid identity metadata proxy resource in a provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a HybridIdentityMetadata list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<HybridIdentityMetadataInner> listByProvisionedCluster(String resourceUri) {
+        return new PagedIterable<>(listByProvisionedClusterAsync(resourceUri));
+    }
+
+    /**
+     * Lists the hybrid identity metadata proxy resource in a provisioned cluster instance.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a HybridIdentityMetadata list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<HybridIdentityMetadataInner> listByProvisionedCluster(String resourceUri, Context context) {
+        return new PagedIterable<>(listByProvisionedClusterAsync(resourceUri, context));
+    }
+
+    /**
      * Get the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the hybrid identity metadata proxy resource along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<HybridIdentityMetadataInner>> getWithResponseAsync(String resourceUri) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
+                accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the hybrid identity metadata proxy resource.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the hybrid identity metadata proxy resource along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<HybridIdentityMetadataInner>> getWithResponseAsync(String resourceUri, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, accept, context);
+    }
+
+    /**
+     * Get the hybrid identity metadata proxy resource.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the hybrid identity metadata proxy resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<HybridIdentityMetadataInner> getAsync(String connectedClusterResourceUri) {
-        return getWithResponseAsync(connectedClusterResourceUri).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<HybridIdentityMetadataInner> getAsync(String resourceUri) {
+        return getWithResponseAsync(resourceUri).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get the hybrid identity metadata resource
-     * 
      * Get the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -334,63 +311,164 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return the hybrid identity metadata proxy resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<HybridIdentityMetadataInner> getWithResponse(String connectedClusterResourceUri, Context context) {
-        return getWithResponseAsync(connectedClusterResourceUri, context).block();
+    public Response<HybridIdentityMetadataInner> getWithResponse(String resourceUri, Context context) {
+        return getWithResponseAsync(resourceUri, context).block();
     }
 
     /**
-     * Get the hybrid identity metadata resource
-     * 
      * Get the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the hybrid identity metadata proxy resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public HybridIdentityMetadataInner get(String connectedClusterResourceUri) {
-        return getWithResponse(connectedClusterResourceUri, Context.NONE).getValue();
+    public HybridIdentityMetadataInner get(String resourceUri) {
+        return getWithResponse(resourceUri, Context.NONE).getValue();
     }
 
     /**
-     * Deletes the hybrid identity metadata resource
+     * Creates the hybrid identity metadata proxy resource that facilitates the managed identity provisioning.
      * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the hybridIdentityMetadata along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<HybridIdentityMetadataInner>> putWithResponseAsync(String resourceUri,
+        HybridIdentityMetadataInner resource) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.put(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
+                resource, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Creates the hybrid identity metadata proxy resource that facilitates the managed identity provisioning.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the hybridIdentityMetadata along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<HybridIdentityMetadataInner>> putWithResponseAsync(String resourceUri,
+        HybridIdentityMetadataInner resource, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.put(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, resource, accept,
+            context);
+    }
+
+    /**
+     * Creates the hybrid identity metadata proxy resource that facilitates the managed identity provisioning.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the hybridIdentityMetadata on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<HybridIdentityMetadataInner> putAsync(String resourceUri, HybridIdentityMetadataInner resource) {
+        return putWithResponseAsync(resourceUri, resource).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Creates the hybrid identity metadata proxy resource that facilitates the managed identity provisioning.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the hybridIdentityMetadata along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<HybridIdentityMetadataInner> putWithResponse(String resourceUri,
+        HybridIdentityMetadataInner resource, Context context) {
+        return putWithResponseAsync(resourceUri, resource, context).block();
+    }
+
+    /**
+     * Creates the hybrid identity metadata proxy resource that facilitates the managed identity provisioning.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the hybridIdentityMetadata.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public HybridIdentityMetadataInner put(String resourceUri, HybridIdentityMetadataInner resource) {
+        return putWithResponse(resourceUri, resource, Context.NONE).getValue();
+    }
+
+    /**
      * Deletes the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String connectedClusterResourceUri) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceUri) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), connectedClusterResourceUri,
-                this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Deletes the hybrid identity metadata resource
-     * 
      * Deletes the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -398,48 +476,39 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String connectedClusterResourceUri,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceUri, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), connectedClusterResourceUri, this.client.getApiVersion(),
-            accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, accept, context);
     }
 
     /**
-     * Deletes the hybrid identity metadata resource
-     * 
      * Deletes the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String connectedClusterResourceUri) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(connectedClusterResourceUri);
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceUri) {
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceUri);
         return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
             this.client.getContext());
     }
 
     /**
-     * Deletes the hybrid identity metadata resource
-     * 
      * Deletes the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -447,37 +516,31 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String connectedClusterResourceUri, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceUri, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(connectedClusterResourceUri, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceUri, context);
         return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
             context);
     }
 
     /**
-     * Deletes the hybrid identity metadata resource
-     * 
      * Deletes the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String connectedClusterResourceUri) {
-        return this.beginDeleteAsync(connectedClusterResourceUri).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceUri) {
+        return this.beginDeleteAsync(resourceUri).getSyncPoller();
     }
 
     /**
-     * Deletes the hybrid identity metadata resource
-     * 
      * Deletes the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -485,34 +548,28 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String connectedClusterResourceUri, Context context) {
-        return this.beginDeleteAsync(connectedClusterResourceUri, context).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceUri, Context context) {
+        return this.beginDeleteAsync(resourceUri, context).getSyncPoller();
     }
 
     /**
-     * Deletes the hybrid identity metadata resource
-     * 
      * Deletes the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String connectedClusterResourceUri) {
-        return beginDeleteAsync(connectedClusterResourceUri).last().flatMap(this.client::getLroFinalResultOrError);
+    private Mono<Void> deleteAsync(String resourceUri) {
+        return beginDeleteAsync(resourceUri).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Deletes the hybrid identity metadata resource
-     * 
      * Deletes the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -520,181 +577,35 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String connectedClusterResourceUri, Context context) {
-        return beginDeleteAsync(connectedClusterResourceUri, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+    private Mono<Void> deleteAsync(String resourceUri, Context context) {
+        return beginDeleteAsync(resourceUri, context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Deletes the hybrid identity metadata resource
-     * 
      * Deletes the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String connectedClusterResourceUri) {
-        deleteAsync(connectedClusterResourceUri).block();
+    public void delete(String resourceUri) {
+        deleteAsync(resourceUri).block();
     }
 
     /**
-     * Deletes the hybrid identity metadata resource
-     * 
      * Deletes the hybrid identity metadata proxy resource.
      * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String connectedClusterResourceUri, Context context) {
-        deleteAsync(connectedClusterResourceUri, context).block();
-    }
-
-    /**
-     * Lists the hybrid identity metadata resources in a provisioned cluster instance
-     * 
-     * Lists the hybrid identity metadata proxy resource in a provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of hybridIdentityMetadata along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<HybridIdentityMetadataInner>>
-        listByClusterSinglePageAsync(String connectedClusterResourceUri) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listByCluster(this.client.getEndpoint(), connectedClusterResourceUri,
-                this.client.getApiVersion(), accept, context))
-            .<PagedResponse<HybridIdentityMetadataInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the hybrid identity metadata resources in a provisioned cluster instance
-     * 
-     * Lists the hybrid identity metadata proxy resource in a provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of hybridIdentityMetadata along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<HybridIdentityMetadataInner>>
-        listByClusterSinglePageAsync(String connectedClusterResourceUri, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (connectedClusterResourceUri == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter connectedClusterResourceUri is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByCluster(this.client.getEndpoint(), connectedClusterResourceUri, this.client.getApiVersion(), accept,
-                context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists the hybrid identity metadata resources in a provisioned cluster instance
-     * 
-     * Lists the hybrid identity metadata proxy resource in a provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of hybridIdentityMetadata as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<HybridIdentityMetadataInner> listByClusterAsync(String connectedClusterResourceUri) {
-        return new PagedFlux<>(() -> listByClusterSinglePageAsync(connectedClusterResourceUri),
-            nextLink -> listByClusterNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists the hybrid identity metadata resources in a provisioned cluster instance
-     * 
-     * Lists the hybrid identity metadata proxy resource in a provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of hybridIdentityMetadata as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<HybridIdentityMetadataInner> listByClusterAsync(String connectedClusterResourceUri,
-        Context context) {
-        return new PagedFlux<>(() -> listByClusterSinglePageAsync(connectedClusterResourceUri, context),
-            nextLink -> listByClusterNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Lists the hybrid identity metadata resources in a provisioned cluster instance
-     * 
-     * Lists the hybrid identity metadata proxy resource in a provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of hybridIdentityMetadata as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<HybridIdentityMetadataInner> listByCluster(String connectedClusterResourceUri) {
-        return new PagedIterable<>(listByClusterAsync(connectedClusterResourceUri));
-    }
-
-    /**
-     * Lists the hybrid identity metadata resources in a provisioned cluster instance
-     * 
-     * Lists the hybrid identity metadata proxy resource in a provisioned cluster instance.
-     * 
-     * @param connectedClusterResourceUri The fully qualified Azure Resource Manager identifier of the connected cluster
-     * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of hybridIdentityMetadata as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<HybridIdentityMetadataInner> listByCluster(String connectedClusterResourceUri,
-        Context context) {
-        return new PagedIterable<>(listByClusterAsync(connectedClusterResourceUri, context));
+    public void delete(String resourceUri, Context context) {
+        deleteAsync(resourceUri, context).block();
     }
 
     /**
@@ -706,10 +617,12 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of hybridIdentityMetadata along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a HybridIdentityMetadata list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<HybridIdentityMetadataInner>> listByClusterNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<HybridIdentityMetadataInner>>
+        listByProvisionedClusterNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -719,7 +632,8 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByClusterNext(nextLink, this.client.getEndpoint(), accept, context))
+            .withContext(
+                context -> service.listByProvisionedClusterNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<HybridIdentityMetadataInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -735,11 +649,12 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of hybridIdentityMetadata along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a HybridIdentityMetadata list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<HybridIdentityMetadataInner>> listByClusterNextSinglePageAsync(String nextLink,
-        Context context) {
+    private Mono<PagedResponse<HybridIdentityMetadataInner>>
+        listByProvisionedClusterNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -749,7 +664,7 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listByClusterNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listByProvisionedClusterNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

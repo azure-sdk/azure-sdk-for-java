@@ -33,7 +33,7 @@ public interface ProvisionedCluster {
     String type();
 
     /**
-     * Gets the properties property: Properties of the provisioned cluster.
+     * Gets the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */

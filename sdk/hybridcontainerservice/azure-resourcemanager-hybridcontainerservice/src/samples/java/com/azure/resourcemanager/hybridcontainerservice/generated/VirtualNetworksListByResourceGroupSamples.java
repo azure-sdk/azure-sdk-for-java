@@ -11,7 +11,7 @@ public final class VirtualNetworksListByResourceGroupSamples {
     /*
      * x-ms-original-file:
      * specification/hybridaks/resource-manager/Microsoft.HybridContainerService/stable/2024-01-01/examples/
-     * ListVirtualNetworkByResourceGroup.json
+     * virtualNetworks_ListByResourceGroup.json
      */
     /**
      * Sample code: ListVirtualNetworkByResourceGroup.

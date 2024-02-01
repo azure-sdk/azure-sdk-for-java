@@ -33,12 +33,12 @@ public final class VmSkuProfileImpl implements VmSkuProfile {
         return this.innerModel().type();
     }
 
-    public ExtendedLocation extendedLocation() {
-        return this.innerModel().extendedLocation();
-    }
-
     public VmSkuProfileProperties properties() {
         return this.innerModel().properties();
+    }
+
+    public ExtendedLocation extendedLocation() {
+        return this.innerModel().extendedLocation();
     }
 
     public SystemData systemData() {

@@ -13,6 +13,49 @@ import com.azure.core.util.Context;
  */
 public interface VirtualNetworks {
     /**
+     * Lists the virtual networks in the specified subscription.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a VirtualNetwork list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<VirtualNetwork> list();
+
+    /**
+     * Lists the virtual networks in the specified subscription.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a VirtualNetwork list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<VirtualNetwork> list(Context context);
+
+    /**
+     * Lists the virtual networks in the specified resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a VirtualNetwork list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<VirtualNetwork> listByResourceGroup(String resourceGroupName);
+
+    /**
+     * Lists the virtual networks in the specified resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a VirtualNetwork list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<VirtualNetwork> listByResourceGroup(String resourceGroupName, Context context);
+
+    /**
      * Gets the specified virtual network resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -60,49 +103,6 @@ public interface VirtualNetworks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void delete(String resourceGroupName, String virtualNetworkName, Context context);
-
-    /**
-     * Lists the virtual networks in the specified resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual network resources as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<VirtualNetwork> listByResourceGroup(String resourceGroupName);
-
-    /**
-     * Lists the virtual networks in the specified resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual network resources as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<VirtualNetwork> listByResourceGroup(String resourceGroupName, Context context);
-
-    /**
-     * Lists the virtual networks in the specified subscription.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual network resources as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<VirtualNetwork> list();
-
-    /**
-     * Lists the virtual networks in the specified subscription.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual network resources as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<VirtualNetwork> list(Context context);
 
     /**
      * Gets the specified virtual network resource.

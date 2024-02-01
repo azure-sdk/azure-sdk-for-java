@@ -27,10 +27,19 @@ public final class HybridIdentityMetadatasImpl implements HybridIdentityMetadata
         this.serviceManager = serviceManager;
     }
 
-    public Response<HybridIdentityMetadata> putWithResponse(String connectedClusterResourceUri,
-        HybridIdentityMetadataInner body, Context context) {
-        Response<HybridIdentityMetadataInner> inner
-            = this.serviceClient().putWithResponse(connectedClusterResourceUri, body, context);
+    public PagedIterable<HybridIdentityMetadata> listByProvisionedCluster(String resourceUri) {
+        PagedIterable<HybridIdentityMetadataInner> inner = this.serviceClient().listByProvisionedCluster(resourceUri);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new HybridIdentityMetadataImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<HybridIdentityMetadata> listByProvisionedCluster(String resourceUri, Context context) {
+        PagedIterable<HybridIdentityMetadataInner> inner
+            = this.serviceClient().listByProvisionedCluster(resourceUri, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new HybridIdentityMetadataImpl(inner1, this.manager()));
+    }
+
+    public Response<HybridIdentityMetadata> getWithResponse(String resourceUri, Context context) {
+        Response<HybridIdentityMetadataInner> inner = this.serviceClient().getWithResponse(resourceUri, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new HybridIdentityMetadataImpl(inner.getValue(), this.manager()));
@@ -39,8 +48,8 @@ public final class HybridIdentityMetadatasImpl implements HybridIdentityMetadata
         }
     }
 
-    public HybridIdentityMetadata put(String connectedClusterResourceUri, HybridIdentityMetadataInner body) {
-        HybridIdentityMetadataInner inner = this.serviceClient().put(connectedClusterResourceUri, body);
+    public HybridIdentityMetadata get(String resourceUri) {
+        HybridIdentityMetadataInner inner = this.serviceClient().get(resourceUri);
         if (inner != null) {
             return new HybridIdentityMetadataImpl(inner, this.manager());
         } else {
@@ -48,9 +57,10 @@ public final class HybridIdentityMetadatasImpl implements HybridIdentityMetadata
         }
     }
 
-    public Response<HybridIdentityMetadata> getWithResponse(String connectedClusterResourceUri, Context context) {
+    public Response<HybridIdentityMetadata> putWithResponse(String resourceUri, HybridIdentityMetadataInner resource,
+        Context context) {
         Response<HybridIdentityMetadataInner> inner
-            = this.serviceClient().getWithResponse(connectedClusterResourceUri, context);
+            = this.serviceClient().putWithResponse(resourceUri, resource, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new HybridIdentityMetadataImpl(inner.getValue(), this.manager()));
@@ -59,8 +69,8 @@ public final class HybridIdentityMetadatasImpl implements HybridIdentityMetadata
         }
     }
 
-    public HybridIdentityMetadata get(String connectedClusterResourceUri) {
-        HybridIdentityMetadataInner inner = this.serviceClient().get(connectedClusterResourceUri);
+    public HybridIdentityMetadata put(String resourceUri, HybridIdentityMetadataInner resource) {
+        HybridIdentityMetadataInner inner = this.serviceClient().put(resourceUri, resource);
         if (inner != null) {
             return new HybridIdentityMetadataImpl(inner, this.manager());
         } else {
@@ -68,24 +78,12 @@ public final class HybridIdentityMetadatasImpl implements HybridIdentityMetadata
         }
     }
 
-    public void delete(String connectedClusterResourceUri) {
-        this.serviceClient().delete(connectedClusterResourceUri);
+    public void delete(String resourceUri) {
+        this.serviceClient().delete(resourceUri);
     }
 
-    public void delete(String connectedClusterResourceUri, Context context) {
-        this.serviceClient().delete(connectedClusterResourceUri, context);
-    }
-
-    public PagedIterable<HybridIdentityMetadata> listByCluster(String connectedClusterResourceUri) {
-        PagedIterable<HybridIdentityMetadataInner> inner
-            = this.serviceClient().listByCluster(connectedClusterResourceUri);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new HybridIdentityMetadataImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<HybridIdentityMetadata> listByCluster(String connectedClusterResourceUri, Context context) {
-        PagedIterable<HybridIdentityMetadataInner> inner
-            = this.serviceClient().listByCluster(connectedClusterResourceUri, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new HybridIdentityMetadataImpl(inner1, this.manager()));
+    public void delete(String resourceUri, Context context) {
+        this.serviceClient().delete(resourceUri, context);
     }
 
     private HybridIdentityMetadatasClient serviceClient() {

@@ -27,10 +27,18 @@ public final class AgentPoolsImpl implements AgentPools {
         this.serviceManager = serviceManager;
     }
 
-    public Response<AgentPool> getWithResponse(String connectedClusterResourceUri, String agentPoolName,
-        Context context) {
-        Response<AgentPoolInner> inner
-            = this.serviceClient().getWithResponse(connectedClusterResourceUri, agentPoolName, context);
+    public PagedIterable<AgentPool> listByProvisionedCluster(String resourceUri) {
+        PagedIterable<AgentPoolInner> inner = this.serviceClient().listByProvisionedCluster(resourceUri);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new AgentPoolImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<AgentPool> listByProvisionedCluster(String resourceUri, Context context) {
+        PagedIterable<AgentPoolInner> inner = this.serviceClient().listByProvisionedCluster(resourceUri, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new AgentPoolImpl(inner1, this.manager()));
+    }
+
+    public Response<AgentPool> getWithResponse(String resourceUri, String agentPoolName, Context context) {
+        Response<AgentPoolInner> inner = this.serviceClient().getWithResponse(resourceUri, agentPoolName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new AgentPoolImpl(inner.getValue(), this.manager()));
@@ -39,8 +47,8 @@ public final class AgentPoolsImpl implements AgentPools {
         }
     }
 
-    public AgentPool get(String connectedClusterResourceUri, String agentPoolName) {
-        AgentPoolInner inner = this.serviceClient().get(connectedClusterResourceUri, agentPoolName);
+    public AgentPool get(String resourceUri, String agentPoolName) {
+        AgentPoolInner inner = this.serviceClient().get(resourceUri, agentPoolName);
         if (inner != null) {
             return new AgentPoolImpl(inner, this.manager());
         } else {
@@ -48,96 +56,84 @@ public final class AgentPoolsImpl implements AgentPools {
         }
     }
 
-    public void deleteByResourceGroup(String connectedClusterResourceUri, String agentPoolName) {
-        this.serviceClient().delete(connectedClusterResourceUri, agentPoolName);
+    public void deleteByResourceGroup(String resourceUri, String agentPoolName) {
+        this.serviceClient().delete(resourceUri, agentPoolName);
     }
 
-    public void delete(String connectedClusterResourceUri, String agentPoolName, Context context) {
-        this.serviceClient().delete(connectedClusterResourceUri, agentPoolName, context);
-    }
-
-    public PagedIterable<AgentPool> listByProvisionedCluster(String connectedClusterResourceUri) {
-        PagedIterable<AgentPoolInner> inner
-            = this.serviceClient().listByProvisionedCluster(connectedClusterResourceUri);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new AgentPoolImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<AgentPool> listByProvisionedCluster(String connectedClusterResourceUri, Context context) {
-        PagedIterable<AgentPoolInner> inner
-            = this.serviceClient().listByProvisionedCluster(connectedClusterResourceUri, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new AgentPoolImpl(inner1, this.manager()));
+    public void delete(String resourceUri, String agentPoolName, Context context) {
+        this.serviceClient().delete(resourceUri, agentPoolName, context);
     }
 
     public AgentPool getById(String id) {
-        String connectedClusterResourceUri = ResourceManagerUtils.getValueFromIdByParameterName(id,
-            "/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
-            "connectedClusterResourceUri");
-        if (connectedClusterResourceUri == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
-                .format("The resource ID '%s' is not valid. Missing path segment 'connectedClusterResourceUri'.", id)));
+        String resourceUri = ResourceManagerUtils.getValueFromIdByParameterName(id,
+            "/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
+            "resourceUri");
+        if (resourceUri == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceUri'.", id)));
         }
         String agentPoolName = ResourceManagerUtils.getValueFromIdByParameterName(id,
-            "/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
+            "/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
             "agentPoolName");
         if (agentPoolName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'agentPools'.", id)));
         }
-        return this.getWithResponse(connectedClusterResourceUri, agentPoolName, Context.NONE).getValue();
+        return this.getWithResponse(resourceUri, agentPoolName, Context.NONE).getValue();
     }
 
     public Response<AgentPool> getByIdWithResponse(String id, Context context) {
-        String connectedClusterResourceUri = ResourceManagerUtils.getValueFromIdByParameterName(id,
-            "/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
-            "connectedClusterResourceUri");
-        if (connectedClusterResourceUri == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
-                .format("The resource ID '%s' is not valid. Missing path segment 'connectedClusterResourceUri'.", id)));
+        String resourceUri = ResourceManagerUtils.getValueFromIdByParameterName(id,
+            "/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
+            "resourceUri");
+        if (resourceUri == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceUri'.", id)));
         }
         String agentPoolName = ResourceManagerUtils.getValueFromIdByParameterName(id,
-            "/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
+            "/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
             "agentPoolName");
         if (agentPoolName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'agentPools'.", id)));
         }
-        return this.getWithResponse(connectedClusterResourceUri, agentPoolName, context);
+        return this.getWithResponse(resourceUri, agentPoolName, context);
     }
 
     public void deleteById(String id) {
-        String connectedClusterResourceUri = ResourceManagerUtils.getValueFromIdByParameterName(id,
-            "/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
-            "connectedClusterResourceUri");
-        if (connectedClusterResourceUri == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
-                .format("The resource ID '%s' is not valid. Missing path segment 'connectedClusterResourceUri'.", id)));
+        String resourceUri = ResourceManagerUtils.getValueFromIdByParameterName(id,
+            "/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
+            "resourceUri");
+        if (resourceUri == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceUri'.", id)));
         }
         String agentPoolName = ResourceManagerUtils.getValueFromIdByParameterName(id,
-            "/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
+            "/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
             "agentPoolName");
         if (agentPoolName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'agentPools'.", id)));
         }
-        this.delete(connectedClusterResourceUri, agentPoolName, Context.NONE);
+        this.delete(resourceUri, agentPoolName, Context.NONE);
     }
 
     public void deleteByIdWithResponse(String id, Context context) {
-        String connectedClusterResourceUri = ResourceManagerUtils.getValueFromIdByParameterName(id,
-            "/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
-            "connectedClusterResourceUri");
-        if (connectedClusterResourceUri == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
-                .format("The resource ID '%s' is not valid. Missing path segment 'connectedClusterResourceUri'.", id)));
+        String resourceUri = ResourceManagerUtils.getValueFromIdByParameterName(id,
+            "/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
+            "resourceUri");
+        if (resourceUri == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceUri'.", id)));
         }
         String agentPoolName = ResourceManagerUtils.getValueFromIdByParameterName(id,
-            "/{connectedClusterResourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
+            "/{resourceUri}/providers/Microsoft.HybridContainerService/provisionedClusterInstances/default/agentPools/{agentPoolName}",
             "agentPoolName");
         if (agentPoolName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'agentPools'.", id)));
         }
-        this.delete(connectedClusterResourceUri, agentPoolName, context);
+        this.delete(resourceUri, agentPoolName, context);
     }
 
     private AgentPoolsClient serviceClient() {

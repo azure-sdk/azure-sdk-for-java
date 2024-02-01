@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * The particular KubernetesVersion Image OS Type (Linux, Windows).
+ * Defines values for OsType.
  */
 public final class OsType extends ExpandableStringEnum<OsType> {
     /**
