@@ -14,7 +14,9 @@ import com.azure.resourcemanager.securityinsights.models.TemplateStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** MLBehaviorAnalytics alert rule template properties. */
+/**
+ * MLBehaviorAnalytics alert rule template properties.
+ */
 @Fluent
 public final class MLBehaviorAnalyticsAlertRuleTemplateProperties extends AlertRuleTemplateWithMitreProperties {
     /*
@@ -24,8 +26,14 @@ public final class MLBehaviorAnalyticsAlertRuleTemplateProperties extends AlertR
     private AlertSeverity severity;
 
     /**
+     * Creates an instance of MLBehaviorAnalyticsAlertRuleTemplateProperties class.
+     */
+    public MLBehaviorAnalyticsAlertRuleTemplateProperties() {
+    }
+
+    /**
      * Get the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @return the severity value.
      */
     public AlertSeverity severity() {
@@ -34,7 +42,7 @@ public final class MLBehaviorAnalyticsAlertRuleTemplateProperties extends AlertR
 
     /**
      * Set the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @param severity the severity value to set.
      * @return the MLBehaviorAnalyticsAlertRuleTemplateProperties object itself.
      */
@@ -43,51 +51,65 @@ public final class MLBehaviorAnalyticsAlertRuleTemplateProperties extends AlertR
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLBehaviorAnalyticsAlertRuleTemplateProperties withTactics(List<AttackTactic> tactics) {
         super.withTactics(tactics);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLBehaviorAnalyticsAlertRuleTemplateProperties withTechniques(List<String> techniques) {
         super.withTechniques(techniques);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public MLBehaviorAnalyticsAlertRuleTemplateProperties withAlertRulesCreatedByTemplateCount(
-        Integer alertRulesCreatedByTemplateCount) {
+    public MLBehaviorAnalyticsAlertRuleTemplateProperties
+        withAlertRulesCreatedByTemplateCount(Integer alertRulesCreatedByTemplateCount) {
         super.withAlertRulesCreatedByTemplateCount(alertRulesCreatedByTemplateCount);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLBehaviorAnalyticsAlertRuleTemplateProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLBehaviorAnalyticsAlertRuleTemplateProperties withDisplayName(String displayName) {
         super.withDisplayName(displayName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public MLBehaviorAnalyticsAlertRuleTemplateProperties withRequiredDataConnectors(
-        List<AlertRuleTemplateDataSource> requiredDataConnectors) {
+    public MLBehaviorAnalyticsAlertRuleTemplateProperties
+        withRequiredDataConnectors(List<AlertRuleTemplateDataSource> requiredDataConnectors) {
         super.withRequiredDataConnectors(requiredDataConnectors);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLBehaviorAnalyticsAlertRuleTemplateProperties withStatus(TemplateStatus status) {
         super.withStatus(status);
@@ -96,17 +118,15 @@ public final class MLBehaviorAnalyticsAlertRuleTemplateProperties extends AlertR
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (severity() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property severity in model MLBehaviorAnalyticsAlertRuleTemplateProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property severity in model MLBehaviorAnalyticsAlertRuleTemplateProperties"));
         }
     }
 

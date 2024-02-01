@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Represents severity configuration for a source subtype consumed in Fusion detection. */
+/**
+ * Represents severity configuration for a source subtype consumed in Fusion detection.
+ */
 @Fluent
 public final class FusionSubTypeSeverityFilter {
     /*
@@ -24,8 +26,14 @@ public final class FusionSubTypeSeverityFilter {
     private List<FusionSubTypeSeverityFiltersItem> filters;
 
     /**
+     * Creates an instance of FusionSubTypeSeverityFilter class.
+     */
+    public FusionSubTypeSeverityFilter() {
+    }
+
+    /**
      * Get the isSupported property: Determines whether this source subtype supports severity configuration or not.
-     *
+     * 
      * @return the isSupported value.
      */
     public Boolean isSupported() {
@@ -35,7 +43,7 @@ public final class FusionSubTypeSeverityFilter {
     /**
      * Get the filters property: Individual Severity configuration settings for a given source subtype consumed in
      * Fusion detection.
-     *
+     * 
      * @return the filters value.
      */
     public List<FusionSubTypeSeverityFiltersItem> filters() {
@@ -45,7 +53,7 @@ public final class FusionSubTypeSeverityFilter {
     /**
      * Set the filters property: Individual Severity configuration settings for a given source subtype consumed in
      * Fusion detection.
-     *
+     * 
      * @param filters the filters value to set.
      * @return the FusionSubTypeSeverityFilter object itself.
      */
@@ -56,7 +64,7 @@ public final class FusionSubTypeSeverityFilter {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

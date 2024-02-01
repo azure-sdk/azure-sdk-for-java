@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes threat intelligence metric. */
+/**
+ * Describes threat intelligence metric.
+ */
 @Fluent
 public final class ThreatIntelligenceMetric {
     /*
@@ -36,8 +38,14 @@ public final class ThreatIntelligenceMetric {
     private List<ThreatIntelligenceMetricEntity> sourceMetrics;
 
     /**
+     * Creates an instance of ThreatIntelligenceMetric class.
+     */
+    public ThreatIntelligenceMetric() {
+    }
+
+    /**
      * Get the lastUpdatedTimeUtc property: Last updated indicator metric.
-     *
+     * 
      * @return the lastUpdatedTimeUtc value.
      */
     public String lastUpdatedTimeUtc() {
@@ -46,7 +54,7 @@ public final class ThreatIntelligenceMetric {
 
     /**
      * Set the lastUpdatedTimeUtc property: Last updated indicator metric.
-     *
+     * 
      * @param lastUpdatedTimeUtc the lastUpdatedTimeUtc value to set.
      * @return the ThreatIntelligenceMetric object itself.
      */
@@ -57,7 +65,7 @@ public final class ThreatIntelligenceMetric {
 
     /**
      * Get the threatTypeMetrics property: Threat type metrics.
-     *
+     * 
      * @return the threatTypeMetrics value.
      */
     public List<ThreatIntelligenceMetricEntity> threatTypeMetrics() {
@@ -66,7 +74,7 @@ public final class ThreatIntelligenceMetric {
 
     /**
      * Set the threatTypeMetrics property: Threat type metrics.
-     *
+     * 
      * @param threatTypeMetrics the threatTypeMetrics value to set.
      * @return the ThreatIntelligenceMetric object itself.
      */
@@ -77,7 +85,7 @@ public final class ThreatIntelligenceMetric {
 
     /**
      * Get the patternTypeMetrics property: Pattern type metrics.
-     *
+     * 
      * @return the patternTypeMetrics value.
      */
     public List<ThreatIntelligenceMetricEntity> patternTypeMetrics() {
@@ -86,7 +94,7 @@ public final class ThreatIntelligenceMetric {
 
     /**
      * Set the patternTypeMetrics property: Pattern type metrics.
-     *
+     * 
      * @param patternTypeMetrics the patternTypeMetrics value to set.
      * @return the ThreatIntelligenceMetric object itself.
      */
@@ -97,7 +105,7 @@ public final class ThreatIntelligenceMetric {
 
     /**
      * Get the sourceMetrics property: Source metrics.
-     *
+     * 
      * @return the sourceMetrics value.
      */
     public List<ThreatIntelligenceMetricEntity> sourceMetrics() {
@@ -106,7 +114,7 @@ public final class ThreatIntelligenceMetric {
 
     /**
      * Set the sourceMetrics property: Source metrics.
-     *
+     * 
      * @param sourceMetrics the sourceMetrics value to set.
      * @return the ThreatIntelligenceMetric object itself.
      */
@@ -117,7 +125,7 @@ public final class ThreatIntelligenceMetric {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

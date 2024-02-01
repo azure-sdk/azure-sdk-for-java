@@ -6,10 +6,20 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Teams data type connection. */
+/**
+ * Teams data type connection.
+ */
 @Fluent
 public final class OfficeDataConnectorDataTypesTeams extends DataConnectorDataTypeCommon {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of OfficeDataConnectorDataTypesTeams class.
+     */
+    public OfficeDataConnectorDataTypesTeams() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OfficeDataConnectorDataTypesTeams withState(DataTypeState state) {
         super.withState(state);
@@ -18,7 +28,7 @@ public final class OfficeDataConnectorDataTypesTeams extends DataConnectorDataTy
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
