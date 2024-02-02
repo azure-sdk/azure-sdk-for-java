@@ -10,33 +10,32 @@ import com.azure.resourcemanager.securityinsights.fluent.models.IncidentInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List all the incidents. */
+/**
+ * List all the incidents.
+ */
 @Fluent
 public final class IncidentList {
+    /*
+     * The value property.
+     */
+    @JsonProperty(value = "value", required = true)
+    private List<IncidentInner> value;
+
     /*
      * URL to fetch the next set of incidents.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /*
-     * Array of incidents.
-     */
-    @JsonProperty(value = "value", required = true)
-    private List<IncidentInner> value;
-
     /**
-     * Get the nextLink property: URL to fetch the next set of incidents.
-     *
-     * @return the nextLink value.
+     * Creates an instance of IncidentList class.
      */
-    public String nextLink() {
-        return this.nextLink;
+    public IncidentList() {
     }
 
     /**
-     * Get the value property: Array of incidents.
-     *
+     * Get the value property: The value property.
+     * 
      * @return the value value.
      */
     public List<IncidentInner> value() {
@@ -44,8 +43,8 @@ public final class IncidentList {
     }
 
     /**
-     * Set the value property: Array of incidents.
-     *
+     * Set the value property: The value property.
+     * 
      * @param value the value value to set.
      * @return the IncidentList object itself.
      */
@@ -55,15 +54,23 @@ public final class IncidentList {
     }
 
     /**
+     * Get the nextLink property: URL to fetch the next set of incidents.
+     * 
+     * @return the nextLink value.
+     */
+    public String nextLink() {
+        return this.nextLink;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model IncidentList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model IncidentList"));
         } else {
             value().forEach(e -> e.validate());
         }

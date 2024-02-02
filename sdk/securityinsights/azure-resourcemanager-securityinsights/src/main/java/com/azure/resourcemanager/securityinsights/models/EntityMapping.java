@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Single entity mapping for the alert rule. */
+/**
+ * Single entity mapping for the alert rule.
+ */
 @Fluent
 public final class EntityMapping {
     /*
@@ -24,8 +26,14 @@ public final class EntityMapping {
     private List<FieldMapping> fieldMappings;
 
     /**
+     * Creates an instance of EntityMapping class.
+     */
+    public EntityMapping() {
+    }
+
+    /**
      * Get the entityType property: The V3 type of the mapped entity.
-     *
+     * 
      * @return the entityType value.
      */
     public EntityMappingType entityType() {
@@ -34,7 +42,7 @@ public final class EntityMapping {
 
     /**
      * Set the entityType property: The V3 type of the mapped entity.
-     *
+     * 
      * @param entityType the entityType value to set.
      * @return the EntityMapping object itself.
      */
@@ -45,7 +53,7 @@ public final class EntityMapping {
 
     /**
      * Get the fieldMappings property: array of field mappings for the given entity mapping.
-     *
+     * 
      * @return the fieldMappings value.
      */
     public List<FieldMapping> fieldMappings() {
@@ -54,7 +62,7 @@ public final class EntityMapping {
 
     /**
      * Set the fieldMappings property: array of field mappings for the given entity mapping.
-     *
+     * 
      * @param fieldMappings the fieldMappings value to set.
      * @return the EntityMapping object itself.
      */
@@ -65,7 +73,7 @@ public final class EntityMapping {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

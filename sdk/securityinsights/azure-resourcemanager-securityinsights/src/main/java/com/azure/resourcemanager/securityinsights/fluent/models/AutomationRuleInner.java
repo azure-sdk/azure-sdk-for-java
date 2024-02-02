@@ -14,7 +14,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** The AutomationRule model. */
+/**
+ * The AutomationRule model.
+ */
 @Fluent
 public final class AutomationRuleInner extends ResourceWithEtag {
     /*
@@ -24,15 +26,23 @@ public final class AutomationRuleInner extends ResourceWithEtag {
     private AutomationRuleProperties innerProperties = new AutomationRuleProperties();
 
     /**
+     * Creates an instance of AutomationRuleInner class.
+     */
+    public AutomationRuleInner() {
+    }
+
+    /**
      * Get the innerProperties property: Automation rule properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AutomationRuleProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AutomationRuleInner withEtag(String etag) {
         super.withEtag(etag);
@@ -41,7 +51,7 @@ public final class AutomationRuleInner extends ResourceWithEtag {
 
     /**
      * Get the displayName property: The display name of the automation rule.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -50,7 +60,7 @@ public final class AutomationRuleInner extends ResourceWithEtag {
 
     /**
      * Set the displayName property: The display name of the automation rule.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the AutomationRuleInner object itself.
      */
@@ -64,7 +74,7 @@ public final class AutomationRuleInner extends ResourceWithEtag {
 
     /**
      * Get the order property: The order of execution of the automation rule.
-     *
+     * 
      * @return the order value.
      */
     public int order() {
@@ -73,7 +83,7 @@ public final class AutomationRuleInner extends ResourceWithEtag {
 
     /**
      * Set the order property: The order of execution of the automation rule.
-     *
+     * 
      * @param order the order value to set.
      * @return the AutomationRuleInner object itself.
      */
@@ -87,7 +97,7 @@ public final class AutomationRuleInner extends ResourceWithEtag {
 
     /**
      * Get the triggeringLogic property: Describes automation rule triggering logic.
-     *
+     * 
      * @return the triggeringLogic value.
      */
     public AutomationRuleTriggeringLogic triggeringLogic() {
@@ -96,7 +106,7 @@ public final class AutomationRuleInner extends ResourceWithEtag {
 
     /**
      * Set the triggeringLogic property: Describes automation rule triggering logic.
-     *
+     * 
      * @param triggeringLogic the triggeringLogic value to set.
      * @return the AutomationRuleInner object itself.
      */
@@ -110,7 +120,7 @@ public final class AutomationRuleInner extends ResourceWithEtag {
 
     /**
      * Get the actions property: The actions to execute when the automation rule is triggered.
-     *
+     * 
      * @return the actions value.
      */
     public List<AutomationRuleAction> actions() {
@@ -119,7 +129,7 @@ public final class AutomationRuleInner extends ResourceWithEtag {
 
     /**
      * Set the actions property: The actions to execute when the automation rule is triggered.
-     *
+     * 
      * @param actions the actions value to set.
      * @return the AutomationRuleInner object itself.
      */
@@ -133,7 +143,7 @@ public final class AutomationRuleInner extends ResourceWithEtag {
 
     /**
      * Get the lastModifiedTimeUtc property: The last time the automation rule was updated.
-     *
+     * 
      * @return the lastModifiedTimeUtc value.
      */
     public OffsetDateTime lastModifiedTimeUtc() {
@@ -142,7 +152,7 @@ public final class AutomationRuleInner extends ResourceWithEtag {
 
     /**
      * Get the createdTimeUtc property: The time the automation rule was created.
-     *
+     * 
      * @return the createdTimeUtc value.
      */
     public OffsetDateTime createdTimeUtc() {
@@ -151,7 +161,7 @@ public final class AutomationRuleInner extends ResourceWithEtag {
 
     /**
      * Get the lastModifiedBy property: Information on the client (user or application) that made some action.
-     *
+     * 
      * @return the lastModifiedBy value.
      */
     public ClientInfo lastModifiedBy() {
@@ -160,7 +170,7 @@ public final class AutomationRuleInner extends ResourceWithEtag {
 
     /**
      * Get the createdBy property: Information on the client (user or application) that made some action.
-     *
+     * 
      * @return the createdBy value.
      */
     public ClientInfo createdBy() {
@@ -169,17 +179,15 @@ public final class AutomationRuleInner extends ResourceWithEtag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model AutomationRuleInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model AutomationRuleInner"));
         } else {
             innerProperties().validate();
         }

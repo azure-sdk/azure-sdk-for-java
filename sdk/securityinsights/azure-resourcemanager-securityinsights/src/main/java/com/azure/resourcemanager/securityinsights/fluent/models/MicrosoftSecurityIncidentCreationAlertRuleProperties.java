@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** MicrosoftSecurityIncidentCreation rule property bag. */
+/**
+ * MicrosoftSecurityIncidentCreation rule property bag.
+ */
 @Fluent
 public final class MicrosoftSecurityIncidentCreationAlertRuleProperties
     extends MicrosoftSecurityIncidentCreationAlertRuleCommonProperties {
@@ -48,8 +50,14 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleProperties
     private OffsetDateTime lastModifiedUtc;
 
     /**
+     * Creates an instance of MicrosoftSecurityIncidentCreationAlertRuleProperties class.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRuleProperties() {
+    }
+
+    /**
      * Get the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
-     *
+     * 
      * @return the alertRuleTemplateName value.
      */
     public String alertRuleTemplateName() {
@@ -58,19 +66,19 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleProperties
 
     /**
      * Set the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
-     *
+     * 
      * @param alertRuleTemplateName the alertRuleTemplateName value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRuleProperties object itself.
      */
-    public MicrosoftSecurityIncidentCreationAlertRuleProperties withAlertRuleTemplateName(
-        String alertRuleTemplateName) {
+    public MicrosoftSecurityIncidentCreationAlertRuleProperties
+        withAlertRuleTemplateName(String alertRuleTemplateName) {
         this.alertRuleTemplateName = alertRuleTemplateName;
         return this;
     }
 
     /**
      * Get the description property: The description of the alert rule.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -79,7 +87,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleProperties
 
     /**
      * Set the description property: The description of the alert rule.
-     *
+     * 
      * @param description the description value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRuleProperties object itself.
      */
@@ -90,7 +98,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleProperties
 
     /**
      * Get the displayName property: The display name for alerts created by this alert rule.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -99,7 +107,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleProperties
 
     /**
      * Set the displayName property: The display name for alerts created by this alert rule.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRuleProperties object itself.
      */
@@ -110,7 +118,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleProperties
 
     /**
      * Get the enabled property: Determines whether this alert rule is enabled or disabled.
-     *
+     * 
      * @return the enabled value.
      */
     public boolean enabled() {
@@ -119,7 +127,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleProperties
 
     /**
      * Set the enabled property: Determines whether this alert rule is enabled or disabled.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRuleProperties object itself.
      */
@@ -130,62 +138,67 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleProperties
 
     /**
      * Get the lastModifiedUtc property: The last time that this alert has been modified.
-     *
+     * 
      * @return the lastModifiedUtc value.
      */
     public OffsetDateTime lastModifiedUtc() {
         return this.lastModifiedUtc;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public MicrosoftSecurityIncidentCreationAlertRuleProperties withDisplayNamesFilter(
-        List<String> displayNamesFilter) {
+    public MicrosoftSecurityIncidentCreationAlertRuleProperties
+        withDisplayNamesFilter(List<String> displayNamesFilter) {
         super.withDisplayNamesFilter(displayNamesFilter);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public MicrosoftSecurityIncidentCreationAlertRuleProperties withDisplayNamesExcludeFilter(
-        List<String> displayNamesExcludeFilter) {
+    public MicrosoftSecurityIncidentCreationAlertRuleProperties
+        withDisplayNamesExcludeFilter(List<String> displayNamesExcludeFilter) {
         super.withDisplayNamesExcludeFilter(displayNamesExcludeFilter);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public MicrosoftSecurityIncidentCreationAlertRuleProperties withProductFilter(
-        MicrosoftSecurityProductName productFilter) {
+    public MicrosoftSecurityIncidentCreationAlertRuleProperties
+        withProductFilter(MicrosoftSecurityProductName productFilter) {
         super.withProductFilter(productFilter);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public MicrosoftSecurityIncidentCreationAlertRuleProperties withSeveritiesFilter(
-        List<AlertSeverity> severitiesFilter) {
+    public MicrosoftSecurityIncidentCreationAlertRuleProperties
+        withSeveritiesFilter(List<AlertSeverity> severitiesFilter) {
         super.withSeveritiesFilter(severitiesFilter);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (displayName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property displayName in model"
-                            + " MicrosoftSecurityIncidentCreationAlertRuleProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property displayName in model MicrosoftSecurityIncidentCreationAlertRuleProperties"));
         }
     }
 
-    private static final ClientLogger LOGGER =
-        new ClientLogger(MicrosoftSecurityIncidentCreationAlertRuleProperties.class);
+    private static final ClientLogger LOGGER
+        = new ClientLogger(MicrosoftSecurityIncidentCreationAlertRuleProperties.class);
 }

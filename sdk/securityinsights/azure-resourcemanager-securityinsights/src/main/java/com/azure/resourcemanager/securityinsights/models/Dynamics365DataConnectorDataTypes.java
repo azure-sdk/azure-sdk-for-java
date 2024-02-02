@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The available data types for Dynamics365 data connector. */
+/**
+ * The available data types for Dynamics365 data connector.
+ */
 @Fluent
 public final class Dynamics365DataConnectorDataTypes {
     /*
@@ -18,8 +20,14 @@ public final class Dynamics365DataConnectorDataTypes {
     private Dynamics365DataConnectorDataTypesDynamics365CdsActivities dynamics365CdsActivities;
 
     /**
+     * Creates an instance of Dynamics365DataConnectorDataTypes class.
+     */
+    public Dynamics365DataConnectorDataTypes() {
+    }
+
+    /**
      * Get the dynamics365CdsActivities property: Common Data Service data type connection.
-     *
+     * 
      * @return the dynamics365CdsActivities value.
      */
     public Dynamics365DataConnectorDataTypesDynamics365CdsActivities dynamics365CdsActivities() {
@@ -28,7 +36,7 @@ public final class Dynamics365DataConnectorDataTypes {
 
     /**
      * Set the dynamics365CdsActivities property: Common Data Service data type connection.
-     *
+     * 
      * @param dynamics365CdsActivities the dynamics365CdsActivities value to set.
      * @return the Dynamics365DataConnectorDataTypes object itself.
      */
@@ -40,16 +48,13 @@ public final class Dynamics365DataConnectorDataTypes {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (dynamics365CdsActivities() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dynamics365CdsActivities in model"
-                            + " Dynamics365DataConnectorDataTypes"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property dynamics365CdsActivities in model Dynamics365DataConnectorDataTypes"));
         } else {
             dynamics365CdsActivities().validate();
         }

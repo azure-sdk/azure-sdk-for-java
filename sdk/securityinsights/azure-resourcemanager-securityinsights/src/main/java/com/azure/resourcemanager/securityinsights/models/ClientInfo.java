@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
-/** Information on the client (user or application) that made some action. */
+/**
+ * Information on the client (user or application) that made some action.
+ */
 @Fluent
 public final class ClientInfo {
     /*
@@ -36,8 +38,14 @@ public final class ClientInfo {
     private String userPrincipalName;
 
     /**
+     * Creates an instance of ClientInfo class.
+     */
+    public ClientInfo() {
+    }
+
+    /**
      * Get the email property: The email of the client.
-     *
+     * 
      * @return the email value.
      */
     public String email() {
@@ -46,7 +54,7 @@ public final class ClientInfo {
 
     /**
      * Set the email property: The email of the client.
-     *
+     * 
      * @param email the email value to set.
      * @return the ClientInfo object itself.
      */
@@ -57,7 +65,7 @@ public final class ClientInfo {
 
     /**
      * Get the name property: The name of the client.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -66,7 +74,7 @@ public final class ClientInfo {
 
     /**
      * Set the name property: The name of the client.
-     *
+     * 
      * @param name the name value to set.
      * @return the ClientInfo object itself.
      */
@@ -77,7 +85,7 @@ public final class ClientInfo {
 
     /**
      * Get the objectId property: The object id of the client.
-     *
+     * 
      * @return the objectId value.
      */
     public UUID objectId() {
@@ -86,7 +94,7 @@ public final class ClientInfo {
 
     /**
      * Set the objectId property: The object id of the client.
-     *
+     * 
      * @param objectId the objectId value to set.
      * @return the ClientInfo object itself.
      */
@@ -97,7 +105,7 @@ public final class ClientInfo {
 
     /**
      * Get the userPrincipalName property: The user principal name of the client.
-     *
+     * 
      * @return the userPrincipalName value.
      */
     public String userPrincipalName() {
@@ -106,7 +114,7 @@ public final class ClientInfo {
 
     /**
      * Set the userPrincipalName property: The user principal name of the client.
-     *
+     * 
      * @param userPrincipalName the userPrincipalName value to set.
      * @return the ClientInfo object itself.
      */
@@ -117,7 +125,7 @@ public final class ClientInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

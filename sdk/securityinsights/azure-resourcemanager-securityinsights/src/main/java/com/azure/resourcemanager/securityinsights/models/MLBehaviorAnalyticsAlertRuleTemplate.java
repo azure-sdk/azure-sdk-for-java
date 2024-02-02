@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Represents MLBehaviorAnalytics alert rule template. */
+/**
+ * Represents MLBehaviorAnalytics alert rule template.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("MLBehaviorAnalytics")
 @Fluent
@@ -25,8 +27,14 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
     private MLBehaviorAnalyticsAlertRuleTemplateProperties innerProperties;
 
     /**
+     * Creates an instance of MLBehaviorAnalyticsAlertRuleTemplate class.
+     */
+    public MLBehaviorAnalyticsAlertRuleTemplate() {
+    }
+
+    /**
      * Get the innerProperties property: MLBehaviorAnalytics alert rule template properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private MLBehaviorAnalyticsAlertRuleTemplateProperties innerProperties() {
@@ -35,7 +43,7 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Get the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @return the severity value.
      */
     public AlertSeverity severity() {
@@ -44,7 +52,7 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Set the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @param severity the severity value to set.
      * @return the MLBehaviorAnalyticsAlertRuleTemplate object itself.
      */
@@ -58,7 +66,7 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Get the tactics property: The tactics of the alert rule.
-     *
+     * 
      * @return the tactics value.
      */
     public List<AttackTactic> tactics() {
@@ -67,7 +75,7 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Set the tactics property: The tactics of the alert rule.
-     *
+     * 
      * @param tactics the tactics value to set.
      * @return the MLBehaviorAnalyticsAlertRuleTemplate object itself.
      */
@@ -81,7 +89,7 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Get the techniques property: The techniques of the alert rule.
-     *
+     * 
      * @return the techniques value.
      */
     public List<String> techniques() {
@@ -90,7 +98,7 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Set the techniques property: The techniques of the alert rule.
-     *
+     * 
      * @param techniques the techniques value to set.
      * @return the MLBehaviorAnalyticsAlertRuleTemplate object itself.
      */
@@ -104,7 +112,7 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Get the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
-     *
+     * 
      * @return the alertRulesCreatedByTemplateCount value.
      */
     public Integer alertRulesCreatedByTemplateCount() {
@@ -113,12 +121,12 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Set the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
-     *
+     * 
      * @param alertRulesCreatedByTemplateCount the alertRulesCreatedByTemplateCount value to set.
      * @return the MLBehaviorAnalyticsAlertRuleTemplate object itself.
      */
-    public MLBehaviorAnalyticsAlertRuleTemplate withAlertRulesCreatedByTemplateCount(
-        Integer alertRulesCreatedByTemplateCount) {
+    public MLBehaviorAnalyticsAlertRuleTemplate
+        withAlertRulesCreatedByTemplateCount(Integer alertRulesCreatedByTemplateCount) {
         if (this.innerProperties() == null) {
             this.innerProperties = new MLBehaviorAnalyticsAlertRuleTemplateProperties();
         }
@@ -128,7 +136,7 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Get the lastUpdatedDateUtc property: The last time that this alert rule template has been updated.
-     *
+     * 
      * @return the lastUpdatedDateUtc value.
      */
     public OffsetDateTime lastUpdatedDateUtc() {
@@ -137,7 +145,7 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Get the createdDateUtc property: The time that this alert rule template has been added.
-     *
+     * 
      * @return the createdDateUtc value.
      */
     public OffsetDateTime createdDateUtc() {
@@ -146,7 +154,7 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Get the description property: The description of the alert rule template.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -155,7 +163,7 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Set the description property: The description of the alert rule template.
-     *
+     * 
      * @param description the description value to set.
      * @return the MLBehaviorAnalyticsAlertRuleTemplate object itself.
      */
@@ -169,7 +177,7 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Get the displayName property: The display name for alert rule template.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -178,7 +186,7 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Set the displayName property: The display name for alert rule template.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the MLBehaviorAnalyticsAlertRuleTemplate object itself.
      */
@@ -192,7 +200,7 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Get the requiredDataConnectors property: The required data sources for this template.
-     *
+     * 
      * @return the requiredDataConnectors value.
      */
     public List<AlertRuleTemplateDataSource> requiredDataConnectors() {
@@ -201,12 +209,12 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Set the requiredDataConnectors property: The required data sources for this template.
-     *
+     * 
      * @param requiredDataConnectors the requiredDataConnectors value to set.
      * @return the MLBehaviorAnalyticsAlertRuleTemplate object itself.
      */
-    public MLBehaviorAnalyticsAlertRuleTemplate withRequiredDataConnectors(
-        List<AlertRuleTemplateDataSource> requiredDataConnectors) {
+    public MLBehaviorAnalyticsAlertRuleTemplate
+        withRequiredDataConnectors(List<AlertRuleTemplateDataSource> requiredDataConnectors) {
         if (this.innerProperties() == null) {
             this.innerProperties = new MLBehaviorAnalyticsAlertRuleTemplateProperties();
         }
@@ -216,7 +224,7 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Get the status property: The alert rule template status.
-     *
+     * 
      * @return the status value.
      */
     public TemplateStatus status() {
@@ -225,7 +233,7 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Set the status property: The alert rule template status.
-     *
+     * 
      * @param status the status value to set.
      * @return the MLBehaviorAnalyticsAlertRuleTemplate object itself.
      */
@@ -239,7 +247,7 @@ public final class MLBehaviorAnalyticsAlertRuleTemplate extends AlertRuleTemplat
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
