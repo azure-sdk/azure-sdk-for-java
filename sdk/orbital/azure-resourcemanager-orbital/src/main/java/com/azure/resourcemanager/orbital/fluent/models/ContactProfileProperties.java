@@ -13,66 +13,86 @@ import com.azure.resourcemanager.orbital.models.ContactProfilesPropertiesNetwork
 import com.azure.resourcemanager.orbital.models.ContactProfilesPropertiesProvisioningState;
 import java.util.List;
 
-/** Properties of the contact profile resource. */
+/**
+ * Properties of the contact profile resource.
+ */
 @Fluent
 public final class ContactProfileProperties extends ContactProfilesProperties {
-    /** Creates an instance of ContactProfileProperties class. */
+    /**
+     * Creates an instance of ContactProfileProperties class.
+     */
     public ContactProfileProperties() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ContactProfileProperties withProvisioningState(
-        ContactProfilesPropertiesProvisioningState provisioningState) {
+    public ContactProfileProperties
+        withProvisioningState(ContactProfilesPropertiesProvisioningState provisioningState) {
         super.withProvisioningState(provisioningState);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ContactProfileProperties withMinimumViableContactDuration(String minimumViableContactDuration) {
         super.withMinimumViableContactDuration(minimumViableContactDuration);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ContactProfileProperties withMinimumElevationDegrees(Float minimumElevationDegrees) {
         super.withMinimumElevationDegrees(minimumElevationDegrees);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ContactProfileProperties withAutoTrackingConfiguration(AutoTrackingConfiguration autoTrackingConfiguration) {
         super.withAutoTrackingConfiguration(autoTrackingConfiguration);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ContactProfileProperties withEventHubUri(String eventHubUri) {
         super.withEventHubUri(eventHubUri);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ContactProfileProperties withNetworkConfiguration(
-        ContactProfilesPropertiesNetworkConfiguration networkConfiguration) {
+    public ContactProfileProperties
+        withNetworkConfiguration(ContactProfilesPropertiesNetworkConfiguration networkConfiguration) {
         super.withNetworkConfiguration(networkConfiguration);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ContactProfileProperties withThirdPartyConfigurations(
-        List<ContactProfileThirdPartyConfiguration> thirdPartyConfigurations) {
+    public ContactProfileProperties
+        withThirdPartyConfigurations(List<ContactProfileThirdPartyConfiguration> thirdPartyConfigurations) {
         super.withThirdPartyConfigurations(thirdPartyConfigurations);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ContactProfileProperties withLinks(List<ContactProfileLink> links) {
         super.withLinks(links);
@@ -81,7 +101,7 @@ public final class ContactProfileProperties extends ContactProfilesProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

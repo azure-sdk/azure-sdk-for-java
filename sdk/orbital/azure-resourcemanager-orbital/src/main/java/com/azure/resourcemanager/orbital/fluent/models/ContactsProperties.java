@@ -13,7 +13,9 @@ import com.azure.resourcemanager.orbital.models.ContactsStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Properties of the Contact Resource. */
+/**
+ * Properties of the Contact Resource.
+ */
 @Fluent
 public final class ContactsProperties {
     /*
@@ -118,13 +120,15 @@ public final class ContactsProperties {
     @JsonProperty(value = "contactProfile", required = true)
     private ContactsPropertiesContactProfile contactProfile;
 
-    /** Creates an instance of ContactsProperties class. */
+    /**
+     * Creates an instance of ContactsProperties class.
+     */
     public ContactsProperties() {
     }
 
     /**
      * Get the provisioningState property: The current state of the resource's creation, deletion, or modification.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ContactsPropertiesProvisioningState provisioningState() {
@@ -133,7 +137,7 @@ public final class ContactsProperties {
 
     /**
      * Set the provisioningState property: The current state of the resource's creation, deletion, or modification.
-     *
+     * 
      * @param provisioningState the provisioningState value to set.
      * @return the ContactsProperties object itself.
      */
@@ -144,7 +148,7 @@ public final class ContactsProperties {
 
     /**
      * Get the status property: Status of a contact.
-     *
+     * 
      * @return the status value.
      */
     public ContactsStatus status() {
@@ -153,7 +157,7 @@ public final class ContactsProperties {
 
     /**
      * Get the reservationStartTime property: Reservation start time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @return the reservationStartTime value.
      */
     public OffsetDateTime reservationStartTime() {
@@ -162,7 +166,7 @@ public final class ContactsProperties {
 
     /**
      * Set the reservationStartTime property: Reservation start time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @param reservationStartTime the reservationStartTime value to set.
      * @return the ContactsProperties object itself.
      */
@@ -173,7 +177,7 @@ public final class ContactsProperties {
 
     /**
      * Get the reservationEndTime property: Reservation end time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @return the reservationEndTime value.
      */
     public OffsetDateTime reservationEndTime() {
@@ -182,7 +186,7 @@ public final class ContactsProperties {
 
     /**
      * Set the reservationEndTime property: Reservation end time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @param reservationEndTime the reservationEndTime value to set.
      * @return the ContactsProperties object itself.
      */
@@ -193,7 +197,7 @@ public final class ContactsProperties {
 
     /**
      * Get the rxStartTime property: Receive start time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @return the rxStartTime value.
      */
     public OffsetDateTime rxStartTime() {
@@ -202,7 +206,7 @@ public final class ContactsProperties {
 
     /**
      * Get the rxEndTime property: Receive end time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @return the rxEndTime value.
      */
     public OffsetDateTime rxEndTime() {
@@ -211,7 +215,7 @@ public final class ContactsProperties {
 
     /**
      * Get the txStartTime property: Transmit start time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @return the txStartTime value.
      */
     public OffsetDateTime txStartTime() {
@@ -220,7 +224,7 @@ public final class ContactsProperties {
 
     /**
      * Get the txEndTime property: Transmit end time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @return the txEndTime value.
      */
     public OffsetDateTime txEndTime() {
@@ -229,7 +233,7 @@ public final class ContactsProperties {
 
     /**
      * Get the errorMessage property: Any error message while scheduling a contact.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -237,8 +241,9 @@ public final class ContactsProperties {
     }
 
     /**
-     * Get the maximumElevationDegrees property: Maximum elevation of the antenna during the contact in decimal degrees.
-     *
+     * Get the maximumElevationDegrees property: Maximum elevation of the antenna during the contact in decimal
+     * degrees.
+     * 
      * @return the maximumElevationDegrees value.
      */
     public Float maximumElevationDegrees() {
@@ -247,7 +252,7 @@ public final class ContactsProperties {
 
     /**
      * Get the startAzimuthDegrees property: Azimuth of the antenna at the start of the contact in decimal degrees.
-     *
+     * 
      * @return the startAzimuthDegrees value.
      */
     public Float startAzimuthDegrees() {
@@ -256,7 +261,7 @@ public final class ContactsProperties {
 
     /**
      * Get the endAzimuthDegrees property: Azimuth of the antenna at the end of the contact in decimal degrees.
-     *
+     * 
      * @return the endAzimuthDegrees value.
      */
     public Float endAzimuthDegrees() {
@@ -265,7 +270,7 @@ public final class ContactsProperties {
 
     /**
      * Get the groundStationName property: Azure Ground Station name.
-     *
+     * 
      * @return the groundStationName value.
      */
     public String groundStationName() {
@@ -274,7 +279,7 @@ public final class ContactsProperties {
 
     /**
      * Set the groundStationName property: Azure Ground Station name.
-     *
+     * 
      * @param groundStationName the groundStationName value to set.
      * @return the ContactsProperties object itself.
      */
@@ -285,7 +290,7 @@ public final class ContactsProperties {
 
     /**
      * Get the startElevationDegrees property: Spacecraft elevation above the horizon at contact start.
-     *
+     * 
      * @return the startElevationDegrees value.
      */
     public Float startElevationDegrees() {
@@ -294,7 +299,7 @@ public final class ContactsProperties {
 
     /**
      * Get the endElevationDegrees property: Spacecraft elevation above the horizon at contact end.
-     *
+     * 
      * @return the endElevationDegrees value.
      */
     public Float endElevationDegrees() {
@@ -303,7 +308,7 @@ public final class ContactsProperties {
 
     /**
      * Get the antennaConfiguration property: The configuration associated with the allocated antenna.
-     *
+     * 
      * @return the antennaConfiguration value.
      */
     public ContactsPropertiesAntennaConfiguration antennaConfiguration() {
@@ -312,7 +317,7 @@ public final class ContactsProperties {
 
     /**
      * Get the contactProfile property: The reference to the contact profile resource.
-     *
+     * 
      * @return the contactProfile value.
      */
     public ContactsPropertiesContactProfile contactProfile() {
@@ -321,7 +326,7 @@ public final class ContactsProperties {
 
     /**
      * Set the contactProfile property: The reference to the contact profile resource.
-     *
+     * 
      * @param contactProfile the contactProfile value to set.
      * @return the ContactsProperties object itself.
      */
@@ -332,36 +337,28 @@ public final class ContactsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (reservationStartTime() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property reservationStartTime in model ContactsProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property reservationStartTime in model ContactsProperties"));
         }
         if (reservationEndTime() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property reservationEndTime in model ContactsProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property reservationEndTime in model ContactsProperties"));
         }
         if (groundStationName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property groundStationName in model ContactsProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property groundStationName in model ContactsProperties"));
         }
         if (antennaConfiguration() != null) {
             antennaConfiguration().validate();
         }
         if (contactProfile() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property contactProfile in model ContactsProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property contactProfile in model ContactsProperties"));
         } else {
             contactProfile().validate();
         }

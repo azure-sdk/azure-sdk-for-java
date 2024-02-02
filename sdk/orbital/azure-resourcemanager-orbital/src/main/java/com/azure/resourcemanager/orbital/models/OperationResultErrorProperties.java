@@ -7,7 +7,9 @@ package com.azure.resourcemanager.orbital.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Operation result error properties. */
+/**
+ * Operation result error properties.
+ */
 @Immutable
 public final class OperationResultErrorProperties {
     /*
@@ -22,13 +24,15 @@ public final class OperationResultErrorProperties {
     @JsonProperty(value = "message", access = JsonProperty.Access.WRITE_ONLY)
     private String message;
 
-    /** Creates an instance of OperationResultErrorProperties class. */
+    /**
+     * Creates an instance of OperationResultErrorProperties class.
+     */
     public OperationResultErrorProperties() {
     }
 
     /**
      * Get the code property: The code of the error.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -37,7 +41,7 @@ public final class OperationResultErrorProperties {
 
     /**
      * Get the message property: The error message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -46,7 +50,7 @@ public final class OperationResultErrorProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

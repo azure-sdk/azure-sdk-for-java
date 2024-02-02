@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Contact Profile Link. */
+/**
+ * Contact Profile Link.
+ */
 @Fluent
 public final class ContactProfileLink {
     /*
@@ -48,13 +50,15 @@ public final class ContactProfileLink {
     @JsonProperty(value = "channels", required = true)
     private List<ContactProfileLinkChannel> channels;
 
-    /** Creates an instance of ContactProfileLink class. */
+    /**
+     * Creates an instance of ContactProfileLink class.
+     */
     public ContactProfileLink() {
     }
 
     /**
      * Get the name property: Link name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -63,7 +67,7 @@ public final class ContactProfileLink {
 
     /**
      * Set the name property: Link name.
-     *
+     * 
      * @param name the name value to set.
      * @return the ContactProfileLink object itself.
      */
@@ -74,7 +78,7 @@ public final class ContactProfileLink {
 
     /**
      * Get the polarization property: Polarization. e.g. (RHCP, LHCP).
-     *
+     * 
      * @return the polarization value.
      */
     public Polarization polarization() {
@@ -83,7 +87,7 @@ public final class ContactProfileLink {
 
     /**
      * Set the polarization property: Polarization. e.g. (RHCP, LHCP).
-     *
+     * 
      * @param polarization the polarization value to set.
      * @return the ContactProfileLink object itself.
      */
@@ -94,7 +98,7 @@ public final class ContactProfileLink {
 
     /**
      * Get the direction property: Direction (Uplink or Downlink).
-     *
+     * 
      * @return the direction value.
      */
     public Direction direction() {
@@ -103,7 +107,7 @@ public final class ContactProfileLink {
 
     /**
      * Set the direction property: Direction (Uplink or Downlink).
-     *
+     * 
      * @param direction the direction value to set.
      * @return the ContactProfileLink object itself.
      */
@@ -115,7 +119,7 @@ public final class ContactProfileLink {
     /**
      * Get the gainOverTemperature property: Gain to noise temperature in db/K. It is the required G/T by the customer.
      * Not used yet.
-     *
+     * 
      * @return the gainOverTemperature value.
      */
     public Float gainOverTemperature() {
@@ -125,7 +129,7 @@ public final class ContactProfileLink {
     /**
      * Set the gainOverTemperature property: Gain to noise temperature in db/K. It is the required G/T by the customer.
      * Not used yet.
-     *
+     * 
      * @param gainOverTemperature the gainOverTemperature value to set.
      * @return the ContactProfileLink object itself.
      */
@@ -137,7 +141,7 @@ public final class ContactProfileLink {
     /**
      * Get the eirpdBW property: Effective Isotropic Radiated Power (EIRP) in dBW. It is the required EIRP by the
      * customer. Not used yet.
-     *
+     * 
      * @return the eirpdBW value.
      */
     public Float eirpdBW() {
@@ -147,7 +151,7 @@ public final class ContactProfileLink {
     /**
      * Set the eirpdBW property: Effective Isotropic Radiated Power (EIRP) in dBW. It is the required EIRP by the
      * customer. Not used yet.
-     *
+     * 
      * @param eirpdBW the eirpdBW value to set.
      * @return the ContactProfileLink object itself.
      */
@@ -158,7 +162,7 @@ public final class ContactProfileLink {
 
     /**
      * Get the channels property: Contact Profile Link Channel.
-     *
+     * 
      * @return the channels value.
      */
     public List<ContactProfileLinkChannel> channels() {
@@ -167,7 +171,7 @@ public final class ContactProfileLink {
 
     /**
      * Set the channels property: Contact Profile Link Channel.
-     *
+     * 
      * @param channels the channels value to set.
      * @return the ContactProfileLink object itself.
      */
@@ -178,29 +182,25 @@ public final class ContactProfileLink {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model ContactProfileLink"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model ContactProfileLink"));
         }
         if (polarization() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property polarization in model ContactProfileLink"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property polarization in model ContactProfileLink"));
         }
         if (direction() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property direction in model ContactProfileLink"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property direction in model ContactProfileLink"));
         }
         if (channels() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property channels in model ContactProfileLink"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property channels in model ContactProfileLink"));
         } else {
             channels().forEach(e -> e.validate());
         }

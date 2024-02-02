@@ -9,7 +9,9 @@ import com.azure.resourcemanager.orbital.fluent.models.SpacecraftInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Response for the ListSpacecrafts API service call. */
+/**
+ * Response for the ListSpacecrafts API service call.
+ */
 @Fluent
 public final class SpacecraftListResult {
     /*
@@ -24,13 +26,15 @@ public final class SpacecraftListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of SpacecraftListResult class. */
+    /**
+     * Creates an instance of SpacecraftListResult class.
+     */
     public SpacecraftListResult() {
     }
 
     /**
      * Get the value property: A list of spacecraft resources in a resource group.
-     *
+     * 
      * @return the value value.
      */
     public List<SpacecraftInner> value() {
@@ -39,7 +43,7 @@ public final class SpacecraftListResult {
 
     /**
      * Set the value property: A list of spacecraft resources in a resource group.
-     *
+     * 
      * @param value the value value to set.
      * @return the SpacecraftListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class SpacecraftListResult {
 
     /**
      * Get the nextLink property: The URL to get the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class SpacecraftListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
