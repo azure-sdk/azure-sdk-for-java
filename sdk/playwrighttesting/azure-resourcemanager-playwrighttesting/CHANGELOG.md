@@ -1,6 +1,8 @@
 # Release History
 
-## 1.0.0-beta.2 (Unreleased)
+## 1.0.0-beta.1 (2024-02-02)
+
+- Azure Resource Manager Playwright Testing client library for Java. This package contains Microsoft Azure SDK for Playwright Testing Management SDK. Azure Playwright testing management service. Package tag package-2024-02-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
