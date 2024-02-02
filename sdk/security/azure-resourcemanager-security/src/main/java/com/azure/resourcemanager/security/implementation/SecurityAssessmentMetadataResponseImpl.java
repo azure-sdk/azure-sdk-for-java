@@ -8,7 +8,9 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.fluent.models.SecurityAssessmentMetadataResponseInner;
 import com.azure.resourcemanager.security.models.AssessmentType;
 import com.azure.resourcemanager.security.models.Categories;
+import com.azure.resourcemanager.security.models.CloudProviders;
 import com.azure.resourcemanager.security.models.ImplementationEffort;
+import com.azure.resourcemanager.security.models.ManagementProvider;
 import com.azure.resourcemanager.security.models.SecurityAssessmentMetadataPartnerData;
 import com.azure.resourcemanager.security.models.SecurityAssessmentMetadataPropertiesResponsePublishDates;
 import com.azure.resourcemanager.security.models.SecurityAssessmentMetadataResponse;
@@ -26,8 +28,7 @@ public final class SecurityAssessmentMetadataResponseImpl
 
     private final com.azure.resourcemanager.security.SecurityManager serviceManager;
 
-    SecurityAssessmentMetadataResponseImpl(
-        SecurityAssessmentMetadataResponseInner innerObject,
+    SecurityAssessmentMetadataResponseImpl(SecurityAssessmentMetadataResponseInner innerObject,
         com.azure.resourcemanager.security.SecurityManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -69,6 +70,23 @@ public final class SecurityAssessmentMetadataResponseImpl
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public List<CloudProviders> cloudProviders() {
+        List<CloudProviders> inner = this.innerModel().cloudProviders();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String remediationPolicy() {
+        return this.innerModel().remediationPolicy();
+    }
+
+    public ManagementProvider managementProvider() {
+        return this.innerModel().managementProvider();
     }
 
     public String displayName() {
@@ -140,54 +158,38 @@ public final class SecurityAssessmentMetadataResponseImpl
     private String assessmentMetadataName;
 
     public SecurityAssessmentMetadataResponse create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAssessmentsMetadatas()
-                .createInSubscriptionWithResponse(assessmentMetadataName, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAssessmentsMetadatas()
+            .createInSubscriptionWithResponse(assessmentMetadataName, this.innerModel(), Context.NONE).getValue();
         return this;
     }
 
     public SecurityAssessmentMetadataResponse create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAssessmentsMetadatas()
-                .createInSubscriptionWithResponse(assessmentMetadataName, this.innerModel(), context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAssessmentsMetadatas()
+            .createInSubscriptionWithResponse(assessmentMetadataName, this.innerModel(), context).getValue();
         return this;
     }
 
-    SecurityAssessmentMetadataResponseImpl(
-        String name, com.azure.resourcemanager.security.SecurityManager serviceManager) {
+    SecurityAssessmentMetadataResponseImpl(String name,
+        com.azure.resourcemanager.security.SecurityManager serviceManager) {
         this.innerObject = new SecurityAssessmentMetadataResponseInner();
         this.serviceManager = serviceManager;
         this.assessmentMetadataName = name;
     }
 
     public SecurityAssessmentMetadataResponse refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAssessmentsMetadatas()
-                .getInSubscriptionWithResponse(assessmentMetadataName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAssessmentsMetadatas()
+            .getInSubscriptionWithResponse(assessmentMetadataName, Context.NONE).getValue();
         return this;
     }
 
     public SecurityAssessmentMetadataResponse refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAssessmentsMetadatas()
-                .getInSubscriptionWithResponse(assessmentMetadataName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAssessmentsMetadatas()
+            .getInSubscriptionWithResponse(assessmentMetadataName, context).getValue();
         return this;
     }
 
-    public SecurityAssessmentMetadataResponseImpl withPublishDates(
-        SecurityAssessmentMetadataPropertiesResponsePublishDates publishDates) {
+    public SecurityAssessmentMetadataResponseImpl
+        withPublishDates(SecurityAssessmentMetadataPropertiesResponsePublishDates publishDates) {
         this.innerModel().withPublishDates(publishDates);
         return this;
     }
@@ -204,6 +206,21 @@ public final class SecurityAssessmentMetadataResponseImpl
 
     public SecurityAssessmentMetadataResponseImpl withTechniques(List<Techniques> techniques) {
         this.innerModel().withTechniques(techniques);
+        return this;
+    }
+
+    public SecurityAssessmentMetadataResponseImpl withCloudProviders(List<CloudProviders> cloudProviders) {
+        this.innerModel().withCloudProviders(cloudProviders);
+        return this;
+    }
+
+    public SecurityAssessmentMetadataResponseImpl withRemediationPolicy(String remediationPolicy) {
+        this.innerModel().withRemediationPolicy(remediationPolicy);
+        return this;
+    }
+
+    public SecurityAssessmentMetadataResponseImpl withManagementProvider(ManagementProvider managementProvider) {
+        this.innerModel().withManagementProvider(managementProvider);
         return this;
     }
 

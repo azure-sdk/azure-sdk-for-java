@@ -7,7 +7,9 @@ package com.azure.resourcemanager.security.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.security.models.AssessmentType;
 import com.azure.resourcemanager.security.models.Categories;
+import com.azure.resourcemanager.security.models.CloudProviders;
 import com.azure.resourcemanager.security.models.ImplementationEffort;
+import com.azure.resourcemanager.security.models.ManagementProvider;
 import com.azure.resourcemanager.security.models.SecurityAssessmentMetadataPartnerData;
 import com.azure.resourcemanager.security.models.SecurityAssessmentMetadataPropertiesResponsePublishDates;
 import com.azure.resourcemanager.security.models.Severity;
@@ -18,7 +20,9 @@ import com.azure.resourcemanager.security.models.UserImpact;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes properties of an assessment metadata response. */
+/**
+ * Describes properties of an assessment metadata response.
+ */
 @Fluent
 public final class SecurityAssessmentMetadataPropertiesResponse extends SecurityAssessmentMetadataProperties {
     /*
@@ -45,13 +49,33 @@ public final class SecurityAssessmentMetadataPropertiesResponse extends Security
     @JsonProperty(value = "techniques")
     private List<Techniques> techniques;
 
-    /** Creates an instance of SecurityAssessmentMetadataPropertiesResponse class. */
+    /*
+     * The cloudProviders property.
+     */
+    @JsonProperty(value = "cloudProviders")
+    private List<CloudProviders> cloudProviders;
+
+    /*
+     * The Azure Policy definition ID that is used for remediating the assessment
+     */
+    @JsonProperty(value = "remediationPolicy")
+    private String remediationPolicy;
+
+    /*
+     * The management provider of the assessment
+     */
+    @JsonProperty(value = "managementProvider")
+    private ManagementProvider managementProvider;
+
+    /**
+     * Creates an instance of SecurityAssessmentMetadataPropertiesResponse class.
+     */
     public SecurityAssessmentMetadataPropertiesResponse() {
     }
 
     /**
      * Get the publishDates property: The publishDates property.
-     *
+     * 
      * @return the publishDates value.
      */
     public SecurityAssessmentMetadataPropertiesResponsePublishDates publishDates() {
@@ -60,19 +84,19 @@ public final class SecurityAssessmentMetadataPropertiesResponse extends Security
 
     /**
      * Set the publishDates property: The publishDates property.
-     *
+     * 
      * @param publishDates the publishDates value to set.
      * @return the SecurityAssessmentMetadataPropertiesResponse object itself.
      */
-    public SecurityAssessmentMetadataPropertiesResponse withPublishDates(
-        SecurityAssessmentMetadataPropertiesResponsePublishDates publishDates) {
+    public SecurityAssessmentMetadataPropertiesResponse
+        withPublishDates(SecurityAssessmentMetadataPropertiesResponsePublishDates publishDates) {
         this.publishDates = publishDates;
         return this;
     }
 
     /**
      * Get the plannedDeprecationDate property: The plannedDeprecationDate property.
-     *
+     * 
      * @return the plannedDeprecationDate value.
      */
     public String plannedDeprecationDate() {
@@ -81,7 +105,7 @@ public final class SecurityAssessmentMetadataPropertiesResponse extends Security
 
     /**
      * Set the plannedDeprecationDate property: The plannedDeprecationDate property.
-     *
+     * 
      * @param plannedDeprecationDate the plannedDeprecationDate value to set.
      * @return the SecurityAssessmentMetadataPropertiesResponse object itself.
      */
@@ -92,7 +116,7 @@ public final class SecurityAssessmentMetadataPropertiesResponse extends Security
 
     /**
      * Get the tactics property: The tactics property.
-     *
+     * 
      * @return the tactics value.
      */
     public List<Tactics> tactics() {
@@ -101,7 +125,7 @@ public final class SecurityAssessmentMetadataPropertiesResponse extends Security
 
     /**
      * Set the tactics property: The tactics property.
-     *
+     * 
      * @param tactics the tactics value to set.
      * @return the SecurityAssessmentMetadataPropertiesResponse object itself.
      */
@@ -112,7 +136,7 @@ public final class SecurityAssessmentMetadataPropertiesResponse extends Security
 
     /**
      * Get the techniques property: The techniques property.
-     *
+     * 
      * @return the techniques value.
      */
     public List<Techniques> techniques() {
@@ -121,7 +145,7 @@ public final class SecurityAssessmentMetadataPropertiesResponse extends Security
 
     /**
      * Set the techniques property: The techniques property.
-     *
+     * 
      * @param techniques the techniques value to set.
      * @return the SecurityAssessmentMetadataPropertiesResponse object itself.
      */
@@ -130,88 +154,170 @@ public final class SecurityAssessmentMetadataPropertiesResponse extends Security
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the cloudProviders property: The cloudProviders property.
+     * 
+     * @return the cloudProviders value.
+     */
+    public List<CloudProviders> cloudProviders() {
+        return this.cloudProviders;
+    }
+
+    /**
+     * Set the cloudProviders property: The cloudProviders property.
+     * 
+     * @param cloudProviders the cloudProviders value to set.
+     * @return the SecurityAssessmentMetadataPropertiesResponse object itself.
+     */
+    public SecurityAssessmentMetadataPropertiesResponse withCloudProviders(List<CloudProviders> cloudProviders) {
+        this.cloudProviders = cloudProviders;
+        return this;
+    }
+
+    /**
+     * Get the remediationPolicy property: The Azure Policy definition ID that is used for remediating the assessment.
+     * 
+     * @return the remediationPolicy value.
+     */
+    public String remediationPolicy() {
+        return this.remediationPolicy;
+    }
+
+    /**
+     * Set the remediationPolicy property: The Azure Policy definition ID that is used for remediating the assessment.
+     * 
+     * @param remediationPolicy the remediationPolicy value to set.
+     * @return the SecurityAssessmentMetadataPropertiesResponse object itself.
+     */
+    public SecurityAssessmentMetadataPropertiesResponse withRemediationPolicy(String remediationPolicy) {
+        this.remediationPolicy = remediationPolicy;
+        return this;
+    }
+
+    /**
+     * Get the managementProvider property: The management provider of the assessment.
+     * 
+     * @return the managementProvider value.
+     */
+    public ManagementProvider managementProvider() {
+        return this.managementProvider;
+    }
+
+    /**
+     * Set the managementProvider property: The management provider of the assessment.
+     * 
+     * @param managementProvider the managementProvider value to set.
+     * @return the SecurityAssessmentMetadataPropertiesResponse object itself.
+     */
+    public SecurityAssessmentMetadataPropertiesResponse withManagementProvider(ManagementProvider managementProvider) {
+        this.managementProvider = managementProvider;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SecurityAssessmentMetadataPropertiesResponse withDisplayName(String displayName) {
         super.withDisplayName(displayName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SecurityAssessmentMetadataPropertiesResponse withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SecurityAssessmentMetadataPropertiesResponse withRemediationDescription(String remediationDescription) {
         super.withRemediationDescription(remediationDescription);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SecurityAssessmentMetadataPropertiesResponse withCategories(List<Categories> categories) {
         super.withCategories(categories);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SecurityAssessmentMetadataPropertiesResponse withSeverity(Severity severity) {
         super.withSeverity(severity);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SecurityAssessmentMetadataPropertiesResponse withUserImpact(UserImpact userImpact) {
         super.withUserImpact(userImpact);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public SecurityAssessmentMetadataPropertiesResponse withImplementationEffort(
-        ImplementationEffort implementationEffort) {
+    public SecurityAssessmentMetadataPropertiesResponse
+        withImplementationEffort(ImplementationEffort implementationEffort) {
         super.withImplementationEffort(implementationEffort);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SecurityAssessmentMetadataPropertiesResponse withThreats(List<Threats> threats) {
         super.withThreats(threats);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SecurityAssessmentMetadataPropertiesResponse withPreview(Boolean preview) {
         super.withPreview(preview);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SecurityAssessmentMetadataPropertiesResponse withAssessmentType(AssessmentType assessmentType) {
         super.withAssessmentType(assessmentType);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public SecurityAssessmentMetadataPropertiesResponse withPartnerData(
-        SecurityAssessmentMetadataPartnerData partnerData) {
+    public SecurityAssessmentMetadataPropertiesResponse
+        withPartnerData(SecurityAssessmentMetadataPartnerData partnerData) {
         super.withPartnerData(partnerData);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

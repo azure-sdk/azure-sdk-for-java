@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Describes properties of an assessment. */
+/**
+ * Describes properties of an assessment.
+ */
 @Fluent
 public class SecurityAssessmentPropertiesBase {
     /*
@@ -51,13 +53,21 @@ public class SecurityAssessmentPropertiesBase {
     @JsonProperty(value = "partnersData")
     private SecurityAssessmentPartnerData partnersData;
 
-    /** Creates an instance of SecurityAssessmentPropertiesBase class. */
+    /*
+     * The risk properties of the assessment
+     */
+    @JsonProperty(value = "risk")
+    private AssessmentRisk risk;
+
+    /**
+     * Creates an instance of SecurityAssessmentPropertiesBase class.
+     */
     public SecurityAssessmentPropertiesBase() {
     }
 
     /**
      * Get the resourceDetails property: Details of the resource that was assessed.
-     *
+     * 
      * @return the resourceDetails value.
      */
     public ResourceDetails resourceDetails() {
@@ -66,7 +76,7 @@ public class SecurityAssessmentPropertiesBase {
 
     /**
      * Set the resourceDetails property: Details of the resource that was assessed.
-     *
+     * 
      * @param resourceDetails the resourceDetails value to set.
      * @return the SecurityAssessmentPropertiesBase object itself.
      */
@@ -77,7 +87,7 @@ public class SecurityAssessmentPropertiesBase {
 
     /**
      * Get the displayName property: User friendly display name of the assessment.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -86,7 +96,7 @@ public class SecurityAssessmentPropertiesBase {
 
     /**
      * Get the additionalData property: Additional data regarding the assessment.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, String> additionalData() {
@@ -95,7 +105,7 @@ public class SecurityAssessmentPropertiesBase {
 
     /**
      * Set the additionalData property: Additional data regarding the assessment.
-     *
+     * 
      * @param additionalData the additionalData value to set.
      * @return the SecurityAssessmentPropertiesBase object itself.
      */
@@ -106,7 +116,7 @@ public class SecurityAssessmentPropertiesBase {
 
     /**
      * Get the links property: Links relevant to the assessment.
-     *
+     * 
      * @return the links value.
      */
     public AssessmentLinks links() {
@@ -115,7 +125,7 @@ public class SecurityAssessmentPropertiesBase {
 
     /**
      * Get the metadata property: Describes properties of an assessment metadata.
-     *
+     * 
      * @return the metadata value.
      */
     public SecurityAssessmentMetadataProperties metadata() {
@@ -124,7 +134,7 @@ public class SecurityAssessmentPropertiesBase {
 
     /**
      * Set the metadata property: Describes properties of an assessment metadata.
-     *
+     * 
      * @param metadata the metadata value to set.
      * @return the SecurityAssessmentPropertiesBase object itself.
      */
@@ -135,7 +145,7 @@ public class SecurityAssessmentPropertiesBase {
 
     /**
      * Get the partnersData property: Data regarding 3rd party partner integration.
-     *
+     * 
      * @return the partnersData value.
      */
     public SecurityAssessmentPartnerData partnersData() {
@@ -144,7 +154,7 @@ public class SecurityAssessmentPropertiesBase {
 
     /**
      * Set the partnersData property: Data regarding 3rd party partner integration.
-     *
+     * 
      * @param partnersData the partnersData value to set.
      * @return the SecurityAssessmentPropertiesBase object itself.
      */
@@ -154,16 +164,34 @@ public class SecurityAssessmentPropertiesBase {
     }
 
     /**
+     * Get the risk property: The risk properties of the assessment.
+     * 
+     * @return the risk value.
+     */
+    public AssessmentRisk risk() {
+        return this.risk;
+    }
+
+    /**
+     * Set the risk property: The risk properties of the assessment.
+     * 
+     * @param risk the risk value to set.
+     * @return the SecurityAssessmentPropertiesBase object itself.
+     */
+    public SecurityAssessmentPropertiesBase withRisk(AssessmentRisk risk) {
+        this.risk = risk;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (resourceDetails() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property resourceDetails in model SecurityAssessmentPropertiesBase"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property resourceDetails in model SecurityAssessmentPropertiesBase"));
         } else {
             resourceDetails().validate();
         }
@@ -175,6 +203,9 @@ public class SecurityAssessmentPropertiesBase {
         }
         if (partnersData() != null) {
             partnersData().validate();
+        }
+        if (risk() != null) {
+            risk().validate();
         }
     }
 

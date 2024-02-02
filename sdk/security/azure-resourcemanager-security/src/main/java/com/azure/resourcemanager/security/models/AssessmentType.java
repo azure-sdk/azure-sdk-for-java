@@ -13,21 +13,49 @@ import java.util.Collection;
  * Policy definition.
  */
 public final class AssessmentType extends ExpandableStringEnum<AssessmentType> {
-    /** Static value BuiltIn for AssessmentType. */
+    /**
+     * Static value BuiltIn for AssessmentType.
+     */
     public static final AssessmentType BUILT_IN = fromString("BuiltIn");
 
-    /** Static value CustomPolicy for AssessmentType. */
+    /**
+     * Static value CustomPolicy for AssessmentType.
+     */
     public static final AssessmentType CUSTOM_POLICY = fromString("CustomPolicy");
 
-    /** Static value CustomerManaged for AssessmentType. */
+    /**
+     * Static value CustomerManaged for AssessmentType.
+     */
     public static final AssessmentType CUSTOMER_MANAGED = fromString("CustomerManaged");
 
-    /** Static value VerifiedPartner for AssessmentType. */
+    /**
+     * Static value BuiltInPolicy for AssessmentType.
+     */
+    public static final AssessmentType BUILT_IN_POLICY = fromString("BuiltInPolicy");
+
+    /**
+     * Static value VerifiedPartner for AssessmentType.
+     */
     public static final AssessmentType VERIFIED_PARTNER = fromString("VerifiedPartner");
 
     /**
+     * Static value ManualBuiltInPolicy for AssessmentType.
+     */
+    public static final AssessmentType MANUAL_BUILT_IN_POLICY = fromString("ManualBuiltInPolicy");
+
+    /**
+     * Static value ManualBuiltIn for AssessmentType.
+     */
+    public static final AssessmentType MANUAL_BUILT_IN = fromString("ManualBuiltIn");
+
+    /**
+     * Static value ManualCustomPolicy for AssessmentType.
+     */
+    public static final AssessmentType MANUAL_CUSTOM_POLICY = fromString("ManualCustomPolicy");
+
+    /**
      * Creates a new instance of AssessmentType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -36,7 +64,7 @@ public final class AssessmentType extends ExpandableStringEnum<AssessmentType> {
 
     /**
      * Creates or finds a AssessmentType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding AssessmentType.
      */
@@ -47,7 +75,7 @@ public final class AssessmentType extends ExpandableStringEnum<AssessmentType> {
 
     /**
      * Gets known AssessmentType values.
-     *
+     * 
      * @return known AssessmentType values.
      */
     public static Collection<AssessmentType> values() {

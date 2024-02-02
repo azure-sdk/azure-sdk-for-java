@@ -10,7 +10,9 @@ import com.azure.resourcemanager.security.models.SecurityContactPropertiesAlertN
 import com.azure.resourcemanager.security.models.SecurityContactPropertiesNotificationsByRole;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Contact details and configurations for notifications coming from Microsoft Defender for Cloud. */
+/**
+ * Contact details and configurations for notifications coming from Microsoft Defender for Cloud.
+ */
 @Fluent
 public final class SecurityContactInner extends ProxyResource {
     /*
@@ -19,13 +21,15 @@ public final class SecurityContactInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private SecurityContactProperties innerProperties;
 
-    /** Creates an instance of SecurityContactInner class. */
+    /**
+     * Creates an instance of SecurityContactInner class.
+     */
     public SecurityContactInner() {
     }
 
     /**
      * Get the innerProperties property: Security contact data.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SecurityContactProperties innerProperties() {
@@ -35,7 +39,7 @@ public final class SecurityContactInner extends ProxyResource {
     /**
      * Get the emails property: List of email addresses which will get notifications from Microsoft Defender for Cloud
      * by the configurations defined in this security contact.
-     *
+     * 
      * @return the emails value.
      */
     public String emails() {
@@ -45,7 +49,7 @@ public final class SecurityContactInner extends ProxyResource {
     /**
      * Set the emails property: List of email addresses which will get notifications from Microsoft Defender for Cloud
      * by the configurations defined in this security contact.
-     *
+     * 
      * @param emails the emails value to set.
      * @return the SecurityContactInner object itself.
      */
@@ -59,7 +63,7 @@ public final class SecurityContactInner extends ProxyResource {
 
     /**
      * Get the phone property: The security contact's phone number.
-     *
+     * 
      * @return the phone value.
      */
     public String phone() {
@@ -68,7 +72,7 @@ public final class SecurityContactInner extends ProxyResource {
 
     /**
      * Set the phone property: The security contact's phone number.
-     *
+     * 
      * @param phone the phone value to set.
      * @return the SecurityContactInner object itself.
      */
@@ -82,7 +86,7 @@ public final class SecurityContactInner extends ProxyResource {
 
     /**
      * Get the alertNotifications property: Defines whether to send email notifications about new security alerts.
-     *
+     * 
      * @return the alertNotifications value.
      */
     public SecurityContactPropertiesAlertNotifications alertNotifications() {
@@ -91,7 +95,7 @@ public final class SecurityContactInner extends ProxyResource {
 
     /**
      * Set the alertNotifications property: Defines whether to send email notifications about new security alerts.
-     *
+     * 
      * @param alertNotifications the alertNotifications value to set.
      * @return the SecurityContactInner object itself.
      */
@@ -106,7 +110,7 @@ public final class SecurityContactInner extends ProxyResource {
     /**
      * Get the notificationsByRole property: Defines whether to send email notifications from Microsoft Defender for
      * Cloud to persons with specific RBAC roles on the subscription.
-     *
+     * 
      * @return the notificationsByRole value.
      */
     public SecurityContactPropertiesNotificationsByRole notificationsByRole() {
@@ -116,12 +120,12 @@ public final class SecurityContactInner extends ProxyResource {
     /**
      * Set the notificationsByRole property: Defines whether to send email notifications from Microsoft Defender for
      * Cloud to persons with specific RBAC roles on the subscription.
-     *
+     * 
      * @param notificationsByRole the notificationsByRole value to set.
      * @return the SecurityContactInner object itself.
      */
-    public SecurityContactInner withNotificationsByRole(
-        SecurityContactPropertiesNotificationsByRole notificationsByRole) {
+    public SecurityContactInner
+        withNotificationsByRole(SecurityContactPropertiesNotificationsByRole notificationsByRole) {
         if (this.innerProperties() == null) {
             this.innerProperties = new SecurityContactProperties();
         }
@@ -131,7 +135,7 @@ public final class SecurityContactInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

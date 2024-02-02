@@ -8,6 +8,7 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.fluent.models.SecurityAssessmentMetadataProperties;
 import com.azure.resourcemanager.security.fluent.models.SecurityAssessmentResponseInner;
 import com.azure.resourcemanager.security.models.AssessmentLinks;
+import com.azure.resourcemanager.security.models.AssessmentRisk;
 import com.azure.resourcemanager.security.models.AssessmentStatus;
 import com.azure.resourcemanager.security.models.AssessmentStatusResponse;
 import com.azure.resourcemanager.security.models.ExpandEnum;
@@ -69,6 +70,10 @@ public final class SecurityAssessmentResponseImpl
         return this.innerModel().partnersData();
     }
 
+    public AssessmentRisk risk() {
+        return this.innerModel().risk();
+    }
+
     public SecurityAssessmentResponseInner innerModel() {
         return this.innerObject;
     }
@@ -91,22 +96,14 @@ public final class SecurityAssessmentResponseImpl
     }
 
     public SecurityAssessmentResponse create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAssessments()
-                .createOrUpdateWithResponse(resourceId, assessmentName, createAssessment, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAssessments()
+            .createOrUpdateWithResponse(resourceId, assessmentName, createAssessment, Context.NONE).getValue();
         return this;
     }
 
     public SecurityAssessmentResponse create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAssessments()
-                .createOrUpdateWithResponse(resourceId, assessmentName, createAssessment, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAssessments()
+            .createOrUpdateWithResponse(resourceId, assessmentName, createAssessment, context).getValue();
         return this;
     }
 
@@ -123,63 +120,38 @@ public final class SecurityAssessmentResponseImpl
     }
 
     public SecurityAssessmentResponse apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAssessments()
-                .createOrUpdateWithResponse(resourceId, assessmentName, updateAssessment, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAssessments()
+            .createOrUpdateWithResponse(resourceId, assessmentName, updateAssessment, Context.NONE).getValue();
         return this;
     }
 
     public SecurityAssessmentResponse apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAssessments()
-                .createOrUpdateWithResponse(resourceId, assessmentName, updateAssessment, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAssessments()
+            .createOrUpdateWithResponse(resourceId, assessmentName, updateAssessment, context).getValue();
         return this;
     }
 
-    SecurityAssessmentResponseImpl(
-        SecurityAssessmentResponseInner innerObject,
+    SecurityAssessmentResponseImpl(SecurityAssessmentResponseInner innerObject,
         com.azure.resourcemanager.security.SecurityManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceId =
-            Utils
-                .getValueFromIdByParameterName(
-                    innerObject.id(),
-                    "/{resourceId}/providers/Microsoft.Security/assessments/{assessmentName}",
-                    "resourceId");
-        this.assessmentName =
-            Utils
-                .getValueFromIdByParameterName(
-                    innerObject.id(),
-                    "/{resourceId}/providers/Microsoft.Security/assessments/{assessmentName}",
-                    "assessmentName");
+        this.resourceId = ResourceManagerUtils.getValueFromIdByParameterName(innerObject.id(),
+            "/{resourceId}/providers/Microsoft.Security/assessments/{assessmentName}", "resourceId");
+        this.assessmentName = ResourceManagerUtils.getValueFromIdByParameterName(innerObject.id(),
+            "/{resourceId}/providers/Microsoft.Security/assessments/{assessmentName}", "assessmentName");
     }
 
     public SecurityAssessmentResponse refresh() {
         ExpandEnum localExpand = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAssessments()
-                .getWithResponse(resourceId, assessmentName, localExpand, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAssessments()
+            .getWithResponse(resourceId, assessmentName, localExpand, Context.NONE).getValue();
         return this;
     }
 
     public SecurityAssessmentResponse refresh(Context context) {
         ExpandEnum localExpand = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAssessments()
-                .getWithResponse(resourceId, assessmentName, localExpand, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAssessments()
+            .getWithResponse(resourceId, assessmentName, localExpand, context).getValue();
         return this;
     }
 
@@ -229,6 +201,16 @@ public final class SecurityAssessmentResponseImpl
             return this;
         } else {
             this.updateAssessment.withPartnersData(partnersData);
+            return this;
+        }
+    }
+
+    public SecurityAssessmentResponseImpl withRisk(AssessmentRisk risk) {
+        if (isInCreateMode()) {
+            this.createAssessment.withRisk(risk);
+            return this;
+        } else {
+            this.updateAssessment.withRisk(risk);
             return this;
         }
     }
