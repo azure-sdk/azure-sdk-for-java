@@ -6,18 +6,20 @@ package com.azure.resourcemanager.sphere.models;
 
 import com.azure.resourcemanager.sphere.fluent.models.CountDeviceResponseInner;
 
-/** An immutable client-side representation of CountDeviceResponse. */
+/**
+ * An immutable client-side representation of CountDeviceResponse.
+ */
 public interface CountDeviceResponse {
     /**
      * Gets the value property: Number of children resources in parent resource.
-     *
+     * 
      * @return the value value.
      */
     int value();
 
     /**
      * Gets the inner com.azure.resourcemanager.sphere.fluent.models.CountDeviceResponseInner object.
-     *
+     * 
      * @return the inner object.
      */
     CountDeviceResponseInner innerModel();
