@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The PlanData model. */
+/**
+ * The PlanData model.
+ */
 @Fluent
 public final class PlanData {
     /*
@@ -35,13 +37,15 @@ public final class PlanData {
     @JsonProperty(value = "effectiveDate")
     private OffsetDateTime effectiveDate;
 
-    /** Creates an instance of PlanData class. */
+    /**
+     * Creates an instance of PlanData class.
+     */
     public PlanData() {
     }
 
     /**
      * Get the usageType property: different usage type like PAYG/COMMITTED. this could be enum.
-     *
+     * 
      * @return the usageType value.
      */
     public String usageType() {
@@ -50,7 +54,7 @@ public final class PlanData {
 
     /**
      * Set the usageType property: different usage type like PAYG/COMMITTED. this could be enum.
-     *
+     * 
      * @param usageType the usageType value to set.
      * @return the PlanData object itself.
      */
@@ -61,7 +65,7 @@ public final class PlanData {
 
     /**
      * Get the billingCycle property: different billing cycles like MONTHLY/WEEKLY. this could be enum.
-     *
+     * 
      * @return the billingCycle value.
      */
     public String billingCycle() {
@@ -70,7 +74,7 @@ public final class PlanData {
 
     /**
      * Set the billingCycle property: different billing cycles like MONTHLY/WEEKLY. this could be enum.
-     *
+     * 
      * @param billingCycle the billingCycle value to set.
      * @return the PlanData object itself.
      */
@@ -81,7 +85,7 @@ public final class PlanData {
 
     /**
      * Get the planDetails property: plan id as published by Logz.
-     *
+     * 
      * @return the planDetails value.
      */
     public String planDetails() {
@@ -90,7 +94,7 @@ public final class PlanData {
 
     /**
      * Set the planDetails property: plan id as published by Logz.
-     *
+     * 
      * @param planDetails the planDetails value to set.
      * @return the PlanData object itself.
      */
@@ -101,7 +105,7 @@ public final class PlanData {
 
     /**
      * Get the effectiveDate property: date when plan was applied.
-     *
+     * 
      * @return the effectiveDate value.
      */
     public OffsetDateTime effectiveDate() {
@@ -110,7 +114,7 @@ public final class PlanData {
 
     /**
      * Set the effectiveDate property: date when plan was applied.
-     *
+     * 
      * @param effectiveDate the effectiveDate value to set.
      * @return the PlanData object itself.
      */
@@ -121,7 +125,7 @@ public final class PlanData {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

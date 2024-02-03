@@ -7,7 +7,9 @@ package com.azure.resourcemanager.logz.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties specific to the monitor resource. */
+/**
+ * Properties specific to the monitor resource.
+ */
 @Fluent
 public final class MonitorProperties {
     /*
@@ -59,13 +61,15 @@ public final class MonitorProperties {
     @JsonProperty(value = "liftrResourcePreference", access = JsonProperty.Access.WRITE_ONLY)
     private Integer liftrResourcePreference;
 
-    /** Creates an instance of MonitorProperties class. */
+    /**
+     * Creates an instance of MonitorProperties class.
+     */
     public MonitorProperties() {
     }
 
     /**
      * Get the provisioningState property: Flag specifying if the resource provisioning state as tracked by ARM.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -74,7 +78,7 @@ public final class MonitorProperties {
 
     /**
      * Get the monitoringStatus property: Flag specifying if the resource monitoring is enabled or disabled.
-     *
+     * 
      * @return the monitoringStatus value.
      */
     public MonitoringStatus monitoringStatus() {
@@ -83,7 +87,7 @@ public final class MonitorProperties {
 
     /**
      * Set the monitoringStatus property: Flag specifying if the resource monitoring is enabled or disabled.
-     *
+     * 
      * @param monitoringStatus the monitoringStatus value to set.
      * @return the MonitorProperties object itself.
      */
@@ -95,7 +99,7 @@ public final class MonitorProperties {
     /**
      * Get the marketplaceSubscriptionStatus property: Flag specifying the Marketplace Subscription Status of the
      * resource. If payment is not made in time, the resource will go in Suspended state.
-     *
+     * 
      * @return the marketplaceSubscriptionStatus value.
      */
     public MarketplaceSubscriptionStatus marketplaceSubscriptionStatus() {
@@ -105,19 +109,19 @@ public final class MonitorProperties {
     /**
      * Set the marketplaceSubscriptionStatus property: Flag specifying the Marketplace Subscription Status of the
      * resource. If payment is not made in time, the resource will go in Suspended state.
-     *
+     * 
      * @param marketplaceSubscriptionStatus the marketplaceSubscriptionStatus value to set.
      * @return the MonitorProperties object itself.
      */
-    public MonitorProperties withMarketplaceSubscriptionStatus(
-        MarketplaceSubscriptionStatus marketplaceSubscriptionStatus) {
+    public MonitorProperties
+        withMarketplaceSubscriptionStatus(MarketplaceSubscriptionStatus marketplaceSubscriptionStatus) {
         this.marketplaceSubscriptionStatus = marketplaceSubscriptionStatus;
         return this;
     }
 
     /**
      * Get the logzOrganizationProperties property: The logzOrganizationProperties property.
-     *
+     * 
      * @return the logzOrganizationProperties value.
      */
     public LogzOrganizationProperties logzOrganizationProperties() {
@@ -126,7 +130,7 @@ public final class MonitorProperties {
 
     /**
      * Set the logzOrganizationProperties property: The logzOrganizationProperties property.
-     *
+     * 
      * @param logzOrganizationProperties the logzOrganizationProperties value to set.
      * @return the MonitorProperties object itself.
      */
@@ -137,7 +141,7 @@ public final class MonitorProperties {
 
     /**
      * Get the userInfo property: The userInfo property.
-     *
+     * 
      * @return the userInfo value.
      */
     public UserInfo userInfo() {
@@ -146,7 +150,7 @@ public final class MonitorProperties {
 
     /**
      * Set the userInfo property: The userInfo property.
-     *
+     * 
      * @param userInfo the userInfo value to set.
      * @return the MonitorProperties object itself.
      */
@@ -157,7 +161,7 @@ public final class MonitorProperties {
 
     /**
      * Get the planData property: The planData property.
-     *
+     * 
      * @return the planData value.
      */
     public PlanData planData() {
@@ -166,7 +170,7 @@ public final class MonitorProperties {
 
     /**
      * Set the planData property: The planData property.
-     *
+     * 
      * @param planData the planData value to set.
      * @return the MonitorProperties object itself.
      */
@@ -177,7 +181,7 @@ public final class MonitorProperties {
 
     /**
      * Get the liftrResourceCategory property: The liftrResourceCategory property.
-     *
+     * 
      * @return the liftrResourceCategory value.
      */
     public LiftrResourceCategories liftrResourceCategory() {
@@ -186,7 +190,7 @@ public final class MonitorProperties {
 
     /**
      * Get the liftrResourcePreference property: The priority of the resource.
-     *
+     * 
      * @return the liftrResourcePreference value.
      */
     public Integer liftrResourcePreference() {
@@ -195,7 +199,7 @@ public final class MonitorProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

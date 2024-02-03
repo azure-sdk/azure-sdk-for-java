@@ -9,7 +9,9 @@ import com.azure.resourcemanager.logz.fluent.models.UserRoleResponseInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Response for list of user's role for Logz.io account. */
+/**
+ * Response for list of user's role for Logz.io account.
+ */
 @Fluent
 public final class UserRoleListResponse {
     /*
@@ -24,13 +26,15 @@ public final class UserRoleListResponse {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of UserRoleListResponse class. */
+    /**
+     * Creates an instance of UserRoleListResponse class.
+     */
     public UserRoleListResponse() {
     }
 
     /**
      * Get the value property: List of user roles for Logz.io account.
-     *
+     * 
      * @return the value value.
      */
     public List<UserRoleResponseInner> value() {
@@ -39,7 +43,7 @@ public final class UserRoleListResponse {
 
     /**
      * Set the value property: List of user roles for Logz.io account.
-     *
+     * 
      * @param value the value value to set.
      * @return the UserRoleListResponse object itself.
      */
@@ -50,7 +54,7 @@ public final class UserRoleListResponse {
 
     /**
      * Get the nextLink property: Link to the next set of results, if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class UserRoleListResponse {
 
     /**
      * Set the nextLink property: Link to the next set of results, if any.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the UserRoleListResponse object itself.
      */
@@ -70,7 +74,7 @@ public final class UserRoleListResponse {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
