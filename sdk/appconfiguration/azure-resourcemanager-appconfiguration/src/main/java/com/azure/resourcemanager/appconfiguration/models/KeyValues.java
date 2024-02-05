@@ -7,31 +7,33 @@ package com.azure.resourcemanager.appconfiguration.models;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of KeyValues. */
+/**
+ * Resource collection API of KeyValues.
+ */
 public interface KeyValues {
     /**
      * Gets the properties of the specified key-value.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
+     * optional.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the properties of the specified key-value along with {@link Response}.
      */
-    Response<KeyValue> getWithResponse(
-        String resourceGroupName, String configStoreName, String keyValueName, Context context);
+    Response<KeyValue> getWithResponse(String resourceGroupName, String configStoreName, String keyValueName,
+        Context context);
 
     /**
      * Gets the properties of the specified key-value.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
+     * optional.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -41,11 +43,11 @@ public interface KeyValues {
 
     /**
      * Deletes a key-value.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
+     * optional.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -54,11 +56,11 @@ public interface KeyValues {
 
     /**
      * Deletes a key-value.
-     *
+     * 
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
+     * optional.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -68,7 +70,7 @@ public interface KeyValues {
 
     /**
      * Gets the properties of the specified key-value.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -79,7 +81,7 @@ public interface KeyValues {
 
     /**
      * Gets the properties of the specified key-value.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -91,7 +93,7 @@ public interface KeyValues {
 
     /**
      * Deletes a key-value.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -101,7 +103,7 @@ public interface KeyValues {
 
     /**
      * Deletes a key-value.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -112,7 +114,7 @@ public interface KeyValues {
 
     /**
      * Begins definition for a new KeyValue resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new KeyValue definition.
      */

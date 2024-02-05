@@ -14,7 +14,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** The properties of a configuration store. */
+/**
+ * The properties of a configuration store.
+ */
 @Fluent
 public final class ConfigurationStoreProperties {
     /*
@@ -77,13 +79,15 @@ public final class ConfigurationStoreProperties {
     @JsonProperty(value = "createMode")
     private CreateMode createMode;
 
-    /** Creates an instance of ConfigurationStoreProperties class. */
+    /**
+     * Creates an instance of ConfigurationStoreProperties class.
+     */
     public ConfigurationStoreProperties() {
     }
 
     /**
      * Get the provisioningState property: The provisioning state of the configuration store.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -92,7 +96,7 @@ public final class ConfigurationStoreProperties {
 
     /**
      * Get the creationDate property: The creation date of configuration store.
-     *
+     * 
      * @return the creationDate value.
      */
     public OffsetDateTime creationDate() {
@@ -101,7 +105,7 @@ public final class ConfigurationStoreProperties {
 
     /**
      * Get the endpoint property: The DNS endpoint where the configuration store API will be available.
-     *
+     * 
      * @return the endpoint value.
      */
     public String endpoint() {
@@ -110,7 +114,7 @@ public final class ConfigurationStoreProperties {
 
     /**
      * Get the encryption property: The encryption settings of the configuration store.
-     *
+     * 
      * @return the encryption value.
      */
     public EncryptionProperties encryption() {
@@ -119,7 +123,7 @@ public final class ConfigurationStoreProperties {
 
     /**
      * Set the encryption property: The encryption settings of the configuration store.
-     *
+     * 
      * @param encryption the encryption value to set.
      * @return the ConfigurationStoreProperties object itself.
      */
@@ -131,7 +135,7 @@ public final class ConfigurationStoreProperties {
     /**
      * Get the privateEndpointConnections property: The list of private endpoint connections that are set up for this
      * resource.
-     *
+     * 
      * @return the privateEndpointConnections value.
      */
     public List<PrivateEndpointConnectionReference> privateEndpointConnections() {
@@ -139,9 +143,9 @@ public final class ConfigurationStoreProperties {
     }
 
     /**
-     * Get the publicNetworkAccess property: Control permission for data plane traffic coming from public networks while
-     * private endpoint is enabled.
-     *
+     * Get the publicNetworkAccess property: Control permission for data plane traffic coming from public networks
+     * while private endpoint is enabled.
+     * 
      * @return the publicNetworkAccess value.
      */
     public PublicNetworkAccess publicNetworkAccess() {
@@ -149,9 +153,9 @@ public final class ConfigurationStoreProperties {
     }
 
     /**
-     * Set the publicNetworkAccess property: Control permission for data plane traffic coming from public networks while
-     * private endpoint is enabled.
-     *
+     * Set the publicNetworkAccess property: Control permission for data plane traffic coming from public networks
+     * while private endpoint is enabled.
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the ConfigurationStoreProperties object itself.
      */
@@ -162,7 +166,7 @@ public final class ConfigurationStoreProperties {
 
     /**
      * Get the disableLocalAuth property: Disables all authentication methods other than AAD authentication.
-     *
+     * 
      * @return the disableLocalAuth value.
      */
     public Boolean disableLocalAuth() {
@@ -171,7 +175,7 @@ public final class ConfigurationStoreProperties {
 
     /**
      * Set the disableLocalAuth property: Disables all authentication methods other than AAD authentication.
-     *
+     * 
      * @param disableLocalAuth the disableLocalAuth value to set.
      * @return the ConfigurationStoreProperties object itself.
      */
@@ -183,7 +187,7 @@ public final class ConfigurationStoreProperties {
     /**
      * Get the softDeleteRetentionInDays property: The amount of time in days that the configuration store will be
      * retained when it is soft deleted.
-     *
+     * 
      * @return the softDeleteRetentionInDays value.
      */
     public Integer softDeleteRetentionInDays() {
@@ -193,7 +197,7 @@ public final class ConfigurationStoreProperties {
     /**
      * Set the softDeleteRetentionInDays property: The amount of time in days that the configuration store will be
      * retained when it is soft deleted.
-     *
+     * 
      * @param softDeleteRetentionInDays the softDeleteRetentionInDays value to set.
      * @return the ConfigurationStoreProperties object itself.
      */
@@ -205,7 +209,7 @@ public final class ConfigurationStoreProperties {
     /**
      * Get the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
      * configuration store.
-     *
+     * 
      * @return the enablePurgeProtection value.
      */
     public Boolean enablePurgeProtection() {
@@ -215,7 +219,7 @@ public final class ConfigurationStoreProperties {
     /**
      * Set the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
      * configuration store.
-     *
+     * 
      * @param enablePurgeProtection the enablePurgeProtection value to set.
      * @return the ConfigurationStoreProperties object itself.
      */
@@ -226,7 +230,7 @@ public final class ConfigurationStoreProperties {
 
     /**
      * Get the createMode property: Indicates whether the configuration store need to be recovered.
-     *
+     * 
      * @return the createMode value.
      */
     public CreateMode createMode() {
@@ -235,7 +239,7 @@ public final class ConfigurationStoreProperties {
 
     /**
      * Set the createMode property: Indicates whether the configuration store need to be recovered.
-     *
+     * 
      * @param createMode the createMode value to set.
      * @return the ConfigurationStoreProperties object itself.
      */
@@ -246,7 +250,7 @@ public final class ConfigurationStoreProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

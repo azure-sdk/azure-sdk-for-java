@@ -7,27 +7,27 @@ package com.azure.resourcemanager.appconfiguration.generated;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for KeyValues CreateOrUpdate. */
+/**
+ * Samples for KeyValues CreateOrUpdate.
+ */
 public final class KeyValuesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2023-03-01/examples/ConfigurationStoresCreateKeyValue.json
+     * x-ms-original-file:
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2022-05-01/examples/
+     * ConfigurationStoresCreateKeyValue.json
      */
     /**
      * Sample code: KeyValues_CreateOrUpdate.
-     *
+     * 
      * @param manager Entry point to AppConfigurationManager.
      */
-    public static void keyValuesCreateOrUpdate(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager
-            .keyValues()
-            .define("myKey$myLabel")
-            .withExistingConfigurationStore("myResourceGroup", "contoso")
-            .withTags(mapOf("tag1", "tagValue1", "tag2", "tagValue2"))
-            .withValue("myValue")
-            .create();
+    public static void
+        keyValuesCreateOrUpdate(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        manager.keyValues().define("myKey$myLabel").withExistingConfigurationStore("myResourceGroup", "contoso")
+            .withTags(mapOf("tag1", "tagValue1", "tag2", "tagValue2")).withValue("myValue").create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
