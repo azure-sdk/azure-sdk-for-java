@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/liftrastronomer/ci.yml
+      - sdk/liftrastronomer/azure-resourcemanager-liftrastronomer/
+    exclude:
+      - sdk/liftrastronomer/pom.xml
+      - sdk/liftrastronomer/azure-resourcemanager-liftrastronomer/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/liftrastronomer/ci.yml
+      - sdk/liftrastronomer/azure-resourcemanager-liftrastronomer/
+    exclude:
+      - sdk/liftrastronomer/pom.xml
+      - sdk/liftrastronomer/azure-resourcemanager-liftrastronomer/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerliftrastronomer
+    displayName: azure-resourcemanager-liftrastronomer
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: liftrastronomer
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-liftrastronomer
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerliftrastronomer
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerliftrastronomer }}
