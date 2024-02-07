@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.elastic.generated;
 
-/** Samples for VMIngestion Details. */
+/**
+ * Samples for VMIngestion Details.
+ */
 public final class VMIngestionDetailsSamples {
     /*
-     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2023-02-01-preview/examples/VMIngestion_Details.json
+     * x-ms-original-file:
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2024-01-01-preview/examples/VMIngestion_Details.
+     * json
      */
     /**
      * Sample code: VMIngestion_Details.
-     *
+     * 
      * @param manager Entry point to ElasticManager.
      */
     public static void vMIngestionDetails(com.azure.resourcemanager.elastic.ElasticManager manager) {

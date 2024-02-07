@@ -13,7 +13,9 @@ import com.azure.resourcemanager.elastic.models.ResourceSku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Monitor resource. */
+/**
+ * Monitor resource.
+ */
 @Fluent
 public final class ElasticMonitorResourceInner extends Resource {
     /*
@@ -40,13 +42,15 @@ public final class ElasticMonitorResourceInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ElasticMonitorResourceInner class. */
+    /**
+     * Creates an instance of ElasticMonitorResourceInner class.
+     */
     public ElasticMonitorResourceInner() {
     }
 
     /**
      * Get the sku property: SKU of the monitor resource.
-     *
+     * 
      * @return the sku value.
      */
     public ResourceSku sku() {
@@ -55,7 +59,7 @@ public final class ElasticMonitorResourceInner extends Resource {
 
     /**
      * Set the sku property: SKU of the monitor resource.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the ElasticMonitorResourceInner object itself.
      */
@@ -66,7 +70,7 @@ public final class ElasticMonitorResourceInner extends Resource {
 
     /**
      * Get the properties property: Properties of the monitor resource.
-     *
+     * 
      * @return the properties value.
      */
     public MonitorProperties properties() {
@@ -75,7 +79,7 @@ public final class ElasticMonitorResourceInner extends Resource {
 
     /**
      * Set the properties property: Properties of the monitor resource.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ElasticMonitorResourceInner object itself.
      */
@@ -86,7 +90,7 @@ public final class ElasticMonitorResourceInner extends Resource {
 
     /**
      * Get the identity property: Identity properties of the monitor resource.
-     *
+     * 
      * @return the identity value.
      */
     public IdentityProperties identity() {
@@ -95,7 +99,7 @@ public final class ElasticMonitorResourceInner extends Resource {
 
     /**
      * Set the identity property: Identity properties of the monitor resource.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the ElasticMonitorResourceInner object itself.
      */
@@ -106,21 +110,25 @@ public final class ElasticMonitorResourceInner extends Resource {
 
     /**
      * Get the systemData property: The system metadata relating to this resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ElasticMonitorResourceInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ElasticMonitorResourceInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -129,7 +137,7 @@ public final class ElasticMonitorResourceInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

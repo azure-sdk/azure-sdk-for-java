@@ -7,12 +7,14 @@ package com.azure.resourcemanager.elastic.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties specific to the monitor resource. */
+/**
+ * Properties specific to the monitor resource.
+ */
 @Fluent
 public final class MonitorProperties {
     /*
      * ProvisioningState
-     *
+     * 
      * Provisioning state of the monitor resource.
      */
     @JsonProperty(value = "provisioningState")
@@ -37,10 +39,40 @@ public final class MonitorProperties {
     private UserInfo userInfo;
 
     /*
+     * Plan details of the monitor resource.
+     */
+    @JsonProperty(value = "planDetails")
+    private PlanDetails planDetails;
+
+    /*
      * Version of elastic of the monitor resource
      */
     @JsonProperty(value = "version")
     private String version;
+
+    /*
+     * State of the Azure Subscription containing the monitor resource
+     */
+    @JsonProperty(value = "subscriptionState")
+    private String subscriptionState;
+
+    /*
+     * Status of Azure Subscription where Marketplace SaaS is located.
+     */
+    @JsonProperty(value = "saaSAzureSubscriptionStatus")
+    private String saaSAzureSubscriptionStatus;
+
+    /*
+     * Name of the marketing campaign.
+     */
+    @JsonProperty(value = "sourceCampaignName")
+    private String sourceCampaignName;
+
+    /*
+     * A unique identifier associated with the campaign.
+     */
+    @JsonProperty(value = "sourceCampaignId")
+    private String sourceCampaignId;
 
     /*
      * The liftrResourceCategory property.
@@ -60,15 +92,17 @@ public final class MonitorProperties {
     @JsonProperty(value = "generateApiKey")
     private Boolean generateApiKey;
 
-    /** Creates an instance of MonitorProperties class. */
+    /**
+     * Creates an instance of MonitorProperties class.
+     */
     public MonitorProperties() {
     }
 
     /**
      * Get the provisioningState property: ProvisioningState
-     *
-     * <p>Provisioning state of the monitor resource.
-     *
+     * 
+     * Provisioning state of the monitor resource.
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -77,9 +111,9 @@ public final class MonitorProperties {
 
     /**
      * Set the provisioningState property: ProvisioningState
-     *
-     * <p>Provisioning state of the monitor resource.
-     *
+     * 
+     * Provisioning state of the monitor resource.
+     * 
      * @param provisioningState the provisioningState value to set.
      * @return the MonitorProperties object itself.
      */
@@ -90,7 +124,7 @@ public final class MonitorProperties {
 
     /**
      * Get the monitoringStatus property: Flag specifying if the resource monitoring is enabled or disabled.
-     *
+     * 
      * @return the monitoringStatus value.
      */
     public MonitoringStatus monitoringStatus() {
@@ -99,7 +133,7 @@ public final class MonitorProperties {
 
     /**
      * Set the monitoringStatus property: Flag specifying if the resource monitoring is enabled or disabled.
-     *
+     * 
      * @param monitoringStatus the monitoringStatus value to set.
      * @return the MonitorProperties object itself.
      */
@@ -110,7 +144,7 @@ public final class MonitorProperties {
 
     /**
      * Get the elasticProperties property: Elastic cloud properties.
-     *
+     * 
      * @return the elasticProperties value.
      */
     public ElasticProperties elasticProperties() {
@@ -119,7 +153,7 @@ public final class MonitorProperties {
 
     /**
      * Set the elasticProperties property: Elastic cloud properties.
-     *
+     * 
      * @param elasticProperties the elasticProperties value to set.
      * @return the MonitorProperties object itself.
      */
@@ -130,7 +164,7 @@ public final class MonitorProperties {
 
     /**
      * Get the userInfo property: User information.
-     *
+     * 
      * @return the userInfo value.
      */
     public UserInfo userInfo() {
@@ -139,7 +173,7 @@ public final class MonitorProperties {
 
     /**
      * Set the userInfo property: User information.
-     *
+     * 
      * @param userInfo the userInfo value to set.
      * @return the MonitorProperties object itself.
      */
@@ -149,8 +183,28 @@ public final class MonitorProperties {
     }
 
     /**
+     * Get the planDetails property: Plan details of the monitor resource.
+     * 
+     * @return the planDetails value.
+     */
+    public PlanDetails planDetails() {
+        return this.planDetails;
+    }
+
+    /**
+     * Set the planDetails property: Plan details of the monitor resource.
+     * 
+     * @param planDetails the planDetails value to set.
+     * @return the MonitorProperties object itself.
+     */
+    public MonitorProperties withPlanDetails(PlanDetails planDetails) {
+        this.planDetails = planDetails;
+        return this;
+    }
+
+    /**
      * Get the version property: Version of elastic of the monitor resource.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -159,7 +213,7 @@ public final class MonitorProperties {
 
     /**
      * Set the version property: Version of elastic of the monitor resource.
-     *
+     * 
      * @param version the version value to set.
      * @return the MonitorProperties object itself.
      */
@@ -169,8 +223,88 @@ public final class MonitorProperties {
     }
 
     /**
+     * Get the subscriptionState property: State of the Azure Subscription containing the monitor resource.
+     * 
+     * @return the subscriptionState value.
+     */
+    public String subscriptionState() {
+        return this.subscriptionState;
+    }
+
+    /**
+     * Set the subscriptionState property: State of the Azure Subscription containing the monitor resource.
+     * 
+     * @param subscriptionState the subscriptionState value to set.
+     * @return the MonitorProperties object itself.
+     */
+    public MonitorProperties withSubscriptionState(String subscriptionState) {
+        this.subscriptionState = subscriptionState;
+        return this;
+    }
+
+    /**
+     * Get the saaSAzureSubscriptionStatus property: Status of Azure Subscription where Marketplace SaaS is located.
+     * 
+     * @return the saaSAzureSubscriptionStatus value.
+     */
+    public String saaSAzureSubscriptionStatus() {
+        return this.saaSAzureSubscriptionStatus;
+    }
+
+    /**
+     * Set the saaSAzureSubscriptionStatus property: Status of Azure Subscription where Marketplace SaaS is located.
+     * 
+     * @param saaSAzureSubscriptionStatus the saaSAzureSubscriptionStatus value to set.
+     * @return the MonitorProperties object itself.
+     */
+    public MonitorProperties withSaaSAzureSubscriptionStatus(String saaSAzureSubscriptionStatus) {
+        this.saaSAzureSubscriptionStatus = saaSAzureSubscriptionStatus;
+        return this;
+    }
+
+    /**
+     * Get the sourceCampaignName property: Name of the marketing campaign.
+     * 
+     * @return the sourceCampaignName value.
+     */
+    public String sourceCampaignName() {
+        return this.sourceCampaignName;
+    }
+
+    /**
+     * Set the sourceCampaignName property: Name of the marketing campaign.
+     * 
+     * @param sourceCampaignName the sourceCampaignName value to set.
+     * @return the MonitorProperties object itself.
+     */
+    public MonitorProperties withSourceCampaignName(String sourceCampaignName) {
+        this.sourceCampaignName = sourceCampaignName;
+        return this;
+    }
+
+    /**
+     * Get the sourceCampaignId property: A unique identifier associated with the campaign.
+     * 
+     * @return the sourceCampaignId value.
+     */
+    public String sourceCampaignId() {
+        return this.sourceCampaignId;
+    }
+
+    /**
+     * Set the sourceCampaignId property: A unique identifier associated with the campaign.
+     * 
+     * @param sourceCampaignId the sourceCampaignId value to set.
+     * @return the MonitorProperties object itself.
+     */
+    public MonitorProperties withSourceCampaignId(String sourceCampaignId) {
+        this.sourceCampaignId = sourceCampaignId;
+        return this;
+    }
+
+    /**
      * Get the liftrResourceCategory property: The liftrResourceCategory property.
-     *
+     * 
      * @return the liftrResourceCategory value.
      */
     public LiftrResourceCategories liftrResourceCategory() {
@@ -179,7 +313,7 @@ public final class MonitorProperties {
 
     /**
      * Get the liftrResourcePreference property: The priority of the resource.
-     *
+     * 
      * @return the liftrResourcePreference value.
      */
     public Integer liftrResourcePreference() {
@@ -188,7 +322,7 @@ public final class MonitorProperties {
 
     /**
      * Get the generateApiKey property: Flag to determine if User API Key has to be generated and shared.
-     *
+     * 
      * @return the generateApiKey value.
      */
     public Boolean generateApiKey() {
@@ -197,7 +331,7 @@ public final class MonitorProperties {
 
     /**
      * Set the generateApiKey property: Flag to determine if User API Key has to be generated and shared.
-     *
+     * 
      * @param generateApiKey the generateApiKey value to set.
      * @return the MonitorProperties object itself.
      */
@@ -208,7 +342,7 @@ public final class MonitorProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -217,6 +351,9 @@ public final class MonitorProperties {
         }
         if (userInfo() != null) {
             userInfo().validate();
+        }
+        if (planDetails() != null) {
+            planDetails().validate();
         }
     }
 }
