@@ -11,17 +11,27 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Security ML Analytics Setting. */
+/**
+ * Security ML Analytics Setting.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
     property = "kind",
     defaultImpl = SecurityMLAnalyticsSettingInner.class)
 @JsonTypeName("SecurityMLAnalyticsSetting")
-@JsonSubTypes({@JsonSubTypes.Type(name = "Anomaly", value = AnomalySecurityMLAnalyticsSettings.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "Anomaly", value = AnomalySecurityMLAnalyticsSettings.class) })
 @Fluent
 public class SecurityMLAnalyticsSettingInner extends ResourceWithEtag {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of SecurityMLAnalyticsSettingInner class.
+     */
+    public SecurityMLAnalyticsSettingInner() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SecurityMLAnalyticsSettingInner withEtag(String etag) {
         super.withEtag(etag);
@@ -30,7 +40,7 @@ public class SecurityMLAnalyticsSettingInner extends ResourceWithEtag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** GetInsights Query Errors. */
+/**
+ * GetInsights Query Errors.
+ */
 @Fluent
 public final class GetInsightsErrorKind {
     /*
@@ -30,8 +32,14 @@ public final class GetInsightsErrorKind {
     private String errorMessage;
 
     /**
+     * Creates an instance of GetInsightsErrorKind class.
+     */
+    public GetInsightsErrorKind() {
+    }
+
+    /**
      * Get the kind property: the query kind.
-     *
+     * 
      * @return the kind value.
      */
     public GetInsightsError kind() {
@@ -40,7 +48,7 @@ public final class GetInsightsErrorKind {
 
     /**
      * Set the kind property: the query kind.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the GetInsightsErrorKind object itself.
      */
@@ -51,7 +59,7 @@ public final class GetInsightsErrorKind {
 
     /**
      * Get the queryId property: the query id.
-     *
+     * 
      * @return the queryId value.
      */
     public String queryId() {
@@ -60,7 +68,7 @@ public final class GetInsightsErrorKind {
 
     /**
      * Set the queryId property: the query id.
-     *
+     * 
      * @param queryId the queryId value to set.
      * @return the GetInsightsErrorKind object itself.
      */
@@ -71,7 +79,7 @@ public final class GetInsightsErrorKind {
 
     /**
      * Get the errorMessage property: the error message.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -80,7 +88,7 @@ public final class GetInsightsErrorKind {
 
     /**
      * Set the errorMessage property: the error message.
-     *
+     * 
      * @param errorMessage the errorMessage value to set.
      * @return the GetInsightsErrorKind object itself.
      */
@@ -91,20 +99,17 @@ public final class GetInsightsErrorKind {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (kind() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property kind in model GetInsightsErrorKind"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property kind in model GetInsightsErrorKind"));
         }
         if (errorMessage() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property errorMessage in model GetInsightsErrorKind"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property errorMessage in model GetInsightsErrorKind"));
         }
     }
 

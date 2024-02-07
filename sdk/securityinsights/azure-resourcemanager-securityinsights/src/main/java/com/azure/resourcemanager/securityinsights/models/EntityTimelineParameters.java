@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** The parameters required to execute s timeline operation on the given entity. */
+/**
+ * The parameters required to execute s timeline operation on the given entity.
+ */
 @Fluent
 public final class EntityTimelineParameters {
     /*
@@ -38,8 +40,14 @@ public final class EntityTimelineParameters {
     private Integer numberOfBucket;
 
     /**
+     * Creates an instance of EntityTimelineParameters class.
+     */
+    public EntityTimelineParameters() {
+    }
+
+    /**
      * Get the kinds property: Array of timeline Item kinds.
-     *
+     * 
      * @return the kinds value.
      */
     public List<EntityTimelineKind> kinds() {
@@ -48,7 +56,7 @@ public final class EntityTimelineParameters {
 
     /**
      * Set the kinds property: Array of timeline Item kinds.
-     *
+     * 
      * @param kinds the kinds value to set.
      * @return the EntityTimelineParameters object itself.
      */
@@ -59,7 +67,7 @@ public final class EntityTimelineParameters {
 
     /**
      * Get the startTime property: The start timeline date, so the results returned are after this date.
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -68,7 +76,7 @@ public final class EntityTimelineParameters {
 
     /**
      * Set the startTime property: The start timeline date, so the results returned are after this date.
-     *
+     * 
      * @param startTime the startTime value to set.
      * @return the EntityTimelineParameters object itself.
      */
@@ -79,7 +87,7 @@ public final class EntityTimelineParameters {
 
     /**
      * Get the endTime property: The end timeline date, so the results returned are before this date.
-     *
+     * 
      * @return the endTime value.
      */
     public OffsetDateTime endTime() {
@@ -88,7 +96,7 @@ public final class EntityTimelineParameters {
 
     /**
      * Set the endTime property: The end timeline date, so the results returned are before this date.
-     *
+     * 
      * @param endTime the endTime value to set.
      * @return the EntityTimelineParameters object itself.
      */
@@ -99,7 +107,7 @@ public final class EntityTimelineParameters {
 
     /**
      * Get the numberOfBucket property: The number of bucket for timeline queries aggregation.
-     *
+     * 
      * @return the numberOfBucket value.
      */
     public Integer numberOfBucket() {
@@ -108,7 +116,7 @@ public final class EntityTimelineParameters {
 
     /**
      * Set the numberOfBucket property: The number of bucket for timeline queries aggregation.
-     *
+     * 
      * @param numberOfBucket the numberOfBucket value to set.
      * @return the EntityTimelineParameters object itself.
      */
@@ -119,21 +127,17 @@ public final class EntityTimelineParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (startTime() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property startTime in model EntityTimelineParameters"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property startTime in model EntityTimelineParameters"));
         }
         if (endTime() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property endTime in model EntityTimelineParameters"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property endTime in model EntityTimelineParameters"));
         }
     }
 

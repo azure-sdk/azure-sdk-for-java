@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.MetadataModelInn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of all the metadata. */
+/**
+ * List of all the metadata.
+ */
 @Fluent
 public final class MetadataList {
     /*
@@ -26,8 +28,14 @@ public final class MetadataList {
     private String nextLink;
 
     /**
+     * Creates an instance of MetadataList class.
+     */
+    public MetadataList() {
+    }
+
+    /**
      * Get the value property: Array of metadata.
-     *
+     * 
      * @return the value value.
      */
     public List<MetadataModelInner> value() {
@@ -36,7 +44,7 @@ public final class MetadataList {
 
     /**
      * Set the value property: Array of metadata.
-     *
+     * 
      * @param value the value value to set.
      * @return the MetadataList object itself.
      */
@@ -47,7 +55,7 @@ public final class MetadataList {
 
     /**
      * Get the nextLink property: URL to fetch the next page of metadata.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -56,14 +64,13 @@ public final class MetadataList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model MetadataList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model MetadataList"));
         } else {
             value().forEach(e -> e.validate());
         }

@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents AATP (Azure Advanced Threat Protection) data connector. */
+/**
+ * Represents AATP (Azure Advanced Threat Protection) data connector.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("AzureAdvancedThreatProtection")
 @Fluent
@@ -23,15 +25,23 @@ public final class AatpDataConnector extends DataConnectorInner {
     private AatpDataConnectorProperties innerProperties;
 
     /**
+     * Creates an instance of AatpDataConnector class.
+     */
+    public AatpDataConnector() {
+    }
+
+    /**
      * Get the innerProperties property: AATP (Azure Advanced Threat Protection) data connector properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AatpDataConnectorProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AatpDataConnector withEtag(String etag) {
         super.withEtag(etag);
@@ -40,7 +50,7 @@ public final class AatpDataConnector extends DataConnectorInner {
 
     /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public AlertsDataTypeOfDataConnector dataTypes() {
@@ -49,7 +59,7 @@ public final class AatpDataConnector extends DataConnectorInner {
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the AatpDataConnector object itself.
      */
@@ -63,7 +73,7 @@ public final class AatpDataConnector extends DataConnectorInner {
 
     /**
      * Get the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -72,7 +82,7 @@ public final class AatpDataConnector extends DataConnectorInner {
 
     /**
      * Set the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the AatpDataConnector object itself.
      */
@@ -86,7 +96,7 @@ public final class AatpDataConnector extends DataConnectorInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

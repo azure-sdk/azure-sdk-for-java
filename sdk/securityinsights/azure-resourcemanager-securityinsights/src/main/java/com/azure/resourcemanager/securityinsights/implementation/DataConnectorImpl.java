@@ -13,8 +13,7 @@ public final class DataConnectorImpl implements DataConnector {
 
     private final com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager;
 
-    DataConnectorImpl(
-        DataConnectorInner innerObject,
+    DataConnectorImpl(DataConnectorInner innerObject,
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;

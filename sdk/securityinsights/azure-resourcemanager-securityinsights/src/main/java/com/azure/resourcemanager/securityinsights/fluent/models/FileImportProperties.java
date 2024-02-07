@@ -15,7 +15,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Describes the FileImport's properties. */
+/**
+ * Describes the FileImport's properties.
+ */
 @Fluent
 public final class FileImportProperties {
     /*
@@ -97,8 +99,14 @@ public final class FileImportProperties {
     private OffsetDateTime importValidUntilTimeUtc;
 
     /**
+     * Creates an instance of FileImportProperties class.
+     */
+    public FileImportProperties() {
+    }
+
+    /**
      * Get the ingestionMode property: Describes how to ingest the records in the file.
-     *
+     * 
      * @return the ingestionMode value.
      */
     public IngestionMode ingestionMode() {
@@ -107,7 +115,7 @@ public final class FileImportProperties {
 
     /**
      * Set the ingestionMode property: Describes how to ingest the records in the file.
-     *
+     * 
      * @param ingestionMode the ingestionMode value to set.
      * @return the FileImportProperties object itself.
      */
@@ -118,7 +126,7 @@ public final class FileImportProperties {
 
     /**
      * Get the contentType property: The content type of this file.
-     *
+     * 
      * @return the contentType value.
      */
     public FileImportContentType contentType() {
@@ -127,7 +135,7 @@ public final class FileImportProperties {
 
     /**
      * Set the contentType property: The content type of this file.
-     *
+     * 
      * @param contentType the contentType value to set.
      * @return the FileImportProperties object itself.
      */
@@ -138,7 +146,7 @@ public final class FileImportProperties {
 
     /**
      * Get the createdTimeUtc property: The time the file was imported.
-     *
+     * 
      * @return the createdTimeUtc value.
      */
     public OffsetDateTime createdTimeUtc() {
@@ -148,7 +156,7 @@ public final class FileImportProperties {
     /**
      * Get the errorFile property: Represents the error file (if the import was ingested with errors or failed the
      * validation).
-     *
+     * 
      * @return the errorFile value.
      */
     public FileMetadata errorFile() {
@@ -157,7 +165,7 @@ public final class FileImportProperties {
 
     /**
      * Get the errorsPreview property: An ordered list of some of the errors that were encountered during validation.
-     *
+     * 
      * @return the errorsPreview value.
      */
     public List<ValidationError> errorsPreview() {
@@ -166,7 +174,7 @@ public final class FileImportProperties {
 
     /**
      * Get the importFile property: Represents the imported file.
-     *
+     * 
      * @return the importFile value.
      */
     public FileMetadata importFile() {
@@ -175,7 +183,7 @@ public final class FileImportProperties {
 
     /**
      * Set the importFile property: Represents the imported file.
-     *
+     * 
      * @param importFile the importFile value to set.
      * @return the FileImportProperties object itself.
      */
@@ -186,7 +194,7 @@ public final class FileImportProperties {
 
     /**
      * Get the ingestedRecordCount property: The number of records that have been successfully ingested.
-     *
+     * 
      * @return the ingestedRecordCount value.
      */
     public Integer ingestedRecordCount() {
@@ -195,7 +203,7 @@ public final class FileImportProperties {
 
     /**
      * Get the source property: The source for the data in the file.
-     *
+     * 
      * @return the source value.
      */
     public String source() {
@@ -204,7 +212,7 @@ public final class FileImportProperties {
 
     /**
      * Set the source property: The source for the data in the file.
-     *
+     * 
      * @param source the source value to set.
      * @return the FileImportProperties object itself.
      */
@@ -215,7 +223,7 @@ public final class FileImportProperties {
 
     /**
      * Get the state property: The state of the file import.
-     *
+     * 
      * @return the state value.
      */
     public FileImportState state() {
@@ -224,7 +232,7 @@ public final class FileImportProperties {
 
     /**
      * Get the totalRecordCount property: The number of records in the file.
-     *
+     * 
      * @return the totalRecordCount value.
      */
     public Integer totalRecordCount() {
@@ -233,7 +241,7 @@ public final class FileImportProperties {
 
     /**
      * Get the validRecordCount property: The number of records that have passed validation.
-     *
+     * 
      * @return the validRecordCount value.
      */
     public Integer validRecordCount() {
@@ -243,7 +251,7 @@ public final class FileImportProperties {
     /**
      * Get the filesValidUntilTimeUtc property: The time the files associated with this import are deleted from the
      * storage account.
-     *
+     * 
      * @return the filesValidUntilTimeUtc value.
      */
     public OffsetDateTime filesValidUntilTimeUtc() {
@@ -253,7 +261,7 @@ public final class FileImportProperties {
     /**
      * Get the importValidUntilTimeUtc property: The time the file import record is soft deleted from the database and
      * history.
-     *
+     * 
      * @return the importValidUntilTimeUtc value.
      */
     public OffsetDateTime importValidUntilTimeUtc() {
@@ -262,21 +270,17 @@ public final class FileImportProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (ingestionMode() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property ingestionMode in model FileImportProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property ingestionMode in model FileImportProperties"));
         }
         if (contentType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property contentType in model FileImportProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property contentType in model FileImportProperties"));
         }
         if (errorFile() != null) {
             errorFile().validate();
@@ -285,16 +289,14 @@ public final class FileImportProperties {
             errorsPreview().forEach(e -> e.validate());
         }
         if (importFile() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property importFile in model FileImportProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property importFile in model FileImportProperties"));
         } else {
             importFile().validate();
         }
         if (source() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property source in model FileImportProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property source in model FileImportProperties"));
         }
     }
 
