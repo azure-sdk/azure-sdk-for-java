@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Alerts data type for data connectors. */
+/**
+ * Alerts data type for data connectors.
+ */
 @Fluent
 public class AlertsDataTypeOfDataConnector {
     /*
@@ -18,8 +20,14 @@ public class AlertsDataTypeOfDataConnector {
     private DataConnectorDataTypeCommon alerts;
 
     /**
+     * Creates an instance of AlertsDataTypeOfDataConnector class.
+     */
+    public AlertsDataTypeOfDataConnector() {
+    }
+
+    /**
      * Get the alerts property: Alerts data type connection.
-     *
+     * 
      * @return the alerts value.
      */
     public DataConnectorDataTypeCommon alerts() {
@@ -28,7 +36,7 @@ public class AlertsDataTypeOfDataConnector {
 
     /**
      * Set the alerts property: Alerts data type connection.
-     *
+     * 
      * @param alerts the alerts value to set.
      * @return the AlertsDataTypeOfDataConnector object itself.
      */
@@ -39,15 +47,13 @@ public class AlertsDataTypeOfDataConnector {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (alerts() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property alerts in model AlertsDataTypeOfDataConnector"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property alerts in model AlertsDataTypeOfDataConnector"));
         } else {
             alerts().validate();
         }

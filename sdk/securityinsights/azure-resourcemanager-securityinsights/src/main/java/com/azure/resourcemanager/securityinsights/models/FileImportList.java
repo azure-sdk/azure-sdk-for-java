@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.FileImportInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List all the file imports. */
+/**
+ * List all the file imports.
+ */
 @Fluent
 public final class FileImportList {
     /*
@@ -26,8 +28,14 @@ public final class FileImportList {
     private List<FileImportInner> value;
 
     /**
+     * Creates an instance of FileImportList class.
+     */
+    public FileImportList() {
+    }
+
+    /**
      * Get the nextLink property: URL to fetch the next set of file imports.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -36,7 +44,7 @@ public final class FileImportList {
 
     /**
      * Get the value property: Array of file imports.
-     *
+     * 
      * @return the value value.
      */
     public List<FileImportInner> value() {
@@ -45,7 +53,7 @@ public final class FileImportList {
 
     /**
      * Set the value property: Array of file imports.
-     *
+     * 
      * @param value the value value to set.
      * @return the FileImportList object itself.
      */
@@ -56,14 +64,13 @@ public final class FileImportList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model FileImportList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model FileImportList"));
         } else {
             value().forEach(e -> e.validate());
         }

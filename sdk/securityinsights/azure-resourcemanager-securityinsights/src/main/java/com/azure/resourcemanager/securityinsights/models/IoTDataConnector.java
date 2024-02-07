@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents IoT data connector. */
+/**
+ * Represents IoT data connector.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("IOT")
 @Fluent
@@ -23,15 +25,23 @@ public final class IoTDataConnector extends DataConnectorInner {
     private IoTDataConnectorProperties innerProperties;
 
     /**
+     * Creates an instance of IoTDataConnector class.
+     */
+    public IoTDataConnector() {
+    }
+
+    /**
      * Get the innerProperties property: IoT data connector properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private IoTDataConnectorProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IoTDataConnector withEtag(String etag) {
         super.withEtag(etag);
@@ -40,7 +50,7 @@ public final class IoTDataConnector extends DataConnectorInner {
 
     /**
      * Get the subscriptionId property: The subscription id to connect to, and get the data from.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String subscriptionId() {
@@ -49,7 +59,7 @@ public final class IoTDataConnector extends DataConnectorInner {
 
     /**
      * Set the subscriptionId property: The subscription id to connect to, and get the data from.
-     *
+     * 
      * @param subscriptionId the subscriptionId value to set.
      * @return the IoTDataConnector object itself.
      */
@@ -63,7 +73,7 @@ public final class IoTDataConnector extends DataConnectorInner {
 
     /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public AlertsDataTypeOfDataConnector dataTypes() {
@@ -72,7 +82,7 @@ public final class IoTDataConnector extends DataConnectorInner {
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the IoTDataConnector object itself.
      */
@@ -86,7 +96,7 @@ public final class IoTDataConnector extends DataConnectorInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

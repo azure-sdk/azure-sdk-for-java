@@ -9,18 +9,26 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.models.ActionPropertiesBase;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Action property bag. */
+/**
+ * Action property bag.
+ */
 @Fluent
 public final class ActionRequestProperties extends ActionPropertiesBase {
     /*
      * Logic App Callback URL for this specific workflow.
      */
-    @JsonProperty(value = "triggerUri", required = true)
+    @JsonProperty(value = "triggerUri")
     private String triggerUri;
 
     /**
+     * Creates an instance of ActionRequestProperties class.
+     */
+    public ActionRequestProperties() {
+    }
+
+    /**
      * Get the triggerUri property: Logic App Callback URL for this specific workflow.
-     *
+     * 
      * @return the triggerUri value.
      */
     public String triggerUri() {
@@ -29,7 +37,7 @@ public final class ActionRequestProperties extends ActionPropertiesBase {
 
     /**
      * Set the triggerUri property: Logic App Callback URL for this specific workflow.
-     *
+     * 
      * @param triggerUri the triggerUri value to set.
      * @return the ActionRequestProperties object itself.
      */
@@ -38,7 +46,9 @@ public final class ActionRequestProperties extends ActionPropertiesBase {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ActionRequestProperties withLogicAppResourceId(String logicAppResourceId) {
         super.withLogicAppResourceId(logicAppResourceId);
@@ -47,17 +57,15 @@ public final class ActionRequestProperties extends ActionPropertiesBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (triggerUri() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property triggerUri in model ActionRequestProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property triggerUri in model ActionRequestProperties"));
         }
     }
 

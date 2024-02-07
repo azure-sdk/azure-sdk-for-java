@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.EntityCommonProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
-/** Account entity property bag. */
+/**
+ * Account entity property bag.
+ */
 @Immutable
 public final class AccountEntityProperties extends EntityCommonProperties {
     /*
@@ -87,8 +89,14 @@ public final class AccountEntityProperties extends EntityCommonProperties {
     private String dnsDomain;
 
     /**
+     * Creates an instance of AccountEntityProperties class.
+     */
+    public AccountEntityProperties() {
+    }
+
+    /**
      * Get the aadTenantId property: The Azure Active Directory tenant id.
-     *
+     * 
      * @return the aadTenantId value.
      */
     public String aadTenantId() {
@@ -97,7 +105,7 @@ public final class AccountEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the aadUserId property: The Azure Active Directory user id.
-     *
+     * 
      * @return the aadUserId value.
      */
     public String aadUserId() {
@@ -107,7 +115,7 @@ public final class AccountEntityProperties extends EntityCommonProperties {
     /**
      * Get the accountName property: The name of the account. This field should hold only the name without any domain
      * added to it, i.e. administrator.
-     *
+     * 
      * @return the accountName value.
      */
     public String accountName() {
@@ -116,7 +124,7 @@ public final class AccountEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the displayName property: The display name of the account.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -126,7 +134,7 @@ public final class AccountEntityProperties extends EntityCommonProperties {
     /**
      * Get the hostEntityId property: The Host entity id that contains the account in case it is a local account (not
      * domain joined).
-     *
+     * 
      * @return the hostEntityId value.
      */
     public String hostEntityId() {
@@ -135,7 +143,7 @@ public final class AccountEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the isDomainJoined property: Determines whether this is a domain account.
-     *
+     * 
      * @return the isDomainJoined value.
      */
     public Boolean isDomainJoined() {
@@ -145,7 +153,7 @@ public final class AccountEntityProperties extends EntityCommonProperties {
     /**
      * Get the ntDomain property: The NetBIOS domain name as it appears in the alert format domain/username. Examples:
      * NT AUTHORITY.
-     *
+     * 
      * @return the ntDomain value.
      */
     public String ntDomain() {
@@ -155,7 +163,7 @@ public final class AccountEntityProperties extends EntityCommonProperties {
     /**
      * Get the objectGuid property: The objectGUID attribute is a single-value attribute that is the unique identifier
      * for the object, assigned by active directory.
-     *
+     * 
      * @return the objectGuid value.
      */
     public UUID objectGuid() {
@@ -164,7 +172,7 @@ public final class AccountEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the puid property: The Azure Active Directory Passport User ID.
-     *
+     * 
      * @return the puid value.
      */
     public String puid() {
@@ -173,7 +181,7 @@ public final class AccountEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the sid property: The account security identifier, e.g. S-1-5-18.
-     *
+     * 
      * @return the sid value.
      */
     public String sid() {
@@ -183,7 +191,7 @@ public final class AccountEntityProperties extends EntityCommonProperties {
     /**
      * Get the upnSuffix property: The user principal name suffix for the account, in some cases it is also the domain
      * name. Examples: contoso.com.
-     *
+     * 
      * @return the upnSuffix value.
      */
     public String upnSuffix() {
@@ -192,7 +200,7 @@ public final class AccountEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the dnsDomain property: The fully qualified domain DNS name.
-     *
+     * 
      * @return the dnsDomain value.
      */
     public String dnsDomain() {
@@ -201,7 +209,7 @@ public final class AccountEntityProperties extends EntityCommonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

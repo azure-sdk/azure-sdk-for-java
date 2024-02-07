@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Specific entity query. */
+/**
+ * Specific entity query.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -21,11 +23,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("EntityQuery")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Expansion", value = ExpansionEntityQuery.class),
-    @JsonSubTypes.Type(name = "Activity", value = ActivityEntityQuery.class)
-})
+    @JsonSubTypes.Type(name = "Activity", value = ActivityEntityQuery.class) })
 @Fluent
 public class EntityQueryInner extends ResourceWithEtag {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of EntityQueryInner class.
+     */
+    public EntityQueryInner() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EntityQueryInner withEtag(String etag) {
         super.withEtag(etag);
@@ -34,7 +43,7 @@ public class EntityQueryInner extends ResourceWithEtag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

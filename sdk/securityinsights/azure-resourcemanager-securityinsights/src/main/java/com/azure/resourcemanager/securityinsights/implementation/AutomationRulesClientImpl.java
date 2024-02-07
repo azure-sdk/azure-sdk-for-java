@@ -33,22 +33,28 @@ import com.azure.resourcemanager.securityinsights.fluent.models.AutomationRuleIn
 import com.azure.resourcemanager.securityinsights.models.AutomationRulesList;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in AutomationRulesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in AutomationRulesClient.
+ */
 public final class AutomationRulesClientImpl implements AutomationRulesClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final AutomationRulesService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final SecurityInsightsImpl client;
 
     /**
      * Initializes an instance of AutomationRulesClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     AutomationRulesClientImpl(SecurityInsightsImpl client) {
-        this.service =
-            RestProxy.create(AutomationRulesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(AutomationRulesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -58,85 +64,58 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsAuto")
-    private interface AutomationRulesService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/automationRules/{automationRuleId}")
-        @ExpectedResponses({200})
+    public interface AutomationRulesService {
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/automationRules/{automationRuleId}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AutomationRuleInner>> get(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("workspaceName") String workspaceName,
-            @PathParam("automationRuleId") String automationRuleId,
-            @HeaderParam("Accept") String accept,
+        Mono<Response<AutomationRuleInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("automationRuleId") String automationRuleId, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/automationRules/{automationRuleId}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/automationRules/{automationRuleId}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AutomationRuleInner>> createOrUpdate(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("workspaceName") String workspaceName,
+        Mono<Response<AutomationRuleInner>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
             @PathParam("automationRuleId") String automationRuleId,
             @BodyParam("application/json") AutomationRuleInner automationRuleToUpsert,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/automationRules/{automationRuleId}")
-        @ExpectedResponses({200, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/automationRules/{automationRuleId}")
+        @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Object>> delete(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
+        Mono<Response<Object>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("workspaceName") String workspaceName,
-            @PathParam("automationRuleId") String automationRuleId,
-            @HeaderParam("Accept") String accept,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("automationRuleId") String automationRuleId, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/automationRules")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/automationRules")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AutomationRulesList>> list(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("workspaceName") String workspaceName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<AutomationRulesList>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AutomationRulesList>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<AutomationRulesList>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Gets the automation rule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param automationRuleId Automation rule ID.
@@ -146,19 +125,15 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
      * @return the automation rule along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AutomationRuleInner>> getWithResponseAsync(
-        String resourceGroupName, String workspaceName, String automationRuleId) {
+    private Mono<Response<AutomationRuleInner>> getWithResponseAsync(String resourceGroupName, String workspaceName,
+        String automationRuleId) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -171,26 +146,17 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter automationRuleId is required and cannot be null."));
         }
+        final String apiVersion = "2024-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            workspaceName,
-                            automationRuleId,
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+                resourceGroupName, workspaceName, automationRuleId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets the automation rule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param automationRuleId Automation rule ID.
@@ -201,19 +167,15 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
      * @return the automation rule along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AutomationRuleInner>> getWithResponseAsync(
-        String resourceGroupName, String workspaceName, String automationRuleId, Context context) {
+    private Mono<Response<AutomationRuleInner>> getWithResponseAsync(String resourceGroupName, String workspaceName,
+        String automationRuleId, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -226,23 +188,16 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter automationRuleId is required and cannot be null."));
         }
+        final String apiVersion = "2024-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                workspaceName,
-                automationRuleId,
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, automationRuleId, accept, context);
     }
 
     /**
      * Gets the automation rule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param automationRuleId Automation rule ID.
@@ -252,31 +207,15 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
      * @return the automation rule on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AutomationRuleInner> getAsync(
-        String resourceGroupName, String workspaceName, String automationRuleId) {
+    private Mono<AutomationRuleInner> getAsync(String resourceGroupName, String workspaceName,
+        String automationRuleId) {
         return getWithResponseAsync(resourceGroupName, workspaceName, automationRuleId)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Gets the automation rule.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param automationRuleId Automation rule ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the automation rule.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AutomationRuleInner get(String resourceGroupName, String workspaceName, String automationRuleId) {
-        return getAsync(resourceGroupName, workspaceName, automationRuleId).block();
-    }
-
-    /**
-     * Gets the automation rule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param automationRuleId Automation rule ID.
@@ -287,14 +226,30 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
      * @return the automation rule along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<AutomationRuleInner> getWithResponse(
-        String resourceGroupName, String workspaceName, String automationRuleId, Context context) {
+    public Response<AutomationRuleInner> getWithResponse(String resourceGroupName, String workspaceName,
+        String automationRuleId, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, automationRuleId, context).block();
     }
 
     /**
+     * Gets the automation rule.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param automationRuleId Automation rule ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the automation rule.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AutomationRuleInner get(String resourceGroupName, String workspaceName, String automationRuleId) {
+        return getWithResponse(resourceGroupName, workspaceName, automationRuleId, Context.NONE).getValue();
+    }
+
+    /**
      * Creates or updates the automation rule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param automationRuleId Automation rule ID.
@@ -305,22 +260,15 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AutomationRuleInner>> createOrUpdateWithResponseAsync(
-        String resourceGroupName,
-        String workspaceName,
-        String automationRuleId,
-        AutomationRuleInner automationRuleToUpsert) {
+    private Mono<Response<AutomationRuleInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String workspaceName, String automationRuleId, AutomationRuleInner automationRuleToUpsert) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -336,27 +284,18 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
         if (automationRuleToUpsert != null) {
             automationRuleToUpsert.validate();
         }
+        final String apiVersion = "2024-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            workspaceName,
-                            automationRuleId,
-                            automationRuleToUpsert,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), apiVersion,
+                this.client.getSubscriptionId(), resourceGroupName, workspaceName, automationRuleId,
+                automationRuleToUpsert, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Creates or updates the automation rule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param automationRuleId Automation rule ID.
@@ -368,23 +307,15 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AutomationRuleInner>> createOrUpdateWithResponseAsync(
-        String resourceGroupName,
-        String workspaceName,
-        String automationRuleId,
-        AutomationRuleInner automationRuleToUpsert,
-        Context context) {
+    private Mono<Response<AutomationRuleInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String workspaceName, String automationRuleId, AutomationRuleInner automationRuleToUpsert, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -400,47 +331,16 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
         if (automationRuleToUpsert != null) {
             automationRuleToUpsert.validate();
         }
+        final String apiVersion = "2024-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                workspaceName,
-                automationRuleId,
-                automationRuleToUpsert,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+            resourceGroupName, workspaceName, automationRuleId, automationRuleToUpsert, accept, context);
     }
 
     /**
      * Creates or updates the automation rule.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param automationRuleId Automation rule ID.
-     * @param automationRuleToUpsert The automation rule.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AutomationRuleInner> createOrUpdateAsync(
-        String resourceGroupName,
-        String workspaceName,
-        String automationRuleId,
-        AutomationRuleInner automationRuleToUpsert) {
-        return createOrUpdateWithResponseAsync(
-                resourceGroupName, workspaceName, automationRuleId, automationRuleToUpsert)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Creates or updates the automation rule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param automationRuleId Automation rule ID.
@@ -450,34 +350,16 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AutomationRuleInner> createOrUpdateAsync(
-        String resourceGroupName, String workspaceName, String automationRuleId) {
+    private Mono<AutomationRuleInner> createOrUpdateAsync(String resourceGroupName, String workspaceName,
+        String automationRuleId) {
         final AutomationRuleInner automationRuleToUpsert = null;
-        return createOrUpdateWithResponseAsync(
-                resourceGroupName, workspaceName, automationRuleId, automationRuleToUpsert)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+        return createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, automationRuleId,
+            automationRuleToUpsert).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Creates or updates the automation rule.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param automationRuleId Automation rule ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AutomationRuleInner createOrUpdate(String resourceGroupName, String workspaceName, String automationRuleId) {
-        final AutomationRuleInner automationRuleToUpsert = null;
-        return createOrUpdateAsync(resourceGroupName, workspaceName, automationRuleId, automationRuleToUpsert).block();
-    }
-
-    /**
-     * Creates or updates the automation rule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param automationRuleId Automation rule ID.
@@ -489,20 +371,33 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
      * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<AutomationRuleInner> createOrUpdateWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String automationRuleId,
-        AutomationRuleInner automationRuleToUpsert,
-        Context context) {
-        return createOrUpdateWithResponseAsync(
-                resourceGroupName, workspaceName, automationRuleId, automationRuleToUpsert, context)
-            .block();
+    public Response<AutomationRuleInner> createOrUpdateWithResponse(String resourceGroupName, String workspaceName,
+        String automationRuleId, AutomationRuleInner automationRuleToUpsert, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, automationRuleId,
+            automationRuleToUpsert, context).block();
+    }
+
+    /**
+     * Creates or updates the automation rule.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param automationRuleId Automation rule ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AutomationRuleInner createOrUpdate(String resourceGroupName, String workspaceName, String automationRuleId) {
+        final AutomationRuleInner automationRuleToUpsert = null;
+        return createOrUpdateWithResponse(resourceGroupName, workspaceName, automationRuleId, automationRuleToUpsert,
+            Context.NONE).getValue();
     }
 
     /**
      * Delete the automation rule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param automationRuleId Automation rule ID.
@@ -512,19 +407,15 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
      * @return any object along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Object>> deleteWithResponseAsync(
-        String resourceGroupName, String workspaceName, String automationRuleId) {
+    private Mono<Response<Object>> deleteWithResponseAsync(String resourceGroupName, String workspaceName,
+        String automationRuleId) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -537,26 +428,17 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter automationRuleId is required and cannot be null."));
         }
+        final String apiVersion = "2024-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            workspaceName,
-                            automationRuleId,
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), apiVersion,
+                this.client.getSubscriptionId(), resourceGroupName, workspaceName, automationRuleId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete the automation rule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param automationRuleId Automation rule ID.
@@ -567,19 +449,15 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
      * @return any object along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Object>> deleteWithResponseAsync(
-        String resourceGroupName, String workspaceName, String automationRuleId, Context context) {
+    private Mono<Response<Object>> deleteWithResponseAsync(String resourceGroupName, String workspaceName,
+        String automationRuleId, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -592,23 +470,16 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter automationRuleId is required and cannot be null."));
         }
+        final String apiVersion = "2024-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                workspaceName,
-                automationRuleId,
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, automationRuleId, accept, context);
     }
 
     /**
      * Delete the automation rule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param automationRuleId Automation rule ID.
@@ -625,23 +496,7 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
 
     /**
      * Delete the automation rule.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param automationRuleId Automation rule ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object delete(String resourceGroupName, String workspaceName, String automationRuleId) {
-        return deleteAsync(resourceGroupName, workspaceName, automationRuleId).block();
-    }
-
-    /**
-     * Delete the automation rule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param automationRuleId Automation rule ID.
@@ -652,14 +507,30 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
      * @return any object along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Object> deleteWithResponse(
-        String resourceGroupName, String workspaceName, String automationRuleId, Context context) {
+    public Response<Object> deleteWithResponse(String resourceGroupName, String workspaceName, String automationRuleId,
+        Context context) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, automationRuleId, context).block();
     }
 
     /**
+     * Delete the automation rule.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param automationRuleId Automation rule ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return any object.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object delete(String resourceGroupName, String workspaceName, String automationRuleId) {
+        return deleteWithResponse(resourceGroupName, workspaceName, automationRuleId, Context.NONE).getValue();
+    }
+
+    /**
      * Gets all automation rules.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -668,19 +539,15 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
      * @return all automation rules along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AutomationRuleInner>> listSinglePageAsync(
-        String resourceGroupName, String workspaceName) {
+    private Mono<PagedResponse<AutomationRuleInner>> listSinglePageAsync(String resourceGroupName,
+        String workspaceName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -689,34 +556,19 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
+        final String apiVersion = "2024-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            workspaceName,
-                            accept,
-                            context))
-            .<PagedResponse<AutomationRuleInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+                resourceGroupName, workspaceName, accept, context))
+            .<PagedResponse<AutomationRuleInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets all automation rules.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
@@ -726,19 +578,15 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
      * @return all automation rules along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AutomationRuleInner>> listSinglePageAsync(
-        String resourceGroupName, String workspaceName, Context context) {
+    private Mono<PagedResponse<AutomationRuleInner>> listSinglePageAsync(String resourceGroupName, String workspaceName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -747,31 +595,19 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
+        final String apiVersion = "2024-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                workspaceName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+                workspaceName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Gets all automation rules.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -781,13 +617,13 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AutomationRuleInner> listAsync(String resourceGroupName, String workspaceName) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName), nextLink -> listNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, workspaceName),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * Gets all automation rules.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
@@ -798,14 +634,13 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AutomationRuleInner> listAsync(String resourceGroupName, String workspaceName, Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, context),
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, workspaceName, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Gets all automation rules.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -820,7 +655,7 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
 
     /**
      * Gets all automation rules.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
@@ -836,9 +671,10 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -850,31 +686,22 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<AutomationRuleInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<AutomationRuleInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -887,23 +714,13 @@ public final class AutomationRulesClientImpl implements AutomationRulesClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

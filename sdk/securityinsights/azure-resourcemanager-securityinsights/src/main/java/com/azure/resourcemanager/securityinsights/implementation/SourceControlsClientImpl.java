@@ -30,25 +30,31 @@ import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.securityinsights.fluent.SourceControlsClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.RepoInner;
 import com.azure.resourcemanager.securityinsights.models.RepoList;
-import com.azure.resourcemanager.securityinsights.models.RepoType;
+import com.azure.resourcemanager.securityinsights.models.RepositoryAccessProperties;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in SourceControlsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in SourceControlsClient.
+ */
 public final class SourceControlsClientImpl implements SourceControlsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final SourceControlsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final SecurityInsightsImpl client;
 
     /**
      * Initializes an instance of SourceControlsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     SourceControlsClientImpl(SecurityInsightsImpl client) {
-        this.service =
-            RestProxy.create(SourceControlsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(SourceControlsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -58,60 +64,47 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsSour")
-    private interface SourceControlsService {
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/listRepositories")
-        @ExpectedResponses({200})
+    public interface SourceControlsService {
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/listRepositories")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RepoList>> listRepositories(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("workspaceName") String workspaceName,
-            @BodyParam("application/json") RepoType repoType,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<RepoList>> listRepositories(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @BodyParam("application/json") RepositoryAccessProperties repositoryAccess,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RepoList>> listRepositoriesNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<RepoList>> listRepositoriesNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Gets a list of repositories metadata.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param repoType The repo type.
+     * @param repositoryAccess The repository access credentials.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of repositories metadata along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return a list of repositories metadata along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RepoInner>> listRepositoriesSinglePageAsync(
-        String resourceGroupName, String workspaceName, RepoType repoType) {
+    private Mono<PagedResponse<RepoInner>> listRepositoriesSinglePageAsync(String resourceGroupName,
+        String workspaceName, RepositoryAccessProperties repositoryAccess) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -120,62 +113,45 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        if (repoType == null) {
-            return Mono.error(new IllegalArgumentException("Parameter repoType is required and cannot be null."));
+        if (repositoryAccess == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter repositoryAccess is required and cannot be null."));
+        } else {
+            repositoryAccess.validate();
         }
+        final String apiVersion = "2024-01-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listRepositories(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            workspaceName,
-                            repoType,
-                            accept,
-                            context))
-            .<PagedResponse<RepoInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listRepositories(this.client.getEndpoint(), apiVersion,
+                this.client.getSubscriptionId(), resourceGroupName, workspaceName, repositoryAccess, accept, context))
+            .<PagedResponse<RepoInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets a list of repositories metadata.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param repoType The repo type.
+     * @param repositoryAccess The repository access credentials.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of repositories metadata along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return a list of repositories metadata along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RepoInner>> listRepositoriesSinglePageAsync(
-        String resourceGroupName, String workspaceName, RepoType repoType, Context context) {
+    private Mono<PagedResponse<RepoInner>> listRepositoriesSinglePageAsync(String resourceGroupName,
+        String workspaceName, RepositoryAccessProperties repositoryAccess, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -184,57 +160,47 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        if (repoType == null) {
-            return Mono.error(new IllegalArgumentException("Parameter repoType is required and cannot be null."));
+        if (repositoryAccess == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter repositoryAccess is required and cannot be null."));
+        } else {
+            repositoryAccess.validate();
         }
+        final String apiVersion = "2024-01-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listRepositories(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                workspaceName,
-                repoType,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listRepositories(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+                workspaceName, repositoryAccess, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Gets a list of repositories metadata.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param repoType The repo type.
+     * @param repositoryAccess The repository access credentials.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of repositories metadata as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RepoInner> listRepositoriesAsync(
-        String resourceGroupName, String workspaceName, RepoType repoType) {
+    private PagedFlux<RepoInner> listRepositoriesAsync(String resourceGroupName, String workspaceName,
+        RepositoryAccessProperties repositoryAccess) {
         return new PagedFlux<>(
-            () -> listRepositoriesSinglePageAsync(resourceGroupName, workspaceName, repoType),
+            () -> listRepositoriesSinglePageAsync(resourceGroupName, workspaceName, repositoryAccess),
             nextLink -> listRepositoriesNextSinglePageAsync(nextLink));
     }
 
     /**
      * Gets a list of repositories metadata.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param repoType The repo type.
+     * @param repositoryAccess The repository access credentials.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -242,36 +208,36 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      * @return a list of repositories metadata as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RepoInner> listRepositoriesAsync(
-        String resourceGroupName, String workspaceName, RepoType repoType, Context context) {
+    private PagedFlux<RepoInner> listRepositoriesAsync(String resourceGroupName, String workspaceName,
+        RepositoryAccessProperties repositoryAccess, Context context) {
         return new PagedFlux<>(
-            () -> listRepositoriesSinglePageAsync(resourceGroupName, workspaceName, repoType, context),
+            () -> listRepositoriesSinglePageAsync(resourceGroupName, workspaceName, repositoryAccess, context),
             nextLink -> listRepositoriesNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Gets a list of repositories metadata.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param repoType The repo type.
+     * @param repositoryAccess The repository access credentials.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of repositories metadata as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RepoInner> listRepositories(
-        String resourceGroupName, String workspaceName, RepoType repoType) {
-        return new PagedIterable<>(listRepositoriesAsync(resourceGroupName, workspaceName, repoType));
+    public PagedIterable<RepoInner> listRepositories(String resourceGroupName, String workspaceName,
+        RepositoryAccessProperties repositoryAccess) {
+        return new PagedIterable<>(listRepositoriesAsync(resourceGroupName, workspaceName, repositoryAccess));
     }
 
     /**
      * Gets a list of repositories metadata.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param repoType The repo type.
+     * @param repositoryAccess The repository access credentials.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -279,16 +245,17 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      * @return a list of repositories metadata as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RepoInner> listRepositories(
-        String resourceGroupName, String workspaceName, RepoType repoType, Context context) {
-        return new PagedIterable<>(listRepositoriesAsync(resourceGroupName, workspaceName, repoType, context));
+    public PagedIterable<RepoInner> listRepositories(String resourceGroupName, String workspaceName,
+        RepositoryAccessProperties repositoryAccess, Context context) {
+        return new PagedIterable<>(listRepositoriesAsync(resourceGroupName, workspaceName, repositoryAccess, context));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -300,31 +267,23 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listRepositoriesNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<RepoInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<RepoInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -337,23 +296,13 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listRepositoriesNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listRepositoriesNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }
