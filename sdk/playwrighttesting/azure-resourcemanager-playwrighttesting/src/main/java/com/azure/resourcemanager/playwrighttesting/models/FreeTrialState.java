@@ -8,17 +8,33 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The free-trial state. */
+/**
+ * The free-trial state.
+ */
 public final class FreeTrialState extends ExpandableStringEnum<FreeTrialState> {
-    /** Static value Active for FreeTrialState. */
+    /**
+     * Static value Active for FreeTrialState.
+     */
     public static final FreeTrialState ACTIVE = fromString("Active");
 
-    /** Static value Expired for FreeTrialState. */
+    /**
+     * Static value Expired for FreeTrialState.
+     */
     public static final FreeTrialState EXPIRED = fromString("Expired");
 
     /**
+     * Static value NotEligible for FreeTrialState.
+     */
+    public static final FreeTrialState NOT_ELIGIBLE = fromString("NotEligible");
+
+    /**
+     * Static value NotRegistered for FreeTrialState.
+     */
+    public static final FreeTrialState NOT_REGISTERED = fromString("NotRegistered");
+
+    /**
      * Creates a new instance of FreeTrialState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +43,7 @@ public final class FreeTrialState extends ExpandableStringEnum<FreeTrialState> {
 
     /**
      * Creates or finds a FreeTrialState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding FreeTrialState.
      */
@@ -38,7 +54,7 @@ public final class FreeTrialState extends ExpandableStringEnum<FreeTrialState> {
 
     /**
      * Gets known FreeTrialState values.
-     *
+     * 
      * @return known FreeTrialState values.
      */
     public static Collection<FreeTrialState> values() {

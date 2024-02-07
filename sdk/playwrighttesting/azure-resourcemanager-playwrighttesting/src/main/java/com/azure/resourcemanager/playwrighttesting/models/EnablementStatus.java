@@ -8,17 +8,25 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The enablement status of a feature. */
+/**
+ * This property sets the connection region for Playwright client workers to cloud-hosted browsers. If enabled, workers
+ * connect to browsers in the closest Azure region, ensuring lower latency. If disabled, workers connect to browsers in
+ * the Azure region in which the workspace was initially created.
+ */
 public final class EnablementStatus extends ExpandableStringEnum<EnablementStatus> {
-    /** Static value Enabled for EnablementStatus. */
+    /**
+     * Static value Enabled for EnablementStatus.
+     */
     public static final EnablementStatus ENABLED = fromString("Enabled");
 
-    /** Static value Disabled for EnablementStatus. */
+    /**
+     * Static value Disabled for EnablementStatus.
+     */
     public static final EnablementStatus DISABLED = fromString("Disabled");
 
     /**
      * Creates a new instance of EnablementStatus value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +35,7 @@ public final class EnablementStatus extends ExpandableStringEnum<EnablementStatu
 
     /**
      * Creates or finds a EnablementStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding EnablementStatus.
      */
@@ -38,7 +46,7 @@ public final class EnablementStatus extends ExpandableStringEnum<EnablementStatu
 
     /**
      * Gets known EnablementStatus values.
-     *
+     * 
      * @return known EnablementStatus values.
      */
     public static Collection<EnablementStatus> values() {
