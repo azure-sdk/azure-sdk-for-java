@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
@@ -12,12 +12,13 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.models.BooleanEnum;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.HealthStatus;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PanoramaStatus;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.ReadOnlyProvisioningState;
+import com.azure.resourcemanager.paloaltonetworks.ngfw.models.StrataCloudManagerInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Firewall Status.
  */
-@Immutable
+@Fluent
 public final class FirewallStatusResourceInner extends ProxyResource {
     /*
      * The resource-specific properties for this resource.
@@ -98,6 +99,40 @@ public final class FirewallStatusResourceInner extends ProxyResource {
      */
     public ReadOnlyProvisioningState provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the isStrataCloudManaged property: Strata Cloud Manager.
+     * 
+     * @return the isStrataCloudManaged value.
+     */
+    public BooleanEnum isStrataCloudManaged() {
+        return this.innerProperties() == null ? null : this.innerProperties().isStrataCloudManaged();
+    }
+
+    /**
+     * Get the strataCloudManagerInfo property: This field is only present if Strata Cloud Manager is managing the
+     * policy for this firewall.
+     * 
+     * @return the strataCloudManagerInfo value.
+     */
+    public StrataCloudManagerInfo strataCloudManagerInfo() {
+        return this.innerProperties() == null ? null : this.innerProperties().strataCloudManagerInfo();
+    }
+
+    /**
+     * Set the strataCloudManagerInfo property: This field is only present if Strata Cloud Manager is managing the
+     * policy for this firewall.
+     * 
+     * @param strataCloudManagerInfo the strataCloudManagerInfo value to set.
+     * @return the FirewallStatusResourceInner object itself.
+     */
+    public FirewallStatusResourceInner withStrataCloudManagerInfo(StrataCloudManagerInfo strataCloudManagerInfo) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FirewallStatusProperty();
+        }
+        this.innerProperties().withStrataCloudManagerInfo(strataCloudManagerInfo);
+        return this;
     }
 
     /**

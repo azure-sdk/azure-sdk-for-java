@@ -21,7 +21,7 @@ import java.util.Arrays;
 public final class PostRulesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * PostRules_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -52,7 +52,7 @@ public final class PostRulesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * PostRules_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**

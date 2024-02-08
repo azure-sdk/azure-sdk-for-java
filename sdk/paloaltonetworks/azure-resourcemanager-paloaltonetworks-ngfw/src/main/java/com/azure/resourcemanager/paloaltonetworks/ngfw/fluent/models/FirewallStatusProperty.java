@@ -4,17 +4,18 @@
 
 package com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.BooleanEnum;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.HealthStatus;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PanoramaStatus;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.ReadOnlyProvisioningState;
+import com.azure.resourcemanager.paloaltonetworks.ngfw.models.StrataCloudManagerInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Firewall Status.
  */
-@Immutable
+@Fluent
 public final class FirewallStatusProperty {
     /*
      * Panorama Managed: Default is False. Default will be CloudSec managed
@@ -45,6 +46,18 @@ public final class FirewallStatusProperty {
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ReadOnlyProvisioningState provisioningState;
+
+    /*
+     * Strata Cloud Manager
+     */
+    @JsonProperty(value = "isStrataCloudManaged", access = JsonProperty.Access.WRITE_ONLY)
+    private BooleanEnum isStrataCloudManaged;
+
+    /*
+     * This field is only present if Strata Cloud Manager is managing the policy for this firewall
+     */
+    @JsonProperty(value = "strataCloudManagerInfo")
+    private StrataCloudManagerInfo strataCloudManagerInfo;
 
     /**
      * Creates an instance of FirewallStatusProperty class.
@@ -98,6 +111,37 @@ public final class FirewallStatusProperty {
     }
 
     /**
+     * Get the isStrataCloudManaged property: Strata Cloud Manager.
+     * 
+     * @return the isStrataCloudManaged value.
+     */
+    public BooleanEnum isStrataCloudManaged() {
+        return this.isStrataCloudManaged;
+    }
+
+    /**
+     * Get the strataCloudManagerInfo property: This field is only present if Strata Cloud Manager is managing the
+     * policy for this firewall.
+     * 
+     * @return the strataCloudManagerInfo value.
+     */
+    public StrataCloudManagerInfo strataCloudManagerInfo() {
+        return this.strataCloudManagerInfo;
+    }
+
+    /**
+     * Set the strataCloudManagerInfo property: This field is only present if Strata Cloud Manager is managing the
+     * policy for this firewall.
+     * 
+     * @param strataCloudManagerInfo the strataCloudManagerInfo value to set.
+     * @return the FirewallStatusProperty object itself.
+     */
+    public FirewallStatusProperty withStrataCloudManagerInfo(StrataCloudManagerInfo strataCloudManagerInfo) {
+        this.strataCloudManagerInfo = strataCloudManagerInfo;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -105,6 +149,9 @@ public final class FirewallStatusProperty {
     public void validate() {
         if (panoramaStatus() != null) {
             panoramaStatus().validate();
+        }
+        if (strataCloudManagerInfo() != null) {
+            strataCloudManagerInfo().validate();
         }
     }
 }

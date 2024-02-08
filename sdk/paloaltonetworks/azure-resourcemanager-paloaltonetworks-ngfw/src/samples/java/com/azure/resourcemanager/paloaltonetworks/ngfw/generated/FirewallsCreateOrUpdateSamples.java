@@ -38,7 +38,7 @@ import java.util.Map;
 public final class FirewallsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * Firewalls_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -84,7 +84,8 @@ public final class FirewallsCreateOrUpdateSamples {
                 .withEgressNatIp(Arrays.asList(new IpAddress().withResourceId(
                     "/subscriptions/01c7d41f-afaf-464e-8a8b-5c6f9f98cee8/resourceGroups/mj-liftr-integration/providers/Microsoft.Network/publicIPAddresses/mj-liftr-integration-egressNatIp1")
                     .withAddress("20.22.92.111")))
-                .withTrustedRanges(Arrays.asList("20.22.92.11")))
+                .withTrustedRanges(Arrays.asList("20.22.92.11"))
+                .withPrivateSourceNatRulesDestination(Arrays.asList("20.22.92.11")))
             .withDnsSettings(new DnsSettings().withEnableDnsProxy(DnsProxy.DISABLED)
                 .withEnabledDnsType(EnabledDnsType.CUSTOM)
                 .withDnsServers(Arrays.asList(new IpAddress().withResourceId(
@@ -119,7 +120,7 @@ public final class FirewallsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/
+     * specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2024-02-07-preview/examples/
      * Firewalls_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**

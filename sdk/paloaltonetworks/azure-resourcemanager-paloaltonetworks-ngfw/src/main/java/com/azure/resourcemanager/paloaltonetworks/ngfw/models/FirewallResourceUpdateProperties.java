@@ -32,10 +32,22 @@ public final class FirewallResourceUpdateProperties {
     private BooleanEnum isPanoramaManaged;
 
     /*
+     * Strata Cloud Managed: Default is False. Default will be CloudSec managed
+     */
+    @JsonProperty(value = "isStrataCloudManaged")
+    private BooleanEnum isStrataCloudManaged;
+
+    /*
      * Panorama Configuration
      */
     @JsonProperty(value = "panoramaConfig")
     private PanoramaConfig panoramaConfig;
+
+    /*
+     * Strata Cloud Manager Configuration, only applicable if Strata Cloud Manager is selected.
+     */
+    @JsonProperty(value = "strataCloudManagerConfig")
+    private StrataCloudManagerConfig strataCloudManagerConfig;
 
     /*
      * Associated Rulestack
@@ -134,6 +146,26 @@ public final class FirewallResourceUpdateProperties {
     }
 
     /**
+     * Get the isStrataCloudManaged property: Strata Cloud Managed: Default is False. Default will be CloudSec managed.
+     * 
+     * @return the isStrataCloudManaged value.
+     */
+    public BooleanEnum isStrataCloudManaged() {
+        return this.isStrataCloudManaged;
+    }
+
+    /**
+     * Set the isStrataCloudManaged property: Strata Cloud Managed: Default is False. Default will be CloudSec managed.
+     * 
+     * @param isStrataCloudManaged the isStrataCloudManaged value to set.
+     * @return the FirewallResourceUpdateProperties object itself.
+     */
+    public FirewallResourceUpdateProperties withIsStrataCloudManaged(BooleanEnum isStrataCloudManaged) {
+        this.isStrataCloudManaged = isStrataCloudManaged;
+        return this;
+    }
+
+    /**
      * Get the panoramaConfig property: Panorama Configuration.
      * 
      * @return the panoramaConfig value.
@@ -150,6 +182,29 @@ public final class FirewallResourceUpdateProperties {
      */
     public FirewallResourceUpdateProperties withPanoramaConfig(PanoramaConfig panoramaConfig) {
         this.panoramaConfig = panoramaConfig;
+        return this;
+    }
+
+    /**
+     * Get the strataCloudManagerConfig property: Strata Cloud Manager Configuration, only applicable if Strata Cloud
+     * Manager is selected.
+     * 
+     * @return the strataCloudManagerConfig value.
+     */
+    public StrataCloudManagerConfig strataCloudManagerConfig() {
+        return this.strataCloudManagerConfig;
+    }
+
+    /**
+     * Set the strataCloudManagerConfig property: Strata Cloud Manager Configuration, only applicable if Strata Cloud
+     * Manager is selected.
+     * 
+     * @param strataCloudManagerConfig the strataCloudManagerConfig value to set.
+     * @return the FirewallResourceUpdateProperties object itself.
+     */
+    public FirewallResourceUpdateProperties
+        withStrataCloudManagerConfig(StrataCloudManagerConfig strataCloudManagerConfig) {
+        this.strataCloudManagerConfig = strataCloudManagerConfig;
         return this;
     }
 
@@ -264,6 +319,9 @@ public final class FirewallResourceUpdateProperties {
         }
         if (panoramaConfig() != null) {
             panoramaConfig().validate();
+        }
+        if (strataCloudManagerConfig() != null) {
+            strataCloudManagerConfig().validate();
         }
         if (associatedRulestack() != null) {
             associatedRulestack().validate();
