@@ -4,12 +4,10 @@
 
 module com.azure.resourcemanager.servicefabric {
     requires transitive com.azure.core.management;
-
     exports com.azure.resourcemanager.servicefabric;
     exports com.azure.resourcemanager.servicefabric.fluent;
     exports com.azure.resourcemanager.servicefabric.fluent.models;
     exports com.azure.resourcemanager.servicefabric.models;
-
     opens com.azure.resourcemanager.servicefabric.fluent.models to com.azure.core, com.fasterxml.jackson.databind;
     opens com.azure.resourcemanager.servicefabric.models to com.azure.core, com.fasterxml.jackson.databind;
 }
