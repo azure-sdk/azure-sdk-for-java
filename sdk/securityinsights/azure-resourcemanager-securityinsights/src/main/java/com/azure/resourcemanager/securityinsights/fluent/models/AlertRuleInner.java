@@ -16,7 +16,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Alert rule. */
+/**
+ * Alert rule.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -31,11 +33,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
         name = "MicrosoftSecurityIncidentCreation",
         value = MicrosoftSecurityIncidentCreationAlertRule.class),
     @JsonSubTypes.Type(name = "Scheduled", value = ScheduledAlertRule.class),
-    @JsonSubTypes.Type(name = "NRT", value = NrtAlertRule.class)
-})
+    @JsonSubTypes.Type(name = "NRT", value = NrtAlertRule.class) })
 @Fluent
 public class AlertRuleInner extends ResourceWithEtag {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of AlertRuleInner class.
+     */
+    public AlertRuleInner() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AlertRuleInner withEtag(String etag) {
         super.withEtag(etag);
@@ -44,7 +53,7 @@ public class AlertRuleInner extends ResourceWithEtag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

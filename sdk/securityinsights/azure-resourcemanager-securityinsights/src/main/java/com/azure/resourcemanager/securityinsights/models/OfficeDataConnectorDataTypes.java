@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The available data types for office data connector. */
+/**
+ * The available data types for office data connector.
+ */
 @Fluent
 public final class OfficeDataConnectorDataTypes {
     /*
@@ -30,8 +32,14 @@ public final class OfficeDataConnectorDataTypes {
     private OfficeDataConnectorDataTypesTeams teams;
 
     /**
+     * Creates an instance of OfficeDataConnectorDataTypes class.
+     */
+    public OfficeDataConnectorDataTypes() {
+    }
+
+    /**
      * Get the exchange property: Exchange data type connection.
-     *
+     * 
      * @return the exchange value.
      */
     public OfficeDataConnectorDataTypesExchange exchange() {
@@ -40,7 +48,7 @@ public final class OfficeDataConnectorDataTypes {
 
     /**
      * Set the exchange property: Exchange data type connection.
-     *
+     * 
      * @param exchange the exchange value to set.
      * @return the OfficeDataConnectorDataTypes object itself.
      */
@@ -51,7 +59,7 @@ public final class OfficeDataConnectorDataTypes {
 
     /**
      * Get the sharePoint property: SharePoint data type connection.
-     *
+     * 
      * @return the sharePoint value.
      */
     public OfficeDataConnectorDataTypesSharePoint sharePoint() {
@@ -60,7 +68,7 @@ public final class OfficeDataConnectorDataTypes {
 
     /**
      * Set the sharePoint property: SharePoint data type connection.
-     *
+     * 
      * @param sharePoint the sharePoint value to set.
      * @return the OfficeDataConnectorDataTypes object itself.
      */
@@ -71,7 +79,7 @@ public final class OfficeDataConnectorDataTypes {
 
     /**
      * Get the teams property: Teams data type connection.
-     *
+     * 
      * @return the teams value.
      */
     public OfficeDataConnectorDataTypesTeams teams() {
@@ -80,7 +88,7 @@ public final class OfficeDataConnectorDataTypes {
 
     /**
      * Set the teams property: Teams data type connection.
-     *
+     * 
      * @param teams the teams value to set.
      * @return the OfficeDataConnectorDataTypes object itself.
      */
@@ -91,31 +99,25 @@ public final class OfficeDataConnectorDataTypes {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (exchange() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property exchange in model OfficeDataConnectorDataTypes"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property exchange in model OfficeDataConnectorDataTypes"));
         } else {
             exchange().validate();
         }
         if (sharePoint() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sharePoint in model OfficeDataConnectorDataTypes"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sharePoint in model OfficeDataConnectorDataTypes"));
         } else {
             sharePoint().validate();
         }
         if (teams() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property teams in model OfficeDataConnectorDataTypes"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property teams in model OfficeDataConnectorDataTypes"));
         } else {
             teams().validate();
         }

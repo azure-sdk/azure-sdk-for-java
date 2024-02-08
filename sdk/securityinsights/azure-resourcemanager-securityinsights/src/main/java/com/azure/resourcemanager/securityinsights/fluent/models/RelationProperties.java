@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Relation property bag. */
+/**
+ * Relation property bag.
+ */
 @Fluent
 public final class RelationProperties {
     /*
@@ -36,8 +38,14 @@ public final class RelationProperties {
     private String relatedResourceKind;
 
     /**
+     * Creates an instance of RelationProperties class.
+     */
+    public RelationProperties() {
+    }
+
+    /**
      * Get the relatedResourceId property: The resource ID of the related resource.
-     *
+     * 
      * @return the relatedResourceId value.
      */
     public String relatedResourceId() {
@@ -46,7 +54,7 @@ public final class RelationProperties {
 
     /**
      * Set the relatedResourceId property: The resource ID of the related resource.
-     *
+     * 
      * @param relatedResourceId the relatedResourceId value to set.
      * @return the RelationProperties object itself.
      */
@@ -57,7 +65,7 @@ public final class RelationProperties {
 
     /**
      * Get the relatedResourceName property: The name of the related resource.
-     *
+     * 
      * @return the relatedResourceName value.
      */
     public String relatedResourceName() {
@@ -66,7 +74,7 @@ public final class RelationProperties {
 
     /**
      * Get the relatedResourceType property: The resource type of the related resource.
-     *
+     * 
      * @return the relatedResourceType value.
      */
     public String relatedResourceType() {
@@ -75,7 +83,7 @@ public final class RelationProperties {
 
     /**
      * Get the relatedResourceKind property: The resource kind of the related resource.
-     *
+     * 
      * @return the relatedResourceKind value.
      */
     public String relatedResourceKind() {
@@ -84,15 +92,13 @@ public final class RelationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (relatedResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property relatedResourceId in model RelationProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property relatedResourceId in model RelationProperties"));
         }
     }
 

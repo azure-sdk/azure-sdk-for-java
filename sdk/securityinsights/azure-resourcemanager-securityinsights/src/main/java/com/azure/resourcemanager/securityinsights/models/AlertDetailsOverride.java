@@ -6,8 +6,11 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
-/** Settings for how to dynamically override alert static details. */
+/**
+ * Settings for how to dynamically override alert static details.
+ */
 @Fluent
 public final class AlertDetailsOverride {
     /*
@@ -34,9 +37,21 @@ public final class AlertDetailsOverride {
     @JsonProperty(value = "alertSeverityColumnName")
     private String alertSeverityColumnName;
 
+    /*
+     * List of additional dynamic properties to override
+     */
+    @JsonProperty(value = "alertDynamicProperties")
+    private List<AlertPropertyMapping> alertDynamicProperties;
+
+    /**
+     * Creates an instance of AlertDetailsOverride class.
+     */
+    public AlertDetailsOverride() {
+    }
+
     /**
      * Get the alertDisplayNameFormat property: the format containing columns name(s) to override the alert name.
-     *
+     * 
      * @return the alertDisplayNameFormat value.
      */
     public String alertDisplayNameFormat() {
@@ -45,7 +60,7 @@ public final class AlertDetailsOverride {
 
     /**
      * Set the alertDisplayNameFormat property: the format containing columns name(s) to override the alert name.
-     *
+     * 
      * @param alertDisplayNameFormat the alertDisplayNameFormat value to set.
      * @return the AlertDetailsOverride object itself.
      */
@@ -55,8 +70,9 @@ public final class AlertDetailsOverride {
     }
 
     /**
-     * Get the alertDescriptionFormat property: the format containing columns name(s) to override the alert description.
-     *
+     * Get the alertDescriptionFormat property: the format containing columns name(s) to override the alert
+     * description.
+     * 
      * @return the alertDescriptionFormat value.
      */
     public String alertDescriptionFormat() {
@@ -64,8 +80,9 @@ public final class AlertDetailsOverride {
     }
 
     /**
-     * Set the alertDescriptionFormat property: the format containing columns name(s) to override the alert description.
-     *
+     * Set the alertDescriptionFormat property: the format containing columns name(s) to override the alert
+     * description.
+     * 
      * @param alertDescriptionFormat the alertDescriptionFormat value to set.
      * @return the AlertDetailsOverride object itself.
      */
@@ -76,7 +93,7 @@ public final class AlertDetailsOverride {
 
     /**
      * Get the alertTacticsColumnName property: the column name to take the alert tactics from.
-     *
+     * 
      * @return the alertTacticsColumnName value.
      */
     public String alertTacticsColumnName() {
@@ -85,7 +102,7 @@ public final class AlertDetailsOverride {
 
     /**
      * Set the alertTacticsColumnName property: the column name to take the alert tactics from.
-     *
+     * 
      * @param alertTacticsColumnName the alertTacticsColumnName value to set.
      * @return the AlertDetailsOverride object itself.
      */
@@ -96,7 +113,7 @@ public final class AlertDetailsOverride {
 
     /**
      * Get the alertSeverityColumnName property: the column name to take the alert severity from.
-     *
+     * 
      * @return the alertSeverityColumnName value.
      */
     public String alertSeverityColumnName() {
@@ -105,7 +122,7 @@ public final class AlertDetailsOverride {
 
     /**
      * Set the alertSeverityColumnName property: the column name to take the alert severity from.
-     *
+     * 
      * @param alertSeverityColumnName the alertSeverityColumnName value to set.
      * @return the AlertDetailsOverride object itself.
      */
@@ -115,10 +132,33 @@ public final class AlertDetailsOverride {
     }
 
     /**
+     * Get the alertDynamicProperties property: List of additional dynamic properties to override.
+     * 
+     * @return the alertDynamicProperties value.
+     */
+    public List<AlertPropertyMapping> alertDynamicProperties() {
+        return this.alertDynamicProperties;
+    }
+
+    /**
+     * Set the alertDynamicProperties property: List of additional dynamic properties to override.
+     * 
+     * @param alertDynamicProperties the alertDynamicProperties value to set.
+     * @return the AlertDetailsOverride object itself.
+     */
+    public AlertDetailsOverride withAlertDynamicProperties(List<AlertPropertyMapping> alertDynamicProperties) {
+        this.alertDynamicProperties = alertDynamicProperties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (alertDynamicProperties() != null) {
+            alertDynamicProperties().forEach(e -> e.validate());
+        }
     }
 }

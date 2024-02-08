@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** EyesOn property bag. */
+/**
+ * EyesOn property bag.
+ */
 @Immutable
 public final class EyesOnSettingsProperties {
     /*
@@ -17,8 +19,14 @@ public final class EyesOnSettingsProperties {
     private Boolean isEnabled;
 
     /**
+     * Creates an instance of EyesOnSettingsProperties class.
+     */
+    public EyesOnSettingsProperties() {
+    }
+
+    /**
      * Get the isEnabled property: Determines whether the setting is enable or disabled.
-     *
+     * 
      * @return the isEnabled value.
      */
     public Boolean isEnabled() {
@@ -27,7 +35,7 @@ public final class EyesOnSettingsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

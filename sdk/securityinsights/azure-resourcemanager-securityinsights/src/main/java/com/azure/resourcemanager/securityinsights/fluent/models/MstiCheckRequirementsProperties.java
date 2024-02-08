@@ -7,10 +7,20 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 
-/** Microsoft Threat Intelligence requirements check properties. */
+/**
+ * Microsoft Threat Intelligence requirements check properties.
+ */
 @Fluent
 public final class MstiCheckRequirementsProperties extends DataConnectorTenantId {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of MstiCheckRequirementsProperties class.
+     */
+    public MstiCheckRequirementsProperties() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MstiCheckRequirementsProperties withTenantId(String tenantId) {
         super.withTenantId(tenantId);
@@ -19,7 +29,7 @@ public final class MstiCheckRequirementsProperties extends DataConnectorTenantId
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

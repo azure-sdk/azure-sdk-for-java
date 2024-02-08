@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem model. */
+/**
+ * The InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem model.
+ */
 @Fluent
 public final class InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem {
     /*
@@ -29,8 +31,14 @@ public final class InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem {
     private Boolean supportDeepLink;
 
     /**
+     * Creates an instance of InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem class.
+     */
+    public InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem() {
+    }
+
+    /**
      * Get the headerProperty property: Insight column header.
-     *
+     * 
      * @return the headerProperty value.
      */
     public String headerProperty() {
@@ -39,7 +47,7 @@ public final class InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem {
 
     /**
      * Set the headerProperty property: Insight column header.
-     *
+     * 
      * @param headerProperty the headerProperty value to set.
      * @return the InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem object itself.
      */
@@ -50,7 +58,7 @@ public final class InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem {
 
     /**
      * Get the outputType property: Insights Column type.
-     *
+     * 
      * @return the outputType value.
      */
     public OutputType outputType() {
@@ -59,7 +67,7 @@ public final class InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem {
 
     /**
      * Set the outputType property: Insights Column type.
-     *
+     * 
      * @param outputType the outputType value to set.
      * @return the InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem object itself.
      */
@@ -70,7 +78,7 @@ public final class InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem {
 
     /**
      * Get the supportDeepLink property: Is query supports deep-link.
-     *
+     * 
      * @return the supportDeepLink value.
      */
     public Boolean supportDeepLink() {
@@ -79,7 +87,7 @@ public final class InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem {
 
     /**
      * Set the supportDeepLink property: Is query supports deep-link.
-     *
+     * 
      * @param supportDeepLink the supportDeepLink value to set.
      * @return the InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem object itself.
      */
@@ -90,7 +98,7 @@ public final class InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
