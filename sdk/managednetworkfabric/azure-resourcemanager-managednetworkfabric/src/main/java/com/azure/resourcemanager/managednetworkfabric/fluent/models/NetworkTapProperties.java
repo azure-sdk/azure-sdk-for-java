@@ -15,7 +15,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Network Tap Properties defines the properties of the resource. */
+/**
+ * Network Tap Properties defines the properties of the resource.
+ */
 @Fluent
 public final class NetworkTapProperties extends AnnotationResource {
     /*
@@ -61,13 +63,15 @@ public final class NetworkTapProperties extends AnnotationResource {
     @JsonProperty(value = "administrativeState", access = JsonProperty.Access.WRITE_ONLY)
     private AdministrativeState administrativeState;
 
-    /** Creates an instance of NetworkTapProperties class. */
+    /**
+     * Creates an instance of NetworkTapProperties class.
+     */
     public NetworkTapProperties() {
     }
 
     /**
      * Get the networkPacketBrokerId property: ARM resource ID of the Network Packet Broker.
-     *
+     * 
      * @return the networkPacketBrokerId value.
      */
     public String networkPacketBrokerId() {
@@ -76,7 +80,7 @@ public final class NetworkTapProperties extends AnnotationResource {
 
     /**
      * Set the networkPacketBrokerId property: ARM resource ID of the Network Packet Broker.
-     *
+     * 
      * @param networkPacketBrokerId the networkPacketBrokerId value to set.
      * @return the NetworkTapProperties object itself.
      */
@@ -87,7 +91,7 @@ public final class NetworkTapProperties extends AnnotationResource {
 
     /**
      * Get the sourceTapRuleId property: Source Tap Rule Id. ARM Resource ID of the Network Tap Rule.
-     *
+     * 
      * @return the sourceTapRuleId value.
      */
     public String sourceTapRuleId() {
@@ -96,7 +100,7 @@ public final class NetworkTapProperties extends AnnotationResource {
 
     /**
      * Get the destinations property: List of destinations to send the filter traffic.
-     *
+     * 
      * @return the destinations value.
      */
     public List<NetworkTapPropertiesDestinationsItem> destinations() {
@@ -105,7 +109,7 @@ public final class NetworkTapProperties extends AnnotationResource {
 
     /**
      * Set the destinations property: List of destinations to send the filter traffic.
-     *
+     * 
      * @param destinations the destinations value to set.
      * @return the NetworkTapProperties object itself.
      */
@@ -116,7 +120,7 @@ public final class NetworkTapProperties extends AnnotationResource {
 
     /**
      * Get the pollingType property: Polling type.
-     *
+     * 
      * @return the pollingType value.
      */
     public PollingType pollingType() {
@@ -125,7 +129,7 @@ public final class NetworkTapProperties extends AnnotationResource {
 
     /**
      * Set the pollingType property: Polling type.
-     *
+     * 
      * @param pollingType the pollingType value to set.
      * @return the NetworkTapProperties object itself.
      */
@@ -136,7 +140,7 @@ public final class NetworkTapProperties extends AnnotationResource {
 
     /**
      * Get the configurationState property: Gets the configurations state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -147,7 +151,7 @@ public final class NetworkTapProperties extends AnnotationResource {
      * Get the provisioningState property: Provides you the latest status of the NFC service, whether it is Accepted,
      * updating, Succeeded or Failed. During this process, the states keep changing based on the status of Network Tap
      * provisioning.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -156,14 +160,16 @@ public final class NetworkTapProperties extends AnnotationResource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource. Example -Enabled/Disabled.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
         return this.administrativeState;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkTapProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -172,23 +178,19 @@ public final class NetworkTapProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (networkPacketBrokerId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property networkPacketBrokerId in model NetworkTapProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property networkPacketBrokerId in model NetworkTapProperties"));
         }
         if (destinations() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property destinations in model NetworkTapProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property destinations in model NetworkTapProperties"));
         } else {
             destinations().forEach(e -> e.validate());
         }

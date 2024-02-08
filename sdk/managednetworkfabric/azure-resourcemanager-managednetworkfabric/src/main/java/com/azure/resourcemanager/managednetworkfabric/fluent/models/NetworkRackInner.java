@@ -14,7 +14,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The Network Rack resource definition. */
+/**
+ * The Network Rack resource definition.
+ */
 @Fluent
 public final class NetworkRackInner extends Resource {
     /*
@@ -29,13 +31,15 @@ public final class NetworkRackInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of NetworkRackInner class. */
+    /**
+     * Creates an instance of NetworkRackInner class.
+     */
     public NetworkRackInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private NetworkRackProperties innerProperties() {
@@ -44,21 +48,25 @@ public final class NetworkRackInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkRackInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkRackInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -67,7 +75,7 @@ public final class NetworkRackInner extends Resource {
 
     /**
      * Get the networkRackType property: Network Rack SKU name.
-     *
+     * 
      * @return the networkRackType value.
      */
     public NetworkRackType networkRackType() {
@@ -76,7 +84,7 @@ public final class NetworkRackInner extends Resource {
 
     /**
      * Set the networkRackType property: Network Rack SKU name.
-     *
+     * 
      * @param networkRackType the networkRackType value to set.
      * @return the NetworkRackInner object itself.
      */
@@ -90,7 +98,7 @@ public final class NetworkRackInner extends Resource {
 
     /**
      * Get the networkFabricId property: ARM resource ID of the Network Fabric.
-     *
+     * 
      * @return the networkFabricId value.
      */
     public String networkFabricId() {
@@ -99,7 +107,7 @@ public final class NetworkRackInner extends Resource {
 
     /**
      * Set the networkFabricId property: ARM resource ID of the Network Fabric.
-     *
+     * 
      * @param networkFabricId the networkFabricId value to set.
      * @return the NetworkRackInner object itself.
      */
@@ -113,7 +121,7 @@ public final class NetworkRackInner extends Resource {
 
     /**
      * Get the networkDevices property: List of network device ARM resource IDs.
-     *
+     * 
      * @return the networkDevices value.
      */
     public List<String> networkDevices() {
@@ -122,7 +130,7 @@ public final class NetworkRackInner extends Resource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -131,7 +139,7 @@ public final class NetworkRackInner extends Resource {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -140,7 +148,7 @@ public final class NetworkRackInner extends Resource {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the NetworkRackInner object itself.
      */
@@ -154,15 +162,13 @@ public final class NetworkRackInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model NetworkRackInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model NetworkRackInner"));
         } else {
             innerProperties().validate();
         }

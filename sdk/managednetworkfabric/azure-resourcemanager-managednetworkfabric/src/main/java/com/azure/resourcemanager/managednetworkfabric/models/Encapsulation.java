@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Type of encapsulation. */
+/**
+ * Type of encapsulation.
+ */
 public final class Encapsulation extends ExpandableStringEnum<Encapsulation> {
-    /** Static value None for Encapsulation. */
+    /**
+     * Static value None for Encapsulation.
+     */
     public static final Encapsulation NONE = fromString("None");
 
-    /** Static value GRE for Encapsulation. */
+    /**
+     * Static value GRE for Encapsulation.
+     */
     public static final Encapsulation GRE = fromString("GRE");
 
     /**
      * Creates a new instance of Encapsulation value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class Encapsulation extends ExpandableStringEnum<Encapsulation> {
 
     /**
      * Creates or finds a Encapsulation from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Encapsulation.
      */
@@ -38,7 +44,7 @@ public final class Encapsulation extends ExpandableStringEnum<Encapsulation> {
 
     /**
      * Gets known Encapsulation values.
-     *
+     * 
      * @return known Encapsulation values.
      */
     public static Collection<Encapsulation> values() {

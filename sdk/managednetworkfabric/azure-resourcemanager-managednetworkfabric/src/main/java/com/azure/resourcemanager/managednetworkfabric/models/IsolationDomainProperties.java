@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Isolation Domain Properties. */
+/**
+ * Isolation Domain Properties.
+ */
 @Fluent
 public final class IsolationDomainProperties {
     /*
@@ -23,13 +25,15 @@ public final class IsolationDomainProperties {
     @JsonProperty(value = "neighborGroupIds")
     private List<String> neighborGroupIds;
 
-    /** Creates an instance of IsolationDomainProperties class. */
+    /**
+     * Creates an instance of IsolationDomainProperties class.
+     */
     public IsolationDomainProperties() {
     }
 
     /**
      * Get the encapsulation property: Type of encapsulation.
-     *
+     * 
      * @return the encapsulation value.
      */
     public Encapsulation encapsulation() {
@@ -38,7 +42,7 @@ public final class IsolationDomainProperties {
 
     /**
      * Set the encapsulation property: Type of encapsulation.
-     *
+     * 
      * @param encapsulation the encapsulation value to set.
      * @return the IsolationDomainProperties object itself.
      */
@@ -49,7 +53,7 @@ public final class IsolationDomainProperties {
 
     /**
      * Get the neighborGroupIds property: List of Neighbor Group IDs.
-     *
+     * 
      * @return the neighborGroupIds value.
      */
     public List<String> neighborGroupIds() {
@@ -58,7 +62,7 @@ public final class IsolationDomainProperties {
 
     /**
      * Set the neighborGroupIds property: List of Neighbor Group IDs.
-     *
+     * 
      * @param neighborGroupIds the neighborGroupIds value to set.
      * @return the IsolationDomainProperties object itself.
      */
@@ -69,7 +73,7 @@ public final class IsolationDomainProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

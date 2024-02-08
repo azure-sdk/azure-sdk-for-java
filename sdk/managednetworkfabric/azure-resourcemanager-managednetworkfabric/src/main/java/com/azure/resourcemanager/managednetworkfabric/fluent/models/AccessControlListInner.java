@@ -11,6 +11,7 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListMatchConfiguration;
 import com.azure.resourcemanager.managednetworkfabric.models.AdministrativeState;
 import com.azure.resourcemanager.managednetworkfabric.models.CommonDynamicMatchConfiguration;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationState;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationType;
 import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
@@ -19,7 +20,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** The Access Control List resource definition. */
+/**
+ * The Access Control List resource definition.
+ */
 @Fluent
 public final class AccessControlListInner extends Resource {
     /*
@@ -34,13 +37,15 @@ public final class AccessControlListInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of AccessControlListInner class. */
+    /**
+     * Creates an instance of AccessControlListInner class.
+     */
     public AccessControlListInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AccessControlListProperties innerProperties() {
@@ -49,21 +54,25 @@ public final class AccessControlListInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AccessControlListInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AccessControlListInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -72,7 +81,7 @@ public final class AccessControlListInner extends Resource {
 
     /**
      * Get the lastSyncedTime property: The last synced timestamp.
-     *
+     * 
      * @return the lastSyncedTime value.
      */
     public OffsetDateTime lastSyncedTime() {
@@ -81,7 +90,7 @@ public final class AccessControlListInner extends Resource {
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -90,7 +99,7 @@ public final class AccessControlListInner extends Resource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -99,7 +108,7 @@ public final class AccessControlListInner extends Resource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -108,7 +117,7 @@ public final class AccessControlListInner extends Resource {
 
     /**
      * Get the configurationType property: Input method to configure Access Control List.
-     *
+     * 
      * @return the configurationType value.
      */
     public ConfigurationType configurationType() {
@@ -117,7 +126,7 @@ public final class AccessControlListInner extends Resource {
 
     /**
      * Set the configurationType property: Input method to configure Access Control List.
-     *
+     * 
      * @param configurationType the configurationType value to set.
      * @return the AccessControlListInner object itself.
      */
@@ -131,7 +140,7 @@ public final class AccessControlListInner extends Resource {
 
     /**
      * Get the aclsUrl property: Access Control List file URL.
-     *
+     * 
      * @return the aclsUrl value.
      */
     public String aclsUrl() {
@@ -140,7 +149,7 @@ public final class AccessControlListInner extends Resource {
 
     /**
      * Set the aclsUrl property: Access Control List file URL.
-     *
+     * 
      * @param aclsUrl the aclsUrl value to set.
      * @return the AccessControlListInner object itself.
      */
@@ -153,8 +162,33 @@ public final class AccessControlListInner extends Resource {
     }
 
     /**
+     * Get the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     * 
+     * @return the defaultAction value.
+     */
+    public CommunityActionTypes defaultAction() {
+        return this.innerProperties() == null ? null : this.innerProperties().defaultAction();
+    }
+
+    /**
+     * Set the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     * 
+     * @param defaultAction the defaultAction value to set.
+     * @return the AccessControlListInner object itself.
+     */
+    public AccessControlListInner withDefaultAction(CommunityActionTypes defaultAction) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AccessControlListProperties();
+        }
+        this.innerProperties().withDefaultAction(defaultAction);
+        return this;
+    }
+
+    /**
      * Get the matchConfigurations property: List of match configurations.
-     *
+     * 
      * @return the matchConfigurations value.
      */
     public List<AccessControlListMatchConfiguration> matchConfigurations() {
@@ -163,12 +197,12 @@ public final class AccessControlListInner extends Resource {
 
     /**
      * Set the matchConfigurations property: List of match configurations.
-     *
+     * 
      * @param matchConfigurations the matchConfigurations value to set.
      * @return the AccessControlListInner object itself.
      */
-    public AccessControlListInner withMatchConfigurations(
-        List<AccessControlListMatchConfiguration> matchConfigurations) {
+    public AccessControlListInner
+        withMatchConfigurations(List<AccessControlListMatchConfiguration> matchConfigurations) {
         if (this.innerProperties() == null) {
             this.innerProperties = new AccessControlListProperties();
         }
@@ -178,7 +212,7 @@ public final class AccessControlListInner extends Resource {
 
     /**
      * Get the dynamicMatchConfigurations property: List of dynamic match configurations.
-     *
+     * 
      * @return the dynamicMatchConfigurations value.
      */
     public List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations() {
@@ -187,12 +221,12 @@ public final class AccessControlListInner extends Resource {
 
     /**
      * Set the dynamicMatchConfigurations property: List of dynamic match configurations.
-     *
+     * 
      * @param dynamicMatchConfigurations the dynamicMatchConfigurations value to set.
      * @return the AccessControlListInner object itself.
      */
-    public AccessControlListInner withDynamicMatchConfigurations(
-        List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations) {
+    public AccessControlListInner
+        withDynamicMatchConfigurations(List<CommonDynamicMatchConfiguration> dynamicMatchConfigurations) {
         if (this.innerProperties() == null) {
             this.innerProperties = new AccessControlListProperties();
         }
@@ -202,7 +236,7 @@ public final class AccessControlListInner extends Resource {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -211,7 +245,7 @@ public final class AccessControlListInner extends Resource {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the AccessControlListInner object itself.
      */
@@ -225,15 +259,13 @@ public final class AccessControlListInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model AccessControlListInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model AccessControlListInner"));
         } else {
             innerProperties().validate();
         }

@@ -4,16 +4,10 @@
 
 module com.azure.resourcemanager.managednetworkfabric {
     requires transitive com.azure.core.management;
-
     exports com.azure.resourcemanager.managednetworkfabric;
     exports com.azure.resourcemanager.managednetworkfabric.fluent;
     exports com.azure.resourcemanager.managednetworkfabric.fluent.models;
     exports com.azure.resourcemanager.managednetworkfabric.models;
-
-    opens com.azure.resourcemanager.managednetworkfabric.fluent.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
-    opens com.azure.resourcemanager.managednetworkfabric.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.managednetworkfabric.fluent.models to com.azure.core, com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.managednetworkfabric.models to com.azure.core, com.fasterxml.jackson.databind;
 }

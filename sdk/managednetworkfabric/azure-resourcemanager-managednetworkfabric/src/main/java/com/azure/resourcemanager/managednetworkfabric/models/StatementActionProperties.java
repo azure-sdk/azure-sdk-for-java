@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Route policy action properties. */
+/**
+ * Route policy action properties.
+ */
 @Fluent
 public final class StatementActionProperties {
     /*
@@ -35,13 +37,15 @@ public final class StatementActionProperties {
     @JsonProperty(value = "ipExtendedCommunityProperties")
     private ActionIpExtendedCommunityProperties ipExtendedCommunityProperties;
 
-    /** Creates an instance of StatementActionProperties class. */
+    /**
+     * Creates an instance of StatementActionProperties class.
+     */
     public StatementActionProperties() {
     }
 
     /**
      * Get the localPreference property: Local Preference of the route policy.
-     *
+     * 
      * @return the localPreference value.
      */
     public Long localPreference() {
@@ -50,7 +54,7 @@ public final class StatementActionProperties {
 
     /**
      * Set the localPreference property: Local Preference of the route policy.
-     *
+     * 
      * @param localPreference the localPreference value to set.
      * @return the StatementActionProperties object itself.
      */
@@ -61,7 +65,7 @@ public final class StatementActionProperties {
 
     /**
      * Get the actionType property: Action type. Example: Permit | Deny | Continue.
-     *
+     * 
      * @return the actionType value.
      */
     public RoutePolicyActionType actionType() {
@@ -70,7 +74,7 @@ public final class StatementActionProperties {
 
     /**
      * Set the actionType property: Action type. Example: Permit | Deny | Continue.
-     *
+     * 
      * @param actionType the actionType value to set.
      * @return the StatementActionProperties object itself.
      */
@@ -81,7 +85,7 @@ public final class StatementActionProperties {
 
     /**
      * Get the ipCommunityProperties property: IP Community Properties.
-     *
+     * 
      * @return the ipCommunityProperties value.
      */
     public ActionIpCommunityProperties ipCommunityProperties() {
@@ -90,7 +94,7 @@ public final class StatementActionProperties {
 
     /**
      * Set the ipCommunityProperties property: IP Community Properties.
-     *
+     * 
      * @param ipCommunityProperties the ipCommunityProperties value to set.
      * @return the StatementActionProperties object itself.
      */
@@ -101,7 +105,7 @@ public final class StatementActionProperties {
 
     /**
      * Get the ipExtendedCommunityProperties property: IP Extended Community Properties.
-     *
+     * 
      * @return the ipExtendedCommunityProperties value.
      */
     public ActionIpExtendedCommunityProperties ipExtendedCommunityProperties() {
@@ -110,27 +114,25 @@ public final class StatementActionProperties {
 
     /**
      * Set the ipExtendedCommunityProperties property: IP Extended Community Properties.
-     *
+     * 
      * @param ipExtendedCommunityProperties the ipExtendedCommunityProperties value to set.
      * @return the StatementActionProperties object itself.
      */
-    public StatementActionProperties withIpExtendedCommunityProperties(
-        ActionIpExtendedCommunityProperties ipExtendedCommunityProperties) {
+    public StatementActionProperties
+        withIpExtendedCommunityProperties(ActionIpExtendedCommunityProperties ipExtendedCommunityProperties) {
         this.ipExtendedCommunityProperties = ipExtendedCommunityProperties;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (actionType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property actionType in model StatementActionProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property actionType in model StatementActionProperties"));
         }
         if (ipCommunityProperties() != null) {
             ipCommunityProperties().validate();

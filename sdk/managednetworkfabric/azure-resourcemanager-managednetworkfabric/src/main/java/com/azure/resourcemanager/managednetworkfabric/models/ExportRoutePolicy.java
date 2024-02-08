@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Export Route Policy either IPv4 or IPv6. */
+/**
+ * Export Route Policy either IPv4 or IPv6.
+ */
 @Fluent
 public final class ExportRoutePolicy {
     /*
@@ -22,13 +24,15 @@ public final class ExportRoutePolicy {
     @JsonProperty(value = "exportIpv6RoutePolicyId")
     private String exportIpv6RoutePolicyId;
 
-    /** Creates an instance of ExportRoutePolicy class. */
+    /**
+     * Creates an instance of ExportRoutePolicy class.
+     */
     public ExportRoutePolicy() {
     }
 
     /**
      * Get the exportIpv4RoutePolicyId property: ARM resource ID of RoutePolicy.
-     *
+     * 
      * @return the exportIpv4RoutePolicyId value.
      */
     public String exportIpv4RoutePolicyId() {
@@ -37,7 +41,7 @@ public final class ExportRoutePolicy {
 
     /**
      * Set the exportIpv4RoutePolicyId property: ARM resource ID of RoutePolicy.
-     *
+     * 
      * @param exportIpv4RoutePolicyId the exportIpv4RoutePolicyId value to set.
      * @return the ExportRoutePolicy object itself.
      */
@@ -48,7 +52,7 @@ public final class ExportRoutePolicy {
 
     /**
      * Get the exportIpv6RoutePolicyId property: ARM resource ID of RoutePolicy.
-     *
+     * 
      * @return the exportIpv6RoutePolicyId value.
      */
     public String exportIpv6RoutePolicyId() {
@@ -57,7 +61,7 @@ public final class ExportRoutePolicy {
 
     /**
      * Set the exportIpv6RoutePolicyId property: ARM resource ID of RoutePolicy.
-     *
+     * 
      * @param exportIpv6RoutePolicyId the exportIpv6RoutePolicyId value to set.
      * @return the ExportRoutePolicy object itself.
      */
@@ -68,7 +72,7 @@ public final class ExportRoutePolicy {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

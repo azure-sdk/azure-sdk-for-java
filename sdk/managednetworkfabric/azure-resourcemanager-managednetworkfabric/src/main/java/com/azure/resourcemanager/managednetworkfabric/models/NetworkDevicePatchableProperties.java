@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Network Device updatable properties. */
+/**
+ * Network Device updatable properties.
+ */
 @Fluent
 public class NetworkDevicePatchableProperties {
     /*
@@ -22,13 +24,15 @@ public class NetworkDevicePatchableProperties {
     @JsonProperty(value = "serialNumber")
     private String serialNumber;
 
-    /** Creates an instance of NetworkDevicePatchableProperties class. */
+    /**
+     * Creates an instance of NetworkDevicePatchableProperties class.
+     */
     public NetworkDevicePatchableProperties() {
     }
 
     /**
      * Get the hostname property: The host name of the device.
-     *
+     * 
      * @return the hostname value.
      */
     public String hostname() {
@@ -37,7 +41,7 @@ public class NetworkDevicePatchableProperties {
 
     /**
      * Set the hostname property: The host name of the device.
-     *
+     * 
      * @param hostname the hostname value to set.
      * @return the NetworkDevicePatchableProperties object itself.
      */
@@ -49,7 +53,7 @@ public class NetworkDevicePatchableProperties {
     /**
      * Get the serialNumber property: Serial number of the device. Format of serial Number -
      * Make;Model;HardwareRevisionId;SerialNumber.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -59,7 +63,7 @@ public class NetworkDevicePatchableProperties {
     /**
      * Set the serialNumber property: Serial number of the device. Format of serial Number -
      * Make;Model;HardwareRevisionId;SerialNumber.
-     *
+     * 
      * @param serialNumber the serialNumber value to set.
      * @return the NetworkDevicePatchableProperties object itself.
      */
@@ -70,7 +74,7 @@ public class NetworkDevicePatchableProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

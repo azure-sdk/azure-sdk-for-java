@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Rules for the InternetGateways. */
+/**
+ * Rules for the InternetGateways.
+ */
 @Fluent
 public final class RuleProperties {
     /*
@@ -24,13 +26,15 @@ public final class RuleProperties {
     @JsonProperty(value = "addressList", required = true)
     private List<String> addressList;
 
-    /** Creates an instance of RuleProperties class. */
+    /**
+     * Creates an instance of RuleProperties class.
+     */
     public RuleProperties() {
     }
 
     /**
      * Get the action property: Specify action.
-     *
+     * 
      * @return the action value.
      */
     public Action action() {
@@ -39,7 +43,7 @@ public final class RuleProperties {
 
     /**
      * Set the action property: Specify action.
-     *
+     * 
      * @param action the action value to set.
      * @return the RuleProperties object itself.
      */
@@ -50,7 +54,7 @@ public final class RuleProperties {
 
     /**
      * Get the addressList property: List of Addresses to be allowed or denied.
-     *
+     * 
      * @return the addressList value.
      */
     public List<String> addressList() {
@@ -59,7 +63,7 @@ public final class RuleProperties {
 
     /**
      * Set the addressList property: List of Addresses to be allowed or denied.
-     *
+     * 
      * @param addressList the addressList value to set.
      * @return the RuleProperties object itself.
      */
@@ -70,19 +74,17 @@ public final class RuleProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (action() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property action in model RuleProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property action in model RuleProperties"));
         }
         if (addressList() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property addressList in model RuleProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property addressList in model RuleProperties"));
         }
     }
 

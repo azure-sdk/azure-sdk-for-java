@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the common match conditions of the ACL and Network Tap Rule. */
+/**
+ * Defines the common match conditions of the ACL and Network Tap Rule.
+ */
 @Fluent
 public class CommonMatchConditions {
     /*
@@ -29,13 +31,15 @@ public class CommonMatchConditions {
     @JsonProperty(value = "ipCondition")
     private IpMatchCondition ipCondition;
 
-    /** Creates an instance of CommonMatchConditions class. */
+    /**
+     * Creates an instance of CommonMatchConditions class.
+     */
     public CommonMatchConditions() {
     }
 
     /**
      * Get the protocolTypes property: List of the protocols that need to be matched.
-     *
+     * 
      * @return the protocolTypes value.
      */
     public List<String> protocolTypes() {
@@ -44,7 +48,7 @@ public class CommonMatchConditions {
 
     /**
      * Set the protocolTypes property: List of the protocols that need to be matched.
-     *
+     * 
      * @param protocolTypes the protocolTypes value to set.
      * @return the CommonMatchConditions object itself.
      */
@@ -55,7 +59,7 @@ public class CommonMatchConditions {
 
     /**
      * Get the vlanMatchCondition property: Vlan match condition that needs to be matched.
-     *
+     * 
      * @return the vlanMatchCondition value.
      */
     public VlanMatchCondition vlanMatchCondition() {
@@ -64,7 +68,7 @@ public class CommonMatchConditions {
 
     /**
      * Set the vlanMatchCondition property: Vlan match condition that needs to be matched.
-     *
+     * 
      * @param vlanMatchCondition the vlanMatchCondition value to set.
      * @return the CommonMatchConditions object itself.
      */
@@ -75,7 +79,7 @@ public class CommonMatchConditions {
 
     /**
      * Get the ipCondition property: IP condition that needs to be matched.
-     *
+     * 
      * @return the ipCondition value.
      */
     public IpMatchCondition ipCondition() {
@@ -84,7 +88,7 @@ public class CommonMatchConditions {
 
     /**
      * Set the ipCondition property: IP condition that needs to be matched.
-     *
+     * 
      * @param ipCondition the ipCondition value to set.
      * @return the CommonMatchConditions object itself.
      */
@@ -95,7 +99,7 @@ public class CommonMatchConditions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

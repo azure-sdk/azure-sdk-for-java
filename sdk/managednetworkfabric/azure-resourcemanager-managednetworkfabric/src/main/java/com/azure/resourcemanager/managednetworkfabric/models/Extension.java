@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Extension. Example: NoExtension | NPB. */
+/**
+ * Extension. Example: NoExtension | NPB.
+ */
 public final class Extension extends ExpandableStringEnum<Extension> {
-    /** Static value NoExtension for Extension. */
+    /**
+     * Static value NoExtension for Extension.
+     */
     public static final Extension NO_EXTENSION = fromString("NoExtension");
 
-    /** Static value NPB for Extension. */
+    /**
+     * Static value NPB for Extension.
+     */
     public static final Extension NPB = fromString("NPB");
 
     /**
      * Creates a new instance of Extension value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class Extension extends ExpandableStringEnum<Extension> {
 
     /**
      * Creates or finds a Extension from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Extension.
      */
@@ -38,7 +44,7 @@ public final class Extension extends ExpandableStringEnum<Extension> {
 
     /**
      * Gets known Extension values.
-     *
+     * 
      * @return known Extension values.
      */
     public static Collection<Extension> values() {

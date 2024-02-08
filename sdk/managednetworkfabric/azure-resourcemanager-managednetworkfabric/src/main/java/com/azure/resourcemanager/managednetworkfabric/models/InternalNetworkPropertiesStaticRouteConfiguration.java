@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Static Route Configuration properties. */
+/**
+ * Static Route Configuration properties.
+ */
 @Fluent
 public final class InternalNetworkPropertiesStaticRouteConfiguration extends StaticRouteConfiguration {
     /*
@@ -17,13 +19,15 @@ public final class InternalNetworkPropertiesStaticRouteConfiguration extends Sta
     @JsonProperty(value = "extension")
     private Extension extension;
 
-    /** Creates an instance of InternalNetworkPropertiesStaticRouteConfiguration class. */
+    /**
+     * Creates an instance of InternalNetworkPropertiesStaticRouteConfiguration class.
+     */
     public InternalNetworkPropertiesStaticRouteConfiguration() {
     }
 
     /**
      * Get the extension property: Extension. Example: NoExtension | NPB.
-     *
+     * 
      * @return the extension value.
      */
     public Extension extension() {
@@ -32,7 +36,7 @@ public final class InternalNetworkPropertiesStaticRouteConfiguration extends Sta
 
     /**
      * Set the extension property: Extension. Example: NoExtension | NPB.
-     *
+     * 
      * @param extension the extension value to set.
      * @return the InternalNetworkPropertiesStaticRouteConfiguration object itself.
      */
@@ -41,21 +45,27 @@ public final class InternalNetworkPropertiesStaticRouteConfiguration extends Sta
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternalNetworkPropertiesStaticRouteConfiguration withBfdConfiguration(BfdConfiguration bfdConfiguration) {
         super.withBfdConfiguration(bfdConfiguration);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternalNetworkPropertiesStaticRouteConfiguration withIpv4Routes(List<StaticRouteProperties> ipv4Routes) {
         super.withIpv4Routes(ipv4Routes);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternalNetworkPropertiesStaticRouteConfiguration withIpv6Routes(List<StaticRouteProperties> ipv6Routes) {
         super.withIpv6Routes(ipv6Routes);
@@ -64,7 +74,7 @@ public final class InternalNetworkPropertiesStaticRouteConfiguration extends Sta
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

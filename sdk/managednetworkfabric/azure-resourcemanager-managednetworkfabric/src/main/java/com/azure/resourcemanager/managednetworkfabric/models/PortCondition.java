@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Port condition that needs to be matched. */
+/**
+ * Port condition that needs to be matched.
+ */
 @Fluent
 public class PortCondition {
     /*
@@ -31,18 +33,20 @@ public class PortCondition {
     private List<String> ports;
 
     /*
-     * List of the port Group Names that to be matched.
+     * List of the port Group Names that need to be matched.
      */
     @JsonProperty(value = "portGroupNames")
     private List<String> portGroupNames;
 
-    /** Creates an instance of PortCondition class. */
+    /**
+     * Creates an instance of PortCondition class.
+     */
     public PortCondition() {
     }
 
     /**
      * Get the portType property: Port type that needs to be matched.
-     *
+     * 
      * @return the portType value.
      */
     public PortType portType() {
@@ -51,7 +55,7 @@ public class PortCondition {
 
     /**
      * Set the portType property: Port type that needs to be matched.
-     *
+     * 
      * @param portType the portType value to set.
      * @return the PortCondition object itself.
      */
@@ -62,7 +66,7 @@ public class PortCondition {
 
     /**
      * Get the layer4Protocol property: Layer4 protocol type that needs to be matched.
-     *
+     * 
      * @return the layer4Protocol value.
      */
     public Layer4Protocol layer4Protocol() {
@@ -71,7 +75,7 @@ public class PortCondition {
 
     /**
      * Set the layer4Protocol property: Layer4 protocol type that needs to be matched.
-     *
+     * 
      * @param layer4Protocol the layer4Protocol value to set.
      * @return the PortCondition object itself.
      */
@@ -82,7 +86,7 @@ public class PortCondition {
 
     /**
      * Get the ports property: List of the Ports that need to be matched.
-     *
+     * 
      * @return the ports value.
      */
     public List<String> ports() {
@@ -91,7 +95,7 @@ public class PortCondition {
 
     /**
      * Set the ports property: List of the Ports that need to be matched.
-     *
+     * 
      * @param ports the ports value to set.
      * @return the PortCondition object itself.
      */
@@ -101,8 +105,8 @@ public class PortCondition {
     }
 
     /**
-     * Get the portGroupNames property: List of the port Group Names that to be matched.
-     *
+     * Get the portGroupNames property: List of the port Group Names that need to be matched.
+     * 
      * @return the portGroupNames value.
      */
     public List<String> portGroupNames() {
@@ -110,8 +114,8 @@ public class PortCondition {
     }
 
     /**
-     * Set the portGroupNames property: List of the port Group Names that to be matched.
-     *
+     * Set the portGroupNames property: List of the port Group Names that need to be matched.
+     * 
      * @param portGroupNames the portGroupNames value to set.
      * @return the PortCondition object itself.
      */
@@ -122,14 +126,13 @@ public class PortCondition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (layer4Protocol() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property layer4Protocol in model PortCondition"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property layer4Protocol in model PortCondition"));
         }
     }
 

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.IpCommunityRule;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** IP Community patchable properties. */
+/**
+ * IP Community patchable properties.
+ */
 @Fluent
 public class IpCommunityPatchableProperties {
     /*
@@ -18,13 +20,15 @@ public class IpCommunityPatchableProperties {
     @JsonProperty(value = "ipCommunityRules")
     private List<IpCommunityRule> ipCommunityRules;
 
-    /** Creates an instance of IpCommunityPatchableProperties class. */
+    /**
+     * Creates an instance of IpCommunityPatchableProperties class.
+     */
     public IpCommunityPatchableProperties() {
     }
 
     /**
      * Get the ipCommunityRules property: List of IP Community Rules.
-     *
+     * 
      * @return the ipCommunityRules value.
      */
     public List<IpCommunityRule> ipCommunityRules() {
@@ -33,7 +37,7 @@ public class IpCommunityPatchableProperties {
 
     /**
      * Set the ipCommunityRules property: List of IP Community Rules.
-     *
+     * 
      * @param ipCommunityRules the ipCommunityRules value to set.
      * @return the IpCommunityPatchableProperties object itself.
      */
@@ -44,7 +48,7 @@ public class IpCommunityPatchableProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

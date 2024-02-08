@@ -14,7 +14,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** IP Extended Community Properties defines the resource properties. */
+/**
+ * IP Extended Community Properties defines the resource properties.
+ */
 @Fluent
 public final class IpExtendedCommunityProperties extends AnnotationResource {
     /*
@@ -41,13 +43,15 @@ public final class IpExtendedCommunityProperties extends AnnotationResource {
     @JsonProperty(value = "ipExtendedCommunityRules", required = true)
     private List<IpExtendedCommunityRule> ipExtendedCommunityRules;
 
-    /** Creates an instance of IpExtendedCommunityProperties class. */
+    /**
+     * Creates an instance of IpExtendedCommunityProperties class.
+     */
     public IpExtendedCommunityProperties() {
     }
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -56,7 +60,7 @@ public final class IpExtendedCommunityProperties extends AnnotationResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -65,7 +69,7 @@ public final class IpExtendedCommunityProperties extends AnnotationResource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -74,7 +78,7 @@ public final class IpExtendedCommunityProperties extends AnnotationResource {
 
     /**
      * Get the ipExtendedCommunityRules property: List of IP Extended Community Rules.
-     *
+     * 
      * @return the ipExtendedCommunityRules value.
      */
     public List<IpExtendedCommunityRule> ipExtendedCommunityRules() {
@@ -83,17 +87,19 @@ public final class IpExtendedCommunityProperties extends AnnotationResource {
 
     /**
      * Set the ipExtendedCommunityRules property: List of IP Extended Community Rules.
-     *
+     * 
      * @param ipExtendedCommunityRules the ipExtendedCommunityRules value to set.
      * @return the IpExtendedCommunityProperties object itself.
      */
-    public IpExtendedCommunityProperties withIpExtendedCommunityRules(
-        List<IpExtendedCommunityRule> ipExtendedCommunityRules) {
+    public IpExtendedCommunityProperties
+        withIpExtendedCommunityRules(List<IpExtendedCommunityRule> ipExtendedCommunityRules) {
         this.ipExtendedCommunityRules = ipExtendedCommunityRules;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IpExtendedCommunityProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -102,17 +108,15 @@ public final class IpExtendedCommunityProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (ipExtendedCommunityRules() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property ipExtendedCommunityRules in model IpExtendedCommunityProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property ipExtendedCommunityRules in model IpExtendedCommunityProperties"));
         } else {
             ipExtendedCommunityRules().forEach(e -> e.validate());
         }

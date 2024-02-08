@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Gateway Type of the resource. */
+/**
+ * Gateway Type of the resource.
+ */
 public final class GatewayType extends ExpandableStringEnum<GatewayType> {
-    /** Static value Infrastructure for GatewayType. */
+    /**
+     * Static value Infrastructure for GatewayType.
+     */
     public static final GatewayType INFRASTRUCTURE = fromString("Infrastructure");
 
-    /** Static value Workload for GatewayType. */
+    /**
+     * Static value Workload for GatewayType.
+     */
     public static final GatewayType WORKLOAD = fromString("Workload");
 
     /**
      * Creates a new instance of GatewayType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class GatewayType extends ExpandableStringEnum<GatewayType> {
 
     /**
      * Creates or finds a GatewayType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding GatewayType.
      */
@@ -38,7 +44,7 @@ public final class GatewayType extends ExpandableStringEnum<GatewayType> {
 
     /**
      * Gets known GatewayType values.
-     *
+     * 
      * @return known GatewayType values.
      */
     public static Collection<GatewayType> values() {

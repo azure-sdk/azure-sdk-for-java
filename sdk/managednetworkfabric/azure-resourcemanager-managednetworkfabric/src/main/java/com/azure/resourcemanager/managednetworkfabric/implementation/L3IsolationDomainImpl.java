@@ -127,25 +127,19 @@ public final class L3IsolationDomainImpl
     }
 
     public L3IsolationDomain create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getL3IsolationDomains()
-                .create(resourceGroupName, l3IsolationDomainName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getL3IsolationDomains().create(resourceGroupName,
+            l3IsolationDomainName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public L3IsolationDomain create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getL3IsolationDomains()
-                .create(resourceGroupName, l3IsolationDomainName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getL3IsolationDomains().create(resourceGroupName,
+            l3IsolationDomainName, this.innerModel(), context);
         return this;
     }
 
-    L3IsolationDomainImpl(
-        String name, com.azure.resourcemanager.managednetworkfabric.ManagedNetworkFabricManager serviceManager) {
+    L3IsolationDomainImpl(String name,
+        com.azure.resourcemanager.managednetworkfabric.ManagedNetworkFabricManager serviceManager) {
         this.innerObject = new L3IsolationDomainInner();
         this.serviceManager = serviceManager;
         this.l3IsolationDomainName = name;
@@ -157,63 +151,46 @@ public final class L3IsolationDomainImpl
     }
 
     public L3IsolationDomain apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getL3IsolationDomains()
-                .update(resourceGroupName, l3IsolationDomainName, updateBody, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getL3IsolationDomains().update(resourceGroupName,
+            l3IsolationDomainName, updateBody, Context.NONE);
         return this;
     }
 
     public L3IsolationDomain apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getL3IsolationDomains()
-                .update(resourceGroupName, l3IsolationDomainName, updateBody, context);
+        this.innerObject = serviceManager.serviceClient().getL3IsolationDomains().update(resourceGroupName,
+            l3IsolationDomainName, updateBody, context);
         return this;
     }
 
-    L3IsolationDomainImpl(
-        L3IsolationDomainInner innerObject,
+    L3IsolationDomainImpl(L3IsolationDomainInner innerObject,
         com.azure.resourcemanager.managednetworkfabric.ManagedNetworkFabricManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.l3IsolationDomainName = Utils.getValueFromIdByName(innerObject.id(), "l3IsolationDomains");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.l3IsolationDomainName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "l3IsolationDomains");
     }
 
     public L3IsolationDomain refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getL3IsolationDomains()
-                .getByResourceGroupWithResponse(resourceGroupName, l3IsolationDomainName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getL3IsolationDomains()
+            .getByResourceGroupWithResponse(resourceGroupName, l3IsolationDomainName, Context.NONE).getValue();
         return this;
     }
 
     public L3IsolationDomain refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getL3IsolationDomains()
-                .getByResourceGroupWithResponse(resourceGroupName, l3IsolationDomainName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getL3IsolationDomains()
+            .getByResourceGroupWithResponse(resourceGroupName, l3IsolationDomainName, context).getValue();
         return this;
     }
 
     public CommonPostActionResponseForDeviceUpdate updateAdministrativeState(UpdateAdministrativeState body) {
-        return serviceManager
-            .l3IsolationDomains()
-            .updateAdministrativeState(resourceGroupName, l3IsolationDomainName, body);
+        return serviceManager.l3IsolationDomains().updateAdministrativeState(resourceGroupName, l3IsolationDomainName,
+            body);
     }
 
-    public CommonPostActionResponseForDeviceUpdate updateAdministrativeState(
-        UpdateAdministrativeState body, Context context) {
-        return serviceManager
-            .l3IsolationDomains()
-            .updateAdministrativeState(resourceGroupName, l3IsolationDomainName, body, context);
+    public CommonPostActionResponseForDeviceUpdate updateAdministrativeState(UpdateAdministrativeState body,
+        Context context) {
+        return serviceManager.l3IsolationDomains().updateAdministrativeState(resourceGroupName, l3IsolationDomainName,
+            body, context);
     }
 
     public ValidateConfigurationResponse validateConfiguration() {
@@ -221,9 +198,8 @@ public final class L3IsolationDomainImpl
     }
 
     public ValidateConfigurationResponse validateConfiguration(Context context) {
-        return serviceManager
-            .l3IsolationDomains()
-            .validateConfiguration(resourceGroupName, l3IsolationDomainName, context);
+        return serviceManager.l3IsolationDomains().validateConfiguration(resourceGroupName, l3IsolationDomainName,
+            context);
     }
 
     public CommonPostActionResponseForStateUpdate commitConfiguration() {
@@ -231,9 +207,8 @@ public final class L3IsolationDomainImpl
     }
 
     public CommonPostActionResponseForStateUpdate commitConfiguration(Context context) {
-        return serviceManager
-            .l3IsolationDomains()
-            .commitConfiguration(resourceGroupName, l3IsolationDomainName, context);
+        return serviceManager.l3IsolationDomains().commitConfiguration(resourceGroupName, l3IsolationDomainName,
+            context);
     }
 
     public L3IsolationDomainImpl withRegion(Region location) {
@@ -261,8 +236,8 @@ public final class L3IsolationDomainImpl
         }
     }
 
-    public L3IsolationDomainImpl withRedistributeConnectedSubnets(
-        RedistributeConnectedSubnets redistributeConnectedSubnets) {
+    public L3IsolationDomainImpl
+        withRedistributeConnectedSubnets(RedistributeConnectedSubnets redistributeConnectedSubnets) {
         if (isInCreateMode()) {
             this.innerModel().withRedistributeConnectedSubnets(redistributeConnectedSubnets);
             return this;
@@ -282,8 +257,8 @@ public final class L3IsolationDomainImpl
         }
     }
 
-    public L3IsolationDomainImpl withAggregateRouteConfiguration(
-        AggregateRouteConfiguration aggregateRouteConfiguration) {
+    public L3IsolationDomainImpl
+        withAggregateRouteConfiguration(AggregateRouteConfiguration aggregateRouteConfiguration) {
         if (isInCreateMode()) {
             this.innerModel().withAggregateRouteConfiguration(aggregateRouteConfiguration);
             return this;

@@ -8,34 +8,38 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The vlan match conditions that needs to be matched. */
+/**
+ * The vlan match conditions that need to be matched.
+ */
 @Fluent
 public final class VlanMatchCondition {
     /*
-     * List of vlans that needs to be matched.
+     * List of vlans that need to be matched.
      */
     @JsonProperty(value = "vlans")
     private List<String> vlans;
 
     /*
-     * List of inner vlans that needs to be matched.
+     * List of inner vlans that need to be matched.
      */
     @JsonProperty(value = "innerVlans")
     private List<String> innerVlans;
 
     /*
-     * List of vlan group names that to be matched.
+     * List of vlan group names that need to be matched.
      */
     @JsonProperty(value = "vlanGroupNames")
     private List<String> vlanGroupNames;
 
-    /** Creates an instance of VlanMatchCondition class. */
+    /**
+     * Creates an instance of VlanMatchCondition class.
+     */
     public VlanMatchCondition() {
     }
 
     /**
-     * Get the vlans property: List of vlans that needs to be matched.
-     *
+     * Get the vlans property: List of vlans that need to be matched.
+     * 
      * @return the vlans value.
      */
     public List<String> vlans() {
@@ -43,8 +47,8 @@ public final class VlanMatchCondition {
     }
 
     /**
-     * Set the vlans property: List of vlans that needs to be matched.
-     *
+     * Set the vlans property: List of vlans that need to be matched.
+     * 
      * @param vlans the vlans value to set.
      * @return the VlanMatchCondition object itself.
      */
@@ -54,8 +58,8 @@ public final class VlanMatchCondition {
     }
 
     /**
-     * Get the innerVlans property: List of inner vlans that needs to be matched.
-     *
+     * Get the innerVlans property: List of inner vlans that need to be matched.
+     * 
      * @return the innerVlans value.
      */
     public List<String> innerVlans() {
@@ -63,8 +67,8 @@ public final class VlanMatchCondition {
     }
 
     /**
-     * Set the innerVlans property: List of inner vlans that needs to be matched.
-     *
+     * Set the innerVlans property: List of inner vlans that need to be matched.
+     * 
      * @param innerVlans the innerVlans value to set.
      * @return the VlanMatchCondition object itself.
      */
@@ -74,8 +78,8 @@ public final class VlanMatchCondition {
     }
 
     /**
-     * Get the vlanGroupNames property: List of vlan group names that to be matched.
-     *
+     * Get the vlanGroupNames property: List of vlan group names that need to be matched.
+     * 
      * @return the vlanGroupNames value.
      */
     public List<String> vlanGroupNames() {
@@ -83,8 +87,8 @@ public final class VlanMatchCondition {
     }
 
     /**
-     * Set the vlanGroupNames property: List of vlan group names that to be matched.
-     *
+     * Set the vlanGroupNames property: List of vlan group names that need to be matched.
+     * 
      * @param vlanGroupNames the vlanGroupNames value to set.
      * @return the VlanMatchCondition object itself.
      */
@@ -95,7 +99,7 @@ public final class VlanMatchCondition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

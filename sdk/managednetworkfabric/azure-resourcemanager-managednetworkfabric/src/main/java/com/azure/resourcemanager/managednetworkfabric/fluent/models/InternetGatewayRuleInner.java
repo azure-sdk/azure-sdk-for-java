@@ -14,7 +14,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The Internet Gateway Rule resource definition. */
+/**
+ * The Internet Gateway Rule resource definition.
+ */
 @Fluent
 public final class InternetGatewayRuleInner extends Resource {
     /*
@@ -29,13 +31,15 @@ public final class InternetGatewayRuleInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of InternetGatewayRuleInner class. */
+    /**
+     * Creates an instance of InternetGatewayRuleInner class.
+     */
     public InternetGatewayRuleInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private InternetGatewayRuleProperties innerProperties() {
@@ -44,21 +48,25 @@ public final class InternetGatewayRuleInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternetGatewayRuleInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternetGatewayRuleInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -67,7 +75,7 @@ public final class InternetGatewayRuleInner extends Resource {
 
     /**
      * Get the ruleProperties property: Rules for the InternetGateways.
-     *
+     * 
      * @return the ruleProperties value.
      */
     public RuleProperties ruleProperties() {
@@ -76,7 +84,7 @@ public final class InternetGatewayRuleInner extends Resource {
 
     /**
      * Set the ruleProperties property: Rules for the InternetGateways.
-     *
+     * 
      * @param ruleProperties the ruleProperties value to set.
      * @return the InternetGatewayRuleInner object itself.
      */
@@ -90,7 +98,7 @@ public final class InternetGatewayRuleInner extends Resource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -99,7 +107,7 @@ public final class InternetGatewayRuleInner extends Resource {
 
     /**
      * Get the internetGatewayIds property: List of Internet Gateway resource Id.
-     *
+     * 
      * @return the internetGatewayIds value.
      */
     public List<String> internetGatewayIds() {
@@ -108,7 +116,7 @@ public final class InternetGatewayRuleInner extends Resource {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -117,7 +125,7 @@ public final class InternetGatewayRuleInner extends Resource {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the InternetGatewayRuleInner object itself.
      */
@@ -131,15 +139,13 @@ public final class InternetGatewayRuleInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model InternetGatewayRuleInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model InternetGatewayRuleInner"));
         } else {
             innerProperties().validate();
         }

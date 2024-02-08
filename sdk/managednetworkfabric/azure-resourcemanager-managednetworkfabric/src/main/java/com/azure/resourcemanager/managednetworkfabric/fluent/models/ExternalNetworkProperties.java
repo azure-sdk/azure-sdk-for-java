@@ -17,15 +17,11 @@ import com.azure.resourcemanager.managednetworkfabric.models.PeeringOption;
 import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** External Network Properties. */
+/**
+ * External Network Properties.
+ */
 @Fluent
 public final class ExternalNetworkProperties extends AnnotationResource {
-    /*
-     * Gets the networkToNetworkInterconnectId of the resource.
-     */
-    @JsonProperty(value = "networkToNetworkInterconnectId", access = JsonProperty.Access.WRITE_ONLY)
-    private String networkToNetworkInterconnectId;
-
     /*
      * Peering option list.
      */
@@ -63,6 +59,12 @@ public final class ExternalNetworkProperties extends AnnotationResource {
     private AdministrativeState administrativeState;
 
     /*
+     * ARM Resource ID of the networkToNetworkInterconnectId of the ExternalNetwork resource.
+     */
+    @JsonProperty(value = "networkToNetworkInterconnectId")
+    private String networkToNetworkInterconnectId;
+
+    /*
      * ARM Resource ID of the RoutePolicy. This is used for the backward compatibility.
      */
     @JsonProperty(value = "importRoutePolicyId")
@@ -86,22 +88,15 @@ public final class ExternalNetworkProperties extends AnnotationResource {
     @JsonProperty(value = "exportRoutePolicy")
     private ExportRoutePolicy exportRoutePolicy;
 
-    /** Creates an instance of ExternalNetworkProperties class. */
+    /**
+     * Creates an instance of ExternalNetworkProperties class.
+     */
     public ExternalNetworkProperties() {
     }
 
     /**
-     * Get the networkToNetworkInterconnectId property: Gets the networkToNetworkInterconnectId of the resource.
-     *
-     * @return the networkToNetworkInterconnectId value.
-     */
-    public String networkToNetworkInterconnectId() {
-        return this.networkToNetworkInterconnectId;
-    }
-
-    /**
      * Get the peeringOption property: Peering option list.
-     *
+     * 
      * @return the peeringOption value.
      */
     public PeeringOption peeringOption() {
@@ -110,7 +105,7 @@ public final class ExternalNetworkProperties extends AnnotationResource {
 
     /**
      * Set the peeringOption property: Peering option list.
-     *
+     * 
      * @param peeringOption the peeringOption value to set.
      * @return the ExternalNetworkProperties object itself.
      */
@@ -121,7 +116,7 @@ public final class ExternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the optionBProperties property: option B properties object.
-     *
+     * 
      * @return the optionBProperties value.
      */
     public L3OptionBProperties optionBProperties() {
@@ -130,7 +125,7 @@ public final class ExternalNetworkProperties extends AnnotationResource {
 
     /**
      * Set the optionBProperties property: option B properties object.
-     *
+     * 
      * @param optionBProperties the optionBProperties value to set.
      * @return the ExternalNetworkProperties object itself.
      */
@@ -141,7 +136,7 @@ public final class ExternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the optionAProperties property: option A properties object.
-     *
+     * 
      * @return the optionAProperties value.
      */
     public ExternalNetworkPropertiesOptionAProperties optionAProperties() {
@@ -150,19 +145,19 @@ public final class ExternalNetworkProperties extends AnnotationResource {
 
     /**
      * Set the optionAProperties property: option A properties object.
-     *
+     * 
      * @param optionAProperties the optionAProperties value to set.
      * @return the ExternalNetworkProperties object itself.
      */
-    public ExternalNetworkProperties withOptionAProperties(
-        ExternalNetworkPropertiesOptionAProperties optionAProperties) {
+    public ExternalNetworkProperties
+        withOptionAProperties(ExternalNetworkPropertiesOptionAProperties optionAProperties) {
         this.optionAProperties = optionAProperties;
         return this;
     }
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -171,7 +166,7 @@ public final class ExternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -180,7 +175,7 @@ public final class ExternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -188,9 +183,31 @@ public final class ExternalNetworkProperties extends AnnotationResource {
     }
 
     /**
+     * Get the networkToNetworkInterconnectId property: ARM Resource ID of the networkToNetworkInterconnectId of the
+     * ExternalNetwork resource.
+     * 
+     * @return the networkToNetworkInterconnectId value.
+     */
+    public String networkToNetworkInterconnectId() {
+        return this.networkToNetworkInterconnectId;
+    }
+
+    /**
+     * Set the networkToNetworkInterconnectId property: ARM Resource ID of the networkToNetworkInterconnectId of the
+     * ExternalNetwork resource.
+     * 
+     * @param networkToNetworkInterconnectId the networkToNetworkInterconnectId value to set.
+     * @return the ExternalNetworkProperties object itself.
+     */
+    public ExternalNetworkProperties withNetworkToNetworkInterconnectId(String networkToNetworkInterconnectId) {
+        this.networkToNetworkInterconnectId = networkToNetworkInterconnectId;
+        return this;
+    }
+
+    /**
      * Get the importRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @return the importRoutePolicyId value.
      */
     public String importRoutePolicyId() {
@@ -200,7 +217,7 @@ public final class ExternalNetworkProperties extends AnnotationResource {
     /**
      * Set the importRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @param importRoutePolicyId the importRoutePolicyId value to set.
      * @return the ExternalNetworkProperties object itself.
      */
@@ -212,7 +229,7 @@ public final class ExternalNetworkProperties extends AnnotationResource {
     /**
      * Get the exportRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @return the exportRoutePolicyId value.
      */
     public String exportRoutePolicyId() {
@@ -222,7 +239,7 @@ public final class ExternalNetworkProperties extends AnnotationResource {
     /**
      * Set the exportRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @param exportRoutePolicyId the exportRoutePolicyId value to set.
      * @return the ExternalNetworkProperties object itself.
      */
@@ -233,7 +250,7 @@ public final class ExternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the importRoutePolicy property: Import Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @return the importRoutePolicy value.
      */
     public ImportRoutePolicy importRoutePolicy() {
@@ -242,7 +259,7 @@ public final class ExternalNetworkProperties extends AnnotationResource {
 
     /**
      * Set the importRoutePolicy property: Import Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @param importRoutePolicy the importRoutePolicy value to set.
      * @return the ExternalNetworkProperties object itself.
      */
@@ -253,7 +270,7 @@ public final class ExternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the exportRoutePolicy property: Export Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @return the exportRoutePolicy value.
      */
     public ExportRoutePolicy exportRoutePolicy() {
@@ -262,7 +279,7 @@ public final class ExternalNetworkProperties extends AnnotationResource {
 
     /**
      * Set the exportRoutePolicy property: Export Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @param exportRoutePolicy the exportRoutePolicy value to set.
      * @return the ExternalNetworkProperties object itself.
      */
@@ -271,7 +288,9 @@ public final class ExternalNetworkProperties extends AnnotationResource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ExternalNetworkProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -280,17 +299,15 @@ public final class ExternalNetworkProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (peeringOption() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property peeringOption in model ExternalNetworkProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property peeringOption in model ExternalNetworkProperties"));
         }
         if (optionBProperties() != null) {
             optionBProperties().validate();

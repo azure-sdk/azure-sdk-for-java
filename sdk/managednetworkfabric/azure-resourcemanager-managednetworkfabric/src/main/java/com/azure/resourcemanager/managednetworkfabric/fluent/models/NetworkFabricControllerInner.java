@@ -18,7 +18,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The Network Fabric Controller resource definition. */
+/**
+ * The Network Fabric Controller resource definition.
+ */
 @Fluent
 public final class NetworkFabricControllerInner extends Resource {
     /*
@@ -33,13 +35,15 @@ public final class NetworkFabricControllerInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of NetworkFabricControllerInner class. */
+    /**
+     * Creates an instance of NetworkFabricControllerInner class.
+     */
     public NetworkFabricControllerInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private NetworkFabricControllerProperties innerProperties() {
@@ -48,21 +52,25 @@ public final class NetworkFabricControllerInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkFabricControllerInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkFabricControllerInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -71,7 +79,7 @@ public final class NetworkFabricControllerInner extends Resource {
 
     /**
      * Get the infrastructureServices property: InfrastructureServices IP ranges.
-     *
+     * 
      * @return the infrastructureServices value.
      */
     public ControllerServices infrastructureServices() {
@@ -80,7 +88,7 @@ public final class NetworkFabricControllerInner extends Resource {
 
     /**
      * Get the workloadServices property: WorkloadServices IP ranges.
-     *
+     * 
      * @return the workloadServices value.
      */
     public ControllerServices workloadServices() {
@@ -89,7 +97,7 @@ public final class NetworkFabricControllerInner extends Resource {
 
     /**
      * Get the managedResourceGroupConfiguration property: Managed Resource Group configuration properties.
-     *
+     * 
      * @return the managedResourceGroupConfiguration value.
      */
     public ManagedResourceGroupConfiguration managedResourceGroupConfiguration() {
@@ -98,12 +106,12 @@ public final class NetworkFabricControllerInner extends Resource {
 
     /**
      * Set the managedResourceGroupConfiguration property: Managed Resource Group configuration properties.
-     *
+     * 
      * @param managedResourceGroupConfiguration the managedResourceGroupConfiguration value to set.
      * @return the NetworkFabricControllerInner object itself.
      */
-    public NetworkFabricControllerInner withManagedResourceGroupConfiguration(
-        ManagedResourceGroupConfiguration managedResourceGroupConfiguration) {
+    public NetworkFabricControllerInner
+        withManagedResourceGroupConfiguration(ManagedResourceGroupConfiguration managedResourceGroupConfiguration) {
         if (this.innerProperties() == null) {
             this.innerProperties = new NetworkFabricControllerProperties();
         }
@@ -112,9 +120,9 @@ public final class NetworkFabricControllerInner extends Resource {
     }
 
     /**
-     * Get the networkFabricIds property: The NF-ID will be an input parameter used by the NF to link and get associated
-     * with the parent NFC Service.
-     *
+     * Get the networkFabricIds property: The NF-ID will be an input parameter used by the NF to link and get
+     * associated with the parent NFC Service.
+     * 
      * @return the networkFabricIds value.
      */
     public List<String> networkFabricIds() {
@@ -125,7 +133,7 @@ public final class NetworkFabricControllerInner extends Resource {
      * Get the workloadManagementNetwork property: A workload management network is required for all the tenant
      * (workload) traffic. This traffic is only dedicated for Tenant workloads which are required to access internet or
      * any other MSFT/Public endpoints. This is used for the backward compatibility.
-     *
+     * 
      * @return the workloadManagementNetwork value.
      */
     public Boolean workloadManagementNetwork() {
@@ -133,10 +141,10 @@ public final class NetworkFabricControllerInner extends Resource {
     }
 
     /**
-     * Get the isWorkloadManagementNetworkEnabled property: A workload management network is required for all the tenant
-     * (workload) traffic. This traffic is only dedicated for Tenant workloads which are required to access internet or
-     * any other MSFT/Public endpoints.
-     *
+     * Get the isWorkloadManagementNetworkEnabled property: A workload management network is required for all the
+     * tenant (workload) traffic. This traffic is only dedicated for Tenant workloads which are required to access
+     * internet or any other MSFT/Public endpoints.
+     * 
      * @return the isWorkloadManagementNetworkEnabled value.
      */
     public IsWorkloadManagementNetworkEnabled isWorkloadManagementNetworkEnabled() {
@@ -144,15 +152,15 @@ public final class NetworkFabricControllerInner extends Resource {
     }
 
     /**
-     * Set the isWorkloadManagementNetworkEnabled property: A workload management network is required for all the tenant
-     * (workload) traffic. This traffic is only dedicated for Tenant workloads which are required to access internet or
-     * any other MSFT/Public endpoints.
-     *
+     * Set the isWorkloadManagementNetworkEnabled property: A workload management network is required for all the
+     * tenant (workload) traffic. This traffic is only dedicated for Tenant workloads which are required to access
+     * internet or any other MSFT/Public endpoints.
+     * 
      * @param isWorkloadManagementNetworkEnabled the isWorkloadManagementNetworkEnabled value to set.
      * @return the NetworkFabricControllerInner object itself.
      */
-    public NetworkFabricControllerInner withIsWorkloadManagementNetworkEnabled(
-        IsWorkloadManagementNetworkEnabled isWorkloadManagementNetworkEnabled) {
+    public NetworkFabricControllerInner
+        withIsWorkloadManagementNetworkEnabled(IsWorkloadManagementNetworkEnabled isWorkloadManagementNetworkEnabled) {
         if (this.innerProperties() == null) {
             this.innerProperties = new NetworkFabricControllerProperties();
         }
@@ -162,7 +170,7 @@ public final class NetworkFabricControllerInner extends Resource {
 
     /**
      * Get the tenantInternetGatewayIds property: List of tenant InternetGateway resource IDs.
-     *
+     * 
      * @return the tenantInternetGatewayIds value.
      */
     public List<String> tenantInternetGatewayIds() {
@@ -171,7 +179,7 @@ public final class NetworkFabricControllerInner extends Resource {
 
     /**
      * Get the ipv4AddressSpace property: IPv4 Network Fabric Controller Address Space.
-     *
+     * 
      * @return the ipv4AddressSpace value.
      */
     public String ipv4AddressSpace() {
@@ -180,7 +188,7 @@ public final class NetworkFabricControllerInner extends Resource {
 
     /**
      * Set the ipv4AddressSpace property: IPv4 Network Fabric Controller Address Space.
-     *
+     * 
      * @param ipv4AddressSpace the ipv4AddressSpace value to set.
      * @return the NetworkFabricControllerInner object itself.
      */
@@ -194,7 +202,7 @@ public final class NetworkFabricControllerInner extends Resource {
 
     /**
      * Get the ipv6AddressSpace property: IPv6 Network Fabric Controller Address Space.
-     *
+     * 
      * @return the ipv6AddressSpace value.
      */
     public String ipv6AddressSpace() {
@@ -203,7 +211,7 @@ public final class NetworkFabricControllerInner extends Resource {
 
     /**
      * Set the ipv6AddressSpace property: IPv6 Network Fabric Controller Address Space.
-     *
+     * 
      * @param ipv6AddressSpace the ipv6AddressSpace value to set.
      * @return the NetworkFabricControllerInner object itself.
      */
@@ -217,7 +225,7 @@ public final class NetworkFabricControllerInner extends Resource {
 
     /**
      * Get the nfcSku property: Network Fabric Controller SKU.
-     *
+     * 
      * @return the nfcSku value.
      */
     public NfcSku nfcSku() {
@@ -226,7 +234,7 @@ public final class NetworkFabricControllerInner extends Resource {
 
     /**
      * Set the nfcSku property: Network Fabric Controller SKU.
-     *
+     * 
      * @param nfcSku the nfcSku value to set.
      * @return the NetworkFabricControllerInner object itself.
      */
@@ -242,7 +250,7 @@ public final class NetworkFabricControllerInner extends Resource {
      * Get the provisioningState property: Provides you the latest status of the NFC service, whether it is Accepted,
      * updating, Succeeded or Failed. During this process, the states keep changing based on the status of NFC
      * provisioning.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -253,7 +261,7 @@ public final class NetworkFabricControllerInner extends Resource {
      * Get the infrastructureExpressRouteConnections property: As part of an update, the Infrastructure ExpressRoute
      * CircuitID should be provided to create and Provision a NFC. This Express route is dedicated for Infrastructure
      * services. (This is a Mandatory attribute).
-     *
+     * 
      * @return the infrastructureExpressRouteConnections value.
      */
     public List<ExpressRouteConnectionInformation> infrastructureExpressRouteConnections() {
@@ -264,7 +272,7 @@ public final class NetworkFabricControllerInner extends Resource {
      * Set the infrastructureExpressRouteConnections property: As part of an update, the Infrastructure ExpressRoute
      * CircuitID should be provided to create and Provision a NFC. This Express route is dedicated for Infrastructure
      * services. (This is a Mandatory attribute).
-     *
+     * 
      * @param infrastructureExpressRouteConnections the infrastructureExpressRouteConnections value to set.
      * @return the NetworkFabricControllerInner object itself.
      */
@@ -279,9 +287,9 @@ public final class NetworkFabricControllerInner extends Resource {
 
     /**
      * Get the workloadExpressRouteConnections property: As part of an update, the workload ExpressRoute CircuitID
-     * should be provided to create and Provision a NFC. This Express route is dedicated for Workload services. (This is
-     * a Mandatory attribute).
-     *
+     * should be provided to create and Provision a NFC. This Express route is dedicated for Workload services. (This
+     * is a Mandatory attribute).
+     * 
      * @return the workloadExpressRouteConnections value.
      */
     public List<ExpressRouteConnectionInformation> workloadExpressRouteConnections() {
@@ -290,14 +298,14 @@ public final class NetworkFabricControllerInner extends Resource {
 
     /**
      * Set the workloadExpressRouteConnections property: As part of an update, the workload ExpressRoute CircuitID
-     * should be provided to create and Provision a NFC. This Express route is dedicated for Workload services. (This is
-     * a Mandatory attribute).
-     *
+     * should be provided to create and Provision a NFC. This Express route is dedicated for Workload services. (This
+     * is a Mandatory attribute).
+     * 
      * @param workloadExpressRouteConnections the workloadExpressRouteConnections value to set.
      * @return the NetworkFabricControllerInner object itself.
      */
-    public NetworkFabricControllerInner withWorkloadExpressRouteConnections(
-        List<ExpressRouteConnectionInformation> workloadExpressRouteConnections) {
+    public NetworkFabricControllerInner
+        withWorkloadExpressRouteConnections(List<ExpressRouteConnectionInformation> workloadExpressRouteConnections) {
         if (this.innerProperties() == null) {
             this.innerProperties = new NetworkFabricControllerProperties();
         }
@@ -307,7 +315,7 @@ public final class NetworkFabricControllerInner extends Resource {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -316,7 +324,7 @@ public final class NetworkFabricControllerInner extends Resource {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the NetworkFabricControllerInner object itself.
      */
@@ -330,15 +338,13 @@ public final class NetworkFabricControllerInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model NetworkFabricControllerInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model NetworkFabricControllerInner"));
         } else {
             innerProperties().validate();
         }

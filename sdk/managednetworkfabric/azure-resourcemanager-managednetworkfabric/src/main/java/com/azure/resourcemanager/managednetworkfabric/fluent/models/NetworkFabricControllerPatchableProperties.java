@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.ExpressRouteConnect
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Network Fabric Controller updatable properties. */
+/**
+ * Network Fabric Controller updatable properties.
+ */
 @Fluent
 public class NetworkFabricControllerPatchableProperties {
     /*
@@ -26,7 +28,9 @@ public class NetworkFabricControllerPatchableProperties {
     @JsonProperty(value = "workloadExpressRouteConnections")
     private List<ExpressRouteConnectionInformation> workloadExpressRouteConnections;
 
-    /** Creates an instance of NetworkFabricControllerPatchableProperties class. */
+    /**
+     * Creates an instance of NetworkFabricControllerPatchableProperties class.
+     */
     public NetworkFabricControllerPatchableProperties() {
     }
 
@@ -34,7 +38,7 @@ public class NetworkFabricControllerPatchableProperties {
      * Get the infrastructureExpressRouteConnections property: As part of an update, the Infrastructure ExpressRoute
      * CircuitID should be provided to create and Provision a NFC. This Express route is dedicated for Infrastructure
      * services. (This is a Mandatory attribute).
-     *
+     * 
      * @return the infrastructureExpressRouteConnections value.
      */
     public List<ExpressRouteConnectionInformation> infrastructureExpressRouteConnections() {
@@ -45,7 +49,7 @@ public class NetworkFabricControllerPatchableProperties {
      * Set the infrastructureExpressRouteConnections property: As part of an update, the Infrastructure ExpressRoute
      * CircuitID should be provided to create and Provision a NFC. This Express route is dedicated for Infrastructure
      * services. (This is a Mandatory attribute).
-     *
+     * 
      * @param infrastructureExpressRouteConnections the infrastructureExpressRouteConnections value to set.
      * @return the NetworkFabricControllerPatchableProperties object itself.
      */
@@ -57,9 +61,9 @@ public class NetworkFabricControllerPatchableProperties {
 
     /**
      * Get the workloadExpressRouteConnections property: As part of an update, the workload ExpressRoute CircuitID
-     * should be provided to create and Provision a NFC. This Express route is dedicated for Workload services. (This is
-     * a Mandatory attribute).
-     *
+     * should be provided to create and Provision a NFC. This Express route is dedicated for Workload services. (This
+     * is a Mandatory attribute).
+     * 
      * @return the workloadExpressRouteConnections value.
      */
     public List<ExpressRouteConnectionInformation> workloadExpressRouteConnections() {
@@ -68,21 +72,21 @@ public class NetworkFabricControllerPatchableProperties {
 
     /**
      * Set the workloadExpressRouteConnections property: As part of an update, the workload ExpressRoute CircuitID
-     * should be provided to create and Provision a NFC. This Express route is dedicated for Workload services. (This is
-     * a Mandatory attribute).
-     *
+     * should be provided to create and Provision a NFC. This Express route is dedicated for Workload services. (This
+     * is a Mandatory attribute).
+     * 
      * @param workloadExpressRouteConnections the workloadExpressRouteConnections value to set.
      * @return the NetworkFabricControllerPatchableProperties object itself.
      */
-    public NetworkFabricControllerPatchableProperties withWorkloadExpressRouteConnections(
-        List<ExpressRouteConnectionInformation> workloadExpressRouteConnections) {
+    public NetworkFabricControllerPatchableProperties
+        withWorkloadExpressRouteConnections(List<ExpressRouteConnectionInformation> workloadExpressRouteConnections) {
         this.workloadExpressRouteConnections = workloadExpressRouteConnections;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

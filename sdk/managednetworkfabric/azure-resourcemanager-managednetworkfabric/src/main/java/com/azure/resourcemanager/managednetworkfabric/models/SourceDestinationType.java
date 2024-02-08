@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** IP Address type. */
+/**
+ * IP Address type that needs to be matched.
+ */
 public final class SourceDestinationType extends ExpandableStringEnum<SourceDestinationType> {
-    /** Static value SourceIP for SourceDestinationType. */
+    /**
+     * Static value SourceIP for SourceDestinationType.
+     */
     public static final SourceDestinationType SOURCE_IP = fromString("SourceIP");
 
-    /** Static value DestinationIP for SourceDestinationType. */
+    /**
+     * Static value DestinationIP for SourceDestinationType.
+     */
     public static final SourceDestinationType DESTINATION_IP = fromString("DestinationIP");
 
     /**
      * Creates a new instance of SourceDestinationType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class SourceDestinationType extends ExpandableStringEnum<SourceDest
 
     /**
      * Creates or finds a SourceDestinationType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding SourceDestinationType.
      */
@@ -38,7 +44,7 @@ public final class SourceDestinationType extends ExpandableStringEnum<SourceDest
 
     /**
      * Gets known SourceDestinationType values.
-     *
+     * 
      * @return known SourceDestinationType values.
      */
     public static Collection<SourceDestinationType> values() {

@@ -10,9 +10,12 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.managednetworkfabric.fluent.NetworkDevicesClient;
+import com.azure.resourcemanager.managednetworkfabric.fluent.models.CommonPostActionResponseForDeviceROCommandsInner;
 import com.azure.resourcemanager.managednetworkfabric.fluent.models.CommonPostActionResponseForStateUpdateInner;
 import com.azure.resourcemanager.managednetworkfabric.fluent.models.NetworkDeviceInner;
+import com.azure.resourcemanager.managednetworkfabric.models.CommonPostActionResponseForDeviceROCommands;
 import com.azure.resourcemanager.managednetworkfabric.models.CommonPostActionResponseForStateUpdate;
+import com.azure.resourcemanager.managednetworkfabric.models.DeviceRoCommand;
 import com.azure.resourcemanager.managednetworkfabric.models.NetworkDevice;
 import com.azure.resourcemanager.managednetworkfabric.models.NetworkDevices;
 import com.azure.resourcemanager.managednetworkfabric.models.RebootProperties;
@@ -26,22 +29,18 @@ public final class NetworkDevicesImpl implements NetworkDevices {
 
     private final com.azure.resourcemanager.managednetworkfabric.ManagedNetworkFabricManager serviceManager;
 
-    public NetworkDevicesImpl(
-        NetworkDevicesClient innerClient,
+    public NetworkDevicesImpl(NetworkDevicesClient innerClient,
         com.azure.resourcemanager.managednetworkfabric.ManagedNetworkFabricManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<NetworkDevice> getByResourceGroupWithResponse(
-        String resourceGroupName, String networkDeviceName, Context context) {
-        Response<NetworkDeviceInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, networkDeviceName, context);
+    public Response<NetworkDevice> getByResourceGroupWithResponse(String resourceGroupName, String networkDeviceName,
+        Context context) {
+        Response<NetworkDeviceInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, networkDeviceName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new NetworkDeviceImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -67,28 +66,28 @@ public final class NetworkDevicesImpl implements NetworkDevices {
 
     public PagedIterable<NetworkDevice> listByResourceGroup(String resourceGroupName) {
         PagedIterable<NetworkDeviceInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return Utils.mapPage(inner, inner1 -> new NetworkDeviceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new NetworkDeviceImpl(inner1, this.manager()));
     }
 
     public PagedIterable<NetworkDevice> listByResourceGroup(String resourceGroupName, Context context) {
         PagedIterable<NetworkDeviceInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName, context);
-        return Utils.mapPage(inner, inner1 -> new NetworkDeviceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new NetworkDeviceImpl(inner1, this.manager()));
     }
 
     public PagedIterable<NetworkDevice> list() {
         PagedIterable<NetworkDeviceInner> inner = this.serviceClient().list();
-        return Utils.mapPage(inner, inner1 -> new NetworkDeviceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new NetworkDeviceImpl(inner1, this.manager()));
     }
 
     public PagedIterable<NetworkDevice> list(Context context) {
         PagedIterable<NetworkDeviceInner> inner = this.serviceClient().list(context);
-        return Utils.mapPage(inner, inner1 -> new NetworkDeviceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new NetworkDeviceImpl(inner1, this.manager()));
     }
 
-    public CommonPostActionResponseForStateUpdate reboot(
-        String resourceGroupName, String networkDeviceName, RebootProperties body) {
-        CommonPostActionResponseForStateUpdateInner inner =
-            this.serviceClient().reboot(resourceGroupName, networkDeviceName, body);
+    public CommonPostActionResponseForStateUpdate reboot(String resourceGroupName, String networkDeviceName,
+        RebootProperties body) {
+        CommonPostActionResponseForStateUpdateInner inner
+            = this.serviceClient().reboot(resourceGroupName, networkDeviceName, body);
         if (inner != null) {
             return new CommonPostActionResponseForStateUpdateImpl(inner, this.manager());
         } else {
@@ -96,10 +95,10 @@ public final class NetworkDevicesImpl implements NetworkDevices {
         }
     }
 
-    public CommonPostActionResponseForStateUpdate reboot(
-        String resourceGroupName, String networkDeviceName, RebootProperties body, Context context) {
-        CommonPostActionResponseForStateUpdateInner inner =
-            this.serviceClient().reboot(resourceGroupName, networkDeviceName, body, context);
+    public CommonPostActionResponseForStateUpdate reboot(String resourceGroupName, String networkDeviceName,
+        RebootProperties body, Context context) {
+        CommonPostActionResponseForStateUpdateInner inner
+            = this.serviceClient().reboot(resourceGroupName, networkDeviceName, body, context);
         if (inner != null) {
             return new CommonPostActionResponseForStateUpdateImpl(inner, this.manager());
         } else {
@@ -107,10 +106,10 @@ public final class NetworkDevicesImpl implements NetworkDevices {
         }
     }
 
-    public CommonPostActionResponseForStateUpdate refreshConfiguration(
-        String resourceGroupName, String networkDeviceName) {
-        CommonPostActionResponseForStateUpdateInner inner =
-            this.serviceClient().refreshConfiguration(resourceGroupName, networkDeviceName);
+    public CommonPostActionResponseForStateUpdate refreshConfiguration(String resourceGroupName,
+        String networkDeviceName) {
+        CommonPostActionResponseForStateUpdateInner inner
+            = this.serviceClient().refreshConfiguration(resourceGroupName, networkDeviceName);
         if (inner != null) {
             return new CommonPostActionResponseForStateUpdateImpl(inner, this.manager());
         } else {
@@ -118,10 +117,10 @@ public final class NetworkDevicesImpl implements NetworkDevices {
         }
     }
 
-    public CommonPostActionResponseForStateUpdate refreshConfiguration(
-        String resourceGroupName, String networkDeviceName, Context context) {
-        CommonPostActionResponseForStateUpdateInner inner =
-            this.serviceClient().refreshConfiguration(resourceGroupName, networkDeviceName, context);
+    public CommonPostActionResponseForStateUpdate refreshConfiguration(String resourceGroupName,
+        String networkDeviceName, Context context) {
+        CommonPostActionResponseForStateUpdateInner inner
+            = this.serviceClient().refreshConfiguration(resourceGroupName, networkDeviceName, context);
         if (inner != null) {
             return new CommonPostActionResponseForStateUpdateImpl(inner, this.manager());
         } else {
@@ -129,10 +128,10 @@ public final class NetworkDevicesImpl implements NetworkDevices {
         }
     }
 
-    public CommonPostActionResponseForStateUpdate updateAdministrativeState(
-        String resourceGroupName, String networkDeviceName, UpdateDeviceAdministrativeState body) {
-        CommonPostActionResponseForStateUpdateInner inner =
-            this.serviceClient().updateAdministrativeState(resourceGroupName, networkDeviceName, body);
+    public CommonPostActionResponseForStateUpdate updateAdministrativeState(String resourceGroupName,
+        String networkDeviceName, UpdateDeviceAdministrativeState body) {
+        CommonPostActionResponseForStateUpdateInner inner
+            = this.serviceClient().updateAdministrativeState(resourceGroupName, networkDeviceName, body);
         if (inner != null) {
             return new CommonPostActionResponseForStateUpdateImpl(inner, this.manager());
         } else {
@@ -140,10 +139,10 @@ public final class NetworkDevicesImpl implements NetworkDevices {
         }
     }
 
-    public CommonPostActionResponseForStateUpdate updateAdministrativeState(
-        String resourceGroupName, String networkDeviceName, UpdateDeviceAdministrativeState body, Context context) {
-        CommonPostActionResponseForStateUpdateInner inner =
-            this.serviceClient().updateAdministrativeState(resourceGroupName, networkDeviceName, body, context);
+    public CommonPostActionResponseForStateUpdate updateAdministrativeState(String resourceGroupName,
+        String networkDeviceName, UpdateDeviceAdministrativeState body, Context context) {
+        CommonPostActionResponseForStateUpdateInner inner
+            = this.serviceClient().updateAdministrativeState(resourceGroupName, networkDeviceName, body, context);
         if (inner != null) {
             return new CommonPostActionResponseForStateUpdateImpl(inner, this.manager());
         } else {
@@ -151,10 +150,10 @@ public final class NetworkDevicesImpl implements NetworkDevices {
         }
     }
 
-    public CommonPostActionResponseForStateUpdate upgrade(
-        String resourceGroupName, String networkDeviceName, UpdateVersion body) {
-        CommonPostActionResponseForStateUpdateInner inner =
-            this.serviceClient().upgrade(resourceGroupName, networkDeviceName, body);
+    public CommonPostActionResponseForStateUpdate upgrade(String resourceGroupName, String networkDeviceName,
+        UpdateVersion body) {
+        CommonPostActionResponseForStateUpdateInner inner
+            = this.serviceClient().upgrade(resourceGroupName, networkDeviceName, body);
         if (inner != null) {
             return new CommonPostActionResponseForStateUpdateImpl(inner, this.manager());
         } else {
@@ -162,93 +161,91 @@ public final class NetworkDevicesImpl implements NetworkDevices {
         }
     }
 
-    public CommonPostActionResponseForStateUpdate upgrade(
-        String resourceGroupName, String networkDeviceName, UpdateVersion body, Context context) {
-        CommonPostActionResponseForStateUpdateInner inner =
-            this.serviceClient().upgrade(resourceGroupName, networkDeviceName, body, context);
+    public CommonPostActionResponseForStateUpdate upgrade(String resourceGroupName, String networkDeviceName,
+        UpdateVersion body, Context context) {
+        CommonPostActionResponseForStateUpdateInner inner
+            = this.serviceClient().upgrade(resourceGroupName, networkDeviceName, body, context);
         if (inner != null) {
             return new CommonPostActionResponseForStateUpdateImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public CommonPostActionResponseForDeviceROCommands runRoCommand(String resourceGroupName, String networkDeviceName,
+        DeviceRoCommand body) {
+        CommonPostActionResponseForDeviceROCommandsInner inner
+            = this.serviceClient().runRoCommand(resourceGroupName, networkDeviceName, body);
+        if (inner != null) {
+            return new CommonPostActionResponseForDeviceROCommandsImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public CommonPostActionResponseForDeviceROCommands runRoCommand(String resourceGroupName, String networkDeviceName,
+        DeviceRoCommand body, Context context) {
+        CommonPostActionResponseForDeviceROCommandsInner inner
+            = this.serviceClient().runRoCommand(resourceGroupName, networkDeviceName, body, context);
+        if (inner != null) {
+            return new CommonPostActionResponseForDeviceROCommandsImpl(inner, this.manager());
         } else {
             return null;
         }
     }
 
     public NetworkDevice getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String networkDeviceName = Utils.getValueFromIdByName(id, "networkDevices");
+        String networkDeviceName = ResourceManagerUtils.getValueFromIdByName(id, "networkDevices");
         if (networkDeviceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'networkDevices'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'networkDevices'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, networkDeviceName, Context.NONE).getValue();
     }
 
     public Response<NetworkDevice> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String networkDeviceName = Utils.getValueFromIdByName(id, "networkDevices");
+        String networkDeviceName = ResourceManagerUtils.getValueFromIdByName(id, "networkDevices");
         if (networkDeviceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'networkDevices'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'networkDevices'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, networkDeviceName, context);
     }
 
     public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String networkDeviceName = Utils.getValueFromIdByName(id, "networkDevices");
+        String networkDeviceName = ResourceManagerUtils.getValueFromIdByName(id, "networkDevices");
         if (networkDeviceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'networkDevices'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'networkDevices'.", id)));
         }
         this.delete(resourceGroupName, networkDeviceName, Context.NONE);
     }
 
     public void deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String networkDeviceName = Utils.getValueFromIdByName(id, "networkDevices");
+        String networkDeviceName = ResourceManagerUtils.getValueFromIdByName(id, "networkDevices");
         if (networkDeviceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'networkDevices'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'networkDevices'.", id)));
         }
         this.delete(resourceGroupName, networkDeviceName, context);
     }
