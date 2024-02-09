@@ -9,7 +9,9 @@ import com.azure.resourcemanager.relay.fluent.models.AuthorizationRuleInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response from the list namespace operation. */
+/**
+ * The response from the list namespace operation.
+ */
 @Fluent
 public final class AuthorizationRuleListResult {
     /*
@@ -19,15 +21,20 @@ public final class AuthorizationRuleListResult {
     private List<AuthorizationRuleInner> value;
 
     /*
-     * Link to the next set of results. Not empty if value contains incomplete
-     * list of authorization rules.
+     * Link to the next set of results. Not empty if value contains incomplete list of authorization rules.
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
     /**
+     * Creates an instance of AuthorizationRuleListResult class.
+     */
+    public AuthorizationRuleListResult() {
+    }
+
+    /**
      * Get the value property: Result of the list authorization rules operation.
-     *
+     * 
      * @return the value value.
      */
     public List<AuthorizationRuleInner> value() {
@@ -36,7 +43,7 @@ public final class AuthorizationRuleListResult {
 
     /**
      * Set the value property: Result of the list authorization rules operation.
-     *
+     * 
      * @param value the value value to set.
      * @return the AuthorizationRuleListResult object itself.
      */
@@ -48,7 +55,7 @@ public final class AuthorizationRuleListResult {
     /**
      * Get the nextLink property: Link to the next set of results. Not empty if value contains incomplete list of
      * authorization rules.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -58,7 +65,7 @@ public final class AuthorizationRuleListResult {
     /**
      * Set the nextLink property: Link to the next set of results. Not empty if value contains incomplete list of
      * authorization rules.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the AuthorizationRuleListResult object itself.
      */
@@ -69,7 +76,7 @@ public final class AuthorizationRuleListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

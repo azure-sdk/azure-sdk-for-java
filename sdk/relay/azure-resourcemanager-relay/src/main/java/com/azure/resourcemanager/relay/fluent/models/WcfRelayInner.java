@@ -6,11 +6,14 @@ package com.azure.resourcemanager.relay.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.relay.models.Relaytype;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Description of the WCF relay resource. */
+/**
+ * Description of the WCF relay resource.
+ */
 @Fluent
 public final class WcfRelayInner extends ProxyResource {
     /*
@@ -19,9 +22,27 @@ public final class WcfRelayInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private WcfRelayProperties innerProperties;
 
+    /*
+     * The system meta data relating to this resource.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /*
+     * The geo-location where the resource lives
+     */
+    @JsonProperty(value = "location", access = JsonProperty.Access.WRITE_ONLY)
+    private String location;
+
+    /**
+     * Creates an instance of WcfRelayInner class.
+     */
+    public WcfRelayInner() {
+    }
+
     /**
      * Get the innerProperties property: Properties of the WCF relay.
-     *
+     * 
      * @return the innerProperties value.
      */
     private WcfRelayProperties innerProperties() {
@@ -29,8 +50,26 @@ public final class WcfRelayInner extends ProxyResource {
     }
 
     /**
+     * Get the systemData property: The system meta data relating to this resource.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * Get the location property: The geo-location where the resource lives.
+     * 
+     * @return the location value.
+     */
+    public String location() {
+        return this.location;
+    }
+
+    /**
      * Get the isDynamic property: Returns true if the relay is dynamic; otherwise, false.
-     *
+     * 
      * @return the isDynamic value.
      */
     public Boolean isDynamic() {
@@ -39,7 +78,7 @@ public final class WcfRelayInner extends ProxyResource {
 
     /**
      * Get the createdAt property: The time the WCF relay was created.
-     *
+     * 
      * @return the createdAt value.
      */
     public OffsetDateTime createdAt() {
@@ -48,7 +87,7 @@ public final class WcfRelayInner extends ProxyResource {
 
     /**
      * Get the updatedAt property: The time the namespace was updated.
-     *
+     * 
      * @return the updatedAt value.
      */
     public OffsetDateTime updatedAt() {
@@ -58,7 +97,7 @@ public final class WcfRelayInner extends ProxyResource {
     /**
      * Get the listenerCount property: The number of listeners for this relay. Note that min :1 and max:25 are
      * supported.
-     *
+     * 
      * @return the listenerCount value.
      */
     public Integer listenerCount() {
@@ -67,7 +106,7 @@ public final class WcfRelayInner extends ProxyResource {
 
     /**
      * Get the relayType property: WCF relay type.
-     *
+     * 
      * @return the relayType value.
      */
     public Relaytype relayType() {
@@ -76,7 +115,7 @@ public final class WcfRelayInner extends ProxyResource {
 
     /**
      * Set the relayType property: WCF relay type.
-     *
+     * 
      * @param relayType the relayType value to set.
      * @return the WcfRelayInner object itself.
      */
@@ -91,7 +130,7 @@ public final class WcfRelayInner extends ProxyResource {
     /**
      * Get the requiresClientAuthorization property: Returns true if client authorization is needed for this relay;
      * otherwise, false.
-     *
+     * 
      * @return the requiresClientAuthorization value.
      */
     public Boolean requiresClientAuthorization() {
@@ -101,7 +140,7 @@ public final class WcfRelayInner extends ProxyResource {
     /**
      * Set the requiresClientAuthorization property: Returns true if client authorization is needed for this relay;
      * otherwise, false.
-     *
+     * 
      * @param requiresClientAuthorization the requiresClientAuthorization value to set.
      * @return the WcfRelayInner object itself.
      */
@@ -116,7 +155,7 @@ public final class WcfRelayInner extends ProxyResource {
     /**
      * Get the requiresTransportSecurity property: Returns true if transport security is needed for this relay;
      * otherwise, false.
-     *
+     * 
      * @return the requiresTransportSecurity value.
      */
     public Boolean requiresTransportSecurity() {
@@ -126,7 +165,7 @@ public final class WcfRelayInner extends ProxyResource {
     /**
      * Set the requiresTransportSecurity property: Returns true if transport security is needed for this relay;
      * otherwise, false.
-     *
+     * 
      * @param requiresTransportSecurity the requiresTransportSecurity value to set.
      * @return the WcfRelayInner object itself.
      */
@@ -142,7 +181,7 @@ public final class WcfRelayInner extends ProxyResource {
      * Get the userMetadata property: The usermetadata is a placeholder to store user-defined string data for the WCF
      * Relay endpoint. For example, it can be used to store descriptive data, such as list of teams and their contact
      * information. Also, user-defined configuration settings can be stored.
-     *
+     * 
      * @return the userMetadata value.
      */
     public String userMetadata() {
@@ -153,7 +192,7 @@ public final class WcfRelayInner extends ProxyResource {
      * Set the userMetadata property: The usermetadata is a placeholder to store user-defined string data for the WCF
      * Relay endpoint. For example, it can be used to store descriptive data, such as list of teams and their contact
      * information. Also, user-defined configuration settings can be stored.
-     *
+     * 
      * @param userMetadata the userMetadata value to set.
      * @return the WcfRelayInner object itself.
      */
@@ -167,7 +206,7 @@ public final class WcfRelayInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

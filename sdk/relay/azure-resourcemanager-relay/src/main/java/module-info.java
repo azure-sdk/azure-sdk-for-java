@@ -4,16 +4,10 @@
 
 module com.azure.resourcemanager.relay {
     requires transitive com.azure.core.management;
-
     exports com.azure.resourcemanager.relay;
     exports com.azure.resourcemanager.relay.fluent;
     exports com.azure.resourcemanager.relay.fluent.models;
     exports com.azure.resourcemanager.relay.models;
-
-    opens com.azure.resourcemanager.relay.fluent.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
-    opens com.azure.resourcemanager.relay.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.relay.fluent.models to com.azure.core, com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.relay.models to com.azure.core, com.fasterxml.jackson.databind;
 }
