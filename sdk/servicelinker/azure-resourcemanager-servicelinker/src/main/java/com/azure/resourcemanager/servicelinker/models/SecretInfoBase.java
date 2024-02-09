@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The secret info. */
+/**
+ * The secret info.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -19,13 +21,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "rawValue", value = ValueSecretInfo.class),
     @JsonSubTypes.Type(name = "keyVaultSecretReference", value = KeyVaultSecretReferenceSecretInfo.class),
-    @JsonSubTypes.Type(name = "keyVaultSecretUri", value = KeyVaultSecretUriSecretInfo.class)
-})
+    @JsonSubTypes.Type(name = "keyVaultSecretUri", value = KeyVaultSecretUriSecretInfo.class) })
 @Immutable
 public class SecretInfoBase {
     /**
+     * Creates an instance of SecretInfoBase class.
+     */
+    public SecretInfoBase() {
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
