@@ -9,7 +9,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Parameters to use when configuring Elasticsearch® as an Azure OpenAI chat extension.
+ * Parameters to use when configuring Elasticsearch® as an Azure OpenAI chat extension. The supported authentication
+ * types are KeyAndKeyId and EncodedAPIKey.
  */
 @Fluent
 public final class ElasticsearchChatExtensionParameters {

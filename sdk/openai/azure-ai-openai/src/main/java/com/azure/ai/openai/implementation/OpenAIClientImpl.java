@@ -150,6 +150,7 @@ public final class OpenAIClientImpl {
     @Host("{endpoint}/openai")
     @ServiceInterface(name = "OpenAIClient")
     public interface OpenAIClientService {
+        // @Multipart not supported by RestProxy
         @Post("/deployments/{deploymentId}/audio/transcriptions")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
@@ -158,9 +159,11 @@ public final class OpenAIClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> getAudioTranscriptionAsPlainText(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("deploymentId") String deploymentOrModelName,
-            @HeaderParam("accept") String accept, @BodyParam("application/json") BinaryData audioTranscriptionOptions,
-            RequestOptions requestOptions, Context context);
+            @HeaderParam("content-type") String contentType, @HeaderParam("accept") String accept,
+            @BodyParam("multipart/form-data") BinaryData audioTranscriptionOptions, RequestOptions requestOptions,
+            Context context);
 
+        // @Multipart not supported by RestProxy
         @Post("/deployments/{deploymentId}/audio/transcriptions")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
@@ -169,8 +172,9 @@ public final class OpenAIClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> getAudioTranscriptionAsPlainTextSync(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("deploymentId") String deploymentOrModelName,
-            @HeaderParam("accept") String accept, @BodyParam("application/json") BinaryData audioTranscriptionOptions,
-            RequestOptions requestOptions, Context context);
+            @HeaderParam("content-type") String contentType, @HeaderParam("accept") String accept,
+            @BodyParam("multipart/form-data") BinaryData audioTranscriptionOptions, RequestOptions requestOptions,
+            Context context);
 
         // @Multipart not supported by RestProxy
         @Post("/deployments/{deploymentId}/audio/transcriptions")
@@ -198,6 +202,7 @@ public final class OpenAIClientImpl {
             @BodyParam("multipart/form-data") BinaryData audioTranscriptionOptions, RequestOptions requestOptions,
             Context context);
 
+        // @Multipart not supported by RestProxy
         @Post("/deployments/{deploymentId}/audio/translations")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
@@ -206,9 +211,11 @@ public final class OpenAIClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> getAudioTranslationAsPlainText(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("deploymentId") String deploymentOrModelName,
-            @HeaderParam("accept") String accept, @BodyParam("application/json") BinaryData audioTranslationOptions,
-            RequestOptions requestOptions, Context context);
+            @HeaderParam("content-type") String contentType, @HeaderParam("accept") String accept,
+            @BodyParam("multipart/form-data") BinaryData audioTranslationOptions, RequestOptions requestOptions,
+            Context context);
 
+        // @Multipart not supported by RestProxy
         @Post("/deployments/{deploymentId}/audio/translations")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
@@ -217,8 +224,9 @@ public final class OpenAIClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<BinaryData> getAudioTranslationAsPlainTextSync(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("deploymentId") String deploymentOrModelName,
-            @HeaderParam("accept") String accept, @BodyParam("application/json") BinaryData audioTranslationOptions,
-            RequestOptions requestOptions, Context context);
+            @HeaderParam("content-type") String contentType, @HeaderParam("accept") String accept,
+            @BodyParam("multipart/form-data") BinaryData audioTranslationOptions, RequestOptions requestOptions,
+            Context context);
 
         // @Multipart not supported by RestProxy
         @Post("/deployments/{deploymentId}/audio/translations")
@@ -381,10 +389,11 @@ public final class OpenAIClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getAudioTranscriptionAsPlainTextWithResponseAsync(String deploymentOrModelName,
         BinaryData audioTranscriptionOptions, RequestOptions requestOptions) {
-        final String accept = "application/json";
+        final String contentType = "multipart/form-data";
+        final String accept = "text/plain, application/json";
         return FluxUtil.withContext(context -> service.getAudioTranscriptionAsPlainText(this.getEndpoint(),
-            this.getServiceVersion().getVersion(), deploymentOrModelName, accept, audioTranscriptionOptions,
-            requestOptions, context));
+            this.getServiceVersion().getVersion(), deploymentOrModelName, contentType, accept,
+            audioTranscriptionOptions, requestOptions, context));
     }
 
     /**
@@ -410,9 +419,10 @@ public final class OpenAIClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getAudioTranscriptionAsPlainTextWithResponse(String deploymentOrModelName,
         BinaryData audioTranscriptionOptions, RequestOptions requestOptions) {
-        final String accept = "application/json";
+        final String contentType = "multipart/form-data";
+        final String accept = "text/plain, application/json";
         return service.getAudioTranscriptionAsPlainTextSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
-            deploymentOrModelName, accept, audioTranscriptionOptions, requestOptions, Context.NONE);
+            deploymentOrModelName, contentType, accept, audioTranscriptionOptions, requestOptions, Context.NONE);
     }
 
     /**
@@ -541,10 +551,11 @@ public final class OpenAIClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getAudioTranslationAsPlainTextWithResponseAsync(String deploymentOrModelName,
         BinaryData audioTranslationOptions, RequestOptions requestOptions) {
-        final String accept = "application/json";
+        final String contentType = "multipart/form-data";
+        final String accept = "text/plain, application/json";
         return FluxUtil.withContext(
             context -> service.getAudioTranslationAsPlainText(this.getEndpoint(), this.getServiceVersion().getVersion(),
-                deploymentOrModelName, accept, audioTranslationOptions, requestOptions, context));
+                deploymentOrModelName, contentType, accept, audioTranslationOptions, requestOptions, context));
     }
 
     /**
@@ -570,9 +581,10 @@ public final class OpenAIClientImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getAudioTranslationAsPlainTextWithResponse(String deploymentOrModelName,
         BinaryData audioTranslationOptions, RequestOptions requestOptions) {
-        final String accept = "application/json";
+        final String contentType = "multipart/form-data";
+        final String accept = "text/plain, application/json";
         return service.getAudioTranslationAsPlainTextSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
-            deploymentOrModelName, accept, audioTranslationOptions, requestOptions, Context.NONE);
+            deploymentOrModelName, contentType, accept, audioTranslationOptions, requestOptions, Context.NONE);
     }
 
     /**

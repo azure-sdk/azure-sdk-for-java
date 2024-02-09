@@ -9,7 +9,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Parameters for the Azure Machine Learning vector index chat extension.
+ * Parameters for the Azure Machine Learning vector index chat extension. The supported authentication types are
+ * AccessToken, SystemAssignedManagedIdentity and UserAssignedManagedIdentity.
  */
 @Fluent
 public final class AzureMachineLearningIndexChatExtensionParameters {

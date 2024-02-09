@@ -1246,8 +1246,10 @@ public final class OpenAIClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getAudioTranscriptionAsPlainTextWithResponse(String deploymentOrModelName,
+    Response<BinaryData> getAudioTranscriptionAsPlainTextWithResponse(String deploymentOrModelName,
         BinaryData audioTranscriptionOptions, RequestOptions requestOptions) {
+        // Protocol API requires serialization of parts with content-disposition and data, as operation
+        // 'getAudioTranscriptionAsPlainText' is 'multipart/form-data'
         return this.serviceClient.getAudioTranscriptionAsPlainTextWithResponse(deploymentOrModelName,
             audioTranscriptionOptions, requestOptions);
     }
@@ -1325,8 +1327,10 @@ public final class OpenAIClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getAudioTranslationAsPlainTextWithResponse(String deploymentOrModelName,
+    Response<BinaryData> getAudioTranslationAsPlainTextWithResponse(String deploymentOrModelName,
         BinaryData audioTranslationOptions, RequestOptions requestOptions) {
+        // Protocol API requires serialization of parts with content-disposition and data, as operation
+        // 'getAudioTranslationAsPlainText' is 'multipart/form-data'
         return this.serviceClient.getAudioTranslationAsPlainTextWithResponse(deploymentOrModelName,
             audioTranslationOptions, requestOptions);
     }

@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * A specific representation of configurable options for Elasticsearch when using it as an Azure OpenAI chat
+ * A specific representation of configurable options for Pinecone when using it as an Azure OpenAI chat
  * extension.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")

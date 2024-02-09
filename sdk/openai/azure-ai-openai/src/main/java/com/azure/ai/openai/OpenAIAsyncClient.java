@@ -1288,8 +1288,10 @@ public final class OpenAIAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getAudioTranscriptionAsPlainTextWithResponse(String deploymentOrModelName,
+    Mono<Response<BinaryData>> getAudioTranscriptionAsPlainTextWithResponse(String deploymentOrModelName,
         BinaryData audioTranscriptionOptions, RequestOptions requestOptions) {
+        // Protocol API requires serialization of parts with content-disposition and data, as operation
+        // 'getAudioTranscriptionAsPlainText' is 'multipart/form-data'
         return this.serviceClient.getAudioTranscriptionAsPlainTextWithResponseAsync(deploymentOrModelName,
             audioTranscriptionOptions, requestOptions);
     }
@@ -1367,8 +1369,10 @@ public final class OpenAIAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getAudioTranslationAsPlainTextWithResponse(String deploymentOrModelName,
+    Mono<Response<BinaryData>> getAudioTranslationAsPlainTextWithResponse(String deploymentOrModelName,
         BinaryData audioTranslationOptions, RequestOptions requestOptions) {
+        // Protocol API requires serialization of parts with content-disposition and data, as operation
+        // 'getAudioTranslationAsPlainText' is 'multipart/form-data'
         return this.serviceClient.getAudioTranslationAsPlainTextWithResponseAsync(deploymentOrModelName,
             audioTranslationOptions, requestOptions);
     }
