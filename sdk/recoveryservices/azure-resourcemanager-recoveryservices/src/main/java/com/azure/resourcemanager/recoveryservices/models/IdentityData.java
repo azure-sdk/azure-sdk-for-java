@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Identity for the resource. */
+/**
+ * Identity for the resource.
+ */
 @Fluent
 public final class IdentityData {
     /*
@@ -35,19 +37,22 @@ public final class IdentityData {
     /*
      * The list of user-assigned identities associated with the resource. The user-assigned identity dictionary keys
      * will be ARM resource ids in the form:
-     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
+     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/
+     * userAssignedIdentities/{identityName}'.
      */
     @JsonProperty(value = "userAssignedIdentities")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, UserIdentity> userAssignedIdentities;
 
-    /** Creates an instance of IdentityData class. */
+    /**
+     * Creates an instance of IdentityData class.
+     */
     public IdentityData() {
     }
 
     /**
      * Get the principalId property: The principal ID of resource identity.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -56,7 +61,7 @@ public final class IdentityData {
 
     /**
      * Get the tenantId property: The tenant ID of resource.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -65,8 +70,9 @@ public final class IdentityData {
 
     /**
      * Get the type property: The type of managed identity used. The type 'SystemAssigned, UserAssigned' includes both
-     * an implicitly created identity and a set of user-assigned identities. The type 'None' will remove any identities.
-     *
+     * an implicitly created identity and a set of user-assigned identities. The type 'None' will remove any
+     * identities.
+     * 
      * @return the type value.
      */
     public ResourceIdentityType type() {
@@ -75,8 +81,9 @@ public final class IdentityData {
 
     /**
      * Set the type property: The type of managed identity used. The type 'SystemAssigned, UserAssigned' includes both
-     * an implicitly created identity and a set of user-assigned identities. The type 'None' will remove any identities.
-     *
+     * an implicitly created identity and a set of user-assigned identities. The type 'None' will remove any
+     * identities.
+     * 
      * @param type the type value to set.
      * @return the IdentityData object itself.
      */
@@ -89,7 +96,7 @@ public final class IdentityData {
      * Get the userAssignedIdentities property: The list of user-assigned identities associated with the resource. The
      * user-assigned identity dictionary keys will be ARM resource ids in the form:
      * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
-     *
+     * 
      * @return the userAssignedIdentities value.
      */
     public Map<String, UserIdentity> userAssignedIdentities() {
@@ -100,7 +107,7 @@ public final class IdentityData {
      * Set the userAssignedIdentities property: The list of user-assigned identities associated with the resource. The
      * user-assigned identity dictionary keys will be ARM resource ids in the form:
      * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
-     *
+     * 
      * @param userAssignedIdentities the userAssignedIdentities value to set.
      * @return the IdentityData object itself.
      */
@@ -111,24 +118,20 @@ public final class IdentityData {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property type in model IdentityData"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model IdentityData"));
         }
         if (userAssignedIdentities() != null) {
-            userAssignedIdentities()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            userAssignedIdentities().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 
