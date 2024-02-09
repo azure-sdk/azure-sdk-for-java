@@ -7,7 +7,9 @@ package com.azure.resourcemanager.servicelinker.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An option to store secret value in secure place. */
+/**
+ * An option to store secret value in secure place.
+ */
 @Fluent
 public final class SecretStore {
     /*
@@ -17,8 +19,14 @@ public final class SecretStore {
     private String keyVaultId;
 
     /**
+     * Creates an instance of SecretStore class.
+     */
+    public SecretStore() {
+    }
+
+    /**
      * Get the keyVaultId property: The key vault id to store secret.
-     *
+     * 
      * @return the keyVaultId value.
      */
     public String keyVaultId() {
@@ -27,7 +35,7 @@ public final class SecretStore {
 
     /**
      * Set the keyVaultId property: The key vault id to store secret.
-     *
+     * 
      * @param keyVaultId the keyVaultId value to set.
      * @return the SecretStore object itself.
      */
@@ -38,7 +46,7 @@ public final class SecretStore {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

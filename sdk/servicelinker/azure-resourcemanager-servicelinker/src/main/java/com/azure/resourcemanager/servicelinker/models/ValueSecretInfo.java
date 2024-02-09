@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The secret info when type is rawValue. It's for scenarios that user input the secret. */
+/**
+ * The secret info when type is rawValue. It's for scenarios that user input the secret.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "secretType")
 @JsonTypeName("rawValue")
 @Fluent
@@ -21,8 +23,14 @@ public final class ValueSecretInfo extends SecretInfoBase {
     private String value;
 
     /**
+     * Creates an instance of ValueSecretInfo class.
+     */
+    public ValueSecretInfo() {
+    }
+
+    /**
      * Get the value property: The actual value of the secret.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -31,7 +39,7 @@ public final class ValueSecretInfo extends SecretInfoBase {
 
     /**
      * Set the value property: The actual value of the secret.
-     *
+     * 
      * @param value the value value to set.
      * @return the ValueSecretInfo object itself.
      */
@@ -42,7 +50,7 @@ public final class ValueSecretInfo extends SecretInfoBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
