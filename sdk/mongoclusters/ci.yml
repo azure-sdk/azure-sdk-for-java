@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/mongoclusters/ci.yml
+      - sdk/mongoclusters/azure-resourcemanager-mongoclusters/
+    exclude:
+      - sdk/mongoclusters/pom.xml
+      - sdk/mongoclusters/azure-resourcemanager-mongoclusters/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/mongoclusters/ci.yml
+      - sdk/mongoclusters/azure-resourcemanager-mongoclusters/
+    exclude:
+      - sdk/mongoclusters/pom.xml
+      - sdk/mongoclusters/azure-resourcemanager-mongoclusters/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagermongoclusters
+    displayName: azure-resourcemanager-mongoclusters
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: mongoclusters
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-mongoclusters
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagermongoclusters
+        releaseInBatch: ${{ parameters.release_azureresourcemanagermongoclusters }}
