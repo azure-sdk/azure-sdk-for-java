@@ -60,4 +60,39 @@ public final class AnalyzeTextResult {
     public List<TextCategoriesAnalysis> getCategoriesAnalysis() {
         return this.categoriesAnalysis;
     }
+
+    /*
+     * The incident match details.
+     */
+    @Generated
+    @JsonProperty(value = "incidentMatches")
+    private List<IncidentMatch> incidentMatches;
+
+    /*
+     * Chunks in the original text detected as harmful content. Analysis result and scores are caused by these.
+     */
+    @Generated
+    @JsonProperty(value = "citation")
+    private List<String> citation;
+
+    /**
+     * Get the incidentMatches property: The incident match details.
+     *
+     * @return the incidentMatches value.
+     */
+    @Generated
+    public List<IncidentMatch> getIncidentMatches() {
+        return this.incidentMatches;
+    }
+
+    /**
+     * Get the citation property: Chunks in the original text detected as harmful content. Analysis result and scores
+     * are caused by these.
+     *
+     * @return the citation value.
+     */
+    @Generated
+    public List<String> getCitation() {
+        return this.citation;
+    }
 }
