@@ -22,6 +22,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "APIKey", value = OnYourDataApiKeyAuthenticationOptions.class),
     @JsonSubTypes.Type(name = "ConnectionString", value = OnYourDataConnectionStringAuthenticationOptions.class),
     @JsonSubTypes.Type(name = "KeyAndKeyId", value = OnYourDataKeyAndKeyIdAuthenticationOptions.class),
+    @JsonSubTypes.Type(name = "EncodedAPIKey", value = OnYourDataEncodedApiKeyAuthenticationOptions.class),
+    @JsonSubTypes.Type(name = "AccessToken", value = OnYourDataAccessTokenAuthenticationOptions.class),
     @JsonSubTypes.Type(
         name = "SystemAssignedManagedIdentity",
         value = OnYourDataSystemAssignedManagedIdentityAuthenticationOptions.class),

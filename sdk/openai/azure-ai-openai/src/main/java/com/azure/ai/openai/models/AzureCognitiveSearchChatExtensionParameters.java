@@ -9,7 +9,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Parameters for Azure Cognitive Search when used as an Azure OpenAI chat extension.
+ * Parameters for Azure Cognitive Search when used as an Azure OpenAI chat extension. The supported authentication
+ * types are APIKey, SystemAssignedManagedIdentity and UserAssignedManagedIdentity.
  */
 @Fluent
 public final class AzureCognitiveSearchChatExtensionParameters {
