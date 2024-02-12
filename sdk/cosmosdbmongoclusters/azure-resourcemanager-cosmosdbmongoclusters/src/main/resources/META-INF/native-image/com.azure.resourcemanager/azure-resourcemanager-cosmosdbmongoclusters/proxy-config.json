@@ -1,0 +1,1 @@
+[ [ "com.azure.resourcemanager.cosmosdbmongoclusters.implementation.OperationsClientImpl$OperationsService" ], [ "com.azure.resourcemanager.cosmosdbmongoclusters.implementation.MongoClustersClientImpl$MongoClustersService" ], [ "com.azure.resourcemanager.cosmosdbmongoclusters.implementation.FirewallRulesClientImpl$FirewallRulesService" ] ]
