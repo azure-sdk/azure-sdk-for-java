@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The edge that connects the entity to the other entity. */
+/**
+ * The edge that connects the entity to the other entity.
+ */
 @Fluent
 public final class EntityEdges {
     /*
@@ -26,8 +28,14 @@ public final class EntityEdges {
     private Map<String, Object> additionalData;
 
     /**
+     * Creates an instance of EntityEdges class.
+     */
+    public EntityEdges() {
+    }
+
+    /**
      * Get the targetEntityId property: The target entity Id.
-     *
+     * 
      * @return the targetEntityId value.
      */
     public String targetEntityId() {
@@ -36,7 +44,7 @@ public final class EntityEdges {
 
     /**
      * Set the targetEntityId property: The target entity Id.
-     *
+     * 
      * @param targetEntityId the targetEntityId value to set.
      * @return the EntityEdges object itself.
      */
@@ -48,7 +56,7 @@ public final class EntityEdges {
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -58,7 +66,7 @@ public final class EntityEdges {
     /**
      * Set the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @param additionalData the additionalData value to set.
      * @return the EntityEdges object itself.
      */
@@ -69,7 +77,7 @@ public final class EntityEdges {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.RepoInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List all the source controls. */
+/**
+ * List all the source controls.
+ */
 @Fluent
 public final class RepoList {
     /*
@@ -26,8 +28,14 @@ public final class RepoList {
     private List<RepoInner> value;
 
     /**
+     * Creates an instance of RepoList class.
+     */
+    public RepoList() {
+    }
+
+    /**
      * Get the nextLink property: URL to fetch the next set of repositories.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -36,7 +44,7 @@ public final class RepoList {
 
     /**
      * Get the value property: Array of repositories.
-     *
+     * 
      * @return the value value.
      */
     public List<RepoInner> value() {
@@ -45,7 +53,7 @@ public final class RepoList {
 
     /**
      * Set the value property: Array of repositories.
-     *
+     * 
      * @param value the value value to set.
      * @return the RepoList object itself.
      */
@@ -56,7 +64,7 @@ public final class RepoList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

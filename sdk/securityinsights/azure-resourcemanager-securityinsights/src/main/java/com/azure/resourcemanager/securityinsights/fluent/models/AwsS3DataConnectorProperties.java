@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.models.AwsS3DataConnectorDataT
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Amazon Web Services S3 data connector properties. */
+/**
+ * Amazon Web Services S3 data connector properties.
+ */
 @Fluent
 public final class AwsS3DataConnectorProperties {
     /*
@@ -38,8 +40,14 @@ public final class AwsS3DataConnectorProperties {
     private AwsS3DataConnectorDataTypes dataTypes;
 
     /**
+     * Creates an instance of AwsS3DataConnectorProperties class.
+     */
+    public AwsS3DataConnectorProperties() {
+    }
+
+    /**
      * Get the destinationTable property: The logs destination table name in LogAnalytics.
-     *
+     * 
      * @return the destinationTable value.
      */
     public String destinationTable() {
@@ -48,7 +56,7 @@ public final class AwsS3DataConnectorProperties {
 
     /**
      * Set the destinationTable property: The logs destination table name in LogAnalytics.
-     *
+     * 
      * @param destinationTable the destinationTable value to set.
      * @return the AwsS3DataConnectorProperties object itself.
      */
@@ -59,7 +67,7 @@ public final class AwsS3DataConnectorProperties {
 
     /**
      * Get the sqsUrls property: The AWS sqs urls for the connector.
-     *
+     * 
      * @return the sqsUrls value.
      */
     public List<String> sqsUrls() {
@@ -68,7 +76,7 @@ public final class AwsS3DataConnectorProperties {
 
     /**
      * Set the sqsUrls property: The AWS sqs urls for the connector.
-     *
+     * 
      * @param sqsUrls the sqsUrls value to set.
      * @return the AwsS3DataConnectorProperties object itself.
      */
@@ -79,7 +87,7 @@ public final class AwsS3DataConnectorProperties {
 
     /**
      * Get the roleArn property: The Aws Role Arn that is used to access the Aws account.
-     *
+     * 
      * @return the roleArn value.
      */
     public String roleArn() {
@@ -88,7 +96,7 @@ public final class AwsS3DataConnectorProperties {
 
     /**
      * Set the roleArn property: The Aws Role Arn that is used to access the Aws account.
-     *
+     * 
      * @param roleArn the roleArn value to set.
      * @return the AwsS3DataConnectorProperties object itself.
      */
@@ -99,7 +107,7 @@ public final class AwsS3DataConnectorProperties {
 
     /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public AwsS3DataConnectorDataTypes dataTypes() {
@@ -108,7 +116,7 @@ public final class AwsS3DataConnectorProperties {
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the AwsS3DataConnectorProperties object itself.
      */
@@ -119,33 +127,25 @@ public final class AwsS3DataConnectorProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (destinationTable() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property destinationTable in model AwsS3DataConnectorProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property destinationTable in model AwsS3DataConnectorProperties"));
         }
         if (sqsUrls() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sqsUrls in model AwsS3DataConnectorProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sqsUrls in model AwsS3DataConnectorProperties"));
         }
         if (roleArn() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property roleArn in model AwsS3DataConnectorProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property roleArn in model AwsS3DataConnectorProperties"));
         }
         if (dataTypes() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dataTypes in model AwsS3DataConnectorProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property dataTypes in model AwsS3DataConnectorProperties"));
         } else {
             dataTypes().validate();
         }

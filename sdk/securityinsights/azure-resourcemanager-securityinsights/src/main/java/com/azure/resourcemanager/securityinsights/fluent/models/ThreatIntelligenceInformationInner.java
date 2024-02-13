@@ -11,17 +11,27 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Threat intelligence information object. */
+/**
+ * Threat intelligence information object.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
     property = "kind",
     defaultImpl = ThreatIntelligenceInformationInner.class)
 @JsonTypeName("ThreatIntelligenceInformation")
-@JsonSubTypes({@JsonSubTypes.Type(name = "indicator", value = ThreatIntelligenceIndicatorModel.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "indicator", value = ThreatIntelligenceIndicatorModel.class) })
 @Fluent
 public class ThreatIntelligenceInformationInner extends ResourceWithEtag {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of ThreatIntelligenceInformationInner class.
+     */
+    public ThreatIntelligenceInformationInner() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ThreatIntelligenceInformationInner withEtag(String etag) {
         super.withEtag(etag);
@@ -30,7 +40,7 @@ public class ThreatIntelligenceInformationInner extends ResourceWithEtag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

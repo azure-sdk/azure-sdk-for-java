@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Represents Codeless API Polling data connector. */
+/**
+ * Represents Codeless API Polling data connector.
+ */
 @Fluent
 public final class DataConnectorConnectBody {
     /*
@@ -80,8 +82,14 @@ public final class DataConnectorConnectBody {
     private List<Object> requestConfigUserInputValues;
 
     /**
+     * Creates an instance of DataConnectorConnectBody class.
+     */
+    public DataConnectorConnectBody() {
+    }
+
+    /**
      * Get the kind property: The authentication kind used to poll the data.
-     *
+     * 
      * @return the kind value.
      */
     public ConnectAuthKind kind() {
@@ -90,7 +98,7 @@ public final class DataConnectorConnectBody {
 
     /**
      * Set the kind property: The authentication kind used to poll the data.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the DataConnectorConnectBody object itself.
      */
@@ -101,7 +109,7 @@ public final class DataConnectorConnectBody {
 
     /**
      * Get the apiKey property: The API key of the audit server.
-     *
+     * 
      * @return the apiKey value.
      */
     public String apiKey() {
@@ -110,7 +118,7 @@ public final class DataConnectorConnectBody {
 
     /**
      * Set the apiKey property: The API key of the audit server.
-     *
+     * 
      * @param apiKey the apiKey value to set.
      * @return the DataConnectorConnectBody object itself.
      */
@@ -122,7 +130,7 @@ public final class DataConnectorConnectBody {
     /**
      * Get the dataCollectionEndpoint property: Used in v2 logs connector. Represents the data collection ingestion
      * endpoint in log analytics.
-     *
+     * 
      * @return the dataCollectionEndpoint value.
      */
     public String dataCollectionEndpoint() {
@@ -132,7 +140,7 @@ public final class DataConnectorConnectBody {
     /**
      * Set the dataCollectionEndpoint property: Used in v2 logs connector. Represents the data collection ingestion
      * endpoint in log analytics.
-     *
+     * 
      * @param dataCollectionEndpoint the dataCollectionEndpoint value to set.
      * @return the DataConnectorConnectBody object itself.
      */
@@ -142,9 +150,9 @@ public final class DataConnectorConnectBody {
     }
 
     /**
-     * Get the dataCollectionRuleImmutableId property: Used in v2 logs connector. The data collection rule immutable id,
-     * the rule defines the transformation and data destination.
-     *
+     * Get the dataCollectionRuleImmutableId property: Used in v2 logs connector. The data collection rule immutable
+     * id, the rule defines the transformation and data destination.
+     * 
      * @return the dataCollectionRuleImmutableId value.
      */
     public String dataCollectionRuleImmutableId() {
@@ -152,9 +160,9 @@ public final class DataConnectorConnectBody {
     }
 
     /**
-     * Set the dataCollectionRuleImmutableId property: Used in v2 logs connector. The data collection rule immutable id,
-     * the rule defines the transformation and data destination.
-     *
+     * Set the dataCollectionRuleImmutableId property: Used in v2 logs connector. The data collection rule immutable
+     * id, the rule defines the transformation and data destination.
+     * 
      * @param dataCollectionRuleImmutableId the dataCollectionRuleImmutableId value to set.
      * @return the DataConnectorConnectBody object itself.
      */
@@ -164,9 +172,9 @@ public final class DataConnectorConnectBody {
     }
 
     /**
-     * Get the outputStream property: Used in v2 logs connector. The stream we are sending the data to, this is the name
-     * of the streamDeclarations defined in the DCR.
-     *
+     * Get the outputStream property: Used in v2 logs connector. The stream we are sending the data to, this is the
+     * name of the streamDeclarations defined in the DCR.
+     * 
      * @return the outputStream value.
      */
     public String outputStream() {
@@ -174,9 +182,9 @@ public final class DataConnectorConnectBody {
     }
 
     /**
-     * Set the outputStream property: Used in v2 logs connector. The stream we are sending the data to, this is the name
-     * of the streamDeclarations defined in the DCR.
-     *
+     * Set the outputStream property: Used in v2 logs connector. The stream we are sending the data to, this is the
+     * name of the streamDeclarations defined in the DCR.
+     * 
      * @param outputStream the outputStream value to set.
      * @return the DataConnectorConnectBody object itself.
      */
@@ -187,7 +195,7 @@ public final class DataConnectorConnectBody {
 
     /**
      * Get the clientSecret property: The client secret of the OAuth 2.0 application.
-     *
+     * 
      * @return the clientSecret value.
      */
     public String clientSecret() {
@@ -196,7 +204,7 @@ public final class DataConnectorConnectBody {
 
     /**
      * Set the clientSecret property: The client secret of the OAuth 2.0 application.
-     *
+     * 
      * @param clientSecret the clientSecret value to set.
      * @return the DataConnectorConnectBody object itself.
      */
@@ -207,7 +215,7 @@ public final class DataConnectorConnectBody {
 
     /**
      * Get the clientId property: The client id of the OAuth 2.0 application.
-     *
+     * 
      * @return the clientId value.
      */
     public String clientId() {
@@ -216,7 +224,7 @@ public final class DataConnectorConnectBody {
 
     /**
      * Set the clientId property: The client id of the OAuth 2.0 application.
-     *
+     * 
      * @param clientId the clientId value to set.
      * @return the DataConnectorConnectBody object itself.
      */
@@ -227,7 +235,7 @@ public final class DataConnectorConnectBody {
 
     /**
      * Get the authorizationCode property: The authorization code used in OAuth 2.0 code flow to issue a token.
-     *
+     * 
      * @return the authorizationCode value.
      */
     public String authorizationCode() {
@@ -236,7 +244,7 @@ public final class DataConnectorConnectBody {
 
     /**
      * Set the authorizationCode property: The authorization code used in OAuth 2.0 code flow to issue a token.
-     *
+     * 
      * @param authorizationCode the authorizationCode value to set.
      * @return the DataConnectorConnectBody object itself.
      */
@@ -247,7 +255,7 @@ public final class DataConnectorConnectBody {
 
     /**
      * Get the username property: The user name in the audit log server.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -256,7 +264,7 @@ public final class DataConnectorConnectBody {
 
     /**
      * Set the username property: The user name in the audit log server.
-     *
+     * 
      * @param username the username value to set.
      * @return the DataConnectorConnectBody object itself.
      */
@@ -267,7 +275,7 @@ public final class DataConnectorConnectBody {
 
     /**
      * Get the password property: The user password in the audit log server.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -276,7 +284,7 @@ public final class DataConnectorConnectBody {
 
     /**
      * Set the password property: The user password in the audit log server.
-     *
+     * 
      * @param password the password value to set.
      * @return the DataConnectorConnectBody object itself.
      */
@@ -287,7 +295,7 @@ public final class DataConnectorConnectBody {
 
     /**
      * Get the requestConfigUserInputValues property: The requestConfigUserInputValues property.
-     *
+     * 
      * @return the requestConfigUserInputValues value.
      */
     public List<Object> requestConfigUserInputValues() {
@@ -296,7 +304,7 @@ public final class DataConnectorConnectBody {
 
     /**
      * Set the requestConfigUserInputValues property: The requestConfigUserInputValues property.
-     *
+     * 
      * @param requestConfigUserInputValues the requestConfigUserInputValues value to set.
      * @return the DataConnectorConnectBody object itself.
      */
@@ -307,7 +315,7 @@ public final class DataConnectorConnectBody {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,10 +7,20 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 
-/** OfficeIRM (Microsoft Insider Risk Management) requirements check properties. */
+/**
+ * OfficeIRM (Microsoft Insider Risk Management) requirements check properties.
+ */
 @Fluent
 public final class OfficeIrmCheckRequirementsProperties extends DataConnectorTenantId {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of OfficeIrmCheckRequirementsProperties class.
+     */
+    public OfficeIrmCheckRequirementsProperties() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OfficeIrmCheckRequirementsProperties withTenantId(String tenantId) {
         super.withTenantId(tenantId);
@@ -19,7 +29,7 @@ public final class OfficeIrmCheckRequirementsProperties extends DataConnectorTen
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

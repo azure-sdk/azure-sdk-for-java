@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents an incident label. */
+/**
+ * Represents an incident label.
+ */
 @Fluent
 public final class IncidentLabel {
     /*
@@ -24,8 +26,14 @@ public final class IncidentLabel {
     private IncidentLabelType labelType;
 
     /**
+     * Creates an instance of IncidentLabel class.
+     */
+    public IncidentLabel() {
+    }
+
+    /**
      * Get the labelName property: The name of the label.
-     *
+     * 
      * @return the labelName value.
      */
     public String labelName() {
@@ -34,7 +42,7 @@ public final class IncidentLabel {
 
     /**
      * Set the labelName property: The name of the label.
-     *
+     * 
      * @param labelName the labelName value to set.
      * @return the IncidentLabel object itself.
      */
@@ -45,7 +53,7 @@ public final class IncidentLabel {
 
     /**
      * Get the labelType property: The type of the label.
-     *
+     * 
      * @return the labelType value.
      */
     public IncidentLabelType labelType() {
@@ -54,14 +62,13 @@ public final class IncidentLabel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (labelName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property labelName in model IncidentLabel"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property labelName in model IncidentLabel"));
         }
     }
 

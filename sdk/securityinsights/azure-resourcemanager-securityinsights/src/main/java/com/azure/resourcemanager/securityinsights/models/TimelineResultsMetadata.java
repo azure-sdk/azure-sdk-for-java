@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Expansion result metadata. */
+/**
+ * Expansion result metadata.
+ */
 @Fluent
 public final class TimelineResultsMetadata {
     /*
@@ -31,8 +33,14 @@ public final class TimelineResultsMetadata {
     private List<TimelineError> errors;
 
     /**
+     * Creates an instance of TimelineResultsMetadata class.
+     */
+    public TimelineResultsMetadata() {
+    }
+
+    /**
      * Get the totalCount property: the total items found for the timeline request.
-     *
+     * 
      * @return the totalCount value.
      */
     public int totalCount() {
@@ -41,7 +49,7 @@ public final class TimelineResultsMetadata {
 
     /**
      * Set the totalCount property: the total items found for the timeline request.
-     *
+     * 
      * @param totalCount the totalCount value to set.
      * @return the TimelineResultsMetadata object itself.
      */
@@ -52,7 +60,7 @@ public final class TimelineResultsMetadata {
 
     /**
      * Get the aggregations property: timeline aggregation per kind.
-     *
+     * 
      * @return the aggregations value.
      */
     public List<TimelineAggregation> aggregations() {
@@ -61,7 +69,7 @@ public final class TimelineResultsMetadata {
 
     /**
      * Set the aggregations property: timeline aggregation per kind.
-     *
+     * 
      * @param aggregations the aggregations value to set.
      * @return the TimelineResultsMetadata object itself.
      */
@@ -72,7 +80,7 @@ public final class TimelineResultsMetadata {
 
     /**
      * Get the errors property: information about the failure queries.
-     *
+     * 
      * @return the errors value.
      */
     public List<TimelineError> errors() {
@@ -81,7 +89,7 @@ public final class TimelineResultsMetadata {
 
     /**
      * Set the errors property: information about the failure queries.
-     *
+     * 
      * @param errors the errors value to set.
      * @return the TimelineResultsMetadata object itself.
      */
@@ -92,15 +100,13 @@ public final class TimelineResultsMetadata {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (aggregations() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property aggregations in model TimelineResultsMetadata"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property aggregations in model TimelineResultsMetadata"));
         } else {
             aggregations().forEach(e -> e.validate());
         }

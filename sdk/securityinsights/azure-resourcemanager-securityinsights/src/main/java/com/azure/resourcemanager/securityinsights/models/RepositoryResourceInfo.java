@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Resources created in user's repository for the source-control. */
+/**
+ * Resources created in user's repository for the source-control.
+ */
 @Fluent
 public final class RepositoryResourceInfo {
     /*
@@ -19,18 +21,24 @@ public final class RepositoryResourceInfo {
     /*
      * Resources created in GitHub for this source-control.
      */
-    @JsonProperty(value = "gitHubResourceInfo")
+    @JsonProperty(value = "gitHubResourceInfo", access = JsonProperty.Access.WRITE_ONLY)
     private GitHubResourceInfo gitHubResourceInfo;
 
     /*
      * Resources created in Azure DevOps for this source-control.
      */
-    @JsonProperty(value = "azureDevOpsResourceInfo")
+    @JsonProperty(value = "azureDevOpsResourceInfo", access = JsonProperty.Access.WRITE_ONLY)
     private AzureDevOpsResourceInfo azureDevOpsResourceInfo;
 
     /**
+     * Creates an instance of RepositoryResourceInfo class.
+     */
+    public RepositoryResourceInfo() {
+    }
+
+    /**
      * Get the webhook property: The webhook object created for the source-control.
-     *
+     * 
      * @return the webhook value.
      */
     public Webhook webhook() {
@@ -39,7 +47,7 @@ public final class RepositoryResourceInfo {
 
     /**
      * Set the webhook property: The webhook object created for the source-control.
-     *
+     * 
      * @param webhook the webhook value to set.
      * @return the RepositoryResourceInfo object itself.
      */
@@ -50,7 +58,7 @@ public final class RepositoryResourceInfo {
 
     /**
      * Get the gitHubResourceInfo property: Resources created in GitHub for this source-control.
-     *
+     * 
      * @return the gitHubResourceInfo value.
      */
     public GitHubResourceInfo gitHubResourceInfo() {
@@ -58,19 +66,8 @@ public final class RepositoryResourceInfo {
     }
 
     /**
-     * Set the gitHubResourceInfo property: Resources created in GitHub for this source-control.
-     *
-     * @param gitHubResourceInfo the gitHubResourceInfo value to set.
-     * @return the RepositoryResourceInfo object itself.
-     */
-    public RepositoryResourceInfo withGitHubResourceInfo(GitHubResourceInfo gitHubResourceInfo) {
-        this.gitHubResourceInfo = gitHubResourceInfo;
-        return this;
-    }
-
-    /**
      * Get the azureDevOpsResourceInfo property: Resources created in Azure DevOps for this source-control.
-     *
+     * 
      * @return the azureDevOpsResourceInfo value.
      */
     public AzureDevOpsResourceInfo azureDevOpsResourceInfo() {
@@ -78,19 +75,8 @@ public final class RepositoryResourceInfo {
     }
 
     /**
-     * Set the azureDevOpsResourceInfo property: Resources created in Azure DevOps for this source-control.
-     *
-     * @param azureDevOpsResourceInfo the azureDevOpsResourceInfo value to set.
-     * @return the RepositoryResourceInfo object itself.
-     */
-    public RepositoryResourceInfo withAzureDevOpsResourceInfo(AzureDevOpsResourceInfo azureDevOpsResourceInfo) {
-        this.azureDevOpsResourceInfo = azureDevOpsResourceInfo;
-        return this;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
