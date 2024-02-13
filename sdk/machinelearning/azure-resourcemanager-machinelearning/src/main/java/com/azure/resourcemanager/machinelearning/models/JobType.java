@@ -8,23 +8,48 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Enum to determine the type of job. */
+/**
+ * Enum to determine the type of job.
+ */
 public final class JobType extends ExpandableStringEnum<JobType> {
-    /** Static value AutoML for JobType. */
+    /**
+     * Static value AutoML for JobType.
+     */
     public static final JobType AUTO_ML = fromString("AutoML");
 
-    /** Static value Command for JobType. */
+    /**
+     * Static value Command for JobType.
+     */
     public static final JobType COMMAND = fromString("Command");
 
-    /** Static value Sweep for JobType. */
+    /**
+     * Static value Labeling for JobType.
+     */
+    public static final JobType LABELING = fromString("Labeling");
+
+    /**
+     * Static value Sweep for JobType.
+     */
     public static final JobType SWEEP = fromString("Sweep");
 
-    /** Static value Pipeline for JobType. */
+    /**
+     * Static value Pipeline for JobType.
+     */
     public static final JobType PIPELINE = fromString("Pipeline");
 
     /**
+     * Static value Spark for JobType.
+     */
+    public static final JobType SPARK = fromString("Spark");
+
+    /**
+     * Static value FineTuning for JobType.
+     */
+    public static final JobType FINE_TUNING = fromString("FineTuning");
+
+    /**
      * Creates a new instance of JobType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -33,7 +58,7 @@ public final class JobType extends ExpandableStringEnum<JobType> {
 
     /**
      * Creates or finds a JobType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding JobType.
      */
@@ -44,7 +69,7 @@ public final class JobType extends ExpandableStringEnum<JobType> {
 
     /**
      * Gets known JobType values.
-     *
+     * 
      * @return known JobType values.
      */
     public static Collection<JobType> values() {

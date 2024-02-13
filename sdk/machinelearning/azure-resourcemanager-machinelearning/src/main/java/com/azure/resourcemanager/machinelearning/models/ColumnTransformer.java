@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Column transformer parameters. */
+/**
+ * Column transformer parameters.
+ */
 @Fluent
 public final class ColumnTransformer {
     /*
@@ -24,13 +26,15 @@ public final class ColumnTransformer {
     @JsonProperty(value = "parameters")
     private Object parameters;
 
-    /** Creates an instance of ColumnTransformer class. */
+    /**
+     * Creates an instance of ColumnTransformer class.
+     */
     public ColumnTransformer() {
     }
 
     /**
      * Get the fields property: Fields to apply transformer logic on.
-     *
+     * 
      * @return the fields value.
      */
     public List<String> fields() {
@@ -39,7 +43,7 @@ public final class ColumnTransformer {
 
     /**
      * Set the fields property: Fields to apply transformer logic on.
-     *
+     * 
      * @param fields the fields value to set.
      * @return the ColumnTransformer object itself.
      */
@@ -49,9 +53,9 @@ public final class ColumnTransformer {
     }
 
     /**
-     * Get the parameters property: Different properties to be passed to transformer. Input expected is dictionary of
-     * key,value pairs in JSON format.
-     *
+     * Get the parameters property: Different properties to be passed to transformer.
+     * Input expected is dictionary of key,value pairs in JSON format.
+     * 
      * @return the parameters value.
      */
     public Object parameters() {
@@ -59,9 +63,9 @@ public final class ColumnTransformer {
     }
 
     /**
-     * Set the parameters property: Different properties to be passed to transformer. Input expected is dictionary of
-     * key,value pairs in JSON format.
-     *
+     * Set the parameters property: Different properties to be passed to transformer.
+     * Input expected is dictionary of key,value pairs in JSON format.
+     * 
      * @param parameters the parameters value to set.
      * @return the ColumnTransformer object itself.
      */
@@ -72,7 +76,7 @@ public final class ColumnTransformer {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

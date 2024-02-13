@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Abstract class for AutoML tasks that use table dataset as input - such as Classification/Regression/Forecasting. */
+/**
+ * Abstract class for AutoML tasks that use table dataset as input - such as Classification/Regression/Forecasting.
+ */
 @Fluent
 public class TableVertical {
     /*
@@ -24,6 +26,12 @@ public class TableVertical {
     private TableVerticalFeaturizationSettings featurizationSettings;
 
     /*
+     * Model/training parameters that will remain constant throughout training.
+     */
+    @JsonProperty(value = "fixedParameters")
+    private TableFixedParameters fixedParameters;
+
+    /*
      * Execution constraints for AutoMLJob.
      */
     @JsonProperty(value = "limitSettings")
@@ -35,6 +43,18 @@ public class TableVertical {
      */
     @JsonProperty(value = "nCrossValidations")
     private NCrossValidations nCrossValidations;
+
+    /*
+     * Search space for sampling different combinations of models and their hyperparameters.
+     */
+    @JsonProperty(value = "searchSpace")
+    private List<TableParameterSubspace> searchSpace;
+
+    /*
+     * Settings for model sweeping and hyperparameter tuning.
+     */
+    @JsonProperty(value = "sweepSettings")
+    private TableSweepSettings sweepSettings;
 
     /*
      * Test data input.
@@ -71,13 +91,15 @@ public class TableVertical {
     @JsonProperty(value = "weightColumnName")
     private String weightColumnName;
 
-    /** Creates an instance of TableVertical class. */
+    /**
+     * Creates an instance of TableVertical class.
+     */
     public TableVertical() {
     }
 
     /**
      * Get the cvSplitColumnNames property: Columns to use for CVSplit data.
-     *
+     * 
      * @return the cvSplitColumnNames value.
      */
     public List<String> cvSplitColumnNames() {
@@ -86,7 +108,7 @@ public class TableVertical {
 
     /**
      * Set the cvSplitColumnNames property: Columns to use for CVSplit data.
-     *
+     * 
      * @param cvSplitColumnNames the cvSplitColumnNames value to set.
      * @return the TableVertical object itself.
      */
@@ -97,7 +119,7 @@ public class TableVertical {
 
     /**
      * Get the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @return the featurizationSettings value.
      */
     public TableVerticalFeaturizationSettings featurizationSettings() {
@@ -106,7 +128,7 @@ public class TableVertical {
 
     /**
      * Set the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @param featurizationSettings the featurizationSettings value to set.
      * @return the TableVertical object itself.
      */
@@ -116,8 +138,28 @@ public class TableVertical {
     }
 
     /**
+     * Get the fixedParameters property: Model/training parameters that will remain constant throughout training.
+     * 
+     * @return the fixedParameters value.
+     */
+    public TableFixedParameters fixedParameters() {
+        return this.fixedParameters;
+    }
+
+    /**
+     * Set the fixedParameters property: Model/training parameters that will remain constant throughout training.
+     * 
+     * @param fixedParameters the fixedParameters value to set.
+     * @return the TableVertical object itself.
+     */
+    public TableVertical withFixedParameters(TableFixedParameters fixedParameters) {
+        this.fixedParameters = fixedParameters;
+        return this;
+    }
+
+    /**
      * Get the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @return the limitSettings value.
      */
     public TableVerticalLimitSettings limitSettings() {
@@ -126,7 +168,7 @@ public class TableVertical {
 
     /**
      * Set the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @param limitSettings the limitSettings value to set.
      * @return the TableVertical object itself.
      */
@@ -136,9 +178,9 @@ public class TableVertical {
     }
 
     /**
-     * Get the nCrossValidations property: Number of cross validation folds to be applied on training dataset when
-     * validation dataset is not provided.
-     *
+     * Get the nCrossValidations property: Number of cross validation folds to be applied on training dataset
+     * when validation dataset is not provided.
+     * 
      * @return the nCrossValidations value.
      */
     public NCrossValidations nCrossValidations() {
@@ -146,9 +188,9 @@ public class TableVertical {
     }
 
     /**
-     * Set the nCrossValidations property: Number of cross validation folds to be applied on training dataset when
-     * validation dataset is not provided.
-     *
+     * Set the nCrossValidations property: Number of cross validation folds to be applied on training dataset
+     * when validation dataset is not provided.
+     * 
      * @param nCrossValidations the nCrossValidations value to set.
      * @return the TableVertical object itself.
      */
@@ -158,8 +200,50 @@ public class TableVertical {
     }
 
     /**
+     * Get the searchSpace property: Search space for sampling different combinations of models and their
+     * hyperparameters.
+     * 
+     * @return the searchSpace value.
+     */
+    public List<TableParameterSubspace> searchSpace() {
+        return this.searchSpace;
+    }
+
+    /**
+     * Set the searchSpace property: Search space for sampling different combinations of models and their
+     * hyperparameters.
+     * 
+     * @param searchSpace the searchSpace value to set.
+     * @return the TableVertical object itself.
+     */
+    public TableVertical withSearchSpace(List<TableParameterSubspace> searchSpace) {
+        this.searchSpace = searchSpace;
+        return this;
+    }
+
+    /**
+     * Get the sweepSettings property: Settings for model sweeping and hyperparameter tuning.
+     * 
+     * @return the sweepSettings value.
+     */
+    public TableSweepSettings sweepSettings() {
+        return this.sweepSettings;
+    }
+
+    /**
+     * Set the sweepSettings property: Settings for model sweeping and hyperparameter tuning.
+     * 
+     * @param sweepSettings the sweepSettings value to set.
+     * @return the TableVertical object itself.
+     */
+    public TableVertical withSweepSettings(TableSweepSettings sweepSettings) {
+        this.sweepSettings = sweepSettings;
+        return this;
+    }
+
+    /**
      * Get the testData property: Test data input.
-     *
+     * 
      * @return the testData value.
      */
     public MLTableJobInput testData() {
@@ -168,7 +252,7 @@ public class TableVertical {
 
     /**
      * Set the testData property: Test data input.
-     *
+     * 
      * @param testData the testData value to set.
      * @return the TableVertical object itself.
      */
@@ -179,8 +263,9 @@ public class TableVertical {
 
     /**
      * Get the testDataSize property: The fraction of test dataset that needs to be set aside for validation purpose.
-     * Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @return the testDataSize value.
      */
     public Double testDataSize() {
@@ -189,8 +274,9 @@ public class TableVertical {
 
     /**
      * Set the testDataSize property: The fraction of test dataset that needs to be set aside for validation purpose.
-     * Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @param testDataSize the testDataSize value to set.
      * @return the TableVertical object itself.
      */
@@ -201,7 +287,7 @@ public class TableVertical {
 
     /**
      * Get the validationData property: Validation data inputs.
-     *
+     * 
      * @return the validationData value.
      */
     public MLTableJobInput validationData() {
@@ -210,7 +296,7 @@ public class TableVertical {
 
     /**
      * Set the validationData property: Validation data inputs.
-     *
+     * 
      * @param validationData the validationData value to set.
      * @return the TableVertical object itself.
      */
@@ -221,8 +307,10 @@ public class TableVertical {
 
     /**
      * Get the validationDataSize property: The fraction of training dataset that needs to be set aside for validation
-     * purpose. Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @return the validationDataSize value.
      */
     public Double validationDataSize() {
@@ -231,8 +319,10 @@ public class TableVertical {
 
     /**
      * Set the validationDataSize property: The fraction of training dataset that needs to be set aside for validation
-     * purpose. Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @param validationDataSize the validationDataSize value to set.
      * @return the TableVertical object itself.
      */
@@ -244,7 +334,7 @@ public class TableVertical {
     /**
      * Get the weightColumnName property: The name of the sample weight column. Automated ML supports a weighted column
      * as an input, causing rows in the data to be weighted up or down.
-     *
+     * 
      * @return the weightColumnName value.
      */
     public String weightColumnName() {
@@ -254,7 +344,7 @@ public class TableVertical {
     /**
      * Set the weightColumnName property: The name of the sample weight column. Automated ML supports a weighted column
      * as an input, causing rows in the data to be weighted up or down.
-     *
+     * 
      * @param weightColumnName the weightColumnName value to set.
      * @return the TableVertical object itself.
      */
@@ -265,18 +355,27 @@ public class TableVertical {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (featurizationSettings() != null) {
             featurizationSettings().validate();
         }
+        if (fixedParameters() != null) {
+            fixedParameters().validate();
+        }
         if (limitSettings() != null) {
             limitSettings().validate();
         }
         if (nCrossValidations() != null) {
             nCrossValidations().validate();
+        }
+        if (searchSpace() != null) {
+            searchSpace().forEach(e -> e.validate());
+        }
+        if (sweepSettings() != null) {
+            sweepSettings().validate();
         }
         if (testData() != null) {
             testData().validate();

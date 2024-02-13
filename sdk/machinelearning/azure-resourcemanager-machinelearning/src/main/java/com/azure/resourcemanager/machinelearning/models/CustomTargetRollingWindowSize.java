@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The CustomTargetRollingWindowSize model. */
+/**
+ * The CustomTargetRollingWindowSize model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "mode")
 @JsonTypeName("Custom")
 @Fluent
@@ -20,13 +22,15 @@ public final class CustomTargetRollingWindowSize extends TargetRollingWindowSize
     @JsonProperty(value = "value", required = true)
     private int value;
 
-    /** Creates an instance of CustomTargetRollingWindowSize class. */
+    /**
+     * Creates an instance of CustomTargetRollingWindowSize class.
+     */
     public CustomTargetRollingWindowSize() {
     }
 
     /**
      * Get the value property: [Required] TargetRollingWindowSize value.
-     *
+     * 
      * @return the value value.
      */
     public int value() {
@@ -35,7 +39,7 @@ public final class CustomTargetRollingWindowSize extends TargetRollingWindowSize
 
     /**
      * Set the value property: [Required] TargetRollingWindowSize value.
-     *
+     * 
      * @param value the value value to set.
      * @return the CustomTargetRollingWindowSize object itself.
      */
@@ -46,7 +50,7 @@ public final class CustomTargetRollingWindowSize extends TargetRollingWindowSize
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

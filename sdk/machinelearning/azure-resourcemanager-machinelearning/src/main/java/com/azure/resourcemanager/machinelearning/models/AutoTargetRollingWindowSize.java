@@ -8,18 +8,22 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Target lags rolling window determined automatically. */
+/**
+ * Target lags rolling window determined automatically.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "mode")
 @JsonTypeName("Auto")
 @Immutable
 public final class AutoTargetRollingWindowSize extends TargetRollingWindowSize {
-    /** Creates an instance of AutoTargetRollingWindowSize class. */
+    /**
+     * Creates an instance of AutoTargetRollingWindowSize class.
+     */
     public AutoTargetRollingWindowSize() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
