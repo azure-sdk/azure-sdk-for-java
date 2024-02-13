@@ -105,7 +105,7 @@ public final class DocumentIntelligenceAsyncClient {
      * <pre>{@code
      * {
      *     urlSource: String (Optional)
-     *     base64Source: byte[] (Optional)
+     *     bytesSource: byte[] (Optional)
      * }
      * }</pre>
      * 
@@ -157,7 +157,7 @@ public final class DocumentIntelligenceAsyncClient {
      * <pre>{@code
      * {
      *     urlSource: String (Optional)
-     *     base64Source: byte[] (Optional)
+     *     bytesSource: byte[] (Optional)
      * }
      * }</pre>
      * 

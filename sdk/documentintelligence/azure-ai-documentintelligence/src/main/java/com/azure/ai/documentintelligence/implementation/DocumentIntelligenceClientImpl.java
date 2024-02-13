@@ -262,7 +262,7 @@ public final class DocumentIntelligenceClientImpl {
      * <pre>{@code
      * {
      *     urlSource: String (Optional)
-     *     base64Source: byte[] (Optional)
+     *     bytesSource: byte[] (Optional)
      * }
      * }</pre>
      * 
@@ -348,7 +348,7 @@ public final class DocumentIntelligenceClientImpl {
      * <pre>{@code
      * {
      *     urlSource: String (Optional)
-     *     base64Source: byte[] (Optional)
+     *     bytesSource: byte[] (Optional)
      * }
      * }</pre>
      * 
@@ -434,7 +434,7 @@ public final class DocumentIntelligenceClientImpl {
      * <pre>{@code
      * {
      *     urlSource: String (Optional)
-     *     base64Source: byte[] (Optional)
+     *     bytesSource: byte[] (Optional)
      * }
      * }</pre>
      * 
@@ -518,7 +518,7 @@ public final class DocumentIntelligenceClientImpl {
      * <pre>{@code
      * {
      *     urlSource: String (Optional)
-     *     base64Source: byte[] (Optional)
+     *     bytesSource: byte[] (Optional)
      * }
      * }</pre>
      * 
@@ -602,7 +602,7 @@ public final class DocumentIntelligenceClientImpl {
      * <pre>{@code
      * {
      *     urlSource: String (Optional)
-     *     base64Source: byte[] (Optional)
+     *     bytesSource: byte[] (Optional)
      * }
      * }</pre>
      * 
@@ -688,7 +688,7 @@ public final class DocumentIntelligenceClientImpl {
      * <pre>{@code
      * {
      *     urlSource: String (Optional)
-     *     base64Source: byte[] (Optional)
+     *     bytesSource: byte[] (Optional)
      * }
      * }</pre>
      * 
@@ -748,7 +748,7 @@ public final class DocumentIntelligenceClientImpl {
      * <pre>{@code
      * {
      *     urlSource: String (Optional)
-     *     base64Source: byte[] (Optional)
+     *     bytesSource: byte[] (Optional)
      * }
      * }</pre>
      * 
@@ -805,7 +805,7 @@ public final class DocumentIntelligenceClientImpl {
      * <pre>{@code
      * {
      *     urlSource: String (Optional)
-     *     base64Source: byte[] (Optional)
+     *     bytesSource: byte[] (Optional)
      * }
      * }</pre>
      * 
@@ -861,7 +861,7 @@ public final class DocumentIntelligenceClientImpl {
      * <pre>{@code
      * {
      *     urlSource: String (Optional)
-     *     base64Source: byte[] (Optional)
+     *     bytesSource: byte[] (Optional)
      * }
      * }</pre>
      * 
@@ -921,7 +921,7 @@ public final class DocumentIntelligenceClientImpl {
      * <pre>{@code
      * {
      *     urlSource: String (Optional)
-     *     base64Source: byte[] (Optional)
+     *     bytesSource: byte[] (Optional)
      * }
      * }</pre>
      * 
@@ -981,7 +981,7 @@ public final class DocumentIntelligenceClientImpl {
      * <pre>{@code
      * {
      *     urlSource: String (Optional)
-     *     base64Source: byte[] (Optional)
+     *     bytesSource: byte[] (Optional)
      * }
      * }</pre>
      * 
@@ -1042,7 +1042,7 @@ public final class DocumentIntelligenceClientImpl {
      * <pre>{@code
      * {
      *     urlSource: String (Optional)
-     *     base64Source: byte[] (Optional)
+     *     bytesSource: byte[] (Optional)
      * }
      * }</pre>
      * 

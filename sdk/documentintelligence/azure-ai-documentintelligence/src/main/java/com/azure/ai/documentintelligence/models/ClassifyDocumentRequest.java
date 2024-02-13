@@ -15,19 +15,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ClassifyDocumentRequest {
     /*
-     * Document URL to classify. Either urlSource or base64Source must be specified.
+     * Document URL to classify. Either urlSource or bytesSource must be specified.
      */
     @Generated
     @JsonProperty(value = "urlSource")
     private String urlSource;
 
     /*
-     * Base64 encoding of the document to classify. Either urlSource or base64Source
+     * Document bytes to classify. Either urlSource or bytesSource
      * must be specified.
      */
     @Generated
-    @JsonProperty(value = "base64Source")
-    private byte[] base64Source;
+    @JsonProperty(value = "bytesSource")
+    private byte[] bytesSource;
 
     /**
      * Creates an instance of ClassifyDocumentRequest class.
@@ -37,7 +37,7 @@ public final class ClassifyDocumentRequest {
     }
 
     /**
-     * Get the urlSource property: Document URL to classify. Either urlSource or base64Source must be specified.
+     * Get the urlSource property: Document URL to classify. Either urlSource or bytesSource must be specified.
      * 
      * @return the urlSource value.
      */
@@ -47,7 +47,7 @@ public final class ClassifyDocumentRequest {
     }
 
     /**
-     * Set the urlSource property: Document URL to classify. Either urlSource or base64Source must be specified.
+     * Set the urlSource property: Document URL to classify. Either urlSource or bytesSource must be specified.
      * 
      * @param urlSource the urlSource value to set.
      * @return the ClassifyDocumentRequest object itself.
@@ -59,26 +59,26 @@ public final class ClassifyDocumentRequest {
     }
 
     /**
-     * Get the base64Source property: Base64 encoding of the document to classify. Either urlSource or base64Source
+     * Get the bytesSource property: Document bytes to classify. Either urlSource or bytesSource
      * must be specified.
      * 
-     * @return the base64Source value.
+     * @return the bytesSource value.
      */
     @Generated
-    public byte[] getBase64Source() {
-        return CoreUtils.clone(this.base64Source);
+    public byte[] getBytesSource() {
+        return CoreUtils.clone(this.bytesSource);
     }
 
     /**
-     * Set the base64Source property: Base64 encoding of the document to classify. Either urlSource or base64Source
+     * Set the bytesSource property: Document bytes to classify. Either urlSource or bytesSource
      * must be specified.
      * 
-     * @param base64Source the base64Source value to set.
+     * @param bytesSource the bytesSource value to set.
      * @return the ClassifyDocumentRequest object itself.
      */
     @Generated
-    public ClassifyDocumentRequest setBase64Source(byte[] base64Source) {
-        this.base64Source = CoreUtils.clone(base64Source);
+    public ClassifyDocumentRequest setBytesSource(byte[] bytesSource) {
+        this.bytesSource = CoreUtils.clone(bytesSource);
         return this;
     }
 }
