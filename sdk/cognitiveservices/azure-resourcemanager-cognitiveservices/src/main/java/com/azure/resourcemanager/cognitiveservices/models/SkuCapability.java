@@ -7,7 +7,9 @@ package com.azure.resourcemanager.cognitiveservices.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** SkuCapability indicates the capability of a certain feature. */
+/**
+ * SkuCapability indicates the capability of a certain feature.
+ */
 @Fluent
 public final class SkuCapability {
     /*
@@ -22,13 +24,15 @@ public final class SkuCapability {
     @JsonProperty(value = "value")
     private String value;
 
-    /** Creates an instance of SkuCapability class. */
+    /**
+     * Creates an instance of SkuCapability class.
+     */
     public SkuCapability() {
     }
 
     /**
      * Get the name property: The name of the SkuCapability.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class SkuCapability {
 
     /**
      * Set the name property: The name of the SkuCapability.
-     *
+     * 
      * @param name the name value to set.
      * @return the SkuCapability object itself.
      */
@@ -48,7 +52,7 @@ public final class SkuCapability {
 
     /**
      * Get the value property: The value of the SkuCapability.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -57,7 +61,7 @@ public final class SkuCapability {
 
     /**
      * Set the value property: The value of the SkuCapability.
-     *
+     * 
      * @param value the value value to set.
      * @return the SkuCapability object itself.
      */
@@ -68,7 +72,7 @@ public final class SkuCapability {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

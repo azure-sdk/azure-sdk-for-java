@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Check SKU availability parameter. */
+/**
+ * Check SKU availability parameter.
+ */
 @Fluent
 public final class CheckSkuAvailabilityParameter {
     /*
@@ -30,13 +32,15 @@ public final class CheckSkuAvailabilityParameter {
     @JsonProperty(value = "type", required = true)
     private String type;
 
-    /** Creates an instance of CheckSkuAvailabilityParameter class. */
+    /**
+     * Creates an instance of CheckSkuAvailabilityParameter class.
+     */
     public CheckSkuAvailabilityParameter() {
     }
 
     /**
      * Get the skus property: The SKU of the resource.
-     *
+     * 
      * @return the skus value.
      */
     public List<String> skus() {
@@ -45,7 +49,7 @@ public final class CheckSkuAvailabilityParameter {
 
     /**
      * Set the skus property: The SKU of the resource.
-     *
+     * 
      * @param skus the skus value to set.
      * @return the CheckSkuAvailabilityParameter object itself.
      */
@@ -56,7 +60,7 @@ public final class CheckSkuAvailabilityParameter {
 
     /**
      * Get the kind property: The Kind of the resource.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -65,7 +69,7 @@ public final class CheckSkuAvailabilityParameter {
 
     /**
      * Set the kind property: The Kind of the resource.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the CheckSkuAvailabilityParameter object itself.
      */
@@ -76,7 +80,7 @@ public final class CheckSkuAvailabilityParameter {
 
     /**
      * Get the type property: The Type of the resource.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -85,7 +89,7 @@ public final class CheckSkuAvailabilityParameter {
 
     /**
      * Set the type property: The Type of the resource.
-     *
+     * 
      * @param type the type value to set.
      * @return the CheckSkuAvailabilityParameter object itself.
      */
@@ -96,27 +100,21 @@ public final class CheckSkuAvailabilityParameter {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (skus() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property skus in model CheckSkuAvailabilityParameter"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property skus in model CheckSkuAvailabilityParameter"));
         }
         if (kind() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property kind in model CheckSkuAvailabilityParameter"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property kind in model CheckSkuAvailabilityParameter"));
         }
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property type in model CheckSkuAvailabilityParameter"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model CheckSkuAvailabilityParameter"));
         }
     }
 

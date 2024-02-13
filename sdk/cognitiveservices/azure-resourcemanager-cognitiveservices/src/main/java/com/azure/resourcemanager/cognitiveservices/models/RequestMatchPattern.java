@@ -7,7 +7,9 @@ package com.azure.resourcemanager.cognitiveservices.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The RequestMatchPattern model. */
+/**
+ * The RequestMatchPattern model.
+ */
 @Fluent
 public final class RequestMatchPattern {
     /*
@@ -22,13 +24,15 @@ public final class RequestMatchPattern {
     @JsonProperty(value = "method")
     private String method;
 
-    /** Creates an instance of RequestMatchPattern class. */
+    /**
+     * Creates an instance of RequestMatchPattern class.
+     */
     public RequestMatchPattern() {
     }
 
     /**
      * Get the path property: The path property.
-     *
+     * 
      * @return the path value.
      */
     public String path() {
@@ -37,7 +41,7 @@ public final class RequestMatchPattern {
 
     /**
      * Set the path property: The path property.
-     *
+     * 
      * @param path the path value to set.
      * @return the RequestMatchPattern object itself.
      */
@@ -48,7 +52,7 @@ public final class RequestMatchPattern {
 
     /**
      * Get the method property: The method property.
-     *
+     * 
      * @return the method value.
      */
     public String method() {
@@ -57,7 +61,7 @@ public final class RequestMatchPattern {
 
     /**
      * Set the method property: The method property.
-     *
+     * 
      * @param method the method value to set.
      * @return the RequestMatchPattern object itself.
      */
@@ -68,7 +72,7 @@ public final class RequestMatchPattern {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

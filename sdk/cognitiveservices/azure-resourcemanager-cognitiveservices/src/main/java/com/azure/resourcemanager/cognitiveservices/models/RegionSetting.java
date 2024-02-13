@@ -7,7 +7,9 @@ package com.azure.resourcemanager.cognitiveservices.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The call rate limit Cognitive Services account. */
+/**
+ * The call rate limit Cognitive Services account.
+ */
 @Fluent
 public final class RegionSetting {
     /*
@@ -28,13 +30,15 @@ public final class RegionSetting {
     @JsonProperty(value = "customsubdomain")
     private String customsubdomain;
 
-    /** Creates an instance of RegionSetting class. */
+    /**
+     * Creates an instance of RegionSetting class.
+     */
     public RegionSetting() {
     }
 
     /**
      * Get the name property: Name of the region.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -43,7 +47,7 @@ public final class RegionSetting {
 
     /**
      * Set the name property: Name of the region.
-     *
+     * 
      * @param name the name value to set.
      * @return the RegionSetting object itself.
      */
@@ -54,7 +58,7 @@ public final class RegionSetting {
 
     /**
      * Get the value property: A value for priority or weighted routing methods.
-     *
+     * 
      * @return the value value.
      */
     public Float value() {
@@ -63,7 +67,7 @@ public final class RegionSetting {
 
     /**
      * Set the value property: A value for priority or weighted routing methods.
-     *
+     * 
      * @param value the value value to set.
      * @return the RegionSetting object itself.
      */
@@ -74,7 +78,7 @@ public final class RegionSetting {
 
     /**
      * Get the customsubdomain property: Maps the region to the regional custom subdomain.
-     *
+     * 
      * @return the customsubdomain value.
      */
     public String customsubdomain() {
@@ -83,7 +87,7 @@ public final class RegionSetting {
 
     /**
      * Set the customsubdomain property: Maps the region to the regional custom subdomain.
-     *
+     * 
      * @param customsubdomain the customsubdomain value to set.
      * @return the RegionSetting object itself.
      */
@@ -94,7 +98,7 @@ public final class RegionSetting {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

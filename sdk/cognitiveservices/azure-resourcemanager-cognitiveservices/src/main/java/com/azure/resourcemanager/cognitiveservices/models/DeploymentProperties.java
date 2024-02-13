@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Properties of Cognitive Services account deployment. */
+/**
+ * Properties of Cognitive Services account deployment.
+ */
 @Fluent
 public final class DeploymentProperties {
     /*
@@ -26,7 +28,7 @@ public final class DeploymentProperties {
     private DeploymentModel model;
 
     /*
-     * Properties of Cognitive Services account deployment model.
+     * Properties of Cognitive Services account deployment model. (Deprecated, please use Deployment.sku instead.)
      */
     @JsonProperty(value = "scaleSettings")
     private DeploymentScaleSettings scaleSettings;
@@ -62,13 +64,33 @@ public final class DeploymentProperties {
     @JsonProperty(value = "versionUpgradeOption")
     private DeploymentModelVersionUpgradeOption versionUpgradeOption;
 
-    /** Creates an instance of DeploymentProperties class. */
+    /*
+     * If the dynamic throttling is enabled.
+     */
+    @JsonProperty(value = "dynamicThrottlingEnabled", access = JsonProperty.Access.WRITE_ONLY)
+    private Boolean dynamicThrottlingEnabled;
+
+    /*
+     * The current capacity.
+     */
+    @JsonProperty(value = "currentCapacity")
+    private Integer currentCapacity;
+
+    /*
+     * Internal use only.
+     */
+    @JsonProperty(value = "capacitySettings")
+    private DeploymentCapacitySettings capacitySettings;
+
+    /**
+     * Creates an instance of DeploymentProperties class.
+     */
     public DeploymentProperties() {
     }
 
     /**
      * Get the provisioningState property: Gets the status of the resource at the time the operation was called.
-     *
+     * 
      * @return the provisioningState value.
      */
     public DeploymentProvisioningState provisioningState() {
@@ -77,7 +99,7 @@ public final class DeploymentProperties {
 
     /**
      * Get the model property: Properties of Cognitive Services account deployment model.
-     *
+     * 
      * @return the model value.
      */
     public DeploymentModel model() {
@@ -86,7 +108,7 @@ public final class DeploymentProperties {
 
     /**
      * Set the model property: Properties of Cognitive Services account deployment model.
-     *
+     * 
      * @param model the model value to set.
      * @return the DeploymentProperties object itself.
      */
@@ -96,8 +118,9 @@ public final class DeploymentProperties {
     }
 
     /**
-     * Get the scaleSettings property: Properties of Cognitive Services account deployment model.
-     *
+     * Get the scaleSettings property: Properties of Cognitive Services account deployment model. (Deprecated, please
+     * use Deployment.sku instead.).
+     * 
      * @return the scaleSettings value.
      */
     public DeploymentScaleSettings scaleSettings() {
@@ -105,8 +128,9 @@ public final class DeploymentProperties {
     }
 
     /**
-     * Set the scaleSettings property: Properties of Cognitive Services account deployment model.
-     *
+     * Set the scaleSettings property: Properties of Cognitive Services account deployment model. (Deprecated, please
+     * use Deployment.sku instead.).
+     * 
      * @param scaleSettings the scaleSettings value to set.
      * @return the DeploymentProperties object itself.
      */
@@ -117,7 +141,7 @@ public final class DeploymentProperties {
 
     /**
      * Get the capabilities property: The capabilities.
-     *
+     * 
      * @return the capabilities value.
      */
     public Map<String, String> capabilities() {
@@ -126,7 +150,7 @@ public final class DeploymentProperties {
 
     /**
      * Get the raiPolicyName property: The name of RAI policy.
-     *
+     * 
      * @return the raiPolicyName value.
      */
     public String raiPolicyName() {
@@ -135,7 +159,7 @@ public final class DeploymentProperties {
 
     /**
      * Set the raiPolicyName property: The name of RAI policy.
-     *
+     * 
      * @param raiPolicyName the raiPolicyName value to set.
      * @return the DeploymentProperties object itself.
      */
@@ -146,7 +170,7 @@ public final class DeploymentProperties {
 
     /**
      * Get the callRateLimit property: The call rate limit Cognitive Services account.
-     *
+     * 
      * @return the callRateLimit value.
      */
     public CallRateLimit callRateLimit() {
@@ -155,7 +179,7 @@ public final class DeploymentProperties {
 
     /**
      * Get the rateLimits property: The rateLimits property.
-     *
+     * 
      * @return the rateLimits value.
      */
     public List<ThrottlingRule> rateLimits() {
@@ -164,7 +188,7 @@ public final class DeploymentProperties {
 
     /**
      * Get the versionUpgradeOption property: Deployment model version upgrade option.
-     *
+     * 
      * @return the versionUpgradeOption value.
      */
     public DeploymentModelVersionUpgradeOption versionUpgradeOption() {
@@ -173,7 +197,7 @@ public final class DeploymentProperties {
 
     /**
      * Set the versionUpgradeOption property: Deployment model version upgrade option.
-     *
+     * 
      * @param versionUpgradeOption the versionUpgradeOption value to set.
      * @return the DeploymentProperties object itself.
      */
@@ -183,8 +207,57 @@ public final class DeploymentProperties {
     }
 
     /**
+     * Get the dynamicThrottlingEnabled property: If the dynamic throttling is enabled.
+     * 
+     * @return the dynamicThrottlingEnabled value.
+     */
+    public Boolean dynamicThrottlingEnabled() {
+        return this.dynamicThrottlingEnabled;
+    }
+
+    /**
+     * Get the currentCapacity property: The current capacity.
+     * 
+     * @return the currentCapacity value.
+     */
+    public Integer currentCapacity() {
+        return this.currentCapacity;
+    }
+
+    /**
+     * Set the currentCapacity property: The current capacity.
+     * 
+     * @param currentCapacity the currentCapacity value to set.
+     * @return the DeploymentProperties object itself.
+     */
+    public DeploymentProperties withCurrentCapacity(Integer currentCapacity) {
+        this.currentCapacity = currentCapacity;
+        return this;
+    }
+
+    /**
+     * Get the capacitySettings property: Internal use only.
+     * 
+     * @return the capacitySettings value.
+     */
+    public DeploymentCapacitySettings capacitySettings() {
+        return this.capacitySettings;
+    }
+
+    /**
+     * Set the capacitySettings property: Internal use only.
+     * 
+     * @param capacitySettings the capacitySettings value to set.
+     * @return the DeploymentProperties object itself.
+     */
+    public DeploymentProperties withCapacitySettings(DeploymentCapacitySettings capacitySettings) {
+        this.capacitySettings = capacitySettings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -199,6 +272,9 @@ public final class DeploymentProperties {
         }
         if (rateLimits() != null) {
             rateLimits().forEach(e -> e.validate());
+        }
+        if (capacitySettings() != null) {
+            capacitySettings().validate();
         }
     }
 }

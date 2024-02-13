@@ -7,7 +7,9 @@ package com.azure.resourcemanager.cognitiveservices.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The access keys for the cognitive services account. */
+/**
+ * The access keys for the cognitive services account.
+ */
 @Fluent
 public final class ApiKeysInner {
     /*
@@ -22,13 +24,15 @@ public final class ApiKeysInner {
     @JsonProperty(value = "key2")
     private String key2;
 
-    /** Creates an instance of ApiKeysInner class. */
+    /**
+     * Creates an instance of ApiKeysInner class.
+     */
     public ApiKeysInner() {
     }
 
     /**
      * Get the key1 property: Gets the value of key 1.
-     *
+     * 
      * @return the key1 value.
      */
     public String key1() {
@@ -37,7 +41,7 @@ public final class ApiKeysInner {
 
     /**
      * Set the key1 property: Gets the value of key 1.
-     *
+     * 
      * @param key1 the key1 value to set.
      * @return the ApiKeysInner object itself.
      */
@@ -48,7 +52,7 @@ public final class ApiKeysInner {
 
     /**
      * Get the key2 property: Gets the value of key 2.
-     *
+     * 
      * @return the key2 value.
      */
     public String key2() {
@@ -57,7 +61,7 @@ public final class ApiKeysInner {
 
     /**
      * Set the key2 property: Gets the value of key 2.
-     *
+     * 
      * @param key2 the key2 value to set.
      * @return the ApiKeysInner object itself.
      */
@@ -68,7 +72,7 @@ public final class ApiKeysInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

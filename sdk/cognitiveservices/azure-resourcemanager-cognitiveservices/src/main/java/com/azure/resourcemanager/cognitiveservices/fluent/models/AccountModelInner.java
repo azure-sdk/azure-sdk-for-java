@@ -15,7 +15,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Cognitive Services account Model. */
+/**
+ * Cognitive Services account Model.
+ */
 @Fluent
 public final class AccountModelInner extends DeploymentModel {
     /*
@@ -74,13 +76,15 @@ public final class AccountModelInner extends DeploymentModel {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of AccountModelInner class. */
+    /**
+     * Creates an instance of AccountModelInner class.
+     */
     public AccountModelInner() {
     }
 
     /**
      * Get the baseModel property: Base Model Identifier.
-     *
+     * 
      * @return the baseModel value.
      */
     public DeploymentModel baseModel() {
@@ -89,7 +93,7 @@ public final class AccountModelInner extends DeploymentModel {
 
     /**
      * Set the baseModel property: Base Model Identifier.
-     *
+     * 
      * @param baseModel the baseModel value to set.
      * @return the AccountModelInner object itself.
      */
@@ -100,7 +104,7 @@ public final class AccountModelInner extends DeploymentModel {
 
     /**
      * Get the isDefaultVersion property: If the model is default version.
-     *
+     * 
      * @return the isDefaultVersion value.
      */
     public Boolean isDefaultVersion() {
@@ -109,7 +113,7 @@ public final class AccountModelInner extends DeploymentModel {
 
     /**
      * Set the isDefaultVersion property: If the model is default version.
-     *
+     * 
      * @param isDefaultVersion the isDefaultVersion value to set.
      * @return the AccountModelInner object itself.
      */
@@ -120,7 +124,7 @@ public final class AccountModelInner extends DeploymentModel {
 
     /**
      * Get the skus property: The list of Model Sku.
-     *
+     * 
      * @return the skus value.
      */
     public List<ModelSku> skus() {
@@ -129,7 +133,7 @@ public final class AccountModelInner extends DeploymentModel {
 
     /**
      * Set the skus property: The list of Model Sku.
-     *
+     * 
      * @param skus the skus value to set.
      * @return the AccountModelInner object itself.
      */
@@ -140,7 +144,7 @@ public final class AccountModelInner extends DeploymentModel {
 
     /**
      * Get the maxCapacity property: The max capacity.
-     *
+     * 
      * @return the maxCapacity value.
      */
     public Integer maxCapacity() {
@@ -149,7 +153,7 @@ public final class AccountModelInner extends DeploymentModel {
 
     /**
      * Set the maxCapacity property: The max capacity.
-     *
+     * 
      * @param maxCapacity the maxCapacity value to set.
      * @return the AccountModelInner object itself.
      */
@@ -160,7 +164,7 @@ public final class AccountModelInner extends DeploymentModel {
 
     /**
      * Get the capabilities property: The capabilities.
-     *
+     * 
      * @return the capabilities value.
      */
     public Map<String, String> capabilities() {
@@ -169,7 +173,7 @@ public final class AccountModelInner extends DeploymentModel {
 
     /**
      * Set the capabilities property: The capabilities.
-     *
+     * 
      * @param capabilities the capabilities value to set.
      * @return the AccountModelInner object itself.
      */
@@ -180,7 +184,7 @@ public final class AccountModelInner extends DeploymentModel {
 
     /**
      * Get the finetuneCapabilities property: The capabilities for finetune models.
-     *
+     * 
      * @return the finetuneCapabilities value.
      */
     public Map<String, String> finetuneCapabilities() {
@@ -189,7 +193,7 @@ public final class AccountModelInner extends DeploymentModel {
 
     /**
      * Set the finetuneCapabilities property: The capabilities for finetune models.
-     *
+     * 
      * @param finetuneCapabilities the finetuneCapabilities value to set.
      * @return the AccountModelInner object itself.
      */
@@ -200,7 +204,7 @@ public final class AccountModelInner extends DeploymentModel {
 
     /**
      * Get the deprecation property: Cognitive Services account ModelDeprecationInfo.
-     *
+     * 
      * @return the deprecation value.
      */
     public ModelDeprecationInfo deprecation() {
@@ -209,7 +213,7 @@ public final class AccountModelInner extends DeploymentModel {
 
     /**
      * Set the deprecation property: Cognitive Services account ModelDeprecationInfo.
-     *
+     * 
      * @param deprecation the deprecation value to set.
      * @return the AccountModelInner object itself.
      */
@@ -220,7 +224,7 @@ public final class AccountModelInner extends DeploymentModel {
 
     /**
      * Get the lifecycleStatus property: Model lifecycle status.
-     *
+     * 
      * @return the lifecycleStatus value.
      */
     public ModelLifecycleStatus lifecycleStatus() {
@@ -229,7 +233,7 @@ public final class AccountModelInner extends DeploymentModel {
 
     /**
      * Set the lifecycleStatus property: Model lifecycle status.
-     *
+     * 
      * @param lifecycleStatus the lifecycleStatus value to set.
      * @return the AccountModelInner object itself.
      */
@@ -240,35 +244,43 @@ public final class AccountModelInner extends DeploymentModel {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AccountModelInner withFormat(String format) {
         super.withFormat(format);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AccountModelInner withName(String name) {
         super.withName(name);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AccountModelInner withVersion(String version) {
         super.withVersion(version);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AccountModelInner withSource(String source) {
         super.withSource(source);
@@ -277,7 +289,7 @@ public final class AccountModelInner extends DeploymentModel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

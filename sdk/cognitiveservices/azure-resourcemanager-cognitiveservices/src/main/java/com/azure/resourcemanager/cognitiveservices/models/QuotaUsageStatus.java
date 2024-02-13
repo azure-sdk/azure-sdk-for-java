@@ -8,23 +8,33 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Cognitive Services account quota usage status. */
+/**
+ * Cognitive Services account quota usage status.
+ */
 public final class QuotaUsageStatus extends ExpandableStringEnum<QuotaUsageStatus> {
-    /** Static value Included for QuotaUsageStatus. */
+    /**
+     * Static value Included for QuotaUsageStatus.
+     */
     public static final QuotaUsageStatus INCLUDED = fromString("Included");
 
-    /** Static value Blocked for QuotaUsageStatus. */
+    /**
+     * Static value Blocked for QuotaUsageStatus.
+     */
     public static final QuotaUsageStatus BLOCKED = fromString("Blocked");
 
-    /** Static value InOverage for QuotaUsageStatus. */
+    /**
+     * Static value InOverage for QuotaUsageStatus.
+     */
     public static final QuotaUsageStatus IN_OVERAGE = fromString("InOverage");
 
-    /** Static value Unknown for QuotaUsageStatus. */
+    /**
+     * Static value Unknown for QuotaUsageStatus.
+     */
     public static final QuotaUsageStatus UNKNOWN = fromString("Unknown");
 
     /**
      * Creates a new instance of QuotaUsageStatus value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -33,7 +43,7 @@ public final class QuotaUsageStatus extends ExpandableStringEnum<QuotaUsageStatu
 
     /**
      * Creates or finds a QuotaUsageStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding QuotaUsageStatus.
      */
@@ -44,7 +54,7 @@ public final class QuotaUsageStatus extends ExpandableStringEnum<QuotaUsageStatu
 
     /**
      * Gets known QuotaUsageStatus values.
-     *
+     * 
      * @return known QuotaUsageStatus values.
      */
     public static Collection<QuotaUsageStatus> values() {
