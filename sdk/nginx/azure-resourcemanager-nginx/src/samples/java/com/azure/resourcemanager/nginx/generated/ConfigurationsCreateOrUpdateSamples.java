@@ -10,7 +10,7 @@ package com.azure.resourcemanager.nginx.generated;
 public final class ConfigurationsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-04-01/examples/Configurations_CreateOrUpdate.
+     * specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-09-01/examples/Configurations_CreateOrUpdate.
      * json
      */
     /**
