@@ -12,18 +12,28 @@ import java.util.Collection;
  * ActiveRevisionsMode controls how active revisions are handled for the Container app:
  * &lt;list&gt;&lt;item&gt;Multiple: multiple revisions can be active.&lt;/item&gt;&lt;item&gt;Single: Only one revision
  * can be active at a time. Revision weights can not be used in this mode. If no value if provided, this is the
- * default.&lt;/item&gt;&lt;/list&gt;.
+ * default.&lt;/item&gt;&lt;item&gt;Labeled: Only the revisions that have labels attached to them are
+ * active.&lt;/item&gt;&lt;/list&gt;.
  */
 public final class ActiveRevisionsMode extends ExpandableStringEnum<ActiveRevisionsMode> {
-    /** Static value Multiple for ActiveRevisionsMode. */
+    /**
+     * Static value Multiple for ActiveRevisionsMode.
+     */
     public static final ActiveRevisionsMode MULTIPLE = fromString("Multiple");
 
-    /** Static value Single for ActiveRevisionsMode. */
+    /**
+     * Static value Single for ActiveRevisionsMode.
+     */
     public static final ActiveRevisionsMode SINGLE = fromString("Single");
 
     /**
+     * Static value Labeled for ActiveRevisionsMode.
+     */
+    public static final ActiveRevisionsMode LABELED = fromString("Labeled");
+
+    /**
      * Creates a new instance of ActiveRevisionsMode value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -32,7 +42,7 @@ public final class ActiveRevisionsMode extends ExpandableStringEnum<ActiveRevisi
 
     /**
      * Creates or finds a ActiveRevisionsMode from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ActiveRevisionsMode.
      */
@@ -43,7 +53,7 @@ public final class ActiveRevisionsMode extends ExpandableStringEnum<ActiveRevisi
 
     /**
      * Gets known ActiveRevisionsMode values.
-     *
+     * 
      * @return known ActiveRevisionsMode values.
      */
     public static Collection<ActiveRevisionsMode> values() {
