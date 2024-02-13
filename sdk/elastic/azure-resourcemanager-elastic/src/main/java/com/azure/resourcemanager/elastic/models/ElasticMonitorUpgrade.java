@@ -7,7 +7,9 @@ package com.azure.resourcemanager.elastic.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Upgrade elastic monitor version. */
+/**
+ * Upgrade elastic monitor version.
+ */
 @Fluent
 public final class ElasticMonitorUpgrade {
     /*
@@ -16,13 +18,15 @@ public final class ElasticMonitorUpgrade {
     @JsonProperty(value = "version")
     private String version;
 
-    /** Creates an instance of ElasticMonitorUpgrade class. */
+    /**
+     * Creates an instance of ElasticMonitorUpgrade class.
+     */
     public ElasticMonitorUpgrade() {
     }
 
     /**
      * Get the version property: Version to which the elastic monitor should be upgraded to.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -31,7 +35,7 @@ public final class ElasticMonitorUpgrade {
 
     /**
      * Set the version property: Version to which the elastic monitor should be upgraded to.
-     *
+     * 
      * @param version the version value to set.
      * @return the ElasticMonitorUpgrade object itself.
      */
@@ -42,7 +46,7 @@ public final class ElasticMonitorUpgrade {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

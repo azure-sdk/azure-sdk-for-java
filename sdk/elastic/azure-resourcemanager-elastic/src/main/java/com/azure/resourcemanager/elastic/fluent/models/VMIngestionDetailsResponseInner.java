@@ -7,7 +7,9 @@ package com.azure.resourcemanager.elastic.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The vm ingestion details to install an agent. */
+/**
+ * The vm ingestion details to install an agent.
+ */
 @Fluent
 public final class VMIngestionDetailsResponseInner {
     /*
@@ -22,13 +24,15 @@ public final class VMIngestionDetailsResponseInner {
     @JsonProperty(value = "ingestionKey")
     private String ingestionKey;
 
-    /** Creates an instance of VMIngestionDetailsResponseInner class. */
+    /**
+     * Creates an instance of VMIngestionDetailsResponseInner class.
+     */
     public VMIngestionDetailsResponseInner() {
     }
 
     /**
      * Get the cloudId property: The cloudId of given Elastic monitor resource.
-     *
+     * 
      * @return the cloudId value.
      */
     public String cloudId() {
@@ -37,7 +41,7 @@ public final class VMIngestionDetailsResponseInner {
 
     /**
      * Set the cloudId property: The cloudId of given Elastic monitor resource.
-     *
+     * 
      * @param cloudId the cloudId value to set.
      * @return the VMIngestionDetailsResponseInner object itself.
      */
@@ -48,7 +52,7 @@ public final class VMIngestionDetailsResponseInner {
 
     /**
      * Get the ingestionKey property: Ingestion details to install agent on given VM.
-     *
+     * 
      * @return the ingestionKey value.
      */
     public String ingestionKey() {
@@ -57,7 +61,7 @@ public final class VMIngestionDetailsResponseInner {
 
     /**
      * Set the ingestionKey property: Ingestion details to install agent on given VM.
-     *
+     * 
      * @param ingestionKey the ingestionKey value to set.
      * @return the VMIngestionDetailsResponseInner object itself.
      */
@@ -68,7 +72,7 @@ public final class VMIngestionDetailsResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

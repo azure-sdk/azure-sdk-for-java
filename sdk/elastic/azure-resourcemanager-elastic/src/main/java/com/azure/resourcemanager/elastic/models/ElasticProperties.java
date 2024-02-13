@@ -7,7 +7,9 @@ package com.azure.resourcemanager.elastic.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Elastic Resource Properties. */
+/**
+ * Elastic Resource Properties.
+ */
 @Fluent
 public final class ElasticProperties {
     /*
@@ -22,13 +24,15 @@ public final class ElasticProperties {
     @JsonProperty(value = "elasticCloudDeployment")
     private ElasticCloudDeployment elasticCloudDeployment;
 
-    /** Creates an instance of ElasticProperties class. */
+    /**
+     * Creates an instance of ElasticProperties class.
+     */
     public ElasticProperties() {
     }
 
     /**
      * Get the elasticCloudUser property: Details of the user's elastic account.
-     *
+     * 
      * @return the elasticCloudUser value.
      */
     public ElasticCloudUser elasticCloudUser() {
@@ -37,7 +41,7 @@ public final class ElasticProperties {
 
     /**
      * Set the elasticCloudUser property: Details of the user's elastic account.
-     *
+     * 
      * @param elasticCloudUser the elasticCloudUser value to set.
      * @return the ElasticProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class ElasticProperties {
 
     /**
      * Get the elasticCloudDeployment property: Details of the elastic cloud deployment.
-     *
+     * 
      * @return the elasticCloudDeployment value.
      */
     public ElasticCloudDeployment elasticCloudDeployment() {
@@ -57,7 +61,7 @@ public final class ElasticProperties {
 
     /**
      * Set the elasticCloudDeployment property: Details of the elastic cloud deployment.
-     *
+     * 
      * @param elasticCloudDeployment the elasticCloudDeployment value to set.
      * @return the ElasticProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class ElasticProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
