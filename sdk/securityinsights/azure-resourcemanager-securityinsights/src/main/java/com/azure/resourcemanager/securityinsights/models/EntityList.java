@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of all the entities. */
+/**
+ * List of all the entities.
+ */
 @Fluent
 public final class EntityList {
     /*
@@ -26,8 +28,14 @@ public final class EntityList {
     private List<EntityInner> value;
 
     /**
+     * Creates an instance of EntityList class.
+     */
+    public EntityList() {
+    }
+
+    /**
      * Get the nextLink property: URL to fetch the next set of entities.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -36,7 +44,7 @@ public final class EntityList {
 
     /**
      * Get the value property: Array of entities.
-     *
+     * 
      * @return the value value.
      */
     public List<EntityInner> value() {
@@ -45,7 +53,7 @@ public final class EntityList {
 
     /**
      * Set the value property: Array of entities.
-     *
+     * 
      * @param value the value value to set.
      * @return the EntityList object itself.
      */
@@ -56,14 +64,13 @@ public final class EntityList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model EntityList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model EntityList"));
         } else {
             value().forEach(e -> e.validate());
         }

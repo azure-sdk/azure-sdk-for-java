@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Connector Availability Status. */
+/**
+ * Connector Availability Status.
+ */
 @Fluent
 public final class Availability {
     /*
@@ -23,8 +25,14 @@ public final class Availability {
     private Boolean isPreview;
 
     /**
+     * Creates an instance of Availability class.
+     */
+    public Availability() {
+    }
+
+    /**
      * Get the status property: The connector Availability Status.
-     *
+     * 
      * @return the status value.
      */
     public AvailabilityStatus status() {
@@ -33,7 +41,7 @@ public final class Availability {
 
     /**
      * Set the status property: The connector Availability Status.
-     *
+     * 
      * @param status the status value to set.
      * @return the Availability object itself.
      */
@@ -44,7 +52,7 @@ public final class Availability {
 
     /**
      * Get the isPreview property: Set connector as preview.
-     *
+     * 
      * @return the isPreview value.
      */
     public Boolean isPreview() {
@@ -53,7 +61,7 @@ public final class Availability {
 
     /**
      * Set the isPreview property: Set connector as preview.
-     *
+     * 
      * @param isPreview the isPreview value to set.
      * @return the Availability object itself.
      */
@@ -64,7 +72,7 @@ public final class Availability {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

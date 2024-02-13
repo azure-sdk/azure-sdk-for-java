@@ -6,17 +6,29 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The InstructionStepsInstructionsItem model. */
+/**
+ * The InstructionStepsInstructionsItem model.
+ */
 @Fluent
 public final class InstructionStepsInstructionsItem extends ConnectorInstructionModelBase {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of InstructionStepsInstructionsItem class.
+     */
+    public InstructionStepsInstructionsItem() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InstructionStepsInstructionsItem withParameters(Object parameters) {
         super.withParameters(parameters);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InstructionStepsInstructionsItem withType(SettingType type) {
         super.withType(type);
@@ -25,7 +37,7 @@ public final class InstructionStepsInstructionsItem extends ConnectorInstruction
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -14,7 +14,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Fusion alert rule base property bag. */
+/**
+ * Fusion alert rule base property bag.
+ */
 @Fluent
 public final class FusionAlertRuleProperties {
     /*
@@ -77,9 +79,21 @@ public final class FusionAlertRuleProperties {
     @JsonProperty(value = "techniques", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> techniques;
 
+    /*
+     * The sub-techniques of the alert rule
+     */
+    @JsonProperty(value = "subTechniques", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> subTechniques;
+
+    /**
+     * Creates an instance of FusionAlertRuleProperties class.
+     */
+    public FusionAlertRuleProperties() {
+    }
+
     /**
      * Get the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
-     *
+     * 
      * @return the alertRuleTemplateName value.
      */
     public String alertRuleTemplateName() {
@@ -88,7 +102,7 @@ public final class FusionAlertRuleProperties {
 
     /**
      * Set the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
-     *
+     * 
      * @param alertRuleTemplateName the alertRuleTemplateName value to set.
      * @return the FusionAlertRuleProperties object itself.
      */
@@ -99,7 +113,7 @@ public final class FusionAlertRuleProperties {
 
     /**
      * Get the description property: The description of the alert rule.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -108,7 +122,7 @@ public final class FusionAlertRuleProperties {
 
     /**
      * Get the displayName property: The display name for alerts created by this alert rule.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -117,7 +131,7 @@ public final class FusionAlertRuleProperties {
 
     /**
      * Get the enabled property: Determines whether this alert rule is enabled or disabled.
-     *
+     * 
      * @return the enabled value.
      */
     public boolean enabled() {
@@ -126,7 +140,7 @@ public final class FusionAlertRuleProperties {
 
     /**
      * Set the enabled property: Determines whether this alert rule is enabled or disabled.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the FusionAlertRuleProperties object itself.
      */
@@ -137,7 +151,7 @@ public final class FusionAlertRuleProperties {
 
     /**
      * Get the sourceSettings property: Configuration for all supported source signals in fusion detection.
-     *
+     * 
      * @return the sourceSettings value.
      */
     public List<FusionSourceSettings> sourceSettings() {
@@ -146,7 +160,7 @@ public final class FusionAlertRuleProperties {
 
     /**
      * Set the sourceSettings property: Configuration for all supported source signals in fusion detection.
-     *
+     * 
      * @param sourceSettings the sourceSettings value to set.
      * @return the FusionAlertRuleProperties object itself.
      */
@@ -157,7 +171,7 @@ public final class FusionAlertRuleProperties {
 
     /**
      * Get the scenarioExclusionPatterns property: Configuration to exclude scenarios in fusion detection.
-     *
+     * 
      * @return the scenarioExclusionPatterns value.
      */
     public List<FusionScenarioExclusionPattern> scenarioExclusionPatterns() {
@@ -166,19 +180,19 @@ public final class FusionAlertRuleProperties {
 
     /**
      * Set the scenarioExclusionPatterns property: Configuration to exclude scenarios in fusion detection.
-     *
+     * 
      * @param scenarioExclusionPatterns the scenarioExclusionPatterns value to set.
      * @return the FusionAlertRuleProperties object itself.
      */
-    public FusionAlertRuleProperties withScenarioExclusionPatterns(
-        List<FusionScenarioExclusionPattern> scenarioExclusionPatterns) {
+    public FusionAlertRuleProperties
+        withScenarioExclusionPatterns(List<FusionScenarioExclusionPattern> scenarioExclusionPatterns) {
         this.scenarioExclusionPatterns = scenarioExclusionPatterns;
         return this;
     }
 
     /**
      * Get the lastModifiedUtc property: The last time that this alert has been modified.
-     *
+     * 
      * @return the lastModifiedUtc value.
      */
     public OffsetDateTime lastModifiedUtc() {
@@ -187,7 +201,7 @@ public final class FusionAlertRuleProperties {
 
     /**
      * Get the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @return the severity value.
      */
     public AlertSeverity severity() {
@@ -196,7 +210,7 @@ public final class FusionAlertRuleProperties {
 
     /**
      * Get the tactics property: The tactics of the alert rule.
-     *
+     * 
      * @return the tactics value.
      */
     public List<AttackTactic> tactics() {
@@ -205,7 +219,7 @@ public final class FusionAlertRuleProperties {
 
     /**
      * Get the techniques property: The techniques of the alert rule.
-     *
+     * 
      * @return the techniques value.
      */
     public List<String> techniques() {
@@ -213,16 +227,23 @@ public final class FusionAlertRuleProperties {
     }
 
     /**
+     * Get the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @return the subTechniques value.
+     */
+    public List<String> subTechniques() {
+        return this.subTechniques;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (alertRuleTemplateName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property alertRuleTemplateName in model FusionAlertRuleProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property alertRuleTemplateName in model FusionAlertRuleProperties"));
         }
         if (sourceSettings() != null) {
             sourceSettings().forEach(e -> e.validate());

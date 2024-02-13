@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.models.ActionPropertiesBase;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Action property bag. */
+/**
+ * Action property bag.
+ */
 @Fluent
 public final class ActionResponseProperties extends ActionPropertiesBase {
     /*
@@ -18,8 +20,14 @@ public final class ActionResponseProperties extends ActionPropertiesBase {
     private String workflowId;
 
     /**
+     * Creates an instance of ActionResponseProperties class.
+     */
+    public ActionResponseProperties() {
+    }
+
+    /**
      * Get the workflowId property: The name of the logic app's workflow.
-     *
+     * 
      * @return the workflowId value.
      */
     public String workflowId() {
@@ -28,7 +36,7 @@ public final class ActionResponseProperties extends ActionPropertiesBase {
 
     /**
      * Set the workflowId property: The name of the logic app's workflow.
-     *
+     * 
      * @param workflowId the workflowId value to set.
      * @return the ActionResponseProperties object itself.
      */
@@ -37,7 +45,9 @@ public final class ActionResponseProperties extends ActionPropertiesBase {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ActionResponseProperties withLogicAppResourceId(String logicAppResourceId) {
         super.withLogicAppResourceId(logicAppResourceId);
@@ -46,7 +56,7 @@ public final class ActionResponseProperties extends ActionPropertiesBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -13,8 +13,8 @@ public final class AlertRuleImpl implements AlertRule {
 
     private final com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager;
 
-    AlertRuleImpl(
-        AlertRuleInner innerObject, com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
+    AlertRuleImpl(AlertRuleInner innerObject,
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
