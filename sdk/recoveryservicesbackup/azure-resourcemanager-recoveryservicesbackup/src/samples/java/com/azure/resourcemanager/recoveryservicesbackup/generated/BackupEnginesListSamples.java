@@ -10,7 +10,7 @@ package com.azure.resourcemanager.recoveryservicesbackup.generated;
 public final class BackupEnginesListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/Dpm/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples/Dpm/
      * BackupEngines_List.json
      */
     /**

@@ -64,6 +64,12 @@ public final class AzureIaaSvmProtectionPolicy extends ProtectionPolicy {
     @JsonProperty(value = "policyType")
     private IaasvmPolicyType policyType;
 
+    /*
+     * The snapshotConsistencyType property.
+     */
+    @JsonProperty(value = "snapshotConsistencyType")
+    private IaasVMSnapshotConsistencyType snapshotConsistencyType;
+
     /**
      * Creates an instance of AzureIaaSvmProtectionPolicy class.
      */
@@ -211,6 +217,27 @@ public final class AzureIaaSvmProtectionPolicy extends ProtectionPolicy {
      */
     public AzureIaaSvmProtectionPolicy withPolicyType(IaasvmPolicyType policyType) {
         this.policyType = policyType;
+        return this;
+    }
+
+    /**
+     * Get the snapshotConsistencyType property: The snapshotConsistencyType property.
+     * 
+     * @return the snapshotConsistencyType value.
+     */
+    public IaasVMSnapshotConsistencyType snapshotConsistencyType() {
+        return this.snapshotConsistencyType;
+    }
+
+    /**
+     * Set the snapshotConsistencyType property: The snapshotConsistencyType property.
+     * 
+     * @param snapshotConsistencyType the snapshotConsistencyType value to set.
+     * @return the AzureIaaSvmProtectionPolicy object itself.
+     */
+    public AzureIaaSvmProtectionPolicy
+        withSnapshotConsistencyType(IaasVMSnapshotConsistencyType snapshotConsistencyType) {
+        this.snapshotConsistencyType = snapshotConsistencyType;
         return this;
     }
 

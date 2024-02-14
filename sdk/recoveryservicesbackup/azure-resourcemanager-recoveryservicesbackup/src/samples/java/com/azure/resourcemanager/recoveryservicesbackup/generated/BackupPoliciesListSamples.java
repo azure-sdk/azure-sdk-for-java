@@ -10,7 +10,7 @@ package com.azure.resourcemanager.recoveryservicesbackup.generated;
 public final class BackupPoliciesListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples/
      * AzureWorkload/BackupPolicies_List.json
      */
     /**
@@ -26,7 +26,7 @@ public final class BackupPoliciesListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples/
      * AzureIaasVm/V2Policy/v2-List-Policies.json
      */
     /**
@@ -43,7 +43,7 @@ public final class BackupPoliciesListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples/
      * AzureIaasVm/BackupPolicies_List.json
      */
     /**

@@ -11,6 +11,7 @@ import com.azure.resourcemanager.recoveryservicesbackup.models.DailyRetentionSch
 import com.azure.resourcemanager.recoveryservicesbackup.models.DailySchedule;
 import com.azure.resourcemanager.recoveryservicesbackup.models.DayOfWeek;
 import com.azure.resourcemanager.recoveryservicesbackup.models.HourlySchedule;
+import com.azure.resourcemanager.recoveryservicesbackup.models.IaasVMSnapshotConsistencyType;
 import com.azure.resourcemanager.recoveryservicesbackup.models.IaasvmPolicyType;
 import com.azure.resourcemanager.recoveryservicesbackup.models.LogSchedulePolicy;
 import com.azure.resourcemanager.recoveryservicesbackup.models.LongTermRetentionPolicy;
@@ -41,7 +42,7 @@ import java.util.Arrays;
 public final class ProtectionPoliciesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples/
      * AzureWorkload/ProtectionPolicies_CreateOrUpdate_Complex.json
      */
     /**
@@ -105,7 +106,7 @@ public final class ProtectionPoliciesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples/
      * AzureIaasVm/ProtectionPolicies_CreateOrUpdate_Simple.json
      */
     /**
@@ -131,7 +132,7 @@ public final class ProtectionPoliciesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples/
      * AzureStorage/ProtectionPolicies_CreateOrUpdate_Daily.json
      */
     /**
@@ -182,7 +183,7 @@ public final class ProtectionPoliciesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples/
      * AzureStorage/ProtectionPolicies_CreateOrUpdate_Hardened.json
      */
     /**
@@ -245,7 +246,7 @@ public final class ProtectionPoliciesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples/
      * AzureStorage/ProtectionPolicies_CreateOrUpdate_Hourly.json
      */
     /**
@@ -291,7 +292,7 @@ public final class ProtectionPoliciesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples/
      * AzureIaasVm/ProtectionPolicies_CreateOrUpdate_Complex.json
      */
     /**
@@ -341,7 +342,7 @@ public final class ProtectionPoliciesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples/
      * AzureIaasVm/V2Policy/IaaS_v2_hourly.json
      */
     /**
@@ -389,13 +390,14 @@ public final class ProtectionPoliciesCreateOrUpdateSamples {
                             .withRetentionDuration(
                                 new RetentionDuration().withCount(10).withDurationType(RetentionDurationType.YEARS))))
                 .withInstantRpRetentionRangeInDays(30).withTimeZone("India Standard Time")
-                .withPolicyType(IaasvmPolicyType.V2))
+                .withPolicyType(IaasvmPolicyType.V2)
+                .withSnapshotConsistencyType(IaasVMSnapshotConsistencyType.ONLY_CRASH_CONSISTENT))
             .create();
     }
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples/
      * AzureIaasVm/V2Policy/IaaS_v2_daily.json
      */
     /**
@@ -441,7 +443,8 @@ public final class ProtectionPoliciesCreateOrUpdateSamples {
                             .withRetentionDuration(
                                 new RetentionDuration().withCount(10).withDurationType(RetentionDurationType.YEARS))))
                 .withInstantRpRetentionRangeInDays(30).withTimeZone("India Standard Time")
-                .withPolicyType(IaasvmPolicyType.V2))
+                .withPolicyType(IaasvmPolicyType.V2)
+                .withSnapshotConsistencyType(IaasVMSnapshotConsistencyType.ONLY_CRASH_CONSISTENT))
             .create();
     }
 }

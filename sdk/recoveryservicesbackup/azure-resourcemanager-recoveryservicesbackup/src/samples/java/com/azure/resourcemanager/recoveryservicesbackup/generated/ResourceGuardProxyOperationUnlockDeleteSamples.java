@@ -13,7 +13,7 @@ import java.util.Arrays;
 public final class ResourceGuardProxyOperationUnlockDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples/
      * ResourceGuardProxyCRUD/UnlockDeleteResourceGuardProxy.json
      */
     /**

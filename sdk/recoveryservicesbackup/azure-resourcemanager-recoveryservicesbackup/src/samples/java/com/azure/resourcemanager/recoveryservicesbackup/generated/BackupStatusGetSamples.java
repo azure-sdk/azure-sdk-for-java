@@ -13,7 +13,7 @@ import com.azure.resourcemanager.recoveryservicesbackup.models.DataSourceType;
 public final class BackupStatusGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples/
      * AzureIaasVm/GetBackupStatus.json
      */
     /**

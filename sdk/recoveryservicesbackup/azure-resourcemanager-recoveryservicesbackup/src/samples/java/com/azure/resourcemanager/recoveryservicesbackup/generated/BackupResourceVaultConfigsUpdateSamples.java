@@ -14,7 +14,7 @@ import com.azure.resourcemanager.recoveryservicesbackup.models.EnhancedSecurityS
 public final class BackupResourceVaultConfigsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples/
      * Common/BackupResourceVaultConfigs_Patch.json
      */
     /**
