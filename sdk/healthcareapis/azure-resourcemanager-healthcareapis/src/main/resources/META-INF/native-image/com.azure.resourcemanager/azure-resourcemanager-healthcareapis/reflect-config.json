@@ -209,6 +209,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.healthcareapis.models.StorageConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.healthcareapis.models.ServiceManagedIdentity",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,

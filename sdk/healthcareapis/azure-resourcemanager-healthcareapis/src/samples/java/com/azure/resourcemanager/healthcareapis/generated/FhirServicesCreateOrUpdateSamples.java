@@ -26,7 +26,7 @@ import java.util.Map;
 public final class FhirServicesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2023-11-01/examples/fhirservices/
+     * specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2024-03-01/examples/fhirservices/
      * FhirServices_Create.json
      */
     /**
