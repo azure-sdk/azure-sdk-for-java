@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The object being used to update tags and sku of a resource, in general used for PATCH operations. */
+/**
+ * The object being used to update tags and sku of a resource, in general used for PATCH operations.
+ */
 @Fluent
 public final class PatchResourceTagsAndSku extends PatchResourceTags {
     /*
@@ -17,13 +19,15 @@ public final class PatchResourceTagsAndSku extends PatchResourceTags {
     @JsonProperty(value = "sku")
     private Sku sku;
 
-    /** Creates an instance of PatchResourceTagsAndSku class. */
+    /**
+     * Creates an instance of PatchResourceTagsAndSku class.
+     */
     public PatchResourceTagsAndSku() {
     }
 
     /**
      * Get the sku property: The resource model definition representing SKU.
-     *
+     * 
      * @return the sku value.
      */
     public Sku sku() {
@@ -32,7 +36,7 @@ public final class PatchResourceTagsAndSku extends PatchResourceTags {
 
     /**
      * Set the sku property: The resource model definition representing SKU.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the PatchResourceTagsAndSku object itself.
      */
@@ -41,7 +45,9 @@ public final class PatchResourceTagsAndSku extends PatchResourceTags {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PatchResourceTagsAndSku withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -50,7 +56,7 @@ public final class PatchResourceTagsAndSku extends PatchResourceTags {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

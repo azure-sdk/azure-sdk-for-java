@@ -9,7 +9,9 @@ import com.azure.resourcemanager.cognitiveservices.fluent.models.AccountInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of cognitive services accounts operation response. */
+/**
+ * The list of cognitive services accounts operation response.
+ */
 @Fluent
 public final class AccountListResult {
     /*
@@ -24,13 +26,15 @@ public final class AccountListResult {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<AccountInner> value;
 
-    /** Creates an instance of AccountListResult class. */
+    /**
+     * Creates an instance of AccountListResult class.
+     */
     public AccountListResult() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of accounts.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class AccountListResult {
 
     /**
      * Set the nextLink property: The link used to get the next page of accounts.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the AccountListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class AccountListResult {
 
     /**
      * Get the value property: Gets the list of Cognitive Services accounts and their properties.
-     *
+     * 
      * @return the value value.
      */
     public List<AccountInner> value() {
@@ -59,7 +63,7 @@ public final class AccountListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
