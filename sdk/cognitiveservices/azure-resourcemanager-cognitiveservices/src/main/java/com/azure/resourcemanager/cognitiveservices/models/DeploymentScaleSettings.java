@@ -7,7 +7,9 @@ package com.azure.resourcemanager.cognitiveservices.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of Cognitive Services account deployment model. */
+/**
+ * Properties of Cognitive Services account deployment model. (Deprecated, please use Deployment.sku instead.).
+ */
 @Fluent
 public final class DeploymentScaleSettings {
     /*
@@ -29,13 +31,15 @@ public final class DeploymentScaleSettings {
     @JsonProperty(value = "activeCapacity", access = JsonProperty.Access.WRITE_ONLY)
     private Integer activeCapacity;
 
-    /** Creates an instance of DeploymentScaleSettings class. */
+    /**
+     * Creates an instance of DeploymentScaleSettings class.
+     */
     public DeploymentScaleSettings() {
     }
 
     /**
      * Get the scaleType property: Deployment scale type.
-     *
+     * 
      * @return the scaleType value.
      */
     public DeploymentScaleType scaleType() {
@@ -44,7 +48,7 @@ public final class DeploymentScaleSettings {
 
     /**
      * Set the scaleType property: Deployment scale type.
-     *
+     * 
      * @param scaleType the scaleType value to set.
      * @return the DeploymentScaleSettings object itself.
      */
@@ -55,7 +59,7 @@ public final class DeploymentScaleSettings {
 
     /**
      * Get the capacity property: Deployment capacity.
-     *
+     * 
      * @return the capacity value.
      */
     public Integer capacity() {
@@ -64,7 +68,7 @@ public final class DeploymentScaleSettings {
 
     /**
      * Set the capacity property: Deployment capacity.
-     *
+     * 
      * @param capacity the capacity value to set.
      * @return the DeploymentScaleSettings object itself.
      */
@@ -76,7 +80,7 @@ public final class DeploymentScaleSettings {
     /**
      * Get the activeCapacity property: Deployment active capacity. This value might be different from `capacity` if
      * customer recently updated `capacity`.
-     *
+     * 
      * @return the activeCapacity value.
      */
     public Integer activeCapacity() {
@@ -85,7 +89,7 @@ public final class DeploymentScaleSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

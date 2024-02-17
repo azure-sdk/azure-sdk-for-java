@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response to a list usage request. */
+/**
+ * The response to a list usage request.
+ */
 @Fluent
 public final class UsageListResultInner {
     /*
@@ -23,13 +25,15 @@ public final class UsageListResultInner {
     @JsonProperty(value = "value")
     private List<UsageInner> value;
 
-    /** Creates an instance of UsageListResultInner class. */
+    /**
+     * Creates an instance of UsageListResultInner class.
+     */
     public UsageListResultInner() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of Usages.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -38,7 +42,7 @@ public final class UsageListResultInner {
 
     /**
      * Set the nextLink property: The link used to get the next page of Usages.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the UsageListResultInner object itself.
      */
@@ -49,7 +53,7 @@ public final class UsageListResultInner {
 
     /**
      * Get the value property: The list of usages for Cognitive Service account.
-     *
+     * 
      * @return the value value.
      */
     public List<UsageInner> value() {
@@ -58,7 +62,7 @@ public final class UsageListResultInner {
 
     /**
      * Set the value property: The list of usages for Cognitive Service account.
-     *
+     * 
      * @param value the value value to set.
      * @return the UsageListResultInner object itself.
      */
@@ -69,7 +73,7 @@ public final class UsageListResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A rule governing the accessibility from a specific virtual network. */
+/**
+ * A rule governing the accessibility from a specific virtual network.
+ */
 @Fluent
 public final class VirtualNetworkRule {
     /*
@@ -30,14 +32,16 @@ public final class VirtualNetworkRule {
     @JsonProperty(value = "ignoreMissingVnetServiceEndpoint")
     private Boolean ignoreMissingVnetServiceEndpoint;
 
-    /** Creates an instance of VirtualNetworkRule class. */
+    /**
+     * Creates an instance of VirtualNetworkRule class.
+     */
     public VirtualNetworkRule() {
     }
 
     /**
      * Get the id property: Full resource id of a vnet subnet, such as
      * '/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/subnet1'.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -47,7 +51,7 @@ public final class VirtualNetworkRule {
     /**
      * Set the id property: Full resource id of a vnet subnet, such as
      * '/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/subnet1'.
-     *
+     * 
      * @param id the id value to set.
      * @return the VirtualNetworkRule object itself.
      */
@@ -58,7 +62,7 @@ public final class VirtualNetworkRule {
 
     /**
      * Get the state property: Gets the state of virtual network rule.
-     *
+     * 
      * @return the state value.
      */
     public String state() {
@@ -67,7 +71,7 @@ public final class VirtualNetworkRule {
 
     /**
      * Set the state property: Gets the state of virtual network rule.
-     *
+     * 
      * @param state the state value to set.
      * @return the VirtualNetworkRule object itself.
      */
@@ -78,7 +82,7 @@ public final class VirtualNetworkRule {
 
     /**
      * Get the ignoreMissingVnetServiceEndpoint property: Ignore missing vnet service endpoint or not.
-     *
+     * 
      * @return the ignoreMissingVnetServiceEndpoint value.
      */
     public Boolean ignoreMissingVnetServiceEndpoint() {
@@ -87,7 +91,7 @@ public final class VirtualNetworkRule {
 
     /**
      * Set the ignoreMissingVnetServiceEndpoint property: Ignore missing vnet service endpoint or not.
-     *
+     * 
      * @param ignoreMissingVnetServiceEndpoint the ignoreMissingVnetServiceEndpoint value to set.
      * @return the VirtualNetworkRule object itself.
      */
@@ -98,14 +102,13 @@ public final class VirtualNetworkRule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (id() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property id in model VirtualNetworkRule"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property id in model VirtualNetworkRule"));
         }
     }
 

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.cognitiveservices.fluent.models.ModelInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of cognitive services models. */
+/**
+ * The list of cognitive services models.
+ */
 @Fluent
 public final class ModelListResult {
     /*
@@ -24,13 +26,15 @@ public final class ModelListResult {
     @JsonProperty(value = "value")
     private List<ModelInner> value;
 
-    /** Creates an instance of ModelListResult class. */
+    /**
+     * Creates an instance of ModelListResult class.
+     */
     public ModelListResult() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of Model.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class ModelListResult {
 
     /**
      * Set the nextLink property: The link used to get the next page of Model.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ModelListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class ModelListResult {
 
     /**
      * Get the value property: Gets the list of Cognitive Services accounts Model and their properties.
-     *
+     * 
      * @return the value value.
      */
     public List<ModelInner> value() {
@@ -59,7 +63,7 @@ public final class ModelListResult {
 
     /**
      * Set the value property: Gets the list of Cognitive Services accounts Model and their properties.
-     *
+     * 
      * @param value the value value to set.
      * @return the ModelListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class ModelListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

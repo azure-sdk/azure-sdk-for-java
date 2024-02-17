@@ -10,7 +10,9 @@ import com.azure.resourcemanager.cognitiveservices.fluent.models.ResourceSkuInne
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The Get Skus operation response. */
+/**
+ * The Get Skus operation response.
+ */
 @Fluent
 public final class ResourceSkuListResult {
     /*
@@ -25,13 +27,15 @@ public final class ResourceSkuListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ResourceSkuListResult class. */
+    /**
+     * Creates an instance of ResourceSkuListResult class.
+     */
     public ResourceSkuListResult() {
     }
 
     /**
      * Get the value property: The list of skus available for the subscription.
-     *
+     * 
      * @return the value value.
      */
     public List<ResourceSkuInner> value() {
@@ -40,7 +44,7 @@ public final class ResourceSkuListResult {
 
     /**
      * Set the value property: The list of skus available for the subscription.
-     *
+     * 
      * @param value the value value to set.
      * @return the ResourceSkuListResult object itself.
      */
@@ -51,7 +55,7 @@ public final class ResourceSkuListResult {
 
     /**
      * Get the nextLink property: The uri to fetch the next page of Skus.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -60,7 +64,7 @@ public final class ResourceSkuListResult {
 
     /**
      * Set the nextLink property: The uri to fetch the next page of Skus.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ResourceSkuListResult object itself.
      */
@@ -71,14 +75,13 @@ public final class ResourceSkuListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model ResourceSkuListResult"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model ResourceSkuListResult"));
         } else {
             value().forEach(e -> e.validate());
         }

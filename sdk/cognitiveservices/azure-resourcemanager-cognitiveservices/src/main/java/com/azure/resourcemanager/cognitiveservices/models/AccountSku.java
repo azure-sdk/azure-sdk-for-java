@@ -7,7 +7,9 @@ package com.azure.resourcemanager.cognitiveservices.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Cognitive Services resource type and SKU. */
+/**
+ * Cognitive Services resource type and SKU.
+ */
 @Fluent
 public final class AccountSku {
     /*
@@ -22,13 +24,15 @@ public final class AccountSku {
     @JsonProperty(value = "sku")
     private Sku sku;
 
-    /** Creates an instance of AccountSku class. */
+    /**
+     * Creates an instance of AccountSku class.
+     */
     public AccountSku() {
     }
 
     /**
      * Get the resourceType property: Resource Namespace and Type.
-     *
+     * 
      * @return the resourceType value.
      */
     public String resourceType() {
@@ -37,7 +41,7 @@ public final class AccountSku {
 
     /**
      * Set the resourceType property: Resource Namespace and Type.
-     *
+     * 
      * @param resourceType the resourceType value to set.
      * @return the AccountSku object itself.
      */
@@ -48,7 +52,7 @@ public final class AccountSku {
 
     /**
      * Get the sku property: The SKU of Cognitive Services account.
-     *
+     * 
      * @return the sku value.
      */
     public Sku sku() {
@@ -57,7 +61,7 @@ public final class AccountSku {
 
     /**
      * Set the sku property: The SKU of Cognitive Services account.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the AccountSku object itself.
      */
@@ -68,7 +72,7 @@ public final class AccountSku {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
