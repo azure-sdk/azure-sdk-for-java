@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.AlertRuleInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List all the alert rules. */
+/**
+ * List all the alert rules.
+ */
 @Fluent
 public final class AlertRulesList {
     /*
@@ -26,8 +28,14 @@ public final class AlertRulesList {
     private List<AlertRuleInner> value;
 
     /**
+     * Creates an instance of AlertRulesList class.
+     */
+    public AlertRulesList() {
+    }
+
+    /**
      * Get the nextLink property: URL to fetch the next set of alert rules.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -36,7 +44,7 @@ public final class AlertRulesList {
 
     /**
      * Get the value property: Array of alert rules.
-     *
+     * 
      * @return the value value.
      */
     public List<AlertRuleInner> value() {
@@ -45,7 +53,7 @@ public final class AlertRulesList {
 
     /**
      * Set the value property: Array of alert rules.
-     *
+     * 
      * @param value the value value to set.
      * @return the AlertRulesList object itself.
      */
@@ -56,14 +64,13 @@ public final class AlertRulesList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model AlertRulesList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model AlertRulesList"));
         } else {
             value().forEach(e -> e.validate());
         }

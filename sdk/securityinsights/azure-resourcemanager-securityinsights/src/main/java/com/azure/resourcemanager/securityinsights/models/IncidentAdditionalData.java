@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Incident additional data property bag. */
+/**
+ * Incident additional data property bag.
+ */
 @Immutable
 public final class IncidentAdditionalData {
     /*
@@ -36,26 +38,32 @@ public final class IncidentAdditionalData {
     private List<String> alertProductNames;
 
     /*
-     * The provider incident url to the incident in Microsoft 365 Defender portal
-     */
-    @JsonProperty(value = "providerIncidentUrl", access = JsonProperty.Access.WRITE_ONLY)
-    private String providerIncidentUrl;
-
-    /*
      * The tactics associated with incident
      */
     @JsonProperty(value = "tactics", access = JsonProperty.Access.WRITE_ONLY)
     private List<AttackTactic> tactics;
 
     /*
-     * The techniques associated with incident's tactics'
+     * The techniques associated with incident's tactics
      */
     @JsonProperty(value = "techniques", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> techniques;
 
+    /*
+     * The provider incident url to the incident in Microsoft 365 Defender portal
+     */
+    @JsonProperty(value = "providerIncidentUrl", access = JsonProperty.Access.WRITE_ONLY)
+    private String providerIncidentUrl;
+
+    /**
+     * Creates an instance of IncidentAdditionalData class.
+     */
+    public IncidentAdditionalData() {
+    }
+
     /**
      * Get the alertsCount property: The number of alerts in the incident.
-     *
+     * 
      * @return the alertsCount value.
      */
     public Integer alertsCount() {
@@ -64,7 +72,7 @@ public final class IncidentAdditionalData {
 
     /**
      * Get the bookmarksCount property: The number of bookmarks in the incident.
-     *
+     * 
      * @return the bookmarksCount value.
      */
     public Integer bookmarksCount() {
@@ -73,7 +81,7 @@ public final class IncidentAdditionalData {
 
     /**
      * Get the commentsCount property: The number of comments in the incident.
-     *
+     * 
      * @return the commentsCount value.
      */
     public Integer commentsCount() {
@@ -82,7 +90,7 @@ public final class IncidentAdditionalData {
 
     /**
      * Get the alertProductNames property: List of product names of alerts in the incident.
-     *
+     * 
      * @return the alertProductNames value.
      */
     public List<String> alertProductNames() {
@@ -90,17 +98,8 @@ public final class IncidentAdditionalData {
     }
 
     /**
-     * Get the providerIncidentUrl property: The provider incident url to the incident in Microsoft 365 Defender portal.
-     *
-     * @return the providerIncidentUrl value.
-     */
-    public String providerIncidentUrl() {
-        return this.providerIncidentUrl;
-    }
-
-    /**
      * Get the tactics property: The tactics associated with incident.
-     *
+     * 
      * @return the tactics value.
      */
     public List<AttackTactic> tactics() {
@@ -108,8 +107,8 @@ public final class IncidentAdditionalData {
     }
 
     /**
-     * Get the techniques property: The techniques associated with incident's tactics'.
-     *
+     * Get the techniques property: The techniques associated with incident's tactics.
+     * 
      * @return the techniques value.
      */
     public List<String> techniques() {
@@ -117,8 +116,18 @@ public final class IncidentAdditionalData {
     }
 
     /**
+     * Get the providerIncidentUrl property: The provider incident url to the incident in Microsoft 365 Defender
+     * portal.
+     * 
+     * @return the providerIncidentUrl value.
+     */
+    public String providerIncidentUrl() {
+        return this.providerIncidentUrl;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

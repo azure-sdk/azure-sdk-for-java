@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The set of contacts associated with this domain. */
+/**
+ * The set of contacts associated with this domain.
+ */
 @Fluent
 public final class EnrichmentDomainWhoisContacts {
     /*
@@ -35,8 +37,14 @@ public final class EnrichmentDomainWhoisContacts {
     private EnrichmentDomainWhoisContact tech;
 
     /**
+     * Creates an instance of EnrichmentDomainWhoisContacts class.
+     */
+    public EnrichmentDomainWhoisContacts() {
+    }
+
+    /**
      * Get the admin property: The admin contact for this whois record.
-     *
+     * 
      * @return the admin value.
      */
     public EnrichmentDomainWhoisContact admin() {
@@ -45,7 +53,7 @@ public final class EnrichmentDomainWhoisContacts {
 
     /**
      * Set the admin property: The admin contact for this whois record.
-     *
+     * 
      * @param admin the admin value to set.
      * @return the EnrichmentDomainWhoisContacts object itself.
      */
@@ -56,7 +64,7 @@ public final class EnrichmentDomainWhoisContacts {
 
     /**
      * Get the billing property: The billing contact for this whois record.
-     *
+     * 
      * @return the billing value.
      */
     public EnrichmentDomainWhoisContact billing() {
@@ -65,7 +73,7 @@ public final class EnrichmentDomainWhoisContacts {
 
     /**
      * Set the billing property: The billing contact for this whois record.
-     *
+     * 
      * @param billing the billing value to set.
      * @return the EnrichmentDomainWhoisContacts object itself.
      */
@@ -76,7 +84,7 @@ public final class EnrichmentDomainWhoisContacts {
 
     /**
      * Get the registrant property: The registrant contact for this whois record.
-     *
+     * 
      * @return the registrant value.
      */
     public EnrichmentDomainWhoisContact registrant() {
@@ -85,7 +93,7 @@ public final class EnrichmentDomainWhoisContacts {
 
     /**
      * Set the registrant property: The registrant contact for this whois record.
-     *
+     * 
      * @param registrant the registrant value to set.
      * @return the EnrichmentDomainWhoisContacts object itself.
      */
@@ -96,7 +104,7 @@ public final class EnrichmentDomainWhoisContacts {
 
     /**
      * Get the tech property: The technical contact for this whois record.
-     *
+     * 
      * @return the tech value.
      */
     public EnrichmentDomainWhoisContact tech() {
@@ -105,7 +113,7 @@ public final class EnrichmentDomainWhoisContacts {
 
     /**
      * Set the tech property: The technical contact for this whois record.
-     *
+     * 
      * @param tech the tech value to set.
      * @return the EnrichmentDomainWhoisContacts object itself.
      */
@@ -116,7 +124,7 @@ public final class EnrichmentDomainWhoisContacts {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

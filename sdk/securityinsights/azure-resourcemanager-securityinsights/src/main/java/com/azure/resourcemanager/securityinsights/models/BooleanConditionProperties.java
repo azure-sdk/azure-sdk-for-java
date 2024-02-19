@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Describes an automation rule condition that applies a boolean operator (e.g AND, OR) to conditions. */
+/**
+ * Describes an automation rule condition that applies a boolean operator (e.g AND, OR) to conditions.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "conditionType")
 @JsonTypeName("Boolean")
 @Fluent
@@ -21,8 +23,14 @@ public final class BooleanConditionProperties extends AutomationRuleCondition {
     private AutomationRuleBooleanCondition conditionProperties;
 
     /**
+     * Creates an instance of BooleanConditionProperties class.
+     */
+    public BooleanConditionProperties() {
+    }
+
+    /**
      * Get the conditionProperties property: The conditionProperties property.
-     *
+     * 
      * @return the conditionProperties value.
      */
     public AutomationRuleBooleanCondition conditionProperties() {
@@ -31,7 +39,7 @@ public final class BooleanConditionProperties extends AutomationRuleCondition {
 
     /**
      * Set the conditionProperties property: The conditionProperties property.
-     *
+     * 
      * @param conditionProperties the conditionProperties value to set.
      * @return the BooleanConditionProperties object itself.
      */
@@ -42,7 +50,7 @@ public final class BooleanConditionProperties extends AutomationRuleCondition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

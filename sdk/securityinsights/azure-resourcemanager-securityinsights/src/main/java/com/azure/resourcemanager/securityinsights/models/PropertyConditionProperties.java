@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Describes an automation rule condition that evaluates a property's value. */
+/**
+ * Describes an automation rule condition that evaluates a property's value.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "conditionType")
 @JsonTypeName("Property")
 @Fluent
@@ -21,8 +23,14 @@ public final class PropertyConditionProperties extends AutomationRuleCondition {
     private AutomationRulePropertyValuesCondition conditionProperties;
 
     /**
+     * Creates an instance of PropertyConditionProperties class.
+     */
+    public PropertyConditionProperties() {
+    }
+
+    /**
      * Get the conditionProperties property: The conditionProperties property.
-     *
+     * 
      * @return the conditionProperties value.
      */
     public AutomationRulePropertyValuesCondition conditionProperties() {
@@ -31,19 +39,19 @@ public final class PropertyConditionProperties extends AutomationRuleCondition {
 
     /**
      * Set the conditionProperties property: The conditionProperties property.
-     *
+     * 
      * @param conditionProperties the conditionProperties value to set.
      * @return the PropertyConditionProperties object itself.
      */
-    public PropertyConditionProperties withConditionProperties(
-        AutomationRulePropertyValuesCondition conditionProperties) {
+    public PropertyConditionProperties
+        withConditionProperties(AutomationRulePropertyValuesCondition conditionProperties) {
         this.conditionProperties = conditionProperties;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

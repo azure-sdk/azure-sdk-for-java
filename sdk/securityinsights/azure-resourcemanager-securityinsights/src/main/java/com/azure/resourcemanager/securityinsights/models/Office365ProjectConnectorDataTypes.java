@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The available data types for Office Microsoft Project data connector. */
+/**
+ * The available data types for Office Microsoft Project data connector.
+ */
 @Fluent
 public final class Office365ProjectConnectorDataTypes {
     /*
@@ -18,8 +20,14 @@ public final class Office365ProjectConnectorDataTypes {
     private Office365ProjectConnectorDataTypesLogs logs;
 
     /**
+     * Creates an instance of Office365ProjectConnectorDataTypes class.
+     */
+    public Office365ProjectConnectorDataTypes() {
+    }
+
+    /**
      * Get the logs property: Logs data type.
-     *
+     * 
      * @return the logs value.
      */
     public Office365ProjectConnectorDataTypesLogs logs() {
@@ -28,7 +36,7 @@ public final class Office365ProjectConnectorDataTypes {
 
     /**
      * Set the logs property: Logs data type.
-     *
+     * 
      * @param logs the logs value to set.
      * @return the Office365ProjectConnectorDataTypes object itself.
      */
@@ -39,15 +47,13 @@ public final class Office365ProjectConnectorDataTypes {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (logs() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property logs in model Office365ProjectConnectorDataTypes"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property logs in model Office365ProjectConnectorDataTypes"));
         } else {
             logs().validate();
         }

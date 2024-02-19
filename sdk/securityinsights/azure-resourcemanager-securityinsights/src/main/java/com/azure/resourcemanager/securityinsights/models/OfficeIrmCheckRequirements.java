@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents OfficeIRM (Microsoft Insider Risk Management) requirements check request. */
+/**
+ * Represents OfficeIRM (Microsoft Insider Risk Management) requirements check request.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("OfficeIRM")
 @Fluent
@@ -22,8 +24,14 @@ public final class OfficeIrmCheckRequirements extends DataConnectorsCheckRequire
     private OfficeIrmCheckRequirementsProperties innerProperties;
 
     /**
+     * Creates an instance of OfficeIrmCheckRequirements class.
+     */
+    public OfficeIrmCheckRequirements() {
+    }
+
+    /**
      * Get the innerProperties property: OfficeIRM (Microsoft Insider Risk Management) requirements check properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private OfficeIrmCheckRequirementsProperties innerProperties() {
@@ -31,8 +39,31 @@ public final class OfficeIrmCheckRequirements extends DataConnectorsCheckRequire
     }
 
     /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     * 
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     * 
+     * @param tenantId the tenantId value to set.
+     * @return the OfficeIrmCheckRequirements object itself.
+     */
+    public OfficeIrmCheckRequirements withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new OfficeIrmCheckRequirementsProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

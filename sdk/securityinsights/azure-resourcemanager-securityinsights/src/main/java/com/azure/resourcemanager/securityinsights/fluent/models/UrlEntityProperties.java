@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.models.EntityCommonProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Url entity property bag. */
+/**
+ * Url entity property bag.
+ */
 @Immutable
 public final class UrlEntityProperties extends EntityCommonProperties {
     /*
@@ -18,8 +20,14 @@ public final class UrlEntityProperties extends EntityCommonProperties {
     private String url;
 
     /**
+     * Creates an instance of UrlEntityProperties class.
+     */
+    public UrlEntityProperties() {
+    }
+
+    /**
      * Get the url property: A full URL the entity points to.
-     *
+     * 
      * @return the url value.
      */
     public String url() {
@@ -28,7 +36,7 @@ public final class UrlEntityProperties extends EntityCommonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

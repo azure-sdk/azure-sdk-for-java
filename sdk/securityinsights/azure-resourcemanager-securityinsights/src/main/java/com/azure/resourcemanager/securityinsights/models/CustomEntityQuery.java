@@ -9,17 +9,27 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Specific entity query that supports put requests. */
+/**
+ * Specific entity query that supports put requests.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
     property = "kind",
     defaultImpl = CustomEntityQuery.class)
 @JsonTypeName("CustomEntityQuery")
-@JsonSubTypes({@JsonSubTypes.Type(name = "Activity", value = ActivityCustomEntityQuery.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "Activity", value = ActivityCustomEntityQuery.class) })
 @Fluent
 public class CustomEntityQuery extends ResourceWithEtag {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of CustomEntityQuery class.
+     */
+    public CustomEntityQuery() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CustomEntityQuery withEtag(String etag) {
         super.withEtag(etag);
@@ -28,7 +38,7 @@ public class CustomEntityQuery extends ResourceWithEtag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

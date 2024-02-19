@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.SourceControlInn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List all the source controls. */
+/**
+ * List all the source controls.
+ */
 @Fluent
 public final class SourceControlList {
     /*
@@ -26,8 +28,14 @@ public final class SourceControlList {
     private List<SourceControlInner> value;
 
     /**
+     * Creates an instance of SourceControlList class.
+     */
+    public SourceControlList() {
+    }
+
+    /**
      * Get the nextLink property: URL to fetch the next set of source controls.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -36,7 +44,7 @@ public final class SourceControlList {
 
     /**
      * Get the value property: Array of source controls.
-     *
+     * 
      * @return the value value.
      */
     public List<SourceControlInner> value() {
@@ -45,7 +53,7 @@ public final class SourceControlList {
 
     /**
      * Set the value property: Array of source controls.
-     *
+     * 
      * @param value the value value to set.
      * @return the SourceControlList object itself.
      */
@@ -56,14 +64,13 @@ public final class SourceControlList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model SourceControlList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model SourceControlList"));
         } else {
             value().forEach(e -> e.validate());
         }
