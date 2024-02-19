@@ -4,12 +4,10 @@
 
 module com.azure.resourcemanager.springappdiscovery {
     requires transitive com.azure.core.management;
-
     exports com.azure.resourcemanager.springappdiscovery;
     exports com.azure.resourcemanager.springappdiscovery.fluent;
     exports com.azure.resourcemanager.springappdiscovery.fluent.models;
     exports com.azure.resourcemanager.springappdiscovery.models;
-
     opens com.azure.resourcemanager.springappdiscovery.fluent.models to com.azure.core, com.fasterxml.jackson.databind;
     opens com.azure.resourcemanager.springappdiscovery.models to com.azure.core, com.fasterxml.jackson.databind;
 }
