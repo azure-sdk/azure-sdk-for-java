@@ -130,6 +130,13 @@ public interface DicomService {
     Encryption encryption();
 
     /**
+     * Gets the storageConfiguration property: The configuration of external storage account.
+     * 
+     * @return the storageConfiguration value.
+     */
+    StorageConfiguration storageConfiguration();
+
+    /**
      * Gets the region of the resource.
      * 
      * @return the region of the resource.
@@ -195,7 +202,7 @@ public interface DicomService {
         interface WithCreate extends DefinitionStages.WithLocation, DefinitionStages.WithTags,
             DefinitionStages.WithEtag, DefinitionStages.WithIdentity, DefinitionStages.WithAuthenticationConfiguration,
             DefinitionStages.WithCorsConfiguration, DefinitionStages.WithPublicNetworkAccess,
-            DefinitionStages.WithEncryption {
+            DefinitionStages.WithEncryption, DefinitionStages.WithStorageConfiguration {
             /**
              * Executes the create request.
              * 
@@ -327,6 +334,19 @@ public interface DicomService {
              * @return the next definition stage.
              */
             WithCreate withEncryption(Encryption encryption);
+        }
+
+        /**
+         * The stage of the DicomService definition allowing to specify storageConfiguration.
+         */
+        interface WithStorageConfiguration {
+            /**
+             * Specifies the storageConfiguration property: The configuration of external storage account.
+             * 
+             * @param storageConfiguration The configuration of external storage account.
+             * @return the next definition stage.
+             */
+            WithCreate withStorageConfiguration(StorageConfiguration storageConfiguration);
         }
     }
 
