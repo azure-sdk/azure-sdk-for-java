@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 
-/** Certificate details representing the Vault credentials. */
+/**
+ * Certificate details representing the Vault credentials.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -21,8 +23,7 @@ import java.time.OffsetDateTime;
 @JsonTypeName("ResourceCertificateDetails")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AzureActiveDirectory", value = ResourceCertificateAndAadDetails.class),
-    @JsonSubTypes.Type(name = "AccessControlService", value = ResourceCertificateAndAcsDetails.class)
-})
+    @JsonSubTypes.Type(name = "AccessControlService", value = ResourceCertificateAndAcsDetails.class) })
 @Fluent
 public class ResourceCertificateDetails {
     /*
@@ -73,13 +74,15 @@ public class ResourceCertificateDetails {
     @JsonProperty(value = "validTo")
     private OffsetDateTime validTo;
 
-    /** Creates an instance of ResourceCertificateDetails class. */
+    /**
+     * Creates an instance of ResourceCertificateDetails class.
+     */
     public ResourceCertificateDetails() {
     }
 
     /**
      * Get the certificate property: The base64 encoded certificate raw data string.
-     *
+     * 
      * @return the certificate value.
      */
     public byte[] certificate() {
@@ -88,7 +91,7 @@ public class ResourceCertificateDetails {
 
     /**
      * Set the certificate property: The base64 encoded certificate raw data string.
-     *
+     * 
      * @param certificate the certificate value to set.
      * @return the ResourceCertificateDetails object itself.
      */
@@ -99,7 +102,7 @@ public class ResourceCertificateDetails {
 
     /**
      * Get the friendlyName property: Certificate friendly name.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -108,7 +111,7 @@ public class ResourceCertificateDetails {
 
     /**
      * Set the friendlyName property: Certificate friendly name.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the ResourceCertificateDetails object itself.
      */
@@ -119,7 +122,7 @@ public class ResourceCertificateDetails {
 
     /**
      * Get the issuer property: Certificate issuer.
-     *
+     * 
      * @return the issuer value.
      */
     public String issuer() {
@@ -128,7 +131,7 @@ public class ResourceCertificateDetails {
 
     /**
      * Set the issuer property: Certificate issuer.
-     *
+     * 
      * @param issuer the issuer value to set.
      * @return the ResourceCertificateDetails object itself.
      */
@@ -139,7 +142,7 @@ public class ResourceCertificateDetails {
 
     /**
      * Get the resourceId property: Resource ID of the vault.
-     *
+     * 
      * @return the resourceId value.
      */
     public Long resourceId() {
@@ -148,7 +151,7 @@ public class ResourceCertificateDetails {
 
     /**
      * Set the resourceId property: Resource ID of the vault.
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the ResourceCertificateDetails object itself.
      */
@@ -159,7 +162,7 @@ public class ResourceCertificateDetails {
 
     /**
      * Get the subject property: Certificate Subject Name.
-     *
+     * 
      * @return the subject value.
      */
     public String subject() {
@@ -168,7 +171,7 @@ public class ResourceCertificateDetails {
 
     /**
      * Set the subject property: Certificate Subject Name.
-     *
+     * 
      * @param subject the subject value to set.
      * @return the ResourceCertificateDetails object itself.
      */
@@ -179,7 +182,7 @@ public class ResourceCertificateDetails {
 
     /**
      * Get the thumbprint property: Certificate thumbprint.
-     *
+     * 
      * @return the thumbprint value.
      */
     public String thumbprint() {
@@ -188,7 +191,7 @@ public class ResourceCertificateDetails {
 
     /**
      * Set the thumbprint property: Certificate thumbprint.
-     *
+     * 
      * @param thumbprint the thumbprint value to set.
      * @return the ResourceCertificateDetails object itself.
      */
@@ -199,7 +202,7 @@ public class ResourceCertificateDetails {
 
     /**
      * Get the validFrom property: Certificate Validity start Date time.
-     *
+     * 
      * @return the validFrom value.
      */
     public OffsetDateTime validFrom() {
@@ -208,7 +211,7 @@ public class ResourceCertificateDetails {
 
     /**
      * Set the validFrom property: Certificate Validity start Date time.
-     *
+     * 
      * @param validFrom the validFrom value to set.
      * @return the ResourceCertificateDetails object itself.
      */
@@ -219,7 +222,7 @@ public class ResourceCertificateDetails {
 
     /**
      * Get the validTo property: Certificate Validity End Date time.
-     *
+     * 
      * @return the validTo value.
      */
     public OffsetDateTime validTo() {
@@ -228,7 +231,7 @@ public class ResourceCertificateDetails {
 
     /**
      * Set the validTo property: Certificate Validity End Date time.
-     *
+     * 
      * @param validTo the validTo value to set.
      * @return the ResourceCertificateDetails object itself.
      */
@@ -239,7 +242,7 @@ public class ResourceCertificateDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
