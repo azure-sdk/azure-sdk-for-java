@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.appconfiguration.fluent.models.PrivateEndpointConnectionProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A reference to a related private endpoint connection. */
+/**
+ * A reference to a related private endpoint connection.
+ */
 @Fluent
 public final class PrivateEndpointConnectionReference {
     /*
@@ -35,13 +37,15 @@ public final class PrivateEndpointConnectionReference {
     @JsonProperty(value = "properties")
     private PrivateEndpointConnectionProperties innerProperties;
 
-    /** Creates an instance of PrivateEndpointConnectionReference class. */
+    /**
+     * Creates an instance of PrivateEndpointConnectionReference class.
+     */
     public PrivateEndpointConnectionReference() {
     }
 
     /**
      * Get the id property: The resource ID.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -50,7 +54,7 @@ public final class PrivateEndpointConnectionReference {
 
     /**
      * Get the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -59,7 +63,7 @@ public final class PrivateEndpointConnectionReference {
 
     /**
      * Get the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -68,7 +72,7 @@ public final class PrivateEndpointConnectionReference {
 
     /**
      * Get the innerProperties property: The properties of a private endpoint connection.
-     *
+     * 
      * @return the innerProperties value.
      */
     private PrivateEndpointConnectionProperties innerProperties() {
@@ -77,7 +81,7 @@ public final class PrivateEndpointConnectionReference {
 
     /**
      * Get the provisioningState property: The provisioning status of the private endpoint connection.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -86,7 +90,7 @@ public final class PrivateEndpointConnectionReference {
 
     /**
      * Get the privateEndpoint property: The resource of private endpoint.
-     *
+     * 
      * @return the privateEndpoint value.
      */
     public PrivateEndpoint privateEndpoint() {
@@ -95,7 +99,7 @@ public final class PrivateEndpointConnectionReference {
 
     /**
      * Set the privateEndpoint property: The resource of private endpoint.
-     *
+     * 
      * @param privateEndpoint the privateEndpoint value to set.
      * @return the PrivateEndpointConnectionReference object itself.
      */
@@ -108,9 +112,9 @@ public final class PrivateEndpointConnectionReference {
     }
 
     /**
-     * Get the privateLinkServiceConnectionState property: A collection of information about the state of the connection
-     * between service consumer and provider.
-     *
+     * Get the privateLinkServiceConnectionState property: A collection of information about the state of the
+     * connection between service consumer and provider.
+     * 
      * @return the privateLinkServiceConnectionState value.
      */
     public PrivateLinkServiceConnectionState privateLinkServiceConnectionState() {
@@ -118,14 +122,14 @@ public final class PrivateEndpointConnectionReference {
     }
 
     /**
-     * Set the privateLinkServiceConnectionState property: A collection of information about the state of the connection
-     * between service consumer and provider.
-     *
+     * Set the privateLinkServiceConnectionState property: A collection of information about the state of the
+     * connection between service consumer and provider.
+     * 
      * @param privateLinkServiceConnectionState the privateLinkServiceConnectionState value to set.
      * @return the PrivateEndpointConnectionReference object itself.
      */
-    public PrivateEndpointConnectionReference withPrivateLinkServiceConnectionState(
-        PrivateLinkServiceConnectionState privateLinkServiceConnectionState) {
+    public PrivateEndpointConnectionReference
+        withPrivateLinkServiceConnectionState(PrivateLinkServiceConnectionState privateLinkServiceConnectionState) {
         if (this.innerProperties() == null) {
             this.innerProperties = new PrivateEndpointConnectionProperties();
         }
@@ -135,7 +139,7 @@ public final class PrivateEndpointConnectionReference {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

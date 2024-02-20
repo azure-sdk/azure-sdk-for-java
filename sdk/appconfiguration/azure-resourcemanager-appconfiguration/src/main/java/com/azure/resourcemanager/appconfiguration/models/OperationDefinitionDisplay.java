@@ -7,7 +7,9 @@ package com.azure.resourcemanager.appconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The display information for a configuration store operation. */
+/**
+ * The display information for a configuration store operation.
+ */
 @Fluent
 public final class OperationDefinitionDisplay {
     /*
@@ -34,13 +36,15 @@ public final class OperationDefinitionDisplay {
     @JsonProperty(value = "description")
     private String description;
 
-    /** Creates an instance of OperationDefinitionDisplay class. */
+    /**
+     * Creates an instance of OperationDefinitionDisplay class.
+     */
     public OperationDefinitionDisplay() {
     }
 
     /**
      * Get the provider property: The resource provider name: Microsoft App Configuration.".
-     *
+     * 
      * @return the provider value.
      */
     public String provider() {
@@ -49,7 +53,7 @@ public final class OperationDefinitionDisplay {
 
     /**
      * Get the resource property: The resource on which the operation is performed.
-     *
+     * 
      * @return the resource value.
      */
     public String resource() {
@@ -58,7 +62,7 @@ public final class OperationDefinitionDisplay {
 
     /**
      * Set the resource property: The resource on which the operation is performed.
-     *
+     * 
      * @param resource the resource value to set.
      * @return the OperationDefinitionDisplay object itself.
      */
@@ -69,7 +73,7 @@ public final class OperationDefinitionDisplay {
 
     /**
      * Get the operation property: The operation that users can perform.
-     *
+     * 
      * @return the operation value.
      */
     public String operation() {
@@ -78,7 +82,7 @@ public final class OperationDefinitionDisplay {
 
     /**
      * Set the operation property: The operation that users can perform.
-     *
+     * 
      * @param operation the operation value to set.
      * @return the OperationDefinitionDisplay object itself.
      */
@@ -89,7 +93,7 @@ public final class OperationDefinitionDisplay {
 
     /**
      * Get the description property: The description for the operation.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -98,7 +102,7 @@ public final class OperationDefinitionDisplay {
 
     /**
      * Set the description property: The description for the operation.
-     *
+     * 
      * @param description the description value to set.
      * @return the OperationDefinitionDisplay object itself.
      */
@@ -109,7 +113,7 @@ public final class OperationDefinitionDisplay {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

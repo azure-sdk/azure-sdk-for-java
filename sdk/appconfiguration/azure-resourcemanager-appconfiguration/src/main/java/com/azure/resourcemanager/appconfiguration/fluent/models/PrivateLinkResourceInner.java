@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A resource that supports private link capabilities. */
+/**
+ * A resource that supports private link capabilities.
+ */
 @Immutable
 public final class PrivateLinkResourceInner {
     /*
@@ -35,13 +37,15 @@ public final class PrivateLinkResourceInner {
     @JsonProperty(value = "properties")
     private PrivateLinkResourceProperties innerProperties;
 
-    /** Creates an instance of PrivateLinkResourceInner class. */
+    /**
+     * Creates an instance of PrivateLinkResourceInner class.
+     */
     public PrivateLinkResourceInner() {
     }
 
     /**
      * Get the id property: The resource ID.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -50,7 +54,7 @@ public final class PrivateLinkResourceInner {
 
     /**
      * Get the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -59,7 +63,7 @@ public final class PrivateLinkResourceInner {
 
     /**
      * Get the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -68,7 +72,7 @@ public final class PrivateLinkResourceInner {
 
     /**
      * Get the innerProperties property: Private link resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private PrivateLinkResourceProperties innerProperties() {
@@ -77,7 +81,7 @@ public final class PrivateLinkResourceInner {
 
     /**
      * Get the groupId property: The private link resource group id.
-     *
+     * 
      * @return the groupId value.
      */
     public String groupId() {
@@ -86,7 +90,7 @@ public final class PrivateLinkResourceInner {
 
     /**
      * Get the requiredMembers property: The private link resource required member names.
-     *
+     * 
      * @return the requiredMembers value.
      */
     public List<String> requiredMembers() {
@@ -95,7 +99,7 @@ public final class PrivateLinkResourceInner {
 
     /**
      * Get the requiredZoneNames property: The list of required DNS zone names of the private link resource.
-     *
+     * 
      * @return the requiredZoneNames value.
      */
     public List<String> requiredZoneNames() {
@@ -104,7 +108,7 @@ public final class PrivateLinkResourceInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

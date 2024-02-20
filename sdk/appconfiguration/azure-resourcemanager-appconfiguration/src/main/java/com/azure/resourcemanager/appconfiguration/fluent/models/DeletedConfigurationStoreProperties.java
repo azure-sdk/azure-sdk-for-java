@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
-/** Properties of the deleted configuration store. */
+/**
+ * Properties of the deleted configuration store.
+ */
 @Immutable
 public final class DeletedConfigurationStoreProperties {
     /*
@@ -50,13 +52,15 @@ public final class DeletedConfigurationStoreProperties {
     @JsonProperty(value = "purgeProtectionEnabled", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean purgeProtectionEnabled;
 
-    /** Creates an instance of DeletedConfigurationStoreProperties class. */
+    /**
+     * Creates an instance of DeletedConfigurationStoreProperties class.
+     */
     public DeletedConfigurationStoreProperties() {
     }
 
     /**
      * Get the configurationStoreId property: The resource id of the original configuration store.
-     *
+     * 
      * @return the configurationStoreId value.
      */
     public String configurationStoreId() {
@@ -65,7 +69,7 @@ public final class DeletedConfigurationStoreProperties {
 
     /**
      * Get the location property: The location of the original configuration store.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -74,7 +78,7 @@ public final class DeletedConfigurationStoreProperties {
 
     /**
      * Get the deletionDate property: The deleted date.
-     *
+     * 
      * @return the deletionDate value.
      */
     public OffsetDateTime deletionDate() {
@@ -83,7 +87,7 @@ public final class DeletedConfigurationStoreProperties {
 
     /**
      * Get the scheduledPurgeDate property: The scheduled purged date.
-     *
+     * 
      * @return the scheduledPurgeDate value.
      */
     public OffsetDateTime scheduledPurgeDate() {
@@ -92,7 +96,7 @@ public final class DeletedConfigurationStoreProperties {
 
     /**
      * Get the tags property: Tags of the original configuration store.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -101,7 +105,7 @@ public final class DeletedConfigurationStoreProperties {
 
     /**
      * Get the purgeProtectionEnabled property: Purge protection status of the original configuration store.
-     *
+     * 
      * @return the purgeProtectionEnabled value.
      */
     public Boolean purgeProtectionEnabled() {
@@ -110,7 +114,7 @@ public final class DeletedConfigurationStoreProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
