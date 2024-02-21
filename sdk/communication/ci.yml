@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/communication/ci.yml
+      - sdk/communication/azure-communication-messages/
+    exclude:
+      - sdk/communication/pom.xml
+      - sdk/communication/azure-communication-messages/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/communication/ci.yml
+      - sdk/communication/azure-communication-messages/
+    exclude:
+      - sdk/communication/pom.xml
+      - sdk/communication/azure-communication-messages/pom.xml
+
+parameters:
+  - name: release_azurecommunicationmessages
+    displayName: azure-communication-messages
+    type: boolean
+    default: true
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: communication
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-communication-messages
+        groupId: com.azure
+        safeName: azurecommunicationmessages
+        releaseInBatch: ${{ parameters.release_azurecommunicationmessages }}
