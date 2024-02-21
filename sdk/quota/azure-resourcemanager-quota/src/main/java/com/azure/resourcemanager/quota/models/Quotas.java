@@ -16,40 +16,40 @@ public interface Quotas {
      * Get the quota limit of a resource. The response can be used to determine the remaining quota to calculate a new
      * quota limit that can be submitted with a PUT request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the quota limit of a resource.
      */
-    Response<CurrentQuotaLimitBase> getWithResponse(String resourceName, String scope, Context context);
+    Response<CurrentQuotaLimitBase> getWithResponse(String scope, String resourceName, Context context);
 
     /**
      * Get the quota limit of a resource. The response can be used to determine the remaining quota to calculate a new
      * quota limit that can be submitted with a PUT request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the quota limit of a resource.
      */
-    CurrentQuotaLimitBase get(String resourceName, String scope);
+    CurrentQuotaLimitBase get(String scope, String resourceName);
 
     /**
      * Get a list of current quota limits of all resources for the specified scope. The response from this GET operation

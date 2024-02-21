@@ -9,7 +9,7 @@ package com.azure.resourcemanager.quota.generated;
  */
 public final class QuotaListSamples {
     /*
-     * x-ms-original-file: specification/quota/resource-manager/Microsoft.Quota/stable/2023-02-01/examples/
+     * x-ms-original-file: specification/quota/resource-manager/Microsoft.Quota/preview/2023-06-01-preview/examples/
      * getMachineLearningServicesQuotaLimits.json
      */
     /**
@@ -26,7 +26,8 @@ public final class QuotaListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/quota/resource-manager/Microsoft.Quota/stable/2023-02-01/examples/getComputeQuotaLimits.json
+     * specification/quota/resource-manager/Microsoft.Quota/preview/2023-06-01-preview/examples/getComputeQuotaLimits.
+     * json
      */
     /**
      * Sample code: Quotas_listQuotaLimitsForCompute.
@@ -41,7 +42,8 @@ public final class QuotaListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/quota/resource-manager/Microsoft.Quota/stable/2023-02-01/examples/getNetworkQuotaLimits.json
+     * specification/quota/resource-manager/Microsoft.Quota/preview/2023-06-01-preview/examples/getNetworkQuotaLimits.
+     * json
      */
     /**
      * Sample code: Quotas_listQuotaLimitsForNetwork.
