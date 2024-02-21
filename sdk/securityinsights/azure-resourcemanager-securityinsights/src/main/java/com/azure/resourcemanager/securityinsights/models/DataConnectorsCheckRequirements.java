@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Data connector requirements properties. */
+/**
+ * Data connector requirements properties.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -29,17 +31,25 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "MicrosoftThreatProtection", value = MtpCheckRequirements.class),
     @JsonSubTypes.Type(name = "OfficeATP", value = OfficeAtpCheckRequirements.class),
     @JsonSubTypes.Type(name = "OfficeIRM", value = OfficeIrmCheckRequirements.class),
+    @JsonSubTypes.Type(
+        name = "MicrosoftPurviewInformationProtection",
+        value = MicrosoftPurviewInformationProtectionCheckRequirements.class),
     @JsonSubTypes.Type(name = "Office365Project", value = Office365ProjectCheckRequirements.class),
     @JsonSubTypes.Type(name = "OfficePowerBI", value = OfficePowerBICheckRequirements.class),
     @JsonSubTypes.Type(name = "ThreatIntelligence", value = TICheckRequirements.class),
     @JsonSubTypes.Type(name = "ThreatIntelligenceTaxii", value = TiTaxiiCheckRequirements.class),
-    @JsonSubTypes.Type(name = "IOT", value = IoTCheckRequirements.class)
-})
+    @JsonSubTypes.Type(name = "IOT", value = IoTCheckRequirements.class) })
 @Immutable
 public class DataConnectorsCheckRequirements {
     /**
+     * Creates an instance of DataConnectorsCheckRequirements class.
+     */
+    public DataConnectorsCheckRequirements() {
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -6,17 +6,29 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Customs permissions required for the connector. */
+/**
+ * Customs permissions required for the connector.
+ */
 @Fluent
 public class Customs extends CustomsPermission {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of Customs class.
+     */
+    public Customs() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Customs withName(String name) {
         super.withName(name);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Customs withDescription(String description) {
         super.withDescription(description);
@@ -25,7 +37,7 @@ public class Customs extends CustomsPermission {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

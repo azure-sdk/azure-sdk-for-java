@@ -34,7 +34,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Specific entity. */
+/**
+ * Specific entity.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -63,8 +65,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "SecurityGroup", value = SecurityGroupEntity.class),
     @JsonSubTypes.Type(name = "SubmissionMail", value = SubmissionMailEntity.class),
     @JsonSubTypes.Type(name = "Url", value = UrlEntity.class),
-    @JsonSubTypes.Type(name = "Nic", value = NicEntity.class)
-})
+    @JsonSubTypes.Type(name = "Nic", value = NicEntity.class) })
 @Immutable
 public class EntityInner extends ProxyResource {
     /*
@@ -74,8 +75,14 @@ public class EntityInner extends ProxyResource {
     private SystemData systemData;
 
     /**
+     * Creates an instance of EntityInner class.
+     */
+    public EntityInner() {
+    }
+
+    /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -84,7 +91,7 @@ public class EntityInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

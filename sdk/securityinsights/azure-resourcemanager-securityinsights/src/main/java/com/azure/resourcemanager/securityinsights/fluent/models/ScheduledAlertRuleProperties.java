@@ -13,6 +13,7 @@ import com.azure.resourcemanager.securityinsights.models.EntityMapping;
 import com.azure.resourcemanager.securityinsights.models.EventGroupingSettings;
 import com.azure.resourcemanager.securityinsights.models.IncidentConfiguration;
 import com.azure.resourcemanager.securityinsights.models.ScheduledAlertRuleCommonProperties;
+import com.azure.resourcemanager.securityinsights.models.SentinelEntityMapping;
 import com.azure.resourcemanager.securityinsights.models.TriggerOperator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
@@ -20,7 +21,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** Scheduled alert rule base property bag. */
+/**
+ * Scheduled alert rule base property bag.
+ */
 @Fluent
 public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommonProperties {
     /*
@@ -91,8 +94,14 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
     private IncidentConfiguration incidentConfiguration;
 
     /**
+     * Creates an instance of ScheduledAlertRuleProperties class.
+     */
+    public ScheduledAlertRuleProperties() {
+    }
+
+    /**
      * Get the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
-     *
+     * 
      * @return the alertRuleTemplateName value.
      */
     public String alertRuleTemplateName() {
@@ -101,7 +110,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
 
     /**
      * Set the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
-     *
+     * 
      * @param alertRuleTemplateName the alertRuleTemplateName value to set.
      * @return the ScheduledAlertRuleProperties object itself.
      */
@@ -113,7 +122,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
     /**
      * Get the templateVersion property: The version of the alert rule template used to create this rule - in format
      * &lt;a.b.c&gt;, where all are numbers, for example 0 &lt;1.0.2&gt;.
-     *
+     * 
      * @return the templateVersion value.
      */
     public String templateVersion() {
@@ -123,7 +132,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
     /**
      * Set the templateVersion property: The version of the alert rule template used to create this rule - in format
      * &lt;a.b.c&gt;, where all are numbers, for example 0 &lt;1.0.2&gt;.
-     *
+     * 
      * @param templateVersion the templateVersion value to set.
      * @return the ScheduledAlertRuleProperties object itself.
      */
@@ -134,7 +143,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
 
     /**
      * Get the description property: The description of the alert rule.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -143,7 +152,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
 
     /**
      * Set the description property: The description of the alert rule.
-     *
+     * 
      * @param description the description value to set.
      * @return the ScheduledAlertRuleProperties object itself.
      */
@@ -154,7 +163,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
 
     /**
      * Get the displayName property: The display name for alerts created by this alert rule.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -163,7 +172,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
 
     /**
      * Set the displayName property: The display name for alerts created by this alert rule.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ScheduledAlertRuleProperties object itself.
      */
@@ -174,7 +183,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
 
     /**
      * Get the enabled property: Determines whether this alert rule is enabled or disabled.
-     *
+     * 
      * @return the enabled value.
      */
     public boolean enabled() {
@@ -183,7 +192,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
 
     /**
      * Set the enabled property: Determines whether this alert rule is enabled or disabled.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the ScheduledAlertRuleProperties object itself.
      */
@@ -194,7 +203,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
 
     /**
      * Get the lastModifiedUtc property: The last time that this alert rule has been modified.
-     *
+     * 
      * @return the lastModifiedUtc value.
      */
     public OffsetDateTime lastModifiedUtc() {
@@ -204,7 +213,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
     /**
      * Get the suppressionDuration property: The suppression (in ISO 8601 duration format) to wait since last time this
      * alert rule been triggered.
-     *
+     * 
      * @return the suppressionDuration value.
      */
     public Duration suppressionDuration() {
@@ -214,7 +223,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
     /**
      * Set the suppressionDuration property: The suppression (in ISO 8601 duration format) to wait since last time this
      * alert rule been triggered.
-     *
+     * 
      * @param suppressionDuration the suppressionDuration value to set.
      * @return the ScheduledAlertRuleProperties object itself.
      */
@@ -226,7 +235,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
     /**
      * Get the suppressionEnabled property: Determines whether the suppression for this alert rule is enabled or
      * disabled.
-     *
+     * 
      * @return the suppressionEnabled value.
      */
     public boolean suppressionEnabled() {
@@ -236,7 +245,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
     /**
      * Set the suppressionEnabled property: Determines whether the suppression for this alert rule is enabled or
      * disabled.
-     *
+     * 
      * @param suppressionEnabled the suppressionEnabled value to set.
      * @return the ScheduledAlertRuleProperties object itself.
      */
@@ -247,7 +256,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
 
     /**
      * Get the tactics property: The tactics of the alert rule.
-     *
+     * 
      * @return the tactics value.
      */
     public List<AttackTactic> tactics() {
@@ -256,7 +265,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
 
     /**
      * Set the tactics property: The tactics of the alert rule.
-     *
+     * 
      * @param tactics the tactics value to set.
      * @return the ScheduledAlertRuleProperties object itself.
      */
@@ -267,7 +276,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
 
     /**
      * Get the techniques property: The techniques of the alert rule.
-     *
+     * 
      * @return the techniques value.
      */
     public List<String> techniques() {
@@ -276,7 +285,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
 
     /**
      * Set the techniques property: The techniques of the alert rule.
-     *
+     * 
      * @param techniques the techniques value to set.
      * @return the ScheduledAlertRuleProperties object itself.
      */
@@ -288,7 +297,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
     /**
      * Get the incidentConfiguration property: The settings of the incidents that created from alerts triggered by this
      * analytics rule.
-     *
+     * 
      * @return the incidentConfiguration value.
      */
     public IncidentConfiguration incidentConfiguration() {
@@ -298,7 +307,7 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
     /**
      * Set the incidentConfiguration property: The settings of the incidents that created from alerts triggered by this
      * analytics rule.
-     *
+     * 
      * @param incidentConfiguration the incidentConfiguration value to set.
      * @return the ScheduledAlertRuleProperties object itself.
      */
@@ -307,70 +316,90 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduledAlertRuleProperties withQuery(String query) {
         super.withQuery(query);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduledAlertRuleProperties withQueryFrequency(Duration queryFrequency) {
         super.withQueryFrequency(queryFrequency);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduledAlertRuleProperties withQueryPeriod(Duration queryPeriod) {
         super.withQueryPeriod(queryPeriod);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduledAlertRuleProperties withSeverity(AlertSeverity severity) {
         super.withSeverity(severity);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduledAlertRuleProperties withTriggerOperator(TriggerOperator triggerOperator) {
         super.withTriggerOperator(triggerOperator);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduledAlertRuleProperties withTriggerThreshold(Integer triggerThreshold) {
         super.withTriggerThreshold(triggerThreshold);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduledAlertRuleProperties withEventGroupingSettings(EventGroupingSettings eventGroupingSettings) {
         super.withEventGroupingSettings(eventGroupingSettings);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduledAlertRuleProperties withCustomDetails(Map<String, String> customDetails) {
         super.withCustomDetails(customDetails);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduledAlertRuleProperties withEntityMappings(List<EntityMapping> entityMappings) {
         super.withEntityMappings(entityMappings);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduledAlertRuleProperties withAlertDetailsOverride(AlertDetailsOverride alertDetailsOverride) {
         super.withAlertDetailsOverride(alertDetailsOverride);
@@ -378,24 +407,30 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ScheduledAlertRuleProperties
+        withSentinelEntitiesMappings(List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        super.withSentinelEntitiesMappings(sentinelEntitiesMappings);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (displayName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property displayName in model ScheduledAlertRuleProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property displayName in model ScheduledAlertRuleProperties"));
         }
         if (suppressionDuration() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property suppressionDuration in model ScheduledAlertRuleProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property suppressionDuration in model ScheduledAlertRuleProperties"));
         }
         if (incidentConfiguration() != null) {
             incidentConfiguration().validate();

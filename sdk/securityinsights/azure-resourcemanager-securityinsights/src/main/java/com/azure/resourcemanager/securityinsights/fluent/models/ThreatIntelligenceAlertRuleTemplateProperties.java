@@ -14,7 +14,9 @@ import com.azure.resourcemanager.securityinsights.models.TemplateStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Threat Intelligence alert rule template properties. */
+/**
+ * Threat Intelligence alert rule template properties.
+ */
 @Fluent
 public final class ThreatIntelligenceAlertRuleTemplateProperties extends AlertRuleTemplateWithMitreProperties {
     /*
@@ -24,8 +26,14 @@ public final class ThreatIntelligenceAlertRuleTemplateProperties extends AlertRu
     private AlertSeverity severity;
 
     /**
+     * Creates an instance of ThreatIntelligenceAlertRuleTemplateProperties class.
+     */
+    public ThreatIntelligenceAlertRuleTemplateProperties() {
+    }
+
+    /**
      * Get the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @return the severity value.
      */
     public AlertSeverity severity() {
@@ -34,7 +42,7 @@ public final class ThreatIntelligenceAlertRuleTemplateProperties extends AlertRu
 
     /**
      * Set the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @param severity the severity value to set.
      * @return the ThreatIntelligenceAlertRuleTemplateProperties object itself.
      */
@@ -43,51 +51,65 @@ public final class ThreatIntelligenceAlertRuleTemplateProperties extends AlertRu
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ThreatIntelligenceAlertRuleTemplateProperties withTactics(List<AttackTactic> tactics) {
         super.withTactics(tactics);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ThreatIntelligenceAlertRuleTemplateProperties withTechniques(List<String> techniques) {
         super.withTechniques(techniques);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ThreatIntelligenceAlertRuleTemplateProperties withAlertRulesCreatedByTemplateCount(
-        Integer alertRulesCreatedByTemplateCount) {
+    public ThreatIntelligenceAlertRuleTemplateProperties
+        withAlertRulesCreatedByTemplateCount(Integer alertRulesCreatedByTemplateCount) {
         super.withAlertRulesCreatedByTemplateCount(alertRulesCreatedByTemplateCount);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ThreatIntelligenceAlertRuleTemplateProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ThreatIntelligenceAlertRuleTemplateProperties withDisplayName(String displayName) {
         super.withDisplayName(displayName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ThreatIntelligenceAlertRuleTemplateProperties withRequiredDataConnectors(
-        List<AlertRuleTemplateDataSource> requiredDataConnectors) {
+    public ThreatIntelligenceAlertRuleTemplateProperties
+        withRequiredDataConnectors(List<AlertRuleTemplateDataSource> requiredDataConnectors) {
         super.withRequiredDataConnectors(requiredDataConnectors);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ThreatIntelligenceAlertRuleTemplateProperties withStatus(TemplateStatus status) {
         super.withStatus(status);
@@ -96,17 +118,15 @@ public final class ThreatIntelligenceAlertRuleTemplateProperties extends AlertRu
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (severity() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property severity in model ThreatIntelligenceAlertRuleTemplateProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property severity in model ThreatIntelligenceAlertRuleTemplateProperties"));
         }
     }
 

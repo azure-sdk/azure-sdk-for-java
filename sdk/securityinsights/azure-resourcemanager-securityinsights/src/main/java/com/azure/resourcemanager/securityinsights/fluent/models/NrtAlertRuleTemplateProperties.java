@@ -12,13 +12,16 @@ import com.azure.resourcemanager.securityinsights.models.AlertSeverity;
 import com.azure.resourcemanager.securityinsights.models.AttackTactic;
 import com.azure.resourcemanager.securityinsights.models.EntityMapping;
 import com.azure.resourcemanager.securityinsights.models.EventGroupingSettings;
+import com.azure.resourcemanager.securityinsights.models.SentinelEntityMapping;
 import com.azure.resourcemanager.securityinsights.models.TemplateStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** NRT alert rule template properties. */
+/**
+ * NRT alert rule template properties.
+ */
 @Fluent
 public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithMitreProperties {
     /*
@@ -64,9 +67,21 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
     @JsonProperty(value = "eventGroupingSettings")
     private EventGroupingSettings eventGroupingSettings;
 
+    /*
+     * Array of the sentinel entity mappings of the alert rule
+     */
+    @JsonProperty(value = "sentinelEntitiesMappings")
+    private List<SentinelEntityMapping> sentinelEntitiesMappings;
+
+    /**
+     * Creates an instance of NrtAlertRuleTemplateProperties class.
+     */
+    public NrtAlertRuleTemplateProperties() {
+    }
+
     /**
      * Get the query property: The query that creates alerts for this rule.
-     *
+     * 
      * @return the query value.
      */
     public String query() {
@@ -75,7 +90,7 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
 
     /**
      * Set the query property: The query that creates alerts for this rule.
-     *
+     * 
      * @param query the query value to set.
      * @return the NrtAlertRuleTemplateProperties object itself.
      */
@@ -86,7 +101,7 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
 
     /**
      * Get the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @return the severity value.
      */
     public AlertSeverity severity() {
@@ -95,7 +110,7 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
 
     /**
      * Set the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @param severity the severity value to set.
      * @return the NrtAlertRuleTemplateProperties object itself.
      */
@@ -107,7 +122,7 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
     /**
      * Get the version property: The version of this template - in format &lt;a.b.c&gt;, where all are numbers. For
      * example &lt;1.0.2&gt;.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -117,7 +132,7 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
     /**
      * Set the version property: The version of this template - in format &lt;a.b.c&gt;, where all are numbers. For
      * example &lt;1.0.2&gt;.
-     *
+     * 
      * @param version the version value to set.
      * @return the NrtAlertRuleTemplateProperties object itself.
      */
@@ -128,7 +143,7 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
 
     /**
      * Get the customDetails property: Dictionary of string key-value pairs of columns to be attached to the alert.
-     *
+     * 
      * @return the customDetails value.
      */
     public Map<String, String> customDetails() {
@@ -137,7 +152,7 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
 
     /**
      * Set the customDetails property: Dictionary of string key-value pairs of columns to be attached to the alert.
-     *
+     * 
      * @param customDetails the customDetails value to set.
      * @return the NrtAlertRuleTemplateProperties object itself.
      */
@@ -148,7 +163,7 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
 
     /**
      * Get the entityMappings property: Array of the entity mappings of the alert rule.
-     *
+     * 
      * @return the entityMappings value.
      */
     public List<EntityMapping> entityMappings() {
@@ -157,7 +172,7 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
 
     /**
      * Set the entityMappings property: Array of the entity mappings of the alert rule.
-     *
+     * 
      * @param entityMappings the entityMappings value to set.
      * @return the NrtAlertRuleTemplateProperties object itself.
      */
@@ -168,7 +183,7 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
 
     /**
      * Get the alertDetailsOverride property: The alert details override settings.
-     *
+     * 
      * @return the alertDetailsOverride value.
      */
     public AlertDetailsOverride alertDetailsOverride() {
@@ -177,7 +192,7 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
 
     /**
      * Set the alertDetailsOverride property: The alert details override settings.
-     *
+     * 
      * @param alertDetailsOverride the alertDetailsOverride value to set.
      * @return the NrtAlertRuleTemplateProperties object itself.
      */
@@ -188,7 +203,7 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
 
     /**
      * Get the eventGroupingSettings property: The event grouping settings.
-     *
+     * 
      * @return the eventGroupingSettings value.
      */
     public EventGroupingSettings eventGroupingSettings() {
@@ -197,7 +212,7 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
 
     /**
      * Set the eventGroupingSettings property: The event grouping settings.
-     *
+     * 
      * @param eventGroupingSettings the eventGroupingSettings value to set.
      * @return the NrtAlertRuleTemplateProperties object itself.
      */
@@ -206,51 +221,86 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @return the sentinelEntitiesMappings value.
+     */
+    public List<SentinelEntityMapping> sentinelEntitiesMappings() {
+        return this.sentinelEntitiesMappings;
+    }
+
+    /**
+     * Set the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     * 
+     * @param sentinelEntitiesMappings the sentinelEntitiesMappings value to set.
+     * @return the NrtAlertRuleTemplateProperties object itself.
+     */
+    public NrtAlertRuleTemplateProperties
+        withSentinelEntitiesMappings(List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        this.sentinelEntitiesMappings = sentinelEntitiesMappings;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NrtAlertRuleTemplateProperties withTactics(List<AttackTactic> tactics) {
         super.withTactics(tactics);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NrtAlertRuleTemplateProperties withTechniques(List<String> techniques) {
         super.withTechniques(techniques);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public NrtAlertRuleTemplateProperties withAlertRulesCreatedByTemplateCount(
-        Integer alertRulesCreatedByTemplateCount) {
+    public NrtAlertRuleTemplateProperties
+        withAlertRulesCreatedByTemplateCount(Integer alertRulesCreatedByTemplateCount) {
         super.withAlertRulesCreatedByTemplateCount(alertRulesCreatedByTemplateCount);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NrtAlertRuleTemplateProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NrtAlertRuleTemplateProperties withDisplayName(String displayName) {
         super.withDisplayName(displayName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public NrtAlertRuleTemplateProperties withRequiredDataConnectors(
-        List<AlertRuleTemplateDataSource> requiredDataConnectors) {
+    public NrtAlertRuleTemplateProperties
+        withRequiredDataConnectors(List<AlertRuleTemplateDataSource> requiredDataConnectors) {
         super.withRequiredDataConnectors(requiredDataConnectors);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NrtAlertRuleTemplateProperties withStatus(TemplateStatus status) {
         super.withStatus(status);
@@ -259,7 +309,7 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
@@ -273,6 +323,9 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
         }
         if (eventGroupingSettings() != null) {
             eventGroupingSettings().validate();
+        }
+        if (sentinelEntitiesMappings() != null) {
+            sentinelEntitiesMappings().forEach(e -> e.validate());
         }
     }
 }

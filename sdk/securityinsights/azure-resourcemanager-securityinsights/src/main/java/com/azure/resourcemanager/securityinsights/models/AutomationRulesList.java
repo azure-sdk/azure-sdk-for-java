@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.AutomationRuleIn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The AutomationRulesList model. */
+/**
+ * The AutomationRulesList model.
+ */
 @Fluent
 public final class AutomationRulesList {
     /*
@@ -25,8 +27,14 @@ public final class AutomationRulesList {
     private String nextLink;
 
     /**
+     * Creates an instance of AutomationRulesList class.
+     */
+    public AutomationRulesList() {
+    }
+
+    /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<AutomationRuleInner> value() {
@@ -35,7 +43,7 @@ public final class AutomationRulesList {
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the AutomationRulesList object itself.
      */
@@ -46,7 +54,7 @@ public final class AutomationRulesList {
 
     /**
      * Get the nextLink property: The nextLink property.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -55,7 +63,7 @@ public final class AutomationRulesList {
 
     /**
      * Set the nextLink property: The nextLink property.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the AutomationRulesList object itself.
      */
@@ -66,7 +74,7 @@ public final class AutomationRulesList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

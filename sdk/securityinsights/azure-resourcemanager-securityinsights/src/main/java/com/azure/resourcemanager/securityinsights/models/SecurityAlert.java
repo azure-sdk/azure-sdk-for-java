@@ -14,7 +14,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** Represents a security alert entity. */
+/**
+ * Represents a security alert entity.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("SecurityAlert")
 @Fluent
@@ -26,8 +28,14 @@ public final class SecurityAlert extends EntityInner {
     private SecurityAlertProperties innerProperties;
 
     /**
+     * Creates an instance of SecurityAlert class.
+     */
+    public SecurityAlert() {
+    }
+
+    /**
      * Get the innerProperties property: SecurityAlert entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SecurityAlertProperties innerProperties() {
@@ -36,7 +44,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the alertDisplayName property: The display name of the alert.
-     *
+     * 
      * @return the alertDisplayName value.
      */
     public String alertDisplayName() {
@@ -45,7 +53,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the alertType property: The type name of the alert.
-     *
+     * 
      * @return the alertType value.
      */
     public String alertType() {
@@ -54,7 +62,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the compromisedEntity property: Display name of the main entity being reported on.
-     *
+     * 
      * @return the compromisedEntity value.
      */
     public String compromisedEntity() {
@@ -63,7 +71,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the confidenceLevel property: The confidence level of this alert.
-     *
+     * 
      * @return the confidenceLevel value.
      */
     public ConfidenceLevel confidenceLevel() {
@@ -72,7 +80,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the confidenceReasons property: The confidence reasons.
-     *
+     * 
      * @return the confidenceReasons value.
      */
     public List<SecurityAlertPropertiesConfidenceReasonsItem> confidenceReasons() {
@@ -81,7 +89,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the confidenceScore property: The confidence score of the alert.
-     *
+     * 
      * @return the confidenceScore value.
      */
     public Double confidenceScore() {
@@ -91,7 +99,7 @@ public final class SecurityAlert extends EntityInner {
     /**
      * Get the confidenceScoreStatus property: The confidence score calculation status, i.e. indicating if score
      * calculation is pending for this alert, not applicable or final.
-     *
+     * 
      * @return the confidenceScoreStatus value.
      */
     public ConfidenceScoreStatus confidenceScoreStatus() {
@@ -100,7 +108,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the description property: Alert description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -110,7 +118,7 @@ public final class SecurityAlert extends EntityInner {
     /**
      * Get the endTimeUtc property: The impact end time of the alert (the time of the last event contributing to the
      * alert).
-     *
+     * 
      * @return the endTimeUtc value.
      */
     public OffsetDateTime endTimeUtc() {
@@ -119,7 +127,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the intent property: Holds the alert intent stage(s) mapping for this alert.
-     *
+     * 
      * @return the intent value.
      */
     public KillChainIntent intent() {
@@ -128,7 +136,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the providerAlertId property: The identifier of the alert inside the product which generated the alert.
-     *
+     * 
      * @return the providerAlertId value.
      */
     public String providerAlertId() {
@@ -137,7 +145,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the processingEndTime property: The time the alert was made available for consumption.
-     *
+     * 
      * @return the processingEndTime value.
      */
     public OffsetDateTime processingEndTime() {
@@ -146,7 +154,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the productComponentName property: The name of a component inside the product which generated the alert.
-     *
+     * 
      * @return the productComponentName value.
      */
     public String productComponentName() {
@@ -155,7 +163,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the productName property: The name of the product which published this alert.
-     *
+     * 
      * @return the productName value.
      */
     public String productName() {
@@ -164,7 +172,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the productVersion property: The version of the product generating the alert.
-     *
+     * 
      * @return the productVersion value.
      */
     public String productVersion() {
@@ -173,7 +181,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the remediationSteps property: Manual action items to take to remediate the alert.
-     *
+     * 
      * @return the remediationSteps value.
      */
     public List<String> remediationSteps() {
@@ -182,7 +190,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the severity property: The severity of the alert.
-     *
+     * 
      * @return the severity value.
      */
     public AlertSeverity severity() {
@@ -191,7 +199,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Set the severity property: The severity of the alert.
-     *
+     * 
      * @param severity the severity value to set.
      * @return the SecurityAlert object itself.
      */
@@ -206,7 +214,7 @@ public final class SecurityAlert extends EntityInner {
     /**
      * Get the startTimeUtc property: The impact start time of the alert (the time of the first event contributing to
      * the alert).
-     *
+     * 
      * @return the startTimeUtc value.
      */
     public OffsetDateTime startTimeUtc() {
@@ -215,7 +223,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the status property: The lifecycle status of the alert.
-     *
+     * 
      * @return the status value.
      */
     public AlertStatus status() {
@@ -224,7 +232,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the systemAlertId property: Holds the product identifier of the alert for the product.
-     *
+     * 
      * @return the systemAlertId value.
      */
     public String systemAlertId() {
@@ -233,7 +241,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the tactics property: The tactics of the alert.
-     *
+     * 
      * @return the tactics value.
      */
     public List<AttackTactic> tactics() {
@@ -242,7 +250,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the timeGenerated property: The time the alert was generated.
-     *
+     * 
      * @return the timeGenerated value.
      */
     public OffsetDateTime timeGenerated() {
@@ -251,7 +259,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the vendorName property: The name of the vendor that raise the alert.
-     *
+     * 
      * @return the vendorName value.
      */
     public String vendorName() {
@@ -260,7 +268,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the alertLink property: The uri link of the alert.
-     *
+     * 
      * @return the alertLink value.
      */
     public String alertLink() {
@@ -269,7 +277,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Get the resourceIdentifiers property: The list of resource identifiers of the alert.
-     *
+     * 
      * @return the resourceIdentifiers value.
      */
     public List<Object> resourceIdentifiers() {
@@ -279,7 +287,7 @@ public final class SecurityAlert extends EntityInner {
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -289,7 +297,7 @@ public final class SecurityAlert extends EntityInner {
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -298,7 +306,7 @@ public final class SecurityAlert extends EntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

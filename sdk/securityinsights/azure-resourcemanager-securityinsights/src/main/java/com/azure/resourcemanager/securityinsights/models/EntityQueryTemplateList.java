@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.EntityQueryTempl
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of all the entity query templates. */
+/**
+ * List of all the entity query templates.
+ */
 @Fluent
 public final class EntityQueryTemplateList {
     /*
@@ -26,8 +28,14 @@ public final class EntityQueryTemplateList {
     private List<EntityQueryTemplateInner> value;
 
     /**
+     * Creates an instance of EntityQueryTemplateList class.
+     */
+    public EntityQueryTemplateList() {
+    }
+
+    /**
      * Get the nextLink property: URL to fetch the next set of entity query templates.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -36,7 +44,7 @@ public final class EntityQueryTemplateList {
 
     /**
      * Get the value property: Array of entity query templates.
-     *
+     * 
      * @return the value value.
      */
     public List<EntityQueryTemplateInner> value() {
@@ -45,7 +53,7 @@ public final class EntityQueryTemplateList {
 
     /**
      * Set the value property: Array of entity query templates.
-     *
+     * 
      * @param value the value value to set.
      * @return the EntityQueryTemplateList object itself.
      */
@@ -56,14 +64,13 @@ public final class EntityQueryTemplateList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model EntityQueryTemplateList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model EntityQueryTemplateList"));
         } else {
             value().forEach(e -> e.validate());
         }

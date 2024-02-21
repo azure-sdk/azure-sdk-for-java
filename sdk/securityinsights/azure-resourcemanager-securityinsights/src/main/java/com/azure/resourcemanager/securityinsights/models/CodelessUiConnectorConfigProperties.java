@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Config to describe the instructions blade. */
+/**
+ * Config to describe the instructions blade.
+ */
 @Fluent
 public final class CodelessUiConnectorConfigProperties {
     /*
@@ -85,8 +87,14 @@ public final class CodelessUiConnectorConfigProperties {
     private List<CodelessUiConnectorConfigPropertiesInstructionStepsItem> instructionSteps;
 
     /**
+     * Creates an instance of CodelessUiConnectorConfigProperties class.
+     */
+    public CodelessUiConnectorConfigProperties() {
+    }
+
+    /**
      * Get the title property: Connector blade title.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -95,7 +103,7 @@ public final class CodelessUiConnectorConfigProperties {
 
     /**
      * Set the title property: Connector blade title.
-     *
+     * 
      * @param title the title value to set.
      * @return the CodelessUiConnectorConfigProperties object itself.
      */
@@ -106,7 +114,7 @@ public final class CodelessUiConnectorConfigProperties {
 
     /**
      * Get the publisher property: Connector publisher name.
-     *
+     * 
      * @return the publisher value.
      */
     public String publisher() {
@@ -115,7 +123,7 @@ public final class CodelessUiConnectorConfigProperties {
 
     /**
      * Set the publisher property: Connector publisher name.
-     *
+     * 
      * @param publisher the publisher value to set.
      * @return the CodelessUiConnectorConfigProperties object itself.
      */
@@ -126,7 +134,7 @@ public final class CodelessUiConnectorConfigProperties {
 
     /**
      * Get the descriptionMarkdown property: Connector description.
-     *
+     * 
      * @return the descriptionMarkdown value.
      */
     public String descriptionMarkdown() {
@@ -135,7 +143,7 @@ public final class CodelessUiConnectorConfigProperties {
 
     /**
      * Set the descriptionMarkdown property: Connector description.
-     *
+     * 
      * @param descriptionMarkdown the descriptionMarkdown value to set.
      * @return the CodelessUiConnectorConfigProperties object itself.
      */
@@ -147,7 +155,7 @@ public final class CodelessUiConnectorConfigProperties {
     /**
      * Get the customImage property: An optional custom image to be used when displaying the connector within Azure
      * Sentinel's connector's gallery.
-     *
+     * 
      * @return the customImage value.
      */
     public String customImage() {
@@ -157,7 +165,7 @@ public final class CodelessUiConnectorConfigProperties {
     /**
      * Set the customImage property: An optional custom image to be used when displaying the connector within Azure
      * Sentinel's connector's gallery.
-     *
+     * 
      * @param customImage the customImage value to set.
      * @return the CodelessUiConnectorConfigProperties object itself.
      */
@@ -168,7 +176,7 @@ public final class CodelessUiConnectorConfigProperties {
 
     /**
      * Get the graphQueriesTableName property: Name of the table the connector will insert the data to.
-     *
+     * 
      * @return the graphQueriesTableName value.
      */
     public String graphQueriesTableName() {
@@ -177,7 +185,7 @@ public final class CodelessUiConnectorConfigProperties {
 
     /**
      * Set the graphQueriesTableName property: Name of the table the connector will insert the data to.
-     *
+     * 
      * @param graphQueriesTableName the graphQueriesTableName value to set.
      * @return the CodelessUiConnectorConfigProperties object itself.
      */
@@ -188,7 +196,7 @@ public final class CodelessUiConnectorConfigProperties {
 
     /**
      * Get the graphQueries property: The graph query to show the current data status.
-     *
+     * 
      * @return the graphQueries value.
      */
     public List<CodelessUiConnectorConfigPropertiesGraphQueriesItem> graphQueries() {
@@ -197,19 +205,19 @@ public final class CodelessUiConnectorConfigProperties {
 
     /**
      * Set the graphQueries property: The graph query to show the current data status.
-     *
+     * 
      * @param graphQueries the graphQueries value to set.
      * @return the CodelessUiConnectorConfigProperties object itself.
      */
-    public CodelessUiConnectorConfigProperties withGraphQueries(
-        List<CodelessUiConnectorConfigPropertiesGraphQueriesItem> graphQueries) {
+    public CodelessUiConnectorConfigProperties
+        withGraphQueries(List<CodelessUiConnectorConfigPropertiesGraphQueriesItem> graphQueries) {
         this.graphQueries = graphQueries;
         return this;
     }
 
     /**
      * Get the sampleQueries property: The sample queries for the connector.
-     *
+     * 
      * @return the sampleQueries value.
      */
     public List<CodelessUiConnectorConfigPropertiesSampleQueriesItem> sampleQueries() {
@@ -218,19 +226,19 @@ public final class CodelessUiConnectorConfigProperties {
 
     /**
      * Set the sampleQueries property: The sample queries for the connector.
-     *
+     * 
      * @param sampleQueries the sampleQueries value to set.
      * @return the CodelessUiConnectorConfigProperties object itself.
      */
-    public CodelessUiConnectorConfigProperties withSampleQueries(
-        List<CodelessUiConnectorConfigPropertiesSampleQueriesItem> sampleQueries) {
+    public CodelessUiConnectorConfigProperties
+        withSampleQueries(List<CodelessUiConnectorConfigPropertiesSampleQueriesItem> sampleQueries) {
         this.sampleQueries = sampleQueries;
         return this;
     }
 
     /**
      * Get the dataTypes property: Data types to check for last data received.
-     *
+     * 
      * @return the dataTypes value.
      */
     public List<CodelessUiConnectorConfigPropertiesDataTypesItem> dataTypes() {
@@ -239,19 +247,19 @@ public final class CodelessUiConnectorConfigProperties {
 
     /**
      * Set the dataTypes property: Data types to check for last data received.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the CodelessUiConnectorConfigProperties object itself.
      */
-    public CodelessUiConnectorConfigProperties withDataTypes(
-        List<CodelessUiConnectorConfigPropertiesDataTypesItem> dataTypes) {
+    public CodelessUiConnectorConfigProperties
+        withDataTypes(List<CodelessUiConnectorConfigPropertiesDataTypesItem> dataTypes) {
         this.dataTypes = dataTypes;
         return this;
     }
 
     /**
      * Get the connectivityCriteria property: Define the way the connector check connectivity.
-     *
+     * 
      * @return the connectivityCriteria value.
      */
     public List<CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem> connectivityCriteria() {
@@ -260,7 +268,7 @@ public final class CodelessUiConnectorConfigProperties {
 
     /**
      * Set the connectivityCriteria property: Define the way the connector check connectivity.
-     *
+     * 
      * @param connectivityCriteria the connectivityCriteria value to set.
      * @return the CodelessUiConnectorConfigProperties object itself.
      */
@@ -272,7 +280,7 @@ public final class CodelessUiConnectorConfigProperties {
 
     /**
      * Get the availability property: Connector Availability Status.
-     *
+     * 
      * @return the availability value.
      */
     public Availability availability() {
@@ -281,7 +289,7 @@ public final class CodelessUiConnectorConfigProperties {
 
     /**
      * Set the availability property: Connector Availability Status.
-     *
+     * 
      * @param availability the availability value to set.
      * @return the CodelessUiConnectorConfigProperties object itself.
      */
@@ -292,7 +300,7 @@ public final class CodelessUiConnectorConfigProperties {
 
     /**
      * Get the permissions property: Permissions required for the connector.
-     *
+     * 
      * @return the permissions value.
      */
     public Permissions permissions() {
@@ -301,7 +309,7 @@ public final class CodelessUiConnectorConfigProperties {
 
     /**
      * Set the permissions property: Permissions required for the connector.
-     *
+     * 
      * @param permissions the permissions value to set.
      * @return the CodelessUiConnectorConfigProperties object itself.
      */
@@ -312,7 +320,7 @@ public final class CodelessUiConnectorConfigProperties {
 
     /**
      * Get the instructionSteps property: Instruction steps to enable the connector.
-     *
+     * 
      * @return the instructionSteps value.
      */
     public List<CodelessUiConnectorConfigPropertiesInstructionStepsItem> instructionSteps() {
@@ -321,100 +329,77 @@ public final class CodelessUiConnectorConfigProperties {
 
     /**
      * Set the instructionSteps property: Instruction steps to enable the connector.
-     *
+     * 
      * @param instructionSteps the instructionSteps value to set.
      * @return the CodelessUiConnectorConfigProperties object itself.
      */
-    public CodelessUiConnectorConfigProperties withInstructionSteps(
-        List<CodelessUiConnectorConfigPropertiesInstructionStepsItem> instructionSteps) {
+    public CodelessUiConnectorConfigProperties
+        withInstructionSteps(List<CodelessUiConnectorConfigPropertiesInstructionStepsItem> instructionSteps) {
         this.instructionSteps = instructionSteps;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (title() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property title in model CodelessUiConnectorConfigProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property title in model CodelessUiConnectorConfigProperties"));
         }
         if (publisher() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property publisher in model CodelessUiConnectorConfigProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property publisher in model CodelessUiConnectorConfigProperties"));
         }
         if (descriptionMarkdown() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property descriptionMarkdown in model CodelessUiConnectorConfigProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property descriptionMarkdown in model CodelessUiConnectorConfigProperties"));
         }
         if (graphQueriesTableName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property graphQueriesTableName in model"
-                            + " CodelessUiConnectorConfigProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property graphQueriesTableName in model CodelessUiConnectorConfigProperties"));
         }
         if (graphQueries() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property graphQueries in model CodelessUiConnectorConfigProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property graphQueries in model CodelessUiConnectorConfigProperties"));
         } else {
             graphQueries().forEach(e -> e.validate());
         }
         if (sampleQueries() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sampleQueries in model CodelessUiConnectorConfigProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sampleQueries in model CodelessUiConnectorConfigProperties"));
         } else {
             sampleQueries().forEach(e -> e.validate());
         }
         if (dataTypes() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dataTypes in model CodelessUiConnectorConfigProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property dataTypes in model CodelessUiConnectorConfigProperties"));
         } else {
             dataTypes().forEach(e -> e.validate());
         }
         if (connectivityCriteria() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property connectivityCriteria in model CodelessUiConnectorConfigProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property connectivityCriteria in model CodelessUiConnectorConfigProperties"));
         } else {
             connectivityCriteria().forEach(e -> e.validate());
         }
         if (availability() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property availability in model CodelessUiConnectorConfigProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property availability in model CodelessUiConnectorConfigProperties"));
         } else {
             availability().validate();
         }
         if (permissions() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property permissions in model CodelessUiConnectorConfigProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property permissions in model CodelessUiConnectorConfigProperties"));
         } else {
             permissions().validate();
         }
         if (instructionSteps() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property instructionSteps in model CodelessUiConnectorConfigProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property instructionSteps in model CodelessUiConnectorConfigProperties"));
         } else {
             instructionSteps().forEach(e -> e.validate());
         }

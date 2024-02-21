@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.EntityQueryInner
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of all the entity queries. */
+/**
+ * List of all the entity queries.
+ */
 @Fluent
 public final class EntityQueryList {
     /*
@@ -26,8 +28,14 @@ public final class EntityQueryList {
     private List<EntityQueryInner> value;
 
     /**
+     * Creates an instance of EntityQueryList class.
+     */
+    public EntityQueryList() {
+    }
+
+    /**
      * Get the nextLink property: URL to fetch the next set of entity queries.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -36,7 +44,7 @@ public final class EntityQueryList {
 
     /**
      * Get the value property: Array of entity queries.
-     *
+     * 
      * @return the value value.
      */
     public List<EntityQueryInner> value() {
@@ -45,7 +53,7 @@ public final class EntityQueryList {
 
     /**
      * Set the value property: Array of entity queries.
-     *
+     * 
      * @param value the value value to set.
      * @return the EntityQueryList object itself.
      */
@@ -56,14 +64,13 @@ public final class EntityQueryList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model EntityQueryList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model EntityQueryList"));
         } else {
             value().forEach(e -> e.validate());
         }
