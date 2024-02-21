@@ -51,6 +51,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "DrillSource", value = DrillSource.class),
     @JsonSubTypes.Type(name = "EloquaSource", value = EloquaSource.class),
     @JsonSubTypes.Type(name = "GoogleBigQuerySource", value = GoogleBigQuerySource.class),
+    @JsonSubTypes.Type(name = "GoogleBigQueryV2Source", value = GoogleBigQueryV2Source.class),
     @JsonSubTypes.Type(name = "GreenplumSource", value = GreenplumSource.class),
     @JsonSubTypes.Type(name = "HBaseSource", value = HBaseSource.class),
     @JsonSubTypes.Type(name = "HiveSource", value = HiveSource.class),

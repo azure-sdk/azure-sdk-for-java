@@ -1639,6 +1639,16 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.datafactory.models.GoogleBigQueryV2ObjectDataset",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.datafactory.fluent.models.GoogleBigQueryV2DatasetTypeProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.datafactory.models.GreenplumTableDataset",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -2894,6 +2904,16 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.datafactory.models.GoogleBigQueryV2LinkedService",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.datafactory.fluent.models.GoogleBigQueryV2LinkedServiceTypeProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.datafactory.models.GreenplumLinkedService",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -3980,6 +4000,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.datafactory.models.GoogleBigQuerySource",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.datafactory.models.GoogleBigQueryV2Source",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -5335,6 +5360,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.datafactory.models.GoogleBigQueryAuthenticationType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.datafactory.models.GoogleBigQueryV2AuthenticationType",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

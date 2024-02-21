@@ -104,6 +104,7 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "Drill", value = DrillLinkedService.class),
     @JsonSubTypes.Type(name = "Eloqua", value = EloquaLinkedService.class),
     @JsonSubTypes.Type(name = "GoogleBigQuery", value = GoogleBigQueryLinkedService.class),
+    @JsonSubTypes.Type(name = "GoogleBigQueryV2", value = GoogleBigQueryV2LinkedService.class),
     @JsonSubTypes.Type(name = "Greenplum", value = GreenplumLinkedService.class),
     @JsonSubTypes.Type(name = "HBase", value = HBaseLinkedService.class),
     @JsonSubTypes.Type(name = "Hive", value = HiveLinkedService.class),
