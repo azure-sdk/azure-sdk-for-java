@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 import java.util.Map;
 
-/** Customer disk job details. */
+/**
+ * Customer disk job details.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobDetailsType")
 @JsonTypeName("DataBoxCustomerDisk")
 @Fluent
@@ -56,14 +58,16 @@ public final class DataBoxCustomerDiskJobDetails extends JobDetails {
     @JsonProperty(value = "enableManifestBackup")
     private Boolean enableManifestBackup;
 
-    /** Creates an instance of DataBoxCustomerDiskJobDetails class. */
+    /**
+     * Creates an instance of DataBoxCustomerDiskJobDetails class.
+     */
     public DataBoxCustomerDiskJobDetails() {
     }
 
     /**
      * Get the importDiskDetailsCollection property: Contains the map of disk serial number to the disk details for
      * import jobs.
-     *
+     * 
      * @return the importDiskDetailsCollection value.
      */
     public Map<String, ImportDiskDetails> importDiskDetailsCollection() {
@@ -73,12 +77,12 @@ public final class DataBoxCustomerDiskJobDetails extends JobDetails {
     /**
      * Set the importDiskDetailsCollection property: Contains the map of disk serial number to the disk details for
      * import jobs.
-     *
+     * 
      * @param importDiskDetailsCollection the importDiskDetailsCollection value to set.
      * @return the DataBoxCustomerDiskJobDetails object itself.
      */
-    public DataBoxCustomerDiskJobDetails withImportDiskDetailsCollection(
-        Map<String, ImportDiskDetails> importDiskDetailsCollection) {
+    public DataBoxCustomerDiskJobDetails
+        withImportDiskDetailsCollection(Map<String, ImportDiskDetails> importDiskDetailsCollection) {
         this.importDiskDetailsCollection = importDiskDetailsCollection;
         return this;
     }
@@ -86,7 +90,7 @@ public final class DataBoxCustomerDiskJobDetails extends JobDetails {
     /**
      * Get the exportDiskDetailsCollection property: Contains the map of disk serial number to the disk details for
      * export jobs.
-     *
+     * 
      * @return the exportDiskDetailsCollection value.
      */
     public Map<String, ExportDiskDetails> exportDiskDetailsCollection() {
@@ -95,7 +99,7 @@ public final class DataBoxCustomerDiskJobDetails extends JobDetails {
 
     /**
      * Get the copyProgress property: Copy progress per disk.
-     *
+     * 
      * @return the copyProgress value.
      */
     public List<DataBoxCustomerDiskCopyProgress> copyProgress() {
@@ -104,7 +108,7 @@ public final class DataBoxCustomerDiskJobDetails extends JobDetails {
 
     /**
      * Get the deliverToDcPackageDetails property: Delivery package shipping details.
-     *
+     * 
      * @return the deliverToDcPackageDetails value.
      */
     public PackageCarrierInfo deliverToDcPackageDetails() {
@@ -113,7 +117,7 @@ public final class DataBoxCustomerDiskJobDetails extends JobDetails {
 
     /**
      * Get the returnToCustomerPackageDetails property: Return package shipping details.
-     *
+     * 
      * @return the returnToCustomerPackageDetails value.
      */
     public PackageCarrierDetails returnToCustomerPackageDetails() {
@@ -122,12 +126,12 @@ public final class DataBoxCustomerDiskJobDetails extends JobDetails {
 
     /**
      * Set the returnToCustomerPackageDetails property: Return package shipping details.
-     *
+     * 
      * @param returnToCustomerPackageDetails the returnToCustomerPackageDetails value to set.
      * @return the DataBoxCustomerDiskJobDetails object itself.
      */
-    public DataBoxCustomerDiskJobDetails withReturnToCustomerPackageDetails(
-        PackageCarrierDetails returnToCustomerPackageDetails) {
+    public DataBoxCustomerDiskJobDetails
+        withReturnToCustomerPackageDetails(PackageCarrierDetails returnToCustomerPackageDetails) {
         this.returnToCustomerPackageDetails = returnToCustomerPackageDetails;
         return this;
     }
@@ -135,7 +139,7 @@ public final class DataBoxCustomerDiskJobDetails extends JobDetails {
     /**
      * Get the enableManifestBackup property: Flag to indicate if disk manifest should be backed-up in the Storage
      * Account.
-     *
+     * 
      * @return the enableManifestBackup value.
      */
     public Boolean enableManifestBackup() {
@@ -145,7 +149,7 @@ public final class DataBoxCustomerDiskJobDetails extends JobDetails {
     /**
      * Set the enableManifestBackup property: Flag to indicate if disk manifest should be backed-up in the Storage
      * Account.
-     *
+     * 
      * @param enableManifestBackup the enableManifestBackup value to set.
      * @return the DataBoxCustomerDiskJobDetails object itself.
      */
@@ -154,56 +158,72 @@ public final class DataBoxCustomerDiskJobDetails extends JobDetails {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxCustomerDiskJobDetails withContactDetails(ContactDetails contactDetails) {
         super.withContactDetails(contactDetails);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxCustomerDiskJobDetails withShippingAddress(ShippingAddress shippingAddress) {
         super.withShippingAddress(shippingAddress);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxCustomerDiskJobDetails withDataImportDetails(List<DataImportDetails> dataImportDetails) {
         super.withDataImportDetails(dataImportDetails);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxCustomerDiskJobDetails withDataExportDetails(List<DataExportDetails> dataExportDetails) {
         super.withDataExportDetails(dataExportDetails);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxCustomerDiskJobDetails withPreferences(Preferences preferences) {
         super.withPreferences(preferences);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxCustomerDiskJobDetails withReverseShippingDetails(ReverseShippingDetails reverseShippingDetails) {
         super.withReverseShippingDetails(reverseShippingDetails);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxCustomerDiskJobDetails withKeyEncryptionKey(KeyEncryptionKey keyEncryptionKey) {
         super.withKeyEncryptionKey(keyEncryptionKey);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxCustomerDiskJobDetails withExpectedDataSizeInTeraBytes(Integer expectedDataSizeInTeraBytes) {
         super.withExpectedDataSizeInTeraBytes(expectedDataSizeInTeraBytes);
@@ -212,31 +232,25 @@ public final class DataBoxCustomerDiskJobDetails extends JobDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (importDiskDetailsCollection() != null) {
-            importDiskDetailsCollection()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            importDiskDetailsCollection().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
         if (exportDiskDetailsCollection() != null) {
-            exportDiskDetailsCollection()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            exportDiskDetailsCollection().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
         if (copyProgress() != null) {
             copyProgress().forEach(e -> e.validate());
@@ -245,11 +259,8 @@ public final class DataBoxCustomerDiskJobDetails extends JobDetails {
             deliverToDcPackageDetails().validate();
         }
         if (returnToCustomerPackageDetails() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property returnToCustomerPackageDetails in model"
-                            + " DataBoxCustomerDiskJobDetails"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property returnToCustomerPackageDetails in model DataBoxCustomerDiskJobDetails"));
         } else {
             returnToCustomerPackageDetails().validate();
         }

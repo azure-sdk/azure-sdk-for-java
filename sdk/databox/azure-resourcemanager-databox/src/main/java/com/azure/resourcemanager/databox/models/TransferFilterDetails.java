@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Details of the filtering the transfer of data. */
+/**
+ * Details of the filtering the transfer of data.
+ */
 @Fluent
 public final class TransferFilterDetails {
     /*
@@ -36,13 +38,15 @@ public final class TransferFilterDetails {
     @JsonProperty(value = "filterFileDetails")
     private List<FilterFileDetails> filterFileDetails;
 
-    /** Creates an instance of TransferFilterDetails class. */
+    /**
+     * Creates an instance of TransferFilterDetails class.
+     */
     public TransferFilterDetails() {
     }
 
     /**
      * Get the dataAccountType property: Type of the account of data.
-     *
+     * 
      * @return the dataAccountType value.
      */
     public DataAccountType dataAccountType() {
@@ -51,7 +55,7 @@ public final class TransferFilterDetails {
 
     /**
      * Set the dataAccountType property: Type of the account of data.
-     *
+     * 
      * @param dataAccountType the dataAccountType value to set.
      * @return the TransferFilterDetails object itself.
      */
@@ -62,7 +66,7 @@ public final class TransferFilterDetails {
 
     /**
      * Get the blobFilterDetails property: Filter details to transfer blobs.
-     *
+     * 
      * @return the blobFilterDetails value.
      */
     public BlobFilterDetails blobFilterDetails() {
@@ -71,7 +75,7 @@ public final class TransferFilterDetails {
 
     /**
      * Set the blobFilterDetails property: Filter details to transfer blobs.
-     *
+     * 
      * @param blobFilterDetails the blobFilterDetails value to set.
      * @return the TransferFilterDetails object itself.
      */
@@ -82,7 +86,7 @@ public final class TransferFilterDetails {
 
     /**
      * Get the azureFileFilterDetails property: Filter details to transfer Azure files.
-     *
+     * 
      * @return the azureFileFilterDetails value.
      */
     public AzureFileFilterDetails azureFileFilterDetails() {
@@ -91,7 +95,7 @@ public final class TransferFilterDetails {
 
     /**
      * Set the azureFileFilterDetails property: Filter details to transfer Azure files.
-     *
+     * 
      * @param azureFileFilterDetails the azureFileFilterDetails value to set.
      * @return the TransferFilterDetails object itself.
      */
@@ -102,7 +106,7 @@ public final class TransferFilterDetails {
 
     /**
      * Get the filterFileDetails property: Details of the filter files to be used for data transfer.
-     *
+     * 
      * @return the filterFileDetails value.
      */
     public List<FilterFileDetails> filterFileDetails() {
@@ -111,7 +115,7 @@ public final class TransferFilterDetails {
 
     /**
      * Set the filterFileDetails property: Details of the filter files to be used for data transfer.
-     *
+     * 
      * @param filterFileDetails the filterFileDetails value to set.
      * @return the TransferFilterDetails object itself.
      */
@@ -122,15 +126,13 @@ public final class TransferFilterDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (dataAccountType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dataAccountType in model TransferFilterDetails"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property dataAccountType in model TransferFilterDetails"));
         }
         if (blobFilterDetails() != null) {
             blobFilterDetails().validate();

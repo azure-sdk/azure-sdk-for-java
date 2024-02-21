@@ -7,15 +7,23 @@ package com.azure.resourcemanager.databox.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Defines Hardware level encryption (Only for disk). */
+/**
+ * Hardware encryption support for a given sku for a given region.
+ */
 public enum HardwareEncryption {
-    /** Enum value Enabled. */
+    /**
+     * Enum value Enabled.
+     */
     ENABLED("Enabled"),
 
-    /** Enum value Disabled. */
+    /**
+     * Enum value Disabled.
+     */
     DISABLED("Disabled");
 
-    /** The actual serialized value for a HardwareEncryption instance. */
+    /**
+     * The actual serialized value for a HardwareEncryption instance.
+     */
     private final String value;
 
     HardwareEncryption(String value) {
@@ -24,7 +32,7 @@ public enum HardwareEncryption {
 
     /**
      * Parses a serialized value to a HardwareEncryption instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed HardwareEncryption object, or null if unable to parse.
      */
@@ -42,7 +50,9 @@ public enum HardwareEncryption {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {

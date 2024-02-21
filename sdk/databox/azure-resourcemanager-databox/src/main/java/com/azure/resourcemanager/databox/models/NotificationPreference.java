@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Notification preference for a job stage. */
+/**
+ * Notification preference for a job stage.
+ */
 @Fluent
 public final class NotificationPreference {
     /*
@@ -23,13 +25,15 @@ public final class NotificationPreference {
     @JsonProperty(value = "sendNotification", required = true)
     private boolean sendNotification;
 
-    /** Creates an instance of NotificationPreference class. */
+    /**
+     * Creates an instance of NotificationPreference class.
+     */
     public NotificationPreference() {
     }
 
     /**
      * Get the stageName property: Name of the stage.
-     *
+     * 
      * @return the stageName value.
      */
     public NotificationStageName stageName() {
@@ -38,7 +42,7 @@ public final class NotificationPreference {
 
     /**
      * Set the stageName property: Name of the stage.
-     *
+     * 
      * @param stageName the stageName value to set.
      * @return the NotificationPreference object itself.
      */
@@ -49,7 +53,7 @@ public final class NotificationPreference {
 
     /**
      * Get the sendNotification property: Notification is required or not.
-     *
+     * 
      * @return the sendNotification value.
      */
     public boolean sendNotification() {
@@ -58,7 +62,7 @@ public final class NotificationPreference {
 
     /**
      * Set the sendNotification property: Notification is required or not.
-     *
+     * 
      * @param sendNotification the sendNotification value to set.
      * @return the NotificationPreference object itself.
      */
@@ -69,15 +73,13 @@ public final class NotificationPreference {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (stageName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property stageName in model NotificationPreference"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property stageName in model NotificationPreference"));
         }
     }
 

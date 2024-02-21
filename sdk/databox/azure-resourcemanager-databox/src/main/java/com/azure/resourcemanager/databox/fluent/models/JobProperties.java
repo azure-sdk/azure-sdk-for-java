@@ -17,7 +17,9 @@ import com.azure.resourcemanager.databox.models.TransferType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Job Properties. */
+/**
+ * Job Properties.
+ */
 @Fluent
 public final class JobProperties {
     /*
@@ -69,6 +71,12 @@ public final class JobProperties {
     private StageName status;
 
     /*
+     * Name of the stage where delay might be present.
+     */
+    @JsonProperty(value = "delayedStage", access = JsonProperty.Access.WRITE_ONLY)
+    private StageName delayedStage;
+
+    /*
      * Time at which the job was started in UTC ISO 8601 format.
      */
     @JsonProperty(value = "startTime", access = JsonProperty.Access.WRITE_ONLY)
@@ -110,13 +118,21 @@ public final class JobProperties {
     @JsonProperty(value = "isCancellableWithoutFee", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isCancellableWithoutFee;
 
-    /** Creates an instance of JobProperties class. */
+    /*
+     * Flag to indicate if all devices associated with the job are lost.
+     */
+    @JsonProperty(value = "allDevicesLost", access = JsonProperty.Access.WRITE_ONLY)
+    private Boolean allDevicesLost;
+
+    /**
+     * Creates an instance of JobProperties class.
+     */
     public JobProperties() {
     }
 
     /**
      * Get the transferType property: Type of the data transfer.
-     *
+     * 
      * @return the transferType value.
      */
     public TransferType transferType() {
@@ -125,7 +141,7 @@ public final class JobProperties {
 
     /**
      * Set the transferType property: Type of the data transfer.
-     *
+     * 
      * @param transferType the transferType value to set.
      * @return the JobProperties object itself.
      */
@@ -136,7 +152,7 @@ public final class JobProperties {
 
     /**
      * Get the isCancellable property: Describes whether the job is cancellable or not.
-     *
+     * 
      * @return the isCancellable value.
      */
     public Boolean isCancellable() {
@@ -145,7 +161,7 @@ public final class JobProperties {
 
     /**
      * Get the isDeletable property: Describes whether the job is deletable or not.
-     *
+     * 
      * @return the isDeletable value.
      */
     public Boolean isDeletable() {
@@ -154,7 +170,7 @@ public final class JobProperties {
 
     /**
      * Get the isShippingAddressEditable property: Describes whether the shipping address is editable or not.
-     *
+     * 
      * @return the isShippingAddressEditable value.
      */
     public Boolean isShippingAddressEditable() {
@@ -162,8 +178,9 @@ public final class JobProperties {
     }
 
     /**
-     * Get the reverseShippingDetailsUpdate property: The Editable status for Reverse Shipping Address and Contact Info.
-     *
+     * Get the reverseShippingDetailsUpdate property: The Editable status for Reverse Shipping Address and Contact
+     * Info.
+     * 
      * @return the reverseShippingDetailsUpdate value.
      */
     public ReverseShippingDetailsEditStatus reverseShippingDetailsUpdate() {
@@ -172,7 +189,7 @@ public final class JobProperties {
 
     /**
      * Get the reverseTransportPreferenceUpdate property: The Editable status for Reverse Transport preferences.
-     *
+     * 
      * @return the reverseTransportPreferenceUpdate value.
      */
     public ReverseTransportPreferenceEditStatus reverseTransportPreferenceUpdate() {
@@ -181,7 +198,7 @@ public final class JobProperties {
 
     /**
      * Get the isPrepareToShipEnabled property: Is Prepare To Ship Enabled on this job.
-     *
+     * 
      * @return the isPrepareToShipEnabled value.
      */
     public Boolean isPrepareToShipEnabled() {
@@ -190,7 +207,7 @@ public final class JobProperties {
 
     /**
      * Get the status property: Name of the stage which is in progress.
-     *
+     * 
      * @return the status value.
      */
     public StageName status() {
@@ -198,8 +215,17 @@ public final class JobProperties {
     }
 
     /**
+     * Get the delayedStage property: Name of the stage where delay might be present.
+     * 
+     * @return the delayedStage value.
+     */
+    public StageName delayedStage() {
+        return this.delayedStage;
+    }
+
+    /**
      * Get the startTime property: Time at which the job was started in UTC ISO 8601 format.
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -208,7 +234,7 @@ public final class JobProperties {
 
     /**
      * Get the error property: Top level error for the job.
-     *
+     * 
      * @return the error value.
      */
     public CloudError error() {
@@ -217,7 +243,7 @@ public final class JobProperties {
 
     /**
      * Get the details property: Details of a job run. This field will only be sent for expand details filter.
-     *
+     * 
      * @return the details value.
      */
     public JobDetails details() {
@@ -226,7 +252,7 @@ public final class JobProperties {
 
     /**
      * Set the details property: Details of a job run. This field will only be sent for expand details filter.
-     *
+     * 
      * @param details the details value to set.
      * @return the JobProperties object itself.
      */
@@ -237,7 +263,7 @@ public final class JobProperties {
 
     /**
      * Get the cancellationReason property: Reason for cancellation.
-     *
+     * 
      * @return the cancellationReason value.
      */
     public String cancellationReason() {
@@ -246,7 +272,7 @@ public final class JobProperties {
 
     /**
      * Get the deliveryType property: Delivery type of Job.
-     *
+     * 
      * @return the deliveryType value.
      */
     public JobDeliveryType deliveryType() {
@@ -255,7 +281,7 @@ public final class JobProperties {
 
     /**
      * Set the deliveryType property: Delivery type of Job.
-     *
+     * 
      * @param deliveryType the deliveryType value to set.
      * @return the JobProperties object itself.
      */
@@ -266,7 +292,7 @@ public final class JobProperties {
 
     /**
      * Get the deliveryInfo property: Delivery Info of Job.
-     *
+     * 
      * @return the deliveryInfo value.
      */
     public JobDeliveryInfo deliveryInfo() {
@@ -275,7 +301,7 @@ public final class JobProperties {
 
     /**
      * Set the deliveryInfo property: Delivery Info of Job.
-     *
+     * 
      * @param deliveryInfo the deliveryInfo value to set.
      * @return the JobProperties object itself.
      */
@@ -286,7 +312,7 @@ public final class JobProperties {
 
     /**
      * Get the isCancellableWithoutFee property: Flag to indicate cancellation of scheduled job.
-     *
+     * 
      * @return the isCancellableWithoutFee value.
      */
     public Boolean isCancellableWithoutFee() {
@@ -294,15 +320,23 @@ public final class JobProperties {
     }
 
     /**
+     * Get the allDevicesLost property: Flag to indicate if all devices associated with the job are lost.
+     * 
+     * @return the allDevicesLost value.
+     */
+    public Boolean allDevicesLost() {
+        return this.allDevicesLost;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (transferType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property transferType in model JobProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property transferType in model JobProperties"));
         }
         if (error() != null) {
             error().validate();

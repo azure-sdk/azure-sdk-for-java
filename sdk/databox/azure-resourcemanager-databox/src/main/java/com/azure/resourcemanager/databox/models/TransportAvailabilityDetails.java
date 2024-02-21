@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Transport options availability details for given region. */
+/**
+ * Transport options availability details for given region.
+ */
 @Immutable
 public final class TransportAvailabilityDetails {
     /*
@@ -16,13 +18,15 @@ public final class TransportAvailabilityDetails {
     @JsonProperty(value = "shipmentType", access = JsonProperty.Access.WRITE_ONLY)
     private TransportShipmentTypes shipmentType;
 
-    /** Creates an instance of TransportAvailabilityDetails class. */
+    /**
+     * Creates an instance of TransportAvailabilityDetails class.
+     */
     public TransportAvailabilityDetails() {
     }
 
     /**
      * Get the shipmentType property: Transport Shipment Type supported for given region.
-     *
+     * 
      * @return the shipmentType value.
      */
     public TransportShipmentTypes shipmentType() {
@@ -31,7 +35,7 @@ public final class TransportAvailabilityDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

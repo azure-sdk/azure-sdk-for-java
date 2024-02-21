@@ -7,15 +7,23 @@ package com.azure.resourcemanager.databox.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Type of the configuration for transfer. */
+/**
+ * Type of the configuration for transfer.
+ */
 public enum TransferConfigurationType {
-    /** Enum value TransferAll. */
+    /**
+     * Enum value TransferAll.
+     */
     TRANSFER_ALL("TransferAll"),
 
-    /** Enum value TransferUsingFilter. */
+    /**
+     * Enum value TransferUsingFilter.
+     */
     TRANSFER_USING_FILTER("TransferUsingFilter");
 
-    /** The actual serialized value for a TransferConfigurationType instance. */
+    /**
+     * The actual serialized value for a TransferConfigurationType instance.
+     */
     private final String value;
 
     TransferConfigurationType(String value) {
@@ -24,7 +32,7 @@ public enum TransferConfigurationType {
 
     /**
      * Parses a serialized value to a TransferConfigurationType instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed TransferConfigurationType object, or null if unable to parse.
      */
@@ -42,7 +50,9 @@ public enum TransferConfigurationType {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {

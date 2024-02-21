@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Capacity of the sku. */
+/**
+ * Capacity of the sku.
+ */
 @Immutable
 public final class SkuCapacity {
     /*
@@ -22,13 +24,21 @@ public final class SkuCapacity {
     @JsonProperty(value = "maximum", access = JsonProperty.Access.WRITE_ONLY)
     private String maximum;
 
-    /** Creates an instance of SkuCapacity class. */
+    /*
+     * Maximum capacity per device in TB.
+     */
+    @JsonProperty(value = "individualSkuUsable", access = JsonProperty.Access.WRITE_ONLY)
+    private String individualSkuUsable;
+
+    /**
+     * Creates an instance of SkuCapacity class.
+     */
     public SkuCapacity() {
     }
 
     /**
      * Get the usable property: Usable capacity in TB.
-     *
+     * 
      * @return the usable value.
      */
     public String usable() {
@@ -37,7 +47,7 @@ public final class SkuCapacity {
 
     /**
      * Get the maximum property: Maximum capacity in TB.
-     *
+     * 
      * @return the maximum value.
      */
     public String maximum() {
@@ -45,8 +55,17 @@ public final class SkuCapacity {
     }
 
     /**
+     * Get the individualSkuUsable property: Maximum capacity per device in TB.
+     * 
+     * @return the individualSkuUsable value.
+     */
+    public String individualSkuUsable() {
+        return this.individualSkuUsable;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

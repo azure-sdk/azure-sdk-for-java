@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Managed identity properties. */
+/**
+ * Managed identity properties.
+ */
 @Fluent
 public final class IdentityProperties {
     /*
@@ -22,13 +24,15 @@ public final class IdentityProperties {
     @JsonProperty(value = "userAssigned")
     private UserAssignedProperties userAssigned;
 
-    /** Creates an instance of IdentityProperties class. */
+    /**
+     * Creates an instance of IdentityProperties class.
+     */
     public IdentityProperties() {
     }
 
     /**
      * Get the type property: Managed service identity type.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -37,7 +41,7 @@ public final class IdentityProperties {
 
     /**
      * Set the type property: Managed service identity type.
-     *
+     * 
      * @param type the type value to set.
      * @return the IdentityProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class IdentityProperties {
 
     /**
      * Get the userAssigned property: User assigned identity properties.
-     *
+     * 
      * @return the userAssigned value.
      */
     public UserAssignedProperties userAssigned() {
@@ -57,7 +61,7 @@ public final class IdentityProperties {
 
     /**
      * Set the userAssigned property: User assigned identity properties.
-     *
+     * 
      * @param userAssigned the userAssigned value to set.
      * @return the IdentityProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class IdentityProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
