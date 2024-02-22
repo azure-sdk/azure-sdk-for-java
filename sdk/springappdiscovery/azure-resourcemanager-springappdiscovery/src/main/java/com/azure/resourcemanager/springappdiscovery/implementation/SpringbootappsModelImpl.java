@@ -5,22 +5,19 @@
 package com.azure.resourcemanager.springappdiscovery.implementation;
 
 import com.azure.core.management.SystemData;
+import com.azure.core.util.Context;
 import com.azure.resourcemanager.springappdiscovery.fluent.models.SpringbootappsModelInner;
 import com.azure.resourcemanager.springappdiscovery.models.SpringbootappsModel;
+import com.azure.resourcemanager.springappdiscovery.models.SpringbootappsPatch;
 import com.azure.resourcemanager.springappdiscovery.models.SpringbootappsProperties;
 import java.util.Collections;
 import java.util.Map;
 
-public final class SpringbootappsModelImpl implements SpringbootappsModel {
+public final class SpringbootappsModelImpl
+    implements SpringbootappsModel, SpringbootappsModel.Definition, SpringbootappsModel.Update {
     private SpringbootappsModelInner innerObject;
 
     private final com.azure.resourcemanager.springappdiscovery.SpringAppDiscoveryManager serviceManager;
-
-    SpringbootappsModelImpl(SpringbootappsModelInner innerObject,
-        com.azure.resourcemanager.springappdiscovery.SpringAppDiscoveryManager serviceManager) {
-        this.innerObject = innerObject;
-        this.serviceManager = serviceManager;
-    }
 
     public String id() {
         return this.innerModel().id();
@@ -51,11 +48,112 @@ public final class SpringbootappsModelImpl implements SpringbootappsModel {
         return this.innerModel().systemData();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public SpringbootappsModelInner innerModel() {
         return this.innerObject;
     }
 
     private com.azure.resourcemanager.springappdiscovery.SpringAppDiscoveryManager manager() {
         return this.serviceManager;
+    }
+
+    private String resourceGroupName;
+
+    private String siteName;
+
+    private String springbootappsName;
+
+    private SpringbootappsPatch updateSpringbootapps;
+
+    public SpringbootappsModelImpl withExistingSpringbootsite(String resourceGroupName, String siteName) {
+        this.resourceGroupName = resourceGroupName;
+        this.siteName = siteName;
+        return this;
+    }
+
+    public SpringbootappsModel create() {
+        this.innerObject = serviceManager.serviceClient().getSpringbootapps().createOrUpdate(resourceGroupName,
+            siteName, springbootappsName, this.innerModel(), Context.NONE);
+        return this;
+    }
+
+    public SpringbootappsModel create(Context context) {
+        this.innerObject = serviceManager.serviceClient().getSpringbootapps().createOrUpdate(resourceGroupName,
+            siteName, springbootappsName, this.innerModel(), context);
+        return this;
+    }
+
+    SpringbootappsModelImpl(String name,
+        com.azure.resourcemanager.springappdiscovery.SpringAppDiscoveryManager serviceManager) {
+        this.innerObject = new SpringbootappsModelInner();
+        this.serviceManager = serviceManager;
+        this.springbootappsName = name;
+    }
+
+    public SpringbootappsModelImpl update() {
+        this.updateSpringbootapps = new SpringbootappsPatch();
+        return this;
+    }
+
+    public SpringbootappsModel apply() {
+        this.innerObject = serviceManager.serviceClient().getSpringbootapps()
+            .updateWithResponse(resourceGroupName, siteName, springbootappsName, updateSpringbootapps, Context.NONE)
+            .getValue();
+        return this;
+    }
+
+    public SpringbootappsModel apply(Context context) {
+        this.innerObject = serviceManager.serviceClient().getSpringbootapps()
+            .updateWithResponse(resourceGroupName, siteName, springbootappsName, updateSpringbootapps, context)
+            .getValue();
+        return this;
+    }
+
+    SpringbootappsModelImpl(SpringbootappsModelInner innerObject,
+        com.azure.resourcemanager.springappdiscovery.SpringAppDiscoveryManager serviceManager) {
+        this.innerObject = innerObject;
+        this.serviceManager = serviceManager;
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.siteName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "springbootsites");
+        this.springbootappsName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "springbootapps");
+    }
+
+    public SpringbootappsModel refresh() {
+        this.innerObject = serviceManager.serviceClient().getSpringbootapps()
+            .getWithResponse(resourceGroupName, siteName, springbootappsName, Context.NONE).getValue();
+        return this;
+    }
+
+    public SpringbootappsModel refresh(Context context) {
+        this.innerObject = serviceManager.serviceClient().getSpringbootapps()
+            .getWithResponse(resourceGroupName, siteName, springbootappsName, context).getValue();
+        return this;
+    }
+
+    public SpringbootappsModelImpl withTags(Map<String, String> tags) {
+        if (isInCreateMode()) {
+            this.innerModel().withTags(tags);
+            return this;
+        } else {
+            this.updateSpringbootapps.withTags(tags);
+            return this;
+        }
+    }
+
+    public SpringbootappsModelImpl withProperties(SpringbootappsProperties properties) {
+        if (isInCreateMode()) {
+            this.innerModel().withProperties(properties);
+            return this;
+        } else {
+            this.updateSpringbootapps.withProperties(properties);
+            return this;
+        }
+    }
+
+    private boolean isInCreateMode() {
+        return this.innerModel().id() == null;
     }
 }

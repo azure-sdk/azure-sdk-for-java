@@ -6,8 +6,10 @@ package com.azure.resourcemanager.springappdiscovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The springbootservers resource definition.
@@ -61,6 +63,13 @@ public final class SpringbootserversProperties {
      */
     @JsonProperty(value = "provisioningState")
     private ProvisioningState provisioningState;
+
+    /*
+     * Resource tags
+     */
+    @JsonProperty(value = "labels")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> labels;
 
     /**
      * Creates an instance of SpringbootserversProperties class.
@@ -225,6 +234,26 @@ public final class SpringbootserversProperties {
      */
     public SpringbootserversProperties withProvisioningState(ProvisioningState provisioningState) {
         this.provisioningState = provisioningState;
+        return this;
+    }
+
+    /**
+     * Get the labels property: Resource tags.
+     * 
+     * @return the labels value.
+     */
+    public Map<String, String> labels() {
+        return this.labels;
+    }
+
+    /**
+     * Set the labels property: Resource tags.
+     * 
+     * @param labels the labels value to set.
+     * @return the SpringbootserversProperties object itself.
+     */
+    public SpringbootserversProperties withLabels(Map<String, String> labels) {
+        this.labels = labels;
         return this;
     }
 

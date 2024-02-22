@@ -296,7 +296,7 @@ public final class SpringAppDiscoveryManager {
     }
 
     /**
-     * Gets the resource collection API of Springbootapps.
+     * Gets the resource collection API of Springbootapps. It manages SpringbootappsModel.
      * 
      * @return Resource collection API of Springbootapps.
      */

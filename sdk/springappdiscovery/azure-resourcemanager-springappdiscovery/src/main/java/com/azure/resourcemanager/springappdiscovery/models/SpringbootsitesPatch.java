@@ -5,8 +5,7 @@
 package com.azure.resourcemanager.springappdiscovery.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.Resource;
-import com.azure.core.management.SystemData;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
@@ -14,23 +13,44 @@ import java.util.Map;
  * The springbootsites resource patch definition.
  */
 @Fluent
-public final class SpringbootsitesPatch extends Resource {
+public final class SpringbootsitesPatch {
+    /*
+     * Resource tags
+     */
+    @JsonProperty(value = "tags")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> tags;
+
     /*
      * The springbootsites resource definition.
      */
     @JsonProperty(value = "properties")
     private SpringbootsitesProperties properties;
 
-    /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
     /**
      * Creates an instance of SpringbootsitesPatch class.
      */
     public SpringbootsitesPatch() {
+    }
+
+    /**
+     * Get the tags property: Resource tags.
+     * 
+     * @return the tags value.
+     */
+    public Map<String, String> tags() {
+        return this.tags;
+    }
+
+    /**
+     * Set the tags property: Resource tags.
+     * 
+     * @param tags the tags value to set.
+     * @return the SpringbootsitesPatch object itself.
+     */
+    public SpringbootsitesPatch withTags(Map<String, String> tags) {
+        this.tags = tags;
+        return this;
     }
 
     /**
@@ -50,33 +70,6 @@ public final class SpringbootsitesPatch extends Resource {
      */
     public SpringbootsitesPatch withProperties(SpringbootsitesProperties properties) {
         this.properties = properties;
-        return this;
-    }
-
-    /**
-     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     * 
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public SpringbootsitesPatch withLocation(String location) {
-        super.withLocation(location);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public SpringbootsitesPatch withTags(Map<String, String> tags) {
-        super.withTags(tags);
         return this;
     }
 

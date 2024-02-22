@@ -41,35 +41,29 @@ public interface Springbootapps {
     SpringbootappsModel get(String resourceGroupName, String siteName, String springbootappsName);
 
     /**
-     * Update a springbootapps resource.
+     * Delete a springbootapps resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param siteName The springbootsites name.
      * @param springbootappsName The springbootapps name.
-     * @param springbootapps Update a springbootapps payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootapps envelope resource definition.
      */
-    SpringbootappsModel update(String resourceGroupName, String siteName, String springbootappsName,
-        SpringbootappsPatch springbootapps);
+    void delete(String resourceGroupName, String siteName, String springbootappsName);
 
     /**
-     * Update a springbootapps resource.
+     * Delete a springbootapps resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param siteName The springbootsites name.
      * @param springbootappsName The springbootapps name.
-     * @param springbootapps Update a springbootapps payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootapps envelope resource definition.
      */
-    SpringbootappsModel update(String resourceGroupName, String siteName, String springbootappsName,
-        SpringbootappsPatch springbootapps, Context context);
+    void delete(String resourceGroupName, String siteName, String springbootappsName, Context context);
 
     /**
      * List springbootapps resource by resourceGroup.
@@ -118,4 +112,56 @@ public interface Springbootapps {
      * @return the springbootapps list resource definition as paginated response with {@link PagedIterable}.
      */
     PagedIterable<SpringbootappsModel> listBySubscription(String siteName, Context context);
+
+    /**
+     * Get a springbootapps resource.
+     * 
+     * @param id the resource ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a springbootapps resource along with {@link Response}.
+     */
+    SpringbootappsModel getById(String id);
+
+    /**
+     * Get a springbootapps resource.
+     * 
+     * @param id the resource ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a springbootapps resource along with {@link Response}.
+     */
+    Response<SpringbootappsModel> getByIdWithResponse(String id, Context context);
+
+    /**
+     * Delete a springbootapps resource.
+     * 
+     * @param id the resource ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteById(String id);
+
+    /**
+     * Delete a springbootapps resource.
+     * 
+     * @param id the resource ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteByIdWithResponse(String id, Context context);
+
+    /**
+     * Begins definition for a new SpringbootappsModel resource.
+     * 
+     * @param name resource name.
+     * @return the first stage of the new SpringbootappsModel definition.
+     */
+    SpringbootappsModel.DefinitionStages.Blank define(String name);
 }

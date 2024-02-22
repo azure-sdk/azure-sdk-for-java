@@ -247,7 +247,7 @@ public interface SpringbootsitesModel {
          */
         interface WithTags {
             /**
-             * Specifies the tags property: Resource tags..
+             * Specifies the tags property: Resource tags.
              * 
              * @param tags Resource tags.
              * @return the next definition stage.

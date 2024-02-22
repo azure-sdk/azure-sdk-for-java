@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.springappdiscovery.implementation;
 
 import com.azure.core.annotation.BodyParam;
+import com.azure.core.annotation.Delete;
 import com.azure.core.annotation.ExpectedResponses;
 import com.azure.core.annotation.Get;
 import com.azure.core.annotation.HeaderParam;
@@ -13,6 +14,7 @@ import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
@@ -81,10 +83,31 @@ public final class SpringbootappsClientImpl implements SpringbootappsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzureSpringBoot/springbootsites/{siteName}/springbootapps/{springbootappsName}")
-        @ExpectedResponses({ 200, 202 })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzureSpringBoot/springbootsites/{siteName}/springbootapps/{springbootappsName}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("siteName") String siteName,
+            @PathParam("springbootappsName") String springbootappsName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") SpringbootappsModelInner springbootapps,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzureSpringBoot/springbootsites/{siteName}/springbootapps/{springbootappsName}")
+        @ExpectedResponses({ 202, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("siteName") String siteName,
+            @PathParam("springbootappsName") String springbootappsName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzureSpringBoot/springbootsites/{siteName}/springbootapps/{springbootappsName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<SpringbootappsModelInner>> update(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("siteName") String siteName,
             @PathParam("springbootappsName") String springbootappsName, @QueryParam("api-version") String apiVersion,
@@ -258,6 +281,487 @@ public final class SpringbootappsClientImpl implements SpringbootappsClient {
     }
 
     /**
+     * Create a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param springbootapps Create a springbootapps payload.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the springbootapps envelope resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName, String siteName,
+        String springbootappsName, SpringbootappsModelInner springbootapps) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (siteName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter siteName is required and cannot be null."));
+        }
+        if (springbootappsName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter springbootappsName is required and cannot be null."));
+        }
+        if (springbootapps == null) {
+            return Mono.error(new IllegalArgumentException("Parameter springbootapps is required and cannot be null."));
+        } else {
+            springbootapps.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, siteName, springbootappsName, this.client.getApiVersion(), springbootapps, accept,
+                context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Create a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param springbootapps Create a springbootapps payload.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the springbootapps envelope resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName, String siteName,
+        String springbootappsName, SpringbootappsModelInner springbootapps, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (siteName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter siteName is required and cannot be null."));
+        }
+        if (springbootappsName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter springbootappsName is required and cannot be null."));
+        }
+        if (springbootapps == null) {
+            return Mono.error(new IllegalArgumentException("Parameter springbootapps is required and cannot be null."));
+        } else {
+            springbootapps.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            siteName, springbootappsName, this.client.getApiVersion(), springbootapps, accept, context);
+    }
+
+    /**
+     * Create a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param springbootapps Create a springbootapps payload.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the springbootapps envelope resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<SpringbootappsModelInner>, SpringbootappsModelInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String siteName, String springbootappsName, SpringbootappsModelInner springbootapps) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, siteName, springbootappsName, springbootapps);
+        return this.client.<SpringbootappsModelInner, SpringbootappsModelInner>getLroResult(mono,
+            this.client.getHttpPipeline(), SpringbootappsModelInner.class, SpringbootappsModelInner.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Create a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param springbootapps Create a springbootapps payload.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the springbootapps envelope resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<SpringbootappsModelInner>, SpringbootappsModelInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String siteName, String springbootappsName, SpringbootappsModelInner springbootapps,
+        Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, siteName, springbootappsName, springbootapps, context);
+        return this.client.<SpringbootappsModelInner, SpringbootappsModelInner>getLroResult(mono,
+            this.client.getHttpPipeline(), SpringbootappsModelInner.class, SpringbootappsModelInner.class, context);
+    }
+
+    /**
+     * Create a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param springbootapps Create a springbootapps payload.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the springbootapps envelope resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<SpringbootappsModelInner>, SpringbootappsModelInner> beginCreateOrUpdate(
+        String resourceGroupName, String siteName, String springbootappsName, SpringbootappsModelInner springbootapps) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, siteName, springbootappsName, springbootapps)
+            .getSyncPoller();
+    }
+
+    /**
+     * Create a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param springbootapps Create a springbootapps payload.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the springbootapps envelope resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<SpringbootappsModelInner>, SpringbootappsModelInner> beginCreateOrUpdate(
+        String resourceGroupName, String siteName, String springbootappsName, SpringbootappsModelInner springbootapps,
+        Context context) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, siteName, springbootappsName, springbootapps, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Create a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param springbootapps Create a springbootapps payload.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the springbootapps envelope resource definition on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<SpringbootappsModelInner> createOrUpdateAsync(String resourceGroupName, String siteName,
+        String springbootappsName, SpringbootappsModelInner springbootapps) {
+        return beginCreateOrUpdateAsync(resourceGroupName, siteName, springbootappsName, springbootapps).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Create a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param springbootapps Create a springbootapps payload.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the springbootapps envelope resource definition on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<SpringbootappsModelInner> createOrUpdateAsync(String resourceGroupName, String siteName,
+        String springbootappsName, SpringbootappsModelInner springbootapps, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, siteName, springbootappsName, springbootapps, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Create a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param springbootapps Create a springbootapps payload.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the springbootapps envelope resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SpringbootappsModelInner createOrUpdate(String resourceGroupName, String siteName, String springbootappsName,
+        SpringbootappsModelInner springbootapps) {
+        return createOrUpdateAsync(resourceGroupName, siteName, springbootappsName, springbootapps).block();
+    }
+
+    /**
+     * Create a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param springbootapps Create a springbootapps payload.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the springbootapps envelope resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SpringbootappsModelInner createOrUpdate(String resourceGroupName, String siteName, String springbootappsName,
+        SpringbootappsModelInner springbootapps, Context context) {
+        return createOrUpdateAsync(resourceGroupName, siteName, springbootappsName, springbootapps, context).block();
+    }
+
+    /**
+     * Delete a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String siteName,
+        String springbootappsName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (siteName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter siteName is required and cannot be null."));
+        }
+        if (springbootappsName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter springbootappsName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, siteName, springbootappsName, this.client.getApiVersion(), accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Delete a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String siteName,
+        String springbootappsName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (siteName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter siteName is required and cannot be null."));
+        }
+        if (springbootappsName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter springbootappsName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, siteName,
+            springbootappsName, this.client.getApiVersion(), accept, context);
+    }
+
+    /**
+     * Delete a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String siteName,
+        String springbootappsName) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, siteName, springbootappsName);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Delete a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String siteName,
+        String springbootappsName, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, siteName, springbootappsName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
+    }
+
+    /**
+     * Delete a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String siteName,
+        String springbootappsName) {
+        return this.beginDeleteAsync(resourceGroupName, siteName, springbootappsName).getSyncPoller();
+    }
+
+    /**
+     * Delete a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String siteName,
+        String springbootappsName, Context context) {
+        return this.beginDeleteAsync(resourceGroupName, siteName, springbootappsName, context).getSyncPoller();
+    }
+
+    /**
+     * Delete a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceGroupName, String siteName, String springbootappsName) {
+        return beginDeleteAsync(resourceGroupName, siteName, springbootappsName).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Delete a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceGroupName, String siteName, String springbootappsName,
+        Context context) {
+        return beginDeleteAsync(resourceGroupName, siteName, springbootappsName, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Delete a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String siteName, String springbootappsName) {
+        deleteAsync(resourceGroupName, siteName, springbootappsName).block();
+    }
+
+    /**
+     * Delete a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String siteName, String springbootappsName, Context context) {
+        deleteAsync(resourceGroupName, siteName, springbootappsName, context).block();
+    }
+
+    /**
      * Update a springbootapps resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -271,7 +775,7 @@ public final class SpringbootappsClientImpl implements SpringbootappsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String siteName,
+    private Mono<Response<SpringbootappsModelInner>> updateWithResponseAsync(String resourceGroupName, String siteName,
         String springbootappsName, SpringbootappsPatch springbootapps) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -320,7 +824,7 @@ public final class SpringbootappsClientImpl implements SpringbootappsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String siteName,
+    private Mono<Response<SpringbootappsModelInner>> updateWithResponseAsync(String resourceGroupName, String siteName,
         String springbootappsName, SpringbootappsPatch springbootapps, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -362,98 +866,13 @@ public final class SpringbootappsClientImpl implements SpringbootappsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the springbootapps envelope resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<SpringbootappsModelInner>, SpringbootappsModelInner> beginUpdateAsync(
-        String resourceGroupName, String siteName, String springbootappsName, SpringbootappsPatch springbootapps) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceGroupName, siteName, springbootappsName, springbootapps);
-        return this.client.<SpringbootappsModelInner, SpringbootappsModelInner>getLroResult(mono,
-            this.client.getHttpPipeline(), SpringbootappsModelInner.class, SpringbootappsModelInner.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Update a springbootapps resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootappsName The springbootapps name.
-     * @param springbootapps Update a springbootapps payload.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the springbootapps envelope resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<SpringbootappsModelInner>, SpringbootappsModelInner> beginUpdateAsync(
-        String resourceGroupName, String siteName, String springbootappsName, SpringbootappsPatch springbootapps,
-        Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceGroupName, siteName, springbootappsName, springbootapps, context);
-        return this.client.<SpringbootappsModelInner, SpringbootappsModelInner>getLroResult(mono,
-            this.client.getHttpPipeline(), SpringbootappsModelInner.class, SpringbootappsModelInner.class, context);
-    }
-
-    /**
-     * Update a springbootapps resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootappsName The springbootapps name.
-     * @param springbootapps Update a springbootapps payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the springbootapps envelope resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<SpringbootappsModelInner>, SpringbootappsModelInner> beginUpdate(
-        String resourceGroupName, String siteName, String springbootappsName, SpringbootappsPatch springbootapps) {
-        return this.beginUpdateAsync(resourceGroupName, siteName, springbootappsName, springbootapps).getSyncPoller();
-    }
-
-    /**
-     * Update a springbootapps resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootappsName The springbootapps name.
-     * @param springbootapps Update a springbootapps payload.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the springbootapps envelope resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<SpringbootappsModelInner>, SpringbootappsModelInner> beginUpdate(
-        String resourceGroupName, String siteName, String springbootappsName, SpringbootappsPatch springbootapps,
-        Context context) {
-        return this.beginUpdateAsync(resourceGroupName, siteName, springbootappsName, springbootapps, context)
-            .getSyncPoller();
-    }
-
-    /**
-     * Update a springbootapps resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootappsName The springbootapps name.
-     * @param springbootapps Update a springbootapps payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the springbootapps envelope resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SpringbootappsModelInner> updateAsync(String resourceGroupName, String siteName,
         String springbootappsName, SpringbootappsPatch springbootapps) {
-        return beginUpdateAsync(resourceGroupName, siteName, springbootappsName, springbootapps).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return updateWithResponseAsync(resourceGroupName, siteName, springbootappsName, springbootapps)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -467,13 +886,13 @@ public final class SpringbootappsClientImpl implements SpringbootappsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootapps envelope resource definition on successful completion of {@link Mono}.
+     * @return the springbootapps envelope resource definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<SpringbootappsModelInner> updateAsync(String resourceGroupName, String siteName,
+    public Response<SpringbootappsModelInner> updateWithResponse(String resourceGroupName, String siteName,
         String springbootappsName, SpringbootappsPatch springbootapps, Context context) {
-        return beginUpdateAsync(resourceGroupName, siteName, springbootappsName, springbootapps, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return updateWithResponseAsync(resourceGroupName, siteName, springbootappsName, springbootapps, context)
+            .block();
     }
 
     /**
@@ -491,26 +910,8 @@ public final class SpringbootappsClientImpl implements SpringbootappsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SpringbootappsModelInner update(String resourceGroupName, String siteName, String springbootappsName,
         SpringbootappsPatch springbootapps) {
-        return updateAsync(resourceGroupName, siteName, springbootappsName, springbootapps).block();
-    }
-
-    /**
-     * Update a springbootapps resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootappsName The springbootapps name.
-     * @param springbootapps Update a springbootapps payload.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootapps envelope resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SpringbootappsModelInner update(String resourceGroupName, String siteName, String springbootappsName,
-        SpringbootappsPatch springbootapps, Context context) {
-        return updateAsync(resourceGroupName, siteName, springbootappsName, springbootapps, context).block();
+        return updateWithResponse(resourceGroupName, siteName, springbootappsName, springbootapps, Context.NONE)
+            .getValue();
     }
 
     /**

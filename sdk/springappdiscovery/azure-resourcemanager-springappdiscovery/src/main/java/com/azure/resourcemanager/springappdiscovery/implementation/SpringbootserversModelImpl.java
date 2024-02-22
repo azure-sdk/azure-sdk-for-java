@@ -101,14 +101,15 @@ public final class SpringbootserversModelImpl
     }
 
     public SpringbootserversModel apply() {
-        this.innerObject = serviceManager.serviceClient().getSpringbootservers().update(resourceGroupName, siteName,
-            springbootserversName, updateSpringbootservers, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getSpringbootservers().updateWithResponse(resourceGroupName,
+            siteName, springbootserversName, updateSpringbootservers, Context.NONE).getValue();
         return this;
     }
 
     public SpringbootserversModel apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getSpringbootservers().update(resourceGroupName, siteName,
-            springbootserversName, updateSpringbootservers, context);
+        this.innerObject = serviceManager.serviceClient().getSpringbootservers()
+            .updateWithResponse(resourceGroupName, siteName, springbootserversName, updateSpringbootservers, context)
+            .getValue();
         return this;
     }
 
