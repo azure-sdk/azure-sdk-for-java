@@ -214,60 +214,6 @@ public final class EasmClientBuilder implements HttpTrait<EasmClientBuilder>, Co
     }
 
     /*
-     * The ID of the target subscription.
-     */
-    @Generated
-    private String subscriptionId;
-
-    /**
-     * Sets The ID of the target subscription.
-     *
-     * @param subscriptionId the subscriptionId value.
-     * @return the EasmClientBuilder.
-     */
-    @Generated
-    public EasmClientBuilder subscriptionId(String subscriptionId) {
-        this.subscriptionId = subscriptionId;
-        return this;
-    }
-
-    /*
-     * The name of the Resource Group.
-     */
-    @Generated
-    private String resourceGroupName;
-
-    /**
-     * Sets The name of the Resource Group.
-     *
-     * @param resourceGroupName the resourceGroupName value.
-     * @return the EasmClientBuilder.
-     */
-    @Generated
-    public EasmClientBuilder resourceGroupName(String resourceGroupName) {
-        this.resourceGroupName = resourceGroupName;
-        return this;
-    }
-
-    /*
-     * The name of the Workspace.
-     */
-    @Generated
-    private String workspaceName;
-
-    /**
-     * Sets The name of the Workspace.
-     *
-     * @param workspaceName the workspaceName value.
-     * @return the EasmClientBuilder.
-     */
-    @Generated
-    public EasmClientBuilder workspaceName(String workspaceName) {
-        this.workspaceName = workspaceName;
-        return this;
-    }
-
-    /*
      * Service version
      */
     @Generated
@@ -314,7 +260,7 @@ public final class EasmClientBuilder implements HttpTrait<EasmClientBuilder>, Co
         EasmServiceVersion localServiceVersion
             = (serviceVersion != null) ? serviceVersion : EasmServiceVersion.getLatest();
         EasmClientImpl client = new EasmClientImpl(localPipeline, JacksonAdapter.createDefaultSerializerAdapter(),
-            this.endpoint, this.subscriptionId, this.resourceGroupName, this.workspaceName, localServiceVersion);
+            this.endpoint, localServiceVersion);
         return client;
     }
 
