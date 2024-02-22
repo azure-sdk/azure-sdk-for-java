@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The SkuLocationInfo model. */
+/**
+ * The SkuLocationInfo model.
+ */
 @Fluent
 public final class SkuLocationInfo {
     /*
@@ -42,13 +44,15 @@ public final class SkuLocationInfo {
     @JsonProperty(value = "type")
     private ExtendedLocationType type;
 
-    /** Creates an instance of SkuLocationInfo class. */
+    /**
+     * Creates an instance of SkuLocationInfo class.
+     */
     public SkuLocationInfo() {
     }
 
     /**
      * Get the location property: The location property.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -57,7 +61,7 @@ public final class SkuLocationInfo {
 
     /**
      * Set the location property: The location property.
-     *
+     * 
      * @param location the location value to set.
      * @return the SkuLocationInfo object itself.
      */
@@ -68,7 +72,7 @@ public final class SkuLocationInfo {
 
     /**
      * Get the zones property: The zones property.
-     *
+     * 
      * @return the zones value.
      */
     public List<String> zones() {
@@ -77,7 +81,7 @@ public final class SkuLocationInfo {
 
     /**
      * Set the zones property: The zones property.
-     *
+     * 
      * @param zones the zones value to set.
      * @return the SkuLocationInfo object itself.
      */
@@ -88,7 +92,7 @@ public final class SkuLocationInfo {
 
     /**
      * Get the zoneDetails property: The zoneDetails property.
-     *
+     * 
      * @return the zoneDetails value.
      */
     public List<SkuZoneDetail> zoneDetails() {
@@ -97,7 +101,7 @@ public final class SkuLocationInfo {
 
     /**
      * Set the zoneDetails property: The zoneDetails property.
-     *
+     * 
      * @param zoneDetails the zoneDetails value to set.
      * @return the SkuLocationInfo object itself.
      */
@@ -108,7 +112,7 @@ public final class SkuLocationInfo {
 
     /**
      * Get the extendedLocations property: The extendedLocations property.
-     *
+     * 
      * @return the extendedLocations value.
      */
     public List<String> extendedLocations() {
@@ -117,7 +121,7 @@ public final class SkuLocationInfo {
 
     /**
      * Set the extendedLocations property: The extendedLocations property.
-     *
+     * 
      * @param extendedLocations the extendedLocations value to set.
      * @return the SkuLocationInfo object itself.
      */
@@ -128,7 +132,7 @@ public final class SkuLocationInfo {
 
     /**
      * Get the type property: The type property.
-     *
+     * 
      * @return the type value.
      */
     public ExtendedLocationType type() {
@@ -137,7 +141,7 @@ public final class SkuLocationInfo {
 
     /**
      * Set the type property: The type property.
-     *
+     * 
      * @param type the type value to set.
      * @return the SkuLocationInfo object itself.
      */
@@ -148,14 +152,13 @@ public final class SkuLocationInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (location() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property location in model SkuLocationInfo"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property location in model SkuLocationInfo"));
         }
         if (zoneDetails() != null) {
             zoneDetails().forEach(e -> e.validate());

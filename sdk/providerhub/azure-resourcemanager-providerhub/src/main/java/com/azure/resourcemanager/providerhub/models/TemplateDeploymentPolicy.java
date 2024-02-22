@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The TemplateDeploymentPolicy model. */
+/**
+ * The TemplateDeploymentPolicy model.
+ */
 @Fluent
 public class TemplateDeploymentPolicy {
     /*
@@ -23,13 +25,15 @@ public class TemplateDeploymentPolicy {
     @JsonProperty(value = "preflightOptions", required = true)
     private TemplateDeploymentPreflightOptions preflightOptions;
 
-    /** Creates an instance of TemplateDeploymentPolicy class. */
+    /**
+     * Creates an instance of TemplateDeploymentPolicy class.
+     */
     public TemplateDeploymentPolicy() {
     }
 
     /**
      * Get the capabilities property: The capabilities property.
-     *
+     * 
      * @return the capabilities value.
      */
     public TemplateDeploymentCapabilities capabilities() {
@@ -38,7 +42,7 @@ public class TemplateDeploymentPolicy {
 
     /**
      * Set the capabilities property: The capabilities property.
-     *
+     * 
      * @param capabilities the capabilities value to set.
      * @return the TemplateDeploymentPolicy object itself.
      */
@@ -49,7 +53,7 @@ public class TemplateDeploymentPolicy {
 
     /**
      * Get the preflightOptions property: The preflightOptions property.
-     *
+     * 
      * @return the preflightOptions value.
      */
     public TemplateDeploymentPreflightOptions preflightOptions() {
@@ -58,7 +62,7 @@ public class TemplateDeploymentPolicy {
 
     /**
      * Set the preflightOptions property: The preflightOptions property.
-     *
+     * 
      * @param preflightOptions the preflightOptions value to set.
      * @return the TemplateDeploymentPolicy object itself.
      */
@@ -69,21 +73,17 @@ public class TemplateDeploymentPolicy {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (capabilities() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property capabilities in model TemplateDeploymentPolicy"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property capabilities in model TemplateDeploymentPolicy"));
         }
         if (preflightOptions() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property preflightOptions in model TemplateDeploymentPolicy"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property preflightOptions in model TemplateDeploymentPolicy"));
         }
     }
 

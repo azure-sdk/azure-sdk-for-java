@@ -6,14 +6,20 @@ package com.azure.resourcemanager.providerhub.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The ResourceTypeEndpointFeaturesRule model. */
+/**
+ * The ResourceTypeEndpointFeaturesRule model.
+ */
 @Fluent
 public final class ResourceTypeEndpointFeaturesRule extends FeaturesRule {
-    /** Creates an instance of ResourceTypeEndpointFeaturesRule class. */
+    /**
+     * Creates an instance of ResourceTypeEndpointFeaturesRule class.
+     */
     public ResourceTypeEndpointFeaturesRule() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceTypeEndpointFeaturesRule withRequiredFeaturesPolicy(FeaturesPolicy requiredFeaturesPolicy) {
         super.withRequiredFeaturesPolicy(requiredFeaturesPolicy);
@@ -22,7 +28,7 @@ public final class ResourceTypeEndpointFeaturesRule extends FeaturesRule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

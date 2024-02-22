@@ -18,7 +18,9 @@ import com.azure.resourcemanager.providerhub.models.ResourceType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ResourceProviderManifest model. */
+/**
+ * The ResourceProviderManifest model.
+ */
 @Fluent
 public final class ResourceProviderManifestInner {
     /*
@@ -105,13 +107,15 @@ public final class ResourceProviderManifestInner {
     @JsonProperty(value = "reRegisterSubscriptionMetadata")
     private ResourceProviderManifestReRegisterSubscriptionMetadata reRegisterSubscriptionMetadata;
 
-    /** Creates an instance of ResourceProviderManifestInner class. */
+    /**
+     * Creates an instance of ResourceProviderManifestInner class.
+     */
     public ResourceProviderManifestInner() {
     }
 
     /**
      * Get the providerAuthentication property: The providerAuthentication property.
-     *
+     * 
      * @return the providerAuthentication value.
      */
     public ResourceProviderManifestProviderAuthentication providerAuthentication() {
@@ -120,19 +124,19 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Set the providerAuthentication property: The providerAuthentication property.
-     *
+     * 
      * @param providerAuthentication the providerAuthentication value to set.
      * @return the ResourceProviderManifestInner object itself.
      */
-    public ResourceProviderManifestInner withProviderAuthentication(
-        ResourceProviderManifestProviderAuthentication providerAuthentication) {
+    public ResourceProviderManifestInner
+        withProviderAuthentication(ResourceProviderManifestProviderAuthentication providerAuthentication) {
         this.providerAuthentication = providerAuthentication;
         return this;
     }
 
     /**
      * Get the providerAuthorizations property: The providerAuthorizations property.
-     *
+     * 
      * @return the providerAuthorizations value.
      */
     public List<ResourceProviderAuthorization> providerAuthorizations() {
@@ -141,19 +145,19 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Set the providerAuthorizations property: The providerAuthorizations property.
-     *
+     * 
      * @param providerAuthorizations the providerAuthorizations value to set.
      * @return the ResourceProviderManifestInner object itself.
      */
-    public ResourceProviderManifestInner withProviderAuthorizations(
-        List<ResourceProviderAuthorization> providerAuthorizations) {
+    public ResourceProviderManifestInner
+        withProviderAuthorizations(List<ResourceProviderAuthorization> providerAuthorizations) {
         this.providerAuthorizations = providerAuthorizations;
         return this;
     }
 
     /**
      * Get the namespace property: The namespace property.
-     *
+     * 
      * @return the namespace value.
      */
     public String namespace() {
@@ -162,7 +166,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Set the namespace property: The namespace property.
-     *
+     * 
      * @param namespace the namespace value to set.
      * @return the ResourceProviderManifestInner object itself.
      */
@@ -173,7 +177,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Get the providerVersion property: The providerVersion property.
-     *
+     * 
      * @return the providerVersion value.
      */
     public String providerVersion() {
@@ -182,7 +186,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Set the providerVersion property: The providerVersion property.
-     *
+     * 
      * @param providerVersion the providerVersion value to set.
      * @return the ResourceProviderManifestInner object itself.
      */
@@ -193,7 +197,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Get the providerType property: The providerType property.
-     *
+     * 
      * @return the providerType value.
      */
     public ResourceProviderType providerType() {
@@ -202,7 +206,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Set the providerType property: The providerType property.
-     *
+     * 
      * @param providerType the providerType value to set.
      * @return the ResourceProviderManifestInner object itself.
      */
@@ -213,7 +217,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Get the requiredFeatures property: The requiredFeatures property.
-     *
+     * 
      * @return the requiredFeatures value.
      */
     public List<String> requiredFeatures() {
@@ -222,7 +226,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Set the requiredFeatures property: The requiredFeatures property.
-     *
+     * 
      * @param requiredFeatures the requiredFeatures value to set.
      * @return the ResourceProviderManifestInner object itself.
      */
@@ -233,7 +237,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Get the featuresRule property: The featuresRule property.
-     *
+     * 
      * @return the featuresRule value.
      */
     public ResourceProviderManifestFeaturesRule featuresRule() {
@@ -242,7 +246,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Set the featuresRule property: The featuresRule property.
-     *
+     * 
      * @param featuresRule the featuresRule value to set.
      * @return the ResourceProviderManifestInner object itself.
      */
@@ -253,7 +257,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Get the requestHeaderOptions property: The requestHeaderOptions property.
-     *
+     * 
      * @return the requestHeaderOptions value.
      */
     public ResourceProviderManifestRequestHeaderOptions requestHeaderOptions() {
@@ -262,19 +266,19 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Set the requestHeaderOptions property: The requestHeaderOptions property.
-     *
+     * 
      * @param requestHeaderOptions the requestHeaderOptions value to set.
      * @return the ResourceProviderManifestInner object itself.
      */
-    public ResourceProviderManifestInner withRequestHeaderOptions(
-        ResourceProviderManifestRequestHeaderOptions requestHeaderOptions) {
+    public ResourceProviderManifestInner
+        withRequestHeaderOptions(ResourceProviderManifestRequestHeaderOptions requestHeaderOptions) {
         this.requestHeaderOptions = requestHeaderOptions;
         return this;
     }
 
     /**
      * Get the resourceTypes property: The resourceTypes property.
-     *
+     * 
      * @return the resourceTypes value.
      */
     public List<ResourceType> resourceTypes() {
@@ -283,7 +287,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Set the resourceTypes property: The resourceTypes property.
-     *
+     * 
      * @param resourceTypes the resourceTypes value to set.
      * @return the ResourceProviderManifestInner object itself.
      */
@@ -294,7 +298,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Get the management property: The management property.
-     *
+     * 
      * @return the management value.
      */
     public ResourceProviderManifestManagement management() {
@@ -303,7 +307,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Set the management property: The management property.
-     *
+     * 
      * @param management the management value to set.
      * @return the ResourceProviderManifestInner object itself.
      */
@@ -314,7 +318,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Get the capabilities property: The capabilities property.
-     *
+     * 
      * @return the capabilities value.
      */
     public List<ResourceProviderCapabilities> capabilities() {
@@ -323,7 +327,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Set the capabilities property: The capabilities property.
-     *
+     * 
      * @param capabilities the capabilities value to set.
      * @return the ResourceProviderManifestInner object itself.
      */
@@ -334,7 +338,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Get the metadata property: Anything.
-     *
+     * 
      * @return the metadata value.
      */
     public Object metadata() {
@@ -343,7 +347,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Set the metadata property: Anything.
-     *
+     * 
      * @param metadata the metadata value to set.
      * @return the ResourceProviderManifestInner object itself.
      */
@@ -354,7 +358,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Get the globalNotificationEndpoints property: The globalNotificationEndpoints property.
-     *
+     * 
      * @return the globalNotificationEndpoints value.
      */
     public List<ResourceProviderEndpoint> globalNotificationEndpoints() {
@@ -363,19 +367,19 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Set the globalNotificationEndpoints property: The globalNotificationEndpoints property.
-     *
+     * 
      * @param globalNotificationEndpoints the globalNotificationEndpoints value to set.
      * @return the ResourceProviderManifestInner object itself.
      */
-    public ResourceProviderManifestInner withGlobalNotificationEndpoints(
-        List<ResourceProviderEndpoint> globalNotificationEndpoints) {
+    public ResourceProviderManifestInner
+        withGlobalNotificationEndpoints(List<ResourceProviderEndpoint> globalNotificationEndpoints) {
         this.globalNotificationEndpoints = globalNotificationEndpoints;
         return this;
     }
 
     /**
      * Get the reRegisterSubscriptionMetadata property: The reRegisterSubscriptionMetadata property.
-     *
+     * 
      * @return the reRegisterSubscriptionMetadata value.
      */
     public ResourceProviderManifestReRegisterSubscriptionMetadata reRegisterSubscriptionMetadata() {
@@ -384,7 +388,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Set the reRegisterSubscriptionMetadata property: The reRegisterSubscriptionMetadata property.
-     *
+     * 
      * @param reRegisterSubscriptionMetadata the reRegisterSubscriptionMetadata value to set.
      * @return the ResourceProviderManifestInner object itself.
      */
@@ -396,7 +400,7 @@ public final class ResourceProviderManifestInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

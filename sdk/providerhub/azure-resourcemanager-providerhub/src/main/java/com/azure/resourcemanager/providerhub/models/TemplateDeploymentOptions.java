@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The TemplateDeploymentOptions model. */
+/**
+ * The TemplateDeploymentOptions model.
+ */
 @Fluent
 public class TemplateDeploymentOptions {
     /*
@@ -23,13 +25,15 @@ public class TemplateDeploymentOptions {
     @JsonProperty(value = "preflightOptions")
     private List<PreflightOption> preflightOptions;
 
-    /** Creates an instance of TemplateDeploymentOptions class. */
+    /**
+     * Creates an instance of TemplateDeploymentOptions class.
+     */
     public TemplateDeploymentOptions() {
     }
 
     /**
      * Get the preflightSupported property: The preflightSupported property.
-     *
+     * 
      * @return the preflightSupported value.
      */
     public Boolean preflightSupported() {
@@ -38,7 +42,7 @@ public class TemplateDeploymentOptions {
 
     /**
      * Set the preflightSupported property: The preflightSupported property.
-     *
+     * 
      * @param preflightSupported the preflightSupported value to set.
      * @return the TemplateDeploymentOptions object itself.
      */
@@ -49,7 +53,7 @@ public class TemplateDeploymentOptions {
 
     /**
      * Get the preflightOptions property: The preflightOptions property.
-     *
+     * 
      * @return the preflightOptions value.
      */
     public List<PreflightOption> preflightOptions() {
@@ -58,7 +62,7 @@ public class TemplateDeploymentOptions {
 
     /**
      * Set the preflightOptions property: The preflightOptions property.
-     *
+     * 
      * @param preflightOptions the preflightOptions value to set.
      * @return the TemplateDeploymentOptions object itself.
      */
@@ -69,7 +73,7 @@ public class TemplateDeploymentOptions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,7 +10,9 @@ import com.azure.resourcemanager.providerhub.fluent.models.OperationsDefinitionI
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The OperationsPutContent model. */
+/**
+ * The OperationsPutContent model.
+ */
 @Fluent
 public final class OperationsPutContent {
     /*
@@ -19,13 +21,15 @@ public final class OperationsPutContent {
     @JsonProperty(value = "contents", required = true)
     private List<OperationsDefinitionInner> contents;
 
-    /** Creates an instance of OperationsPutContent class. */
+    /**
+     * Creates an instance of OperationsPutContent class.
+     */
     public OperationsPutContent() {
     }
 
     /**
      * Get the contents property: The contents property.
-     *
+     * 
      * @return the contents value.
      */
     public List<OperationsDefinitionInner> contents() {
@@ -34,7 +38,7 @@ public final class OperationsPutContent {
 
     /**
      * Set the contents property: The contents property.
-     *
+     * 
      * @param contents the contents value to set.
      * @return the OperationsPutContent object itself.
      */
@@ -45,14 +49,13 @@ public final class OperationsPutContent {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (contents() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property contents in model OperationsPutContent"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property contents in model OperationsPutContent"));
         } else {
             contents().forEach(e -> e.validate());
         }

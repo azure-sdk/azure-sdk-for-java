@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The SubscriptionStateOverrideAction model. */
+/**
+ * The SubscriptionStateOverrideAction model.
+ */
 @Fluent
 public final class SubscriptionStateOverrideAction {
     /*
@@ -23,13 +25,15 @@ public final class SubscriptionStateOverrideAction {
     @JsonProperty(value = "action", required = true)
     private SubscriptionNotificationOperation action;
 
-    /** Creates an instance of SubscriptionStateOverrideAction class. */
+    /**
+     * Creates an instance of SubscriptionStateOverrideAction class.
+     */
     public SubscriptionStateOverrideAction() {
     }
 
     /**
      * Get the state property: The state property.
-     *
+     * 
      * @return the state value.
      */
     public SubscriptionTransitioningState state() {
@@ -38,7 +42,7 @@ public final class SubscriptionStateOverrideAction {
 
     /**
      * Set the state property: The state property.
-     *
+     * 
      * @param state the state value to set.
      * @return the SubscriptionStateOverrideAction object itself.
      */
@@ -49,7 +53,7 @@ public final class SubscriptionStateOverrideAction {
 
     /**
      * Get the action property: The action property.
-     *
+     * 
      * @return the action value.
      */
     public SubscriptionNotificationOperation action() {
@@ -58,7 +62,7 @@ public final class SubscriptionStateOverrideAction {
 
     /**
      * Set the action property: The action property.
-     *
+     * 
      * @param action the action value to set.
      * @return the SubscriptionStateOverrideAction object itself.
      */
@@ -69,21 +73,17 @@ public final class SubscriptionStateOverrideAction {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (state() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property state in model SubscriptionStateOverrideAction"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property state in model SubscriptionStateOverrideAction"));
         }
         if (action() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property action in model SubscriptionStateOverrideAction"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property action in model SubscriptionStateOverrideAction"));
         }
     }
 

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The LinkedOperationRule model. */
+/**
+ * The LinkedOperationRule model.
+ */
 @Fluent
 public final class LinkedOperationRule {
     /*
@@ -23,13 +25,15 @@ public final class LinkedOperationRule {
     @JsonProperty(value = "linkedAction", required = true)
     private LinkedAction linkedAction;
 
-    /** Creates an instance of LinkedOperationRule class. */
+    /**
+     * Creates an instance of LinkedOperationRule class.
+     */
     public LinkedOperationRule() {
     }
 
     /**
      * Get the linkedOperation property: The linkedOperation property.
-     *
+     * 
      * @return the linkedOperation value.
      */
     public LinkedOperation linkedOperation() {
@@ -38,7 +42,7 @@ public final class LinkedOperationRule {
 
     /**
      * Set the linkedOperation property: The linkedOperation property.
-     *
+     * 
      * @param linkedOperation the linkedOperation value to set.
      * @return the LinkedOperationRule object itself.
      */
@@ -49,7 +53,7 @@ public final class LinkedOperationRule {
 
     /**
      * Get the linkedAction property: The linkedAction property.
-     *
+     * 
      * @return the linkedAction value.
      */
     public LinkedAction linkedAction() {
@@ -58,7 +62,7 @@ public final class LinkedOperationRule {
 
     /**
      * Set the linkedAction property: The linkedAction property.
-     *
+     * 
      * @param linkedAction the linkedAction value to set.
      * @return the LinkedOperationRule object itself.
      */
@@ -69,21 +73,17 @@ public final class LinkedOperationRule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (linkedOperation() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property linkedOperation in model LinkedOperationRule"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property linkedOperation in model LinkedOperationRule"));
         }
         if (linkedAction() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property linkedAction in model LinkedOperationRule"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property linkedAction in model LinkedOperationRule"));
         }
     }
 

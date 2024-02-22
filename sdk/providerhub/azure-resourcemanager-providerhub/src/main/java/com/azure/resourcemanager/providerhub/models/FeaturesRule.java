@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The FeaturesRule model. */
+/**
+ * The FeaturesRule model.
+ */
 @Fluent
 public class FeaturesRule {
     /*
@@ -17,13 +19,15 @@ public class FeaturesRule {
     @JsonProperty(value = "requiredFeaturesPolicy", required = true)
     private FeaturesPolicy requiredFeaturesPolicy;
 
-    /** Creates an instance of FeaturesRule class. */
+    /**
+     * Creates an instance of FeaturesRule class.
+     */
     public FeaturesRule() {
     }
 
     /**
      * Get the requiredFeaturesPolicy property: The requiredFeaturesPolicy property.
-     *
+     * 
      * @return the requiredFeaturesPolicy value.
      */
     public FeaturesPolicy requiredFeaturesPolicy() {
@@ -32,7 +36,7 @@ public class FeaturesRule {
 
     /**
      * Set the requiredFeaturesPolicy property: The requiredFeaturesPolicy property.
-     *
+     * 
      * @param requiredFeaturesPolicy the requiredFeaturesPolicy value to set.
      * @return the FeaturesRule object itself.
      */
@@ -43,15 +47,13 @@ public class FeaturesRule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (requiredFeaturesPolicy() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property requiredFeaturesPolicy in model FeaturesRule"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property requiredFeaturesPolicy in model FeaturesRule"));
         }
     }
 

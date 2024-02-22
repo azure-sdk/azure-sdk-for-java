@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ManifestResourceDeletionPolicy. */
+/**
+ * Defines values for ManifestResourceDeletionPolicy.
+ */
 public final class ManifestResourceDeletionPolicy extends ExpandableStringEnum<ManifestResourceDeletionPolicy> {
-    /** Static value NotSpecified for ManifestResourceDeletionPolicy. */
+    /**
+     * Static value NotSpecified for ManifestResourceDeletionPolicy.
+     */
     public static final ManifestResourceDeletionPolicy NOT_SPECIFIED = fromString("NotSpecified");
 
-    /** Static value Cascade for ManifestResourceDeletionPolicy. */
+    /**
+     * Static value Cascade for ManifestResourceDeletionPolicy.
+     */
     public static final ManifestResourceDeletionPolicy CASCADE = fromString("Cascade");
 
-    /** Static value Force for ManifestResourceDeletionPolicy. */
+    /**
+     * Static value Force for ManifestResourceDeletionPolicy.
+     */
     public static final ManifestResourceDeletionPolicy FORCE = fromString("Force");
 
     /**
      * Creates a new instance of ManifestResourceDeletionPolicy value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class ManifestResourceDeletionPolicy extends ExpandableStringEnum<M
 
     /**
      * Creates or finds a ManifestResourceDeletionPolicy from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ManifestResourceDeletionPolicy.
      */
@@ -41,7 +49,7 @@ public final class ManifestResourceDeletionPolicy extends ExpandableStringEnum<M
 
     /**
      * Gets known ManifestResourceDeletionPolicy values.
-     *
+     * 
      * @return known ManifestResourceDeletionPolicy values.
      */
     public static Collection<ManifestResourceDeletionPolicy> values() {

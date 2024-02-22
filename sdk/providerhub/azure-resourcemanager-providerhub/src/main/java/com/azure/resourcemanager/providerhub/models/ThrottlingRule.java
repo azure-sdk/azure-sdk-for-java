@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ThrottlingRule model. */
+/**
+ * The ThrottlingRule model.
+ */
 @Fluent
 public final class ThrottlingRule {
     /*
@@ -30,13 +32,15 @@ public final class ThrottlingRule {
     @JsonProperty(value = "requiredFeatures")
     private List<String> requiredFeatures;
 
-    /** Creates an instance of ThrottlingRule class. */
+    /**
+     * Creates an instance of ThrottlingRule class.
+     */
     public ThrottlingRule() {
     }
 
     /**
      * Get the action property: The action property.
-     *
+     * 
      * @return the action value.
      */
     public String action() {
@@ -45,7 +49,7 @@ public final class ThrottlingRule {
 
     /**
      * Set the action property: The action property.
-     *
+     * 
      * @param action the action value to set.
      * @return the ThrottlingRule object itself.
      */
@@ -56,7 +60,7 @@ public final class ThrottlingRule {
 
     /**
      * Get the metrics property: The metrics property.
-     *
+     * 
      * @return the metrics value.
      */
     public List<ThrottlingMetric> metrics() {
@@ -65,7 +69,7 @@ public final class ThrottlingRule {
 
     /**
      * Set the metrics property: The metrics property.
-     *
+     * 
      * @param metrics the metrics value to set.
      * @return the ThrottlingRule object itself.
      */
@@ -76,7 +80,7 @@ public final class ThrottlingRule {
 
     /**
      * Get the requiredFeatures property: The requiredFeatures property.
-     *
+     * 
      * @return the requiredFeatures value.
      */
     public List<String> requiredFeatures() {
@@ -85,7 +89,7 @@ public final class ThrottlingRule {
 
     /**
      * Set the requiredFeatures property: The requiredFeatures property.
-     *
+     * 
      * @param requiredFeatures the requiredFeatures value to set.
      * @return the ThrottlingRule object itself.
      */
@@ -96,19 +100,17 @@ public final class ThrottlingRule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (action() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property action in model ThrottlingRule"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property action in model ThrottlingRule"));
         }
         if (metrics() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property metrics in model ThrottlingRule"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property metrics in model ThrottlingRule"));
         } else {
             metrics().forEach(e -> e.validate());
         }

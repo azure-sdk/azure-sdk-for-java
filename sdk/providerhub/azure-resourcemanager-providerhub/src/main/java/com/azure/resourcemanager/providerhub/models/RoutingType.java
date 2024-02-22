@@ -8,38 +8,58 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for RoutingType. */
+/**
+ * Defines values for RoutingType.
+ */
 public final class RoutingType extends ExpandableStringEnum<RoutingType> {
-    /** Static value Default for RoutingType. */
+    /**
+     * Static value Default for RoutingType.
+     */
     public static final RoutingType DEFAULT = fromString("Default");
 
-    /** Static value ProxyOnly for RoutingType. */
+    /**
+     * Static value ProxyOnly for RoutingType.
+     */
     public static final RoutingType PROXY_ONLY = fromString("ProxyOnly");
 
-    /** Static value HostBased for RoutingType. */
+    /**
+     * Static value HostBased for RoutingType.
+     */
     public static final RoutingType HOST_BASED = fromString("HostBased");
 
-    /** Static value Extension for RoutingType. */
+    /**
+     * Static value Extension for RoutingType.
+     */
     public static final RoutingType EXTENSION = fromString("Extension");
 
-    /** Static value Tenant for RoutingType. */
+    /**
+     * Static value Tenant for RoutingType.
+     */
     public static final RoutingType TENANT = fromString("Tenant");
 
-    /** Static value Fanout for RoutingType. */
+    /**
+     * Static value Fanout for RoutingType.
+     */
     public static final RoutingType FANOUT = fromString("Fanout");
 
-    /** Static value LocationBased for RoutingType. */
+    /**
+     * Static value LocationBased for RoutingType.
+     */
     public static final RoutingType LOCATION_BASED = fromString("LocationBased");
 
-    /** Static value Failover for RoutingType. */
+    /**
+     * Static value Failover for RoutingType.
+     */
     public static final RoutingType FAILOVER = fromString("Failover");
 
-    /** Static value CascadeExtension for RoutingType. */
+    /**
+     * Static value CascadeExtension for RoutingType.
+     */
     public static final RoutingType CASCADE_EXTENSION = fromString("CascadeExtension");
 
     /**
      * Creates a new instance of RoutingType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -48,7 +68,7 @@ public final class RoutingType extends ExpandableStringEnum<RoutingType> {
 
     /**
      * Creates or finds a RoutingType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding RoutingType.
      */
@@ -59,7 +79,7 @@ public final class RoutingType extends ExpandableStringEnum<RoutingType> {
 
     /**
      * Gets known RoutingType values.
-     *
+     * 
      * @return known RoutingType values.
      */
     public static Collection<RoutingType> values() {

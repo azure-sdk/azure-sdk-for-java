@@ -8,21 +8,29 @@ import com.azure.core.annotation.Fluent;
 import java.time.Duration;
 import java.util.List;
 
-/** The DefaultRolloutSpecificationRestOfTheWorldGroupTwo model. */
+/**
+ * The DefaultRolloutSpecificationRestOfTheWorldGroupTwo model.
+ */
 @Fluent
 public final class DefaultRolloutSpecificationRestOfTheWorldGroupTwo extends TrafficRegionRolloutConfiguration {
-    /** Creates an instance of DefaultRolloutSpecificationRestOfTheWorldGroupTwo class. */
+    /**
+     * Creates an instance of DefaultRolloutSpecificationRestOfTheWorldGroupTwo class.
+     */
     public DefaultRolloutSpecificationRestOfTheWorldGroupTwo() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutSpecificationRestOfTheWorldGroupTwo withWaitDuration(Duration waitDuration) {
         super.withWaitDuration(waitDuration);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutSpecificationRestOfTheWorldGroupTwo withRegions(List<String> regions) {
         super.withRegions(regions);
@@ -31,7 +39,7 @@ public final class DefaultRolloutSpecificationRestOfTheWorldGroupTwo extends Tra
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

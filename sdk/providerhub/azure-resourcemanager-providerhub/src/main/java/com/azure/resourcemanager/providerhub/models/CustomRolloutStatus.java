@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The CustomRolloutStatus model. */
+/**
+ * The CustomRolloutStatus model.
+ */
 @Fluent
 public class CustomRolloutStatus {
     /*
@@ -26,13 +28,15 @@ public class CustomRolloutStatus {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, ExtendedErrorInfo> failedOrSkippedRegions;
 
-    /** Creates an instance of CustomRolloutStatus class. */
+    /**
+     * Creates an instance of CustomRolloutStatus class.
+     */
     public CustomRolloutStatus() {
     }
 
     /**
      * Get the completedRegions property: The completedRegions property.
-     *
+     * 
      * @return the completedRegions value.
      */
     public List<String> completedRegions() {
@@ -41,7 +45,7 @@ public class CustomRolloutStatus {
 
     /**
      * Set the completedRegions property: The completedRegions property.
-     *
+     * 
      * @param completedRegions the completedRegions value to set.
      * @return the CustomRolloutStatus object itself.
      */
@@ -52,7 +56,7 @@ public class CustomRolloutStatus {
 
     /**
      * Get the failedOrSkippedRegions property: Dictionary of &lt;ExtendedErrorInfo&gt;.
-     *
+     * 
      * @return the failedOrSkippedRegions value.
      */
     public Map<String, ExtendedErrorInfo> failedOrSkippedRegions() {
@@ -61,7 +65,7 @@ public class CustomRolloutStatus {
 
     /**
      * Set the failedOrSkippedRegions property: Dictionary of &lt;ExtendedErrorInfo&gt;.
-     *
+     * 
      * @param failedOrSkippedRegions the failedOrSkippedRegions value to set.
      * @return the CustomRolloutStatus object itself.
      */
@@ -72,19 +76,16 @@ public class CustomRolloutStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (failedOrSkippedRegions() != null) {
-            failedOrSkippedRegions()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            failedOrSkippedRegions().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 }

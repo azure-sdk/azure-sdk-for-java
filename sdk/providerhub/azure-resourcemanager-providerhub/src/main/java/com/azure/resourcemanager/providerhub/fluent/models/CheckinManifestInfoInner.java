@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The CheckinManifestInfo model. */
+/**
+ * The CheckinManifestInfo model.
+ */
 @Fluent
 public final class CheckinManifestInfoInner {
     /*
@@ -35,13 +37,15 @@ public final class CheckinManifestInfoInner {
     @JsonProperty(value = "commitId")
     private String commitId;
 
-    /** Creates an instance of CheckinManifestInfoInner class. */
+    /**
+     * Creates an instance of CheckinManifestInfoInner class.
+     */
     public CheckinManifestInfoInner() {
     }
 
     /**
      * Get the isCheckedIn property: The isCheckedIn property.
-     *
+     * 
      * @return the isCheckedIn value.
      */
     public boolean isCheckedIn() {
@@ -50,7 +54,7 @@ public final class CheckinManifestInfoInner {
 
     /**
      * Set the isCheckedIn property: The isCheckedIn property.
-     *
+     * 
      * @param isCheckedIn the isCheckedIn value to set.
      * @return the CheckinManifestInfoInner object itself.
      */
@@ -61,7 +65,7 @@ public final class CheckinManifestInfoInner {
 
     /**
      * Get the statusMessage property: The statusMessage property.
-     *
+     * 
      * @return the statusMessage value.
      */
     public String statusMessage() {
@@ -70,7 +74,7 @@ public final class CheckinManifestInfoInner {
 
     /**
      * Set the statusMessage property: The statusMessage property.
-     *
+     * 
      * @param statusMessage the statusMessage value to set.
      * @return the CheckinManifestInfoInner object itself.
      */
@@ -81,7 +85,7 @@ public final class CheckinManifestInfoInner {
 
     /**
      * Get the pullRequest property: The pullRequest property.
-     *
+     * 
      * @return the pullRequest value.
      */
     public String pullRequest() {
@@ -90,7 +94,7 @@ public final class CheckinManifestInfoInner {
 
     /**
      * Set the pullRequest property: The pullRequest property.
-     *
+     * 
      * @param pullRequest the pullRequest value to set.
      * @return the CheckinManifestInfoInner object itself.
      */
@@ -101,7 +105,7 @@ public final class CheckinManifestInfoInner {
 
     /**
      * Get the commitId property: The commitId property.
-     *
+     * 
      * @return the commitId value.
      */
     public String commitId() {
@@ -110,7 +114,7 @@ public final class CheckinManifestInfoInner {
 
     /**
      * Set the commitId property: The commitId property.
-     *
+     * 
      * @param commitId the commitId value to set.
      * @return the CheckinManifestInfoInner object itself.
      */
@@ -121,15 +125,13 @@ public final class CheckinManifestInfoInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (statusMessage() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property statusMessage in model CheckinManifestInfoInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property statusMessage in model CheckinManifestInfoInner"));
         }
     }
 

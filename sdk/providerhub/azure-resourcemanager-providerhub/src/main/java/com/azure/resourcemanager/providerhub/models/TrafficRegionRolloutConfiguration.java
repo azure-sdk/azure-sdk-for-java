@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 import java.util.List;
 
-/** The TrafficRegionRolloutConfiguration model. */
+/**
+ * The TrafficRegionRolloutConfiguration model.
+ */
 @Fluent
 public class TrafficRegionRolloutConfiguration extends TrafficRegions {
     /*
@@ -18,13 +20,15 @@ public class TrafficRegionRolloutConfiguration extends TrafficRegions {
     @JsonProperty(value = "waitDuration")
     private Duration waitDuration;
 
-    /** Creates an instance of TrafficRegionRolloutConfiguration class. */
+    /**
+     * Creates an instance of TrafficRegionRolloutConfiguration class.
+     */
     public TrafficRegionRolloutConfiguration() {
     }
 
     /**
      * Get the waitDuration property: The waitDuration property.
-     *
+     * 
      * @return the waitDuration value.
      */
     public Duration waitDuration() {
@@ -33,7 +37,7 @@ public class TrafficRegionRolloutConfiguration extends TrafficRegions {
 
     /**
      * Set the waitDuration property: The waitDuration property.
-     *
+     * 
      * @param waitDuration the waitDuration value to set.
      * @return the TrafficRegionRolloutConfiguration object itself.
      */
@@ -42,7 +46,9 @@ public class TrafficRegionRolloutConfiguration extends TrafficRegions {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TrafficRegionRolloutConfiguration withRegions(List<String> regions) {
         super.withRegions(regions);
@@ -51,7 +57,7 @@ public class TrafficRegionRolloutConfiguration extends TrafficRegions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

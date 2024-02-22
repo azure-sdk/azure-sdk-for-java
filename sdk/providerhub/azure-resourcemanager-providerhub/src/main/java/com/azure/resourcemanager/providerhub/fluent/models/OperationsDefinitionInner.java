@@ -11,7 +11,9 @@ import com.azure.resourcemanager.providerhub.models.OperationOrigins;
 import com.azure.resourcemanager.providerhub.models.OperationsDefinitionDisplay;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of an Operation. */
+/**
+ * Properties of an Operation.
+ */
 @Fluent
 public final class OperationsDefinitionInner {
     /*
@@ -50,13 +52,15 @@ public final class OperationsDefinitionInner {
     @JsonProperty(value = "properties")
     private Object properties;
 
-    /** Creates an instance of OperationsDefinitionInner class. */
+    /**
+     * Creates an instance of OperationsDefinitionInner class.
+     */
     public OperationsDefinitionInner() {
     }
 
     /**
      * Get the name property: Name of the operation.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -65,7 +69,7 @@ public final class OperationsDefinitionInner {
 
     /**
      * Set the name property: Name of the operation.
-     *
+     * 
      * @param name the name value to set.
      * @return the OperationsDefinitionInner object itself.
      */
@@ -76,7 +80,7 @@ public final class OperationsDefinitionInner {
 
     /**
      * Get the isDataAction property: Indicates whether the operation applies to data-plane.
-     *
+     * 
      * @return the isDataAction value.
      */
     public Boolean isDataAction() {
@@ -85,7 +89,7 @@ public final class OperationsDefinitionInner {
 
     /**
      * Set the isDataAction property: Indicates whether the operation applies to data-plane.
-     *
+     * 
      * @param isDataAction the isDataAction value to set.
      * @return the OperationsDefinitionInner object itself.
      */
@@ -96,7 +100,7 @@ public final class OperationsDefinitionInner {
 
     /**
      * Get the origin property: The origin property.
-     *
+     * 
      * @return the origin value.
      */
     public OperationOrigins origin() {
@@ -105,7 +109,7 @@ public final class OperationsDefinitionInner {
 
     /**
      * Set the origin property: The origin property.
-     *
+     * 
      * @param origin the origin value to set.
      * @return the OperationsDefinitionInner object itself.
      */
@@ -116,7 +120,7 @@ public final class OperationsDefinitionInner {
 
     /**
      * Get the display property: Display information of the operation.
-     *
+     * 
      * @return the display value.
      */
     public OperationsDefinitionDisplay display() {
@@ -125,7 +129,7 @@ public final class OperationsDefinitionInner {
 
     /**
      * Set the display property: Display information of the operation.
-     *
+     * 
      * @param display the display value to set.
      * @return the OperationsDefinitionInner object itself.
      */
@@ -136,7 +140,7 @@ public final class OperationsDefinitionInner {
 
     /**
      * Get the actionType property: The actionType property.
-     *
+     * 
      * @return the actionType value.
      */
     public OperationActionType actionType() {
@@ -145,7 +149,7 @@ public final class OperationsDefinitionInner {
 
     /**
      * Set the actionType property: The actionType property.
-     *
+     * 
      * @param actionType the actionType value to set.
      * @return the OperationsDefinitionInner object itself.
      */
@@ -156,7 +160,7 @@ public final class OperationsDefinitionInner {
 
     /**
      * Get the properties property: Anything.
-     *
+     * 
      * @return the properties value.
      */
     public Object properties() {
@@ -165,7 +169,7 @@ public final class OperationsDefinitionInner {
 
     /**
      * Set the properties property: Anything.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the OperationsDefinitionInner object itself.
      */
@@ -176,20 +180,17 @@ public final class OperationsDefinitionInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model OperationsDefinitionInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model OperationsDefinitionInner"));
         }
         if (display() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property display in model OperationsDefinitionInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property display in model OperationsDefinitionInner"));
         } else {
             display().validate();
         }

@@ -7,32 +7,40 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import java.util.List;
 
-/** The ResourceProviderManifestPropertiesTemplateDeploymentOptions model. */
+/**
+ * The ResourceProviderManifestPropertiesTemplateDeploymentOptions model.
+ */
 @Fluent
 public final class ResourceProviderManifestPropertiesTemplateDeploymentOptions extends TemplateDeploymentOptions {
-    /** Creates an instance of ResourceProviderManifestPropertiesTemplateDeploymentOptions class. */
+    /**
+     * Creates an instance of ResourceProviderManifestPropertiesTemplateDeploymentOptions class.
+     */
     public ResourceProviderManifestPropertiesTemplateDeploymentOptions() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ResourceProviderManifestPropertiesTemplateDeploymentOptions withPreflightSupported(
-        Boolean preflightSupported) {
+    public ResourceProviderManifestPropertiesTemplateDeploymentOptions
+        withPreflightSupported(Boolean preflightSupported) {
         super.withPreflightSupported(preflightSupported);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ResourceProviderManifestPropertiesTemplateDeploymentOptions withPreflightOptions(
-        List<PreflightOption> preflightOptions) {
+    public ResourceProviderManifestPropertiesTemplateDeploymentOptions
+        withPreflightOptions(List<PreflightOption> preflightOptions) {
         super.withPreflightOptions(preflightOptions);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

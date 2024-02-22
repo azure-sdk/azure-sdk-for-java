@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ResourceTypeSku model. */
+/**
+ * The ResourceTypeSku model.
+ */
 @Fluent
 public class ResourceTypeSku {
     /*
@@ -24,13 +26,15 @@ public class ResourceTypeSku {
     @JsonProperty(value = "provisioningState")
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of ResourceTypeSku class. */
+    /**
+     * Creates an instance of ResourceTypeSku class.
+     */
     public ResourceTypeSku() {
     }
 
     /**
      * Get the skuSettings property: The skuSettings property.
-     *
+     * 
      * @return the skuSettings value.
      */
     public List<SkuSetting> skuSettings() {
@@ -39,7 +43,7 @@ public class ResourceTypeSku {
 
     /**
      * Set the skuSettings property: The skuSettings property.
-     *
+     * 
      * @param skuSettings the skuSettings value to set.
      * @return the ResourceTypeSku object itself.
      */
@@ -50,7 +54,7 @@ public class ResourceTypeSku {
 
     /**
      * Get the provisioningState property: The provisioningState property.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -59,7 +63,7 @@ public class ResourceTypeSku {
 
     /**
      * Set the provisioningState property: The provisioningState property.
-     *
+     * 
      * @param provisioningState the provisioningState value to set.
      * @return the ResourceTypeSku object itself.
      */
@@ -70,14 +74,13 @@ public class ResourceTypeSku {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (skuSettings() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property skuSettings in model ResourceTypeSku"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property skuSettings in model ResourceTypeSku"));
         } else {
             skuSettings().forEach(e -> e.validate());
         }

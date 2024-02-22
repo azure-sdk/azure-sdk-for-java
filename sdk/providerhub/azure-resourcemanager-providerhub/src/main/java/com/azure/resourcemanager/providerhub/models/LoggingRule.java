@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The LoggingRule model. */
+/**
+ * The LoggingRule model.
+ */
 @Fluent
 public final class LoggingRule {
     /*
@@ -35,13 +37,15 @@ public final class LoggingRule {
     @JsonProperty(value = "hiddenPropertyPaths")
     private LoggingRuleHiddenPropertyPaths hiddenPropertyPaths;
 
-    /** Creates an instance of LoggingRule class. */
+    /**
+     * Creates an instance of LoggingRule class.
+     */
     public LoggingRule() {
     }
 
     /**
      * Get the action property: The action property.
-     *
+     * 
      * @return the action value.
      */
     public String action() {
@@ -50,7 +54,7 @@ public final class LoggingRule {
 
     /**
      * Set the action property: The action property.
-     *
+     * 
      * @param action the action value to set.
      * @return the LoggingRule object itself.
      */
@@ -61,7 +65,7 @@ public final class LoggingRule {
 
     /**
      * Get the direction property: The direction property.
-     *
+     * 
      * @return the direction value.
      */
     public LoggingDirections direction() {
@@ -70,7 +74,7 @@ public final class LoggingRule {
 
     /**
      * Set the direction property: The direction property.
-     *
+     * 
      * @param direction the direction value to set.
      * @return the LoggingRule object itself.
      */
@@ -81,7 +85,7 @@ public final class LoggingRule {
 
     /**
      * Get the detailLevel property: The detailLevel property.
-     *
+     * 
      * @return the detailLevel value.
      */
     public LoggingDetails detailLevel() {
@@ -90,7 +94,7 @@ public final class LoggingRule {
 
     /**
      * Set the detailLevel property: The detailLevel property.
-     *
+     * 
      * @param detailLevel the detailLevel value to set.
      * @return the LoggingRule object itself.
      */
@@ -101,7 +105,7 @@ public final class LoggingRule {
 
     /**
      * Get the hiddenPropertyPaths property: The hiddenPropertyPaths property.
-     *
+     * 
      * @return the hiddenPropertyPaths value.
      */
     public LoggingRuleHiddenPropertyPaths hiddenPropertyPaths() {
@@ -110,7 +114,7 @@ public final class LoggingRule {
 
     /**
      * Set the hiddenPropertyPaths property: The hiddenPropertyPaths property.
-     *
+     * 
      * @param hiddenPropertyPaths the hiddenPropertyPaths value to set.
      * @return the LoggingRule object itself.
      */
@@ -121,24 +125,21 @@ public final class LoggingRule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (action() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property action in model LoggingRule"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property action in model LoggingRule"));
         }
         if (direction() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property direction in model LoggingRule"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property direction in model LoggingRule"));
         }
         if (detailLevel() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property detailLevel in model LoggingRule"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property detailLevel in model LoggingRule"));
         }
         if (hiddenPropertyPaths() != null) {
             hiddenPropertyPaths().validate();

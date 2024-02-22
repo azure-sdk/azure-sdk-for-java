@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ResourceProviderCapabilities model. */
+/**
+ * The ResourceProviderCapabilities model.
+ */
 @Fluent
 public final class ResourceProviderCapabilities {
     /*
@@ -30,13 +32,15 @@ public final class ResourceProviderCapabilities {
     @JsonProperty(value = "requiredFeatures")
     private List<String> requiredFeatures;
 
-    /** Creates an instance of ResourceProviderCapabilities class. */
+    /**
+     * Creates an instance of ResourceProviderCapabilities class.
+     */
     public ResourceProviderCapabilities() {
     }
 
     /**
      * Get the quotaId property: The quotaId property.
-     *
+     * 
      * @return the quotaId value.
      */
     public String quotaId() {
@@ -45,7 +49,7 @@ public final class ResourceProviderCapabilities {
 
     /**
      * Set the quotaId property: The quotaId property.
-     *
+     * 
      * @param quotaId the quotaId value to set.
      * @return the ResourceProviderCapabilities object itself.
      */
@@ -56,7 +60,7 @@ public final class ResourceProviderCapabilities {
 
     /**
      * Get the effect property: The effect property.
-     *
+     * 
      * @return the effect value.
      */
     public ResourceProviderCapabilitiesEffect effect() {
@@ -65,7 +69,7 @@ public final class ResourceProviderCapabilities {
 
     /**
      * Set the effect property: The effect property.
-     *
+     * 
      * @param effect the effect value to set.
      * @return the ResourceProviderCapabilities object itself.
      */
@@ -76,7 +80,7 @@ public final class ResourceProviderCapabilities {
 
     /**
      * Get the requiredFeatures property: The requiredFeatures property.
-     *
+     * 
      * @return the requiredFeatures value.
      */
     public List<String> requiredFeatures() {
@@ -85,7 +89,7 @@ public final class ResourceProviderCapabilities {
 
     /**
      * Set the requiredFeatures property: The requiredFeatures property.
-     *
+     * 
      * @param requiredFeatures the requiredFeatures value to set.
      * @return the ResourceProviderCapabilities object itself.
      */
@@ -96,21 +100,17 @@ public final class ResourceProviderCapabilities {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (quotaId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property quotaId in model ResourceProviderCapabilities"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property quotaId in model ResourceProviderCapabilities"));
         }
         if (effect() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property effect in model ResourceProviderCapabilities"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property effect in model ResourceProviderCapabilities"));
         }
     }
 

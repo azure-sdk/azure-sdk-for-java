@@ -6,14 +6,20 @@ package com.azure.resourcemanager.providerhub.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The ResourceTypeRequestHeaderOptions model. */
+/**
+ * The ResourceTypeRequestHeaderOptions model.
+ */
 @Fluent
 public final class ResourceTypeRequestHeaderOptions extends RequestHeaderOptions {
-    /** Creates an instance of ResourceTypeRequestHeaderOptions class. */
+    /**
+     * Creates an instance of ResourceTypeRequestHeaderOptions class.
+     */
     public ResourceTypeRequestHeaderOptions() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceTypeRequestHeaderOptions withOptInHeaders(OptInHeaderType optInHeaders) {
         super.withOptInHeaders(optInHeaders);
@@ -22,7 +28,7 @@ public final class ResourceTypeRequestHeaderOptions extends RequestHeaderOptions
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

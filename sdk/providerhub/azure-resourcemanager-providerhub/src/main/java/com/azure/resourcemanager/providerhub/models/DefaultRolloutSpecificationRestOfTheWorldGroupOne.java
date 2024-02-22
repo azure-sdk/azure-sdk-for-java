@@ -8,21 +8,29 @@ import com.azure.core.annotation.Fluent;
 import java.time.Duration;
 import java.util.List;
 
-/** The DefaultRolloutSpecificationRestOfTheWorldGroupOne model. */
+/**
+ * The DefaultRolloutSpecificationRestOfTheWorldGroupOne model.
+ */
 @Fluent
 public final class DefaultRolloutSpecificationRestOfTheWorldGroupOne extends TrafficRegionRolloutConfiguration {
-    /** Creates an instance of DefaultRolloutSpecificationRestOfTheWorldGroupOne class. */
+    /**
+     * Creates an instance of DefaultRolloutSpecificationRestOfTheWorldGroupOne class.
+     */
     public DefaultRolloutSpecificationRestOfTheWorldGroupOne() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutSpecificationRestOfTheWorldGroupOne withWaitDuration(Duration waitDuration) {
         super.withWaitDuration(waitDuration);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutSpecificationRestOfTheWorldGroupOne withRegions(List<String> regions) {
         super.withRegions(regions);
@@ -31,7 +39,7 @@ public final class DefaultRolloutSpecificationRestOfTheWorldGroupOne extends Tra
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

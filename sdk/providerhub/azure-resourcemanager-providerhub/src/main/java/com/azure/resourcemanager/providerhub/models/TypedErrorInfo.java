@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The TypedErrorInfo model. */
+/**
+ * The TypedErrorInfo model.
+ */
 @Fluent
 public final class TypedErrorInfo {
     /*
@@ -23,13 +25,15 @@ public final class TypedErrorInfo {
     @JsonProperty(value = "info", access = JsonProperty.Access.WRITE_ONLY)
     private Object info;
 
-    /** Creates an instance of TypedErrorInfo class. */
+    /**
+     * Creates an instance of TypedErrorInfo class.
+     */
     public TypedErrorInfo() {
     }
 
     /**
      * Get the type property: The type property.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -38,7 +42,7 @@ public final class TypedErrorInfo {
 
     /**
      * Set the type property: The type property.
-     *
+     * 
      * @param type the type value to set.
      * @return the TypedErrorInfo object itself.
      */
@@ -49,7 +53,7 @@ public final class TypedErrorInfo {
 
     /**
      * Get the info property: Any object.
-     *
+     * 
      * @return the info value.
      */
     public Object info() {
@@ -58,14 +62,13 @@ public final class TypedErrorInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property type in model TypedErrorInfo"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model TypedErrorInfo"));
         }
     }
 

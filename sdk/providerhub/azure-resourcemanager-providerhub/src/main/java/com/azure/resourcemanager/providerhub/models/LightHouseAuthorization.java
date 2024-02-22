@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The LightHouseAuthorization model. */
+/**
+ * The LightHouseAuthorization model.
+ */
 @Fluent
 public final class LightHouseAuthorization {
     /*
@@ -23,13 +25,15 @@ public final class LightHouseAuthorization {
     @JsonProperty(value = "roleDefinitionId", required = true)
     private String roleDefinitionId;
 
-    /** Creates an instance of LightHouseAuthorization class. */
+    /**
+     * Creates an instance of LightHouseAuthorization class.
+     */
     public LightHouseAuthorization() {
     }
 
     /**
      * Get the principalId property: The principalId property.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -38,7 +42,7 @@ public final class LightHouseAuthorization {
 
     /**
      * Set the principalId property: The principalId property.
-     *
+     * 
      * @param principalId the principalId value to set.
      * @return the LightHouseAuthorization object itself.
      */
@@ -49,7 +53,7 @@ public final class LightHouseAuthorization {
 
     /**
      * Get the roleDefinitionId property: The roleDefinitionId property.
-     *
+     * 
      * @return the roleDefinitionId value.
      */
     public String roleDefinitionId() {
@@ -58,7 +62,7 @@ public final class LightHouseAuthorization {
 
     /**
      * Set the roleDefinitionId property: The roleDefinitionId property.
-     *
+     * 
      * @param roleDefinitionId the roleDefinitionId value to set.
      * @return the LightHouseAuthorization object itself.
      */
@@ -69,21 +73,17 @@ public final class LightHouseAuthorization {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (principalId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property principalId in model LightHouseAuthorization"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property principalId in model LightHouseAuthorization"));
         }
         if (roleDefinitionId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property roleDefinitionId in model LightHouseAuthorization"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property roleDefinitionId in model LightHouseAuthorization"));
         }
     }
 

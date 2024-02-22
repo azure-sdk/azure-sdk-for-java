@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Inner error containing list of errors. */
+/**
+ * Inner error containing list of errors.
+ */
 @Fluent
 public class InnerError {
     /*
@@ -30,15 +32,18 @@ public class InnerError {
     /*
      * Inner error containing list of errors.
      */
-    @JsonIgnore private Map<String, Object> additionalProperties;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
 
-    /** Creates an instance of InnerError class. */
+    /**
+     * Creates an instance of InnerError class.
+     */
     public InnerError() {
     }
 
     /**
      * Get the code property: Specific error code than was provided by the containing error.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -46,8 +51,9 @@ public class InnerError {
     }
 
     /**
-     * Get the innerError property: Object containing more specific information than the current object about the error.
-     *
+     * Get the innerError property: Object containing more specific information than the current object about the
+     * error.
+     * 
      * @return the innerError value.
      */
     public Object innerError() {
@@ -56,7 +62,7 @@ public class InnerError {
 
     /**
      * Get the additionalProperties property: Inner error containing list of errors.
-     *
+     * 
      * @return the additionalProperties value.
      */
     @JsonAnyGetter
@@ -66,7 +72,7 @@ public class InnerError {
 
     /**
      * Set the additionalProperties property: Inner error containing list of errors.
-     *
+     * 
      * @param additionalProperties the additionalProperties value to set.
      * @return the InnerError object itself.
      */
@@ -85,7 +91,7 @@ public class InnerError {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

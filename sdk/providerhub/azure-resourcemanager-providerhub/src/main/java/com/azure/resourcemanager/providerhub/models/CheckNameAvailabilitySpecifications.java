@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The CheckNameAvailabilitySpecifications model. */
+/**
+ * The CheckNameAvailabilitySpecifications model.
+ */
 @Fluent
 public class CheckNameAvailabilitySpecifications {
     /*
@@ -23,13 +25,15 @@ public class CheckNameAvailabilitySpecifications {
     @JsonProperty(value = "resourceTypesWithCustomValidation")
     private List<String> resourceTypesWithCustomValidation;
 
-    /** Creates an instance of CheckNameAvailabilitySpecifications class. */
+    /**
+     * Creates an instance of CheckNameAvailabilitySpecifications class.
+     */
     public CheckNameAvailabilitySpecifications() {
     }
 
     /**
      * Get the enableDefaultValidation property: The enableDefaultValidation property.
-     *
+     * 
      * @return the enableDefaultValidation value.
      */
     public Boolean enableDefaultValidation() {
@@ -38,7 +42,7 @@ public class CheckNameAvailabilitySpecifications {
 
     /**
      * Set the enableDefaultValidation property: The enableDefaultValidation property.
-     *
+     * 
      * @param enableDefaultValidation the enableDefaultValidation value to set.
      * @return the CheckNameAvailabilitySpecifications object itself.
      */
@@ -49,7 +53,7 @@ public class CheckNameAvailabilitySpecifications {
 
     /**
      * Get the resourceTypesWithCustomValidation property: The resourceTypesWithCustomValidation property.
-     *
+     * 
      * @return the resourceTypesWithCustomValidation value.
      */
     public List<String> resourceTypesWithCustomValidation() {
@@ -58,19 +62,19 @@ public class CheckNameAvailabilitySpecifications {
 
     /**
      * Set the resourceTypesWithCustomValidation property: The resourceTypesWithCustomValidation property.
-     *
+     * 
      * @param resourceTypesWithCustomValidation the resourceTypesWithCustomValidation value to set.
      * @return the CheckNameAvailabilitySpecifications object itself.
      */
-    public CheckNameAvailabilitySpecifications withResourceTypesWithCustomValidation(
-        List<String> resourceTypesWithCustomValidation) {
+    public CheckNameAvailabilitySpecifications
+        withResourceTypesWithCustomValidation(List<String> resourceTypesWithCustomValidation) {
         this.resourceTypesWithCustomValidation = resourceTypesWithCustomValidation;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

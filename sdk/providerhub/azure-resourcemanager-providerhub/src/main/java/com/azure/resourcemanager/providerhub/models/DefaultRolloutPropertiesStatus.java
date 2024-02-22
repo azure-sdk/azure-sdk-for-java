@@ -9,54 +9,68 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** The DefaultRolloutPropertiesStatus model. */
+/**
+ * The DefaultRolloutPropertiesStatus model.
+ */
 @Fluent
 public final class DefaultRolloutPropertiesStatus extends DefaultRolloutStatus {
-    /** Creates an instance of DefaultRolloutPropertiesStatus class. */
+    /**
+     * Creates an instance of DefaultRolloutPropertiesStatus class.
+     */
     public DefaultRolloutPropertiesStatus() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutPropertiesStatus withNextTrafficRegion(TrafficRegionCategory nextTrafficRegion) {
         super.withNextTrafficRegion(nextTrafficRegion);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public DefaultRolloutPropertiesStatus withNextTrafficRegionScheduledTime(
-        OffsetDateTime nextTrafficRegionScheduledTime) {
+    public DefaultRolloutPropertiesStatus
+        withNextTrafficRegionScheduledTime(OffsetDateTime nextTrafficRegionScheduledTime) {
         super.withNextTrafficRegionScheduledTime(nextTrafficRegionScheduledTime);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public DefaultRolloutPropertiesStatus withSubscriptionReregistrationResult(
-        SubscriptionReregistrationResult subscriptionReregistrationResult) {
+    public DefaultRolloutPropertiesStatus
+        withSubscriptionReregistrationResult(SubscriptionReregistrationResult subscriptionReregistrationResult) {
         super.withSubscriptionReregistrationResult(subscriptionReregistrationResult);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutPropertiesStatus withCompletedRegions(List<String> completedRegions) {
         super.withCompletedRegions(completedRegions);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public DefaultRolloutPropertiesStatus withFailedOrSkippedRegions(
-        Map<String, ExtendedErrorInfo> failedOrSkippedRegions) {
+    public DefaultRolloutPropertiesStatus
+        withFailedOrSkippedRegions(Map<String, ExtendedErrorInfo> failedOrSkippedRegions) {
         super.withFailedOrSkippedRegions(failedOrSkippedRegions);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

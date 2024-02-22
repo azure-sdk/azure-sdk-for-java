@@ -7,14 +7,20 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import java.util.List;
 
-/** The ResourceProviderManifestProviderAuthentication model. */
+/**
+ * The ResourceProviderManifestProviderAuthentication model.
+ */
 @Fluent
 public final class ResourceProviderManifestProviderAuthentication extends ResourceProviderAuthentication {
-    /** Creates an instance of ResourceProviderManifestProviderAuthentication class. */
+    /**
+     * Creates an instance of ResourceProviderManifestProviderAuthentication class.
+     */
     public ResourceProviderManifestProviderAuthentication() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceProviderManifestProviderAuthentication withAllowedAudiences(List<String> allowedAudiences) {
         super.withAllowedAudiences(allowedAudiences);
@@ -23,7 +29,7 @@ public final class ResourceProviderManifestProviderAuthentication extends Resour
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The RequestHeaderOptions model. */
+/**
+ * The RequestHeaderOptions model.
+ */
 @Fluent
 public class RequestHeaderOptions {
     /*
@@ -16,13 +18,15 @@ public class RequestHeaderOptions {
     @JsonProperty(value = "optInHeaders")
     private OptInHeaderType optInHeaders;
 
-    /** Creates an instance of RequestHeaderOptions class. */
+    /**
+     * Creates an instance of RequestHeaderOptions class.
+     */
     public RequestHeaderOptions() {
     }
 
     /**
      * Get the optInHeaders property: The optInHeaders property.
-     *
+     * 
      * @return the optInHeaders value.
      */
     public OptInHeaderType optInHeaders() {
@@ -31,7 +35,7 @@ public class RequestHeaderOptions {
 
     /**
      * Set the optInHeaders property: The optInHeaders property.
-     *
+     * 
      * @param optInHeaders the optInHeaders value to set.
      * @return the RequestHeaderOptions object itself.
      */
@@ -42,7 +46,7 @@ public class RequestHeaderOptions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -6,31 +6,39 @@ package com.azure.resourcemanager.providerhub.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The ResourceTypeTemplateDeploymentPolicy model. */
+/**
+ * The ResourceTypeTemplateDeploymentPolicy model.
+ */
 @Fluent
 public final class ResourceTypeTemplateDeploymentPolicy extends TemplateDeploymentPolicy {
-    /** Creates an instance of ResourceTypeTemplateDeploymentPolicy class. */
+    /**
+     * Creates an instance of ResourceTypeTemplateDeploymentPolicy class.
+     */
     public ResourceTypeTemplateDeploymentPolicy() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceTypeTemplateDeploymentPolicy withCapabilities(TemplateDeploymentCapabilities capabilities) {
         super.withCapabilities(capabilities);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ResourceTypeTemplateDeploymentPolicy withPreflightOptions(
-        TemplateDeploymentPreflightOptions preflightOptions) {
+    public ResourceTypeTemplateDeploymentPolicy
+        withPreflightOptions(TemplateDeploymentPreflightOptions preflightOptions) {
         super.withPreflightOptions(preflightOptions);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

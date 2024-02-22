@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ResourceType model. */
+/**
+ * The ResourceType model.
+ */
 @Fluent
 public final class ResourceType {
     /*
@@ -155,13 +157,15 @@ public final class ResourceType {
     @JsonProperty(value = "resourceDeletionPolicy")
     private ManifestResourceDeletionPolicy resourceDeletionPolicy;
 
-    /** Creates an instance of ResourceType class. */
+    /**
+     * Creates an instance of ResourceType class.
+     */
     public ResourceType() {
     }
 
     /**
      * Get the name property: The name property.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -170,7 +174,7 @@ public final class ResourceType {
 
     /**
      * Set the name property: The name property.
-     *
+     * 
      * @param name the name value to set.
      * @return the ResourceType object itself.
      */
@@ -181,7 +185,7 @@ public final class ResourceType {
 
     /**
      * Get the routingType property: The routingType property.
-     *
+     * 
      * @return the routingType value.
      */
     public RoutingType routingType() {
@@ -190,7 +194,7 @@ public final class ResourceType {
 
     /**
      * Set the routingType property: The routingType property.
-     *
+     * 
      * @param routingType the routingType value to set.
      * @return the ResourceType object itself.
      */
@@ -201,7 +205,7 @@ public final class ResourceType {
 
     /**
      * Get the resourceValidation property: The resourceValidation property.
-     *
+     * 
      * @return the resourceValidation value.
      */
     public ResourceValidation resourceValidation() {
@@ -210,7 +214,7 @@ public final class ResourceType {
 
     /**
      * Set the resourceValidation property: The resourceValidation property.
-     *
+     * 
      * @param resourceValidation the resourceValidation value to set.
      * @return the ResourceType object itself.
      */
@@ -221,7 +225,7 @@ public final class ResourceType {
 
     /**
      * Get the allowedUnauthorizedActions property: The allowedUnauthorizedActions property.
-     *
+     * 
      * @return the allowedUnauthorizedActions value.
      */
     public List<String> allowedUnauthorizedActions() {
@@ -230,7 +234,7 @@ public final class ResourceType {
 
     /**
      * Set the allowedUnauthorizedActions property: The allowedUnauthorizedActions property.
-     *
+     * 
      * @param allowedUnauthorizedActions the allowedUnauthorizedActions value to set.
      * @return the ResourceType object itself.
      */
@@ -241,7 +245,7 @@ public final class ResourceType {
 
     /**
      * Get the authorizationActionMappings property: The authorizationActionMappings property.
-     *
+     * 
      * @return the authorizationActionMappings value.
      */
     public List<AuthorizationActionMapping> authorizationActionMappings() {
@@ -250,7 +254,7 @@ public final class ResourceType {
 
     /**
      * Set the authorizationActionMappings property: The authorizationActionMappings property.
-     *
+     * 
      * @param authorizationActionMappings the authorizationActionMappings value to set.
      * @return the ResourceType object itself.
      */
@@ -261,7 +265,7 @@ public final class ResourceType {
 
     /**
      * Get the linkedAccessChecks property: The linkedAccessChecks property.
-     *
+     * 
      * @return the linkedAccessChecks value.
      */
     public List<LinkedAccessCheck> linkedAccessChecks() {
@@ -270,7 +274,7 @@ public final class ResourceType {
 
     /**
      * Set the linkedAccessChecks property: The linkedAccessChecks property.
-     *
+     * 
      * @param linkedAccessChecks the linkedAccessChecks value to set.
      * @return the ResourceType object itself.
      */
@@ -281,7 +285,7 @@ public final class ResourceType {
 
     /**
      * Get the defaultApiVersion property: The defaultApiVersion property.
-     *
+     * 
      * @return the defaultApiVersion value.
      */
     public String defaultApiVersion() {
@@ -290,7 +294,7 @@ public final class ResourceType {
 
     /**
      * Set the defaultApiVersion property: The defaultApiVersion property.
-     *
+     * 
      * @param defaultApiVersion the defaultApiVersion value to set.
      * @return the ResourceType object itself.
      */
@@ -301,7 +305,7 @@ public final class ResourceType {
 
     /**
      * Get the loggingRules property: The loggingRules property.
-     *
+     * 
      * @return the loggingRules value.
      */
     public List<LoggingRule> loggingRules() {
@@ -310,7 +314,7 @@ public final class ResourceType {
 
     /**
      * Set the loggingRules property: The loggingRules property.
-     *
+     * 
      * @param loggingRules the loggingRules value to set.
      * @return the ResourceType object itself.
      */
@@ -321,7 +325,7 @@ public final class ResourceType {
 
     /**
      * Get the throttlingRules property: The throttlingRules property.
-     *
+     * 
      * @return the throttlingRules value.
      */
     public List<ThrottlingRule> throttlingRules() {
@@ -330,7 +334,7 @@ public final class ResourceType {
 
     /**
      * Set the throttlingRules property: The throttlingRules property.
-     *
+     * 
      * @param throttlingRules the throttlingRules value to set.
      * @return the ResourceType object itself.
      */
@@ -341,7 +345,7 @@ public final class ResourceType {
 
     /**
      * Get the endpoints property: The endpoints property.
-     *
+     * 
      * @return the endpoints value.
      */
     public List<ResourceProviderEndpoint> endpoints() {
@@ -350,7 +354,7 @@ public final class ResourceType {
 
     /**
      * Set the endpoints property: The endpoints property.
-     *
+     * 
      * @param endpoints the endpoints value to set.
      * @return the ResourceType object itself.
      */
@@ -361,7 +365,7 @@ public final class ResourceType {
 
     /**
      * Get the marketplaceType property: The marketplaceType property.
-     *
+     * 
      * @return the marketplaceType value.
      */
     public MarketplaceType marketplaceType() {
@@ -370,7 +374,7 @@ public final class ResourceType {
 
     /**
      * Set the marketplaceType property: The marketplaceType property.
-     *
+     * 
      * @param marketplaceType the marketplaceType value to set.
      * @return the ResourceType object itself.
      */
@@ -381,7 +385,7 @@ public final class ResourceType {
 
     /**
      * Get the identityManagement property: The identityManagement property.
-     *
+     * 
      * @return the identityManagement value.
      */
     public ResourceTypeIdentityManagement identityManagement() {
@@ -390,7 +394,7 @@ public final class ResourceType {
 
     /**
      * Set the identityManagement property: The identityManagement property.
-     *
+     * 
      * @param identityManagement the identityManagement value to set.
      * @return the ResourceType object itself.
      */
@@ -401,7 +405,7 @@ public final class ResourceType {
 
     /**
      * Get the metadata property: Anything.
-     *
+     * 
      * @return the metadata value.
      */
     public Object metadata() {
@@ -410,7 +414,7 @@ public final class ResourceType {
 
     /**
      * Set the metadata property: Anything.
-     *
+     * 
      * @param metadata the metadata value to set.
      * @return the ResourceType object itself.
      */
@@ -421,7 +425,7 @@ public final class ResourceType {
 
     /**
      * Get the requiredFeatures property: The requiredFeatures property.
-     *
+     * 
      * @return the requiredFeatures value.
      */
     public List<String> requiredFeatures() {
@@ -430,7 +434,7 @@ public final class ResourceType {
 
     /**
      * Set the requiredFeatures property: The requiredFeatures property.
-     *
+     * 
      * @param requiredFeatures the requiredFeatures value to set.
      * @return the ResourceType object itself.
      */
@@ -441,7 +445,7 @@ public final class ResourceType {
 
     /**
      * Get the featuresRule property: The featuresRule property.
-     *
+     * 
      * @return the featuresRule value.
      */
     public ResourceTypeFeaturesRule featuresRule() {
@@ -450,7 +454,7 @@ public final class ResourceType {
 
     /**
      * Set the featuresRule property: The featuresRule property.
-     *
+     * 
      * @param featuresRule the featuresRule value to set.
      * @return the ResourceType object itself.
      */
@@ -461,7 +465,7 @@ public final class ResourceType {
 
     /**
      * Get the subscriptionStateRules property: The subscriptionStateRules property.
-     *
+     * 
      * @return the subscriptionStateRules value.
      */
     public List<SubscriptionStateRule> subscriptionStateRules() {
@@ -470,7 +474,7 @@ public final class ResourceType {
 
     /**
      * Set the subscriptionStateRules property: The subscriptionStateRules property.
-     *
+     * 
      * @param subscriptionStateRules the subscriptionStateRules value to set.
      * @return the ResourceType object itself.
      */
@@ -481,7 +485,7 @@ public final class ResourceType {
 
     /**
      * Get the serviceTreeInfos property: The serviceTreeInfos property.
-     *
+     * 
      * @return the serviceTreeInfos value.
      */
     public List<ServiceTreeInfo> serviceTreeInfos() {
@@ -490,7 +494,7 @@ public final class ResourceType {
 
     /**
      * Set the serviceTreeInfos property: The serviceTreeInfos property.
-     *
+     * 
      * @param serviceTreeInfos the serviceTreeInfos value to set.
      * @return the ResourceType object itself.
      */
@@ -501,7 +505,7 @@ public final class ResourceType {
 
     /**
      * Get the requestHeaderOptions property: The requestHeaderOptions property.
-     *
+     * 
      * @return the requestHeaderOptions value.
      */
     public ResourceTypeRequestHeaderOptions requestHeaderOptions() {
@@ -510,7 +514,7 @@ public final class ResourceType {
 
     /**
      * Set the requestHeaderOptions property: The requestHeaderOptions property.
-     *
+     * 
      * @param requestHeaderOptions the requestHeaderOptions value to set.
      * @return the ResourceType object itself.
      */
@@ -521,7 +525,7 @@ public final class ResourceType {
 
     /**
      * Get the skuLink property: The skuLink property.
-     *
+     * 
      * @return the skuLink value.
      */
     public String skuLink() {
@@ -530,7 +534,7 @@ public final class ResourceType {
 
     /**
      * Set the skuLink property: The skuLink property.
-     *
+     * 
      * @param skuLink the skuLink value to set.
      * @return the ResourceType object itself.
      */
@@ -541,7 +545,7 @@ public final class ResourceType {
 
     /**
      * Get the disallowedActionVerbs property: The disallowedActionVerbs property.
-     *
+     * 
      * @return the disallowedActionVerbs value.
      */
     public List<String> disallowedActionVerbs() {
@@ -550,7 +554,7 @@ public final class ResourceType {
 
     /**
      * Set the disallowedActionVerbs property: The disallowedActionVerbs property.
-     *
+     * 
      * @param disallowedActionVerbs the disallowedActionVerbs value to set.
      * @return the ResourceType object itself.
      */
@@ -561,7 +565,7 @@ public final class ResourceType {
 
     /**
      * Get the templateDeploymentPolicy property: The templateDeploymentPolicy property.
-     *
+     * 
      * @return the templateDeploymentPolicy value.
      */
     public ResourceTypeTemplateDeploymentPolicy templateDeploymentPolicy() {
@@ -570,7 +574,7 @@ public final class ResourceType {
 
     /**
      * Set the templateDeploymentPolicy property: The templateDeploymentPolicy property.
-     *
+     * 
      * @param templateDeploymentPolicy the templateDeploymentPolicy value to set.
      * @return the ResourceType object itself.
      */
@@ -581,7 +585,7 @@ public final class ResourceType {
 
     /**
      * Get the extendedLocations property: The extendedLocations property.
-     *
+     * 
      * @return the extendedLocations value.
      */
     public List<ExtendedLocationOptions> extendedLocations() {
@@ -590,7 +594,7 @@ public final class ResourceType {
 
     /**
      * Set the extendedLocations property: The extendedLocations property.
-     *
+     * 
      * @param extendedLocations the extendedLocations value to set.
      * @return the ResourceType object itself.
      */
@@ -601,7 +605,7 @@ public final class ResourceType {
 
     /**
      * Get the linkedOperationRules property: The linkedOperationRules property.
-     *
+     * 
      * @return the linkedOperationRules value.
      */
     public List<LinkedOperationRule> linkedOperationRules() {
@@ -610,7 +614,7 @@ public final class ResourceType {
 
     /**
      * Set the linkedOperationRules property: The linkedOperationRules property.
-     *
+     * 
      * @param linkedOperationRules the linkedOperationRules value to set.
      * @return the ResourceType object itself.
      */
@@ -621,7 +625,7 @@ public final class ResourceType {
 
     /**
      * Get the resourceDeletionPolicy property: The resourceDeletionPolicy property.
-     *
+     * 
      * @return the resourceDeletionPolicy value.
      */
     public ManifestResourceDeletionPolicy resourceDeletionPolicy() {
@@ -630,7 +634,7 @@ public final class ResourceType {
 
     /**
      * Set the resourceDeletionPolicy property: The resourceDeletionPolicy property.
-     *
+     * 
      * @param resourceDeletionPolicy the resourceDeletionPolicy value to set.
      * @return the ResourceType object itself.
      */
@@ -641,7 +645,7 @@ public final class ResourceType {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

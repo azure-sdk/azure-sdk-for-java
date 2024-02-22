@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Regionality. */
+/**
+ * Defines values for Regionality.
+ */
 public final class Regionality extends ExpandableStringEnum<Regionality> {
-    /** Static value NotSpecified for Regionality. */
+    /**
+     * Static value NotSpecified for Regionality.
+     */
     public static final Regionality NOT_SPECIFIED = fromString("NotSpecified");
 
-    /** Static value Global for Regionality. */
+    /**
+     * Static value Global for Regionality.
+     */
     public static final Regionality GLOBAL = fromString("Global");
 
-    /** Static value Regional for Regionality. */
+    /**
+     * Static value Regional for Regionality.
+     */
     public static final Regionality REGIONAL = fromString("Regional");
 
     /**
      * Creates a new instance of Regionality value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class Regionality extends ExpandableStringEnum<Regionality> {
 
     /**
      * Creates or finds a Regionality from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Regionality.
      */
@@ -41,7 +49,7 @@ public final class Regionality extends ExpandableStringEnum<Regionality> {
 
     /**
      * Gets known Regionality values.
-     *
+     * 
      * @return known Regionality values.
      */
     public static Collection<Regionality> values() {

@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ResourceProviderAuthentication model. */
+/**
+ * The ResourceProviderAuthentication model.
+ */
 @Fluent
 public class ResourceProviderAuthentication {
     /*
@@ -18,13 +20,15 @@ public class ResourceProviderAuthentication {
     @JsonProperty(value = "allowedAudiences", required = true)
     private List<String> allowedAudiences;
 
-    /** Creates an instance of ResourceProviderAuthentication class. */
+    /**
+     * Creates an instance of ResourceProviderAuthentication class.
+     */
     public ResourceProviderAuthentication() {
     }
 
     /**
      * Get the allowedAudiences property: The allowedAudiences property.
-     *
+     * 
      * @return the allowedAudiences value.
      */
     public List<String> allowedAudiences() {
@@ -33,7 +37,7 @@ public class ResourceProviderAuthentication {
 
     /**
      * Set the allowedAudiences property: The allowedAudiences property.
-     *
+     * 
      * @param allowedAudiences the allowedAudiences value to set.
      * @return the ResourceProviderAuthentication object itself.
      */
@@ -44,15 +48,13 @@ public class ResourceProviderAuthentication {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (allowedAudiences() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property allowedAudiences in model ResourceProviderAuthentication"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property allowedAudiences in model ResourceProviderAuthentication"));
         }
     }
 

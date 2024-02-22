@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The CheckinManifestParams model. */
+/**
+ * The CheckinManifestParams model.
+ */
 @Fluent
 public final class CheckinManifestParams {
     /*
@@ -23,13 +25,15 @@ public final class CheckinManifestParams {
     @JsonProperty(value = "baselineArmManifestLocation", required = true)
     private String baselineArmManifestLocation;
 
-    /** Creates an instance of CheckinManifestParams class. */
+    /**
+     * Creates an instance of CheckinManifestParams class.
+     */
     public CheckinManifestParams() {
     }
 
     /**
      * Get the environment property: The environment supplied to the checkin manifest operation.
-     *
+     * 
      * @return the environment value.
      */
     public String environment() {
@@ -38,7 +42,7 @@ public final class CheckinManifestParams {
 
     /**
      * Set the environment property: The environment supplied to the checkin manifest operation.
-     *
+     * 
      * @param environment the environment value to set.
      * @return the CheckinManifestParams object itself.
      */
@@ -48,9 +52,9 @@ public final class CheckinManifestParams {
     }
 
     /**
-     * Get the baselineArmManifestLocation property: The baseline ARM manifest location supplied to the checkin manifest
-     * operation.
-     *
+     * Get the baselineArmManifestLocation property: The baseline ARM manifest location supplied to the checkin
+     * manifest operation.
+     * 
      * @return the baselineArmManifestLocation value.
      */
     public String baselineArmManifestLocation() {
@@ -58,9 +62,9 @@ public final class CheckinManifestParams {
     }
 
     /**
-     * Set the baselineArmManifestLocation property: The baseline ARM manifest location supplied to the checkin manifest
-     * operation.
-     *
+     * Set the baselineArmManifestLocation property: The baseline ARM manifest location supplied to the checkin
+     * manifest operation.
+     * 
      * @param baselineArmManifestLocation the baselineArmManifestLocation value to set.
      * @return the CheckinManifestParams object itself.
      */
@@ -71,21 +75,17 @@ public final class CheckinManifestParams {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (environment() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property environment in model CheckinManifestParams"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property environment in model CheckinManifestParams"));
         }
         if (baselineArmManifestLocation() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property baselineArmManifestLocation in model CheckinManifestParams"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property baselineArmManifestLocation in model CheckinManifestParams"));
         }
     }
 

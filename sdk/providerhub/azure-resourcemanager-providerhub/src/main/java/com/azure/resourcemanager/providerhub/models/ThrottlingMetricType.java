@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ThrottlingMetricType. */
+/**
+ * Defines values for ThrottlingMetricType.
+ */
 public final class ThrottlingMetricType extends ExpandableStringEnum<ThrottlingMetricType> {
-    /** Static value NotSpecified for ThrottlingMetricType. */
+    /**
+     * Static value NotSpecified for ThrottlingMetricType.
+     */
     public static final ThrottlingMetricType NOT_SPECIFIED = fromString("NotSpecified");
 
-    /** Static value NumberOfRequests for ThrottlingMetricType. */
+    /**
+     * Static value NumberOfRequests for ThrottlingMetricType.
+     */
     public static final ThrottlingMetricType NUMBER_OF_REQUESTS = fromString("NumberOfRequests");
 
-    /** Static value NumberOfResources for ThrottlingMetricType. */
+    /**
+     * Static value NumberOfResources for ThrottlingMetricType.
+     */
     public static final ThrottlingMetricType NUMBER_OF_RESOURCES = fromString("NumberOfResources");
 
     /**
      * Creates a new instance of ThrottlingMetricType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class ThrottlingMetricType extends ExpandableStringEnum<ThrottlingM
 
     /**
      * Creates or finds a ThrottlingMetricType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ThrottlingMetricType.
      */
@@ -41,7 +49,7 @@ public final class ThrottlingMetricType extends ExpandableStringEnum<ThrottlingM
 
     /**
      * Gets known ThrottlingMetricType values.
-     *
+     * 
      * @return known ThrottlingMetricType values.
      */
     public static Collection<ThrottlingMetricType> values() {

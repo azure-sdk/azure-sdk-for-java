@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The SkuCapability model. */
+/**
+ * The SkuCapability model.
+ */
 @Fluent
 public final class SkuCapability {
     /*
@@ -23,13 +25,15 @@ public final class SkuCapability {
     @JsonProperty(value = "value", required = true)
     private String value;
 
-    /** Creates an instance of SkuCapability class. */
+    /**
+     * Creates an instance of SkuCapability class.
+     */
     public SkuCapability() {
     }
 
     /**
      * Get the name property: The name property.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -38,7 +42,7 @@ public final class SkuCapability {
 
     /**
      * Set the name property: The name property.
-     *
+     * 
      * @param name the name value to set.
      * @return the SkuCapability object itself.
      */
@@ -49,7 +53,7 @@ public final class SkuCapability {
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -58,7 +62,7 @@ public final class SkuCapability {
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the SkuCapability object itself.
      */
@@ -69,19 +73,17 @@ public final class SkuCapability {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model SkuCapability"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model SkuCapability"));
         }
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model SkuCapability"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model SkuCapability"));
         }
     }
 

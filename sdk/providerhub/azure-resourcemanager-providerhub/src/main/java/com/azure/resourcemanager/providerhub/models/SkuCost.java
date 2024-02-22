@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The SkuCost model. */
+/**
+ * The SkuCost model.
+ */
 @Fluent
 public final class SkuCost {
     /*
@@ -29,13 +31,15 @@ public final class SkuCost {
     @JsonProperty(value = "extendedUnit")
     private String extendedUnit;
 
-    /** Creates an instance of SkuCost class. */
+    /**
+     * Creates an instance of SkuCost class.
+     */
     public SkuCost() {
     }
 
     /**
      * Get the meterId property: The meterId property.
-     *
+     * 
      * @return the meterId value.
      */
     public String meterId() {
@@ -44,7 +48,7 @@ public final class SkuCost {
 
     /**
      * Set the meterId property: The meterId property.
-     *
+     * 
      * @param meterId the meterId value to set.
      * @return the SkuCost object itself.
      */
@@ -55,7 +59,7 @@ public final class SkuCost {
 
     /**
      * Get the quantity property: The quantity property.
-     *
+     * 
      * @return the quantity value.
      */
     public Integer quantity() {
@@ -64,7 +68,7 @@ public final class SkuCost {
 
     /**
      * Set the quantity property: The quantity property.
-     *
+     * 
      * @param quantity the quantity value to set.
      * @return the SkuCost object itself.
      */
@@ -75,7 +79,7 @@ public final class SkuCost {
 
     /**
      * Get the extendedUnit property: The extendedUnit property.
-     *
+     * 
      * @return the extendedUnit value.
      */
     public String extendedUnit() {
@@ -84,7 +88,7 @@ public final class SkuCost {
 
     /**
      * Set the extendedUnit property: The extendedUnit property.
-     *
+     * 
      * @param extendedUnit the extendedUnit value to set.
      * @return the SkuCost object itself.
      */
@@ -95,14 +99,13 @@ public final class SkuCost {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (meterId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property meterId in model SkuCost"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property meterId in model SkuCost"));
         }
     }
 

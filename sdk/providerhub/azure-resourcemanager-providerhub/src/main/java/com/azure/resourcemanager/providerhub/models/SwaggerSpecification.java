@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The SwaggerSpecification model. */
+/**
+ * The SwaggerSpecification model.
+ */
 @Fluent
 public final class SwaggerSpecification {
     /*
@@ -23,13 +25,15 @@ public final class SwaggerSpecification {
     @JsonProperty(value = "swaggerSpecFolderUri")
     private String swaggerSpecFolderUri;
 
-    /** Creates an instance of SwaggerSpecification class. */
+    /**
+     * Creates an instance of SwaggerSpecification class.
+     */
     public SwaggerSpecification() {
     }
 
     /**
      * Get the apiVersions property: The apiVersions property.
-     *
+     * 
      * @return the apiVersions value.
      */
     public List<String> apiVersions() {
@@ -38,7 +42,7 @@ public final class SwaggerSpecification {
 
     /**
      * Set the apiVersions property: The apiVersions property.
-     *
+     * 
      * @param apiVersions the apiVersions value to set.
      * @return the SwaggerSpecification object itself.
      */
@@ -49,7 +53,7 @@ public final class SwaggerSpecification {
 
     /**
      * Get the swaggerSpecFolderUri property: The swaggerSpecFolderUri property.
-     *
+     * 
      * @return the swaggerSpecFolderUri value.
      */
     public String swaggerSpecFolderUri() {
@@ -58,7 +62,7 @@ public final class SwaggerSpecification {
 
     /**
      * Set the swaggerSpecFolderUri property: The swaggerSpecFolderUri property.
-     *
+     * 
      * @param swaggerSpecFolderUri the swaggerSpecFolderUri value to set.
      * @return the SwaggerSpecification object itself.
      */
@@ -69,7 +73,7 @@ public final class SwaggerSpecification {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

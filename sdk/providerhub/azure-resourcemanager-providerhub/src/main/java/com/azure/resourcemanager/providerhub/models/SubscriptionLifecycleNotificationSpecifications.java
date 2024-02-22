@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 import java.util.List;
 
-/** The SubscriptionLifecycleNotificationSpecifications model. */
+/**
+ * The SubscriptionLifecycleNotificationSpecifications model.
+ */
 @Fluent
 public class SubscriptionLifecycleNotificationSpecifications {
     /*
@@ -24,13 +26,15 @@ public class SubscriptionLifecycleNotificationSpecifications {
     @JsonProperty(value = "softDeleteTTL")
     private Duration softDeleteTtl;
 
-    /** Creates an instance of SubscriptionLifecycleNotificationSpecifications class. */
+    /**
+     * Creates an instance of SubscriptionLifecycleNotificationSpecifications class.
+     */
     public SubscriptionLifecycleNotificationSpecifications() {
     }
 
     /**
      * Get the subscriptionStateOverrideActions property: The subscriptionStateOverrideActions property.
-     *
+     * 
      * @return the subscriptionStateOverrideActions value.
      */
     public List<SubscriptionStateOverrideAction> subscriptionStateOverrideActions() {
@@ -39,19 +43,19 @@ public class SubscriptionLifecycleNotificationSpecifications {
 
     /**
      * Set the subscriptionStateOverrideActions property: The subscriptionStateOverrideActions property.
-     *
+     * 
      * @param subscriptionStateOverrideActions the subscriptionStateOverrideActions value to set.
      * @return the SubscriptionLifecycleNotificationSpecifications object itself.
      */
-    public SubscriptionLifecycleNotificationSpecifications withSubscriptionStateOverrideActions(
-        List<SubscriptionStateOverrideAction> subscriptionStateOverrideActions) {
+    public SubscriptionLifecycleNotificationSpecifications
+        withSubscriptionStateOverrideActions(List<SubscriptionStateOverrideAction> subscriptionStateOverrideActions) {
         this.subscriptionStateOverrideActions = subscriptionStateOverrideActions;
         return this;
     }
 
     /**
      * Get the softDeleteTtl property: The softDeleteTTL property.
-     *
+     * 
      * @return the softDeleteTtl value.
      */
     public Duration softDeleteTtl() {
@@ -60,7 +64,7 @@ public class SubscriptionLifecycleNotificationSpecifications {
 
     /**
      * Set the softDeleteTtl property: The softDeleteTTL property.
-     *
+     * 
      * @param softDeleteTtl the softDeleteTtl value to set.
      * @return the SubscriptionLifecycleNotificationSpecifications object itself.
      */
@@ -71,7 +75,7 @@ public class SubscriptionLifecycleNotificationSpecifications {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.providerhub.models.SkuResourceProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The SkuResource model. */
+/**
+ * The SkuResource model.
+ */
 @Fluent
 public final class SkuResourceInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class SkuResourceInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private SkuResourceProperties properties;
 
-    /** Creates an instance of SkuResourceInner class. */
+    /**
+     * Creates an instance of SkuResourceInner class.
+     */
     public SkuResourceInner() {
     }
 
     /**
      * Get the properties property: The properties property.
-     *
+     * 
      * @return the properties value.
      */
     public SkuResourceProperties properties() {
@@ -33,7 +37,7 @@ public final class SkuResourceInner extends ProxyResource {
 
     /**
      * Set the properties property: The properties property.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the SkuResourceInner object itself.
      */
@@ -44,7 +48,7 @@ public final class SkuResourceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

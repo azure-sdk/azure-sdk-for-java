@@ -6,39 +6,49 @@ package com.azure.resourcemanager.providerhub.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The ResourceTypeRegistrationPropertiesResourceMovePolicy model. */
+/**
+ * The ResourceTypeRegistrationPropertiesResourceMovePolicy model.
+ */
 @Fluent
 public final class ResourceTypeRegistrationPropertiesResourceMovePolicy extends ResourceMovePolicy {
-    /** Creates an instance of ResourceTypeRegistrationPropertiesResourceMovePolicy class. */
+    /**
+     * Creates an instance of ResourceTypeRegistrationPropertiesResourceMovePolicy class.
+     */
     public ResourceTypeRegistrationPropertiesResourceMovePolicy() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceTypeRegistrationPropertiesResourceMovePolicy withValidationRequired(Boolean validationRequired) {
         super.withValidationRequired(validationRequired);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ResourceTypeRegistrationPropertiesResourceMovePolicy withCrossResourceGroupMoveEnabled(
-        Boolean crossResourceGroupMoveEnabled) {
+    public ResourceTypeRegistrationPropertiesResourceMovePolicy
+        withCrossResourceGroupMoveEnabled(Boolean crossResourceGroupMoveEnabled) {
         super.withCrossResourceGroupMoveEnabled(crossResourceGroupMoveEnabled);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ResourceTypeRegistrationPropertiesResourceMovePolicy withCrossSubscriptionMoveEnabled(
-        Boolean crossSubscriptionMoveEnabled) {
+    public ResourceTypeRegistrationPropertiesResourceMovePolicy
+        withCrossSubscriptionMoveEnabled(Boolean crossSubscriptionMoveEnabled) {
         super.withCrossSubscriptionMoveEnabled(crossSubscriptionMoveEnabled);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

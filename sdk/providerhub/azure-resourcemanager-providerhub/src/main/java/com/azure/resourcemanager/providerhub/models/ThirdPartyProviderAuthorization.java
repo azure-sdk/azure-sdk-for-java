@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ThirdPartyProviderAuthorization model. */
+/**
+ * The ThirdPartyProviderAuthorization model.
+ */
 @Fluent
 public class ThirdPartyProviderAuthorization {
     /*
@@ -23,13 +25,15 @@ public class ThirdPartyProviderAuthorization {
     @JsonProperty(value = "managedByTenantId")
     private String managedByTenantId;
 
-    /** Creates an instance of ThirdPartyProviderAuthorization class. */
+    /**
+     * Creates an instance of ThirdPartyProviderAuthorization class.
+     */
     public ThirdPartyProviderAuthorization() {
     }
 
     /**
      * Get the authorizations property: The authorizations property.
-     *
+     * 
      * @return the authorizations value.
      */
     public List<LightHouseAuthorization> authorizations() {
@@ -38,7 +42,7 @@ public class ThirdPartyProviderAuthorization {
 
     /**
      * Set the authorizations property: The authorizations property.
-     *
+     * 
      * @param authorizations the authorizations value to set.
      * @return the ThirdPartyProviderAuthorization object itself.
      */
@@ -49,7 +53,7 @@ public class ThirdPartyProviderAuthorization {
 
     /**
      * Get the managedByTenantId property: The managedByTenantId property.
-     *
+     * 
      * @return the managedByTenantId value.
      */
     public String managedByTenantId() {
@@ -58,7 +62,7 @@ public class ThirdPartyProviderAuthorization {
 
     /**
      * Set the managedByTenantId property: The managedByTenantId property.
-     *
+     * 
      * @param managedByTenantId the managedByTenantId value to set.
      * @return the ThirdPartyProviderAuthorization object itself.
      */
@@ -69,7 +73,7 @@ public class ThirdPartyProviderAuthorization {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

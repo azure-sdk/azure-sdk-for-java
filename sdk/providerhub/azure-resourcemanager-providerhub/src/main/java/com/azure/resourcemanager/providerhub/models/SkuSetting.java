@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The SkuSetting model. */
+/**
+ * The SkuSetting model.
+ */
 @Fluent
 public final class SkuSetting {
     /*
@@ -84,13 +86,15 @@ public final class SkuSetting {
     @JsonProperty(value = "capabilities")
     private List<SkuCapability> capabilities;
 
-    /** Creates an instance of SkuSetting class. */
+    /**
+     * Creates an instance of SkuSetting class.
+     */
     public SkuSetting() {
     }
 
     /**
      * Get the name property: The name property.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -99,7 +103,7 @@ public final class SkuSetting {
 
     /**
      * Set the name property: The name property.
-     *
+     * 
      * @param name the name value to set.
      * @return the SkuSetting object itself.
      */
@@ -110,7 +114,7 @@ public final class SkuSetting {
 
     /**
      * Get the tier property: The tier property.
-     *
+     * 
      * @return the tier value.
      */
     public String tier() {
@@ -119,7 +123,7 @@ public final class SkuSetting {
 
     /**
      * Set the tier property: The tier property.
-     *
+     * 
      * @param tier the tier value to set.
      * @return the SkuSetting object itself.
      */
@@ -130,7 +134,7 @@ public final class SkuSetting {
 
     /**
      * Get the size property: The size property.
-     *
+     * 
      * @return the size value.
      */
     public String size() {
@@ -139,7 +143,7 @@ public final class SkuSetting {
 
     /**
      * Set the size property: The size property.
-     *
+     * 
      * @param size the size value to set.
      * @return the SkuSetting object itself.
      */
@@ -150,7 +154,7 @@ public final class SkuSetting {
 
     /**
      * Get the family property: The family property.
-     *
+     * 
      * @return the family value.
      */
     public String family() {
@@ -159,7 +163,7 @@ public final class SkuSetting {
 
     /**
      * Set the family property: The family property.
-     *
+     * 
      * @param family the family value to set.
      * @return the SkuSetting object itself.
      */
@@ -170,7 +174,7 @@ public final class SkuSetting {
 
     /**
      * Get the kind property: The kind property.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -179,7 +183,7 @@ public final class SkuSetting {
 
     /**
      * Set the kind property: The kind property.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the SkuSetting object itself.
      */
@@ -190,7 +194,7 @@ public final class SkuSetting {
 
     /**
      * Get the locations property: The locations property.
-     *
+     * 
      * @return the locations value.
      */
     public List<String> locations() {
@@ -199,7 +203,7 @@ public final class SkuSetting {
 
     /**
      * Set the locations property: The locations property.
-     *
+     * 
      * @param locations the locations value to set.
      * @return the SkuSetting object itself.
      */
@@ -210,7 +214,7 @@ public final class SkuSetting {
 
     /**
      * Get the locationInfo property: The locationInfo property.
-     *
+     * 
      * @return the locationInfo value.
      */
     public List<SkuLocationInfo> locationInfo() {
@@ -219,7 +223,7 @@ public final class SkuSetting {
 
     /**
      * Set the locationInfo property: The locationInfo property.
-     *
+     * 
      * @param locationInfo the locationInfo value to set.
      * @return the SkuSetting object itself.
      */
@@ -230,7 +234,7 @@ public final class SkuSetting {
 
     /**
      * Get the requiredQuotaIds property: The requiredQuotaIds property.
-     *
+     * 
      * @return the requiredQuotaIds value.
      */
     public List<String> requiredQuotaIds() {
@@ -239,7 +243,7 @@ public final class SkuSetting {
 
     /**
      * Set the requiredQuotaIds property: The requiredQuotaIds property.
-     *
+     * 
      * @param requiredQuotaIds the requiredQuotaIds value to set.
      * @return the SkuSetting object itself.
      */
@@ -250,7 +254,7 @@ public final class SkuSetting {
 
     /**
      * Get the requiredFeatures property: The requiredFeatures property.
-     *
+     * 
      * @return the requiredFeatures value.
      */
     public List<String> requiredFeatures() {
@@ -259,7 +263,7 @@ public final class SkuSetting {
 
     /**
      * Set the requiredFeatures property: The requiredFeatures property.
-     *
+     * 
      * @param requiredFeatures the requiredFeatures value to set.
      * @return the SkuSetting object itself.
      */
@@ -270,7 +274,7 @@ public final class SkuSetting {
 
     /**
      * Get the capacity property: The capacity property.
-     *
+     * 
      * @return the capacity value.
      */
     public SkuSettingCapacity capacity() {
@@ -279,7 +283,7 @@ public final class SkuSetting {
 
     /**
      * Set the capacity property: The capacity property.
-     *
+     * 
      * @param capacity the capacity value to set.
      * @return the SkuSetting object itself.
      */
@@ -290,7 +294,7 @@ public final class SkuSetting {
 
     /**
      * Get the costs property: The costs property.
-     *
+     * 
      * @return the costs value.
      */
     public List<SkuCost> costs() {
@@ -299,7 +303,7 @@ public final class SkuSetting {
 
     /**
      * Set the costs property: The costs property.
-     *
+     * 
      * @param costs the costs value to set.
      * @return the SkuSetting object itself.
      */
@@ -310,7 +314,7 @@ public final class SkuSetting {
 
     /**
      * Get the capabilities property: The capabilities property.
-     *
+     * 
      * @return the capabilities value.
      */
     public List<SkuCapability> capabilities() {
@@ -319,7 +323,7 @@ public final class SkuSetting {
 
     /**
      * Set the capabilities property: The capabilities property.
-     *
+     * 
      * @param capabilities the capabilities value to set.
      * @return the SkuSetting object itself.
      */
@@ -330,14 +334,13 @@ public final class SkuSetting {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model SkuSetting"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model SkuSetting"));
         }
         if (locationInfo() != null) {
             locationInfo().forEach(e -> e.validate());

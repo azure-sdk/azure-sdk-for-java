@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for LoggingDetails. */
+/**
+ * Defines values for LoggingDetails.
+ */
 public final class LoggingDetails extends ExpandableStringEnum<LoggingDetails> {
-    /** Static value None for LoggingDetails. */
+    /**
+     * Static value None for LoggingDetails.
+     */
     public static final LoggingDetails NONE = fromString("None");
 
-    /** Static value Body for LoggingDetails. */
+    /**
+     * Static value Body for LoggingDetails.
+     */
     public static final LoggingDetails BODY = fromString("Body");
 
     /**
      * Creates a new instance of LoggingDetails value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class LoggingDetails extends ExpandableStringEnum<LoggingDetails> {
 
     /**
      * Creates or finds a LoggingDetails from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding LoggingDetails.
      */
@@ -38,7 +44,7 @@ public final class LoggingDetails extends ExpandableStringEnum<LoggingDetails> {
 
     /**
      * Gets known LoggingDetails values.
-     *
+     * 
      * @return known LoggingDetails values.
      */
     public static Collection<LoggingDetails> values() {

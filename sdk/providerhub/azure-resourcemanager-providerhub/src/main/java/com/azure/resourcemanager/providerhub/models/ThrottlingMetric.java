@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 
-/** The ThrottlingMetric model. */
+/**
+ * The ThrottlingMetric model.
+ */
 @Fluent
 public final class ThrottlingMetric {
     /*
@@ -30,13 +32,15 @@ public final class ThrottlingMetric {
     @JsonProperty(value = "interval")
     private Duration interval;
 
-    /** Creates an instance of ThrottlingMetric class. */
+    /**
+     * Creates an instance of ThrottlingMetric class.
+     */
     public ThrottlingMetric() {
     }
 
     /**
      * Get the type property: The type property.
-     *
+     * 
      * @return the type value.
      */
     public ThrottlingMetricType type() {
@@ -45,7 +49,7 @@ public final class ThrottlingMetric {
 
     /**
      * Set the type property: The type property.
-     *
+     * 
      * @param type the type value to set.
      * @return the ThrottlingMetric object itself.
      */
@@ -56,7 +60,7 @@ public final class ThrottlingMetric {
 
     /**
      * Get the limit property: The limit property.
-     *
+     * 
      * @return the limit value.
      */
     public long limit() {
@@ -65,7 +69,7 @@ public final class ThrottlingMetric {
 
     /**
      * Set the limit property: The limit property.
-     *
+     * 
      * @param limit the limit value to set.
      * @return the ThrottlingMetric object itself.
      */
@@ -76,7 +80,7 @@ public final class ThrottlingMetric {
 
     /**
      * Get the interval property: The interval property.
-     *
+     * 
      * @return the interval value.
      */
     public Duration interval() {
@@ -85,7 +89,7 @@ public final class ThrottlingMetric {
 
     /**
      * Set the interval property: The interval property.
-     *
+     * 
      * @param interval the interval value to set.
      * @return the ThrottlingMetric object itself.
      */
@@ -96,14 +100,13 @@ public final class ThrottlingMetric {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property type in model ThrottlingMetric"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model ThrottlingMetric"));
         }
     }
 
