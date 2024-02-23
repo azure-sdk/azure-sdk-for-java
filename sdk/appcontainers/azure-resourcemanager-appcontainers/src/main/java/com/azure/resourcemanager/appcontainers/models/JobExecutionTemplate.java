@@ -8,68 +8,72 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Job's execution template, containing container configuration for a job's execution. */
+/**
+ * Job's execution template, containing container configuration for a job's execution.
+ */
 @Fluent
 public final class JobExecutionTemplate {
     /*
      * List of container definitions for the Container Apps Job.
      */
     @JsonProperty(value = "containers")
-    private List<JobExecutionContainer> containers;
+    private List<Container> containers;
 
     /*
      * List of specialized containers that run before job containers.
      */
     @JsonProperty(value = "initContainers")
-    private List<JobExecutionContainer> initContainers;
+    private List<InitContainer> initContainers;
 
-    /** Creates an instance of JobExecutionTemplate class. */
+    /**
+     * Creates an instance of JobExecutionTemplate class.
+     */
     public JobExecutionTemplate() {
     }
 
     /**
      * Get the containers property: List of container definitions for the Container Apps Job.
-     *
+     * 
      * @return the containers value.
      */
-    public List<JobExecutionContainer> containers() {
+    public List<Container> containers() {
         return this.containers;
     }
 
     /**
      * Set the containers property: List of container definitions for the Container Apps Job.
-     *
+     * 
      * @param containers the containers value to set.
      * @return the JobExecutionTemplate object itself.
      */
-    public JobExecutionTemplate withContainers(List<JobExecutionContainer> containers) {
+    public JobExecutionTemplate withContainers(List<Container> containers) {
         this.containers = containers;
         return this;
     }
 
     /**
      * Get the initContainers property: List of specialized containers that run before job containers.
-     *
+     * 
      * @return the initContainers value.
      */
-    public List<JobExecutionContainer> initContainers() {
+    public List<InitContainer> initContainers() {
         return this.initContainers;
     }
 
     /**
      * Set the initContainers property: List of specialized containers that run before job containers.
-     *
+     * 
      * @param initContainers the initContainers value to set.
      * @return the JobExecutionTemplate object itself.
      */
-    public JobExecutionTemplate withInitContainers(List<JobExecutionContainer> initContainers) {
+    public JobExecutionTemplate withInitContainers(List<InitContainer> initContainers) {
         this.initContainers = initContainers;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
