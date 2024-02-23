@@ -9,9 +9,13 @@ import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.cognitiveservices.models.DeploymentProperties;
 import com.azure.resourcemanager.cognitiveservices.models.Sku;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 
-/** Cognitive Services account deployment. */
+/**
+ * Cognitive Services account deployment.
+ */
 @Fluent
 public final class DeploymentInner extends ProxyResource {
     /*
@@ -33,18 +37,27 @@ public final class DeploymentInner extends ProxyResource {
     private String etag;
 
     /*
+     * Resource tags.
+     */
+    @JsonProperty(value = "tags")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> tags;
+
+    /*
      * Properties of Cognitive Services account deployment.
      */
     @JsonProperty(value = "properties")
     private DeploymentProperties properties;
 
-    /** Creates an instance of DeploymentInner class. */
+    /**
+     * Creates an instance of DeploymentInner class.
+     */
     public DeploymentInner() {
     }
 
     /**
      * Get the sku property: The resource model definition representing SKU.
-     *
+     * 
      * @return the sku value.
      */
     public Sku sku() {
@@ -53,7 +66,7 @@ public final class DeploymentInner extends ProxyResource {
 
     /**
      * Set the sku property: The resource model definition representing SKU.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the DeploymentInner object itself.
      */
@@ -64,7 +77,7 @@ public final class DeploymentInner extends ProxyResource {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -73,7 +86,7 @@ public final class DeploymentInner extends ProxyResource {
 
     /**
      * Get the etag property: Resource Etag.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -81,8 +94,28 @@ public final class DeploymentInner extends ProxyResource {
     }
 
     /**
+     * Get the tags property: Resource tags.
+     * 
+     * @return the tags value.
+     */
+    public Map<String, String> tags() {
+        return this.tags;
+    }
+
+    /**
+     * Set the tags property: Resource tags.
+     * 
+     * @param tags the tags value to set.
+     * @return the DeploymentInner object itself.
+     */
+    public DeploymentInner withTags(Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
      * Get the properties property: Properties of Cognitive Services account deployment.
-     *
+     * 
      * @return the properties value.
      */
     public DeploymentProperties properties() {
@@ -91,7 +124,7 @@ public final class DeploymentInner extends ProxyResource {
 
     /**
      * Set the properties property: Properties of Cognitive Services account deployment.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the DeploymentInner object itself.
      */
@@ -102,7 +135,7 @@ public final class DeploymentInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

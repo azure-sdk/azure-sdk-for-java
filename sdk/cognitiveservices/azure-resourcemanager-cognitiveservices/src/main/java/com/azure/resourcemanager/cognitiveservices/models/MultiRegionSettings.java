@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The multiregion settings Cognitive Services account. */
+/**
+ * The multiregion settings Cognitive Services account.
+ */
 @Fluent
 public final class MultiRegionSettings {
     /*
@@ -23,13 +25,15 @@ public final class MultiRegionSettings {
     @JsonProperty(value = "regions")
     private List<RegionSetting> regions;
 
-    /** Creates an instance of MultiRegionSettings class. */
+    /**
+     * Creates an instance of MultiRegionSettings class.
+     */
     public MultiRegionSettings() {
     }
 
     /**
      * Get the routingMethod property: Multiregion routing methods.
-     *
+     * 
      * @return the routingMethod value.
      */
     public RoutingMethods routingMethod() {
@@ -38,7 +42,7 @@ public final class MultiRegionSettings {
 
     /**
      * Set the routingMethod property: Multiregion routing methods.
-     *
+     * 
      * @param routingMethod the routingMethod value to set.
      * @return the MultiRegionSettings object itself.
      */
@@ -49,7 +53,7 @@ public final class MultiRegionSettings {
 
     /**
      * Get the regions property: The regions property.
-     *
+     * 
      * @return the regions value.
      */
     public List<RegionSetting> regions() {
@@ -58,7 +62,7 @@ public final class MultiRegionSettings {
 
     /**
      * Set the regions property: The regions property.
-     *
+     * 
      * @param regions the regions value to set.
      * @return the MultiRegionSettings object itself.
      */
@@ -69,7 +73,7 @@ public final class MultiRegionSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

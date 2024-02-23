@@ -7,7 +7,9 @@ package com.azure.resourcemanager.cognitiveservices.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Cognitive Services account commitment cost. */
+/**
+ * Cognitive Services account commitment cost.
+ */
 @Fluent
 public final class CommitmentCost {
     /*
@@ -22,13 +24,15 @@ public final class CommitmentCost {
     @JsonProperty(value = "overageMeterId")
     private String overageMeterId;
 
-    /** Creates an instance of CommitmentCost class. */
+    /**
+     * Creates an instance of CommitmentCost class.
+     */
     public CommitmentCost() {
     }
 
     /**
      * Get the commitmentMeterId property: Commitment meter Id.
-     *
+     * 
      * @return the commitmentMeterId value.
      */
     public String commitmentMeterId() {
@@ -37,7 +41,7 @@ public final class CommitmentCost {
 
     /**
      * Set the commitmentMeterId property: Commitment meter Id.
-     *
+     * 
      * @param commitmentMeterId the commitmentMeterId value to set.
      * @return the CommitmentCost object itself.
      */
@@ -48,7 +52,7 @@ public final class CommitmentCost {
 
     /**
      * Get the overageMeterId property: Overage meter Id.
-     *
+     * 
      * @return the overageMeterId value.
      */
     public String overageMeterId() {
@@ -57,7 +61,7 @@ public final class CommitmentCost {
 
     /**
      * Set the overageMeterId property: Overage meter Id.
-     *
+     * 
      * @param overageMeterId the overageMeterId value to set.
      * @return the CommitmentCost object itself.
      */
@@ -68,7 +72,7 @@ public final class CommitmentCost {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
