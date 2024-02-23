@@ -4,6 +4,15 @@
 
 package com.azure.resourcemanager.apicenter.generated;
 
+import com.azure.core.management.serializer.SerializerFactory;
+import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.apicenter.models.ApiKind;
+import com.azure.resourcemanager.apicenter.models.ExternalDocumentation;
+import com.azure.resourcemanager.apicenter.models.License;
+import com.azure.resourcemanager.apicenter.models.TermsOfService;
+import java.io.IOException;
+import java.util.Arrays;
+
 /**
  * Samples for Apis CreateOrUpdate.
  */
@@ -17,7 +26,16 @@ public final class ApisCreateOrUpdateSamples {
      * 
      * @param manager Entry point to ApiCenterManager.
      */
-    public static void apisCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.apis().define("echo-api").withExistingWorkspace("contoso-resources", "contoso", "default").create();
+    public static void apisCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager)
+        throws IOException {
+        manager.apis().define("echo-api").withExistingWorkspace("contoso-resources", "contoso", "default")
+            .withTitle("Echo API").withKind(ApiKind.REST).withDescription("A simple HTTP request/response service.")
+            .withTermsOfService(new TermsOfService().withUrl("https://contoso.com/terms-of-service"))
+            .withExternalDocumentation(Arrays
+                .asList(new ExternalDocumentation().withTitle("Onboarding docs").withUrl("https://docs.contoso.com")))
+            .withLicense(new License().withUrl("https://contoso.com/license"))
+            .withCustomProperties(SerializerFactory.createDefaultManagementSerializerAdapter()
+                .deserialize("{\"author\":\"John Doe\"}", Object.class, SerializerEncoding.JSON))
+            .create();
     }
 }

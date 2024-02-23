@@ -4,6 +4,10 @@
 
 package com.azure.resourcemanager.apicenter.generated;
 
+import com.azure.resourcemanager.apicenter.models.MetadataAssignment;
+import com.azure.resourcemanager.apicenter.models.MetadataAssignmentEntity;
+import java.util.Arrays;
+
 /**
  * Samples for MetadataSchemas CreateOrUpdate.
  */
@@ -18,6 +22,10 @@ public final class MetadataSchemasCreateOrUpdateSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void metadataSchemasCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.metadataSchemas().define("author").withExistingService("contoso-resources", "contoso").create();
+        manager.metadataSchemas().define("author").withExistingService("contoso-resources", "contoso")
+            .withSchema("{\"type\":\"string\", \"title\":\"Author\", pattern: \"^[a-zA-Z]+$\"}")
+            .withAssignedTo(
+                Arrays.asList(new MetadataAssignment().withEntity(MetadataAssignmentEntity.API).withDeprecated(true)))
+            .create();
     }
 }

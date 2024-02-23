@@ -7,6 +7,7 @@ package com.azure.resourcemanager.apicenter.models;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.apicenter.fluent.models.MetadataSchemaInner;
+import java.util.List;
 
 /**
  * An immutable client-side representation of MetadataSchema.
@@ -34,18 +35,25 @@ public interface MetadataSchema {
     String type();
 
     /**
-     * Gets the properties property: The resource-specific properties for this resource.
-     * 
-     * @return the properties value.
-     */
-    MetadataSchemaProperties properties();
-
-    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the schema property: The schema defining the type.
+     * 
+     * @return the schema value.
+     */
+    String schema();
+
+    /**
+     * Gets the assignedTo property: The assignedTo property.
+     * 
+     * @return the assignedTo value.
+     */
+    List<MetadataAssignment> assignedTo();
 
     /**
      * Gets the name of the resource group.
@@ -96,7 +104,7 @@ public interface MetadataSchema {
          * The stage of the MetadataSchema definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithSchema, DefinitionStages.WithAssignedTo {
             /**
              * Executes the create request.
              * 
@@ -114,16 +122,29 @@ public interface MetadataSchema {
         }
 
         /**
-         * The stage of the MetadataSchema definition allowing to specify properties.
+         * The stage of the MetadataSchema definition allowing to specify schema.
          */
-        interface WithProperties {
+        interface WithSchema {
             /**
-             * Specifies the properties property: The resource-specific properties for this resource..
+             * Specifies the schema property: The schema defining the type..
              * 
-             * @param properties The resource-specific properties for this resource.
+             * @param schema The schema defining the type.
              * @return the next definition stage.
              */
-            WithCreate withProperties(MetadataSchemaProperties properties);
+            WithCreate withSchema(String schema);
+        }
+
+        /**
+         * The stage of the MetadataSchema definition allowing to specify assignedTo.
+         */
+        interface WithAssignedTo {
+            /**
+             * Specifies the assignedTo property: The assignedTo property..
+             * 
+             * @param assignedTo The assignedTo property.
+             * @return the next definition stage.
+             */
+            WithCreate withAssignedTo(List<MetadataAssignment> assignedTo);
         }
     }
 
@@ -137,7 +158,7 @@ public interface MetadataSchema {
     /**
      * The template for MetadataSchema update.
      */
-    interface Update {
+    interface Update extends UpdateStages.WithSchema, UpdateStages.WithAssignedTo {
         /**
          * Executes the update request.
          * 
@@ -158,6 +179,31 @@ public interface MetadataSchema {
      * The MetadataSchema update stages.
      */
     interface UpdateStages {
+        /**
+         * The stage of the MetadataSchema update allowing to specify schema.
+         */
+        interface WithSchema {
+            /**
+             * Specifies the schema property: The schema defining the type..
+             * 
+             * @param schema The schema defining the type.
+             * @return the next definition stage.
+             */
+            Update withSchema(String schema);
+        }
+
+        /**
+         * The stage of the MetadataSchema update allowing to specify assignedTo.
+         */
+        interface WithAssignedTo {
+            /**
+             * Specifies the assignedTo property: The assignedTo property..
+             * 
+             * @param assignedTo The assignedTo property.
+             * @return the next definition stage.
+             */
+            Update withAssignedTo(List<MetadataAssignment> assignedTo);
+        }
     }
 
     /**

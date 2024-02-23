@@ -9,11 +9,15 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
+ * Terms of service
+ * 
  * Terms of service for the API.
  */
 @Fluent
 public final class TermsOfService {
     /*
+     * URL
+     * 
      * URL pointing to the terms of service.
      */
     @JsonProperty(value = "url", required = true)
@@ -26,7 +30,9 @@ public final class TermsOfService {
     }
 
     /**
-     * Get the url property: URL pointing to the terms of service.
+     * Get the url property: URL
+     * 
+     * URL pointing to the terms of service.
      * 
      * @return the url value.
      */
@@ -35,7 +41,9 @@ public final class TermsOfService {
     }
 
     /**
-     * Set the url property: URL pointing to the terms of service.
+     * Set the url property: URL
+     * 
+     * URL pointing to the terms of service.
      * 
      * @param url the url value to set.
      * @return the TermsOfService object itself.

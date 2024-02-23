@@ -13,11 +13,11 @@ public final class ApiDefinitionsListSamples {
      * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/ApiDefinitions_List.json
      */
     /**
-     * Sample code: ApiDefinitions_ListByApiVersion.
+     * Sample code: ApiDefinitions_List.
      * 
      * @param manager Entry point to ApiCenterManager.
      */
-    public static void apiDefinitionsListByApiVersion(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+    public static void apiDefinitionsList(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.apiDefinitions().list("contoso-resources", "contoso", "default", "echo-api", "2023-01-01", null,
             com.azure.core.util.Context.NONE);
     }

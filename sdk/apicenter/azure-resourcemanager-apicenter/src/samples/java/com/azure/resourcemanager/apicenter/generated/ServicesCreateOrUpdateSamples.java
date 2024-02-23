@@ -4,13 +4,6 @@
 
 package com.azure.resourcemanager.apicenter.generated;
 
-import com.azure.resourcemanager.apicenter.models.ManagedServiceIdentity;
-import com.azure.resourcemanager.apicenter.models.ManagedServiceIdentityType;
-import com.azure.resourcemanager.apicenter.models.ServiceProperties;
-import com.azure.resourcemanager.apicenter.models.UserAssignedIdentity;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Samples for Services CreateOrUpdate.
  */
@@ -21,30 +14,12 @@ public final class ServicesCreateOrUpdateSamples {
      * json
      */
     /**
-     * Sample code: Services_CreateOrUpdate.
+     * Sample code: Services_Create.
      * 
      * @param manager Entry point to ApiCenterManager.
      */
-    public static void servicesCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.services().define("contoso").withRegion("East US").withExistingResourceGroup("contoso-resources")
-            .withTags(mapOf()).withProperties(new ServiceProperties())
-            .withIdentity(new ManagedServiceIdentity()
-                .withType(ManagedServiceIdentityType.fromString("SystemAssigned, UserAssigned"))
-                .withUserAssignedIdentities(mapOf(
-                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso-resources/providers/Microsoft.ManagedIdentity/userAssignedIdentities/contoso-identity",
-                    new UserAssignedIdentity())))
+    public static void servicesCreate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+        manager.services().define("contoso").withRegion((String) null).withExistingResourceGroup("contoso-resources")
             .create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
     }
 }

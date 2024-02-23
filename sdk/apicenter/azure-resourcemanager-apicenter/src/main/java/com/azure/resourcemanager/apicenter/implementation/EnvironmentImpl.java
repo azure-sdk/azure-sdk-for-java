@@ -8,7 +8,9 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.apicenter.fluent.models.EnvironmentInner;
 import com.azure.resourcemanager.apicenter.models.Environment;
-import com.azure.resourcemanager.apicenter.models.EnvironmentProperties;
+import com.azure.resourcemanager.apicenter.models.EnvironmentKind;
+import com.azure.resourcemanager.apicenter.models.EnvironmentServer;
+import com.azure.resourcemanager.apicenter.models.Onboarding;
 
 public final class EnvironmentImpl implements Environment, Environment.Definition, Environment.Update {
     private EnvironmentInner innerObject;
@@ -27,12 +29,32 @@ public final class EnvironmentImpl implements Environment, Environment.Definitio
         return this.innerModel().type();
     }
 
-    public EnvironmentProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public String title() {
+        return this.innerModel().title();
+    }
+
+    public String description() {
+        return this.innerModel().description();
+    }
+
+    public EnvironmentKind kind() {
+        return this.innerModel().kind();
+    }
+
+    public EnvironmentServer server() {
+        return this.innerModel().server();
+    }
+
+    public Onboarding onboarding() {
+        return this.innerModel().onboarding();
+    }
+
+    public Object customProperties() {
+        return this.innerModel().customProperties();
     }
 
     public String resourceGroupName() {
@@ -121,8 +143,33 @@ public final class EnvironmentImpl implements Environment, Environment.Definitio
         return this;
     }
 
-    public EnvironmentImpl withProperties(EnvironmentProperties properties) {
-        this.innerModel().withProperties(properties);
+    public EnvironmentImpl withTitle(String title) {
+        this.innerModel().withTitle(title);
+        return this;
+    }
+
+    public EnvironmentImpl withDescription(String description) {
+        this.innerModel().withDescription(description);
+        return this;
+    }
+
+    public EnvironmentImpl withKind(EnvironmentKind kind) {
+        this.innerModel().withKind(kind);
+        return this;
+    }
+
+    public EnvironmentImpl withServer(EnvironmentServer server) {
+        this.innerModel().withServer(server);
+        return this;
+    }
+
+    public EnvironmentImpl withOnboarding(Onboarding onboarding) {
+        this.innerModel().withOnboarding(onboarding);
+        return this;
+    }
+
+    public EnvironmentImpl withCustomProperties(Object customProperties) {
+        this.innerModel().withCustomProperties(customProperties);
         return this;
     }
 }

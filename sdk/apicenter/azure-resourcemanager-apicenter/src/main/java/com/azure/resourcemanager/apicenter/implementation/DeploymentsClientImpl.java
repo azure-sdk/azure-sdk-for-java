@@ -31,7 +31,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.apicenter.fluent.DeploymentsClient;
 import com.azure.resourcemanager.apicenter.fluent.models.DeploymentInner;
-import com.azure.resourcemanager.apicenter.models.DeploymentListResult;
+import com.azure.resourcemanager.apicenter.models.DeploymentCollection;
 import com.azure.resourcemanager.apicenter.models.DeploymentsCreateOrUpdateResponse;
 import com.azure.resourcemanager.apicenter.models.DeploymentsGetResponse;
 import reactor.core.publisher.Mono;
@@ -72,62 +72,69 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/deployments")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DeploymentListResult>> list(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<DeploymentCollection>> list(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/deployments/{deploymentName}")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<DeploymentsGetResponse> get(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @PathParam("deploymentName") String deploymentName, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/deployments/{deploymentName}")
-        @ExpectedResponses({ 200, 201 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<DeploymentsCreateOrUpdateResponse> createOrUpdate(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @PathParam("deploymentName") String deploymentName, @BodyParam("application/json") DeploymentInner resource,
+            @QueryParam("api-version") String apiVersion, @QueryParam("$filter") String filter,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/deployments/{deploymentName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @PathParam("deploymentName") String deploymentName, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("deploymentName") String deploymentName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/deployments/{deploymentName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<DeploymentsGetResponse> get(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
+            @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
+            @PathParam("deploymentName") String deploymentName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/deployments/{deploymentName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<DeploymentsCreateOrUpdateResponse> createOrUpdate(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
+            @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
+            @PathParam("deploymentName") String deploymentName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") DeploymentInner payload, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Head("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/deployments/{deploymentName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> head(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+        Mono<Response<Void>> head(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @PathParam("deploymentName") String deploymentName, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("deploymentName") String deploymentName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DeploymentListResult>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+        Mono<Response<DeploymentCollection>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
+     * List deployments
+     * 
      * Returns a collection of API deployments.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -138,8 +145,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Deployment list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return aPI deployment collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DeploymentInner>> listSinglePageAsync(String resourceGroupName, String serviceName,
@@ -167,15 +173,17 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, filter, accept,
-                context))
+            .withContext(
+                context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    serviceName, workspaceName, apiName, this.client.getApiVersion(), filter, accept, context))
             .<PagedResponse<DeploymentInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * List deployments
+     * 
      * Returns a collection of API deployments.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -187,8 +195,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Deployment list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return aPI deployment collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DeploymentInner>> listSinglePageAsync(String resourceGroupName, String serviceName,
@@ -217,13 +224,15 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, serviceName, workspaceName, apiName, filter, accept, context)
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+                workspaceName, apiName, this.client.getApiVersion(), filter, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
+     * List deployments
+     * 
      * Returns a collection of API deployments.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -234,7 +243,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Deployment list operation as paginated response with {@link PagedFlux}.
+     * @return aPI deployment collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DeploymentInner> listAsync(String resourceGroupName, String serviceName, String workspaceName,
@@ -245,6 +254,8 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
+     * List deployments
+     * 
      * Returns a collection of API deployments.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -254,7 +265,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Deployment list operation as paginated response with {@link PagedFlux}.
+     * @return aPI deployment collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DeploymentInner> listAsync(String resourceGroupName, String serviceName, String workspaceName,
@@ -266,6 +277,8 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
+     * List deployments
+     * 
      * Returns a collection of API deployments.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -277,7 +290,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Deployment list operation as paginated response with {@link PagedFlux}.
+     * @return aPI deployment collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DeploymentInner> listAsync(String resourceGroupName, String serviceName, String workspaceName,
@@ -288,6 +301,8 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
+     * List deployments
+     * 
      * Returns a collection of API deployments.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -297,7 +312,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Deployment list operation as paginated response with {@link PagedIterable}.
+     * @return aPI deployment collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<DeploymentInner> list(String resourceGroupName, String serviceName, String workspaceName,
@@ -307,6 +322,8 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
+     * List deployments
+     * 
      * Returns a collection of API deployments.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -318,7 +335,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Deployment list operation as paginated response with {@link PagedIterable}.
+     * @return aPI deployment collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<DeploymentInner> list(String resourceGroupName, String serviceName, String workspaceName,
@@ -327,6 +344,172 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
+     * Delete API deployment
+     * 
+     * Deletes API deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param apiName The name of the API.
+     * @param deploymentName The name of the API deployment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String serviceName,
+        String workspaceName, String apiName, String deploymentName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (serviceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (apiName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter apiName is required and cannot be null."));
+        }
+        if (deploymentName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    serviceName, workspaceName, apiName, deploymentName, this.client.getApiVersion(), accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Delete API deployment
+     * 
+     * Deletes API deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param apiName The name of the API.
+     * @param deploymentName The name of the API deployment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String serviceName,
+        String workspaceName, String apiName, String deploymentName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (serviceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (apiName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter apiName is required and cannot be null."));
+        }
+        if (deploymentName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            serviceName, workspaceName, apiName, deploymentName, this.client.getApiVersion(), accept, context);
+    }
+
+    /**
+     * Delete API deployment
+     * 
+     * Deletes API deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param apiName The name of the API.
+     * @param deploymentName The name of the API deployment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceGroupName, String serviceName, String workspaceName, String apiName,
+        String deploymentName) {
+        return deleteWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, deploymentName)
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Delete API deployment
+     * 
+     * Deletes API deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param apiName The name of the API.
+     * @param deploymentName The name of the API deployment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> deleteWithResponse(String resourceGroupName, String serviceName, String workspaceName,
+        String apiName, String deploymentName, Context context) {
+        return deleteWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, deploymentName, context)
+            .block();
+    }
+
+    /**
+     * Delete API deployment
+     * 
+     * Deletes API deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param apiName The name of the API.
+     * @param deploymentName The name of the API deployment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String serviceName, String workspaceName, String apiName,
+        String deploymentName) {
+        deleteWithResponse(resourceGroupName, serviceName, workspaceName, apiName, deploymentName, Context.NONE);
+    }
+
+    /**
+     * Get API deployment
+     * 
      * Returns details of the API deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -337,7 +520,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI deployment entity on successful completion of {@link Mono}.
+     * @return aPI deployment on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DeploymentsGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName,
@@ -368,13 +551,15 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, deploymentName,
-                accept, context))
+            .withContext(
+                context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    serviceName, workspaceName, apiName, deploymentName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Get API deployment
+     * 
      * Returns details of the API deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -386,7 +571,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI deployment entity on successful completion of {@link Mono}.
+     * @return aPI deployment on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DeploymentsGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName,
@@ -417,11 +602,13 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, workspaceName, apiName, deploymentName, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+            workspaceName, apiName, deploymentName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Get API deployment
+     * 
      * Returns details of the API deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -432,7 +619,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI deployment entity on successful completion of {@link Mono}.
+     * @return aPI deployment on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DeploymentInner> getAsync(String resourceGroupName, String serviceName, String workspaceName,
@@ -442,6 +629,8 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
+     * Get API deployment
+     * 
      * Returns details of the API deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -453,7 +642,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI deployment entity.
+     * @return aPI deployment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public DeploymentsGetResponse getWithResponse(String resourceGroupName, String serviceName, String workspaceName,
@@ -463,6 +652,8 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
+     * Get API deployment
+     * 
      * Returns details of the API deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -473,7 +664,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI deployment entity.
+     * @return aPI deployment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public DeploymentInner get(String resourceGroupName, String serviceName, String workspaceName, String apiName,
@@ -483,6 +674,8 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
+     * Create or update API deployment
+     * 
      * Creates new or updates existing API deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -490,15 +683,15 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
      * @param deploymentName The name of the API deployment.
-     * @param resource Resource create parameters.
+     * @param payload API deployment entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI deployment entity on successful completion of {@link Mono}.
+     * @return aPI deployment on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DeploymentsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, String apiName, String deploymentName, DeploymentInner resource) {
+        String serviceName, String workspaceName, String apiName, String deploymentName, DeploymentInner payload) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -523,20 +716,22 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
         if (deploymentName == null) {
             return Mono.error(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
         }
-        if (resource == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
         } else {
-            resource.validate();
+            payload.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, deploymentName,
-                resource, accept, context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, workspaceName, apiName, deploymentName, this.client.getApiVersion(),
+                payload, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Create or update API deployment
+     * 
      * Creates new or updates existing API deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -544,16 +739,16 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
      * @param deploymentName The name of the API deployment.
-     * @param resource Resource create parameters.
+     * @param payload API deployment entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI deployment entity on successful completion of {@link Mono}.
+     * @return aPI deployment on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DeploymentsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, String apiName, String deploymentName, DeploymentInner resource,
+        String serviceName, String workspaceName, String apiName, String deploymentName, DeploymentInner payload,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -579,19 +774,20 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
         if (deploymentName == null) {
             return Mono.error(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
         }
-        if (resource == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
         } else {
-            resource.validate();
+            payload.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, deploymentName,
-            resource, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            serviceName, workspaceName, apiName, deploymentName, this.client.getApiVersion(), payload, accept, context);
     }
 
     /**
+     * Create or update API deployment
+     * 
      * Creates new or updates existing API deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -599,20 +795,22 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
      * @param deploymentName The name of the API deployment.
-     * @param resource Resource create parameters.
+     * @param payload API deployment entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI deployment entity on successful completion of {@link Mono}.
+     * @return aPI deployment on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DeploymentInner> createOrUpdateAsync(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String deploymentName, DeploymentInner resource) {
+        String workspaceName, String apiName, String deploymentName, DeploymentInner payload) {
         return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, deploymentName,
-            resource).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+            payload).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
+     * Create or update API deployment
+     * 
      * Creates new or updates existing API deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -620,21 +818,23 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
      * @param deploymentName The name of the API deployment.
-     * @param resource Resource create parameters.
+     * @param payload API deployment entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI deployment entity.
+     * @return aPI deployment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public DeploymentsCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String deploymentName, DeploymentInner resource, Context context) {
+        String workspaceName, String apiName, String deploymentName, DeploymentInner payload, Context context) {
         return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, deploymentName,
-            resource, context).block();
+            payload, context).block();
     }
 
     /**
+     * Create or update API deployment
+     * 
      * Creates new or updates existing API deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -642,174 +842,22 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
      * @param deploymentName The name of the API deployment.
-     * @param resource Resource create parameters.
+     * @param payload API deployment entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI deployment entity.
+     * @return aPI deployment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public DeploymentInner createOrUpdate(String resourceGroupName, String serviceName, String workspaceName,
-        String apiName, String deploymentName, DeploymentInner resource) {
+        String apiName, String deploymentName, DeploymentInner payload) {
         return createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, deploymentName,
-            resource, Context.NONE).getValue();
+            payload, Context.NONE).getValue();
     }
 
     /**
-     * Deletes API deployment.
+     * Check if API deployment exists
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param deploymentName The name of the API deployment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String deploymentName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (serviceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (apiName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter apiName is required and cannot be null."));
-        }
-        if (deploymentName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, deploymentName,
-                accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Deletes API deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param deploymentName The name of the API deployment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String deploymentName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (serviceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (apiName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter apiName is required and cannot be null."));
-        }
-        if (deploymentName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, workspaceName, apiName, deploymentName, accept, context);
-    }
-
-    /**
-     * Deletes API deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param deploymentName The name of the API deployment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String serviceName, String workspaceName, String apiName,
-        String deploymentName) {
-        return deleteWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, deploymentName)
-            .flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Deletes API deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param deploymentName The name of the API deployment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(String resourceGroupName, String serviceName, String workspaceName,
-        String apiName, String deploymentName, Context context) {
-        return deleteWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, deploymentName, context)
-            .block();
-    }
-
-    /**
-     * Deletes API deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param deploymentName The name of the API deployment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String serviceName, String workspaceName, String apiName,
-        String deploymentName) {
-        deleteWithResponse(resourceGroupName, serviceName, workspaceName, apiName, deploymentName, Context.NONE);
-    }
-
-    /**
      * Checks if specified API deployment exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -851,13 +899,15 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.head(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, deploymentName,
-                accept, context))
+            .withContext(
+                context -> service.head(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    serviceName, workspaceName, apiName, deploymentName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Check if API deployment exists
+     * 
      * Checks if specified API deployment exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -900,11 +950,13 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.head(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, workspaceName, apiName, deploymentName, accept, context);
+        return service.head(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+            workspaceName, apiName, deploymentName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Check if API deployment exists
+     * 
      * Checks if specified API deployment exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -925,6 +977,8 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
+     * Check if API deployment exists
+     * 
      * Checks if specified API deployment exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -946,6 +1000,8 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
+     * Check if API deployment exists
+     * 
      * Checks if specified API deployment exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -972,8 +1028,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Deployment list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return aPI deployment collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DeploymentInner>> listNextSinglePageAsync(String nextLink) {
@@ -1001,8 +1056,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Deployment list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return aPI deployment collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DeploymentInner>> listNextSinglePageAsync(String nextLink, Context context) {

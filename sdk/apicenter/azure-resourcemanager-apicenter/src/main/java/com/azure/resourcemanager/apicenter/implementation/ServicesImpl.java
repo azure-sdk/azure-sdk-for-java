@@ -80,21 +80,22 @@ public final class ServicesImpl implements Services {
         this.serviceClient().delete(resourceGroupName, serviceName);
     }
 
-    public MetadataSchemaExportResult exportMetadataSchema(String resourceGroupName, String serviceName,
-        MetadataSchemaExportRequest body) {
-        MetadataSchemaExportResultInner inner
-            = this.serviceClient().exportMetadataSchema(resourceGroupName, serviceName, body);
+    public Response<MetadataSchemaExportResult> exportMetadataSchemaWithResponse(String resourceGroupName,
+        String serviceName, MetadataSchemaExportRequest payload, Context context) {
+        Response<MetadataSchemaExportResultInner> inner
+            = this.serviceClient().exportMetadataSchemaWithResponse(resourceGroupName, serviceName, payload, context);
         if (inner != null) {
-            return new MetadataSchemaExportResultImpl(inner, this.manager());
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new MetadataSchemaExportResultImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
     public MetadataSchemaExportResult exportMetadataSchema(String resourceGroupName, String serviceName,
-        MetadataSchemaExportRequest body, Context context) {
+        MetadataSchemaExportRequest payload) {
         MetadataSchemaExportResultInner inner
-            = this.serviceClient().exportMetadataSchema(resourceGroupName, serviceName, body, context);
+            = this.serviceClient().exportMetadataSchema(resourceGroupName, serviceName, payload);
         if (inner != null) {
             return new MetadataSchemaExportResultImpl(inner, this.manager());
         } else {

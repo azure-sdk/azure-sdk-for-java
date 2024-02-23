@@ -7,19 +7,24 @@ package com.azure.resourcemanager.apicenter.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.apicenter.models.MetadataSchemaProperties;
+import com.azure.resourcemanager.apicenter.models.MetadataAssignment;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /**
+ * Metadata schema
+ * 
  * Metadata schema entity. Used to define metadata for the entities in API catalog.
  */
 @Fluent
 public final class MetadataSchemaInner extends ProxyResource {
     /*
-     * The resource-specific properties for this resource.
+     * Metadata schema properties
+     * 
+     * Metadata schema properties.
      */
     @JsonProperty(value = "properties")
-    private MetadataSchemaProperties properties;
+    private MetadataSchemaProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -34,23 +39,14 @@ public final class MetadataSchemaInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: The resource-specific properties for this resource.
+     * Get the innerProperties property: Metadata schema properties
      * 
-     * @return the properties value.
-     */
-    public MetadataSchemaProperties properties() {
-        return this.properties;
-    }
-
-    /**
-     * Set the properties property: The resource-specific properties for this resource.
+     * Metadata schema properties.
      * 
-     * @param properties the properties value to set.
-     * @return the MetadataSchemaInner object itself.
+     * @return the innerProperties value.
      */
-    public MetadataSchemaInner withProperties(MetadataSchemaProperties properties) {
-        this.properties = properties;
-        return this;
+    private MetadataSchemaProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
@@ -63,13 +59,59 @@ public final class MetadataSchemaInner extends ProxyResource {
     }
 
     /**
+     * Get the schema property: The schema defining the type.
+     * 
+     * @return the schema value.
+     */
+    public String schema() {
+        return this.innerProperties() == null ? null : this.innerProperties().schema();
+    }
+
+    /**
+     * Set the schema property: The schema defining the type.
+     * 
+     * @param schema the schema value to set.
+     * @return the MetadataSchemaInner object itself.
+     */
+    public MetadataSchemaInner withSchema(String schema) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MetadataSchemaProperties();
+        }
+        this.innerProperties().withSchema(schema);
+        return this;
+    }
+
+    /**
+     * Get the assignedTo property: The assignedTo property.
+     * 
+     * @return the assignedTo value.
+     */
+    public List<MetadataAssignment> assignedTo() {
+        return this.innerProperties() == null ? null : this.innerProperties().assignedTo();
+    }
+
+    /**
+     * Set the assignedTo property: The assignedTo property.
+     * 
+     * @param assignedTo the assignedTo value to set.
+     * @return the MetadataSchemaInner object itself.
+     */
+    public MetadataSchemaInner withAssignedTo(List<MetadataAssignment> assignedTo) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MetadataSchemaProperties();
+        }
+        this.innerProperties().withAssignedTo(assignedTo);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }

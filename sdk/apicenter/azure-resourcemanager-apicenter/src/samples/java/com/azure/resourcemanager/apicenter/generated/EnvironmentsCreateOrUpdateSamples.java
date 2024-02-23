@@ -4,6 +4,12 @@
 
 package com.azure.resourcemanager.apicenter.generated;
 
+import com.azure.resourcemanager.apicenter.models.EnvironmentKind;
+import com.azure.resourcemanager.apicenter.models.EnvironmentServer;
+import com.azure.resourcemanager.apicenter.models.EnvironmentServerType;
+import com.azure.resourcemanager.apicenter.models.Onboarding;
+import java.util.Arrays;
+
 /**
  * Samples for Environments CreateOrUpdate.
  */
@@ -19,6 +25,15 @@ public final class EnvironmentsCreateOrUpdateSamples {
      */
     public static void environmentsCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.environments().define("public").withExistingWorkspace("contoso-resources", "contoso", "default")
+            .withTitle("Contoso Europe Azure API Management")
+            .withDescription("The primary Azure API Management service for the European division of Contoso.")
+            .withKind(EnvironmentKind.PRODUCTION)
+            .withServer(new EnvironmentServer().withType(EnvironmentServerType.AZURE_API_MANAGEMENT)
+                .withManagementPortalUri(Arrays.asList(
+                    "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso-resources/providers/Microsoft.ApiManagement/service/contoso")))
+            .withOnboarding(new Onboarding().withInstructions(
+                "Sign in or sign up in the specified developer portal to request API access. You must complete the internal privacy training for your account to be approved.")
+                .withDeveloperPortalUri(Arrays.asList("https://developer.contoso.com")))
             .create();
     }
 }

@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * Assignment entity for Metadata.
+ * An entity the metadata schema is requested for.
  */
 public final class MetadataAssignmentEntity extends ExpandableStringEnum<MetadataAssignmentEntity> {
     /**

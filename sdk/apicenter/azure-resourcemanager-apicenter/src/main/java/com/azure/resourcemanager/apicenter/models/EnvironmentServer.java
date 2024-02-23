@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
+ * Server
+ * 
  * Server information of the environment.
  */
 @Fluent
@@ -20,7 +22,7 @@ public final class EnvironmentServer {
     private EnvironmentServerType type;
 
     /*
-     * The location of the management portal
+     * The managementPortalUri property.
      */
     @JsonProperty(value = "managementPortalUri")
     private List<String> managementPortalUri;
@@ -52,7 +54,7 @@ public final class EnvironmentServer {
     }
 
     /**
-     * Get the managementPortalUri property: The location of the management portal.
+     * Get the managementPortalUri property: The managementPortalUri property.
      * 
      * @return the managementPortalUri value.
      */
@@ -61,7 +63,7 @@ public final class EnvironmentServer {
     }
 
     /**
-     * Set the managementPortalUri property: The location of the management portal.
+     * Set the managementPortalUri property: The managementPortalUri property.
      * 
      * @param managementPortalUri the managementPortalUri value to set.
      * @return the EnvironmentServer object itself.

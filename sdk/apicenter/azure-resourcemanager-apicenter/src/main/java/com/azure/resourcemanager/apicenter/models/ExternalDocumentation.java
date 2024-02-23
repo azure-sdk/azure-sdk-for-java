@@ -9,6 +9,8 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
+ * External documentation
+ * 
  * Additional, external documentation for the API.
  */
 @Fluent
@@ -20,12 +22,16 @@ public final class ExternalDocumentation {
     private String title;
 
     /*
+     * Description
+     * 
      * Description of the documentation.
      */
     @JsonProperty(value = "description")
     private String description;
 
     /*
+     * URL
+     * 
      * URL pointing to the documentation.
      */
     @JsonProperty(value = "url", required = true)
@@ -58,7 +64,9 @@ public final class ExternalDocumentation {
     }
 
     /**
-     * Get the description property: Description of the documentation.
+     * Get the description property: Description
+     * 
+     * Description of the documentation.
      * 
      * @return the description value.
      */
@@ -67,7 +75,9 @@ public final class ExternalDocumentation {
     }
 
     /**
-     * Set the description property: Description of the documentation.
+     * Set the description property: Description
+     * 
+     * Description of the documentation.
      * 
      * @param description the description value to set.
      * @return the ExternalDocumentation object itself.
@@ -78,7 +88,9 @@ public final class ExternalDocumentation {
     }
 
     /**
-     * Get the url property: URL pointing to the documentation.
+     * Get the url property: URL
+     * 
+     * URL pointing to the documentation.
      * 
      * @return the url value.
      */
@@ -87,7 +99,9 @@ public final class ExternalDocumentation {
     }
 
     /**
-     * Set the url property: URL pointing to the documentation.
+     * Set the url property: URL
+     * 
+     * URL pointing to the documentation.
      * 
      * @param url the url value to set.
      * @return the ExternalDocumentation object itself.

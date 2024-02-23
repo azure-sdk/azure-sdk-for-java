@@ -42,6 +42,17 @@ public final class DeploymentsImpl implements Deployments {
         return ResourceManagerUtils.mapPage(inner, inner1 -> new DeploymentImpl(inner1, this.manager()));
     }
 
+    public Response<Void> deleteWithResponse(String resourceGroupName, String serviceName, String workspaceName,
+        String apiName, String deploymentName, Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroupName, serviceName, workspaceName, apiName,
+            deploymentName, context);
+    }
+
+    public void delete(String resourceGroupName, String serviceName, String workspaceName, String apiName,
+        String deploymentName) {
+        this.serviceClient().delete(resourceGroupName, serviceName, workspaceName, apiName, deploymentName);
+    }
+
     public Response<Deployment> getWithResponse(String resourceGroupName, String serviceName, String workspaceName,
         String apiName, String deploymentName, Context context) {
         DeploymentsGetResponse inner = this.serviceClient().getWithResponse(resourceGroupName, serviceName,
@@ -63,17 +74,6 @@ public final class DeploymentsImpl implements Deployments {
         } else {
             return null;
         }
-    }
-
-    public Response<Void> deleteWithResponse(String resourceGroupName, String serviceName, String workspaceName,
-        String apiName, String deploymentName, Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, serviceName, workspaceName, apiName,
-            deploymentName, context);
-    }
-
-    public void delete(String resourceGroupName, String serviceName, String workspaceName, String apiName,
-        String deploymentName) {
-        this.serviceClient().delete(resourceGroupName, serviceName, workspaceName, apiName, deploymentName);
     }
 
     public Response<Void> headWithResponse(String resourceGroupName, String serviceName, String workspaceName,

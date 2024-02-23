@@ -41,6 +41,26 @@ public final class EnvironmentsImpl implements Environments {
         return ResourceManagerUtils.mapPage(inner, inner1 -> new EnvironmentImpl(inner1, this.manager()));
     }
 
+    public Response<Void> deleteWithResponse(String resourceGroupName, String serviceName, String workspaceName,
+        String environmentName, Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroupName, serviceName, workspaceName, environmentName,
+            context);
+    }
+
+    public void delete(String resourceGroupName, String serviceName, String workspaceName, String environmentName) {
+        this.serviceClient().delete(resourceGroupName, serviceName, workspaceName, environmentName);
+    }
+
+    public Response<Void> headWithResponse(String resourceGroupName, String serviceName, String workspaceName,
+        String environmentName, Context context) {
+        return this.serviceClient().headWithResponse(resourceGroupName, serviceName, workspaceName, environmentName,
+            context);
+    }
+
+    public void head(String resourceGroupName, String serviceName, String workspaceName, String environmentName) {
+        this.serviceClient().head(resourceGroupName, serviceName, workspaceName, environmentName);
+    }
+
     public Response<Environment> getWithResponse(String resourceGroupName, String serviceName, String workspaceName,
         String environmentName, Context context) {
         EnvironmentsGetResponse inner = this.serviceClient().getWithResponse(resourceGroupName, serviceName,
@@ -61,26 +81,6 @@ public final class EnvironmentsImpl implements Environments {
         } else {
             return null;
         }
-    }
-
-    public Response<Void> deleteWithResponse(String resourceGroupName, String serviceName, String workspaceName,
-        String environmentName, Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, serviceName, workspaceName, environmentName,
-            context);
-    }
-
-    public void delete(String resourceGroupName, String serviceName, String workspaceName, String environmentName) {
-        this.serviceClient().delete(resourceGroupName, serviceName, workspaceName, environmentName);
-    }
-
-    public Response<Void> headWithResponse(String resourceGroupName, String serviceName, String workspaceName,
-        String environmentName, Context context) {
-        return this.serviceClient().headWithResponse(resourceGroupName, serviceName, workspaceName, environmentName,
-            context);
-    }
-
-    public void head(String resourceGroupName, String serviceName, String workspaceName, String environmentName) {
-        this.serviceClient().head(resourceGroupName, serviceName, workspaceName, environmentName);
     }
 
     public Environment getById(String id) {

@@ -4,11 +4,12 @@
 
 package com.azure.resourcemanager.apicenter.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.apicenter.fluent.models.ApiDefinitionInner;
 import com.azure.resourcemanager.apicenter.models.ApiDefinition;
-import com.azure.resourcemanager.apicenter.models.ApiDefinitionProperties;
+import com.azure.resourcemanager.apicenter.models.ApiDefinitionPropertiesSpecification;
 import com.azure.resourcemanager.apicenter.models.ApiSpecExportResult;
 import com.azure.resourcemanager.apicenter.models.ApiSpecImportRequest;
 
@@ -29,12 +30,20 @@ public final class ApiDefinitionImpl implements ApiDefinition, ApiDefinition.Def
         return this.innerModel().type();
     }
 
-    public ApiDefinitionProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public String title() {
+        return this.innerModel().title();
+    }
+
+    public String description() {
+        return this.innerModel().description();
+    }
+
+    public ApiDefinitionPropertiesSpecification specification() {
+        return this.innerModel().specification();
     }
 
     public String resourceGroupName() {
@@ -137,28 +146,33 @@ public final class ApiDefinitionImpl implements ApiDefinition, ApiDefinition.Def
         return this;
     }
 
+    public Response<Void> importSpecificationWithResponse(ApiSpecImportRequest payload, Context context) {
+        return serviceManager.apiDefinitions().importSpecificationWithResponse(resourceGroupName, serviceName,
+            workspaceName, apiName, versionName, definitionName, payload, context);
+    }
+
+    public void importSpecification(ApiSpecImportRequest payload) {
+        serviceManager.apiDefinitions().importSpecification(resourceGroupName, serviceName, workspaceName, apiName,
+            versionName, definitionName, payload);
+    }
+
+    public Response<ApiSpecExportResult> exportSpecificationWithResponse(Context context) {
+        return serviceManager.apiDefinitions().exportSpecificationWithResponse(resourceGroupName, serviceName,
+            workspaceName, apiName, versionName, definitionName, context);
+    }
+
     public ApiSpecExportResult exportSpecification() {
         return serviceManager.apiDefinitions().exportSpecification(resourceGroupName, serviceName, workspaceName,
             apiName, versionName, definitionName);
     }
 
-    public ApiSpecExportResult exportSpecification(Context context) {
-        return serviceManager.apiDefinitions().exportSpecification(resourceGroupName, serviceName, workspaceName,
-            apiName, versionName, definitionName, context);
+    public ApiDefinitionImpl withTitle(String title) {
+        this.innerModel().withTitle(title);
+        return this;
     }
 
-    public void importSpecification(ApiSpecImportRequest body) {
-        serviceManager.apiDefinitions().importSpecification(resourceGroupName, serviceName, workspaceName, apiName,
-            versionName, definitionName, body);
-    }
-
-    public void importSpecification(ApiSpecImportRequest body, Context context) {
-        serviceManager.apiDefinitions().importSpecification(resourceGroupName, serviceName, workspaceName, apiName,
-            versionName, definitionName, body, context);
-    }
-
-    public ApiDefinitionImpl withProperties(ApiDefinitionProperties properties) {
-        this.innerModel().withProperties(properties);
+    public ApiDefinitionImpl withDescription(String description) {
+        this.innerModel().withDescription(description);
         return this;
     }
 }

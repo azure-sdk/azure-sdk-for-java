@@ -4,6 +4,8 @@
 
 package com.azure.resourcemanager.apicenter.generated;
 
+import com.azure.resourcemanager.apicenter.models.LifecycleStage;
+
 /**
  * Samples for ApiVersions CreateOrUpdate.
  */
@@ -19,6 +21,7 @@ public final class ApiVersionsCreateOrUpdateSamples {
      */
     public static void apiVersionsCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.apiVersions().define("2023-01-01")
-            .withExistingApi("contoso-resources", "contoso", "default", "echo-api").create();
+            .withExistingApi("contoso-resources", "contoso", "default", "echo-api").withTitle("2023-01-01")
+            .withLifecycleStage(LifecycleStage.PRODUCTION).create();
     }
 }

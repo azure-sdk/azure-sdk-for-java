@@ -8,26 +8,32 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
+ * License
+ * 
  * The license information for the API.
  */
 @Fluent
 public final class License {
     /*
+     * Name
+     * 
      * Name of the license.
      */
     @JsonProperty(value = "name")
     private String name;
 
     /*
-     * URL pointing to the license details. The URL field is mutually exclusive of the
-     * identifier field.
+     * URL
+     * 
+     * URL pointing to the license details. The URL field is mutually exclusive of the identifier field.
      */
     @JsonProperty(value = "url")
     private String url;
 
     /*
-     * SPDX license information for the API. The identifier field is mutually
-     * exclusive of the URL field.
+     * Identifier
+     * 
+     * SPDX license information for the API. The identifier field is mutually exclusive of the URL field.
      */
     @JsonProperty(value = "identifier")
     private String identifier;
@@ -39,7 +45,9 @@ public final class License {
     }
 
     /**
-     * Get the name property: Name of the license.
+     * Get the name property: Name
+     * 
+     * Name of the license.
      * 
      * @return the name value.
      */
@@ -48,7 +56,9 @@ public final class License {
     }
 
     /**
-     * Set the name property: Name of the license.
+     * Set the name property: Name
+     * 
+     * Name of the license.
      * 
      * @param name the name value to set.
      * @return the License object itself.
@@ -59,8 +69,9 @@ public final class License {
     }
 
     /**
-     * Get the url property: URL pointing to the license details. The URL field is mutually exclusive of the
-     * identifier field.
+     * Get the url property: URL
+     * 
+     * URL pointing to the license details. The URL field is mutually exclusive of the identifier field.
      * 
      * @return the url value.
      */
@@ -69,8 +80,9 @@ public final class License {
     }
 
     /**
-     * Set the url property: URL pointing to the license details. The URL field is mutually exclusive of the
-     * identifier field.
+     * Set the url property: URL
+     * 
+     * URL pointing to the license details. The URL field is mutually exclusive of the identifier field.
      * 
      * @param url the url value to set.
      * @return the License object itself.
@@ -81,8 +93,9 @@ public final class License {
     }
 
     /**
-     * Get the identifier property: SPDX license information for the API. The identifier field is mutually
-     * exclusive of the URL field.
+     * Get the identifier property: Identifier
+     * 
+     * SPDX license information for the API. The identifier field is mutually exclusive of the URL field.
      * 
      * @return the identifier value.
      */
@@ -91,8 +104,9 @@ public final class License {
     }
 
     /**
-     * Set the identifier property: SPDX license information for the API. The identifier field is mutually
-     * exclusive of the URL field.
+     * Set the identifier property: Identifier
+     * 
+     * SPDX license information for the API. The identifier field is mutually exclusive of the URL field.
      * 
      * @param identifier the identifier value to set.
      * @return the License object itself.

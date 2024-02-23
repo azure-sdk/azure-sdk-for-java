@@ -13,6 +13,8 @@ import com.azure.core.util.Context;
  */
 public interface ApiDefinitions {
     /**
+     * List API definitions
+     * 
      * Returns a collection of API definitions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -23,12 +25,14 @@ public interface ApiDefinitions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiDefinition list operation as paginated response with {@link PagedIterable}.
+     * @return aPI version collection as paginated response with {@link PagedIterable}.
      */
     PagedIterable<ApiDefinition> list(String resourceGroupName, String serviceName, String workspaceName,
         String apiName, String versionName);
 
     /**
+     * List API definitions
+     * 
      * Returns a collection of API definitions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -41,12 +45,14 @@ public interface ApiDefinitions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiDefinition list operation as paginated response with {@link PagedIterable}.
+     * @return aPI version collection as paginated response with {@link PagedIterable}.
      */
     PagedIterable<ApiDefinition> list(String resourceGroupName, String serviceName, String workspaceName,
         String apiName, String versionName, String filter, Context context);
 
     /**
+     * Get API definition
+     * 
      * Returns details of the API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -59,12 +65,14 @@ public interface ApiDefinitions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI definition entity.
+     * @return aPI definition.
      */
     Response<ApiDefinition> getWithResponse(String resourceGroupName, String serviceName, String workspaceName,
         String apiName, String versionName, String definitionName, Context context);
 
     /**
+     * Get API definition
+     * 
      * Returns details of the API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -76,12 +84,14 @@ public interface ApiDefinitions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI definition entity.
+     * @return aPI definition.
      */
     ApiDefinition get(String resourceGroupName, String serviceName, String workspaceName, String apiName,
         String versionName, String definitionName);
 
     /**
+     * Delete API definition
+     * 
      * Deletes specified API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -100,6 +110,8 @@ public interface ApiDefinitions {
         String apiName, String versionName, String definitionName, Context context);
 
     /**
+     * Delete API definition
+     * 
      * Deletes specified API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -116,6 +128,8 @@ public interface ApiDefinitions {
         String definitionName);
 
     /**
+     * Check if API definition exists
+     * 
      * Checks if specified API definition exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -134,6 +148,8 @@ public interface ApiDefinitions {
         String versionName, String definitionName, Context context);
 
     /**
+     * Check if API definition exists
+     * 
      * Checks if specified API definition exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -150,6 +166,68 @@ public interface ApiDefinitions {
         String definitionName);
 
     /**
+     * Import API specification
+     * 
+     * Imports the API specification.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param apiName The name of the API.
+     * @param versionName The name of the API version.
+     * @param definitionName The name of the API definition.
+     * @param payload The API specification source entity.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> importSpecificationWithResponse(String resourceGroupName, String serviceName, String workspaceName,
+        String apiName, String versionName, String definitionName, ApiSpecImportRequest payload, Context context);
+
+    /**
+     * Import API specification
+     * 
+     * Imports the API specification.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param apiName The name of the API.
+     * @param versionName The name of the API version.
+     * @param definitionName The name of the API definition.
+     * @param payload The API specification source entity.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void importSpecification(String resourceGroupName, String serviceName, String workspaceName, String apiName,
+        String versionName, String definitionName, ApiSpecImportRequest payload);
+
+    /**
+     * Export API specification
+     * 
+     * Exports the API specification.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param apiName The name of the API.
+     * @param versionName The name of the API version.
+     * @param definitionName The name of the API definition.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the API specification export result along with {@link Response}.
+     */
+    Response<ApiSpecExportResult> exportSpecificationWithResponse(String resourceGroupName, String serviceName,
+        String workspaceName, String apiName, String versionName, String definitionName, Context context);
+
+    /**
+     * Export API specification
+     * 
      * Exports the API specification.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -167,70 +245,21 @@ public interface ApiDefinitions {
         String apiName, String versionName, String definitionName);
 
     /**
-     * Exports the API specification.
+     * Get API definition
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param versionName The name of the API version.
-     * @param definitionName The name of the API definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the API specification export result.
-     */
-    ApiSpecExportResult exportSpecification(String resourceGroupName, String serviceName, String workspaceName,
-        String apiName, String versionName, String definitionName, Context context);
-
-    /**
-     * Imports the API specification.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param versionName The name of the API version.
-     * @param definitionName The name of the API definition.
-     * @param body The content of the action request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void importSpecification(String resourceGroupName, String serviceName, String workspaceName, String apiName,
-        String versionName, String definitionName, ApiSpecImportRequest body);
-
-    /**
-     * Imports the API specification.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param versionName The name of the API version.
-     * @param definitionName The name of the API definition.
-     * @param body The content of the action request.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void importSpecification(String resourceGroupName, String serviceName, String workspaceName, String apiName,
-        String versionName, String definitionName, ApiSpecImportRequest body, Context context);
-
-    /**
      * Returns details of the API definition.
      * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI definition entity.
+     * @return aPI definition.
      */
     ApiDefinition getById(String id);
 
     /**
+     * Get API definition
+     * 
      * Returns details of the API definition.
      * 
      * @param id the resource ID.
@@ -238,11 +267,13 @@ public interface ApiDefinitions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI definition entity.
+     * @return aPI definition.
      */
     Response<ApiDefinition> getByIdWithResponse(String id, Context context);
 
     /**
+     * Delete API definition
+     * 
      * Deletes specified API definition.
      * 
      * @param id the resource ID.
@@ -253,6 +284,8 @@ public interface ApiDefinitions {
     void deleteById(String id);
 
     /**
+     * Delete API definition
+     * 
      * Deletes specified API definition.
      * 
      * @param id the resource ID.

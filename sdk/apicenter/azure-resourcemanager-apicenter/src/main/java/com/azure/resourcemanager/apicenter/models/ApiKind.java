@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * The kind of the API.
+ * API kind
+ * 
+ * Kind of API. For example, REST or GraphQL.
  */
 public final class ApiKind extends ExpandableStringEnum<ApiKind> {
     /**

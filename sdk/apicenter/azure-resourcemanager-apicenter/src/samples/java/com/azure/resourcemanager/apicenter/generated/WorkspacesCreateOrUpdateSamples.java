@@ -14,11 +14,12 @@ public final class WorkspacesCreateOrUpdateSamples {
      * .json
      */
     /**
-     * Sample code: Workspaces_CreateOrUpdate.
+     * Sample code: Workspace_CreateOrUpdate.
      * 
      * @param manager Entry point to ApiCenterManager.
      */
-    public static void workspacesCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.workspaces().define("default").withExistingService("contoso-resources", "contoso").create();
+    public static void workspaceCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+        manager.workspaces().define("default").withExistingService("contoso-resources", "contoso").withTitle("default")
+            .create();
     }
 }

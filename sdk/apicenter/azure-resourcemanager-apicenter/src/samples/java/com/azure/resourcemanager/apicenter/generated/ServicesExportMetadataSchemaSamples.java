@@ -4,6 +4,9 @@
 
 package com.azure.resourcemanager.apicenter.generated;
 
+import com.azure.resourcemanager.apicenter.models.MetadataAssignmentEntity;
+import com.azure.resourcemanager.apicenter.models.MetadataSchemaExportRequest;
+
 /**
  * Samples for Services ExportMetadataSchema.
  */
@@ -18,6 +21,8 @@ public final class ServicesExportMetadataSchemaSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void servicesExportMetadataSchema(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.services().exportMetadataSchema("contoso-resources", "contoso", null, com.azure.core.util.Context.NONE);
+        manager.services().exportMetadataSchemaWithResponse("contoso-resources", "contoso",
+            new MetadataSchemaExportRequest().withAssignedTo(MetadataAssignmentEntity.API),
+            com.azure.core.util.Context.NONE);
     }
 }

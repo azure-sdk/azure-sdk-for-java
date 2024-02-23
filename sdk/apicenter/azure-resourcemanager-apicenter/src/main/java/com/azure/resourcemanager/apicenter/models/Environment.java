@@ -34,18 +34,55 @@ public interface Environment {
     String type();
 
     /**
-     * Gets the properties property: The resource-specific properties for this resource.
-     * 
-     * @return the properties value.
-     */
-    EnvironmentProperties properties();
-
-    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the title property: Environment title.
+     * 
+     * @return the title value.
+     */
+    String title();
+
+    /**
+     * Gets the description property: Description.
+     * 
+     * @return the description value.
+     */
+    String description();
+
+    /**
+     * Gets the kind property: Environment kind.
+     * 
+     * @return the kind value.
+     */
+    EnvironmentKind kind();
+
+    /**
+     * Gets the server property: Server
+     * 
+     * Server information of the environment.
+     * 
+     * @return the server value.
+     */
+    EnvironmentServer server();
+
+    /**
+     * Gets the onboarding property: The onboarding property.
+     * 
+     * @return the onboarding value.
+     */
+    Onboarding onboarding();
+
+    /**
+     * Gets the customProperties property: The custom metadata defined for API catalog entities.
+     * 
+     * @return the customProperties value.
+     */
+    Object customProperties();
 
     /**
      * Gets the name of the resource group.
@@ -97,7 +134,9 @@ public interface Environment {
          * The stage of the Environment definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithProperties {
+        interface WithCreate
+            extends DefinitionStages.WithTitle, DefinitionStages.WithDescription, DefinitionStages.WithKind,
+            DefinitionStages.WithServer, DefinitionStages.WithOnboarding, DefinitionStages.WithCustomProperties {
             /**
              * Executes the create request.
              * 
@@ -115,16 +154,85 @@ public interface Environment {
         }
 
         /**
-         * The stage of the Environment definition allowing to specify properties.
+         * The stage of the Environment definition allowing to specify title.
          */
-        interface WithProperties {
+        interface WithTitle {
             /**
-             * Specifies the properties property: The resource-specific properties for this resource..
+             * Specifies the title property: Environment title..
              * 
-             * @param properties The resource-specific properties for this resource.
+             * @param title Environment title.
              * @return the next definition stage.
              */
-            WithCreate withProperties(EnvironmentProperties properties);
+            WithCreate withTitle(String title);
+        }
+
+        /**
+         * The stage of the Environment definition allowing to specify description.
+         */
+        interface WithDescription {
+            /**
+             * Specifies the description property: Description..
+             * 
+             * @param description Description.
+             * @return the next definition stage.
+             */
+            WithCreate withDescription(String description);
+        }
+
+        /**
+         * The stage of the Environment definition allowing to specify kind.
+         */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Environment kind..
+             * 
+             * @param kind Environment kind.
+             * @return the next definition stage.
+             */
+            WithCreate withKind(EnvironmentKind kind);
+        }
+
+        /**
+         * The stage of the Environment definition allowing to specify server.
+         */
+        interface WithServer {
+            /**
+             * Specifies the server property: Server
+             * 
+             * Server information of the environment..
+             * 
+             * @param server Server
+             * 
+             * Server information of the environment.
+             * @return the next definition stage.
+             */
+            WithCreate withServer(EnvironmentServer server);
+        }
+
+        /**
+         * The stage of the Environment definition allowing to specify onboarding.
+         */
+        interface WithOnboarding {
+            /**
+             * Specifies the onboarding property: The onboarding property..
+             * 
+             * @param onboarding The onboarding property.
+             * @return the next definition stage.
+             */
+            WithCreate withOnboarding(Onboarding onboarding);
+        }
+
+        /**
+         * The stage of the Environment definition allowing to specify customProperties.
+         */
+        interface WithCustomProperties {
+            /**
+             * Specifies the customProperties property: The custom metadata defined for API catalog entities..
+             * 
+             * @param customProperties The custom metadata defined for API catalog entities.
+             * @return the next definition stage.
+             */
+            WithCreate withCustomProperties(Object customProperties);
         }
     }
 
@@ -138,7 +246,8 @@ public interface Environment {
     /**
      * The template for Environment update.
      */
-    interface Update {
+    interface Update extends UpdateStages.WithTitle, UpdateStages.WithDescription, UpdateStages.WithKind,
+        UpdateStages.WithServer, UpdateStages.WithOnboarding, UpdateStages.WithCustomProperties {
         /**
          * Executes the update request.
          * 
@@ -159,6 +268,87 @@ public interface Environment {
      * The Environment update stages.
      */
     interface UpdateStages {
+        /**
+         * The stage of the Environment update allowing to specify title.
+         */
+        interface WithTitle {
+            /**
+             * Specifies the title property: Environment title..
+             * 
+             * @param title Environment title.
+             * @return the next definition stage.
+             */
+            Update withTitle(String title);
+        }
+
+        /**
+         * The stage of the Environment update allowing to specify description.
+         */
+        interface WithDescription {
+            /**
+             * Specifies the description property: Description..
+             * 
+             * @param description Description.
+             * @return the next definition stage.
+             */
+            Update withDescription(String description);
+        }
+
+        /**
+         * The stage of the Environment update allowing to specify kind.
+         */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Environment kind..
+             * 
+             * @param kind Environment kind.
+             * @return the next definition stage.
+             */
+            Update withKind(EnvironmentKind kind);
+        }
+
+        /**
+         * The stage of the Environment update allowing to specify server.
+         */
+        interface WithServer {
+            /**
+             * Specifies the server property: Server
+             * 
+             * Server information of the environment..
+             * 
+             * @param server Server
+             * 
+             * Server information of the environment.
+             * @return the next definition stage.
+             */
+            Update withServer(EnvironmentServer server);
+        }
+
+        /**
+         * The stage of the Environment update allowing to specify onboarding.
+         */
+        interface WithOnboarding {
+            /**
+             * Specifies the onboarding property: The onboarding property..
+             * 
+             * @param onboarding The onboarding property.
+             * @return the next definition stage.
+             */
+            Update withOnboarding(Onboarding onboarding);
+        }
+
+        /**
+         * The stage of the Environment update allowing to specify customProperties.
+         */
+        interface WithCustomProperties {
+            /**
+             * Specifies the customProperties property: The custom metadata defined for API catalog entities..
+             * 
+             * @param customProperties The custom metadata defined for API catalog entities.
+             * @return the next definition stage.
+             */
+            Update withCustomProperties(Object customProperties);
+        }
     }
 
     /**

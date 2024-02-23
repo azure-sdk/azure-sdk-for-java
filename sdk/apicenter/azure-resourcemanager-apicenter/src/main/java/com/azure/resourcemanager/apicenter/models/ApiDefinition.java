@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.apicenter.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.apicenter.fluent.models.ApiDefinitionInner;
@@ -34,18 +35,32 @@ public interface ApiDefinition {
     String type();
 
     /**
-     * Gets the properties property: The resource-specific properties for this resource.
-     * 
-     * @return the properties value.
-     */
-    ApiDefinitionProperties properties();
-
-    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the title property: API definition title.
+     * 
+     * @return the title value.
+     */
+    String title();
+
+    /**
+     * Gets the description property: API definition description.
+     * 
+     * @return the description value.
+     */
+    String description();
+
+    /**
+     * Gets the specification property: API specification details.
+     * 
+     * @return the specification value.
+     */
+    ApiDefinitionPropertiesSpecification specification();
 
     /**
      * Gets the name of the resource group.
@@ -100,7 +115,7 @@ public interface ApiDefinition {
          * The stage of the ApiDefinition definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithTitle, DefinitionStages.WithDescription {
             /**
              * Executes the create request.
              * 
@@ -118,16 +133,29 @@ public interface ApiDefinition {
         }
 
         /**
-         * The stage of the ApiDefinition definition allowing to specify properties.
+         * The stage of the ApiDefinition definition allowing to specify title.
          */
-        interface WithProperties {
+        interface WithTitle {
             /**
-             * Specifies the properties property: The resource-specific properties for this resource..
+             * Specifies the title property: API definition title..
              * 
-             * @param properties The resource-specific properties for this resource.
+             * @param title API definition title.
              * @return the next definition stage.
              */
-            WithCreate withProperties(ApiDefinitionProperties properties);
+            WithCreate withTitle(String title);
+        }
+
+        /**
+         * The stage of the ApiDefinition definition allowing to specify description.
+         */
+        interface WithDescription {
+            /**
+             * Specifies the description property: API definition description..
+             * 
+             * @param description API definition description.
+             * @return the next definition stage.
+             */
+            WithCreate withDescription(String description);
         }
     }
 
@@ -141,7 +169,7 @@ public interface ApiDefinition {
     /**
      * The template for ApiDefinition update.
      */
-    interface Update {
+    interface Update extends UpdateStages.WithTitle, UpdateStages.WithDescription {
         /**
          * Executes the update request.
          * 
@@ -162,6 +190,31 @@ public interface ApiDefinition {
      * The ApiDefinition update stages.
      */
     interface UpdateStages {
+        /**
+         * The stage of the ApiDefinition update allowing to specify title.
+         */
+        interface WithTitle {
+            /**
+             * Specifies the title property: API definition title..
+             * 
+             * @param title API definition title.
+             * @return the next definition stage.
+             */
+            Update withTitle(String title);
+        }
+
+        /**
+         * The stage of the ApiDefinition update allowing to specify description.
+         */
+        interface WithDescription {
+            /**
+             * Specifies the description property: API definition description..
+             * 
+             * @param description API definition description.
+             * @return the next definition stage.
+             */
+            Update withDescription(String description);
+        }
     }
 
     /**
@@ -180,6 +233,47 @@ public interface ApiDefinition {
     ApiDefinition refresh(Context context);
 
     /**
+     * Import API specification
+     * 
+     * Imports the API specification.
+     * 
+     * @param payload The API specification source entity.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> importSpecificationWithResponse(ApiSpecImportRequest payload, Context context);
+
+    /**
+     * Import API specification
+     * 
+     * Imports the API specification.
+     * 
+     * @param payload The API specification source entity.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void importSpecification(ApiSpecImportRequest payload);
+
+    /**
+     * Export API specification
+     * 
+     * Exports the API specification.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the API specification export result along with {@link Response}.
+     */
+    Response<ApiSpecExportResult> exportSpecificationWithResponse(Context context);
+
+    /**
+     * Export API specification
+     * 
      * Exports the API specification.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -187,36 +281,4 @@ public interface ApiDefinition {
      * @return the API specification export result.
      */
     ApiSpecExportResult exportSpecification();
-
-    /**
-     * Exports the API specification.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the API specification export result.
-     */
-    ApiSpecExportResult exportSpecification(Context context);
-
-    /**
-     * Imports the API specification.
-     * 
-     * @param body The content of the action request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void importSpecification(ApiSpecImportRequest body);
-
-    /**
-     * Imports the API specification.
-     * 
-     * @param body The content of the action request.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void importSpecification(ApiSpecImportRequest body, Context context);
 }

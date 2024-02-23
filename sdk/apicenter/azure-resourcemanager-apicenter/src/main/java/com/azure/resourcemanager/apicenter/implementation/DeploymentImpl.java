@@ -8,7 +8,8 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.apicenter.fluent.models.DeploymentInner;
 import com.azure.resourcemanager.apicenter.models.Deployment;
-import com.azure.resourcemanager.apicenter.models.DeploymentProperties;
+import com.azure.resourcemanager.apicenter.models.DeploymentServer;
+import com.azure.resourcemanager.apicenter.models.DeploymentState;
 
 public final class DeploymentImpl implements Deployment, Deployment.Definition, Deployment.Update {
     private DeploymentInner innerObject;
@@ -27,12 +28,36 @@ public final class DeploymentImpl implements Deployment, Deployment.Definition, 
         return this.innerModel().type();
     }
 
-    public DeploymentProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public String title() {
+        return this.innerModel().title();
+    }
+
+    public String description() {
+        return this.innerModel().description();
+    }
+
+    public String environmentId() {
+        return this.innerModel().environmentId();
+    }
+
+    public String definitionId() {
+        return this.innerModel().definitionId();
+    }
+
+    public DeploymentState state() {
+        return this.innerModel().state();
+    }
+
+    public DeploymentServer server() {
+        return this.innerModel().server();
+    }
+
+    public Object customProperties() {
+        return this.innerModel().customProperties();
     }
 
     public String resourceGroupName() {
@@ -124,8 +149,38 @@ public final class DeploymentImpl implements Deployment, Deployment.Definition, 
         return this;
     }
 
-    public DeploymentImpl withProperties(DeploymentProperties properties) {
-        this.innerModel().withProperties(properties);
+    public DeploymentImpl withTitle(String title) {
+        this.innerModel().withTitle(title);
+        return this;
+    }
+
+    public DeploymentImpl withDescription(String description) {
+        this.innerModel().withDescription(description);
+        return this;
+    }
+
+    public DeploymentImpl withEnvironmentId(String environmentId) {
+        this.innerModel().withEnvironmentId(environmentId);
+        return this;
+    }
+
+    public DeploymentImpl withDefinitionId(String definitionId) {
+        this.innerModel().withDefinitionId(definitionId);
+        return this;
+    }
+
+    public DeploymentImpl withState(DeploymentState state) {
+        this.innerModel().withState(state);
+        return this;
+    }
+
+    public DeploymentImpl withServer(DeploymentServer server) {
+        this.innerModel().withServer(server);
+        return this;
+    }
+
+    public DeploymentImpl withCustomProperties(Object customProperties) {
+        this.innerModel().withCustomProperties(customProperties);
         return this;
     }
 }

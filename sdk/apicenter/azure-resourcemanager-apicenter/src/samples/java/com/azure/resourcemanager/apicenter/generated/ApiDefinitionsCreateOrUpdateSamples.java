@@ -19,6 +19,7 @@ public final class ApiDefinitionsCreateOrUpdateSamples {
      */
     public static void apiDefinitionsCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.apiDefinitions().define("openapi")
-            .withExistingVersion("contoso-resources", "contoso", "default", "openapi", "2023-01-01").create();
+            .withExistingVersion("contoso-resources", "contoso", "default", "openapi", "2023-01-01")
+            .withTitle("OpenAPI").withDescription("Default spec").create();
     }
 }

@@ -34,18 +34,25 @@ public interface ApiVersion {
     String type();
 
     /**
-     * Gets the properties property: The resource-specific properties for this resource.
-     * 
-     * @return the properties value.
-     */
-    ApiVersionProperties properties();
-
-    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the title property: API version title.
+     * 
+     * @return the title value.
+     */
+    String title();
+
+    /**
+     * Gets the lifecycleStage property: Current lifecycle stage of the API.
+     * 
+     * @return the lifecycleStage value.
+     */
+    LifecycleStage lifecycleStage();
 
     /**
      * Gets the name of the resource group.
@@ -99,7 +106,7 @@ public interface ApiVersion {
          * The stage of the ApiVersion definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithTitle, DefinitionStages.WithLifecycleStage {
             /**
              * Executes the create request.
              * 
@@ -117,16 +124,29 @@ public interface ApiVersion {
         }
 
         /**
-         * The stage of the ApiVersion definition allowing to specify properties.
+         * The stage of the ApiVersion definition allowing to specify title.
          */
-        interface WithProperties {
+        interface WithTitle {
             /**
-             * Specifies the properties property: The resource-specific properties for this resource..
+             * Specifies the title property: API version title..
              * 
-             * @param properties The resource-specific properties for this resource.
+             * @param title API version title.
              * @return the next definition stage.
              */
-            WithCreate withProperties(ApiVersionProperties properties);
+            WithCreate withTitle(String title);
+        }
+
+        /**
+         * The stage of the ApiVersion definition allowing to specify lifecycleStage.
+         */
+        interface WithLifecycleStage {
+            /**
+             * Specifies the lifecycleStage property: Current lifecycle stage of the API..
+             * 
+             * @param lifecycleStage Current lifecycle stage of the API.
+             * @return the next definition stage.
+             */
+            WithCreate withLifecycleStage(LifecycleStage lifecycleStage);
         }
     }
 
@@ -140,7 +160,7 @@ public interface ApiVersion {
     /**
      * The template for ApiVersion update.
      */
-    interface Update {
+    interface Update extends UpdateStages.WithTitle, UpdateStages.WithLifecycleStage {
         /**
          * Executes the update request.
          * 
@@ -161,6 +181,31 @@ public interface ApiVersion {
      * The ApiVersion update stages.
      */
     interface UpdateStages {
+        /**
+         * The stage of the ApiVersion update allowing to specify title.
+         */
+        interface WithTitle {
+            /**
+             * Specifies the title property: API version title..
+             * 
+             * @param title API version title.
+             * @return the next definition stage.
+             */
+            Update withTitle(String title);
+        }
+
+        /**
+         * The stage of the ApiVersion update allowing to specify lifecycleStage.
+         */
+        interface WithLifecycleStage {
+            /**
+             * Specifies the lifecycleStage property: Current lifecycle stage of the API..
+             * 
+             * @param lifecycleStage Current lifecycle stage of the API.
+             * @return the next definition stage.
+             */
+            Update withLifecycleStage(LifecycleStage lifecycleStage);
+        }
     }
 
     /**

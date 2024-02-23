@@ -8,7 +8,14 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.apicenter.fluent.models.ApiInner;
 import com.azure.resourcemanager.apicenter.models.Api;
-import com.azure.resourcemanager.apicenter.models.ApiProperties;
+import com.azure.resourcemanager.apicenter.models.ApiKind;
+import com.azure.resourcemanager.apicenter.models.Contact;
+import com.azure.resourcemanager.apicenter.models.ExternalDocumentation;
+import com.azure.resourcemanager.apicenter.models.License;
+import com.azure.resourcemanager.apicenter.models.LifecycleStage;
+import com.azure.resourcemanager.apicenter.models.TermsOfService;
+import java.util.Collections;
+import java.util.List;
 
 public final class ApiImpl implements Api, Api.Definition, Api.Update {
     private ApiInner innerObject;
@@ -27,12 +34,58 @@ public final class ApiImpl implements Api, Api.Definition, Api.Update {
         return this.innerModel().type();
     }
 
-    public ApiProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public String title() {
+        return this.innerModel().title();
+    }
+
+    public ApiKind kind() {
+        return this.innerModel().kind();
+    }
+
+    public String description() {
+        return this.innerModel().description();
+    }
+
+    public String summary() {
+        return this.innerModel().summary();
+    }
+
+    public LifecycleStage lifecycleStage() {
+        return this.innerModel().lifecycleStage();
+    }
+
+    public TermsOfService termsOfService() {
+        return this.innerModel().termsOfService();
+    }
+
+    public List<ExternalDocumentation> externalDocumentation() {
+        List<ExternalDocumentation> inner = this.innerModel().externalDocumentation();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<Contact> contacts() {
+        List<Contact> inner = this.innerModel().contacts();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public License license() {
+        return this.innerModel().license();
+    }
+
+    public Object customProperties() {
+        return this.innerModel().customProperties();
     }
 
     public String resourceGroupName() {
@@ -117,8 +170,48 @@ public final class ApiImpl implements Api, Api.Definition, Api.Update {
         return this;
     }
 
-    public ApiImpl withProperties(ApiProperties properties) {
-        this.innerModel().withProperties(properties);
+    public ApiImpl withTitle(String title) {
+        this.innerModel().withTitle(title);
+        return this;
+    }
+
+    public ApiImpl withKind(ApiKind kind) {
+        this.innerModel().withKind(kind);
+        return this;
+    }
+
+    public ApiImpl withDescription(String description) {
+        this.innerModel().withDescription(description);
+        return this;
+    }
+
+    public ApiImpl withSummary(String summary) {
+        this.innerModel().withSummary(summary);
+        return this;
+    }
+
+    public ApiImpl withTermsOfService(TermsOfService termsOfService) {
+        this.innerModel().withTermsOfService(termsOfService);
+        return this;
+    }
+
+    public ApiImpl withExternalDocumentation(List<ExternalDocumentation> externalDocumentation) {
+        this.innerModel().withExternalDocumentation(externalDocumentation);
+        return this;
+    }
+
+    public ApiImpl withContacts(List<Contact> contacts) {
+        this.innerModel().withContacts(contacts);
+        return this;
+    }
+
+    public ApiImpl withLicense(License license) {
+        this.innerModel().withLicense(license);
+        return this;
+    }
+
+    public ApiImpl withCustomProperties(Object customProperties) {
+        this.innerModel().withCustomProperties(customProperties);
         return this;
     }
 }

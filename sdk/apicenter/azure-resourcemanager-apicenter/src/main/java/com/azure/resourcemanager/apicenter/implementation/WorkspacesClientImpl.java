@@ -31,7 +31,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.apicenter.fluent.WorkspacesClient;
 import com.azure.resourcemanager.apicenter.fluent.models.WorkspaceInner;
-import com.azure.resourcemanager.apicenter.models.WorkspaceListResult;
+import com.azure.resourcemanager.apicenter.models.WorkspaceCollection;
 import com.azure.resourcemanager.apicenter.models.WorkspacesCreateOrUpdateResponse;
 import com.azure.resourcemanager.apicenter.models.WorkspacesGetResponse;
 import reactor.core.publisher.Mono;
@@ -72,57 +72,64 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkspaceListResult>> list(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<WorkspaceCollection>> list(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion, @QueryParam("$filter") String filter,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<WorkspacesGetResponse> get(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("workspaceName") String workspaceName, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("workspaceName") String workspaceName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<WorkspacesCreateOrUpdateResponse> createOrUpdate(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("workspaceName") String workspaceName, @BodyParam("application/json") WorkspaceInner resource,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("workspaceName") String workspaceName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") WorkspaceInner payload, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("workspaceName") String workspaceName, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("workspaceName") String workspaceName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Head("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> head(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+        Mono<Response<Void>> head(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("workspaceName") String workspaceName, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("workspaceName") String workspaceName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<WorkspaceListResult>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+        Mono<Response<WorkspaceCollection>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
+     * List workspaces
+     * 
      * Returns a collection of workspaces.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -131,8 +138,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Workspace list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return workspace collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkspaceInner>> listSinglePageAsync(String resourceGroupName, String serviceName,
@@ -154,14 +160,16 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, filter, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, this.client.getApiVersion(), filter, accept, context))
             .<PagedResponse<WorkspaceInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * List workspaces
+     * 
      * Returns a collection of workspaces.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -171,8 +179,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Workspace list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return workspace collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkspaceInner>> listSinglePageAsync(String resourceGroupName, String serviceName,
@@ -195,13 +202,15 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, serviceName, filter, accept, context)
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+                this.client.getApiVersion(), filter, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
+     * List workspaces
+     * 
      * Returns a collection of workspaces.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -210,7 +219,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Workspace list operation as paginated response with {@link PagedFlux}.
+     * @return workspace collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WorkspaceInner> listAsync(String resourceGroupName, String serviceName, String filter) {
@@ -219,6 +228,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     }
 
     /**
+     * List workspaces
+     * 
      * Returns a collection of workspaces.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -226,7 +237,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Workspace list operation as paginated response with {@link PagedFlux}.
+     * @return workspace collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WorkspaceInner> listAsync(String resourceGroupName, String serviceName) {
@@ -236,6 +247,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     }
 
     /**
+     * List workspaces
+     * 
      * Returns a collection of workspaces.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -245,7 +258,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Workspace list operation as paginated response with {@link PagedFlux}.
+     * @return workspace collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WorkspaceInner> listAsync(String resourceGroupName, String serviceName, String filter,
@@ -255,6 +268,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     }
 
     /**
+     * List workspaces
+     * 
      * Returns a collection of workspaces.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -262,7 +277,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Workspace list operation as paginated response with {@link PagedIterable}.
+     * @return workspace collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<WorkspaceInner> list(String resourceGroupName, String serviceName) {
@@ -271,6 +286,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     }
 
     /**
+     * List workspaces
+     * 
      * Returns a collection of workspaces.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -280,7 +297,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Workspace list operation as paginated response with {@link PagedIterable}.
+     * @return workspace collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<WorkspaceInner> list(String resourceGroupName, String serviceName, String filter,
@@ -289,6 +306,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     }
 
     /**
+     * Get workspace
+     * 
      * Returns details of the workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -297,7 +316,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace entity on successful completion of {@link Mono}.
+     * @return workspace on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspacesGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName,
@@ -322,12 +341,14 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, workspaceName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Get workspace
+     * 
      * Returns details of the workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -337,7 +358,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace entity on successful completion of {@link Mono}.
+     * @return workspace on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspacesGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName,
@@ -362,11 +383,13 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, workspaceName, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+            workspaceName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Get workspace
+     * 
      * Returns details of the workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -375,7 +398,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace entity on successful completion of {@link Mono}.
+     * @return workspace on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspaceInner> getAsync(String resourceGroupName, String serviceName, String workspaceName) {
@@ -384,6 +407,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     }
 
     /**
+     * Get workspace
+     * 
      * Returns details of the workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -393,7 +418,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace entity.
+     * @return workspace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public WorkspacesGetResponse getWithResponse(String resourceGroupName, String serviceName, String workspaceName,
@@ -402,6 +427,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     }
 
     /**
+     * Get workspace
+     * 
      * Returns details of the workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -410,7 +437,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace entity.
+     * @return workspace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public WorkspaceInner get(String resourceGroupName, String serviceName, String workspaceName) {
@@ -418,20 +445,22 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     }
 
     /**
+     * Create or update workspace
+     * 
      * Creates new or updates existing workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
-     * @param resource Resource create parameters.
+     * @param payload Workspace entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace entity on successful completion of {@link Mono}.
+     * @return workspace on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspacesCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, WorkspaceInner resource) {
+        String serviceName, String workspaceName, WorkspaceInner payload) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -450,35 +479,36 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        if (resource == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
         } else {
-            resource.validate();
+            payload.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, resource, accept,
-                context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, workspaceName, this.client.getApiVersion(), payload, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Create or update workspace
+     * 
      * Creates new or updates existing workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
-     * @param resource Resource create parameters.
+     * @param payload Workspace entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace entity on successful completion of {@link Mono}.
+     * @return workspace on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspacesCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, WorkspaceInner resource, Context context) {
+        String serviceName, String workspaceName, WorkspaceInner payload, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -497,76 +527,83 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        if (resource == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
         } else {
-            resource.validate();
+            payload.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, resource, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            serviceName, workspaceName, this.client.getApiVersion(), payload, accept, context);
     }
 
     /**
+     * Create or update workspace
+     * 
      * Creates new or updates existing workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
-     * @param resource Resource create parameters.
+     * @param payload Workspace entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace entity on successful completion of {@link Mono}.
+     * @return workspace on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspaceInner> createOrUpdateAsync(String resourceGroupName, String serviceName, String workspaceName,
-        WorkspaceInner resource) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, resource)
+        WorkspaceInner payload) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, payload)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
+     * Create or update workspace
+     * 
      * Creates new or updates existing workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
-     * @param resource Resource create parameters.
+     * @param payload Workspace entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace entity.
+     * @return workspace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public WorkspacesCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, WorkspaceInner resource, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, resource, context)
-            .block();
+        String workspaceName, WorkspaceInner payload, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, payload, context).block();
     }
 
     /**
+     * Create or update workspace
+     * 
      * Creates new or updates existing workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
-     * @param resource Resource create parameters.
+     * @param payload Workspace entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace entity.
+     * @return workspace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public WorkspaceInner createOrUpdate(String resourceGroupName, String serviceName, String workspaceName,
-        WorkspaceInner resource) {
-        return createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, resource, Context.NONE)
+        WorkspaceInner payload) {
+        return createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, payload, Context.NONE)
             .getValue();
     }
 
     /**
+     * Delete workspace
+     * 
      * Deletes specified workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -600,12 +637,14 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, workspaceName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Delete workspace
+     * 
      * Deletes specified workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -640,11 +679,13 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, workspaceName, accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            serviceName, workspaceName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Delete workspace
+     * 
      * Deletes specified workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -661,6 +702,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     }
 
     /**
+     * Delete workspace
+     * 
      * Deletes specified workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -679,6 +722,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     }
 
     /**
+     * Delete workspace
+     * 
      * Deletes specified workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -694,6 +739,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     }
 
     /**
+     * Check if workspace exists
+     * 
      * Checks if specified workspace exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -727,12 +774,14 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.head(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, accept, context))
+            .withContext(context -> service.head(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, workspaceName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Check if workspace exists
+     * 
      * Checks if specified workspace exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -767,11 +816,13 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.head(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, workspaceName, accept, context);
+        return service.head(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+            workspaceName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Check if workspace exists
+     * 
      * Checks if specified workspace exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -788,6 +839,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     }
 
     /**
+     * Check if workspace exists
+     * 
      * Checks if specified workspace exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -806,6 +859,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     }
 
     /**
+     * Check if workspace exists
+     * 
      * Checks if specified workspace exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -829,8 +884,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Workspace list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return workspace collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkspaceInner>> listNextSinglePageAsync(String nextLink) {
@@ -858,8 +912,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Workspace list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return workspace collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkspaceInner>> listNextSinglePageAsync(String nextLink, Context context) {

@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * The provisioning state of the resource.
+ * Provisioning state of the service.
  */
 public final class ProvisioningState extends ExpandableStringEnum<ProvisioningState> {
     /**

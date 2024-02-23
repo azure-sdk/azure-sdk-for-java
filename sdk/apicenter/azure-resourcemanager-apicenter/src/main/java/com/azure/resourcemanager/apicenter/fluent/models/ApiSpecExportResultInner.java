@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ApiSpecExportResultInner {
     /*
-     * The format of exported result
+     * The format property.
      */
     @JsonProperty(value = "format")
     private ApiSpecExportResultFormat format;
@@ -32,7 +32,7 @@ public final class ApiSpecExportResultInner {
     }
 
     /**
-     * Get the format property: The format of exported result.
+     * Get the format property: The format property.
      * 
      * @return the format value.
      */
@@ -41,7 +41,7 @@ public final class ApiSpecExportResultInner {
     }
 
     /**
-     * Set the format property: The format of exported result.
+     * Set the format property: The format property.
      * 
      * @param format the format value to set.
      * @return the ApiSpecExportResultInner object itself.

@@ -91,6 +91,31 @@ public final class ApiDefinitionsImpl implements ApiDefinitions {
         this.serviceClient().head(resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName);
     }
 
+    public Response<Void> importSpecificationWithResponse(String resourceGroupName, String serviceName,
+        String workspaceName, String apiName, String versionName, String definitionName, ApiSpecImportRequest payload,
+        Context context) {
+        return this.serviceClient().importSpecificationWithResponse(resourceGroupName, serviceName, workspaceName,
+            apiName, versionName, definitionName, payload, context);
+    }
+
+    public void importSpecification(String resourceGroupName, String serviceName, String workspaceName, String apiName,
+        String versionName, String definitionName, ApiSpecImportRequest payload) {
+        this.serviceClient().importSpecification(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+            definitionName, payload);
+    }
+
+    public Response<ApiSpecExportResult> exportSpecificationWithResponse(String resourceGroupName, String serviceName,
+        String workspaceName, String apiName, String versionName, String definitionName, Context context) {
+        Response<ApiSpecExportResultInner> inner = this.serviceClient().exportSpecificationWithResponse(
+            resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new ApiSpecExportResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
     public ApiSpecExportResult exportSpecification(String resourceGroupName, String serviceName, String workspaceName,
         String apiName, String versionName, String definitionName) {
         ApiSpecExportResultInner inner = this.serviceClient().exportSpecification(resourceGroupName, serviceName,
@@ -100,29 +125,6 @@ public final class ApiDefinitionsImpl implements ApiDefinitions {
         } else {
             return null;
         }
-    }
-
-    public ApiSpecExportResult exportSpecification(String resourceGroupName, String serviceName, String workspaceName,
-        String apiName, String versionName, String definitionName, Context context) {
-        ApiSpecExportResultInner inner = this.serviceClient().exportSpecification(resourceGroupName, serviceName,
-            workspaceName, apiName, versionName, definitionName, context);
-        if (inner != null) {
-            return new ApiSpecExportResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public void importSpecification(String resourceGroupName, String serviceName, String workspaceName, String apiName,
-        String versionName, String definitionName, ApiSpecImportRequest body) {
-        this.serviceClient().importSpecification(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, body);
-    }
-
-    public void importSpecification(String resourceGroupName, String serviceName, String workspaceName, String apiName,
-        String versionName, String definitionName, ApiSpecImportRequest body, Context context) {
-        this.serviceClient().importSpecification(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, body, context);
     }
 
     public ApiDefinition getById(String id) {

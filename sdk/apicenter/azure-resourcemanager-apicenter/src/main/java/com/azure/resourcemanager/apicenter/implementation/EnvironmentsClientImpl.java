@@ -31,7 +31,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.apicenter.fluent.EnvironmentsClient;
 import com.azure.resourcemanager.apicenter.fluent.models.EnvironmentInner;
-import com.azure.resourcemanager.apicenter.models.EnvironmentListResult;
+import com.azure.resourcemanager.apicenter.models.EnvironmentCollection;
 import com.azure.resourcemanager.apicenter.models.EnvironmentsCreateOrUpdateResponse;
 import com.azure.resourcemanager.apicenter.models.EnvironmentsGetResponse;
 import reactor.core.publisher.Mono;
@@ -72,62 +72,64 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/environments")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<EnvironmentListResult>> list(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<EnvironmentCollection>> list(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("workspaceName") String workspaceName, @QueryParam("$filter") String filter,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/environments/{environmentName}")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<EnvironmentsGetResponse> get(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("workspaceName") String workspaceName, @PathParam("environmentName") String environmentName,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("workspaceName") String workspaceName, @QueryParam("api-version") String apiVersion,
+            @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/environments/{environmentName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<EnvironmentsCreateOrUpdateResponse> createOrUpdate(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("environmentName") String environmentName,
-            @BodyParam("application/json") EnvironmentInner resource, @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") EnvironmentInner payload,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/environments/{environmentName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("environmentName") String environmentName,
-            @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Head("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/environments/{environmentName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> head(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+        Mono<Response<Void>> head(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("environmentName") String environmentName,
-            @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/environments/{environmentName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<EnvironmentsGetResponse> get(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
+            @PathParam("workspaceName") String workspaceName, @PathParam("environmentName") String environmentName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<EnvironmentListResult>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+        Mono<Response<EnvironmentCollection>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
+     * List environments
+     * 
      * Returns a collection of environments.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -137,8 +139,7 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Environment list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return environments collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EnvironmentInner>> listSinglePageAsync(String resourceGroupName, String serviceName,
@@ -162,14 +163,17 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, filter, accept, context))
+        return FluxUtil
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, workspaceName, this.client.getApiVersion(), filter, accept, context))
             .<PagedResponse<EnvironmentInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * List environments
+     * 
      * Returns a collection of environments.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -180,8 +184,7 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Environment list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return environments collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EnvironmentInner>> listSinglePageAsync(String resourceGroupName, String serviceName,
@@ -207,13 +210,15 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, serviceName, workspaceName, filter, accept, context)
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+                workspaceName, this.client.getApiVersion(), filter, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
+     * List environments
+     * 
      * Returns a collection of environments.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -223,7 +228,7 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Environment list operation as paginated response with {@link PagedFlux}.
+     * @return environments collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<EnvironmentInner> listAsync(String resourceGroupName, String serviceName, String workspaceName,
@@ -233,6 +238,8 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
     }
 
     /**
+     * List environments
+     * 
      * Returns a collection of environments.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -241,7 +248,7 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Environment list operation as paginated response with {@link PagedFlux}.
+     * @return environments collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<EnvironmentInner> listAsync(String resourceGroupName, String serviceName, String workspaceName) {
@@ -251,6 +258,8 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
     }
 
     /**
+     * List environments
+     * 
      * Returns a collection of environments.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -261,7 +270,7 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Environment list operation as paginated response with {@link PagedFlux}.
+     * @return environments collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<EnvironmentInner> listAsync(String resourceGroupName, String serviceName, String workspaceName,
@@ -272,6 +281,8 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
     }
 
     /**
+     * List environments
+     * 
      * Returns a collection of environments.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -280,7 +291,7 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Environment list operation as paginated response with {@link PagedIterable}.
+     * @return environments collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<EnvironmentInner> list(String resourceGroupName, String serviceName, String workspaceName) {
@@ -289,6 +300,8 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
     }
 
     /**
+     * List environments
+     * 
      * Returns a collection of environments.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -299,7 +312,7 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Environment list operation as paginated response with {@link PagedIterable}.
+     * @return environments collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<EnvironmentInner> list(String resourceGroupName, String serviceName, String workspaceName,
@@ -308,20 +321,23 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
     }
 
     /**
-     * Returns details of the environment.
+     * Create or update environment
+     * 
+     * Creates new or updates existing environment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
      * @param environmentName The name of the environment.
+     * @param payload Environment entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return environment entity on successful completion of {@link Mono}.
+     * @return environment on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<EnvironmentsGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName,
-        String workspaceName, String environmentName) {
+    private Mono<EnvironmentsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String serviceName, String workspaceName, String environmentName, EnvironmentInner payload) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -344,130 +360,38 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter environmentName is required and cannot be null."));
         }
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
+        } else {
+            payload.validate();
+        }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, environmentName, accept,
-                context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, workspaceName, environmentName, this.client.getApiVersion(), payload,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Returns details of the environment.
+     * Create or update environment
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param environmentName The name of the environment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return environment entity on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<EnvironmentsGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName,
-        String workspaceName, String environmentName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (serviceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (environmentName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter environmentName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, workspaceName, environmentName, accept, context);
-    }
-
-    /**
-     * Returns details of the environment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param environmentName The name of the environment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return environment entity on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<EnvironmentInner> getAsync(String resourceGroupName, String serviceName, String workspaceName,
-        String environmentName) {
-        return getWithResponseAsync(resourceGroupName, serviceName, workspaceName, environmentName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Returns details of the environment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param environmentName The name of the environment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return environment entity.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public EnvironmentsGetResponse getWithResponse(String resourceGroupName, String serviceName, String workspaceName,
-        String environmentName, Context context) {
-        return getWithResponseAsync(resourceGroupName, serviceName, workspaceName, environmentName, context).block();
-    }
-
-    /**
-     * Returns details of the environment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param environmentName The name of the environment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return environment entity.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public EnvironmentInner get(String resourceGroupName, String serviceName, String workspaceName,
-        String environmentName) {
-        return getWithResponse(resourceGroupName, serviceName, workspaceName, environmentName, Context.NONE).getValue();
-    }
-
-    /**
      * Creates new or updates existing environment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
      * @param environmentName The name of the environment.
-     * @param resource Resource create parameters.
+     * @param payload Environment entity.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return environment entity on successful completion of {@link Mono}.
+     * @return environment on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<EnvironmentsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, String environmentName, EnvironmentInner resource) {
+        String serviceName, String workspaceName, String environmentName, EnvironmentInner payload, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -490,132 +414,87 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter environmentName is required and cannot be null."));
         }
-        if (resource == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
         } else {
-            resource.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, environmentName,
-                resource, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Creates new or updates existing environment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param environmentName The name of the environment.
-     * @param resource Resource create parameters.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return environment entity on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<EnvironmentsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, String environmentName, EnvironmentInner resource, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (serviceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (environmentName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter environmentName is required and cannot be null."));
-        }
-        if (resource == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
-        } else {
-            resource.validate();
+            payload.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, environmentName, resource,
-            accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            serviceName, workspaceName, environmentName, this.client.getApiVersion(), payload, accept, context);
     }
 
     /**
+     * Create or update environment
+     * 
      * Creates new or updates existing environment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
      * @param environmentName The name of the environment.
-     * @param resource Resource create parameters.
+     * @param payload Environment entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return environment entity on successful completion of {@link Mono}.
+     * @return environment on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<EnvironmentInner> createOrUpdateAsync(String resourceGroupName, String serviceName,
-        String workspaceName, String environmentName, EnvironmentInner resource) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, environmentName, resource)
+        String workspaceName, String environmentName, EnvironmentInner payload) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, environmentName, payload)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
+     * Create or update environment
+     * 
      * Creates new or updates existing environment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
      * @param environmentName The name of the environment.
-     * @param resource Resource create parameters.
+     * @param payload Environment entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return environment entity.
+     * @return environment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public EnvironmentsCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, String environmentName, EnvironmentInner resource, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, environmentName, resource,
+        String workspaceName, String environmentName, EnvironmentInner payload, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, environmentName, payload,
             context).block();
     }
 
     /**
+     * Create or update environment
+     * 
      * Creates new or updates existing environment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
      * @param environmentName The name of the environment.
-     * @param resource Resource create parameters.
+     * @param payload Environment entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return environment entity.
+     * @return environment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public EnvironmentInner createOrUpdate(String resourceGroupName, String serviceName, String workspaceName,
-        String environmentName, EnvironmentInner resource) {
-        return createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, environmentName, resource,
+        String environmentName, EnvironmentInner payload) {
+        return createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, environmentName, payload,
             Context.NONE).getValue();
     }
 
     /**
+     * Delete environment
+     * 
      * Deletes the environment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -654,13 +533,15 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, environmentName, accept,
-                context))
+            .withContext(
+                context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    serviceName, workspaceName, environmentName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Delete environment
+     * 
      * Deletes the environment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -700,11 +581,13 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, workspaceName, environmentName, accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            serviceName, workspaceName, environmentName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Delete environment
+     * 
      * Deletes the environment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -724,6 +607,8 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
     }
 
     /**
+     * Delete environment
+     * 
      * Deletes the environment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -743,6 +628,8 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
     }
 
     /**
+     * Delete environment
+     * 
      * Deletes the environment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -759,6 +646,8 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
     }
 
     /**
+     * Check if environment exists
+     * 
      * Checks if specified environment exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -797,13 +686,15 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.head(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, environmentName, accept,
-                context))
+            .withContext(
+                context -> service.head(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    serviceName, workspaceName, environmentName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Check if environment exists
+     * 
      * Checks if specified environment exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -843,11 +734,13 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.head(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, workspaceName, environmentName, accept, context);
+        return service.head(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+            workspaceName, environmentName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Check if environment exists
+     * 
      * Checks if specified environment exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -867,6 +760,8 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
     }
 
     /**
+     * Check if environment exists
+     * 
      * Checks if specified environment exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -886,6 +781,8 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
     }
 
     /**
+     * Check if environment exists
+     * 
      * Checks if specified environment exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -902,6 +799,161 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
     }
 
     /**
+     * Get environment
+     * 
+     * Returns details of the environment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param environmentName The name of the environment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return environment on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<EnvironmentsGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName,
+        String workspaceName, String environmentName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (serviceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (environmentName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter environmentName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    serviceName, workspaceName, environmentName, this.client.getApiVersion(), accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get environment
+     * 
+     * Returns details of the environment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param environmentName The name of the environment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return environment on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<EnvironmentsGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName,
+        String workspaceName, String environmentName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (serviceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (environmentName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter environmentName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+            workspaceName, environmentName, this.client.getApiVersion(), accept, context);
+    }
+
+    /**
+     * Get environment
+     * 
+     * Returns details of the environment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param environmentName The name of the environment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return environment on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<EnvironmentInner> getAsync(String resourceGroupName, String serviceName, String workspaceName,
+        String environmentName) {
+        return getWithResponseAsync(resourceGroupName, serviceName, workspaceName, environmentName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Get environment
+     * 
+     * Returns details of the environment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param environmentName The name of the environment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return environment.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public EnvironmentsGetResponse getWithResponse(String resourceGroupName, String serviceName, String workspaceName,
+        String environmentName, Context context) {
+        return getWithResponseAsync(resourceGroupName, serviceName, workspaceName, environmentName, context).block();
+    }
+
+    /**
+     * Get environment
+     * 
+     * Returns details of the environment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param environmentName The name of the environment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return environment.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public EnvironmentInner get(String resourceGroupName, String serviceName, String workspaceName,
+        String environmentName) {
+        return getWithResponse(resourceGroupName, serviceName, workspaceName, environmentName, Context.NONE).getValue();
+    }
+
+    /**
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items
@@ -910,8 +962,7 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Environment list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return environments collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EnvironmentInner>> listNextSinglePageAsync(String nextLink) {
@@ -939,8 +990,7 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Environment list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return environments collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EnvironmentInner>> listNextSinglePageAsync(String nextLink, Context context) {

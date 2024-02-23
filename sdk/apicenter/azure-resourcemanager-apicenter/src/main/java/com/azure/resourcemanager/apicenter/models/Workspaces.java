@@ -13,6 +13,8 @@ import com.azure.core.util.Context;
  */
 public interface Workspaces {
     /**
+     * List workspaces
+     * 
      * Returns a collection of workspaces.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -20,11 +22,13 @@ public interface Workspaces {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Workspace list operation as paginated response with {@link PagedIterable}.
+     * @return workspace collection as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Workspace> list(String resourceGroupName, String serviceName);
 
     /**
+     * List workspaces
+     * 
      * Returns a collection of workspaces.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -34,11 +38,13 @@ public interface Workspaces {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Workspace list operation as paginated response with {@link PagedIterable}.
+     * @return workspace collection as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Workspace> list(String resourceGroupName, String serviceName, String filter, Context context);
 
     /**
+     * Get workspace
+     * 
      * Returns details of the workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -48,12 +54,14 @@ public interface Workspaces {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace entity.
+     * @return workspace.
      */
     Response<Workspace> getWithResponse(String resourceGroupName, String serviceName, String workspaceName,
         Context context);
 
     /**
+     * Get workspace
+     * 
      * Returns details of the workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -62,11 +70,13 @@ public interface Workspaces {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace entity.
+     * @return workspace.
      */
     Workspace get(String resourceGroupName, String serviceName, String workspaceName);
 
     /**
+     * Delete workspace
+     * 
      * Deletes specified workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -82,6 +92,8 @@ public interface Workspaces {
         Context context);
 
     /**
+     * Delete workspace
+     * 
      * Deletes specified workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -94,6 +106,8 @@ public interface Workspaces {
     void delete(String resourceGroupName, String serviceName, String workspaceName);
 
     /**
+     * Check if workspace exists
+     * 
      * Checks if specified workspace exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -109,6 +123,8 @@ public interface Workspaces {
         Context context);
 
     /**
+     * Check if workspace exists
+     * 
      * Checks if specified workspace exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -121,17 +137,21 @@ public interface Workspaces {
     void head(String resourceGroupName, String serviceName, String workspaceName);
 
     /**
+     * Get workspace
+     * 
      * Returns details of the workspace.
      * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace entity.
+     * @return workspace.
      */
     Workspace getById(String id);
 
     /**
+     * Get workspace
+     * 
      * Returns details of the workspace.
      * 
      * @param id the resource ID.
@@ -139,11 +159,13 @@ public interface Workspaces {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace entity.
+     * @return workspace.
      */
     Response<Workspace> getByIdWithResponse(String id, Context context);
 
     /**
+     * Delete workspace
+     * 
      * Deletes specified workspace.
      * 
      * @param id the resource ID.
@@ -154,6 +176,8 @@ public interface Workspaces {
     void deleteById(String id);
 
     /**
+     * Delete workspace
+     * 
      * Deletes specified workspace.
      * 
      * @param id the resource ID.

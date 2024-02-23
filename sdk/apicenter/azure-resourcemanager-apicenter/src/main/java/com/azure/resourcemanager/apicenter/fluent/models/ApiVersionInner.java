@@ -7,19 +7,23 @@ package com.azure.resourcemanager.apicenter.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.apicenter.models.ApiVersionProperties;
+import com.azure.resourcemanager.apicenter.models.LifecycleStage;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
+ * API version
+ * 
  * API version entity.
  */
 @Fluent
 public final class ApiVersionInner extends ProxyResource {
     /*
-     * The resource-specific properties for this resource.
+     * API version properties
+     * 
+     * API version properties entity.
      */
     @JsonProperty(value = "properties")
-    private ApiVersionProperties properties;
+    private ApiVersionProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -34,23 +38,14 @@ public final class ApiVersionInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: The resource-specific properties for this resource.
+     * Get the innerProperties property: API version properties
      * 
-     * @return the properties value.
-     */
-    public ApiVersionProperties properties() {
-        return this.properties;
-    }
-
-    /**
-     * Set the properties property: The resource-specific properties for this resource.
+     * API version properties entity.
      * 
-     * @param properties the properties value to set.
-     * @return the ApiVersionInner object itself.
+     * @return the innerProperties value.
      */
-    public ApiVersionInner withProperties(ApiVersionProperties properties) {
-        this.properties = properties;
-        return this;
+    private ApiVersionProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
@@ -63,13 +58,59 @@ public final class ApiVersionInner extends ProxyResource {
     }
 
     /**
+     * Get the title property: API version title.
+     * 
+     * @return the title value.
+     */
+    public String title() {
+        return this.innerProperties() == null ? null : this.innerProperties().title();
+    }
+
+    /**
+     * Set the title property: API version title.
+     * 
+     * @param title the title value to set.
+     * @return the ApiVersionInner object itself.
+     */
+    public ApiVersionInner withTitle(String title) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ApiVersionProperties();
+        }
+        this.innerProperties().withTitle(title);
+        return this;
+    }
+
+    /**
+     * Get the lifecycleStage property: Current lifecycle stage of the API.
+     * 
+     * @return the lifecycleStage value.
+     */
+    public LifecycleStage lifecycleStage() {
+        return this.innerProperties() == null ? null : this.innerProperties().lifecycleStage();
+    }
+
+    /**
+     * Set the lifecycleStage property: Current lifecycle stage of the API.
+     * 
+     * @param lifecycleStage the lifecycleStage value to set.
+     * @return the ApiVersionInner object itself.
+     */
+    public ApiVersionInner withLifecycleStage(LifecycleStage lifecycleStage) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ApiVersionProperties();
+        }
+        this.innerProperties().withLifecycleStage(lifecycleStage);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }

@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.apicenter.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
@@ -11,8 +12,8 @@ import com.azure.resourcemanager.apicenter.fluent.models.ServiceInner;
 import com.azure.resourcemanager.apicenter.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.apicenter.models.MetadataSchemaExportRequest;
 import com.azure.resourcemanager.apicenter.models.MetadataSchemaExportResult;
+import com.azure.resourcemanager.apicenter.models.ProvisioningState;
 import com.azure.resourcemanager.apicenter.models.Service;
-import com.azure.resourcemanager.apicenter.models.ServiceProperties;
 import com.azure.resourcemanager.apicenter.models.ServiceUpdate;
 import java.util.Collections;
 import java.util.Map;
@@ -47,16 +48,16 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
         }
     }
 
-    public ServiceProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public ManagedServiceIdentity identity() {
         return this.innerModel().identity();
     }
 
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public ProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
     }
 
     public Region region() {
@@ -83,7 +84,7 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
 
     private String serviceName;
 
-    private ServiceUpdate updateProperties;
+    private ServiceUpdate updatePayload;
 
     public ServiceImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -109,19 +110,19 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
     }
 
     public ServiceImpl update() {
-        this.updateProperties = new ServiceUpdate();
+        this.updatePayload = new ServiceUpdate();
         return this;
     }
 
     public Service apply() {
         this.innerObject = serviceManager.serviceClient().getServices()
-            .updateWithResponse(resourceGroupName, serviceName, updateProperties, Context.NONE).getValue();
+            .updateWithResponse(resourceGroupName, serviceName, updatePayload, Context.NONE).getValue();
         return this;
     }
 
     public Service apply(Context context) {
         this.innerObject = serviceManager.serviceClient().getServices()
-            .updateWithResponse(resourceGroupName, serviceName, updateProperties, context).getValue();
+            .updateWithResponse(resourceGroupName, serviceName, updatePayload, context).getValue();
         return this;
     }
 
@@ -144,12 +145,14 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
         return this;
     }
 
-    public MetadataSchemaExportResult exportMetadataSchema(MetadataSchemaExportRequest body) {
-        return serviceManager.services().exportMetadataSchema(resourceGroupName, serviceName, body);
+    public Response<MetadataSchemaExportResult> exportMetadataSchemaWithResponse(MetadataSchemaExportRequest payload,
+        Context context) {
+        return serviceManager.services().exportMetadataSchemaWithResponse(resourceGroupName, serviceName, payload,
+            context);
     }
 
-    public MetadataSchemaExportResult exportMetadataSchema(MetadataSchemaExportRequest body, Context context) {
-        return serviceManager.services().exportMetadataSchema(resourceGroupName, serviceName, body, context);
+    public MetadataSchemaExportResult exportMetadataSchema(MetadataSchemaExportRequest payload) {
+        return serviceManager.services().exportMetadataSchema(resourceGroupName, serviceName, payload);
     }
 
     public ServiceImpl withRegion(Region location) {
@@ -163,31 +166,12 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
     }
 
     public ServiceImpl withTags(Map<String, String> tags) {
-        if (isInCreateMode()) {
-            this.innerModel().withTags(tags);
-            return this;
-        } else {
-            this.updateProperties.withTags(tags);
-            return this;
-        }
-    }
-
-    public ServiceImpl withProperties(ServiceProperties properties) {
-        this.innerModel().withProperties(properties);
+        this.innerModel().withTags(tags);
         return this;
     }
 
     public ServiceImpl withIdentity(ManagedServiceIdentity identity) {
-        if (isInCreateMode()) {
-            this.innerModel().withIdentity(identity);
-            return this;
-        } else {
-            this.updateProperties.withIdentity(identity);
-            return this;
-        }
-    }
-
-    private boolean isInCreateMode() {
-        return this.innerModel().id() == null;
+        this.innerModel().withIdentity(identity);
+        return this;
     }
 }

@@ -31,7 +31,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.apicenter.fluent.MetadataSchemasClient;
 import com.azure.resourcemanager.apicenter.fluent.models.MetadataSchemaInner;
-import com.azure.resourcemanager.apicenter.models.MetadataSchemaListResult;
+import com.azure.resourcemanager.apicenter.models.MetadataSchemaCollection;
 import com.azure.resourcemanager.apicenter.models.MetadataSchemasCreateOrUpdateResponse;
 import com.azure.resourcemanager.apicenter.models.MetadataSchemasGetResponse;
 import reactor.core.publisher.Mono;
@@ -72,62 +72,65 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/metadataSchemas")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<MetadataSchemaListResult>> list(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<MetadataSchemaCollection>> list(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion, @QueryParam("$filter") String filter,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/metadataSchemas/{metadataSchemaName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<MetadataSchemasGetResponse> get(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("metadataSchemaName") String metadataSchemaName, @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("metadataSchemaName") String metadataSchemaName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/metadataSchemas/{metadataSchemaName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<MetadataSchemasCreateOrUpdateResponse> createOrUpdate(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("metadataSchemaName") String metadataSchemaName,
-            @BodyParam("application/json") MetadataSchemaInner resource, @HeaderParam("Accept") String accept,
+            @PathParam("metadataSchemaName") String metadataSchemaName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") MetadataSchemaInner payload, @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/metadataSchemas/{metadataSchemaName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("metadataSchemaName") String metadataSchemaName, @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("metadataSchemaName") String metadataSchemaName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Head("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/metadataSchemas/{metadataSchemaName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> head(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+        Mono<Response<Void>> head(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("metadataSchemaName") String metadataSchemaName, @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("metadataSchemaName") String metadataSchemaName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<MetadataSchemaListResult>> listNext(
+        Mono<Response<MetadataSchemaCollection>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
+     * List metadata schemas
+     * 
      * Returns a collection of metadata schemas.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -136,8 +139,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a MetadataSchema list operation along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return metadata schema collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MetadataSchemaInner>> listSinglePageAsync(String resourceGroupName, String serviceName,
@@ -159,14 +161,16 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, filter, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, this.client.getApiVersion(), filter, accept, context))
             .<PagedResponse<MetadataSchemaInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * List metadata schemas
+     * 
      * Returns a collection of metadata schemas.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -176,8 +180,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a MetadataSchema list operation along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return metadata schema collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MetadataSchemaInner>> listSinglePageAsync(String resourceGroupName, String serviceName,
@@ -200,13 +203,15 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, serviceName, filter, accept, context)
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+                this.client.getApiVersion(), filter, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
+     * List metadata schemas
+     * 
      * Returns a collection of metadata schemas.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -215,7 +220,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a MetadataSchema list operation as paginated response with {@link PagedFlux}.
+     * @return metadata schema collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MetadataSchemaInner> listAsync(String resourceGroupName, String serviceName, String filter) {
@@ -224,6 +229,8 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
     }
 
     /**
+     * List metadata schemas
+     * 
      * Returns a collection of metadata schemas.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -231,7 +238,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a MetadataSchema list operation as paginated response with {@link PagedFlux}.
+     * @return metadata schema collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MetadataSchemaInner> listAsync(String resourceGroupName, String serviceName) {
@@ -241,6 +248,8 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
     }
 
     /**
+     * List metadata schemas
+     * 
      * Returns a collection of metadata schemas.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -250,7 +259,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a MetadataSchema list operation as paginated response with {@link PagedFlux}.
+     * @return metadata schema collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MetadataSchemaInner> listAsync(String resourceGroupName, String serviceName, String filter,
@@ -260,6 +269,8 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
     }
 
     /**
+     * List metadata schemas
+     * 
      * Returns a collection of metadata schemas.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -267,7 +278,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a MetadataSchema list operation as paginated response with {@link PagedIterable}.
+     * @return metadata schema collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MetadataSchemaInner> list(String resourceGroupName, String serviceName) {
@@ -276,6 +287,8 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
     }
 
     /**
+     * List metadata schemas
+     * 
      * Returns a collection of metadata schemas.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -285,7 +298,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a MetadataSchema list operation as paginated response with {@link PagedIterable}.
+     * @return metadata schema collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MetadataSchemaInner> list(String resourceGroupName, String serviceName, String filter,
@@ -294,6 +307,8 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
     }
 
     /**
+     * Get metadata schema
+     * 
      * Returns details of the metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -302,7 +317,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata schema entity on successful completion of {@link Mono}.
+     * @return metadata schema on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MetadataSchemasGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName,
@@ -328,12 +343,14 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, metadataSchemaName, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, metadataSchemaName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Get metadata schema
+     * 
      * Returns details of the metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -343,7 +360,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata schema entity on successful completion of {@link Mono}.
+     * @return metadata schema on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MetadataSchemasGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName,
@@ -369,11 +386,13 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, metadataSchemaName, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+            metadataSchemaName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Get metadata schema
+     * 
      * Returns details of the metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -382,7 +401,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata schema entity on successful completion of {@link Mono}.
+     * @return metadata schema on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MetadataSchemaInner> getAsync(String resourceGroupName, String serviceName,
@@ -392,6 +411,8 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
     }
 
     /**
+     * Get metadata schema
+     * 
      * Returns details of the metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -401,7 +422,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata schema entity.
+     * @return metadata schema.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public MetadataSchemasGetResponse getWithResponse(String resourceGroupName, String serviceName,
@@ -410,6 +431,8 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
     }
 
     /**
+     * Get metadata schema
+     * 
      * Returns details of the metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -418,7 +441,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata schema entity.
+     * @return metadata schema.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public MetadataSchemaInner get(String resourceGroupName, String serviceName, String metadataSchemaName) {
@@ -426,20 +449,22 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
     }
 
     /**
+     * Create or update metadata schema
+     * 
      * Creates new or updates existing metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param metadataSchemaName The name of the metadata schema.
-     * @param resource Resource create parameters.
+     * @param payload Metadata schema entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata schema entity on successful completion of {@link Mono}.
+     * @return metadata schema on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MetadataSchemasCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String metadataSchemaName, MetadataSchemaInner resource) {
+        String serviceName, String metadataSchemaName, MetadataSchemaInner payload) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -459,35 +484,37 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter metadataSchemaName is required and cannot be null."));
         }
-        if (resource == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
         } else {
-            resource.validate();
+            payload.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, metadataSchemaName, resource, accept,
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, metadataSchemaName, this.client.getApiVersion(), payload, accept,
                 context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Create or update metadata schema
+     * 
      * Creates new or updates existing metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param metadataSchemaName The name of the metadata schema.
-     * @param resource Resource create parameters.
+     * @param payload Metadata schema entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata schema entity on successful completion of {@link Mono}.
+     * @return metadata schema on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MetadataSchemasCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String metadataSchemaName, MetadataSchemaInner resource, Context context) {
+        String serviceName, String metadataSchemaName, MetadataSchemaInner payload, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -507,77 +534,84 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter metadataSchemaName is required and cannot be null."));
         }
-        if (resource == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
         } else {
-            resource.validate();
+            payload.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, metadataSchemaName, resource, accept,
-            context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            serviceName, metadataSchemaName, this.client.getApiVersion(), payload, accept, context);
     }
 
     /**
+     * Create or update metadata schema
+     * 
      * Creates new or updates existing metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param metadataSchemaName The name of the metadata schema.
-     * @param resource Resource create parameters.
+     * @param payload Metadata schema entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata schema entity on successful completion of {@link Mono}.
+     * @return metadata schema on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MetadataSchemaInner> createOrUpdateAsync(String resourceGroupName, String serviceName,
-        String metadataSchemaName, MetadataSchemaInner resource) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, metadataSchemaName, resource)
+        String metadataSchemaName, MetadataSchemaInner payload) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, metadataSchemaName, payload)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
+     * Create or update metadata schema
+     * 
      * Creates new or updates existing metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param metadataSchemaName The name of the metadata schema.
-     * @param resource Resource create parameters.
+     * @param payload Metadata schema entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata schema entity.
+     * @return metadata schema.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public MetadataSchemasCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName,
-        String serviceName, String metadataSchemaName, MetadataSchemaInner resource, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, metadataSchemaName, resource, context)
+        String serviceName, String metadataSchemaName, MetadataSchemaInner payload, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, metadataSchemaName, payload, context)
             .block();
     }
 
     /**
+     * Create or update metadata schema
+     * 
      * Creates new or updates existing metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param metadataSchemaName The name of the metadata schema.
-     * @param resource Resource create parameters.
+     * @param payload Metadata schema entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata schema entity.
+     * @return metadata schema.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public MetadataSchemaInner createOrUpdate(String resourceGroupName, String serviceName, String metadataSchemaName,
-        MetadataSchemaInner resource) {
-        return createOrUpdateWithResponse(resourceGroupName, serviceName, metadataSchemaName, resource, Context.NONE)
+        MetadataSchemaInner payload) {
+        return createOrUpdateWithResponse(resourceGroupName, serviceName, metadataSchemaName, payload, Context.NONE)
             .getValue();
     }
 
     /**
+     * Delete metadata schema
+     * 
      * Deletes specified metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -612,12 +646,14 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, metadataSchemaName, accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, metadataSchemaName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Delete metadata schema
+     * 
      * Deletes specified metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -653,11 +689,13 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, metadataSchemaName, accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            serviceName, metadataSchemaName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Delete metadata schema
+     * 
      * Deletes specified metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -675,6 +713,8 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
     }
 
     /**
+     * Delete metadata schema
+     * 
      * Deletes specified metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -693,6 +733,8 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
     }
 
     /**
+     * Delete metadata schema
+     * 
      * Deletes specified metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -708,6 +750,8 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
     }
 
     /**
+     * Check if metadata schema exists
+     * 
      * Checks if specified metadata schema exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -742,12 +786,14 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.head(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, metadataSchemaName, accept, context))
+            .withContext(context -> service.head(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, metadataSchemaName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Check if metadata schema exists
+     * 
      * Checks if specified metadata schema exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -783,11 +829,13 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.head(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, metadataSchemaName, accept, context);
+        return service.head(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+            metadataSchemaName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Check if metadata schema exists
+     * 
      * Checks if specified metadata schema exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -805,6 +853,8 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
     }
 
     /**
+     * Check if metadata schema exists
+     * 
      * Checks if specified metadata schema exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -823,6 +873,8 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
     }
 
     /**
+     * Check if metadata schema exists
+     * 
      * Checks if specified metadata schema exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -846,8 +898,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a MetadataSchema list operation along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return metadata schema collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MetadataSchemaInner>> listNextSinglePageAsync(String nextLink) {
@@ -875,8 +926,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a MetadataSchema list operation along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return metadata schema collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MetadataSchemaInner>> listNextSinglePageAsync(String nextLink, Context context) {

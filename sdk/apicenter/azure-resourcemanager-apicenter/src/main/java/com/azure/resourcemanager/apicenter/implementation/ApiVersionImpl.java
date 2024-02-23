@@ -8,7 +8,7 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.apicenter.fluent.models.ApiVersionInner;
 import com.azure.resourcemanager.apicenter.models.ApiVersion;
-import com.azure.resourcemanager.apicenter.models.ApiVersionProperties;
+import com.azure.resourcemanager.apicenter.models.LifecycleStage;
 
 public final class ApiVersionImpl implements ApiVersion, ApiVersion.Definition, ApiVersion.Update {
     private ApiVersionInner innerObject;
@@ -27,12 +27,16 @@ public final class ApiVersionImpl implements ApiVersion, ApiVersion.Definition, 
         return this.innerModel().type();
     }
 
-    public ApiVersionProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public String title() {
+        return this.innerModel().title();
+    }
+
+    public LifecycleStage lifecycleStage() {
+        return this.innerModel().lifecycleStage();
     }
 
     public String resourceGroupName() {
@@ -123,8 +127,13 @@ public final class ApiVersionImpl implements ApiVersion, ApiVersion.Definition, 
         return this;
     }
 
-    public ApiVersionImpl withProperties(ApiVersionProperties properties) {
-        this.innerModel().withProperties(properties);
+    public ApiVersionImpl withTitle(String title) {
+        this.innerModel().withTitle(title);
+        return this;
+    }
+
+    public ApiVersionImpl withLifecycleStage(LifecycleStage lifecycleStage) {
+        this.innerModel().withLifecycleStage(lifecycleStage);
         return this;
     }
 }

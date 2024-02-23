@@ -201,20 +201,6 @@ public final class AzureApiCenterImpl implements AzureApiCenter {
     }
 
     /**
-     * The DeploymentsClient object to access its operations.
-     */
-    private final DeploymentsClient deployments;
-
-    /**
-     * Gets the DeploymentsClient object to access its operations.
-     * 
-     * @return the DeploymentsClient object.
-     */
-    public DeploymentsClient getDeployments() {
-        return this.deployments;
-    }
-
-    /**
      * The ApiVersionsClient object to access its operations.
      */
     private final ApiVersionsClient apiVersions;
@@ -240,6 +226,20 @@ public final class AzureApiCenterImpl implements AzureApiCenter {
      */
     public ApiDefinitionsClient getApiDefinitions() {
         return this.apiDefinitions;
+    }
+
+    /**
+     * The DeploymentsClient object to access its operations.
+     */
+    private final DeploymentsClient deployments;
+
+    /**
+     * Gets the DeploymentsClient object to access its operations.
+     * 
+     * @return the DeploymentsClient object.
+     */
+    public DeploymentsClient getDeployments() {
+        return this.deployments;
     }
 
     /**
@@ -279,9 +279,9 @@ public final class AzureApiCenterImpl implements AzureApiCenter {
         this.metadataSchemas = new MetadataSchemasClientImpl(this);
         this.workspaces = new WorkspacesClientImpl(this);
         this.apis = new ApisClientImpl(this);
-        this.deployments = new DeploymentsClientImpl(this);
         this.apiVersions = new ApiVersionsClientImpl(this);
         this.apiDefinitions = new ApiDefinitionsClientImpl(this);
+        this.deployments = new DeploymentsClientImpl(this);
         this.environments = new EnvironmentsClientImpl(this);
     }
 

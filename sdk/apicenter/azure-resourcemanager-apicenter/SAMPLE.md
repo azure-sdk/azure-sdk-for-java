@@ -90,7 +90,8 @@ public final class ApiDefinitionsCreateOrUpdateSamples {
      */
     public static void apiDefinitionsCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.apiDefinitions().define("openapi")
-            .withExistingVersion("contoso-resources", "contoso", "default", "openapi", "2023-01-01").create();
+            .withExistingVersion("contoso-resources", "contoso", "default", "openapi", "2023-01-01")
+            .withTitle("OpenAPI").withDescription("Default spec").create();
     }
 }
 ```
@@ -136,7 +137,7 @@ public final class ApiDefinitionsExportSpecificationSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void apiDefinitionsExportSpecification(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.apiDefinitions().exportSpecification("contoso-resources", "contoso", "default", "echo-api",
+        manager.apiDefinitions().exportSpecificationWithResponse("contoso-resources", "contoso", "default", "echo-api",
             "2023-01-01", "openapi", com.azure.core.util.Context.NONE);
     }
 }
@@ -191,6 +192,9 @@ public final class ApiDefinitionsHeadSamples {
 ### ApiDefinitions_ImportSpecification
 
 ```java
+import com.azure.resourcemanager.apicenter.models.ApiSpecImportRequest;
+import com.azure.resourcemanager.apicenter.models.ApiSpecImportRequestSpecification;
+import com.azure.resourcemanager.apicenter.models.ApiSpecImportSourceFormat;
 
 /**
  * Samples for ApiDefinitions ImportSpecification.
@@ -206,8 +210,11 @@ public final class ApiDefinitionsImportSpecificationSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void apiDefinitionsImportSpecification(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.apiDefinitions().importSpecification("contoso-resources", "contoso", "default", "echo-api",
-            "2023-01-01", "openapi", null, com.azure.core.util.Context.NONE);
+        manager.apiDefinitions().importSpecificationWithResponse("contoso-resources", "contoso", "default", "echo-api",
+            "2023-01-01", "openapi",
+            new ApiSpecImportRequest().withValue("https://...").withFormat(ApiSpecImportSourceFormat.LINK)
+                .withSpecification(new ApiSpecImportRequestSpecification().withName("openapi").withVersion("3.0.1")),
+            com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -224,11 +231,11 @@ public final class ApiDefinitionsListSamples {
      * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/ApiDefinitions_List.json
      */
     /**
-     * Sample code: ApiDefinitions_ListByApiVersion.
+     * Sample code: ApiDefinitions_List.
      * 
      * @param manager Entry point to ApiCenterManager.
      */
-    public static void apiDefinitionsListByApiVersion(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+    public static void apiDefinitionsList(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.apiDefinitions().list("contoso-resources", "contoso", "default", "echo-api", "2023-01-01", null,
             com.azure.core.util.Context.NONE);
     }
@@ -238,6 +245,8 @@ public final class ApiDefinitionsListSamples {
 ### ApiVersions_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.apicenter.models.LifecycleStage;
+
 /**
  * Samples for ApiVersions CreateOrUpdate.
  */
@@ -253,7 +262,8 @@ public final class ApiVersionsCreateOrUpdateSamples {
      */
     public static void apiVersionsCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.apiVersions().define("2023-01-01")
-            .withExistingApi("contoso-resources", "contoso", "default", "echo-api").create();
+            .withExistingApi("contoso-resources", "contoso", "default", "echo-api").withTitle("2023-01-01")
+            .withLifecycleStage(LifecycleStage.PRODUCTION).create();
     }
 }
 ```
@@ -339,11 +349,11 @@ public final class ApiVersionsListSamples {
      * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/ApiVersions_List.json
      */
     /**
-     * Sample code: ApiVersions_ListByApi.
+     * Sample code: ApiVersions_List.
      * 
      * @param manager Entry point to ApiCenterManager.
      */
-    public static void apiVersionsListByApi(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+    public static void apiVersionsList(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.apiVersions().list("contoso-resources", "contoso", "default", "echo-api", null,
             com.azure.core.util.Context.NONE);
     }
@@ -353,6 +363,15 @@ public final class ApiVersionsListSamples {
 ### Apis_CreateOrUpdate
 
 ```java
+import com.azure.core.management.serializer.SerializerFactory;
+import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.apicenter.models.ApiKind;
+import com.azure.resourcemanager.apicenter.models.ExternalDocumentation;
+import com.azure.resourcemanager.apicenter.models.License;
+import com.azure.resourcemanager.apicenter.models.TermsOfService;
+import java.io.IOException;
+import java.util.Arrays;
+
 /**
  * Samples for Apis CreateOrUpdate.
  */
@@ -366,8 +385,17 @@ public final class ApisCreateOrUpdateSamples {
      * 
      * @param manager Entry point to ApiCenterManager.
      */
-    public static void apisCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.apis().define("echo-api").withExistingWorkspace("contoso-resources", "contoso", "default").create();
+    public static void apisCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager)
+        throws IOException {
+        manager.apis().define("echo-api").withExistingWorkspace("contoso-resources", "contoso", "default")
+            .withTitle("Echo API").withKind(ApiKind.REST).withDescription("A simple HTTP request/response service.")
+            .withTermsOfService(new TermsOfService().withUrl("https://contoso.com/terms-of-service"))
+            .withExternalDocumentation(Arrays
+                .asList(new ExternalDocumentation().withTitle("Onboarding docs").withUrl("https://docs.contoso.com")))
+            .withLicense(new License().withUrl("https://contoso.com/license"))
+            .withCustomProperties(SerializerFactory.createDefaultManagementSerializerAdapter()
+                .deserialize("{\"author\":\"John Doe\"}", Object.class, SerializerEncoding.JSON))
+            .create();
     }
 }
 ```
@@ -453,11 +481,11 @@ public final class ApisListSamples {
      * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Apis_List.json
      */
     /**
-     * Sample code: Apis_ListByWorkspace.
+     * Sample code: Apis_List.
      * 
      * @param manager Entry point to ApiCenterManager.
      */
-    public static void apisListByWorkspace(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+    public static void apisList(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.apis().list("contoso-resources", "contoso", "default", null, com.azure.core.util.Context.NONE);
     }
 }
@@ -466,6 +494,10 @@ public final class ApisListSamples {
 ### Deployments_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.apicenter.models.DeploymentServer;
+import com.azure.resourcemanager.apicenter.models.DeploymentState;
+import java.util.Arrays;
+
 /**
  * Samples for Deployments CreateOrUpdate.
  */
@@ -481,7 +513,12 @@ public final class DeploymentsCreateOrUpdateSamples {
      */
     public static void deploymentsCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.deployments().define("production")
-            .withExistingApi("contoso-resources", "contoso", "default", "echo-api").create();
+            .withExistingApi("contoso-resources", "contoso", "default", "echo-api").withTitle("Production deployment")
+            .withDescription("Public cloud production deployment.")
+            .withEnvironmentId("/workspaces/default/environments/production")
+            .withDefinitionId("/workspaces/default/apis/echo-api/versions/2023-01-01/definitions/openapi")
+            .withState(DeploymentState.ACTIVE)
+            .withServer(new DeploymentServer().withRuntimeUri(Arrays.asList("https://api.contoso.com"))).create();
     }
 }
 ```
@@ -567,11 +604,11 @@ public final class DeploymentsListSamples {
      * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Deployments_List.json
      */
     /**
-     * Sample code: Deployments_ListByApi.
+     * Sample code: Deployments_List.
      * 
      * @param manager Entry point to ApiCenterManager.
      */
-    public static void deploymentsListByApi(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+    public static void deploymentsList(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.deployments().list("contoso-resources", "contoso", "default", "echo-api", null,
             com.azure.core.util.Context.NONE);
     }
@@ -581,6 +618,12 @@ public final class DeploymentsListSamples {
 ### Environments_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.apicenter.models.EnvironmentKind;
+import com.azure.resourcemanager.apicenter.models.EnvironmentServer;
+import com.azure.resourcemanager.apicenter.models.EnvironmentServerType;
+import com.azure.resourcemanager.apicenter.models.Onboarding;
+import java.util.Arrays;
+
 /**
  * Samples for Environments CreateOrUpdate.
  */
@@ -596,6 +639,15 @@ public final class EnvironmentsCreateOrUpdateSamples {
      */
     public static void environmentsCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.environments().define("public").withExistingWorkspace("contoso-resources", "contoso", "default")
+            .withTitle("Contoso Europe Azure API Management")
+            .withDescription("The primary Azure API Management service for the European division of Contoso.")
+            .withKind(EnvironmentKind.PRODUCTION)
+            .withServer(new EnvironmentServer().withType(EnvironmentServerType.AZURE_API_MANAGEMENT)
+                .withManagementPortalUri(Arrays.asList(
+                    "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso-resources/providers/Microsoft.ApiManagement/service/contoso")))
+            .withOnboarding(new Onboarding().withInstructions(
+                "Sign in or sign up in the specified developer portal to request API access. You must complete the internal privacy training for your account to be approved.")
+                .withDeveloperPortalUri(Arrays.asList("https://developer.contoso.com")))
             .create();
     }
 }
@@ -682,11 +734,11 @@ public final class EnvironmentsListSamples {
      * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Environments_List.json
      */
     /**
-     * Sample code: Environments_ListByWorkspace.
+     * Sample code: Environments_List.
      * 
      * @param manager Entry point to ApiCenterManager.
      */
-    public static void environmentsListByWorkspace(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+    public static void environmentsList(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.environments().list("contoso-resources", "contoso", "default", null, com.azure.core.util.Context.NONE);
     }
 }
@@ -695,6 +747,10 @@ public final class EnvironmentsListSamples {
 ### MetadataSchemas_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.apicenter.models.MetadataAssignment;
+import com.azure.resourcemanager.apicenter.models.MetadataAssignmentEntity;
+import java.util.Arrays;
+
 /**
  * Samples for MetadataSchemas CreateOrUpdate.
  */
@@ -709,7 +765,11 @@ public final class MetadataSchemasCreateOrUpdateSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void metadataSchemasCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.metadataSchemas().define("author").withExistingService("contoso-resources", "contoso").create();
+        manager.metadataSchemas().define("author").withExistingService("contoso-resources", "contoso")
+            .withSchema("{\"type\":\"string\", \"title\":\"Author\", pattern: \"^[a-zA-Z]+$\"}")
+            .withAssignedTo(
+                Arrays.asList(new MetadataAssignment().withEntity(MetadataAssignmentEntity.API).withDeprecated(true)))
+            .create();
     }
 }
 ```
@@ -796,11 +856,11 @@ public final class MetadataSchemasListSamples {
      * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/MetadataSchemas_List.json
      */
     /**
-     * Sample code: MetadataSchemas_ListByService.
+     * Sample code: MetadataSchemas_List.
      * 
      * @param manager Entry point to ApiCenterManager.
      */
-    public static void metadataSchemasListByService(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+    public static void metadataSchemasList(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.metadataSchemas().list("contoso-resources", "contoso", null, com.azure.core.util.Context.NONE);
     }
 }
@@ -818,11 +878,11 @@ public final class OperationsListSamples {
      * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Operations_List.json
      */
     /**
-     * Sample code: List Provider Operations.
+     * Sample code: Operations_List.
      * 
      * @param manager Entry point to ApiCenterManager.
      */
-    public static void listProviderOperations(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+    public static void operationsList(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -831,13 +891,6 @@ public final class OperationsListSamples {
 ### Services_CreateOrUpdate
 
 ```java
-import com.azure.resourcemanager.apicenter.models.ManagedServiceIdentity;
-import com.azure.resourcemanager.apicenter.models.ManagedServiceIdentityType;
-import com.azure.resourcemanager.apicenter.models.ServiceProperties;
-import com.azure.resourcemanager.apicenter.models.UserAssignedIdentity;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Samples for Services CreateOrUpdate.
  */
@@ -848,31 +901,13 @@ public final class ServicesCreateOrUpdateSamples {
      * json
      */
     /**
-     * Sample code: Services_CreateOrUpdate.
+     * Sample code: Services_Create.
      * 
      * @param manager Entry point to ApiCenterManager.
      */
-    public static void servicesCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.services().define("contoso").withRegion("East US").withExistingResourceGroup("contoso-resources")
-            .withTags(mapOf()).withProperties(new ServiceProperties())
-            .withIdentity(new ManagedServiceIdentity()
-                .withType(ManagedServiceIdentityType.fromString("SystemAssigned, UserAssigned"))
-                .withUserAssignedIdentities(mapOf(
-                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso-resources/providers/Microsoft.ManagedIdentity/userAssignedIdentities/contoso-identity",
-                    new UserAssignedIdentity())))
+    public static void servicesCreate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+        manager.services().define("contoso").withRegion((String) null).withExistingResourceGroup("contoso-resources")
             .create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
     }
 }
 ```
@@ -903,6 +938,8 @@ public final class ServicesDeleteSamples {
 ### Services_ExportMetadataSchema
 
 ```java
+import com.azure.resourcemanager.apicenter.models.MetadataAssignmentEntity;
+import com.azure.resourcemanager.apicenter.models.MetadataSchemaExportRequest;
 
 /**
  * Samples for Services ExportMetadataSchema.
@@ -918,7 +955,9 @@ public final class ServicesExportMetadataSchemaSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void servicesExportMetadataSchema(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.services().exportMetadataSchema("contoso-resources", "contoso", null, com.azure.core.util.Context.NONE);
+        manager.services().exportMetadataSchemaWithResponse("contoso-resources", "contoso",
+            new MetadataSchemaExportRequest().withAssignedTo(MetadataAssignmentEntity.API),
+            com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1030,12 +1069,13 @@ public final class WorkspacesCreateOrUpdateSamples {
      * .json
      */
     /**
-     * Sample code: Workspaces_CreateOrUpdate.
+     * Sample code: Workspace_CreateOrUpdate.
      * 
      * @param manager Entry point to ApiCenterManager.
      */
-    public static void workspacesCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.workspaces().define("default").withExistingService("contoso-resources", "contoso").create();
+    public static void workspaceCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+        manager.workspaces().define("default").withExistingService("contoso-resources", "contoso").withTitle("default")
+            .create();
     }
 }
 ```
@@ -1121,11 +1161,11 @@ public final class WorkspacesListSamples {
      * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Workspaces_List.json
      */
     /**
-     * Sample code: Workspaces_ListByService.
+     * Sample code: Workspaces_List.
      * 
      * @param manager Entry point to ApiCenterManager.
      */
-    public static void workspacesListByService(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+    public static void workspacesList(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.workspaces().list("contoso-resources", "contoso", null, com.azure.core.util.Context.NONE);
     }
 }

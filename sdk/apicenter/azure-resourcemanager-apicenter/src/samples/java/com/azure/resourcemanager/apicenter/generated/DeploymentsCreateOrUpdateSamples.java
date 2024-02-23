@@ -4,6 +4,10 @@
 
 package com.azure.resourcemanager.apicenter.generated;
 
+import com.azure.resourcemanager.apicenter.models.DeploymentServer;
+import com.azure.resourcemanager.apicenter.models.DeploymentState;
+import java.util.Arrays;
+
 /**
  * Samples for Deployments CreateOrUpdate.
  */
@@ -19,6 +23,11 @@ public final class DeploymentsCreateOrUpdateSamples {
      */
     public static void deploymentsCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.deployments().define("production")
-            .withExistingApi("contoso-resources", "contoso", "default", "echo-api").create();
+            .withExistingApi("contoso-resources", "contoso", "default", "echo-api").withTitle("Production deployment")
+            .withDescription("Public cloud production deployment.")
+            .withEnvironmentId("/workspaces/default/environments/production")
+            .withDefinitionId("/workspaces/default/apis/echo-api/versions/2023-01-01/definitions/openapi")
+            .withState(DeploymentState.ACTIVE)
+            .withServer(new DeploymentServer().withRuntimeUri(Arrays.asList("https://api.contoso.com"))).create();
     }
 }

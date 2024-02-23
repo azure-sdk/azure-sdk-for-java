@@ -13,6 +13,8 @@ import com.azure.core.util.Context;
  */
 public interface Apis {
     /**
+     * List APIs
+     * 
      * Returns a collection of APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -21,11 +23,13 @@ public interface Apis {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Api list operation as paginated response with {@link PagedIterable}.
+     * @return aPI collection as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Api> list(String resourceGroupName, String serviceName, String workspaceName);
 
     /**
+     * List APIs
+     * 
      * Returns a collection of APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -36,12 +40,14 @@ public interface Apis {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Api list operation as paginated response with {@link PagedIterable}.
+     * @return aPI collection as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Api> list(String resourceGroupName, String serviceName, String workspaceName, String filter,
         Context context);
 
     /**
+     * Get API
+     * 
      * Returns details of the API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -52,12 +58,14 @@ public interface Apis {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI entity.
+     * @return aPI.
      */
     Response<Api> getWithResponse(String resourceGroupName, String serviceName, String workspaceName, String apiName,
         Context context);
 
     /**
+     * Get API
+     * 
      * Returns details of the API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -67,11 +75,13 @@ public interface Apis {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI entity.
+     * @return aPI.
      */
     Api get(String resourceGroupName, String serviceName, String workspaceName, String apiName);
 
     /**
+     * Delete API
+     * 
      * Deletes specified API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -88,6 +98,8 @@ public interface Apis {
         String apiName, Context context);
 
     /**
+     * Delete API
+     * 
      * Deletes specified API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -101,6 +113,8 @@ public interface Apis {
     void delete(String resourceGroupName, String serviceName, String workspaceName, String apiName);
 
     /**
+     * Check if API exists
+     * 
      * Checks if specified API exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -117,6 +131,8 @@ public interface Apis {
         Context context);
 
     /**
+     * Check if API exists
+     * 
      * Checks if specified API exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -130,17 +146,21 @@ public interface Apis {
     void head(String resourceGroupName, String serviceName, String workspaceName, String apiName);
 
     /**
+     * Get API
+     * 
      * Returns details of the API.
      * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI entity.
+     * @return aPI.
      */
     Api getById(String id);
 
     /**
+     * Get API
+     * 
      * Returns details of the API.
      * 
      * @param id the resource ID.
@@ -148,11 +168,13 @@ public interface Apis {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI entity.
+     * @return aPI.
      */
     Response<Api> getByIdWithResponse(String id, Context context);
 
     /**
+     * Delete API
+     * 
      * Deletes specified API.
      * 
      * @param id the resource ID.
@@ -163,6 +185,8 @@ public interface Apis {
     void deleteById(String id);
 
     /**
+     * Delete API
+     * 
      * Deletes specified API.
      * 
      * @param id the resource ID.

@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * The kind of environment.
+ * Environment kind.
  */
 public final class EnvironmentKind extends ExpandableStringEnum<EnvironmentKind> {
     /**

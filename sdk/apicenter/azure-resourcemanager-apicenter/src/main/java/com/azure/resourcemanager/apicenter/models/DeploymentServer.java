@@ -14,6 +14,8 @@ import java.util.List;
 @Fluent
 public final class DeploymentServer {
     /*
+     * Server runtime base URI
+     * 
      * Base runtime URLs for this deployment.
      */
     @JsonProperty(value = "runtimeUri")
@@ -26,7 +28,9 @@ public final class DeploymentServer {
     }
 
     /**
-     * Get the runtimeUri property: Base runtime URLs for this deployment.
+     * Get the runtimeUri property: Server runtime base URI
+     * 
+     * Base runtime URLs for this deployment.
      * 
      * @return the runtimeUri value.
      */
@@ -35,7 +39,9 @@ public final class DeploymentServer {
     }
 
     /**
-     * Set the runtimeUri property: Base runtime URLs for this deployment.
+     * Set the runtimeUri property: Server runtime base URI
+     * 
+     * Base runtime URLs for this deployment.
      * 
      * @param runtimeUri the runtimeUri value to set.
      * @return the DeploymentServer object itself.

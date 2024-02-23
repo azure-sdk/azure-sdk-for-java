@@ -11,7 +11,7 @@ import com.azure.resourcemanager.apicenter.fluent.models.ApiSpecExportResultInne
  */
 public interface ApiSpecExportResult {
     /**
-     * Gets the format property: The format of exported result.
+     * Gets the format property: The format property.
      * 
      * @return the format value.
      */

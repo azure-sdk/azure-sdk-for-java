@@ -13,6 +13,8 @@ import com.azure.core.util.Context;
  */
 public interface ApiVersions {
     /**
+     * List API versions
+     * 
      * Returns a collection of API versions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -22,11 +24,13 @@ public interface ApiVersions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiVersion list operation as paginated response with {@link PagedIterable}.
+     * @return aPI version collection as paginated response with {@link PagedIterable}.
      */
     PagedIterable<ApiVersion> list(String resourceGroupName, String serviceName, String workspaceName, String apiName);
 
     /**
+     * List API versions
+     * 
      * Returns a collection of API versions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -38,12 +42,14 @@ public interface ApiVersions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiVersion list operation as paginated response with {@link PagedIterable}.
+     * @return aPI version collection as paginated response with {@link PagedIterable}.
      */
     PagedIterable<ApiVersion> list(String resourceGroupName, String serviceName, String workspaceName, String apiName,
         String filter, Context context);
 
     /**
+     * Get API version
+     * 
      * Returns details of the API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -55,12 +61,14 @@ public interface ApiVersions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI version entity.
+     * @return aPI version.
      */
     Response<ApiVersion> getWithResponse(String resourceGroupName, String serviceName, String workspaceName,
         String apiName, String versionName, Context context);
 
     /**
+     * Get API version
+     * 
      * Returns details of the API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -71,12 +79,14 @@ public interface ApiVersions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI version entity.
+     * @return aPI version.
      */
     ApiVersion get(String resourceGroupName, String serviceName, String workspaceName, String apiName,
         String versionName);
 
     /**
+     * Delete API version
+     * 
      * Deletes specified API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -94,6 +104,8 @@ public interface ApiVersions {
         String apiName, String versionName, Context context);
 
     /**
+     * Delete API version
+     * 
      * Deletes specified API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -108,6 +120,8 @@ public interface ApiVersions {
     void delete(String resourceGroupName, String serviceName, String workspaceName, String apiName, String versionName);
 
     /**
+     * Check if API version exists
+     * 
      * Checks if specified API version exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -125,6 +139,8 @@ public interface ApiVersions {
         String versionName, Context context);
 
     /**
+     * Check if API version exists
+     * 
      * Checks if specified API version exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -139,17 +155,21 @@ public interface ApiVersions {
     void head(String resourceGroupName, String serviceName, String workspaceName, String apiName, String versionName);
 
     /**
+     * Get API version
+     * 
      * Returns details of the API version.
      * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI version entity.
+     * @return aPI version.
      */
     ApiVersion getById(String id);
 
     /**
+     * Get API version
+     * 
      * Returns details of the API version.
      * 
      * @param id the resource ID.
@@ -157,11 +177,13 @@ public interface ApiVersions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI version entity.
+     * @return aPI version.
      */
     Response<ApiVersion> getByIdWithResponse(String id, Context context);
 
     /**
+     * Delete API version
+     * 
      * Deletes specified API version.
      * 
      * @param id the resource ID.
@@ -172,6 +194,8 @@ public interface ApiVersions {
     void deleteById(String id);
 
     /**
+     * Delete API version
+     * 
      * Deletes specified API version.
      * 
      * @param id the resource ID.

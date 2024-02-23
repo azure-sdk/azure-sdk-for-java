@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.apicenter.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
@@ -50,14 +51,7 @@ public interface Service {
     Map<String, String> tags();
 
     /**
-     * Gets the properties property: The resource-specific properties for this resource.
-     * 
-     * @return the properties value.
-     */
-    ServiceProperties properties();
-
-    /**
-     * Gets the identity property: The managed service identities assigned to this resource.
+     * Gets the identity property: Managed service identity (system assigned and/or user assigned identities).
      * 
      * @return the identity value.
      */
@@ -69,6 +63,13 @@ public interface Service {
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the provisioningState property: Provisioning state of the service.
+     * 
+     * @return the provisioningState value.
+     */
+    ProvisioningState provisioningState();
 
     /**
      * Gets the region of the resource.
@@ -153,8 +154,7 @@ public interface Service {
          * The stage of the Service definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithTags, DefinitionStages.WithProperties, DefinitionStages.WithIdentity {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity {
             /**
              * Executes the create request.
              * 
@@ -185,26 +185,14 @@ public interface Service {
         }
 
         /**
-         * The stage of the Service definition allowing to specify properties.
-         */
-        interface WithProperties {
-            /**
-             * Specifies the properties property: The resource-specific properties for this resource..
-             * 
-             * @param properties The resource-specific properties for this resource.
-             * @return the next definition stage.
-             */
-            WithCreate withProperties(ServiceProperties properties);
-        }
-
-        /**
          * The stage of the Service definition allowing to specify identity.
          */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The managed service identities assigned to this resource..
+             * Specifies the identity property: Managed service identity (system assigned and/or user assigned
+             * identities).
              * 
-             * @param identity The managed service identities assigned to this resource.
+             * @param identity Managed service identity (system assigned and/or user assigned identities).
              * @return the next definition stage.
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
@@ -221,7 +209,7 @@ public interface Service {
     /**
      * The template for Service update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
+    interface Update {
         /**
          * Executes the update request.
          * 
@@ -242,31 +230,6 @@ public interface Service {
      * The Service update stages.
      */
     interface UpdateStages {
-        /**
-         * The stage of the Service update allowing to specify tags.
-         */
-        interface WithTags {
-            /**
-             * Specifies the tags property: Resource tags..
-             * 
-             * @param tags Resource tags.
-             * @return the next definition stage.
-             */
-            Update withTags(Map<String, String> tags);
-        }
-
-        /**
-         * The stage of the Service update allowing to specify identity.
-         */
-        interface WithIdentity {
-            /**
-             * Specifies the identity property: The managed service identities assigned to this resource..
-             * 
-             * @param identity The managed service identities assigned to this resource.
-             * @return the next definition stage.
-             */
-            Update withIdentity(ManagedServiceIdentity identity);
-        }
     }
 
     /**
@@ -285,25 +248,30 @@ public interface Service {
     Service refresh(Context context);
 
     /**
+     * Export effective metadata schema
+     * 
      * Exports the effective metadata schema.
      * 
-     * @param body The content of the action request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata schema export result.
-     */
-    MetadataSchemaExportResult exportMetadataSchema(MetadataSchemaExportRequest body);
-
-    /**
-     * Exports the effective metadata schema.
-     * 
-     * @param body The content of the action request.
+     * @param payload The metadata schema request details.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata schema export result along with {@link Response}.
+     */
+    Response<MetadataSchemaExportResult> exportMetadataSchemaWithResponse(MetadataSchemaExportRequest payload,
+        Context context);
+
+    /**
+     * Export effective metadata schema
+     * 
+     * Exports the effective metadata schema.
+     * 
+     * @param payload The metadata schema request details.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the metadata schema export result.
      */
-    MetadataSchemaExportResult exportMetadataSchema(MetadataSchemaExportRequest body, Context context);
+    MetadataSchemaExportResult exportMetadataSchema(MetadataSchemaExportRequest payload);
 }

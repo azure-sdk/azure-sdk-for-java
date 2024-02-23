@@ -65,11 +65,11 @@ public final class ApiCenterManager {
 
     private Apis apis;
 
-    private Deployments deployments;
-
     private ApiVersions apiVersions;
 
     private ApiDefinitions apiDefinitions;
+
+    private Deployments deployments;
 
     private Environments environments;
 
@@ -232,7 +232,7 @@ public final class ApiCenterManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.apicenter").append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
@@ -332,18 +332,6 @@ public final class ApiCenterManager {
     }
 
     /**
-     * Gets the resource collection API of Deployments. It manages Deployment.
-     * 
-     * @return Resource collection API of Deployments.
-     */
-    public Deployments deployments() {
-        if (this.deployments == null) {
-            this.deployments = new DeploymentsImpl(clientObject.getDeployments(), this);
-        }
-        return deployments;
-    }
-
-    /**
      * Gets the resource collection API of ApiVersions. It manages ApiVersion.
      * 
      * @return Resource collection API of ApiVersions.
@@ -365,6 +353,18 @@ public final class ApiCenterManager {
             this.apiDefinitions = new ApiDefinitionsImpl(clientObject.getApiDefinitions(), this);
         }
         return apiDefinitions;
+    }
+
+    /**
+     * Gets the resource collection API of Deployments. It manages Deployment.
+     * 
+     * @return Resource collection API of Deployments.
+     */
+    public Deployments deployments() {
+        if (this.deployments == null) {
+            this.deployments = new DeploymentsImpl(clientObject.getDeployments(), this);
+        }
+        return deployments;
     }
 
     /**

@@ -18,6 +18,8 @@ import com.azure.resourcemanager.apicenter.models.ApisGetResponse;
  */
 public interface ApisClient {
     /**
+     * List APIs
+     * 
      * Returns a collection of APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -26,12 +28,14 @@ public interface ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Api list operation as paginated response with {@link PagedIterable}.
+     * @return aPI collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApiInner> list(String resourceGroupName, String serviceName, String workspaceName);
 
     /**
+     * List APIs
+     * 
      * Returns a collection of APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -42,13 +46,15 @@ public interface ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Api list operation as paginated response with {@link PagedIterable}.
+     * @return aPI collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApiInner> list(String resourceGroupName, String serviceName, String workspaceName, String filter,
         Context context);
 
     /**
+     * Get API
+     * 
      * Returns details of the API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -59,13 +65,15 @@ public interface ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI entity.
+     * @return aPI.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ApisGetResponse getWithResponse(String resourceGroupName, String serviceName, String workspaceName, String apiName,
         Context context);
 
     /**
+     * Get API
+     * 
      * Returns details of the API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -75,47 +83,53 @@ public interface ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI entity.
+     * @return aPI.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ApiInner get(String resourceGroupName, String serviceName, String workspaceName, String apiName);
 
     /**
+     * Create or update API
+     * 
      * Creates new or updates existing API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
-     * @param resource Resource create parameters.
+     * @param payload API entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI entity.
+     * @return aPI.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ApisCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, ApiInner resource, Context context);
+        String workspaceName, String apiName, ApiInner payload, Context context);
 
     /**
+     * Create or update API
+     * 
      * Creates new or updates existing API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
-     * @param resource Resource create parameters.
+     * @param payload API entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI entity.
+     * @return aPI.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ApiInner createOrUpdate(String resourceGroupName, String serviceName, String workspaceName, String apiName,
-        ApiInner resource);
+        ApiInner payload);
 
     /**
+     * Delete API
+     * 
      * Deletes specified API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -133,6 +147,8 @@ public interface ApisClient {
         String apiName, Context context);
 
     /**
+     * Delete API
+     * 
      * Deletes specified API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -147,6 +163,8 @@ public interface ApisClient {
     void delete(String resourceGroupName, String serviceName, String workspaceName, String apiName);
 
     /**
+     * Check if API exists
+     * 
      * Checks if specified API exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -164,6 +182,8 @@ public interface ApisClient {
         Context context);
 
     /**
+     * Check if API exists
+     * 
      * Checks if specified API exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
