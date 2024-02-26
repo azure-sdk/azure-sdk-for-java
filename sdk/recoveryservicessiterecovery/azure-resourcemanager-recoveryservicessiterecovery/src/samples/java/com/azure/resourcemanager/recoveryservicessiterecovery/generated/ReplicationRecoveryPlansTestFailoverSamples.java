@@ -16,7 +16,7 @@ import java.util.Arrays;
 public final class ReplicationRecoveryPlansTestFailoverSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-02-01/examples
      * /ReplicationRecoveryPlans_TestFailover.json
      */
     /**

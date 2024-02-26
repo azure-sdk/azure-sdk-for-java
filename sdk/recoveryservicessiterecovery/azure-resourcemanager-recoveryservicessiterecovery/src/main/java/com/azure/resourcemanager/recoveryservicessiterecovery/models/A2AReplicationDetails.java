@@ -85,6 +85,18 @@ public final class A2AReplicationDetails extends ReplicationProviderSpecificSett
     private String managementId;
 
     /*
+     * The replication protection cluster Id.
+     */
+    @JsonProperty(value = "protectionClusterId")
+    private String protectionClusterId;
+
+    /*
+     * A value indicating if the cluster infra is ready or not.
+     */
+    @JsonProperty(value = "isClusterInfraReady")
+    private Boolean isClusterInfraReady;
+
+    /*
      * The list of protected disks.
      */
     @JsonProperty(value = "protectedDisks")
@@ -523,6 +535,46 @@ public final class A2AReplicationDetails extends ReplicationProviderSpecificSett
      */
     public A2AReplicationDetails withManagementId(String managementId) {
         this.managementId = managementId;
+        return this;
+    }
+
+    /**
+     * Get the protectionClusterId property: The replication protection cluster Id.
+     * 
+     * @return the protectionClusterId value.
+     */
+    public String protectionClusterId() {
+        return this.protectionClusterId;
+    }
+
+    /**
+     * Set the protectionClusterId property: The replication protection cluster Id.
+     * 
+     * @param protectionClusterId the protectionClusterId value to set.
+     * @return the A2AReplicationDetails object itself.
+     */
+    public A2AReplicationDetails withProtectionClusterId(String protectionClusterId) {
+        this.protectionClusterId = protectionClusterId;
+        return this;
+    }
+
+    /**
+     * Get the isClusterInfraReady property: A value indicating if the cluster infra is ready or not.
+     * 
+     * @return the isClusterInfraReady value.
+     */
+    public Boolean isClusterInfraReady() {
+        return this.isClusterInfraReady;
+    }
+
+    /**
+     * Set the isClusterInfraReady property: A value indicating if the cluster infra is ready or not.
+     * 
+     * @param isClusterInfraReady the isClusterInfraReady value to set.
+     * @return the A2AReplicationDetails object itself.
+     */
+    public A2AReplicationDetails withIsClusterInfraReady(Boolean isClusterInfraReady) {
+        this.isClusterInfraReady = isClusterInfraReady;
         return this;
     }
 

@@ -24,6 +24,8 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.SiteRecoveryManagementClient;
+import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ClusterRecoveryPointOperationsImpl;
+import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ClusterRecoveryPointsImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.MigrationRecoveryPointsImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.OperationsImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.RecoveryPointsImpl;
@@ -40,6 +42,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.Rep
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationPoliciesImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationProtectableItemsImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationProtectedItemsImpl;
+import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationProtectionClustersImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationProtectionContainerMappingsImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationProtectionContainersImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationProtectionIntentsImpl;
@@ -53,6 +56,8 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.Sto
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.StorageClassificationsImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.SupportedOperatingSystemsOperationsImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.TargetComputeSizesImpl;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterRecoveryPointOperations;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterRecoveryPoints;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.MigrationRecoveryPoints;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.Operations;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.RecoveryPoints;
@@ -69,6 +74,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.Replication
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationPolicies;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationProtectableItems;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationProtectedItems;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationProtectionClusters;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationProtectionContainerMappings;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationProtectionContainers;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationProtectionIntents;
@@ -123,6 +129,12 @@ public final class SiteRecoveryManager {
     private RecoveryPoints recoveryPoints;
 
     private TargetComputeSizes targetComputeSizes;
+
+    private ReplicationProtectionClusters replicationProtectionClusters;
+
+    private ClusterRecoveryPoints clusterRecoveryPoints;
+
+    private ClusterRecoveryPointOperations clusterRecoveryPointOperations;
 
     private ReplicationProtectionContainerMappings replicationProtectionContainerMappings;
 
@@ -307,7 +319,7 @@ public final class SiteRecoveryManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-")
-                .append("com.azure.resourcemanager.recoveryservicessiterecovery").append("/").append("1.1.0");
+                .append("com.azure.resourcemanager.recoveryservicessiterecovery").append("/").append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
@@ -545,6 +557,44 @@ public final class SiteRecoveryManager {
             this.targetComputeSizes = new TargetComputeSizesImpl(clientObject.getTargetComputeSizes(), this);
         }
         return targetComputeSizes;
+    }
+
+    /**
+     * Gets the resource collection API of ReplicationProtectionClusters. It manages ReplicationProtectionCluster.
+     * 
+     * @return Resource collection API of ReplicationProtectionClusters.
+     */
+    public ReplicationProtectionClusters replicationProtectionClusters() {
+        if (this.replicationProtectionClusters == null) {
+            this.replicationProtectionClusters
+                = new ReplicationProtectionClustersImpl(clientObject.getReplicationProtectionClusters(), this);
+        }
+        return replicationProtectionClusters;
+    }
+
+    /**
+     * Gets the resource collection API of ClusterRecoveryPoints.
+     * 
+     * @return Resource collection API of ClusterRecoveryPoints.
+     */
+    public ClusterRecoveryPoints clusterRecoveryPoints() {
+        if (this.clusterRecoveryPoints == null) {
+            this.clusterRecoveryPoints = new ClusterRecoveryPointsImpl(clientObject.getClusterRecoveryPoints(), this);
+        }
+        return clusterRecoveryPoints;
+    }
+
+    /**
+     * Gets the resource collection API of ClusterRecoveryPointOperations.
+     * 
+     * @return Resource collection API of ClusterRecoveryPointOperations.
+     */
+    public ClusterRecoveryPointOperations clusterRecoveryPointOperations() {
+        if (this.clusterRecoveryPointOperations == null) {
+            this.clusterRecoveryPointOperations
+                = new ClusterRecoveryPointOperationsImpl(clientObject.getClusterRecoveryPointOperations(), this);
+        }
+        return clusterRecoveryPointOperations;
     }
 
     /**

@@ -270,22 +270,4 @@ public interface Fabric {
      * @return fabric definition.
      */
     Fabric renewCertificate(RenewCertificateInput renewCertificate, Context context);
-
-    /**
-     * Removes the appliance's infrastructure under the fabric.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void removeInfra();
-
-    /**
-     * Removes the appliance's infrastructure under the fabric.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void removeInfra(Context context);
 }

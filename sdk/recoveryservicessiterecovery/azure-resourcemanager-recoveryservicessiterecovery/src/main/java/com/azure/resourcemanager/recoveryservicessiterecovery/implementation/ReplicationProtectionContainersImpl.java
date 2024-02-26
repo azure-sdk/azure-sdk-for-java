@@ -14,6 +14,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.models.Prot
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.DiscoverProtectableItemRequest;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ProtectionContainer;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationProtectionContainers;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.SwitchClusterProtectionInput;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.SwitchProtectionInput;
 
 public final class ReplicationProtectionContainersImpl implements ReplicationProtectionContainers {
@@ -97,6 +98,28 @@ public final class ReplicationProtectionContainersImpl implements ReplicationPro
     public void delete(String resourceName, String resourceGroupName, String fabricName, String protectionContainerName,
         Context context) {
         this.serviceClient().delete(resourceName, resourceGroupName, fabricName, protectionContainerName, context);
+    }
+
+    public ProtectionContainer switchClusterProtection(String resourceName, String resourceGroupName, String fabricName,
+        String protectionContainerName, SwitchClusterProtectionInput switchInput) {
+        ProtectionContainerInner inner = this.serviceClient().switchClusterProtection(resourceName, resourceGroupName,
+            fabricName, protectionContainerName, switchInput);
+        if (inner != null) {
+            return new ProtectionContainerImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public ProtectionContainer switchClusterProtection(String resourceName, String resourceGroupName, String fabricName,
+        String protectionContainerName, SwitchClusterProtectionInput switchInput, Context context) {
+        ProtectionContainerInner inner = this.serviceClient().switchClusterProtection(resourceName, resourceGroupName,
+            fabricName, protectionContainerName, switchInput, context);
+        if (inner != null) {
+            return new ProtectionContainerImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public ProtectionContainer switchProtection(String resourceName, String resourceGroupName, String fabricName,

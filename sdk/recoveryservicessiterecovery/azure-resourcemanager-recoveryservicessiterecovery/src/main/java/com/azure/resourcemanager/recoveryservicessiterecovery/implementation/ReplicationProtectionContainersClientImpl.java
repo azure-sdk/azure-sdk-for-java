@@ -36,6 +36,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.models.Prot
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.CreateProtectionContainerInput;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.DiscoverProtectableItemRequest;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ProtectionContainerCollection;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.SwitchClusterProtectionInput;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.SwitchProtectionInput;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
@@ -127,6 +128,18 @@ public final class ReplicationProtectionContainersClientImpl implements Replicat
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("subscriptionId") String subscriptionId, @PathParam("fabricName") String fabricName,
             @PathParam("protectionContainerName") String protectionContainerName, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/switchClusterProtection")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> switchClusterProtection(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("resourceName") String resourceName,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("fabricName") String fabricName,
+            @PathParam("protectionContainerName") String protectionContainerName,
+            @BodyParam("application/json") SwitchClusterProtectionInput switchInput,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/switchprotection")
@@ -1359,6 +1372,304 @@ public final class ReplicationProtectionContainersClientImpl implements Replicat
     public void delete(String resourceName, String resourceGroupName, String fabricName, String protectionContainerName,
         Context context) {
         deleteAsync(resourceName, resourceGroupName, fabricName, protectionContainerName, context).block();
+    }
+
+    /**
+     * Switches protection from one container to another.
+     * 
+     * Operation to switch protection from one container to another.
+     * 
+     * @param resourceName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name.
+     * @param protectionContainerName Protection container name.
+     * @param switchInput Switch protection input.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return protection container details along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> switchClusterProtectionWithResponseAsync(String resourceName,
+        String resourceGroupName, String fabricName, String protectionContainerName,
+        SwitchClusterProtectionInput switchInput) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (fabricName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter fabricName is required and cannot be null."));
+        }
+        if (protectionContainerName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter protectionContainerName is required and cannot be null."));
+        }
+        if (switchInput == null) {
+            return Mono.error(new IllegalArgumentException("Parameter switchInput is required and cannot be null."));
+        } else {
+            switchInput.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.switchClusterProtection(this.client.getEndpoint(),
+                this.client.getApiVersion(), resourceName, resourceGroupName, this.client.getSubscriptionId(),
+                fabricName, protectionContainerName, switchInput, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Switches protection from one container to another.
+     * 
+     * Operation to switch protection from one container to another.
+     * 
+     * @param resourceName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name.
+     * @param protectionContainerName Protection container name.
+     * @param switchInput Switch protection input.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return protection container details along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> switchClusterProtectionWithResponseAsync(String resourceName,
+        String resourceGroupName, String fabricName, String protectionContainerName,
+        SwitchClusterProtectionInput switchInput, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (fabricName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter fabricName is required and cannot be null."));
+        }
+        if (protectionContainerName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter protectionContainerName is required and cannot be null."));
+        }
+        if (switchInput == null) {
+            return Mono.error(new IllegalArgumentException("Parameter switchInput is required and cannot be null."));
+        } else {
+            switchInput.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.switchClusterProtection(this.client.getEndpoint(), this.client.getApiVersion(), resourceName,
+            resourceGroupName, this.client.getSubscriptionId(), fabricName, protectionContainerName, switchInput,
+            accept, context);
+    }
+
+    /**
+     * Switches protection from one container to another.
+     * 
+     * Operation to switch protection from one container to another.
+     * 
+     * @param resourceName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name.
+     * @param protectionContainerName Protection container name.
+     * @param switchInput Switch protection input.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of protection container details.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ProtectionContainerInner>, ProtectionContainerInner>
+        beginSwitchClusterProtectionAsync(String resourceName, String resourceGroupName, String fabricName,
+            String protectionContainerName, SwitchClusterProtectionInput switchInput) {
+        Mono<Response<Flux<ByteBuffer>>> mono = switchClusterProtectionWithResponseAsync(resourceName,
+            resourceGroupName, fabricName, protectionContainerName, switchInput);
+        return this.client.<ProtectionContainerInner, ProtectionContainerInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ProtectionContainerInner.class, ProtectionContainerInner.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Switches protection from one container to another.
+     * 
+     * Operation to switch protection from one container to another.
+     * 
+     * @param resourceName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name.
+     * @param protectionContainerName Protection container name.
+     * @param switchInput Switch protection input.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of protection container details.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ProtectionContainerInner>, ProtectionContainerInner>
+        beginSwitchClusterProtectionAsync(String resourceName, String resourceGroupName, String fabricName,
+            String protectionContainerName, SwitchClusterProtectionInput switchInput, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = switchClusterProtectionWithResponseAsync(resourceName,
+            resourceGroupName, fabricName, protectionContainerName, switchInput, context);
+        return this.client.<ProtectionContainerInner, ProtectionContainerInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ProtectionContainerInner.class, ProtectionContainerInner.class, context);
+    }
+
+    /**
+     * Switches protection from one container to another.
+     * 
+     * Operation to switch protection from one container to another.
+     * 
+     * @param resourceName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name.
+     * @param protectionContainerName Protection container name.
+     * @param switchInput Switch protection input.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of protection container details.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ProtectionContainerInner>, ProtectionContainerInner> beginSwitchClusterProtection(
+        String resourceName, String resourceGroupName, String fabricName, String protectionContainerName,
+        SwitchClusterProtectionInput switchInput) {
+        return this.beginSwitchClusterProtectionAsync(resourceName, resourceGroupName, fabricName,
+            protectionContainerName, switchInput).getSyncPoller();
+    }
+
+    /**
+     * Switches protection from one container to another.
+     * 
+     * Operation to switch protection from one container to another.
+     * 
+     * @param resourceName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name.
+     * @param protectionContainerName Protection container name.
+     * @param switchInput Switch protection input.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of protection container details.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ProtectionContainerInner>, ProtectionContainerInner> beginSwitchClusterProtection(
+        String resourceName, String resourceGroupName, String fabricName, String protectionContainerName,
+        SwitchClusterProtectionInput switchInput, Context context) {
+        return this.beginSwitchClusterProtectionAsync(resourceName, resourceGroupName, fabricName,
+            protectionContainerName, switchInput, context).getSyncPoller();
+    }
+
+    /**
+     * Switches protection from one container to another.
+     * 
+     * Operation to switch protection from one container to another.
+     * 
+     * @param resourceName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name.
+     * @param protectionContainerName Protection container name.
+     * @param switchInput Switch protection input.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return protection container details on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ProtectionContainerInner> switchClusterProtectionAsync(String resourceName, String resourceGroupName,
+        String fabricName, String protectionContainerName, SwitchClusterProtectionInput switchInput) {
+        return beginSwitchClusterProtectionAsync(resourceName, resourceGroupName, fabricName, protectionContainerName,
+            switchInput).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Switches protection from one container to another.
+     * 
+     * Operation to switch protection from one container to another.
+     * 
+     * @param resourceName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name.
+     * @param protectionContainerName Protection container name.
+     * @param switchInput Switch protection input.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return protection container details on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ProtectionContainerInner> switchClusterProtectionAsync(String resourceName, String resourceGroupName,
+        String fabricName, String protectionContainerName, SwitchClusterProtectionInput switchInput, Context context) {
+        return beginSwitchClusterProtectionAsync(resourceName, resourceGroupName, fabricName, protectionContainerName,
+            switchInput, context).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Switches protection from one container to another.
+     * 
+     * Operation to switch protection from one container to another.
+     * 
+     * @param resourceName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name.
+     * @param protectionContainerName Protection container name.
+     * @param switchInput Switch protection input.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return protection container details.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ProtectionContainerInner switchClusterProtection(String resourceName, String resourceGroupName,
+        String fabricName, String protectionContainerName, SwitchClusterProtectionInput switchInput) {
+        return switchClusterProtectionAsync(resourceName, resourceGroupName, fabricName, protectionContainerName,
+            switchInput).block();
+    }
+
+    /**
+     * Switches protection from one container to another.
+     * 
+     * Operation to switch protection from one container to another.
+     * 
+     * @param resourceName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name.
+     * @param protectionContainerName Protection container name.
+     * @param switchInput Switch protection input.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return protection container details.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ProtectionContainerInner switchClusterProtection(String resourceName, String resourceGroupName,
+        String fabricName, String protectionContainerName, SwitchClusterProtectionInput switchInput, Context context) {
+        return switchClusterProtectionAsync(resourceName, resourceGroupName, fabricName, protectionContainerName,
+            switchInput, context).block();
     }
 
     /**

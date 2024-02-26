@@ -23,6 +23,9 @@ import java.util.Map;
 @JsonTypeName("JobDetails")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AsrJobDetails", value = AsrJobDetails.class),
+    @JsonSubTypes.Type(name = "ClusterFailoverJobDetails", value = ClusterFailoverJobDetails.class),
+    @JsonSubTypes.Type(name = "ClusterSwitchProtectionJobDetails", value = ClusterSwitchProtectionJobDetails.class),
+    @JsonSubTypes.Type(name = "ClusterTestFailoverJobDetails", value = ClusterTestFailoverJobDetails.class),
     @JsonSubTypes.Type(name = "ExportJobDetails", value = ExportJobDetails.class),
     @JsonSubTypes.Type(name = "FailoverJobDetails", value = FailoverJobDetails.class),
     @JsonSubTypes.Type(name = "SwitchProtectionJobDetails", value = SwitchProtectionJobDetails.class),

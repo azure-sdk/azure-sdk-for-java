@@ -146,14 +146,6 @@ public final class ReplicationFabricsImpl implements ReplicationFabrics {
         }
     }
 
-    public void removeInfra(String resourceGroupName, String resourceName, String fabricName) {
-        this.serviceClient().removeInfra(resourceGroupName, resourceName, fabricName);
-    }
-
-    public void removeInfra(String resourceGroupName, String resourceName, String fabricName, Context context) {
-        this.serviceClient().removeInfra(resourceGroupName, resourceName, fabricName, context);
-    }
-
     public Fabric getById(String id) {
         String resourceName = ResourceManagerUtils.getValueFromIdByName(id, "vaults");
         if (resourceName == null) {

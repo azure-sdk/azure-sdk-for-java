@@ -769,6 +769,116 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationProtectionClusterCollection",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.fluent.models.ReplicationProtectionClusterInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationProtectionClusterProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.RegisteredClusterNodes",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationClusterProviderSpecificSettings",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.SharedDiskReplicationItemProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.SharedDiskReplicationProviderSpecificSettings",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ApplyClusterRecoveryPointInput",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ApplyClusterRecoveryPointInputProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ApplyClusterRecoveryPointProviderSpecificInput",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterRecoveryPointCollection",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.fluent.models.ClusterRecoveryPointInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterRecoveryPointProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterProviderSpecificRecoveryPointDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterTestFailoverInput",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterTestFailoverInputProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterTestFailoverProviderSpecificInput",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterTestFailoverCleanupInput",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterTestFailoverCleanupInputProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterUnplannedFailoverInput",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterUnplannedFailoverInputProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterUnplannedFailoverProviderSpecificInput",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ProtectionContainerMappingCollection",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -830,6 +940,21 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationProviderContainerUnmappingInput",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.SwitchClusterProtectionInput",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.SwitchClusterProtectionInputProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.SwitchClusterProtectionProviderSpecificInput",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -1319,7 +1444,27 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.A2AApplyClusterRecoveryPointInput",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.A2AClusterRecoveryPointDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.A2AApplyRecoveryPointInput",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.A2AClusterTestFailoverInput",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.A2AClusterUnplannedFailoverInput",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -1444,6 +1589,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.A2AProtectedItemDetail",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.A2AProtectedManagedDiskDetails",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -1499,7 +1649,27 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.A2AReplicationProtectionClusterDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.A2AReprotectInput",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.A2ASharedDiskIRErrorDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.A2ASharedDiskReplicationDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.A2ASwitchClusterProtectionInput",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -1604,6 +1774,26 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterFailoverJobDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.FailoverReplicationProtectedItemDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterSwitchProtectionJobDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterTestFailoverJobDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ConsistencyCheckTaskDetails",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -1685,11 +1875,6 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.FailoverJobDetails",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.FailoverReplicationProtectedItemDetails",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -2604,6 +2789,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ClusterRecoveryPointType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.AgentVersionStatus",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -2649,6 +2839,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.RecoveryPointSyncType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.AgentAutoUpdateStatus",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -2675,11 +2870,6 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.SetMultiVmSyncStatus",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.RecoveryPointSyncType",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

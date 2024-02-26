@@ -153,14 +153,6 @@ public final class FabricImpl implements Fabric, Fabric.Definition {
             renewCertificate, context);
     }
 
-    public void removeInfra() {
-        serviceManager.replicationFabrics().removeInfra(resourceGroupName, resourceName, fabricName);
-    }
-
-    public void removeInfra(Context context) {
-        serviceManager.replicationFabrics().removeInfra(resourceGroupName, resourceName, fabricName, context);
-    }
-
     public FabricImpl withProperties(FabricCreationInputProperties properties) {
         this.createInput.withProperties(properties);
         return this;

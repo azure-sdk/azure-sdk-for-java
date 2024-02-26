@@ -12,6 +12,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.CreateProte
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.DiscoverProtectableItemRequest;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ProtectionContainer;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ProtectionContainerProperties;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.SwitchClusterProtectionInput;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.SwitchProtectionInput;
 
 public final class ProtectionContainerImpl implements ProtectionContainer, ProtectionContainer.Definition {
@@ -131,6 +132,16 @@ public final class ProtectionContainerImpl implements ProtectionContainer, Prote
     public void delete(Context context) {
         serviceManager.replicationProtectionContainers().delete(resourceName, resourceGroupName, fabricName,
             protectionContainerName, context);
+    }
+
+    public ProtectionContainer switchClusterProtection(SwitchClusterProtectionInput switchInput) {
+        return serviceManager.replicationProtectionContainers().switchClusterProtection(resourceName, resourceGroupName,
+            fabricName, protectionContainerName, switchInput);
+    }
+
+    public ProtectionContainer switchClusterProtection(SwitchClusterProtectionInput switchInput, Context context) {
+        return serviceManager.replicationProtectionContainers().switchClusterProtection(resourceName, resourceGroupName,
+            fabricName, protectionContainerName, switchInput, context);
     }
 
     public ProtectionContainer switchProtection(SwitchProtectionInput switchInput) {

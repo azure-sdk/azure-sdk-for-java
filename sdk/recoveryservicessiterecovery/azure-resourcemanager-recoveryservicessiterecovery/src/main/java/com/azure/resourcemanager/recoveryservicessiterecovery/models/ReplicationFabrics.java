@@ -263,31 +263,6 @@ public interface ReplicationFabrics {
         RenewCertificateInput renewCertificate, Context context);
 
     /**
-     * Removes the appliance's infrastructure under the fabric.
-     * 
-     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
-     * @param resourceName Resource name.
-     * @param fabricName Fabric name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void removeInfra(String resourceGroupName, String resourceName, String fabricName);
-
-    /**
-     * Removes the appliance's infrastructure under the fabric.
-     * 
-     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
-     * @param resourceName Resource name.
-     * @param fabricName Fabric name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void removeInfra(String resourceGroupName, String resourceName, String fabricName, Context context);
-
-    /**
      * Gets the details of an ASR fabric.
      * 
      * Gets the details of an Azure Site Recovery fabric.
