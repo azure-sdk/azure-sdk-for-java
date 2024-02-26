@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/messagingconnectors/ci.yml
+      - sdk/messagingconnectors/azure-resourcemanager-messagingconnectors/
+    exclude:
+      - sdk/messagingconnectors/pom.xml
+      - sdk/messagingconnectors/azure-resourcemanager-messagingconnectors/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/messagingconnectors/ci.yml
+      - sdk/messagingconnectors/azure-resourcemanager-messagingconnectors/
+    exclude:
+      - sdk/messagingconnectors/pom.xml
+      - sdk/messagingconnectors/azure-resourcemanager-messagingconnectors/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagermessagingconnectors
+    displayName: azure-resourcemanager-messagingconnectors
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: messagingconnectors
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-messagingconnectors
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagermessagingconnectors
+        releaseInBatch: ${{ parameters.release_azureresourcemanagermessagingconnectors }}
