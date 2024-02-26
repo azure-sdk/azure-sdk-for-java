@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents a Fusion scenario exclusion patterns in Fusion detection. */
+/**
+ * Represents a Fusion scenario exclusion patterns in Fusion detection.
+ */
 @Fluent
 public final class FusionScenarioExclusionPattern {
     /*
@@ -24,8 +26,14 @@ public final class FusionScenarioExclusionPattern {
     private String dateAddedInUtc;
 
     /**
+     * Creates an instance of FusionScenarioExclusionPattern class.
+     */
+    public FusionScenarioExclusionPattern() {
+    }
+
+    /**
      * Get the exclusionPattern property: Scenario exclusion pattern.
-     *
+     * 
      * @return the exclusionPattern value.
      */
     public String exclusionPattern() {
@@ -34,7 +42,7 @@ public final class FusionScenarioExclusionPattern {
 
     /**
      * Set the exclusionPattern property: Scenario exclusion pattern.
-     *
+     * 
      * @param exclusionPattern the exclusionPattern value to set.
      * @return the FusionScenarioExclusionPattern object itself.
      */
@@ -45,7 +53,7 @@ public final class FusionScenarioExclusionPattern {
 
     /**
      * Get the dateAddedInUtc property: DateTime when scenario exclusion pattern is added in UTC.
-     *
+     * 
      * @return the dateAddedInUtc value.
      */
     public String dateAddedInUtc() {
@@ -54,7 +62,7 @@ public final class FusionScenarioExclusionPattern {
 
     /**
      * Set the dateAddedInUtc property: DateTime when scenario exclusion pattern is added in UTC.
-     *
+     * 
      * @param dateAddedInUtc the dateAddedInUtc value to set.
      * @return the FusionScenarioExclusionPattern object itself.
      */
@@ -65,21 +73,17 @@ public final class FusionScenarioExclusionPattern {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (exclusionPattern() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property exclusionPattern in model FusionScenarioExclusionPattern"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property exclusionPattern in model FusionScenarioExclusionPattern"));
         }
         if (dateAddedInUtc() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dateAddedInUtc in model FusionScenarioExclusionPattern"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property dateAddedInUtc in model FusionScenarioExclusionPattern"));
         }
     }
 

@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Represents MLBehaviorAnalytics alert rule. */
+/**
+ * Represents MLBehaviorAnalytics alert rule.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("MLBehaviorAnalytics")
 @Fluent
@@ -25,15 +27,23 @@ public final class MLBehaviorAnalyticsAlertRule extends AlertRuleInner {
     private MLBehaviorAnalyticsAlertRuleProperties innerProperties;
 
     /**
+     * Creates an instance of MLBehaviorAnalyticsAlertRule class.
+     */
+    public MLBehaviorAnalyticsAlertRule() {
+    }
+
+    /**
      * Get the innerProperties property: MLBehaviorAnalytics alert rule properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private MLBehaviorAnalyticsAlertRuleProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLBehaviorAnalyticsAlertRule withEtag(String etag) {
         super.withEtag(etag);
@@ -42,7 +52,7 @@ public final class MLBehaviorAnalyticsAlertRule extends AlertRuleInner {
 
     /**
      * Get the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
-     *
+     * 
      * @return the alertRuleTemplateName value.
      */
     public String alertRuleTemplateName() {
@@ -51,7 +61,7 @@ public final class MLBehaviorAnalyticsAlertRule extends AlertRuleInner {
 
     /**
      * Set the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
-     *
+     * 
      * @param alertRuleTemplateName the alertRuleTemplateName value to set.
      * @return the MLBehaviorAnalyticsAlertRule object itself.
      */
@@ -65,7 +75,7 @@ public final class MLBehaviorAnalyticsAlertRule extends AlertRuleInner {
 
     /**
      * Get the description property: The description of the alert rule.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -74,7 +84,7 @@ public final class MLBehaviorAnalyticsAlertRule extends AlertRuleInner {
 
     /**
      * Get the displayName property: The display name for alerts created by this alert rule.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -83,7 +93,7 @@ public final class MLBehaviorAnalyticsAlertRule extends AlertRuleInner {
 
     /**
      * Get the enabled property: Determines whether this alert rule is enabled or disabled.
-     *
+     * 
      * @return the enabled value.
      */
     public Boolean enabled() {
@@ -92,7 +102,7 @@ public final class MLBehaviorAnalyticsAlertRule extends AlertRuleInner {
 
     /**
      * Set the enabled property: Determines whether this alert rule is enabled or disabled.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the MLBehaviorAnalyticsAlertRule object itself.
      */
@@ -106,7 +116,7 @@ public final class MLBehaviorAnalyticsAlertRule extends AlertRuleInner {
 
     /**
      * Get the lastModifiedUtc property: The last time that this alert rule has been modified.
-     *
+     * 
      * @return the lastModifiedUtc value.
      */
     public OffsetDateTime lastModifiedUtc() {
@@ -115,7 +125,7 @@ public final class MLBehaviorAnalyticsAlertRule extends AlertRuleInner {
 
     /**
      * Get the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @return the severity value.
      */
     public AlertSeverity severity() {
@@ -124,7 +134,7 @@ public final class MLBehaviorAnalyticsAlertRule extends AlertRuleInner {
 
     /**
      * Get the tactics property: The tactics of the alert rule.
-     *
+     * 
      * @return the tactics value.
      */
     public List<AttackTactic> tactics() {
@@ -133,7 +143,7 @@ public final class MLBehaviorAnalyticsAlertRule extends AlertRuleInner {
 
     /**
      * Get the techniques property: The techniques of the alert rule.
-     *
+     * 
      * @return the techniques value.
      */
     public List<String> techniques() {
@@ -141,8 +151,17 @@ public final class MLBehaviorAnalyticsAlertRule extends AlertRuleInner {
     }
 
     /**
+     * Get the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @return the subTechniques value.
+     */
+    public List<String> subTechniques() {
+        return this.innerProperties() == null ? null : this.innerProperties().subTechniques();
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

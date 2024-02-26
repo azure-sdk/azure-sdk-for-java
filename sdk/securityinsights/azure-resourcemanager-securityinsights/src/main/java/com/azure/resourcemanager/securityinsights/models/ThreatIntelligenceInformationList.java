@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.ThreatIntelligen
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of all the threat intelligence information objects. */
+/**
+ * List of all the threat intelligence information objects.
+ */
 @Fluent
 public final class ThreatIntelligenceInformationList {
     /*
@@ -26,8 +28,14 @@ public final class ThreatIntelligenceInformationList {
     private List<ThreatIntelligenceInformationInner> value;
 
     /**
+     * Creates an instance of ThreatIntelligenceInformationList class.
+     */
+    public ThreatIntelligenceInformationList() {
+    }
+
+    /**
      * Get the nextLink property: URL to fetch the next set of information objects.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -36,7 +44,7 @@ public final class ThreatIntelligenceInformationList {
 
     /**
      * Get the value property: Array of threat intelligence information objects.
-     *
+     * 
      * @return the value value.
      */
     public List<ThreatIntelligenceInformationInner> value() {
@@ -45,7 +53,7 @@ public final class ThreatIntelligenceInformationList {
 
     /**
      * Set the value property: Array of threat intelligence information objects.
-     *
+     * 
      * @param value the value value to set.
      * @return the ThreatIntelligenceInformationList object itself.
      */
@@ -56,15 +64,13 @@ public final class ThreatIntelligenceInformationList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model ThreatIntelligenceInformationList"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property value in model ThreatIntelligenceInformationList"));
         } else {
             value().forEach(e -> e.validate());
         }

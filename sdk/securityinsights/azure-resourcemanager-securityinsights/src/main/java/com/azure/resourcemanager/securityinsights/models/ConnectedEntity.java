@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Expansion result connected entities. */
+/**
+ * Expansion result connected entities.
+ */
 @Fluent
 public final class ConnectedEntity {
     /*
@@ -23,8 +25,14 @@ public final class ConnectedEntity {
     private Object additionalData;
 
     /**
+     * Creates an instance of ConnectedEntity class.
+     */
+    public ConnectedEntity() {
+    }
+
+    /**
      * Get the targetEntityId property: Entity Id of the connected entity.
-     *
+     * 
      * @return the targetEntityId value.
      */
     public String targetEntityId() {
@@ -33,7 +41,7 @@ public final class ConnectedEntity {
 
     /**
      * Set the targetEntityId property: Entity Id of the connected entity.
-     *
+     * 
      * @param targetEntityId the targetEntityId value to set.
      * @return the ConnectedEntity object itself.
      */
@@ -44,7 +52,7 @@ public final class ConnectedEntity {
 
     /**
      * Get the additionalData property: key-value pairs for a connected entity mapping.
-     *
+     * 
      * @return the additionalData value.
      */
     public Object additionalData() {
@@ -53,7 +61,7 @@ public final class ConnectedEntity {
 
     /**
      * Set the additionalData property: key-value pairs for a connected entity mapping.
-     *
+     * 
      * @param additionalData the additionalData value to set.
      * @return the ConnectedEntity object itself.
      */
@@ -64,7 +72,7 @@ public final class ConnectedEntity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

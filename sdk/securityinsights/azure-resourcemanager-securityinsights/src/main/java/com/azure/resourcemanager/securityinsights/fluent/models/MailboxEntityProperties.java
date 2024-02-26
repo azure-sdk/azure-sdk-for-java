@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.EntityCommonProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
-/** Mailbox entity property bag. */
+/**
+ * Mailbox entity property bag.
+ */
 @Immutable
 public final class MailboxEntityProperties extends EntityCommonProperties {
     /*
@@ -38,8 +40,14 @@ public final class MailboxEntityProperties extends EntityCommonProperties {
     private UUID externalDirectoryObjectId;
 
     /**
+     * Creates an instance of MailboxEntityProperties class.
+     */
+    public MailboxEntityProperties() {
+    }
+
+    /**
      * Get the mailboxPrimaryAddress property: The mailbox's primary address.
-     *
+     * 
      * @return the mailboxPrimaryAddress value.
      */
     public String mailboxPrimaryAddress() {
@@ -48,7 +56,7 @@ public final class MailboxEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the displayName property: The mailbox's display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -57,7 +65,7 @@ public final class MailboxEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the upn property: The mailbox's UPN.
-     *
+     * 
      * @return the upn value.
      */
     public String upn() {
@@ -67,7 +75,7 @@ public final class MailboxEntityProperties extends EntityCommonProperties {
     /**
      * Get the externalDirectoryObjectId property: The AzureAD identifier of mailbox. Similar to AadUserId in account
      * entity but this property is specific to mailbox object on office side.
-     *
+     * 
      * @return the externalDirectoryObjectId value.
      */
     public UUID externalDirectoryObjectId() {
@@ -76,7 +84,7 @@ public final class MailboxEntityProperties extends EntityCommonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

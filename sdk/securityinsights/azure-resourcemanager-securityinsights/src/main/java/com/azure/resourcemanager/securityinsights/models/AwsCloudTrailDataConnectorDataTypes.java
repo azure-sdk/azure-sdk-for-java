@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The available data types for Amazon Web Services CloudTrail data connector. */
+/**
+ * The available data types for Amazon Web Services CloudTrail data connector.
+ */
 @Fluent
 public final class AwsCloudTrailDataConnectorDataTypes {
     /*
@@ -18,8 +20,14 @@ public final class AwsCloudTrailDataConnectorDataTypes {
     private AwsCloudTrailDataConnectorDataTypesLogs logs;
 
     /**
+     * Creates an instance of AwsCloudTrailDataConnectorDataTypes class.
+     */
+    public AwsCloudTrailDataConnectorDataTypes() {
+    }
+
+    /**
      * Get the logs property: Logs data type.
-     *
+     * 
      * @return the logs value.
      */
     public AwsCloudTrailDataConnectorDataTypesLogs logs() {
@@ -28,7 +36,7 @@ public final class AwsCloudTrailDataConnectorDataTypes {
 
     /**
      * Set the logs property: Logs data type.
-     *
+     * 
      * @param logs the logs value to set.
      * @return the AwsCloudTrailDataConnectorDataTypes object itself.
      */
@@ -39,15 +47,13 @@ public final class AwsCloudTrailDataConnectorDataTypes {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (logs() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property logs in model AwsCloudTrailDataConnectorDataTypes"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property logs in model AwsCloudTrailDataConnectorDataTypes"));
         } else {
             logs().validate();
         }

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Instruction step details. */
+/**
+ * Instruction step details.
+ */
 @Fluent
 public class ConnectorInstructionModelBase {
     /*
@@ -24,8 +26,14 @@ public class ConnectorInstructionModelBase {
     private SettingType type;
 
     /**
+     * Creates an instance of ConnectorInstructionModelBase class.
+     */
+    public ConnectorInstructionModelBase() {
+    }
+
+    /**
      * Get the parameters property: The parameters for the setting.
-     *
+     * 
      * @return the parameters value.
      */
     public Object parameters() {
@@ -34,7 +42,7 @@ public class ConnectorInstructionModelBase {
 
     /**
      * Set the parameters property: The parameters for the setting.
-     *
+     * 
      * @param parameters the parameters value to set.
      * @return the ConnectorInstructionModelBase object itself.
      */
@@ -45,7 +53,7 @@ public class ConnectorInstructionModelBase {
 
     /**
      * Get the type property: The kind of the setting.
-     *
+     * 
      * @return the type value.
      */
     public SettingType type() {
@@ -54,7 +62,7 @@ public class ConnectorInstructionModelBase {
 
     /**
      * Set the type property: The kind of the setting.
-     *
+     * 
      * @param type the type value to set.
      * @return the ConnectorInstructionModelBase object itself.
      */
@@ -65,15 +73,13 @@ public class ConnectorInstructionModelBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property type in model ConnectorInstructionModelBase"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model ConnectorInstructionModelBase"));
         }
     }
 
