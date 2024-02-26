@@ -96,6 +96,13 @@ public interface PaloAltoNetworksCloudngfw {
     OperationsClient getOperations();
 
     /**
+     * Gets the PaloAltoNetworksCloudngfwsClient object to access its operations.
+     * 
+     * @return the PaloAltoNetworksCloudngfwsClient object.
+     */
+    PaloAltoNetworksCloudngfwsClient getPaloAltoNetworksCloudngfws();
+
+    /**
      * Gets the FirewallsClient object to access its operations.
      * 
      * @return the FirewallsClient object.

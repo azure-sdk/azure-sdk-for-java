@@ -18,6 +18,7 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PanoramaConfig;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PlanData;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.ProvisioningState;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.RulestackDetails;
+import com.azure.resourcemanager.paloaltonetworks.ngfw.models.StrataCloudManagerConfig;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -177,6 +178,29 @@ public final class FirewallResourceInner extends Resource {
     }
 
     /**
+     * Get the isStrataCloudManaged property: Strata Cloud Managed: Default is False. Default will be CloudSec managed.
+     * 
+     * @return the isStrataCloudManaged value.
+     */
+    public BooleanEnum isStrataCloudManaged() {
+        return this.innerProperties() == null ? null : this.innerProperties().isStrataCloudManaged();
+    }
+
+    /**
+     * Set the isStrataCloudManaged property: Strata Cloud Managed: Default is False. Default will be CloudSec managed.
+     * 
+     * @param isStrataCloudManaged the isStrataCloudManaged value to set.
+     * @return the FirewallResourceInner object itself.
+     */
+    public FirewallResourceInner withIsStrataCloudManaged(BooleanEnum isStrataCloudManaged) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FirewallDeploymentProperties();
+        }
+        this.innerProperties().withIsStrataCloudManaged(isStrataCloudManaged);
+        return this;
+    }
+
+    /**
      * Get the panoramaConfig property: Panorama Configuration.
      * 
      * @return the panoramaConfig value.
@@ -196,6 +220,31 @@ public final class FirewallResourceInner extends Resource {
             this.innerProperties = new FirewallDeploymentProperties();
         }
         this.innerProperties().withPanoramaConfig(panoramaConfig);
+        return this;
+    }
+
+    /**
+     * Get the strataCloudManagerConfig property: Strata Cloud Manager Configuration, only applicable if Strata Cloud
+     * Manager is selected.
+     * 
+     * @return the strataCloudManagerConfig value.
+     */
+    public StrataCloudManagerConfig strataCloudManagerConfig() {
+        return this.innerProperties() == null ? null : this.innerProperties().strataCloudManagerConfig();
+    }
+
+    /**
+     * Set the strataCloudManagerConfig property: Strata Cloud Manager Configuration, only applicable if Strata Cloud
+     * Manager is selected.
+     * 
+     * @param strataCloudManagerConfig the strataCloudManagerConfig value to set.
+     * @return the FirewallResourceInner object itself.
+     */
+    public FirewallResourceInner withStrataCloudManagerConfig(StrataCloudManagerConfig strataCloudManagerConfig) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FirewallDeploymentProperties();
+        }
+        this.innerProperties().withStrataCloudManagerConfig(strataCloudManagerConfig);
         return this;
     }
 
