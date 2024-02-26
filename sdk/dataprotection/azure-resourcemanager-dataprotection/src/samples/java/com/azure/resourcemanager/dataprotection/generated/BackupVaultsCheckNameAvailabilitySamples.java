@@ -12,7 +12,7 @@ import com.azure.resourcemanager.dataprotection.models.CheckNameAvailabilityRequ
 public final class BackupVaultsCheckNameAvailabilitySamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-11-01/examples/VaultCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-12-01/examples/VaultCRUD/
      * CheckBackupVaultsNameAvailability.json
      */
     /**

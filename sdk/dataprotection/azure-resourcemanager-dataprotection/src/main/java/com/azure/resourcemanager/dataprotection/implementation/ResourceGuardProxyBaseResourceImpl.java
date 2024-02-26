@@ -106,9 +106,10 @@ public final class ResourceGuardProxyBaseResourceImpl implements ResourceGuardPr
         com.azure.resourcemanager.dataprotection.DataProtectionManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.vaultName = Utils.getValueFromIdByName(innerObject.id(), "backupVaults");
-        this.resourceGuardProxyName = Utils.getValueFromIdByName(innerObject.id(), "backupResourceGuardProxies");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.vaultName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "backupVaults");
+        this.resourceGuardProxyName
+            = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "backupResourceGuardProxies");
     }
 
     public ResourceGuardProxyBaseResource refresh() {

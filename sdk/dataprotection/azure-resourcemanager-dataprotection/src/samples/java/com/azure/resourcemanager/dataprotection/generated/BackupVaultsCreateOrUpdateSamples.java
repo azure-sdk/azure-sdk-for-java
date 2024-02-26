@@ -28,7 +28,7 @@ import java.util.Map;
 public final class BackupVaultsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-11-01/examples/VaultCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-12-01/examples/VaultCRUD/
      * PutBackupVault.json
      */
     /**
@@ -55,7 +55,7 @@ public final class BackupVaultsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-11-01/examples/VaultCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-12-01/examples/VaultCRUD/
      * PutBackupVaultWithMSI.json
      */
     /**

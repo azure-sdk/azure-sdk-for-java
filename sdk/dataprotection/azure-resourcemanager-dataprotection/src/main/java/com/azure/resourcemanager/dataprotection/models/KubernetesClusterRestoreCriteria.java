@@ -86,6 +86,15 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     @JsonProperty(value = "restoreHookReferences")
     private List<NamespacedNameResource> restoreHookReferences;
 
+    /*
+     * NamespacedNameResource
+     * 
+     * Gets or sets the resource modifier reference. This property sets the reference for resource modifier during
+     * restore.
+     */
+    @JsonProperty(value = "resourceModifierReference")
+    private NamespacedNameResource resourceModifierReference;
+
     /**
      * Creates an instance of KubernetesClusterRestoreCriteria class.
      */
@@ -315,6 +324,33 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     }
 
     /**
+     * Get the resourceModifierReference property: NamespacedNameResource
+     * 
+     * Gets or sets the resource modifier reference. This property sets the reference for resource modifier during
+     * restore.
+     * 
+     * @return the resourceModifierReference value.
+     */
+    public NamespacedNameResource resourceModifierReference() {
+        return this.resourceModifierReference;
+    }
+
+    /**
+     * Set the resourceModifierReference property: NamespacedNameResource
+     * 
+     * Gets or sets the resource modifier reference. This property sets the reference for resource modifier during
+     * restore.
+     * 
+     * @param resourceModifierReference the resourceModifierReference value to set.
+     * @return the KubernetesClusterRestoreCriteria object itself.
+     */
+    public KubernetesClusterRestoreCriteria
+        withResourceModifierReference(NamespacedNameResource resourceModifierReference) {
+        this.resourceModifierReference = resourceModifierReference;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -324,6 +360,9 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
         super.validate();
         if (restoreHookReferences() != null) {
             restoreHookReferences().forEach(e -> e.validate());
+        }
+        if (resourceModifierReference() != null) {
+            resourceModifierReference().validate();
         }
     }
 }
