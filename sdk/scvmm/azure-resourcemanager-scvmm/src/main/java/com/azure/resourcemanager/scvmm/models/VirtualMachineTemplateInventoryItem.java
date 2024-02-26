@@ -5,18 +5,19 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.resourcemanager.scvmm.fluent.models.InventoryItemProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The Virtual machine template inventory item. */
+/**
+ * The Virtual machine template inventory item.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "inventoryType")
 @JsonTypeName("VirtualMachineTemplate")
 @Immutable
 public final class VirtualMachineTemplateInventoryItem extends InventoryItemProperties {
     /*
-     * Gets or sets the desired number of vCPUs for the vm.
+     * Gets the desired number of vCPUs for the vm.
      */
     @JsonProperty(value = "cpuCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer cpuCount;
@@ -28,20 +29,26 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
     private Integer memoryMB;
 
     /*
-     * Gets or sets the type of the os.
+     * Gets the type of the os.
      */
     @JsonProperty(value = "osType", access = JsonProperty.Access.WRITE_ONLY)
     private OsType osType;
 
     /*
-     * Gets or sets os name.
+     * Gets os name.
      */
     @JsonProperty(value = "osName", access = JsonProperty.Access.WRITE_ONLY)
     private String osName;
 
     /**
-     * Get the cpuCount property: Gets or sets the desired number of vCPUs for the vm.
-     *
+     * Creates an instance of VirtualMachineTemplateInventoryItem class.
+     */
+    public VirtualMachineTemplateInventoryItem() {
+    }
+
+    /**
+     * Get the cpuCount property: Gets the desired number of vCPUs for the vm.
+     * 
      * @return the cpuCount value.
      */
     public Integer cpuCount() {
@@ -50,7 +57,7 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
 
     /**
      * Get the memoryMB property: MemoryMB is the desired size of a virtual machine's memory, in MB.
-     *
+     * 
      * @return the memoryMB value.
      */
     public Integer memoryMB() {
@@ -58,8 +65,8 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
     }
 
     /**
-     * Get the osType property: Gets or sets the type of the os.
-     *
+     * Get the osType property: Gets the type of the os.
+     * 
      * @return the osType value.
      */
     public OsType osType() {
@@ -67,8 +74,8 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
     }
 
     /**
-     * Get the osName property: Gets or sets os name.
-     *
+     * Get the osName property: Gets os name.
+     * 
      * @return the osName value.
      */
     public String osName() {
@@ -77,7 +84,7 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.scvmm.fluent.models.VmmServerInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of VmmServers. */
+/**
+ * List of VmmServers.
+ */
 @Fluent
 public final class VmmServerListResult {
     /*
@@ -21,12 +23,18 @@ public final class VmmServerListResult {
     /*
      * Url to follow for getting next page of resources.
      */
-    @JsonProperty(value = "nextLink")
+    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
     /**
+     * Creates an instance of VmmServerListResult class.
+     */
+    public VmmServerListResult() {
+    }
+
+    /**
      * Get the value property: List of VmmServers.
-     *
+     * 
      * @return the value value.
      */
     public List<VmmServerInner> value() {
@@ -35,7 +43,7 @@ public final class VmmServerListResult {
 
     /**
      * Set the value property: List of VmmServers.
-     *
+     * 
      * @param value the value value to set.
      * @return the VmmServerListResult object itself.
      */
@@ -46,7 +54,7 @@ public final class VmmServerListResult {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -54,19 +62,8 @@ public final class VmmServerListResult {
     }
 
     /**
-     * Set the nextLink property: Url to follow for getting next page of resources.
-     *
-     * @param nextLink the nextLink value to set.
-     * @return the VmmServerListResult object itself.
-     */
-    public VmmServerListResult withNextLink(String nextLink) {
-        this.nextLink = nextLink;
-        return this;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

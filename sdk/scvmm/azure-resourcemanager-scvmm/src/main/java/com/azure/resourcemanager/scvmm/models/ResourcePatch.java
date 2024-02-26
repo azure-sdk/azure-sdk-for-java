@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Object containing tags updates for patch operations. */
+/**
+ * Object containing tags updates for patch operations.
+ */
 @Fluent
 public final class ResourcePatch {
     /*
@@ -20,8 +22,14 @@ public final class ResourcePatch {
     private Map<String, String> tags;
 
     /**
+     * Creates an instance of ResourcePatch class.
+     */
+    public ResourcePatch() {
+    }
+
+    /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -30,7 +38,7 @@ public final class ResourcePatch {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the ResourcePatch object itself.
      */
@@ -41,7 +49,7 @@ public final class ResourcePatch {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
