@@ -4,17 +4,22 @@
 
 package com.azure.resourcemanager.hybridkubernetes.generated;
 
-/** Samples for ConnectedCluster List. */
+/**
+ * Samples for ConnectedCluster List.
+ */
 public final class ConnectedClusterListSamples {
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/GetClustersBySubscriptionExample.json
+     * x-ms-original-file:
+     * specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2024-02-01-preview/examples/
+     * GetClustersBySubscriptionExample.json
      */
     /**
-     * Sample code: GetClustersExample.
-     *
+     * Sample code: GetClustersBySubscriptionExample.
+     * 
      * @param manager Entry point to HybridKubernetesManager.
      */
-    public static void getClustersExample(com.azure.resourcemanager.hybridkubernetes.HybridKubernetesManager manager) {
+    public static void
+        getClustersBySubscriptionExample(com.azure.resourcemanager.hybridkubernetes.HybridKubernetesManager manager) {
         manager.connectedClusters().list(com.azure.core.util.Context.NONE);
     }
 }

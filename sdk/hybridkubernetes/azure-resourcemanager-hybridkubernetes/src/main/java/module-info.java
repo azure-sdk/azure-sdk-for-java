@@ -4,16 +4,10 @@
 
 module com.azure.resourcemanager.hybridkubernetes {
     requires transitive com.azure.core.management;
-
     exports com.azure.resourcemanager.hybridkubernetes;
     exports com.azure.resourcemanager.hybridkubernetes.fluent;
     exports com.azure.resourcemanager.hybridkubernetes.fluent.models;
     exports com.azure.resourcemanager.hybridkubernetes.models;
-
-    opens com.azure.resourcemanager.hybridkubernetes.fluent.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
-    opens com.azure.resourcemanager.hybridkubernetes.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.hybridkubernetes.fluent.models to com.azure.core, com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.hybridkubernetes.models to com.azure.core, com.fasterxml.jackson.databind;
 }
