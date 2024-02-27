@@ -23,13 +23,15 @@ public final class SingleServerFullResourceNames extends SingleServerCustomResou
     @JsonProperty(value = "virtualMachine")
     private VirtualMachineResourceNames virtualMachine;
 
-    /** Creates an instance of SingleServerFullResourceNames class. */
+    /**
+     * Creates an instance of SingleServerFullResourceNames class.
+     */
     public SingleServerFullResourceNames() {
     }
 
     /**
      * Get the virtualMachine property: The resource names object for virtual machine and related resources.
-     *
+     * 
      * @return the virtualMachine value.
      */
     public VirtualMachineResourceNames virtualMachine() {
@@ -38,7 +40,7 @@ public final class SingleServerFullResourceNames extends SingleServerCustomResou
 
     /**
      * Set the virtualMachine property: The resource names object for virtual machine and related resources.
-     *
+     * 
      * @param virtualMachine the virtualMachine value to set.
      * @return the SingleServerFullResourceNames object itself.
      */
@@ -49,7 +51,7 @@ public final class SingleServerFullResourceNames extends SingleServerCustomResou
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

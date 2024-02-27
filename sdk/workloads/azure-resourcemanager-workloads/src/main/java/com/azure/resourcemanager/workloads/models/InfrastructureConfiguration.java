@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Deploy SAP Infrastructure Details. */
+/**
+ * Deploy SAP Infrastructure Details.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -20,8 +22,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("InfrastructureConfiguration")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "SingleServer", value = SingleServerConfiguration.class),
-    @JsonSubTypes.Type(name = "ThreeTier", value = ThreeTierConfiguration.class)
-})
+    @JsonSubTypes.Type(name = "ThreeTier", value = ThreeTierConfiguration.class) })
 @Fluent
 public class InfrastructureConfiguration {
     /*
@@ -30,13 +31,15 @@ public class InfrastructureConfiguration {
     @JsonProperty(value = "appResourceGroup", required = true)
     private String appResourceGroup;
 
-    /** Creates an instance of InfrastructureConfiguration class. */
+    /**
+     * Creates an instance of InfrastructureConfiguration class.
+     */
     public InfrastructureConfiguration() {
     }
 
     /**
      * Get the appResourceGroup property: The application resource group where SAP system resources will be deployed.
-     *
+     * 
      * @return the appResourceGroup value.
      */
     public String appResourceGroup() {
@@ -45,7 +48,7 @@ public class InfrastructureConfiguration {
 
     /**
      * Set the appResourceGroup property: The application resource group where SAP system resources will be deployed.
-     *
+     * 
      * @param appResourceGroup the appResourceGroup value to set.
      * @return the InfrastructureConfiguration object itself.
      */
@@ -56,15 +59,13 @@ public class InfrastructureConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (appResourceGroup() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property appResourceGroup in model InfrastructureConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property appResourceGroup in model InfrastructureConfiguration"));
         }
     }
 

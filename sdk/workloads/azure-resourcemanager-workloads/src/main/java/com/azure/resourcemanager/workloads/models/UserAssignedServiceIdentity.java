@@ -29,13 +29,15 @@ public final class UserAssignedServiceIdentity {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, UserAssignedIdentity> userAssignedIdentities;
 
-    /** Creates an instance of UserAssignedServiceIdentity class. */
+    /**
+     * Creates an instance of UserAssignedServiceIdentity class.
+     */
     public UserAssignedServiceIdentity() {
     }
 
     /**
      * Get the type property: Type of manage identity.
-     *
+     * 
      * @return the type value.
      */
     public ManagedServiceIdentityType type() {
@@ -44,7 +46,7 @@ public final class UserAssignedServiceIdentity {
 
     /**
      * Set the type property: Type of manage identity.
-     *
+     * 
      * @param type the type value to set.
      * @return the UserAssignedServiceIdentity object itself.
      */
@@ -55,7 +57,7 @@ public final class UserAssignedServiceIdentity {
 
     /**
      * Get the userAssignedIdentities property: User assigned identities dictionary.
-     *
+     * 
      * @return the userAssignedIdentities value.
      */
     public Map<String, UserAssignedIdentity> userAssignedIdentities() {
@@ -64,37 +66,32 @@ public final class UserAssignedServiceIdentity {
 
     /**
      * Set the userAssignedIdentities property: User assigned identities dictionary.
-     *
+     * 
      * @param userAssignedIdentities the userAssignedIdentities value to set.
      * @return the UserAssignedServiceIdentity object itself.
      */
-    public UserAssignedServiceIdentity withUserAssignedIdentities(
-        Map<String, UserAssignedIdentity> userAssignedIdentities) {
+    public UserAssignedServiceIdentity
+        withUserAssignedIdentities(Map<String, UserAssignedIdentity> userAssignedIdentities) {
         this.userAssignedIdentities = userAssignedIdentities;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property type in model UserAssignedServiceIdentity"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model UserAssignedServiceIdentity"));
         }
         if (userAssignedIdentities() != null) {
-            userAssignedIdentities()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            userAssignedIdentities().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 
