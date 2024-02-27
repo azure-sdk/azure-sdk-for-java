@@ -21,24 +21,18 @@ public final class MarketplaceGalleryImagesOperationsImpl implements Marketplace
 
     private final com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager;
 
-    public MarketplaceGalleryImagesOperationsImpl(
-        MarketplaceGalleryImagesOperationsClient innerClient,
+    public MarketplaceGalleryImagesOperationsImpl(MarketplaceGalleryImagesOperationsClient innerClient,
         com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<MarketplaceGalleryImages> getByResourceGroupWithResponse(
-        String resourceGroupName, String marketplaceGalleryImageName, Context context) {
-        Response<MarketplaceGalleryImagesInner> inner =
-            this
-                .serviceClient()
-                .getByResourceGroupWithResponse(resourceGroupName, marketplaceGalleryImageName, context);
+    public Response<MarketplaceGalleryImages> getByResourceGroupWithResponse(String resourceGroupName,
+        String marketplaceGalleryImageName, Context context) {
+        Response<MarketplaceGalleryImagesInner> inner = this.serviceClient()
+            .getByResourceGroupWithResponse(resourceGroupName, marketplaceGalleryImageName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new MarketplaceGalleryImagesImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -46,8 +40,8 @@ public final class MarketplaceGalleryImagesOperationsImpl implements Marketplace
     }
 
     public MarketplaceGalleryImages getByResourceGroup(String resourceGroupName, String marketplaceGalleryImageName) {
-        MarketplaceGalleryImagesInner inner =
-            this.serviceClient().getByResourceGroup(resourceGroupName, marketplaceGalleryImageName);
+        MarketplaceGalleryImagesInner inner
+            = this.serviceClient().getByResourceGroup(resourceGroupName, marketplaceGalleryImageName);
         if (inner != null) {
             return new MarketplaceGalleryImagesImpl(inner, this.manager());
         } else {
@@ -64,113 +58,80 @@ public final class MarketplaceGalleryImagesOperationsImpl implements Marketplace
     }
 
     public PagedIterable<MarketplaceGalleryImages> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<MarketplaceGalleryImagesInner> inner =
-            this.serviceClient().listByResourceGroup(resourceGroupName);
-        return Utils.mapPage(inner, inner1 -> new MarketplaceGalleryImagesImpl(inner1, this.manager()));
+        PagedIterable<MarketplaceGalleryImagesInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new MarketplaceGalleryImagesImpl(inner1, this.manager()));
     }
 
     public PagedIterable<MarketplaceGalleryImages> listByResourceGroup(String resourceGroupName, Context context) {
-        PagedIterable<MarketplaceGalleryImagesInner> inner =
-            this.serviceClient().listByResourceGroup(resourceGroupName, context);
-        return Utils.mapPage(inner, inner1 -> new MarketplaceGalleryImagesImpl(inner1, this.manager()));
+        PagedIterable<MarketplaceGalleryImagesInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new MarketplaceGalleryImagesImpl(inner1, this.manager()));
     }
 
     public PagedIterable<MarketplaceGalleryImages> list() {
         PagedIterable<MarketplaceGalleryImagesInner> inner = this.serviceClient().list();
-        return Utils.mapPage(inner, inner1 -> new MarketplaceGalleryImagesImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new MarketplaceGalleryImagesImpl(inner1, this.manager()));
     }
 
     public PagedIterable<MarketplaceGalleryImages> list(Context context) {
         PagedIterable<MarketplaceGalleryImagesInner> inner = this.serviceClient().list(context);
-        return Utils.mapPage(inner, inner1 -> new MarketplaceGalleryImagesImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new MarketplaceGalleryImagesImpl(inner1, this.manager()));
     }
 
     public MarketplaceGalleryImages getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String marketplaceGalleryImageName = Utils.getValueFromIdByName(id, "marketplaceGalleryImages");
+        String marketplaceGalleryImageName = ResourceManagerUtils.getValueFromIdByName(id, "marketplaceGalleryImages");
         if (marketplaceGalleryImageName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'marketplaceGalleryImages'.",
-                                id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
+                .format("The resource ID '%s' is not valid. Missing path segment 'marketplaceGalleryImages'.", id)));
         }
-        return this
-            .getByResourceGroupWithResponse(resourceGroupName, marketplaceGalleryImageName, Context.NONE)
+        return this.getByResourceGroupWithResponse(resourceGroupName, marketplaceGalleryImageName, Context.NONE)
             .getValue();
     }
 
     public Response<MarketplaceGalleryImages> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String marketplaceGalleryImageName = Utils.getValueFromIdByName(id, "marketplaceGalleryImages");
+        String marketplaceGalleryImageName = ResourceManagerUtils.getValueFromIdByName(id, "marketplaceGalleryImages");
         if (marketplaceGalleryImageName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'marketplaceGalleryImages'.",
-                                id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
+                .format("The resource ID '%s' is not valid. Missing path segment 'marketplaceGalleryImages'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, marketplaceGalleryImageName, context);
     }
 
     public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String marketplaceGalleryImageName = Utils.getValueFromIdByName(id, "marketplaceGalleryImages");
+        String marketplaceGalleryImageName = ResourceManagerUtils.getValueFromIdByName(id, "marketplaceGalleryImages");
         if (marketplaceGalleryImageName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'marketplaceGalleryImages'.",
-                                id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
+                .format("The resource ID '%s' is not valid. Missing path segment 'marketplaceGalleryImages'.", id)));
         }
         this.delete(resourceGroupName, marketplaceGalleryImageName, Context.NONE);
     }
 
     public void deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String marketplaceGalleryImageName = Utils.getValueFromIdByName(id, "marketplaceGalleryImages");
+        String marketplaceGalleryImageName = ResourceManagerUtils.getValueFromIdByName(id, "marketplaceGalleryImages");
         if (marketplaceGalleryImageName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'marketplaceGalleryImages'.",
-                                id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
+                .format("The resource ID '%s' is not valid. Missing path segment 'marketplaceGalleryImages'.", id)));
         }
         this.delete(resourceGroupName, marketplaceGalleryImageName, context);
     }
