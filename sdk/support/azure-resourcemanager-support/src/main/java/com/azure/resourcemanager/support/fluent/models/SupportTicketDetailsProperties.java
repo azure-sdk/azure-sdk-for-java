@@ -18,7 +18,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Describes the properties of a support ticket. */
+/**
+ * Describes the properties of a support ticket.
+ */
 @Fluent
 public final class SupportTicketDetailsProperties {
     /*
@@ -57,7 +59,7 @@ public final class SupportTicketDetailsProperties {
     /*
      * Enrollment Id associated with the support ticket.
      */
-    @JsonProperty(value = "enrollmentId", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "enrollmentId")
     private String enrollmentId;
 
     /*
@@ -180,13 +182,15 @@ public final class SupportTicketDetailsProperties {
     @JsonProperty(value = "secondaryConsent")
     private List<SecondaryConsent> secondaryConsent;
 
-    /** Creates an instance of SupportTicketDetailsProperties class. */
+    /**
+     * Creates an instance of SupportTicketDetailsProperties class.
+     */
     public SupportTicketDetailsProperties() {
     }
 
     /**
      * Get the supportTicketId property: System generated support ticket Id that is unique.
-     *
+     * 
      * @return the supportTicketId value.
      */
     public String supportTicketId() {
@@ -195,7 +199,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Set the supportTicketId property: System generated support ticket Id that is unique.
-     *
+     * 
      * @param supportTicketId the supportTicketId value to set.
      * @return the SupportTicketDetailsProperties object itself.
      */
@@ -206,7 +210,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the description property: Detailed description of the question or issue.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -215,7 +219,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Set the description property: Detailed description of the question or issue.
-     *
+     * 
      * @param description the description value to set.
      * @return the SupportTicketDetailsProperties object itself.
      */
@@ -227,7 +231,7 @@ public final class SupportTicketDetailsProperties {
     /**
      * Get the problemClassificationId property: Each Azure service has its own set of issue categories, also known as
      * problem classification. This parameter is the unique Id for the type of problem you are experiencing.
-     *
+     * 
      * @return the problemClassificationId value.
      */
     public String problemClassificationId() {
@@ -237,7 +241,7 @@ public final class SupportTicketDetailsProperties {
     /**
      * Set the problemClassificationId property: Each Azure service has its own set of issue categories, also known as
      * problem classification. This parameter is the unique Id for the type of problem you are experiencing.
-     *
+     * 
      * @param problemClassificationId the problemClassificationId value to set.
      * @return the SupportTicketDetailsProperties object itself.
      */
@@ -248,7 +252,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the problemClassificationDisplayName property: Localized name of problem classification.
-     *
+     * 
      * @return the problemClassificationDisplayName value.
      */
     public String problemClassificationDisplayName() {
@@ -260,7 +264,7 @@ public final class SupportTicketDetailsProperties {
      * time according to the service level agreement of the technical support plan you have with Azure. Note: 'Highest
      * critical impact', also known as the 'Emergency - Severe impact' level in the Azure portal is reserved only for
      * our Premium customers.
-     *
+     * 
      * @return the severity value.
      */
     public SeverityLevel severity() {
@@ -272,7 +276,7 @@ public final class SupportTicketDetailsProperties {
      * time according to the service level agreement of the technical support plan you have with Azure. Note: 'Highest
      * critical impact', also known as the 'Emergency - Severe impact' level in the Azure portal is reserved only for
      * our Premium customers.
-     *
+     * 
      * @param severity the severity value to set.
      * @return the SupportTicketDetailsProperties object itself.
      */
@@ -283,7 +287,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the enrollmentId property: Enrollment Id associated with the support ticket.
-     *
+     * 
      * @return the enrollmentId value.
      */
     public String enrollmentId() {
@@ -291,8 +295,19 @@ public final class SupportTicketDetailsProperties {
     }
 
     /**
+     * Set the enrollmentId property: Enrollment Id associated with the support ticket.
+     * 
+     * @param enrollmentId the enrollmentId value to set.
+     * @return the SupportTicketDetailsProperties object itself.
+     */
+    public SupportTicketDetailsProperties withEnrollmentId(String enrollmentId) {
+        this.enrollmentId = enrollmentId;
+        return this;
+    }
+
+    /**
      * Get the require24X7Response property: Indicates if this requires a 24x7 response from Azure.
-     *
+     * 
      * @return the require24X7Response value.
      */
     public Boolean require24X7Response() {
@@ -301,7 +316,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Set the require24X7Response property: Indicates if this requires a 24x7 response from Azure.
-     *
+     * 
      * @param require24X7Response the require24X7Response value to set.
      * @return the SupportTicketDetailsProperties object itself.
      */
@@ -312,7 +327,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the advancedDiagnosticConsent property: Advanced diagnostic consent to be updated on the support ticket.
-     *
+     * 
      * @return the advancedDiagnosticConsent value.
      */
     public Consent advancedDiagnosticConsent() {
@@ -321,7 +336,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Set the advancedDiagnosticConsent property: Advanced diagnostic consent to be updated on the support ticket.
-     *
+     * 
      * @param advancedDiagnosticConsent the advancedDiagnosticConsent value to set.
      * @return the SupportTicketDetailsProperties object itself.
      */
@@ -332,7 +347,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the problemScopingQuestions property: Problem scoping questions associated with the support ticket.
-     *
+     * 
      * @return the problemScopingQuestions value.
      */
     public String problemScopingQuestions() {
@@ -341,7 +356,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Set the problemScopingQuestions property: Problem scoping questions associated with the support ticket.
-     *
+     * 
      * @param problemScopingQuestions the problemScopingQuestions value to set.
      * @return the SupportTicketDetailsProperties object itself.
      */
@@ -352,7 +367,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the supportPlanId property: Support plan id associated with the support ticket.
-     *
+     * 
      * @return the supportPlanId value.
      */
     public String supportPlanId() {
@@ -361,7 +376,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Set the supportPlanId property: Support plan id associated with the support ticket.
-     *
+     * 
      * @param supportPlanId the supportPlanId value to set.
      * @return the SupportTicketDetailsProperties object itself.
      */
@@ -372,7 +387,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the contactDetails property: Contact information of the user requesting to create a support ticket.
-     *
+     * 
      * @return the contactDetails value.
      */
     public ContactProfile contactDetails() {
@@ -381,7 +396,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Set the contactDetails property: Contact information of the user requesting to create a support ticket.
-     *
+     * 
      * @param contactDetails the contactDetails value to set.
      * @return the SupportTicketDetailsProperties object itself.
      */
@@ -392,7 +407,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the serviceLevelAgreement property: Service Level Agreement information for this support ticket.
-     *
+     * 
      * @return the serviceLevelAgreement value.
      */
     public ServiceLevelAgreement serviceLevelAgreement() {
@@ -401,7 +416,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Set the serviceLevelAgreement property: Service Level Agreement information for this support ticket.
-     *
+     * 
      * @param serviceLevelAgreement the serviceLevelAgreement value to set.
      * @return the SupportTicketDetailsProperties object itself.
      */
@@ -412,7 +427,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the supportEngineer property: Information about the support engineer working on this support ticket.
-     *
+     * 
      * @return the supportEngineer value.
      */
     public SupportEngineer supportEngineer() {
@@ -421,7 +436,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Set the supportEngineer property: Information about the support engineer working on this support ticket.
-     *
+     * 
      * @param supportEngineer the supportEngineer value to set.
      * @return the SupportTicketDetailsProperties object itself.
      */
@@ -432,7 +447,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the supportPlanType property: Support plan type associated with the support ticket.
-     *
+     * 
      * @return the supportPlanType value.
      */
     public String supportPlanType() {
@@ -441,7 +456,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the supportPlanDisplayName property: Support plan type associated with the support ticket.
-     *
+     * 
      * @return the supportPlanDisplayName value.
      */
     public String supportPlanDisplayName() {
@@ -450,7 +465,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the title property: Title of the support ticket.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -459,7 +474,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Set the title property: Title of the support ticket.
-     *
+     * 
      * @param title the title value to set.
      * @return the SupportTicketDetailsProperties object itself.
      */
@@ -470,7 +485,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the problemStartTime property: Time in UTC (ISO 8601 format) when the problem started.
-     *
+     * 
      * @return the problemStartTime value.
      */
     public OffsetDateTime problemStartTime() {
@@ -479,7 +494,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Set the problemStartTime property: Time in UTC (ISO 8601 format) when the problem started.
-     *
+     * 
      * @param problemStartTime the problemStartTime value to set.
      * @return the SupportTicketDetailsProperties object itself.
      */
@@ -491,7 +506,7 @@ public final class SupportTicketDetailsProperties {
     /**
      * Get the serviceId property: This is the resource Id of the Azure service resource associated with the support
      * ticket.
-     *
+     * 
      * @return the serviceId value.
      */
     public String serviceId() {
@@ -501,7 +516,7 @@ public final class SupportTicketDetailsProperties {
     /**
      * Set the serviceId property: This is the resource Id of the Azure service resource associated with the support
      * ticket.
-     *
+     * 
      * @param serviceId the serviceId value to set.
      * @return the SupportTicketDetailsProperties object itself.
      */
@@ -512,7 +527,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the serviceDisplayName property: Localized name of the Azure service.
-     *
+     * 
      * @return the serviceDisplayName value.
      */
     public String serviceDisplayName() {
@@ -521,7 +536,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the status property: Status of the support ticket.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -530,7 +545,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the createdDate property: Time in UTC (ISO 8601 format) when the support ticket was created.
-     *
+     * 
      * @return the createdDate value.
      */
     public OffsetDateTime createdDate() {
@@ -539,7 +554,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the modifiedDate property: Time in UTC (ISO 8601 format) when the support ticket was last modified.
-     *
+     * 
      * @return the modifiedDate value.
      */
     public OffsetDateTime modifiedDate() {
@@ -548,7 +563,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the fileWorkspaceName property: File workspace name.
-     *
+     * 
      * @return the fileWorkspaceName value.
      */
     public String fileWorkspaceName() {
@@ -557,7 +572,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Set the fileWorkspaceName property: File workspace name.
-     *
+     * 
      * @param fileWorkspaceName the fileWorkspaceName value to set.
      * @return the SupportTicketDetailsProperties object itself.
      */
@@ -569,7 +584,7 @@ public final class SupportTicketDetailsProperties {
     /**
      * Get the technicalTicketDetails property: Additional ticket details associated with a technical support ticket
      * request.
-     *
+     * 
      * @return the technicalTicketDetails value.
      */
     public TechnicalTicketDetails technicalTicketDetails() {
@@ -579,7 +594,7 @@ public final class SupportTicketDetailsProperties {
     /**
      * Set the technicalTicketDetails property: Additional ticket details associated with a technical support ticket
      * request.
-     *
+     * 
      * @param technicalTicketDetails the technicalTicketDetails value to set.
      * @return the SupportTicketDetailsProperties object itself.
      */
@@ -590,7 +605,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the quotaTicketDetails property: Additional ticket details associated with a quota support ticket request.
-     *
+     * 
      * @return the quotaTicketDetails value.
      */
     public QuotaTicketDetails quotaTicketDetails() {
@@ -599,7 +614,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Set the quotaTicketDetails property: Additional ticket details associated with a quota support ticket request.
-     *
+     * 
      * @param quotaTicketDetails the quotaTicketDetails value to set.
      * @return the SupportTicketDetailsProperties object itself.
      */
@@ -610,7 +625,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Get the secondaryConsent property: This property indicates secondary consents for the support ticket.
-     *
+     * 
      * @return the secondaryConsent value.
      */
     public List<SecondaryConsent> secondaryConsent() {
@@ -619,7 +634,7 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Set the secondaryConsent property: This property indicates secondary consents for the support ticket.
-     *
+     * 
      * @param secondaryConsent the secondaryConsent value to set.
      * @return the SupportTicketDetailsProperties object itself.
      */
@@ -630,33 +645,25 @@ public final class SupportTicketDetailsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (description() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property description in model SupportTicketDetailsProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property description in model SupportTicketDetailsProperties"));
         }
         if (problemClassificationId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property problemClassificationId in model SupportTicketDetailsProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property problemClassificationId in model SupportTicketDetailsProperties"));
         }
         if (severity() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property severity in model SupportTicketDetailsProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property severity in model SupportTicketDetailsProperties"));
         }
         if (contactDetails() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property contactDetails in model SupportTicketDetailsProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property contactDetails in model SupportTicketDetailsProperties"));
         } else {
             contactDetails().validate();
         }
@@ -667,16 +674,12 @@ public final class SupportTicketDetailsProperties {
             supportEngineer().validate();
         }
         if (title() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property title in model SupportTicketDetailsProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property title in model SupportTicketDetailsProperties"));
         }
         if (serviceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property serviceId in model SupportTicketDetailsProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property serviceId in model SupportTicketDetailsProperties"));
         }
         if (technicalTicketDetails() != null) {
             technicalTicketDetails().validate();
