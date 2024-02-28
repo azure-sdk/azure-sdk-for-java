@@ -9,12 +9,15 @@ import com.azure.resourcemanager.kubernetesconfiguration.models.AzureBlobPatchDe
 import com.azure.resourcemanager.kubernetesconfiguration.models.BucketPatchDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.GitRepositoryPatchDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.KustomizationPatchDefinition;
+import com.azure.resourcemanager.kubernetesconfiguration.models.OciRepositoryPatchDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.SourceKindType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Updatable properties of an Flux Configuration Patch Request. */
+/**
+ * Updatable properties of an Flux Configuration Patch Request.
+ */
 @Fluent
 public final class FluxConfigurationPatchProperties {
     /*
@@ -48,6 +51,12 @@ public final class FluxConfigurationPatchProperties {
     private AzureBlobPatchDefinition azureBlob;
 
     /*
+     * Parameters to reconcile to the OCIRepository source kind type.
+     */
+    @JsonProperty(value = "ociRepository")
+    private OciRepositoryPatchDefinition ociRepository;
+
+    /*
      * Array of kustomizations used to reconcile the artifact pulled by the source type on the cluster.
      */
     @JsonProperty(value = "kustomizations")
@@ -61,13 +70,15 @@ public final class FluxConfigurationPatchProperties {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> configurationProtectedSettings;
 
-    /** Creates an instance of FluxConfigurationPatchProperties class. */
+    /**
+     * Creates an instance of FluxConfigurationPatchProperties class.
+     */
     public FluxConfigurationPatchProperties() {
     }
 
     /**
      * Get the sourceKind property: Source Kind to pull the configuration data from.
-     *
+     * 
      * @return the sourceKind value.
      */
     public SourceKindType sourceKind() {
@@ -76,7 +87,7 @@ public final class FluxConfigurationPatchProperties {
 
     /**
      * Set the sourceKind property: Source Kind to pull the configuration data from.
-     *
+     * 
      * @param sourceKind the sourceKind value to set.
      * @return the FluxConfigurationPatchProperties object itself.
      */
@@ -88,7 +99,7 @@ public final class FluxConfigurationPatchProperties {
     /**
      * Get the suspend property: Whether this configuration should suspend its reconciliation of its kustomizations and
      * sources.
-     *
+     * 
      * @return the suspend value.
      */
     public Boolean suspend() {
@@ -98,7 +109,7 @@ public final class FluxConfigurationPatchProperties {
     /**
      * Set the suspend property: Whether this configuration should suspend its reconciliation of its kustomizations and
      * sources.
-     *
+     * 
      * @param suspend the suspend value to set.
      * @return the FluxConfigurationPatchProperties object itself.
      */
@@ -109,7 +120,7 @@ public final class FluxConfigurationPatchProperties {
 
     /**
      * Get the gitRepository property: Parameters to reconcile to the GitRepository source kind type.
-     *
+     * 
      * @return the gitRepository value.
      */
     public GitRepositoryPatchDefinition gitRepository() {
@@ -118,7 +129,7 @@ public final class FluxConfigurationPatchProperties {
 
     /**
      * Set the gitRepository property: Parameters to reconcile to the GitRepository source kind type.
-     *
+     * 
      * @param gitRepository the gitRepository value to set.
      * @return the FluxConfigurationPatchProperties object itself.
      */
@@ -129,7 +140,7 @@ public final class FluxConfigurationPatchProperties {
 
     /**
      * Get the bucket property: Parameters to reconcile to the Bucket source kind type.
-     *
+     * 
      * @return the bucket value.
      */
     public BucketPatchDefinition bucket() {
@@ -138,7 +149,7 @@ public final class FluxConfigurationPatchProperties {
 
     /**
      * Set the bucket property: Parameters to reconcile to the Bucket source kind type.
-     *
+     * 
      * @param bucket the bucket value to set.
      * @return the FluxConfigurationPatchProperties object itself.
      */
@@ -149,7 +160,7 @@ public final class FluxConfigurationPatchProperties {
 
     /**
      * Get the azureBlob property: Parameters to reconcile to the AzureBlob source kind type.
-     *
+     * 
      * @return the azureBlob value.
      */
     public AzureBlobPatchDefinition azureBlob() {
@@ -158,7 +169,7 @@ public final class FluxConfigurationPatchProperties {
 
     /**
      * Set the azureBlob property: Parameters to reconcile to the AzureBlob source kind type.
-     *
+     * 
      * @param azureBlob the azureBlob value to set.
      * @return the FluxConfigurationPatchProperties object itself.
      */
@@ -168,9 +179,29 @@ public final class FluxConfigurationPatchProperties {
     }
 
     /**
-     * Get the kustomizations property: Array of kustomizations used to reconcile the artifact pulled by the source type
-     * on the cluster.
-     *
+     * Get the ociRepository property: Parameters to reconcile to the OCIRepository source kind type.
+     * 
+     * @return the ociRepository value.
+     */
+    public OciRepositoryPatchDefinition ociRepository() {
+        return this.ociRepository;
+    }
+
+    /**
+     * Set the ociRepository property: Parameters to reconcile to the OCIRepository source kind type.
+     * 
+     * @param ociRepository the ociRepository value to set.
+     * @return the FluxConfigurationPatchProperties object itself.
+     */
+    public FluxConfigurationPatchProperties withOciRepository(OciRepositoryPatchDefinition ociRepository) {
+        this.ociRepository = ociRepository;
+        return this;
+    }
+
+    /**
+     * Get the kustomizations property: Array of kustomizations used to reconcile the artifact pulled by the source
+     * type on the cluster.
+     * 
      * @return the kustomizations value.
      */
     public Map<String, KustomizationPatchDefinition> kustomizations() {
@@ -178,14 +209,14 @@ public final class FluxConfigurationPatchProperties {
     }
 
     /**
-     * Set the kustomizations property: Array of kustomizations used to reconcile the artifact pulled by the source type
-     * on the cluster.
-     *
+     * Set the kustomizations property: Array of kustomizations used to reconcile the artifact pulled by the source
+     * type on the cluster.
+     * 
      * @param kustomizations the kustomizations value to set.
      * @return the FluxConfigurationPatchProperties object itself.
      */
-    public FluxConfigurationPatchProperties withKustomizations(
-        Map<String, KustomizationPatchDefinition> kustomizations) {
+    public FluxConfigurationPatchProperties
+        withKustomizations(Map<String, KustomizationPatchDefinition> kustomizations) {
         this.kustomizations = kustomizations;
         return this;
     }
@@ -193,7 +224,7 @@ public final class FluxConfigurationPatchProperties {
     /**
      * Get the configurationProtectedSettings property: Key-value pairs of protected configuration settings for the
      * configuration.
-     *
+     * 
      * @return the configurationProtectedSettings value.
      */
     public Map<String, String> configurationProtectedSettings() {
@@ -203,19 +234,19 @@ public final class FluxConfigurationPatchProperties {
     /**
      * Set the configurationProtectedSettings property: Key-value pairs of protected configuration settings for the
      * configuration.
-     *
+     * 
      * @param configurationProtectedSettings the configurationProtectedSettings value to set.
      * @return the FluxConfigurationPatchProperties object itself.
      */
-    public FluxConfigurationPatchProperties withConfigurationProtectedSettings(
-        Map<String, String> configurationProtectedSettings) {
+    public FluxConfigurationPatchProperties
+        withConfigurationProtectedSettings(Map<String, String> configurationProtectedSettings) {
         this.configurationProtectedSettings = configurationProtectedSettings;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -228,15 +259,15 @@ public final class FluxConfigurationPatchProperties {
         if (azureBlob() != null) {
             azureBlob().validate();
         }
+        if (ociRepository() != null) {
+            ociRepository().validate();
+        }
         if (kustomizations() != null) {
-            kustomizations()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            kustomizations().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 }

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kubernetesconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Parameters to reconcile to the Bucket source kind type. */
+/**
+ * Parameters to reconcile to the Bucket source kind type.
+ */
 @Fluent
 public final class BucketDefinition {
     /*
@@ -53,13 +55,15 @@ public final class BucketDefinition {
     @JsonProperty(value = "localAuthRef")
     private String localAuthRef;
 
-    /** Creates an instance of BucketDefinition class. */
+    /**
+     * Creates an instance of BucketDefinition class.
+     */
     public BucketDefinition() {
     }
 
     /**
      * Get the url property: The URL to sync for the flux configuration S3 bucket.
-     *
+     * 
      * @return the url value.
      */
     public String url() {
@@ -68,7 +72,7 @@ public final class BucketDefinition {
 
     /**
      * Set the url property: The URL to sync for the flux configuration S3 bucket.
-     *
+     * 
      * @param url the url value to set.
      * @return the BucketDefinition object itself.
      */
@@ -79,7 +83,7 @@ public final class BucketDefinition {
 
     /**
      * Get the bucketName property: The bucket name to sync from the url endpoint for the flux configuration.
-     *
+     * 
      * @return the bucketName value.
      */
     public String bucketName() {
@@ -88,7 +92,7 @@ public final class BucketDefinition {
 
     /**
      * Set the bucketName property: The bucket name to sync from the url endpoint for the flux configuration.
-     *
+     * 
      * @param bucketName the bucketName value to set.
      * @return the BucketDefinition object itself.
      */
@@ -99,7 +103,7 @@ public final class BucketDefinition {
 
     /**
      * Get the insecure property: Specify whether to use insecure communication when puling data from the S3 bucket.
-     *
+     * 
      * @return the insecure value.
      */
     public Boolean insecure() {
@@ -108,7 +112,7 @@ public final class BucketDefinition {
 
     /**
      * Set the insecure property: Specify whether to use insecure communication when puling data from the S3 bucket.
-     *
+     * 
      * @param insecure the insecure value to set.
      * @return the BucketDefinition object itself.
      */
@@ -120,7 +124,7 @@ public final class BucketDefinition {
     /**
      * Get the timeoutInSeconds property: The maximum time to attempt to reconcile the cluster bucket source with the
      * remote.
-     *
+     * 
      * @return the timeoutInSeconds value.
      */
     public Long timeoutInSeconds() {
@@ -130,7 +134,7 @@ public final class BucketDefinition {
     /**
      * Set the timeoutInSeconds property: The maximum time to attempt to reconcile the cluster bucket source with the
      * remote.
-     *
+     * 
      * @param timeoutInSeconds the timeoutInSeconds value to set.
      * @return the BucketDefinition object itself.
      */
@@ -142,7 +146,7 @@ public final class BucketDefinition {
     /**
      * Get the syncIntervalInSeconds property: The interval at which to re-reconcile the cluster bucket source with the
      * remote.
-     *
+     * 
      * @return the syncIntervalInSeconds value.
      */
     public Long syncIntervalInSeconds() {
@@ -152,7 +156,7 @@ public final class BucketDefinition {
     /**
      * Set the syncIntervalInSeconds property: The interval at which to re-reconcile the cluster bucket source with the
      * remote.
-     *
+     * 
      * @param syncIntervalInSeconds the syncIntervalInSeconds value to set.
      * @return the BucketDefinition object itself.
      */
@@ -163,7 +167,7 @@ public final class BucketDefinition {
 
     /**
      * Get the accessKey property: Plaintext access key used to securely access the S3 bucket.
-     *
+     * 
      * @return the accessKey value.
      */
     public String accessKey() {
@@ -172,7 +176,7 @@ public final class BucketDefinition {
 
     /**
      * Set the accessKey property: Plaintext access key used to securely access the S3 bucket.
-     *
+     * 
      * @param accessKey the accessKey value to set.
      * @return the BucketDefinition object itself.
      */
@@ -184,7 +188,7 @@ public final class BucketDefinition {
     /**
      * Get the localAuthRef property: Name of a local secret on the Kubernetes cluster to use as the authentication
      * secret rather than the managed or user-provided configuration secrets.
-     *
+     * 
      * @return the localAuthRef value.
      */
     public String localAuthRef() {
@@ -194,7 +198,7 @@ public final class BucketDefinition {
     /**
      * Set the localAuthRef property: Name of a local secret on the Kubernetes cluster to use as the authentication
      * secret rather than the managed or user-provided configuration secrets.
-     *
+     * 
      * @param localAuthRef the localAuthRef value to set.
      * @return the BucketDefinition object itself.
      */
@@ -205,7 +209,7 @@ public final class BucketDefinition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

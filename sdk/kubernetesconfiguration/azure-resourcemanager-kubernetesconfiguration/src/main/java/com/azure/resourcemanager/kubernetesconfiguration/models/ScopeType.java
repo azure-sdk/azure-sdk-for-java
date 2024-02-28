@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Scope at which the configuration will be installed. */
+/**
+ * Scope at which the configuration will be installed.
+ */
 public final class ScopeType extends ExpandableStringEnum<ScopeType> {
-    /** Static value cluster for ScopeType. */
+    /**
+     * Static value cluster for ScopeType.
+     */
     public static final ScopeType CLUSTER = fromString("cluster");
 
-    /** Static value namespace for ScopeType. */
+    /**
+     * Static value namespace for ScopeType.
+     */
     public static final ScopeType NAMESPACE = fromString("namespace");
 
     /**
      * Creates a new instance of ScopeType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class ScopeType extends ExpandableStringEnum<ScopeType> {
 
     /**
      * Creates or finds a ScopeType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ScopeType.
      */
@@ -38,7 +44,7 @@ public final class ScopeType extends ExpandableStringEnum<ScopeType> {
 
     /**
      * Gets known ScopeType values.
-     *
+     * 
      * @return known ScopeType values.
      */
     public static Collection<ScopeType> values() {

@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The postBuild definitions defining variable substitutions for this Kustomization after kustomize build. */
+/**
+ * The postBuild definitions defining variable substitutions for this Kustomization after kustomize build.
+ */
 @Fluent
 public final class PostBuildDefinition {
     /*
@@ -26,13 +28,15 @@ public final class PostBuildDefinition {
     @JsonProperty(value = "substituteFrom")
     private List<SubstituteFromDefinition> substituteFrom;
 
-    /** Creates an instance of PostBuildDefinition class. */
+    /**
+     * Creates an instance of PostBuildDefinition class.
+     */
     public PostBuildDefinition() {
     }
 
     /**
      * Get the substitute property: Key/value pairs holding the variables to be substituted in this Kustomization.
-     *
+     * 
      * @return the substitute value.
      */
     public Map<String, String> substitute() {
@@ -41,7 +45,7 @@ public final class PostBuildDefinition {
 
     /**
      * Set the substitute property: Key/value pairs holding the variables to be substituted in this Kustomization.
-     *
+     * 
      * @param substitute the substitute value to set.
      * @return the PostBuildDefinition object itself.
      */
@@ -53,7 +57,7 @@ public final class PostBuildDefinition {
     /**
      * Get the substituteFrom property: Array of ConfigMaps/Secrets from which the variables are substituted for this
      * Kustomization.
-     *
+     * 
      * @return the substituteFrom value.
      */
     public List<SubstituteFromDefinition> substituteFrom() {
@@ -63,7 +67,7 @@ public final class PostBuildDefinition {
     /**
      * Set the substituteFrom property: Array of ConfigMaps/Secrets from which the variables are substituted for this
      * Kustomization.
-     *
+     * 
      * @param substituteFrom the substituteFrom value to set.
      * @return the PostBuildDefinition object itself.
      */
@@ -74,7 +78,7 @@ public final class PostBuildDefinition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kubernetesconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Display metadata associated with the operation. */
+/**
+ * Display metadata associated with the operation.
+ */
 @Fluent
 public final class ResourceProviderOperationDisplay {
     /*
@@ -34,13 +36,15 @@ public final class ResourceProviderOperationDisplay {
     @JsonProperty(value = "description")
     private String description;
 
-    /** Creates an instance of ResourceProviderOperationDisplay class. */
+    /**
+     * Creates an instance of ResourceProviderOperationDisplay class.
+     */
     public ResourceProviderOperationDisplay() {
     }
 
     /**
      * Get the provider property: Resource provider: Microsoft KubernetesConfiguration.
-     *
+     * 
      * @return the provider value.
      */
     public String provider() {
@@ -49,7 +53,7 @@ public final class ResourceProviderOperationDisplay {
 
     /**
      * Set the provider property: Resource provider: Microsoft KubernetesConfiguration.
-     *
+     * 
      * @param provider the provider value to set.
      * @return the ResourceProviderOperationDisplay object itself.
      */
@@ -60,7 +64,7 @@ public final class ResourceProviderOperationDisplay {
 
     /**
      * Get the resource property: Resource on which the operation is performed.
-     *
+     * 
      * @return the resource value.
      */
     public String resource() {
@@ -69,7 +73,7 @@ public final class ResourceProviderOperationDisplay {
 
     /**
      * Set the resource property: Resource on which the operation is performed.
-     *
+     * 
      * @param resource the resource value to set.
      * @return the ResourceProviderOperationDisplay object itself.
      */
@@ -80,7 +84,7 @@ public final class ResourceProviderOperationDisplay {
 
     /**
      * Get the operation property: Type of operation: get, read, delete, etc.
-     *
+     * 
      * @return the operation value.
      */
     public String operation() {
@@ -89,7 +93,7 @@ public final class ResourceProviderOperationDisplay {
 
     /**
      * Set the operation property: Type of operation: get, read, delete, etc.
-     *
+     * 
      * @param operation the operation value to set.
      * @return the ResourceProviderOperationDisplay object itself.
      */
@@ -100,7 +104,7 @@ public final class ResourceProviderOperationDisplay {
 
     /**
      * Get the description property: Description of this operation.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -109,7 +113,7 @@ public final class ResourceProviderOperationDisplay {
 
     /**
      * Set the description property: Description of this operation.
-     *
+     * 
      * @param description the description value to set.
      * @return the ResourceProviderOperationDisplay object itself.
      */
@@ -120,7 +124,7 @@ public final class ResourceProviderOperationDisplay {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
