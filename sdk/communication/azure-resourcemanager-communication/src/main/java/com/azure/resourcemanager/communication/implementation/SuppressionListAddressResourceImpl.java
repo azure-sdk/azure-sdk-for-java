@@ -136,11 +136,11 @@ public final class SuppressionListAddressResourceImpl implements SuppressionList
         com.azure.resourcemanager.communication.CommunicationManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.emailServiceName = Utils.getValueFromIdByName(innerObject.id(), "emailServices");
-        this.domainName = Utils.getValueFromIdByName(innerObject.id(), "domains");
-        this.suppressionListName = Utils.getValueFromIdByName(innerObject.id(), "suppressionLists");
-        this.addressId = Utils.getValueFromIdByName(innerObject.id(), "suppressionListAddresses");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.emailServiceName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "emailServices");
+        this.domainName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "domains");
+        this.suppressionListName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "suppressionLists");
+        this.addressId = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "suppressionListAddresses");
     }
 
     public SuppressionListAddressResource refresh() {
